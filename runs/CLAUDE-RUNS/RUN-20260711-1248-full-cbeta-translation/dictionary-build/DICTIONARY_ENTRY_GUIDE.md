@@ -740,6 +740,57 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       enters the hall sequence.” A figure entry must say what that particular figure does in named Zen
       cases; an institutional entry must define that particular object, office, rite, or act. Neither may
       substitute a category description for the headword's meaning.
+      The f004 A906–930 failure adds a fourth forbidden family: “X is the plain-English referent tested
+      by the selected Chan records; the selected cases place X inside lineage records, public addresses,
+      institutional narration, or inherited cases; the exact surrounding predicates delimit how the
+      records use it.” This is annotation-process prose wearing a headword-specific noun phrase. It is a
+      hard failure even when every occurrence and work ID verifies.
+      **Cohort actor canary:** a checkpoint of five or more different entries may not pass when every
+      occurrence has the identical anonymous `ActorAttribution` signature and the cohort contains no named
+      utterer. Stop and read the full cases. The canary does not guess which actor is correct; it proves that
+      a batch default has replaced occurrence-level adjudication. Independent review must not be the first
+      place this collapse is detected.
+      Varying the anonymous labels does not evade the canary: for ten or more entries and at least thirty
+      occurrences, **zero named utterers is itself a hard batch stop**, whether the rows say `narrated`,
+      `reviewed-unnamed`, or a mixture. This is a suspicion gate, not permission to manufacture names;
+      genuinely anonymous evidence passes only when selected and adjudicated in a smaller coherent cohort
+      whose full cases make that result credible. A large zero-name batch is never accepted by automation.
+      **Public-feedback findings are hard in fresh construction:** `run_cohort_gate.py` must see zero flagged
+      entries, not merely a successful auditor process. Missing item-11 ledgers, unresolved material/modifier
+      claims, weak openings, or any other reader-facing finding block readiness until the author resolves and
+      reruns them. A JSON report containing flags is not a green gate.
+      **Independent-review artifacts are collision-proof:** every reviewer writes a reviewer-qualified,
+      unique filename and must refuse to overwrite an existing review. Two reviewers may disagree; their
+      separately hashed reports are evidence for adjudication. Reusing one generic pathname destroys that
+      evidence and is a hard process failure. Promotion accepts only the explicitly selected report hash
+      after contradictions are resolved; “last writer wins” is never an adjudication rule.
+      **Exact KWIC means the complete stored span:** every occurrence and claim anchor must match fresh
+      `zc.verify` on `RelPath`, exact KWIC text, `FromLb`, **and `ToLb`**. Checking only text and the start
+      line is a hard gate defect: an expanded or shortened KWIC can retain its old start while its endpoint
+      drifts. Custom focused gates must apply the same four-part test as `zc_batch.verify_entries`; labels
+      such as “exact + FromLb” are insufficient and may not support readiness or promotion.
+      **Decile case packets are the shared transport, not shared judgment:** before editing a decile, run
+      `prepare_decile_case_packet.py START END --refresh-spans`. It writes one hash-bound packet containing
+      fresh complete spans, 10k context, source title, work ID, line-anchored headings, and risk signals.
+      Authors and independent reviewers reuse that source packet so XML/context extraction is paid once;
+      each still makes and records an independent actor/semantic decision. A hash mismatch invalidates the
+      packet. Run the expensive structural `attribution_packet.py` once at the final decile gate and reuse
+      its existing exact-hash cache—never regenerate it during each entry edit and again during review.
+      Span refresh happens before compilation because it invalidates worksheet/output receipts. During
+      drafting use fast compiler, exact-span, public-feedback, depth, and actor-distribution checks; reserve
+      the complete cohort gate for the decile boundary. This changes transport and scheduling only, never
+      the final entry schema, full-case reading requirement, or independent review standard.
+      **Do not spend independent-review turns on mechanically broken drafts:** immediately before dispatch,
+      run `pre_review_decile.py ... --output <unique-preflight.json>`. It reuses the production gates while
+      omitting only the expensive final attribution packet. A non-green preflight stays with the author for
+      repair; a green preflight still requires independent full-case reading. This is scheduling, not a waiver.
+      Consecutively duplicated opening sentences are a hard public-feedback failure. Compilation or repair
+      helpers must be idempotent: rerunning them may not prepend the same interpretation again.
+      The same idempotence rule applies to attribution notes: `Name: Name:` is a hard attribution failure.
+      **Coalesce publication, never adjudication:** exact-hash KEEPs may be promoted as each independent report
+      lands, but regenerate root/index/shards once after the concurrently reviewed round is settled (or at an
+      explicitly requested checkpoint), not after every two- or three-entry partial result. Before reporting the
+      accepted count, `publish_fresh_checkpoint.py` must still prove root, merged file, index, and shards agree.
       **Positive calibration:** read `PROSE_HYGIENE_PASS.md`. The accepted `鳥道` entry is the benchmark
       for ordinary pictured scene, corpus-earned Chan bend, counterexample discipline, honest unresolved
       buckets, searchability, and different-referent splitting. The accepted `和尚` entry is the benchmark

@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import json
+from pathlib import Path
+p=Path(__file__).resolve().parents[1]/'entries/t_de2ade080f36/evidence.draft.json';d=json.loads(p.read_text());e=d['Entry'];s=e['Senses'][0]
+e['CreatedBy']='Codex f004 lane A manual full-case repair author'
+# Remove two index/contents witnesses; they cannot evidence a person’s Chan deployment.
+s['Occurrences']=[o for i,o in enumerate(s['Occurrences'],1) if i not in (2,3)]
+s['SourceTexts']=[o['RelPath'] for o in s['Occurrences']]
+s['PreferredTarget']='Pei Xiu, the lay official and Chan interlocutor'
+s['AlternateTargets']=['Pei Xiu','Minister Pei Xiu']
+s['SearchAliases']=['Pei Xiu','裴休居士','裴相國']
+s['Note']='A Tang official preserved in Chan records as a questioner of masters and as the named preface writer who frames a lineage collection against sectarian inheritance and textual combat.'
+s['ExplanationParts']={'CorpusEarnedOpening':'裴休 is Pei Xiu, the Tang official whom the records deploy as both a lay interlocutor of masters and a named writer who frames how Chan records should be read.','EvidenceBody':['In the Chuandeng lu case, Pei visits a master and asks whether he has attendants; the master summons two tigers, and Pei’s fear becomes part of the encounter. Pei is not merely a date-bearing patron in that witness but the questioning lay participant.','Three transmitted editions preserve the same preface notice, 裴休為之序曰. In that preface Pei criticizes schools that fortify inherited learning as separate doorways and wield scriptures and treatises as weapons. The editions are parallel witnesses to one preface, not three independent Pei deployments.','The entry therefore identifies the historical person through what the Chan corpus actually makes him do: question masters and authorize or frame a record in his signed literary voice. Catalogue appearances were removed because a name in a contents list shows neither role.']}
+s['DraftEvidence']={'OpeningClaimEvidenceKeys':['o1','o2','o3','o4'],'ZenBend':'The corpus makes Pei Xiu a lay actor inside encounters and a preface voice judging fractured transmission; it does not retain him merely as an external statesman.','CounterexampleOrLimit':'The three preface witnesses transmit the same document in parallel editions and cannot be counted as three independent acts; contents-list mentions are excluded.','DifferentThingTest':{'Decision':'one-thing','ComparedThings':['Pei Xiu as interlocutor','Pei Xiu as preface writer'],'Reason':'These are two attested roles of the same named person, not separate senses.'},'AliasRationale':'Romanization, title, and lay designation retrieve the same person.','ModifierControls':[{'finding':'controlled','reason':'Bare catalogue and table-of-contents occurrences were removed.'}],'FamilyControls':[{'finding':'controlled','reason':'Parallel editions of Pei’s preface are identified as one document.'}],'IndependentWorkIds':['work:T51n2076','work:wudeng-quanshu','work:X80n1565','work:wudeng-yantong']}
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')

@@ -1,0 +1,3332 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T06:25:39.107246+00:00",
+  "wave": "f004",
+  "lane": "A",
+  "ordinals": [
+    951,
+    960
+  ],
+  "state": "research-admission-only",
+  "immutablePreflight": {
+    "path": "fresh-build/waves/f004-laneA-901-1000-preflight.json",
+    "sha256": "fa7e0191886a6ded044e43ad20308798d5ef6d3ffc0129aa453ed9e732f3836f",
+    "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  },
+  "iriyaApplied": false,
+  "reason": "All rows derive from NEXT500_BUILD_PLAN.md, not the Iriya queue.",
+  "entries": [
+    {
+      "ordinal": 951,
+      "id": "t_2f1483b84db4",
+      "term": "語句",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 800,
+        "files": 229,
+        "independentWorks": 224,
+        "evidenceFloor": 7
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 語句 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 語句?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "bare graph/word versus compounds and named persons or places"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "fileHits": 24
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "title": "指月錄",
+          "fileHits": 34
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "title": "御選語錄",
+          "fileHits": 33
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 21
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "title": "佛果克勤禪師心要",
+          "fileHits": 23
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "fileHits": 14
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 19
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "fileHits": 13
+        },
+        {
+          "workId": "work:X78n1553",
+          "RelPath": "X/X78/X78n1553.xml",
+          "title": "天聖廣燈錄",
+          "fileHits": 13
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "title": "禪宗正脉",
+          "fileHits": 13
+        },
+        {
+          "workId": "work:T51n2077",
+          "RelPath": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "fileHits": 11
+        },
+        {
+          "workId": "work:J27nB198",
+          "RelPath": "J/J27/J27nB198.xml",
+          "title": "雪關禪師語錄",
+          "fileHits": 10
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0003a14",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0055b11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0397c11",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0410c18",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0530a12",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0543c19",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0620b08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0620b08",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455a12",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "fromLb": "0458b17",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0060a08",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0098b09",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0075c18",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0098c07",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "fromLb": "0146b26",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "fromLb": "0149a25",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X78n1553",
+          "RelPath": "X/X78/X78n1553.xml",
+          "fromLb": "0457c06",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X78n1553",
+          "RelPath": "X/X78/X78n1553.xml",
+          "fromLb": "0457c06",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0372a22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0398b23",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T51n2077",
+          "RelPath": "T/T51/T51n2077.xml",
+          "fromLb": "0502b12",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T51n2077",
+          "RelPath": "T/T51/T51n2077.xml",
+          "fromLb": "0543b11",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J27nB198",
+          "RelPath": "J/J27/J27nB198.xml",
+          "fromLb": "0459b06",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J27nB198",
+          "RelPath": "J/J27/J27nB198.xml",
+          "fromLb": "0462b09",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 952,
+      "id": "t_30b4735c4631",
+      "term": "憍陳如",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 128,
+        "files": 75,
+        "independentWorks": 72,
+        "evidenceFloor": 6
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 憍陳如 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 憍陳如?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "test whether apparently varied readings denote one thing or genuinely different referents"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "fileHits": 8
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X67n1304",
+          "RelPath": "X/X67/X67n1304.xml",
+          "title": "林泉老人評唱丹霞淳禪師頌古虗堂集",
+          "fileHits": 5
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 5
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "title": "景德傳燈錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X71n1420",
+          "RelPath": "X/X71/X71n1420.xml",
+          "title": "楚石梵琦禪師語錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "title": "御選語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X72n1437",
+          "RelPath": "X/X72/X72n1437.xml",
+          "title": "永覺元賢禪師廣錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "title": "禪宗正脉",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "D/D48/D48n8939.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 2
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0155b07",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0169c17",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0026b14",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0127c03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X67n1304",
+          "RelPath": "X/X67/X67n1304.xml",
+          "fromLb": "0341c09",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X67n1304",
+          "RelPath": "X/X67/X67n1304.xml",
+          "fromLb": "0341c16",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0028c17",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0130c20",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0021b20",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0153a03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0205b25",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0333b07",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X71n1420",
+          "RelPath": "X/X71/X71n1420.xml",
+          "fromLb": "0555b20",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X71n1420",
+          "RelPath": "X/X71/X71n1420.xml",
+          "fromLb": "0571b20",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "fromLb": "0480a03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "fromLb": "0480a04",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0581b14",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0584b12",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1437",
+          "RelPath": "X/X72/X72n1437.xml",
+          "fromLb": "0427c13",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1437",
+          "RelPath": "X/X72/X72n1437.xml",
+          "fromLb": "0496b14",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0426a06",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0459c19",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "D/D48/D48n8939.xml",
+          "fromLb": "0041a05",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "D/D48/D48n8939.xml",
+          "fromLb": "0384a07",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 953,
+      "id": "t_438de0f19d5b",
+      "term": "倒卻門前剎竿",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 84,
+        "files": 57,
+        "independentWorks": 57,
+        "evidenceFloor": 4
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 倒卻門前剎竿 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 倒卻門前剎竿?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "literal object/place versus corpus-established institutional or lineage referent"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:J34nB311",
+          "RelPath": "J/J34/J34nB311.xml",
+          "title": "天界覺浪盛禪師全錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:J10nA158",
+          "RelPath": "J/J10/J10nA158.xml",
+          "title": "密雲禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J32nB276",
+          "RelPath": "J/J32/J32nB276.xml",
+          "title": "不會禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J36nB357",
+          "RelPath": "J/J36/J36nB357.xml",
+          "title": "秀野林禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J38nB406",
+          "RelPath": "J/J38/J38nB406.xml",
+          "title": "廬山天然禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "title": "天岸昇禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J27nB193",
+          "RelPath": "J/J27/J27nB193.xml",
+          "title": "隱元禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J28nB202",
+          "RelPath": "J/J28/J28nB202.xml",
+          "title": "百癡禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J28nB208",
+          "RelPath": "J/J28/J28nB208.xml",
+          "title": "古雪哲禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "title": "千巖和尚語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J33nB294",
+          "RelPath": "J/J33/J33nB294.xml",
+          "title": "雲溪俍亭挺禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J34nB303",
+          "RelPath": "J/J34/J34nB303.xml",
+          "title": "燮雲璣禪師國清無畏堂語錄",
+          "fileHits": 2
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:J34nB311",
+          "RelPath": "J/J34/J34nB311.xml",
+          "fromLb": "0634b26",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J34nB311",
+          "RelPath": "J/J34/J34nB311.xml",
+          "fromLb": "0661c06",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J10nA158",
+          "RelPath": "J/J10/J10nA158.xml",
+          "fromLb": "0023a02",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J10nA158",
+          "RelPath": "J/J10/J10nA158.xml",
+          "fromLb": "0049b08",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J32nB276",
+          "RelPath": "J/J32/J32nB276.xml",
+          "fromLb": "0332a26",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J32nB276",
+          "RelPath": "J/J32/J32nB276.xml",
+          "fromLb": "0332a29",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J36nB357",
+          "RelPath": "J/J36/J36nB357.xml",
+          "fromLb": "0591c30",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J36nB357",
+          "RelPath": "J/J36/J36nB357.xml",
+          "fromLb": "0592a01",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J38nB406",
+          "RelPath": "J/J38/J38nB406.xml",
+          "fromLb": "0134c03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J38nB406",
+          "RelPath": "J/J38/J38nB406.xml",
+          "fromLb": "0146a16",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0706b23",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0726a11",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J27nB193",
+          "RelPath": "J/J27/J27nB193.xml",
+          "fromLb": "0226a28",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J27nB193",
+          "RelPath": "J/J27/J27nB193.xml",
+          "fromLb": "0226b01",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB202",
+          "RelPath": "J/J28/J28nB202.xml",
+          "fromLb": "0053c11",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB202",
+          "RelPath": "J/J28/J28nB202.xml",
+          "fromLb": "0086b19",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB208",
+          "RelPath": "J/J28/J28nB208.xml",
+          "fromLb": "0325b28",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J28nB208",
+          "RelPath": "J/J28/J28nB208.xml",
+          "fromLb": "0329c24",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "fromLb": "0207b23",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "fromLb": "0213a11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J33nB294",
+          "RelPath": "J/J33/J33nB294.xml",
+          "fromLb": "0733c18",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J33nB294",
+          "RelPath": "J/J33/J33nB294.xml",
+          "fromLb": "0762b11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J34nB303",
+          "RelPath": "J/J34/J34nB303.xml",
+          "fromLb": "0358a12",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J34nB303",
+          "RelPath": "J/J34/J34nB303.xml",
+          "fromLb": "0362c16",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 954,
+      "id": "t_61d1720dc4de",
+      "term": "進語",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 817,
+        "files": 205,
+        "independentWorks": 201,
+        "evidenceFloor": 7
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 進語 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 進語?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "bare graph/word versus compounds and named persons or places"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "fileHits": 55
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "fileHits": 19
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 24
+        },
+        {
+          "workId": "chan:anheidou-ji",
+          "RelPath": "X/X85/X85n1592.xml",
+          "title": "揞黑豆集",
+          "fileHits": 21
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "title": "普濟玉琳國師語錄",
+          "fileHits": 18
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "fileHits": 17
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "fileHits": 17
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 9
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "fileHits": 16
+        },
+        {
+          "workId": "chan:zongmen-tongyao-zhengxu",
+          "RelPath": "P/P154/P154n1519.xml",
+          "title": "宗門統要正續集(第1卷-第12卷)",
+          "fileHits": 9
+        },
+        {
+          "workId": "work:J40nB494",
+          "RelPath": "J/J40/J40nB494.xml",
+          "title": "雨山和尚語錄",
+          "fileHits": 15
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "title": "景德傳燈錄",
+          "fileHits": 15
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0063a02",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0096c14",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0009a16",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0020b07",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0081a24",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0097b21",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "chan:anheidou-ji",
+          "RelPath": "X/X85/X85n1592.xml",
+          "fromLb": "0282b10",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "chan:anheidou-ji",
+          "RelPath": "X/X85/X85n1592.xml",
+          "fromLb": "0284c19",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "fromLb": "0513a20",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "fromLb": "0527a01",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0406a18",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0427b24",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0422b10",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0479a02",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0665b06",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0668a07",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "fromLb": "0063a17",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "fromLb": "0063b09",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "chan:zongmen-tongyao-zhengxu",
+          "RelPath": "P/P154/P154n1519.xml",
+          "fromLb": "0657a01",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "chan:zongmen-tongyao-zhengxu",
+          "RelPath": "P/P154/P154n1519.xml",
+          "fromLb": "0657a02",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J40nB494",
+          "RelPath": "J/J40/J40nB494.xml",
+          "fromLb": "0528a13",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J40nB494",
+          "RelPath": "J/J40/J40nB494.xml",
+          "fromLb": "0543a02",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0249b02",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0279a14",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 955,
+      "id": "t_980540d0357a",
+      "term": "雪峰輥毬",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 125,
+        "files": 80,
+        "independentWorks": 79,
+        "evidenceFloor": 6
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 雪峰輥毬 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 雪峰輥毬?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "test whether apparently varied readings denote one thing or genuinely different referents"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:X83n1574",
+          "RelPath": "X/X83/X83n1574.xml",
+          "title": "增集續傳燈錄",
+          "fileHits": 5
+        },
+        {
+          "workId": "work:X79n1559",
+          "RelPath": "X/X79/X79n1559.xml",
+          "title": "嘉泰普燈錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "chan:xu-zhiyue-lu",
+          "RelPath": "X/X84/X84n1579.xml",
+          "title": "續指月錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:J36nB369",
+          "RelPath": "J/J36/J36nB369.xml",
+          "title": "蔗菴範禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "title": "佛果克勤禪師心要",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J26nB182",
+          "RelPath": "J/J26/J26nB182.xml",
+          "title": "萬如禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "title": "天岸昇禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "title": "千巖和尚語錄",
+          "fileHits": 2
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0068c23",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0155b17",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X83n1574",
+          "RelPath": "X/X83/X83n1574.xml",
+          "fromLb": "0296b18",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X83n1574",
+          "RelPath": "X/X83/X83n1574.xml",
+          "fromLb": "0301b21",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X79n1559",
+          "RelPath": "X/X79/X79n1559.xml",
+          "fromLb": "0339b17",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X79n1559",
+          "RelPath": "X/X79/X79n1559.xml",
+          "fromLb": "0444c12",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:xu-zhiyue-lu",
+          "RelPath": "X/X84/X84n1579.xml",
+          "fromLb": "0056a02",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:xu-zhiyue-lu",
+          "RelPath": "X/X84/X84n1579.xml",
+          "fromLb": "0056a03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0524c11",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0531b16",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J36nB369",
+          "RelPath": "J/J36/J36nB369.xml",
+          "fromLb": "0902a03",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J36nB369",
+          "RelPath": "J/J36/J36nB369.xml",
+          "fromLb": "0934c24",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0145b19",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0153a21",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "fromLb": "0456b16",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X69n1357",
+          "RelPath": "X/X69/X69n1357.xml",
+          "fromLb": "0459a01",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "fromLb": "0109c13",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "fromLb": "0153a12",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB182",
+          "RelPath": "J/J26/J26nB182.xml",
+          "fromLb": "0464b13",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J26nB182",
+          "RelPath": "J/J26/J26nB182.xml",
+          "fromLb": "0464c18",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0675c02",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0715c13",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "fromLb": "0204a05",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J32nB273",
+          "RelPath": "J/J32/J32nB273.xml",
+          "fromLb": "0209a09",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 956,
+      "id": "t_138875f35008",
+      "term": "不二法門",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 439,
+        "files": 142,
+        "independentWorks": 139,
+        "evidenceFloor": 6
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 不二法門 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 不二法門?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "literal object/place versus corpus-established institutional or lineage referent"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 11
+        },
+        {
+          "workId": "work:X66n1296",
+          "RelPath": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "fileHits": 16
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "title": "五燈全書(第1卷-第33卷)",
+          "fileHits": 9
+        },
+        {
+          "workId": "work:B25n0145",
+          "RelPath": "B/B25/B25n0145.xml",
+          "title": "天目中峰廣錄",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:J39nB462",
+          "RelPath": "J/J39/J39nB462.xml",
+          "title": "何一自禪師語錄",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:J35nB336",
+          "RelPath": "J/J35/J35nB336.xml",
+          "title": "南海寶象林慧弓詗禪師語錄",
+          "fileHits": 8
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "fileHits": 8
+        },
+        {
+          "workId": "work:X68n1318",
+          "RelPath": "X/X68/X68n1318.xml",
+          "title": "續古尊宿語要",
+          "fileHits": 8
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 8
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "title": "指月錄",
+          "fileHits": 8
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0638a13",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0638a13",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X66n1296",
+          "RelPath": "X/X66/X66n1296.xml",
+          "fromLb": "0019a21",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X66n1296",
+          "RelPath": "X/X66/X66n1296.xml",
+          "fromLb": "0019a22",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0415c05",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0415c07",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:B25n0145",
+          "RelPath": "B/B25/B25n0145.xml",
+          "fromLb": "0767b03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:B25n0145",
+          "RelPath": "B/B25/B25n0145.xml",
+          "fromLb": "0847a05",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB462",
+          "RelPath": "J/J39/J39nB462.xml",
+          "fromLb": "0776b03",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J39nB462",
+          "RelPath": "J/J39/J39nB462.xml",
+          "fromLb": "0776b03",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "fromLb": "0209b22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2003",
+          "RelPath": "T/T48/T48n2003.xml",
+          "fromLb": "0209b25",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "fromLb": "0443b10",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2016",
+          "RelPath": "T/T48/T48n2016.xml",
+          "fromLb": "0585a10",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J35nB336",
+          "RelPath": "J/J35/J35nB336.xml",
+          "fromLb": "0704b03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J35nB336",
+          "RelPath": "J/J35/J35nB336.xml",
+          "fromLb": "0704b05",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0291b08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0291b10",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1318",
+          "RelPath": "X/X68/X68n1318.xml",
+          "fromLb": "0358a22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1318",
+          "RelPath": "X/X68/X68n1318.xml",
+          "fromLb": "0428c12",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0065b21",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0065b23",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0413b03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0413b05",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 957,
+      "id": "t_016fdba97618",
+      "term": "選佛場",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 690,
+        "files": 232,
+        "independentWorks": 230,
+        "evidenceFloor": 7
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 選佛場 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 選佛場?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "test whether apparently varied readings denote one thing or genuinely different referents"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "fileHits": 28
+        },
+        {
+          "workId": "work:J39nB461",
+          "RelPath": "J/J39/J39nB461.xml",
+          "title": "性空臻禪師語錄",
+          "fileHits": 15
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "fileHits": 15
+        },
+        {
+          "workId": "work:J34nB300",
+          "RelPath": "J/J34/J34nB300.xml",
+          "title": "朝宗禪師語錄",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:T47n1997",
+          "RelPath": "T/T47/T47n1997.xml",
+          "title": "圓悟佛果禪師語錄",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "title": "天岸昇禪師語錄",
+          "fileHits": 11
+        },
+        {
+          "workId": "work:X78n1556",
+          "RelPath": "X/X78/X78n1556.xml",
+          "title": "建中靖國續燈錄",
+          "fileHits": 11
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "title": "法璽印禪師語錄",
+          "fileHits": 8
+        },
+        {
+          "workId": "work:J29nB235",
+          "RelPath": "J/J29/J29nB235.xml",
+          "title": "蓮月禪師語錄",
+          "fileHits": 8
+        },
+        {
+          "workId": "work:J38nB422",
+          "RelPath": "J/J38/J38nB422.xml",
+          "title": "林我禪師語錄",
+          "fileHits": 8
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0012c08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "fromLb": "0026a10",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J39nB461",
+          "RelPath": "J/J39/J39nB461.xml",
+          "fromLb": "0748a03",
+          "windowNumber": 1,
+          "candidate": "compiler/editorial narration",
+          "status": "catalogue-risk",
+          "reason": "The discovery window contains catalogue/title structure; exclude unless a full case supplies lexical use."
+        },
+        {
+          "workId": "work:J39nB461",
+          "RelPath": "J/J39/J39nB461.xml",
+          "fromLb": "0748a03",
+          "windowNumber": 2,
+          "candidate": "compiler/editorial narration",
+          "status": "catalogue-risk",
+          "reason": "The discovery window contains catalogue/title structure; exclude unless a full case supplies lexical use."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0086c13",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0087a03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J34nB300",
+          "RelPath": "J/J34/J34nB300.xml",
+          "fromLb": "0231c13",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J34nB300",
+          "RelPath": "J/J34/J34nB300.xml",
+          "fromLb": "0232b05",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:T47n1997",
+          "RelPath": "T/T47/T47n1997.xml",
+          "fromLb": "0724c28",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T47n1997",
+          "RelPath": "T/T47/T47n1997.xml",
+          "fromLb": "0726a25",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0008a15",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0020c20",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0661c09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB187",
+          "RelPath": "J/J26/J26nB187.xml",
+          "fromLb": "0666a17",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X78n1556",
+          "RelPath": "X/X78/X78n1556.xml",
+          "fromLb": "0693c04",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X78n1556",
+          "RelPath": "X/X78/X78n1556.xml",
+          "fromLb": "0698a03",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0408a05",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:X84n1583",
+          "RelPath": "X/X84/X84n1583.xml",
+          "fromLb": "0434c07",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "fromLb": "0786a09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "fromLb": "0786a11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J29nB235",
+          "RelPath": "J/J29/J29nB235.xml",
+          "fromLb": "0402a03",
+          "windowNumber": 1,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J29nB235",
+          "RelPath": "J/J29/J29nB235.xml",
+          "fromLb": "0404a05",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J38nB422",
+          "RelPath": "J/J38/J38nB422.xml",
+          "fromLb": "0569c11",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J38nB422",
+          "RelPath": "J/J38/J38nB422.xml",
+          "fromLb": "0570a17",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        }
+      ],
+      "catalogueTitleExclusions": [
+        {
+          "RelPath": "J/J39/J39nB461.xml",
+          "fromLb": "0748a03",
+          "reason": "Catalogue/title/editorial discovery window; not admissible lexical evidence without a separate full-case use."
+        },
+        {
+          "RelPath": "J/J39/J39nB461.xml",
+          "fromLb": "0748a03",
+          "reason": "Catalogue/title/editorial discovery window; not admissible lexical evidence without a separate full-case use."
+        }
+      ],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 958,
+      "id": "t_bdb447b3878f",
+      "term": "木魚",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 123,
+        "files": 64,
+        "independentWorks": 61,
+        "evidenceFloor": 6
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 木魚 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 木魚?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "bare graph/word versus compounds and named persons or places"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 6
+        },
+        {
+          "workId": "work:T48n2025",
+          "RelPath": "T/T48/T48n2025.xml",
+          "title": "勅修百丈清規",
+          "fileHits": 7
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "title": "五燈全書(第1卷-第33卷)",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J27nB189",
+          "RelPath": "J/J27/J27nB189.xml",
+          "title": "三宜盂禪師語錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:J39nB447",
+          "RelPath": "J/J39/J39nB447.xml",
+          "title": "東山梅溪度禪師語錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X63n1245",
+          "RelPath": "X/X63/X63n1245.xml",
+          "title": "(重雕補註)禪苑清規",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X63n1250",
+          "RelPath": "X/X63/X63n1250.xml",
+          "title": "禪林備用清規",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "title": "御選語錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "title": "普濟玉琳國師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X73n1449",
+          "RelPath": "X/X73/X73n1449.xml",
+          "title": "吳山淨端禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 3
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0792c03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0792c03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2025",
+          "RelPath": "T/T48/T48n2025.xml",
+          "fromLb": "1112c01",
+          "windowNumber": 1,
+          "candidate": "compiler/editorial narration",
+          "status": "catalogue-risk",
+          "reason": "The discovery window contains catalogue/title structure; exclude unless a full case supplies lexical use."
+        },
+        {
+          "workId": "work:T48n2025",
+          "RelPath": "T/T48/T48n2025.xml",
+          "fromLb": "1144b01",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0562c03",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0616a09",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:J27nB189",
+          "RelPath": "J/J27/J27nB189.xml",
+          "fromLb": "0005a20",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J27nB189",
+          "RelPath": "J/J27/J27nB189.xml",
+          "fromLb": "0009a09",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB447",
+          "RelPath": "J/J39/J39nB447.xml",
+          "fromLb": "0417c19",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB447",
+          "RelPath": "J/J39/J39nB447.xml",
+          "fromLb": "0417c19",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X63n1245",
+          "RelPath": "X/X63/X63n1245.xml",
+          "fromLb": "0525a09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X63n1245",
+          "RelPath": "X/X63/X63n1245.xml",
+          "fromLb": "0539b21",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X63n1250",
+          "RelPath": "X/X63/X63n1250.xml",
+          "fromLb": "0654b06",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X63n1250",
+          "RelPath": "X/X63/X63n1250.xml",
+          "fromLb": "0666b08",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0005c13",
+          "windowNumber": 1,
+          "candidate": "compiler/editorial narration",
+          "status": "catalogue-risk",
+          "reason": "The discovery window contains catalogue/title structure; exclude unless a full case supplies lexical use."
+        },
+        {
+          "workId": "work:X64n1260",
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0311b24",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0539a22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X68n1319",
+          "RelPath": "X/X68/X68n1319.xml",
+          "fromLb": "0539a23",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "fromLb": "0560a17",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:B27n0152",
+          "RelPath": "B/B27/B27n0152.xml",
+          "fromLb": "0560a18",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X73n1449",
+          "RelPath": "X/X73/X73n1449.xml",
+          "fromLb": "0077c08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X73n1449",
+          "RelPath": "X/X73/X73n1449.xml",
+          "fromLb": "0077c08",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0185c22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0236a09",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        }
+      ],
+      "catalogueTitleExclusions": [
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "fromLb": "1112c01",
+          "reason": "Catalogue/title/editorial discovery window; not admissible lexical evidence without a separate full-case use."
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "fromLb": "0005c13",
+          "reason": "Catalogue/title/editorial discovery window; not admissible lexical evidence without a separate full-case use."
+        }
+      ],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 959,
+      "id": "t_dba7bc639a85",
+      "term": "本參話頭",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 95,
+        "files": 55,
+        "independentWorks": 55,
+        "evidenceFloor": 4
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 本參話頭 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 本參話頭?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "test whether apparently varied readings denote one thing or genuinely different referents"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:X72n1444",
+          "RelPath": "X/X72/X72n1444.xml",
+          "title": "湛然圓澄禪師語錄",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:J26nB188",
+          "RelPath": "J/J26/J26nB188.xml",
+          "title": "入就瑞白禪師語錄",
+          "fileHits": 9
+        },
+        {
+          "workId": "work:J39nB471",
+          "RelPath": "J/J39/J39nB471.xml",
+          "title": "空谷道澄禪師語錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:X72n1435",
+          "RelPath": "X/X72/X72n1435.xml",
+          "title": "無異元來禪師廣錄",
+          "fileHits": 4
+        },
+        {
+          "workId": "work:J26nB177",
+          "RelPath": "J/J26/J26nB177.xml",
+          "title": "破山禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J39nB436",
+          "RelPath": "J/J39/J39nB436.xml",
+          "title": "參同一揆禪師語錄",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:T48n2024",
+          "RelPath": "T/T48/T48n2024.xml",
+          "title": "禪關策進",
+          "fileHits": 3
+        },
+        {
+          "workId": "work:J26nB185",
+          "RelPath": "J/J26/J26nB185.xml",
+          "title": "浮石禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "title": "法璽印禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J37nB401",
+          "RelPath": "J/J37/J37nB401.xml",
+          "title": "浦峰長明炅禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J39nB444",
+          "RelPath": "J/J39/J39nB444.xml",
+          "title": "卓峰玨禪師語錄",
+          "fileHits": 2
+        },
+        {
+          "workId": "work:J39nB453",
+          "RelPath": "J/J39/J39nB453.xml",
+          "title": "元潔瑩禪師語錄",
+          "fileHits": 2
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:X72n1444",
+          "RelPath": "X/X72/X72n1444.xml",
+          "fromLb": "0772b20",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1444",
+          "RelPath": "X/X72/X72n1444.xml",
+          "fromLb": "0772c10",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB188",
+          "RelPath": "J/J26/J26nB188.xml",
+          "fromLb": "0757a19",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB188",
+          "RelPath": "J/J26/J26nB188.xml",
+          "fromLb": "0765a14",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB471",
+          "RelPath": "J/J39/J39nB471.xml",
+          "fromLb": "0994a09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB471",
+          "RelPath": "J/J39/J39nB471.xml",
+          "fromLb": "0995b11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1435",
+          "RelPath": "X/X72/X72n1435.xml",
+          "fromLb": "0348c24",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1435",
+          "RelPath": "X/X72/X72n1435.xml",
+          "fromLb": "0349a11",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB177",
+          "RelPath": "J/J26/J26nB177.xml",
+          "fromLb": "0023b08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB177",
+          "RelPath": "J/J26/J26nB177.xml",
+          "fromLb": "0025c09",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB436",
+          "RelPath": "J/J39/J39nB436.xml",
+          "fromLb": "0008b08",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB436",
+          "RelPath": "J/J39/J39nB436.xml",
+          "fromLb": "0009a03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2024",
+          "RelPath": "T/T48/T48n2024.xml",
+          "fromLb": "1103a25",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T48n2024",
+          "RelPath": "T/T48/T48n2024.xml",
+          "fromLb": "1104b16",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB185",
+          "RelPath": "J/J26/J26nB185.xml",
+          "fromLb": "0594b30",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J26nB185",
+          "RelPath": "J/J26/J26nB185.xml",
+          "fromLb": "0595b14",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "fromLb": "0800b24",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J28nB220",
+          "RelPath": "J/J28/J28nB220.xml",
+          "fromLb": "0801b04",
+          "windowNumber": 2,
+          "candidate": "compiler/editorial narration",
+          "status": "catalogue-risk",
+          "reason": "The discovery window contains catalogue/title structure; exclude unless a full case supplies lexical use."
+        },
+        {
+          "workId": "work:J37nB401",
+          "RelPath": "J/J37/J37nB401.xml",
+          "fromLb": "0777a09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J37nB401",
+          "RelPath": "J/J37/J37nB401.xml",
+          "fromLb": "0780a04",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB444",
+          "RelPath": "J/J39/J39nB444.xml",
+          "fromLb": "0340b04",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB444",
+          "RelPath": "J/J39/J39nB444.xml",
+          "fromLb": "0340b07",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB453",
+          "RelPath": "J/J39/J39nB453.xml",
+          "fromLb": "0579b29",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB453",
+          "RelPath": "J/J39/J39nB453.xml",
+          "fromLb": "0580b25",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        }
+      ],
+      "catalogueTitleExclusions": [
+        {
+          "RelPath": "J/J28/J28nB220.xml",
+          "fromLb": "0801b04",
+          "reason": "Catalogue/title/editorial discovery window; not admissible lexical evidence without a separate full-case use."
+        }
+      ],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    },
+    {
+      "ordinal": 960,
+      "id": "t_f6bbe4aef522",
+      "term": "會取",
+      "source": "NEXT500_BUILD_PLAN.md",
+      "phase": "next500",
+      "isIriya": false,
+      "preflightCounts": {
+        "hits": 732,
+        "files": 201,
+        "independentWorks": 196,
+        "evidenceFloor": 7
+      },
+      "admissionState": "research-only-not-drafted",
+      "proseHygieneQuestions": [
+        "What ordinary scene, object, person, office, or utterance does 會取 name before any Chan redeployment?",
+        "Where do named Chan records bend, institutionalize, test, quote, or rebuke with 會取?",
+        "Which attractive inference fails against a counterexample or negative concordance result?",
+        "Can every eventual paragraph name its stored evidence and exact actor rather than say the records use it?",
+        "Could any proposed prose be pasted under another headword? If yes, reject it as template filler."
+      ],
+      "differentThingCandidates": [
+        "bare graph/word versus compounds and named persons or places"
+      ],
+      "modifierAndFamilyControls": [],
+      "candidateIndependentWorks": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "fileHits": 28
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "title": "五燈全書(第1卷-第33卷)",
+          "fileHits": 27
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "fileHits": 19
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "fileHits": 28
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "title": "景德傳燈錄",
+          "fileHits": 22
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "title": "指月錄",
+          "fileHits": 17
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "title": "禪宗正脉",
+          "fileHits": 14
+        },
+        {
+          "workId": "work:X72n1428",
+          "RelPath": "X/X72/X72n1428.xml",
+          "title": "淨慈慧暉禪師語錄",
+          "fileHits": 13
+        },
+        {
+          "workId": "chan:xueqiao-xin-yulu",
+          "RelPath": "L/L153/L153n1638.xml",
+          "title": "雪嶠信禪師語錄(第1卷-第6卷)",
+          "fileHits": 9
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "fileHits": 12
+        },
+        {
+          "workId": "work:J27nB190",
+          "RelPath": "J/J27/J27nB190.xml",
+          "title": "石雨禪師法檀",
+          "fileHits": 10
+        },
+        {
+          "workId": "work:J39nB448",
+          "RelPath": "J/J39/J39nB448.xml",
+          "title": "靈機禪師語錄",
+          "fileHits": 10
+        }
+      ],
+      "fullCaseActorCandidates": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0682b05",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "fromLb": "0683a05",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0435c24",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "fromLb": "0435c24",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0004c20",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "fromLb": "0005a08",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0053b22",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "fromLb": "0053b22",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0233b02",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:T51n2076",
+          "RelPath": "T/T51/T51n2076.xml",
+          "fromLb": "0233b02",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0452b13",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "fromLb": "0485b03",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0402b13",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X85n1593",
+          "RelPath": "X/X85/X85n1593.xml",
+          "fromLb": "0403c13",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1428",
+          "RelPath": "X/X72/X72n1428.xml",
+          "fromLb": "0131a09",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:X72n1428",
+          "RelPath": "X/X72/X72n1428.xml",
+          "fromLb": "0131a20",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:xueqiao-xin-yulu",
+          "RelPath": "L/L153/L153n1638.xml",
+          "fromLb": "0690b04",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "chan:xueqiao-xin-yulu",
+          "RelPath": "L/L153/L153n1638.xml",
+          "fromLb": "0698b14",
+          "windowNumber": 2,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0308c07",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "fromLb": "0366c04",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J27nB190",
+          "RelPath": "J/J27/J27nB190.xml",
+          "fromLb": "0081c11",
+          "windowNumber": 1,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J27nB190",
+          "RelPath": "J/J27/J27nB190.xml",
+          "fromLb": "0081c12",
+          "windowNumber": 2,
+          "candidate": "unresolved actor or narrator",
+          "status": "requires-full-case",
+          "reason": "The KWIC window alone does not decide utterer versus narration."
+        },
+        {
+          "workId": "work:J39nB448",
+          "RelPath": "J/J39/J39nB448.xml",
+          "fromLb": "0426a13",
+          "windowNumber": 1,
+          "candidate": "enclosing named master",
+          "status": "requires-full-case",
+          "reason": "A marked master/address frame precedes the headword; resolve the section and reconstruct the exact turn."
+        },
+        {
+          "workId": "work:J39nB448",
+          "RelPath": "J/J39/J39nB448.xml",
+          "fromLb": "0434b12",
+          "windowNumber": 2,
+          "candidate": "unnamed questioner",
+          "status": "requires-full-case",
+          "reason": "A 問/僧問 frame occurs before the headword; do not assign the following 師 reply."
+        }
+      ],
+      "catalogueTitleExclusions": [],
+      "admissionRequirements": [
+        "Read complete cases around selected windows; discovery KWIC is not final evidence.",
+        "Count distinct workId values, never files, for multi-source validation.",
+        "Run definition formulas and deployment-shape searches before drafting.",
+        "Verify every saved KWIC and exact FromLb/ToLb with zc.verify.",
+        "Resolve MasterName only to the utterer of the headword; actions, headings, questioners, narrators, and section owners are separate.",
+        "Test modifier compounds and overlapping family entries before deciding sense boundaries."
+      ],
+      "entryEdited": false
+    }
+  ],
+  "draftsCreated": 0,
+  "entryFilesEdited": 0,
+  "supersedesF003": false,
+  "siteTouched": false
+}

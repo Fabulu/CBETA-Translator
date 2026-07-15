@@ -1,0 +1,172 @@
+{
+  "generatedUtc": "2026-07-15T04:13:55.163601+00:00",
+  "elapsedSeconds": 1.656,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_af814bc95cd7",
+      "term": "開口",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af814bc95cd7/entry.v2.json",
+      "sha256": "5d1956215ac9da2ba7d876c24a3ec6b16a3d8bbd61ccad81a7750bfcc5825615"
+    },
+    {
+      "id": "t_21d597c07ca4",
+      "term": "禪院",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_21d597c07ca4/entry.v2.json",
+      "sha256": "1ac26731794886f0ac4cc7b67d08578b45f40f42cea36f1a08627716d3bbb672"
+    },
+    {
+      "id": "t_9edf120e470a",
+      "term": "商量",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9edf120e470a/entry.v2.json",
+      "sha256": "1611869dc24cd0dee2c998f8d408c5f821530145d161a85e5dae697ebe97f50b"
+    },
+    {
+      "id": "t_f66eb09413fb",
+      "term": "三十棒",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f66eb09413fb/entry.v2.json",
+      "sha256": "91f0c14713c6c7907add50dc005c4154a39197cdbe5b3d75c86291d6fb6bc955"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 31,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af814bc95cd7/entry.v2.json",
+        "id": "t_af814bc95cd7",
+        "term": "開口",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_21d597c07ca4/entry.v2.json",
+        "id": "t_21d597c07ca4",
+        "term": "禪院",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9edf120e470a/entry.v2.json",
+        "id": "t_9edf120e470a",
+        "term": "商量",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f66eb09413fb/entry.v2.json",
+        "id": "t_f66eb09413fb",
+        "term": "三十棒",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.121,
+    "attribution": 0.273,
+    "publicFeedback": 0.093,
+    "depthSense": 0.361,
+    "countClaims": 0.097,
+    "workSourceValidation": 0.152,
+    "corpusBaseline": 0.143,
+    "frozenHistoricalTerms": 0.381,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.273,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "occurrences": 31,
+        "actor_narrated": 14,
+        "attribution_notes": 31,
+        "named_occurrences": 17,
+        "deferred_non_roster": 9,
+        "context_master_links": 21,
+        "deferred_non_roster_context": 9
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"occurrences\": 31,\n    \"actor_narrated\": 14,\n    \"attribution_notes\": 31,\n    \"named_occurrences\": 17,\n    \"deferred_non_roster\": 9,\n    \"context_master_links\": 21,\n    \"deferred_non_roster_context\": 9\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.093,
+    "payload": {
+      "entries": 4,
+      "passing": 0,
+      "flagged": 4,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 4
+      }
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 0,\n  \"flagged\": 4,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 4\n  }\n}\nreport: /tmp/tmpvj_k_htq.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.361,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 0,
+      "reviewFlagged": 4,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 4,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.097,
+    "payload": {
+      "entryCount": 4,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 4,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.152,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.143,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.381,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,107 @@
+{
+  "Id": "t_6457935dff62",
+  "SourceTerm": "非心非佛",
+  "CreatedBy": "Codex GPT-5.6",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "not mind, not buddha",
+      "AlternateTargets": [
+        "neither mind nor buddha"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, 'not mind, not buddha' (非心非佛). The corpus records it as a saying, an answer, a question, and the second member of the sequence beginning with 'this mind is this buddha' (即心即佛). In the Mazu exchange, a monk asks why Mazu says 'this mind is this buddha'; Mazu answers, 'to stop a small child crying' (為止小兒啼). Asked, 'What about when the crying stops?' (啼止時如何), he replies, 'not mind, not buddha' (非心非佛). Funiu Zizai explicitly names the pair: 'This mind is this buddha is a sentence seeking medicine where there is no illness; not mind, not buddha is a sentence countering medicine and illness' (即心即佛是無病求藥句非心非佛是藥病對治句). Other records set it beside the expanded expression 'not mind, not buddha, not a thing' (不是心不是佛不是物), ask 'What is not mind, not buddha?' (如何是非心非佛), or treat it as a question answered with another recorded saying—for example, Heshan answers, 'Heshan knows how to beat the drum' (禾山解打鼓). Damei Fachang's case preserves an explicit contrast: told that Mazu now says 'not mind, not buddha,' Damei answers that he still keeps 'this mind is this buddha.'",
+      "Validation": "multi-source",
+      "Note": "The exact phrase occurs 727 times in 213 allowlisted texts; the question 'What is not mind, not buddha?' (如何是非心非佛) occurs 47 times in 35 texts. Searches found one 'as for not mind, not buddha' form (非心非佛者) and one 'call it not mind, not buddha' form (喚作非心非佛), but neither yielded a fuller literal definition than the Funiu classification. The paired and expanded forms are preserved as related recorded expressions, not merged into one interchangeable formula. The term is corpus-wide even though its best-known early occurrence belongs to Mazu's exchange.",
+      "Occurrences": [
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0616c03",
+          "ToLb": "0616c07",
+          "Kwic": "中著一點後有僧舉似忠國師國師云欽師猶被馬師惑。問和尚為甚麼說即心即佛師曰為止小兒啼曰啼止時如何師曰非心非佛曰除此二種人來如何指示師曰向伊道不是物曰忽遇其中",
+          "Curated": true,
+          "AttributionNote": "古尊宿語錄, Mazu Daoyi section. Mazu Daoyi is the exact speaker: after a monk asks what Mazu says when the child's crying has stopped, Mazu answers 'not mind, not Buddha.'",
+          "MasterName": "Mazu Daoyi"
+        },
+        {
+          "RelPath": "X/X80/X80n1568.xml",
+          "FromLb": "0635b07",
+          "ToLb": "0635b12",
+          "Kwic": "曰：三點如流水，曲似刈禾鎌。師後居伏牛山，上堂曰：即心即佛是無病求藥句，非心非佛是藥病對治句。僧問：如何是脫灑底句？師曰：伏牛山下古今傳。示滅於隨州開元寺。京兆興善",
+          "Curated": true,
+          "AttributionNote": "五燈嚴統(第1卷-第9卷). Record of the Orthodox Lineage of the Dharma Transmission (傳法正宗記), Funiu Zizai section. Funiu Zizai is the exact hall speaker who classifies 'this mind is buddha' as a medicine-seeking-without-illness phrase and 'not mind, not buddha' as a medicine-and-illness counteractive phrase.",
+          "MasterName": "Funiu Zizai"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0133c04",
+          "ToLb": "0133c07",
+          "Kwic": "師曰。禾山解打鼓。曰。如何是真諦。師曰。禾山解打鼓。問。即心即佛則不問。如何是非心非佛。師曰。禾山解打鼓。曰。如何是向上事。師曰。禾山解打鼓。問。萬法齊興時如",
+          "Curated": true,
+          "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Heshan Wuyin section. An unnamed monk is the exact speaker who sets aside 'mind itself is buddha' and asks what 'not mind, not buddha' is; Heshan answers that Heshan knows how to beat the drum. All six rungs leave the monk unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Heshan Wuyin",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0310a22",
+          "ToLb": "0310b01",
+          "Kwic": "，詔師居之。上堂曰：五五二十五，案山雷，主山雨。明眼衲僧，莫教錯舉。上堂：若向這裏說即心即佛，大似頭上安頭。若說非心非佛，何異迷頭認影？賞箇名，安箇字，定箇是，立箇非，向甚麼處",
+          "Curated": true,
+          "AttributionNote": "嘉泰普燈錄, Dahong Bao'en section. Dahong Bao'en is the exact hall speaker who contrasts saying mind itself is buddha with saying neither mind nor buddha, calling the latter like mistaking a reflected head.",
+          "MasterName": "Dahong Bao'en"
+        },
+        {
+          "RelPath": "X/X72/X72n1443.xml",
+          "FromLb": "0735c16",
+          "ToLb": "0735c20",
+          "Kwic": "大梅一人直下承當，何況後代？你看僧問大梅：因何便住此山？梅云：我當時見馬大師向我道：即心即佛。便向此住。僧云：于今大師又道：非心非佛。梅云：者老漢惑亂人未有了日在，任你非心非佛，我祇是即心即佛。大眾！者則因緣那一箇不",
+          "Curated": true,
+          "AttributionNote": "宗寶道獨禪師語錄: complete-case exact-turn review identifies Damei Fachang as the actor for this occurrence.",
+          "MasterName": "Damei Fachang"
+        }
+      ],
+      "SourceTexts": [
+        "C/C077/C077n1710.xml",
+        "X/X80/X80n1568.xml",
+        "X/X80/X80n1565.xml",
+        "X/X79/X79n1559.xml",
+        "X/X72/X72n1443.xml"
+      ],
+      "RelatedMasters": [
+        "Mazu Daoyi",
+        "Damei Fachang"
+      ],
+      "RelatedTerms": [
+        "即心即佛",
+        "即心是佛",
+        "不是心不是佛不是物"
+      ]
+    }
+  ]
+}

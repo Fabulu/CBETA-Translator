@@ -1,0 +1,62 @@
+{
+  "generatedUtc": "2026-07-15T00:28:11.167261+00:00",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [
+    62,
+    63,
+    64
+  ],
+  "state": "awaiting-independent-semantic-rereview",
+  "selfReviewProhibited": true,
+  "repairGate": {
+    "path": "fresh-build/waves/f001-laneB-062-064-semantic-repair-gate.json",
+    "sha256": "c6350314b28d72e0d123f77cdee414b7a38a1ee6a58602c4049825f3b9f7f2e6"
+  },
+  "attributionPacket": {
+    "path": "fresh-build/waves/f001-laneB-062-064-semantic-repair-gate-attribution-packets.json",
+    "sha256": "9c751d4175f40f7284f877cf0d96105bb1d944c0873493f2b11f2ccac1372a72"
+  },
+  "priorIndependentReview": {
+    "path": "fresh-build/waves/f001-laneB-061-070-independent-semantic-review.json",
+    "sha256": "e6371ef9ab8a0dd2cf6dcd357de75fc885d1cd598f07f47747ea69063d0ee666"
+  },
+  "items": [
+    {
+      "id": "t_21926ca0b92e",
+      "term": "頂門眼",
+      "sha256": "ec5dac372f0aecf1185decaba2fb54d132e5896ed9df31e9c98462459614806e",
+      "path": "fresh-build/entries/t_21926ca0b92e/entry.v2.json",
+      "repairQuestions": [
+        "Does the J34 row now assign the 進云 assertion to the unnamed monk and Chaozong Tongren’s 師云 question/strike/comment to Chaozong without contradiction?"
+      ],
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    },
+    {
+      "id": "t_c327d2a1fc8c",
+      "term": "金剛眼睛",
+      "sha256": "f129c83d20f5f5b07187e908d47ad7e51add786c3ff430e444f757190ef22bfd",
+      "path": "fresh-build/entries/t_c327d2a1fc8c/entry.v2.json",
+      "repairQuestions": [
+        "Is SearchAliases now order-preserving and duplicate-free while the vajra modifier treatment remains unchanged?"
+      ],
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    },
+    {
+      "id": "t_07d808115439",
+      "term": "言語道斷",
+      "sha256": "adda3c4e7468c75b422cd63d407917ded89ed032b6aaabf5c43440a51537ebed",
+      "path": "fresh-build/entries/t_07d808115439/entry.v2.json",
+      "repairQuestions": [
+        "Does the X68 row now leave the pre-保寧道 formula unattributed and assign only the marked counter-formulation to Baoning Renyong, including in the explanation?"
+      ],
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "queueOrdinalThrough": 50,
+  "materializedEntries": 40,
+  "linkedOrSkippedQueueRows": 10,
+  "occurrences": 323,
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "status": "gates-passed-awaiting-root-rereview",
+  "gates": {
+    "exactVerify": {"hardFailures": 0, "report": "f001-laneA-001-050-exact-verify.json"},
+    "attribution": {"hardFailures": 0, "report": "f001-laneA-001-050-attribution.json"},
+    "publicFeedback": {"hardFailures": 0, "flagged": 0, "report": "f001-laneA-001-050-public-feedback.json"},
+    "depthSense": {"hardFailures": 0, "reviewFlagged": 28, "report": "f001-laneA-001-050-depth-checkpoint.json"},
+    "workSource": {"hardFailures": 0, "report": "f001-laneA-001-050-work-source.json"},
+    "corpusBaseline": {"hardFailures": 0, "report": "f001-laneA-001-050-baseline.json"},
+    "frozenHistory": {"hardFailures": 0, "report": "f001-laneA-001-050-frozen-history.json"},
+    "forbiddenProse": {"matches": 0, "report": "f001-laneA-001-050-forbidden.txt"},
+    "ledgerHashIntegrity": {"mismatches": 0}
+  },
+  "rootRereviewPacket": "f001-laneA-001-040-root-review-packet.json",
+  "note": "The packet contains the 40 materialized entries corresponding to queue ordinals 1–50; ten non-materialized queue rows account for the filename's materialized-entry range. No ordinal beyond 50 is included. Do not begin ordinal 51 until root re-review accepts this checkpoint."
+}

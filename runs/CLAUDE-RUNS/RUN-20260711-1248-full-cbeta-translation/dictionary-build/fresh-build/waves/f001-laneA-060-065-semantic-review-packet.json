@@ -1,0 +1,61 @@
+{
+  "generatedUtc": "2026-07-15T11:45:00Z",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [60, 65],
+  "checkpointCompletedCount": 55,
+  "state": "awaiting-independent-semantic-review",
+  "selfReviewProhibited": true,
+  "promotionAuthorized": false,
+  "differentThingsRule": "Split only for a different object, event, person or title, or incompatible subject frame; do not split for grammar, reading, stance, response, capitalization, or paraphrase.",
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f001-laneA-060-065-final-gate.json",
+    "sha256": "ebd2c0542f080df6d04835ee822eed83ae36b89c5667087fba5151b3f01505a7"
+  },
+  "attributionPackets": {
+    "initial060To065": {
+      "path": "fresh-build/waves/f001-laneA-060-065-gate-attribution-packets.json",
+      "sha256": "1172de0eee59dd400d69e1f61f7c8dc444264c10f102049d68d0c2efa40df1c6",
+      "scope": "Current unchanged hashes for ordinals 60, 63, and 64 only."
+    },
+    "repair061062065": {
+      "path": "fresh-build/waves/f001-laneA-061-062-065-repair-gate-attribution-packets.json",
+      "sha256": "a3a77029c8a89d83562486cab50a49cc58a34a644a316e5a1e0617c24232ddd0",
+      "scope": "Current hashes for ordinals 61 and 65 only; its ordinal 62 section is superseded."
+    },
+    "repair2Ordinal062": {
+      "path": "fresh-build/waves/f001-laneA-062-repair2-gate-attribution-packets.json",
+      "sha256": "fc1ab4613d65577cc77c4dcadb97dcbc5bab6cf4ac26e9af59bd0983325b1115",
+      "scope": "Current ordinal 62 hash only."
+    }
+  },
+  "packetInputHashVerification": [
+    {"id":"t_52391cba2cdf","ordinal":60,"entrySha256":"a86360724c60a0ad3c7f0ae26b7b4e393ff1a4566cf9271874c06f5276acc583","packet":"initial060To065","packetInputHashMatches":true},
+    {"id":"t_d7167b5f3236","ordinal":61,"entrySha256":"d5f0c8773e4645fd5dc75eade5cd56f72e897e1d56cc9d1d82d577c634cdcea3","packet":"repair061062065","packetInputHashMatches":true},
+    {"id":"t_0a686fa27769","ordinal":62,"entrySha256":"27fee2e38859a5d9f97aaae0896d9e4d5932e924c7c26e1e67d18fecdd7d903d","packet":"repair2Ordinal062","packetInputHashMatches":true},
+    {"id":"t_831f84399d0b","ordinal":63,"entrySha256":"d1f03263bdda7fe662ceeef60b6abd665350f28e4e7ebafa635fc7a700d24e44","packet":"initial060To065","packetInputHashMatches":true},
+    {"id":"t_46c30c5d57d4","ordinal":64,"entrySha256":"318306560a803870cd6ab1e0d02f7783178f5ca8f26835b0c51bf2f2311bcb30","packet":"initial060To065","packetInputHashMatches":true},
+    {"id":"t_223c2f6ade25","ordinal":65,"entrySha256":"fafd5b194231eb3f3782f9fef3977e0b9af7594a28adad615f18b9a72c07de21","packet":"repair061062065","packetInputHashMatches":true}
+  ],
+  "candidates": 6,
+  "items": [
+    {
+      "id":"t_52391cba2cdf","term":"三玄三要","ordinal":60,"path":"fresh-build/entries/t_52391cba2cdf/entry.v2.json","sha256":"a86360724c60a0ad3c7f0ae26b7b4e393ff1a4566cf9271874c06f5276acc583","attributionEvidence":{"packet":"initial060To065","packetEntryId":"t_52391cba2cdf"},"preferredTargets":["three mysteries and three essentials"],"searchAliases":["Linji three mysteries","three mysteries and essentials","three mysteries three essentials"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":5,"reviewQuestions":["Does the preferred target name the ordinary thing before explaining the Chan deployment?","Do aliases aid lookup without inventing an itemized taxonomy?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_d7167b5f3236","term":"殺人刀","ordinal":61,"path":"fresh-build/entries/t_d7167b5f3236/entry.v2.json","sha256":"d5f0c8773e4645fd5dc75eade5cd56f72e897e1d56cc9d1d82d577c634cdcea3","attributionEvidence":{"packet":"repair061062065","packetEntryId":"t_d7167b5f3236"},"preferredTargets":["killing blade"],"searchAliases":["Chan killing blade","blade that kills","killing blade living sword"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target preserve the blade image before explaining its paired use?","Do aliases aid lookup without broadening the sense?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, persons discussed, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_0a686fa27769","term":"著語","ordinal":62,"path":"fresh-build/entries/t_0a686fa27769/entry.v2.json","sha256":"27fee2e38859a5d9f97aaae0896d9e4d5932e924c7c26e1e67d18fecdd7d903d","attributionEvidence":{"packet":"repair2Ordinal062","packetEntryId":"t_0a686fa27769"},"preferredTargets":["interjected comment"],"searchAliases":["Chan case annotation","comment on a case","interlinear case comment"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target cover both the inserted wording and the attested act without collapsing into generic speech?","Are authorship-boundary false matches excluded?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are comment authors, inherited case figures, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_831f84399d0b","term":"本地風光","ordinal":63,"path":"fresh-build/entries/t_831f84399d0b/entry.v2.json","sha256":"d1f03263bdda7fe662ceeef60b6abd665350f28e4e7ebafa635fc7a700d24e44","attributionEvidence":{"packet":"initial060To065","packetEntryId":"t_831f84399d0b"},"preferredTargets":["original landscape"],"searchAliases":["native scenery","one's own landscape","original landscape Chan"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target preserve the landscape image without making a geographic claim?","Do the Zhongfeng and Sanyi limits block a fixed-state gloss?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_46c30c5d57d4","term":"不立文字","ordinal":64,"path":"fresh-build/entries/t_46c30c5d57d4/entry.v2.json","sha256":"318306560a803870cd6ab1e0d02f7783178f5ca8f26835b0c51bf2f2311bcb30","attributionEvidence":{"packet":"initial060To065","packetEntryId":"t_46c30c5d57d4"},"preferredTargets":["not established in written words"],"searchAliases":["Chan beyond written words","not established in texts","not relying on words and letters"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target preserve the negation of establishment rather than falsely banning texts?","Do internal counterexamples adequately constrain the opening?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, quoted cautions, source works, and objection frames correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_223c2f6ade25","term":"一大事因緣","ordinal":65,"path":"fresh-build/entries/t_223c2f6ade25/entry.v2.json","sha256":"fafd5b194231eb3f3782f9fef3977e0b9af7594a28adad615f18b9a72c07de21","attributionEvidence":{"packet":"repair061062065","packetEntryId":"t_223c2f6ade25"},"preferredTargets":["the single great matter"],"searchAliases":["great matter for appearing","one great matter","single great purpose"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target retain the established lookup phrase while explanation adequately carries reason and occasion?","Do varied encounter answers remain one inherited formula rather than a forced uniform definition?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are the reviewed unnamed questioner, respondents, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "Id": "t_8dc9df82b364",
+  "SourceTerm": "一口吸盡西江水",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "drink up all the West River's water in one mouthful",
+      "AlternateTargets": [
+        "draw all the West River's water into one mouthful",
+        "drink the West River dry in one mouthful"
+      ],
+      "SearchAliases": [
+        "drink the whole river in one gulp",
+        "swallow the West River in one mouthful",
+        "Mazu and Pang Yun West River case",
+        "drink a river dry",
+        "when you drink up the West River I will tell you"
+      ],
+      "Status": "preferred",
+      "Explanation": "An impossible-scale condition in Mazu Daoyi's answer to Pang Yun: Pang asks, 'Who is the one who is not a companion to the myriad things?' and Mazu replies, 'When you drink up all the West River's water in one mouthful, I will tell you.' The exact line occurs 329 times in 139 allowlisted texts. Later records preserve that condition as a named case line, quote it, turn it into a fresh question, answer it, and build new physical challenges from it. Baiyun Shouduan says that after the one-mouthful drink no drop remains through all antiquity, then calls Mazu's mouth regrettably narrow. An unnamed music-bureau officer sets the West River line aside and asks Yunding Defu to swallow the dismounting platform; Yunding spreads both hands and requests that it be brought. An unnamed monk asks Yuanwu Keqin what about drinking the river, and Yuanwu answers, 'The bright sun adorns the sky.' Wuzu Fayan repeats the line to his assembly and extends it to reaching the bottom of a ten-thousand-fathom pool. Wuchu Daguan quotes Mazu and supplies a different answer to Pang's question, waiting for empty space to fall. These are attested continuations of one Mazu line; the entry does not turn the impossible act into an unstated universal meaning.",
+      "Validation": "multi-source",
+      "Note": "The exact line has 329 matches in 139 files; the shorter opening 'in one mouthful drink up all' has 398 matches in 153. Mazu's full conditional 'when you drink up all the West River's water in one mouthful' occurs 151 times in 95 files. No required definition formula occurs. The preserved witnesses include the founding exchange, verse commentary, Baiyun's new test modeled on the line, Yuanwu's direct answer, Wuzu's address extending the river image to the bottom of a deep pool, and Wuchu's replacement answer. The phrase remains a line spoken in a named public case and a subject of later public questioning.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0087c03",
+          "ToLb": "0087c05",
+          "Kwic": "後參馬祖。問曰。不與萬法為侶者是甚麼人。祖曰。待汝一口吸盡西江水。即向汝道。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Layman Pang biography. Mazu Daoyi is the exact speaker of the headword-bearing answer, 'When you drink up all the West River's water in one mouthful, I will tell you.'",
+          "MasterName": "Mazu Daoyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Pang Yun",
+              "Roles": [
+                "questioner",
+                "biographical-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0406a06",
+          "ToLb": "0406a07",
+          "Kwic": "一口吸盡西江水，萬古千古無一滴。要須黨理不黨親，馬師可惜口門窄。",
+          "Curated": true,
+          "AttributionNote": "Continued Essentials of Recorded Sayings of Ancient Worthies (續古尊宿語要), Baiyun Shouduan section: Baiyun Shouduan is the exact verse author who takes up swallowing the West River, says not one drop remains through all ages, and calls Mazu's mouth regrettably narrow.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "referent",
+                "case-speaker"
+              ]
+            }
+          ],
+          "MasterName": "Baiyun Shouduan"
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0291c22",
+          "ToLb": "0291c23",
+          "Kwic": "一口吸盡西江水淨且置，請和尚吞却堦前下馬臺。師展兩手唱曰：細抹將來。",
+          "Curated": true,
+          "AttributionNote": "Jiatai-Era Comprehensive Lamp Record (嘉泰普燈錄), Yunding Defu section: an unnamed music-bureau officer is the exact speaker who sets aside swallowing the West River and asks Yunding to swallow the dismounting platform. All six attribution rungs preserve only his office.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunding Defu",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed music-bureau officer",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0726a14",
+          "ToLb": "0726a15",
+          "Kwic": "進云。只如一口吸盡西江水。又作麼生。師云。杲日麗天。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): an unnamed monk is the exact questioner who asks what about drinking all the West River water in one mouthful; Yuanwu Keqin answers that the bright sun adorns the sky. All six attribution rungs leave the monk unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed monk",
+            "ActorRole": "questioning speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex remaining300 research A",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0080c23",
+          "ToLb": "0080c24",
+          "Kwic": "大眾，一口吸盡西江水，萬丈深潭窮到底。",
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), Wuzu Fayan section: after quoting the Pang–Mazu exchange, Wuzu Fayan addresses the assembly in this narrowed turn and extends drinking the West River to reaching the bottom of a ten-thousand-fathom pool.",
+          "MasterName": "Wuzu Fayan"
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0760c09",
+          "ToLb": "0760c13",
+          "Kwic": "上堂舉龐居士問馬大師不與萬法為侶是甚麼人大師云待汝一口吸盡西江水即向汝道師云大小祖師只知開口易不覺舌頭長當時若問育王但云若要向汝道直待虛空落地自然出他一頭",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄), Wuchu Daguan's hall address raising Pang Yun's exchange with Mazu Daoyi: Mazu Daoyi is the exact quoted speaker who tells Pang that he will answer when Pang swallows the West River in one gulp.",
+          "MasterName": "Mazu Daoyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuchu Daguan",
+              "Roles": [
+                "later-raiser",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "X/X68/X68n1318.xml",
+        "X/X79/X79n1559.xml",
+        "T/T47/T47n1997.xml",
+        "X/X82/X82n1571.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": ["Mazu Daoyi", "Pang Yun", "Baiyun Shouduan", "Yunding Defu", "Yuanwu Keqin", "Wuzu Fayan", "Wuchu Daguan"],
+      "RelatedTerms": [
+        "不與萬法為侶"
+      ]
+    }
+  ]
+}

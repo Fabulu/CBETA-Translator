@@ -1,0 +1,2364 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T12:25:01.118051+00:00",
+  "wave": "f004",
+  "reviewLane": "C",
+  "ordinals": [
+    1101,
+    1130
+  ],
+  "scope": "independent rereview of exactly 14 repaired prior-REVISE entries plus byte-identity confirmation of 16 prior KEEPs",
+  "reviewedInputs": {
+    "f004-laneC-1101-1130-fresh14-formal-gate-v2.json": "e7be04f13e46e6e533f2ae2273dd5c799bbe05fe0bdb8969574c490546c2d087",
+    "f004-laneC-1101-1130-fresh14-repair-ledger.json": "19966dd96e62025b6f123059b9ddd7b3673f4ade06276eaaae3458b16460f944",
+    "f004-laneC-1101-1130-fresh14-repair-readiness.json": "c9629609e01e46939b323416ff6ed194088d638e0d6e1c904a2ab569cee3a4c5",
+    "f004-laneC-1101-1130-repair-independent-rereview.json": "dfd77be3e928a435070ea24c179bc83ca528e2fea5b619ec1ec6141bfdc8ed72"
+  },
+  "repairedEntriesReviewed": 14,
+  "occurrencesReadInFullCase": 78,
+  "exactKwics": 78,
+  "keep": 14,
+  "revise": 0,
+  "entries": [
+    {
+      "ordinal": 1101,
+      "id": "t_9d60d7613392",
+      "term": "一言半句",
+      "reviewedEntrySha256": "daaa94f7fdb90082f510d39f0e0978581d54024e894b5a19981aaacf677d9c0b",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0721b14",
+          "ToLb": "0721c02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "e6eee3d16a3734d573563ffbc206aa7e1602958e58be6e9a2a4a8170a209ab7e",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "M/M59/M59n1540.xml",
+          "workId": "chan:dahui-pushuo",
+          "FromLb": "0797a05",
+          "ToLb": "0797a14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f581c861ba48681dce332e4cbf94329f61ffd0fb92224bb9e3e0151fa098ca3c",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0040c03",
+          "ToLb": "0040c11",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "b880cfb7cd20180e20a89933064ed1b04e0aca8895d06012a6794cd39e548e48",
+          "MasterName": "Wuzu Fayan",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "FromLb": "0503c13",
+          "ToLb": "0503c21",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "503ccb9ff13ceed72e85bfb93b197840ba43fe97260036f80d4e7c9e43978183",
+          "MasterName": "Huanglong Huinan",
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T48/T48n2003.xml",
+          "workId": "work:T48n2003",
+          "FromLb": "0145a17",
+          "ToLb": "0145a27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "64de9ce529f7b9889b9827d00698ac22445e059eca5ed7cfc4edfce86e04d257",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X79/X79n1557.xml",
+          "workId": "work:X79n1557",
+          "FromLb": "0011c01",
+          "ToLb": "0011c10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ca89b7149c7e83b75e06acdd36736b254e75d9cc58cd22942529a0e72db0d095",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "signed authored prose",
+            "ActorLabel": "the signed preface author Hui Ming (悔明)",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The signed preface author Hui Ming (悔明), styled Yanxi Zhenlanzi, owns the first-person headword-bearing prose; no master identity is inferred beyond the signature.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1103,
+      "id": "t_746f990fba78",
+      "term": "清淨法身",
+      "reviewedEntrySha256": "7fa5333ac03eb21c0ecca6027c8c00cb87c3e6d37d22b766378a0422f426237c",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0030b21",
+          "ToLb": "0030c06",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "c2c0923e37a78ad67b8c9fe1ac5936235774b7d7abef80efe8a878ef25ebd8dd",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Lingyin Huiguang",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monastic questioning Lingyin Huiguang",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The explicit monk-question frame assigns the headword to the unnamed monastic; Lingyin Huiguang answers.",
+            "ReviewedBy": "Codex f004 lane C repair author",
+            "ReviewedUtc": "2026-07-15T11:15:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0001c21",
+          "ToLb": "0002a04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "88093674948ca62d9f3d58630fb347463aabc335db2256040f3f583a53685506",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The explicit question/master-answer frame assigns the headword to the unnamed monastic.",
+            "ReviewedBy": "Codex f004 lane C repair author",
+            "ReviewedUtc": "2026-07-15T11:15:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0626b07",
+          "ToLb": "0626b18",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8b26df0d571d15fe36a2871396453bf743fcfd946ed9ffb1495394645ad39ba2",
+          "MasterName": "Baizhang Huaihai",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0056b18",
+          "ToLb": "0056c02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9b76ec2626d3458fc704b948edeae5088be89a229477f26fd7a397b924deab1c",
+          "MasterName": "Huineng",
+          "ContextMasters": [
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X68/X68n1319.xml",
+          "workId": "work:X68n1319",
+          "FromLb": "0532a04",
+          "ToLb": "0532a19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f30857d534b9fff271e1c6a94e9883d3e2a5247e485a65e5c9d601e77635acc5",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "source narration",
+            "ActorLabel": "the named or documentary voice preserved in 御選語錄",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete passage presents the exact headword in documentary narration, a questioner’s turn, a title-authorized preface, or a preserved formula rather than a safely roster-identifiable master utterance.",
+            "ReviewedBy": "Codex f004 lane C full-context author",
+            "ReviewedUtc": "2026-07-15T09:49:09.804467+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J28/J28nB219.xml",
+          "workId": "work:J28nB219",
+          "FromLb": "0660b03",
+          "ToLb": "0660b12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "03e162862b09702769a1ec9f2c157470696e61ebdd4f7be7bceb06931a19d838",
+          "MasterName": "Zhuanyu Guanheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhuanyu Guanheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X78/X78n1556.xml",
+          "workId": "work:X78n1556",
+          "FromLb": "0650a17",
+          "ToLb": "0650a24",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "177b0b0d5041d38052d7cc548cdb951ad1a5f46e4426f0708a18a347e867aacb",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhimen Guangzu",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The explicit monk-question frame assigns the headword to the unnamed monastic; the master answers only afterward.",
+            "ReviewedBy": "Codex f004 lane C repair author",
+            "ReviewedUtc": "2026-07-15T11:15:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1106,
+      "id": "t_f9d7324ef449",
+      "term": "微塵",
+      "reviewedEntrySha256": "e6d58a27c37105d3e3878aac4ad588b0dac5a1f09de8acbfb9c051febf1ff8d4",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 8,
+      "distinctActualWorkIds": 8,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "FromLb": "0417c10",
+          "ToLb": "0417c20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ed6098f579904a284eceec6947e5d334492ba32a3ecb71afae2b6ba8d3c9730e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the quoted treatise voice",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword occurs in institutional prose, a heading, quoted-source wording, or narrative rather than in a safely named master’s utterance.",
+            "ReviewedBy": "Codex f004 lane C early-sample author",
+            "ReviewedUtc": "2026-07-15T11:30:22.365371+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J25/J25nB163.xml",
+          "workId": "work:J25nB163",
+          "FromLb": "0228a03",
+          "ToLb": "0228a11",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "042454f5cbae3e8cdb1b5851fc9a694afc56a73a5514cdcdf8eee5aaa547983a",
+          "MasterName": "Guting Shanjian",
+          "ContextMasters": [
+            {
+              "MasterName": "Guting Shanjian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0006b06",
+          "ToLb": "0006b14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9ee27e4b4665381bd7478ca2fff8e1cca8719e61c5d1e680928d6d38492eadd3",
+          "MasterName": "Baoen Tan",
+          "ContextMasters": [
+            {
+              "MasterName": "Baoen Tan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0011a23",
+          "ToLb": "0011b07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1a66e9891d9f43f43466297fd8da7b95972ae4181d90fd1db6536c6e4fee91e0",
+          "MasterName": "Mian Xianjie",
+          "ContextMasters": [
+            {
+              "MasterName": "Mian Xianjie",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X69/X69n1356.xml",
+          "workId": "work:X69n1356",
+          "FromLb": "0370a17",
+          "ToLb": "0370b01",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "44bd24c15c4006fdc31911be95040fa7368dbcb31044a695edc93f8c3a6afb1a",
+          "MasterName": "Puan Yinsu",
+          "ContextMasters": [
+            {
+              "MasterName": "Puan Yinsu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J28/J28nB219.xml",
+          "workId": "work:J28nB219",
+          "FromLb": "0659c14",
+          "ToLb": "0659c23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "389d47f74b8f6b89099ae3de918a9e4a5d7f73e1b57c04dead0702ba37e93b0b",
+          "MasterName": "Zhuanyu Guanheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhuanyu Guanheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "D/D48/D48n8939.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0015b04",
+          "ToLb": "0016a03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "326955282552eca1e95b97120d625a007b92e414fafc48bcbe904147fe547dd8",
+          "MasterName": "Foyan Qingyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 8,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0010b23",
+          "ToLb": "0010c07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "89aac05c31e52dc5422e82a2c1736cb4717ae1ca153719dd627e2479792f82fe",
+          "MasterName": "Zhiyi Xuanfa",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhiyi Xuanfa",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1108,
+      "id": "t_c9940cc4ef80",
+      "term": "夏安居",
+      "reviewedEntrySha256": "1dcde09fbe433150b714386799e2f62e9e1ef3f53a5fdc658019e700eddd85cc",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J26/J26nB177.xml",
+          "workId": "work:J26nB177",
+          "FromLb": "0096b22",
+          "ToLb": "0096b23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "afd0dd8e0dfb7a9c7894b4bfd9755ffc8b3017fd0b7dfabc5be2fa4fd20a59b0",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Poshan Haiming",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Biographical prose reports Poshan Haiming entering the summer retreat with the assembly; the headword is substantive body text rather than a poem heading.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X70/X70n1386.xml",
+          "workId": "work:X70n1386",
+          "FromLb": "0318c16",
+          "ToLb": "0319a01",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3a5d23a5a1828b2482d209b9a44822c77604af58e1618f0ded811d7f33419fa9",
+          "MasterName": "Shitian Faxun",
+          "ContextMasters": [
+            {
+              "MasterName": "Shitian Faxun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J28/J28nB205.xml",
+          "workId": "work:J28nB205",
+          "FromLb": "0233b09",
+          "ToLb": "0233b17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "cb12199925c2d42ee3f8c299f33129b44c75f941e383a474148745ad10262f56",
+          "MasterName": "Jiewei Xingzhou",
+          "ContextMasters": [
+            {
+              "MasterName": "Jiewei Xingzhou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J29/J29nB230.xml",
+          "workId": "chan:shuijian-hai-hui-lu",
+          "FromLb": "0251b07",
+          "ToLb": "0251b16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "aa124b3e38a9598fc2ff8004f934a2bbc84cbd642ba1f8dd30d87451ccee296d",
+          "MasterName": "Shuijian Huihai",
+          "ContextMasters": [
+            {
+              "MasterName": "Shuijian Huihai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1111,
+      "id": "t_78d931324d99",
+      "term": "張商英",
+      "reviewedEntrySha256": "3f1ee33e51980ced59ea2f5e18884daac8ea9f4da6307df87c2247eb1677fb00",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X68/X68n1319.xml",
+          "workId": "work:X68n1319",
+          "FromLb": "0641c16",
+          "ToLb": "0642a10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "6ab34976e7cf3c79b8a1aa7cb3f101759cf155a61c4fc97959450a415de88b59",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhang Shangying",
+              "Roles": [
+                "person-described",
+                "interlocutor"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical heading",
+            "ActorLabel": "the lamp-record compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The lamp-record compiler heading identifies Layman Zhang Shangying; Zhang is the following interlocutor but does not utter his own name.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X85/X85n1593.xml",
+          "workId": "work:X85n1593",
+          "FromLb": "0528c10",
+          "ToLb": "0529a01",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "624baa18f02f5826e1d623af4b32dc672c278c47b2b07b4b039a794ed40b0821",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "source narration",
+            "ActorLabel": "the source narration bearing 張商英",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 張商英-bearing wording to the source narration; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J29/J29nB239.xml",
+          "workId": "work:J29nB239",
+          "FromLb": "0498c10",
+          "ToLb": "0499a01",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "83877ef8925087cb4282ea1f0229c5d48226e951103bd7544e28c971a23abd77",
+          "MasterName": "Chuiwan Guangzhen",
+          "ContextMasters": [
+            {
+              "MasterName": "Chuiwan Guangzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X68/X68n1318.xml",
+          "workId": "work:X68n1318",
+          "FromLb": "0502b17",
+          "ToLb": "0502c09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "794a543e29f47f5db626eb7d7fb114af5dafb537d1234122fb3026c54cd8667d",
+          "MasterName": "Biefeng Baoyin",
+          "ContextMasters": [
+            {
+              "MasterName": "Biefeng Baoyin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1112,
+      "id": "t_09909bd0c29e",
+      "term": "草賊",
+      "reviewedEntrySha256": "9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0640b10",
+          "ToLb": "0640b21",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "26bb261daa50693879d6968a4470e4a63ba5064c7145637af55aab5ad20fd7ad",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 草賊",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 草賊-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0007b04",
+          "ToLb": "0007b12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "253d1a828eadb6e22578c1da6e57084613c37a13e73e6677a9bac50e7a9fe197",
+          "MasterName": "Tiantong Danjiao",
+          "ContextMasters": [
+            {
+              "MasterName": "Tiantong Danjiao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0026a20",
+          "ToLb": "0026b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "e93bec6f77c19b4f0f48a1ac3ba873a169593156617dd9f8ec0fee350a4510cb",
+          "MasterName": "Linji Yixuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0073b22",
+          "ToLb": "0073c05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "c4d4859fbeef6aa70ac9e55b6fd226dd91ebf2d2b597d30d19f5e5e8bb349682",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X79/X79n1557.xml",
+          "workId": "work:X79n1557",
+          "FromLb": "0039c06",
+          "ToLb": "0039c15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0453384fb8f8a73104e1f98875ecbab031d27eec82eb5c5dc2ff225b228a05bc",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "FromLb": "0483c21",
+          "ToLb": "0484a06",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "44f8d7939b283860cbe5e9e75c14384dd434af4998c03997357f4ea0a1c8344a",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1113,
+      "id": "t_1bde390a5df1",
+      "term": "壇場",
+      "reviewedEntrySha256": "33a58f902a87a38a0668e677353309e14988e1ac5049d43eec243950ad7f561e",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "FromLb": "0617b22",
+          "ToLb": "0617c03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "dee480fe5597ecdf648146ca9eb09236c63f148d503154d623a18175d0abaf22",
+          "MasterName": "Zhantang Wenzhun",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhantang Wenzhun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X72/X72n1439.xml",
+          "workId": "work:X72n1439",
+          "FromLb": "0604c08",
+          "ToLb": "0604c17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "73b8be1ae17be093fd37866169b927a0146e4a4bbcc9451563295847aea57496",
+          "MasterName": "Daopei Weilin",
+          "ContextMasters": [
+            {
+              "MasterName": "Daopei Weilin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T48/T48n2025.xml",
+          "workId": "work:T48n2025",
+          "FromLb": "1114c17",
+          "ToLb": "1115a01",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "890ff3462535f7a3dc9f9f1436979e47dad63b986ad6b2624a33492ec2c9dcce",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "monastic-rule compilation",
+            "ActorLabel": "the monastic-rule compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The monastic-rule compiler describes the court monastery establishing the sovereign image and the teaching altar-ground; this is continuous institutional prose, not an actorless formula.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X65/X65n1277.xml",
+          "workId": "work:X65n1277",
+          "FromLb": "0010c12",
+          "ToLb": "0010c23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d34f0ff0ea7486e157d70eb94906682c4e8634113bdf8020d0c189c4c1dc704a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "source narration",
+            "ActorLabel": "the source narration bearing 壇場",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 壇場-bearing wording to the source narration; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1114,
+      "id": "t_bf71c3ba483c",
+      "term": "道中人",
+      "reviewedEntrySha256": "96ed1e12004f696cf98d2a5258f40274a9af64b374c671a9abac1a782cc0c25b",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0509b15",
+          "ToLb": "0509b23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "a7eccd188d0a46e8098940fe547406c0d80119369876981aef9b5aed6cf0fd75",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Longxing",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X78/X78n1556.xml",
+          "workId": "work:X78n1556",
+          "FromLb": "0651c23",
+          "ToLb": "0652a07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "c552a00425d18fb2e414d0b4fb314510bb059be839d26d588d5d61f5f355e0ab",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Xilin Yichen",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0131c17",
+          "ToLb": "0132a02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9988559961fa82f6e199ec123d351950dfb1ed7f7c061548d086b08f01590f7b",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Longxing",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0023b04",
+          "ToLb": "0023b12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0b8e784eecafff8bf8d7c43b1e61a846aa5e8c83d8f920a45eb74e477b8eee65",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Xingjiao Weiyi",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0664a19",
+          "ToLb": "0664b07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8b627c636cc6541da231066af78f4bdd4da48ea901f29ffcaba31442f6c08621",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Fengxue Yanzhao",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "FromLb": "0471c23",
+          "ToLb": "0472a03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "5d2d88ebc496dc2dd132fcbcab02db4948f80e59702e0e7acf199a94ee142e30",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Guyin Yuncong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J34/J34nB301.xml",
+          "workId": "work:J34nB301",
+          "FromLb": "0287b02",
+          "ToLb": "0287b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1a78e012e15a983db08f128e84a177c826616654729357e2712c3b328cfb7aed",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Nanyue Jiqi",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the monastic questioner bearing 道中人",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 道中人-bearing wording to the monastic questioner; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1118,
+      "id": "t_f0fac372131b",
+      "term": "錦鱗",
+      "reviewedEntrySha256": "2423a84a2894106f4730de1775a462e920798be3e957698881ac81ae093072a6",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0277b03",
+          "ToLb": "0277b14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8fc597c01b057402f9783acd22ff37391e4dd62c7def72737fd84ccc0e0eea80",
+          "MasterName": "Furi Xi",
+          "ContextMasters": [
+            {
+              "MasterName": "Furi Xi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C078/C078n1720.xml",
+          "workId": "work:C078n1720",
+          "FromLb": "0625c02",
+          "ToLb": "0625c15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "613a477b870f8869d09f498b29b85fdf83f37f69883e428407a05a0de27396cb",
+          "MasterName": "Furi Xi",
+          "ContextMasters": [
+            {
+              "MasterName": "Furi Xi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0015a07",
+          "ToLb": "0015a15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d3d57d064573d43fed9cd8609cae29d686fecbb4443dc14eda73d30f43de31ad",
+          "MasterName": "Dazhong Delong",
+          "ContextMasters": [
+            {
+              "MasterName": "Dazhong Delong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0080c17",
+          "ToLb": "0081a03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3c463368c55cdac5eee1895a4da7dd3fa6cb16c33a79cf3a0433a004ff4296ea",
+          "MasterName": "Dazhong Delong",
+          "ContextMasters": [
+            {
+              "MasterName": "Dazhong Delong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J33/J33nB287.xml",
+          "workId": "work:J33nB287",
+          "FromLb": "0537a12",
+          "ToLb": "0537a19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "97cec7532c37d380a61afb6374c9c304e9d8fd2a720fbe17551cef88fde16368",
+          "MasterName": "Zijian Jue",
+          "ContextMasters": [
+            {
+              "MasterName": "Zijian Jue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X67/X67n1299.xml",
+          "workId": "work:X67n1299",
+          "FromLb": "0008a05",
+          "ToLb": "0008a15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "345176b3038a1620cf6f8966d4cc958a8fbe90a3cb5d4a33b4f36b3a37cee8b1",
+          "MasterName": "Tiantong Zhengjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Tiantong Zhengjue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1119,
+      "id": "t_5b4dd0205486",
+      "term": "心香",
+      "reviewedEntrySha256": "9de09c9ee473259f0f3537a3e716e8239dcde956bec0b841ce6216cfa00c5b3f",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J39/J39nB471.xml",
+          "workId": "work:J39nB471",
+          "FromLb": "0962c20",
+          "ToLb": "0962c28",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "5ccaed0dd9346e44e39872e8c4449b59f6a307ebc46a29c45010fb95a3720a02",
+          "MasterName": "Daocheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Daocheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J40/J40nB483.xml",
+          "workId": "work:J40nB483",
+          "FromLb": "0227b19",
+          "ToLb": "0227b27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "628f599c7b18984413d7232745f9a2658b3b330dcbd7d02c61af5b453ef519ca",
+          "MasterName": "Zhufeng Min",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhufeng Min",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X72/X72n1440.xml",
+          "workId": "work:X72n1440",
+          "FromLb": "0660a07",
+          "ToLb": "0660a19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "a395cacb36d6b042707af6bc84d1046143ea495bc50ac98cd429b53219862dd0",
+          "MasterName": "Daopei Weilin",
+          "ContextMasters": [
+            {
+              "MasterName": "Daopei Weilin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J36/J36nB364.xml",
+          "workId": "work:J36nB364",
+          "FromLb": "0799a18",
+          "ToLb": "0799a26",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8efe03e74e46b7c50ab3b95fd2f2f4f95bdce564e9dd77dcdc92aa95c040419d",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "signed preface author",
+            "ActorLabel": "Hu Zhouzi",
+            "ActorRole": "commentator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete case assigns the exact 心香-bearing wording to the identified non-master author; nearby named masters are respondents, subjects, or quoted figures rather than its utterer.",
+            "ReviewedBy": "Codex f004 lane C sequential author",
+            "ReviewedUtc": "2026-07-15T10:16:10.755480+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1121,
+      "id": "t_19abeb747d6d",
+      "term": "問頭",
+      "reviewedEntrySha256": "1d1a109a58074e2c19b1f5eae7c40de801be86ea39299170a80e685039b4cbc5",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0494c13",
+          "ToLb": "0494c21",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "55da9fad2e7d72bee2d50b1b049f0dacb6dc7eaf7d32abdab5bbbd05d1b72b63",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Sanping Yizhong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "reviewed unnamed actor",
+            "ActorLabel": "Sanping Yizhong's unnamed attendant",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The attendant replies with the headword before Sanping answers.",
+            "ReviewedBy": "Codex f004 lane C author",
+            "ReviewedUtc": "2026-07-15T10:47:37.387461+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "FromLb": "0014c16",
+          "ToLb": "0015a02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "4102c918ebf3b4ec2b18ee89e534c3223dd31a664f6ea40015f5213c106ca358",
+          "MasterName": "Qixia Cheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Qixia Cheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0653c03",
+          "ToLb": "0653c14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "67ed6b4fa1a34815c58f54eff3811be46e7e647ed52069b4deb033fe87ebf29b",
+          "MasterName": "Yunju Daoying",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunju Daoying",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "T/T48/T48n2003.xml",
+          "workId": "work:T48n2003",
+          "FromLb": "0146a23",
+          "ToLb": "0146b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "2c4340235b5096cfeba39b9a78e1c6226d6ad489e73e2038cfb25b3caa26c4fc",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X80/X80n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0670c23",
+          "ToLb": "0671a07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "bb3b67bd4fd34405e72988963c60336796abf719afbc3aac867093c401304418",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Sanping Yizhong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "reviewed unnamed actor",
+            "ActorLabel": "Sanping Yizhong's unnamed attendant",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The attendant replies with the headword before Sanping answers.",
+            "ReviewedBy": "Codex f004 lane C author",
+            "ReviewedUtc": "2026-07-15T10:47:37.387461+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0375b14",
+          "ToLb": "0375b23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d8edbe4e36c11cb0ea36f71dee6efb44de19f27fd8ff266a8eec622230953cb5",
+          "MasterName": "Nengren Jian",
+          "ContextMasters": [
+            {
+              "MasterName": "Nengren Jian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J34/J34nB299.xml",
+          "workId": "work:J34nB299",
+          "FromLb": "0155c24",
+          "ToLb": "0156a09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "b33c9d21b9c42cf1bada133fc0600815d7c4112d5277dd1ed62ccdd1bd5374b8",
+          "MasterName": "Sanfeng Fachang",
+          "ContextMasters": [
+            {
+              "MasterName": "Sanfeng Fachang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1124,
+      "id": "t_14545d88d530",
+      "term": "首山竹篦",
+      "reviewedEntrySha256": "4ba994bec986557ee54f1dded900b9098a358b6232b626b5e5372f44a07ed892",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 5,
+      "distinctActualWorkIds": 5,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X79/X79n1559.xml",
+          "workId": "work:X79n1559",
+          "FromLb": "0432b19",
+          "ToLb": "0432c03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ed90fb58a5b79b9759144f7a4577923cc525092ab6e13c309170d92b12c2cc08",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the lamp-record compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The biography narrates Huang Yanjie raising the named case.",
+            "ReviewedBy": "Codex f004 lane C author",
+            "ReviewedUtc": "2026-07-15T10:47:37.387461+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J28/J28nB209.xml",
+          "workId": "work:J28nB209",
+          "FromLb": "0417a06",
+          "ToLb": "0417a20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "7286eb546001a24a30cd8da12de7a69751e38f576c6ba0170431b51d4ad99d94",
+          "MasterName": "Yongji Rong",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongji Rong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J34/J34nB308.xml",
+          "workId": "work:J34nB308",
+          "FromLb": "0542c01",
+          "ToLb": "0542c14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d98313b7df724ab785197f4e4e0144dcc2454d22588184e1a5e7d907bc93034a",
+          "MasterName": "Xiangya Ting",
+          "ContextMasters": [
+            {
+              "MasterName": "Xiangya Ting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X87/X87n1620.xml",
+          "workId": "chan:xianjue-zongcheng",
+          "FromLb": "0202b12",
+          "ToLb": "0202c05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0a13450e6af3e00ee90218266d3a42f5cae6d5780cab55c6ad74e21bdfdfa319",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The biography narrates Huang Yanjie raising the named case.",
+            "ReviewedBy": "Codex f004 lane C author",
+            "ReviewedUtc": "2026-07-15T10:47:37.387461+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T48/T48n2005.xml",
+          "workId": "work:T48n2005",
+          "FromLb": "0298b14",
+          "ToLb": "0298b22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "231857474d83da0eadabc20de9620660abc93c7276d6bc772360d8dbed1b1e77",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Shengnian",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the case compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword is the case heading; the following 首山和尚 clause explicitly gives Shoushan’s raised-staff challenge.",
+            "ReviewedBy": "Codex f004 lane C repair author",
+            "ReviewedUtc": "2026-07-15T12:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1127,
+      "id": "t_98d9b1ed8cac",
+      "term": "伽藍堂",
+      "reviewedEntrySha256": "d59101e900b67c93c426f51fed6d101292994df045f3026d1b10970a517f5fbd",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J26/J26nB178.xml",
+          "workId": "work:J26nB178",
+          "FromLb": "0104a06",
+          "ToLb": "0104a13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0ff82cd064ea8b376d083b4e33cbe3b43557075840decc1d38742df2400ff435",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Feiyin Tongrong",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial occasion label",
+            "ActorLabel": "the address editor",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword is an editorial arrival-place label, not part of the following master address; the presiding master is retained only as address owner.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J28/J28nB202.xml",
+          "workId": "work:J28nB202",
+          "FromLb": "0013b05",
+          "ToLb": "0013b13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "2bbd347277738179b126d135ff5b891a433094b76e9fa52e6732a14ff0a6d44e",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Baichi Xingyuan",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial occasion label",
+            "ActorLabel": "the address editor",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword is an editorial arrival-place label, not part of the following master address; the presiding master is retained only as address owner.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "L/L158/L158n1652.xml",
+          "workId": "chan:mingjue-cong-yulu",
+          "FromLb": "0026a09",
+          "ToLb": "0026b08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "bb134a3279bf3c787d34f9bb76c18d5595b658332857ec96f5e6c97a72bf91b3",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial occasion label",
+            "ActorLabel": "the address editor",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword is an editorial arrival-place label, not part of the following master address; the presiding master is retained only as address owner.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X72/X72n1437.xml",
+          "workId": "work:X72n1437",
+          "FromLb": "0389a08",
+          "ToLb": "0389b02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "bb20750a5a170251e8197b0bbae4e0c230e7dac78b173d228a6bd4c8bd1a2426",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongjue Yuanxian",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial occasion label",
+            "ActorLabel": "the address editor",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact headword is an editorial arrival-place label, not part of the following master address; the presiding master is retained only as address owner.",
+            "ReviewedBy": "Codex f004 lane C independent-rereview repair",
+            "ReviewedUtc": "2026-07-15T13:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        }
+      ]
+    },
+    {
+      "ordinal": 1128,
+      "id": "t_b021134d0ccb",
+      "term": "空劫已前",
+      "reviewedEntrySha256": "0b0ef3c5b64fed5b3312aeb35ab8a687dc6c8d58371936928836d998a6c6496b",
+      "repairLedgerHashMatchesCurrent": true,
+      "formalGateHashMatchesCurrent": true,
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.",
+        "Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.",
+        "Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0067c23",
+          "ToLb": "0068a07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "7a6343b17c6058276ac01b33ef63c1cc660f2cf922ccef4c8d36bd08d2a5db6f",
+          "MasterName": "Zhongyan Yuneng",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongyan Yuneng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J36/J36nB359.xml",
+          "workId": "work:J36nB359",
+          "FromLb": "0628a26",
+          "ToLb": "0628b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8aa912c800323c9620a37370560ce1269ff201242109d6553483f2efb0a41d63",
+          "MasterName": "Baiyu Jing",
+          "ContextMasters": [
+            {
+              "MasterName": "Baiyu Jing",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J36/J36nB369.xml",
+          "workId": "work:J36nB369",
+          "FromLb": "0895c08",
+          "ToLb": "0895c17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1c88424acbad1a520aa13ac614d7bad3cae7087b53cd14ebaf2ac3922688f692",
+          "MasterName": "Zhean Fan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhean Fan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "FromLb": "0554c21",
+          "ToLb": "0555a06",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "87cee9bd636efbfa549091fcfbe35861588a6d50e0c03a79187b89699dd6d2ac",
+          "MasterName": "Jianfu Gu",
+          "ContextMasters": [
+            {
+              "MasterName": "Jianfu Gu",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0009b17",
+          "ToLb": "0009c02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "2fc3c7d76f0760546f8f6eabee9088626e49bab66ce4195d36d87e36e0c64f66",
+          "MasterName": "Shiwu Qinggong",
+          "ContextMasters": [
+            {
+              "MasterName": "Shiwu Qinggong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0100a07",
+          "ToLb": "0100a16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "b7407a9effb629165859c958a8fda608296595b815bf462eaa430d75c890b82c",
+          "MasterName": "Furong Daokai",
+          "ContextMasters": [
+            {
+              "MasterName": "Furong Daokai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorAttribution": null
+        }
+      ]
+    }
+  ],
+  "preservedKeepHashCheck": {
+    "count": 16,
+    "allByteIdentical": true,
+    "rows": [
+      {
+        "ordinal": 1102,
+        "id": "t_41476f956295",
+        "expectedSha256": "4ba9e2adce339945f0a9155ea211456373315e5d725f90a5e9ebfd53d1f9f7b0",
+        "currentSha256": "4ba9e2adce339945f0a9155ea211456373315e5d725f90a5e9ebfd53d1f9f7b0",
+        "byteIdentical": true,
+        "currentRereviewSha256": "4ba9e2adce339945f0a9155ea211456373315e5d725f90a5e9ebfd53d1f9f7b0",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1104,
+        "id": "t_64109b94980d",
+        "expectedSha256": "b1805ed9ab8b641026ebc362f1f12da329bfb57238e644e627daa39da007119b",
+        "currentSha256": "b1805ed9ab8b641026ebc362f1f12da329bfb57238e644e627daa39da007119b",
+        "byteIdentical": true,
+        "currentRereviewSha256": "b1805ed9ab8b641026ebc362f1f12da329bfb57238e644e627daa39da007119b",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1105,
+        "id": "t_00b7f3a28462",
+        "expectedSha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+        "currentSha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+        "byteIdentical": true,
+        "currentRereviewSha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1107,
+        "id": "t_cee620141c82",
+        "expectedSha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+        "currentSha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+        "byteIdentical": true,
+        "currentRereviewSha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1109,
+        "id": "t_cf9506b17745",
+        "expectedSha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+        "currentSha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+        "byteIdentical": true,
+        "currentRereviewSha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1110,
+        "id": "t_d26799ff3ae1",
+        "expectedSha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+        "currentSha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+        "byteIdentical": true,
+        "currentRereviewSha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1115,
+        "id": "t_d1d910922aff",
+        "expectedSha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+        "currentSha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+        "byteIdentical": true,
+        "currentRereviewSha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1116,
+        "id": "t_7e95e25d633e",
+        "expectedSha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+        "currentSha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+        "byteIdentical": true,
+        "currentRereviewSha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1117,
+        "id": "t_b49a2783af81",
+        "expectedSha256": "e9cdb20ca9b483222d77a9b9cad05a2b15ce2aeaacd2ed726e8804cb293eecec",
+        "currentSha256": "e9cdb20ca9b483222d77a9b9cad05a2b15ce2aeaacd2ed726e8804cb293eecec",
+        "byteIdentical": true,
+        "currentRereviewSha256": "e9cdb20ca9b483222d77a9b9cad05a2b15ce2aeaacd2ed726e8804cb293eecec",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1120,
+        "id": "t_ed2ef7c866b7",
+        "expectedSha256": "b4ecce8c613141e5ace84f34aa3828777e1ca438c46618b2db3882690b378d07",
+        "currentSha256": "b4ecce8c613141e5ace84f34aa3828777e1ca438c46618b2db3882690b378d07",
+        "byteIdentical": true,
+        "currentRereviewSha256": "b4ecce8c613141e5ace84f34aa3828777e1ca438c46618b2db3882690b378d07",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1122,
+        "id": "t_8cdd914f095d",
+        "expectedSha256": "f844c9064a5787e78bde9f55b3b683485ea80d9c6c115e6ed8d56f155704dd66",
+        "currentSha256": "f844c9064a5787e78bde9f55b3b683485ea80d9c6c115e6ed8d56f155704dd66",
+        "byteIdentical": true,
+        "currentRereviewSha256": "f844c9064a5787e78bde9f55b3b683485ea80d9c6c115e6ed8d56f155704dd66",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1123,
+        "id": "t_8f4d81d0fe45",
+        "expectedSha256": "b0341da930ab9b238ad6b19f066673c2f6a199bd291bf05f0d95be3948431889",
+        "currentSha256": "b0341da930ab9b238ad6b19f066673c2f6a199bd291bf05f0d95be3948431889",
+        "byteIdentical": true,
+        "currentRereviewSha256": "b0341da930ab9b238ad6b19f066673c2f6a199bd291bf05f0d95be3948431889",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1125,
+        "id": "t_aa9e5467d247",
+        "expectedSha256": "c2826c4df0b47796cc3f4ee5268059a078cfe52f384d28e31925821bba79bb45",
+        "currentSha256": "c2826c4df0b47796cc3f4ee5268059a078cfe52f384d28e31925821bba79bb45",
+        "byteIdentical": true,
+        "currentRereviewSha256": "c2826c4df0b47796cc3f4ee5268059a078cfe52f384d28e31925821bba79bb45",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1126,
+        "id": "t_4c3f44abf01c",
+        "expectedSha256": "f2327ac6f229b2efd267c76ca85faad508a01552948f6557e527ebf908f289ad",
+        "currentSha256": "f2327ac6f229b2efd267c76ca85faad508a01552948f6557e527ebf908f289ad",
+        "byteIdentical": true,
+        "currentRereviewSha256": "f2327ac6f229b2efd267c76ca85faad508a01552948f6557e527ebf908f289ad",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1129,
+        "id": "t_e4dba349ae51",
+        "expectedSha256": "1e5dc7f6747abd330913bb7ca7a06b8f8c20ad5ecf369f673d7c11395f3d39ef",
+        "currentSha256": "1e5dc7f6747abd330913bb7ca7a06b8f8c20ad5ecf369f673d7c11395f3d39ef",
+        "byteIdentical": true,
+        "currentRereviewSha256": "1e5dc7f6747abd330913bb7ca7a06b8f8c20ad5ecf369f673d7c11395f3d39ef",
+        "stillByteIdentical": true
+      },
+      {
+        "ordinal": 1130,
+        "id": "t_acaf1f7f698e",
+        "expectedSha256": "45a33c9e47e9704852a24e7b765f745e4e72e1b27dda11610c58d03e5db7810f",
+        "currentSha256": "45a33c9e47e9704852a24e7b765f745e4e72e1b27dda11610c58d03e5db7810f",
+        "byteIdentical": true,
+        "currentRereviewSha256": "45a33c9e47e9704852a24e7b765f745e4e72e1b27dda11610c58d03e5db7810f",
+        "stillByteIdentical": true
+      }
+    ]
+  },
+  "allReviewedFilesByteIdentical": true,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

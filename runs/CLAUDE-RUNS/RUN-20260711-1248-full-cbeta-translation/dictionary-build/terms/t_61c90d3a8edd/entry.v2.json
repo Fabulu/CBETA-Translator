@@ -1,0 +1,137 @@
+{
+  "Id": "t_61c90d3a8edd",
+  "SourceTerm": "兼中到",
+  "CreatedBy": "Codex remediation",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "arrival within both",
+      "AlternateTargets": [
+        "arriving within both",
+        "the fifth rank: arrival within both"
+      ],
+      "SearchAliases": [
+        "arrival within both",
+        "arriving within both",
+        "fifth of the Five Ranks",
+        "fifth Dongshan rank"
+      ],
+      "Status": "preferred",
+      "Explanation": "Arrival within both is the fifth and final member of Dongshan Liangjie's Five Ranks. The phrase occurs 275 times in 84 allowlisted texts. Dongshan's own verse begins with the exact title and says it falls into neither existence nor nonexistence. Later records use it as a fixed catechism question answered with such lines as ‘open the road beyond the clouds’ and ‘cut off the water and stop the wheel.’ Mailang Xinghuai calls substance and function being thus-and-thus arrival within both. Yongjue Yuanxian calls it the utmost reach of the Way, where principle and phenomena are both extinguished. Weilin Daopei gives the decisive fourth/fifth contrast: the fourth rank, arrival within the combined, is established where merit and position are both manifest; the fifth, arrival within both, where both are extinguished. Yongjue separately reports and rejects changing the fourth-rank name from ‘arrival within the combined’ to ‘arrival within the biased.’ The fifth-rank headword remains stable and must not be confused with that fourth-rank naming dispute.",
+      "Validation": "multi-source",
+      "Note": "Six exact witnesses across five sources clear the floor. The fourth-rank naming discussion is contrast evidence and does not count toward depth. The different catechism answers and commentarial predicates all identify the same fifth rank, not master-specific senses. The English target keeps the fifth rank distinct from the fourth despite the near-synonymous final graphs.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1986B.xml",
+          "FromLb": "0525c07",
+          "ToLb": "0525c07",
+          "Kwic": "兼中到。不落有無誰敢和。",
+          "MasterName": "Dongshan Liangjie",
+          "Curated": true,
+          "AttributionNote": "Dongshan Liangjie, in the Recorded Sayings of Chan Master Dongshan Liangjie of Ruizhou (瑞州洞山良价禪師語錄), begins his fifth-rank verse with the exact title and says it falls into neither existence nor nonexistence."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0296a08",
+          "ToLb": "0296a08",
+          "Kwic": "如何是兼中到。師曰。撥開雲外路。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T12:17:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Liutong Zhiqiu",
+              "Roles": ["respondent", "section-subject"]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Liutong Zhiqiu section: an unnamed monk asks the fixed fifth-rank question. Liutong answers ‘open the road beyond the clouds’ without repeating the headword; the monk is the exact token speaker."
+        },
+        {
+          "RelPath": "X/X73/X73n1457.xml",
+          "FromLb": "0861a13",
+          "ToLb": "0861a13",
+          "Kwic": "體用如如為兼中到。",
+          "MasterName": "Mailang Xinghuai",
+          "Curated": true,
+          "AttributionNote": "Mailang Xinghuai, in Mailang Huai of Yunmen's Difficulties for the Lineage (雲門麥浪懷禪師宗門設難), states that substance and function being thus-and-thus is arrival within both."
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0541b19",
+          "ToLb": "0541b19",
+          "Kwic": "此即兼中到也。造道之極，理事俱泯，非獨凡",
+          "MasterName": "Yongjue Yuanxian",
+          "Curated": true,
+          "AttributionNote": "Yongjue Yuanxian, in the Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), identifies the fifth rank with the utmost reach of the Way and says principle and phenomena are both extinguished."
+        },
+        {
+          "RelPath": "X/X72/X72n1441.xml",
+          "FromLb": "0681b18",
+          "ToLb": "0681b19",
+          "Kwic": "兼中至，約功位雙彰時立，兼中到，約功位雙泯時立",
+          "MasterName": "Weilin Daopei",
+          "Curated": true,
+          "AttributionNote": "Weilin Daopei, in Chan Master Weilin's Yunshan Assembly Record (為霖禪師雲山法會錄), distinguishes the fourth rank, with merit and position both manifest, from the fifth, with both extinguished."
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0539b11",
+          "ToLb": "0539b11",
+          "Kwic": "寂音改兼中至為偏中至，以對正中來，大悞後學，今",
+          "MasterName": "Yongjue Yuanxian",
+          "Curated": true,
+          "EvidenceRole": "contrast",
+          "AttributionNote": "Yongjue Yuanxian, in the Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), reports and rejects Juefan Huihong's alteration of the fourth-rank name; this contrast lacks the fifth-rank headword."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0164b20",
+          "ToLb": "0164b22",
+          "Kwic": "曰：如何是兼中至？師曰：日上月下。曰：如何是兼中到？師曰：截水停輪。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T12:17:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Gulin Qingmao",
+              "Roles": ["respondent", "section-subject"]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps (五燈全書(第34卷-第120卷)), Gulin Qingmao section: an unnamed monk asks adjacent fourth- and fifth-rank questions. Gulin answers the fifth with ‘cut off the water and stop the wheel’ without repeating the headword; the monk is the exact token speaker."
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1986B.xml",
+        "X/X80/X80n1565.xml",
+        "X/X73/X73n1457.xml",
+        "X/X72/X72n1437.xml",
+        "X/X72/X72n1441.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Liangjie",
+        "Yongjue Yuanxian",
+        "Weilin Daopei"
+      ],
+      "RelatedTerms": ["五位", "兼中至", "偏中至", "正中來", "功位"]
+    }
+  ]
+}

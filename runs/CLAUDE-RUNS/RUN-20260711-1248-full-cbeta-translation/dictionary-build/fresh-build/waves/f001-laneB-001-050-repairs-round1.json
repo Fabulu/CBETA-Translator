@@ -1,0 +1,77 @@
+{
+  "schema": "fresh-build-independent-rejection-repair-ledger-v1",
+  "wave": "f001-laneB-001-050",
+  "round": 1,
+  "state": "repair-ready-awaiting-independent-review",
+  "scope": {
+    "entriesRepaired": 2,
+    "sensesAfterRepair": 4,
+    "occurrencesPreserved": 16,
+    "occurrencesDeleted": 0,
+    "newOccurrencesAdded": 0
+  },
+  "repairs": [
+    {
+      "id": "t_48e808f5d2a7",
+      "term": "門庭",
+      "priorSha256": "7afb00a45682d0ab7c0552052359803a3976e8b9f0490aa91698180c366a5c9a",
+      "repairedSha256": "f76e07ab027aea19c7913bea7f823da84e838640994ccbe736c7e0b41abadcfb",
+      "independentRejection": "The entry merged an institutional public teaching front with an actual architectural gate-and-court.",
+      "requiredChange": "Split the different referents; retain institutional witnesses in the first sense and move Konggu Daocheng's temple-entrance case to a literal sense; seek a second independent literal witness without padding.",
+      "actualChange": {
+        "senses": [
+          {"preferredTarget": "the public teaching front of a Chan house", "validation": "multi-source", "occurrences": 7},
+          {"preferredTarget": "a gate and entrance court", "validation": "provisional", "occurrences": 1}
+        ],
+        "fullCaseResult": "Konggu Daocheng reaches the hall gate, points, and predicates entering, leaving, and residing of the headword; this is an unequivocal physical threshold.",
+        "secondLiteralWitnessSearch": "No second independent full case was equally unambiguous, so the literal sense is provisional."
+      },
+      "gates": {
+        "jsonParse": "PASS",
+        "exactKwicReplay": "8/8 PASS with FromLb and ToLb exact",
+        "sourceTextsEqualOccurrenceSources": "2/2 senses PASS",
+        "attributionAudit": "PASS; included in joint 0-hard-failure audit",
+        "senseTargetDistinguishability": "PASS: institutional arrangement versus physical structure",
+        "publicFeedbackReconstruction": "PASS: explanations open with English referents and retain the Chan bend without collapsing them",
+        "forbiddenLanguage": "PASS",
+        "corpusBaseline": "PASS: 42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+        "statusNotPromoted": "PASS: drafted"
+      },
+      "state": "repair-ready-awaiting-independent-review"
+    },
+    {
+      "id": "t_efa1e241a7f0",
+      "term": "擔荷",
+      "priorSha256": "9b94a692da1e2c3cc76cff1b21187a82189081c0d5540d4933b6bcb700f30e7d",
+      "repairedSha256": "44e43e03f9bd531cc2c0bfba43f57b06b1144b2292c331223000dd9101937250",
+      "independentRejection": "The entry merged assuming responsibility with physically transporting cargo on the shoulder.",
+      "requiredChange": "Split the different referents; retain responsibility and succession witnesses in the first sense and move Xisou Shaotan's firewood case to a literal cargo sense; seek a second independent cargo witness without padding.",
+      "actualChange": {
+        "senses": [
+          {"preferredTarget": "to shoulder responsibility", "validation": "multi-source", "occurrences": 7},
+          {"preferredTarget": "to carry a load on the shoulder", "validation": "provisional", "occurrences": 1}
+        ],
+        "fullCaseResult": "Xisou Shaotan explicitly names firewood, one shoulder, and a broken carrying pole; this is unequivocal physical transport.",
+        "secondLiteralWitnessSearch": "No second independent full case supplied equally explicit cargo, so the literal sense is provisional."
+      },
+      "gates": {
+        "jsonParse": "PASS",
+        "exactKwicReplay": "8/8 PASS with FromLb and ToLb exact",
+        "sourceTextsEqualOccurrenceSources": "2/2 senses PASS",
+        "attributionAudit": "PASS; included in joint 0-hard-failure audit",
+        "senseTargetDistinguishability": "PASS: institutional responsibility versus physical cargo transport",
+        "publicFeedbackReconstruction": "PASS: explanations open with English referents and retain the bodily bridge without merging the referents",
+        "forbiddenLanguage": "PASS",
+        "corpusBaseline": "PASS: 42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+        "statusNotPromoted": "PASS: drafted"
+      },
+      "state": "repair-ready-awaiting-independent-review"
+    }
+  ],
+  "jointVerification": {
+    "exactEvidenceRows": "16/16 PASS",
+    "attributionHardFailures": 0,
+    "forbiddenLanguageHits": 0,
+    "selfReviewOrPromotionPerformed": false
+  }
+}

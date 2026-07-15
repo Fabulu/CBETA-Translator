@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "reviewer3-independent-spanfix-rereview",
+  "generatedUtc": "2026-07-15T13:31:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinalsReviewed": [1001, 1003, 1004, 1006, 1008, 1014, 1015, 1016, 1018, 1019, 1020],
+  "method": "Independently read every stored occurrence in the shared 10000-character case packet, checked the headword utterer rather than the record owner or case subject, and confirmed the current stored KWIC FromLb and ToLb against the zero-span-change packet and the corrected hard-green focused gates.",
+  "reviewedInputs": {
+    "sharedCasePacket": "tmp-b1001-1020-casepacket.json",
+    "sharedCasePacketSpanChanges": 0,
+    "gate1001to1010": "f004-laneB-1001-1010-repair-focused-gate.json",
+    "gate1011to1020": "f004-laneB-1011-1020-repair-focused-gate.json"
+  },
+  "entriesReviewed": 11,
+  "occurrencesReadInFullCase": 66,
+  "exactKwicsFromLbToLb": 66,
+  "keep": 9,
+  "revise": 2,
+  "entries": [
+    {
+      "ordinal": 1001,
+      "id": "t_efa921d8f97a",
+      "term": "家珍",
+      "reviewedEntrySha256": "424b2dc8a56b794d8d769d92e39a7724f8a0856ad9440e5c8bc5ec69c83a35f4",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven corrected full spans are exact. The utterers and non-utterer roles agree with the cases: the unattributed Linji-dossier verse remains compiler narration and the two monk questions remain unnamed-questioner evidence."
+    },
+    {
+      "ordinal": 1003,
+      "id": "t_df2096b961c1",
+      "term": "鐵牛之機",
+      "reviewedEntrySha256": "4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 6,
+      "reason": "All six complete spans are exact and distinguish direct utterance, later quotation, and the unnamed monk who quotes Fengxue in his question."
+    },
+    {
+      "ordinal": 1004,
+      "id": "t_486aaf7fbce8",
+      "term": "監寺",
+      "reviewedEntrySha256": "63ffd0a0009dab77a8ac8ff4af5b8c8142011d3a8af6653b722b647527e4cf17",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven complete spans are exact. Spoken uses, named dedicatory verses, and impersonal occasion headings are correctly separated."
+    },
+    {
+      "ordinal": 1006,
+      "id": "t_1095b3f1544e",
+      "term": "豐干",
+      "reviewedEntrySha256": "1db0af3787a5df800e05d24fe902ae1ab48dbf2ce88375a78af023e17e801c4f",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 6,
+      "reason": "All six corrected spans are exact. The cases correctly separate direct master speech, an unnamed monk's question, and compiler biography/list narration about Fenggan."
+    },
+    {
+      "ordinal": 1008,
+      "id": "t_f54129a637ae",
+      "term": "寮元",
+      "reviewedEntrySha256": "81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "All five spans are exact. Monastic-rule narration, an occasion heading, and two named masters' funeral speech are correctly classified by utterance."
+    },
+    {
+      "ordinal": 1014,
+      "id": "t_d468479c7729",
+      "term": "不思善不思惡",
+      "reviewedEntrySha256": "11243f29542eda6c2cab6b546a6701cd48dab997de55a50047056edab616bd91",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "All five exact spans preserve Huineng as the quoted original utterer and explicitly retain the later quoters as context rather than misattributing the formula to the record owner."
+    },
+    {
+      "ordinal": 1015,
+      "id": "t_72bcb768449d",
+      "term": "香爐",
+      "reviewedEntrySha256": "96107cf22df51aad3f83589d6edbc6aad6a0e03d601c7999b0440ea6e1aae225",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven spans are exact. Direct speech, narrated action, compiled verse, a bare utterance, and preface narration are differentiated in the stored actor records."
+    },
+    {
+      "ordinal": 1016,
+      "id": "t_f9bb8b44b32f",
+      "term": "延壽堂",
+      "reviewedEntrySha256": "4e2caf5788aa1c1df5a9b154111c5c6bd8e304b905276cb67ad13ec6d2d8f771",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "All five spans are exact and correctly distinguish rule/manual narration, Langting Jingting's quoted-case discourse, and biography narration about Mingjue Cong."
+    },
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "reviewedEntrySha256": "5dc3d4935b527509f88aaa828b44c6d8dc653e433efa57cba240dd90d2711a53",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven spans are exact, but occurrence 5 misuses ActorRole=compiler for the named non-master utterer Layman Pang and omits the nameable responding master, Mazu Daoyi, from ContextMasters. Correct the role to the closed participant/questioner role and add Mazu Daoyi as respondent."
+    },
+    {
+      "ordinal": 1019,
+      "id": "t_6275f20a3f87",
+      "term": "雲門胡餅",
+      "reviewedEntrySha256": "c71201e7bb261cec305a526dd101401737193cc67f655e73ae43ac4098ddc3fa",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "All five exact spans correctly distinguish four later masters' deployments from the impersonal case heading that names Yunmen as case figure."
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "reviewedEntrySha256": "090990f2ebe663f6f4098364f4262404792366aff9e60da6bc1f5949fc46e121",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 6,
+      "reason": "All six spans are exact, but occurrence 5 says the section master answers the unnamed monk while leaving ContextMasters empty. The parallel occurrence and the full dossier identify the respondent as Cian Jingyuan; add him with respondent role."
+    }
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

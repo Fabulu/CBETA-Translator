@@ -1,0 +1,225 @@
+{
+  "Id": "t_f7bdd2def0ec",
+  "SourceTerm": "截斷眾流",
+  "CreatedBy": "claude",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the phrase that cuts off the many streams",
+      "AlternateTargets": [
+        "the stream-cutting phrase",
+        "the middle of Yunmen's three phrases"
+      ],
+      "SearchAliases": [
+        "Yunmen's stream-cutting phrase",
+        "cutting off the many streams phrase",
+        "cutting off all streams phrase",
+        "middle of Yunmen's three phrases",
+        "Yunmen's three phrases",
+        "three phrases of Yunmen"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Explanation": "The middle member of the transmitted set called Yunmen's three phrases: the phrase covering heaven and earth, the phrase cutting off the many streams, and the phrase following the waves. The fixed middle phrase occurs 139 times in 69 allowed texts. Deshan Yuanming presents the set directly to his assembly: 'I have three phrases to show you: one covers heaven and earth, one cuts off the many streams, and one follows the waves' (有三句語示汝諸人。一句函葢乾坤。一句截斷眾流。一句隨波逐浪). The Eye of Humans and Gods gives a more exact history in its editorial exposition: Deshan Yuanming later separated Yunmen Wenyan's words into the three phrases (後來德山圓明密禪師。遂離其語為三句). Jiuding Huiquan nevertheless introduces the transmitted set as 'Long ago Yunmen had three phrases' (昔日雲門有三句). The middle member then becomes a stock public question: the exact question occurs 88 times in 43 texts. The Eye of Humans and Gods arranges one answer from Guizong Tong as 'an iron snake lies across the ancient road' (如何是截斷眾流句。宗云。銕蛇橫古路). The entry therefore preserves both facts: the corpus calls the set Yunmen's, while its own historical exposition credits Deshan Yuanming with separating Yunmen's words into three.",
+      "Note": "SenseKey is null: the set is conventionally called Yunmen's three phrases, but the corpus explicitly says that Deshan Yuanming drew the three-phrase formulation from Yunmen's words. Historical association with Yunmen therefore does not make the lexical meaning master-specific.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0308a11",
+          "Kwic": "有三句語示汝諸人。一句函葢乾坤。一句截斷眾流。一句隨波逐浪。作麼生辯。",
+          "MasterName": "Deshan Yuanming",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Deshan Yuanming section: Deshan Yuanming tells his assembly that he has three phrases and states all three in the first person.",
+          "ToLb": "0308a12",
+          "ContextMasters": [
+            {
+              "MasterName": "Deshan Yuanming",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0312a08",
+          "Kwic": "後來德山圓明密禪師。遂離其語為三句。曰函蓋乾坤句。截斷眾流句。隨波逐浪句",
+          "Curated": true,
+          "AttributionNote": "The Eye of Humans and Gods (人天眼目), impersonal editorial exposition under the three-phrases heading: the exposition says Deshan Yuanming later separated Yunmen Wenyan's words into three phrases. Deshan is the person described, not the utterer of this written sentence.",
+          "ToLb": "0312a10",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial exposition",
+            "ActorLabel": "compiled three-phrases historical exposition",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword appears in an unquoted third-person history after 後來, with Deshan Yuanming as the subject of 遂離其語為三句; no speech marker assigns the sentence to Deshan.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T16:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Deshan Yuanming",
+              "Roles": [
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Huiyan Zhizhao",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0373a24",
+          "Kwic": "昔日雲門有三句。謂函蓋乾坤句。截斷眾流",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Jiuding Huiquan section: Jiuding Huiquan is the exact hall speaker who raises Yunmen Wenyan's three phrases and names the phrase that cuts off the many streams before offering his own three phrases.",
+          "ToLb": "0373a24",
+          "ContextMasters": [
+            {
+              "MasterName": "Jiuding Huiquan",
+              "Roles": [
+                "utterer",
+                "later-raiser",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "MasterName": "Jiuding Huiquan"
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0312b06",
+          "Kwic": "如何是截斷眾流句。宗云。銕蛇橫古路。",
+          "Curated": false,
+          "AttributionNote": "The Eye of Humans and Gods (人天眼目), impersonal editorial narrative table: the compiled question-and-answer table asks what the phrase cutting off the many streams is and records Guizong Tong's answer, 'An iron snake lies across the ancient road.' It does not present the question as a recoverable person's historical turn.",
+          "ToLb": "0312b06",
+          "ContextMasters": [
+            {
+              "MasterName": "Guizong Tong",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Huiyan Zhizhao",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial question-and-answer table",
+            "ActorLabel": "compiled three-phrases answer table",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "Under the 問答 heading, one repeated editorial question is followed by a series of abbreviated named answers; this is a compiled comparison table, not a quoted scene with a historical questioner.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T16:00:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2006.xml"
+      ],
+      "RelatedMasters": [
+        "Yunmen Wenyan",
+        "Deshan Yuanming"
+      ],
+      "RelatedTerms": [
+        "函蓋乾坤",
+        "隨波逐浪",
+        "雲門三句"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "cut off all the streams",
+      "AlternateTargets": [
+        "cutting off the many streams",
+        "damming every current"
+      ],
+      "SearchAliases": [
+        "cut off all streams",
+        "cutting off every stream",
+        "stop every current",
+        "dam every current",
+        "block the vital crossing",
+        "let neither ordinary nor holy pass"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Explanation": "To stop every stream or current, used as a freely predicated action rather than as the name of the middle phrase above. The complete expression occurs 370 times in 144 allowed texts, including both uses. Yuanwu Keqin directly contrasts following the waves with cutting off the streams: following the waves permits every kind of construction and contact, while cutting off the streams holds the vital crossing and lets neither ordinary nor holy pass (若隨波逐浪去。種種建立觸處圓融。若截斷眾流去。把住要津不通凡聖). Hongzhi Zhengjue says the working that cuts off the many streams cannot be reached by verbal formulation, then asks how to state the following-the-waves phrase (截斷眾流之機。則詮表不及。且如隨波逐浪底句。又作麼生道). Both masters use the expression within their own discourse, outside the historical explanation of the three-phrase set. Their contrast supplies the Zen bend: cutting off holds and blocks the crossing, while following the waves moves with the current.",
+      "Note": "Corpus-wide reading grounded in Yuanwu Keqin and Hongzhi Zhengjue using the phrase in their own discourse, apart from the named middle member of the three-phrase set.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0754a23",
+          "Kwic": "若隨波逐浪去。種種建立觸處圓融。若截斷眾流去。把住要津不通凡聖。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), informal address: Yuanwu Keqin contrasts following the waves with cutting off the many streams, which holds the vital crossing and lets neither ordinary nor holy pass.",
+          "ToLb": "0754a24",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0071c25",
+          "Kwic": "然而截斷眾流之機。則詮表不及。且如隨波逐浪底句。又作麼生道。",
+          "MasterName": "Hongzhi Zhengjue",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄), informal address: Hongzhi Zhengjue says the stream-cutting working cannot be reached by verbal formulation and then asks how to state the following-the-waves phrase.",
+          "ToLb": "0071c26",
+          "ContextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "T/T48/T48n2001.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Hongzhi Zhengjue"
+      ],
+      "RelatedTerms": [
+        "隨波逐浪",
+        "函蓋乾坤"
+      ]
+    }
+  ]
+}

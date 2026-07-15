@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "postrepair-independent-full-case-review",
+  "reviewer": "reviewer5",
+  "generatedUtc": "2026-07-15T14:08:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1024, 1025, 1027, 1029],
+  "sourceRepairLedger": "f004-laneB-1024-1029-reviewer4-findings-repair-ledger.json",
+  "sourceRepairGate": "f004-laneB-1024-1029-reviewer4-findings-repair-pre-review-v2.json",
+  "entriesReviewed": 4,
+  "occurrencesReadInFullCase": 23,
+  "exactKwics": 23,
+  "exactFullSpans": 23,
+  "exactSpanFailures": 0,
+  "keep": 1,
+  "revise": 3,
+  "entries": [
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "reviewedEntrySha256": "53955f23cf705ff312d704fe931cc75eb6717b7d08744d9ce6cede8b79ce382c",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "repairFindingResult": "The reviewer-4 role repair is correct for occurrences 1 and 2: each declarative headword clause belongs to the first unnamed monk as interlocutor, while Xuefeng Daoyuan is only the person described as overhearing them.",
+      "reasons": [
+        "Occurrence 3 calls the fox-case old man an ‘unnamed monk interlocutor.’ The complete Baizhang case identifies him as the former resident teacher who says he lived on that mountain in Kasyapa Buddha’s time; relabeling him a generic monk evades rather than answers the every-master-must-be-named rule.",
+        "Because this unnamed former teacher is indispensable to the defining case, the entry needs an explicit adjudication under the named-master rule: resolve a corpus-attested identifying name from a parallel witness, or record and escalate the structural exception rather than silently changing his kind.",
+        "The PreferredTarget and explanation otherwise correctly keep the wild-fox body literal and ground its Zen deployment in Baizhang’s paired cause-and-effect formulations."
+      ]
+    },
+    {
+      "ordinal": 1025,
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "reviewedEntrySha256": "a4663f7af240a51109e6ced0c6afd3dec3d87d5d52663c2cef3e3a3e669e4e47",
+      "occurrencesRead": 5,
+      "verdict": "KEEP",
+      "repairFindingResult": "Both repaired regulation rows now name the correct sources, the Baizhang Rules and the Chan Grove Backup Rules, rather than unrelated code titles.",
+      "reasons": [
+        "The five cases distinguish institutional equipment, two parallel imperial narratives, and Qingliang Taiqin’s lifted incense box without manufacturing a second sense.",
+        "Narrative/compiler roles and Qingliang’s exact spoken turn are correctly separated, and the definition remains literal and corpus-earned."
+      ]
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "reviewedEntrySha256": "716c38b37eb369f49ec023b68f9b1170b15fdd0f403ac95a887a8c97c9d46777",
+      "occurrencesRead": 5,
+      "verdict": "REVISE",
+      "repairFindingResult": "The repaired fifth occurrence is correct: the signed reply is written by Yinyuan Longqi, who is now the exact utterer with matching ContextMasters and source note.",
+      "reasons": [
+        "The Explanation defines the vow by ‘whose intended benefit extends widely.’ Rule #0 explicitly bars assertions of intent unless the corpus states them; the stored cases attest stated vows and their named objects, not a general psychological intention.",
+        "Rewrite the opening from observable grammar and deployment: a great or far-reaching vow stated in verse, preface, exposition, and letter, directed toward finishing a scripture, aiding people, protecting a community, or fulfilling an undertaking.",
+        "The one-referent decision is otherwise supported: these are varying objects of a stated vow, not different things."
+      ]
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "reviewedEntrySha256": "1709319cc1ac721969b044a18f6f50e8efd0259f18be7106d54bdd58816c90a3",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "repairFindingResult": "The repair correctly keeps one sense rather than splitting noun from verb, and the Mirror Record row now explicitly records compiler-governed quoted exposition in English-first prose.",
+      "reasons": [
+        "The Explanation still defines every occurrence as an assurance that a named recipient will later become a buddha, but occurrence 2 is Juelang Daosheng’s statement that Boshan had earlier given a prediction; the stored span does not say that this prediction concerns Juelang’s future buddhahood.",
+        "The repair ledger says the sense was broadened to include Boshan’s earlier prediction, but that broadening did not reach the displayed definition. The PreferredTarget ‘a prediction or assurance’ and Explanation must agree and distinguish the attested future-buddhahood formula from the more general Boshan prediction without creating a grammar-only split.",
+        "Keep one sense if corpus review confirms both are the same act of giving a prediction; define it broadly enough for every stored occurrence, then state future buddhahood as the recurrent specified content rather than the universal definition."
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "currentHashesMatchedRepairLedger": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

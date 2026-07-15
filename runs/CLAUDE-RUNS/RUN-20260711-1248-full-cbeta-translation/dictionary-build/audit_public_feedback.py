@@ -41,6 +41,17 @@ WEAK_OPENING = re.compile(
     re.I,
 )
 FORBIDDEN_ENGLISH = re.compile(r"\b(?:Buddhism|meditation|Bodhiteaching)\b", re.I)
+OPENING_SENTENCE = re.compile(r"^\s*(.+?[.!?])(?:\s+|$)", re.S)
+
+
+def duplicated_opening(text: str) -> str | None:
+    """Return a consecutively duplicated first sentence, if present."""
+    match = OPENING_SENTENCE.match(text)
+    if not match:
+        return None
+    first = match.group(1).strip()
+    remainder = text[match.end():].lstrip()
+    return first if remainder.startswith(first) else None
 
 
 def load_entry(path: Path) -> dict:
@@ -92,6 +103,13 @@ def audit(path: Path) -> dict:
 
     for index, sense in enumerate(senses):
         explanation = str(sense.get("Explanation") or "")
+        duplicate = duplicated_opening(explanation)
+        if duplicate:
+            flags.append({
+                "kind": "duplicated-explanation-opening",
+                "sense": index,
+                "opening": duplicate[:160],
+            })
         if not explanation.strip():
             flags.append({"kind": "opening-interpretation-missing", "sense": index})
         elif WEAK_OPENING.search(explanation):

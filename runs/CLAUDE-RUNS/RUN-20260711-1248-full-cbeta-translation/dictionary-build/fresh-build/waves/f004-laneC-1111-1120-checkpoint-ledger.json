@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "lane": "C",
+  "ordinals": "1111-1120",
+  "status": "green-author-checkpoint",
+  "entries": 10,
+  "exactKwic": {"verified": 54, "failures": 0},
+  "formalGate": {"path": "f004-laneC-1111-1120-formal-gate-v4.json", "sha256": "39d3051ce63fc9ee48afa8b6ef5c7877e37ea1bf6c18d88434601a940b730389", "hardPass": true},
+  "laneLocalRosterView": {"path": "f004-laneC-1111-1120-gate-roster-view.json", "sha256": "2646b768d30de3db4d50416b3113c7d13808f6db851fd587fe77e2269f946abd", "sharedRosterEdited": false},
+  "repairs": [
+    "Removed Chinese headwords from public attribution prose.",
+    "Added distinguishability notes for 壇場 and 心香.",
+    "Added a seventh independently verified 道中人 case from 南嶽繼起和尚語錄 after full-turn review.",
+    "Resolved Zhantang Wenzhun as the ordination-question utterer and Hu Zhouzi as the signed preface author.",
+    "Removed vague actor wording from reader-facing explanations."
+  ],
+  "entriesEditedOutsideScope": 0,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

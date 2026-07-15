@@ -1,0 +1,145 @@
+{
+  "Id": "t_67bff0d0e5d3",
+  "SourceTerm": "僧問",
+  "CreatedBy": "Codex; enriched Codex d001-B",
+  "WrittenUtc": "2026-07-13T20:06:40.452Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a monk asked",
+      "AlternateTargets": ["a monk inquired", "the monk asked"],
+      "SearchAliases": ["a monk asks", "monk asked", "the monk inquired", "a monastic asked", "monastic questioner"],
+      "Status": "preferred",
+      "Explanation": "The recurring narrative formula reports that an unnamed monastic asked a question. It opens or advances a public interview; the recorded response may be speech, a shout, another question, or an action. The formula can be introduced by an event frame, as in Zhaozhou Congshen's dog-and-buddha-nature case, or by a biographical transition, as in Tianyi Yihuai's record after he takes up residence. It can name a more specific questioner, as when a Flower Garland lecturer questions Oxhead Zhiwei. Mi'an Xianjie uses the formula while raising the older Baizhang Huaihai exchange in a teaching-hall address, while the Linji Yixuan record uses it to advance separate live interviews. Helin Xuansu, Yunfeng Wenyue, Qingyuan Xingsi, Budai Qici, and Baiyan Fu supply further spoken or acted responses. Those different questions and responses do not create senses of the formula. Zen bends ordinary subject-plus-verb narration into the hinge by which lamp records, recorded sayings, and case collections preserve the questioner's public approach and what a named respondent did next. It is not a genre title or a noun meaning “public interview.”",
+      "Validation": "multi-source",
+      "Note": "The apparatus-clean allowlist count is 27,950 hits across 406 texts. English article choice follows whether the questioner is newly introduced or already present. Item-8 review found one grammatical event formula, not separate event and heading senses: ‘because a monk asked’ (因僧問), ‘there was a monk who asked’ (有僧問), ‘at the time a monk asked’ (時有僧問), ‘after taking up residence, a monk asked’ (住後，僧問), and ‘again raising the case: a monk asked’ (復舉：僧問) all retain the proposition that a monastic asked, even when a compiler uses the formula to open an old case. Every saved questioner is genuinely unnamed. Complete-case review therefore leaves `MasterName` null on all eleven exact-headword rows and names the source, unnamed questioner, and named respondent or later raiser in each note; assigning the respondent would violate the exact-actor rule.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0292c23",
+          "ToLb": "0292c24",
+          "Kwic": "趙州和尚因僧問。狗子還有佛性。也無。州云無。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Zhaozhou Congshen", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Gateless Checkpoint (無門關) opens its first case. The record does not name the speaker who asks whether a dog has buddha-nature; Zhaozhou Congshen is the named respondent and answers ‘no.’ All six attribution rungs leave the questioning monk unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0496b18",
+          "ToLb": "0496b19",
+          "Kwic": "僧問：「如何是佛法大意？」師便喝，僧禮拜。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Linji Yixuan", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄) does not name the speaker who asks the great purport of the buddhadharma; Linji Yixuan is the named respondent and answers with a shout. All six attribution rungs leave the questioning monk unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0496c16",
+          "ToLb": "0496c17",
+          "Kwic": "又有僧問：「如何是佛法大意？」師便喝",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Linji Yixuan", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄) does not name the speaker introduced by ‘again there was a monk who asked’; Linji Yixuan is the named respondent and answers with a shout. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0050b01",
+          "ToLb": "0050b02",
+          "Kwic": "有講華嚴僧問。真性緣起。其義云何。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed Flower Garland lecturer", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Oxhead Zhiwei", "Roles": ["person-questioned"]}, {"MasterName": "Xuanting", "Roles": ["interjecting-answerer"]}],
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), in Oxhead Zhiwei's explicit section, identifies the questioner only as a monk who lectures on the Flower Garland scripture; it does not give his name. The monk questions Oxhead Zhiwei, and Xuanting gives the interjecting answer. All six attribution rungs leave the lecturer unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0229c04",
+          "ToLb": "0229c05",
+          "Kwic": "或有僧問。如何是西來意。師曰。會即不會。疑即不疑。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Helin Xuansu", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Record of the Transmission of the Lamp (景德傳燈錄), in Helin Xuansu's explicit biography, does not name the speaker who asks the meaning of the coming from the west; Helin Xuansu is the named respondent. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0016a14",
+          "ToLb": "0016a15",
+          "Kwic": "雲峰悅因僧問：靈山拈花意旨如何？峰云：一言既出，駟馬難追。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Yunfeng Wenyue", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "Collected Old Cases of the Lineage Gate (宗門拈古彙集) explicitly names Yunfeng Wenyue as respondent but does not name the speaker asking about the flower raised at Vulture Peak. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0011b12",
+          "ToLb": "0011b13",
+          "Kwic": "復舉：僧問百丈大智禪師：如何是奇特事？百丈云：獨坐大雄峰。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Mi'an Xianjie", "Roles": ["later-raiser"]}, {"MasterName": "Baizhang Huaihai", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "Essentials of the Successive Patriarchs (列祖提綱錄), in Mi'an Xianjie's explicitly signed teaching-hall address, raises an old Baizhang Huaihai case. The record does not name the speaker who asks Baizhang about the extraordinary matter. Mi'an is the later raiser and Baizhang the respondent; all six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0354a10",
+          "ToLb": "0354a11",
+          "Kwic": "僧問：「如何是佛法大意？」師曰：「廬陵米作摩價？」",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Qingyuan Xingsi", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Patriarchs' Hall Collection (祖堂集), in Qingyuan Xingsi's explicit section, does not name the speaker who asks the great purport of the buddhadharma; Qingyuan Xingsi is the named respondent and answers with the price of rice in Luling. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0425c09",
+          "ToLb": "0425c10",
+          "Kwic": "師在街衢立，有僧問：和尚在這裏作甚麼？師曰：等箇人。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Budai Qici", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, fascicles 1–33 (五燈全書(第1卷-第33卷)), in Budai Qici's explicit section, does not name the speaker who asks what Budai is doing in the street; Budai Qici is the named respondent. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001b05",
+          "ToLb": "0001b06",
+          "Kwic": "住後，僧問：如何是佛？師曰：布髮掩泥，橫身臥地。",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Tianyi Yihuai", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), in Tianyi Yihuai's explicit biography, does not name the speaker who asks what buddha is after Tianyi takes up residence; Tianyi Yihuai is the named respondent. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0019c15",
+          "ToLb": "0019c16",
+          "Kwic": "時有僧問：畢竟如何是不二法門？符曰：山僧今日牙痛",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex exact-turn review", "ReviewedUtc": "2026-07-13T20:15:00Z"},
+          "ContextMasters": [{"MasterName": "Baiyan Fu", "Roles": ["respondent"]}],
+          "Curated": true,
+          "AttributionNote": "Collected Old Cases of the Lineage Gate (宗門拈古彙集) explicitly names Baiyan Fu as respondent but does not name the speaker asking about the gate of not-two. Baiyan answers that his tooth hurts. All six attribution rungs leave the questioner unnamed, so `MasterName` remains null."
+        }
+      ],
+      "SourceTexts": ["T/T48/T48n2005.xml", "T/T47/T47n1985.xml", "X/X80/X80n1565.xml", "T/T51/T51n2076.xml", "X/X66/X66n1296.xml", "X/X64/X64n1260.xml", "B/B25/B25n0144.xml", "X/X81/X81n1571.xml", "X/X82/X82n1571.xml"],
+      "RelatedMasters": ["Zhaozhou Congshen", "Linji Yixuan", "Oxhead Zhiwei", "Xuanting", "Helin Xuansu", "Yunfeng Wenyue", "Mi'an Xianjie", "Baizhang Huaihai", "Qingyuan Xingsi", "Budai Qici", "Tianyi Yihuai", "Baiyan Fu"],
+      "RelatedTerms": ["問", "如何是佛", "如何是佛法大意", "問答", "公案", "和尚"]
+    }
+  ]
+}

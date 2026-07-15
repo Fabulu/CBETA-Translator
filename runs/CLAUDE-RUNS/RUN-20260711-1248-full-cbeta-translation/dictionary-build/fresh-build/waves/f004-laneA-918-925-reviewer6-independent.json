@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "reviewer6-independent-full-case",
+  "generatedUtc": "2026-07-15T17:52:00Z",
+  "wave": "f004",
+  "lane": "A",
+  "ordinals": [918, 925],
+  "method": "Read all fifty-four current full cases, determined who uttered the headword rather than assuming the record owner or case subject, checked ContextMasters, sense boundaries, English-first definition and explanation prose, evidence depth, and reader-facing AttributionNotes. Independently reran zc_batch.verify_entries over every current stored span and rebound the verdicts to current SHA-256 hashes.",
+  "entriesReviewed": 8,
+  "occurrencesReadInFullCase": 54,
+  "exactKwicsFromLbToLb": 54,
+  "exactVerificationFailures": 0,
+  "keep": 3,
+  "revise": 5,
+  "entries": [
+    {
+      "ordinal": 918,
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "reviewedEntrySha256": "6c29e5e3e0978e5bb3487735559cb3d5da30c7f6d9c85dbbc26c1dab9513717f",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The fan sense, seven cases, utterers, and Yanguan/Yunmen case figures are sound. However, all seven reader-facing AttributionNotes repeat the actor label verbatim (for example, ‘Foyan Qingyuan: Foyan Qingyuan:’). Remove the duplicated generated prefix while preserving the source, named actor, and claim-specific attribution."
+    },
+    {
+      "ordinal": 919,
+      "id": "t_09cbe12e4c36",
+      "term": "陸亘大夫",
+      "reviewedEntrySha256": "2d17569b707959312e8a8b45866b8aaaa72209537bbdd9cab21d421432c678eb",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The seven cases consistently identify Lay Official Lu Gen as Nanquan’s lay questioner and distinguish narrated case frames, later raisings, and documentary headings. The prose defines the person by his attested Chan deployment without turning the narrated name label into his utterance."
+    },
+    {
+      "ordinal": 920,
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "reviewedEntrySha256": "7a7be2525b807410cd662c6c2f087877d19a83af84ad51b26a635ba0a9a70816",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 5,
+      "reason": "The five spans and actor distinctions are exact, but the PreferredTarget ‘Zhaozhou putting on his straw sandals’ loses the case’s defining action: Zhaozhou puts/wears the sandals on his head, not on his feet. State that explicitly in the target and opening explanation. Occurrence 5 is the visitor Zhou’s question inside the section of Mengshan Deyi, who answers ‘hands and feet are completely exposed’; add Mengshan Deyi as respondent ContextMaster. Also remove the duplicated actor prefix from all five AttributionNotes."
+    },
+    {
+      "ordinal": 921,
+      "id": "t_72ed81907d68",
+      "term": "施為",
+      "reviewedEntrySha256": "15e49720b28aeaf42c82f30c14a7033a78728e32818b1d2061804f0ae34ccc79",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The single conduct/activity sense and seven full-case actor assignments are supported; noun-like and verbal deployments remain the same thing rather than separate senses. All seven AttributionNotes nevertheless duplicate their actor labels verbatim. Remove the generated duplicate while retaining source and exact actor wording."
+    },
+    {
+      "ordinal": 922,
+      "id": "t_c9f69715e823",
+      "term": "五燈會元",
+      "reviewedEntrySha256": "be9000b2c91f5b16e4075b588c2c34066bce008f5efa68f13452f6229ecd67cd",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The entry accurately treats Five Lamps Meeting at the Source as a book title and supports it with title, preface, authored comparison, Yongjue address, and compiler-biography witnesses. It does not confuse named preface writers or biographical subjects with headword utterers, and its reader-facing notes are clean."
+    },
+    {
+      "ordinal": 923,
+      "id": "t_1c236703f164",
+      "term": "瞎驢",
+      "reviewedEntrySha256": "2d691313f61ae8df139e8a1c23862ec62e535ac0ce93963c54de563aef5665a7",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The literal blind-donkey referent and its cutting Chan use are distinguishable from the target and grounded in Linji’s saying plus later questions, verses, and direct addresses. The entry correctly separates later utterers from Linji as case figure and does not manufacture a second sense from varied targets of the insult."
+    },
+    {
+      "ordinal": 924,
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "reviewedEntrySha256": "35f0ed1a6b2733134a873a7bd562df3922bf7c3e2c8eb095b8e36800dc34dae7",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The patriarchal-seal sense is supported, but occurrence 1 is only the bare token 祖印 and supplies no usable deployment or full-case evidence; replace it with a contextual exact witness. ContextMasters omit masters visibly participating in the remaining cases: add Guiyang Furong Wenxi as respondent in occurrence 2, Yexian Guixing in occurrence 3, the named section master of occurrence 5, Mingdao Zhengjue Sen in occurrence 6, and Ruibai Mingxue as respondent in occurrence 7, using exact roster names or the pending-roster mechanism rather than leaving masters unnamed. Remove the duplicated actor prefix from occurrences 1, 2, 3, 5, 6, and 7."
+    },
+    {
+      "ordinal": 925,
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "reviewedEntrySha256": "2cc65f32244acbc3743ac4b6a3bdae8e595884286dcfcb9e8cd475c013001500",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The split between Mencius the person and Mencius the book is a legitimate different-thing split, and all seven cases support their assigned sense and actor. Every AttributionNote in both senses repeats the actor label verbatim; remove that reader-facing duplication without altering the two senses or evidence."
+    }
+  ],
+  "cohortFindings": [
+    "Current entry hashes exactly match the green author ledger for all eight entries.",
+    "Independent exact verification passed 54/54 stored spans with matching FromLb and ToLb.",
+    "Five of eight entries expose a systematic AttributionNote template defect that repeats the actor label twice. This should be blocked in the author compiler before future semantic review, not repaired manually downstream.",
+    "No promotion, merge, publication, source entry, worksheet, register, or dashboard file was edited."
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "Id": "t_93360aaedb7c",
+  "SourceTerm": "參堂",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "join the hall",
+      "AlternateTargets": [
+        "go to the hall",
+        "be admitted to the hall"
+      ],
+      "Status": "preferred",
+      "Explanation": "To join, attend, or report to the communal hall. Biographical records use the expression for formal admission: people seeking to join the hall might wait for months, while a favored visitor is admitted that same day; Wuzu orders Yuanwu to join the hall immediately, after which Yuanwu enters the attendants' quarters. In encounter records the imperative 'go to the hall' regularly closes or dismisses an exchange. Wuju says it after striking two visitors, and Wenshu Siye shouts it to a former butcher, who then goes down to the hall. In commentary on the rhinoceros-fan case, a monk tells the entire assembly to go to the hall, and Yuanwu explicitly says that the monk has seized the authority of the host. The institutional and imperative uses share the same hall-directed action.",
+      "Validation": "multi-source",
+      "Note": "The corpus has 529 matches in 137 files. The imperative 'go to the hall' accounts for 349 matches in 99 files, including seven matches in six files that address the whole assembly. The nominal form 'those who seek or attend the hall' occurs four times in four files; 'ordered him immediately to join the hall' occurs ten times in ten files, and 'then went down to the hall' occurs nineteen times in sixteen. These forms distinguish this institutional use of 'join' from other senses of the first graph elsewhere in Chan vocabulary.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0084c19",
+          "ToLb": "0084c21",
+          "Kwic": "師曰。汝既不會。後面箇師僧祇對看。紹擬近前。師便打。曰。信知同坑無異土。參堂去。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): Wuzhu Heshang tells Shao to watch how the monk behind him answers and, when Shao tries to approach, strikes him and orders him to go to the monks' hall.",
+          "MasterName": "Wuzhu Heshang",
+          "ContextMasters": [
+            {
+              "MasterName": "Shao",
+              "Roles": [
+                "interlocutor"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0634a14",
+          "ToLb": "0634a15",
+          "Kwic": "病痊尋歸。祖一見而喜令即參堂。便入侍者寮方半月。",
+          "Curated": true,
+          "AttributionNote": "Continued Record of the Transmission of the Lamp (續傳燈錄): in Yuanwu Keqin's explicitly headed biography, Yuanwu Keqin is the returning student whom Wuzu Fayan orders to enter the hall and who then enters the attendant's quarters.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": [
+                "teacher",
+                "one-ordering-entry"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X70/X70n1388.xml",
+          "FromLb": "0395c11",
+          "ToLb": "0395c14",
+          "Kwic": "時四方來學雲趨水赴，求參堂者或累旬月而不得。間有得者，如登龍門。師徑懷香詣方丈相看。佛鑑顧師敦厖，識為法器。即日歸堂，眾皆驚訝。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Huanxi Weiyi (環溪惟一禪師語錄): the biographical compiler's narrative says applicants waited months to enter the hall while Huanxi Weiyi was admitted by Fojian Huiqin that day.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "compiler narrative",
+            "ActorLabel": "biographical compiler's narrative",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "The passage is third-person biography rather than a speech turn.",
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Huanxi Weiyi",
+              "Roles": [
+                "biographical-subject"
+              ]
+            },
+            {
+              "MasterName": "Fojian Huiqin",
+              "Roles": [
+                "admitting-master"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0216b07",
+          "ToLb": "0216b09",
+          "Kwic": "時有一禪客出云。大眾參堂去。這僧奪得主家權柄。道得也殺道。只道得八成。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). An unnamed Chan visitor is the exact speaker who comes forward and says, 'Assembly, go to the hall.' All six attribution rungs leave him unnamed; Xuedou Chongxian requested the turning phrase and later judges it only eighty percent.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "Chan visitor",
+            "ActorLabel": "unnamed Chan visitor",
+            "ActorRole": "direct speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-13T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "requester",
+                "later-verdict-giver"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "later-commentator",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0437c11",
+          "ToLb": "0437c13",
+          "Kwic": "殊曰：你正殺猪時，見箇甚麼便乃剃頭行脚？師遂作鼓刀勢。殊喝曰：者屠兒參堂去！師便下參堂。",
+          "Curated": true,
+          "AttributionNote": "Correct Lineage of the Continuation of the Lamp (續燈正統): inside Wenshu Siye's explicitly headed section, Wenshu asks the former butcher what he saw while killing a pig that made him shave his head and travel; after the man makes a knife-beating gesture, Wenshu shouts and orders him to enter the hall.",
+          "MasterName": "Wenshu Siye"
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2077.xml",
+        "X/X70/X70n1388.xml",
+        "T/T48/T48n2003.xml",
+        "X/X84/X84n1583.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": []
+    }
+  ]
+}

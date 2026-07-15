@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T12:30:00Z",
+  "wave": "f004",
+  "reviewLane": "C",
+  "ordinals": [1101, 1130],
+  "scope": "read-only independent exact-current-hash rereview of C1101-C1130 under the strengthened attribution, context-role, public-opening, source, sense, work, and roster gates",
+  "reviewedInputs": {
+    "c1101_1120_gate": {
+      "path": "fresh-build/waves/f004-laneC-1101-1120-revise9-formal-gate-v6.json",
+      "sha256": "ee54ee3760f6dfb9be9bedf50c6783bd42408fae44c7bac342ec5efd437d39a8",
+      "hardPass": true,
+      "exactKwics": 83
+    },
+    "c1101_1120_readiness": {
+      "path": "fresh-build/waves/f004-laneC-1101-1120-revise9-repair-readiness.json",
+      "sha256": "09859c7128c5c67195e06927620d223c4af46058b0d304f0248e9b50cff27cb2"
+    },
+    "c1106_1110_gate": {
+      "path": "fresh-build/waves/f004-laneC-1106-1110-early-sample-formal-gate-v2.json",
+      "sha256": "f222c474930e294b4eda8d9e9c19ab54123676f63753a5e13d63fc57bfba4984",
+      "hardPass": true,
+      "exactKwics": 30
+    },
+    "c1121_1130_gate": {
+      "path": "fresh-build/waves/f004-laneC-1121-1130-revise6-formal-gate-v4.json",
+      "sha256": "cb052301d13ef89b51c60c5351acfe26ebe9936bdd4e0eca47ebb98323633a8d",
+      "hardPass": true,
+      "exactKwics": 52
+    },
+    "c1121_1130_readiness": {
+      "path": "fresh-build/waves/f004-laneC-1121-1130-revise6-repair-readiness.json",
+      "sha256": "8a11e29dd32608d8d050954ab29fefef792df1b3a69f0cc8dd656e5dc0c994aa"
+    }
+  },
+  "entriesReviewed": 30,
+  "occurrencesReadInFullCase": 165,
+  "exactKwicsVerifiedByCurrentGates": 165,
+  "publicFeedbackFlags": 0,
+  "keep": 16,
+  "revise": 14,
+  "entries": [
+    {
+      "ordinal": 1101,
+      "id": "t_9d60d7613392",
+      "term": "一言半句",
+      "currentSha256": "ab2f84c3c7a7e714611ae4f0c223ec7627505dc7b3d1380f9244992567947cc1",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "The original o1 actor defect is repaired, but o6 is not an unresolved documentary voice. The No. 1557-C preface is signed 偃谿真懶子悔明 and is a first-person authored unit. Name that signed actor canonically as master or identified non-master; the current generic narrated ActorLabel and AttributionNote fail the six-rung/name-the-speaker rule."
+      ]
+    },
+    {
+      "ordinal": 1102,
+      "id": "t_41476f956295",
+      "term": "燒香禮拜",
+      "currentSha256": "4ba9e2adce339945f0a9155ea211456373315e5d725f90a5e9ebfd53d1f9f7b0",
+      "occurrencesRead": 5,
+      "verdict": "KEEP",
+      "reasons": ["The Shitian Faxun and Zhaozhou Congshen repairs match their full speech turns; the rulebook witnesses, public-act gloss, and distinct-work support remain sound."]
+    },
+    {
+      "ordinal": 1103,
+      "id": "t_746f990fba78",
+      "term": "清淨法身",
+      "currentSha256": "3742c3a29825081f408c42b7038ef21b5ab13c849e05aa42e6cec2cc460eb90c",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "The questioner/master repairs are directionally correct, but o2 omits Fayan Wenyi as the named respondent and o7 omits Zhimen Guangzu as the named respondent. Both complete cases explicitly continue with 師曰/師云, so ContextMasters cannot remain empty."
+      ]
+    },
+    {
+      "ordinal": 1104,
+      "id": "t_64109b94980d",
+      "term": "骨董",
+      "currentSha256": "b1805ed9ab8b641026ebc362f1f12da329bfb57238e644e627daa39da007119b",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["All repaired master turns match the complete cases; the one-sense old-junk gloss and the verbal-clutter inference are corpus-earned."]
+    },
+    {
+      "ordinal": 1105,
+      "id": "t_00b7f3a28462",
+      "term": "四弘誓願",
+      "currentSha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+      "occurrencesRead": 5,
+      "verdict": "KEEP",
+      "reasons": ["Preserved KEEP hash confirmed; compiler, liturgical, and named-master voices, sense, and opening remain supported."]
+    },
+    {
+      "ordinal": 1106,
+      "id": "t_f9d7324ef449",
+      "term": "微塵",
+      "currentSha256": "7714982770924567533791e47afa2d0bd54be30db85e8594d8a070562034c4fc",
+      "occurrencesRead": 8,
+      "verdict": "REVISE",
+      "reasons": [
+        "o7 is inside an explicit 解夏上堂 in 舒州龍門佛眼和尚語錄, not collected-record narration. The headword is uttered by Foyan Qingyuan in the continuous address; set the canonical MasterName and utterer context.",
+        "The dust-mote sense and whole-world-in-the-particle opening otherwise fit the evidence."
+      ]
+    },
+    {
+      "ordinal": 1107,
+      "id": "t_cee620141c82",
+      "term": "香几",
+      "currentSha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["All five named masters own the demonstrated table-striking turns and the rulebook compiler owns the furnishing witness; the object/function prose avoids symbolic overreach."]
+    },
+    {
+      "ordinal": 1108,
+      "id": "t_c9940cc4ef80",
+      "term": "夏安居",
+      "currentSha256": "810a491ccdc321c01cd60604b0ccc5b9d407f35cc468ce69d78509c5904d07d3",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "o1 bears the headword only in the repeated poem heading 夏安居日，過實上人東軒. It is paratext/impersonal heading evidence, not a narrated verse-compiler deployment. Replace it with a substantive body witness or explicitly justify admissibility and mark it impersonal.",
+        "The institutional-period gloss is otherwise sound."
+      ]
+    },
+    {
+      "ordinal": 1109,
+      "id": "t_cf9506b17745",
+      "term": "薰風自南來",
+      "currentSha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The quoted Yuanwu case, later reuse, six exact turns, paired-line translation, and public-case opening all match the complete contexts."]
+    },
+    {
+      "ordinal": 1110,
+      "id": "t_d26799ff3ae1",
+      "term": "參頭",
+      "currentSha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Rulebook, lamp-narrative, and public-exchange uses consistently identify the group leader rather than a teaching authority; actor classes and institutional prose are supported."]
+    },
+    {
+      "ordinal": 1111,
+      "id": "t_78d931324d99",
+      "term": "張商英",
+      "currentSha256": "49499b45b561cad5de19623c577931611298357c1a4655857601af2616acaa2e",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "o1 puts 張商英 in the compiler heading 丞相張商英居士; Zhang's following first-person words do not utter his own name. MasterName must therefore be null with narrated compiler actor, while Zhang remains ContextMasters person-described/quoted speaker as appropriate.",
+        "The repaired Chuiwan Guangzhen and Biefeng Baoyin later-name utterances are correct."
+      ]
+    },
+    {
+      "ordinal": 1112,
+      "id": "t_09909bd0c29e",
+      "term": "草賊",
+      "currentSha256": "62e40f213ac12b6689a93b0d98d359222a4da229af0b90e641872de9a6fb7dcb",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "o1 correctly assigns 草賊大敗 to the unnamed monk, but the complete exchange explicitly records Linji Yixuan responding. Add Linji as ContextMasters respondent/record-owner; an empty context list fails the strengthened complete-case rule.",
+        "The encounter-verdict sense and remaining utterers are correct."
+      ]
+    },
+    {
+      "ordinal": 1113,
+      "id": "t_1bde390a5df1",
+      "term": "壇場",
+      "currentSha256": "284d979fbbb938215fff06cf758c516f60f8e44939f8ab020a336a5082e66ddf",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "The ordination-platform versus ritual-altar-ground split remains correct, but ritual-ground o1 is ordinary compiled rule prose, not an actorless formula. Status should be narrated with a concrete monastic-rule compiler label, not impersonal.",
+        "The two precept-gate master utterances and the other ritual witness remain sound."
+      ]
+    },
+    {
+      "ordinal": 1114,
+      "id": "t_bf71c3ba483c",
+      "term": "道中人",
+      "currentSha256": "be6656739612f605c985f514d393cf683212533d97cfab763011c3f5c608f6d9",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "The seven unnamed questioner assignments are correct, but the entries omit the named masters who answer each question from ContextMasters. Under the strengthened full-case rule, the respondents must be resolved from their section headers and stored with closed-vocabulary roles rather than discarded.",
+        "The single interview-label sense and refusal to harmonize incompatible replies remain good."
+      ]
+    },
+    {
+      "ordinal": 1115,
+      "id": "t_d1d910922aff",
+      "term": "無舌人",
+      "currentSha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Preserved KEEP hash confirmed; all six named speakers, duplicate-case disclosure, translation, and impossible-speaker inference remain supported."]
+    },
+    {
+      "ordinal": 1116,
+      "id": "t_7e95e25d633e",
+      "term": "女媧",
+      "currentSha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Preserved KEEP hash confirmed; three master deployments and the documentary construction-poem voice support the single figure entry without importing an external mythology essay."]
+    },
+    {
+      "ordinal": 1117,
+      "id": "t_b49a2783af81",
+      "term": "老婆心",
+      "currentSha256": "e9cdb20ca9b483222d77a9b9cad05a2b15ce2aeaacd2ed726e8804cb293eecec",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "reasons": ["The repair correctly restores Wuzu Shijie to the explicit 五祖戒代云 turn; the remaining speakers and compassionate-over-solicitude sense agree with the complete cases."]
+    },
+    {
+      "ordinal": 1118,
+      "id": "t_f0fac372131b",
+      "term": "錦鱗",
+      "currentSha256": "7fc4c38e6aa643f188d3bc63dc0f0cc6c7cc44ef294cb942b735f8d89e102a49",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "o1's exact verse follows 佛日晳云 and belongs to Furi Xi's attributed saying, not generic source narration. The parallel o2 transmission must also be checked against that named source rather than left as an anonymous compiled voice.",
+        "The repaired Zijian Jue incoming-address attribution is correct; the concrete exceptional-fish gloss is supported."
+      ]
+    },
+    {
+      "ordinal": 1119,
+      "id": "t_5b4dd0205486",
+      "term": "心香",
+      "currentSha256": "3a9562ce6ea10972129d47f8ca4d18b57ee91fb86e89eadd87192316ba943460",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Offering-sense o3 occurs in 為霖道霈禪師還山錄 under Daopei Weilin's own memorial-tower poem heading. It is authored by Daopei Weilin, not Yongjue Yuanxian; replace MasterName and context accordingly.",
+        "The physical-offering versus figurative-heart-fragrance split and the other three actor decisions remain supportable."
+      ]
+    },
+    {
+      "ordinal": 1120,
+      "id": "t_ed2ef7c866b7",
+      "term": "無心是道",
+      "currentSha256": "b4ecce8c613141e5ace84f34aa3828777e1ca438c46618b2db3882690b378d07",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The stronger-gate opening override is successful: it begins with the term's meaning, names Benjing's immediate self-gloss, distinguishes five parallel transmissions from Huanyou's later deployment, and preserves the underlying evidence."]
+    },
+    {
+      "ordinal": 1121,
+      "id": "t_19abeb747d6d",
+      "term": "問頭",
+      "currentSha256": "3501696ce28fa698ccf0007e3a262f65b00e4999247265754764ec020b831601",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "o1 and o5 correctly identify Sanping Yizhong's unnamed attendant as utterer, but both omit Sanping Yizhong as the named respondent in the explicit 師曰 continuation. Add him to ContextMasters with the proper role.",
+        "The presented-question sense and other five utterers remain correct."
+      ]
+    },
+    {
+      "ordinal": 1122,
+      "id": "t_8cdd914f095d",
+      "term": "李遵勗",
+      "currentSha256": "f844c9064a5787e78bde9f55b3b683485ea80d9c6c115e6ed8d56f155704dd66",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Preserved KEEP hash confirmed; three compiler biographies and Feiyin Tongrong's later name-bearing appraisal correctly distinguish narration from master speech."]
+    },
+    {
+      "ordinal": 1123,
+      "id": "t_8f4d81d0fe45",
+      "term": "道取",
+      "currentSha256": "b0341da930ab9b238ad6b19f066673c2f6a199bd291bf05f0d95be3948431889",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Preserved KEEP hash confirmed; all six imperative saying-turns, public-pressure opening, translation, and case-family handling remain correct."]
+    },
+    {
+      "ordinal": 1124,
+      "id": "t_14545d88d530",
+      "term": "首山竹篦",
+      "currentSha256": "e54bc7e56b8d4da16054305e17ccb67c98b3d99057bfb809f74ae8eb81ee4fe2",
+      "occurrencesRead": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "The added Wumenguan base case repairs the missing central anchor.",
+        "However, o2 contains the headword inside the record master's own 首山竹篦頌 and o3 inside the record master's own 首山竹篦 verse; generic verse-compiler narration erases the named authored voices. Resolve Yongji Rong and Xiangya Ting canonically where the full poem sections support them."
+      ]
+    },
+    {
+      "ordinal": 1125,
+      "id": "t_aa9e5467d247",
+      "term": "十方世界是全身",
+      "currentSha256": "c2826c4df0b47796cc3f4ee5268059a078cfe52f384d28e31925821bba79bb45",
+      "occurrencesRead": 3,
+      "verdict": "KEEP",
+      "reasons": ["The repaired PreferredTarget now retains 世界; all three witnesses are honestly one Shishuang Qingzhu case family and the prose no longer drops the world-field component."]
+    },
+    {
+      "ordinal": 1126,
+      "id": "t_4c3f44abf01c",
+      "term": "答處",
+      "currentSha256": "f2327ac6f229b2efd267c76ca85faad508a01552948f6557e527ebf908f289ad",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The section-boundary repair correctly identifies Zuyin Zhifu in o5; all six uses support the answer-point gloss and question/answer relational opening."]
+    },
+    {
+      "ordinal": 1127,
+      "id": "t_98d9b1ed8cac",
+      "term": "伽藍堂",
+      "currentSha256": "ae6c71dfa0a81452f796c721f57c2b964e27728a88febd5ef51b2ad352857874",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "In all four cases the exact headword is the editorial arrival/occasion label 伽藍堂 before the master's words; none of the four masters utters 伽藍堂. MasterName must be null with impersonal editorial-heading ActorAttribution, while Feiyin Tongrong, Baichi Xingyuan, Mingjue Cong, and Yongjue Yuanxian remain ContextMasters as the following address owners.",
+        "The guardian-hall institution and entry-ritual prose remain supported once exact actor and context roles are separated."
+      ]
+    },
+    {
+      "ordinal": 1128,
+      "id": "t_b021134d0ccb",
+      "term": "空劫已前",
+      "currentSha256": "229db977f92c5b5e3dec4b8a6c4fa8e6baf80026201ff70d7a1268d5a0ffc4f8",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "The Jianfu Gu repair in o4 is correct, but o5 explicitly quotes 石屋珙禪師七月旦日上堂 and the headword lies inside Shiwu Qinggong's quoted verse/address. It is not instruction-compiler narration; name Shiwu Qinggong as utterer and preserve the compiler only as source context.",
+        "The impossible-temporal-position sense remains supported."
+      ]
+    },
+    {
+      "ordinal": 1129,
+      "id": "t_e4dba349ae51",
+      "term": "禪板",
+      "currentSha256": "1e5dc7f6747abd330913bb7ca7a06b8f8c20ad5ecf369f673d7c11395f3d39ef",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The repair correctly identifies Damei Faying's dying verse and keeps the monk's board-striking as narrated action; the physical hall-board sense and public-use prose match all six cases."]
+    },
+    {
+      "ordinal": 1130,
+      "id": "t_acaf1f7f698e",
+      "term": "法臘",
+      "currentSha256": "45a33c9e47e9704852a24e7b765f745e4e72e1b27dda11610c58d03e5db7810f",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["The repaired prose now limits itself to the attested monastic age/service measure and explicitly declines to infer a starting rite or general precedence rule; all four actors and translations fit their cases."]
+    }
+  ],
+  "preservedKeepHashCheck": {
+    "c1101_1120_priorKeepsByteIdentical": [1105, 1112, 1113, 1114, 1115, 1116],
+    "c1121_1130_priorKeepsByteIdentical": [1121, 1122, 1123, 1127],
+    "note": "Byte preservation is confirmed, but strengthened independent full-case review still returns REVISE for 1112, 1113, 1114, 1121, and 1127 because exact-actor/context defects survive in those preserved files."
+  },
+  "globalFindings": [
+    "All three current formal gates hard-pass and all 165 stored KWICs verify exactly at the reviewed hashes.",
+    "The remaining defects are semantic attribution defects invisible to exact substring verification: signed authors left generic, named respondents dropped, a person heading assigned to the person as utterer, a compiled prose voice marked impersonal, quoted named verses left narrated, and editorial hall labels assigned to the following master.",
+    "The 1120 stronger-opening override passes independent review.",
+    "No public-feedback flags remain in the current gates; source/work validation and forbidden-English gates also pass.",
+    "No entry, roster, promotion, merge, or site artifact was modified."
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

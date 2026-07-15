@@ -1,0 +1,133 @@
+{
+  "generatedUtc": "2026-07-15T00:49:04.408292+00:00",
+  "elapsedSeconds": 3.517,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b26bfa9e399e/entry.v2.json",
+      "sha256": "b4bf8a216f982482e769e8590de2c9a08ea74a796f02bec575aa39846c0bb3e8"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 9,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b26bfa9e399e/entry.v2.json",
+        "id": "t_b26bfa9e399e",
+        "term": "迴光返照",
+        "verified": 9,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.054,
+    "attribution": 0.363,
+    "publicFeedback": 0.183,
+    "depthSense": 0.417,
+    "workSourceValidation": 0.173,
+    "corpusBaseline": 0.189,
+    "frozenHistoricalTerms": 0.818,
+    "attributionPackets": 1.289
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.363,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "named_occurrences": 9,
+        "deferred_non_roster": 3,
+        "context_master_links": 9,
+        "deferred_non_roster_context": 3,
+        "attribution_notes": 9,
+        "supporting_occurrences": 1,
+        "governed_variant_occurrences": 1,
+        "claim_anchors": 2,
+        "chinese_strings": 14,
+        "anchored_chinese": 14
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"named_occurrences\": 9,\n    \"deferred_non_roster\": 3,\n    \"context_master_links\": 9,\n    \"deferred_non_roster_context\": 3,\n    \"attribution_notes\": 9,\n    \"supporting_occurrences\": 1,\n    \"governed_variant_occurrences\": 1,\n    \"claim_anchors\": 2,\n    \"chinese_strings\": 14,\n    \"anchored_chinese\": 14\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.183,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpfstlga25.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.417,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.173,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.189,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.818,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.289,
+    "payload": {
+      "entries": 1,
+      "occurrences": 7,
+      "tierACandidates": 0,
+      "reviewRequired": 7
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 7,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 7\n}\nreport: fresh-build/waves/f001-laneB-076-final-residual-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneB-076-final-residual-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

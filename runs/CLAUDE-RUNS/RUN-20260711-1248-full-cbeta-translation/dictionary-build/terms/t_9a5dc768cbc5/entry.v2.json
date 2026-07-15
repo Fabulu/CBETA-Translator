@@ -1,0 +1,127 @@
+{
+  "Id": "t_9a5dc768cbc5",
+  "SourceTerm": "平常心是道",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "ordinary mind is the Way",
+      "AlternateTargets": [
+        "the everyday mind is the Way",
+        "ordinary mind, this is the Way",
+        "the normal mind is the Way"
+      ],
+      "Status": "preferred",
+      "Explanation": "The graphs mean “level or ordinary” (平), “constant or everyday” (常), “mind” (心), “is” (是), and “the Way” (道): \"ordinary mind is the Way.\" The slogan has two attested loci in the corpus. (1) Mazu (馬祖道一): in his (示眾) recorded in (傳燈玉英集) (B14n0082, under the head 江西大寂道一禪師) — (道不用修但莫污染) and (若欲直會其道平常心是道) — with an in-text (謂)X gloss: (謂平常心無造作無是非無取捨無斷常無凡無聖), continuing (非凡夫行非賢聖行是菩薩行) and (只如今行住坐臥應機接物盡是道). (2) The Nanquan (南泉普願)–Zhaozhou (趙州從諗) dialogue: (趙州問南泉)。(如何是道)。(泉云)。(平常心是道) (so B25n0145; 無門關 case 19 平常是道 reads 南泉因趙州問。如何是道。泉云。平常心是道; also 景德傳燈錄 趙州章; 古尊宿語錄), continued (州云)。(還可趣向否)。(泉云)。(擬向即乖) (無門關; the form 還可趣向也無 is also attested, 15 allowlist hits) — and (道不屬知)。(不屬不知) (無門關) / (知是妄覺不知是無記) (景德傳燈錄). (天目中峰明本) records \"this saying circulated through the monasteries\" (此話流布叢林) and (古今之下鮮有不墮於意識者)。(盡謂著衣喫飯動靜語默一一天真). (平常心是道) is the full slogan; the shorter (平常心) is a separate, nested entry. The texts give the phrase the (謂)…(無造作)、(無是非)、(無取捨)、(無斷常)、(無凡無聖) gloss and the (道不屬知)、(不屬不知) continuation, and no gloss beyond these; neither does this entry.",
+      "Validation": "multi-source",
+      "Note": "Attribution (describe-only): the Nanquan–Zhaozhou occurrences are a two-speaker dialogue (趙州問 / 南泉/泉云) → MasterName null per the raised/dialogue rule; Mazu's (示眾) sits under his own section head (江西大寂道一禪師) as single-speaker instruction → (馬祖道一). The phrase is deployed as (a) Mazu's instruction with a five-negation self-gloss, (b) Nanquan's answer to Zhaozhou (無門關 case 19), and (c) a widely raised saying for comment (古尊宿語錄; 天目中峰廣錄 notes 此話流布叢林). Nested: (平常心) (t_4ccf8aed47d3) is the shorter constituent — a genuine constituent relation, added to RelatedTerms.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B14/B14n0082.xml",
+          "FromLb": "0310b03",
+          "ToLb": "0310b03",
+          "Kwic": "若欲直會其道平常心是道謂平常心無造作",
+          "MasterName": "Mazu Daoyi",
+          "Curated": true,
+          "AttributionNote": "(傳燈玉英集) (殘卷); the passage sits under head (江西大寂道一禪師) (Mazu Daoyi). Mazu's (示眾) (道一禪師示眾云道不用修但莫污染…) — single-speaker instruction. The line (平常心是道) is immediately followed by the in-text gloss (謂平常心無造作無是非無取捨無斷常無凡無聖) (continues on lb 0310b04). KWIC trimmed to the physical line."
+        },
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0295b14",
+          "ToLb": "0295b14",
+          "Kwic": "南泉因趙州問。如何是道。泉云。平常心是道。",
+          "Curated": true,
+          "AttributionNote": "The Gateless Barrier (無門關): in case nineteen, Nanquan Puyuan answers Zhaozhou Congshen's question about the Way with 'ordinary mind is the Way.'",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "questioner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0276c15",
+          "ToLb": "0276c15",
+          "Kwic": "南泉曰。平常心是道。師曰。還可趣向否。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄: complete-case exact-turn review identifies Nanquan Puyuan as the actor for this occurrence.",
+          "MasterName": "Nanquan Puyuan"
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0846c17",
+          "ToLb": "0846c17",
+          "Kwic": "南泉和尚如何是道泉云平常心是道",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), in Foyan Qingyuan's general address. Foyan raises the Nanquan-Zhaozhou exchange: Zhaozhou asks how the Way is, and Nanquan Puyuan is the exact speaker of 平常心是道.",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0907b11",
+          "ToLb": "0907b11",
+          "Kwic": "趙州問南泉。如何是道。泉云。平常心是道。",
+          "Curated": true,
+          "AttributionNote": "The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): inside a case raised and then discussed by Zhongfeng Mingben, Nanquan Puyuan answers Zhaozhou Congshen's question by saying 'ordinary mind is the Way.'",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "quoted-questioner"
+              ]
+            },
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "later-raiser",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "B/B14/B14n0082.xml",
+        "T/T48/T48n2005.xml",
+        "T/T51/T51n2076.xml",
+        "C/C077/C077n1710.xml",
+        "B/B25/B25n0145.xml",
+        "T/T51/T51n2077.xml",
+        "D/D48/D48n8939.xml"
+      ],
+      "RelatedMasters": [
+        "Mazu Daoyi",
+        "Nanquan Puyuan",
+        "Zhaozhou Congshen"
+      ],
+      "RelatedTerms": [
+        "平常心",
+        "道不用修",
+        "道不屬知"
+      ]
+    }
+  ]
+}

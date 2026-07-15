@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T13:57:05Z",
+  "scope": "focused author repair after reviewer3 post-collision rereview",
+  "sourceReview": "f004-laneC-1131-1150-reviewer3-postcollision-rereview.json",
+  "repairScript": "repair_f004_c1131_1132_1134_reviewer3.py",
+  "entries": [
+    {
+      "ordinal": 1131,
+      "term": "接物利生",
+      "id": "t_edfd0b2afa11",
+      "entrySha256": "b55424dd603c8128c2cda9d4f6557369facdd98fb084903ea4231ddfb32cf8fb",
+      "repairs": [
+        "Resolved the L154 authored voice as Tianyin Yuanxiu from the named-record title plus the exact J25 parallel witness.",
+        "Named Baiyu Jingsi as respondent in ContextMasters while preserving the unnamed monk as headword utterer.",
+        "Removed the unsupported statement of intended benefit from the explanation."
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "term": "橫按拄杖",
+      "id": "t_e251ef5cbc12",
+      "entrySha256": "b532b8a6b948e1fbd3f2f3c6422a8f03ed736ce93bc96cef3dff2fce72304cca",
+      "repairs": [
+        "Kept MasterName null for narrator-governed bodily actions.",
+        "Resolved Yungai Ben as the acting master in the section headed 雲葢本禪師.",
+        "Resolved Zhenjing Kewen as the acting master under 雲菴真淨文禪師語.",
+        "Registered Rifang Shangzuo and Yungai Ben as evidence-backed pending-roster candidates; the master roster itself was not edited."
+      ]
+    },
+    {
+      "ordinal": 1134,
+      "term": "體露金風",
+      "id": "t_47b3313788e2",
+      "entrySha256": "b55ab926e14f153380de83ea48a4584433a2d00053cde42323b8bf809d922cab",
+      "repairs": [
+        "Corrected occurrence 3 from the unnamed monk to Yunmen Wenyan: the unit reads a monk’s question followed by the master’s headword-bearing answer.",
+        "Confirmed the enclosing first-level section as Yunmen Kuangzhen’s recorded sayings."
+      ]
+    }
+  ],
+  "compile": {
+    "entries": 3,
+    "hardPass": 3,
+    "failures": 0
+  },
+  "preReviewGate": {
+    "path": "f004-laneC-1131-1132-1134-reviewer3-author-repair-gate-v3.json",
+    "sha256": "66d21176f7abd2f22ade92afb828cbc46e5811d5f8185215316b69ed277975dc",
+    "hardPass": true,
+    "exactKwicAndFullSpan": "21/21",
+    "publicFeedbackFlags": 0,
+    "semanticIndependentReviewStillRequired": true
+  },
+  "integrity": {
+    "selfReviewed": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

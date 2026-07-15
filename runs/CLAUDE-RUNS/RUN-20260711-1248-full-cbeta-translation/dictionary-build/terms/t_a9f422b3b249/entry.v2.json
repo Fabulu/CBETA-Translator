@@ -1,0 +1,169 @@
+{
+  "Id": "t_a9f422b3b249",
+  "SourceTerm": "生緣",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "one's place of origin",
+      "AlternateTargets": [
+        "one's birth circumstance",
+        "native place",
+        "the circumstance of one's birth"
+      ],
+      "SearchAliases": [
+        "birthplace",
+        "place of birth",
+        "where one comes from",
+        "native place",
+        "personal origin"
+      ],
+      "Status": "preferred",
+      "Explanation": "A person's place or circumstance of origin. Dongshan asks Lingyun, 'where is your place of origin?' (闍黎生緣何處), and Lingyun answers that he is a man of Min. Dazhu is asked the same question and answers, 'the sun rises in the east; the moon sets in the west' (日出東，月落西). Huanglong Huinan bends this ordinary origin question into one of his three chamber checkpoints: 'everyone has a place of origin; where is yours?' (人人盡有生緣，上座生緣在何處). His biography says the monasteries called the set Huanglong's Three Checkpoints. Later records quote, versify, appraise, and answer the same question. One later exchange answers 'face to face, you do not recognize it' (覿面不識), then explicitly asks what happens beyond the three checkpoints. These are different answers and institutional deployments of the same origin question, not additional lexical senses.",
+      "Validation": "multi-source",
+      "Note": "The earlier draft split Huanglong's checkpoint from biographical 'native place.' Item 8 requires their merger: both ask the person's origin circumstance, and the named chamber setting changes deployment rather than referent. The generative condition applied to the myriad things remains separate below.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0303a01",
+          "ToLb": "0303a02",
+          "Kwic": "人人盡有生緣，上座生緣在何處？學者莫有契其旨，叢林目之為黃龍三關。",
+          "Curated": true,
+          "AttributionNote": "Jiatai-Era Record of the Universal Lamp (嘉泰普燈錄), Huanglong Huinan section. Huanglong Huinan is the exact speaker who asks where each senior monk's place of origin is; the record then says the monasteries called the set Huanglong's Three Checkpoints.",
+          "MasterName": "Huanglong Huinan"
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0310c03",
+          "ToLb": "0310c03",
+          "Kwic": "人人有箇生緣處。認著依然還失路。",
+          "Curated": true,
+          "AttributionNote": "Eyes of Humans and Devas (人天眼目): in his explicitly labelled verse, Zhenjing Kewen says that everyone has a place of birth-condition but recognizing it still means losing the road.",
+          "MasterName": "Zhenjing Kewen"
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0487c17",
+          "ToLb": "0487c18",
+          "Kwic": "人人有箇生緣，那箇是上座生緣？師曰：黃龍三關，如商君立法。",
+          "Curated": true,
+          "AttributionNote": "Correct Lineage of the Continuation of the Lamp (續燈正統): inside a case raised by Xiaoyin Daxin, Huanglong Huinan is the explicitly named source of the question asking each person to identify the senior monk's birth-condition; Daxin then appraises the three questions as Huanglong's Three Checkpoints.",
+          "MasterName": "Huanglong Huinan",
+          "ContextMasters": [
+            {
+              "MasterName": "Xiaoyin Daxin",
+              "Roles": ["later-raiser", "section-subject"]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0104c21",
+          "ToLb": "0104c22",
+          "Kwic": "山問。闍黎生緣何處。師曰。和尚若實問。某甲即是閩中人也。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Shoushan Shijie biography. Dongshan Liangjie is the exact questioner identified by his abbreviated name in the record; he asks Shijie where his place of origin is, and Shijie answers that if the question is genuine, he is a person of Min.",
+          "MasterName": "Dongshan Liangjie",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Shijie",
+              "Roles": ["respondent", "biographical-subject"]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0104b01",
+          "ToLb": "0104b02",
+          "Kwic": "和尚生緣甚麼處。師曰。日出東。月落西。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Dazhu Huihai section. An unnamed monk is the exact headword-bearing speaker who asks Dazhu Huihai about his place of birth; Dazhu answers. The line, expanded contexts through ±10,000 characters, section header, book title, TEI header, and parallel-passage search do not supply a personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r002-owner3",
+            "ReviewedUtc": "2026-07-14T13:20:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dazhu Huihai",
+              "Roles": ["respondent", "section-subject"]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0347a10",
+          "ToLb": "0347a12",
+          "Kwic": "容曰：人人有箇生緣，你生緣在甚麼處？師曰：覿面不識。容曰：離了三關又作麼生？師便喝，容曰：好與三十棒。",
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), Lingyue Gu biography. Jinsu Rong is the exact teacher identified by his abbreviated name in the record; he asks where Lingyue's place of origin is and then presses what happens apart from the three barriers.",
+          "MasterName": "Jinsu Rong",
+          "ContextMasters": [
+            {
+              "MasterName": "Lingyue Gu",
+              "Roles": ["respondent", "biographical-subject"]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X79/X79n1559.xml",
+        "T/T48/T48n2006.xml",
+        "X/X84/X84n1583.xml",
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Huanglong Huinan",
+        "Zhenjing Kewen",
+        "Lingyun Zhiqin",
+        "Dazhu Huihai"
+      ],
+      "RelatedTerms": ["黃龍三關", "佛手", "驢腳", "籍貫"]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a condition of arising",
+      "AlternateTargets": ["a generative condition"],
+      "SearchAliases": [
+        "condition for arising",
+        "cause of arising",
+        "generative condition",
+        "condition of emergence",
+        "what gives rise"
+      ],
+      "Status": "allowed",
+      "Explanation": "In expository prose, the same graphs can name that by which things arise. Hongzhi says that what extends broadly throughout the domain and impartially like spring 'is the condition of arising of the myriad things' (箇是萬法之生緣也). The referent is a generative condition applying to the myriad things, not a person's birthplace or the origin question used in Huanglong's chamber.",
+      "Validation": "provisional",
+      "Note": "The predicate 'of the myriad things' establishes a different referent mechanically. One exact source currently anchors it, so the sense remains allowed rather than promoted to multi-source.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0003c14",
+          "ToLb": "0003c15",
+          "Kwic": "浩然遍域內。無私如陽春。箇是萬法之生緣也。",
+          "MasterName": "Hongzhi Zhengjue",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄), in Hongzhi Zhengjue's hall discourse: Hongzhi Zhengjue calls the impartial spring-like reach ‘the condition of arising of the myriad things.’"
+        }
+      ],
+      "SourceTexts": ["T/T48/T48n2001.xml"],
+      "RelatedMasters": ["Hongzhi Zhengjue"],
+      "RelatedTerms": ["緣生"]
+    }
+  ]
+}

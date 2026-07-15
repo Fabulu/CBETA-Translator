@@ -33,6 +33,7 @@ PLACEHOLDER_ACTOR_RE = re.compile(
     r"|\b(?:the\s+)?verse\s+voice\b",
     re.IGNORECASE,
 )
+DUPLICATED_NOTE_PREFIX_RE = re.compile(r"^\s*([^:\n]{1,100}):\s*\1:")
 sys.path.insert(0, str(HERE))
 import zc  # noqa: E402
 
@@ -116,6 +117,52 @@ def chinese_strings(text: str) -> set[str]:
     return set(CJK_RE.findall(text or ""))
 
 
+def uniform_actor_placeholder_failure(
+    entry_count: int,
+    named_count: int,
+    signatures: Counter,
+) -> dict[str, object] | None:
+    """Reject cohort-wide actor defaults before independent review pays for them.
+
+    This is deliberately a cohort canary, not an actor classifier. A uniform
+    result across five or more independently selected headwords can be real,
+    but it is too dangerous to accept without an explicit batch-level review.
+    """
+    total = sum(signatures.values())
+    if entry_count < 5 or named_count or not total or len(signatures) != 1:
+        return None
+    signature, amount = signatures.most_common(1)[0]
+    return {
+        "kind": "batch-uniform-actor-placeholder",
+        "entry": "<cohort>",
+        "detail": (
+            f"{entry_count} entries / {amount} occurrences share one actor signature "
+            f"{signature!r} and contain no named utterer"
+        ),
+    }
+
+
+def anonymous_actor_collapse_failure(
+    entry_count: int,
+    named_count: int,
+    signatures: Counter,
+) -> dict[str, object] | None:
+    """Flag large cohorts in which actor adjudication resolves no named utterer."""
+    total = sum(signatures.values())
+    narrated = sum(amount for signature, amount in signatures.items() if signature and signature[0] == "narrated")
+    if entry_count < 10 or named_count or total < 30:
+        return None
+    return {
+        "kind": "batch-anonymous-actor-collapse",
+        "entry": "<cohort>",
+        "detail": (
+            f"{entry_count} entries / {total} anonymous occurrences contain no named utterer; "
+            f"status labels cannot substitute for full-case name resolution "
+            f"({narrated} narrated, {total - narrated} other anonymous)"
+        ),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("paths", nargs="*", help="entry.v2.json files or term dirs")
@@ -137,6 +184,8 @@ def main() -> int:
     title_cache: dict[str, str | None] = {}
     failures: list[dict[str, object]] = []
     counts = Counter(entries=len(files))
+    batch_actor_signatures = Counter()
+    batch_named = 0
 
     def fail(kind: str, entry: Path, detail: str) -> None:
         failures.append({"kind": kind, "entry": str(entry), "detail": detail})
@@ -164,6 +213,7 @@ def main() -> int:
                 master = occ.get("MasterName")
                 actor = occ.get("ActorAttribution")
                 if master:
+                    batch_named += 1
                     counts["named_occurrences"] += 1
                     if actor:
                         fail("conflicting_actor_state", entry, f"{term} s{si} {evidence_label}: named actor also has ActorAttribution")
@@ -178,6 +228,7 @@ def main() -> int:
                         elif strict_roster_here:
                             fail("noncanonical_master_name", entry, f"{term} s{si} {evidence_label}: {master!r} is not roster names[0]")
                 elif isinstance(actor, dict):
+                    batch_actor_signatures[(actor.get("Status"), actor.get("Kind"), actor.get("ActorLabel"), actor.get("ActorRole"))] += 1
                     status = actor.get("Status")
                     if status not in ACTOR_STATUSES:
                         fail("invalid_actor_status", entry, f"{term} s{si} o{oi}: {status!r}")
@@ -246,6 +297,9 @@ def main() -> int:
                     fail("missing_attribution_note", entry, f"{term} s{si} o{oi}")
                 else:
                     counts["attribution_notes"] += 1
+                    if DUPLICATED_NOTE_PREFIX_RE.search(note):
+                        fail("duplicated_attribution_note_prefix", entry,
+                             f"{term} s{si} {evidence_label} AttributionNote: {note!r}")
                     if PLACEHOLDER_ACTOR_RE.search(note):
                         fail("placeholder_actor_forbidden", entry, f"{term} s{si} {evidence_label} AttributionNote: {note!r}")
                     # Unicode ``\b`` has no useful boundary between Han graphs;
@@ -309,6 +363,18 @@ def main() -> int:
                 else:
                     counts["anchored_chinese"] += 1
 
+    uniform_failure = uniform_actor_placeholder_failure(
+        len(files), batch_named, batch_actor_signatures
+    )
+    if uniform_failure:
+        failures.append(uniform_failure)
+        counts["batch_uniform_actor_placeholder"] += 1
+    collapse_failure = anonymous_actor_collapse_failure(
+        len(files), batch_named, batch_actor_signatures
+    )
+    if collapse_failure:
+        failures.append(collapse_failure)
+        counts["batch_anonymous_actor_collapse"] += 1
     report = {
         "counts": dict(counts),
         "hardFailures": len(failures),

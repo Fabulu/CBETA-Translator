@@ -1,0 +1,172 @@
+{
+  "generatedUtc": "2026-07-15T00:55:57.179069+00:00",
+  "elapsedSeconds": 6.214,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_e6eb14b6c1ca",
+      "term": "活人劍",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e6eb14b6c1ca/entry.v2.json",
+      "sha256": "38e570d9f57d6975bef25ca6154be3ab49ddd6e703b20a6e695c0eece9426f01"
+    },
+    {
+      "id": "t_d03aa9267f79",
+      "term": "大機大用",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d03aa9267f79/entry.v2.json",
+      "sha256": "c1f27cb7597580b83214b16466781a2785dd63c5accc2411c474f94b56c5b4f4"
+    },
+    {
+      "id": "t_1da939bf1267",
+      "term": "呵佛罵祖",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1da939bf1267/entry.v2.json",
+      "sha256": "13e4e3f4daec4ccde16c2814dcac6bc091470e0a0edf7f1de95d8f48b0513303"
+    },
+    {
+      "id": "t_8650004bb9d7",
+      "term": "兼中至",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8650004bb9d7/entry.v2.json",
+      "sha256": "7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 32,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e6eb14b6c1ca/entry.v2.json",
+        "id": "t_e6eb14b6c1ca",
+        "term": "活人劍",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d03aa9267f79/entry.v2.json",
+        "id": "t_d03aa9267f79",
+        "term": "大機大用",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1da939bf1267/entry.v2.json",
+        "id": "t_1da939bf1267",
+        "term": "呵佛罵祖",
+        "verified": 11,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8650004bb9d7/entry.v2.json",
+        "id": "t_8650004bb9d7",
+        "term": "兼中至",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.128,
+    "attribution": 0.672,
+    "publicFeedback": 0.266,
+    "depthSense": 0.64,
+    "workSourceValidation": 0.229,
+    "corpusBaseline": 0.191,
+    "frozenHistoricalTerms": 0.601,
+    "attributionPackets": 3.391
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.672,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "occurrences": 32,
+        "named_occurrences": 26,
+        "context_master_links": 35,
+        "supporting_occurrences": 6,
+        "governed_variant_occurrences": 6,
+        "attribution_notes": 32,
+        "deferred_non_roster": 8,
+        "deferred_non_roster_context": 10,
+        "actor_reviewed_unnamed": 6
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"occurrences\": 32,\n    \"named_occurrences\": 26,\n    \"context_master_links\": 35,\n    \"supporting_occurrences\": 6,\n    \"governed_variant_occurrences\": 6,\n    \"attribution_notes\": 32,\n    \"deferred_non_roster\": 8,\n    \"deferred_non_roster_context\": 10,\n    \"actor_reviewed_unnamed\": 6\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.266,
+    "payload": {
+      "entries": 4,
+      "passing": 0,
+      "flagged": 4,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 4
+      }
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 0,\n  \"flagged\": 4,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 4\n  }\n}\nreport: /tmp/tmp9189zlkr.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.64,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.229,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.191,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.601,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.391,
+    "payload": {
+      "entries": 4,
+      "occurrences": 32,
+      "tierACandidates": 1,
+      "reviewRequired": 31
+    },
+    "output": "{\n  \"entries\": 4,\n  \"occurrences\": 32,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 31\n}\nreport: fresh-build/waves/f001-laneA-076-079-focused-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-076-079-focused-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

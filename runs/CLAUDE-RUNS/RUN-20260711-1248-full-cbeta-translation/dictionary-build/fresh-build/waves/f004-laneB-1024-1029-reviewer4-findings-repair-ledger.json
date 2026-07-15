@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T14:36:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "role": "focused-author-repair",
+  "sourceReview": "f004-laneB-1021-1030-reviewer4-independent.json",
+  "scope": [1024, 1025, 1027, 1029],
+  "repairs": [
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "findingApplied": "The three declarative case participants are now interlocutors rather than questioners; contextual masters remain in their non-utterer roles.",
+      "entrySha256": "53955f23cf705ff312d704fe931cc75eb6717b7d08744d9ce6cede8b79ce382c",
+      "worksheetSha256": "adf68f66ee4fa8058e33ea862038c48aa9b7ac7782d19fee32eaac154ffb5c2a",
+      "compileHardPass": true
+    },
+    {
+      "ordinal": 1025,
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "findingApplied": "Attribution evidence and notes now name 勅修百丈清規 and 禪林備用清規 rather than unrelated code titles.",
+      "entrySha256": "a4663f7af240a51109e6ced0c6afd3dec3d87d5d52663c2cef3e3a3e669e4e47",
+      "worksheetSha256": "9baf1aa6338143a90a033916a61ca6803a411178fc22e503b3afca5ab14bb43f",
+      "compileHardPass": true
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "findingApplied": "The J27nB193 letter is now attributed to its writer Yinyuan Longqi, with matching utterer context and source note.",
+      "entrySha256": "716c38b37eb369f49ec023b68f9b1170b15fdd0f403ac95a887a8c97c9d46777",
+      "worksheetSha256": "e11afd0f3d2e7de7c695247a458265a7bc887596d35adbcf9e7ed5fbf7e6c244",
+      "compileHardPass": true
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "findingApplied": "The single sense is re-grounded as a prediction or assurance, covering both future buddhahood and Boshan’s earlier prediction without inventing a noun/verb or paraphrase split; the 宗鏡錄 compiler evidence is now explicit and English-first.",
+      "entrySha256": "1709319cc1ac721969b044a18f6f50e8efd0259f18be7106d54bdd58816c90a3",
+      "worksheetSha256": "8a9db0c4ff98bed180d706adf681f78de8f3ba20bb2b638c719bc408a525aa62",
+      "compileHardPass": true
+    }
+  ],
+  "exactKwicFromLbToLb": {"verified": 23, "failures": 0},
+  "preReview": {
+    "report": "f004-laneB-1024-1029-reviewer4-findings-repair-pre-review-v2.json",
+    "hardPass": true,
+    "publicFeedbackFlags": 0,
+    "semanticReviewRequired": true
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

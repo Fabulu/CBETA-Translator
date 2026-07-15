@@ -1,0 +1,194 @@
+{
+  "generatedUtc": "2026-07-15T13:51:07.119418+00:00",
+  "elapsedSeconds": 5.004,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+      "sha256": "525033975c84eb66fca0a79c311795e0701eb3f9e3526c39459f96e4e7b81d76"
+    },
+    {
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+      "sha256": "e28e7b30959a0469b4ca1babf95f1f0c0e947caf96e6bc68162aa0d0a11a6150"
+    },
+    {
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+      "sha256": "ce61f6c3b43571e3a925e6c9cb20c8ee397aa97b27a0d543ba267bbaad7bcba9"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+        "id": "t_edfd0b2afa11",
+        "term": "接物利生",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+        "id": "t_e251ef5cbc12",
+        "term": "橫按拄杖",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+        "id": "t_47b3313788e2",
+        "term": "體露金風",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.888,
+    "attribution": 1.713,
+    "publicFeedback": 0.228,
+    "depthSense": 0.734,
+    "countClaims": 0.278,
+    "workSourceValidation": 0.255,
+    "corpusBaseline": 0.195,
+    "frozenHistoricalTerms": 0.595,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 1.713,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "named_occurrences": 11,
+        "context_master_links": 20,
+        "attribution_notes": 21,
+        "note_missing_source": 1,
+        "actor_reviewed_unnamed": 2,
+        "actor_narrated": 8,
+        "deferred_non_roster_context": 4,
+        "noncanonical_context_master_name": 2,
+        "pending_roster_context_master": 2,
+        "deferred_non_roster": 1,
+        "pending_roster_master": 1
+      },
+      "hardFailures": 3,
+      "failures": [
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+          "detail": "體露金風 s1 o3 expected '續古尊宿語要': Exact source voice: Yunmen Wenyan. The complete turn reads 問：樹凋葉落時如何？師云：體露金風, and the enclosing level-one section is 雲門匡真禪師語. The unnamed monk asks the question; Yunmen utters the headword after 師云. The complete headword-bearing unit was read, and the stored KWIC and full FromLb–ToLb span were reverified."
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o4 c1: 'Rifang Shangzuo' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o5 c1: 'Yungai Ben' is not roster names[0]"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"named_occurrences\": 11,\n    \"context_master_links\": 20,\n    \"attribution_notes\": 21,\n    \"note_missing_source\": 1,\n    \"actor_reviewed_unnamed\": 2,\n    \"actor_narrated\": 8,\n    \"deferred_non_roster_context\": 4,\n    \"noncanonical_context_master_name\": 2,\n    \"pending_roster_context_master\": 2,\n    \"deferred_non_roster\": 1,\n    \"pending_roster_master\": 1\n  },\n  \"hardFailures\": 3,\n  \"failures\": [\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json\",\n      \"detail\": \"體露金風 s1 o3 expected '續古尊宿語要': Exact source voice: Yunmen Wenyan. The complete turn reads 問：樹凋葉落時如何？師云：體露金風, and the enclosing level-one section is 雲門匡真禪師語. The unnamed monk asks the question; Yunmen utters the headword after 師云. The complete headword-bearing unit was read, and the stored KWIC and full FromLb–ToLb span were reverified.\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o4 c1: 'Rifang Shangzuo' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o5 c1: 'Yungai Ben' is not roster names[0]\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.228,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp_kh_anix.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 0.734,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 3,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_47b3313788e2",
+        "t_e251ef5cbc12",
+        "t_edfd0b2afa11"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 3,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_47b3313788e2\",\n    \"t_e251ef5cbc12\",\n    \"t_edfd0b2afa11\"\n  ]\n}\nreport: /tmp/tmp_dajz3vi-depth.json\n",
+    "report": "/tmp/tmp_dajz3vi-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.278,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.255,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.195,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.595,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ],
+  "strictRosterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ]
+}

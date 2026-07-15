@@ -1,0 +1,160 @@
+{
+  "Id": "t_d1e06fd225fa",
+  "SourceTerm": "入室",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "enter the chamber for an interview",
+      "AlternateTargets": [
+        "enter the master's chamber",
+        "attend a chamber interview"
+      ],
+      "SearchAliases": [
+        "enter the chamber",
+        "chamber interview",
+        "enter for interview",
+        "private interview",
+        "enter the master's room"
+      ],
+      "Status": "preferred",
+      "Explanation": "To enter a Zen interview chamber for a recorded question, examination, or report: to enter for a chamber interview. The headword occurs 2,365 times in 313 allowlisted texts across both senses. Productive interview forms include \"entered the chamber and asked\" (入室問, 31), \"entered the chamber and presented his understanding\" (入室陳解, 3), \"chamber-entering disciples\" (入室弟子, 44), and \"during a chamber interview\" (入室次, 204). Huqiu Shaolong enters and is questioned by Yuanwu Keqin. Kaixian Shanxian enters to present his understanding, followed by Deshan Yuan asking how he understands. Tianyi Yihuai is tested during a chamber interview. A lineage notice counts 139 \"chamber-entering disciples\" and says each became a lineage master in one region. A later case describes Ciming Chuyuan placing a sword, sandals, and a basin in the chamber and saying \"look, look\" whenever someone entered; those who hesitated by the sword were shouted out. Zen bends ordinary room entry into controlled access to an institutional interview setting and into the status label “chamber-entering disciple.” It does not by itself guarantee approval, succession, or a particular result.",
+      "Validation": "multi-source",
+      "Note": "The institutional noun \"chamber-entering disciple\" is an attested status label, but a single interview occurrence does not make a person a lineage heir. Speaker attribution must still follow each exchange's turns rather than the interview heading.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0410b16",
+          "ToLb": "0410b17",
+          "Kwic": "一日入室，悟問：見見之時，見非是見",
+          "Curated": true,
+          "AttributionNote": "Orthodox Continuation of the Lamp (續燈正統): complete-case exact-turn review identifies Huqiu Shaolong as the person entering for this occurrence.",
+          "MasterName": "Huqiu Shaolong"
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0479b28",
+          "ToLb": "0479b29",
+          "Kwic": "師忽有省。入室陳解。遠云。子作麼生會。",
+          "Curated": true,
+          "AttributionNote": "Continued Transmission of the Lamp (續傳燈錄), Kaixian Shanxian biography. Kaixian Shanxian is the exact actor who has an insight, enters Deshan Yuan's room, and presents his understanding; the broad Deshan lineage header does not identify the actor as Deshan Xuanjian.",
+          "MasterName": "Kaixian Shanxian"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001a24",
+          "ToLb": "0001b01",
+          "Kwic": "入室次，覺曰：恁麼也不得，不恁麼也不得",
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): complete-case exact-turn review identifies Tianyi Yihuai as the person undergoing the chamber interview.",
+          "MasterName": "Tianyi Yihuai"
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0439a08",
+          "ToLb": "0439a09",
+          "Kwic": "依白蓮僊法師。入室問具變之道，僊指行燈曰：如此燈者，離性絕非，本自空寂，理則具矣。",
+          "Curated": true,
+          "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄): inside Zhengwu Yuanzhi's explicitly headed biography, Zhengwu Yuanzhi relies on Bailian Xian, enters his chamber, and asks about the Way of complete change; Bailian Xian answers by pointing to a moving lamp.",
+          "MasterName": "Zhengwu Yuanzhi",
+          "ContextMasters": [
+            {
+              "MasterName": "Bailian Xian",
+              "Roles": ["teacher", "respondent"]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0617a10",
+          "ToLb": "0617a11",
+          "Kwic": "師入室弟子一百三十九人各為一方宗主轉化無窮",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Mazu Daoyi is the grammatical subject of the biographical notice saying that his chamber-entering disciples numbered 139.",
+          "MasterName": "Mazu Daoyi"
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0837a18",
+          "ToLb": "0837a20",
+          "Kwic": "慈眀室中插劒一口以草鞋一緉水一盆置劒邊每見入室即曰看看有至劒邊擬議者師曰嶮喪身失命了也便喝出。",
+          "Curated": true,
+          "AttributionNote": "Connected Anthology of Verses on Old Chan Cases (禪宗頌古聯珠通集): the anthology narrates that Ciming Chuyuan placed a sword, sandals, and water in his room and challenged each unnamed visitor he saw entering for a private interview. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed room entrant.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic visitor",
+            "ActorLabel": "unnamed room entrant",
+            "ActorRole": "person entering for a private interview",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Ciming Chuyuan",
+              "Roles": ["room-master", "challenger"]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X84/X84n1583.xml",
+        "T/T51/T51n2077.xml",
+        "X/X82/X82n1571.xml",
+        "X/X79/X79n1559.xml",
+        "C/C077/C077n1710.xml",
+        "C/C078/C078n1720.xml"
+      ],
+      "RelatedMasters": ["Yuanwu Keqin", "Xuedou Chongxian"],
+      "RelatedTerms": ["入室弟子", "呈解", "法嗣"]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "enter a room",
+      "AlternateTargets": ["go into the chamber", "retire indoors"],
+      "SearchAliases": [
+        "enter a room",
+        "go into the room",
+        "go indoors",
+        "retire indoors"
+      ],
+      "Status": "allowed",
+      "Explanation": "The ordinary motion sense is simply \"enter a room.\" Biographical narration uses it outside the interview formula. One biography says, \"he then entered the room, sat upright, and died at the age of seventy-four\" (即入室，安坐而逝，壽七十有四). Another account says someone \"entered the room to fetch the Complete Meaning Sutra and verify it\" (入室取《楞嚴經》證之), then opened the book to a quoted passage. These are spatial movements into a room, not chamber interviews.",
+      "Validation": "multi-source",
+      "Note": "Two independent allowlisted witnesses establish ordinary room entry through distinct following actions: sitting upright and dying, and fetching a named book. This remains separate so death-room and retrieval movements are not misread as interviews.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0046a14",
+          "ToLb": "0046a14",
+          "Kwic": "即入室。安坐而逝。壽七十有四。",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): complete-case exact-turn review identifies Hongren as the person who enters the room, sits upright, and dies.",
+          "MasterName": "Hongren"
+        },
+        {
+          "RelPath": "J/J28/J28nB219.xml",
+          "FromLb": "0723c04",
+          "ToLb": "0723c06",
+          "Kwic": "上下虛明如大圓鏡相似，入室取《楞嚴經》證之。開卷見「汝身汝心，外及山河、虛空大地咸是妙明真心中物。」",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): the biography of Hanshan Deqing recounts that after a night of walking at Laoshan, Hanshan enters his room and takes up the Surangama Sutra to test the luminous, mirror-like experience against its words.",
+          "MasterName": "Hanshan Deqing"
+        }
+      ],
+      "SourceTexts": ["X/X80/X80n1565.xml", "J/J28/J28nB219.xml"],
+      "RelatedMasters": [],
+      "RelatedTerms": ["方丈", "寢室"]
+    }
+  ]
+}

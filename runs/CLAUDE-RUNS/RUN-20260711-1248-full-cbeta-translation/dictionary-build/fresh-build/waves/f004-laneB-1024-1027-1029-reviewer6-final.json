@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "reviewer6-independent-postrepair-full-case-semantic-prose-exact-span-review",
+  "reviewer": "reviewer6",
+  "generatedUtc": "2026-07-15T14:19:52Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1024, 1027, 1029],
+  "readOnly": true,
+  "reviewedGate": "f004-laneB-1024-1027-1029-reviewer5-all-author-gate-v2.json",
+  "reviewedGateSha256": "8ec788cab1a1f3089ce4afffe2c9cae621ff252b5a09e709eda9fe579a9f82f8",
+  "hashCondition": "Verdicts apply only to the exact current entry hashes recorded below, all of which match the reviewer5 all-author gate v2.",
+  "entriesReviewed": 3,
+  "occurrencesReadInFullCase": 18,
+  "exactKwics": 18,
+  "exactFullSpans": 18,
+  "exactSpanFailures": 0,
+  "keep": 2,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "reviewedEntrySha256": "9b276dc72256f5ae38bca6fc6ac9b26f0a04d0d5b864a285309b5692679f82ac",
+      "hashMatchedGateV2": true,
+      "occurrencesRead": 6,
+      "exactSpans": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "The replacement third witness is now an attributable deployment by Wanru Tongwei, not a generic relabeling of the anonymous former resident teacher in the underlying Baizhang case.",
+        "The first two cases correctly assign the headword clause to the first unnamed monk and retain Xuefeng Daoyuan only as the biography subject and overhearer; the remaining named and unnamed speech roles also match their stored cases.",
+        "The literal target and explanation accurately distinguish the wild-fox body in the defining cause-and-effect case from later debates and recastings, with no remaining semantic or prose defect found."
+      ]
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "reviewedEntrySha256": "774d36d353700279af4f0c67a0a2ac4c6bcd1012c81e080f6937af4eebc222b1",
+      "hashMatchedGateV2": true,
+      "occurrencesRead": 5,
+      "exactSpans": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "The revised opening, ‘a vow stated with a wide named object,’ still overgeneralizes the evidence. Jifei Ruyi’s verse says only that the addressee has a 弘願 and that its grace reaches hundreds of lives; it does not state a syntactically named object of the vow.",
+        "The phrase ‘wide named object’ is also strained English and conflates the term’s expansive force with a universal grammatical requirement. Define it observably as a great or far-reaching vow, then describe the particular objects or effects that individual witnesses state.",
+        "The explanation’s ‘protecting a community’ is more specific than the stored Yinyuan line, which speaks of fulfilling a supporter’s 洪護之弘願 but does not explicitly name a community. Keep the gloss at the evidenced level unless wider context supplies that object.",
+        "The five actor/documentary attributions and the one-sense decision are otherwise supported."
+      ]
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "reviewedEntrySha256": "90a45359690632dba8d398b4896a7ba136203bf37c902346820462e4c509c4ed",
+      "hashMatchedGateV2": true,
+      "occurrencesRead": 7,
+      "exactSpans": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "The target and opening now cover the general act of giving a prior prediction or assurance, while the explanation correctly treats future buddhahood as recurrent specified content rather than a universal definition.",
+        "The Boshan witness is explicitly bounded as a prior prediction whose content is unstated in the stored line, so it is no longer silently recast as a future-buddhahood prediction.",
+        "The seven speech, compiler, and quoted-exposition roles are adequately distinguished, and noun-versus-verb grammar does not warrant an artificial sense split."
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "currentHashesMatchedGateV2": true,
+    "all18CasesRead": true,
+    "all18ExactSpansIndependentlyVerified": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "siteTouched": false,
+    "sharedRosterTouched": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

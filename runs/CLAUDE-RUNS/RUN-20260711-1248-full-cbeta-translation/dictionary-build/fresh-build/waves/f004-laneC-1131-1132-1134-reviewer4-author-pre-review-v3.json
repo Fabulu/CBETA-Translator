@@ -1,0 +1,174 @@
+{
+  "generatedUtc": "2026-07-15T14:09:33.423946+00:00",
+  "elapsedSeconds": 4.066,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+      "sha256": "0b7a54ca60a095a43001914fd999ef8ddbbb2d3ad45d0c04762272e97691c15f"
+    },
+    {
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+      "sha256": "345d3e4b7fd42f8026ff34219c6a2e327a81e6d9cb59ef0583bfd8ba01d52d64"
+    },
+    {
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+      "sha256": "7d7135cc71b9677457e575e261d638870d219420fddae7d041391ba4b8f3299f"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+        "id": "t_edfd0b2afa11",
+        "term": "接物利生",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+        "id": "t_e251ef5cbc12",
+        "term": "橫按拄杖",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+        "id": "t_47b3313788e2",
+        "term": "體露金風",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.192,
+    "attribution": 1.305,
+    "publicFeedback": 0.233,
+    "depthSense": 0.699,
+    "countClaims": 0.201,
+    "workSourceValidation": 0.263,
+    "corpusBaseline": 0.227,
+    "frozenHistoricalTerms": 0.887,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.305,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "actor_reviewed_unnamed": 7,
+        "attribution_notes": 21,
+        "named_occurrences": 2,
+        "context_master_links": 7,
+        "actor_narrated": 12,
+        "deferred_non_roster_context": 3,
+        "pending_roster_context_master": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"actor_reviewed_unnamed\": 7,\n    \"attribution_notes\": 21,\n    \"named_occurrences\": 2,\n    \"context_master_links\": 7,\n    \"actor_narrated\": 12,\n    \"deferred_non_roster_context\": 3,\n    \"pending_roster_context_master\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.233,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp1ebje69b.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.699,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_47b3313788e2",
+        "t_e251ef5cbc12",
+        "t_edfd0b2afa11"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_47b3313788e2\",\n    \"t_e251ef5cbc12\",\n    \"t_edfd0b2afa11\"\n  ]\n}\nreport: /tmp/tmp78lycxtb-depth.json\n",
+    "report": "/tmp/tmp78lycxtb-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.201,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.263,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.227,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.887,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ],
+  "strictRosterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ]
+}

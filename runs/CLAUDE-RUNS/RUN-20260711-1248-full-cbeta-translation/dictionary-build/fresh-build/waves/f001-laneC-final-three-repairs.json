@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "reviewLedger": "fresh-build/waves/f001-laneC-final-independent-review.json",
+  "completed": 3,
+  "entries": [
+    {
+      "position": 59,
+      "id": "t_c657778889b0",
+      "term": "傳衣",
+      "priorSha256": "9c086a4d417d924ef11925eb62cbb29f17b7019d92f904e7233affc78bbbc30b",
+      "entrySha256": "cc785e2e4b668968590bb4e60a3505688ddb6acd82b33598abb56e3e00275bec",
+      "finding": "Sense-1 occurrence 3 still uses the generic sentence ‘Expanded context establishes…’ rather than the full-case evidence for the Yongzheng Emperor’s exact authored turn."
+    },
+    {
+      "position": 91,
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "priorSha256": "a2c281921ab587aa79aa04a36e0c36b9f863ec74696675a5be1c9f51354afc8c",
+      "entrySha256": "dfa0aec5f018eed0a877690dfffc7a6e4785cde2bda58ccd86bd79de1fabc307",
+      "finding": "Sense-2 occurrence 4 still uses the generic sentence ‘The full section and grammatical turn establish…’ rather than the actual bibliographic narration about Huiweng Wuming."
+    },
+    {
+      "position": 99,
+      "id": "t_57fd70bfc9ec",
+      "term": "客塵",
+      "priorSha256": "517cf4ece410d7e0debe6164f7cf35125205f28ffbe9c0ace86df49b07d34f15",
+      "entrySha256": "9e7a7163a860636262a7a7a8cd6992a7829314db5ac7abd3cc54dc38f53ac12e",
+      "finding": "Sense-1 occurrence 4 still uses the generic sentence ‘The expanded grammatical context identifies…’ rather than documenting 持世經云 as the scripture-quotation boundary and Yongming Yanshou as later quoter."
+    }
+  ],
+  "completedUtc": "2026-07-15T01:45:00Z",
+  "finalGate": {
+    "entries": 3,
+    "attributionExit": 0,
+    "publicFeedbackExit": 0,
+    "depthExit": 0,
+    "workSourceExit": 0,
+    "corpusBaselineExit": 0,
+    "frozenHistoryExit": 0,
+    "forbiddenExit": 0,
+    "exactKwicExit": 0,
+    "cohortExit": 0,
+    "occurrencesVerified": 26,
+    "finalReviewKeepChecked": 27,
+    "keepFailures": 0,
+    "cohortReport": "fresh-build/waves/f001-laneC-final-three-repairs-cohort.json"
+  }
+}

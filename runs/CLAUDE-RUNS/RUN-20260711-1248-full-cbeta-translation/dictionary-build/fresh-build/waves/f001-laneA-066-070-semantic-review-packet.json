@@ -1,0 +1,47 @@
+{
+  "generatedUtc": "2026-07-15T15:00:00Z",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [66, 70],
+  "checkpointCompletedCount": 60,
+  "state": "awaiting-independent-semantic-review",
+  "selfReviewProhibited": true,
+  "promotionAuthorized": false,
+  "differentThingsRule": "Split only for a different object, event, person or title, or incompatible subject frame; do not split for grammar, reading, stance, response, capitalization, or paraphrase.",
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f001-laneA-066-070-final-gate.json",
+    "sha256": "4443d6e7592ad5a03ced7140b25a86ab4d53518065d58aa21ee3fd57810af14d"
+  },
+  "attributionPackets": {
+    "final066To070": {
+      "path": "fresh-build/waves/f001-laneA-066-070-final-gate-attribution-packets.json",
+      "sha256": "775f8af940a1f434886f6cf66a5d7161384d257e65ddfcd2bf19fe9dc2a7266d",
+      "scope": "Current mechanically passing hashes for ordinals 66 through 70."
+    }
+  },
+  "packetInputHashVerification": [
+    {"id":"t_fd1759947989","ordinal":66,"entrySha256":"491cc0b189dca2ccf1a92d0728c585362595beb5c156ab29b47c9ca7365f78ea","packet":"final066To070","packetInputHashMatches":true},
+    {"id":"t_f7bdd2def0ec","ordinal":67,"entrySha256":"975ef8db944da8fad026247fa282eb1d65d5baa9383dc41a2fe5c6923aabd3ee","packet":"final066To070","packetInputHashMatches":true},
+    {"id":"t_097f38f58678","ordinal":68,"entrySha256":"0630e852673e6a3b84086d2014e2b7b91d23400d4effa67b461cf966f837b41b","packet":"final066To070","packetInputHashMatches":true},
+    {"id":"t_d4661c1b4dbb","ordinal":69,"entrySha256":"02e274d6e36695572fae65b48ad9f6a90130c001c8cc310251a7560eaef924a6","packet":"final066To070","packetInputHashMatches":true},
+    {"id":"t_2852a9ae231c","ordinal":70,"entrySha256":"3aac6fc2c72842cb6bb738d9e4842dd785167a09238d2dd176776a934ac708d5","packet":"final066To070","packetInputHashMatches":true}
+  ],
+  "candidates": 5,
+  "items": [
+    {
+      "id":"t_fd1759947989","term":"大死","ordinal":66,"path":"fresh-build/entries/t_fd1759947989/entry.v2.json","sha256":"491cc0b189dca2ccf1a92d0728c585362595beb5c156ab29b47c9ca7365f78ea","attributionEvidence":{"packet":"final066To070","packetEntryId":"t_fd1759947989"},"preferredTargets":["die the great death"],"searchAliases":["great death then come alive","die a great death","great death Chan"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the preferred target preserve the death image while clearly excluding bodily death?","Do the return-alive witnesses adequately constrain the interpretation?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_f7bdd2def0ec","term":"截斷眾流","ordinal":67,"path":"fresh-build/entries/t_f7bdd2def0ec/entry.v2.json","sha256":"975ef8db944da8fad026247fa282eb1d65d5baa9383dc41a2fe5c6923aabd3ee","attributionEvidence":{"packet":"final066To070","packetEntryId":"t_f7bdd2def0ec"},"preferredTargets":["cut off all streams"],"searchAliases":["Yunmen cut off all streams phrase","cut off every stream","stream-cutting phrase"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the opening explain the corpus action before presenting the stream image?","Does the Yunmen three-phrase frame and Tianyin limit prevent a final-attainment gloss?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_097f38f58678","term":"庭前柏樹子","ordinal":68,"path":"fresh-build/entries/t_097f38f58678/entry.v2.json","sha256":"0630e852673e6a3b84086d2014e2b7b91d23400d4effa67b461cf966f837b41b","attributionEvidence":{"packet":"final066To070","packetEntryId":"t_097f38f58678"},"preferredTargets":["the cypress tree in the courtyard"],"searchAliases":["Zhaozhou courtyard cypress","cypress tree in the courtyard case","tree before the hall"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the opening state what the answer does in these records before its transmission history?","Do scene-denial, attribution-denial, and rejected explanations prevent unsupported symbolism?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are report owners, Zhaozhou attribution, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_d4661c1b4dbb","term":"正中偏","ordinal":69,"path":"fresh-build/entries/t_d4661c1b4dbb/entry.v2.json","sha256":"02e274d6e36695572fae65b48ad9f6a90130c001c8cc310251a7560eaef924a6","attributionEvidence":{"packet":"final066To070","packetEntryId":"t_d4661c1b4dbb"},"preferredTargets":["the relative within the absolute"],"searchAliases":["first of the Five Ranks","relative within absolute","upright within partial Five Ranks"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Is the conventional relational target faithful to Caoshan's directional gloss?","Are variable verses and diagrams kept illustrative rather than definitional?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are direct authors, unnamed questioner, report frames, and source works correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    },
+    {
+      "id":"t_2852a9ae231c","term":"隨波逐浪","ordinal":70,"path":"fresh-build/entries/t_2852a9ae231c/entry.v2.json","sha256":"3aac6fc2c72842cb6bb738d9e4842dd785167a09238d2dd176776a934ac708d5","attributionEvidence":{"packet":"final066To070","packetEntryId":"t_2852a9ae231c"},"preferredTargets":["follow the waves and ride the swells"],"searchAliases":["Yunmen wave-following phrase","follow the waves","go with the flow Chan"],"senseCount":1,"occurrenceCount":7,"sourceWorkCount":7,"reviewQuestions":["Does the opening explain responsive movement before presenting the wave image?","Are positive responsiveness and critical drift correctly retained as stance variation rather than split senses?","Does every claimed bend follow from anchored full-case evidence?","Does any evidence show a genuinely different thing requiring a split?","Are speakers, persons evaluated, source works, and quotation boundaries correct?"],"independentVerdict":null,"independentReviewer":null,"reviewNotes":null
+    }
+  ]
+}

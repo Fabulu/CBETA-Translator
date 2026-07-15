@@ -1,0 +1,129 @@
+{
+  "Id": "t_114bbd284d1c",
+  "SourceTerm": "東山水上行",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Yunmen's ‘East Mountain walks on water’ saying",
+      "AlternateTargets": ["East Mountain walks on water", "the East Mountain walks upon the water"],
+      "SearchAliases": [
+        "Yunmen East Mountain saying",
+        "East Mountain walks on water case",
+        "where do the buddhas emerge",
+        "Yunmen's mountain-on-water answer",
+        "East Mountain on the water"
+      ],
+      "Status": "preferred",
+      "Explanation": "Yunmen Wenyan's fixed answer to ‘What is the buddhas' place of emergence?’ is ‘East Mountain walks on water’ (如何是諸佛出身處。師曰。東山水上行). The phrase occurs 290 times in 131 allowlisted texts. Later masters keep this impossible-looking sentence in public circulation as a named case-saying rather than using it as an ordinary report about a mountain. Yuanwu Keqin repeats Yunmen's exchange and gives a different answer to the same question: ‘The fragrant wind comes from the south; the halls give rise to a slight coolness.’ Xiatang Huiyuan is asked directly for the saying's import and answers, ‘The thirty-first day of the first month; no need to choose a date.’ Chaozong receives the same question in a hall exchange. Juebao Qing quotes Yunmen and then makes the sentence the opening line of his own verse. Tianran Shi titles a verse with Yunmen's saying and closes it by saying that the conversational thread has been transmitted to the present. The corpus therefore establishes what the phrase is and how it is used, but supplies no stable decoding of how or why the mountain walks.",
+      "Validation": "multi-source",
+      "Note": "One corpus-wide sense: Yunmen's fixed answer and the later named case-saying are the same lexical object, not different things. The displayed target identifies that lexical object before preserving the translated sentence; it does not claim that ‘Yunmen's saying’ is a second sense. The Zen-specific bend is the sentence's repeated reuse as a question, quoted answer, case heading, and verse subject in public interviews and commentary. No material, symbolic, teaching-specific, or psychological interpretation of the image is added without an in-corpus predicate.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0306a11",
+          "ToLb": "0306a12",
+          "Kwic": "問。如何是諸佛出身處。師曰。東山水上行。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "AttributionNote": "Yunmen Wenyan gives the answer in the Compendium of the Five Lamps (五燈會元); the enclosing Yunmen section identifies him as the answering master."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0093b14",
+          "ToLb": "0093b16",
+          "Kwic": "僧問雲門：如何是諸佛出身處？門曰：東山水上行。若是天寧即不然，忽有人問：如何是諸佛出身處？只向他道：薰風自南來，殿閣生微涼。",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": ["quoter", "commentator", "section-subject"]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "In the Complete Book of the Five Lamps (五燈全書(第34卷-第120卷)), Yuanwu Keqin quotes Yunmen Wenyan's exact ‘East Mountain walks on water’ answer, then gives his own different answer without repeating the headword. Yunmen is the exact speaker; Yuanwu is the named quoter, commentator, and section subject."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0099c01",
+          "ToLb": "0099c02",
+          "Kwic": "問：東山水上行，意旨如何？師曰：初三十一，不用擇日。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "ReviewedBy": "Codex semantic-r002-owner1 reviewer3 repair",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xiatang Huiyuan",
+              "Roles": ["respondent", "section-subject"]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "In the Complete Book of the Five Lamps (五燈全書(第34卷-第120卷)), within the section headed for Xiatang Huiyuan, an unnamed questioner speaks the exact ‘East Mountain walks on water’ import question; Xiatang replies without repeating the headword. All six attribution rungs leave the questioner personally unnamed."
+        },
+        {
+          "RelPath": "J/J34/J34nB300.xml",
+          "FromLb": "0229c11",
+          "ToLb": "0229c12",
+          "Kwic": "僧問：「西河火裏坐即不問，東山水上行意旨如何？」師云：「烈焰堆中月嘗炤。」",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "ReviewedBy": "Codex semantic-r002-owner1 reviewer3 repair",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Chaozong",
+              "Roles": ["respondent", "record-owner"]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "In the Recorded Sayings of Chan Master Chaozong (朝宗禪師語錄), an unnamed monk speaks the exact ‘East Mountain walks on water’ import question; Chaozong replies without repeating the headword. The line, expanded context, section, title, TEI header, and parallel-passage search leave the monk personally unnamed."
+        },
+        {
+          "RelPath": "J/J38/J38nB406.xml",
+          "FromLb": "0171c11",
+          "ToLb": "0171c15",
+          "Kwic": "雲門東山水上行非思量處莫思量，枯木龍吟音韻長，搏浪沙中逃萬死，原來祇是舊張良。如何諸佛出身處，向道東山水上行，慚愧雲門關不住，話頭傳得到于今。",
+          "MasterName": "Tianran Shi",
+          "Curated": true,
+          "AttributionNote": "Tianran Shi writes the titled verse in his own Recorded Sayings of Chan Master Tianran of Lushan (廬山天然禪師語錄)."
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0440a12",
+          "ToLb": "0440a14",
+          "Kwic": "上堂，舉僧問雲門：如何是諸佛出身處？門曰：東山水上行。師曰：諸佛出身處，東山水上行。石壓笋斜出，崖懸華倒生。",
+          "MasterName": "Juebao Qing",
+          "Curated": true,
+          "AttributionNote": "Juebao Qing quotes Yunmen and adds his verse in the Correct Lineage of the Continuation of the Lamp (續燈正統); the passage begins under ‘Chan Master Juebao Qing of Suzhou’ (蘇州府覺報清禪師)."
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0697b28",
+          "ToLb": "0697c02",
+          "Kwic": "覺報清禪師平江府覺報清禪師。上堂舉。僧問雲門。如何是諸佛出身處。門曰。東山水上行。師曰。諸佛出身處。東山水上行。石壓笋斜出。岸懸花倒生。",
+          "MasterName": "Juebao Qing",
+          "Curated": true,
+          "AttributionNote": "Juebao Qing is explicitly named immediately before his hall address in the Continued Record of the Transmission of the Lamp (續傳燈錄)."
+        }
+      ],
+      "SourceTexts": ["X/X80/X80n1565.xml", "X/X82/X82n1571.xml", "J/J34/J34nB300.xml", "J/J38/J38nB406.xml", "X/X84/X84n1583.xml", "T/T51/T51n2077.xml"],
+      "RelatedMasters": ["Yunmen Wenyan", "Yuanwu Keqin", "Xiatang Huiyuan", "Chaozong", "Tianran Shi", "Juebao Qing"],
+      "RelatedTerms": ["出身處", "諸佛出身處", "薰風自南來", "雲門三句"]
+    }
+  ]
+}

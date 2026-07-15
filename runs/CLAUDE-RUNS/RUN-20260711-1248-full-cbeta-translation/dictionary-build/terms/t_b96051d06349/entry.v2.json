@@ -1,0 +1,126 @@
+{
+  "Id": "t_b96051d06349",
+  "SourceTerm": "室中",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "chamber-interview setting",
+      "AlternateTargets": [
+        "in the master's chamber",
+        "chamber interview setting"
+      ],
+      "SearchAliases": ["private interview chamber", "inside the Zen chamber", "chamber examination", "master's interview room", "in-room encounter"],
+      "Status": "preferred",
+      "Explanation": "The institutional chamber where direct examination and private interviews occur, not merely any room interior. Tianyi Yihuai questions an unnamed monk in the chamber (室中問僧); other masters present old sayings there or arrange an object and test each entrant. Dahui Zonggao's biography says he was assigned to share the chamber seat and “grasp the bamboo switch to test students” (令分座室中，握竹篦以騐學者); Xiaoweng Miaokan repeatedly presents the no-buddha-nature saying there and strikes when the student begins to speak. Recorded-sayings collections can therefore label a section “chamber encounters” (室中機緣). The word names the location and institutional setting, not the student's entrance: “enter the chamber for an interview” (入室) names the entrance, whereas “in the chamber” (室中) names the setting. Nor does the setting itself certify approval or succession.",
+      "Validation": "multi-source",
+      "Note": "Allowlist count across both senses: 1,566 hits in 274 texts. Distinct technical deployments preserved here are a direct chamber question, delegated examination by a head monk, presentation of a named old saying, an arranged-object test for entrants, and the section label “chamber encounters.” The Zen bend is the chamber's repeated use as an interview and testing setting.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0002a09",
+          "ToLb": "0002a10",
+          "Kwic": "室中問僧：無手人能行拳，無舌人解言語。忽然無手人打無舌人，無舌人道箇甚麼？",
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), in Tianyi Yihuai's section, records Tianyi Yihuai posing the chamber question.",
+          "MasterName": "Tianyi Yihuai"
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0407c15",
+          "ToLb": "0407c16",
+          "Kwic": "未幾，令分座室中，握竹篦以騐學者。",
+          "Curated": true,
+          "AttributionNote": "The Correct Lineage of the Continuation of the Lamp (續燈正統), in Dahui Zonggao's biography, identifies Dahui Zonggao as the person assigned to share the chamber seat and test students with the bamboo switch.",
+          "MasterName": "Dahui Zonggao"
+        },
+        {
+          "RelPath": "X/X84/X84n1585.xml",
+          "FromLb": "0668b01",
+          "ToLb": "0668b03",
+          "Kwic": "室中每示狗子無佛性話。一日，師擬開口，用以竹篦劈口便𭣟。",
+          "Curated": true,
+          "AttributionNote": "The Surviving Draft of the Continuation of the Lamp (續燈存稿), in Xiaoweng Miaokan's biography, identifies Xiaoweng Miaokan as the person who presents the no-buddha-nature saying and strikes with the bamboo switch.",
+          "MasterName": "Xiaoweng Miaokan"
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0044b12",
+          "ToLb": "0044b13",
+          "Kwic": "師室中插劒一口，以草鞋一對，水一盆，置在劒邊。每見入室，即曰：看！看！",
+          "MasterName": "Shishuang Chuyuan",
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Shishuang Chuyuan section: Shishuang Chuyuan arranges a sword, sandals, and a basin of water in his chamber and says ‘Look! Look!’ whenever someone enters."
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0849c09",
+          "ToLb": "0849c11",
+          "Kwic": "室中機緣師問僧。巖頭纔跨德山門便問。是凡是聖。德山便喝。巖頭禮拜。意作麼生。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄), spoken by Dahui Zonggao: the section headed “chamber encounters” opens with Dahui questioning an unnamed monk about the Yantou–Deshan exchange."
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "X/X84/X84n1583.xml",
+        "X/X84/X84n1585.xml",
+        "X/X81/X81n1568.xml",
+        "T/T47/T47n1998A.xml"
+      ],
+      "RelatedMasters": ["Tianyi Yihuai", "Dahui Zonggao", "Xiaoweng Miaokan", "Shishuang Chuyuan"],
+      "RelatedTerms": [
+        "入室",
+        "竹篦",
+        "機緣",
+        "問話"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "ordinary room interior",
+      "AlternateTargets": [
+        "in a room",
+        "within the room"
+      ],
+      "SearchAliases": ["inside an ordinary room", "room interior", "within a living room", "inside a sickroom", "in one's room"],
+      "Status": "allowed",
+      "Explanation": "In ordinary spatial narration, the headword simply means “inside a room” (室中). Shiqi Tongyun writes, “idle inside the room, I cannot be bothered to burn incense” (室中無事懶燒香); Tianyin Yuanxiu describes someone “lying ill in a single room” (臥病一室中). These are a living room and a sickroom, not an institutional interview chamber. No special Chan deviation is attested in this sense.",
+      "Validation": "multi-source",
+      "Note": "Split under #0f.8 because the physical room in these passages is a different referent from the institutional chamber-interview setting. The surface locative wording is shared, but “chamber interview” would be false for these witnesses.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J26/J26nB183.xml",
+          "FromLb": "0526c12",
+          "ToLb": "0526c14",
+          "Kwic": "寄友室中無事懶燒香，危坐多時倦即橫，一覺惺來人不見",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Xuedou Shiqi (雪竇石奇禪師語錄), in Shiqi Tongyun's verse titled 'Sent to a Friend' (寄友). Shiqi Tongyun writes that with nothing happening in the room he is too idle to burn incense, sits upright until tired, then lies down. The title's Xuedou is the monastery, not Xuedou Chongxian; the TEI header identifies Tongyun as speaker, and the biography gives his name as Tongyun and style-name Shiqi.",
+          "MasterName": "Shiqi Tongyun",
+          "ContextMasters": []
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0589a28",
+          "ToLb": "0589a29",
+          "Kwic": "臥病一室中，機用恁唧溜。命徒問疾來，香飯曾借否？",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Preceptor Tianyin (天隱和尚語錄), authored by Tianyin Yuanxiu, describes lying ill in a single room.",
+          "MasterName": "Tianyin Yuanxiu"
+        }
+      ],
+      "SourceTexts": [
+        "J/J26/J26nB183.xml",
+        "J/J25/J25nB171.xml"
+      ],
+      "RelatedMasters": ["Shiqi Tongyun", "Tianyin Yuanxiu"],
+      "RelatedTerms": [
+        "入室"
+      ]
+    }
+  ]
+}

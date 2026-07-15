@@ -1,0 +1,86 @@
+{
+  "Id": "t_ac2e2908084d",
+  "SourceTerm": "見性成佛",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "see [one's] nature, become Buddha",
+      "AlternateTargets": [
+        "seeing nature and becoming Buddha",
+        "see the nature and become a Buddha",
+        "see nature, be Buddha"
+      ],
+      "Status": "preferred",
+      "Explanation": "(見) 'see' + (性) 'nature' + (成佛) 'become Buddha': the claim that awakening is seeing one's own (Buddha-)nature, and that in that seeing one becomes Buddha. It is the culminating clause of the four-phrase slogan by which the Chan school defines itself — (教外別傳)，(不立文字)，(直指人心)，(見性成佛) ('a separate transmission outside the teachings; not setting up words; pointing straight at the human mind; seeing [one's] nature and becoming Buddha') — and appears as the Southern school's slogan, the teaching Yaoshan reports hearing of ('甞聞南方直指人心。見性成佛。實未明了'). When a master glosses it, the gloss is equational: the venerable of Yunju answers (繼宗)'s question 'what does (見性成佛) mean?' with (性即佛)。(佛即性)。(故曰見性成佛) ('the nature is just Buddha, Buddha is just the nature; therefore it is called seeing-nature-becoming-Buddha'). One hall-discourse makes it the whole of the matter — (祖師西來只道見性成佛)。(其餘所說不及此說) ('the Patriarch came from the West only to say see-nature-become-Buddha; nothing else said measures up'). A second in-corpus self-definition appears in (續燈正統): (天奇本瑞), opening an instruction with (祖師西來)，(不立文字)，(直指人心)，(見性成佛)，(更無別法) ('…there is no other teaching'), states (須知所謂見性成佛者)，(見性不是見他人之性)，(成佛不是成他人之佛)，(決定是汝諸人本有之性) ('know that in what is called seeing-the-nature-becoming-Buddha, the seeing of the nature is not seeing someone else's nature, and the becoming Buddha is not becoming someone else's Buddha: it is decidedly the nature you all inherently have'), adding (人人本具)，(箇箇不無) ('each person inherently equipped with it, not one without it'). (遠菴僼禪師語錄) answers the question form directly: (何謂直指人心)、(見性成佛者)？(不教人千劫學威儀)、(萬劫修相好)，(只要人於善知識一言一句下)，(頓脫無始結使纏縛) ('what is meant by pointing straight at the human mind, seeing the nature and becoming Buddha? It does not have people study deportment for a thousand kalpas or refine the marks for ten thousand kalpas; it only wants a person, at one word or phrase from a good teacher, to suddenly cast off the beginningless bonds and fetters'). Render it literally as 'see [one's] nature, become Buddha'. It CONTAINS (見性) ('seeing nature', its own entry): (見性成佛) is (見性) with its consequence (成佛) stated — keep the two distinct but cross-referenced.",
+      "Validation": "multi-source",
+      "Note": "Very widely attested (approximately 684 raw occurrences across 213 allowlist texts, independent strict count; an earlier tally of 602/206 did not reproduce); the four-clause (直指人心見性成佛) formula alone is pervasive. Uniform meaning across the corpus — a shared banner/topic, not a master-specific coinage — so one corpus-wide sense is honest. Curated witnesses span three independent texts: (六祖大師法寶壇經) (T48n2008, Huineng), (五燈會元) (X80n1565, the Yunju gloss and the Yaoshan report), and (景德傳燈錄) (T51n2076). Per the nested-term rule (§5b): (見性成佛) CONTAINS the standalone entry (見性); both kept as separate entries and cross-referenced in RelatedTerms, not merged. Slogan-family counts (Zen-scoped): the contiguous (直指人心見性成佛) 63x/29 texts; companions (直指人心) 624x/216, (教外別傳) 640x/211, (不立文字) 435x/188; the contained (見性) 2,148x/304. The (天奇本瑞) self-definition: X84n1583 (續燈正統) ed=\"X\" lb 0571a06; the (遠菴僼) answer: J37nB386 lb 0403c22.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0051a21",
+          "ToLb": "0051a22",
+          "Kwic": "乃名見性。性即佛。佛即性。故曰見性成佛。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Yunju Zhi section. Yunju Zhi is the exact speaker answering what seeing the nature and becoming buddha means; he says nature is buddha and buddha is nature.",
+          "MasterName": "Yunju Zhi"
+        },
+        {
+          "RelPath": "T/T48/T48n2008.xml",
+          "FromLb": "0351c15",
+          "ToLb": "0351c16",
+          "Kwic": "普願法界眾生，言下見性成佛。",
+          "MasterName": "Huineng",
+          "Curated": true,
+          "AttributionNote": "(六祖大師法寶壇經): Huineng preaching at the (大梵寺) — 'I universally wish that beings throughout the whole realm see their nature and become Buddha at [these] words.' The founding text's use of the phrase in the Patriarch's own voice."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0429a22",
+          "ToLb": "0429a23",
+          "Kwic": "祖師西來只道見性成佛。其餘所說不及此說。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄. Guizong Huicheng is the exact actor: his hall discourse says 祖師西來只道見性成佛.",
+          "MasterName": "Guizong Huicheng"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0109a23",
+          "ToLb": "0109a24",
+          "Kwic": "甞聞南方直指人心。見性成佛。實未明了。",
+          "Curated": true,
+          "AttributionNote": "五燈會元: complete-case exact-turn review identifies Yaoshan Weiyan as the actor for this occurrence.",
+          "MasterName": "Yaoshan Weiyan"
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0571a06",
+          "ToLb": "0571a07",
+          "Kwic": "須知所謂見性成佛者，見性不是見他人之性，成佛不是成他人之佛，決定是汝諸人本有之性",
+          "MasterName": "Tianqi Benrui",
+          "Curated": true,
+          "AttributionNote": "(續燈正統) (X-canon; FromLb is the ed=\"X\" number), section (安陸府荊門州天奇本瑞禪師) (cb:mulu; 大鑑下第三十世, 寶峰瑄禪師法嗣): the master's own instruction after taking an abbacy (住後落堂，開示) — the fullest in-corpus self-definition of the phrase: the nature seen is not another's nature, the Buddha become is not another's Buddha."
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2008.xml",
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2076.xml",
+        "C/C077/C077n1710.xml",
+        "X/X68/X68n1318.xml"
+      ],
+      "RelatedMasters": [
+        "Huineng"
+      ],
+      "RelatedTerms": [
+        "見性",
+        "直指人心",
+        "教外別傳",
+        "不立文字",
+        "即心是佛"
+      ]
+    }
+  ]
+}

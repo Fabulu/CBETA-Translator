@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "post-collision-independent-exact-rereview",
+  "reviewer": "reviewer3",
+  "generatedUtc": "2026-07-15T13:37:27Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1131, 1150],
+  "entriesReviewed": 20,
+  "occurrencesReadInFullCase": 113,
+  "exactKwics": 113,
+  "exactFullSpans": 113,
+  "exactSpanFailures": 0,
+  "keep": 17,
+  "revise": 3,
+  "sourceGate": "f004-laneC-1131-1150-exact-fullcase-formal-gate-v2.json",
+  "reviewMethod": [
+    "Read every stored occurrence as a complete encounter, address, verse, title, or narrative unit rather than trusting the container title alone.",
+    "Treated MasterName only as the utterer of the exact headword; acting, quoted, discussed, and section masters belong in ContextMasters.",
+    "Independently reran zc.verify on all 113 KWICs and required both returned FromLb and ToLb to equal the stored span.",
+    "Compared the current entry bytes to the exact SHA-256 values below; no entry was edited during review."
+  ],
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "reviewedEntrySha256": "699bddb5b964e8c06542dcc8787842b1133eec97a578ab6c3189e4b7e27beb45",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 3 is not safely anonymous: it is in 天隱修禪師語錄, and the same headword-bearing address is preserved under Tianyin Yuanxiu in J/J25/J25nB171.xml. The title and parallel-witness rungs therefore resolve the authored voice as Tianyin Yuanxiu.",
+        "Occurrence 2 correctly assigns the headword to the unnamed monk, but omits the named responding record-owner from ContextMasters.",
+        "The explanation says the response is ‘intended to help them,’ importing intent in vocabulary expressly barred by rule #0; describe the attested public function without asserting intention."
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "reviewedEntrySha256": "3b44da5a7e2ffc6c8219b5b10575c5932a4bc11175202587bf75a55cd59314c6",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Keeping MasterName null for narrated bodily actions is correct, but occurrences 5 and 6 leave ContextMasters empty even though the complete teaching-seat units contain a particular master performing the action.",
+        "Rule 10 requires every master to be named: resolve the acting masters and record them as person-described or case-figure while preserving narrated/impersonal MasterName null."
+      ]
+    },
+    {
+      "ordinal": 1133,
+      "id": "t_68fbf8a2329c",
+      "term": "雲巖掃地",
+      "reviewedEntrySha256": "5b8b4334607fa7a0e052da80fb165d7211be10924880106d48dbab62bb9dea02",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Later named raisers are distinguished from the one editorial heading, and Yunyan/Daowu remain correctly identified as case figures."]
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "reviewedEntrySha256": "69bbf6b0f8b0bb3eea55684f72374da3d5a49cfe9ef5ba09816d0694d21397f9",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 3 says 問：樹凋葉落時如何？師云：體露金風. The unnamed monk utters the question but not the headword; the resident master utters the exact headword after 師云.",
+        "Its current reviewed-unnamed monastic-questioner attribution and GrammarEvidence invert the two turns and must be corrected after resolving the resident master from the complete section."
+      ]
+    },
+    {
+      "ordinal": 1135,
+      "id": "t_4c1e5a42155d",
+      "term": "不放過",
+      "reviewedEntrySha256": "479461287acad354581252148baef59b46071f3c1173bba0d807f49ccd455d93",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "reasons": ["Direct speech and embedded named quotations are assigned to their actual utterers across the seven complete cases."]
+    },
+    {
+      "ordinal": 1136,
+      "id": "t_b6da6fc1c9bf",
+      "term": "安單",
+      "reviewedEntrySha256": "02c3f261aa66bd60d1fb9a9fa603575cf28b6deb18857ff0831f34aa50f9845a",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Questioner, named utterer, and narrator-governed placement are correctly separated."]
+    },
+    {
+      "ordinal": 1137,
+      "id": "t_bdabbe0d39fa",
+      "term": "主人翁",
+      "reviewedEntrySha256": "1f80e0793816136bad1e38df06b9221a6bbf86fa28ca3a2c31f5e1db396500e4",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Each headword occurrence belongs to the named address, verse, or later raising voice recorded in MasterName."]
+    },
+    {
+      "ordinal": 1138,
+      "id": "t_b495de9e2b11",
+      "term": "神農",
+      "reviewedEntrySha256": "011549bbb598ba8753ca29c7a466a6747d09b9b76b89d27d4e91913c377d5163",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Shennong is the invoked figure while the four named masters remain the actual authored or spoken voices."]
+    },
+    {
+      "ordinal": 1139,
+      "id": "t_3ae11b4bc79f",
+      "term": "無常迅速",
+      "reviewedEntrySha256": "57e6404043db9624f87b5abfe9692258d1bd7c3be7f880c848a1c7c759d52bbe",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Five master utterances and the named disciples’ request are correctly distinguished; the respondent is not substituted for the disciples."]
+    },
+    {
+      "ordinal": 1140,
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "reviewedEntrySha256": "7914eef6d6817eb3b1ad1e52d44b99ebf090b875722c39744e8bb7fc85f647c2",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The elder’s 何不領話 is not misassigned to Muzhou, and the remaining named turns are correctly attributed."]
+    },
+    {
+      "ordinal": 1141,
+      "id": "t_652dbd8f5c83",
+      "term": "西序",
+      "reviewedEntrySha256": "3989d5d90ac946011913507e409ef509e6ac9d6dd1658b393a1a1a55662f1a9c",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Contents and rules prose remain narrator-governed; only Chaoding Yuxuan’s spoken instruction carries his MasterName."]
+    },
+    {
+      "ordinal": 1142,
+      "id": "t_4a5ef260448f",
+      "term": "心地法門",
+      "reviewedEntrySha256": "5c570121ae0cfba3cb67d6f3c599bce16405cf9be095e414e9427f1eb905a374",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "reasons": ["Direct master speech, the embedded Buddha quotation, and the two unnamed monks’ questions are separated by exact turn."]
+    },
+    {
+      "ordinal": 1143,
+      "id": "t_9b760056ea15",
+      "term": "驀口",
+      "reviewedEntrySha256": "b43a947e07e328b56d0459fc3e89f8bd9c32145169b2e0d01945938845be06e5",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "reasons": ["Zhaozhou’s spoken instruction is distinguished from six narrator-governed striking actions."]
+    },
+    {
+      "ordinal": 1144,
+      "id": "t_4625f09d4acc",
+      "term": "黃檗棒",
+      "reviewedEntrySha256": "ef99199ed5d4fab0412221aaf76cc680c9087bac984db55559d2f6e328ea67a0",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["All four exact phrases belong to the named commenting masters, with Huangbo retained as the invoked case figure rather than the utterer."]
+    },
+    {
+      "ordinal": 1145,
+      "id": "t_38014001726f",
+      "term": "知有底人",
+      "reviewedEntrySha256": "00d9ca1a2c625304d8cd8611bba17e3be84c2b38f336a603e1a39c3db514f74b",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "reasons": ["The Zhaozhou question, named discourses, biographical narration, and final unnamed monk’s question are correctly classified."]
+    },
+    {
+      "ordinal": 1146,
+      "id": "t_aa56c106ef82",
+      "term": "陷虎之機",
+      "reviewedEntrySha256": "00e2b63ea36b8ed93b0112106084a56796c22294613ae74721cacfc9fc117d29",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The named non-master commentator is not forced into MasterName, and the five master utterers are correctly named."]
+    },
+    {
+      "ordinal": 1147,
+      "id": "t_2281bd1c98fc",
+      "term": "過去七佛",
+      "reviewedEntrySha256": "182d5b1a40b48984030f21fd3cd977b70a5f359e18826b60058ac3b5e2aa7fb7",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["The two embedded Buddha turns and the two later master deployments are attributed to their exact voices."]
+    },
+    {
+      "ordinal": 1148,
+      "id": "t_3eb1fd8df203",
+      "term": "趙州勘婆",
+      "reviewedEntrySha256": "03726ab01adb78e7e5670f539f8100f006081fee26e5910fecc08633730d89be",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["The lay official’s question remains non-master speech, while five later master raisings are named correctly."]
+    },
+    {
+      "ordinal": 1149,
+      "id": "t_16c61f8e00b4",
+      "term": "物物頭頭",
+      "reviewedEntrySha256": "05325fdda70456f3ffe413be7a1c8930a91f6e03723f2591f1ab1d61640472d3",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "reasons": ["Five named utterers and the genuinely source-anonymous feast-day address are distinguished without assigning the following section’s master backward."]
+    },
+    {
+      "ordinal": 1150,
+      "id": "t_594dfb5d367f",
+      "term": "香篆",
+      "reviewedEntrySha256": "1de828c1da56ecc29e8e109771f230a3668f52540e1ece24831f4f15895459c7",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "reasons": ["Three named authored voices and the unnamed monk’s clearly marked 僧曰 turn are correctly separated."]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

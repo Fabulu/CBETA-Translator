@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-all-findings-final-rereview",
+  "reviewer": "reviewer5",
+  "generatedUtc": "2026-07-15T15:05:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1018, 1020],
+  "sourceGate": "f004-laneB-1018-1020-reviewer4-all-findings-author-gate.json",
+  "sourceGateSha256": "c44fcad7e3692fb41d9bc037b22b035085dc0f7f7a6be26c3cf2199d8443ce8d",
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 13,
+  "exactKwics": 13,
+  "exactFullSpans": 13,
+  "exactSpanFailures": 0,
+  "keep": 0,
+  "revise": 2,
+  "reviewMethod": [
+    "Read all 13 headword-bearing units through their complete question-answer, address, verse, biography, heading, or lineage-manual boundary.",
+    "Checked exact headword utterers separately from respondents, case figures, compilers, and named non-master participants.",
+    "Independently required zc.verify FromLb and ToLb to equal every stored span.",
+    "Compared current entry hashes with the all-findings author gate and reread current English, sense depth, source titles, and roster handling."
+  ],
+  "entries": [
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "reviewedEntrySha256": "32863df3fdcdfffe7ea8d2d23a464c5c6a01887c808ce24643aa4287e3dd2065",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "verdict": "REVISE",
+      "resolvedReviewer4Issues": [
+        "The occurrence-5 note is English-first and names Pang Yun without putting a non-master in MasterName.",
+        "Yuelin Jing and Baoci Xingyan are evidence-backed pending-roster names.",
+        "All seven notes carry the exact stored source title and explicit speaker, narrator, or unnamed verse-author result.",
+        "The Note explicitly audits 606 hits in 185 files and 182 works and records the one-person-referent sense decision.",
+        "The opening now reports the stored wall-collapse, nose-catching, and dust-mote deployments without the former acquired-description claim."
+      ],
+      "remainingReasons": [
+        "The first sentence is duplicated verbatim in Explanation and must be collapsed to one occurrence.",
+        "Occurrence 5 identifies Pang Yun by name and Kind as an identified lay participant, but ActorAttribution.Status remains reviewed-unnamed. Use identified-non-master; Pang is not unnamed. MasterName should remain null and Mazu Daoyi should remain respondent."
+      ],
+      "depthDecision": "One corpus-wide person referent is supported across question, verse, biography, and address deployments; no second thing is exposed by the seven cases.",
+      "cases": [
+        {"occurrence":1,"decision":"Fenyang Shanzhao utters the wall-collapse answer.","spanExact":true},
+        {"occurrence":2,"decision":"Yuelin Jing authors the awakening verse.","spanExact":true},
+        {"occurrence":3,"decision":"An unnamed monk asks; Baoci Xingyan responds.","spanExact":true},
+        {"occurrence":4,"decision":"The compilation preserves a source-anonymous verse author.","spanExact":true},
+        {"occurrence":5,"decision":"Named layman Pang Yun utters the request; Mazu Daoyi responds. Status defect remains.","spanExact":true},
+        {"occurrence":6,"decision":"Mingjue Cong owns the public address.","spanExact":true},
+        {"occurrence":7,"decision":"Yinyuan Longqi owns the public address.","spanExact":true}
+      ]
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "reviewedEntrySha256": "3fcbac92a43f1a90df91d08e12cd9ca3087ec1853498cf68c3cef26e36952579",
+      "occurrencesRead": 6,
+      "exactSpans": "6/6",
+      "verdict": "REVISE",
+      "resolvedReviewer4Issues": [
+        "Explanation and Note are English-first and contain no vague ‘a master’ attribution.",
+        "Sanfeng Hanyue is canonicalized to Hanyue Fazang and Cian Jingyuan is registered with source evidence pending roster integration.",
+        "All six notes carry exact source titles and explicit questioner, compiler, heading, or utterer outcomes.",
+        "The cases consistently identify the institutional Fayan lineage and expose no second referent."
+      ],
+      "remainingReasons": [
+        "The first sentence is duplicated verbatim in Explanation and must be collapsed to one occurrence before promotion."
+      ],
+      "depthDecision": "The heading, lineage manual, historical exposition, and public questions all name one institutional lineage descended through Fayan Wenyi.",
+      "cases": [
+        {"occurrence":1,"decision":"An unnamed monk asks; Cian Jingyuan responds.","spanExact":true},
+        {"occurrence":2,"decision":"The compiler supplies an impersonal lineage heading; Fayan Wenyi is section subject.","spanExact":true},
+        {"occurrence":3,"decision":"Hanyue Fazang owns the five-houses exposition.","spanExact":true},
+        {"occurrence":4,"decision":"The lineage-manual compiler narrates Fayan Wenyi's succession.","spanExact":true},
+        {"occurrence":5,"decision":"An unnamed monk asks; Cian Jingyuan responds.","spanExact":true},
+        {"occurrence":6,"decision":"An unnamed monk asks; Langting Jingting responds.","spanExact":true}
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "artifactWasAbsentBeforeWrite": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

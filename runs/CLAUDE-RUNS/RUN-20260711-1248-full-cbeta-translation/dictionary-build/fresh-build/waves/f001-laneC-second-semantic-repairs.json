@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "reviewLedger": "fresh-build/waves/f001-laneC-postrepair-independent-review.json",
+  "startedUtc": "2026-07-15T01:15:00Z",
+  "completed": 30,
+  "entries": [
+    {
+      "position": 28,
+      "id": "t_4d83c364fefd",
+      "term": "迷悟",
+      "priorSha256": "3ac8199c8fc0664d02ba7b6f9116c0c4b1e6f4e76ca7ad3050ed5fcd2afde433",
+      "entrySha256": "286de513b4b5febb8119cc25edd783c801bf6831d682b40759a4b1743104f7e8",
+      "finding": "SearchAliases missing (0; hard rule requires 3–5).",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 30,
+      "id": "t_751d6ddba1e9",
+      "term": "明暗",
+      "priorSha256": "99a48c1219c18d95aaaa19dcbca983bffeb0716caea0ef09a0337b67fbbfa0ed",
+      "entrySha256": "f653306778509d08e16f846b3b1314778d7632ef18dcc45c10120e8493042d6f",
+      "finding": "Original calque-first opening remains unchanged; SearchAliases missing (0).",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 31,
+      "id": "t_2baf0ec63b2c",
+      "term": "經行",
+      "priorSha256": "bed5d1df2df3cea8400b05d54f0db45ec6de09e2fe05a00d4e7d2daf3adb4519",
+      "entrySha256": "25485502868a94a68351afda1245fa5ab19168ed00f498757a87f56b8402a30e",
+      "finding": "SearchAliases missing (0).",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 52,
+      "id": "t_ad2c9d24126f",
+      "term": "入定",
+      "priorSha256": "44efc81e39e1a5b411cc8c5f1e09f6e2947d3846f50263a3c6b35da2fbdaf750",
+      "entrySha256": "9a479f792deb9c8abd5f89a59a2f3ded1fba7a090dfc26aab99e2e5931e4eef8",
+      "finding": "Only one SearchAlias; occurrence 8 has generic rather than case-specific actor proof.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 53,
+      "id": "t_6bc71cc88c2f",
+      "term": "衣鉢",
+      "priorSha256": "4c70cc9a8c3b74515e56e4c560bfc612331e9e4ddaf3a3699f73e36f12fa61b4",
+      "entrySha256": "0ed6c0d13485afb5efe0f51a6cf8804d6918523301c5205ecc486c39be111b23",
+      "finding": "Occurrences 1–3 and sense-2 occurrence 4 use generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 55,
+      "id": "t_e3226b1e195a",
+      "term": "覷破",
+      "priorSha256": "267e5eb0677caec0114c7290f0e7de5d9e7ddd5bfdb0930e9ef43b4bf7ab65f8",
+      "entrySha256": "d39554cc4d718fabf70d4d006b7e83e7daae9ff6ae31689e560082561e543e00",
+      "finding": "Occurrence 7 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 56,
+      "id": "t_85eef19d3d3a",
+      "term": "淨瓶",
+      "priorSha256": "833fc19359270a9593d884dd8bb23539679f3d7a50f7fbac26a93dff3072dec5",
+      "entrySha256": "a6b97e0c84f7e16644e7cc64e3fef7f0e2129a3c2adf4be128926cc526ae2276",
+      "finding": "Occurrence 5 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 57,
+      "id": "t_37261001c332",
+      "term": "觀心",
+      "priorSha256": "54451c5c132a4154e650a27a09e6478e8e4ecc477ce8c1e32887e9525392c1ca",
+      "entrySha256": "da39f10bd1939feea40579668e4d36970cf512a7fad08515968c53eafd8950ee",
+      "finding": "Occurrences 5–7 and 9 use generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 58,
+      "id": "t_df9aad1ce22d",
+      "term": "芥子",
+      "priorSha256": "a2b137a255147ca88fb151dc6b58500c3d567d129fc805dff3da1b297a10a85c",
+      "entrySha256": "c37e66b51b9e8c341fc0a7f88e9a8579519fbc95784f91c797165012e8c937b8",
+      "finding": "Occurrence 1 identifies Li Bo but records only generic actor boilerplate; the exact case evidence and master respondent context are not documented.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 59,
+      "id": "t_c657778889b0",
+      "term": "傳衣",
+      "priorSha256": "e3621edccb3f896c852061ba3abf31cf4f224f40a69fa4269c883fbe7f9c119e",
+      "entrySha256": "9c086a4d417d924ef11925eb62cbb29f17b7019d92f904e7233affc78bbbc30b",
+      "finding": "Sense-1 occurrence 2 has the headword in narrator clause 傳衣時至 before Hongren's speech, but MasterName is Hongren.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 61,
+      "id": "t_08ffd55c812e",
+      "term": "杜撰",
+      "priorSha256": "2e3e48ba4af25e2a16aa676658e6b3784c044a33d39a403da1159826a160a4dd",
+      "entrySha256": "b35d1521c09c328c1b66299e2b202ac1df125e07ef9db1f8db317d56d4dc195f",
+      "finding": "Occurrence 3 uses non-roster spelling 'Tianan Sheng' instead of canonical Tian'an Sheng.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 63,
+      "id": "t_04994645e07a",
+      "term": "不與萬法為侶",
+      "priorSha256": "38b22d50ded57c89f8ea7cc1ae4a3503e255fb7352966fefa7933cfb58fcad48",
+      "entrySha256": "85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0",
+      "finding": "Occurrence 5 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 65,
+      "id": "t_9dfa307c0458",
+      "term": "沒蹤跡",
+      "priorSha256": "7b846d1817e7ef5d2e7594bd60bae8660303c5a96b6464469ba88fabce63ca95",
+      "entrySha256": "e54122d64206a799d93e3fc7751404bea4c513fe351e2739ac8077ff0f0f1aa5",
+      "finding": "Occurrence 6 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 67,
+      "id": "t_acbbe22bdc76",
+      "term": "打坐",
+      "priorSha256": "d3780db5da6df9aced1c7c678f32b7e3d892a07c0c54abf6f599ef9d609e0ab8",
+      "entrySha256": "f72850eb142a13bd3689698c35287b8560d334e6d5ec76772aaf2f9eec51ee34",
+      "finding": "Occurrence 1 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 68,
+      "id": "t_f7aa7ea86229",
+      "term": "落空",
+      "priorSha256": "d7082e788801a3d9769cf5fe034ba06992f45dc203fee5100fd79a48d9b49adb",
+      "entrySha256": "2aa77832a9dad1b45db56a483b7fd5ec39f11820b0654a4c82e3084f70734ecf",
+      "finding": "Faming's occurrence is a declarative statement but ActorRole is questioner; Dazhu Huihai context is omitted.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 69,
+      "id": "t_6c1f113fbdcd",
+      "term": "淨裸裸",
+      "priorSha256": "583c757a49aedf6bda04e66e56772759bf0061d1d7b78f2e1a97af62d5a0eee7",
+      "entrySha256": "c31ec3cdf7b56cfbf6c8926006632b4d7a76bbc54a7247ce184ecc84c749e797",
+      "finding": "Occurrence 6 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 70,
+      "id": "t_b23e58454acd",
+      "term": "老婆心切",
+      "priorSha256": "d338898c42600d1c2c1422c2ee5fc9180bff952b463932f35fc94612d2adb56e",
+      "entrySha256": "d4ca11d55cc0ee09da8b4ca87bb9a5c6b9560a0e77c6435b2265fd7088593b66",
+      "finding": "Occurrence 3 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 71,
+      "id": "t_0c86700b60cb",
+      "term": "頓漸",
+      "priorSha256": "f1126575577015003ca97f091ea78d19d88b6cdeeec62a9c09c7722d34710c70",
+      "entrySha256": "d38cf5c959e7028c6a08a80e08b589526d6a83ec6bb2e6176e8b5bec1bf8e387",
+      "finding": "Occurrence 1 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 73,
+      "id": "t_8dc9df82b364",
+      "term": "一口吸盡西江水",
+      "priorSha256": "eb1167afb7b8e5793114ef3e603fe3d8deca854ebd614552da4bd6388467d5a9",
+      "entrySha256": "72f1207015784a540393758b817ab09eb6527b5a239a41987deba0628b1d1acd",
+      "finding": "Final occurrence wrongly identifies current commentator as Zhaozhou Congshen; the full section is Wuchu Daguan's record and prose itself says 育王.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 75,
+      "id": "t_90e46d995978",
+      "term": "參請",
+      "priorSha256": "f5276173ce99e1ba2280e979cd160a491afe2af52783a61bbc6444ce881f3603",
+      "entrySha256": "0465f885065cef697aecf9cd9e6803e9942ea9fda2e62b142bd2076a18c1be6e",
+      "finding": "Occurrences 1, 2, 5, 6, and 9 use generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 77,
+      "id": "t_fab146271b10",
+      "term": "無事人",
+      "priorSha256": "9771920013893d6aaa10e067bced915df8d289ec253ccd376ecb67bd3eaa2cd5",
+      "entrySha256": "f04050615fa72766f520f028bec373f6b19398ddcd862291d6c363e066b51cec",
+      "finding": "Occurrence 6 still leaves an unnamed quoted guiding teacher; every master must be resolved or the witness replaced.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 82,
+      "id": "t_0160fc00c70d",
+      "term": "老婆禪",
+      "priorSha256": "d125eaf9e4e7f277b0c01dbb1449e6dc3b0cf7e4b33a4d774648aba9a722a395",
+      "entrySha256": "1dea9757faebfb54ebd49fec896093fe6a8faa1b6de2a58908933afdae792f78",
+      "finding": "Occurrence 3 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 84,
+      "id": "t_21f09b3726e7",
+      "term": "血脈",
+      "priorSha256": "4b1445a1c0b7759c26b4b359b83df09003683bb6ebb6869c95478f50a2555742",
+      "entrySha256": "8968d37f11acca7ae8542935cd550dac4626a1f72e57172751680f6a01eb2510",
+      "finding": "SearchAliases exceed hard 3–5 cap (7 and 6).",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 85,
+      "id": "t_dcd5468f5104",
+      "term": "直心",
+      "priorSha256": "65b4247a30941f9e7a01ec41692ca724c14b96d2a6d2d6fd547e69beb0baf9f0",
+      "entrySha256": "273e091fed27d14f9db1e69d910dc9132fb3a7fc823bc27701ec3f1fc244c095",
+      "finding": "Occurrence 1 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 86,
+      "id": "t_f0cb4dcfc70c",
+      "term": "掛搭",
+      "priorSha256": "18185ca36a884a62d3f55e43fc0d91ec29cbcf685eb3bf465a7b637b3c05b45a",
+      "entrySha256": "80d91b0e666f4d0628a39b8c044f1c7bcc59aa36e05ea0ab947825621753c9fe",
+      "finding": "SearchAliases exceed hard cap (6).",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 87,
+      "id": "t_057cc9ea8755",
+      "term": "攝心",
+      "priorSha256": "c64ef06c867a5992d8d33ed694aa023309f4093fd6aaf5c3ad7743d1ad72ac53",
+      "entrySha256": "8d7d3eeba4c7dcdc2cfc0369d7b887c01d06b1c0d16f80f8aaf3a2b0dd34ba5b",
+      "finding": "Occurrence 6 assigns 少室六門 prose to Guifeng Zongmi without source support; title/header do not name him.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 88,
+      "id": "t_dc5f4386a0ed",
+      "term": "明心見性",
+      "priorSha256": "21e36b045b8d806bcf793ab64c5dad1c2a29be8b25514c462807ef071ca712e7",
+      "entrySha256": "5293779b3d22d6ab627363b84a21dc223bd9aad2402d6b3f3465006fe8b05610",
+      "finding": "Occurrence 4 uses generic actor boilerplate, not actual full-case grammatical evidence.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 91,
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "priorSha256": "f40f934af806fd9ac955621261114624170855aa19e7804fe671782d274b2a1d",
+      "entrySha256": "a2c281921ab587aa79aa04a36e0c36b9f863ec74696675a5be1c9f51354afc8c",
+      "finding": "Both senses have 6 aliases; occurrences in sense 2 also use generic actor boilerplate.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 99,
+      "id": "t_57fd70bfc9ec",
+      "term": "客塵",
+      "priorSha256": "e75748b8e20ea1511806d30acedff9590a0180d9746757fd5654cde046cda7da",
+      "entrySha256": "517cf4ece410d7e0debe6164f7cf35125205f28ffbe9c0ace86df49b07d34f15",
+      "finding": "Baizhang sense has 7 aliases, including duplicated generic sense-1 probes.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    },
+    {
+      "position": 100,
+      "id": "t_287ed053d37e",
+      "term": "就路還家",
+      "priorSha256": "a5575ede3f48ebd7d676a6b08f9395034cf6f46c1ef7dface7c5990ac9bb1636",
+      "entrySha256": "5df06dbab8c7a8e4bae68abdabb189ca869ade01b7b75f915032dfad6cacd365",
+      "finding": "Literal sense has 7 aliases and duplicates appraisal aliases.",
+      "completedUtc": "2026-07-15T01:15:00Z"
+    }
+  ],
+  "completedUtc": "2026-07-15T01:30:00Z",
+  "finalGate": {
+    "completed": 30,
+    "attributionExit": 0,
+    "publicFeedbackExit": 0,
+    "depthExit": 0,
+    "workSourceExit": 0,
+    "corpusBaselineExit": 0,
+    "frozenHistoryExit": 0,
+    "forbiddenExit": 0,
+    "exactKwicExit": 0,
+    "cohortExit": 0,
+    "occurrencesVerified": 224,
+    "cohortEvidenceVerified": 227,
+    "keepHashesChecked": 44,
+    "keepHashFailures": 0,
+    "repairHashFailures": 0,
+    "cohortReport": "fresh-build/waves/f001-laneC-second-semantic-repairs-cohort.json"
+  }
+}

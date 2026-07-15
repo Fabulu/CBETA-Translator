@@ -1,0 +1,182 @@
+{
+  "Id": "t_18ec645f99f7",
+  "SourceTerm": "賓中主",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Linji host-within-guest configuration",
+      "AlternateTargets": [
+        "Linji's host-within-guest"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, 'host within guest.' In the later systematic account of Linji's four guest-host configurations, this is the configuration named when 'the student has nostrils' (學人有鼻孔, 'the student has nostrils'). Records then raise the label as a public question and preserve different answers, including 'facing him, there is no companion.' This is one member of the fourfold set alongside host-within-host, guest-within-host, and guest-within-guest. The texts explicitly say that Linji's guest-host system differs from Caodong's, so the shared graphs must not blur the two school-specific things.",
+      "Note": "Primary sense because the wave groups the term with Linji's four guest-host configurations. Family check with the four guest-host configurations (四賓主) and guest and host (賓主) preserves its explicit nostrils-definition and the stated contrast with Caodong. Split is required under §5 #0f.8: the corpus says the identically written category belongs to two different named systems.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0303b09",
+          "ToLb": "0303b09",
+          "Kwic": "如何是賓中主。穴云。入市雙瞳瞽。",
+          "Curated": true,
+          "AttributionNote": "人天眼目. The exact actor is an unnamed monk: 僧問風穴 introduces 如何是賓中主. No personal name remains after the six-rung review.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fengxue Yanzhao",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Huiyan Zhizhao",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed monk",
+            "ActorRole": "questioning speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex remaining300 research A",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0469c24",
+          "ToLb": "0469c25",
+          "Kwic": "曰如何是賓中主。師曰。對面無儔侶。",
+          "Curated": true,
+          "AttributionNote": "續傳燈錄, Fenyang Shanzhao section. The exact headword-bearing speaker is an unnamed questioning monk: he asks what guest within host is, and Fenyang answers that face-to-face there is no companion. All six rungs preserve no personal name for the monk.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2006.xml",
+        "T/T51/T51n2077.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan"
+      ],
+      "RelatedTerms": [
+        "四賓主",
+        "賓主",
+        "主中主",
+        "主中賓",
+        "賓中賓"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Caodong host-within-guest position",
+      "AlternateTargets": [
+        "the Caodong host-within-guest"
+      ],
+      "Status": "preferred",
+      "Explanation": "In Caodong guest-host discourse the same words name a position paired with host-within-guest's converse and with the bent-and-upright vocabulary. The Eye of Humans and Gods explicitly glosses Caodong's host-within-guest as 'function within essence' (用中體) and says this fourfold guest-host system is not the same as Linji's. In the Dongshan encounter, Dongshan asks 'what is host within guest?' and receives 'white clouds cover the green mountain'; another transmitted version assigns 'long years not leaving the house.' Later verse can say 'host within guest is precisely guest within host' and tell the hearer not to recognize a fixed pattern in reversal and accord. These are recorded formulas and answers, not an invitation to supply an interpretation beyond them.",
+      "Note": "Separate school-specific referent, not a competing reading of one saying. Variant answers are retained as deployments within the Caodong positional category and are not split further.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0682a11",
+          "ToLb": "0682a12",
+          "Kwic": "洞山便問：「如何是賓中主？」云：「白雲蓋青山。」",
+          "MasterName": "Dongshan Liangjie",
+          "Curated": true,
+          "AttributionNote": "Dongshan asks the positional question and receives 'white clouds cover the green mountain.'"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0087b15",
+          "ToLb": "0087b15",
+          "Kwic": "如何是賓中主。師曰。長年不出戶。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Longshan encounter. Dongshan Liangjie is the exact questioner who asks what host within guest is; Longshan answers, 'long years not leaving the house.'",
+          "ContextMasters": [
+            {
+              "MasterName": "Longshan",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "MasterName": "Dongshan Liangjie"
+        },
+        {
+          "RelPath": "X/X70/X70n1403.xml",
+          "FromLb": "0792a04",
+          "ToLb": "0792a04",
+          "Kwic": "賓中主即主中賓，逆順縱橫莫認真",
+          "Curated": true,
+          "AttributionNote": "天如惟則禪師語錄: complete-case exact-turn review identifies Tianru Weize as the actor for this occurrence.",
+          "MasterName": "Tianru Weize"
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0320c12",
+          "ToLb": "0320c13",
+          "Kwic": "四賓主。不同臨濟。主中賓。體中用也。賓中主。用中體也。",
+          "Curated": true,
+          "AttributionNote": "人天眼目: complete-case exact-turn review identifies Huiyan Zhizhao as the actor for this occurrence.",
+          "MasterName": "Huiyan Zhizhao"
+        }
+      ],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "X/X80/X80n1565.xml",
+        "X/X70/X70n1403.xml",
+        "T/T48/T48n2006.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Liangjie"
+      ],
+      "RelatedTerms": [
+        "賓主",
+        "偏正",
+        "主中賓",
+        "主中主",
+        "賓中賓"
+      ]
+    }
+  ]
+}

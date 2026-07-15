@@ -1,0 +1,681 @@
+{
+  "counts": {
+    "entries": 50,
+    "senses": 58,
+    "occurrences": 298,
+    "named_occurrences": 278,
+    "context_master_links": 330,
+    "attribution_notes": 298,
+    "deferred_non_roster": 157,
+    "deferred_non_roster_context": 192,
+    "chinese_strings": 367,
+    "anchored_chinese": 288,
+    "actor_impersonal": 4,
+    "vague_attributor": 38,
+    "dangling_chinese": 79,
+    "actor_reviewed_unnamed": 15,
+    "reviewed_unnamed_prose": 2,
+    "supporting_occurrences": 13,
+    "headword_absent_from_kwic": 13,
+    "note_missing_speaker": 1,
+    "actor_identified_non_master": 1
+  },
+  "hardFailures": 131,
+  "failures": [
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_19784084ccb4/entry.v2.json",
+      "detail": "誌公 s1: 'a master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_19784084ccb4/entry.v2.json",
+      "detail": "誌公 s1: 寶誌公"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_20cc4b0bc96e/entry.v2.json",
+      "detail": "光影門頭 s1: 切忌向光影門頭自埋沒"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_27e66043b271/entry.v2.json",
+      "detail": "聲前一句 s1: 'one master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 'A master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 冷灰豆爆"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 守屍鬼"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 寒灰"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 寒爐"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 枯木"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2dd4fec35455/entry.v2.json",
+      "detail": "死灰 s1: 死水"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_37f647192584/entry.v2.json",
+      "detail": "歇即菩提 s1: 休去歇去"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_37f647192584/entry.v2.json",
+      "detail": "歇即菩提 s1: 休歇"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3b3034d1731f/entry.v2.json",
+      "detail": "眉毛廝結 s1: 'one master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3b3034d1731f/entry.v2.json",
+      "detail": "眉毛廝結 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_432d8c4f7579/entry.v2.json",
+      "detail": "死語 s1: 'a teacher'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_432d8c4f7579/entry.v2.json",
+      "detail": "死語 s1: 死句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_432d8c4f7579/entry.v2.json",
+      "detail": "死語 s1: 死言死語"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_432d8c4f7579/entry.v2.json",
+      "detail": "死語 s1: 活句"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_48bc24c64738/entry.v2.json",
+      "detail": "應物現形 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_48bc24c64738/entry.v2.json",
+      "detail": "應物現形 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5105a2174a19/entry.v2.json",
+      "detail": "依樣畫葫蘆 s1: 'One master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5105a2174a19/entry.v2.json",
+      "detail": "依樣畫葫蘆 s1: 'a master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5105a2174a19/entry.v2.json",
+      "detail": "依樣畫葫蘆 s1: 印板上打來"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5105a2174a19/entry.v2.json",
+      "detail": "依樣畫葫蘆 s1: 模子裏脫出"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f08e925c83d/entry.v2.json",
+      "detail": "維摩詰 s1 o1: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f08e925c83d/entry.v2.json",
+      "detail": "維摩詰 s1 o2: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f08e925c83d/entry.v2.json",
+      "detail": "維摩詰 s1 o3: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f08e925c83d/entry.v2.json",
+      "detail": "維摩詰 s1 o4: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f08e925c83d/entry.v2.json",
+      "detail": "維摩詰 s1 o6: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6214dc704b24/entry.v2.json",
+      "detail": "莫錯會 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6214dc704b24/entry.v2.json",
+      "detail": "莫錯會 s1: 'one master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6214dc704b24/entry.v2.json",
+      "detail": "莫錯會 s1: 'a master'"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_68d495f2868b/entry.v2.json",
+      "detail": "印板 s2 o2: The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): the quoted imperial decree orders that Zhongfeng Mingben's collected writings be carved for every Tripitaka printing-block collection."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6ac3f9f0a2d2/entry.v2.json",
+      "detail": "渠今正是我 s1: 'another master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_75348ebe8a2d/entry.v2.json",
+      "detail": "韓獹逐塊 s1: 'the monk'"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_75a477117870/entry.v2.json",
+      "detail": "紫芝 s1 o4: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7e735921071e/entry.v2.json",
+      "detail": "冷灰豆爆 s1: 寒灰"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7e735921071e/entry.v2.json",
+      "detail": "冷灰豆爆 s1: 死灰"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1: 'one master'"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8f4ef1246821/entry.v2.json",
+      "detail": "無位 s1 o7: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a38f997d9c16/entry.v2.json",
+      "detail": "蒸砂作飯 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a38f997d9c16/entry.v2.json",
+      "detail": "蒸砂作飯 s1: 'another master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a38f997d9c16/entry.v2.json",
+      "detail": "蒸砂作飯 s1: 敲冰覓火"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a38f997d9c16/entry.v2.json",
+      "detail": "蒸砂作飯 s1: 畫餅充飢"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a38f997d9c16/entry.v2.json",
+      "detail": "蒸砂作飯 s1: 緣木求魚"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a5408be46291/entry.v2.json",
+      "detail": "認奴作郎 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a60b47e59680/entry.v2.json",
+      "detail": "斬葛藤 s1: 'a master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a60b47e59680/entry.v2.json",
+      "detail": "斬葛藤 s1: 截斷葛藤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a60b47e59680/entry.v2.json",
+      "detail": "斬葛藤 s1: 斬斷葛藤"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ae34e87d493d/entry.v2.json",
+      "detail": "傅大士 s1 o2: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0d4b62a9c2f/entry.v2.json",
+      "detail": "皮下有血 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0d4b62a9c2f/entry.v2.json",
+      "detail": "皮下有血 s1: 'the master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0d4b62a9c2f/entry.v2.json",
+      "detail": "皮下有血 s1: 眼裏有筋"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b1487d8fc8f9/entry.v2.json",
+      "detail": "立定腳跟 s1: 'one master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b1c32bd93e66/entry.v2.json",
+      "detail": "鵝王 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b1c32bd93e66/entry.v2.json",
+      "detail": "鵝王 s1: 'the master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b1c32bd93e66/entry.v2.json",
+      "detail": "鵝王 s1: 具眼"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b1c32bd93e66/entry.v2.json",
+      "detail": "鵝王 s1: 擇法"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4367c692c8a/entry.v2.json",
+      "detail": "有什麼交涉 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4367c692c8a/entry.v2.json",
+      "detail": "有什麼交涉 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4367c692c8a/entry.v2.json",
+      "detail": "有什麼交涉 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4367c692c8a/entry.v2.json",
+      "detail": "有什麼交涉 s1: 'a monk'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4367c692c8a/entry.v2.json",
+      "detail": "有什麼交涉 s1: 有甚交涉"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 'the master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 一著"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 五燈全書"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 何是父母未生前"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 入就瑞白禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 八十翁翁輥繡毬"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 參"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 古尊宿語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是已生"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是已生底"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是已生後消息"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是父母未生前"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是父母未生前一句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是父母未生前本來面目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 如何是父母未生前消息"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 季總徹禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 屋北鹿獨宿"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 已生底"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 已生後"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 師云如何是父母未生前一句上曰昨夜今朝又明日"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 幻有正傳"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 弟子姓萬"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 懶石聆禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 提撕"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 未審父母未生前姓甚麼"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 本來底佛"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 本來無一物"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 本來無佛"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 本來面目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 消息"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 溪西雞齊啼"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 烏龜撞著石點頭"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 父母未生前"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 父母未生前本來面目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 父母未生時"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 畢竟是什麼"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 破山"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 破山禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 見性"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 話頭"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 那箇是你本來面目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 金剛與泥神揩背"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 雪竇石奇禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "detail": "父母未生已前 s1: 風生壁下寒"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c698ab3d0cf9/entry.v2.json",
+      "detail": "拖死屍 s1 o1: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d3dbc300bfac/entry.v2.json",
+      "detail": "布袋和尚 s1 o1: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d3dbc300bfac/entry.v2.json",
+      "detail": "布袋和尚 s1 o2: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d3dbc300bfac/entry.v2.json",
+      "detail": "布袋和尚 s1 o4: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d3dbc300bfac/entry.v2.json",
+      "detail": "布袋和尚 s1 o5: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e016fb20e6da/entry.v2.json",
+      "detail": "認賊為子 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e016fb20e6da/entry.v2.json",
+      "detail": "認賊為子 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e016fb20e6da/entry.v2.json",
+      "detail": "認賊為子 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 'a master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 入水入泥"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 和泥合水"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 拖泥帶水"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 接引"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e95ea628d5dd/entry.v2.json",
+      "detail": "入泥入水 s1: 葛藤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f1b933473387/entry.v2.json",
+      "detail": "閑葛藤 s1: 截斷葛藤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f1b933473387/entry.v2.json",
+      "detail": "閑葛藤 s1: 打葛藤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f1b933473387/entry.v2.json",
+      "detail": "閑葛藤 s1: 葛藤公案"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f1b933473387/entry.v2.json",
+      "detail": "閑葛藤 s1: 閒葛藤"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "generatedUtc": "2026-07-15T13:56:58.405295+00:00",
+  "elapsedSeconds": 2.31,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+      "sha256": "b55424dd603c8128c2cda9d4f6557369facdd98fb084903ea4231ddfb32cf8fb"
+    },
+    {
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+      "sha256": "b532b8a6b948e1fbd3f2f3c6422a8f03ed736ce93bc96cef3dff2fce72304cca"
+    },
+    {
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+      "sha256": "b55ab926e14f153380de83ea48a4584433a2d00053cde42323b8bf809d922cab"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+        "id": "t_edfd0b2afa11",
+        "term": "接物利生",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+        "id": "t_e251ef5cbc12",
+        "term": "橫按拄杖",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+        "id": "t_47b3313788e2",
+        "term": "體露金風",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.127,
+    "attribution": 0.645,
+    "publicFeedback": 0.126,
+    "depthSense": 0.427,
+    "countClaims": 0.113,
+    "workSourceValidation": 0.179,
+    "corpusBaseline": 0.133,
+    "frozenHistoricalTerms": 0.505,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.645,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "named_occurrences": 11,
+        "context_master_links": 20,
+        "attribution_notes": 21,
+        "actor_reviewed_unnamed": 2,
+        "actor_narrated": 8,
+        "deferred_non_roster_context": 4,
+        "pending_roster_context_master": 4,
+        "deferred_non_roster": 1,
+        "pending_roster_master": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"named_occurrences\": 11,\n    \"context_master_links\": 20,\n    \"attribution_notes\": 21,\n    \"actor_reviewed_unnamed\": 2,\n    \"actor_narrated\": 8,\n    \"deferred_non_roster_context\": 4,\n    \"pending_roster_context_master\": 4,\n    \"deferred_non_roster\": 1,\n    \"pending_roster_master\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.126,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp5w1qucp7.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.427,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_47b3313788e2",
+        "t_e251ef5cbc12",
+        "t_edfd0b2afa11"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_47b3313788e2\",\n    \"t_e251ef5cbc12\",\n    \"t_edfd0b2afa11\"\n  ]\n}\nreport: /tmp/tmpg7lwbkar-depth.json\n",
+    "report": "/tmp/tmpg7lwbkar-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.113,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.179,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.133,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.505,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ],
+  "strictRosterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ]
+}

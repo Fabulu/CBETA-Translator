@@ -1,0 +1,156 @@
+{
+  "Id": "t_338c380e905a",
+  "SourceTerm": "木佛",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "wooden buddha",
+      "AlternateTargets": [
+        "wooden buddha-image",
+        "buddha carved from wood"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally a \"buddha\" (佛) made of \"wood\" (木): a \"wooden buddha,\" attested 663 times in 181 allowlisted texts. The principal recorded case says Danxia, encountering severe cold at Huilin Temple, took a wooden buddha and burned it. When the superintendent rebuked him, Danxia stirred the ashes and said he was looking for relics. The superintendent replied, \"How could a wooden buddha have relics?\" Danxia said, \"Since it has no relics, bring two more honored ones to burn\" (木佛何有舍利，既無舍利，更請兩尊來燒). The phrase also appears in the fixed line \"a wooden buddha does not pass through fire\" (木佛不度火), alongside a clay buddha not passing through water and a gold buddha not passing through a furnace.",
+      "Validation": "multi-source",
+      "Note": "Later masters repeatedly raise the Danxia case and ask why the superintendent's eyebrows fell out. Recorded answers include \"a thief does not raid a poor household\" (賊不打貧兒家), \"one person transmits a falsehood; ten thousand transmit it as fact\" (一人傳虗，萬人傳實), \"Zhang drinks the wine and Li gets drunk,\" and \"the cat knows how to climb a tree.\" The ten occurrences of \"What is a wooden buddha?\" (如何是木佛) and these later questions retain the literal image as their headword; the texts do not replace it with an abstract category.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0077c06",
+          "ToLb": "0077c07",
+          "Kwic": "乃取木佛燒火，向院主呵曰：何得燒我木佛？",
+          "MasterName": "Danxia Tianran",
+          "Curated": true,
+          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集), Danxia Tianran section. Danxia Tianran is the first exact actor in this KWIC: he takes a wooden buddha and burns it; the following superintendent's question is contextual speech, not Danxia's turn."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0077c08",
+          "ToLb": "0077c09",
+          "Kwic": "院曰：木佛何有舍利？霞曰：既無舍利，更請兩尊來燒。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "temple superintendent",
+            "ActorLabel": "unnamed temple superintendent",
+            "ActorRole": "speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-13T21:45:36Z"
+          },
+          "Curated": true,
+          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集), Danxia Tianran section. An unnamed temple superintendent is the exact speaker who says that a wooden buddha has no relics; all six attribution rungs, including parallel recensions, leave him unnamed. Danxia Tianran gives the following reply."
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0327b18",
+          "ToLb": "0327b18",
+          "Kwic": "木佛不度火",
+          "Curated": true,
+          "AttributionNote": "嘉泰普燈錄, Sansheng Jichang section. Sansheng Jichang is the exact hall-verse speaker who begins, 'A wooden buddha does not pass through fire.'",
+          "MasterName": "Sansheng Jichang"
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0304a22",
+          "ToLb": "0304a23",
+          "Kwic": "問。丹霞燒木佛。院主為甚麼眉鬚墮落。曰。賊不打貧兒家。",
+          "Curated": true,
+          "AttributionNote": "嘉泰普燈錄, Daning Daokuan section. The exact headword-bearing speaker is an unnamed questioning monk who asks why the temple director's brows fell after Danxia burned the wooden buddha. All six rungs leave him unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Daning Daokuan",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            },
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "case-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0024b13",
+          "ToLb": "0024b14",
+          "Kwic": "僧問：丹霞燒木佛，院主為甚麼眉鬚墮落？師曰：一人傳虗，萬人傳實。",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷). an unnamed questioning monk is the exact actor. Complete Book of the Five Lamps (五燈全書), Yunfeng Zhizhao section. An unnamed monk is the exact speaker who asks why the monastery rector's eyebrows and beard fell out when Danxia burned the wooden buddha; Yunfeng answers him. All six rungs leave the questioning monk personally unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunfeng Zhizhao",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            },
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "person-invoked"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-X82n1571",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X66/X66n1296.xml",
+        "X/X79/X79n1559.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "丹霞燒佛",
+        "金佛",
+        "泥佛",
+        "舍利"
+      ]
+    }
+  ]
+}

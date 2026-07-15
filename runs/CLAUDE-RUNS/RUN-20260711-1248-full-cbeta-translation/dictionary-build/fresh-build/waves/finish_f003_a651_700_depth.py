@@ -1,0 +1,4 @@
+import datetime,json,subprocess,sys
+from pathlib import Path
+R=Path(__file__).resolve().parents[2];d=R/'fresh-build/entries/t_279cf2b97244';p=d/'evidence.draft.json';x=json.loads(p.read_text());x['Entry']['Senses'][0]['Occurrences'][-1]['ActorAttribution']['ReviewedUtc']=datetime.datetime.now(datetime.timezone.utc).isoformat();p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n');subprocess.run([sys.executable,str(R/'compile_evidence_draft.py'),str(p),'--output',str(d/'entry.v2.json'),'--report',str(d/'compile-report.json')],check=True)
+d=R/'fresh-build/entries/t_4da199fae933';p=d/'evidence.draft.json';x=json.loads(p.read_text());x['Entry']['Senses'][2]['Validation']='single-source';p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n');subprocess.run([sys.executable,str(R/'compile_evidence_draft.py'),str(p),'--output',str(d/'entry.v2.json'),'--report',str(d/'compile-report.json')],check=True)

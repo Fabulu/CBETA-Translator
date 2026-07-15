@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "f003-author-repair-rereview-checkpoint-v1",
+  "generatedUtc": "2026-07-15T06:30:56.023308+00:00",
+  "wave": "f003",
+  "lane": "B",
+  "range": [
+    791,
+    800
+  ],
+  "readOnly": true,
+  "siteTouched": false,
+  "formalGateSha256": "01c9ac4606660228bd0be72133b6469a08245b08a1fce5593b3dc080562d58fc",
+  "summary": {
+    "KEEP": 0,
+    "REVISE": 10
+  },
+  "rows": [
+    {
+      "ordinal": 791,
+      "id": "t_7106d3345b14",
+      "term": "須菩提",
+      "entrySha256": "e4bd7beea4ff92c8945c14f6f72e5d6a3460a6cfc1092c996cf60c957e79e35e",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The Subhuti citation scope is useful, but compiler, documentary narrator, and quoted-scripture ownership are all placed in MasterName. These roles must move to ActorAttribution/ContextMasters and exact utterers must be named.",
+      "finding": "REVISE — Documentary and scripture contexts were partly demoted, but Subhuti as quoted figure/subject is still not consistently separated from the Chan quoter and compiler."
+    },
+    {
+      "ordinal": 792,
+      "id": "t_5cde0218375f",
+      "term": "把住放行",
+      "entrySha256": "1b1160c88e0b2d9442bc01c480342ffcbeedde88ebd60729670decdc3df4cd5c",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "priorFinding": "The paired maneuvers are well distinguished from 把住 alone, but 'case commentator on Jiashan Shanhui' is a syntax label, not a roster master. Identify the commentator or use the reviewed non-master/narrated branch.",
+      "finding": "REVISE — The syntax-fragment commentator label was demoted, but the actual identifiable commentator/utterer was not recovered; generic narration is not completion of the attribution ladder."
+    },
+    {
+      "ordinal": 793,
+      "id": "t_73656adc1e50",
+      "term": "蒼天",
+      "entrySha256": "91c2196cd7e5ea342f79843d45ad9e0320bac0d558d6256a7356bada95dca407",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The exclamation/sky distinction is good, but compiler and documentary narrator labels occupy MasterName and Shakyamuni may be a quoted case figure. Speech punctuation alone does not establish the current container owner as utterer.",
+      "finding": "REVISE — Compiler labels were demoted, but sky description, exclamation, and quoted Buddha material still lack reliable exact speaker boundaries in all occurrences."
+    },
+    {
+      "ordinal": 794,
+      "id": "t_c051d6f277af",
+      "term": "佛誕",
+      "entrySha256": "8bf31a16486f3319284b52c3fbd6db286711a8c05a98458b5ad98c0de4c24535",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The birthday/calendar boundary is strong, but two documentary narrator labels and 'Zhenzong monk' are invalid MasterName values. Date headings and ceremony narration require exact non-master/narrated treatment.",
+      "finding": "REVISE — Date headings and ceremony metadata remain linked to nearby masters in surviving rows; editorial 佛誕 is not speech merely because a sermon follows it."
+    },
+    {
+      "ordinal": 795,
+      "id": "t_f266d9e034ea",
+      "term": "主中主",
+      "entrySha256": "1f73304ff3c3416ae68abd67216186437baf677383c394898bce8b8ba4c39c9c",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The relational slot and anti-self warning are good, but a documentary narrator is stored as MasterName and quoted classification material may have later raisers. Verify exact utterers across the Caodong/Linji commentary chain.",
+      "finding": "REVISE — The category gloss remains good, but later Caodong/Linji quotation chains and one documentary row still do not distinguish original classifier, raiser, and compiler."
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "entrySha256": "9f8f396a74efddb115a3951c4771684a6e9eeeacd5e7124207201f27c5290245",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "priorFinding": "The full-day time span is correctly pictured, but compiler and two documentary narrator labels occupy MasterName. Catalogue/narrative rows cannot be linked as masters, and Baozhi quotations need quoter versus original speaker separation.",
+      "finding": "REVISE — O2 is biographical/catalogue narration of Baozhi’s title assigned to Baozhi, and O7–O9 are compiler/catalogue prose; the repair still treats subject or work owner as utterer."
+    },
+    {
+      "ordinal": 797,
+      "id": "t_eeb3c71567a1",
+      "term": "僧臘",
+      "entrySha256": "ccda7b559950c3c889d1c86feff150bfcd9b5f156c34b8cd897df87610c224b2",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The ordination-year seniority distinction is strong, but a documentary narrator is MasterName and several biographical counts are narration about a master, not speech by him. Person-described belongs in ContextMasters.",
+      "finding": "REVISE — O1–O8 are death-date biographies reporting monastic seniority. They are still assigned to Fazhi, Pu’an, Yanxi, Cheya, Minshu, Chushi, and Mazu as utterers although those people are the deceased subjects."
+    },
+    {
+      "ordinal": 798,
+      "id": "t_dc24f92ead78",
+      "term": "問訊",
+      "entrySha256": "48bd4a879f60c535dfd571912884ce3376ed7d375bd83bcbe3b330c4c367ed2c",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "The formal greeting is concrete, but compiler, ceremony narrator, monastic-rule compiler, and lineage narrator labels are all MasterName. Most selected rows are actions/narration, so the current attribution model is inverted.",
+      "finding": "REVISE — O1–O4 and O7 are rules or narrated greeting actions, now generic compilers/narrators; O5 likewise narrates Puhua greeting Linji but assigns Linji as utterer. The actor model remains inverted."
+    },
+    {
+      "ordinal": 799,
+      "id": "t_7ee93f6b90cf",
+      "term": "三要",
+      "entrySha256": "246b69f5e7083212c0a3cc36489f3ee689eae5732a996d84f4493c46dbf456ad",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "The named Linji category is cautiously handled, but compiler and lineage-sermon labels occupy MasterName and later quotations need quoter/original separation. The absence of three invented definitions is good but does not cure attribution.",
+      "finding": "REVISE — The explicit compiler/lineage labels were demoted, but O1 is biographical reported advice and O3 quotes Linji inside Hanyue’s sermon; original speaker, quoter, and narrator remain flattened."
+    },
+    {
+      "ordinal": 800,
+      "id": "t_e1a5fc496deb",
+      "term": "香積",
+      "entrySha256": "69b896337945d5299f7ce55d5df17363d3c9388615b6620afea15d74ca412e9c",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "The three referents are correctly split and distinguishable, but 'lineage narrator of Dayang disciples' and 'Fuxing monastery speaker' are role strings in MasterName. Proper-name catalogue and monastery-heading uses need narration/identified actors, not master links.",
+      "finding": "REVISE — The three different referents remain correctly split. The person and monastery rows are now narration, but the monastery actor label says “Fuxing” although the heading explicitly says Xiangji, and O4 in the realm sense appears misassigned to Changqing rather than the enclosing Cuiyan speaker."
+    }
+  ]
+}

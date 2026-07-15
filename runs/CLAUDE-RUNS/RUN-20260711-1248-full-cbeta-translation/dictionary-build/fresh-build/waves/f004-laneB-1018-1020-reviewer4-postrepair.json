@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "focused-postrepair-independent-full-case-review",
+  "reviewer": "reviewer4",
+  "generatedUtc": "2026-07-15T14:01:18Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1018, 1020],
+  "sourceRepairLedger": "f004-laneB-1018-1020-reviewer3-findings-repair-ledger.json",
+  "sourceRepairGate": "f004-laneB-1018-1020-reviewer3-findings-repair-pre-review.json",
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 13,
+  "exactKwics": 13,
+  "exactFullSpans": 13,
+  "exactSpanFailures": 0,
+  "keep": 0,
+  "revise": 2,
+  "entries": [
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "reviewedEntrySha256": "7a0a32ae0baedfd23c5329d4dec1801e697142fc1c89a73822ac86ea36137d5f",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "repairFindingResult": "The focused actor repair is correct: occurrence 5 is uttered by the named layman Pang Yun, MasterName remains null, and Mazu Daoyi is correctly linked only as respondent.",
+      "reasons": [
+        "The repaired occurrence-5 AttributionNote is not English-first because it unnecessarily repeats the Chinese headword; this is a current hard depth/prose failure.",
+        "Yuelin Jing and Baoci Xingyan are neither roster-canonical nor registered pending-roster names, so the entry still fails the every-master-named link gate.",
+        "Four AttributionNotes do not carry the exact stored source title expected by the source-link gate, and the compiled-verse note says only ‘unattributed’ without the explicit reviewed speaker result.",
+        "At 606 hits across 185 files, the entry triggers broad-concordance single-sense review. The seven witnesses reach the numeric floor but the one-sense decision still requires an explicit corpus-wide sense audit.",
+        "The opening assertion about acquired descriptions and discriminations is not stated by the stored evidence. The cases attest walls collapsing, circumstances illuminated, the person’s nose being caught, and dust motes being that person; the explanation must infer no more than those reproducible deployments."
+      ]
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "reviewedEntrySha256": "38a875aabd0ff674de3ff623e6d8f5474b6d638d88b3834bf24fd13a0d643edf",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "repairFindingResult": "The focused actor repair is correct: occurrence 5 is uttered by an unnamed monk, and Cian Jingyuan is correctly linked only as the responding section master.",
+      "reasons": [
+        "The Explanation is not English-first because it appends the Chinese headword without translating that occurrence in place; this is a current hard depth/prose failure.",
+        "The Explanation and Note use the vague attributor ‘a master’ instead of naming the attested speaker or describing the deployment generically without a pseudo-attribution.",
+        "Cian Jingyuan and Sanfeng Hanyue are not roster-canonical names; the resulting MasterName and ContextMasters values still fail the strict attribution/link gate.",
+        "Four AttributionNotes do not carry the exact stored source titles, while the impersonal lineage heading and narrated lineage-manual notes do not explicitly name the compiler/narrative voice as required.",
+        "The six cases support the institutional Fayan-lineage sense and do not expose a second referent, but the prose/attribution defects prevent acceptance."
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "currentHashesMatchedRepairLedger": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

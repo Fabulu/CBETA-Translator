@@ -1,0 +1,117 @@
+{
+  "Id": "t_df3e128ab4c1",
+  "SourceTerm": "竪拂",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "raise the whisk",
+      "AlternateTargets": [
+        "hold up the whisk",
+        "lift the fly-whisk"
+      ],
+      "Status": "preferred",
+      "Explanation": "A verb-object phrase: \"raise\" or \"hold upright\" (竪) the whisk (拂), usually the master's fly-whisk (拂子). This seeded graph form occurs 471 times in 90 allowlisted texts; the common orthographic form with the other graph for \"raise\" (豎拂) occurs 2,438 times. The corpus records the action as a direct answer, as a demonstration followed by lowering the whisk, and as a recurrent action whose import students ask about. Nanta Guangyong answers \"who is Manjusri's teacher?\" by raising the whisk to show him (如何是文殊師；師竪拂子示之). Zhaozhou raises the whisk when asked whether he will receive \"the person who sets the realm in order\" (撥亂乾坤底人來，師還接否；師竪拂子). Yunmen raises the older Zifu exchange in which a monk asks, \"what is the import of the ancients picking up the mallet and raising the whisk?\" (古人拈槌竪拂意旨如何). A later Deshan record explicitly classifies \"raise a finger and raise the whisk\" as a dead phrase (舉指竪拂，是死句). These records do not give the raised whisk one uniform gloss, and this entry does not add one.",
+      "Validation": "multi-source",
+      "Note": "The two orthographic forms, the older graph for \"raise\" (竪) and its dominant variant (豎), do not create a second sense. Corpus counts: \"raise the whisk\" with the seeded spelling (竪拂), 471; \"raise the whisk\" with the dominant spelling (豎拂), 2,438; \"raise the fly-whisk\" (竪拂子), 189; \"raise up the fly-whisk\" (竪起拂子), 492; \"pick up the mallet and raise the whisk\" (拈槌竪拂), 108; \"raise a finger and raise the whisk\" (舉指竪拂), 4. The seeded SourceTerm is retained for ID stability, while the dominant written variant is documented here.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0294b03",
+          "ToLb": "0294b04",
+          "Kwic": "曰如何是文殊師。師竪拂子示之。僧曰。莫遮箇是麼。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄, Yangshan Nanta Guangyong section. Nanta Guangyong is the exact actor who raises the whisk when asked who Manjushri's teacher is. Yangshan Huiji is a different master and is not the actor here.",
+          "MasterName": "Nanta Guangyong"
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0761b12",
+          "ToLb": "0761b14",
+          "Kwic": "乃竪起拂子云。只這是要知示現受生麼。竪拂子云。只這是。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "In Yuanwu Keqin's fourth informal address: he raises the whisk and says, \"just this is it\"; asks whether they want to know manifestation and receiving birth; then raises the whisk and again says, \"just this is it.\""
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0129a07",
+          "ToLb": "0129a07",
+          "Kwic": "師竪拂子。僧曰。恁麼則得遇明君去也。",
+          "MasterName": "Zhaozhou Congshen",
+          "Curated": true,
+          "AttributionNote": "In Zhaozhou Congshen's section of the Compendium of Five Lamps. After a monk asks whether he will receive one who sets the realm in order, Zhaozhou raises the whisk; the monk replies, \"then I have met a wise ruler.\""
+        },
+        {
+          "RelPath": "T/T47/T47n1988.xml",
+          "FromLb": "0554b03",
+          "ToLb": "0554b04",
+          "Kwic": "舉僧問資福。古人拈槌竪拂意旨如何。福云。古人與麼那。",
+          "Curated": true,
+          "AttributionNote": "Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄), in Yunmen Wenyan's essential chamber sayings. An unnamed monk is the exact speaker asking Zifu Zhensui for the import of the ancients picking up the mallet and raising the whisk; Zifu Zhensui gives the following reply, and Yunmen Wenyan comments after the raised exchange. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T04:45:53Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zifu Zhensui",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0114a06",
+          "ToLb": "0114a06",
+          "Kwic": "揚眉瞬目，舉指竪拂，是死句。",
+          "MasterName": "Deshan Yuanming",
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Deshan Yuanming section (鼎州德山緣密圓明禪師): Deshan Yuanming is the exact speaker who calls ‘raising the brows and blinking the eyes; raising a finger and raising the whisk’ dead phrases. This is not Deshan Xuanjian."
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "T/T47/T47n1997.xml",
+        "X/X80/X80n1565.xml",
+        "T/T47/T47n1988.xml",
+        "X/X81/X81n1568.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Zhaozhou Congshen",
+        "Yunmen Wenyan"
+      ],
+      "RelatedTerms": [
+        "拂子",
+        "拈槌",
+        "舉指",
+        "死句",
+        "活句"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+﻿Wrote `CODEX_VERDICT.md` with `FAIL`.
+
+I could not perform the actual verification because the local command runner timed out on every command, including trivial commands like `Get-Date`, `cmd /c echo ok`, and `exit 0`. I recorded that explicitly as an infrastructure failure rather than fabricating per-sense evidence or passing an unchecked entry.

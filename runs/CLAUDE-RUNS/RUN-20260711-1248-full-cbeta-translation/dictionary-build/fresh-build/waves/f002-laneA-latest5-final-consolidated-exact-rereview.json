@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-final-consolidated-exact-hash-rereview",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": [
+    370,
+    374,
+    376,
+    381,
+    391
+  ],
+  "readOnly": true,
+  "siteTouched": false,
+  "priorReview": "fresh-build/waves/f002-laneA-351-400-latest5-exact-rereview.json",
+  "currentHashesVerified": true,
+  "unchangedPriorKeepOrdinals": [
+    370,
+    376,
+    391
+  ],
+  "newlyRereviewedOrdinals": [
+    374,
+    381
+  ],
+  "summary": {
+    "entries": 5,
+    "KEEP": 5,
+    "REVISE": 0
+  },
+  "findings": [
+    {
+      "ordinal": 370,
+      "id": "t_f56016646d8f",
+      "term": "吐舌",
+      "entrySha256": "806f71ac6b5fb3a5ef6b6602f5e438616794bb47e7deca48d4d1d97fe071d9ee",
+      "worksheetSha256": "dacce2bde1011f83637bc6612bc9b732a573bef380a2feefcc332f6c042a9ee0",
+      "verdict": "KEEP",
+      "finding": "KEEP — unchanged from the prior exact-hash KEEP: Huangbo and the visitor Nian now own their respective tongue gestures, and the prose preserves local variation without assigning one invariant motive."
+    },
+    {
+      "ordinal": 374,
+      "id": "t_1403ddf1e83b",
+      "term": "臨濟喝",
+      "entrySha256": "30433f9083c062ce988df883c4d7f7d0d6511ce013801449360376753b9c0f4f",
+      "worksheetSha256": "764e475e4893133718ffd0dfd5414ee4443374a36f367720190d50dbf0b1b75a",
+      "verdict": "KEEP",
+      "finding": "KEEP — at the new repair hash, later retrospective device lists belong to Huangbo Sheng or Dahui rather than Linji merely because he is named; the Fushi exchange prose now identifies the presiding later teacher rather than falsely saying Linji strikes."
+    },
+    {
+      "ordinal": 376,
+      "id": "t_6ba271127127",
+      "term": "破草鞋",
+      "entrySha256": "56c9c79d47282a953ab035f0354180e15b20696369bb32fb8a4d171e98924c5a",
+      "worksheetSha256": "92fd18d64c5ba6f224128b82f532a3de5325695dc92eb19ab085ed5ae666bd9e",
+      "verdict": "KEEP",
+      "finding": "KEEP — unchanged from the prior exact-hash KEEP: bare worn-out sandals carry the entry depth, while the different “wear out the sandals” predicate is routed to family evidence."
+    },
+    {
+      "ordinal": 381,
+      "id": "t_dda048ca832d",
+      "term": "金鎖",
+      "entrySha256": "8826f09d4d98b856ed7d834f6e82b41c9cef1b6094eb88a9cdbaf240671a4e07",
+      "worksheetSha256": "81e6773d151dabb29c8308aae050749dbc1b395738a99a31542b238fef2e1f76",
+      "verdict": "KEEP",
+      "finding": "KEEP — at the new repair hash, the target remains the controlled unresolved-modifier calque “gold-lock barrier,” no material or symbolic force is invented, the grammar defect is removed, and the barrier versus binding-chain things remain distinguishable."
+    },
+    {
+      "ordinal": 391,
+      "id": "t_d95b944e0749",
+      "term": "透網金鱗",
+      "entrySha256": "b99c042ee0391f66053e6b08b5c1bba45cf475c62f14288e0ca26b8e698d94e0",
+      "worksheetSha256": "876755f4ca6853db3a7f82138ae15d11fa4f2e282ac16078ab843e014b41737b",
+      "verdict": "KEEP",
+      "finding": "KEEP — unchanged from the prior exact-hash KEEP: the appraisal line is correctly assigned in prose and evidence to Baowen Hongyin."
+    }
+  ],
+  "formalizationCondition": "Every verdict applies only to the exact current entry and worksheet hashes shown. No entry, status, site, or promotion artifact was edited."
+}

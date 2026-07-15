@@ -1,0 +1,102 @@
+{
+  "Id": "t_7182bedf65d1",
+  "SourceTerm": "下語",
+  "CreatedBy": "Fabulu; independently remediated Codex risk4",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a submitted response phrase",
+      "AlternateTargets": ["to submit a response", "an offered response", "a response offered on a case"],
+      "SearchAliases": ["capping response", "offer a phrase", "submit an answer", "response phrase", "answer a raised case"],
+      "Status": "preferred",
+      "Explanation": "A submitted response phrase is an on-the-spot answer offered for public judgment on a raised case, saying, or question. Chan records treat the act of submitting it and the resulting words as one response event and product: an assembly may be ordered to respond, successive participants may offer phrases, and the recorded judgment may be that none accords. Langye Huijue orders his student assembly to submit responses and then gives his own final response, ‘Maitreya Bodhisattva’ (慈氏菩薩). In Zhaozhou Congshen's record, many unnamed people respond to Nanquan Puyuan's door challenge without according with Nanquan's intent; Zhaozhou then cries, ‘Blue heavens! Blue heavens!’ (蒼天蒼天). Yulin Tongxiu repeatedly orders assemblies to respond, hears both monastic and lay responses, and supplies his own in their place. Dongshan Liangjie hears ninety-six responses from an unnamed senior monk before one satisfies him. Dahui Zonggao reports successive responses failing on Dongshan's trackless-grass saying and his own assembly's responses failing on the bamboo-slat question. The response is not defined only by rejection: Nanyue Huairang gives his response after eight years, and Yuanwu Keqin describes Xianglin Chengyuan submitting responses that presented his understanding but still did not accord. The ordinary act of offering words is thereby bent into a named public-interview operation: a case is raised, answers are submitted, and acceptance, rejection, a replacement answer, or a further challenge is recorded. The corpus does not state one hidden criterion that makes every response accord, and neither does this entry.",
+      "Validation": "multi-source",
+      "Note": "The exact headword has 918 hits in 206 allowlisted files. One sense survives the different-thing test: verbal ‘submit a response,’ agent ‘responder,’ and nominal ‘submitted response phrase’ grammar all name the same offered answer, not separate referents. Hu Shi's modern scholarly body prose uses the string in ‘wording and choice of characters’ (下語用字); it is retained as marked contrast provenance and cannot establish a second Chan sense or buy headword depth. Related operations remain distinct and are directly anchored here: answering in another's place (代語), an alternative response (別語), an attached comment (著語), a verse on an old case (頌古), and appraisal-commentary (評唱). A raised encounter or case (因緣) is the object answered, not a synonym for the response.",
+      "Occurrences": [
+        {
+          "RelPath":"C/C077/C077n1710.xml","FromLb":"0961c09","ToLb":"0961c09","Kwic":"遂令學眾下語竟有云云","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"student assembly","ActorLabel":"personally unnamed student assembly","ActorRole":"joint responders","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Langye Huijue","Roles":["question-setter","record-owner","following-responder"]}],
+          "AttributionNote":"Old Recorded Sayings of Venerable Masters (古尊宿語錄), Langye Huijue's recorded sayings. The personally unnamed student assembly jointly submits the first responses; all six rungs and the parallel recension leave the individual students unnamed. Langye sets the task and responds afterward."
+        },
+        {
+          "RelPath":"C/C077/C077n1710.xml","FromLb":"0961c09","ToLb":"0961c10","Kwic":"師末後下語云慈氏菩薩","MasterName":"Langye Huijue","Curated":true,
+          "AttributionNote":"Old Recorded Sayings of Venerable Masters (古尊宿語錄), Langye Huijue's recorded sayings. Langye Huijue is the exact actor who gives the final submitted response, ‘Maitreya Bodhisattva’ (慈氏菩薩), after the student assembly's attempts."
+        },
+        {
+          "RelPath":"C/C077/C077n1710.xml","FromLb":"0702b05","ToLb":"0702b06","Kwic":"多有人下語並不契泉意師云蒼天蒼天泉便開門","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"group of participants","ActorLabel":"many personally unnamed participants","ActorRole":"responders","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Nanquan Puyuan","Roles":["challenge-setter","judge"]},{"MasterName":"Zhaozhou Congshen","Roles":["section-subject","following-answerer"]}],
+          "AttributionNote":"Old Recorded Sayings of Venerable Masters (古尊宿語錄), Zhaozhou Congshen's recorded sayings. Many personally unnamed participants are the exact responders; all six rungs and parallel versions leave them unnamed. Nanquan Puyuan sets and judges the door challenge, while Zhaozhou supplies the later cry."
+        },
+        {
+          "RelPath":"B/B27/B27n0152.xml","FromLb":"0558a15","ToLb":"0558a16","Kwic":"師令眾下語眾下語畢師復舉","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"assembly","ActorLabel":"personally unnamed assembly","ActorRole":"joint responders","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Yulin Tongxiu","Roles":["question-setter","record-owner","following-speaker"]}],
+          "AttributionNote":"Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄), Yulin Tongxiu's own record. The personally unnamed assembly jointly submits responses; all six rungs leave the individuals unnamed. Yulin orders the responses and raises the Zhaozhou-Tongguan case again after they finish."
+        },
+        {
+          "RelPath":"B/B14/B14n0082.xml","FromLb":"0237a02","ToLb":"0237a02","Kwic":"有一上座下語九十六轉不愜師意","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"senior monk","ActorLabel":"unnamed senior monk","ActorRole":"responder through ninety-six turns","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Dongshan Liangjie","Roles":["challenge-setter","judge","case-subject"]}],
+          "AttributionNote":"Transmission of the Lamp, Jade Flowers Collection (Fragment) (傳燈玉英集（殘卷）), Dongshan Liangjie case. An unnamed senior monk is the exact responder through ninety-six turns; all six rungs and the parallel in Dongshan's own record leave him unnamed. Dongshan is the challenge-setter and judge, not the responder."
+        },
+        {
+          "RelPath":"B/B27/B27n0152.xml","FromLb":"0653a11","ToLb":"0653a11","Kwic":"是日緇素下語頗多師復自代云","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"monastic and lay group","ActorLabel":"personally unnamed monastic and lay participants","ActorRole":"joint responders","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Yulin Tongxiu","Roles":["question-setter","record-owner","following-substitute-responder"]}],
+          "AttributionNote":"Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄), Yulin Tongxiu's own record. Personally unnamed monastic and lay participants submit many responses; all six rungs leave them personally unnamed. Yulin then supplies his own response in their place."
+        },
+        {
+          "RelPath":"T/T47/T47n1998A.xml","FromLb":"0834c03","ToLb":"0834c05","Kwic":"洞山和尚夏末示眾云。初秋夏末。兄弟東去西去。直須向萬里無寸草處去。前後下語者皆不契。","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"successive responders","ActorLabel":"successive unnamed responders","ActorRole":"responders to Dongshan's saying","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Dongshan Liangjie","Roles":["quoted-saying-speaker","case-subject"]},{"MasterName":"Shishuang Qingzhu","Roles":["later-answerer"]},{"MasterName":"Dahui Zonggao","Roles":["later-raiser","record-owner","commentator"]}],
+          "AttributionNote":"Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄), where Dahui Zonggao raises Dongshan Liangjie's saying. Successive unnamed responders are the exact headword actors; all six rungs and parallel cases leave them unnamed. Shishuang Qingzhu gives a later answer, and Dahui comments afterward."
+        },
+        {
+          "RelPath":"T/T47/T47n1998A.xml","FromLb":"0856a10","ToLb":"0856a11","Kwic":"眾下語皆不契。因僧請益。復成五頌示之。","MasterName":null,"Curated":true,
+          "ActorAttribution":{"Status":"reviewed-unnamed","Kind":"assembly","ActorLabel":"personally unnamed assembly","ActorRole":"joint responders","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex independent exact-turn review","ReviewedUtc":"2026-07-13T22:55:00Z"},
+          "ContextMasters":[{"MasterName":"Dahui Zonggao","Roles":["question-setter","record-owner","following-verse-author"]}],
+          "AttributionNote":"Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄), Dahui Zonggao's own record. The personally unnamed assembly jointly submits responses to Dahui's bamboo-slat question; all six rungs leave the individuals unnamed. Dahui is the question-setter and later composes five verses."
+        },
+        {
+          "RelPath":"T/T48/T48n2001.xml","FromLb":"0017a17","ToLb":"0017a17","Kwic":"讓經八年方下語云。說似一物即不中。","MasterName":"Nanyue Huairang","Curated":true,
+          "ContextMasters":[{"MasterName":"Huineng","Roles":["questioner"]},{"MasterName":"Hongzhi Zhengjue","Roles":["later-raiser","record-owner"]}],
+          "AttributionNote":"Extensive Record of Hongzhi Zhengjue (宏智禪師廣錄), where Hongzhi raises the older Huineng-Nanyue encounter. Nanyue Huairang is the exact responder who, after eight years, says that calling it any one thing would miss; Huineng is the questioner and Hongzhi the later raiser."
+        },
+        {
+          "RelPath":"T/T48/T48n2003.xml","FromLb":"0157a29","ToLb":"0157b01","Kwic":"香林當時。也下語呈見解弄精魂。終不相契。","MasterName":"Xianglin Chengyuan","Curated":true,
+          "ContextMasters":[{"MasterName":"Yunmen Wenyan","Roles":["questioner","judge"]},{"MasterName":"Yuanwu Keqin","Roles":["later-commentator","record-owner"]}],
+          "AttributionNote":"Blue Cliff Record (佛果圜悟禪師碧巖錄), Yuanwu Keqin's commentary on the Xianglin-Yunmen case. Xianglin Chengyuan is the exact actor who submits responses presenting his understanding but does not accord; Yunmen Wenyan questions and judges him, and Yuanwu is the later commentator."
+        },
+        {
+          "RelPath":"B/B25/B25n0143.xml","FromLb":"0276a03","ToLb":"0276a05","Kwic":"雖然「音律不差」，而「下語用字，全不可讀」，也沒有文學價值","MasterName":"Hu Shi","Curated":true,"EvidenceRole":"contrast",
+          "AttributionNote":"The Third Dunhuang Manuscript of Shenhui's Recorded Sayings (神會和尚語錄的第三個敦煌寫本：南陽和尚問答雜徵義（劉澄集）), modern scholarly body prose signed and edited by Hu Shi. Hu Shi uses the graph string for wording and choice of characters in song lyrics; this non-Chan editorial control is marked contrast and does not buy Chan-sense depth. Hu Shi is not a roster master."
+        },
+        {
+          "RelPath":"T/T48/T48n2003.xml","FromLb":"0209a05","ToLb":"0209a05","Kwic":"大凡垂語別語代語。直下孤峻。","MasterName":"Yuanwu Keqin","Curated":true,"EvidenceRole":"family",
+          "AttributionNote":"Blue Cliff Record (佛果圜悟禪師碧巖錄), spoken in Yuanwu Keqin's commentary. Yuanwu lists an alternative response (別語) and answering in another's place (代語) among related response operations; this is family evidence, not depth for the response-submission headword (下語)."
+        },
+        {
+          "RelPath":"T/T48/T48n2003.xml","FromLb":"0144a08","ToLb":"0144a08","Kwic":"眾中謂之著語。","MasterName":"Yuanwu Keqin","Curated":true,"EvidenceRole":"family",
+          "AttributionNote":"Blue Cliff Record (佛果圜悟禪師碧巖錄), Yuanwu Keqin's commentary. Yuanwu directly says that in the assembly this is called an attached comment (著語); the row anchors the distinct family term and does not buy depth for the response-submission headword (下語)."
+        },
+        {
+          "RelPath":"T/T48/T48n2003.xml","FromLb":"0140a10","ToLb":"0140a11","Kwic":"師住澧州夾山靈泉禪院評唱雪竇顯和尚頌古語要","MasterName":"Yuanwu Keqin","Curated":true,"EvidenceRole":"family",
+          "ContextMasters":[{"MasterName":"Xuedou Chongxian","Roles":["verse-author"]}],
+          "AttributionNote":"Blue Cliff Record (佛果圜悟禪師碧巖錄), opening heading. Yuanwu Keqin is the exact actor who appraises and comments (評唱) on Xuedou Chongxian's verses on old cases (頌古); both distinct family terms are anchored without buying depth for the response-submission headword (下語)."
+        },
+        {
+          "RelPath":"X/X69/X69n1358.xml","FromLb":"0499c14","ToLb":"0499c15","Kwic":"峯云：我有一則因緣舉似你，只是不得錯會。","MasterName":"Jinfeng","Curated":true,"EvidenceRole":"family",
+          "ContextMasters":[{"MasterName":"Huqiu Shaolong","Roles":["later-raiser","record-owner"]}],
+          "AttributionNote":"Recorded Sayings of Chan Master Huqiu Shaolong (虎丘紹隆禪師語錄), where Huqiu Shaolong raises Jinfeng's words. Jinfeng is the exact quoted speaker who calls what he will raise an encounter or case (因緣); Jinfeng is source-named but not yet on the roster. This family row anchors the object answered, not a synonym for the response-submission headword (下語)."
+        }
+      ],
+      "SourceTexts":["C/C077/C077n1710.xml","B/B27/B27n0152.xml","B/B14/B14n0082.xml","T/T47/T47n1998A.xml","T/T48/T48n2001.xml","T/T48/T48n2003.xml","B/B25/B25n0143.xml","X/X69/X69n1358.xml"],
+      "RelatedMasters":["Langye Huijue","Nanquan Puyuan","Zhaozhou Congshen","Yulin Tongxiu","Dongshan Liangjie","Dahui Zonggao","Nanyue Huairang","Xianglin Chengyuan","Yuanwu Keqin"],
+      "RelatedTerms":["因緣","代語","別語","著語","頌古","評唱"]
+    }
+  ]
+}

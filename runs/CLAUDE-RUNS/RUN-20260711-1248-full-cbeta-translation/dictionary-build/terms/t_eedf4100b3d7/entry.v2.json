@@ -1,0 +1,117 @@
+{
+  "Id": "t_eedf4100b3d7",
+  "SourceTerm": "師子吼",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the lion's roar",
+      "AlternateTargets": [
+        "a lion's roar",
+        "roar like a lion"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally ‘the lion's roar.’ In the Chan record it names forceful speech or teaching and is repeatedly opposed to the cry of a jackal. One record supplies an explicit definition: ‘teaching with something gained is the jackal's cry; teaching with nothing gained is called the lion's roar’ (說法有所得，斯則野干鳴；說法無所得，是名師子吼). The phrase is not merely an appraisal applied by compilers: masters order monks to ‘try making a lion's roar,’ monks claim it, and it becomes a public-interview challenge. Guishan says that Shishuang's speaking of Chan is ‘like a lion's roar, frightening the foxes, wolves, and jackals to death.’ In another exchange a monk asks what happens on meeting a lion's roar; the master answers ‘let the jackal cry as it likes,’ after which the monk shouts. Thus an animal sound is bent into a name, test, and verdict for speech in the teaching encounter; the texts themselves establish the lion/jackal contrast without requiring an imported symbolic reading.",
+      "Validation": "multi-source",
+      "Note": "558 raw hits in 146 allowlist texts in the b025 preflight. The phrase also occurs in Buddha-birth narratives, but the entry foregrounds its Chan deployment as an appraisal and demanded performance in public exchange. It remains one sense: literal animal imagery, comparison, label, and challenge all refer to the same roar rather than different things.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0061a09",
+          "ToLb": "0061a10",
+          "Kwic": "說法有所得。斯則野干鳴。說法無所得。是名師子吼。",
+          "Curated": true,
+          "AttributionNote": "五燈會元: complete-case exact-turn review identifies Nanyang Huizhong as the actor for this occurrence.",
+          "MasterName": "Nanyang Huizhong"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0170b24",
+          "ToLb": "0170c01",
+          "Kwic": "汝試作師子吼看。曰。若作師子吼。即無和尚。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): Baozi Guangyun tells a new arrival to try making the lion's roar; when the monk replies that doing so would leave no master, Baozi spares him thirty blows because he is newly arrived.",
+          "MasterName": "Baozi Guangyun",
+          "ContextMasters": [
+            {
+              "MasterName": "unnamed monk",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0074a06",
+          "ToLb": "0074a07",
+          "Kwic": "寂子說禪如師子吼，驚殺狐狼野犴之屬。",
+          "Curated": true,
+          "AttributionNote": "The Combined Essentials of the Lamps (聯燈會要), in Yangshan Huiji's record. Guishan Lingyou is the exact speaker appraising Yangshan's speaking of Chan as a lion's roar; Yangshan is the person addressed and appraised.",
+          "MasterName": "Guishan Lingyou",
+          "ContextMasters": [
+            {
+              "MasterName": "Yangshan Huiji",
+              "Roles": [
+                "addressee",
+                "person-appraised",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0667b14",
+          "ToLb": "0667b15",
+          "Kwic": "忽遇師子吼時如何師云一任野干鳴僧便喝",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk asks what happens on meeting a lion's roar; Shoushan answers and the monk shouts. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "X/X79/X79n1557.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [
+        "Guishan Lingyou",
+        "Shishuang Qingzhu"
+      ],
+      "RelatedTerms": [
+        "師子",
+        "野干鳴",
+        "喝",
+        "金毛師子",
+        "踞地師子"
+      ]
+    }
+  ]
+}

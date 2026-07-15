@@ -1,0 +1,123 @@
+{
+  "Id": "t_cf0513be4012",
+  "SourceTerm": "宗旨",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the essential purport",
+      "AlternateTargets": [
+        "the guiding purport",
+        "the fundamental purport",
+        "the gist"
+      ],
+      "Status": "preferred",
+      "Explanation": "The governing or essential purport of a teaching, transmission, house, or master. The corpus records two overlapping deployments. First, the purport is transmitted or fixed. In the Bodhidharma narrative, the seal of the teaching is transmitted to tally with verified mind, while the robe is conferred outwardly to fix the purport. A later preface parallels Shakyamuni holding up the flower and transmitting the subtle mind to Kashyapa with Bodhidharma facing the wall and entrusting the purport to Shenguang, later named Huike. Other formulas speak of revealing the purport and receiving it personally. Second, the purport belongs to a named house or teacher. A biography says someone awakened to Huanglong's purport. Another exchange calls raising the teaching banner and establishing the purport the teacher's ordinary tea and rice. Dedicatory prose says a compiler gathered the material to completion and thereby fixed the purport. The noun takes verbs translated as fix, establish, clarify, receive, reveal, and bury; named forms include Bodhidharma's purport and the purport of the buddha teaching. The records give the governing object and verb each time rather than a separate universal definition.",
+      "Validation": "multi-source",
+      "Note": "One corpus-wide sense covering transmitted purport and the purport of a named house. Current count: 2,171 matches in 315 files; 'clarify the purport' 99/71; 'this purport' 10/4; 'Bodhidharma's purport' 2/2; 'the purport of the buddha teaching' 3/3. The selected occurrences are transmission narrative, preface, biography, stock question, and dedicatory prose, so their occurrence master keys remain null. The formula ending in 'as for the purport' refers to people who take something as their purport and does not define the noun.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0043a17",
+          "ToLb": "0043a17",
+          "Kwic": "外付袈裟。以定宗旨。",
+          "Curated": true,
+          "AttributionNote": "五燈會元: complete-case exact-turn review identifies Bodhidharma as the actor for this occurrence.",
+          "MasterName": "Bodhidharma"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0015c02",
+          "ToLb": "0015c02",
+          "Kwic": "達磨面壁而宗旨付於神光。",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷), layman Liu Jingchen section. Liu Jingchen is the exact prose speaker who says that Bodhidharma faced the wall and entrusted the lineage's essential purport to Shenguang (Huike). Huike is the recipient discussed, not the speaker.",
+          "MasterName": "Liu Jingchen",
+          "ContextMasters": [
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "person-discussed",
+                "transmitter"
+              ]
+            },
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "person-discussed",
+                "recipient"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0041c05",
+          "ToLb": "0041c05",
+          "Kwic": "得悟黃龍宗旨",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷). Complete Book of the Five Lamps (五燈全書), Shishuang Lin biography. Shishuang Lin is the exact grammatical actor who, after remaining at Huangbo, awakens to the essential purport of the Huanglong house.",
+          "MasterName": "Shishuang Lin"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0702a11",
+          "ToLb": "0702a11",
+          "Kwic": "建法幢、立宗旨者，是和尚尋常茶飯。",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷). an unnamed questioning monk is the exact actor. Complete Book of the Five Lamps (五燈全書), Zhuyuan Hongnan section. An unnamed monk is the exact speaker who calls raising the Dharma-banner and establishing the essential purport the master's ordinary tea and rice, then asks for a phrase that benefits beings today. All six rungs leave the questioning monk personally unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhuyuan Hongnan",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-X82n1571",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0587a07",
+          "ToLb": "0587a07",
+          "Kwic": "乃集大成、乃定宗旨",
+          "Curated": true,
+          "AttributionNote": "天界覺浪盛禪師全錄, opening preface. Xu Fang is the exact author: the preface closes with the signature 康熙庚戌大鄣道中老山學人徐芳拜書, and the stored line defining the work's settled lineage purport is in that preface.",
+          "MasterName": "Xu Fang"
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml",
+        "J/J34/J34nB311.xml",
+        "J/J34/J34nB299.xml",
+        "X/X81/X81n1568.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "宗風",
+        "家風",
+        "正法眼藏"
+      ]
+    }
+  ]
+}

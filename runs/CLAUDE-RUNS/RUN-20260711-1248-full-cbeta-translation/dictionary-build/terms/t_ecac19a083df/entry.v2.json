@@ -1,0 +1,108 @@
+{
+  "Id": "t_ecac19a083df",
+  "SourceTerm": "奪人不奪境",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "take away the person, not the surroundings",
+      "AlternateTargets": [
+        "person taken away, surroundings not taken away",
+        "remove the person but not the scene"
+      ],
+      "Status": "preferred",
+      "Explanation": "The first member of Linji's four statements later called the Four Selections: ‘at times, take away the person but not the surroundings.’ Linji's own record gives the complete set and then records the monk's question ‘what is taking away the person but not the surroundings?’ Linji answers, ‘the warming sun brings forth brocade spread over the ground; an infant's hanging hair is white as silk.’ The formula subsequently circulates as a verse heading and repeatable public question. Kefu's verse begins ‘its conditions themselves carry entangling error; if you try to seek the mysterious purport, deliberation instead reproaches you.’ Fengxue answers the inherited question with ‘a newly emerged red-furnace golden pellet strikes through the monk's iron face-door,’ while another later master answers ‘the home country has a road that no one reaches.’ These answer-lines are recorded deployments of the formula.",
+      "Validation": "multi-source",
+      "Note": "339 hits in the wave plan. Cross-read against all four members and the Four Selections (四料揀). The English keeps person (人) and surroundings or scene (境) literal. It is corpus-wide in later use: later verses and masters take up the same named question.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0497a22",
+          "ToLb": "0497a23",
+          "Kwic": "有時奪人不奪境、有時奪境不奪人、有時人境俱奪、有時人境俱不奪。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "Linji's own complete four-member enumeration."
+        },
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0497a24",
+          "ToLb": "0497a25",
+          "Kwic": "如何是奪人不奪境？」師云：「煦日發生鋪地錦，瓔孩垂髮白如絲。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "The monk asks the first member and Linji gives the warming-sun and infant-hair answer."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0225b18",
+          "ToLb": "0225b19",
+          "Kwic": "奪人不奪境。緣自帶誵訛。擬欲求玄旨。思量反責麼。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Kefu Daozhe section. Kefu Daozhe is the exact author of the verse headed 'taking away the person but not the object,' beginning that conditions themselves bear discrepancy.",
+          "MasterName": "Kefu Daozhe"
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0300c24",
+          "ToLb": "0301a01",
+          "Kwic": "如何是奪人不奪境穴云。新出紅爐金彈子。簉破闍黎鐵面門。",
+          "MasterName": "Fengxue Yanzhao",
+          "Curated": true,
+          "AttributionNote": "Fengxue supplies a later answer to the inherited public question."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0237c01",
+          "ToLb": "0237c02",
+          "Kwic": "如何是奪人不奪境。師曰。家鄉有路無人到。",
+          "Curated": true,
+          "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Sanjiao Zhisong section. The exact headword-bearing speaker is an unnamed monk who asks what taking away the person but not the object is; Sanjiao answers that the home country has a road no one reaches. All six rungs leave the monk unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Sanjiao Zhisong",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1985.xml",
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2006.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Kefu",
+        "Fengxue Yanzhao"
+      ],
+      "RelatedTerms": [
+        "四料揀",
+        "奪境不奪人",
+        "人境俱奪",
+        "人境俱不奪"
+      ]
+    }
+  ]
+}

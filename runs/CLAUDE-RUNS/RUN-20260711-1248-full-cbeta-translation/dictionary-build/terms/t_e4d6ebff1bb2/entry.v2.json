@@ -1,0 +1,117 @@
+{
+  "Id": "t_e4d6ebff1bb2",
+  "SourceTerm": "如何是佛",
+  "CreatedBy": "Codex",
+  "WrittenUtc": "2026-07-12T08:08:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "What is Buddha?",
+      "AlternateTargets": [
+        "What is the Buddha?"
+      ],
+      "Status": "preferred",
+      "Explanation": "A stock question in recorded meetings: 'What is Buddha?' (如何是佛). The interrogative asks for the identity or meaning of Buddha, and the record preserves sharply different answers by different masters. Tianyi Yihuai answers, 'spreading the hair to cover mud, laying the body across the ground' (布髮掩泥，橫身臥地); Xuefeng answers, 'Blue sky! Blue sky!' (蒼天，蒼天); Mazu answers, 'this very mind is Buddha' (即心是佛). The translator should preserve the same plain question across these cases so the differing recorded answers remain visible. These are accounts of questions put to named people, not invented literary devices.",
+      "Validation": "multi-source",
+      "Note": "The raw substring occurs 3,795 times in 319 allowlist texts, but that total includes longer expressions such as 'What is the great meaning of the Buddha's teaching?' (如何是佛法大意). Punctuation-specific counts for the standalone question are 446 occurrences of the period form (如何是佛。) in 30 texts and 1,676 occurrences of the question-mark form (如何是佛？) in 237 texts; duplicated recensions and heading material remain included. Use 'What is Buddha?' consistently within a text unless its established English style requires the article.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001b04",
+          "ToLb": "0001b07",
+          "Kwic": "詰。覺聞，拊几稱善。後七坐道場，化行海內，嗣法者甚眾。住後，僧問：如何是佛？師曰：布髮掩泥，橫身臥地。曰：意旨如何？師曰：任是波旬也皺",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷), Tianyi Yihuai section. An unnamed monk questioning Tianyi Yihuai is the exact speaker who asks, ‘what is Buddha?’ Tianyi answers by invoking spreading hair over mud and laying one's body across the ground. All six attribution rungs leave the monk personally unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk questioning Tianyi Yihuai",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/feedback_lexicography",
+            "ReviewedUtc": "2026-07-14T07:10:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Yihuai",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0646b10",
+          "ToLb": "0646b12",
+          "Kwic": "文偃禪師初參睦州陳尊宿，發明心地，尋入嶺參雪峰。一日遇陞堂，僧問：如何是佛？峰云：蒼天！蒼天！師聞，忽釋所疑，契會宗要。後廣主劉氏請居",
+          "Curated": true,
+          "AttributionNote": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), in the Yunmen Wenyan biographical notice. An unnamed monk is the exact speaker of 如何是佛; Xuefeng Yicun answers 蒼天！蒼天！ and Yunmen hears the exchange. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-14T00:35:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "listener",
+                "biographical-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0449b05",
+          "ToLb": "0449b07",
+          "Kwic": "得妙。師直上󳬇，士禮拜。師歸方丈，居士隨後云：適來弄巧成拙。問：如何是佛？師云：即心是佛。問：離四句，絕百非，請師直指西來意。師云：",
+          "MasterName": "Mazu Daoyi",
+          "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄), Mazu Daoyi. The question 'What is Buddha?' receives Mazu's answer 'this very mind is Buddha' (即心是佛)."
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "X/X78/X78n1556.xml",
+        "X/X78/X78n1553.xml"
+      ],
+      "RelatedMasters": [
+        "Mazu Daoyi",
+        "Xuefeng Yicun"
+      ],
+      "RelatedTerms": [
+        "僧問",
+        "即心是佛",
+        "如何是佛法大意"
+      ]
+    }
+  ]
+}

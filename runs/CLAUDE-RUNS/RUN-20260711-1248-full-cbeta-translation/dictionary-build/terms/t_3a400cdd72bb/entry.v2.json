@@ -1,0 +1,128 @@
+{
+  "Id": "t_3a400cdd72bb",
+  "SourceTerm": "破戒",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "break the precepts",
+      "AlternateTargets": [
+        "precept-breaking",
+        "precept-breaker"
+      ],
+      "Status": "preferred",
+      "Explanation": "To violate a binding precept; with a person-word, one who has done so. The compound appears 245 times in 99 allowlisted texts. Juelang’s instruction makes the ordinary threshold explicit: one must be cautious in every word and movement and ‘not wait until the traces show before calling it breaking the precepts’ (勿待形跡發露，而後為破戒也). In public interviews the term becomes a live question rather than a cancelled rule. One lamp case asks how a pure practitioner does not enter nirvana and a precept-breaking monk does not enter hell; another asks whether hearing ornaments through a wall counts as breaking the precepts and then tests a crowded scene of gold, silver, crimson, and purple. Yongjue likewise asks why a precept-breaking monk does not fall into hell. The Chan record also widens what can receive the label. Baizhang says that every seeking mind is called a ‘precept-breaking monk’ (但有一切求心盡名破戒比丘), while Juelang contrasts two assignments: entering birth and death counts as breaking for a lesser-vehicle person, but abandoning birth and death counts as breaking for a great being (二乘人以生死菩提為二，以涉生死為破戒；大士以生死菩提為不二，以捨生死為破戒). The deviation is therefore attestable in both the public use of a real violation category and the record’s explicit reassignment of what constitutes the breach.",
+      "Validation": "multi-source",
+      "Note": "The entry reports the recorded questions without supplying an answer absent from those passages. The corpus’s interview deployment retains the stated violation category. Exact count: 245 hits in 99 files.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0636a27",
+          "ToLb": "0636a28",
+          "Kwic": "一言一動，必須戒慎恐懼，無使心行有少過差。勿待形跡發露，而後為破戒也。",
+          "MasterName": "Juelang Sheng",
+          "Curated": true,
+          "AttributionNote": "Juelang says not to wait for outward traces before calling it precept-breaking."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0337a26",
+          "ToLb": "0337a28",
+          "Kwic": "問清淨行者不入涅槃。破戒比丘不入地獄如何。師曰。度盡無遺影還他越涅槃。",
+          "Curated": true,
+          "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Dongshan Daoquan section. An unnamed monk asks how the pure practitioner does not enter nirvana and the precept-breaking monk does not enter hell; Daoquan answers. The six-rung ladder does not name the monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:11:41Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Daoquan",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0412b24",
+          "ToLb": "0412b27",
+          "Kwic": "律中道。隔壁聞釵釧聲即名破戒。見覩金銀合雜朱紫駢闐。是破戒不是破戒。師曰。好箇入路。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄. Fayan Wenyi is the exact actor: 淨慧問師曰 introduces the Vinaya rule and asks 是破戒不是破戒.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Daoqian",
+              "Roles": [
+                "respondent",
+                "biographical-subject"
+              ]
+            }
+          ],
+          "MasterName": "Fayan Wenyi"
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0414c24",
+          "ToLb": "0415a01",
+          "Kwic": "經云：破戒比丘不入地獄。既是破戒比丘，因甚不入地獄？",
+          "MasterName": "Yongjue Yuanxian",
+          "Curated": true,
+          "AttributionNote": "Yongjue poses the precept-breaker’s non-fall as a direct question."
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0625a01",
+          "ToLb": "0625a03",
+          "Kwic": "秖如今但有一切求心盡名破戒比丘名字羅漢盡名野干",
+          "MasterName": "Baizhang Huaihai",
+          "Curated": true,
+          "AttributionNote": "Baizhang applies ‘precept-breaking monk’ to anyone with a seeking mind."
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0715c12",
+          "ToLb": "0715c14",
+          "Kwic": "二乘人以生死菩提為二，以涉生死為破戒；大士以生死菩提為不二，以捨生死為破戒。",
+          "MasterName": "Juelang Sheng",
+          "Curated": true,
+          "AttributionNote": "Juelang explicitly assigns opposite breaches: entering birth and death for the lesser-vehicle person, abandoning it for the great being."
+        }
+      ],
+      "SourceTexts": [
+        "J/J34/J34nB311.xml",
+        "T/T51/T51n2076.xml",
+        "X/X72/X72n1437.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [
+        "Juelang Sheng",
+        "Yongjue Yuanxian",
+        "Baizhang Huaihai"
+      ],
+      "RelatedTerms": [
+        "戒",
+        "受戒",
+        "持戒",
+        "犯戒",
+        "戒律"
+      ]
+    }
+  ]
+}

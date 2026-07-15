@@ -1,0 +1,208 @@
+{
+  "Id": "t_3f7a6ab74b68",
+  "SourceTerm": "僧堂",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the monks' hall",
+      "AlternateTargets": [
+        "the monastic hall",
+        "the assembly monks' hall"
+      ],
+      "SearchAliases": [
+        "monks' hall",
+        "monastic hall",
+        "assembly hall for monks",
+        "monks' dormitory hall",
+        "in front of the monks' hall"
+      ],
+      "Status": "preferred",
+      "Explanation": "The monks’ hall: a physical communal building with an inside, front, door, bell, assigned places, beds, and stored robe-and-bowl sets. The term occurs 1,743 times in 275 allowed texts. ‘In front of the monks’ hall’ (僧堂前) occurs 488 times in 155 texts; ‘enter the monks’ hall’ (入僧堂) occurs 200 times in 101 texts; and ‘inside the monks’ hall’ (僧堂內) occurs 94 times in 51 texts. The monastic regulations direct that the bell before the hall be struck three times before the assembly disperses (鳴僧堂前鐘三下。大眾問訊而散), prescribe a donor’s place inside the hall for a meal (僧堂內設施主位), and describe arranging all students there by ordination seniority. In an encounter record, an unnamed monk puts down his axe and returns to the hall; Nanquan Puyuan later enters and finds him sitting beneath his robe and bowls. Dongsi Ruhui’s students become so numerous that the hall’s beds collapse, giving him the name ‘Broken-bed Hui’ (僧堂牀榻為之陷折。時稱折牀會也). In Zhaozhou Congshen’s section, the assembly reaches the front of the hall and Zhaozhou shuts the door. Xuansha Shibei lists stream, buddha hall, and monks’ hall as visible named places, then says, ‘the stream is the stream, the buddha hall is the buddha hall, and the monks’ hall is the monks’ hall’ (溪水是溪水，佛殿是佛殿，僧堂是僧堂). These predicates establish a building and its communal uses; the article adds no figurative reading.",
+      "Validation": "multi-source",
+      "Note": "Required self-definition searches found no ordinary definition of the noun. One direct 'what is the monks' hall?' exchange in Xuansha's record answers 'not the monks' hall'; the broader preceding statement is included because it preserves the text's explicit three-place naming. Spatial collocations, regulations, beds, bell, door, and movement were harvested across independent genres.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1113c13",
+          "ToLb": "1113c15",
+          "Kwic": "鳴僧堂前鐘三下。大眾問訊而散。",
+          "Curated": true,
+          "AttributionNote": "Imperially Revised Baizhang Monastic Code (勅修百丈清規). The exact actor is the impersonal narrative procedural voice directing that after three strikes on the bell before the monks’ hall, the assembly exchanges bows and disperses.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "compiler narrative",
+            "ActorLabel": "Baizhang monastic-code procedural voice",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "The clause is prescriptive institutional procedure without a quoted speaker.",
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dehui",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1123a14",
+          "ToLb": "1123a15",
+          "Kwic": "僧堂內設施主位。與住持分手齋畢。",
+          "Curated": true,
+          "AttributionNote": "Imperially Revised Baizhang Monastic Code (勅修百丈清規). The exact actor is the impersonal narrative procedural voice directing that a donor’s place be set inside the monks’ hall, apart from the abbot, for the communal meal.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "compiler narrative",
+            "ActorLabel": "Baizhang monastic-code procedural voice",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "The clause is prescriptive institutional procedure without a quoted speaker.",
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dehui",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0074a06",
+          "ToLb": "0074a07",
+          "Kwic": "僧放下斧子。歸僧堂。師歸法堂。良久却入僧堂。見僧在衣鉢下坐。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting at the Source (五燈會元), Nanquan Puyuan section. The compiler narrates that an unnamed monk puts down the axe and returns to the monks’ hall; Nanquan later enters and addresses him. No speaker utters the headword in this narrative sentence.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler narrating the monks' hall scene",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The third-person event is compiler narration, not a quoted speech turn.",
+            "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+            "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "interlocutor",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0077c21",
+          "ToLb": "0077c21",
+          "Kwic": "學徒既眾。僧堂牀榻為之陷折。時稱折牀會也。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): the compiler's biographical narrative says that Dongsi Ruhui's students became so numerous that the sleeping platforms in the monks' hall collapsed, producing the name 'Collapsed-Bed Assembly.'",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler narrating the monks' hall scene",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The third-person event is compiler narration, not a quoted speech turn.",
+            "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+            "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dongsi Ruhui",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0468c10",
+          "ToLb": "0468c11",
+          "Kwic": "大眾一時到僧堂前，師乃關却僧堂門，大眾無對。",
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 1–33 (五燈全書(第1卷-第33卷)), Zhaozhou Congshen section: the compiler narrates that Zhaozhou closes the monks' hall door after the assembly arrives; Zhaozhou is described, not the utterer of the headword.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler describing Zhaozhou Congshen",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The clause says the assembly came before the monks' hall and the master shut its door (大眾一時到僧堂前，師乃關却僧堂門); it narrates Zhaozhou's action rather than quoting him saying the headword.",
+            "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+            "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X73/X73n1445.xml",
+          "FromLb": "0003c12",
+          "ToLb": "0003c13",
+          "Kwic": "諸上座！溪水是溪水，佛殿是佛殿，僧堂是僧堂，且作麼生會？",
+          "MasterName": "Xuansha Shibei",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Xuansha Shibei (玄沙師備禪師廣錄). Xuansha Shibei is the exact speaker who lists the stream, buddha hall, and monks’ hall as themselves before asking how the senior monks understand.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuansha Shibei",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0251a10",
+          "ToLb": "0251a11",
+          "Kwic": "所褒學眾無多少無高下。盡入僧堂中依夏次安排。",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), monastic-regulations section. The exact actor is the impersonal narrative regulatory voice directing that all students enter the monks’ hall and be arranged by ordination seniority.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "compiler narrative",
+            "ActorLabel": "monastic-regulations narrative voice",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "The sentence is institutional narrative describing hall arrangement, not a personal speech turn.",
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T13:10:00Z"
+          },
+          "ContextMasters": []
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2025.xml",
+        "X/X80/X80n1565.xml",
+        "X/X81/X81n1571.xml",
+        "X/X73/X73n1445.xml",
+        "T/T51/T51n2076.xml"
+      ],
+      "RelatedMasters": [
+        "Xuansha Shibei",
+        "Zhaozhou Congshen"
+      ],
+      "RelatedTerms": [
+        "法堂",
+        "佛殿",
+        "僧堂前"
+      ]
+    }
+  ]
+}

@@ -31,6 +31,16 @@ from zc_batch import verify_entries
 
 
 FORBIDDEN = re.compile(r"\b(?:Buddhism|meditation|Bodhiteaching)\b", re.I)
+
+
+def public_feedback_hard_pass(result: dict) -> bool:
+    """Fresh construction may not waive unresolved reader-facing findings."""
+    payload = result.get("payload")
+    return bool(
+        result.get("exitCode") == 0
+        and isinstance(payload, dict)
+        and payload.get("flagged") == 0
+    )
 PACKET_GENERATOR_VERSION = 3
 
 
@@ -172,7 +182,7 @@ def main() -> int:
     hard_pass = (
         exact["failureCount"] == 0
         and attribution["exitCode"] == 0
-        and public_feedback["exitCode"] == 0
+        and public_feedback_hard_pass(public_feedback)
         and depth["exitCode"] == 0
         and count_claims["exitCode"] == 0
         and work_sources["exitCode"] == 0

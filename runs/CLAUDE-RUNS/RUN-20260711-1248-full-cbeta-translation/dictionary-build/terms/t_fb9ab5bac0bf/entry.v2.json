@@ -1,0 +1,94 @@
+{
+  "Id": "t_fb9ab5bac0bf",
+  "SourceTerm": "草鞋",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "straw sandals",
+      "AlternateTargets": [
+        "straw shoes"
+      ],
+      "Status": "preferred",
+      "Explanation": "Footwear woven from grass or straw. In Chan records the sandals belong especially to going on foot between teachers: “to wear out straw sandals” (踏破草鞋) and “buy more straw sandals and travel on foot for thirty years” (更買草鞋行脚三十年) make the ordinary shoe part of the institutional life of itinerant inquiry. The object also enters named encounters: Deshan turns his back on the hall, puts on his sandals, and leaves; Zhaozhou puts a sandal on his head after Nanquan recounts cutting the cat. Huangbo calls “the patriarchs' dark purport” (祖師玄旨) “worn-out straw sandals” (破草鞋) and says bare feet would be better. The corpus records these concrete actions and comparisons without supplying a symbolic gloss for the sandals.",
+      "Validation": "multi-source",
+      "Note": "The exact term occurs 2,237 times in 301 allowlisted texts. High-value shapes are literal footwear, the travel collocations “wear out sandals” and “buy sandals,” the Deshan departure, the Zhaozhou-on-the-head case, and Huangbo's explicit comparison. No independent self-definition was found.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0143b14",
+          "ToLb": "0143b14",
+          "Kwic": "德山背却法堂。著草鞋便行",
+          "Curated": true,
+          "AttributionNote": "佛果圜悟禪師碧巖錄. Full six-rung exact-turn review identifies Deshan Xuanjian as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Deshan Xuanjian",
+          "ContextMasters": [
+            "Yuanwu Keqin"
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0294c15",
+          "ToLb": "0294c17",
+          "Kwic": "趙州外歸。泉舉似州。州乃脫履。安頭上而出。泉云。子若在即救得猫兒。無門曰。且道。趙州頂草鞋意作麼生。",
+          "Curated": true,
+          "AttributionNote": "無門關: complete-case exact-turn review identifies Wumen Huikai as the actor for this occurrence.",
+          "MasterName": "Wumen Huikai"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0121b08",
+          "ToLb": "0121b09",
+          "Kwic": "祖師玄旨是破草鞋。寧可赤脚不著最好。僧問。如何是佛。",
+          "Curated": true,
+          "AttributionNote": "五燈會元: complete-case exact-turn review identifies Jiashan Shanhui as the actor for this occurrence.",
+          "MasterName": "Jiashan Shanhui"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0139b19",
+          "ToLb": "0139b20",
+          "Kwic": "祖師九年面壁。何不慚惶。若恁麼會得。更買草鞋行脚三十年。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), in its collection of sayings by old worthies. The second unnamed old worthy is the exact quoted speaker who says that construing Bodhidharma's nine years facing the wall this way warrants buying sandals and travelling for another thirty years. The line, expanded context, section heading, book and TEI titles, and parallel recensions in the Chan Forest Anthology and later lamp compilations preserve only ‘another old worthy’ (又一老宿), never a personal name; Bodhidharma is the person discussed, not the speaker.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "old worthy",
+            "ActorLabel": "second unnamed old worthy",
+            "ActorRole": "quoted speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/feedback_lexicography",
+            "ReviewedUtc": "2026-07-14T06:35:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "T/T48/T48n2005.xml",
+        "X/X80/X80n1565.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "行脚",
+        "踏破草鞋"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "generatedUtc": "2026-07-15T00:15:15.759439+00:00",
+  "elapsedSeconds": 4.741,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_097f38f58678",
+      "term": "庭前柏樹子",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_097f38f58678/entry.v2.json",
+      "sha256": "376f320568cc3e9fe9ac841953a585957a48e1e309e5e6efe629caa19d9a4fa9"
+    },
+    {
+      "id": "t_d4661c1b4dbb",
+      "term": "正中偏",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d4661c1b4dbb/entry.v2.json",
+      "sha256": "56b2c4a4983d439cc559d861dd483751c5751aeb5c5c08f88acfcb6477c620f3"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 14,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_097f38f58678/entry.v2.json",
+        "id": "t_097f38f58678",
+        "term": "庭前柏樹子",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d4661c1b4dbb/entry.v2.json",
+        "id": "t_d4661c1b4dbb",
+        "term": "正中偏",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.082,
+    "attribution": 0.505,
+    "publicFeedback": 0.199,
+    "depthSense": 0.507,
+    "workSourceValidation": 0.2,
+    "corpusBaseline": 0.19,
+    "frozenHistoricalTerms": 0.949,
+    "attributionPackets": 2.062
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 0.505,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 14,
+        "named_occurrences": 12,
+        "context_master_links": 23,
+        "attribution_notes": 14,
+        "deferred_non_roster_context": 8,
+        "note_missing_speaker": 2,
+        "deferred_non_roster": 4,
+        "actor_reviewed_unnamed": 2,
+        "chinese_strings": 2,
+        "anchored_chinese": 2
+      },
+      "hardFailures": 2,
+      "failures": [
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_097f38f58678/entry.v2.json",
+          "detail": "庭前柏樹子 s1 o3: Wansong's Commentary on Tiantong's Book of Serenity (萬松老人評唱天童覺和尚頌古從容庵錄): Wansong Xingxiu reports a saying conventionally attributed to Zhaozhou by 州曰, then preserves Huijue's explicit denial that his former teacher ever said it. MasterName records the quoted conventional attribution, not a judgment that the attribution is historically secure."
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d4661c1b4dbb/entry.v2.json",
+          "detail": "正中偏 s1 o7: Recorded Sayings of Chan Master Tianran of Lushan (廬山天然禪師語錄): 原頌曰 marks this as an older quoted stanza, but the line, expanded context, section heading, book title, TEI metadata, and available parallel-witness check do not securely name its historical author. Tianran Hanshi is the later quoter and author of the separate 和曰 response, not this headword-bearing original stanza."
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 14,\n    \"named_occurrences\": 12,\n    \"context_master_links\": 23,\n    \"attribution_notes\": 14,\n    \"deferred_non_roster_context\": 8,\n    \"note_missing_speaker\": 2,\n    \"deferred_non_roster\": 4,\n    \"actor_reviewed_unnamed\": 2,\n    \"chinese_strings\": 2,\n    \"anchored_chinese\": 2\n  },\n  \"hardFailures\": 2,\n  \"failures\": [\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_097f38f58678/entry.v2.json\",\n      \"detail\": \"庭前柏樹子 s1 o3: Wansong's Commentary on Tiantong's Book of Serenity (萬松老人評唱天童覺和尚頌古從容庵錄): Wansong Xingxiu reports a saying conventionally attributed to Zhaozhou by 州曰, then preserves Huijue's explicit denial that his former teacher ever said it. MasterName records the quoted conventional attribution, not a judgment that the attribution is historically secure.\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d4661c1b4dbb/entry.v2.json\",\n      \"detail\": \"正中偏 s1 o7: Recorded Sayings of Chan Master Tianran of Lushan (廬山天然禪師語錄): 原頌曰 marks this as an older quoted stanza, but the line, expanded context, section heading, book title, TEI metadata, and available parallel-witness check do not securely name its historical author. Tianran Hanshi is the later quoter and author of the separate 和曰 response, not this headword-bearing original stanza.\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.199,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpfm32n0f6.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 0.507,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 2,
+      "reviewFlagged": 0,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 2,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.2,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.19,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.949,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.062,
+    "payload": {
+      "entries": 2,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14\n}\nreport: fresh-build/waves/f001-laneA-068-069-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-068-069-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

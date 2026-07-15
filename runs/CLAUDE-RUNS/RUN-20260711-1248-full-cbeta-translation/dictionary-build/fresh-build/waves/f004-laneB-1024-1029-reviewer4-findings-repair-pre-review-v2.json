@@ -1,0 +1,192 @@
+{
+  "generatedUtc": "2026-07-15T13:58:18.997323+00:00",
+  "elapsedSeconds": 4.561,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_30c5eafab07f/entry.v2.json",
+      "sha256": "53955f23cf705ff312d704fe931cc75eb6717b7d08744d9ce6cede8b79ce382c"
+    },
+    {
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_916ec389a07d/entry.v2.json",
+      "sha256": "a4663f7af240a51109e6ced0c6afd3dec3d87d5d52663c2cef3e3a3e669e4e47"
+    },
+    {
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_13bb32cabd43/entry.v2.json",
+      "sha256": "716c38b37eb369f49ec023b68f9b1170b15fdd0f403ac95a887a8c97c9d46777"
+    },
+    {
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f9747521d3d7/entry.v2.json",
+      "sha256": "1709319cc1ac721969b044a18f6f50e8efd0259f18be7106d54bdd58816c90a3"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 23,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_30c5eafab07f/entry.v2.json",
+        "id": "t_30c5eafab07f",
+        "term": "野狐身",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_916ec389a07d/entry.v2.json",
+        "id": "t_916ec389a07d",
+        "term": "香合",
+        "verified": 5,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_13bb32cabd43/entry.v2.json",
+        "id": "t_13bb32cabd43",
+        "term": "弘願",
+        "verified": 5,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f9747521d3d7/entry.v2.json",
+        "id": "t_f9747521d3d7",
+        "term": "授記",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.14,
+    "attribution": 0.821,
+    "publicFeedback": 0.161,
+    "depthSense": 0.583,
+    "countClaims": 0.233,
+    "workSourceValidation": 1.04,
+    "corpusBaseline": 0.451,
+    "frozenHistoricalTerms": 1.072,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.821,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "occurrences": 23,
+        "named_occurrences": 11,
+        "deferred_non_roster": 4,
+        "pending_roster_master": 4,
+        "context_master_links": 15,
+        "deferred_non_roster_context": 6,
+        "pending_roster_context_master": 6,
+        "attribution_notes": 23,
+        "actor_narrated": 8,
+        "actor_reviewed_unnamed": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"occurrences\": 23,\n    \"named_occurrences\": 11,\n    \"deferred_non_roster\": 4,\n    \"pending_roster_master\": 4,\n    \"context_master_links\": 15,\n    \"deferred_non_roster_context\": 6,\n    \"pending_roster_context_master\": 6,\n    \"attribution_notes\": 23,\n    \"actor_narrated\": 8,\n    \"actor_reviewed_unnamed\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.161,
+    "payload": {
+      "entries": 4,
+      "passing": 4,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 4,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp79kp4p7f.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.583,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_13bb32cabd43",
+        "t_30c5eafab07f",
+        "t_916ec389a07d",
+        "t_f9747521d3d7"
+      ]
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_13bb32cabd43\",\n    \"t_30c5eafab07f\",\n    \"t_916ec389a07d\",\n    \"t_f9747521d3d7\"\n  ]\n}\nreport: /tmp/tmpw8mfpcpo-depth.json\n",
+    "report": "/tmp/tmpw8mfpcpo-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.233,
+    "payload": {
+      "entryCount": 4,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 4,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.04,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.451,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.072,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_30c5eafab07f",
+    "t_916ec389a07d",
+    "t_13bb32cabd43",
+    "t_f9747521d3d7"
+  ],
+  "strictRosterScopeIds": [
+    "t_30c5eafab07f",
+    "t_916ec389a07d",
+    "t_13bb32cabd43",
+    "t_f9747521d3d7"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "Id": "t_e3a829e28b09",
+  "SourceTerm": "丈六金身",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the sixteen-foot golden body",
+      "AlternateTargets": [
+        "a sixteen-foot golden buddha-body"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, a golden body one zhang and six chi tall: the monumental bodily form of a buddha in the records. Chan repeatedly deploys it in a reversible formula: take one blade of grass and make it a sixteen-foot golden body, then make the golden body into one blade of grass. Other passages put the body on a refuse heap, ask directly 'what is the sixteen-foot golden body?' and answer with the administrative phrase 'the judge decides the case; the minister amends it,' or call it a mass of merit that is casually waved into the red dust. The Chan-specific bend is the contrast and reversibility: the exalted buddha-form is repeatedly exchanged with grass or located amid refuse and ordinary dust. These are the corpus's stated comparisons; the texts give no further gloss here.",
+      "Note": "Wave-plan frequency: 373. Searches covered the grass reversal, refuse-heap placement, direct interview question, verse deployment, and the family terms a single blade of grass (一莖草), golden body (金身), buddha-body (佛身), and buddha (佛). One referent—the monumental golden buddha-body—appears in all deployments; comparisons do not create senses.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0825a27",
+          "ToLb": "0825a28",
+          "Kwic": "便能拈一莖草。作丈六金身。將丈六金身。却作一莖草。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "The central reversible formula makes the golden body from one blade of grass and the blade from the golden body."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0030b24",
+          "ToLb": "0030b24",
+          "Kwic": "糞掃堆頭現丈六金身，且拈在一邊",
+          "MasterName": "Xuedou Chongxian",
+          "Curated": true,
+          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集), Sengcan section. Xuedou Chongxian is the exact commentator who places the sixteen-foot golden body on top of a refuse heap and then sets that formulation aside."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0105a07",
+          "ToLb": "0105a07",
+          "Kwic": "問。如何是丈六金身。師曰。判官斷案相公改。",
+          "Curated": true,
+          "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Raoshan Heshang section. The headword occurs in an unnamed monk's exact question, 'What is the sixteen-foot golden body?'; Raoshan answers with the judge and minister line. All six rungs leave the monk unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Raoshan Heshang",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0627b20",
+          "ToLb": "0627b22",
+          "Kwic": "百草頭上無邊春信手拈來用得親丈六金身功德聚等閑擺手入紅塵",
+          "Curated": true,
+          "AttributionNote": "禪宗頌古聯珠通集, verse on the Dipamkara ground-marking case. Hongzhi Zhengjue is the exact verse author: the source's inline attribution at the end of this individual verse is 天童覺, and the stored phrase occurs wholly inside that verse.",
+          "MasterName": "Hongzhi Zhengjue"
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1998A.xml",
+        "X/X66/X66n1296.xml",
+        "X/X80/X80n1565.xml",
+        "C/C078/C078n1720.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "一莖草",
+        "金身",
+        "佛身",
+        "佛",
+        "糞掃堆"
+      ]
+    }
+  ]
+}

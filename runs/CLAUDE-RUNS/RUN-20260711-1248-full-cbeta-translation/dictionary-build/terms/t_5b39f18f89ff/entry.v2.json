@@ -1,0 +1,109 @@
+{
+  "Id": "t_5b39f18f89ff",
+  "SourceTerm": "狗子無佛性",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a dog has no buddha-nature",
+      "AlternateTargets": [
+        "Zhaozhou's 'a dog has no buddha-nature' case",
+        "the dog has no buddha-nature saying"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, 'a dog has no buddha-nature.' The corpus records 427 occurrences in 119 allowed texts; 228 add the noun 'saying' (話), and 91 explicitly prefix Zhaozhou's name. The phrase serves as a title or shorthand for the recorded exchange in which someone asks whether a dog has buddha-nature and Zhaozhou answers 'no.' Dahui's verse heading states 'Zhaozhou: a dog has no buddha-nature' (趙州狗子無佛性) and immediately restates the exchange as 'someone asked about a dog's buddha-nature; Zhaozhou answered, no' (有問狗佛性。趙州答曰無). Other records raise 'the saying that a dog has no buddha-nature' (狗子無佛性話), quote its word 'no' (無字), use it in questioning, and place it beside the separately attested wording 'a dog has buddha-nature' (狗子有佛性). The word 'no' is translated as English 'no.'",
+      "Validation": "multi-source",
+      "Note": "No direct definition formula of the forms 'X is,' 'what is called X,' or 'what is X' was found, except one later question, 'What is “a dog has no buddha-nature”?' (如何是狗子無佛性), answered 'fishing' (釣). The term's stable corpus function is instead visible in headings, raised-case labels, verses, questions, and later reports about Zhaozhou's recorded case. The full earlier exchange and the later compound title are related evidence, not two meanings.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0851c26",
+          "ToLb": "0851c27",
+          "Kwic": "趙州狗子無佛性。頌云。有問狗佛性。趙州答曰無。",
+          "Curated": true,
+          "AttributionNote": "大慧普覺禪師語錄: complete-case exact-turn review identifies Zhaozhou Congshen as the actor for this occurrence.",
+          "MasterName": "Zhaozhou Congshen"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0409b15",
+          "ToLb": "0409b16",
+          "Kwic": "上堂。舉狗子無佛性話。乃曰。二八佳人刺繡遲。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): Zhongtianzhu Zhongren raises Zhaozhou's dog-has-no-buddha-nature saying in his hall address and then comments with the embroidered-maiden verse.",
+          "MasterName": "Zhongtianzhu Zhongren",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "earlier-case-source"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0425b21",
+          "ToLb": "0425b22",
+          "Kwic": "以狗子無佛性話。舉無字而提撕。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): in Jianfu Wuben's explicitly headed biography, Jianfu Wuben takes up the word 'no' in Zhaozhou's dog-has-no-buddha-nature case and keeps it before himself in investigation.",
+          "MasterName": "Jianfu Wuben",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-source"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0694a21",
+          "ToLb": "0694a22",
+          "Kwic": "慧舉狗子無佛性話問之。公擬答。慧以竹篦便打。",
+          "Curated": true,
+          "AttributionNote": "Continued Record of the Transmission of the Lamp (續傳燈錄): inside Wu Weiming's biography, Dahui Zonggao is the exact actor marked 慧 who raises the dog-has-no-buddha-nature saying, asks Wu about it, and strikes him with the bamboo slip when he starts to answer.",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Wu Weiming",
+              "Roles": [
+                "respondent",
+                "biographical-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X68/X68n1319.xml",
+          "FromLb": "0562b08",
+          "ToLb": "0562b09",
+          "Kwic": "問：如何是狗子無佛性？王云：釣。",
+          "Curated": true,
+          "AttributionNote": "Imperially Selected Recorded Sayings (御選語錄): in the Yuanming Layman's one-word response sequence, the Yongzheng Emperor answers the question about the dog having no buddha-nature with the single word 'fishhook.'",
+          "MasterName": "Yongzheng Emperor"
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1998A.xml",
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2077.xml",
+        "X/X68/X68n1319.xml"
+      ],
+      "RelatedMasters": [
+        "Zhaozhou Congshen",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "無字",
+        "佛性",
+        "話頭",
+        "狗子有佛性"
+      ]
+    }
+  ]
+}

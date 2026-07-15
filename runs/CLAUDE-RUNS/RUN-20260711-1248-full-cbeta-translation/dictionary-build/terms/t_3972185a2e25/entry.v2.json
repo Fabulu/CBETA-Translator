@@ -1,0 +1,209 @@
+{
+  "Id": "t_3972185a2e25",
+  "SourceTerm": "宗門",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the Zen lineage",
+      "AlternateTargets": [
+        "the Zen school",
+        "the lineage gate",
+        "the ancestral gate",
+        "the source-gate"
+      ],
+      "SearchAliases": [
+        "Zen lineage",
+        "Zen school",
+        "Chan lineage",
+        "ancestral lineage",
+        "lineage tradition",
+        "lineage gate"
+      ],
+      "Status": "preferred",
+      "Explanation": "The Zen lineage as an inherited school and as the field of its recorded matters, questions, and sayings. The term occurs 1,934 times in 285 allowed texts. Yuanwu Keqin gives his own source-and-mind account: 'Buddha's words take mind as the source; when the source is penetrated, speech is also penetrated; therefore it is called the lineage gate' (佛語心為宗。宗通說亦通。既謂之宗門). That explains his use of the first graph; it does not turn every occurrence into a claim about a metaphysical source. Across the corpus, 'within the Zen lineage' occurs 350 times in 108 texts, and 'under the Zen lineage' occurs 175 times in 71 texts. A lecturer whom the Old Recorded Sayings leaves unnamed sets aside the three vehicles and twelve divisions of teaching and asks Muzhou Daoming, 'What is the matter within the Zen lineage?' (三乘十二分教即不問如何是宗門中事). A monk whom the Compendium of the Five Lamps leaves unnamed asks Tianzhu Chonghui to raise and proclaim 'the matter within the Zen lineage' (宗門中事。請師舉唱). Fachang Yiyu draws a line with his staff, sets it aside, and asks Ying Shouzuo how the lineage matter goes (這箇即且止，宗門事作麼生). Wuyi Yuanlai contrasts what he calls the teaching families' utmost reach with 'the strong point within the Zen lineage' (宗門中長處), and elsewhere asks directly what that strong point is. The compound also modifies the title A Collected Anthology of Raising Old Cases in the Zen Lineage (宗門拈古彙集). The title use names a collection belonging to the same lineage; it is not a second referent.",
+      "Validation": "multi-source",
+      "Note": "Definition-formula searches found Yuanwu Keqin's explicit source-and-mind derivation and three occurrences of 'called the lineage gate.' Sixty-three occurrences in 31 texts begin a question with 'what is the Zen lineage' or a longer phrase. The corpus-wide evidence supports one institutional lineage sense across encounter language and collection titles. 'Zen lineage' is preferred because an English reader can identify the referent immediately; 'lineage gate' remains available for passages where the gate image matters.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0786a25",
+          "ToLb": "0786a25",
+          "Kwic": "佛語心為宗。宗通說亦通。既謂之宗門。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), instruction to Zongjue: Yuanwu Keqin directly links the source graph to mind and then uses the compound lineage gate.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0655c08",
+          "ToLb": "0655c09",
+          "Kwic": "有座主問三乘十二分教即不問如何是宗門中事",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), in Muzhou Daoming's section. An unnamed lecturer (座主) is the exact speaker of the headword question; Muzhou answers. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the lecturer.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "lecturer",
+            "ActorLabel": "unnamed lecturer",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "有座主問 marks the lecturer as the subject of 問; the following quoted question contains 宗門, and Muzhou Daoming's answer follows it.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0050b21",
+          "ToLb": "0050b22",
+          "Kwic": "問。宗門中事。請師舉唱。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Tianzhu Chonghui section. An unnamed monk is the exact speaker who asks the teacher to raise and proclaim the matter within the lineage gate; Tianzhu Chonghui answers with the stone ox and wooden horse couplet. The line, expanded context, section header, book title, TEI header, and the corpus-wide exact parallel search do not give the questioning monk a personal name.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianzhu Chonghui",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "問 introduces the monk's exact question containing 宗門; 請師 then addresses Tianzhu Chonghui, whose reply follows.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:24:20Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0004a05",
+          "ToLb": "0004a06",
+          "Kwic": "以拄杖畫一畫，曰：這箇即且止，宗門事作麼生？",
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the Fachang Yiyu section, Fachang Yiyu draws a line with his staff and asks Ying what the lineage matter is.",
+          "MasterName": "Fachang Yiyu",
+          "ContextMasters": [
+            {
+              "MasterName": "Fachang Yiyu",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Ying Shouzuo",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0251a04",
+          "ToLb": "0251a06",
+          "Kwic": "此是教家極則，若以思惟心測度，如將螢火燒須彌山，終不能著。然雖如是，更須知有宗門中長處始得。",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), complete hall address: Wuyi Yuanlai contrasts the teaching families' utmost reach with a strong point within the Zen lineage.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0265c11",
+          "ToLb": "0265c12",
+          "Kwic": "且道：如何是宗門下長處？",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), restriction-period hall address: Wuyi Yuanlai directly asks for the strong point under the Zen lineage.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0007b16",
+          "ToLb": "0007b16",
+          "Kwic": "宗門拈古彙集卷第一",
+          "Curated": true,
+          "AttributionNote": "A Collected Anthology of Raising Old Cases in the Zen Lineage (宗門拈古彙集), volume-one title: in this impersonal editorial scene, the headword forms the institutional modifier in the collection title. The title line is textual metadata, not a person's speech.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "book and volume title",
+            "ActorLabel": "volume-one title heading",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword occurs inside the noun-phrase title 宗門拈古彙集卷第一 immediately before the compiler credit and first case; there is no speech marker or human grammatical subject.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T08:30:00Z"
+          },
+          "ContextMasters": []
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "C/C077/C077n1710.xml",
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml",
+        "X/X72/X72n1435.xml",
+        "X/X66/X66n1296.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "宗旨",
+        "宗乘"
+      ]
+    }
+  ]
+}

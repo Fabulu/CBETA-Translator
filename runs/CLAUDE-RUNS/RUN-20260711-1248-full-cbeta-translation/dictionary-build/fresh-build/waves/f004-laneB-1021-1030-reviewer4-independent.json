@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "reviewer4-independent-full-case",
+  "generatedUtc": "2026-07-15T14:18:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1021, 1030],
+  "method": "Read all sixty occurrences in f004-b-1021-1030-full-case-packet.json, checked the utterer of the headword rather than record owner or case subject, reviewed ContextMasters, English-first prose, depth and sense boundaries, and independently reran current-entry exact verification over the complete stored FromLb-ToLb spans.",
+  "packetIntegrityNote": "The packet's recorded entry hashes predate the final current cohort hashes. Its full-case contexts and spans still match the current sixty occurrences; zc_batch.verify_entries independently passed all sixty current stored spans. Verdicts below are bound to the current entry hashes, not the stale packet hashes.",
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 60,
+  "exactKwicsFromLbToLb": 60,
+  "keep": 6,
+  "revise": 4,
+  "entries": [
+    {
+      "ordinal": 1021,
+      "id": "t_c825600386b2",
+      "term": "劈面",
+      "reviewedEntrySha256": "01f926718a9e500964aa6ccd42b5ac5bb46dfc846f24a5150a92efda93a6fc78",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The seven exact cases support the single directional sense ‘straight in the face’ across direct speech, case narration, biography, and compiled verse. The prose states the ordinary bodily meaning before the Chan use without inventing a second thing."
+    },
+    {
+      "ordinal": 1022,
+      "id": "t_5639a42e1e5d",
+      "term": "香嚴擊竹",
+      "reviewedEntrySha256": "bae2dc5683be31469645ad5c83d6df88e564aee85a426c006be47931344bc9da",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "All five exact later deployments treat the expression as Xiangyan’s bamboo-sound awakening case. The explanation responsibly avoids claiming that he deliberately and repetitively struck bamboo."
+    },
+    {
+      "ordinal": 1023,
+      "id": "t_30a53ee93752",
+      "term": "爐鞴",
+      "reviewedEntrySha256": "7751e81cfcfbca54dcbd4861e376d8b408d9e753c1697c12eaeaefb3eff7dd44",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "Seven exact cases sustain one forge-and-bellows referent and its observable Chan deployment for pressure, testing, and transformation. Named utterers and the unattributed compiled address are not conflated."
+    },
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "reviewedEntrySha256": "e856e7cb7aa0c5810c49c218d06ed135e91ee6941697f2733139a9d4c555bb37",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 6,
+      "reason": "The sense and six spans are sound, but occurrences 1 and 2 label the first unnamed monk as questioner although he makes a declarative contribution in a discussion, and occurrence 3 likewise labels the old man’s declarative statement as a question. Use the closed interlocutor role (or another exact allowed declarative role) while retaining Xuefeng Daoyuan and Baizhang Huaihai in their context roles."
+    },
+    {
+      "ordinal": 1025,
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "reviewedEntrySha256": "4f74e2ee7e2f2e3a530dcf196f0189e43b38ed21505f41a5843ad5743389a918",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 5,
+      "reason": "The incense-box sense and all five spans are correct, but the attribution evidence names the wrong source texts: T48n2025 is 勅修百丈清規, not Chanyuan Qinggui, and X63n1250 is 禪林備用清規, not Conglin Jiaoding Qinggui Zongyao. Rewrite every affected attribution note/evidence to name the actual source and actor."
+    },
+    {
+      "ordinal": 1026,
+      "id": "t_06c19d3bdafe",
+      "term": "肉團",
+      "reviewedEntrySha256": "49e682fc12f7e478ba6d4c539f525e1b45bf7aab565a19b985dbc3880ab13083",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "All seven exact cases use the flesh-lump/body referent, with Linji’s utterance and later deployments clearly separated. Variation in what is located ‘upon’ the flesh does not create a second referent."
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "reviewedEntrySha256": "d36cac8a592cb88ef71d614bba20effd17a5ce2b822bf6c4b836fc1b943e438d",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 5,
+      "reason": "The far-reaching-vow sense is supported, but occurrence 5 is a letter in J27nB193 whose writer identifies himself as 琦 and belongs to Yinyuan Longqi’s record. MasterName=Miyun Yuanwu is wrong; replace it with canonical Yinyuan Longqi and update the utterer context and attribution note."
+    },
+    {
+      "ordinal": 1028,
+      "id": "t_7f696f177766",
+      "term": "梁武帝",
+      "reviewedEntrySha256": "a35f41034469902064dca39eb5fadd80a9f13f31780dd7adcfb0f84b096654ab",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 6,
+      "reason": "Six exact independent cases support Emperor Wu as a repeatedly invoked case figure, chiefly through the Bodhidharma interview and comparisons with royal conduct. Utterers are correctly separated from the named subject."
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "reviewedEntrySha256": "e4d18a7be652d9d122716b0e6397952b6aa97d33f35f651e59c2f7c502557b77",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The current definition is too narrow: occurrence 2 says ‘not failing Boshan’s former 授記’, a master’s prediction/recognition in a lineage setting, while the entry defines every use as assurance that a named recipient will become a buddha. Re-test the sense boundary and broaden or split only as the corpus requires. Also replace placeholder source prose such as ‘Source Mirror Record: compiled exposition’ with the actual text and speaker/actor."
+    },
+    {
+      "ordinal": 1030,
+      "id": "t_13845fbed3f0",
+      "term": "梆",
+      "reviewedEntrySha256": "b9f3bcaae460ec89ea831889fe7028cb91b26c8bbca01b9887861be4301d0fc8",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 5,
+      "reason": "Five exact cases support the wooden signal/clapper referent and its communal-work or awakening-sound deployments. Biography narration, direct master speech, and a titled verse are correctly distinguished."
+    }
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

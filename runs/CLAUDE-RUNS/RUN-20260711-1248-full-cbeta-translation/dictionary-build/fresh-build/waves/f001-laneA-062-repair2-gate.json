@@ -1,0 +1,130 @@
+{
+  "generatedUtc": "2026-07-14T23:33:42.761728+00:00",
+  "elapsedSeconds": 42.47,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_0a686fa27769",
+      "term": "著語",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "sha256": "27fee2e38859a5d9f97aaae0896d9e4d5932e924c7c26e1e67d18fecdd7d903d"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+        "id": "t_0a686fa27769",
+        "term": "著語",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.122,
+    "attribution": 4.468,
+    "publicFeedback": 1.447,
+    "depthSense": 3.308,
+    "workSourceValidation": 1.872,
+    "corpusBaseline": 1.873,
+    "frozenHistoricalTerms": 19.416,
+    "attributionPackets": 9.626
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 4.468,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "named_occurrences": 7,
+        "context_master_links": 9,
+        "attribution_notes": 7,
+        "deferred_non_roster": 2,
+        "deferred_non_roster_context": 2,
+        "chinese_strings": 2,
+        "anchored_chinese": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"named_occurrences\": 7,\n    \"context_master_links\": 9,\n    \"attribution_notes\": 7,\n    \"deferred_non_roster\": 2,\n    \"deferred_non_roster_context\": 2,\n    \"chinese_strings\": 2,\n    \"anchored_chinese\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.447,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpxns0hvja.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.308,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.872,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.873,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 19.416,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 9.626,
+    "payload": {
+      "entries": 1,
+      "occurrences": 7,
+      "tierACandidates": 0,
+      "reviewRequired": 7
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 7,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 7\n}\nreport: fresh-build/waves/f001-laneA-062-repair2-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-062-repair2-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

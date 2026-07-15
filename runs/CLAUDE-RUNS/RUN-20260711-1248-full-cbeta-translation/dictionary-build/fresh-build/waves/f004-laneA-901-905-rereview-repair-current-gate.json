@@ -1,0 +1,263 @@
+{
+  "generatedUtc": "2026-07-15T11:32:39.273973+00:00",
+  "elapsedSeconds": 78.871,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_cc68e32cf1b4",
+      "term": "佛法大意",
+      "path": "fresh-build/entries/t_cc68e32cf1b4/entry.v2.json",
+      "sha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428"
+    },
+    {
+      "id": "t_77811c966dba",
+      "term": "香雲",
+      "path": "fresh-build/entries/t_77811c966dba/entry.v2.json",
+      "sha256": "e88085c76b713e39929f0bc62caea93547bd996683973b661c513adcc42ac1f9"
+    },
+    {
+      "id": "t_602a0b760189",
+      "term": "頂門正眼",
+      "path": "fresh-build/entries/t_602a0b760189/entry.v2.json",
+      "sha256": "c6c0544663ad633ab164773f74866625eef5fc84d641da7e2d65e9971878fadb"
+    },
+    {
+      "id": "t_f5e1fe96407c",
+      "term": "知事",
+      "path": "fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "sha256": "cd012e578c15de03744f896426214460784e6753c7ab6b08a9fa19298f4e39d6"
+    },
+    {
+      "id": "t_1d8554f83698",
+      "term": "續傳燈錄",
+      "path": "fresh-build/entries/t_1d8554f83698/entry.v2.json",
+      "sha256": "dc392d41aabb136985beb18ea610acc09ff449bc81f44c930b558ffa8db48c16"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 32,
+    "failureCount": 1,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_cc68e32cf1b4/entry.v2.json",
+        "id": "t_cc68e32cf1b4",
+        "term": "佛法大意",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_77811c966dba/entry.v2.json",
+        "id": "t_77811c966dba",
+        "term": "香雲",
+        "verified": 6,
+        "failures": [
+          {
+            "kind": "occurrence",
+            "sense": 2,
+            "occurrence": 4,
+            "expected": {
+              "FromLb": "0535a12",
+              "ToLb": "0535a12"
+            },
+            "actual": {
+              "ok": true,
+              "fromLb": "0535a11",
+              "toLb": "0535a16",
+              "count": 1
+            }
+          }
+        ]
+      },
+      {
+        "path": "fresh-build/entries/t_602a0b760189/entry.v2.json",
+        "id": "t_602a0b760189",
+        "term": "頂門正眼",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+        "id": "t_f5e1fe96407c",
+        "term": "知事",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_1d8554f83698/entry.v2.json",
+        "id": "t_1d8554f83698",
+        "term": "續傳燈錄",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.42,
+    "attribution": 6.631,
+    "publicFeedback": 2.554,
+    "depthSense": 7.086,
+    "countClaims": 1.636,
+    "workSourceValidation": 3.235,
+    "corpusBaseline": 1.866,
+    "frozenHistoricalTerms": 2.475,
+    "attributionPackets": 50.441
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 6.631,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 6,
+        "occurrences": 32,
+        "actor_impersonal": 4,
+        "attribution_notes": 32,
+        "note_missing_source": 7,
+        "named_occurrences": 10,
+        "context_master_links": 22,
+        "actor_narrated": 5,
+        "deferred_non_roster": 6,
+        "deferred_non_roster_context": 13,
+        "actor_reviewed_unnamed": 7,
+        "pending_roster_context_master": 6,
+        "pending_roster_master": 2,
+        "invalid_actor_role": 1,
+        "actor_identified_non_master": 6,
+        "note_missing_speaker": 1
+      },
+      "hardFailures": 9,
+      "failures": [
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json",
+          "detail": "續傳燈錄 s1 o1 expected '續傳燈錄': Source text (建中靖國續燈錄): the headword occurs as an impersonal bibliographic title heading."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json",
+          "detail": "續傳燈錄 s1 o2 expected '增集續傳燈錄': Source text (續傳燈錄): the headword occurs in the impersonal expanded-work title heading."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json",
+          "detail": "續傳燈錄 s1 o6 expected '增集續傳燈錄': Source text (續傳燈錄): Nanshi Wenxiu, identified by the signature 永樂十五年三月徑山禪寺前住持比丘文琇書, utters the headword in the signed preface voice."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_602a0b760189/entry.v2.json",
+          "detail": "頂門正眼 s1 o4 expected '百癡禪師語錄': Source text (百癡元說禪師語錄): an unnamed monk utters the headword in a question; Baichi Yuanshuo is the recorded respondent."
+        },
+        {
+          "kind": "invalid_actor_role",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json",
+          "detail": "香雲 s2 o1: 'monk-questioner'"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json",
+          "detail": "香雲 s2 o1 expected '東山梅溪度禪師語錄': Source text (梅溪福度禪師語錄): an unnamed monk asks with 香雲結蓋; Meixi Fudu responds 萬里青山展壽圖."
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json",
+          "detail": "香雲 s2 o4: Source text (宗鏡錄): the compiler lists 香雲 among clouds of offerings that fill the dharma-realm; the expanded KWIC preserves the complete list context."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+          "detail": "知事 s1 o4 expected '列祖提綱錄': Source text (枯崖漫錄): 知事 occurs in the impersonal editorial occasion heading 請東序知事提綱 / 請知事，上堂."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+          "detail": "知事 s1 o7 expected '續古尊宿語要': Source text (叢林公論): 知事 occurs in the impersonal occasion heading 謝新舊知事，小參; Furong Daokai remains the section master, not the utterer."
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 6,\n    \"occurrences\": 32,\n    \"actor_impersonal\": 4,\n    \"attribution_notes\": 32,\n    \"note_missing_source\": 7,\n    \"named_occurrences\": 10,\n    \"context_master_links\": 22,\n    \"actor_narrated\": 5,\n    \"deferred_non_roster\": 6,\n    \"deferred_non_roster_context\": 13,\n    \"actor_reviewed_unnamed\": 7,\n    \"pending_roster_context_master\": 6,\n    \"pending_roster_master\": 2,\n    \"invalid_actor_role\": 1,\n    \"actor_identified_non_master\": 6,\n    \"note_missing_speaker\": 1\n  },\n  \"hardFailures\": 9,\n  \"failures\": [\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json\",\n      \"detail\": \"續傳燈錄 s1 o1 expected '續傳燈錄': Source text (建中靖國續燈錄): the headword occurs as an impersonal bibliographic title heading.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json\",\n      \"detail\": \"續傳燈錄 s1 o2 expected '增集續傳燈錄': Source text (續傳燈錄): the headword occurs in the impersonal expanded-work title heading.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d8554f83698/entry.v2.json\",\n      \"detail\": \"續傳燈錄 s1 o6 expected '增集續傳燈錄': Source text (續傳燈錄): Nanshi Wenxiu, identified by the signature 永樂十五年三月徑山禪寺前住持比丘文琇書, utters the headword in the signed preface voice.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_602a0b760189/entry.v2.json\",\n      \"detail\": \"頂門正眼 s1 o4 expected '百癡禪師語錄': Source text (百癡元說禪師語錄): an unnamed monk utters the headword in a question; Baichi Yuanshuo is the recorded respondent.\"\n    },\n    {\n      \"kind\": \"invalid_actor_role\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json\",\n      \"detail\": \"香雲 s2 o1: 'monk-questioner'\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json\",\n      \"detail\": \"香雲 s2 o1 expected '東山梅溪度禪師語錄': Source text (梅溪福度禪師語錄): an unnamed monk asks with 香雲結蓋; Meixi Fudu responds 萬里青山展壽圖.\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77811c966dba/entry.v2.json\",\n      \"detail\": \"香雲 s2 o4: Source text (宗鏡錄): the compiler lists 香雲 among clouds of offerings that fill the dharma-realm; the expanded KWIC preserves the complete list context.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json\",\n      \"detail\": \"知事 s1 o4 expected '列祖提綱錄': Source text (枯崖漫錄): 知事 occurs in the impersonal editorial occasion heading 請東序知事提綱 / 請知事，上堂.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json\",\n      \"detail\": \"知事 s1 o7 expected '續古尊宿語要': Source text (叢林公論): 知事 occurs in the impersonal occasion heading 謝新舊知事，小參; Furong Daokai remains the section master, not the utterer.\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 1,
+    "elapsedSeconds": 2.554,
+    "payload": null,
+    "output": "Traceback (most recent call last):\n  File \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/audit_public_feedback.py\", line 162, in <module>\n    raise SystemExit(main())\n  File \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/audit_public_feedback.py\", line 144, in main\n    results = [audit(path) for path in paths]\n  File \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/audit_public_feedback.py\", line 144, in <listcomp>\n    results = [audit(path) for path in paths]\n  File \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/audit_public_feedback.py\", line 122, in audit\n    \"path\": str(path.relative_to(HERE)),\n  File \"/usr/lib/python3.10/pathlib.py\", line 818, in relative_to\n    raise ValueError(\"{!r} is not in the subpath of {!r}\"\nValueError: 'fresh-build/entries/t_cc68e32cf1b4/entry.v2.json' is not in the subpath of '/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build' OR one path is relative and the other is absolute.\n"
+  },
+  "depthSense": {
+    "exitCode": 1,
+    "elapsedSeconds": 7.086,
+    "payload": null,
+    "output": "cluster IDs absent from audited paths: f004-laneA-901-905-rereview-repair\n",
+    "report": "/tmp/tmpgw6r91pw-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.636,
+    "payload": {
+      "entryCount": 5,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 5,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.235,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 6,
+        "multiSourceSenses": 6
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 6,\n    \"multiSourceSenses\": 6\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.866,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.475,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 50.441,
+    "payload": {
+      "entries": 5,
+      "occurrences": 32,
+      "tierACandidates": 0,
+      "reviewRequired": 32
+    },
+    "output": "{\n  \"entries\": 5,\n  \"occurrences\": 32,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 32\n}\nreport: fresh-build/waves/f004-laneA-901-905-rereview-repair-current-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f004-laneA-901-905-rereview-repair-current-gate-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "f004-laneA-901-905-rereview-repair"
+  ],
+  "strictRosterScopeIds": [
+    "f004-laneA-901-905-rereview-repair"
+  ]
+}

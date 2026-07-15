@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T10:47:48.119726+00:00",
+  "wave": "f004",
+  "reviewLane": "C",
+  "requestedOrdinals": [
+    1101,
+    1120
+  ],
+  "scope": "read-only independent exact-hash review",
+  "authoredEntriesPresent": 15,
+  "missingEntries": [
+    {
+      "ordinal": 1106,
+      "id": "t_f9d7324ef449",
+      "term": "微塵",
+      "reason": "entry.v2.json absent at review boundary"
+    },
+    {
+      "ordinal": 1107,
+      "id": "t_cee620141c82",
+      "term": "香几",
+      "reason": "entry.v2.json absent at review boundary"
+    },
+    {
+      "ordinal": 1108,
+      "id": "t_c9940cc4ef80",
+      "term": "夏安居",
+      "reason": "entry.v2.json absent at review boundary"
+    },
+    {
+      "ordinal": 1109,
+      "id": "t_cf9506b17745",
+      "term": "薰風自南來",
+      "reason": "entry.v2.json absent at review boundary"
+    },
+    {
+      "ordinal": 1110,
+      "id": "t_d26799ff3ae1",
+      "term": "參頭",
+      "reason": "entry.v2.json absent at review boundary"
+    }
+  ],
+  "occurrencesReadInExpandedCase": 83,
+  "exactKwics": 83,
+  "keep": 7,
+  "revise": 8,
+  "entries": [
+    {
+      "ordinal": 1101,
+      "id": "t_9d60d7613392",
+      "term": "一言半句",
+      "reviewedEntrySha256": "e434ab3cc02dc8c11b88345c9f4030b1a66beeb79900396d7b9aec2bf0b36041",
+      "postReviewEntrySha256": "e434ab3cc02dc8c11b88345c9f4030b1a66beeb79900396d7b9aec2bf0b36041",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is a master’s formal address but is labelled documentary narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0721b14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "a31d6067247848151f0ffc070957c77534283f7e954479c14885b0dd9d5e74f2",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 古尊宿語錄"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "M/M59/M59n1540.xml",
+          "FromLb": "0797a05",
+          "KwicExact": true,
+          "fullCaseContextSha256": "980490345b52de2988190f64d7c7731bd43c6c7a981aacd845134ad2c5811f00",
+          "MasterName": "Dahui Zonggao",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0040c03",
+          "KwicExact": true,
+          "fullCaseContextSha256": "8cb605ab24b39fc934815684a5f7a17d02d57b28c22d1577c17baa4c7c003325",
+          "MasterName": "Wuzu Fayan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0503c13",
+          "KwicExact": true,
+          "fullCaseContextSha256": "7e172ea6f11910dc2643141f0317bcfeb86f8cc4ab033c0d213192410bb54830",
+          "MasterName": "Huanglong Huinan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0145a17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "aea57f144874fc8ea2948d1f4e2a3bb02a3cc7e443ce6b024613c6d0c963057c",
+          "MasterName": "Yuanwu Keqin",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0011c01",
+          "KwicExact": true,
+          "fullCaseContextSha256": "6a2a2726a3c84d1e2aefd00fba8512276089093219f9ece8f3db6eae8e21fcce",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 聯燈會要"
+        }
+      ]
+    },
+    {
+      "ordinal": 1102,
+      "id": "t_41476f956295",
+      "term": "燒香禮拜",
+      "reviewedEntrySha256": "cbdecfda972b0dd8ef70e52aee0f13949555a6fe42516d2cc1c8afbd378d005b",
+      "postReviewEntrySha256": "cbdecfda972b0dd8ef70e52aee0f13949555a6fe42516d2cc1c8afbd378d005b",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 4 is the record master’s address; occurrence 5 is 師 speech to a monk. Both are labelled narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "M/M59/M59n1540.xml",
+          "FromLb": "0833a14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "a8d8417d5c8d387fe013d3dc0b547d98e14aaf8904b0ade386292d5c4178eb23",
+          "MasterName": "Dahui Zonggao",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1121a10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "f731ba743c445da4ac57193bd8c457889e4e20f4e2768bc02919b5d95fd20fa8",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 勅修百丈清規"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X63/X63n1245.xml",
+          "FromLb": "0532a16",
+          "KwicExact": true,
+          "fullCaseContextSha256": "6533b96c4536d17410c7aeda2282a309ad4142646fec572b3f3af53c4387d5f2",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in (重雕補註)禪苑清規"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X70/X70n1386.xml",
+          "FromLb": "0331b09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "64411bb27c91cfa2db6c2406588a2e4114cf0998f1167b3460b6b4fd5e79af3a",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 石田法薰禪師語錄"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0714b18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "6cf19157f72f7e7ed72bce536aea85dd338b24fa85f6898679194e5742858586",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 古尊宿語錄"
+        }
+      ]
+    },
+    {
+      "ordinal": 1103,
+      "id": "t_746f990fba78",
+      "term": "清淨法身",
+      "reviewedEntrySha256": "1b2c9400f71cfd9bbcaa7ff9f11b88b053e8e756a7865627aceb5132b5e810f2",
+      "postReviewEntrySha256": "1b2c9400f71cfd9bbcaa7ff9f11b88b053e8e756a7865627aceb5132b5e810f2",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 1, 2, and 7 place the headword in monastic questions, while occurrence 6 is a formal master address; the generic narrator assignments erase the actual utterers."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0030b21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "def9e1e2da8d1a0643b1fc3f867a4cd23c9d70cc6c4786f25aa919747c06ac99",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 五燈全書(第34卷-第120卷)"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0001c21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "1a3004449279a080aa6f16dd71f155396c2da6716c33d7311423e071407c177e",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 五燈嚴統(第10卷-第25卷)"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0626b07",
+          "KwicExact": true,
+          "fullCaseContextSha256": "249ae2abc0eeff5085132e934d0902baa20d2e88a105a3cda1dda0a17d808204",
+          "MasterName": "Baizhang Huaihai",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0056b18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "f999266e593927b100d4eb7964001b4f26c2ef7d42eb273376ae2dc2f67624d0",
+          "MasterName": "Huineng",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X68/X68n1319.xml",
+          "FromLb": "0532a04",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0e52a810e11a00b94129e29adb52dd3c4cce66d368292f34ae9b9c5b0f58aa30",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 御選語錄"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J28/J28nB219.xml",
+          "FromLb": "0660b03",
+          "KwicExact": true,
+          "fullCaseContextSha256": "6a1e05957f32d1554a4c83bb74701101689cbdb0256d8435011eb4dbfdcf82a8",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 紫竹林顓愚衡和尚語錄"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0650a17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "e3823ce75027d8f918186ed8b3ac62dab74e75613fe3c6666ea7f68805b7ca3d",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 建中靖國續燈錄"
+        }
+      ]
+    },
+    {
+      "ordinal": 1104,
+      "id": "t_64109b94980d",
+      "term": "骨董",
+      "reviewedEntrySha256": "b11beeac4e7036afd1eb0eefa00e3f390f67f1f0980a9892cf87e966e63104a5",
+      "postReviewEntrySha256": "b11beeac4e7036afd1eb0eefa00e3f390f67f1f0980a9892cf87e966e63104a5",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is Huitang’s direct reply and occurrences 2–4 are formal master addresses, not documentary narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0043a02",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0ec0f98943ae0f53f3d7df957379fb8c7e5dab9d6394a2dbd584a564abc89d2c",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 五燈全書(第34卷-第120卷)"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J39/J39nB454.xml",
+          "FromLb": "0602a14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "72fec7f5e4d9e1d12f04b768c5571756fcdb3f41b97aba88df8d36c1ae55ff47",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 頻吉祥禪師語錄"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J26/J26nB187.xml",
+          "FromLb": "0689a24",
+          "KwicExact": true,
+          "fullCaseContextSha256": "3bdd94898aaedbda9adfcd2ef68f64973c233f70224adca230908a3d7eb84c37",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 天岸昇禪師語錄"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J27/J27nB189.xml",
+          "FromLb": "0008a17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "6caacb85601b8d43271e5fe97448f93ad026ab5f1751c3515f76861c93edd43f",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 三宜盂禪師語錄"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X69/X69n1357.xml",
+          "FromLb": "0455b23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "05a097113082a605ce21f15d6c560abefb89bca1d2db1c7d3aeede90fd3d4d8a",
+          "MasterName": "Yuanwu Keqin",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0203a18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "ef9d65a1ec62e294cfae655a5885d77e44339e5d45a55813eeb1a591cbdbf6ef",
+          "MasterName": "Chushi Fanqi",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1105,
+      "id": "t_00b7f3a28462",
+      "term": "四弘誓願",
+      "reviewedEntrySha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+      "postReviewEntrySha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 5,
+      "verdict": "KEEP",
+      "reasons": [
+        "Compiler, liturgical, and named-master voices match the complete cases; the prose distinguishes the received vow from the masters’ recasting and warning."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0682c14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "5ab6c421f92d54d636a38a82626487e17b126f6fe47afa39aae50561a8ae6709",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 宗鏡錄"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0401c06",
+          "KwicExact": true,
+          "fullCaseContextSha256": "3e2844f85e866ac7b81b75f262bda369fa88ebcd70f35605369acc552ff2b381",
+          "MasterName": "Baiyun Shouduan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X65/X65n1277.xml",
+          "FromLb": "0016c24",
+          "KwicExact": true,
+          "fullCaseContextSha256": "3c2d0fe8b8d104228868c34633e97085060aa5ffccd80e6d48616fe5326cf8e9",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the named or documentary voice preserved in 高峰龍泉院因師集賢語錄"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0619c20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fe460a9ef5e6ca767158a3db0a303e6fb79beee5744ad296dca0992ce69a8ec1",
+          "MasterName": "Baizhang Huaihai",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0062c24",
+          "KwicExact": true,
+          "fullCaseContextSha256": "e51cfdbef8795efa2b4cac0a1fb908471f6d72dc8c8411077af9b3bb8281e79e",
+          "MasterName": "Yuantong Faxiu",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1111,
+      "id": "t_78d931324d99",
+      "term": "張商英",
+      "reviewedEntrySha256": "b640b636016ae06a87193b2f4b1e784d2a57b506c0105aeee4b3e5fd7232b051",
+      "postReviewEntrySha256": "b640b636016ae06a87193b2f4b1e784d2a57b506c0105aeee4b3e5fd7232b051",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 3 and 4 are headword-bearing case commentary or 師拈 speech, but remain labelled source narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X68/X68n1319.xml",
+          "FromLb": "0641c16",
+          "KwicExact": true,
+          "fullCaseContextSha256": "f6b93d4f35bd42802e19c605553d02adbec69a525b38cff819f31b715ded6921",
+          "MasterName": "Zhang Shangying",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X85/X85n1593.xml",
+          "FromLb": "0528c10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "2d688be7816f992da0c7e18667cc3a101da0571a38be48908ee0617df4bf8c4a",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 張商英"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J29/J29nB239.xml",
+          "FromLb": "0498c10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fa09aec1ca8fd19612a476ddad0d42e4fc36682d5f1bd5d0ab637ba8ab560cd3",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 張商英"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0502b17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "47c679dbd1c7710142ed9dd9bd1583fcf6247e3c4e59e491d3f89bd7a8e45272",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 張商英"
+        }
+      ]
+    },
+    {
+      "ordinal": 1112,
+      "id": "t_09909bd0c29e",
+      "term": "草賊",
+      "reviewedEntrySha256": "62e40f213ac12b6689a93b0d98d359222a4da229af0b90e641872de9a6fb7dcb",
+      "postReviewEntrySha256": "62e40f213ac12b6689a93b0d98d359222a4da229af0b90e641872de9a6fb7dcb",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "All six utterers agree with the completed exchanges; the three parallel Zhaozhou witnesses are disclosed as one case family."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0640b10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "1483f8d4152b7a59abad3472bbaa5acbe1b473b1d55aa18097d989556db63337",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 草賊"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0007b04",
+          "KwicExact": true,
+          "fullCaseContextSha256": "e5b160ac70c66e25a813a3432b1f22267e12f01ba1475aceb9f1e7bf4f622738",
+          "MasterName": "Tiantong Danjiao",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0026a20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "9a20fdfba5e2d4eb5e5ef52859502868121c22bb210c68670012ce478884b36d",
+          "MasterName": "Linji Yixuan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0073b22",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0a919bee9ab83912b4798489eb033f9167e3ef59b5b9f6da4b4082543d1f3aa5",
+          "MasterName": "Zhaozhou Congshen",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0039c06",
+          "KwicExact": true,
+          "fullCaseContextSha256": "8c27efa18536e83d7dbd034a9a5ae7c2a7845b63018152df4e2c17c3df361bbe",
+          "MasterName": "Zhaozhou Congshen",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0483c21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d692c9a81be6cd4224737f90720398012e1dc75b82be204c7121c82166b62f58",
+          "MasterName": "Zhaozhou Congshen",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1113,
+      "id": "t_1bde390a5df1",
+      "term": "壇場",
+      "reviewedEntrySha256": "284d979fbbb938215fff06cf758c516f60f8e44939f8ab020a336a5082e66ddf",
+      "postReviewEntrySha256": "284d979fbbb938215fff06cf758c516f60f8e44939f8ab020a336a5082e66ddf",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The two different things are properly split, and all four actor decisions match the ordination, rule, and liturgical units."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0617b22",
+          "KwicExact": true,
+          "fullCaseContextSha256": "90e74485905a3599367df193d1e8c2be6856f61e14e7d729c0ab52669ce05d89",
+          "MasterName": "Zhantang Wenzhun",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X72/X72n1439.xml",
+          "FromLb": "0604c08",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d678b59972ddd777a44b1aa22c14debf3994511dd68e27b9100ac5cbf0a15f64",
+          "MasterName": "Daopei Weilin",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1114c17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "a0be20689b34209a2a44773d506d13341c208fe35aa2cc4751c048e3efb19d6d",
+          "MasterName": null,
+          "ActorStatus": "impersonal",
+          "ActorLabel": "the documentary formula bearing 壇場"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X65/X65n1277.xml",
+          "FromLb": "0010c12",
+          "KwicExact": true,
+          "fullCaseContextSha256": "7e5609a2bb43fc26ea4500c454862e3eca18cae4eed03dd4ea121e75c7f65a4f",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 壇場"
+        }
+      ]
+    },
+    {
+      "ordinal": 1114,
+      "id": "t_bf71c3ba483c",
+      "term": "道中人",
+      "reviewedEntrySha256": "be6656739612f605c985f514d393cf683212533d97cfab763011c3f5c608f6d9",
+      "postReviewEntrySha256": "be6656739612f605c985f514d393cf683212533d97cfab763011c3f5c608f6d9",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "Every occurrence is the unnamed monk’s headword-bearing question; answers are not falsely attributed as utterances of the headword."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0509b15",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fe27eb165da5f8413b8545975e5fe2a2af6c2b0dec4c1cb211350bc0319d840f",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0651c23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0538f73380e0dd14391d32f7939c24390ed359f0a464e97158e00f287fb6d8b3",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0131c17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "b009c06da3088c2ba2a14a408f39d8db56695f563c3a63d7d281bf86e55622b6",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0023b04",
+          "KwicExact": true,
+          "fullCaseContextSha256": "2ee74bc268f44663af91ee5bfbd13d58958b1500fb23759e02291b7b1037aa49",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0664a19",
+          "KwicExact": true,
+          "fullCaseContextSha256": "14bd8b556f8aca9b553c43163cbc00747a51a3380b2dd7a3f05228785ad5a982",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0471c23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "7e033b8485a2a41173d97b19c1a4f3f698f1ecef1f6b27256d0d8b0b71195898",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J34/J34nB301.xml",
+          "FromLb": "0287b02",
+          "KwicExact": true,
+          "fullCaseContextSha256": "94807ef52af00140a004441b54b4ba9cb680f6da3d656126f6848bc9cbe67d6e",
+          "MasterName": null,
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the monastic questioner bearing 道中人"
+        }
+      ]
+    },
+    {
+      "ordinal": 1115,
+      "id": "t_d1d910922aff",
+      "term": "無舌人",
+      "reviewedEntrySha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+      "postReviewEntrySha256": "e14b262a88d69717fc6b15ae4a90db532c9093039288af00ef69e91b39dfa053",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "All six named speakers match the complete cases; the duplicate Tianyi transmission is disclosed."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0002a05",
+          "KwicExact": true,
+          "fullCaseContextSha256": "363c5fe830e5d55d8356fb2899eb1e90686f0c1565c538c509f1f33449b27e8b",
+          "MasterName": "Tianyi Yihuai",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "T/T48/T48n2004.xml",
+          "FromLb": "0230b20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "4d78271e4ade1c1d6ceebe89a566e1d81636e529ea8d944362e3f9013fd38306",
+          "MasterName": "Wansong Xingxiu",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J27/J27nB190.xml",
+          "FromLb": "0090a27",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fbd38d4fb8e12e62e6e6b9d1ccd5b67681b3a5502d1609f51fd2e2d7ba46d770",
+          "MasterName": "Shiyu Mingfang",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0419a21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "82fc0557389cd129d3eb98263f6c9fd35e6f1746f9af8c17f57a925c05d1c62f",
+          "MasterName": "Fengxin",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J36/J36nB359.xml",
+          "FromLb": "0628c28",
+          "KwicExact": true,
+          "fullCaseContextSha256": "9408b5b309dc27c1886a0f0b0fa3338b13c35cfae4ddf150c7ed36b453953f35",
+          "MasterName": "Baiyu Si",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0298b09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "8f96b638a4bfd02ad43117adcfa9d94d368d619e909a1f595975311c50705514",
+          "MasterName": "Tianyi Yihuai",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1116,
+      "id": "t_7e95e25d633e",
+      "term": "女媧",
+      "reviewedEntrySha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+      "postReviewEntrySha256": "0861d467d7de65ee697ab1e61817e52741981aabbddbdf3cb5fbd0ae84888441",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 4,
+      "verdict": "KEEP",
+      "reasons": [
+        "The three named master deployments and the construction poem’s documentary voice match their units."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2004.xml",
+          "FromLb": "0232c23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "af85ed448b00f116cc7ed0518fdf9774898e6240d7e89d0882cbded75f042317",
+          "MasterName": "Wansong Xingxiu",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J27/J27nB189.xml",
+          "FromLb": "0014c18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "ae13fdc95c5cc89ed7cd132d4f223cdde777046462bddfd34be8c37ebd3a83bb",
+          "MasterName": "Sanyi Mingyu",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J27/J27nB194.xml",
+          "FromLb": "0338b10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "097fb463ec14a5b1396ca8515c1fd636ba06cbb2efff6efc4fdd477545c54081",
+          "MasterName": "Muchen Daomin",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J28/J28nB208.xml",
+          "FromLb": "0397c01",
+          "KwicExact": true,
+          "fullCaseContextSha256": "9e472afd2aa2eba40f1105f34bf80a9031a43a73f174434481e055f729f3d3c0",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 女媧"
+        }
+      ]
+    },
+    {
+      "ordinal": 1117,
+      "id": "t_b49a2783af81",
+      "term": "老婆心",
+      "reviewedEntrySha256": "8954ae65ee940f89e4f7a3b3af51e29b4add77c69b4075f00be71f371766e26c",
+      "postReviewEntrySha256": "8954ae65ee940f89e4f7a3b3af51e29b4add77c69b4075f00be71f371766e26c",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 3 explicitly contains 五祖戒代云 and bears the headword in that attributed saying, not in source narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0287b09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0326a39dbf5ac23909079940956a879e7c9ca2e7553854cb5c9299012f014707",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 老婆心"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0034b22",
+          "KwicExact": true,
+          "fullCaseContextSha256": "cf6134413161f5d4107d1cc8ed296842615bd85475232e76dfa7c41f271e29ef",
+          "MasterName": "Donglin Changzong",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0039b03",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d43bdb16f5934158d2031260b6ef565d5b7e7222e9ac34854f346b3c215ec487",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 老婆心"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0024c19",
+          "KwicExact": true,
+          "fullCaseContextSha256": "861ffa4be7423587fcb719968322f7eb67ab3df2be3948fd1549d539c9a171b4",
+          "MasterName": "Linji Yixuan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0636b16",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0112c81f60cbb6b60278897b888990582c1f07719f32251211129144d1792800",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 老婆心"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0412a09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "c1b30fd7b37f860af4becdb15823ef59efc239a7ed4b6450a1cfb4fe1501e384",
+          "MasterName": "Zhantang Wenzhun",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0143b10",
+          "KwicExact": true,
+          "fullCaseContextSha256": "f1c978bd9dd9b68b7beba6e0baf7720da8a2e7402e4a490a66cce9485c106371",
+          "MasterName": "Liang Sui",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1118,
+      "id": "t_f0fac372131b",
+      "term": "錦鱗",
+      "reviewedEntrySha256": "3bf5f827f9bb1fe9c3f257e8c761590909d1a65063f6859d66a92f3e63855bf5",
+      "postReviewEntrySha256": "3bf5f827f9bb1fe9c3f257e8c761590909d1a65063f6859d66a92f3e63855bf5",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 5 is inside the incoming master’s formal 上堂 address and is incorrectly labelled source narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0277b03",
+          "KwicExact": true,
+          "fullCaseContextSha256": "ec06a79f40e8e243af19cddbc030ef2a228e41775fca41377192a3dd86afeff4",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 錦鱗"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0625c02",
+          "KwicExact": true,
+          "fullCaseContextSha256": "97641d714b62923833d8a7594d980f28e350ffbb1a7007001bd0b8381b5cab45",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 錦鱗"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0015a07",
+          "KwicExact": true,
+          "fullCaseContextSha256": "5c3e86849803a30fcfdda247a914dae637fb970090172cb6f21dcf3a6a072dc5",
+          "MasterName": "Dazhong Delong",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0080c17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "45f8aafe0a7aa2cd06e4b9305ac0d0347d1c42e390de74da0063f36c7ab3f2b1",
+          "MasterName": "Dazhong Delong",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J33/J33nB287.xml",
+          "FromLb": "0537a12",
+          "KwicExact": true,
+          "fullCaseContextSha256": "66ee045f0471809f3784c679f24a05439a9a87474ffa4e8d4a90d5bafe1bce03",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 錦鱗"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X67/X67n1299.xml",
+          "FromLb": "0008a05",
+          "KwicExact": true,
+          "fullCaseContextSha256": "3b8043f68b17508d77cca5ada138e99dc44d98664c3678480281e01377ffc52d",
+          "MasterName": "Tiantong Zhengjue",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1119,
+      "id": "t_5b4dd0205486",
+      "term": "心香",
+      "reviewedEntrySha256": "21512a7ab3cbd023462b19d42dea65b3753bc3f37e4bf467065f450372a0f3b8",
+      "postReviewEntrySha256": "21512a7ab3cbd023462b19d42dea65b3753bc3f37e4bf467065f450372a0f3b8",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 2 is the record master’s 乃云 address and is incorrectly labelled source narration."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J39/J39nB471.xml",
+          "FromLb": "0962c20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "64ee81e4fb5f33cf7dd3b4367f82e8a81b28bd7e192bbb8d77a1dec0a326177b",
+          "MasterName": "Daocheng",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J40/J40nB483.xml",
+          "FromLb": "0227b19",
+          "KwicExact": true,
+          "fullCaseContextSha256": "2f883ce6ec26cace7f5e7a3352dbb68b0c2b0a3e6baa5a55bf18b2a60157a52b",
+          "MasterName": null,
+          "ActorStatus": "narrated",
+          "ActorLabel": "the source narration bearing 心香"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X72/X72n1440.xml",
+          "FromLb": "0660a07",
+          "KwicExact": true,
+          "fullCaseContextSha256": "9fbc47b09a079d5707df126d3ad4959075d1f2d0d249c4394d78a9e2eaf41aa3",
+          "MasterName": "Yongjue Yuanxian",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J36/J36nB364.xml",
+          "FromLb": "0799a18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "020874fb15dbf56446235be87f7d3834f81ce2ee0b50669f3fedac878f1940e6",
+          "MasterName": null,
+          "ActorStatus": "identified-non-master",
+          "ActorLabel": "Hu Zhouzi"
+        }
+      ]
+    },
+    {
+      "ordinal": 1120,
+      "id": "t_ed2ef7c866b7",
+      "term": "無心是道",
+      "reviewedEntrySha256": "06cbf76bc583ae3601c26a8b382c749a21d0de14de5e851632f2e0503e98a059",
+      "postReviewEntrySha256": "06cbf76bc583ae3601c26a8b382c749a21d0de14de5e851632f2e0503e98a059",
+      "byteIdentical": true,
+      "occurrencesReadInExpandedCase": 6,
+      "verdict": "KEEP",
+      "reasons": [
+        "Five witnesses are correctly identified as parallel Benjing transmissions and the sixth as Huanyou’s later deployment; all speakers match."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0441b11",
+          "KwicExact": true,
+          "fullCaseContextSha256": "b0ad1f2d6ea7756bb034d5ad1eb02125d2e24fd039122d7bc81f6d41aca21f32",
+          "MasterName": "Sikong Benjing",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0059a17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "4361ba0b1c35f7286cc18594211ac6f10f3921784e26f12820f7da6c83fd1314",
+          "MasterName": "Sikong Benjing",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1568.xml",
+          "FromLb": "0612a17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "971bd6082fe8c1f67d7a4ce84fbe921a4e13fa80dfe61e43f4b3dfba99c2c100",
+          "MasterName": "Sikong Benjing",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0364b06",
+          "KwicExact": true,
+          "fullCaseContextSha256": "840918cb3bb5d56d2dd37a60ddc306eb1c1d4c58517280f44f6d6f562ebc0521",
+          "MasterName": "Sikong Benjing",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0242b23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "53bd512ba7c6c9148e194a9a52dc74a812e161359064605da1e6c63d6ebfd595",
+          "MasterName": "Sikong Benjing",
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "L/L153/L153n1637.xml",
+          "FromLb": "0509b08",
+          "KwicExact": true,
+          "fullCaseContextSha256": "01ffdb07f4516ff6421577c8f1318d1a551c2b8631b6068a060852da6a20848a",
+          "MasterName": "Huanyou Zhengchuan",
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    }
+  ],
+  "allReviewedFilesByteIdentical": true,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

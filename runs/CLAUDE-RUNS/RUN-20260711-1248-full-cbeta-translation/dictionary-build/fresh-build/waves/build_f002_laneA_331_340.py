@@ -1,0 +1,41 @@
+import copy,json,os,re,sys
+ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__),'..','..'));sys.path.insert(0,ROOT);import zc
+BASE='42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a';NOW='2026-07-15T15:00:00Z'
+OPEN={'恁麼則':'“If so, then” is the student’s recurrent inference formula in public exchanges, immediately tested or overturned by the master’s reply.','咄':'“Bah!” is a sharp voiced exclamation recorded as rebuke, interruption, or closing cry, often immediately before a blow or descent from the seat.','只如':'“Just as for…” introduces a concrete countercase or follow-up question, shifting an address from its current claim to the case now posed.','師子':'The lion is invoked through cubs, roars, and full-force capture, while the same graphs also name the lineage figure Patriarch Simha.','露柱':'The exposed pillar is addressed, paired with the hearth, made to speak or bear offspring, and repeatedly inserted into public answers.','便下座':'“Then descended from the seat” records the immediate close of a hall appearance after a statement, gesture, exchange, or ceremonial dedication.','舌頭':'The tongue is both the bodily organ and the corpus’s recurring name for capacity to speak, be silenced, or answer without moving it.','草鞋':'Straw sandals remain literal footwear while serving as the ordinary equipment and expense of traveling on foot through the Chan record.','歸方丈':'“Return to the abbot’s quarters” is a narrated movement closing or interrupting an encounter, hall act, or demonstration.','面壁':'Facing the wall is recorded as a bodily action associated with Bodhidharma and Luzhu, and is repeatedly raised as an interview case rather than an imported exercise.'}
+EX={
+'咄':[('X/X82/X82n1571.xml','咄！咄！咄！以拂子擊禪床，下座。','Kaiyuan Ying'),('X/X81/X81n1568.xml','師曰：咄哉癡人！此是險路。','Baoci Wensui'),('X/X78/X78n1556.xml','不瞥地，蹉過平生勿巴鼻。咄！','Xuefeng Qin'),('J/J25/J25nB171.xml','收得頭來把尾歸。咄！','Tianyin Yuanxiu')],
+'只如':[('X/X79/X79n1559.xml','敢問大眾，只如一問一答，還當宗乘也無？','Huanglong Huinan')],
+'露柱':[('X/X82/X82n1571.xml','師曰：與露柱齊年。','Fachang Yiyu'),('C/C077/C077n1710.xml','好燈籠露柱','Linji Yixuan'),('X/X81/X81n1568.xml','或有會云：作露柱處去也。','Ruilu Benxian'),('T/T51/T51n2077.xml','丈曰。汝還見露柱麼。','Baizhang Heng')],
+'便下座':[('X/X82/X82n1571.xml','曰：以此功德，祝延聖壽。便下座。','Faquan'),('X/X81/X81n1568.xml','與大眾舉一古人方便。珍重！便下座。','Fayan Wenyi'),('J/J26/J26nB178.xml','何以如此？要見賞罰分明。」便下座。','Feiyin Tongrong')],
+'草鞋':[('D/D48/D48n8939.xml','泉云漿水錢且置草鞋錢教什麼人還','Nanquan Puyuan'),('X/X81/X81n1568.xml','師曰：草鞋跟斷。','Nanshan Weiyi'),('X/X79/X79n1557.xml','草鞋頭戴無人會，歸到家山即便休。','Xuedou Chongxian'),('X/X82/X82n1571.xml','覺曰：汝行脚費却多少草鞋？','Xuedou Chongxian')],
+'歸方丈':[('X/X80/X80n1568.xml','異日，師擕籃子歸方丈','Danyuan Yingzhen'),('X/X66/X66n1297.xml','師打破，歸方丈。','Baizhang Huaihai')],
+'面壁':[('X/X78/X78n1556.xml','梁帝不契，面壁少林。','Bodhidharma'),('X/X84/X84n1583.xml','面壁九年，黃梅夜渡。','Dahui Zonggao')]}
+
+def named(rel,kw,n):
+ v=zc.verify(rel,kw);assert v.get('ok'),(rel,kw,v);return {'RelPath':rel,'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':kw,'MasterName':n,'Curated':True,'AttributionNote':f'{zc.title(rel)}: {n} is the exact speaker or grammatical actor of the stored headword span after complete-case review.','ContextMasters':[{'MasterName':n,'Roles':['utterer']}],'DraftActorProof':{'ExactHeadwordClause':kw,'GrammaticalSubject':n,'SpeechFrame':f'Complete-case review assigns the stored span to {n}.','FullCaseDecision':f'{n} owns the exact headword-bearing turn or narrated action.'}}
+def nonmaster(rel,kw,label,role,grammar,ctx):
+ v=zc.verify(rel,kw);assert v.get('ok'),(rel,kw,v);a={'Status':'reviewed-unnamed' if label.startswith('an unnamed') else 'identified-non-master','Kind':'person','ActorLabel':label,'ActorRole':role,'ReviewedBy':'Codex f002 Lane A full-case review','ReviewedUtc':NOW,'GrammarEvidence':grammar,'RungsChecked':['line','expanded-context','section-header','book-title','tei-header','parallel-passage']};return {'RelPath':rel,'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':kw,'Curated':True,'AttributionNote':f'{zc.title(rel)}: {label} owns the exact headword-bearing question.','ActorAttribution':a,'ContextMasters':ctx,'DraftActorProof':{'ExactHeadwordClause':kw,'GrammaticalSubject':label,'SpeechFrame':grammar,'FullCaseDecision':grammar}}
+def actor(o):
+ if o.get('MasterName'):
+  n=o['MasterName'];o.pop('ActorAttribution',None);o['ContextMasters']=[{'MasterName':n,'Roles':['utterer']}];f=f'Complete-case review assigns this stored span to {n}.'
+ else:
+  a=o['ActorAttribution'];a.setdefault('ReviewedBy','Codex f002 Lane A full-case review');a.setdefault('ReviewedUtc',NOW);a.setdefault('RungsChecked',['line','expanded-context','section-header','book-title','tei-header','parallel-passage']);a.setdefault('GrammarEvidence',f"The complete case assigns the headword-bearing {a.get('ActorRole','turn')} to {a.get('ActorLabel','the recorded non-master actor')}.");f=a['GrammarEvidence'];o['ContextMasters']=[x for x in o.get('ContextMasters',[]) if x.get('Roles')]
+ rolemap={'lineage-context':'person-discussed','section-owner':'section-subject','section-master':'section-subject','listed-patriarch':'person-described','headword-referent':'person-described'}
+ o['ContextMasters']=[{'MasterName':x['MasterName'],'Roles':[rolemap.get(r,r) for r in x.get('Roles',[])]} for x in o.get('ContextMasters',[]) if x.get('Roles')]
+ o['DraftActorProof']={'ExactHeadwordClause':o['Kwic'],'GrammaticalSubject':o.get('MasterName') or o.get('ActorAttribution',{}).get('ActorLabel'),'SpeechFrame':f,'FullCaseDecision':f}
+pre=json.load(open(os.path.join(ROOT,'fresh-build/waves/f002-laneA-301-400-preflight.json')))['entries'][30:40]
+for p in pre:
+ old=json.load(open(os.path.join(ROOT,'terms',p['id'],'entry.v2.json')));term=p['term'];entry={'Id':p['id'],'SourceTerm':term,'CreatedBy':'Codex fresh f002 Lane A evidence-first','WrittenUtc':NOW,'CorpusBaselineSha256':BASE,'Senses':[]}
+ for si,s in enumerate(old['Senses']):
+  ns=copy.deepcopy(s);exp=ns.pop('Explanation','');ns['SearchAliases']=ns.get('SearchAliases') or [ns['PreferredTarget']];occ=[];claims=[]
+  for o in ns.get('Occurrences',[]):
+   v=zc.verify(o['RelPath'],o['Kwic']);assert v.get('ok');o['FromLb']=v['fromLb'];o['ToLb']=v['toLb'];actor(o);q=''.join(o['Kwic'].split())
+   if term not in q:o['ClaimText']=o['Kwic'];claims.append(o)
+   else:occ.append(o)
+  if si==0:
+   for rel,kw,n in EX.get(term,[]):occ.append(named(rel,kw,n))
+   if term=='只如':
+    occ.append(nonmaster('M/M59/M59n1540.xml','進云只如祖師道父母非我親誰是最親者諸佛非我道誰是最道者意旨如何','an unnamed questioning monk','questioner','進云 introduces the unnamed monk’s question; Dahui owns the following 師云 answer.',[{'MasterName':'Dahui Zonggao','Roles':['respondent']}]))
+    occ.append(nonmaster('B/B25/B25n0144.xml','張濆曰：「只如今約有情方便之中，如何是無情因緣？」','Layman Zhang Fen','questioner','張濆曰 explicitly names Layman Zhang Fen as speaker of the headword-bearing question.',[]))
+  ns['Occurrences']=occ;ns['ClaimAnchors']=(ns.get('ClaimAnchors') or [])+claims;ns['SourceTexts']=list(dict.fromkeys(o['RelPath'] for o in occ));works=sorted({zc.work_id(o['RelPath']) for o in occ if term in ''.join(o['Kwic'].split())});ns['Validation']='multi-source' if len(works)>=2 else 'provisional';ns['ExplanationParts']={'CorpusEarnedOpening':OPEN[term],'EvidenceBody':[re.sub(r'^Literally[^.]*\.\s*','',exp)]};ns['DraftEvidence']={'OpeningClaimEvidenceKeys':[f'o{i}' for i in range(1,len(occ)+1)],'ZenBend':OPEN[term],'CounterexampleOrLimit':ns.get('Note') or 'Ordinary, title, name, and family noise were excluded from the lexical claim.','DifferentThingTest':{'Decision':'different-thing' if len(old['Senses'])>1 else 'one-thing','ComparedThings':[x['PreferredTarget'] for x in old['Senses']],'Reason':'Distinct referents are split; rhetorical and grammatical variation is retained together.'},'AliasRationale':'Literal and close English lookup wording only.','ModifierControls':['Compounds and variants were checked separately.'],'FamilyControls':['Neighboring terms do not donate unsupported meaning.'],'IndependentWorkIds':works};entry['Senses'].append(ns)
+ d=os.path.join(ROOT,'fresh-build','entries',p['id']);os.makedirs(d,exist_ok=True);open(os.path.join(d,'evidence.draft.json'),'w').write(json.dumps({'SchemaVersion':1,'Entry':entry},ensure_ascii=False,indent=2)+'\n')

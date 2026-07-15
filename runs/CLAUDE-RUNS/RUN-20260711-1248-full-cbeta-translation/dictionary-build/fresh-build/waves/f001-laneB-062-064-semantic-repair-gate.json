@@ -1,0 +1,158 @@
+{
+  "generatedUtc": "2026-07-15T00:27:44.270084+00:00",
+  "elapsedSeconds": 6.668,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_21926ca0b92e",
+      "term": "頂門眼",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_21926ca0b92e/entry.v2.json",
+      "sha256": "ec5dac372f0aecf1185decaba2fb54d132e5896ed9df31e9c98462459614806e"
+    },
+    {
+      "id": "t_c327d2a1fc8c",
+      "term": "金剛眼睛",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c327d2a1fc8c/entry.v2.json",
+      "sha256": "f129c83d20f5f5b07187e908d47ad7e51add786c3ff430e444f757190ef22bfd"
+    },
+    {
+      "id": "t_07d808115439",
+      "term": "言語道斷",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_07d808115439/entry.v2.json",
+      "sha256": "adda3c4e7468c75b422cd63d407917ded89ed032b6aaabf5c43440a51537ebed"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_21926ca0b92e/entry.v2.json",
+        "id": "t_21926ca0b92e",
+        "term": "頂門眼",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c327d2a1fc8c/entry.v2.json",
+        "id": "t_c327d2a1fc8c",
+        "term": "金剛眼睛",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_07d808115439/entry.v2.json",
+        "id": "t_07d808115439",
+        "term": "言語道斷",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.134,
+    "attribution": 0.593,
+    "publicFeedback": 0.229,
+    "depthSense": 0.65,
+    "workSourceValidation": 0.248,
+    "corpusBaseline": 0.213,
+    "frozenHistoricalTerms": 0.784,
+    "attributionPackets": 3.748
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.593,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "actor_impersonal": 1,
+        "context_master_links": 22,
+        "deferred_non_roster_context": 11,
+        "attribution_notes": 21,
+        "named_occurrences": 19,
+        "deferred_non_roster": 8,
+        "chinese_strings": 25,
+        "anchored_chinese": 25,
+        "actor_reviewed_unnamed": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"actor_impersonal\": 1,\n    \"context_master_links\": 22,\n    \"deferred_non_roster_context\": 11,\n    \"attribution_notes\": 21,\n    \"named_occurrences\": 19,\n    \"deferred_non_roster\": 8,\n    \"chinese_strings\": 25,\n    \"anchored_chinese\": 25,\n    \"actor_reviewed_unnamed\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.229,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpaap7057u.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.65,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.248,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.213,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.784,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.748,
+    "payload": {
+      "entries": 3,
+      "occurrences": 21,
+      "tierACandidates": 0,
+      "reviewRequired": 21
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 21,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 21\n}\nreport: fresh-build/waves/f001-laneB-062-064-semantic-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneB-062-064-semantic-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

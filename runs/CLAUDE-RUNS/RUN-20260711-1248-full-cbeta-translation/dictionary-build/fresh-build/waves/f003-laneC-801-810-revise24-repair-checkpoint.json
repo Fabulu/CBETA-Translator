@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "f003-c-revise24-repair-ledger-v1",
+  "generatedUtc": "2026-07-15T06:29:23.122546+00:00",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    801,
+    810
+  ],
+  "role": "repair-author",
+  "repairCount": 24,
+  "untouchedKeepCount": 26,
+  "allKeepsByteIdentical": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+    "sha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+    "hardPass": true,
+    "exactKwic": 329
+  },
+  "repairs": [
+    {
+      "ordinal": 802,
+      "id": "t_5da65e2989a0",
+      "term": "夏末",
+      "entrySha256": "3bb5043004275ae66c585a7dbc1ba2a7295da9b6b90be5627a0ccd9834b56a31",
+      "evidenceDraftSha256": "69972bb31543ca47845e7b19565859fc7ab993703e29e824ebd1614742bfada8",
+      "compileReportSha256": "b97370e028bdca843e35d40533979ed2b156cee09c19fdc812e99bb3f19f875d",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 804,
+      "id": "t_1118b9dcbc72",
+      "term": "見解",
+      "entrySha256": "6e6a81a5c15f8870b065778ff92f3c05ae838fcc06e5d80d7df2f4580c6fae34",
+      "evidenceDraftSha256": "a7160cd3e75cf530fe8edef7678f8d2e4fd88d161628862ecb4349ca4a99eee3",
+      "compileReportSha256": "a02e8b576310dbbd1412c99f83b2c5306f3ec888dd7b36fb1d8cdc30084b26eb",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 807,
+      "id": "t_fe8d4efe588f",
+      "term": "見處",
+      "entrySha256": "12052557cac4ba850fb7c8ffa1da97303e680f0a6a594c0ecf9edf3ce8ed5fcd",
+      "evidenceDraftSha256": "2b42a2fb97649dc174c5d67821c79cc785ef011d795491935f0b3a581d6c9b36",
+      "compileReportSha256": "eec1b5df8becf3b156e604a06b33806bfe975c329128a09c3eba07424fedd1e7",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 808,
+      "id": "t_6703082d841c",
+      "term": "禪堂",
+      "entrySha256": "1660392b162b88e450d6705ff7ea7b52c23ac1fad4bc42acaefa102304353f34",
+      "evidenceDraftSha256": "04c1d498a0d7faa94732ed6ee92a1b2b59dffa27a84f3d8fc5f6f07b994a03e3",
+      "compileReportSha256": "5e3428f6f385f127e40d968d716570de2b4b75fd14ff2238c7b0b11a2e505a4d",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 809,
+      "id": "t_f7a9bcbfc089",
+      "term": "試道看",
+      "entrySha256": "f466b7f7295a856ee5842c701b7f20629b0da0fb2972a4f9f04184e30049ff35",
+      "evidenceDraftSha256": "ffebe02ca65e419377c66716928144df585193cd1da9f79b21bee16a3942fc15",
+      "compileReportSha256": "d3b9ad4e98e7a7477676287f86312b9cd8bbf2a2dc92798387d26d04c2805fd6",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 810,
+      "id": "t_b03032c64a13",
+      "term": "眼目",
+      "entrySha256": "83991c69cd5c1dbc7a4588818c7d7f4c8b22f766aef55cd2b89ea464fa0a2ac4",
+      "evidenceDraftSha256": "c3889d382a843db7dab19a75a3223daf1d91894a6714d5017d7c3eadf2f06e01",
+      "compileReportSha256": "81a05a76f65de86e6276af61380f5f72e8562511d7b3b4e6480f690566c522e7",
+      "occurrences": 7
+    }
+  ],
+  "untouchedKeeps": [
+    {
+      "ordinal": 801,
+      "id": "t_efbed6116e24",
+      "term": "拂袖",
+      "entrySha256": "9ec877cdb53d04db76f9eccde92af946a75ddce12d08c7ffec7811752a121fd0",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 803,
+      "id": "t_1dc12d84b349",
+      "term": "一喝分賓主",
+      "entrySha256": "602f0367ba5539cde22b8ccff126172e922c7e21a5c9530c6301dcca8997410e",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 805,
+      "id": "t_76466e7feed6",
+      "term": "拈香祝聖",
+      "entrySha256": "a56b15f33f749e9191045b910d044c3b367abf61c66d7f212e8b1dfa29f5ef1e",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 806,
+      "id": "t_7bb4ebba81b9",
+      "term": "賓主歷然",
+      "entrySha256": "b7ce0a14560a529ace8597031d2fbb934d823d6c23b319118408b9c260f61dc5",
+      "byteIdentical": true
+    }
+  ]
+}

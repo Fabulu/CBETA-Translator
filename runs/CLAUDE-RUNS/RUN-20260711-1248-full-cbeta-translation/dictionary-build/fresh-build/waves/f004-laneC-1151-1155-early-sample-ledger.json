@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T12:40:46.178964+00:00",
+  "role": "early-sample-author",
+  "ordinals": [
+    1151,
+    1155
+  ],
+  "compileLedger": "f004-laneC-1151-1155-early-sample-compile-ledger.json",
+  "compileLedgerSha256": "3daca689b9126e8fd8697dc11aa25f39690ba75011ea1487950c3db2d027983a",
+  "adjudication": "f004-laneC-1151-1155-early-sample-adjudication.json",
+  "adjudicationSha256": "2c33f8e8340a7650f0db7942805307069f3086adc281af86c834f47d826241cf",
+  "formalGate": "f004-laneC-1151-1155-early-sample-formal-gate-v3.json",
+  "formalGateSha256": "a3bb62e0a21e9adf581e607a4ee5d6651f23b91228e31bef3db9f946b0ab7975",
+  "formalHardPass": true,
+  "exactKwic": {
+    "entries": 5,
+    "verified": 23,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_59a13ff734d4/entry.v2.json",
+        "id": "t_59a13ff734d4",
+        "term": "閉門造車出門合轍",
+        "verified": 3,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6d67b0e3acef/entry.v2.json",
+        "id": "t_6d67b0e3acef",
+        "term": "雪上加霜",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_62bdfdee990e/entry.v2.json",
+        "id": "t_62bdfdee990e",
+        "term": "錦上添花",
+        "verified": 4,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5a98c27d1ec3/entry.v2.json",
+        "id": "t_5a98c27d1ec3",
+        "term": "眼中著屑",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d82dbfc1443a/entry.v2.json",
+        "id": "t_d82dbfc1443a",
+        "term": "肉上剜瘡",
+        "verified": 4,
+        "failures": []
+      }
+    ]
+  },
+  "publicFeedback": {
+    "entries": 5,
+    "passing": 5,
+    "flagged": 0,
+    "flagsByKind": {}
+  },
+  "actorCounts": {
+    "entries": 5,
+    "senses": 5,
+    "occurrences": 23,
+    "actor_reviewed_unnamed": 17,
+    "attribution_notes": 23,
+    "named_occurrences": 6,
+    "context_master_links": 7
+  },
+  "narratorCollapseCanaryPass": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

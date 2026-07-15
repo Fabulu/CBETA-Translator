@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T11:33:36.384782+00:00",
+  "role": "early-sample-author",
+  "ordinals": [
+    1106,
+    1110
+  ],
+  "adjudication": "f004-laneC-1106-1110-adjudication.json",
+  "adjudicationSha256": "527e9a6cfe7fea0f2354c2bea2fae5bf9f61f52970dbc1e84dc8aeaa60758360",
+  "compileLedger": "f004-laneC-1106-1110-compile-ledger.json",
+  "compileLedgerSha256": "7f58ca26adf6f1dec3614b0f35f624bbbfe176716b2cac599ab0f1481fb51a9a",
+  "formalGate": "f004-laneC-1106-1110-early-sample-formal-gate-v2.json",
+  "formalGateSha256": "f222c474930e294b4eda8d9e9c19ab54123676f63753a5e13d63fc57bfba4984",
+  "formalHardPass": true,
+  "exactKwic": {
+    "entries": 5,
+    "verified": 30,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f9d7324ef449/entry.v2.json",
+        "id": "t_f9d7324ef449",
+        "term": "微塵",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cee620141c82/entry.v2.json",
+        "id": "t_cee620141c82",
+        "term": "香几",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c9940cc4ef80/entry.v2.json",
+        "id": "t_c9940cc4ef80",
+        "term": "夏安居",
+        "verified": 4,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cf9506b17745/entry.v2.json",
+        "id": "t_cf9506b17745",
+        "term": "薰風自南來",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d26799ff3ae1/entry.v2.json",
+        "id": "t_d26799ff3ae1",
+        "term": "參頭",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "publicFeedback": {
+    "entries": 5,
+    "passing": 5,
+    "flagged": 0,
+    "flagsByKind": {}
+  },
+  "rows": [
+    {
+      "ordinal": 1106,
+      "id": "t_f9d7324ef449",
+      "term": "微塵",
+      "occurrences": 8,
+      "works": 8,
+      "entrySha256": "7714982770924567533791e47afa2d0bd54be30db85e8594d8a070562034c4fc",
+      "worksheetSha256": "cc6509bb28ce106de58128373eb36b0ddcf411c19f91e17666ccb325b8cd9f87",
+      "compileHardPass": true,
+      "currentEntrySha256": "7714982770924567533791e47afa2d0bd54be30db85e8594d8a070562034c4fc",
+      "gateEntrySha256": "7714982770924567533791e47afa2d0bd54be30db85e8594d8a070562034c4fc",
+      "hashesMatch": true
+    },
+    {
+      "ordinal": 1107,
+      "id": "t_cee620141c82",
+      "term": "香几",
+      "occurrences": 6,
+      "works": 6,
+      "entrySha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+      "worksheetSha256": "b8a286f3485b2a5caffd337c29a9e1c5e723fe540d376217c6438df2a2fb2ea3",
+      "compileHardPass": true,
+      "currentEntrySha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+      "gateEntrySha256": "211036095f9f7ba59288f59dd220c8e376f997b98738490412917c67e82bce10",
+      "hashesMatch": true
+    },
+    {
+      "ordinal": 1108,
+      "id": "t_c9940cc4ef80",
+      "term": "夏安居",
+      "occurrences": 4,
+      "works": 4,
+      "entrySha256": "810a491ccdc321c01cd60604b0ccc5b9d407f35cc468ce69d78509c5904d07d3",
+      "worksheetSha256": "11b219607fd68ca48349fe24e4ba45bcf376419a6ba64f195a1244a2506b3f77",
+      "compileHardPass": true,
+      "currentEntrySha256": "810a491ccdc321c01cd60604b0ccc5b9d407f35cc468ce69d78509c5904d07d3",
+      "gateEntrySha256": "810a491ccdc321c01cd60604b0ccc5b9d407f35cc468ce69d78509c5904d07d3",
+      "hashesMatch": true
+    },
+    {
+      "ordinal": 1109,
+      "id": "t_cf9506b17745",
+      "term": "薰風自南來",
+      "occurrences": 6,
+      "works": 6,
+      "entrySha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+      "worksheetSha256": "b88036fa7833d05f18f6cfc3ff410cefd473acae2597ca8f1e3cb56195f3d3b3",
+      "compileHardPass": true,
+      "currentEntrySha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+      "gateEntrySha256": "4c5924b22d3da1aad5b8b53fd759217c1b9044b0ee29a378a64c64e440ad1a3d",
+      "hashesMatch": true
+    },
+    {
+      "ordinal": 1110,
+      "id": "t_d26799ff3ae1",
+      "term": "參頭",
+      "occurrences": 6,
+      "works": 6,
+      "entrySha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+      "worksheetSha256": "5233823b2851b4663b56ae34c0d13719404e74e2cce61d6b4dfd2dfd68dcd515",
+      "compileHardPass": true,
+      "currentEntrySha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+      "gateEntrySha256": "1cdcb25963406a4d480cd81c9aa5cb8450b20d38cfda713cf42c0fd124ec6613",
+      "hashesMatch": true
+    }
+  ],
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

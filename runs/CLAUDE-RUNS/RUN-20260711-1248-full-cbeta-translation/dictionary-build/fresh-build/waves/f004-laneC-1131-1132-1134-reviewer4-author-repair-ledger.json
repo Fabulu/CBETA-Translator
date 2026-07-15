@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T14:50:00Z",
+  "scope": "focused author repair from reviewer4 rereview",
+  "sourceReview": "f004-laneC-1131-1132-1134-reviewer4-rereview.json",
+  "repairScript": "repair_f004_c1131_1132_1134_reviewer4.py",
+  "entries": [
+    {"ordinal":1131,"id":"t_edfd0b2afa11","entrySha256":"0b7a54ca60a095a43001914fd999ef8ddbbb2d3ad45d0c04762272e97691c15f","repair":"Removed the duplicated opening and retained the intent-free public-deployment description."},
+    {"ordinal":1132,"id":"t_e251ef5cbc12","entrySha256":"345d3e4b7fd42f8026ff34219c6a2e327a81e6d9cb59ef0583bfd8ba01d52d64","repair":"Removed repeated openings; occurrence 7 now records Huayan Zhizang as acting person-described and Linji Yixuan as visiting interlocutor."},
+    {"ordinal":1134,"id":"t_47b3313788e2","entrySha256":"7d7135cc71b9677457e575e261d638870d219420fddae7d041391ba4b8f3299f","repair":"Removed the fourfold duplicated opening."}
+  ],
+  "exactKwicAndFullSpan": "21/21",
+  "preReview": {"path":"f004-laneC-1131-1132-1134-reviewer4-author-pre-review-v3.json","sha256":"d0ce1f56984c24328214467d70589cb28cafdb290d3a95b978f82aa572d1fdd9","hardPass":true},
+  "integrity": {"selfReviewed":false,"promoted":false,"merged":false,"published":false}
+}

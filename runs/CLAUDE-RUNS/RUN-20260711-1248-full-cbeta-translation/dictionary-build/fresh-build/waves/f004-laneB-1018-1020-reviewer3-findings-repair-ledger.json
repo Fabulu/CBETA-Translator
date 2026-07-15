@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T13:50:00Z",
+  "wave": "f004",
+  "lane": "B",
+  "role": "focused-author-repair",
+  "sourceReview": "f004-laneB-1001-1020-reviewer3-spanfix-rereview.json",
+  "scope": [1018, 1020],
+  "repairs": [
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "findingApplied": "Occurrence 5 now identifies Layman Pang as questioner rather than compiler and links Mazu Daoyi as respondent.",
+      "entrySha256": "7a0a32ae0baedfd23c5329d4dec1801e697142fc1c89a73822ac86ea36137d5f",
+      "worksheetSha256": "ecd8827b95bf1905ebf3d1f24ee6b9a59b92c07a2f740abf23dfaa30bb614d08",
+      "compileHardPass": true
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "findingApplied": "Occurrence 5 now links the nameable section master Cian Jingyuan as respondent.",
+      "entrySha256": "38a875aabd0ff674de3ff623e6d8f5474b6d638d88b3834bf24fd13a0d643edf",
+      "worksheetSha256": "69782a115f83139ff4fa2955481d65304aeedcdf939e0e664d6f53e8ddc01577",
+      "compileHardPass": true
+    }
+  ],
+  "exactKwicFromLbToLb": {
+    "verified": 13,
+    "failures": 0
+  },
+  "preReview": {
+    "report": "f004-laneB-1018-1020-reviewer3-findings-repair-pre-review.json",
+    "hardPass": false,
+    "scopeRepairFailures": 0,
+    "note": "The generic two-entry pre-review gate confirms 13/13 exact KWICs and both public-feedback checks, but remains red on pre-existing roster canonicalization, attribution-note source-title wording, vague prose, and depth checks outside the two reviewer-3 findings. Those unrelated defects were not silently broadened into this exact focused repair."
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

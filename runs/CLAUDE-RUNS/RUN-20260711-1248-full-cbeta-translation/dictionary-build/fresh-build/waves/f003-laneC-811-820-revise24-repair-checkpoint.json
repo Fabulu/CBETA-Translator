@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "f003-c-revise24-repair-ledger-v1",
+  "generatedUtc": "2026-07-15T06:29:23.122546+00:00",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    811,
+    820
+  ],
+  "role": "repair-author",
+  "repairCount": 24,
+  "untouchedKeepCount": 26,
+  "allKeepsByteIdentical": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+    "sha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+    "hardPass": true,
+    "exactKwic": 329
+  },
+  "repairs": [
+    {
+      "ordinal": 812,
+      "id": "t_df404be00a88",
+      "term": "鐘鼓",
+      "entrySha256": "109d9963ae4af27c83e4fa6d1823b4acc28503949308503dec665f1ebf3220c8",
+      "evidenceDraftSha256": "8712f06d814157f0761c5e3d280ac47138da64b9028048a61795933b30ca5b4b",
+      "compileReportSha256": "5703f03492c38fcabaa529cc881d1415247209013eb1f64cd0d1f2c471d8eb5e",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 815,
+      "id": "t_39fb2a2c1c9b",
+      "term": "祖意",
+      "entrySha256": "6ebc53dbdc35ef69495f730978cc308bd5bdba2895c64d698eb2efeaa4b4929a",
+      "evidenceDraftSha256": "32e278d491a47662a2f657f52c6306e841256ae0c12599e36b6ab42000a11025",
+      "compileReportSha256": "e0f7e4fa337c53e51e3001921a95c7848b50ce47d127da6ccfa03323c1b0c4dc",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 817,
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "entrySha256": "d86eb0131500f8d740e6609c00309387bc3fcc99c589b25259b00570efaa3e81",
+      "evidenceDraftSha256": "2f4ef1b3218b0bbcda0f8cf2375e82f4e9c951779c29eb1c638c5462f129d4bd",
+      "compileReportSha256": "914072fee115c1370413005a22db3a38f7e4c80a8d5e3ae0b4a8fcde84007b39",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 818,
+      "id": "t_1446abf489c0",
+      "term": "袈裟",
+      "entrySha256": "41f3faad3ed7c09bcd47721dcef8264bf3d7a999a987e1297a5cc7b01f9453b7",
+      "evidenceDraftSha256": "a97901fa64d981a2d033f5399eb26e990c6407247540bf18882d69410f101d5b",
+      "compileReportSha256": "fc507daf2a63e8bd920b6515493ca6ac43b37670482065c5b6c16b5de6b8abf5",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 820,
+      "id": "t_654e2e9bef8d",
+      "term": "臨機",
+      "entrySha256": "3bf95c63217eca83a9670ef3911dd969b311c28224eaf4918228764717d54095",
+      "evidenceDraftSha256": "dca608563a6cefa2b317db1a9753daef508f1ae7afefe0e2d6a89fa452b68f1d",
+      "compileReportSha256": "c7f1732150265197b100bda13eb8ebb87f1d8e3281cc0e11d72a978e90063079",
+      "occurrences": 7
+    }
+  ],
+  "untouchedKeeps": [
+    {
+      "ordinal": 811,
+      "id": "t_fa8ad027aa5b",
+      "term": "傳燈錄",
+      "entrySha256": "46b9710cff03ae375d9e27b59802923d5ef6ebd0d59c57e0fb62a5df9e7aa80a",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 813,
+      "id": "t_016c13af32f9",
+      "term": "曲彔木",
+      "entrySha256": "98e93050dfba5ac601b5601f30fec58a9e4b90ee7d7c0c418e0dd270aeab522b",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 814,
+      "id": "t_8eeed0b7412a",
+      "term": "唯嫌揀擇",
+      "entrySha256": "e433eaf43dc02e14c00d61d6167e5e5bc5a8dbe1bcd336132484870899a2c57a",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 816,
+      "id": "t_d9d8f344ad00",
+      "term": "人天眼目",
+      "entrySha256": "830dac97209437bbc03de8651657e03c0674f790ba67a9f97c661453e35c4615",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 819,
+      "id": "t_5120f0eca9c7",
+      "term": "金剛神",
+      "entrySha256": "d834cb99c5ebc873d879fd534111a0744390728f31db1350d0b1dda47567218f",
+      "byteIdentical": true
+    }
+  ]
+}

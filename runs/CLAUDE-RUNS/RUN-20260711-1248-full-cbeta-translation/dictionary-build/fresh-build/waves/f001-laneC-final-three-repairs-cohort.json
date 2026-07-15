@@ -1,0 +1,147 @@
+{
+  "generatedUtc": "2026-07-14T20:57:51.335078+00:00",
+  "elapsedSeconds": 8.392,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_c657778889b0",
+      "term": "傳衣",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c657778889b0/entry.v2.json",
+      "sha256": "cc785e2e4b668968590bb4e60a3505688ddb6acd82b33598abb56e3e00275bec"
+    },
+    {
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edd5d300476f/entry.v2.json",
+      "sha256": "dfa0aec5f018eed0a877690dfffc7a6e4785cde2bda58ccd86bd79de1fabc307"
+    },
+    {
+      "id": "t_57fd70bfc9ec",
+      "term": "客塵",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_57fd70bfc9ec/entry.v2.json",
+      "sha256": "9e7a7163a860636262a7a7a8cd6992a7829314db5ac7abd3cc54dc38f53ac12e"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 26,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c657778889b0/entry.v2.json",
+        "id": "t_c657778889b0",
+        "term": "傳衣",
+        "verified": 9,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edd5d300476f/entry.v2.json",
+        "id": "t_edd5d300476f",
+        "term": "聯燈",
+        "verified": 11,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_57fd70bfc9ec/entry.v2.json",
+        "id": "t_57fd70bfc9ec",
+        "term": "客塵",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.329,
+    "attribution": 0.494,
+    "publicFeedback": 0.186,
+    "depthSense": 0.985,
+    "workSourceValidation": 0.18,
+    "corpusBaseline": 0.162,
+    "frozenHistoricalTerms": 6.001,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.494,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 6,
+        "occurrences": 26,
+        "named_occurrences": 19,
+        "deferred_non_roster": 9,
+        "context_master_links": 24,
+        "deferred_non_roster_context": 12,
+        "attribution_notes": 26,
+        "actor_impersonal": 1,
+        "chinese_strings": 19,
+        "anchored_chinese": 19,
+        "actor_narrated": 4,
+        "actor_identified_non_master": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 6,\n    \"occurrences\": 26,\n    \"named_occurrences\": 19,\n    \"deferred_non_roster\": 9,\n    \"context_master_links\": 24,\n    \"deferred_non_roster_context\": 12,\n    \"attribution_notes\": 26,\n    \"actor_impersonal\": 1,\n    \"chinese_strings\": 19,\n    \"anchored_chinese\": 19,\n    \"actor_narrated\": 4,\n    \"actor_identified_non_master\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.186,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmprd7yx7qi.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.985,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.18,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 6,
+        "multiSourceSenses": 5
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 6,\n    \"multiSourceSenses\": 5\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.162,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 6.001,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+import json
+from pathlib import Path
+p=Path(__file__).resolve().parents[1]/'entries/t_747b1f22d089/evidence.draft.json';d=json.loads(p.read_text());e=d['Entry'];s=e['Senses'][0]
+e['CreatedBy']='Codex f004 lane A manual full-case repair author'
+s['PreferredTarget']='Huanglong’s three barriers'
+s['AlternateTargets']=['the three barriers of Huanglong Huinan']
+s['SearchAliases']=['Huanglong three barriers','three gates of Huanglong']
+s['Note']='Huanglong Huinan’s three recurrent public questions: where one’s birth-origin is; how Huanglong’s hand resembles the Buddha’s hand; and how Huanglong’s foot resembles a donkey’s foot.'
+s['ExplanationParts']={'CorpusEarnedOpening':'黃龍三關 are Huanglong Huinan’s three public barriers: “Where is your birth-origin?”, “How does my hand resemble the Buddha’s hand?”, and “How does my foot resemble a donkey’s foot?”','EvidenceBody':['Several lamp records preserve the three questions together and say Huanglong raised them for more than thirty years. They also report that he neither approved nor rejected submitted answers.','When asked why he gave no verdict, Huanglong says that someone already through a barrier walks on without asking the gatekeeper for approval; asking whether one has passed shows that one has not. The “barriers” therefore test the respondent’s position in the interview rather than solicit three informational solutions.','Later records quote, versify, contrast, and criticize the set by name. One master declines to discuss Huanglong’s barriers before asking about Yangqi’s “chestnut burr”; another says Huanglong’s wording deceived most people but not speakers of the regional dialect. These are later deployments of the named case, not additional barriers.']}
+s['DraftEvidence']={'OpeningClaimEvidenceKeys':['o1','o2','o3','o4','o5','o6','o7'],'ZenBend':'The corpus itself enumerates the three questions and explains the gate image: demanding certification from the gatekeeper is evidence of not having passed.','CounterexampleOrLimit':'黃龍三關 does not mean any generic set of three difficulties, and later comments on the barriers do not create new members of the set.','DifferentThingTest':{'Decision':'one-thing','ComparedThings':['the three-question set','later quotations and verses on that set'],'Reason':'Later records explicitly raise 黃龍三關 as the inherited named set; they are deployments, not distinct referents.'},'AliasRationale':'Both “barriers” and “gates” expose 關 as a passage tested by a gatekeeper; the preferred target follows the corpus label.','ModifierControls':[{'finding':'controlled','reason':'All witnesses were checked for the complete three-question set or explicit later reference to it.'}],'FamilyControls':[{'finding':'controlled','reason':'Huanglong’s three barriers remain distinct from Yangqi’s chestnut burr and other named tests.'}],'IndependentWorkIds':s['DraftEvidence']['IndependentWorkIds']}
+for i,o in enumerate(s['Occurrences']):
+ if i==3:
+  o['MasterName']=None;o['ContextMasters']=[{'MasterName':'Yuanwu Keqin','Roles':['respondent','record-owner']}]
+  o['ActorAttribution']={'Status':'reviewed-unnamed','Kind':'unnamed monk questioner','ActorLabel':'an unnamed monk asking about Huanglong’s barriers','ActorRole':'questioner','RungsChecked':['line','expanded-context','section-header','book-title','tei-header','parallel-passage'],'GrammarEvidence':'The frame 僧問 assigns 黃龍三關即不問 to the unnamed monk; 師云 assigns the response to Yuanwu Keqin.','ReviewedBy':'Codex f004 lane A manual full-case repair author','ReviewedUtc':'2026-07-15T13:00:00Z','AuthoredVoiceRiskReviewed':True}
+  o['AttributionNote']='Source text (圓悟佛果禪師語錄): an unnamed monk utters 黃龍三關 in a question; Yuanwu Keqin responds.'
+ elif i==6:
+  o['MasterName']='Yutang Yi';o['ContextMasters']=[{'MasterName':'Yutang Yi','Roles':['utterer','record-owner']}];o.pop('ActorAttribution',None)
+  o['AttributionNote']='Source text (續燈存稿): Yutang Yi raises the Huanglong three-barriers case in his formal address.'
+  o['DraftActorProof']['GrammaticalSubject']='Yutang Yi';o['DraftActorProof']['FullCaseDecision']='The formal address assigns the case-raising clause to Yutang Yi.';o['DraftActorProof']['SpeechFrame']='The section record and 上堂 frame identify Yutang Yi as utterer.'
+ else:
+  o['MasterName']=None;o['ContextMasters']=[{'MasterName':'Huanglong Huinan','Roles':['case-figure']}]
+  o['ActorAttribution']={'Status':'narrated','Kind':'lamp-record compiler narration','ActorLabel':'the lamp-record compiler','ActorRole':'compiler','RungsChecked':['line','expanded-context','section-header','book-title','tei-header','parallel-passage'],'GrammarEvidence':'The headword occurs in narration or a verse introduction naming Huanglong’s inherited three-barrier case.','ReviewedBy':'Codex f004 lane A manual full-case repair author','ReviewedUtc':'2026-07-15T13:00:00Z','AuthoredVoiceRiskReviewed':True}
+  o['AttributionNote']='Source text ('+('續燈正統' if i==2 else 'lamp record')+'): the compiler narrates Huanglong Huinan’s named three-barrier case.'
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')

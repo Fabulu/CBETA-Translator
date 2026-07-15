@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "scope": "f004 lane C 1131-1150 independent-review filename collision",
+  "disposition": "quarantined-REVISE-no-promotion",
+  "acceptedCountUnaffected": 941,
+  "firstReview": {
+    "reportedVerdict": "KEEP 20 / REVISE 0",
+    "reportedOccurrences": "113/113",
+    "reportedSha256": "0b15bbe2c429ecd8050ffdf93a86f3a6acde778fce782fcc3f0cf78fef2313a7",
+    "artifactPreserved": false,
+    "reason": "A second reviewer reused and overwrote the same generic pathname before promotion.",
+    "laterReconstructedAndAdjudicated": {
+      "artifact": "fresh-build/waves/f004-laneC-1131-1150-reviewer2-collision-adjudication.json",
+      "sha256": "02a1ce42121d002b42f0000586aaa21cf61a6f1a439a088e46b94517f4370c06",
+      "finalVerdict": "KEEP 0 / REVISE 20",
+      "finding": "The first reviewer changed the earlier KEEP20 judgment after rechecking the second review's concrete named-turn counterexamples; 113/113 cases were reverified."
+    }
+  },
+  "secondReview": {
+    "reportedVerdict": "KEEP 0 / REVISE 20",
+    "reportedOccurrences": "113/113",
+    "currentSha256": "8a981af112af7216b6714743cd3513c339891d2841b5713a3aea875fecfd7d30",
+    "artifact": "fresh-build/waves/f004-laneC-1131-1150-fresh-independent-exact-review.json",
+    "concreteCounterexamples": [
+      "接物利生 includes an explicit 舉玄沙示眾云 turn",
+      "驀口 parallel cases explicitly name Xiaoyao's action",
+      "趙州勘婆 later raisers are named but remained generic"
+    ]
+  },
+  "promotionAttempt": {
+    "promoted": 0,
+    "mergedVerifiedCount": 941,
+    "safetyResult": "The overwritten REVISE report was read; no contradictory KEEP was promoted."
+  },
+  "collisionAdjudicated": true,
+  "requiredNextAction": "Repair all 20 against the concordant REVISE20 reviews, independently rereview under a new unique reviewer-qualified filename, then promote only exact-hash KEEPs."
+}

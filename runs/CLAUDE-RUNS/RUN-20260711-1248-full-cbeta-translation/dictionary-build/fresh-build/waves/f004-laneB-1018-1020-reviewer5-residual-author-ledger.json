@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T15:20:00Z",
+  "role": "focused-author-repair",
+  "sourceReview": "f004-laneB-1018-1020-reviewer5-final.json",
+  "repairScript": "repair_f004_b1018_1020_reviewer5_residual.py",
+  "entries": [
+    {"ordinal":1018,"id":"t_88de22b8a40e","entrySha256":"b7a537bbf29141f539154bb83b9a36992af44c64f3bd107009451c0412ee05b0","worksheetSha256":"1a6ace37aa33e4a85aa64c340a2cabd2f76a810ee7921d7d1100b30e4f9f5f49","compileHardPass":true,"repairs":["Removed the duplicated explanation opening.","Changed Pang Yun from reviewed-unnamed to identified-non-master while preserving null MasterName and Mazu Daoyi as respondent."]},
+    {"ordinal":1020,"id":"t_baaf8fde82d2","entrySha256":"89e3ca98df4cacbb737ad2ee831f874a4a7e4456f0629ac1f7ce3812b05b2a81","worksheetSha256":"98ca2355831a2990d69d0cfbfd8d1be96c968cc8d59a5636c446576c6b5b007a","compileHardPass":true,"repairs":["Removed the duplicated explanation opening."]}
+  ],
+  "exactKwicAndFullSpan":"13/13",
+  "duplicateOpeningGate":{"path":"f004-laneB-1018-1020-reviewer5-duplicate-opening-gate.json","passing":2,"flagged":0},
+  "preReview":{"path":"f004-laneB-1018-1020-reviewer5-residual-author-pre-review.json","sha256":"bc91c6d88e7ba3220a10bf976629d20b9a478dec9d8b68d834f8d1a59ac4f7d3","hardPass":true},
+  "integrity":{"selfReviewed":false,"promoted":false,"merged":false,"published":false}
+}

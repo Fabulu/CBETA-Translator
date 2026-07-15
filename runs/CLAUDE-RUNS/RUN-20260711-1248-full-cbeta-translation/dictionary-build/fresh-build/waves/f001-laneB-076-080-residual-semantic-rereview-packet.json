@@ -1,0 +1,45 @@
+{
+  "generatedUtc": "2026-07-15T00:46:59.793540+00:00",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [
+    76,
+    80
+  ],
+  "state": "awaiting-independent-semantic-rereview",
+  "selfReviewProhibited": true,
+  "repairGate": {
+    "path": "fresh-build/waves/f001-laneB-076-080-residual-repair-gate.json",
+    "sha256": "99b7e1c11956ad494e8f28e174e936c4c4673a4a0a39791ef17ef7d27c28d9fd"
+  },
+  "attributionPacket": {
+    "path": "fresh-build/waves/f001-laneB-076-080-residual-repair-gate-attribution-packets.json",
+    "sha256": "52dbc13ff98b3295d00d738351a77e5f2c915a2c4206021aea85cdb97c9c0c23"
+  },
+  "priorRereview": {
+    "path": "fresh-build/waves/f001-laneB-071-080-independent-semantic-rereview.json",
+    "sha256": "11283e17cf07a886496dabc0149246d02fc44fe89ac8028db4017bafbb8ed794"
+  },
+  "items": [
+    {
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "beforeSha256": "4314bbb5b851d15495dd5f21b48c4b1d0a23658a9a79131060941de09d5a951e",
+      "afterSha256": "fc4dd950fadc609cf20b6ac0e872206b84019e4f85a550ef5574c2158fe9338f",
+      "path": "fresh-build/entries/t_b26bfa9e399e/entry.v2.json",
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    },
+    {
+      "id": "t_12e8cba30de6",
+      "term": "老僧",
+      "beforeSha256": "c9e231aebeb57b5cfb11cfc3b0bee2ab0d58b2caf024c1384887e7af15ba43ce",
+      "afterSha256": "7a58955d0ef46d5533bf285c95a533812d4d49a715247cb9b06b47559da2a8a2",
+      "path": "fresh-build/entries/t_12e8cba30de6/entry.v2.json",
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    }
+  ]
+}

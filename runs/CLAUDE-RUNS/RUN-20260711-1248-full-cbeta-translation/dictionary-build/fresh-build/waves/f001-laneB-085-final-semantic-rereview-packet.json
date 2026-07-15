@@ -1,0 +1,35 @@
+{
+  "generatedUtc": "2026-07-15T01:24:40.237275+00:00",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [
+    85
+  ],
+  "state": "awaiting-independent-semantic-rereview",
+  "selfReviewProhibited": true,
+  "repairGate": {
+    "path": "fresh-build/waves/f001-laneB-085-final-semantic-repair-gate.json",
+    "sha256": "6c3af9dfd92b727cda14b674ba676e9ad91ccbe4725777dd8210a61df3f3af2e"
+  },
+  "attributionPacket": {
+    "path": "fresh-build/waves/f001-laneB-085-final-semantic-repair-gate-attribution-packets.json",
+    "sha256": "a89bad56e4e613670b8de56fbcde6667b500cbf20deb1657676a452ba438269d"
+  },
+  "priorRereview": {
+    "path": "fresh-build/waves/f001-laneB-081-100-independent-semantic-rereview.json",
+    "sha256": "a546142f86eab279df46a6290fd054c3c3226b196ab11d91b8d5424fd638b747"
+  },
+  "otherTwelveHashesVerified": true,
+  "items": [
+    {
+      "id": "t_becc0a1ea8cb",
+      "term": "方丈",
+      "beforeSha256": "81a9f91c32f38ad02f5403c2367de956f62e3d48ab5dcf34988314639fbe3966",
+      "afterSha256": "0eabc1dc418fe2b05f00c1a1555114f7d86c5434909fd090487800ed080566d6",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_becc0a1ea8cb/entry.v2.json",
+      "independentVerdict": null,
+      "independentReviewer": null,
+      "reviewNotes": null
+    }
+  ]
+}

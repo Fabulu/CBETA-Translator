@@ -1,0 +1,32 @@
+{
+  "wave": "f003",
+  "lane": "B",
+  "role": "repair author",
+  "sourceReview": "fresh-build/waves/f003-laneB-751-800-fresh-independent-exact-review.json",
+  "checkpoint": 1,
+  "repairedRows": 10,
+  "ordinals": [751, 752, 754, 756, 757, 759, 760, 761, 762, 764],
+  "verification": {
+    "exactKwic": 75,
+    "exactFailures": 0,
+    "compileFailures": 0,
+    "focusedGate": "fresh-build/waves/f003-laneB-fresh-repair-checkpoint1-gate.json",
+    "focusedGateNote": "All substantive gates pass; the 10-entry-only run trips only the cohort batch-floor-cluster heuristic because five entries have eight occurrences. Re-run in the full 50-entry cohort is required."
+  },
+  "entryHashes": {
+    "t_fa19bfa0d109": "6303e16e7205fa16eea3e8742b7633f12dfa5b81e0ebc8693541c1ddc4af9358",
+    "t_a29504cc83be": "0ca73984bdcc348764b408d6c9376b760e31a3b24f0d0b4570a7d088461dba09",
+    "t_51a4f3a03bd8": "633f0b487c9e1dbc7f1cd2a272e85337780d1da960bc204b4bd8885f620590d1",
+    "t_f28429436009": "96ba8a3f807cb8129a9838bfdef96cc672c79406b4734e20e1bf1f37eadd08b8",
+    "t_32a92c635f49": "5b9e0bcf367071607d69156f2f58671667052e1b3fc791e1c56e3ced166a628a",
+    "t_72ba0d559d5a": "0386ea5af4f70a24fe2fb004da28f92cac868f3ab930937e6c486ab0379955d2",
+    "t_1b62ec7f731e": "277c3a9f6664a0dbe0e53cdc36a0dca524b660e0317fd550b671d5e7a63befdc",
+    "t_ec09781522d8": "d71d28a8886e491edddd2d6ec71370eb71aec8bbe6df02e3209fe9c866618146",
+    "t_d67829b96305": "bccc2d52f54bf3bd779c0f71a124dd074e4ad0f1ff31a3449d577736bd1695ab",
+    "t_0e981298ab8f": "59f120c8c9121bcbd56d3d44f9299bd65484950881fa42098f7650d89d75f45e"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

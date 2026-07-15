@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T09:41:09.995587+00:00",
+  "hardPass": false,
+  "ordinals": [
+    1101,
+    1105
+  ],
+  "checks": {
+    "entries": 5,
+    "candidateKwicsVerified": 29,
+    "exactKwicFailures": 0,
+    "completeContextsStored": 29,
+    "exactTurnDecisions": 0,
+    "canonicalRosterDecisions": 0,
+    "senseDecisions": 0,
+    "inferenceLedgersComplete": 0,
+    "compiledEntries": 0
+  },
+  "blockers": [
+    "full-case exact-turn adjudication incomplete",
+    "canonical roster adjudication incomplete",
+    "different-things and inference ledgers incomplete",
+    "no entry may compile until these evidence-identity gates pass"
+  ],
+  "bulkAuthoringAllowed": false,
+  "rootCauseRepeatStopRuleActive": true
+}

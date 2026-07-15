@@ -1,0 +1,146 @@
+{
+  "generatedUtc": "2026-07-15T00:44:14.910806+00:00",
+  "elapsedSeconds": 5.74,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_dc02eefd07f5",
+      "term": "偏中正",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc02eefd07f5/entry.v2.json",
+      "sha256": "ff510c904f7e90e0411225996b06ecd8684ce933eb987276fdad24891319c9b0"
+    },
+    {
+      "id": "t_1d3706324b0c",
+      "term": "打成一片",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "sha256": "d8e18914aaa27bc3964a15dfaa99423c9a2c5450af2945e331f62bed30d46a82"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 14,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc02eefd07f5/entry.v2.json",
+        "id": "t_dc02eefd07f5",
+        "term": "偏中正",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+        "id": "t_1d3706324b0c",
+        "term": "打成一片",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.086,
+    "attribution": 0.515,
+    "publicFeedback": 0.223,
+    "depthSense": 0.584,
+    "workSourceValidation": 0.199,
+    "corpusBaseline": 0.219,
+    "frozenHistoricalTerms": 0.964,
+    "attributionPackets": 2.882
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.515,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 14,
+        "named_occurrences": 13,
+        "context_master_links": 16,
+        "attribution_notes": 14,
+        "deferred_non_roster": 4,
+        "deferred_non_roster_context": 6,
+        "actor_narrated": 1,
+        "chinese_strings": 1,
+        "anchored_chinese": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 14,\n    \"named_occurrences\": 13,\n    \"context_master_links\": 16,\n    \"attribution_notes\": 14,\n    \"deferred_non_roster\": 4,\n    \"deferred_non_roster_context\": 6,\n    \"actor_narrated\": 1,\n    \"chinese_strings\": 1,\n    \"anchored_chinese\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.223,
+    "payload": {
+      "entries": 2,
+      "passing": 1,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 1,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmpeva77k3m.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.584,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.199,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.219,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.964,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.882,
+    "payload": {
+      "entries": 2,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14\n}\nreport: fresh-build/waves/f001-laneA-071-075-focused-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-071-075-focused-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

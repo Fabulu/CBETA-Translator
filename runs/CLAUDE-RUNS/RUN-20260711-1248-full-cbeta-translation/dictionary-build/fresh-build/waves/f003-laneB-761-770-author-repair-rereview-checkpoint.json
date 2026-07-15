@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "f003-author-repair-rereview-checkpoint-v1",
+  "generatedUtc": "2026-07-15T06:30:56.023308+00:00",
+  "wave": "f003",
+  "lane": "B",
+  "range": [
+    761,
+    770
+  ],
+  "readOnly": true,
+  "siteTouched": false,
+  "formalGateSha256": "01c9ac4606660228bd0be72133b6469a08245b08a1fce5593b3dc080562d58fc",
+  "summary": {
+    "KEEP": 0,
+    "REVISE": 10
+  },
+  "rows": [
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "entrySha256": "01aeec97db1ebd308f4fd0fcd853adca28cc8c8596e1c396d471f49a74d0aed5",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "priorFinding": "The physical room and Vimalakirti comparison are well bounded, but 'documentary narrator of the Niutou lineage case' is stored in MasterName. Xu Fu and other non-master/imperial actors also require ActorAttribution rather than master links.",
+      "finding": "REVISE — The old documentary label was demoted, but O1, O3, O5, O7, and O8 are tomb/location or biographical narration assigned to the person described (and O8 even assigns Huineng to Yulin’s imperial scene)."
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "term": "山門",
+      "entrySha256": "7a6f13e770c6f73f2fe8926150f1f2898eed5755d965bff7074a2b8d8c24b084",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The architectural gate and threshold deployment are strong, but two documentary-narrator labels are MasterName values. The monastic-code row and narrated gate case must use reviewed narration, not invented masters.",
+      "finding": "REVISE — The two explicit narrator strings were demoted, but O5 is monastic-rule prose assigned to Baizhang and O6 is tomb-location narration assigned to Lingao; neither person utters 山門 there."
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "term": "千佛",
+      "entrySha256": "b4c09c49ef8a33d380dca8298ac3eaa0dc9524e9017303d3d93bc9b217b47323",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The collective sense is clear, yet every occurrence is forced into MasterName despite sermon, canonical, and documentary frames. Recheck who actually utters 千佛, especially quoted material, instead of assuming the nearby named master.",
+      "finding": "REVISE — The sense remains sound, but quoted Buddha speech and ceremony/biographical frames are still flattened into the enclosing named master; exact utterer versus quoter has not been documented."
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "term": "且道畢竟如何",
+      "entrySha256": "164380da5f7c40de846793af6dd8d6bc3a6fb4c5a4a375aecb1a8254f03a1844",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "The final-response handoff is well described, but two compiler labels are MasterName values. Those documentary rows and any embedded quotation need reviewed narration or the true quoter, not a compiler master link.",
+      "finding": "REVISE — Compiler labels were demoted, but the remaining inherited/formula turns still rely on record-owner assignment rather than a demonstrated exact speaker in the full case."
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "term": "藏主",
+      "entrySha256": "c0342df00edaf1d5e5430c52e9df335f9109bbba76801dc38eda9efb7ead4905",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "priorFinding": "The canon-librarian office is concrete, but two documentary-narrator labels occupy MasterName and appointment/roster rows are not utterances. Separate office-holder speech from compiler naming and institutional catalogue evidence.",
+      "finding": "REVISE — Appointment, roster, and office-history narration continues to use the office-holder or record subject as MasterName; naming a 藏主 is not that person uttering 藏主."
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "9d91c30f0fc484d41b9af8542e01761f88d07f4979ad3901ec80ec6269da8193",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "priorFinding": "The calendrical event is well distinguished from reenactment, but three documentary-narrator strings are MasterName. Date headings and assembly labels have no master utterer unless the exact headword lies inside a preserved speech turn.",
+      "finding": "REVISE — Calendar headings and assembly labels were partly demoted, but several occurrences still link the sermon owner when the exact headword is editorial occasion metadata rather than spoken wording."
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "72ee1783d4b50d7963d4ca9b2f729adaaeef51f0e4355d1f79f3980f84153e93",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The positional phrase is plausibly bounded, but 'Songshan monk' is not a roster-exact master and may be an unnamed/non-master actor. Quoted Linji material also needs exact quoter versus historical speaker separation.",
+      "finding": "REVISE — The non-roster Songshan label was demoted, but questioner and later-quoter ownership around the numbered Linji phrase remains unresolved."
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "term": "頂門",
+      "entrySha256": "effb30a0958e0c62fcff99a9469f24fe56f58bf366ca63ebc921212e553ceca6",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The bodily-location definition appropriately rejects abstraction, but 'Shakyamuni Buddha' may be performer/subject rather than utterer in the marked occurrence. All action and quoted-case rows need the exact-headword actor rule reapplied.",
+      "finding": "REVISE — The bodily referent is preserved, but performer/subject and utterer are still conflated in action and quoted-case witnesses, including the Buddha scene."
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "term": "龍王",
+      "entrySha256": "8f50a0efc95ff14fc4c6b27b1250100594264e01a12872b97e51d623abb73d2e",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "priorFinding": "The dragon-king roles are useful, but MasterName contains ceremony speaker, questioning monk, and two documentary narrators. These are precisely non-master or narration branches and cannot remain master links.",
+      "finding": "REVISE — Ceremony, questioner, and documentary roles were demoted inconsistently; surviving Dragon-King rows still need exact separation of invoker, quoted figure, and narrator."
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "term": "末後一著",
+      "entrySha256": "d680f144d0c3cc4ce6e7e98d99fc259c55bdba01048664c9c7cc0cec91cea066",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "The final-move slot is well explained, but every row is assigned a master with no exception despite quotations and later comments. Verify whether the named person utters 末後一著 or is merely the subject/owner of the cited case.",
+      "finding": "REVISE — The final-move gloss is sound, but later citations and embedded cases still inherit the container master as utterer without exact-clause proof."
+    }
+  ]
+}

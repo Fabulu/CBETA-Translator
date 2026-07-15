@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T14:05:42Z",
+  "role": "focused-author-repair",
+  "sourceReview": "f004-laneB-1018-1020-reviewer4-postrepair.json",
+  "repairScript": "repair_f004_b1018_1020_reviewer4_all.py",
+  "entries": [
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "entrySha256": "32863df3fdcdfffe7ea8d2d23a464c5c6a01887c808ce24643aa4287e3dd2065",
+      "worksheetSha256": "ca038866142332501ce23fafa0564ff26ad97c49138e69d1f2c5013b10f70257",
+      "repairs": [
+        "Replaced the unsupported acquired-description opening with an evidence-led description naming Fenyang’s wall, Yuelin’s nose verse, and Yinyuan’s dust-mote declaration.",
+        "Recorded the broad-concordance audit: 606 hits, 185 files, 182 independent works, with one person-referent across interview, verse, and address deployments.",
+        "Rewrote all seven attribution notes English-first with exact stored source titles and explicit speaker, narrator, or unnamed verse-author outcomes.",
+        "Registered Yuelin Jing and Baoci Xingyan as evidence-backed pending-roster candidates."
+      ]
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "entrySha256": "3fcbac92a43f1a90df91d08e12cd9ca3087ec1853498cf68c3cef26e36952579",
+      "worksheetSha256": "4d2574e66f934310e6c7c17e9615995da240d512bfd1cae55465de2c144428c9",
+      "repairs": [
+        "Rewrote Explanation and Note English-first and replaced every vague ‘a master’ with Hanyue Fazang, Cian Jingyuan, Langting Jingting, or a generic deployment statement with no pseudo-attribution.",
+        "Canonicalized Sanfeng Hanyue to roster name Hanyue Fazang in MasterName, ContextMasters, RelatedMasters, and actor proof.",
+        "Rewrote all six attribution notes with exact stored source titles and explicit utterer, compiler, heading, or questioner outcomes.",
+        "Registered Cian Jingyuan as an evidence-backed pending-roster candidate."
+      ]
+    }
+  ],
+  "preReviewGate": {
+    "path": "f004-laneB-1018-1020-reviewer4-all-findings-author-gate.json",
+    "sha256": "c44fcad7e3692fb41d9bc037b22b035085dc0f7f7a6be26c3cf2199d8443ce8d",
+    "hardPass": true,
+    "exactFullSpans": "13/13",
+    "publicFeedbackFlags": 0,
+    "independentSemanticReviewRequired": true
+  },
+  "integrity": {
+    "selfReviewed": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

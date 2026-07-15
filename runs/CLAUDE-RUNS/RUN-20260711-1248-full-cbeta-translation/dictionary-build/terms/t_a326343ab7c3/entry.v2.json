@@ -1,0 +1,119 @@
+{
+  "Id": "t_a326343ab7c3",
+  "SourceTerm": "日日是好日",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "every day is a good day",
+      "AlternateTargets": [
+        "day after day is a good day"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, \"every day is a good day.\" Yunmen tells the assembly, \"I do not ask you about before the fifteenth day; bring me a phrase about after the fifteenth.\" When the assembly gives no answer, he answers for them: \"every day is a good day.\" The corpus thereafter quotes it as Yunmen's answer, pairs it with \"every year is a good year,\" challenges it in questions, rebukes a monk who offers it, and expands it in later teaching-seat verse. Its specifically Chan deployment is therefore as Yunmen's public answer and a line later masters openly quote, test, contradict, and comment on; the record supplies no mystical paraphrase for \"good.\"",
+      "Validation": "multi-source",
+      "Note": "192 occurrences in 100 allowlisted texts. The calendar phrase and Yunmen quotation name the same statement, not separate readings or things.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0111b16",
+          "ToLb": "0111b18",
+          "Kwic": "十五日已前不問汝，十五日已後道將一句來。眾無對。自代曰：日日是好日。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Yunmen Wenyan section: Yunmen Wenyan asks for a line after the fifteenth day and, when the assembly gives no answer, supplies his own exact answer, ‘Every day is a good day.’"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0121b06",
+          "ToLb": "0121b07",
+          "Kwic": "日日是好日，佛法世法盡周畢。不須特地覓幽玄，祇管鉢盂兩度濕。",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷): complete-case exact-turn review identifies Miaozong as the actor for this occurrence.",
+          "MasterName": "Miaozong"
+        },
+        {
+          "RelPath": "X/X71/X71n1420.xml",
+          "FromLb": "0563c19",
+          "ToLb": "0563c20",
+          "Kwic": "年年是好年，日日是好日。師云：瞎老婆吹火。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Chushi Fanqi (楚石梵琦禪師語錄), Chushi Fanqi's New Year's Eve informal convocation. An unnamed monk is the exact speaker who advances 'every year is a good year; every day is a good day'; Chushi answers, 'a blind old woman blows the fire.' The line, expanded context, section header, book title, TEI header, exact-case search, and independent parallel witnesses preserve the exchange without naming this monk.",
+          "ContextMasters": [
+            {
+              "MasterName": "Chushi Fanqi",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-14T04:22:24Z"
+          }
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0803a08",
+          "ToLb": "0803a09",
+          "Kwic": "日日是好日年年是好年為甚𨚫無師曰張公喫酒李公醉",
+          "Curated": true,
+          "AttributionNote": "Connected Anthology of Verses on Old Chan Cases (禪宗頌古聯珠通集): an unnamed monk tells Mingjiao Kuan that every day is a good day and every year a good year, then asks why there is no New Year Buddha-dharma. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Mingjiao Kuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X81/X81n1568.xml",
+        "X/X82/X82n1571.xml",
+        "X/X71/X71n1420.xml",
+        "C/C078/C078n1720.xml"
+      ],
+      "RelatedMasters": [
+        "Yunmen Wenyan"
+      ],
+      "RelatedTerms": [
+        "十五日以前",
+        "十五日以後",
+        "年年是好年"
+      ]
+    }
+  ]
+}

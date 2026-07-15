@@ -1,0 +1,169 @@
+{
+  "Id": "t_78f95517a347",
+  "SourceTerm": "生死事大",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "life and death is the great matter",
+      "AlternateTargets": [
+        "the matter of life and death is great",
+        "life and death, the great matter",
+        "the great matter of life and death"
+      ],
+      "Status": "preferred",
+      "Explanation": "(生) birth + (死) death + (事) matter/affair + (大) great: \"life and death is the great matter.\" In the corpus it is overwhelmingly a fixed four-graph line, and in 84 places across 56 allowlist texts it stands in the paired form \"life and death is the great matter; impermanence is swift\" (生死事大，無常迅速); (無常迅速) itself occurs 160 times, 76 of them outside the pair. One text names the pair for what it is — \"...two ready-made phrases\" (生死事大，無常迅速，兩句現話, J28nB208). The attested deployment range is observable and wide: (i) as the reason for leaving home or seeking a teacher — (念生死事大) (19×) and (為生死事大) (39×), as in (念生死事大)，(奮志尋師) and (念生死事大)，(乃薙染完具) (X82n1571); (ii) as a plea addressed to a master — \"...I beg the master to save me\" (問生死事大請師相救, 古尊宿語錄); (iii) as an inscription — the (續燈正統) biography of (雲棲蓮池袾宏大師) records \"at seventeen... he kept writing the four graphs (生死事大) on his desk\" (年十七，補邑庠，每書生死事大四字於案頭, X84n1583), and (弘覺忞禪師北遊集) records of the emperor's lodging that (堂門書)「(生死事大)」 (\"the hall door bore \", J26nB180); (iv) as the opening of a (上堂) sermon — (上堂)：「(大眾)！(又是九月半也)，(生死事大)，(無常迅速) (J32nB273); (v) as a raised (示眾) with a directive — (天如和尚示眾云)：『(生死事大)。(諸禪德)！(須是將生死兩字貼在額頭上始得)。』 (\" (生死事大)...you must paste the two graphs 'life and death' (生死) on your forehead\", J25nB171). The most-cited setting is the Yongjia–Huineng exchange, narrated in many texts: (覺曰)：「(生死事大)，(無常迅速)。」(祖曰)：「(何不體取無生)，(了無速乎)？」 The graphs (大事因緣) / (一大事因緣) (the \"one great matter,\" 699× / 415×) are a separate stock phrase. The texts assign (生死事大) no gloss beyond the literal reading of its graphs, and neither does this entry.",
+      "Validation": "multi-source",
+      "Note": "Corpus-wide sense (SenseKey null): 321 occurrences in 135 allowlist texts spanning the B, C, D, J, T and X canons and many independent masters and compilers — the multi-source gate is met many times over. (Counts are whole-file, tag-stripped with <note>/<rdg>/<orig> apparatus excluded; gate-2 recount, confirmed by two independent recounts.) Curated occurrences here are all narrated, raised, or biographical (a lamp record, a supplicant's plea, an inscription, a sermon opening, a raised 示眾), so MasterName is null; the Yongjia–Huineng exchange records the line as Yongjia Xuanjue's (永嘉玄覺) but is retold at third hand in every allowlist witness. The dominant collocate is (無常迅速); cross-ref (無常迅速) and (大事因緣).",
+      "Occurrences": [
+        {
+          "RelPath": "J/J27/J27nB192.xml",
+          "FromLb": "0197a17",
+          "ToLb": "0197a17",
+          "Kwic": "覺曰：「生死事大，無常迅速。」祖曰：「何不體取無生，",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Daxiu Zhu (大休珠禪師語錄): inside the older audience with Huineng raised in Daxiu Zhu's record, Yongjia Xuanjue says that birth-and-death is the great matter and impermanence is swift.",
+          "MasterName": "Yongjia Xuanjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Daxiu Zhu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0808a20",
+          "ToLb": "0808a21",
+          "Kwic": "問生死事大請師相救",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Fahua Quanju's record, an unnamed monk says that birth and death are a great matter and asks the master to save him. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fahua Quanju",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0645a08",
+          "ToLb": "0645a08",
+          "Kwic": "每書生死事大四字於案頭。",
+          "Curated": true,
+          "AttributionNote": "續燈正統: complete-case exact-turn review identifies Yunqi Zhuhong as the actor for this occurrence.",
+          "MasterName": "Yunqi Zhuhong"
+        },
+        {
+          "RelPath": "J/J26/J26nB180.xml",
+          "FromLb": "0301c02",
+          "ToLb": "0301c02",
+          "Kwic": "堂門書「生死事大」，壁書",
+          "Curated": true,
+          "AttributionNote": "Northern Travels Collection of Chan Master Hongjue Min of Tiantong (天童弘覺忞禪師北遊集): the hall-door inscription at the Shunzhi Emperor's residence reads 'birth-and-death is the great matter'; the narrative does not identify its writer.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "inscription",
+            "ActorLabel": "hall-door inscription",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "堂門書 introduces displayed writing on the hall door and supplies no personal speaker or author.",
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shunzhi Emperor",
+              "Roles": [
+                "resident",
+                "person-reflecting-on-inscription"
+              ]
+            },
+            {
+              "MasterName": "Hongjue Min",
+              "Roles": [
+                "addressee-of-report"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J32/J32nB273.xml",
+          "FromLb": "0204b18",
+          "ToLb": "0204b18",
+          "Kwic": "又是九月半也，生死事大，無常迅速，討甚",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Preceptor Qianyan (千巖和尚語錄): opening a ninth-month hall address, Qianyan Yuanzhang tells the assembly that birth-and-death is the great matter and impermanence is swift.",
+          "MasterName": "Qianyan Yuanzhang"
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0549c10",
+          "ToLb": "0549c10",
+          "Kwic": "天如和尚示眾云：『生死事大。諸禪德！須是將生死",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): in a case raised by Tianyin Yuanxiu, Tianru Weize tells the assembly that birth-and-death is the great matter and that Chan worthies must paste those two words on their foreheads.",
+          "MasterName": "Tianru Weize",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "J/J27/J27nB192.xml",
+        "C/C077/C077n1710.xml",
+        "X/X84/X84n1583.xml",
+        "J/J26/J26nB180.xml",
+        "J/J32/J32nB273.xml",
+        "J/J25/J25nB171.xml",
+        "B/B25/B25n0145.xml",
+        "J/J28/J28nB208.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Yongjia Xuanjue",
+        "Huineng"
+      ],
+      "RelatedTerms": [
+        "無常迅速",
+        "大事因緣",
+        "一大事因緣"
+      ]
+    }
+  ]
+}

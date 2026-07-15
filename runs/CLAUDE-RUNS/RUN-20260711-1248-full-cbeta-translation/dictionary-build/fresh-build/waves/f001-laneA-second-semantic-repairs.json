@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "repairPass": "second-semantic-repairs",
+  "generatedUtc": "2026-07-15T06:45:00Z",
+  "scope": "Only the five REVISE entries in f001-laneA-postrepair-independent-review.json were edited. Historical terms, STATUS, merged outputs, root review, and every other fresh entry were untouched.",
+  "worksheetRetrofit": "Exempt as an in-flight f001 repair by root instruction; all substantive evidence, exact-actor, anti-filler, inference, modifier, and full-case gates were nevertheless applied.",
+  "entries": [
+    {
+      "id": "t_8f7b20536cb6",
+      "term": "和尚",
+      "entrySha256": "3731fa77c628b373965095c7d974544dd64a9ef311198a33d6de1ea2b0b40c0f",
+      "repairs": [
+        "Sense 1 occurrence 4: Wuzu Fayan changed from utterer to person-described under compiler narration.",
+        "Sense 1 occurrence 7: Yezhu Fusheng changed from utterer to record-owner; Budai remains person-described.",
+        "Sense 2 occurrence 1: Tianze Neng changed from utterer to verse-author under the impersonal praise heading.",
+        "Attribution notes now explicitly distinguish exact actor from named context."
+      ]
+    },
+    {
+      "id": "t_6f47a97d45b0",
+      "term": "序",
+      "entrySha256": "4535bb6c1c3d2ef081b49265a92b02b51a29aa2242436c052899fcbd79af785a",
+      "repairs": [
+        "Occurrence 2: removed utterer role from Lin Zhifan; retained compiler/preface-author context under an impersonal title heading.",
+        "Occurrence 6: removed utterer role from Linquan Conglun; retained commentator/preface-author context under an impersonal heading.",
+        "Attribution notes name the headings as exact impersonal actors and no longer contradict structured roles."
+      ]
+    },
+    {
+      "id": "t_5ddde30711a4",
+      "term": "金鎖玄路",
+      "entrySha256": "3a9d112cd7618091c59fd02dc14ecb826310f4009983a4d8fa452772ee37f5d3",
+      "workSha256": "6ffbdb9a95b9f314265334b78bb4f618661af618f6b92a1bc42b7078ac4f6386",
+      "repairs": [
+        "Replaced stale 397/49 controls with frozen fresh-corpus counts: 金鎖 386 hits/160 files/158 works and 黃金鎖 46/39/38.",
+        "Recorded corpus-wide modifier families and explicit classifications for material, appearance, conventional-name, figurative barrier, chain/fetter, nested-bone, ball/pellet, gate, and dependent-entry controls.",
+        "Added five exact zc.verify-confirmed control/counterexample anchors with line coordinates.",
+        "Recorded the licensed minimal inference: figurative obstruction for the complete compound; isolated 金 remains unresolved; material-gold, value/praise, and enlightenment-symbol claims rejected.",
+        "Retested incompatible verb frames and retained one exact-compound sense while excluding chain and nested-bone objects.",
+        "Updated reader prose and counts; the display remains the non-materially misleading gold-lock barrier."
+      ]
+    },
+    {
+      "id": "t_4f7bd98ad40f",
+      "term": "上堂",
+      "entrySha256": "0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf",
+      "repairs": [
+        "Occurrence 11: changed impersonal heading to compiler-governed biographical narration; Yongjue is person-described.",
+        "Occurrence 12: full preface authorship establishes Jiexian as the exact author/utterer of the headword-bearing sentence.",
+        "Occurrence 13: changed Linji from exact actor to person-described under compiler event narration; his speech starts only after the recorder's said marker.",
+        "Re-read the merged sense and retained the one formal teaching-hall-address referent."
+      ]
+    },
+    {
+      "id": "t_8ece09f6b91a",
+      "term": "正法眼藏",
+      "entrySha256": "abf19daf143cb924e7d22a8933d579c9a608f280a8ff4098602e6f10cc558211",
+      "repairs": [
+        "Title sense occurrence 1: removed utterer from Zhanran Yuancheng and retained compiler/preface context under impersonal book-title metadata.",
+        "The independently readable lineage-possession and book-title senses remain distinct."
+      ]
+    }
+  ],
+  "verification": {
+    "entryPaths": "All five cohort paths are absolute and contain /fresh-build/entries/.",
+    "jsonParse": "PASS 5/5",
+    "exactKwic": "PASS 48/48; every stored occurrence contains its SourceTerm and zc.verify returned matching FromLb/ToLb.",
+    "attribution": "PASS; 0 hard failures across 48 occurrences.",
+    "publicFeedback": "PASS 5/5; 0 flags after modifier-ledger and stale-count repair.",
+    "depthSense": "PASS; 0 hard failures; three nonhard semantic-review flags retained for independent review.",
+    "workSourceValidation": "PASS; 0 hard failures.",
+    "corpusBaseline": "PASS; 0 hard failures.",
+    "forbiddenEnglish": "PASS; 0 findings.",
+    "frozenHistoricalTerms": "PASS 641/641; 0 hard failures.",
+    "cohortReport": "fresh-build/waves/f001-laneA-second-semantic-repairs-cohort.json",
+    "cohortHardPass": true,
+    "immutableOtherLaneA": "PASS: the post-repair reviewer had already hash-verified 24 original KEEP entries; the remaining 11 post-repair KEEP hashes were rechecked unchanged before this five-entry edit. No other lane-A entry path was written."
+  },
+  "promotion": "Not performed; independent review and root own promotion/merge."
+}

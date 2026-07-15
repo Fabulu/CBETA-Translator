@@ -1,0 +1,193 @@
+{
+  "Id": "t_e5259ce8bbf5",
+  "SourceTerm": "垂示",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "case-preface rubric or textual indication",
+      "AlternateTargets": [
+        "case-preface pointer",
+        "catalogued textual indication"
+      ],
+      "SearchAliases": ["case pointer", "case preface", "prefatory indication", "textual indication"],
+      "Status": "preferred",
+      "Explanation": "This is the prefatory pointer printed before a case, or an indication catalogued as a textual item in a recorded-sayings collection. The compound occurs 640 times in 178 allowlisted texts. The fixed rubric “the indication says” (垂示云) occurs 109 times in 21 texts, including 81 in the Blue Cliff Record, where Yuanwu Keqin's pointer prose precedes the case. One begins, “a phrase that settles heaven and earth, honored through ten thousand generations” (定乾坤句，萬世共遵). Yunmen Wenyan's Extended Record separately counts “185 items of essential chamber sayings; 290 items of indications and substitute answers” (室中語要一百八十五則，垂示代語二百九十則). Tianyin Yuanxiu's record also carries the section rubric “chamber indication” (室中垂示) before Tianyin's words. The fixed editorial rubric and counted textual items establish a textual referent distinct from the public speaking event in the next sense.",
+      "Validation": "multi-source",
+      "Note": "This sense is limited to the lexicalized textual rubric/object, not every nominal instance of “indication.” No equation-style self-definition was found, but the fixed rubric and counted collection division independently establish the object. “Indications and substitute answers” (垂示代語) occurs across several texts.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0180a12",
+          "ToLb": "0180a13",
+          "Kwic": "垂示云。定乾坤句。萬世共遵。擒虎兕機。千聖莫辨。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). Yuanwu Keqin supplies the case pointer: a phrase settling heaven and earth is honored for ten thousand generations, while a dynamic capturing tigers and rhinoceroses cannot be distinguished by a thousand sages.",
+          "MasterName": "Yuanwu Keqin"
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0181c13",
+          "ToLb": "0181c14",
+          "Kwic": "垂示云。要道便道。舉世無雙。當行即行。全機不讓。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). In his case pointer, Yuanwu Keqin says: if you would speak, speak; if you would act, act; concede nothing of the whole dynamic.",
+          "MasterName": "Yuanwu Keqin"
+        },
+        {
+          "RelPath": "T/T47/T47n1988.xml",
+          "FromLb": "0553c24",
+          "ToLb": "0553c25",
+          "Kwic": "室中語要一百八十五則垂示代語二百九十則",
+          "Curated": true,
+          "AttributionNote": "The collection contents heading in the Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄) counts 185 essential chamber sayings and 290 indications and substitute answers. This is an impersonal editorial heading, not a narrated speaking turn; Yunmen Wenyan is the record-subject rather than its speaker.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "collection contents heading",
+            "ActorRole": "textual division",
+            "GrammarEvidence": "The two parallel noun phrases count the contents of the following divisions: 185 essential chamber sayings and 290 indications and substitute answers. In the XML they are separate paragraphs immediately after the volume heading and collector byline and before the 室中語要 section head, with no speech marker or human subject; the occurrence is therefore an editorial contents statement, not Yunmen Wenyan's spoken turn.",
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T04:45:53Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "record-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0528c18",
+          "ToLb": "0528c19",
+          "Kwic": "室中垂示，師云：「五更熟睡時，撞鐘不聞鐘聲，頃寤時鳴鼓，便聞鼓聲。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu gives the private-room indication and opens it with the contrast between not hearing the bell in deep sleep and hearing the drum upon waking.",
+          "MasterName": "Tianyin Yuanxiu"
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "T/T47/T47n1988.xml",
+        "C/C077/C077n1710.xml",
+        "J/J25/J25nB171.xml"
+      ],
+      "RelatedMasters": [
+        "Yunmen Wenyan"
+      ],
+      "RelatedTerms": []
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to offer an indication in public exchange",
+      "AlternateTargets": [
+        "to indicate",
+        "to show or address"
+      ],
+      "SearchAliases": ["offer an indication", "give an indication", "public indication", "indicate in exchange"],
+      "Status": "preferred",
+      "Explanation": "This is an indication requested from a respondent during a public exchange. The request “please offer an indication” (請師垂示) occurs 107 times in 56 texts, and “I beg you to offer an indication” (乞師垂示) occurs 57 times in 26. An unnamed questioner asks within the expedient gate, and Jiufeng Qin answers that buddha does not deprive living beings of their wishes. Touzi Datong makes the request to Cuiwei Wuxue, who replies, “Do you want a second ladle of foul water?” Another unnamed questioner makes it to Shoushan Xingnian and receives “beneath the staff, a shooting star bursts forth” (棒下迸流星). These are requested speaking events, not the separately catalogued case-preface rubric.",
+      "Validation": "multi-source",
+      "Note": "This is not split merely because it is verbal. The public request names an interpersonal speaking event, while the other target explicitly names a fixed editorial rubric or catalogued textual unit; the targets distinguish those referents on their own. Comparison families checked were question-and-answer, substitute answer, picking up an old case, verses on old cases, and raising a case.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0654c02",
+          "ToLb": "0654c03",
+          "Kwic": "問：方便門中，請師垂示。師云：佛不奪眾生願。",
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): inside Jiufeng Qin's explicitly headed section, an unnamed monk asks Jiufeng Qin to offer an indication within the gate of expedients; Jiufeng answers that Buddha does not take away beings' wishes. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Jiufeng Qin",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0116b21",
+          "ToLb": "0116b22",
+          "Kwic": "子曰。乞師垂示。師曰。更要第二杓惡水那。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Cuiwei Wuxue section. Touzi Datong is the exact speaker who asks the teacher to offer an indication; Cuiwei answers that he would then be asking for a second ladleful of foul water.",
+          "MasterName": "Touzi Datong",
+          "ContextMasters": [
+            {
+              "MasterName": "Cuiwei Wuxue",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0669c04",
+          "ToLb": "0669c05",
+          "Kwic": "臨機一句截断眾流請師垂示師云棒下迸流星",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk requests that the master offer an indication; Shoushan answers 'under the staff a shooting star bursts.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X78/X78n1556.xml",
+        "X/X80/X80n1565.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": []
+    }
+  ]
+}

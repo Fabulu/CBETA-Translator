@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "f003-repair-author-final-v1",
+  "role": "repair-author",
+  "sourceRejectingReview": "f003-laneA-651-700-revise15-fresh-independent-exact-rereview.json",
+  "finalFormalGate": "f003-laneA-651-700-revise15-round2-final-full50-formal-gate.json",
+  "formalHardPass": true,
+  "exactKwic": {"verified": 356, "failures": 0},
+  "priorKeepHashProof": {
+    "count": 35,
+    "allPriorKeepHashesUnchanged": true,
+    "enforcedBy": "enrich_f003_a651_700_revise15_round2.py before/after SHA-256 assertion"
+  },
+  "repairedEntryHashes": {
+    "t_c06edf8c18f1": "328667015a33ab501dfeb778aaa08ba7b858c761e15c53fe9f00809ec5c9ca3a",
+    "t_6e4234dfd60f": "d56421d6ef01c2ceb92ca6a630d0480ee05a497368a106f83c3e1ab1a49a56a4",
+    "t_df0ba3a57ecf": "7192c968a4499c22eb13baae7e30495dde13dd2ab0c80262fc7113fbe0d6e85d",
+    "t_c193d5b26854": "3f7887dc432652c597ce93a51a436066267bfb5c36ad5dbf27e7766e4e746082",
+    "t_cbf868f557e2": "e1541f266805f545f0e836ebd4e32f488255d5831fd4e721eeaf1acb70530629",
+    "t_cb44465faa59": "133ce503b4d35c9feaf94b9d209f5f9a56f058c14e69be40aa29c44971d6a32a",
+    "t_f74516e0ba71": "dd6d55434ce65103f86927d49ba69019c3612f6d91d8c76f6b2fc17249a7c595",
+    "t_279cf2b97244": "88569389edbdb6cdbf4660fbc1bfcd3985d194454072d115814e8941b4975b0c",
+    "t_086985319a5b": "7fd208329aa45b6fcc39cf283a7218fb2512cfd630ff2c0e33e4971c5c6ae02e",
+    "t_612cae8da268": "81e8ac60376ed8bb998118bfedabaaea0dd56d977d0d0c7b8b18b468a83a0925",
+    "t_4da199fae933": "395b458561d7cf76b52262bda872282e6a4fa136af3173cb67d53cb567c6eb55",
+    "t_2d567d37256b": "c9eb83d5039f64ac0db3ecd7893951005ac9e4910a4e0b2b41e12c75d1fd778b",
+    "t_cc8c8a1cb550": "ece9257b0f7cbb2422c14b4d849c76960b1a997c39d60f96df8e61ce85216237",
+    "t_453e3c35baa6": "c0787418095b65556d293b8efdbfffaac87e5529c31c3f34acc3fbc87fbc1f20",
+    "t_ff91d085da8d": "b4bff99dd6e68b77d3646b713beb6ac71c75788e6bd9354013e244fa7285c999"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

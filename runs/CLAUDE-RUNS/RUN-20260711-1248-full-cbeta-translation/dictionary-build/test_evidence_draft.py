@@ -136,6 +136,22 @@ class EvidenceDraftTests(unittest.TestCase):
         _, errors = compile_draft(payload)
         self.assertGreaterEqual(sum("generic template filler" in error for error in errors), 2)
 
+    def test_rejects_exact_a906_930_polished_template(self):
+        payload = valid_payload()
+        sense = payload["Entry"]["Senses"][0]
+        sense["ExplanationParts"]["CorpusEarnedOpening"] = (
+            "The mechanism beyond the presented terms is the plain-English referent "
+            "tested by the selected Chan records."
+        )
+        sense["ExplanationParts"]["EvidenceBody"] = [
+            "The selected cases place the mechanism beyond the presented terms inside "
+            "lineage records, public addresses, institutional narration, or inherited cases; "
+            "the exact surrounding predicates delimit how the records use it rather than "
+            "importing an external definition."
+        ]
+        _, errors = compile_draft(payload)
+        self.assertGreaterEqual(sum("generic template filler" in error for error in errors), 2)
+
     def test_strips_all_draft_prefixed_fields(self):
         payload = valid_payload()
         occurrence = payload["Entry"]["Senses"][0]["Occurrences"][0]

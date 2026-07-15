@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "wave": "f004",
+  "lane": "A",
+  "range": [
+    916,
+    925
+  ],
+  "method": "manual full-case adjudication from f004-916-925-shared-case-packet.json; no actor regexes",
+  "resumableScript": "fresh-build/waves/repair_f004_a_916_925_safe.py",
+  "completed": [
+    {
+      "ordinal": 916,
+      "id": "t_3c20438ecdda",
+      "term": "張無盡",
+      "occurrences": 7,
+      "exactFromLbToLbPass": true,
+      "checkpoint": "fresh-build/waves/f004-a-916-safe-checkpoint-pre-review.json"
+    },
+    {
+      "ordinal": 917,
+      "id": "t_1383f942789d",
+      "term": "殺生",
+      "occurrences": 7,
+      "exactFromLbToLbPass": true,
+      "checkpoint": "fresh-build/waves/repair_f004_a_916_925_safe.py"
+    }
+  ],
+  "nextOrdinal": null,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "entries": [
+    {
+      "ordinal": 916,
+      "id": "t_3c20438ecdda",
+      "term": "張無盡",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "7895339977e1e44b03202da01a3cddaedc755ee2bc0662edad7656cc987d377a",
+      "entrySha256": "1619b42076494746b5585255e1cc6e2b4df531f4c106a27ef6318a0c1c9bdeb0",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 917,
+      "id": "t_1383f942789d",
+      "term": "殺生",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "c218eeda129633000b8374cfd3458d4bfa0d620fd1a1a7f7a5a8a3ecd706b4ca",
+      "entrySha256": "bca7965fad38bf5d02d2163b3844ce9af006a3e70c82669dffdec6c546537a1a",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 918,
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "6eba34e5622810fd8f50fd000457ef6c3cbf0ce202d6a6b7bb2d0f05cd8c9aad",
+      "entrySha256": "929ab2e98342e51cc89bd1e4afd1bf250c7fe38ae58a940c2de7406730fb33cd",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 919,
+      "id": "t_09cbe12e4c36",
+      "term": "陸亘大夫",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "65eeecee8180e19bfae9f92c1b7eff96bd2ce8e434155103ee76d28c68587602",
+      "entrySha256": "b5774339c28fa02841098ffe42e4e2f47e7373ca58b34e6538284ffa65e08370",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 920,
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "senses": 1,
+      "occurrences": 5,
+      "worksheetSha256": "58b5faa38f4c4a691be8c5a780874b8300a965abe655b80c9604919d9b7df936",
+      "entrySha256": "34fee19f1837d1d8b2e9b152f1b8680631066339dd488da19995abb83c847242",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 921,
+      "id": "t_72ed81907d68",
+      "term": "施為",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "95a7f9edac51fbbc52e3e9c545f37a6f8f4e111252fba2a3185bfd2b3c798018",
+      "entrySha256": "afb3466a0b42f25b5036117af46247e12ecd9fce79b4233f1a48e4f67e80426d",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 922,
+      "id": "t_c9f69715e823",
+      "term": "五燈會元",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "3bd93d372829dc071f965b81fbac68d164138170a63e0dca4fbe4a121d31436d",
+      "entrySha256": "998e0fac102556e3a80935bed1f260dd65bfd7293d1860c1c8e0e08f423bedde",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 923,
+      "id": "t_1c236703f164",
+      "term": "瞎驢",
+      "senses": 1,
+      "occurrences": 7,
+      "worksheetSha256": "7f56667ba67321d7be741db2deedd068551eb1e624c265138a478d84ccc17706",
+      "entrySha256": "34d63b19009bf0fc064865a4d1b609354dcd47e2c9556192b8ac276cea0fed44",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 924,
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "senses": 1,
+      "occurrences": 6,
+      "worksheetSha256": "f89ba1f009ef0b3bc4ad70fbda303db904ca328dd2d459bab152d17f00068704",
+      "entrySha256": "e21e711da38b69fe26356fc71c9485580fecda8a29ab721e675585284b19841e",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    },
+    {
+      "ordinal": 925,
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "senses": 2,
+      "occurrences": 7,
+      "worksheetSha256": "f473d6050c3d1158f4952c5205544b8b2c638d7921cf8e5446f18edc712d1685",
+      "entrySha256": "4b7cc77b1f53c2ffd84dd9a03bfaccaa268922b9de1a9ea0ec3cb2806cda374d",
+      "compileHardPass": true,
+      "authorRoleOnly": true
+    }
+  ],
+  "generatedUtc": "2026-07-15T14:09:01.929170+00:00",
+  "scope": "f004 A916-925 safe full-case author repair",
+  "completedOrdinals": [
+    916,
+    917,
+    918,
+    919,
+    920,
+    921,
+    922,
+    923,
+    924,
+    925
+  ],
+  "selfReviewRun": false,
+  "promotionRun": false,
+  "mergeRun": false
+}

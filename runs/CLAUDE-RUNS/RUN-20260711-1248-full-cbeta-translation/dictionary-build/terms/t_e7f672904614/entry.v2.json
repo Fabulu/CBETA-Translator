@@ -1,0 +1,132 @@
+{
+  "Id": "t_e7f672904614",
+  "SourceTerm": "心地",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "mind-ground",
+      "AlternateTargets": [
+        "ground of mind",
+        "the mind as ground"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally \"mind\" (心) and \"ground\" (地): \"mind-ground,\" attested 1,568 times in 268 allowlisted texts. Huangbo's record calls it the \"mind-ground gate\" and says, \"all things are established depending on this mind; meeting a scene, they exist; without a scene, they do not\" (萬法皆依此心建立，遇境即有，無境即無). A transmission verse says, \"mind-ground is originally unborn; the causal ground arises following conditions; conditions and seeds do not obstruct one another; flower and fruit are likewise\" (心地本無生，因地從緣起，緣種不相妨，華果亦復爾). Another verse says it \"contains all seeds\" and that universal rain makes them sprout (心地含諸種，普雨悉皆萌). In a repeatedly raised exchange, Yunfeng answers \"What is the mind-ground gate?\" with \"it is not obtained from another\" (不從人得). The word also forms \"mind-ground seal\" (心地印, 132 occurrences) and \"mind-ground gate\" (心地法門, 157).",
+      "Validation": "multi-source",
+      "Note": "The ground image is productive: seeds are contained, rain makes them sprout, and flower and fruit follow. Later records preserve conflicting enacted labels: one teacher raises a staff and says, \"this is the mind-ground seal\" (這箇是心地印), while another raises a staff and says it is not the seal. These are recorded deployments, not separate senses.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2012A.xml",
+          "FromLb": "0381b10",
+          "ToLb": "0381b12",
+          "Kwic": "所謂心地法門。萬法皆依此心建立。遇境即有無境即無。",
+          "Curated": true,
+          "AttributionNote": "黃檗山斷際禪師傳心法要. Huangbo Xiyun is the exact actor: his continuous discourse defines 心地法門.",
+          "ContextMasters": [
+            {
+              "MasterName": "Pei Xiu",
+              "Roles": [
+                "recorder"
+              ]
+            }
+          ],
+          "MasterName": "Huangbo Xiyun"
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0212b25",
+          "ToLb": "0212b26",
+          "Kwic": "心地本無生因地從緣起緣種不相妨華果亦復爾",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄. Sanghanandi is the exact actor: 即付法偈曰 introduces 心地本無生.",
+          "ContextMasters": [
+            {
+              "MasterName": "Gayasata",
+              "Roles": [
+                "dharma-heir",
+                "recipient"
+              ]
+            }
+          ],
+          "MasterName": "Sanghanandi"
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0245a04",
+          "ToLb": "0245a04",
+          "Kwic": "雲峰因僧問：如何是心地法門？峰曰：不從人得。",
+          "Curated": true,
+          "AttributionNote": "宗門拈古彙集, Yunfeng Wenyue section. The exact headword-bearing speaker is an unnamed questioning monk: he asks Yunfeng what the mind-ground Dharma gate is, and Yunfeng answers that it is not obtained from another. All six rungs leave the monk unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunfeng Wenyue",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J34/J34nB305.xml",
+          "FromLb": "0401c25",
+          "ToLb": "0401c25",
+          "Kwic": "拈起拄杖，云：「這箇是心地印。」",
+          "Curated": true,
+          "AttributionNote": "國清大庾韜禪師語錄, instruction to the assembly. Guoqing Dayu Xingtao is the exact speaker: he raises his staff and declares, 'This is the mind-ground seal,' then draws one stroke and identifies it as the patriarchal barrier.",
+          "MasterName": "Guoqing Dayu Xingtao"
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0058c22",
+          "ToLb": "0058c23",
+          "Kwic": "所以六祖云。心地含諸種。普雨悉皆萌。",
+          "MasterName": "Huineng",
+          "ContextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "record-owner",
+                "later-raiser"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue explicitly quotes the Sixth Patriarch; Huineng is the exact speaker of ‘Mind-ground contains all seeds; universal rain makes them sprout.’"
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2012A.xml",
+        "T/T51/T51n2076.xml",
+        "X/X66/X66n1296.xml",
+        "J/J34/J34nB305.xml",
+        "T/T48/T48n2001.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "心地法門",
+        "心地印",
+        "心地藏",
+        "心印"
+      ]
+    }
+  ]
+}

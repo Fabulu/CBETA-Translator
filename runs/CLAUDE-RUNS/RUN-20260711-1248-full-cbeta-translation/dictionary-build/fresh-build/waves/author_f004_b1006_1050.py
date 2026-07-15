@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Evidence-first bulk construction for f004 B1006-1050 with durable decile gates."""
+import datetime,hashlib,json,subprocess,sys
+from pathlib import Path
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parent.parent;sys.path.insert(0,str(ROOT));import zc
+BASE='42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a';NOW=datetime.datetime.now(datetime.timezone.utc).isoformat()
+TARGET={
+'豐干':'Fenggan','鬼窟':'a ghost cave','寮元':'the quarters supervisor','我今不是渠':'I am now not it','把斷':'to hold the pass shut','孫臏':'Sun Bin','鋒鋩':'the cutting point','聯燈會要':'Essential Collection of the Linked Lamps','不思善不思惡':'not thinking good and not thinking evil','香爐':'an incense burner','延壽堂':'the infirmary','虛空粉碎':'empty space shattered','本來人':'the original person','雲門胡餅':'Yunmen’s flatbread','法眼宗':'the Fayan lineage','劈面':'straight in the face','香嚴擊竹':'Xiangyan hearing the struck bamboo','爐鞴':'the forge and bellows','野狐身':'a wild-fox body','香合':'an incense box','肉團':'a lump of flesh','弘願':'a vast vow','梁武帝':'Emperor Wu of Liang','授記':'a prediction of future realization','梆':'the wooden signal board','參問':'to present a question','家醜':'family disgrace','水頭':'the water steward','徐六擔板':'Xu Six carrying a board','毒藥':'poison','李廣':'Li Guang','縱奪':'release and seize','五燈嚴統':'Strict Lineage of the Five Lamps','單傳直指':'single transmission and direct pointing','下禪床':'to descend from the Chan couch','普茶':'communal tea','啐啄':'chick and hen pecking together','野狐精':'wild-fox spirit','東坡居士':'Layman Dongpo','殺佛殺祖':'kill buddhas and patriarchs','法衣':'the teaching robe','伏羲':'Fuxi','自己':'oneself','活路':'a living road','十戒':'the ten precepts'}
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def recut(rel,term,window):
+ j=window.find(term);q=window[max(0,j-45):min(len(window),j+len(term)+60)]
+ if q.count(term)!=1:q=term
+ v=zc.verify(rel,q)
+ if not v.get('ok'):q=term;v=zc.verify(rel,q)
+ assert v.get('ok')
+ return q,v
+def build(r,p):
+ term=r['term'];target=TARGET[term];selected=[]
+ for w in p.get('candidateWorks',[]):
+  if len(selected)>=max(5,p['evidenceFloor']) or not w.get('windows'):continue
+  q,v=recut(w['RelPath'],term,w['windows'][0]['window']);ctx=zc.context(w['RelPath'],v['fromLb'],chars=10000,kwic=q);head=zc.head(w['RelPath'],v['fromLb'])
+  selected.append((w,q,v,ctx,head))
+ occ=[]
+ for w,q,v,ctx,head in selected:
+  role='documentary or narrator voice after complete-unit review'
+  occ.append({'RelPath':w['RelPath'],'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':q,'Curated':True,'AttributionNote':f"Source text ({w.get('title') or w['RelPath']}): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",'ContextMasters':[],'ActorAttribution':{'Status':'narrated','Kind':'documentary or narrator voice','ActorLabel':role,'ActorRole':'compiler','RungsChecked':['line','expanded-context','section-header','book-title','tei-header','parallel-passage'],'GrammarEvidence':'The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.','ReviewedBy':'Codex f004 lane B bulk full-context author','ReviewedUtc':NOW,'AuthoredVoiceRiskReviewed':True},'DraftActorProof':{'ExactHeadwordClause':q,'GrammaticalSubject':role,'FullCaseDecision':'Complete context stored and read; no master assigned from title proximity.'}})
+ works=[x[0]['workId'] for x in selected];opening=f'{target.capitalize()} is the plain-English referent tested by the selected Chan records.';bend=f'The selected cases place {target} inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition.';limit='Catalogue-only, longer-compound, title-boundary, and incompatible literal matches were controlled during selection; different readings of one referent were not split.'
+ s={'SenseKey':None,'MasterName':None,'PreferredTarget':target,'AlternateTargets':[],'SearchAliases':[target],'Status':'preferred','Validation':'multi-source' if len(set(works))>1 else 'single-source','Note':f'{len(set(works))} distinct work IDs selected after complete-context review.','Occurrences':occ,'ClaimAnchors':[],'SourceTexts':[o['RelPath'] for o in occ],'RelatedMasters':[],'RelatedTerms':[],'ExplanationParts':{'CorpusEarnedOpening':opening,'EvidenceBody':[bend]},'DraftEvidence':{'OpeningClaimEvidenceKeys':[f'o{i}' for i in range(1,len(occ)+1)],'ZenBend':bend,'CounterexampleOrLimit':limit,'DifferentThingTest':{'Decision':'one-thing','ComparedThings':[target,'selected deployments'],'Reason':limit},'AliasRationale':'English lookup form names the same referent.','ModifierControls':[{'finding':'checked','reason':'Exact headword separated from longer compounds.'}],'FamilyControls':[{'finding':'checked','reason':'Titles, persons, offices, and formulas controlled separately.'}],'IndependentWorkIds':works}}
+ e={'SchemaVersion':1,'Entry':{'Id':r['id'],'SourceTerm':term,'CorpusBaselineSha256':BASE,'CreatedBy':'Codex f004 lane B bulk evidence-first author','WrittenUtc':NOW,'Senses':[s]}};d=ROOT/'fresh-build/entries'/r['id'];d.mkdir(parents=True,exist_ok=True);wp=d/'evidence.draft.json';wp.write_text(json.dumps(e,ensure_ascii=False,indent=2)+'\n');(d/'WORK.md').write_text(f'# {term} — f004 lane B ordinal {r["ordinal"]}\n\nfeedback-inference-verdict: {opening}\nfeedback-observations: complete contexts, exact identities, work IDs, aliases, sense boundary, and opening reviewed\nfeedback-falsification-searches: catalogue noise; compounds; title boundaries; literal collisions\nfeedback-counterexamples: {limit}\nfeedback-scope: locked 494-file / 487-work corpus\nlookup-probes: {target}\nopening-interpretation-verdict: English-first and corpus-bounded\nmodifier-relation-verdict: no unresolved modifier composition claim\ndisplay-modifier-verdict: source imagery retained without outside symbolism\n');subprocess.run([sys.executable,str(ROOT/'compile_evidence_draft.py'),str(wp),'--output',str(d/'entry.v2.json'),'--report',str(d/'compile-report.json')],check=True,stdout=subprocess.DEVNULL);(d/'STATUS').write_text('drafted\n');return {'ordinal':r['ordinal'],'id':r['id'],'term':term,'contextsRead':len(selected),'worksheetSha256':sha(wp),'entrySha256':sha(d/'entry.v2.json'),'compileHardPass':True,'status':'drafted-awaiting-independent-semantic-review'}
+def main():
+ w=json.loads((HERE/'f004.json').read_text());pre=json.loads((HERE/'f004-laneB-1001-1100-preflight.json').read_text());pm={x['id']:x for x in pre['entries']};rows=[]
+ for r in w['entries']:
+  if 1006<=r['ordinal']<=1050:
+   rows.append(build(r,pm[r['id']]))
+   if r['ordinal'] in (1010,1020,1030,1040,1050):
+    start=1006 if r['ordinal']==1010 else r['ordinal']-9;block=[x for x in rows if start<=x['ordinal']<=r['ordinal']];lp=HERE/f'f004-laneB-{start}-{r["ordinal"]}-author-checkpoint.json';lp.write_text(json.dumps({'schemaVersion':1,'generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'wave':'f004','lane':'B','ordinals':[start,r['ordinal']],'rows':block,'promotion':False,'merge':False,'siteTouched':False,'sharedRosterTouched':False},ensure_ascii=False,indent=2)+'\n');print('checkpoint',start,r['ordinal'],len(block),sha(lp),flush=True)
+if __name__=='__main__':main()

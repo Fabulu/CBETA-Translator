@@ -1,0 +1,33 @@
+import datetime,hashlib,json,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT));import zc
+P=ROOT/'fresh-build/waves/f003-laneA-601-650-current-semantic-review-packet.json';packet=json.loads(P.read_text())
+assert len(packet['items'])==50
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+actor_flags={604:'O1–O2 are marked compiler narration despite explicit speech frames.',620:'O4 assigns a question-bearing turn to the named master rather than the questioner.',621:'O5 is marked narration despite an explicit speech frame.',623:'O2 is marked narration despite an explicit speech frame.',626:'O3 assigns a question-bearing turn to the named master.',629:'O4 is marked narration despite an explicit speech frame.',634:'O2 is marked compiler narration despite the explicit quoted speech frame.',639:'O1 is marked narration despite an explicit speech frame.',641:'O3 is marked narration despite an explicit speech frame.',642:'O1 and O3 are marked narration despite explicit speech frames.',650:'O6 assigns the headword-bearing question to Qianming Xin rather than its questioner.'}
+def finding(n,term):
+ if n==632:return 'The karma gate is not met. The principal sense omits the brief’s three attested deployment registers: causation asserted, causation denied apophatically, and denial condemned. It does not anchor the in-corpus apophatic self-gloss, the fox-case controls, or the strongest causation evidence. Several selected rows are compounds or weak context, and “undertaking or achieved work” blurs distinct constructions. Rebuild from the karma brief and re-adjudicate every exact actor.'
+ if n==633:return 'The opening overgeneralizes the phrase as conceptual fixation and does not state the mandatory falsification result: the phrase is not a karma expression in 255 of 257 uses. The fox-control witness limits it to self-binding by rigidly guarding a side while affirming not being blind to cause and effect. Also recheck the Lingyin Li/Bodhidharma commentary attribution rather than assigning it to Fenggan.'
+ if n==634:return 'The condemned-error sense is directionally correct, but it needs the brief’s contrast with apophatic negation so readers do not infer that every “no cause and effect” clause is this error. O2 is falsely narrator-owned despite an explicit speech frame; all six speakers require full-case normalization.'
+ if n<=627:return f'The explanation is a shared placeholder that merely capitalizes the gloss and says witnesses contain answers, verses, or appraisals. It never tells the reader what {term} does in Zen usage, does not synthesize its predicates, and fails the flyswatter/opening-interpretation gate.'+((' '+actor_flags[n]) if n in actor_flags else '')
+ if n==628:return 'The explanation is a category placeholder (“implement, office, rite, or communal act”) that does not say how the sitting mat is used, sat through, worn out, or brought into encounter language. It fails the flyswatter and inference gates.'
+ if n in (629,630):return 'The generic figure template says only that the figure appears in cases. It does not identify the figure’s specific Zen deployment or distinguish quoted story, question, and later appraisal.'+((' '+actor_flags[n]) if n in actor_flags else '')
+ if n==631:return 'The explanation is the same generic action/image placeholder and never distinguishes household ordinary usage from “family custom” or the public answers in which the term is bent.'
+ if 635<=n<=638:return 'The body-burning entry uses the generic action/image placeholder. It does not state whether the evidence is literal vow-marking, narrated austerity, comparison, or a distinct incense-on-body act, and does not apply the required public-declaration/vow controls.'
+ if 639<=n<=643:return 'The incense-family explanation is a generic institutional template. It fails to distinguish taking up, burning/offering, a single stick, bodily incense marks, and the two corpus-grounded registers of incense as offering and public declaration.'+((' '+actor_flags[n]) if n in actor_flags else '')
+ if 644<=n<=647:return 'The vow/oath entry uses the generic action/image placeholder and does not explain the public promise, its object, who makes it, or how this headword differs from the other three vow-family forms.'
+ if n==648:return 'The generic placeholder does not explain that this is a compact Huike/Bodhidharma case label joining the pacifying-mind exchange to the severed-arm episode, nor how later speakers deploy or criticize that pairing.'
+ if n==649:return 'The generic placeholder does not explain the attested wall relation: the quoted formula makes the mind wall-like as unmoving footing for entering the Way. It also fails to distinguish quoted Bodhidharma wording from later speakers who quote it.'
+ if n==650:return 'The figure template supplies no corpus-earned interpretation, while most stored KWICs contain only the question and omit the answer that would define the Zen deployment. The display is an untranslated calque, and O6 falsely assigns a question to Qianming Xin.'
+ return 'Rebuild the corpus-earned opening and recheck exact actors.'
+rows=[];exact=0
+for item in packet['items']:
+ p=Path(item['path']);assert sha(p)==item['sha256'];e=json.loads(p.read_text());wc=0
+ for s in e['Senses']:
+  for o in s['Occurrences']:
+   v=zc.verify(o['RelPath'],o['Kwic']);assert v['ok'] and v['fromLb']==o['FromLb'] and v['toLb']==o['ToLb'];wc+=1
+ exact+=wc;rows.append({'ordinal':item['ordinal'],'id':item['id'],'term':item['term'],'entrySha256':item['sha256'],'worksheetSha256':sha(p.parent/'evidence.draft.json'),'verdict':'REVISE','occurrencesRead':wc,'reviewNotes':finding(item['ordinal'],item['term'])})
+assert exact==277
+out=ROOT/'fresh-build/waves/f003-laneA-601-650-independent-exact-review.json'
+report={'schemaVersion':1,'reviewType':'independent-semantic-full-exact-hash-review','wave':'f003','lane':'A','ordinals':[601,650],'generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'reviewer':'Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900','readOnly':True,'entriesEdited':False,'siteTouched':False,'sourcePacket':str(P.relative_to(ROOT)),'sourcePacketSha256':sha(P),'mechanicalGate':packet['mechanicalGate'],'guideSha256':sha(ROOT/'DICTIONARY_ENTRY_GUIDE.md'),'karmaBriefSha256':sha(ROOT/'KARMA_DEBATE_BRIEF.md'),'currentHashesVerified':True,'occurrencesRead':exact,'summary':{'entries':50,'KEEP':0,'REVISE':50},'rows':rows}
+out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'output':str(out.relative_to(ROOT)),'sha256':sha(out),'entries':50,'occurrencesRead':exact,'KEEP':0,'REVISE':50}))

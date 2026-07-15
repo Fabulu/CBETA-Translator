@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "focused-independent-exact-hash-rereview",
+  "reviewer": "reviewer4",
+  "generatedUtc": "2026-07-15T14:30:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1131, 1132, 1134],
+  "sourceGate": "f004-laneC-1131-1132-1134-reviewer3-author-repair-gate-v3.json",
+  "sourceGateSha256": "66d21176f7abd2f22ade92afb828cbc46e5811d5f8185215316b69ed277975dc",
+  "entriesReviewed": 3,
+  "occurrencesReadInFullCase": 21,
+  "exactKwics": 21,
+  "exactFullSpans": 21,
+  "exactSpanFailures": 0,
+  "keep": 0,
+  "revise": 3,
+  "reviewMethod": [
+    "Read all 21 current headword-bearing units through their complete encounter, address, biography, verse, or compilation boundary.",
+    "Required MasterName to be the utterer of the exact headword; acting and discussed masters were checked separately in ContextMasters.",
+    "Independently ran zc.verify for every KWIC and required both returned FromLb and ToLb to equal the stored span.",
+    "Compared current entry SHA-256 values with repair gate v3 and reviewed current prose and sense depth rather than treating the green mechanical gate as semantic approval."
+  ],
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "reviewedEntrySha256": "b55424dd603c8128c2cda9d4f6557369facdd98fb084903ea4231ddfb32cf8fb",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "verdict": "REVISE",
+      "resolvedFindings": [
+        "Occurrence 2 now preserves the unnamed monk as utterer and names Baiyu Jingsi only as respondent.",
+        "Occurrence 3 now names Tianyin Yuanxiu as the authored voice, corroborated by the parallel occurrence 7.",
+        "The explanation no longer claims that a response is intended to help its recipient."
+      ],
+      "remainingReasons": [
+        "The opening sentence ‘Receiving people and benefiting living beings names the public work of meeting those who come’ is duplicated verbatim. Remove the duplicate before promotion.",
+        "The seven cases otherwise preserve exact utterers and narrator-governed biography correctly; the one corpus-wide sense remains adequate."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Xuansha Shibei owns the embedded quoted headword turn.","spanExact":true},
+        {"occurrence":2,"decision":"Unnamed monk owns the question; Baiyu Jingsi is respondent.","spanExact":true},
+        {"occurrence":3,"decision":"Tianyin Yuanxiu owns the record address.","spanExact":true},
+        {"occurrence":4,"decision":"Biographer narrates Guishan Lingyou's deliberation.","spanExact":true},
+        {"occurrence":5,"decision":"Feiyin Tongrong owns the public address.","spanExact":true},
+        {"occurrence":6,"decision":"Konggu Daocheng owns the public address.","spanExact":true},
+        {"occurrence":7,"decision":"Tianyin Yuanxiu owns the parallel record address.","spanExact":true}
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "reviewedEntrySha256": "b532b8a6b948e1fbd3f2f3c6422a8f03ed736ce93bc96cef3dff2fce72304cca",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "verdict": "REVISE",
+      "resolvedFindings": [
+        "Occurrences 5 and 6 now name Yungai Ben and Zhenjing Kewen as the masters performing the narrator-governed actions while leaving MasterName null."
+      ],
+      "remainingReasons": [
+        "Occurrence 7 is still wrong in ContextMasters. The unit reads that Linji arrives at Xiangzhou Huayan and Huayan sees him and holds the staff crosswise; Huayan performs the action, while Linji is the visiting interlocutor. Replace Linji's person-described link with the resolved Huayan actor and retain Linji only in his actual contextual role.",
+        "The opening sentence is repeated four times verbatim. Collapse it to one term-specific English-first sentence before promotion.",
+        "The visible-action sense is otherwise coherent; MasterName correctly remains null for all seven narrator-governed bodily actions."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Narrator describes Foyin Liaoyuan holding the staff crosswise.","spanExact":true},
+        {"occurrence":2,"decision":"Narrator describes Qinshan Wensui's action.","spanExact":true},
+        {"occurrence":3,"decision":"Parallel narrator describes Qinshan Wensui's action.","spanExact":true},
+        {"occurrence":4,"decision":"Narrator describes Rifang Shangzuo's reply-action.","spanExact":true},
+        {"occurrence":5,"decision":"Narrator describes Yungai Ben's teaching-seat action.","spanExact":true},
+        {"occurrence":6,"decision":"Narrator describes Zhenjing Kewen's teaching-seat action.","spanExact":true},
+        {"occurrence":7,"decision":"Narrator describes Huayan holding the staff when Linji visits; current Linji-only context is incorrect.","spanExact":true}
+      ]
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "reviewedEntrySha256": "b55ab926e14f153380de83ea48a4584433a2d00053cde42323b8bf809d922cab",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "verdict": "REVISE",
+      "resolvedFindings": [
+        "Occurrence 3 now correctly assigns the answer ‘the body exposed in the golden wind’ to Yunmen Wenyan rather than to the unnamed questioning monk."
+      ],
+      "remainingReasons": [
+        "The opening sentence is repeated four times verbatim. Collapse it to one English-first definition before promotion.",
+        "All seven cases otherwise distinguish Yunmen's quoted answer from the anonymous compiled verse; one corpus-wide inherited-case sense remains adequate."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Yunmen Wenyan owns the embedded answer.","spanExact":true},
+        {"occurrence":2,"decision":"Yunmen Wenyan owns the quoted answer; the later record owner comments afterward.","spanExact":true},
+        {"occurrence":3,"decision":"The monk asks; Yunmen Wenyan utters the exact headword after the response marker.","spanExact":true},
+        {"occurrence":4,"decision":"Compilation quotes Yunmen Wenyan's answer before collected verses.","spanExact":true},
+        {"occurrence":5,"decision":"Blue Cliff Record quotes Yunmen Wenyan's answer.","spanExact":true},
+        {"occurrence":6,"decision":"The compiled verse voice is source-anonymous after all six rungs.","spanExact":true},
+        {"occurrence":7,"decision":"Compiled verse collection quotes Yunmen Wenyan's answer.","spanExact":true}
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "artifactWasAbsentBeforeWrite": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

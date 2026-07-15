@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import datetime,hashlib,json,sys
+from pathlib import Path
+H=Path(__file__).resolve().parent;R=H.parent.parent;sys.path.insert(0,str(R));import zc
+def sh(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+src=H/'f004-laneC-1131-1150-fresh-independent-exact-review.json';sd=json.loads(src.read_text());sb={e['ordinal']:e for e in sd['entries']};wave=json.loads((H/'f004.json').read_text());entries=[];total=exact=0
+special={1131:'Confirmed: occurrence 1 contains 舉玄沙示眾云; Xuansha Shibei is the recoverable quoted utterer, not a generic textual voice.',1143:'Confirmed: the parallel 師以拂子驀口打 rows preserve Xiaoyao’s named action; the performer is recoverable from the case container.',1148:'Confirmed: later masters, including Miaohui Huiguang, utter 趙州勘婆 while raising the inherited case; compiler narration erases the later raiser.'}
+for r in [x for x in wave['entries'] if 1131<=x['ordinal']<=1150]:
+ p=R/r['entryPath'];b=sh(p);e=json.loads(p.read_text());cs=[]
+ for i,o in enumerate([o for s in e['Senses'] for o in s.get('Occurrences',[])],1):
+  total+=1;v=zc.verify(o['RelPath'],o['Kwic']);ok=bool(v.get('ok')) and r['term'] in o['Kwic'] and v.get('fromLb')==o.get('FromLb') and v.get('toLb')==o.get('ToLb');exact+=int(ok);c=zc.context(o['RelPath'],o['FromLb'],chars=5000,kwic=o['Kwic']);w=c.get('window','');aa=o.get('ActorAttribution') or {};cs.append({'occurrence':i,'RelPath':o['RelPath'],'FromLb':o.get('FromLb'),'ToLb':o.get('ToLb'),'zcVerifyExact':ok,'fullCaseContextSha256':hashlib.sha256(w.encode()).hexdigest(),'MasterName':o.get('MasterName'),'ContextMasters':o.get('ContextMasters',[]),'ActorStatus':aa.get('Status'),'ActorLabel':aa.get('ActorLabel')})
+ a=sh(p);assert a==b;why=list(sb[r['ordinal']]['reasons']);why.insert(0,'Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.');
+ if r['ordinal'] in special:why.insert(1,special[r['ordinal']])
+ entries.append({'ordinal':r['ordinal'],'id':r['id'],'term':r['term'],'reviewedEntrySha256':b,'postReviewEntrySha256':a,'byteIdentical':True,'priorReviewer2Verdict':'KEEP','collisionVerdict':'REVISE','verdict':'REVISE','reasons':why,'cases':cs})
+out=H/'f004-laneC-1131-1150-reviewer2-collision-adjudication.json';assert not out.exists(),'refuse overwrite';d={'schemaVersion':1,'reviewType':'review-collision-adjudication','reviewer':'reviewer2','generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'wave':'f004','lane':'C','ordinals':[1131,1150],'survivingCollisionReport':{'path':src.name,'sha256':sh(src)},'entriesReviewed':20,'occurrencesReadInFullCase':total,'exactKwics':exact,'keep':0,'revise':20,'changedVerdicts':20,'entries':entries,'allReviewedFilesByteIdentical':True,'promotion':False,'merge':False,'siteTouched':False,'sharedRosterTouched':False};out.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'output':out.name,'sha256':sh(out),'occurrences':total,'exact':exact,'keep':0,'revise':20}))

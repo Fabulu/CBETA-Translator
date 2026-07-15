@@ -1,0 +1,101 @@
+{
+  "Id": "t_223c2f6ade25",
+  "SourceTerm": "一大事因緣",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the one great matter (for which the Buddhas appear in the world)",
+      "AlternateTargets": [
+        "the one great matter",
+        "the single great occasion",
+        "the one great cause-and-condition"
+      ],
+      "Status": "preferred",
+      "Explanation": "(一大事) = the one great matter; (因緣) = occasion / cause-and-condition. The phrase originates in the Lotus Sūtra — (諸佛世尊唯以一大事因緣故出現於世), 'the Buddhas appear in the world solely for the one great matter' — and the Chan corpus keeps that source-wording: (一大事因緣) stands within eight characters of (出現於世) in 97 places across 68 allowlist files, and the frame (為一大事因緣) occurs 199 times in 100 files. The corpus glosses the term in its own words: the Platform Sutra has (經云)：『(諸佛世尊)，(唯以一大事因緣出現於世)。』(一大事者)，(佛之知見也) ('the one great matter is the Buddha's knowing-and-seeing'), and (禪源諸詮集都序) has (一大事者)。(欲令眾生開佛知見)。(乃至入佛知見道故) ('the one great matter: to have beings open the Buddha's knowing-and-seeing, up to entering the way of the Buddha's knowing-and-seeing'). Three attested deployments. (1) Said of the patriarchs and of the living master as of the Buddhas: (佛出世)。(提持一大事因緣)。(祖師西來) (Yuanwu), and (博山出世亦為一大事因緣) — Wuyi Yuanlai says it of his own appearance in the world. (2) Posed as a question — (如何是一大事因緣) ('what is the one great matter?') occurs 59 times in 27 files; in (景德傳燈錄) Touzi answers it (尹司空為老僧開堂) ('Vice-Director Yin opened the hall for me'). (3) Said of the correspondent's own work — Dahui writes to a layman (知為此一大事因緣甚力) ('I know you are working at this one great matter with great force').",
+      "Note": "One corpus-wide sense: the same phrase is attested of the Buddhas' appearing, of patriarchs and living masters, as the question (如何是一大事因緣), and of the recipient's own work in letters — kept as a single sense. Pan-Buddhist in origin (Lotus) but the curated evidence is Chan usage only. Well attested: 415 raw hits across 152 allowlist files (tag-stripped grep, 2026-07-11). Attribution guarded: two front-matter occurrences in (大慧語錄) were REJECTED — 0813a23 sits under (進大慧禪師語錄奏劄) (a memorial-to-throne preface by the submitting official) and 0842c13 under (大慧普覺禪師塔銘) (his post-mortem stupa epitaph); neither is Dahui's own words. The cited Dahui occurrence (0936c03) is inside his own letter (答黃知縣子餘).",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0757b25",
+          "ToLb": "0757b25",
+          "Kwic": "佛出世。提持一大事因緣。祖師西來。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "(圓悟佛果禪師語錄), head (小參三). The Buddha's appearing and the patriarch's coming from the West both 'uphold the one great matter' (continues 傳持箇 on the next line; Kwic trimmed to one source line)."
+        },
+        {
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0263a06",
+          "ToLb": "0263a06",
+          "Kwic": "博山出世亦為一大事因緣，一條白練驀頭穿。",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "AttributionNote": "(無異元來禪師廣錄), head (住建州大仰寶林禪寺語錄) — Wuyi Yuanlai's (上堂). (博山) (Boshan) is his own seat/name, so he applies the Lotus purpose to his own appearance in the world."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0320a07",
+          "ToLb": "0320a07",
+          "Kwic": "如何是一大事因緣。師曰。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄, Touzi Datong section. An unnamed monk questioning Touzi Datong is the exact speaker who cites the buddhas appearing for one great matter of causes and conditions, then asks what that great matter is. Touzi answers by naming the official who opened the hall. All six attribution rungs leave the monk unnamed; Cuiwei Wuxue is not the actor.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk questioning Touzi Datong",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/feedback_lexicography",
+            "ReviewedUtc": "2026-07-14T08:50:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Touzi Datong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0936c03",
+          "ToLb": "0936c03",
+          "Kwic": "知為此一大事因緣甚力。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "(大慧普覺禪師語錄), head (答黃知縣子餘) — Dahui's own reply-letter, using the phrase of the layman's own work (為此一大事因緣甚力)."
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "X/X72/X72n1435.xml",
+        "T/T51/T51n2076.xml",
+        "T/T47/T47n1998A.xml",
+        "J/J28/J28nB208.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Wuyi Yuanlai",
+        "Touzi Datong",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "生死事大"
+      ]
+    }
+  ]
+}

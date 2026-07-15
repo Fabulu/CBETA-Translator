@@ -1,0 +1,1345 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T12:10:25.658393+00:00",
+  "wave": "f004",
+  "reviewLane": "A",
+  "ordinals": [
+    906,
+    915
+  ],
+  "scope": "independent read-only exact-current-hash rereview of repaired entries; every stored occurrence zc.verify checked and read in 5000-character full context",
+  "reviewedInputs": {
+    "f004-laneA-908-915-current-run-cohort-gate.json": "ac82ff120473ac8038d1706aa4bf9ad2e4b8d178c43886fcddea33b15f5b5fe0",
+    "f004-laneA-908-915-repair-readiness.json": "adf77242ab034885453a915ff0023e4e7ea2b4463a87075a44f8bde91fe2db8c",
+    "f004-laneA-908-915-substantive-work-ledger.json": "4d49aaac06fefe164ad1622c0c91a04ac5ddee6ab4db2b4670c9feec66f25db3",
+    "f004-laneA-906-930-fresh-independent-exact-review.json": "3e36575ff49b49142221c35f3117302b07867360d85dc50c84f1fcf641a6d444"
+  },
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 65,
+  "exactKwics": 65,
+  "keep": 1,
+  "revise": 9,
+  "entries": [
+    {
+      "ordinal": 906,
+      "id": "t_22a3963b99da",
+      "term": "向上機",
+      "entryPath": "fresh-build/entries/t_22a3963b99da/entry.v2.json",
+      "reviewedEntrySha256": "b56c8031f3bec56aa40ad26cf7d9a696994eb2134887be1efd00e8f827041ec5",
+      "postReviewEntrySha256": "b56c8031f3bec56aa40ad26cf7d9a696994eb2134887be1efd00e8f827041ec5",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": false,
+      "focusedGateHashMatchesCurrent": null,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "No focused current-run repair gate, readiness record, or substantive WORK ledger was supplied for this repaired entry; current readiness cannot be inferred from the obsolete 906-910 formal gate."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "L/L158/L158n1652.xml",
+          "workId": "chan:mingjue-cong-yulu",
+          "FromLb": "0025a15",
+          "ToLb": "0025b07",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "43964eeaa00e9f0ed9ad29ef154b10e1e3aa802b5d5c4992763ed134eeb121bc",
+          "MasterName": "Mingjue Cong",
+          "ContextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0019b21",
+          "ToLb": "0019b21",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "694cac1b256ec6a56ba0a6a0ad3b22b29d01b652d21dbc10ac56312824e3fff7",
+          "MasterName": "Tonghui Gui",
+          "ContextMasters": [
+            {
+              "MasterName": "Tonghui Gui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T47/T47n1997.xml",
+          "workId": "work:T47n1997",
+          "FromLb": "0716a14",
+          "ToLb": "0716a20",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 8930,
+          "fullCaseContextSha256": "9005abd323a751eb7f64a6c51a7bfeba4b6f5b1e00dc3a924f11ab059943fd18",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J36/J36nB369.xml",
+          "workId": "work:J36nB369",
+          "FromLb": "0896b20",
+          "ToLb": "0896b25",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "935c5a7b85ebab2eeeb0732cc27a9c4d169b5b3d35a838ef521549ad0bd56df1",
+          "MasterName": "Zhean Jingfan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhean Jingfan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J39/J39nB454.xml",
+          "workId": "work:J39nB454",
+          "FromLb": "0602b25",
+          "ToLb": "0602b29",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 7084,
+          "fullCaseContextSha256": "a550932cabf8c0fbda091751d785e2c5f3fd033d1ac61e12bd204081f91bd79b",
+          "MasterName": "Pin Jixiang",
+          "ContextMasters": [
+            {
+              "MasterName": "Pin Jixiang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J40/J40nB474.xml",
+          "workId": "work:J40nB474",
+          "FromLb": "0027b16",
+          "ToLb": "0027b16",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 8468,
+          "fullCaseContextSha256": "307ae7f973ec682a8ce6516b7a5c743a656d3890468e25612b503ec48256c719",
+          "MasterName": "Panshan Liaozong",
+          "ContextMasters": [
+            {
+              "MasterName": "Panshan Liaozong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        }
+      ]
+    },
+    {
+      "ordinal": 907,
+      "id": "t_d0e5e6e5d1ee",
+      "term": "一轉語",
+      "entryPath": "fresh-build/entries/t_d0e5e6e5d1ee/entry.v2.json",
+      "reviewedEntrySha256": "2654f0e04b38be8aed44c3a989c087b7bcb50bb36932f972e89436678fc7f143",
+      "postReviewEntrySha256": "2654f0e04b38be8aed44c3a989c087b7bcb50bb36932f972e89436678fc7f143",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": false,
+      "focusedGateHashMatchesCurrent": null,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "No focused current-run repair gate, readiness record, or substantive WORK ledger was supplied for this repaired entry; current readiness cannot be inferred from the obsolete 906-910 formal gate."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "FromLb": "0012a19",
+          "ToLb": "0012a24",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "38a40c813a31029ca69ed7538184a6cac5714e26d26339e0d883c7ea6461ecdc",
+          "MasterName": "Tianyi Huai",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Huai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0280a21",
+          "ToLb": "0280b02",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "bffe372b98896531b5ea4be2dfe995a5e24b096f740430b6b65d6c714f7c4e23",
+          "MasterName": "Tianyi Huai",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Huai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0618b07",
+          "ToLb": "0618b13",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 9075,
+          "fullCaseContextSha256": "3deeff9d7fbaf5b1203feebdbc9f7749c83af22cb1ab663f8383aa3ed1ece601",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed old man in the wild-fox case",
+          "ActorKind": "unnamed case figure"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0034c10",
+          "ToLb": "0034c15",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "256a3e33e29f84148b14eca3d507c7c71eee535af96f0036ce691a2b3306b6ea",
+          "MasterName": "Xiangcheng Shun",
+          "ContextMasters": [
+            {
+              "MasterName": "Xiangcheng Shun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "FromLb": "0408c18",
+          "ToLb": "0408c23",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "c5033c06d669da69ea0c52289540e17b5926c61c896106fe91391e47dec20d87",
+          "MasterName": "Tianyi Huai",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Huai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "P/P154/P154n1519.xml",
+          "workId": "chan:zongmen-tongyao-zhengxu",
+          "FromLb": "0477b09",
+          "ToLb": "0478a06",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 9507,
+          "fullCaseContextSha256": "bdb7e0f6b06962cc1e5e9ee8ad0eba5322fc0eaf45eb4e7e4a9deeba8be38473",
+          "MasterName": "Tianyi Huai",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Huai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0002c17",
+          "ToLb": "0002c21",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 8089,
+          "fullCaseContextSha256": "14bdc6165b3c41d023ee299e3d15942d7071996c5bae5a89f1cd3ae8f7d9f2c9",
+          "MasterName": "Fayan Wenyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        }
+      ]
+    },
+    {
+      "ordinal": 908,
+      "id": "t_de2ade080f36",
+      "term": "裴休",
+      "entryPath": "fresh-build/entries/t_de2ade080f36/entry.v2.json",
+      "reviewedEntrySha256": "e06b0c224bc67e28a40ac6f54d5391f28442f4f7811bf83be884e72baac50283",
+      "postReviewEntrySha256": "e06b0c224bc67e28a40ac6f54d5391f28442f4f7811bf83be884e72baac50283",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 4,
+      "distinctActualWorkIds": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is compiler narration naming Pei Xiu as visitor (觀察使裴休訪之問曰), not an unnamed record-owner utterance; the bulk actor repair is false.",
+        "The prose describes Pei Xiu as questioner and preface writer, but the saved headword anchors are narrator-owned name mentions; exact actor metadata must distinguish the compiler from Pei’s later quoted words."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T51/T51n2076.xml",
+          "workId": "work:T51n2076",
+          "FromLb": "0261c20",
+          "ToLb": "0261c26",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "57b3b5c1f06df916f80a50d6b9da77ec2847613d34c76cddb08a014681492817",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0445c17",
+          "ToLb": "0445c22",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "dccb3cebb6697f83f55244f057f5bb73b2973e5bae3cf4aa262282d9818c7eff",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0063c03",
+          "ToLb": "0063c07",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "77b7f6b8fdb267956cbb86b9f9da480730eb33c267a9272506e693709ba5be9e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0616c03",
+          "ToLb": "0616c07",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "a5ca77e2d62171129027ab770ec3ad2ab4903d945d876700860ba7b66a5d2ade",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        }
+      ]
+    },
+    {
+      "ordinal": 909,
+      "id": "t_2b02b05d68b6",
+      "term": "不是心不是佛不是物",
+      "entryPath": "fresh-build/entries/t_2b02b05d68b6/entry.v2.json",
+      "reviewedEntrySha256": "9578a8d070eea79acdacc3399d8d1df74df3a6206b3b4631e38227153ca23e09",
+      "postReviewEntrySha256": "9578a8d070eea79acdacc3399d8d1df74df3a6206b3b4631e38227153ca23e09",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Multiple named or container-resolvable utterances are collapsed to generic reviewed-unnamed/narrated states: the Mazu report, Nanquan quotation, public address, and staff action each have distinct exact actors.",
+        "The note claims Nanquan Puyuan’s fixed answer while the occurrence metadata does not name Nanquan or the later raisers and supplies no contextual roles."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "M/M59/M59n1540.xml",
+          "workId": "chan:dahui-pushuo",
+          "FromLb": "0809b01",
+          "ToLb": "0809b06",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "9d5bd4ba54b74bdd4875c0a7b00ab9cd6865acd6e0f607913742482fca5d1f63",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0695a08",
+          "ToLb": "0695a08",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "cec63354b08a012f78dc7e2e5fe2b96b8efcd1bc49f63ffcb76a196dd5ec3018",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T47/T47n1998A.xml",
+          "workId": "work:T47n1998A",
+          "FromLb": "0812b17",
+          "ToLb": "0812b22",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 7364,
+          "fullCaseContextSha256": "bc44ba5823d24b86a65eb1c751306d98c0dee4b2318970d7b27d590ce075c5ad",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "FromLb": "0560b18",
+          "ToLb": "0560b25",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "374aeafcea9ad638db5e683ce73a605fa8040497f6f9b40ce63130e6b5e894b3",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "P/P155/P155n1519.xml",
+          "workId": "chan:zongmen-tongyao-zhengxu",
+          "FromLb": "0196b05",
+          "ToLb": "0197a03",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "af76c8d7c8f1e03a205654411991ed89a345057f668c654f42457b9e333301cd",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "C/C078/C078n1720.xml",
+          "workId": "work:C078n1720",
+          "FromLb": "0670c18",
+          "ToLb": "0671a01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "5574b8e6c7b736766487ac8bd01689862db84d8a8c58ece8d3eb81af9a88dd59",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        }
+      ]
+    },
+    {
+      "ordinal": 910,
+      "id": "t_93635ce58785",
+      "term": "瓦礫",
+      "entryPath": "fresh-build/entries/t_93635ce58785/entry.v2.json",
+      "reviewedEntrySha256": "b0d8cb179cc6ca52c364887f4e87d9b93ee952922b3c986778132f887f489feb",
+      "postReviewEntrySha256": "b0d8cb179cc6ca52c364887f4e87d9b93ee952922b3c986778132f887f489feb",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Six of seven occurrences use cohort-generic actor labels; full cases show formal addresses, a named monk question (Zhiming), and narrator/title risks that require distinct exact actors.",
+        "Bare one-word KWICs and narrator assignments do not establish whether literal rubble and the gold/rubble evaluative contrast are body uses rather than contents/paratext."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0036b22",
+          "ToLb": "0036c02",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "6e4230ec0e54d252cbdcf8f848479ce141db520dbf335eed724ad5957e13bc86",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0624b07",
+          "ToLb": "0624b13",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "b274333097fd236b4dca0795830ab36eb30a3f523453445abfd9378f736635b6",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0005b20",
+          "ToLb": "0005b24",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "2a02cf0787626ad7fc9b4bf99040907159ebf75444637e748d4be54c725bcb43",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "FromLb": "0418c18",
+          "ToLb": "0418c18",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "42849ad6961d9b9300f6df08d61abb1c8f52d11119c57956ad75fac587b89b74",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0029c13",
+          "ToLb": "0029c18",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "5a2d14ae5c6d362cce96006ec6980390e77299c1fcb882a3423de08b5fe73c78",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0059b21",
+          "ToLb": "0059c01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "eabd85c377fd22be808873657cb02fadfffae12a3e680e3a421fa017f7a5d557",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "ActorKind": "unnamed monk question"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0326a02",
+          "ToLb": "0326a02",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "2e76148077e47468d2201e70e8de9382153f094f1ac426cedf4e2780efb5b7ef",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        }
+      ]
+    },
+    {
+      "ordinal": 911,
+      "id": "t_1f264c7d97ac",
+      "term": "坐夏",
+      "entryPath": "fresh-build/entries/t_1f264c7d97ac/entry.v2.json",
+      "reviewedEntrySha256": "e0ae8ef3517a54cb4208c261bb43c587ecce3b56fbe5742041a7210f5abfbf54",
+      "postReviewEntrySha256": "e0ae8ef3517a54cb4208c261bb43c587ecce3b56fbe5742041a7210f5abfbf54",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is inside a public address asking how to reward the summer retreat, but is labeled compiler narration; occurrence 2 is biography (閱世八十，坐夏五十二) but is labeled an unnamed record-owner speech.",
+        "The selected evidence mixes the summer residence, counted summer seniority, and broader non-encounter biography without a different-things/deployment adjudication in reliable actor metadata."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0029b20",
+          "ToLb": "0029c01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "93a1c991525f34a1889768e774cf07a9ae2d9174830d9baa9cfbe887ddaf6da7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X79/X79n1559.xml",
+          "workId": "work:X79n1559",
+          "FromLb": "0307c07",
+          "ToLb": "0307c12",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "470dfb95e978752d0189c6e38594a68d5a929a395a7fb80161ba23077ae9e4ef",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "FromLb": "0507a25",
+          "ToLb": "0507b01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "92c850e2d7c776a9ba68b0c719f8c3af4021bcb87e59511792cf749f2ed8a1d0",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "FromLb": "0419b08",
+          "ToLb": "0419b13",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "3f1f0895e1c211db6c3c3f9cb394049abbe78949514ccec1b989a912eda6fb65",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0247b09",
+          "ToLb": "0247b13",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "28ed1da9f5c0326d55d155fea1cc5a2d24849512276d2c225315237e837e6301",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0051b09",
+          "ToLb": "0051b13",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "45d23156d8b75c8245fe7fc66f122a7776dd1cc660d4f6e768a9fff970157396",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X84/X84n1583.xml",
+          "workId": "work:X84n1583",
+          "FromLb": "0426b20",
+          "ToLb": "0426c01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "2f8f726248e525b43d0d80425df1ecb0f82ed83e56909e6e938a9eca41fef167",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        }
+      ]
+    },
+    {
+      "ordinal": 912,
+      "id": "t_ef53eda6d66b",
+      "term": "法座",
+      "entryPath": "fresh-build/entries/t_ef53eda6d66b/entry.v2.json",
+      "reviewedEntrySha256": "aad3a5ddaf17b444beedd3deb54e395b2f36bd0b68483b4b144b1253593fa46d",
+      "postReviewEntrySha256": "aad3a5ddaf17b444beedd3deb54e395b2f36bd0b68483b4b144b1253593fa46d",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "The first three witnesses are contents/title-only bare 法座 rows and cannot carry body-use depth; the repair retains the paratext defect.",
+        "Named formal speakers in the later 指法座 and ascent passages remain generic reviewed-unnamed record owners despite the container ladder requirement."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0004a02",
+          "ToLb": "0004a14",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 7953,
+          "fullCaseContextSha256": "179ef9c8ddc5697af337379979492d0f5c8dfdb5572a382cd1a0dd3d59c7c8f9",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0686a24",
+          "ToLb": "0686a24",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "b198369e7d53d8bb7550c3db6a4a11898117972e9d12b93f78cf322684c4c9f7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T48/T48n2025.xml",
+          "workId": "work:T48n2025",
+          "FromLb": "1113a26",
+          "ToLb": "1113a26",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 8320,
+          "fullCaseContextSha256": "8cfb740710e3473d1ab9eea4b858bf96d26e31c8313ca99c071c4974c6a04b5c",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0406b01",
+          "ToLb": "0406b06",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "66cf5c4781a66c39e2b874382136a57cb42d4672543bdc21112f9ceac41273c2",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0001b02",
+          "ToLb": "0001b06",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 5463,
+          "fullCaseContextSha256": "2a4e581fced8ac6bbfb76d1506101ca59b645fcac55ba7eabf20a261855d53c9",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J26/J26nB178.xml",
+          "workId": "work:J26nB178",
+          "FromLb": "0104a18",
+          "ToLb": "0104a22",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 5956,
+          "fullCaseContextSha256": "4d406a2caaa2a1982a910d9d3484ad8c2cc22f8a8841b2527519563b2f32421a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "T/T47/T47n1997.xml",
+          "workId": "work:T47n1997",
+          "FromLb": "0714b22",
+          "ToLb": "0714b28",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 6244,
+          "fullCaseContextSha256": "491c9b6796693c2158e61af6887ccbf2dc6dfa9898a46e85726e2fbb700eeb9e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        }
+      ]
+    },
+    {
+      "ordinal": 913,
+      "id": "t_747b1f22d089",
+      "term": "黃龍三關",
+      "entryPath": "fresh-build/entries/t_747b1f22d089/entry.v2.json",
+      "reviewedEntrySha256": "0d3c3f0a0279f669bab7ecaefba0277d03eba574a8b3a8c9d3106f48a546061d",
+      "postReviewEntrySha256": "0d3c3f0a0279f669bab7ecaefba0277d03eba574a8b3a8c9d3106f48a546061d",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": [
+        "All seven KWICs verify exactly; compiler-owned case naming, the unnamed monk’s question to Yuanwu Keqin, and Yutang Yi’s public raising are correctly separated with closed roles.",
+        "The opening identifies Huanglong Huinan’s three actual barriers, distinguishes the inherited case name from later deployments, and the seven witnesses span distinct actual work IDs."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0033a11",
+          "ToLb": "0033a15",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "a8772c45446efad01d0de6fdaf9ee067860ce2304de8944e7869475497637ca7",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the lamp-record compiler",
+          "ActorKind": "lamp-record compiler narration"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X79/X79n1559.xml",
+          "workId": "work:X79n1559",
+          "FromLb": "0302c24",
+          "ToLb": "0303a04",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "eebabc064a775424ea17aeafbd8e43f278a01f89ae062eaad59ce6d004cd1c54",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the lamp-record compiler",
+          "ActorKind": "lamp-record compiler narration"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X84/X84n1583.xml",
+          "workId": "work:X84n1583",
+          "FromLb": "0463a15",
+          "ToLb": "0463a20",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "175386f6a7652d80bc354b188f021fb41231b9c30cb0c8f624ab6024f7fa75ab",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the lamp-record compiler",
+          "ActorKind": "lamp-record compiler narration"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "T/T47/T47n1997.xml",
+          "workId": "work:T47n1997",
+          "FromLb": "0746a27",
+          "ToLb": "0746b04",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "0cd83effc362abd7a8927e7e184a3d3c33e88472015b214b4789082d3d904e0c",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk asking about Huanglong’s barriers",
+          "ActorKind": "unnamed monk questioner"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0352c17",
+          "ToLb": "0352c22",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "570734c6ebd6d1fd332644ab2dbc2a649c4bce774b77743021fea7730330f6ce",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the lamp-record compiler",
+          "ActorKind": "lamp-record compiler narration"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0167c16",
+          "ToLb": "0167c21",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "954048589b8c99569b850570adc1a793b3d649c2e6aadb8d2b725af9d8c6dc08",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the lamp-record compiler",
+          "ActorKind": "lamp-record compiler narration"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X84/X84n1585.xml",
+          "workId": "work:X84n1585",
+          "FromLb": "0687b21",
+          "ToLb": "0687c01",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "49603cc3083351e514cc0b89bc7c4e3aa6d78e1a1ab94574188135f94501d74c",
+          "MasterName": "Yutang Yi",
+          "ContextMasters": [
+            {
+              "MasterName": "Yutang Yi",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "ActorKind": null
+        }
+      ]
+    },
+    {
+      "ordinal": 914,
+      "id": "t_873cb06ed7d1",
+      "term": "諸佛出身處",
+      "entryPath": "fresh-build/entries/t_873cb06ed7d1/entry.v2.json",
+      "reviewedEntrySha256": "21b2f24e565a8d33e2072e087758025dfebdefc41fcecaed68fe09c3bb845109",
+      "postReviewEntrySha256": "21b2f24e565a8d33e2072e087758025dfebdefc41fcecaed68fe09c3bb845109",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 2 is plainly an unnamed questioner before 師云, not a record owner speaking in an address; occurrences 3 and 5-7 contain inherited quoted questions/case labels but are flattened to compiler narration without later-raiser/quoted-actor context.",
+        "The prose claims Yunmen and local respondent structure that the occurrence actor/context metadata does not actually encode."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0089b23",
+          "ToLb": "0089c03",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "64f8737fd21aaa91979a143c3b6d72cabcd14105a7128f9f2e5b6efe370a9c7b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "ActorKind": "unnamed monk question"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0720c10",
+          "ToLb": "0720c17",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "6f361836e9ae9557c10ab3108fc39fe4e19ab95e4908d98ef60f17e47ef5461b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "M/M59/M59n1540.xml",
+          "workId": "chan:dahui-pushuo",
+          "FromLb": "0791a07",
+          "ToLb": "0791a12",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 6439,
+          "fullCaseContextSha256": "bfe6e0e212fda2fa1bc1db0ddb289d9ee047f58ba8aa4983b305dc8a20f15e24",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0052a18",
+          "ToLb": "0052a22",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "7e19c77a83578320f86c7513d62f92ecb677eb3d7c77a78617270cffa759bb9e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "ActorKind": "unnamed monk question"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J10/J10nA158.xml",
+          "workId": "work:J10nA158",
+          "FromLb": "0009b14",
+          "ToLb": "0009b14",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "a77b6a8201361ebc5f3686fc27fdea473a7fafe6ba407db15fc5eaf2e6eb93ac",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "FromLb": "0205a07",
+          "ToLb": "0205a07",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "aa0853a21f6d405200570b8f37717210460715330a250bf943a237cca70a3192",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0483c24",
+          "ToLb": "0483c24",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "9ee63dd2ada5625cebbe3cbfc56f45a8df27678cb5ff5eec3e8506f8c36dba9e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        }
+      ]
+    },
+    {
+      "ordinal": 915,
+      "id": "t_e6b5cae9bd56",
+      "term": "主賓",
+      "entryPath": "fresh-build/entries/t_e6b5cae9bd56/entry.v2.json",
+      "reviewedEntrySha256": "a5e0dd3212ea9039193427a41840e30eb24a661922f32a0cb3c40d20b13f4ef4",
+      "postReviewEntrySha256": "a5e0dd3212ea9039193427a41840e30eb24a661922f32a0cb3c40d20b13f4ef4",
+      "byteIdentical": true,
+      "focusedCurrentGatePresent": true,
+      "focusedGateHashMatchesCurrent": false,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Several formal addresses have named, container-resolvable record owners but are left as generic reviewed-unnamed speakers; occurrence 7 is direct 山僧 public speech yet is labeled compiler narration.",
+        "The relational/reversible explanation is plausible, but exact utterer and commentator attribution remains collapsed across preface, comment, and public-address witnesses."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "FromLb": "0001a07",
+          "ToLb": "0001a11",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 5081,
+          "fullCaseContextSha256": "b5c7b4ad294ec0ecbc2be96a041e20eca6cb22a99f102b06f6f394cd77998038",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "FromLb": "0324a05",
+          "ToLb": "0324a10",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "fd4ff886d7514156cca274cf8335037f1a3b9736f4e0359508c8d7d26d598254",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0061b19",
+          "ToLb": "0061b24",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "ec344cc9acf7547bdc271b3172a073397e81268aa56c861588a064cd173662e5",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J36/J36nB369.xml",
+          "workId": "work:J36nB369",
+          "FromLb": "0895a11",
+          "ToLb": "0895a16",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 7631,
+          "fullCaseContextSha256": "9564283cb1e8dc110b56c4d441d1a276cc1d7b80a117db75ccee7dd406f1937a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0041a14",
+          "ToLb": "0041a20",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "bbc29f703288793576cb37a999a589ce0f7e1ccf30287afd28be29487540aa13",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J33/J33nB294.xml",
+          "workId": "work:J33nB294",
+          "FromLb": "0723c29",
+          "ToLb": "0724a04",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "3ab7492ce242724a223cb949bd0b3d4898d345713739e91da30fae28279a3cec",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the record owner speaking in the public address",
+          "ActorKind": "recorded address with unnamed record owner in the saved unit"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J28/J28nB202.xml",
+          "workId": "work:J28nB202",
+          "FromLb": "0014a22",
+          "ToLb": "0014a27",
+          "zcVerifyExact": true,
+          "fullCaseContextChars": 10000,
+          "fullCaseContextSha256": "301cfafa2e7684f75e5f8210ae17673b127850bb3d9bde8272659e86ef2c757d",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the record compiler",
+          "ActorKind": "compiler narration"
+        }
+      ]
+    }
+  ],
+  "allReviewedFilesByteIdentical": true,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

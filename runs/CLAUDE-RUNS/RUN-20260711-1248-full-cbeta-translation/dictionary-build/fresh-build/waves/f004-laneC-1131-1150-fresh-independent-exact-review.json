@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "read-only independent semantic/prose/exact-actor/paratext/sense/work-id review",
+  "generatedUtc": "2026-07-15T12:47:41.125796+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1131,
+    1150
+  ],
+  "readOnly": true,
+  "entriesEdited": false,
+  "sourceDecisions": "f004-laneC-1131-1150-fullcase-actor-repair-decisions.json",
+  "sourceDecisionsSha256": "c98c381669dcb695bfa99bdf6f758e2e0c29f2468f777641f7fdfd11e4e5a21f",
+  "sourceLedger": "f004-laneC-1131-1150-fullcase-actor-repair-ledger.json",
+  "sourceLedgerSha256": "57ba3b44d5e0b45d0850f751f91113efe76d767d88b5c30f7f1eccb13c824c99",
+  "sourceReadiness": "f004-laneC-1131-1150-fullcase-actor-repair-readiness.json",
+  "sourceReadinessSha256": "e4dd148a88539edcf002149c3d02a4bd70e4d047fb71fb5dfcb270d10873e239",
+  "hashCondition": "Verdicts apply only to the exact entry hashes recorded here.",
+  "controls": [
+    "all 113 full cases read from current attribution packets",
+    "MasterName means utterer of headword",
+    "actor labels cannot evade name resolution",
+    "paratext/body distinction",
+    "different-thing sense test",
+    "independent work IDs",
+    "term-specific public prose"
+  ],
+  "summary": {
+    "entries": 20,
+    "occurrencesReadInFullCase": 113,
+    "exactKwicAndFromLb": 113,
+    "KEEP": 0,
+    "REVISE": 20,
+    "systemicFinding": "The prior repair changed labels but retained the original anonymous-collapse defect. Explicit inline names, named record owners, later raisers, action performers, questions, and compiler narration remain conflated."
+  },
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "entrySha256": "4c248a82192b3c0aea82184bfc5ebc1b4cda580d9a008120ba06ea19641a89ee",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 explicitly says 舉玄沙示眾云 before the headword, so Xuansha Shibei is recoverable; five further record-owned speeches were left as a generic textual utterer.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "entrySha256": "a7c587f480d44788f57841023519ba6078243d1a678cb28eb05c7c4ec7f5f8da",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "All seven were collapsed to encounter narration although the cases contain named masters performing 橫按拄杖 in their own recorded turns (including Qinshan and the 日芳上座 case).",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1133,
+      "id": "t_68fbf8a2329c",
+      "term": "雲巖掃地",
+      "entrySha256": "4288554626c8db310d19f5641c2fb4791edd564d11b48271f677ab5d42ced2de",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "The case label is repeatedly raised in named public speech (舉雲巖掃地); treating every row as compiler narration erases the later raiser and the embedded Yunyan/Daowu roles.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "entrySha256": "61812586fc6792c539e88347946ae1100aa738ec7e5253d4a8a38e90550f0263",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "The Biyan occurrence explicitly quotes 僧問雲門…雲門云體露金風 but remains an unnamed textual utterer; historical utterer and later commentator are not separated.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1135,
+      "id": "t_4c1e5a42155d",
+      "term": "不放過",
+      "entrySha256": "63aeaed9305230c69a3ec07102d523db42a220e142fd33cb2c7821a10cd7cc01",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Several headword clauses are direct record-owner speech, including 黃檗捏拳示眾 and the J23 室中語要, but remain generic textual utterers.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1136,
+      "id": "t_b6da6fc1c9bf",
+      "term": "安單",
+      "entrySha256": "de9591f72231596a2e28c7928e20a02f567ad8166be81ec07fa6a49bcc17cdce",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 2–4 are named masters ordering or discussing 安單 in their own records, not unnameable textual voices; action performer, questioner, and respondent remain conflated.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1137,
+      "id": "t_bdabbe0d39fa",
+      "term": "主人翁",
+      "entrySha256": "ff59414b2a4303493d583954197f5c0608730bd7583d1cee27c7cf38664af2e7",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Named record owners utter the public-address and warning clauses in occurrences 1, 2, and 5, yet they remain generic; the verse-author row is also not resolved from its verse container.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1138,
+      "id": "t_b495de9e2b11",
+      "term": "神農",
+      "entrySha256": "9c4ad36bfaaf955f3dbaad3099cfec5347a9153927b277c3141ec9146628e84d",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "The portrait verse and public addresses have recoverable named authors/record owners (including Sanyi Mingyu and Jifei Ruyi), but all four rows are anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1139,
+      "id": "t_3ae11b4bc79f",
+      "term": "無常迅速",
+      "entrySha256": "009d011b0c8ec4eb32744578272a34a8739b0bd2541f23f8a1909244c6afc696",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Three later record-owned exhortations using 無常迅速 remain generic despite the full speeches and source titles identifying their masters.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1140,
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "entrySha256": "415622926efa6bb8bf21035b21e5bd21a7fcf60b2b8773df5ad70e5acdf4fa2b",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "The narration/quotation distinction is unresolved: questions correctly belong to monks, but several surrounding explanation clauses have recoverable named record owners rather than a generic textual utterer.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1141,
+      "id": "t_652dbd8f5c83",
+      "term": "西序",
+      "entrySha256": "9eaaee7bf1ed0d414c0e2391e7e7a2f20c2b16d29b9649cae16b89b03c986e35",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Institutional-rule narration and named ceremonial addresses are collapsed together as generic utterance; all four rows are anonymous and the west-rank office referent needs exact documentary ownership.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1142,
+      "id": "t_4a5ef260448f",
+      "term": "心地法門",
+      "entrySha256": "b2a5020bec7169071ab35d216abb4aca7f361ce278977959a1ea2b7890537c2a",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "The explicit 雲峰因僧問…峰曰 case and named later re-raisers were not resolved; six of seven rows remain anonymous despite inline names and record ownership.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1143,
+      "id": "t_9b760056ea15",
+      "term": "驀口",
+      "entrySha256": "b830624eb947c346ff0abc407ce566df274ede0965d150aa94019229d1021de8",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 2, 4, 5, and 7 preserve the named Xiaoyao action 師以拂子驀口打 in parallel records, but the exact action performer is left anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1144,
+      "id": "t_4625f09d4acc",
+      "term": "黃檗棒",
+      "entrySha256": "e37e08d9c9f7b6680e3324d5e759655f5571b910f2fe759d76cf3daf28cf431f",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "All four rows are labelled compiler narration although three are named masters discussing 黃檗棒 in their own public addresses; record speaker, Huangbo, and Linji are distinct roles.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1145,
+      "id": "t_38014001726f",
+      "term": "知有底人",
+      "entrySha256": "7fc7013776c8b975808079d06f458cbda32367f0371074c7beea27b1585653ca",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicAndFromLb": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Biographical narration, named teaching speech, and an unnamed monk question are not consistently separated; occurrences 2, 3, and 6 have recoverable owners/biographers but generic labels.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1146,
+      "id": "t_aa56c106ef82",
+      "term": "陷虎之機",
+      "entrySha256": "9b8bff758cc397f4edea5bba5863b5c9d6e5e83ffe80fbf18e176ff6368f899b",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Inline attributions such as 雲庵悅云 and named case commentary are visible immediately before 陷虎之機, yet four rows remain anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1147,
+      "id": "t_2281bd1c98fc",
+      "term": "過去七佛",
+      "entrySha256": "d04e7d31d4a3727b9b260edd6d30d17e2b661432ab86df3a68715fbf77d75c06",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences include Langting Jingting speech, a named record master raising the seven-buddha bowl case, and formal precept transmission; all four are anonymously collapsed.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1148,
+      "id": "t_3eb1fd8df203",
+      "term": "趙州勘婆",
+      "entrySha256": "75a3f46de69ea0986dec1e5ffa2618ab2a5fc57af411b74001397040e83b767c",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Later masters explicitly utter the case label while raising it (including Miaohui Huiguang); all six rows were assigned to compiler narration, erasing later raisers.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1149,
+      "id": "t_16c61f8e00b4",
+      "term": "物物頭頭",
+      "entrySha256": "dc154cd828ae59f6715110353af2bc4b2b1fce482bab4296c126c68dcd3ca684",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicAndFromLb": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Named public-address clauses by record masters, including Yuanwu Keqin, remain anonymous; the entry does not consistently distinguish utterance from documentary explanation.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    },
+    {
+      "ordinal": 1150,
+      "id": "t_594dfb5d367f",
+      "term": "香篆",
+      "entrySha256": "63cbbcdce5cad21216dc32077e2c2dc526fe150a211b30ab2c53990d7ea62ff6",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicAndFromLb": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "The portrait verse, imperial-address exchange, Baichi Yuanshuo verse, and record interview each expose distinct actor types, but all four rows remain anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ]
+    }
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

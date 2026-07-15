@@ -1,0 +1,148 @@
+{
+  "generatedUtc": "2026-07-14T23:47:54.173237+00:00",
+  "elapsedSeconds": 9.29,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_0a686fa27769",
+      "term": "著語",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "sha256": "857b6272581cda44de079219f9b182333365dbc23934505162d7eb78a08059b0"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+        "id": "t_0a686fa27769",
+        "term": "著語",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.124,
+    "attribution": 0.916,
+    "publicFeedback": 0.489,
+    "depthSense": 1.264,
+    "workSourceValidation": 0.624,
+    "corpusBaseline": 0.579,
+    "frozenHistoricalTerms": 2.101,
+    "attributionPackets": 3.102
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 0.916,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "named_occurrences": 3,
+        "context_master_links": 9,
+        "attribution_notes": 7,
+        "actor_reviewed_unnamed": 4,
+        "invalid_actor_role": 3,
+        "deferred_non_roster_context": 2,
+        "deferred_non_roster": 1,
+        "chinese_strings": 2,
+        "anchored_chinese": 2
+      },
+      "hardFailures": 3,
+      "failures": [
+        {
+          "kind": "invalid_actor_role",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+          "detail": "著語 s1 o2: 'narrator'"
+        },
+        {
+          "kind": "invalid_actor_role",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+          "detail": "著語 s1 o4: 'narrator'"
+        },
+        {
+          "kind": "invalid_actor_role",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+          "detail": "著語 s1 o7: 'narrator'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"named_occurrences\": 3,\n    \"context_master_links\": 9,\n    \"attribution_notes\": 7,\n    \"actor_reviewed_unnamed\": 4,\n    \"invalid_actor_role\": 3,\n    \"deferred_non_roster_context\": 2,\n    \"deferred_non_roster\": 1,\n    \"chinese_strings\": 2,\n    \"anchored_chinese\": 2\n  },\n  \"hardFailures\": 3,\n  \"failures\": [\n    {\n      \"kind\": \"invalid_actor_role\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json\",\n      \"detail\": \"著語 s1 o2: 'narrator'\"\n    },\n    {\n      \"kind\": \"invalid_actor_role\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json\",\n      \"detail\": \"著語 s1 o4: 'narrator'\"\n    },\n    {\n      \"kind\": \"invalid_actor_role\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json\",\n      \"detail\": \"著語 s1 o7: 'narrator'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.489,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpofuhltc8.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.264,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.624,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.579,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.101,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.102,
+    "payload": {
+      "entries": 1,
+      "occurrences": 7,
+      "tierACandidates": 0,
+      "reviewRequired": 7
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 7,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 7\n}\nreport: fresh-build/waves/f001-laneA-062-actor-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-062-actor-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

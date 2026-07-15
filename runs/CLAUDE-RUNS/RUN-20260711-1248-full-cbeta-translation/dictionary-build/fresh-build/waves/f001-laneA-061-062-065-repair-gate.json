@@ -1,0 +1,169 @@
+{
+  "generatedUtc": "2026-07-14T23:31:01.705896+00:00",
+  "elapsedSeconds": 80.179,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_d7167b5f3236",
+      "term": "殺人刀",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d7167b5f3236/entry.v2.json",
+      "sha256": "d5f0c8773e4645fd5dc75eade5cd56f72e897e1d56cc9d1d82d577c634cdcea3"
+    },
+    {
+      "id": "t_0a686fa27769",
+      "term": "著語",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "sha256": "0b5e5d456a7a95f03119e74cee83d012aa9ada1fe3ecacaf9ee30293f21127f5"
+    },
+    {
+      "id": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_223c2f6ade25/entry.v2.json",
+      "sha256": "fafd5b194231eb3f3782f9fef3977e0b9af7594a28adad615f18b9a72c07de21"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d7167b5f3236/entry.v2.json",
+        "id": "t_d7167b5f3236",
+        "term": "殺人刀",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+        "id": "t_0a686fa27769",
+        "term": "著語",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_223c2f6ade25/entry.v2.json",
+        "id": "t_223c2f6ade25",
+        "term": "一大事因緣",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.811,
+    "attribution": 5.724,
+    "publicFeedback": 1.98,
+    "depthSense": 8.261,
+    "workSourceValidation": 6.048,
+    "corpusBaseline": 4.383,
+    "frozenHistoricalTerms": 15.627,
+    "attributionPackets": 35.906
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 5.724,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "named_occurrences": 20,
+        "context_master_links": 26,
+        "attribution_notes": 21,
+        "deferred_non_roster": 7,
+        "deferred_non_roster_context": 7,
+        "chinese_strings": 6,
+        "dangling_chinese": 2,
+        "anchored_chinese": 4,
+        "actor_reviewed_unnamed": 1
+      },
+      "hardFailures": 2,
+      "failures": [
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+          "detail": "著語 s1: 所著語錄"
+        },
+        {
+          "kind": "dangling_chinese",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+          "detail": "著語 s1: 語錄"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"named_occurrences\": 20,\n    \"context_master_links\": 26,\n    \"attribution_notes\": 21,\n    \"deferred_non_roster\": 7,\n    \"deferred_non_roster_context\": 7,\n    \"chinese_strings\": 6,\n    \"dangling_chinese\": 2,\n    \"anchored_chinese\": 4,\n    \"actor_reviewed_unnamed\": 1\n  },\n  \"hardFailures\": 2,\n  \"failures\": [\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json\",\n      \"detail\": \"著語 s1: 所著語錄\"\n    },\n    {\n      \"kind\": \"dangling_chinese\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json\",\n      \"detail\": \"著語 s1: 語錄\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.98,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpd2uohe_7.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 8.261,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /tmp/cbeta-depth-gate/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 6.048,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 4.383,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 15.627,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 35.906,
+    "payload": {
+      "entries": 3,
+      "occurrences": 21,
+      "tierACandidates": 0,
+      "reviewRequired": 21
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 21,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 21\n}\nreport: fresh-build/waves/f001-laneA-061-062-065-repair-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f001-laneA-061-062-065-repair-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,339 @@
+{
+  "Id": "t_ad2c9d24126f",
+  "SourceTerm": "入定",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "enter concentration",
+      "AlternateTargets": [
+        "enter absorption",
+        "settle into concentration"
+      ],
+      "SearchAliases": [
+        "enter concentration",
+        "enter absorption",
+        "go into samadhi",
+        "become deeply concentrated",
+        "settle into a concentrated state"
+      ],
+      "Status": "preferred",
+      "Explanation": "To enter concentration is to settle into an absorbed, composed state from which someone may later emerge. Sanghanandi sits in concentration for twenty-one days and then rises; the reviewed unnamed woman in the famous public case remains in concentration when Manjusri cannot bring her out. Zhirong asks Zhihuang whether he enters with mind or without mind. When Zhihuang says that during concentration he sees neither a present nor an absent mind, Zhirong replies that constant concentration should have no further entry or exit. Mazu Daoyi classifies observing emptiness and entering concentration as contrivance. Baizhang Huaihai says not to take concentration and enter concentration, just as one should not take Chan and think about Chan or take buddha and seek buddha. An unnamed monk asks Liuhe Xiangji Zi what a monk in concentration is, and Xiangji answers that the four seas are originally limpid. Yongming Yanshou criticizes merely leaving thought to enter concentration while rejecting objects to seek truth. These named challenges do not erase the visible state and its entry-and-emergence grammar; they are where the Chan record repeatedly tests it.",
+      "Validation": "multi-source",
+      "Note": "This reversible-state sense is independently established by sitting, remaining, questioning, entering, and later emerging. Yongming Yanshou quotes an outside treatise that defines entry through seeing a speck's nature as empty and the true principle of the ten directions; because Yongming explicitly identifies that outside framework, it is inventoried but not substituted for the encounter-record description. The lineage-biography death-notice use is separated below because its dated terminal event is a different thing from a state followed by emergence.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0364a03",
+          "ToLb": "0364a08",
+          "Kwic": "師曰：「入定者為有心入定耶，為無心入定耶？若有心入定者，即一切有情悉皆有心，亦合得定；若無心入者，一切無情亦合得定。」智皇曰：「吾正入定之時，不見有無之心。」師曰：「若不見有無之心，即是常定，不應更有出入也。」",
+          "Curated": true,
+          "AttributionNote": "Ancestor Hall Collection (祖堂集): the section body names Zhirong (智榮; its table heading has the variant 智策) as the teacher who questions Zhihuang's entering concentration, then says constant concentration should have no entry or exit.",
+          "MasterName": "Zhirong",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhirong",
+              "Roles": ["utterer"]
+            },
+            {
+              "MasterName": "Zhihuang",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "teacher",
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X69/X69n1321.xml",
+          "FromLb": "0002c10",
+          "ToLb": "0002c11",
+          "Kwic": "取善捨惡，觀空入定，即屬造作。更若向外馳求，轉疎轉遠。",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Mazu Daoyi (馬祖道一禪師廣錄（四家語錄卷一）): in his extensive record, Mazu Daoyi says choosing good and rejecting evil, observing emptiness and entering concentration, are contrivance.",
+          "MasterName": "Mazu Daoyi",
+          "ContextMasters": [{"MasterName": "Mazu Daoyi", "Roles": ["utterer"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0458c17",
+          "ToLb": "0458c18",
+          "Kwic": "亦是三昧定，不用將定入定，不用將禪想禪，不用將佛覓佛。",
+          "Curated": true,
+          "AttributionNote": "Tiansheng-Era Expanded Lamp Record (天聖廣燈錄), in Baizhang Huaihai's named section. Baizhang says not to take concentration and enter concentration, not to take Chan and think about Chan, and not to take buddha and seek buddha.",
+          "MasterName": "Baizhang Huaihai",
+          "ContextMasters": [{"MasterName": "Baizhang Huaihai", "Roles": ["utterer"]}]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0211c16",
+          "ToLb": "0211c20",
+          "Kwic": "至彼見僧伽難提安坐入定。尊者與眾伺之。經三七日方從定起。尊者問曰。汝身定耶。心定耶。曰身心俱定。尊者曰。身心俱定何有出入。曰雖有出入不失定相。如金在井金體常寂。",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): the compiler of Sanghanandi's explicitly headed lineage biography narrates that Sanghanandi is found seated in absorption and emerges after twenty-one days before Rahulatabhadra questions him about body and mind.",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "lineage biography",
+            "ActorLabel": "compiler of Sanghanandi's lineage biography",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword occurs in third-person narrative, 至彼見僧伽難提安坐入定; Sanghanandi's quoted reply begins only later with 曰身心俱定.",
+            "ReviewedBy": "Codex semantic-r003-owner3 reviewer correction",
+            "ReviewedUtc": "2026-07-14T16:20:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Sanghanandi",
+              "Roles": ["person-described"]
+            },
+            {
+              "MasterName": "Rahulatabhadra",
+              "Roles": [
+                "questioner",
+                "case-figure"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0669c22",
+          "ToLb": "0669c22",
+          "Kwic": "僧曰：如何是入定僧？師云：四海本澄澄。",
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): inside Liuhe Xiangji Zi's explicitly headed section, an unnamed monk asks what a monk in absorption is; Liuhe Xiangji Zi answers that the four seas are originally limpid. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Liuhe Xiangji Zi",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0613a15",
+          "ToLb": "0613a16",
+          "Kwic": "只謂離念入定。厭境求真。不知塵塵是文殊。念念即普賢故。",
+          "Curated": true,
+          "AttributionNote": "Record of the Source-Mirror (宗鏡錄): in his Source-Mirror argument, Yongming Yanshou criticizes merely leaving thought to enter concentration and rejecting objects to seek truth, saying this misses each speck as Manjusri and each thought as Samantabhadra.",
+          "MasterName": "Yongming Yanshou",
+          "ContextMasters": [{"MasterName": "Yongming Yanshou", "Roles": ["utterer"]}]
+        },
+        {
+          "RelPath": "J/J38/J38nB418.xml",
+          "FromLb": "0509a21",
+          "ToLb": "0509a23",
+          "Kwic": "文殊至諸佛集處，值諸佛各還本土，唯見一女子入定。世尊命文殊出，文殊卻出女子定不得。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Huiyue Xu (晦嶽旭禪師語錄), Huiyue Xu's raising of the woman-in-concentration case. A reviewed unnamed woman is the exact actor who remains in concentration when Manjusri finds her; Shakyamuni Buddha commands Manjusri to bring her out, and Manjusri cannot.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "woman",
+            "ActorLabel": "the unnamed woman in the woman-in-concentration case",
+            "ActorRole": "person-described",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r003-owner3",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Huiyue Xu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Manjusri",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "X/X69/X69n1321.xml",
+        "X/X78/X78n1553.xml",
+        "T/T51/T51n2076.xml",
+        "X/X78/X78n1556.xml",
+        "T/T48/T48n2016.xml",
+        "J/J38/J38nB418.xml"
+      ],
+      "RelatedMasters": [
+        "Zhirong",
+        "Zhihuang",
+        "Mazu Daoyi",
+        "Baizhang Huaihai",
+        "Sanghanandi",
+        "Liuhe Xiangji Zi",
+        "Yongming Yanshou",
+        "Shakyamuni Buddha",
+        "Manjusri"
+      ],
+      "RelatedTerms": [
+        "定",
+        "出定",
+        "女子入定",
+        "女子出定",
+        "三昧",
+        "那伽大定"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "die in final concentration",
+      "AlternateTargets": [
+        "enter concentration for the final time",
+        "enter final absorption"
+      ],
+      "SearchAliases": [
+        "final concentration",
+        "die in concentration",
+        "death in samadhi",
+        "enter final absorption",
+        "final absorbed state"
+      ],
+      "Status": "provisional",
+      "Explanation": "In a repeated lineage-biography formula, entering concentration is the patriarch's terminal event. The impersonal narrator of the Ancestor Hall Collection records Vasumitra's entry immediately after his transmission verse, dates it, praises him, and moves to the next patriarch. The same narrator says that Nagarjuna silently enters concentration after transmitting to Kanadeva, dates the event, and opens Kanadeva's biography; Rahulata likewise enters concentration whole-bodied after answering Sanghanandi, after which the collection begins Sanghanandi's biography. These are succession death notices, not temporary sittings followed by emergence. The impersonal Ancestor Hall Collection narrator still names each event as entering concentration, so the preferred target preserves that wording while the alternatives make its terminal function searchable.",
+      "Validation": "provisional",
+      "Note": "This conventional terminal use is a different event, not a different reading of one temporary sitting. Four dated succession notices occur in one allowlisted source; three are anchored here. Because the evidence is repeated but collection-specific, the sense remains provisional pending an independent source with the same bare formula. Funeral verses containing the longer phrase ‘enter concentration whole-bodied’ outside this succession sequence are family controls, not extra primary depth.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0319b10",
+          "ToLb": "0319b11",
+          "Kwic": "自波須密入定時，當此土姬周第二十一王定王十九年辛未歲矣。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "lineage-biography narrator",
+            "ActorLabel": "the impersonal Ancestor Hall Collection narrator",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The narrator dates Vasumitra's terminal event after his transmission verse, appends a praise, and then begins the next patriarch's biography; Vasumitra is the event's subject, not its narrator.",
+            "ReviewedBy": "Codex semantic-r003-owner3",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Vasumitra",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Ancestor Hall Collection (祖堂集), impersonal succession narration at the end of Vasumitra's biography. The narrator dates Vasumitra's entry into concentration, follows it with a praise, and then opens the biography of his successor Buddhanandi."
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0322b05",
+          "ToLb": "0322b06",
+          "Kwic": "龍樹尊者寂然入定時，當此土秦第二帝始皇三十五年已五歲矣。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "lineage-biography narrator",
+            "ActorLabel": "the impersonal Ancestor Hall Collection narrator",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The narrator dates Nagarjuna's silent entry into concentration after his transmission to Kanadeva and immediately transitions through a praise to Kanadeva's biography.",
+            "ReviewedBy": "Codex semantic-r003-owner3",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Nagarjuna",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Ancestor Hall Collection (祖堂集), impersonal succession narration at the end of Nagarjuna's biography. The narrator says that Nagarjuna silently enters concentration, dates the event, appends a praise, and then opens Kanadeva's biography."
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0323a07",
+          "ToLb": "0323a08",
+          "Kwic": "此師全身入定時，當此土前漢第六武帝十年戊辰歲矣。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "lineage-biography narrator",
+            "ActorLabel": "the impersonal Ancestor Hall Collection narrator",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The narrator dates Rahulata's whole-bodied entry into concentration after Rahulata answers Sanghanandi and then immediately begins Sanghanandi's biography.",
+            "ReviewedBy": "Codex semantic-r003-owner3",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Rahulata",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Ancestor Hall Collection (祖堂集), impersonal succession narration at the end of Rahulata's biography. The narrator dates Rahulata's whole-bodied entry into concentration and then opens Sanghanandi's biography."
+        }
+      ],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml"
+      ],
+      "RelatedMasters": [
+        "Vasumitra",
+        "Nagarjuna",
+        "Rahulata"
+      ],
+      "RelatedTerms": [
+        "示寂",
+        "遷化",
+        "入滅",
+        "全身入定"
+      ]
+    }
+  ]
+}

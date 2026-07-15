@@ -40,6 +40,21 @@ class PublicFeedbackGenericTests(unittest.TestCase):
         result = audit(path)
         self.assertTrue(result["passes"], result["flags"])
 
+    def test_consecutive_duplicate_opening_fails(self):
+        path = self.write_entry(
+            "The staff is held crosswise in the case. The staff is held crosswise in the case. A monk then answers."
+        )
+        result = audit(path)
+        self.assertFalse(result["passes"])
+        self.assertTrue(any(flag["kind"] == "duplicated-explanation-opening" for flag in result["flags"]))
+
+    def test_later_recurrence_is_not_mistaken_for_opening_duplication(self):
+        path = self.write_entry(
+            "The staff is held crosswise in the case. A monk answers, and the staff is held crosswise in the case."
+        )
+        result = audit(path)
+        self.assertTrue(result["passes"], result["flags"])
+
 
 if __name__ == "__main__":
     unittest.main()

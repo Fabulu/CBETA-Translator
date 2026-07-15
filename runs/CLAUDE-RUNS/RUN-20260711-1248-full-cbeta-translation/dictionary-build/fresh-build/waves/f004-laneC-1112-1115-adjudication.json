@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T09:57:11.725552+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1112,
+    1115
+  ],
+  "productionOrder": "complete context -> exact actor -> case family -> different-things test -> opening/limit",
+  "entries": [
+    {
+      "term": "草賊",
+      "preferredTarget": "petty bandit",
+      "aliases": [
+        "petty bandit",
+        "grass bandit",
+        "common outlaw",
+        "bandit verdict"
+      ],
+      "opening": "A petty bandit is a cutting person-directed verdict in an exchange: Linji, Zhaozhou, and later speakers apply the outlaw label when a participant’s move is exposed or defeated.",
+      "zenBend": "The ordinary outlaw becomes an encounter appraisal. “The bandit is badly defeated” can be spoken by a monk, a teacher, or Zhaozhou after inspecting a hermit; its force belongs to the completed exchange rather than to social biography.",
+      "limit": "The label does not always identify the same participant or carry the same speaker. Three selected files transmit the same Nanquan–Zhaozhou hermit case and constitute one case family, not three independent events.",
+      "differentThing": "one-thing",
+      "caseFamilies": {
+        "linji-two-hall": "rows 1 and 3 are separate Linji exchanges",
+        "tiantong-danjiao": "row 2",
+        "nanquan-zhaozhou-hermit": "rows 4–6 are parallel transmissions"
+      },
+      "actors": [
+        {
+          "row": 1,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "respondent",
+          "context": [
+            "Linji Yixuan"
+          ]
+        },
+        {
+          "row": 2,
+          "actor": "Tiantong Danjiao",
+          "status": "pending-roster",
+          "role": "utterer",
+          "context": []
+        },
+        {
+          "row": 3,
+          "actor": "Linji Yixuan",
+          "status": "roster",
+          "role": "utterer",
+          "context": []
+        },
+        {
+          "row": 4,
+          "actor": "Zhaozhou Congshen",
+          "status": "roster",
+          "role": "utterer",
+          "context": [
+            "Nanquan Puyuan"
+          ]
+        },
+        {
+          "row": 5,
+          "actor": "Zhaozhou Congshen",
+          "status": "roster",
+          "role": "utterer",
+          "context": [
+            "Nanquan Puyuan"
+          ]
+        },
+        {
+          "row": 6,
+          "actor": "Zhaozhou Congshen",
+          "status": "roster",
+          "role": "utterer",
+          "context": [
+            "Nanquan Puyuan"
+          ]
+        }
+      ],
+      "sourceRows": [
+        {
+          "row": 1,
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0640b10",
+          "ToLb": "0640b21",
+          "Kwic": "何是無位真人師下禪林把住云道道其僧擬議師托開云無位真人是什麼乹屎橛便歸方丈。上堂有僧出禮拜師便喝僧云老和尚莫探頭好師云你道落在什麼處僧便喝又有僧問如何是佛法大意師便喝僧禮拜師云你道好喝也無僧云草賊大敗師云過在什麼處僧云再犯不容師便喝是日兩堂首座相見同時下喝僧問師還有󰠢主也無師云󰠢主歷然師云大眾要會臨濟󰠢主句問取堂中二首座便下座。上堂僧問如何是佛法大意師豎起拂子僧便喝師便打。又僧問如何是",
+          "zcVerified": true,
+          "contextSha256": "be63db529ee550f18b4cbf4539cd0331a3af9668aabf1f81483d2c222c0bde6a"
+        },
+        {
+          "row": 2,
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0007b04",
+          "ToLb": "0007b12",
+          "Kwic": "梵餘禪師僧問：臨濟喝少遇知音，德山棒難逢作者。和尚今日作麼生？師曰：山僧被你一問，直得退身三步，脊背汗流。曰：作家宗師，今日遭遇。師曰：一語傷人，千刀攪腹。僧以手畫一畫，曰：爭奈這箇何？師曰：草賊大敗。問：恁麼來底人，師還接否？師曰：孤峰無宿客。曰：不恁麼來底人，師還接否？師曰：灘峻不留船。曰：恁麼不恁麼則且置，穿過髑髏一句作麼生？師曰：堪笑亦堪悲。上堂：直須向黑豆未生芽時搆取。良久，",
+          "zcVerified": true,
+          "contextSha256": "cb7cb2b2d9b0e2e19bff79fbfd29b205fad9146c41ee22919ebdc24ab56290b1"
+        },
+        {
+          "row": 3,
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0026a20",
+          "ToLb": "0026b04",
+          "Kwic": "禮拜，師亦打。上堂：一人在孤峰頂上，無出身路；一人在十字街頭，亦無向背。且道那箇在前？那箇在後？不作維摩詰，不作傅大士。珍重！有一老宿參，便問：禮拜即是？不禮拜即是？師便喝，宿便拜，師曰：好箇草賊！宿曰：賊！賊！便出去，師曰：莫道無事好！時首座侍立，師曰：還有過也無？座曰：有。師曰：賓家有過？主家有過？曰：二俱有過。師曰：過在甚麼處？座便出去，師曰：莫道無事好！師到京行化，至一家門首，",
+          "zcVerified": true,
+          "contextSha256": "3161b74ed7d65fe0280348fb6699050c9a760883a7cfb00f9b560d08a8553d0b"
+        },
+        {
+          "row": 4,
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0073b22",
+          "ToLb": "0073c05",
+          "Kwic": "謬為吾弟子。南泉山下有一庵主。人謂曰。近日南泉和尚出世。何不去禮見。主曰。非但南泉出世。直饒千佛出興。我亦不去。師聞。乃令趙州去勘。州去便設拜。主不顧。州從西過東。又從東過西。主亦不顧。州曰。草賊大敗。遂拽下簾子。便歸舉似師。師曰。我從來疑著這漢。次日。師與沙彌擕茶一瓶．盞三隻。到庵擲向地上。乃曰。昨日底。昨日底。主曰。昨日底是甚麼。師於沙彌背上拍一下曰。賺我來。賺我來。拂袖便回。上堂",
+          "zcVerified": true,
+          "contextSha256": "941befe73b7090e85736d15e7f6741784ac8c44c6280a528e0aa1478a63c632f"
+        },
+        {
+          "row": 5,
+          "workId": "work:X79n1557",
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0039c06",
+          "ToLb": "0039c15",
+          "Kwic": "呈劒，不是詩人不獻詩。有一庵主，人謂之曰：南泉近日出世，何不去禮拜？主云：非但南泉，直饒千佛出興亦不去。師聞，令趙州往勘之。州纔見庵主便作禮，主不顧；州從西過東、從東過西而立，主亦不顧。州云：草賊大敗。拽下簾子便行。舉似師，師云：我從來疑著這漢。雪竇云：大小南泉、趙州，被箇擔板漢勘破。師一日下莊，莊主預備迎奉，師云：老僧居常出入不曾與人知，何得預辦如此？主云：昨夜土地神報師云：王老師修",
+          "zcVerified": true,
+          "contextSha256": "9f2f26a92a0306c836d3bb2a750e8e025409071416d59e5b36c0658ab24ce28a"
+        },
+        {
+          "row": 6,
+          "workId": "chan:zhiyue-lu",
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0483c21",
+          "ToLb": "0484a06",
+          "Kwic": "方目為郢匠。南泉山下有一菴主，人謂曰：近日南泉和尚出世，何不去禮見？主曰：非但南泉出世，直饒千佛出興，我亦不去。師聞，乃令趙州去勘。州去便設拜，主不顧。州從東過西，又從西過東，主亦不顧。州曰：草賊大敗。遂拽下簾子便歸。舉似師，師曰：我從來疑著這漢。次日，師與沙彌携茶一瓶、盞三隻到菴，擲向地上，乃曰：昨日底！昨日底！主曰：昨日底是甚麼？師於沙彌背上拍一下，曰：賺我來！賺我來！拂袖便回。雪",
+          "zcVerified": true,
+          "contextSha256": "72c6f94449168546204d37649ce827318a7d554cb69e5a74420fe4b5f6efb48d"
+        }
+      ]
+    },
+    {
+      "term": "壇場",
+      "senses": [
+        {
+          "preferredTarget": "ordination platform",
+          "aliases": [
+            "ordination platform",
+            "precept platform",
+            "ordination ground"
+          ],
+          "opening": "The ordination platform is the formal site whose relation to receiving the hard precept is itself questioned in Zen records.",
+          "zenBend": "A prospective ordinand asks whether the platform, the formal acts, or the officiant is the precept; Daopei repeats the distinction in a public precept address. The platform remains a concrete ordination institution even when the master denies that it exhausts the precept.",
+          "rows": [
+            2,
+            4
+          ]
+        },
+        {
+          "preferredTarget": "ritual altar ground",
+          "aliases": [
+            "ritual altar",
+            "altar precinct",
+            "ceremonial ground"
+          ],
+          "opening": "The ritual altar ground is a prepared ceremonial precinct furnished for offerings, invocation, or commemoration.",
+          "zenBend": "The monastic rule describes an imperial memorial altar; the liturgical text describes constructing and guarding a bounded altar precinct. These are concrete ceremonial sites, not ordination platforms.",
+          "rows": [
+            1,
+            3
+          ]
+        }
+      ],
+      "differentThing": "different-thing",
+      "reason": "The corpus distinguishes an ordination platform where precepts are conferred from an altar precinct constructed for memorial or invocatory rites.",
+      "actors": [
+        {
+          "row": 1,
+          "actor": "monastic rule compiler",
+          "status": "impersonal",
+          "role": "compiler"
+        },
+        {
+          "row": 2,
+          "actor": "unnamed ordinand",
+          "status": "identified-non-master",
+          "role": "questioner",
+          "context": [
+            "Baofeng Wen"
+          ]
+        },
+        {
+          "row": 3,
+          "actor": "liturgical authorial voice",
+          "status": "narrated",
+          "role": "compiler"
+        },
+        {
+          "row": 4,
+          "actor": "Daopei Weilin",
+          "status": "pending-roster",
+          "role": "utterer"
+        }
+      ],
+      "sourceRows": [
+        {
+          "row": 1,
+          "workId": "work:T48n2025",
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1114c17",
+          "ToLb": "1115a01",
+          "Kwic": "官。為禁殺也。而俗以為忌者非。祝釐章終2報恩章報恩章第二國有禘袷四時之祭。所以昭功德隆本始重繼嗣也。聖朝崇佛。世祖而下。咸各建寺。謂由佛應身以御天下。化儀既終復歸佛位。在京官寺。於是設聖容具佛壇場。月以五祭。設奠展禮如生。而致夫羹牆之思。洪惟聖化所被。與佛之教流于無垠。而吾徒沐恩波濡聖澤。可不知所自而思所報効焉。國忌國忌上賓日屆期。隔宿庫司報堂司。令行者覆住持兩序。報眾掛諷經牌。就法座",
+          "zcVerified": true,
+          "contextSha256": "bd224f298562fba78b314d6aa6fd8c15bf2384c9ac94ffd86eebb8b81b20963f"
+        },
+        {
+          "row": 2,
+          "workId": "work:T51n2077",
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0617b22",
+          "ToLb": "0617c03",
+          "Kwic": "高應對領略。師侍其傍伸辯詳明進止可喜。范公欲携與俱西。師辭曰。登山求玉入海求珠。人各有志。本行學道世好非素心。茫公陰奇其語。度以為僧剔髮。既往依梁山乘禪師。呵曰驅烏未受戒敢學佛乘乎。師捧手曰。壇場是戒耶。三羯磨梵行阿闍梨是戒耶。乘大驚。師笑曰。雖然敢不受教。遂受具足戒於唐安律師。遍遊成都講肆唱諸部綱目。即棄去曰。吾不求甚解。法師曇演佳其英特撫之曰。汝法船也。南方有大開士若溈山真如九峯真",
+          "zcVerified": true,
+          "contextSha256": "c07f6201f5206c631f845a114c86555fa65baee4a460890fdb02e82e55cd105b"
+        },
+        {
+          "row": 3,
+          "workId": "work:X65n1277",
+          "RelPath": "X/X65/X65n1277.xml",
+          "FromLb": "0010c12",
+          "ToLb": "0010c23",
+          "Kwic": "恐外道天魔，別生遮障，使此灯光香氣，未獲通聞。須憑我佛威光，令得法印成就。庶使天魔拱手，外道歸心，擁護道場，嚴持壇界。今則金鈴慢撼，寶杵盤旋，歌揚海潮之音，諷誦竺乾之呪。敢借一輪淨地，結成百寶壇場。先當召請六天王，次誦瑜珈五部教。伏願三身調御，四智能仁，同賜降臨，證明結界。本師釋迦牟尼佛。釋子特宣金口教，惟憑我佛玉毫光。陳請法駕護道場，是仗真言秘密偈。聲聲上徹天仙界，句句下開地獄門。若",
+          "zcVerified": true,
+          "contextSha256": "30abc89a75636fad2aca831be06f575aa681dee42daf647112083ab426d89e48"
+        },
+        {
+          "row": 4,
+          "workId": "work:X72n1439",
+          "RelPath": "X/X72/X72n1439.xml",
+          "FromLb": "0604c08",
+          "ToLb": "0604c17",
+          "Kwic": "？若也識得起處，則知千佛萬佛同一父母，而佛佛無窮；千壽萬壽同一法身，而壽壽無盡。如或不然，堂中活佛方花甲，定省溫凊仔細看。優婆夷姜法智禮懺求戒，請上堂。罪性不在內，不在外，不在中間，懺箇什麼？壇場非戒，白四羯磨非戒，問清淨教威儀非戒，又受箇什麼？這裏具得一隻眼，譬如獅子出窟，百獸潛蹤，杲日昇空，千林失白，始可謂真受戒、真懺悔也。且道具底是甚麼眼？夜半日頭紅，照破三千界，任他無事人，塵中",
+          "zcVerified": true,
+          "contextSha256": "855aa93c4ef2263a4a4256c4e26c2d80c498f53d0832edfca11d8724a5a0ab60"
+        }
+      ]
+    },
+    {
+      "term": "道中人",
+      "preferredTarget": "person of the Way",
+      "aliases": [
+        "person of the Way",
+        "one on the Way",
+        "wayfarer",
+        "person in the Way"
+      ],
+      "opening": "A person of the Way is the person demanded in a recurring public question, with the answer supplied locally rather than by a fixed character portrait.",
+      "zenBend": "The question receives sharply different answers—one who frowns all day, “what would you make of one?”, a dry dung-stick, or someone lying crosswise and upright. The person is defined by this interview deployment, not by harmonizing the replies.",
+      "limit": "Two rows transmit the same Longxing exchange; the differing answers belong to different masters and must not be collapsed into a universal definition.",
+      "differentThing": "one-thing",
+      "caseFamilies": {
+        "longxing": "rows 1 and 3 parallel",
+        "xilin": "row 2",
+        "xingjiao-weiyi": "row 4",
+        "muzhou": "row 5",
+        "shoushan-line": "row 6"
+      },
+      "actors": [
+        {
+          "row": 1,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        },
+        {
+          "row": 2,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        },
+        {
+          "row": 3,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        },
+        {
+          "row": 4,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        },
+        {
+          "row": 5,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        },
+        {
+          "row": 6,
+          "actor": "unnamed monk",
+          "status": "reviewed-unnamed",
+          "role": "questioner",
+          "context": []
+        }
+      ],
+      "sourceRows": [
+        {
+          "row": 1,
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0509b15",
+          "ToLb": "0509b23",
+          "Kwic": "撥便轉時如何？師曰：野馬走時鞭轡斷，石人撫掌笑呵呵。潭州龍興禪師潭州龍興禪師僧問：一撥便轉時如何？師曰：根不利。問：得坐披衣時如何？師曰：不端嚴。曰：為甚麼不端嚴？師曰：不從修證得。問：如何是道中人？師曰：終日寂攢眉。問：文不加點時如何？師曰：無目童兒不出戶。問：賓主未分時如何？師曰：雙陸盤中不喝彩。曰：分後如何？師曰：骰子未曾拋。潭州伏龍山第一世禪師潭州伏龍山第一世禪師僧問：攪長河為酥",
+          "zcVerified": true,
+          "contextSha256": "61583694a302d9238bc719448e5c9a8d281dece2f05b2c7cb491ad6f845c44ce"
+        },
+        {
+          "row": 2,
+          "workId": "work:X78n1556",
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0651c23",
+          "ToLb": "0652a07",
+          "Kwic": "裏浮漚。問：如何是古鏡？師云：老僧怕他。僧曰：為什麼怕他？師云：慚惶，慚惶。問：佛未出世時如何？師云：風調雨順。僧曰：出世後如何？師云：國泰民安。問：如何是大道？師云：不障往來人。僧曰：如何是道中人？師云：要作什麼？問：如何是向上事？師云：黃鶯樹上一枝華。師於明道二年五月望日辭眾，至十八日沐浴端坐而逝。茶毗收舍利，建塔于鶴山之北。郢州林溪脫禪師法嗣郢州林溪脫禪師法嗣西劍州鳳凰山智廣禪師西",
+          "zcVerified": true,
+          "contextSha256": "61c73fc83607b6d72adb06047ec5a35459c537cc916e4933636a76bda7b66c9d"
+        },
+        {
+          "row": 3,
+          "workId": "work:X80n1565",
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0131c17",
+          "ToLb": "0132a02",
+          "Kwic": "撥便轉時如何。師曰。野馬走時鞭轡斷。石人撫掌笑呵呵。潭州龍興禪師潭州龍興禪師僧問。一撥便轉時如何。師曰。根不利。問。得坐披衣時如何。師曰。不端嚴。曰。為甚麼不端嚴。師曰。不從修證得。問。如何是道中人。師曰。終日寂攢眉。問。文不加點時如何。師曰。無目童兒不出戶。問。賓主未分時如何。師曰。雙陸盤中不喝彩。曰。分後如何。師曰。骰子未曾拋。潭州伏龍山禪師潭州伏龍山禪師僧問。攪長河為酥酪。變大地作",
+          "zcVerified": true,
+          "contextSha256": "b794aadf920ad81bfaf8024e319c890abf768291c4af2130fc4e4b713f6742da"
+        },
+        {
+          "row": 4,
+          "workId": "work:wudeng-yantong",
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0023b04",
+          "ToLb": "0023b12",
+          "Kwic": "，珍重！棲賢湜禪師法嗣棲賢湜禪師法嗣杭州南山興教院惟一禪師杭州南山興教院惟一禪師僧問：佛未出世時如何？師曰：白雲數重。曰：出世後如何？師曰：青山一朵。問：如何是道？師曰：刺頭入荒草。曰：如何是道中人？師曰：乾屎橛。曰：大耳三藏第三度為甚麼不見國師？師曰：脚跟下看。曰：如何得見？師曰：草鞋跟斷。安吉州西余體柔禪師安吉州西余體柔禪師上堂：一人把火自燼其身，一人抱氷橫屍於路。進前即觸途成滯，退",
+          "zcVerified": true,
+          "contextSha256": "eb77742b7b8f7c6f0fb31b35108829c828151e683250b683f735b4fc3e11fe8c"
+        },
+        {
+          "row": 5,
+          "workId": "work:guzunsu-yulu",
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0664a19",
+          "ToLb": "0664b07",
+          "Kwic": "性不隨緣如何得證悟師曰猪肉案上滴乳香問如何是清淨法身師曰金沙灘頭馬郎婦問一色難分請師顯示師曰滿爐添炭猶嫌冷路上行人秪守寒問如何是學人立身處師曰井底泥牛吼林間玉兔驚問如何是道師曰五鳳樓前曰如何是道中人師曰問取皇城使問不傷物義請師便道師曰劈腹開心猶未性燥問未定渾濁如何得照師曰下坡不走快便難逢問如何是衲僧行履處師曰頭上喫棒口裏喃喃問靈山話月曹谿指月去此二途請師直指師曰無言不當瘂曰請師定當師曰先",
+          "zcVerified": true,
+          "contextSha256": "00e4e8aa1003c7cbb3339b0c9ce1b366e1374044be7682ef25ecedf3a1689195"
+        },
+        {
+          "row": 6,
+          "workId": "work:T51n2077",
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0471c23",
+          "ToLb": "0472a03",
+          "Kwic": "不迷去。師曰。秤頭半斤秤尾八兩。問如何是古佛心。師曰。踏著秤錘硬似鐵。曰意旨如何。師曰。明日向汝道。問青山淥水即不問。急切一句作麼生道。師曰。手過膝耳垂肩。問如何是道。師曰。車碾馬踏。曰如何是道中人。師曰。橫眠竪坐。問日往月來遷不覺年衰老還有不老者麼。師曰有。曰如何是不老者。師曰。虬龍筋力高聲叫。晚後精靈轉更多。問如何是學人深深處。師曰。烏龜水底深藏六。曰未審其中事若何。師曰。路上行人莫",
+          "zcVerified": true,
+          "contextSha256": "386357dd3ba95d08aacd0fc9b2848d3d0d22e0842f2da26b7fea2cd837638a11"
+        }
+      ]
+    },
+    {
+      "term": "無舌人",
+      "preferredTarget": "tongueless person",
+      "aliases": [
+        "tongueless person",
+        "one without a tongue",
+        "the tongueless speaker"
+      ],
+      "opening": "The tongueless person is an impossible encounter figure who can speak without the organ of speech and is therefore posed as a problem to anyone relying on verbal facility.",
+      "zenBend": "Tianyi asks what the tongueless person says after being struck by a handless person; Wansong opens a case by saying the tongueless person can speak; later masters use the figure to test shouting, “meaningless” speech, and the claim that all things speak.",
+      "limit": "Rows 1 and 6 are parallel transmissions of Tianyi’s same chamber question. The image does not license a doctrine of silence or an anatomical claim.",
+      "differentThing": "one-thing",
+      "caseFamilies": {
+        "tianyi-handless": "rows 1 and 6 parallel",
+        "wansong-case-opening": "row 2",
+        "shiyu-address": "row 3",
+        "linji-commentary": "row 4",
+        "baiyu-address": "row 5"
+      },
+      "actors": [
+        {
+          "row": 1,
+          "actor": "Tianyi Yihuai",
+          "status": "roster",
+          "role": "utterer"
+        },
+        {
+          "row": 2,
+          "actor": "Wansong Xingxiu",
+          "status": "roster",
+          "role": "utterer"
+        },
+        {
+          "row": 3,
+          "actor": "Shiyu Mingfang",
+          "status": "roster",
+          "role": "utterer"
+        },
+        {
+          "row": 4,
+          "actor": "Fengxin",
+          "status": "pending-roster",
+          "role": "utterer",
+          "context": [
+            "Linji Yixuan"
+          ]
+        },
+        {
+          "row": 5,
+          "actor": "Baiyu Si",
+          "status": "roster",
+          "role": "utterer"
+        },
+        {
+          "row": 6,
+          "actor": "Tianyi Yihuai",
+          "status": "roster",
+          "role": "utterer"
+        }
+      ],
+      "sourceRows": [
+        {
+          "row": 1,
+          "workId": "work:wudeng-quanshu",
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0002a05",
+          "ToLb": "0002a14",
+          "Kwic": "問：天不能葢，地不能載，未審是甚麼人？師曰：掘地深埋。曰：此人還受安排也無？師曰：土上更加泥。問：牛頭未見四祖時如何？師曰：長江無六月。曰：見後如何？師曰：一年一度春。室中問僧：無手人能行拳，無舌人解言語。忽然無手人打無舌人，無舌人道箇甚麼？又曰：蜀魄連宵呌，鵽鳭終夜啼。圓通門大啟，何事隔雲泥？晚年以疾居池陽杉山菴，門弟子智才住臨平之佛日，迎歸侍奉。才如蘇城未還，師速其歸。及踵門，師告之",
+          "zcVerified": true,
+          "contextSha256": "55849166ac15514b4fb54ce347b14e5239ac3c018b1455e52ae99e4df34480d3"
+        },
+        {
+          "row": 2,
+          "workId": "work:T48n2004",
+          "RelPath": "T/T48/T48n2004.xml",
+          "FromLb": "0230b20",
+          "ToLb": "0230c03",
+          "Kwic": "畫樣。所以野老家風。擊壤謳歌。禮樂文章。翻成特地。盧陵米價。可曬深玄。舜德堯仁。淳風自化。村歌社飲。得其所哉。月白風清。各安其分。還會麼。逐便歸堂。6馬祖白黑第六則馬祖白黑示眾云。開口不得時。無舌人解語。擡脚不起處。無足人解行。若也落他彀中。死在句下。豈有自由分。四山相逼時。如何透脫。舉。僧問馬大師。離四句絕百非。請師直指某甲西來意大師云。我今日勞倦不能為汝說問取智藏去僧問藏藏云。何不問",
+          "zcVerified": true,
+          "contextSha256": "c8d781fde4d022fe230cb8184c6a0027ffaba426b97d06a952f713a1c86e8449"
+        },
+        {
+          "row": 3,
+          "workId": "work:J27nB190",
+          "RelPath": "J/J27/J27nB190.xml",
+          "FromLb": "0090a27",
+          "ToLb": "0090b06",
+          "Kwic": "具甚麼眼目？到者裏揀點得出，不妨扶起趙州，捉敗老漢。」上堂。「若要舉揚個事，直須四方受敵，八面當機，鴈過長空，會得橫抽寶劍，雲歸遠岫，明他腦後鉗鎚。若是以言遣言、以理遣理，忽然撞著無手人行拳、無舌人解語，便道是格外之談、無義之語。若要與他施主福壽雙圓，水也消他不得。何故聻？不見道：飛騎將軍入虜庭，再得完全能幾個？」解制，上堂。「如鏡照鏡，石人正令方行；似空合空，木女謳歌始歇。千喚不回的，",
+          "zcVerified": true,
+          "contextSha256": "66d111bec428a4943b6a06bce7906f45659a4b5e9658bff378a518506f3b17f7"
+        },
+        {
+          "row": 4,
+          "workId": "chan:zongjian-falin",
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0419a21",
+          "ToLb": "0419b07",
+          "Kwic": "萬古絕追攀。臨濟曰：一喝分賓主，照用一時行。昭覺勤喝一喝云：且道是賓是主？是照是用？還委悉麼？千峰勢到嶽邊止，萬派聲歸海上消。語風信云：臨濟和尚提唱空王佛向上一著，可謂搆邨迭店，暗裏書符，忽遇無舌人，他喝不得，又作麼生？賓主俱隱，照用俱瞎，佛法無靈驗。復頌：桃李花開三月天，滿園青白潑人寒。枝頭春倦吹微雨，砌地殘紅不奈看。臨濟會下有二同學相問，一曰：離却中下二機，請兄道一句子。一曰：擬問即",
+          "zcVerified": true,
+          "contextSha256": "f717e29dacbd7e708f2f8fb890362a8ecea8eb1e1faf0a4b6bb80e5f72052040"
+        },
+        {
+          "row": 5,
+          "workId": "work:J36nB359",
+          "RelPath": "J/J36/J36nB359.xml",
+          "FromLb": "0628c28",
+          "ToLb": "0629a06",
+          "Kwic": "宗，可為佛祖爪牙、人天標幟，克紹真乘，提持向上。大眾！還會向上事麼？」卓拄杖，云：「佛祖未生空劫外，正偏不落有無機。」上堂。「諸佛心內眾生，新新作佛；眾生心中諸佛，念念證真。」豎拂，云：「昨夜無舌人廝罵，無手人交拳，劈面一揮，把舜若多神鼻孔打落半邊，彌勒峰呵呵大笑。且道笑箇甚麼？座中亦有江南客，休向樽前唱鷓鴣。」上堂。舉拂，云：「龜毛上座為諸人說了也，何必弁山沸脣鼓舌？說黃論黑，堪作甚麼",
+          "zcVerified": true,
+          "contextSha256": "20ca864583c06d8ae13ee7900a57f40d238b2b7f7c7c884bb369cd56c38b3331"
+        },
+        {
+          "row": 6,
+          "workId": "work:X79n1559",
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0298b09",
+          "ToLb": "0298b17",
+          "Kwic": "具因果也無？曰：只聞人作鬼，不見鶴成仙。云：古人又作麼生？曰：且識前話。問：如何是古佛機？曰：得。問：牛頭未見四祖時如何？曰：長江無六月。云：見後如何？曰：一年一度春。室中問僧：無手人能行拳，無舌人能解語。忽然無手人打無舌人，無舌人道箇甚麼？又曰：蜀魄連霄叫，鵽𩾗終夜啼。圓通門大啟，何事隔雲泥？晚年以疾居池陽杉山庵，門弟子智才住臨平之佛曰，迎歸侍奉。才如蘇城未還，師速其歸。及鍾門，師已書",
+          "zcVerified": true,
+          "contextSha256": "519f13df0f102bdf09038ed322028247a0981fa1d64547f8315f08183afa5e1d"
+        }
+      ]
+    }
+  ],
+  "allRowsRead": true,
+  "allKwicsVerified": true,
+  "compiled": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

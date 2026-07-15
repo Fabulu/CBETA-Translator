@@ -1,0 +1,118 @@
+{
+  "Id": "t_96255c741b17",
+  "SourceTerm": "沒滋味",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "has no flavor",
+      "AlternateTargets": [
+        "tasteless",
+        "without flavor"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, ‘has no flavor’ or ‘tasteless.’ The corpus predicates it of sayings, inquiry, food imagery, and an interlocutor’s appraisal. A verse on Nanquan’s ‘ordinary mind is the way’ calls it ‘cold and bland, entirely without flavor,’ yet says that each raising is new. Dahui repeatedly places a person at the point where bringing up the matter feels tasteless, like a lump of hot iron or biting an iron spike, and explicitly says that this is then a good place and must not be abandoned. Later records likewise join ‘nowhere to set a hand,’ ‘without flavor,’ and ‘the road of mind cut off’; one calls the sect’s tea and rice iron-nail rice and wood-chip soup, ‘without flavor’ however long chewed, then calls that tasteless place a good state. The phrase can remain an ordinary adverse verdict: after a master answers with ‘one melon seed, two shell-halves,’ a monk says ‘no flavor,’ and the master hisses. Zen usage bends the sensory predicate by applying it repeatedly to words and sustained inquiry, and by recording masters who name the very tasteless point positively. This entry reports those descriptions without recategorizing them.",
+      "Validation": "multi-source",
+      "Note": "One adjectival predicate across food, sayings, and inquiry: all are described as lacking flavor. These are different subjects but not different lexical things or word classes, so item 8 does not require a split. Positive and negative appraisals are text-drawn contrasts, not separate readings supplied by this entry.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0851b13",
+          "ToLb": "0851b15",
+          "Kwic": "南泉平常心是道。頌云。勸君不用苦勞神。喚作平常轉不親。冷淡全然沒滋味。一回舉起一回新。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "Dahui's verse applies the phrase to Nanquan's saying and juxtaposes tastelessness with renewed raising."
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0886a11",
+          "ToLb": "0886a13",
+          "Kwic": "提撕來提撕去。沒滋味。心頭恰如頓一團熱鐵相似。那時便是好處不得放捨。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "Dahui calls the tasteless, hot-iron point a good place and says not to relinquish it."
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0891a22",
+          "ToLb": "0891a24",
+          "Kwic": "心未明了。覺得迷悶沒滋味。如咬鐵橛相似。時正好著力。第一不得放捨。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "A second distinct Dahui formulation compares the experience to biting an iron spike."
+        },
+        {
+          "RelPath": "J/J39/J39nB466.xml",
+          "FromLb": "0845a18",
+          "ToLb": "0845a19",
+          "Kwic": "一時不得放過。直捱到無下手處，沒滋味處，心死路絕處，連絕也不知。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Baishan Kai of Shanxi (山西柏山楷禪師語錄): in his small address, Baishan Kai instructs students not to let go until they reach the point with nowhere to set a hand, no flavor, and the mind-road cut off.",
+          "MasterName": "Baishan Kai"
+        },
+        {
+          "RelPath": "J/J39/J39nB471.xml",
+          "FromLb": "0962b22",
+          "ToLb": "0962b24",
+          "Kwic": "宗門茶飯如同鐵釘飯、木楂羹，嚼來嚼去沒滋味。若到者沒滋味處，正是好境界，不生退志，終成大器。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Konggu Daocheng (空谷道澄禪師語錄): in his hall address to laypeople, Konggu Daocheng compares the lineage's tea and rice to iron-nail rice and wood-splinter soup, and says that persisting at the tasteless point makes a great vessel.",
+          "MasterName": "Konggu Daocheng"
+        },
+        {
+          "RelPath": "J/J26/J26nB177.xml",
+          "FromLb": "0028c03",
+          "ToLb": "0028c04",
+          "Kwic": "僧問：「和尚起期，還是為人？為己？」師云：「一箇瓜子兩瓣殼。」進云：「沒滋味。」師噓一聲。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Poshan (破山禪師語錄): after Poshan Haiming answers the monk's question about starting a retreat with one melon seed and two shell halves, the unnamed monk says it has no flavor; Poshan hisses once. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Poshan Haiming",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1998A.xml",
+        "J/J39/J39nB466.xml",
+        "J/J39/J39nB471.xml",
+        "J/J26/J26nB177.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "Nanquan Puyuan"
+      ],
+      "RelatedTerms": [
+        "滋味",
+        "話頭",
+        "沒巴鼻",
+        "把捉",
+        "平常心"
+      ]
+    }
+  ]
+}

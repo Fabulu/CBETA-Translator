@@ -1,0 +1,31 @@
+{
+  "wave": "f002",
+  "lane": "C",
+  "ordinals": "501-520",
+  "status": "drafted-ready-for-independent-review",
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "websiteUpdated": false,
+  "cohortGateRun": false,
+  "diagnostics": {
+    "entries": 20,
+    "draftedStatuses": 20,
+    "occurrences": 121,
+    "minimumDepth": 6,
+    "maximumDepth": 7,
+    "zcVerifyOk": 121,
+    "zcVerifyBad": 0,
+    "compileHardPass": 20
+  },
+  "entryIdsInOrdinalOrder": [
+    "t_b90a5f36ec86", "t_d4df8bc75ad7", "t_74a27239e6c7", "t_48bc24c64738", "t_8253f56255ce",
+    "t_96473172e857", "t_cb2205148690", "t_e95ea628d5dd", "t_b33fddd5d4f1", "t_6214dc704b24",
+    "t_8f76148e713f", "t_df4e71aa0bc5", "t_a5408be46291", "t_b0d4b62a9c2f", "t_083de4a490e2",
+    "t_3b3034d1731f", "t_e016fb20e6da", "t_432d8c4f7579", "t_b986851dcdd8", "t_b4367c692c8a"
+  ],
+  "notes": [
+    "Distinct deployments were used; parallel recensions and repeated cases were rejected as depth padding.",
+    "MasterName records only the exact headword utterer; named layman Chen Yunyi is represented as an identified non-master with responding masters in ContextMasters.",
+    "父母未生已前 was first-authored with exact 已前 witnesses while reusing only the semantic research of the close variant 父母未生前.",
+    "No cohort gate or website update was performed."
+  ]
+}

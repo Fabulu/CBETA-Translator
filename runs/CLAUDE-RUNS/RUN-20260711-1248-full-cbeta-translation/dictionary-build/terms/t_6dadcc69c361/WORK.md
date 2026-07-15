@@ -1,0 +1,24 @@
+# WORK — 料揀 (t_6dadcc69c361)
+
+- Concordance: 266 hits in 126 allowlisted texts; 6 retained anchors across 5 texts.
+- Deployment inventory: requested appraisal of two episodes; public sorting challenge; what the Four Selections select; classificatory heading; old selection sayings; later public request with immediate answer after quoting the Four Selections.
+- sense-target-distinguishability: MERGE “to appraise and distinguish” and “a selection or classificatory distinction.” Action and nominalized result/category remain one appraisal-selection event/product family.
+- Family-definition retest: the standalone term remains compatible with Four Selections (四料揀), investigation (勘), and the four taking-away formulations. The named Four Selections article remains separately indexable without creating a second generic headword sense.
+- #0g: public appraisal of sayings, encounters, and speakers, plus Linji classificatory deployment.
+- Omission audit: all 6 anchors preserved; duplicate late lists excluded.
+- feedback-observations: A bare translation such as “selection” can hide both the ordinary act and the Chan records' public use: monks ask masters to appraise contrasted episodes, speakers challenge assemblies to sort out a conjunction, and Linji literature names the Four Selections.
+- minimal-inference: The repeated request, challenge, and question frames license “public appraisal and sorting” as the plain-English bridge. They do not license a claim that every occurrence is a verdict on enlightenment or a fixed doctrinal taxonomy.
+- ordinary-bridge: “To appraise and distinguish” covers asking someone to tell alternatives apart or sort a presented matter out; noun constructions name the appraisal or distinction produced.
+- feedback-falsification-searches: Rechecked generic `料揀`, `請.*料揀`, `誰能料揀`, `四料揀`, and `料揀語` deployments, including turn ownership around each retained witness. Searched for a concrete object, person/title, or unrelated ordinary commodity sense that would require splitting; none emerged in the sampled concordance.
+- feedback-counterexamples: The Four Selections heading and later “selection sayings” could make the word look purely technical, but direct monk-to-master requests and open assembly challenges preserve the broader appraisal verb. Conversely, noun grammar does not by itself establish a different lexical thing.
+- feedback-scope: Construction-specific. The entry describes appraisal of sayings, episodes, conjunctions, or persons in these records; it does not universalize what the appraisal decides.
+- verdict: KEEP one sense, strengthen its searchable English bridge, and repair exact-turn attribution for the two unnamed monks and the Nanyuan–Fengxue exchange.
+- feedback-inference-verdict: Corpus-supported inference accepted: public comparison and sorting are a characteristic Chan deployment. Hidden doctrinal referent rejected.
+- lookup-probes: `appraise and distinguish`; `appraise`; `distinguish`; `sort out`; `selection and appraisal`. Five non-identical probes cover verb and noun searches without creating pseudo-senses.
+- opening-interpretation-verdict: PASS. The opening states what a reader can do with the word before introducing the Four Selections family.
+- plain-english-image-verdict: PASS. The ordinary action—setting material side by side and asking someone to sort it out—is explicit.
+- nested-compound-verdict: PASS. `四料揀` remains a separately named set and related term; it informs but does not monopolize the standalone headword.
+- verb-frame-verdict: PASS. `請師料揀`, `誰能料揀`, and `料揀何法` anchor request, challenge, and transitive-question frames.
+- family-definition-retest: PASS. `勘`, `四料揀`, and the four taking-away formulas remain related appraisal vocabulary, not automatic synonyms or second senses.
+- sense-target-distinguishability: MERGE. “To appraise” and “an appraisal/selection” differ by grammar and action/result framing, not by denoting different things.
+- attribution-retest: Occurrence 1 is spoken by an unnamed monk to Nanyue Jiqi Hongchu; occurrence 3 is Nanyuan Huiyong's question to Fengxue Yanzhao; occurrence 6 is an unnamed monk's request to Pin Jixiang. Context masters are structured and exact actors are no longer inherited from the record owner.

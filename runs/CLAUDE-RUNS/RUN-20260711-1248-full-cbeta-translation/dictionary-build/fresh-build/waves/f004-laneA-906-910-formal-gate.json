@@ -1,0 +1,216 @@
+{
+  "generatedUtc": "2026-07-15T10:51:46.551695+00:00",
+  "elapsedSeconds": 49.386,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_22a3963b99da",
+      "term": "向上機",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_22a3963b99da/entry.v2.json",
+      "sha256": "acf5b3c8517acd3cb1072bf5e376887e6d90db61eb3af731892cdeb3529cca66"
+    },
+    {
+      "id": "t_d0e5e6e5d1ee",
+      "term": "一轉語",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0e5e6e5d1ee/entry.v2.json",
+      "sha256": "2656b019b313ea66712e6c773ad672fe0b957bb49e2d6f460499063764f72225"
+    },
+    {
+      "id": "t_de2ade080f36",
+      "term": "裴休",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_de2ade080f36/entry.v2.json",
+      "sha256": "24575b51f4e648d30d3fb71ae9aacf628adffe2972a661c38f994776c6913954"
+    },
+    {
+      "id": "t_2b02b05d68b6",
+      "term": "不是心不是佛不是物",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2b02b05d68b6/entry.v2.json",
+      "sha256": "d3b3f13ec592f37e865a8d6e062063c33d59bd9c26079cd7275db0754a011243"
+    },
+    {
+      "id": "t_93635ce58785",
+      "term": "瓦礫",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93635ce58785/entry.v2.json",
+      "sha256": "5eaa4c2d3daada458f77e1d83cec88b91d7d71e22ae758423f064e1f82539618"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 32,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_22a3963b99da/entry.v2.json",
+        "id": "t_22a3963b99da",
+        "term": "向上機",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0e5e6e5d1ee/entry.v2.json",
+        "id": "t_d0e5e6e5d1ee",
+        "term": "一轉語",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_de2ade080f36/entry.v2.json",
+        "id": "t_de2ade080f36",
+        "term": "裴休",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2b02b05d68b6/entry.v2.json",
+        "id": "t_2b02b05d68b6",
+        "term": "不是心不是佛不是物",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93635ce58785/entry.v2.json",
+        "id": "t_93635ce58785",
+        "term": "瓦礫",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.023,
+    "attribution": 3.746,
+    "publicFeedback": 1.103,
+    "depthSense": 3.857,
+    "countClaims": 0.992,
+    "workSourceValidation": 1.079,
+    "corpusBaseline": 0.712,
+    "frozenHistoricalTerms": 1.609,
+    "attributionPackets": 34.611
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.746,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 5,
+        "occurrences": 32,
+        "actor_narrated": 32,
+        "attribution_notes": 32
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 5,\n    \"occurrences\": 32,\n    \"actor_narrated\": 32,\n    \"attribution_notes\": 32\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.103,
+    "payload": {
+      "entries": 5,
+      "passing": 5,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 5,\n  \"passing\": 5,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpcs_8l05c.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.857,
+    "payload": {
+      "audited": 5,
+      "hardFailed": 0,
+      "reviewFlagged": 2,
+      "singleSense": 5,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_22a3963b99da",
+        "t_2b02b05d68b6",
+        "t_93635ce58785",
+        "t_d0e5e6e5d1ee",
+        "t_de2ade080f36"
+      ]
+    },
+    "output": "{\n  \"audited\": 5,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 5,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_22a3963b99da\",\n    \"t_2b02b05d68b6\",\n    \"t_93635ce58785\",\n    \"t_d0e5e6e5d1ee\",\n    \"t_de2ade080f36\"\n  ]\n}\nreport: /tmp/tmpzjj1iwi_-depth.json\n",
+    "report": "/tmp/tmpzjj1iwi_-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.992,
+    "payload": {
+      "entryCount": 5,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 5,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.079,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 5,
+        "multiSourceSenses": 5
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 5,\n    \"multiSourceSenses\": 5\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.712,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.609,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 34.611,
+    "payload": {
+      "entries": 5,
+      "occurrences": 32,
+      "tierACandidates": 0,
+      "reviewRequired": 32
+    },
+    "output": "{\n  \"entries\": 5,\n  \"occurrences\": 32,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 32\n}\nreport: fresh-build/waves/f004-laneA-906-910-formal-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f004-laneA-906-910-formal-gate-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_22a3963b99da",
+    "t_d0e5e6e5d1ee",
+    "t_de2ade080f36",
+    "t_2b02b05d68b6",
+    "t_93635ce58785"
+  ],
+  "strictRosterScopeIds": [
+    "t_22a3963b99da",
+    "t_d0e5e6e5d1ee",
+    "t_de2ade080f36",
+    "t_2b02b05d68b6",
+    "t_93635ce58785"
+  ]
+}

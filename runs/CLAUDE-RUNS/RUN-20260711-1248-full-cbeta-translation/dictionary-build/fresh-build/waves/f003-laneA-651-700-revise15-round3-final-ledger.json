@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "f003-repair-author-final-v2",
+  "role": "repair-author",
+  "sourceRejectingReview": "f003-laneA-651-700-revise15-round2-fresh-independent-exact-review.json",
+  "sourceRejectingReviewSha256": "ca707a151a3ae812f780daaebf9ff08f6a0b3d0ae7ab143454ee4075b38025d7",
+  "finalFormalGate": "f003-laneA-651-700-revise15-round3-final3-full50-formal-gate.json",
+  "finalFormalGateSha256": "b034332e1e1d9b8bacd9ab08f450e21741a890fa7ec3990d0e3d74dcd47a4e45",
+  "formalHardPass": true,
+  "clusterScopeIds": [
+    "t_c06edf8c18f1", "t_6e4234dfd60f", "t_df0ba3a57ecf", "t_c193d5b26854",
+    "t_cbf868f557e2", "t_cb44465faa59", "t_f74516e0ba71", "t_279cf2b97244",
+    "t_086985319a5b", "t_612cae8da268", "t_4da199fae933", "t_2d567d37256b",
+    "t_cc8c8a1cb550", "t_453e3c35baa6", "t_ff91d085da8d"
+  ],
+  "exactKwic": {"verified": 356, "failures": 0},
+  "attributionPackets": {
+    "path": "f003-laneA-651-700-revise15-round3-final3-full50-formal-gate-attribution-packets.json",
+    "sha256": "5ff4b8b5186bbc753ef48ce00b47a0a9459572c4f3aa045d9b27c6731ed12c2a",
+    "generatorVersion": 3,
+    "occurrences": 356
+  },
+  "semanticRegressions": {
+    "path": "fresh-build/semantic-regressions.json",
+    "sha256": "46f4118398dc2f1aa71c11eca54da34201489840520d9fce9dc71e76bdb741ec"
+  },
+  "priorKeepHashProof": {
+    "count": 35,
+    "allPriorKeepHashesUnchanged": true,
+    "source": "independent review row hashes compared to current bytes"
+  },
+  "repairedEntryHashes": {
+    "t_c06edf8c18f1": "fa2e7e17ac9be630427d5c7aa59e91bd6cf3d94df552e587fcb54a04e14fabfc",
+    "t_6e4234dfd60f": "42429d0a743c6c55a4674396ed4527c6a8550ebe3c5990881344eb52399104f4",
+    "t_df0ba3a57ecf": "2bda6860ed4d8fbf30fa6bc343acf20f5878724a58efc05828036cf54d0bcb3a",
+    "t_c193d5b26854": "6f9e413516acd7c880199a837cfd164757679ccca085d742106c6b2b83961765",
+    "t_cbf868f557e2": "bacc6eb9f088bc3b4416e32d676f0d9f02bc62ba5fe1a54d0f60dc8b41aa029a",
+    "t_cb44465faa59": "919d538dd44980b3527a6be1379a62d866911e147aec0353b1b580f46852d6ff",
+    "t_f74516e0ba71": "196ac8cec30944fdb8c5ca88157b9b33a5b6fa008577828f7dfe13c4dbad2e41",
+    "t_279cf2b97244": "e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba",
+    "t_086985319a5b": "29109903b6ee85518ea731d66780f0a65c11de380f24dcfbb561d5ed8b6976e2",
+    "t_612cae8da268": "1ce3708f3264f64c59382b7fe432682e45d99d72e71f8c949482a04da96e54a1",
+    "t_4da199fae933": "8ceacb8c654db14670b386c53b48dfe7ee6e29b6c8ab48b3b3fc90a840fb230a",
+    "t_2d567d37256b": "e0c7d547135f248c0714818a66bcc701f57b7fa097482b23fa0cea080834289e",
+    "t_cc8c8a1cb550": "16dc568bf5cac0d590a1a61acb21fba2e5ff5b3bf42391feba2403e3f3754174",
+    "t_453e3c35baa6": "a56488b524c306269fa2f59abdb3563d40283bb30c63ff5959fe8083e660bb96",
+    "t_ff91d085da8d": "bfebbe9e5a086db523b79e818c691660b7ad5248768ff0cd25654c560f502925"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

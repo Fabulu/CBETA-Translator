@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T10:17:46.124170+00:00",
+  "wave": "f004",
+  "lane": "B",
+  "exclusiveOrdinals": [
+    1001,
+    1100
+  ],
+  "owner": "/root/f003_a651_700_independent_final",
+  "immutableManifest": {
+    "path": "fresh-build/waves/f004.json",
+    "sha256": "f2f1a2f505587548489e7423b89f41828a9b8292f85f9fb839cd1b0055dfcd36"
+  },
+  "immutablePreflight": {
+    "path": "fresh-build/waves/f004-laneB-1001-1100-preflight.json",
+    "sha256": "99d59ec22bf3b4dd62da0e30b33e6b754fbdf4df7f3c87ba770d5631bc9ede1e"
+  },
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "checkpoints": [
+    {
+      "ordinal": 1050,
+      "state": "pending"
+    },
+    {
+      "ordinal": 1100,
+      "state": "pending"
+    }
+  ],
+  "earlyFive": [
+    "t_efa921d8f97a",
+    "t_2ddd493fc9b0",
+    "t_df2096b961c1",
+    "t_486aaf7fbce8",
+    "t_8beda961c75a"
+  ],
+  "bulkAuthoringBlockedUntilEarlyFiveGreen": true,
+  "rows": [
+    {
+      "ordinal": 1001,
+      "id": "t_efa921d8f97a",
+      "term": "家珍",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1002,
+      "id": "t_2ddd493fc9b0",
+      "term": "續燈錄",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1003,
+      "id": "t_df2096b961c1",
+      "term": "鐵牛之機",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1004,
+      "id": "t_486aaf7fbce8",
+      "term": "監寺",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1005,
+      "id": "t_8beda961c75a",
+      "term": "陶淵明",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1006,
+      "id": "t_1095b3f1544e",
+      "term": "豐干",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1007,
+      "id": "t_7e7472becb31",
+      "term": "鬼窟",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1008,
+      "id": "t_f54129a637ae",
+      "term": "寮元",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1009,
+      "id": "t_420d43d8c61c",
+      "term": "我今不是渠",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1010,
+      "id": "t_da72db7aa635",
+      "term": "把斷",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1011,
+      "id": "t_b7fa9548f704",
+      "term": "孫臏",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1012,
+      "id": "t_8cc557911096",
+      "term": "鋒鋩",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1013,
+      "id": "t_f50f469aa43b",
+      "term": "聯燈會要",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1014,
+      "id": "t_d468479c7729",
+      "term": "不思善不思惡",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1015,
+      "id": "t_72bcb768449d",
+      "term": "香爐",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1016,
+      "id": "t_f9bb8b44b32f",
+      "term": "延壽堂",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1017,
+      "id": "t_2b9a5ab567cc",
+      "term": "虛空粉碎",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1019,
+      "id": "t_6275f20a3f87",
+      "term": "雲門胡餅",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1021,
+      "id": "t_c825600386b2",
+      "term": "劈面",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1022,
+      "id": "t_5639a42e1e5d",
+      "term": "香嚴擊竹",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1023,
+      "id": "t_30a53ee93752",
+      "term": "爐鞴",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1025,
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1026,
+      "id": "t_06c19d3bdafe",
+      "term": "肉團",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1028,
+      "id": "t_7f696f177766",
+      "term": "梁武帝",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1030,
+      "id": "t_13845fbed3f0",
+      "term": "梆",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1031,
+      "id": "t_bfef2fc85826",
+      "term": "參問",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1032,
+      "id": "t_b336769aabdf",
+      "term": "家醜",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1033,
+      "id": "t_d7725cb0c8c0",
+      "term": "水頭",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1034,
+      "id": "t_e21288d0fefb",
+      "term": "徐六擔板",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1035,
+      "id": "t_641de814fd8a",
+      "term": "毒藥",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1036,
+      "id": "t_10b63ac74f61",
+      "term": "李廣",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1037,
+      "id": "t_40cfbcc5f859",
+      "term": "縱奪",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1038,
+      "id": "t_b016f513be3d",
+      "term": "五燈嚴統",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1039,
+      "id": "t_f24a55791323",
+      "term": "單傳直指",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1040,
+      "id": "t_74c3c0e1b896",
+      "term": "下禪床",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1041,
+      "id": "t_ea905d5d7453",
+      "term": "普茶",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1042,
+      "id": "t_b751a85ba963",
+      "term": "啐啄",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1043,
+      "id": "t_dbbc09ad8c5d",
+      "term": "野狐精",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1044,
+      "id": "t_efc6a42814ee",
+      "term": "東坡居士",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1045,
+      "id": "t_aced87de5b30",
+      "term": "殺佛殺祖",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1046,
+      "id": "t_850d52f97185",
+      "term": "法衣",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1047,
+      "id": "t_1d04ccb80940",
+      "term": "伏羲",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1048,
+      "id": "t_fb43354d2aae",
+      "term": "自己",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1049,
+      "id": "t_93edb4403f03",
+      "term": "活路",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1050,
+      "id": "t_c513dc22845c",
+      "term": "十戒",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1051,
+      "id": "t_5e92b1f22d27",
+      "term": "赤肉團",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1052,
+      "id": "t_4db0d950f314",
+      "term": "白居易",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1053,
+      "id": "t_590004996a4d",
+      "term": "行住坐臥",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1054,
+      "id": "t_35eaec93bf12",
+      "term": "餬餅",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1055,
+      "id": "t_2b7734c66eb6",
+      "term": "項羽",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1056,
+      "id": "t_a2967e6f3617",
+      "term": "生死",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1057,
+      "id": "t_4c1448553bb6",
+      "term": "拍禪床",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1058,
+      "id": "t_91f04bfa2237",
+      "term": "楊億",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1059,
+      "id": "t_afade752976d",
+      "term": "威音那畔",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1060,
+      "id": "t_d01493daf491",
+      "term": "關捩",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1061,
+      "id": "t_ef5beb628603",
+      "term": "磨頭",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1062,
+      "id": "t_98c97bba590b",
+      "term": "別云",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1063,
+      "id": "t_88dac6848042",
+      "term": "戒臘",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1064,
+      "id": "t_6d02220e4b51",
+      "term": "一念萬年",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1066,
+      "id": "t_0051fc72360c",
+      "term": "臨濟四喝",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1067,
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1068,
+      "id": "t_93d4f280640a",
+      "term": "點檢",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1069,
+      "id": "t_00d347279628",
+      "term": "蕭何",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1070,
+      "id": "t_43f57213c34e",
+      "term": "十方世界",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1071,
+      "id": "t_c5dbf08e4452",
+      "term": "拂子頭",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1072,
+      "id": "t_c49116ead4fc",
+      "term": "睦州擔板",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1073,
+      "id": "t_27a6c937c485",
+      "term": "種草",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1074,
+      "id": "t_897abeb2436c",
+      "term": "披毛戴角",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1075,
+      "id": "t_1b4bf4fff6bb",
+      "term": "韓愈",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1076,
+      "id": "t_9bed34b40eac",
+      "term": "來機",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1077,
+      "id": "t_76ee526a2b16",
+      "term": "沙彌戒",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1078,
+      "id": "t_c5ff2fdc37ca",
+      "term": "遇緣即宗",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1079,
+      "id": "t_564a5efaf79e",
+      "term": "擲拂子",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1080,
+      "id": "t_e104c7146d49",
+      "term": "洞山過水",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1081,
+      "id": "t_61c5046b49c4",
+      "term": "心要",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1082,
+      "id": "t_24ec9667c7fd",
+      "term": "拈拂子",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1083,
+      "id": "t_5342014cb2ee",
+      "term": "土地堂",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1084,
+      "id": "t_9069cc8f2c62",
+      "term": "眼睛",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1086,
+      "id": "t_a20be219d329",
+      "term": "解脫香",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1087,
+      "id": "t_3f62599f5960",
+      "term": "出身之路",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1088,
+      "id": "t_c5e3106c0483",
+      "term": "調達謗佛",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1089,
+      "id": "t_71f85cf94e5d",
+      "term": "宗匠",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1090,
+      "id": "t_9263ce2a5988",
+      "term": "登座",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1091,
+      "id": "t_020169e22fdb",
+      "term": "戒和尚",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1092,
+      "id": "t_7c5f24652dfa",
+      "term": "法身向上事",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1094,
+      "id": "t_cde9fa9489a3",
+      "term": "祖殿",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1095,
+      "id": "t_9e98cbf9596b",
+      "term": "大悲",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1096,
+      "id": "t_4aad283d4db6",
+      "term": "法鼓",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1097,
+      "id": "t_4f3cd3b1c155",
+      "term": "趙州橋",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1098,
+      "id": "t_802b405cbb3d",
+      "term": "舍利",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1099,
+      "id": "t_1b3edad858f5",
+      "term": "靠拄杖",
+      "state": "owned-awaiting-research"
+    },
+    {
+      "ordinal": 1100,
+      "id": "t_7a77e6c1d8d8",
+      "term": "巢父",
+      "state": "owned-awaiting-research"
+    }
+  ],
+  "f003Touched": false,
+  "otherLanesTouched": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

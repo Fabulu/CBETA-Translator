@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T11:18:48.005658+00:00",
+  "hardPass": true,
+  "gateSha256": "cc3397e5205761c61cfa71e47204a7de81c9b00dd2cb4d187178ff592abc6303",
+  "reviewSha256": "e8e17bada201f7704a468df60c5625df526e09de75a3d5dd1401860a4c08795b",
+  "rows": [
+    {
+      "ordinal": 901,
+      "id": "t_cc68e32cf1b4",
+      "term": "佛法大意",
+      "reviewVerdict": "KEEP",
+      "beforeSha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428",
+      "afterSha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428",
+      "byteIdentical": true,
+      "repair": "preserved"
+    },
+    {
+      "ordinal": 902,
+      "id": "t_77811c966dba",
+      "term": "香雲",
+      "reviewVerdict": "REVISE",
+      "beforeSha256": "71597daf64ca581fd61fc8f6232d895f3af0913bb0ed11f6a1589591f5757683",
+      "afterSha256": "c62f06518ca4985fcb38d3713c172e8f2f4fc062df52ceaf549962276e927d82",
+      "byteIdentical": false,
+      "repair": "review findings implemented"
+    },
+    {
+      "ordinal": 903,
+      "id": "t_602a0b760189",
+      "term": "頂門正眼",
+      "reviewVerdict": "REVISE",
+      "beforeSha256": "349063873746002b87b8915392eef6ffe575d0224f6b3afac6ca1c039f2ca6e8",
+      "afterSha256": "6a2dc6f6ef17c177b422ad1844797dac111311fcb63b1f8cfe4511186a602fdf",
+      "byteIdentical": false,
+      "repair": "review findings implemented"
+    },
+    {
+      "ordinal": 904,
+      "id": "t_f5e1fe96407c",
+      "term": "知事",
+      "reviewVerdict": "REVISE",
+      "beforeSha256": "75d735673d87d7c9ab59c7bd26aabd3dc238598a585151e25aed0c2a301dcdef",
+      "afterSha256": "607f0e59bdb0027d0f97851438f985c0b6e54437f8297d10f09af8efbc992fbe",
+      "byteIdentical": false,
+      "repair": "review findings implemented"
+    },
+    {
+      "ordinal": 905,
+      "id": "t_1d8554f83698",
+      "term": "續傳燈錄",
+      "reviewVerdict": "REVISE",
+      "beforeSha256": "e076ddfb946c09d2f539a2f4b80830d6c6d2bd5b67080384bf20bb6e616680c0",
+      "afterSha256": "dc082a6a4e81eba1ba422e87910a13b2b71f02b6c1a45e74d71a8fedbf1ea982",
+      "byteIdentical": false,
+      "repair": "review findings implemented"
+    }
+  ],
+  "findings": [
+    "香雲 split into incense smoke and poetic fragrant-cloud imagery",
+    "頂門正眼 formal bell-address utterer named",
+    "知事 paratext replaced with body evidence and Fachang kept contextual",
+    "續傳燈錄 first-person and signed authors named; Wenxiu retained against mistaken summary"
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

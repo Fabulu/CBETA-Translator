@@ -1,0 +1,98 @@
+{
+  "Id": "t_ddab56ede4ef",
+  "SourceTerm": "桶底脫",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the bucket-bottom falls out",
+      "AlternateTargets": [
+        "the bottom drops out of the bucket",
+        "bucket-bottom gone"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, 'the bucket-bottom comes off' or 'the bottom drops out of the bucket.' The phrase occurs 109 times in 75 allowed texts. Its comparison form 'like the bucket-bottom falls out' (如桶底脫) occurs 38 times, including 26 exact endings in 'resembling the bucket-bottom falling out' (桶底脫相似). Xuefeng reports that after Deshan struck him, 'at that time I was as if the bucket-bottom had fallen out' (我當時如桶底脫相似); Yantou immediately challenges what Xuefeng brought in through the gate. Yuanwu uses the same comparison after 'under one phrase' (一言之下) and elsewhere joins the literal image to 'the mechanisms are exhausted' (桶底脫機關盡). The phrase is also recorded as a direct answer: asked 'What is buddha?' (如何是佛), Shoushan Huaizhi says, 'the bucket-bottom falls out' (桶底脫). A separate kitchen encounter uses the words literally: while noodles are cooking, the bucket-bottom suddenly falls out, the assembly cries that it is a pity, and the master says, 'the bucket-bottom falling out should itself be cause for joy—why are you distressed?' (桶底脫自合歡喜), before agreeing that the lost bucket of noodles is regrettable. The physical event and its simile therefore share one graph-level sense while appearing in an answer, recollection, comment, and kitchen exchange.",
+      "Validation": "multi-source",
+      "Note": "The corpus does not provide a required direct-definition formula. It does provide a literal control case involving a noodle bucket, which prevents the comparison from being replaced by an imported abstraction. Xuefeng's report is preserved together with Yantou's objection rather than being treated as a standalone verdict.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X69/X69n1333.xml",
+          "FromLb": "0071c23",
+          "ToLb": "0071c24",
+          "Kwic": "我當時如桶底脫相似。",
+          "MasterName": "Xuefeng Yicun",
+          "Curated": true,
+          "AttributionNote": "Xuefeng Yicun's own record. Xuefeng recounts his response to Deshan's strike as 'I was then as if the bucket-bottom had fallen out'; Yantou's challenge follows immediately in the source."
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0147b12",
+          "ToLb": "0147b12",
+          "Kwic": "所以一言之下。如桶底脫相似。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Yuanwu's Blue Cliff Record prose commentary: 'therefore, under one phrase, it was like the bucket-bottom falling out.'"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0238a09",
+          "ToLb": "0238a09",
+          "Kwic": "問。如何是佛。師曰。桶底脫。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shoushan Huaizhi section. Shoushan Huaizhi is the exact respondent who answers the question 'What is buddha?' with 'the bucket-bottom falls out.'",
+          "MasterName": "Shoushan Huaizhi"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0297a04",
+          "ToLb": "0297a05",
+          "Kwic": "忽桶底脫。眾皆失聲。曰。可惜許。師曰。桶底脫自合歡喜。",
+          "Curated": true,
+          "AttributionNote": "五燈會元. The bucket-bottom detachment occurs suddenly; the assembly reacts and Zhenxie Qingliao comments that this should occasion joy.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "mechanical event",
+            "ActorLabel": "bucket-bottom detachment",
+            "ActorRole": "grammatical event or collective state",
+            "GrammarEvidence": "忽桶底脫 makes the bucket bottom the grammatical subject of the sudden detachment; no human performs the event.",
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:01:35Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhenxie Qingliao",
+              "Roles": [
+                "commentator",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0172c05",
+          "ToLb": "0172c05",
+          "Kwic": "這箇些子。須是桶底脫機關盡。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Yuanwu's Blue Cliff Record comment joins the two predicates 'bucket-bottom gone' and 'mechanisms exhausted.' The entry reports the pairing without treating it as a definition of hidden intent."
+        }
+      ],
+      "SourceTexts": [
+        "X/X69/X69n1333.xml",
+        "T/T48/T48n2003.xml",
+        "X/X80/X80n1565.xml"
+      ],
+      "RelatedMasters": [
+        "Xuefeng Yicun",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "機關盡",
+        "如何是佛"
+      ]
+    }
+  ]
+}

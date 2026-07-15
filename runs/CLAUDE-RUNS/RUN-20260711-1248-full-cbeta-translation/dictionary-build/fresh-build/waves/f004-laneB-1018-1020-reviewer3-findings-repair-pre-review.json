@@ -1,0 +1,244 @@
+{
+  "generatedUtc": "2026-07-15T13:49:39.548956+00:00",
+  "elapsedSeconds": 7.735,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+      "sha256": "7a0a32ae0baedfd23c5329d4dec1801e697142fc1c89a73822ac86ea36137d5f"
+    },
+    {
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+      "sha256": "38a875aabd0ff674de3ff623e6d8f5474b6d638d88b3834bf24fd13a0d643edf"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 13,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+        "id": "t_88de22b8a40e",
+        "term": "本來人",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+        "id": "t_baaf8fde82d2",
+        "term": "法眼宗",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.337,
+    "attribution": 2.548,
+    "publicFeedback": 0.659,
+    "depthSense": 1.496,
+    "countClaims": 0.527,
+    "workSourceValidation": 0.426,
+    "corpusBaseline": 0.448,
+    "frozenHistoricalTerms": 1.214,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 2.548,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 13,
+        "named_occurrences": 5,
+        "context_master_links": 12,
+        "attribution_notes": 13,
+        "deferred_non_roster": 3,
+        "noncanonical_master_name": 2,
+        "deferred_non_roster_context": 7,
+        "noncanonical_context_master_name": 5,
+        "note_missing_source": 4,
+        "actor_reviewed_unnamed": 5,
+        "actor_narrated": 2,
+        "note_missing_speaker": 2,
+        "pending_roster_master": 1,
+        "pending_roster_context_master": 2,
+        "actor_impersonal": 1,
+        "vague_attributor": 2,
+        "chinese_strings": 1,
+        "anchored_chinese": 1
+      },
+      "hardFailures": 15,
+      "failures": [
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o2: 'Yuelin Jing' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o2 c1: 'Yuelin Jing' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o2 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Yuelin Jing utters the repeated headword in his explicitly introduced awakening verse."
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o3 c1: 'Baoci Xingyan' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o3 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): an unnamed monk asks how, after sitting down right and wrong, one accords with the original person; Baoci Xingyan answers."
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+          "detail": "本來人 s1 o4: Source text (宗鑑法林): the headword occurs in an unattributed verse saying that when all conditions are illuminated the original person appears."
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o1 c1: 'Cian Jingyuan' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): an unnamed monk asks what the Fayan lineage is; Cian Jingyuan answers with matching arrow points."
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o3: 'Sanfeng Hanyue' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o3 c1: 'Sanfeng Hanyue' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o4: Source text (人天眼目): the compiler introduces the Fayan lineage through Fayan Wenyi and his succession from Luohan Guichen."
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o5 c1: 'Cian Jingyuan' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1 o5 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): an unnamed monk asks what the Fayan lineage is; the section master answers with matching arrow points."
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1: 'a master'"
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+          "detail": "法眼宗 s1: 'a master'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 13,\n    \"named_occurrences\": 5,\n    \"context_master_links\": 12,\n    \"attribution_notes\": 13,\n    \"deferred_non_roster\": 3,\n    \"noncanonical_master_name\": 2,\n    \"deferred_non_roster_context\": 7,\n    \"noncanonical_context_master_name\": 5,\n    \"note_missing_source\": 4,\n    \"actor_reviewed_unnamed\": 5,\n    \"actor_narrated\": 2,\n    \"note_missing_speaker\": 2,\n    \"pending_roster_master\": 1,\n    \"pending_roster_context_master\": 2,\n    \"actor_impersonal\": 1,\n    \"vague_attributor\": 2,\n    \"chinese_strings\": 1,\n    \"anchored_chinese\": 1\n  },\n  \"hardFailures\": 15,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o2: 'Yuelin Jing' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o2 c1: 'Yuelin Jing' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o2 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Yuelin Jing utters the repeated headword in his explicitly introduced awakening verse.\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o3 c1: 'Baoci Xingyan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o3 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): an unnamed monk asks how, after sitting down right and wrong, one accords with the original person; Baoci Xingyan answers.\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json\",\n      \"detail\": \"本來人 s1 o4: Source text (宗鑑法林): the headword occurs in an unattributed verse saying that when all conditions are illuminated the original person appears.\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o1 c1: 'Cian Jingyuan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): an unnamed monk asks what the Fayan lineage is; Cian Jingyuan answers with matching arrow points.\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o3: 'Sanfeng Hanyue' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o3 c1: 'Sanfeng Hanyue' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o4: Source text (人天眼目): the compiler introduces the Fayan lineage through Fayan Wenyi and his succession from Luohan Guichen.\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o5 c1: 'Cian Jingyuan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1 o5 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): an unnamed monk asks what the Fayan lineage is; the section master answers with matching arrow points.\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1: 'a master'\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json\",\n      \"detail\": \"法眼宗 s1: 'a master'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.659,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmplzpg6kg2.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 1.496,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 2,
+      "reviewFlagged": 1,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_88de22b8a40e",
+        "t_baaf8fde82d2"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 2,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_88de22b8a40e\",\n    \"t_baaf8fde82d2\"\n  ]\n}\nreport: /tmp/tmpa5yoqc59-depth.json\n",
+    "report": "/tmp/tmpa5yoqc59-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.527,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.426,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.448,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.214,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_88de22b8a40e",
+    "t_baaf8fde82d2"
+  ],
+  "strictRosterScopeIds": [
+    "t_88de22b8a40e",
+    "t_baaf8fde82d2"
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "generatedUtc": "2026-07-15T13:54:49.433266+00:00",
+  "elapsedSeconds": 4.075,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+      "sha256": "b7b81dd66f0aa6652153aa3d3d55b926c95ac8f0dd4ffaf6877470789e103c0a"
+    },
+    {
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+      "sha256": "3411355601c0a494237943628a7c245c510285361ee36196e6b68190d96c21a9"
+    },
+    {
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+      "sha256": "9c43e2554adb7cc72c984d392845a5b8b69df56744c5867af23d77b62c603269"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 21,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+        "id": "t_edfd0b2afa11",
+        "term": "接物利生",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+        "id": "t_e251ef5cbc12",
+        "term": "橫按拄杖",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_47b3313788e2/entry.v2.json",
+        "id": "t_47b3313788e2",
+        "term": "體露金風",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.272,
+    "attribution": 1.229,
+    "publicFeedback": 0.196,
+    "depthSense": 0.729,
+    "countClaims": 0.211,
+    "workSourceValidation": 0.263,
+    "corpusBaseline": 0.227,
+    "frozenHistoricalTerms": 0.869,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 1.229,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 21,
+        "named_occurrences": 11,
+        "context_master_links": 20,
+        "attribution_notes": 21,
+        "actor_reviewed_unnamed": 2,
+        "actor_narrated": 8,
+        "deferred_non_roster_context": 4,
+        "noncanonical_context_master_name": 2,
+        "note_missing_source": 4,
+        "pending_roster_context_master": 2,
+        "deferred_non_roster": 1,
+        "pending_roster_master": 1
+      },
+      "hardFailures": 6,
+      "failures": [
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o4 c1: 'Rifang Shangzuo' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o5 c1: 'Yungai Ben' is not roster names[0]"
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o5 expected '列祖提綱錄': Collected Guidelines of the Patriarchs, in the section headed for Yungai Ben. The narrator reports Yungai Ben holding the staff crosswise; the action is not spoken wording."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json",
+          "detail": "橫按拄杖 s1 o6 expected '續古尊宿語要': Essential Recorded Sayings of the Ancient Venerables, Continued, in the section for Yun’an Zhenjing Kewen. The narrator reports Zhenjing Kewen holding the staff crosswise; the action is not spoken wording."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+          "detail": "接物利生 s1 o2 expected '百愚禪師語錄': Hundred-Fool Chan Master’s Recorded Sayings. The unnamed monk utters the headword in the question; Baiyu Jingsi begins answering only in the following marked master-turn."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json",
+          "detail": "接物利生 s1 o3 expected '天隱修禪師語錄': Exact source voice: Tianyin Yuanxiu. The passage is an uninterrupted address in Tianyin Xiu’s Recorded Sayings; the same address is preserved under Tianyin Yuanxiu in J/J25/J25nB171.xml, satisfying the title and parallel-witness rungs. The complete headword-bearing unit was read, and the stored KWIC and full FromLb–ToLb span were reverified."
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 21,\n    \"named_occurrences\": 11,\n    \"context_master_links\": 20,\n    \"attribution_notes\": 21,\n    \"actor_reviewed_unnamed\": 2,\n    \"actor_narrated\": 8,\n    \"deferred_non_roster_context\": 4,\n    \"noncanonical_context_master_name\": 2,\n    \"note_missing_source\": 4,\n    \"pending_roster_context_master\": 2,\n    \"deferred_non_roster\": 1,\n    \"pending_roster_master\": 1\n  },\n  \"hardFailures\": 6,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o4 c1: 'Rifang Shangzuo' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o5 c1: 'Yungai Ben' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o5 expected '列祖提綱錄': Collected Guidelines of the Patriarchs, in the section headed for Yungai Ben. The narrator reports Yungai Ben holding the staff crosswise; the action is not spoken wording.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e251ef5cbc12/entry.v2.json\",\n      \"detail\": \"橫按拄杖 s1 o6 expected '續古尊宿語要': Essential Recorded Sayings of the Ancient Venerables, Continued, in the section for Yun’an Zhenjing Kewen. The narrator reports Zhenjing Kewen holding the staff crosswise; the action is not spoken wording.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json\",\n      \"detail\": \"接物利生 s1 o2 expected '百愚禪師語錄': Hundred-Fool Chan Master’s Recorded Sayings. The unnamed monk utters the headword in the question; Baiyu Jingsi begins answering only in the following marked master-turn.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_edfd0b2afa11/entry.v2.json\",\n      \"detail\": \"接物利生 s1 o3 expected '天隱修禪師語錄': Exact source voice: Tianyin Yuanxiu. The passage is an uninterrupted address in Tianyin Xiu’s Recorded Sayings; the same address is preserved under Tianyin Yuanxiu in J/J25/J25nB171.xml, satisfying the title and parallel-witness rungs. The complete headword-bearing unit was read, and the stored KWIC and full FromLb–ToLb span were reverified.\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.196,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpk5u1p6hz.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.729,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_47b3313788e2",
+        "t_e251ef5cbc12",
+        "t_edfd0b2afa11"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_47b3313788e2\",\n    \"t_e251ef5cbc12\",\n    \"t_edfd0b2afa11\"\n  ]\n}\nreport: /tmp/tmpezt010bu-depth.json\n",
+    "report": "/tmp/tmpezt010bu-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.211,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.263,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.227,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.869,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ],
+  "strictRosterScopeIds": [
+    "t_edfd0b2afa11",
+    "t_e251ef5cbc12",
+    "t_47b3313788e2"
+  ]
+}

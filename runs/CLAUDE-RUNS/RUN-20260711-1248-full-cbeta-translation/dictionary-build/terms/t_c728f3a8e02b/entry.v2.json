@@ -1,0 +1,122 @@
+{
+  "Id": "t_c728f3a8e02b",
+  "SourceTerm": "家風",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "family wind (a house's teaching style)",
+      "AlternateTargets": [
+        "house style",
+        "the manner of a house or lineage",
+        "family style"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally 'the wind/manner of a house.' In the records it names the distinctive teaching-style and household-manner of a particular master or lineage — how THIS house does things. Its commonest form is the stock interview question 'What is the master's family style?' (如何是和尚家風), which the master answers with a concrete, homely image of his own place and way: 'white clouds come and close the door' (Tianzhu), 'harvest in autumn, store away in winter,' or 'my old ears are deaf — ask louder' (adding, 'you ask MY house-style, but I already know YOURS'). The word is used equally of a single teacher (和尚家風) and of a whole lineage or the tradition at large — (臨濟家風) (the Linji house's way), (佛祖家風) / (古佛家風) (the way of the buddhas and ancestors), (野老家風) (the plain 'old rustic's' style). The register is domestic and self-characterizing, often plain ('eating gruel, eating rice — also to be done carefully'): the recognizable style, temper and household-manner a teacher hands down, by which one house is told from another. Zen-scoped grep counts: (家風) 3743 hits across 335 of the 462 allowlist texts; the interview question (如何是)…(家風) accounts for 1173 hits in 141 texts, of which the exact (如何是和尚家風) makes 819 in 113. Scale collocations: (古佛家風) 209/113, (臨濟家風) 64/46, (佛祖家風) 54/42, (野老家風) 20/15, (衲僧家風) 5/4. The records also use it as a verdict of succession: (吾宗門下曹山可謂妙得其家風者) (within our school, Caoshan may be said to have marvelously gotten his family-wind; J40nB494), with the same formula (可謂妙得其家風者) said of another heir at J34nB299.",
+      "Note": "One corpus-wide sense: the term is a shared, house-neutral word applied to every master and lineage, not bent by any single master. Extremely broad attestation (3743 occurrences in 335 allowlist files, tag-stripped re-concordance 2026-07-11; an earlier count of ~613 was low), so multi-source is beyond doubt. No master-specific sense warranted.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "B/B14/B14n0082.xml",
+          "FromLb": "0169b07",
+          "ToLb": "0169b09",
+          "Kwic": "僧問如何是天柱家風師曰時有白雲來閉戶更無風月四山流",
+          "Curated": true,
+          "AttributionNote": "傳燈玉英集（殘卷）. Full six-rung exact-turn review identifies Unnamed monk asking about Tianzhu's house style as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk asking about Tianzhu's house style",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            "Tianzhu Chonghui"
+          ]
+        },
+        {
+          "RelPath": "J/J24/J24nB137.xml",
+          "FromLb": "0361c26",
+          "ToLb": "0361c27",
+          "Kwic": "問：「如何是和尚家風？」師云：「老僧耳背，高聲問。」僧再問，師云：「你問我家風，我卻識你家風。」",
+          "Curated": true,
+          "AttributionNote": "趙州和尚語錄: complete-case exact-turn review identifies Zhaozhou Congshen as the actor for this occurrence.",
+          "MasterName": "Zhaozhou Congshen"
+        },
+        {
+          "RelPath": "J/J25/J25nB156.xml",
+          "FromLb": "0059a02",
+          "ToLb": "0059a03",
+          "Kwic": "佛祖家風，衲僧活計，百姓日用，無不在內，喫粥喫飯，也要仔細。",
+          "Curated": true,
+          "AttributionNote": "無幻禪師語錄. Full six-rung exact-turn review identifies Wuhuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Wuhuan"
+        },
+        {
+          "RelPath": "J/J26/J26nB178.xml",
+          "FromLb": "0111c04",
+          "ToLb": "0111c05",
+          "Kwic": "僧問：「臨濟家風則且置，曹洞宗旨是如何？」師云：「牽連斷貫索。」",
+          "Curated": true,
+          "AttributionNote": "費隱禪師語錄. Full six-rung exact-turn review identifies Feiyin Tongrong as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Feiyin Tongrong"
+        },
+        {
+          "RelPath": "J/J27/J27nB191.xml",
+          "FromLb": "0167b24",
+          "ToLb": "0167b25",
+          "Kwic": "因僧問：「如何是古佛家風？」師曰：「銀蟾初出海，何處不分明？」",
+          "Curated": true,
+          "AttributionNote": "象田即念禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the ancient Buddha's house style as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk asking about the ancient Buddha's house style",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            "Xiangtian Jinian"
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "B/B14/B14n0082.xml",
+        "J/J24/J24nB137.xml",
+        "J/J25/J25nB156.xml",
+        "J/J26/J26nB178.xml",
+        "J/J27/J27nB191.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan"
+      ],
+      "RelatedTerms": [
+        "宗旨",
+        "宗風",
+        "門庭",
+        "如何是和尚家風"
+      ]
+    }
+  ]
+}

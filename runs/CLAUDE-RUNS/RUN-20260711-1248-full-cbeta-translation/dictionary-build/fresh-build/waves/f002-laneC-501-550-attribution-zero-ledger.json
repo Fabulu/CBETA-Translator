@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scope": "f002 Lane C entries 501-550",
+  "inputAudit": "f002-laneC-501-550-attribution-repair11.json",
+  "outputAudit": "f002-laneC-501-550-attribution-repair13.json",
+  "hardFailuresBefore": 55,
+  "hardFailuresAfter": 0,
+  "danglingChineseBefore": 32,
+  "danglingChineseAfter": 0,
+  "vagueAttributorsBefore": 23,
+  "vagueAttributorsAfter": 0,
+  "method": [
+    "independently checked read-only attribution leads against exact stored witnesses",
+    "named utterers and distinguished unnamed interlocutors from masters",
+    "removed unsupported imported claims rather than inventing anchors",
+    "rebuilt the 父母未生已前 explanation solely from its six exact stored witnesses",
+    "recompiled every affected worksheet and reran the 50-entry attribution audit"
+  ],
+  "websiteUpdated": false
+}

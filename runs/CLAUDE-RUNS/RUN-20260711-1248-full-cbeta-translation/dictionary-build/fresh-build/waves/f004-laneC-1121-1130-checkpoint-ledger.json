@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "lane": "C",
+  "ordinals": "1121-1130",
+  "status": "green-author-checkpoint",
+  "entries": 10,
+  "exactKwic": {"verified": 50, "failures": 0},
+  "formalGate": {"path": "f004-laneC-1121-1130-formal-gate-v4.json", "sha256": "65a15364db756cf5f907ee9d8a04b8b02fc7d391a91e721f4aae426c10034e2a", "hardPass": true},
+  "laneLocalRosterView": {"path": "f004-laneC-1121-1130-gate-roster-view.json", "sha256": "07afdcb0bb4b39e81d8e21dea1ef89aed300dfb2bb2059cfcf642df92a749b9a", "sharedRosterEdited": false},
+  "substantiveRepairs": ["Replaced all four TOC-only 李遵勗 rows.", "Removed TOC rows from 首山竹篦 and 伽藍堂.", "Read and assigned all fifty exact actors.", "Added a seventh independent 問頭 case to prevent quota-floor clustering."],
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

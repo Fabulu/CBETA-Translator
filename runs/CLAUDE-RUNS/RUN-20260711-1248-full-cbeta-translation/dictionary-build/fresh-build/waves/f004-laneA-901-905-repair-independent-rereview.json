@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T12:00:00Z",
+  "wave": "f004",
+  "reviewLane": "A",
+  "ordinals": [901, 905],
+  "scope": "read-only independent rereview of repaired exact-current hashes, all stored KWICs, and all 32 complete cases",
+  "reviewedReadinessSha256": "5dd48e99be2ae687ae7fb6fae92eade1dad23c27e14fee39636d727e339c8177",
+  "reviewedGateSha256": "cc3397e5205761c61cfa71e47204a7de81c9b00dd2cb4d187178ff592abc6303",
+  "gateRosterViewSha256": "d66977ca7719ddc715f5e84d41907b1ca6da15015447e262d7bd174d46112c05",
+  "gateHardPass": true,
+  "entriesReviewed": 5,
+  "occurrencesReadInFullCase": 32,
+  "exactKwicsVerifiedByGate": 32,
+  "keep": 1,
+  "revise": 4,
+  "entries": [
+    {
+      "ordinal": 901,
+      "id": "t_cc68e32cf1b4",
+      "term": "佛法大意",
+      "reviewedEntrySha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428",
+      "occurrencesReadInFullCase": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "The current SHA is identical to the already accepted pre-repair SHA.",
+        "All seven exact headword-bearing turns remain correctly separated from their respondents: Baofu Congzhan, Bai Juyi, and four unnamed monks are the utterers; Budai, Qingliang Taiqin, Niaoke Daolin, Linji Yixuan, and Xuedou Chongxian remain contextual respondents.",
+        "The one-sense treatment, interview-event explanation, work diversity, and source titles remain supported by the complete cases."
+      ],
+      "caseAudit": [
+        "o1 Baofu Congzhan question / Budai respondent: correct",
+        "o2 unnamed monk question / Qingliang Taiqin respondent: correct",
+        "o3 Bai Juyi question / Niaoke Daolin respondent: correct",
+        "o4 unnamed monk question / Linji Yixuan respondent: correct",
+        "o5 Bai Juyi parallel question / Niaoke Daolin respondent: correct",
+        "o6 unnamed monk question / Linji Yixuan respondent: correct",
+        "o7 unnamed monk question / Xuedou Chongxian respondent: correct"
+      ]
+    },
+    {
+      "ordinal": 902,
+      "id": "t_77811c966dba",
+      "term": "香雲",
+      "reviewedEntrySha256": "c62f06518ca4985fcb38d3713c172e8f2f4fc062df52ceaf549962276e927d82",
+      "occurrencesReadInFullCase": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "The repaired literal-smoke versus poetic/auspicious-cloud split is defensible and materially improves the entry.",
+        "Poetic-cloud o1 is misattributed. In 韓氏生日，請上堂。問：『香雲結蓋…』 the unnamed monk/questioner utters the headword; Meixi Fudu answers with 萬里青山展壽圖. MasterName must be null, the unnamed questioner must be the exact actor, and Meixi Fudu must be ContextMasters respondent/record-owner rather than utterer.",
+        "The second-sense prose repeats that error by saying Meixi Fudu's address makes the cloud a canopy; it must name the unnamed questioner and describe Meixi's reply separately.",
+        "宗鏡錄 o4 stores only the bare two-character KWIC 香雲. It passes substring verification but is not a reader-usable evidence window and cannot independently support the prose until recut to the reviewed surrounding unit."
+      ],
+      "caseAudit": [
+        "smoke o1 Wuyi Yuanlai address: correct",
+        "smoke o2 Baichi Yuanshuo longevity address: correct",
+        "poetic o1 unnamed monk question, not Meixi Fudu: incorrect",
+        "poetic o2 Dai Daochun verse: correct",
+        "poetic o3 unnamed monastery representative's quoted speech: correct",
+        "poetic o4 narrated Zongjing lu witness: actor class plausible, stored KWIC too short"
+      ]
+    },
+    {
+      "ordinal": 903,
+      "id": "t_602a0b760189",
+      "term": "頂門正眼",
+      "reviewedEntrySha256": "6a2dc6f6ef17c177b422ad1844797dac111311fcb63b1f8cfe4511186a602fdf",
+      "occurrencesReadInFullCase": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "The repair correctly identifies Ying'an Tanhua as the utterer of o6, resolving the original review defect.",
+        "Occurrence 4 correctly makes the unnamed monk the headword utterer, but omits Baichi Yuanshuo from ContextMasters even though 師云 explicitly records his response in Baichi's own record. Add Baichi Yuanshuo with respondent/record-owner scope permitted by the closed role vocabulary.",
+        "The single sense and crown-eye gloss remain distinguishable and supported. The opening's functional inference is strong but stays within the repeated corpus pattern of possessing, opening, revealing, and testing this eye."
+      ],
+      "caseAudit": [
+        "o1 Yongzhang Jun utterer: correct",
+        "o2 Fuxin Bencai utterer: correct",
+        "o3 compiler describes Hanxiu Ruqian: correct",
+        "o4 unnamed monk utterer: correct; Baichi Yuanshuo contextual respondent missing",
+        "o5 Yuan'an Feng utterer: correct",
+        "o6 Ying'an Tanhua utterer: correct"
+      ]
+    },
+    {
+      "ordinal": 904,
+      "id": "t_f5e1fe96407c",
+      "term": "知事",
+      "reviewedEntrySha256": "607f0e59bdb0027d0f97851438f985c0b6e54437f8297d10f09af8efbc992fbe",
+      "occurrencesReadInFullCase": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "The repair successfully replaces the former table-of-contents witnesses o1 and o2 with substantive rulebook passages and correctly demotes Fachang Yiyu to contextual person-described in o5.",
+        "Occurrence 4 is still an editorial occasion heading: 請東序知事提綱 / 請知事，上堂. Under ACTOR_AUDIT outcome 4 it has no human utterer and must be Status impersonal, not identified-non-master with a supposed named authored voice.",
+        "Occurrence 7 likewise bears the headword in the occasion heading 謝新舊知事，小參. It should be impersonal editorial heading; Furong Daokai may remain the section/address master in ContextMasters.",
+        "The office sense, translation, prose, and remaining body occurrences are supported across distinct works."
+      ],
+      "caseAudit": [
+        "o1 substantive Chanyuan Qinggui rule passage: repaired and acceptable",
+        "o2 substantive Chanlin Beiyong Qinggui rule passage: repaired and acceptable",
+        "o3 documentary imperial/administrative narration: correct",
+        "o4 editorial request-to-administrators heading: wrong actor status",
+        "o5 lamp compiler narration about Fachang Yiyu admonishing administrators: correct",
+        "o6 compiler narration in Guzunsu yulu: correct",
+        "o7 editorial thanks-to-administrators heading: wrong actor status"
+      ]
+    },
+    {
+      "ordinal": 905,
+      "id": "t_1d8554f83698",
+      "term": "續傳燈錄",
+      "reviewedEntrySha256": "dc082a6a4e81eba1ba422e87910a13b2b71f02b6c1a45e74d71a8fedbf1ea982",
+      "occurrencesReadInFullCase": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "Juelang Daosheng o3 and Hongchu o5 are now correctly named, and the bibliographic one-sense explanation remains supported by four distinct works.",
+        "Occurrences 1 and 2 are titles/catalogue headings, not compiler narration. Because the headword is itself a bibliographic title they remain admissible evidence, but their ActorAttribution status must be impersonal editorial/title heading rather than narrated.",
+        "Occurrence 6 is signed 永樂十五年三月徑山禪寺前住持比丘文琇書. This identifies the writer as the former abbot-monk Wenxiu. Existing fresh-build evidence elsewhere canonicalizes the same master as Nanshi Wenxiu and attributes his recorded sayings accordingly. Treating him as identified-non-master is therefore untenable: use MasterName Nanshi Wenxiu, add utterer ContextMasters, and reconcile him into the strict roster scope if the batch roster snapshot lacks him.",
+        "The o6 AttributionNote must use the canonical name Nanshi Wenxiu and explicitly identify the signed preface/documentary voice."
+      ],
+      "caseAudit": [
+        "o1 work title/catalogue heading: evidence valid, actor status wrong",
+        "o2 expanded-work title heading: evidence valid, actor status wrong",
+        "o3 Juelang Daosheng first-person compilation plan: correct",
+        "o4 lamp-record compiler biography: correct",
+        "o5 Hongchu signed first-person preface: correct",
+        "o6 Nanshi Wenxiu signed preface, not a non-master: incorrect"
+      ]
+    }
+  ],
+  "globalFindings": [
+    "The formal repair gate is genuinely clean mechanically: hardPass true and 32/32 stored KWICs verify exactly at the reviewed hashes.",
+    "Exact substring verification does not establish actor correctness, complete contextual usefulness, or heading-versus-human status; those are the remaining defects found by full-case reading.",
+    "No entry, merge artifact, roster, promotion state, or website file was modified by this rereview."
+  ],
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

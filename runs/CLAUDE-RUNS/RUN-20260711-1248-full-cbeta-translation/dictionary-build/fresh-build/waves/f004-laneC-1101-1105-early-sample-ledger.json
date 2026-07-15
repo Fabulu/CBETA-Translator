@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T09:50:04.261401+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1101,
+    1105
+  ],
+  "decision": "GREEN — early-five evidence-first canary passed; lane bulk may proceed",
+  "hardPass": true,
+  "fullGateSha256": "c0131dbeae4e8e80fb7f2c674ed48cb2dfeeda5c18f784c89387d585403adf7a",
+  "entries": [
+    {
+      "ordinal": 1101,
+      "id": "t_9d60d7613392",
+      "term": "一言半句",
+      "contextsRead": 6,
+      "worksheetSha256": "a29d8cd5ebcb24f62189de098d2a8caee7bd83b9e9a03f075ad778b0be33f27d",
+      "entrySha256": "e434ab3cc02dc8c11b88345c9f4030b1a66beeb79900396d7b9aec2bf0b36041",
+      "compileHardPass": true,
+      "status": "compiled-canary; not promoted"
+    },
+    {
+      "ordinal": 1102,
+      "id": "t_41476f956295",
+      "term": "燒香禮拜",
+      "contextsRead": 5,
+      "worksheetSha256": "d682a45908a6f0f5f014e097f361cf23511a195a0cf863da95ab9395878f28cd",
+      "entrySha256": "cbdecfda972b0dd8ef70e52aee0f13949555a6fe42516d2cc1c8afbd378d005b",
+      "compileHardPass": true,
+      "status": "compiled-canary; not promoted"
+    },
+    {
+      "ordinal": 1103,
+      "id": "t_746f990fba78",
+      "term": "清淨法身",
+      "contextsRead": 7,
+      "worksheetSha256": "55c86a77cc4480479e47acbfe7f3a7d866ff08581968c1f25fa225abdbc71a62",
+      "entrySha256": "1b2c9400f71cfd9bbcaa7ff9f11b88b053e8e756a7865627aceb5132b5e810f2",
+      "compileHardPass": true,
+      "status": "compiled-canary; not promoted"
+    },
+    {
+      "ordinal": 1104,
+      "id": "t_64109b94980d",
+      "term": "骨董",
+      "contextsRead": 6,
+      "worksheetSha256": "f305921c472c708fa5ad7bd74ebda6d6ea37ef1c07c0d7f6cda018d2d83ba7b4",
+      "entrySha256": "b11beeac4e7036afd1eb0eefa00e3f390f67f1f0980a9892cf87e966e63104a5",
+      "compileHardPass": true,
+      "status": "compiled-canary; not promoted"
+    },
+    {
+      "ordinal": 1105,
+      "id": "t_00b7f3a28462",
+      "term": "四弘誓願",
+      "contextsRead": 5,
+      "worksheetSha256": "39aebeac19779ab7ed4b0e3ad041d534e3c605788f0a72fdc86d5141460e0809",
+      "entrySha256": "d34b3d50a4fb56b55173bbc66ccc31f5284f407b2e17b50927097fb7813b2d87",
+      "compileHardPass": true,
+      "status": "compiled-canary; not promoted"
+    }
+  ],
+  "exactKwics": 29,
+  "actorDecision": "MasterName is only the exact headword utterer; contextual or documentary voices remain closed non-master/narrated decisions.",
+  "senseDecision": "One referent per entry after different-things testing; formula recasting, omission, prescription, and appraisal were not promoted to pseudo-senses.",
+  "workDecision": "Validation uses distinct work IDs, including canonical IDs for split-volume works.",
+  "sharedPendingRosterTouched": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "f003Touched": false,
+  "otherLanesTouched": false
+}

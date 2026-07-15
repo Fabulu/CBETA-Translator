@@ -31,6 +31,9 @@ GENERIC = re.compile(
     r"the selected witnesses define this figure by what masters ask, quote, praise, rebuke, or reenact|"
     r"names a concrete implement, office, rite, or communal act in the public life of a zen monastery|"
     r"the selected witnesses show who performs it, where it enters the hall sequence, and how masters bring it into encounters|"
+    r"is the plain-English referent tested by the selected Chan records|"
+    r"the selected cases place .{0,160} inside lineage records, public addresses, institutional narration, or inherited cases|"
+    r"the exact surrounding predicates delimit how the records use it rather than importing an external definition|"
     r"the expression .{0,120} occurs in the cited questions, answers, actions, narration, or verse|"
     r"this sense remains limited to those deployments)(?:\b|$)", re.I
 )
@@ -69,7 +72,17 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
     kwic = required_text(occurrence.get("Kwic"), f"{coordinate}.Kwic", errors)
     required_text(occurrence.get("RelPath"), f"{coordinate}.RelPath", errors)
     required_text(occurrence.get("FromLb"), f"{coordinate}.FromLb", errors)
-    required_text(occurrence.get("AttributionNote"), f"{coordinate}.AttributionNote", errors)
+    attribution_note = required_text(
+        occurrence.get("AttributionNote"), f"{coordinate}.AttributionNote", errors
+    )
+    # Reader-facing attribution must name the actor once. A prior formatter
+    # prepended the actor to prose which already began with that actor, yielding
+    # visible strings such as "Foyan Qingyuan: Foyan Qingyuan: ...". Catch the
+    # duplicate structurally before an otherwise expensive semantic review.
+    note_tail = attribution_note.split("). ", 1)[-1]
+    note_parts = note_tail.split(": ", 2)
+    if len(note_parts) >= 3 and note_parts[0].strip().casefold() == note_parts[1].strip().casefold():
+        errors.append(f"{coordinate}.AttributionNote: duplicated actor prefix is forbidden")
     if occurrence.get("MasterName"):
         if NON_NAME_MASTER_LABEL.search(str(occurrence.get("MasterName") or "").strip()):
             errors.append(

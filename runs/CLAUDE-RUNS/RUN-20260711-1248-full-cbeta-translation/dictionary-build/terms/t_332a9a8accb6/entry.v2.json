@@ -1,0 +1,128 @@
+{
+  "Id": "t_332a9a8accb6",
+  "SourceTerm": "主中賓",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the guest within the host",
+      "AlternateTargets": [
+        "guest within host",
+        "the guest-in-host position"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally ‘guest within host,’ one of the four positional names built from guest and host. In the Linji-house definition preserved by The Eye of Humans and Gods, the teacher having a ‘nose-hole’ is host-within-host, the student having one is host-within-guest, the teacher lacking one is guest-within-host, and the student lacking one is guest-within-guest; the compilation immediately warns that this differs from Caodong guest-and-host. That explicit definition makes ‘guest within host’ (主中賓) here the position in which ‘the teacher lacks a nose-hole; this is named guest within host’ (師家無鼻孔，名主中賓), rather than a free synonym for the whole guest-host pair. The same compilation records the term as a question answered by Fengxue (‘the returning simurgh, the two luminaries renewed’), as a verse heading, and in several masters' complete four-position catechisms. Later records continue asking ‘what is guest within host?’ and answer with fresh lines such as ‘green mountains cover white clouds’ and ‘empty-handed, mingling with the dusty world.’ The changing answers remain answers to one named public-interview position; this entry reports them without choosing a hidden interpretation.",
+      "Validation": "multi-source",
+      "Note": "344 hits in the wave plan. The source compilation explicitly distinguishes Linji and Caodong formulations, so this corpus-wide sense does not silently transfer Caodong bent/upright or interchange language into it. The gloss order follows the graphs: guest within host (主中賓); compare host within guest (賓中主). One sense, because poems and catechism answers keep the same positional label.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0311b16",
+          "ToLb": "0311b18",
+          "Kwic": "四賓主者。師家有鼻孔。名主中主。學人有鼻孔。名賓中主。師家無鼻孔。名主中賓。",
+          "Curated": true,
+          "AttributionNote": "Eye of Humans and Gods (人天眼目), compiled by Huiyan Zhizhao. In the handbook's Linji-house exposition, Huiyan Zhizhao defines the four guest-host positions and calls the teacher without a nose-hole 'guest within host'; Linji Yixuan is the school founder discussed, not the speaker of this editorial prose.",
+          "MasterName": "Huiyan Zhizhao",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "school-founder",
+                "subject-of-exposition"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0303b14",
+          "ToLb": "0303b14",
+          "Kwic": "如何是主中賓。穴云。回鸞兩曜新。",
+          "MasterName": "Fengxue Yanzhao",
+          "Curated": true,
+          "AttributionNote": "Fengxue answers the named question with ‘the returning simurgh; the two luminaries renewed.’"
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0303c03",
+          "ToLb": "0303c04",
+          "Kwic": "主中賓。我家廣大實難論。所求不悋無高下。貴賤同途一路平。",
+          "Curated": true,
+          "AttributionNote": "人天眼目. Full six-rung exact-turn review identifies Fushan Fayuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Fushan Fayuan"
+        },
+        {
+          "RelPath": "J/J28/J28nB212.xml",
+          "FromLb": "0474a29",
+          "ToLb": "0474a29",
+          "Kwic": "如何是主中賓？」師云：「青山覆白雲。",
+          "Curated": true,
+          "AttributionNote": "二隱謐禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the guest within the host as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk asking about the guest within the host",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            "Eryin Mi"
+          ]
+        },
+        {
+          "RelPath": "J/J28/J28nB212.xml",
+          "FromLb": "0495c12",
+          "ToLb": "0495c12",
+          "Kwic": "如何是主中賓？」師云：「赤手混埃塵。",
+          "Curated": true,
+          "AttributionNote": "二隱謐禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the guest within the host as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk asking about the guest within the host",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            "Eryin Mi"
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2006.xml",
+        "J/J28/J28nB212.xml"
+      ],
+      "RelatedMasters": [
+        "Fengxue Yanzhao",
+        "Linji Yixuan"
+      ],
+      "RelatedTerms": [
+        "賓主",
+        "四賓主",
+        "賓中主",
+        "主中主",
+        "賓中賓"
+      ]
+    }
+  ]
+}

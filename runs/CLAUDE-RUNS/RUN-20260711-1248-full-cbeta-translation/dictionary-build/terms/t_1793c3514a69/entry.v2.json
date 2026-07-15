@@ -1,0 +1,141 @@
+{
+  "Id": "t_1793c3514a69",
+  "SourceTerm": "舉問",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "raise and ask",
+      "AlternateTargets": [
+        "cite and question",
+        "bring up for questioning"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, to raise something and ask. Chan records use it when a speaker carries a saying, exchange, or disputed comparison into a further interview and asks another master about it. Zhenjue raises before Xuanwu a description of light from the eye illuminating mountains and rivers, then asks where that person is at fault. Dongshan raises before Yunju the statement that there is no Maitreya in heaven or on earth; Yunju replies by asking who then gave him his name. Jiashan and Dingshan take their opposed sayings about buddha in birth-and-death to a master, and Jiashan raises the matter by asking whose view is more intimate; the answer distinguishes one as intimate and one as remote. Another monk raises the staff of Deshan and shout of Linji and asks what side they clarify; the master tells him to try to say, and tests his ensuing shout. The deviation is institutional and textual: raising is not merely lifting an object, but re-presenting prior words or actions to a Chan interlocutor so that the case continues through another public question and response.",
+      "Validation": "multi-source",
+      "Note": "This compound includes both operations: “raise” (舉) re-presents prior material and “ask” (問) directs a question about it. It overlaps with “raise a case” (舉) and “question-and-answer” (問答), while differing from a master's newly bestowed question (垂問).",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0388a01",
+          "ToLb": "0388a03",
+          "Kwic": "真覺大師舉問玄晤大師：「眼門放光，照破山河。山河大地，不礙眼光。此人過在什摩處，只欠濤汰。」",
+          "Curated": true,
+          "AttributionNote": "Ancestor Hall Collection (祖堂集): Zhenjue is named immediately before 舉問 and raises the eye-light statement as a question to Xuanwu.",
+          "MasterName": "Zhenjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuanwu",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0040a15",
+          "ToLb": "0040a16",
+          "Kwic": "洞山舉問雲居，居云：天上無彌勒，地下無彌勒，未審誰與安名？",
+          "Curated": true,
+          "AttributionNote": "The Combined Essentials of the Lamps (聯燈會要). Dongshan Liangjie is the exact actor who raises the question to Yunju Daoying (洞山舉問雲居); Yunju gives the answer. Nanquan Puyuan is not an actor in this case.",
+          "MasterName": "Dongshan Liangjie",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunju Daoying",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0254c29",
+          "ToLb": "0255a02",
+          "Kwic": "二人上山參禮。夾山便舉問師。未審二人見處那箇較親。師云。一親一疎。",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): inside Damei Fachang's section, Jiashan Shanhui raises his and Dingshan's paired claims and asks Damei which understanding is more intimate; Damei answers that one is intimate and one distant.",
+          "MasterName": "Jiashan Shanhui",
+          "ContextMasters": [
+            {
+              "MasterName": "Damei Fachang",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Dingshan",
+              "Roles": [
+                "paired-case-figure"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0669b20",
+          "ToLb": "0669b22",
+          "Kwic": "舉問德山棒臨濟喝未審明得什麼邊事師云你試道看僧便喝師云瞎",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk raises Deshan's stick and Linji's shout as a question; Shoushan answers. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            },
+            {
+              "MasterName": "Deshan Xuanjian",
+              "Roles": [
+                "named-case-master"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "named-case-master"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "X/X79/X79n1557.xml",
+        "T/T51/T51n2076.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "舉",
+        "問",
+        "問答",
+        "垂問",
+        "公案",
+        "勘辨"
+      ]
+    }
+  ]
+}

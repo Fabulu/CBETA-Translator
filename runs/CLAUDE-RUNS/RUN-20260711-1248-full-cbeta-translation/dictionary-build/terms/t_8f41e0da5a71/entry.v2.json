@@ -1,0 +1,175 @@
+{
+  "Id": "t_8f41e0da5a71",
+  "SourceTerm": "意旨如何",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "what is its purport?",
+      "AlternateTargets": [
+        "what is the intent?",
+        "what does that mean?",
+        "what is the purport of that?"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, 'what is the intent or purport?' It is a stock second-round question in recorded exchanges. A monk first asks, 'What is buddha?' The teacher answers, 'Spread the hair to cover the mud; lay the body crosswise on the ground.' The monk then asks, 'What is the purport?' and the teacher replies, 'Even Papiyan would furrow his brow.' The intensified form, 'I have not yet examined it—what is the purport?', likewise follows an answer: after a monk asks the intent of the ancestral teacher's coming from the west, the teacher gives a line about an old temple being difficult to read; the monk presses with the intensified question. The formula also follows a raised earlier saying. A monk quotes 'play a ball on swift water,' asks its purport, and receives 'thought after thought does not stop or remain.' In another exchange the first answer is 'the eyebrows divide into the figure eight'; the press receives 'both ears hang to the shoulders.' The phrase asks about the immediately preceding saying and does not supply that saying's answer itself.",
+      "Validation": "multi-source",
+      "Note": "One corpus-wide conversational formula, not a master's coinage. Current count: 3,178 matches in 292 files; the intensified 'I have not yet examined it—what is the purport?' has 194 matches in 45 files, and 'what is the teacher's purport?' has 13 in 12. It occurs after a first-round answer and after quotations of earlier cases. All selected witnesses are two-speaker or raised-case passages, so their occurrence master keys remain null.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001b05",
+          "ToLb": "0001b07",
+          "Kwic": "問：如何是佛？師曰：布髮掩泥，橫身臥地。曰：意旨如何？師曰：任是波旬也皺眉。",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷). An unnamed monk asks the import of Tianyi Yihuai's preceding Buddha answer. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:01:35Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Yihuai",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0655c12",
+          "ToLb": "0655c14",
+          "Kwic": "如何是祖師西來意？師云：古寺󳬴難讀。僧曰：未審意旨如何？師云：讀者盡攢眉。",
+          "Curated": true,
+          "AttributionNote": "建中靖國續燈錄, Yungai Zhiyong section. The exact headword-bearing speaker is an unnamed questioning monk who asks what the purport is after Yungai answers the western-coming question. All six rungs leave him unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yungai Zhiyong",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0094a18",
+          "ToLb": "0094a19",
+          "Kwic": "急水上打毬子。意旨如何。子曰。念念不停留。",
+          "Curated": true,
+          "AttributionNote": "五燈會元. An unnamed monk asks Touzi Datong for the import of Zhaozhou's rolling-ball saying. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:01:35Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "quoted speaker"
+              ]
+            },
+            {
+              "MasterName": "Touzi Datong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0470b25",
+          "ToLb": "0470b26",
+          "Kwic": "眉分八字。曰未審意旨如何。師曰。雙耳垂肩。",
+          "Curated": true,
+          "AttributionNote": "續傳燈錄, Shexian Guisheng section. The exact actor is an unnamed questioning monk: after Shexian answers 'the brows divide like the graph eight,' the monk asks what the meaning is. All six rungs leave him unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shexian Guisheng",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "X/X78/X78n1556.xml",
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2077.xml",
+        "X/X81/X81n1568.xml",
+        "T/T51/T51n2076.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "如何是祖師西來意",
+        "如何是佛",
+        "未審"
+      ]
+    }
+  ]
+}

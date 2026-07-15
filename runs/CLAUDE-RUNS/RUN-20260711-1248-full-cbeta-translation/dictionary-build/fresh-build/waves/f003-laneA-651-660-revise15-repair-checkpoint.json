@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "f003-revise15-repair-ledger-v1",
+  "generatedUtc": "2026-07-15T06:20:45.799324+00:00",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    660
+  ],
+  "role": "repair-author",
+  "repairCount": 15,
+  "untouchedKeepCount": 35,
+  "allKeepsByteIdentical": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-revise15-formal-gate.json",
+    "sha256": "d8d0701de84bdf34f0f34051eee59a5a74a66a45166d0271145ba8dd41f18a8e",
+    "hardPass": true,
+    "exactKwic": 117
+  },
+  "repairs": [
+    {
+      "ordinal": 651,
+      "id": "t_c06edf8c18f1",
+      "term": "錯",
+      "entrySha256": "2a05eee4b42c6bc6286f2af17ffa840f90a4a48f608f13c503d3048430d8e45c",
+      "evidenceDraftSha256": "d40cf4b963f99f96a517068349fc1b30d04d8e9d1feaa13faa1336a4f9969491",
+      "workSha256": "ef93220034eddb3695f2f1ffc5c0ca821fafb3ab7a769505c916e6b82bc59092",
+      "compileReportSha256": "edfc47bfa2f1d21fcad233da8adc4029f6d803208161084e6d5ddbabcf49c7f2",
+      "occurrences": 10
+    },
+    {
+      "ordinal": 652,
+      "id": "t_6e4234dfd60f",
+      "term": "文殊",
+      "entrySha256": "b3454c697e586496f1ee5f419daff46f97b42078f8c1263fb3779d0f11e9e6c6",
+      "evidenceDraftSha256": "c26e8c753b7e91d629c25e4070e0224c2ea6220b997e7b51305030772e8432c9",
+      "workSha256": "658af99bb2300e498d7d99e16fe05103fdb25b8ca4386aaee85f4482c1493f0f",
+      "compileReportSha256": "4b27eeff605bbc6fd624994169a57787a311307c5c98308a709166fc10812637",
+      "occurrences": 8
+    },
+    {
+      "ordinal": 653,
+      "id": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "entrySha256": "ea0fa952023f2e504bc770d2cb434bcc024885d039138f202593fbe9283939b5",
+      "evidenceDraftSha256": "3278cee8288fdebc95c43ef77182f91db43d1386c9029c8c7b3cd5bd9426b477",
+      "workSha256": "3ab4bd82b89fb357ce928c4b079e36706d3499efb82a766130383edd43ea9dde",
+      "compileReportSha256": "0bad00df7b4aa200bc36b654ba3651ab93243113f4e38c8896c1c710bf050be7",
+      "occurrences": 10
+    },
+    {
+      "ordinal": 655,
+      "id": "t_c193d5b26854",
+      "term": "目連",
+      "entrySha256": "3b560240f9a6279c34854e48591ee7b456d17efc8a340aec0d4f1a8588acbde1",
+      "evidenceDraftSha256": "8d293c14b860940ddb58c387be5c595cbb84ae0e676077c995a116f7569fb13b",
+      "workSha256": "4c49dc6a6d059c81868819db292e76e42832a981955688d870ac43adfcfc4869",
+      "compileReportSha256": "e050093403700803929647f9f3db3f2e4c16989a3464b88fa0a5cad397596f94",
+      "occurrences": 6
+    },
+    {
+      "ordinal": 656,
+      "id": "t_cbf868f557e2",
+      "term": "陞座",
+      "entrySha256": "52416166e10fb7922e76b6b743025a0f199f1442f9644d75789b57f352ad4754",
+      "evidenceDraftSha256": "df16f9ec6e140ddca3d59db0c991ac22583d11b3070e66ed9783955012c422bd",
+      "workSha256": "383ae4eaaf3fcf9ae91cc10512ab7db08575c0586b30af83ece341aafe858a52",
+      "compileReportSha256": "23da9e0c7bc5294bea9f6784d923d9a63401c36bd7482f8267fd69e48f5f917a",
+      "occurrences": 8
+    },
+    {
+      "ordinal": 657,
+      "id": "t_cb44465faa59",
+      "term": "侍者",
+      "entrySha256": "8f88d974741fe9bd3d4255ff5467f2f42cf0e24578a56e6a8dbe842062e80516",
+      "evidenceDraftSha256": "020f2157a081a696e791a9edc7c3717c4055baee3b4f14381b35099fd9655cf8",
+      "workSha256": "f7226e6c2d3e5d8a3c8540513bab0e1cc5505647e31d4aad4c2b5b0371de6182",
+      "compileReportSha256": "51198425852757a9d1481ca4f4038241d294375e668df0e14845359d248dd9d7",
+      "occurrences": 10
+    }
+  ],
+  "untouchedKeeps": [
+    {
+      "ordinal": 654,
+      "id": "t_11a4ff234f5a",
+      "entrySha256": "3e84cd5d7a08be288a67fb7f47ae03b8b1f47923f5886e22a33fc1f7422008cc",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 658,
+      "id": "t_ca6da1e898b9",
+      "entrySha256": "cf67143617689e58393a912b59f330cab1819b8288fe0767cecf18664de9a359",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 659,
+      "id": "t_1840377e7a79",
+      "entrySha256": "f36137d8f6c1d4227124d04606b9a18709adffa57002b3ac7a79bba5a0769423",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 660,
+      "id": "t_2bae929ad4db",
+      "entrySha256": "ddf8776e7fe7f596191128844fdfaf32cd702d48f1b4efe7eaee953d306c46ca",
+      "byteIdentical": true
+    }
+  ]
+}

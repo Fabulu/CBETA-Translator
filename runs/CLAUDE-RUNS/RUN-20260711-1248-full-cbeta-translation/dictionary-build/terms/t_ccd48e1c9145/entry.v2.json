@@ -1,0 +1,124 @@
+{
+  "Id": "t_ccd48e1c9145",
+  "SourceTerm": "正中來",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "coming from within the upright",
+      "AlternateTargets": [
+        "coming from within the correct",
+        "the coming-forth from the upright",
+        "arriving from within the upright"
+      ],
+      "Status": "preferred",
+      "Explanation": "(正) upright/correct + (中) within/amid + (來) come, coming: \"coming from within the upright.\" Caoshan's own record pairs the graphs with the ruler-minister figure: \"the lord is the upright position, the minister the inclined position...\" (君為正位。臣為偏位。臣向君是偏中正。君視臣是正中偏, T47n1987A). It is the third of the Five Ranks (五位) that Dongshan Liangjie composed as the (五位君臣頌) in his own record, where (師)。(作五位君臣頌云) is followed by (正中偏) · (偏中正) · (正中來) · (兼中至) · (兼中到); his verse-line for this rank runs (正中來)。(無中有路隔塵埃)。(但能不觸當今諱)。(也勝前朝斷舌才) (T47n1986B). In the corpus it is chiefly deployed two ways. (1) As a fixed catechism-question: (如何是正中來) occurs 102 times in 56 texts, each master supplying a capping phrase — (師曰)。(徧界絕纖埃) (五燈會元), (松瘁何曾老)。(花開滿未萌), (屎裏翻筋斗), (獼猴戴席帽), and so on. (2) As a lemma the commentators gloss: \"...is the attaining of the body of the teaching, and is also the upright position\" (正中來一位，即是得法身，亦即是正位, X72n1437); the same text calls it \"...one who enters the upright position and turns the body\" (入正位而轉身者也) and another \"...the pivot of the Five Ranks,\" (正中來，乃五位之樞紐 the position the first two ranks enter and the last two issue from, X72n1441). One (五燈全書) (上堂) maps a single shout onto the ranks — (即此一喝)，(不帶名言)，(是正中來也) — and then restates them (以濟宗論之): \"...both person and object snatched away\" (正中偏奪人也，偏中正奪境也。正中來，人境俱奪也, X82n1571). The graphs are the same across witnesses; the term carries no gloss here beyond the literal reading and its place in Dongshan's set.",
+      "Validation": "multi-source",
+      "Note": "Corpus-wide sense (SenseKey null): 288 occurrences in 85 allowlist texts. (Counts are whole-file, tag-stripped with <note>/<rdg>/<orig> apparatus excluded; gate-2 recount, confirmed by two independent recounts.) The source verse is Dongshan Liangjie's own (T47n1986B, 瑞州洞山良价禪師語錄, 師。作五位君臣頌云…) — so that occurrence is attributed to him; the rest are the fixed (如何是正中來) catechism answered by various masters within lamp compilations (五燈會元, 五燈全書, 續燈正統) and analytical prose by later Caodong commentators — narrated/raised, MasterName null. This is the THIRD rank in Dongshan's canonical order (正中偏) · (偏中正) · (正中來) · (兼中至) · (兼中到); the ranks interrelate (see RelatedTerms). Note the neighbouring 4th-rank name is unstable across texts — (兼中至) (207×) vs (偏中至) (85×): X72n1437 records that (寂音) (Juefan Huihong) (改兼中至為偏中至)，(以對正中來) and calls the change (大悞後學); the 3rd rank (正中來) itself is stable.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1986B.xml",
+          "FromLb": "0525c04",
+          "ToLb": "0525c04",
+          "Kwic": "正中來。無中有路隔塵埃。",
+          "MasterName": "Dongshan Liangjie",
+          "Curated": true,
+          "AttributionNote": "(瑞州洞山良价禪師語錄) (T47n1986B), Dongshan's own record: (師)。(作五位君臣頌云)…(正中來)。(無中有路隔塵埃)。(但能不觸當今諱)。(也勝前朝斷舌才)。 The verse-set is explicitly the master's (師 = 良价), so attributed to Dongshan Liangjie. The couplet continues across the following lb (但能不觸當今諱…); KWIC trimmed to the opening line."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0301a06",
+          "ToLb": "0301a06",
+          "Kwic": "如何是正中來。師曰。徧界絕纖埃。",
+          "Curated": true,
+          "AttributionNote": "五燈會元. An unnamed monk asks 'what is coming from within the upright?'; Xuedou Chongxian answers. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:01:35Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0539c17",
+          "ToLb": "0539c17",
+          "Kwic": "正中來一位，即是得法身，亦即是正位。",
+          "MasterName": "Yongjue Yuanxian",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), in Yongjue Yuanxian's detailed Caodong Five Ranks (曹洞五位) commentary. Yongjue Yuanxian defines the rank in his own analytical prose: the coming from within the upright is obtaining the dharma-body and is the upright position."
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0544a23",
+          "ToLb": "0544a23",
+          "Kwic": "正中來則入正位而轉身者也。",
+          "MasterName": "Yongjue Yuanxian",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), in Yongjue Yuanxian's Caodong Five Ranks (曹洞五位) commentary. Yongjue Yuanxian distinguishes the rank from an adjacent notion in his own analytical prose: 正中來 enters the upright position and turns the body."
+        },
+        {
+          "RelPath": "X/X72/X72n1441.xml",
+          "FromLb": "0681b03",
+          "ToLb": "0681b03",
+          "Kwic": "正中來，乃五位之樞紐，前二位入此者也",
+          "Curated": true,
+          "AttributionNote": "為霖禪師雲山法會錄. Full six-rung exact-turn review identifies Weilin Daopei as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Weilin Daopei"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0279b21",
+          "ToLb": "0279b21",
+          "Kwic": "正中來，人境俱奪也。兼中至",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷): complete-case exact-turn review identifies Baizhang Huaihai as the actor for this occurrence.",
+          "MasterName": "Baizhang Huaihai"
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1986B.xml",
+        "T/T47/T47n1987A.xml",
+        "X/X80/X80n1565.xml",
+        "X/X72/X72n1437.xml",
+        "X/X72/X72n1441.xml",
+        "X/X82/X82n1571.xml",
+        "X/X81/X81n1568.xml",
+        "X/X78/X78n1553.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Liangjie",
+        "Caoshan Benji"
+      ],
+      "RelatedTerms": [
+        "正中偏",
+        "偏中正",
+        "兼中至",
+        "兼中到",
+        "偏中至",
+        "五位君臣"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "wave": "f003",
+  "state": "prepared-preflight-only",
+  "ordinals": [601, 900],
+  "authoritativeQueue": {
+    "path": "fresh-build/queue.json",
+    "sha256": "c0ed3fb310a0e63fb61c57c368442e097e298510752cb05b6731a71588f788f6",
+    "rowCount": 3966,
+    "selectedRows": 300,
+    "ordinalSequenceExact": true,
+    "pendingBeforeAssignment": 300
+  },
+  "corpusLock": {
+    "baselinePath": "fresh-build/corpus-baseline.json",
+    "baselineFileSha256": "253203710ad1e5f2b9fc4c1ea1686023df8071fe1afa51408b0829b181acc33a",
+    "manifestSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "fileCount": 494,
+    "independentWorkCount": 487,
+    "manifestAndAllPreflightsMatch": true
+  },
+  "manifest": {
+    "path": "fresh-build/waves/f003.json",
+    "sha256": "55c4e9843730e04ce87f9fde0ffaf454c6c3474fd83d288b47e4f125ea2771b4",
+    "entries": 300,
+    "uniqueIds": 300,
+    "uniqueTerms": 300,
+    "idOverlapWithinWave": 0,
+    "idOverlapWithF001F002": 0,
+    "entryDirectoriesCreated": 0
+  },
+  "lanes": [
+    {
+      "lane": "A",
+      "ordinals": [601, 700],
+      "firstTerm": "刻舟求劍",
+      "lastTerm": "常啼菩薩",
+      "entries": 100,
+      "preflightPath": "fresh-build/waves/f003-laneA-601-700-preflight.json",
+      "preflightSha256": "438af15866abe9a5d3f4c9ad85154d64f13ed561672b7a98f7f8e68b48ffad25",
+      "candidateWindows": 2257
+    },
+    {
+      "lane": "B",
+      "ordinals": [701, 800],
+      "firstTerm": "老子",
+      "lastTerm": "香積",
+      "entries": 100,
+      "preflightPath": "fresh-build/waves/f003-laneB-701-800-preflight.json",
+      "preflightSha256": "902883c815ed15bfa7d48fa82e9d72c8278b967a74f36400b4f92a815850257f",
+      "candidateWindows": 2372
+    },
+    {
+      "lane": "C",
+      "ordinals": [801, 900],
+      "firstTerm": "拂袖",
+      "lastTerm": "一問一答",
+      "entries": 100,
+      "preflightPath": "fresh-build/waves/f003-laneC-801-900-preflight.json",
+      "preflightSha256": "427a3c53e1167e02d7f60d60c5f8a940da27191e6ca8959fdbecb7e1e366c44e",
+      "candidateWindows": 2380
+    }
+  ],
+  "validations": {
+    "laneOrderExact": true,
+    "laneRangesContiguous": true,
+    "laneRangesNonOverlapping": true,
+    "preflightIdsMatchManifestInOrder": true,
+    "preflightTermsMatchManifestInOrder": true,
+    "noF001F002Overlap": true
+  },
+  "prohibitedActions": {
+    "entriesSeededOrEdited": false,
+    "gateRun": false,
+    "promotionRun": false,
+    "mergeRun": false,
+    "siteTouched": false
+  }
+}

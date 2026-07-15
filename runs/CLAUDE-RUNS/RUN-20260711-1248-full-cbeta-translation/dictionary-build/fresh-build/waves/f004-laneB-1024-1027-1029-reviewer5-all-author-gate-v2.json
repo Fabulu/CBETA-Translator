@@ -1,0 +1,176 @@
+{
+  "generatedUtc": "2026-07-15T14:15:49.979657+00:00",
+  "elapsedSeconds": 4.861,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_30c5eafab07f/entry.v2.json",
+      "sha256": "9b276dc72256f5ae38bca6fc6ac9b26f0a04d0d5b864a285309b5692679f82ac"
+    },
+    {
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_13bb32cabd43/entry.v2.json",
+      "sha256": "774d36d353700279af4f0c67a0a2ac4c6bcd1012c81e080f6937af4eebc222b1"
+    },
+    {
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f9747521d3d7/entry.v2.json",
+      "sha256": "90a45359690632dba8d398b4896a7ba136203bf37c902346820462e4c509c4ed"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 18,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_30c5eafab07f/entry.v2.json",
+        "id": "t_30c5eafab07f",
+        "term": "野狐身",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_13bb32cabd43/entry.v2.json",
+        "id": "t_13bb32cabd43",
+        "term": "弘願",
+        "verified": 5,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f9747521d3d7/entry.v2.json",
+        "id": "t_f9747521d3d7",
+        "term": "授記",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.182,
+    "attribution": 1.237,
+    "publicFeedback": 0.257,
+    "depthSense": 0.948,
+    "countClaims": 0.318,
+    "workSourceValidation": 0.495,
+    "corpusBaseline": 0.232,
+    "frozenHistoricalTerms": 1.11,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.237,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 18,
+        "named_occurrences": 11,
+        "deferred_non_roster": 5,
+        "pending_roster_master": 5,
+        "context_master_links": 14,
+        "deferred_non_roster_context": 7,
+        "pending_roster_context_master": 7,
+        "attribution_notes": 18,
+        "actor_narrated": 4,
+        "actor_reviewed_unnamed": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 18,\n    \"named_occurrences\": 11,\n    \"deferred_non_roster\": 5,\n    \"pending_roster_master\": 5,\n    \"context_master_links\": 14,\n    \"deferred_non_roster_context\": 7,\n    \"pending_roster_context_master\": 7,\n    \"attribution_notes\": 18,\n    \"actor_narrated\": 4,\n    \"actor_reviewed_unnamed\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.257,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpbdn0k8id.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.948,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_13bb32cabd43",
+        "t_30c5eafab07f",
+        "t_f9747521d3d7"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_13bb32cabd43\",\n    \"t_30c5eafab07f\",\n    \"t_f9747521d3d7\"\n  ]\n}\nreport: /tmp/tmpg2tm9vvk-depth.json\n",
+    "report": "/tmp/tmpg2tm9vvk-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.318,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.495,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.232,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.11,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_30c5eafab07f",
+    "t_13bb32cabd43",
+    "t_f9747521d3d7"
+  ],
+  "strictRosterScopeIds": [
+    "t_30c5eafab07f",
+    "t_13bb32cabd43",
+    "t_f9747521d3d7"
+  ]
+}

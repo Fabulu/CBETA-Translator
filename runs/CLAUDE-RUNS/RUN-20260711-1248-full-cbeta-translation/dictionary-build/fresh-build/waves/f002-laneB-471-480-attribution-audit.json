@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 10,
+    "occurrences": 72,
+    "named_occurrences": 63,
+    "deferred_non_roster": 33,
+    "context_master_links": 75,
+    "deferred_non_roster_context": 34,
+    "attribution_notes": 73,
+    "actor_reviewed_unnamed": 10,
+    "claim_anchors": 1,
+    "claim_anchor_contains_headword": 1,
+    "chinese_strings": 33,
+    "anchored_chinese": 33
+  },
+  "hardFailures": 1,
+  "failures": [
+    {
+      "kind": "claim_anchor_contains_headword",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 a8: evidence containing the headword must be an Occurrence"
+    }
+  ]
+}

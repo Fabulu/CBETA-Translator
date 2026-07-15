@@ -1,0 +1,2166 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "review-collision-adjudication",
+  "reviewer": "reviewer2",
+  "generatedUtc": "2026-07-15T12:51:14.919086+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1131,
+    1150
+  ],
+  "survivingCollisionReport": {
+    "path": "f004-laneC-1131-1150-fresh-independent-exact-review.json",
+    "sha256": "8a981af112af7216b6714743cd3513c339891d2841b5713a3aea875fecfd7d30"
+  },
+  "entriesReviewed": 20,
+  "occurrencesReadInFullCase": 113,
+  "exactKwics": 113,
+  "keep": 0,
+  "revise": 20,
+  "changedVerdicts": 20,
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "reviewedEntrySha256": "4c248a82192b3c0aea82184bfc5ebc1b4cda580d9a008120ba06ea19641a89ee",
+      "postReviewEntrySha256": "4c248a82192b3c0aea82184bfc5ebc1b4cda580d9a008120ba06ea19641a89ee",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Confirmed: occurrence 1 contains 舉玄沙示眾云; Xuansha Shibei is the recoverable quoted utterer, not a generic textual voice.",
+        "Occurrence 1 explicitly says 舉玄沙示眾云 before the headword, so Xuansha Shibei is recoverable; five further record-owned speeches were left as a generic textual utterer.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0734b18",
+          "ToLb": "0734c05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f760e9d78ba9501bd100ad8250f7f9cb0391da10c3447c3063b21482062e818a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J36/J36nB359.xml",
+          "FromLb": "0619a17",
+          "ToLb": "0619a24",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ce1edfb8a64c13d320f3821e15bbd4c39aacf8e49764269552e23c4f983911a8",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "L/L154/L154n1639.xml",
+          "FromLb": "0102b01",
+          "ToLb": "0102b12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8c2101624e66fc4a3244e08fd62cfb132a0a11bfc9935475ce66dd635df804bd",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0532b09",
+          "ToLb": "0532b17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d474aa2afdad4ad4e023c403c45fec38cd25b0b01137d3357fe1850ab6c6eb6d",
+          "MasterName": "Guishan Lingyou",
+          "ContextMasters": [
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J26/J26nB178.xml",
+          "FromLb": "0121c16",
+          "ToLb": "0121c24",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8084760a5099658239296f9b145331e951ef5c538db42dc097b0e4c8aff6cb02",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J39/J39nB471.xml",
+          "FromLb": "0950c14",
+          "ToLb": "0950c22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9166e0df666c20d2919380d43e7af54795b1de35d54a1b8f30f4c2d40fbc4b1b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0527b11",
+          "ToLb": "0527b26",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f7be365490599d9b60b91aea3e7246849ea249528c5f7520fa15453b27d3610f",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "reviewedEntrySha256": "a7c587f480d44788f57841023519ba6078243d1a678cb28eb05c7c4ec7f5f8da",
+      "postReviewEntrySha256": "a7c587f480d44788f57841023519ba6078243d1a678cb28eb05c7c4ec7f5f8da",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "All seven were collapsed to encounter narration although the cases contain named masters performing 橫按拄杖 in their own recorded turns (including Qinshan and the 日芳上座 case).",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0005b07",
+          "ToLb": "0005b15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "19ba0f94b3aa9c1bc04905d2b4a9fbcd286ce32281cd9f07e923fd1f9467089c",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0273c10",
+          "ToLb": "0273c19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1d4523483589e457cbcedfc7ec9edc523fa39d1f1852208c45b7b0814520f6a5",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Qinshan Wensui",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0077c10",
+          "ToLb": "0077c19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1e713a94ebecd99c3947d55dba648eba7c7817b0a73dbeb1c631ca4c4a4ed796",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0479b09",
+          "ToLb": "0479b19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9866c0d0f3e1db65c24956680b364e0aa241993c77377be7bc346643a596f3bd",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0065a02",
+          "ToLb": "0065a12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "459998275e1a656b9c9550c33ed61023df6ecd6bc778d5c8e0958da4f74f07f7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0392b10",
+          "ToLb": "0392b19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d5c0f700a31f845e98d16b59de0b2d1cbe29227ffeab6742c7e0ba260e1c468b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0082a12",
+          "ToLb": "0082b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ae7b2d5c82acee3472ad65e09fa9cfc8f4f3492265e918677d17b243855725fd",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the encounter narrator"
+        }
+      ]
+    },
+    {
+      "ordinal": 1133,
+      "id": "t_68fbf8a2329c",
+      "term": "雲巖掃地",
+      "reviewedEntrySha256": "4288554626c8db310d19f5641c2fb4791edd564d11b48271f677ab5d42ced2de",
+      "postReviewEntrySha256": "4288554626c8db310d19f5641c2fb4791edd564d11b48271f677ab5d42ced2de",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The case label is repeatedly raised in named public speech (舉雲巖掃地); treating every row as compiler narration erases the later raiser and the embedded Yunyan/Daowu roles.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0020b14",
+          "ToLb": "0020b20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "59b8bea93995e28f61994e68c30af7277837d791d45b7aabd96b8c1323101c0a",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J39/J39nB469.xml",
+          "FromLb": "0925b17",
+          "ToLb": "0925b29",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3283a464588731fa61bfba6386aeed805d75ca16ba3ecca97cc5f5a1c061a5ee",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0423c03",
+          "ToLb": "0423c13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "637d995a8419af9fe6dd3452ba0d9c915b5678e03866ca93b08787481697a244",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongjue Yuanxian",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0735b17",
+          "ToLb": "0735c04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3feeb02557c255325f7d3955e3302c0f794c1ce1c0fd9f8e38232fef6cb707fd",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        }
+      ]
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "reviewedEntrySha256": "61812586fc6792c539e88347946ae1100aa738ec7e5253d4a8a38e90550f0263",
+      "postReviewEntrySha256": "61812586fc6792c539e88347946ae1100aa738ec7e5253d4a8a38e90550f0263",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The Biyan occurrence explicitly quotes 僧問雲門…雲門云體露金風 but remains an unnamed textual utterer; historical utterer and later commentator are not separated.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0135a23",
+          "ToLb": "0135b08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "59747a8da3d01d31ca50590198f16ee4ae869231fef871fa6e333818cdd70316",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J40/J40nB494.xml",
+          "FromLb": "0547c09",
+          "ToLb": "0547c17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "7d443304679b57a54c7f7e258a53ff52cf0a8d3001c500e3a8b1202f52a5390b",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0369a22",
+          "ToLb": "0369b08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "74f644208a27f0f59d5f7bd8a8d0a5a4106e49b38d812494d267f48c63200fac",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0809a14",
+          "ToLb": "0809b02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "644f170ce7f783e655ae73141db4c61e6eadb5dfa0fb38773b26cda3b20540fc",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0167b19",
+          "ToLb": "0167c02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9b4cdeaedb0789c29d911f38d6b858e9a72cf86f5175a71023ba90689ff56060",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0298a07",
+          "ToLb": "0298a18",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "bdc43fc08d0cc6bacd9b8a4d4a5f19992cf1c8d5ae5bc82833597fe9bfcb224b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0287a12",
+          "ToLb": "0287b07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "a024a75f8257e99d0b870e0281697fbd4ea46c903a1030fde34fb48191adbd4f",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        }
+      ]
+    },
+    {
+      "ordinal": 1135,
+      "id": "t_4c1e5a42155d",
+      "term": "不放過",
+      "reviewedEntrySha256": "63aeaed9305230c69a3ec07102d523db42a220e142fd33cb2c7821a10cd7cc01",
+      "postReviewEntrySha256": "63aeaed9305230c69a3ec07102d523db42a220e142fd33cb2c7821a10cd7cc01",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Several headword clauses are direct record-owner speech, including 黃檗捏拳示眾 and the J23 室中語要, but remain generic textual utterers.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0098c10",
+          "ToLb": "0098c18",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "7765267bef42619baeacec9f06a23393084345a53fd886c13e72980069be26a7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0629b16",
+          "ToLb": "0629c03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "556890136f1ce1fd14ef909640593f1acf0aa7b8b7d3afb75e7262b4a2f2a924",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0020c20",
+          "ToLb": "0021a07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8fc6a8695611eef5c594c3ff16cf916e5ad156cff00cc87ac8c44b7e80a51de3",
+          "MasterName": "Xuedou Chongxian",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0296b12",
+          "ToLb": "0296b21",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "35b624b3a1b3727dae1ea5c3e4bc51b87fd0ec44e6de9929a9559e02766d2087",
+          "MasterName": "Xuedou Chongxian",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0088c07",
+          "ToLb": "0088c15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "fe014e18ebb4e60769f9eeb42df242dee9442ebe9504b7e903749b8a7abca243",
+          "MasterName": "Huangbo Xiyun",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0078c16",
+          "ToLb": "0078c24",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1e1ba4003846ea21e1dfe23b67ac6df7c3f5816cf43044870633f4aa57950db1",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "J/J23/J23nB134.xml",
+          "FromLb": "0545b17",
+          "ToLb": "0545c03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1a5b3ffba232a686ea03e221ad1955a393771111d6f2a07264d232489e759153",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1136,
+      "id": "t_b6da6fc1c9bf",
+      "term": "安單",
+      "reviewedEntrySha256": "de9591f72231596a2e28c7928e20a02f567ad8166be81ec07fa6a49bcc17cdce",
+      "postReviewEntrySha256": "de9591f72231596a2e28c7928e20a02f567ad8166be81ec07fa6a49bcc17cdce",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Occurrences 2–4 are named masters ordering or discussing 安單 in their own records, not unnameable textual voices; action performer, questioner, and respondent remain conflated.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J26/J26nB186.xml",
+          "FromLb": "0650a01",
+          "ToLb": "0650a07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f743ab6d5b7f9c8f84b99d0e42ac6623cefc06c3ee801f259dffd49011bc5559",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J38/J38nB412.xml",
+          "FromLb": "0401b19",
+          "ToLb": "0401b27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "6c1d820e7a56657436b3ff062167dc5a892a4daad6a53d9354164eaead8f4330",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J38/J38nB428.xml",
+          "FromLb": "0909a06",
+          "ToLb": "0909a15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "a51c3373a3bc68a4b892e00c4daa453b11d9b9b328fdc775b8a904036700fe67",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "L/L158/L158n1652.xml",
+          "FromLb": "0169b02",
+          "ToLb": "0169b14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f62042edfd3e2d4f49a4dba22a629e11415e540dba3335f264f6ede84daae9b7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1137,
+      "id": "t_bdabbe0d39fa",
+      "term": "主人翁",
+      "reviewedEntrySha256": "ff59414b2a4303493d583954197f5c0608730bd7583d1cee27c7cf38664af2e7",
+      "postReviewEntrySha256": "ff59414b2a4303493d583954197f5c0608730bd7583d1cee27c7cf38664af2e7",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Named record owners utter the public-address and warning clauses in occurrences 1, 2, and 5, yet they remain generic; the verse-author row is also not resolved from its verse container.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0134a24",
+          "ToLb": "0134b09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "750843cdb51824e23a7bb7c92ac93a02dd4f0cd340ca5f2249e387463b300cd4",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0036a13",
+          "ToLb": "0036a23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "88fb6c25846618e7b0e319ff32174e9dc5182cc2f3f62036f5e555ac0801c5d5",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X71/X71n1416.xml",
+          "FromLb": "0414a15",
+          "ToLb": "0414a24",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f761c167673c6e22d60ffa879c77e1a39fc99b95ac179693c3e7d85afa79cebf",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X86/X86n1605.xml",
+          "FromLb": "0514b22",
+          "ToLb": "0514c07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "fcaab0bee5aab7d7a783781a5aea9ed6fa1b1b159993a8e7fbadc43072660601",
+          "MasterName": "Yuansou Xingduan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuansou Xingduan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J38/J38nB406.xml",
+          "FromLb": "0157a06",
+          "ToLb": "0157a14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d54c72cc6d210ccedf98c20498e42286fdbd00f5d24622f7dbd6ee08f725ac71",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0793a11",
+          "ToLb": "0793a22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "e02994daa77249e24832bb0ecfd0fdb2b80d45f7d44b45421bd0610646a7d9ff",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed verse author"
+        }
+      ]
+    },
+    {
+      "ordinal": 1138,
+      "id": "t_b495de9e2b11",
+      "term": "神農",
+      "reviewedEntrySha256": "9c4ad36bfaaf955f3dbaad3099cfec5347a9153927b277c3141ec9146628e84d",
+      "postReviewEntrySha256": "9c4ad36bfaaf955f3dbaad3099cfec5347a9153927b277c3141ec9146628e84d",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The portrait verse and public addresses have recoverable named authors/record owners (including Sanyi Mingyu and Jifei Ruyi), but all four rows are anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0662c25",
+          "ToLb": "0663a04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "5eb4d05b5fbc9ec4f2be0d6ecc4b1c9519902964b791a73df9534bf3b9c08a9d",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed verse author"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J27/J27nB190.xml",
+          "FromLb": "0106a05",
+          "ToLb": "0106a13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "275a1871ab25b0243e2fcf95c1ea7471189e9e2f67bc249fc548f3fff3f6f12e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J38/J38nB425.xml",
+          "FromLb": "0675a06",
+          "ToLb": "0675a20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3a6a1379e7b8df22983999e611d1e701a476e4c5660a765f4c25e3e4ed5a8b3a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J39/J39nB441.xml",
+          "FromLb": "0292c05",
+          "ToLb": "0292c14",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1089402ae658b422c026eabbdf45826b546739647f06ee8efbf03a524829a3b3",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1139,
+      "id": "t_3ae11b4bc79f",
+      "term": "無常迅速",
+      "reviewedEntrySha256": "009d011b0c8ec4eb32744578272a34a8739b0bd2541f23f8a1909244c6afc696",
+      "postReviewEntrySha256": "009d011b0c8ec4eb32744578272a34a8739b0bd2541f23f8a1909244c6afc696",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Three later record-owned exhortations using 無常迅速 remain generic despite the full speeches and source titles identifying their masters.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "M/M59/M59n1540.xml",
+          "FromLb": "0790a16",
+          "ToLb": "0790b04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "533f4c0e5cd96beaebd917c99e51458c8ce3520563e0ec3472b72e2197a89377",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0864c16",
+          "ToLb": "0864c25",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "6529fd86ca7a30c3b43a68a589bd94922004e9b84bf59f7cdbfbfd38be4b1dfe",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0158b18",
+          "ToLb": "0158c02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "812f2f7c220e6c74f70f935560a36b5df781dcda91a6e228eed1023904b264b0",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0700b07",
+          "ToLb": "0700b15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "83b486c34330bb6c250c5c263d9984bdda2fb113123d38c330f2d5270e242290",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X70/X70n1397.xml",
+          "FromLb": "0610b04",
+          "ToLb": "0610b13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "74497a34ffdfcc1f24ce7b845187753353c48a0fc56c0887a537d7a2b67a5963",
+          "MasterName": "Xueyan Zuqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Xueyan Zuqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "J/J25/J25nB159.xml",
+          "FromLb": "0137a23",
+          "ToLb": "0137b02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "396c18cce3398a6d66b25d2db842a5c641154c92121aea1944620eb12502d408",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1140,
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "reviewedEntrySha256": "415622926efa6bb8bf21035b21e5bd21a7fcf60b2b8773df5ad70e5acdf4fa2b",
+      "postReviewEntrySha256": "415622926efa6bb8bf21035b21e5bd21a7fcf60b2b8773df5ad70e5acdf4fa2b",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The narration/quotation distinction is unresolved: questions correctly belong to monks, but several surrounding explanation clauses have recoverable named record owners rather than a generic textual utterer.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0478a19",
+          "ToLb": "0478b02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d6f6c8169134e5a0d729d340fd4045f0c868ba99c0251c5742ee70283a6ef406",
+          "MasterName": "Muzhou Daoming",
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J40/J40nB494.xml",
+          "FromLb": "0527a20",
+          "ToLb": "0527a27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f016dabfb6b85a2b7654298f2c24310d3ce9144e2139d6b3e0aab3ae4878c900",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0101a24",
+          "ToLb": "0101b07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "de19cb940eb9a436888f26c040c59c627c6cbcccbe7a79c794f98c76f96741ed",
+          "MasterName": "Muzhou Daoming",
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "D/D48/D48n8939.xml",
+          "FromLb": "0187b03",
+          "ToLb": "0187b12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "b2f63baea8aef5344edcd8f4c81b95c4f76c19106a77b99d260ad416b3479d6b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0013b02",
+          "ToLb": "0013b11",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "68568d7e249b7a4a61817986f35cc6690ab19cc071d8b628836330372c860413",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0286c22",
+          "ToLb": "0287a03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "daa7599c4a81d85b55b5cc0d0a8657f8a63955e9571fb9a01eb55b4f2d6f43cc",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1141,
+      "id": "t_652dbd8f5c83",
+      "term": "西序",
+      "reviewedEntrySha256": "9eaaee7bf1ed0d414c0e2391e7e7a2f20c2b16d29b9649cae16b89b03c986e35",
+      "postReviewEntrySha256": "9eaaee7bf1ed0d414c0e2391e7e7a2f20c2b16d29b9649cae16b89b03c986e35",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Institutional-rule narration and named ceremonial addresses are collapsed together as generic utterance; all four rows are anonymous and the west-rank office referent needs exact documentary ownership.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1111b10",
+          "ToLb": "1112a20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "019fbc9aa5f07d79a0cf96cc908c9e576f7f1847d4556af3382bd0fa9164b169",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0004c21",
+          "ToLb": "0005a23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "afbb8938a230888fcdd616be9ecebb2fc32f28e6620cd1782e55695257256e4b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X63/X63n1250.xml",
+          "FromLb": "0622c13",
+          "ToLb": "0622c22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9a73d5d4e7e832a55144df1b187a75e39ef9e0535137c7560fc708b4cf72686f",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X68/X68n1319.xml",
+          "FromLb": "0746a03",
+          "ToLb": "0746a12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "e11534032561c35960ddb0b26ddfa770c9142c2aca320e1219661053871fa3a4",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1142,
+      "id": "t_4a5ef260448f",
+      "term": "心地法門",
+      "reviewedEntrySha256": "b2a5020bec7169071ab35d216abb4aca7f361ce278977959a1ea2b7890537c2a",
+      "postReviewEntrySha256": "b2a5020bec7169071ab35d216abb4aca7f361ce278977959a1ea2b7890537c2a",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The explicit 雲峰因僧問…峰曰 case and named later re-raisers were not resolved; six of seven rows remain anonymous despite inline names and record ownership.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0475c13",
+          "ToLb": "0475c23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d37149edcb3e8879a392876495375c0a0ad5b4c47e6942886609d4e1eb7bd743",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J28/J28nB219.xml",
+          "FromLb": "0701c09",
+          "ToLb": "0701c19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "63d7697a39ddfcfd39b76f7a078dcc5ca61e58fd51cc4f55fc1f5c8bc6af208a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "L/L154/L154n1639.xml",
+          "FromLb": "0099a07",
+          "ToLb": "0099b03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "84177a4dde26bf384c3309401739e4c6d02325ddee8a6eee1a26ff237c7b588b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0615b23",
+          "ToLb": "0615c10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "150f7d3c2ed5f4b8c501cfc4f30f8fdb1f1a660fa761467692475aa9ad10fed6",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0525c18",
+          "ToLb": "0525c26",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "532ee52d8792806c9825023e6246334156297a9abaaa37277b28bea0cee29e9b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0841a23",
+          "ToLb": "0841b07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "000d7d7ed4a47f2466e357ba9c5d793918063f47580a92d95e0b8f4cbd022d41",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0244c18",
+          "ToLb": "0245a13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0f979ef05add0b6237d15f2ea06447fab895ec94d48dddce2eb035f9295835d5",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1143,
+      "id": "t_9b760056ea15",
+      "term": "驀口",
+      "reviewedEntrySha256": "b830624eb947c346ff0abc407ce566df274ede0965d150aa94019229d1021de8",
+      "postReviewEntrySha256": "b830624eb947c346ff0abc407ce566df274ede0965d150aa94019229d1021de8",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Confirmed: the parallel 師以拂子驀口打 rows preserve Xiaoyao’s named action; the performer is recoverable from the case container.",
+        "Occurrences 2, 4, 5, and 7 preserve the named Xiaoyao action 師以拂子驀口打 in parallel records, but the exact action performer is left anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0721b12",
+          "ToLb": "0721b23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3e8bb5941d8a5ba1e034600fda614846abc474bef1c7574590b09db2207f319d",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0462c14",
+          "ToLb": "0462c22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ee223965ac87e2a79d9cacd04f57d9ff07d77696f1487876cf6dd744d7c7f846",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0094a23",
+          "ToLb": "0094b09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1be57b25e891a3eeacf585d0e32c6ceb92813fbca827579993187a86c422d374",
+          "MasterName": "Sansheng Huiran",
+          "ContextMasters": [
+            {
+              "MasterName": "Sansheng Huiran",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1568.xml",
+          "FromLb": "0639c11",
+          "ToLb": "0639c20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9319a1de5b2916161e72418e16b5e8044e6accdd2f29a18b3060f1601e7eaad7",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0086c11",
+          "ToLb": "0086c20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "64fa257e1a871d574369ac681894b6e7a5a67266766150dcc750d95e49aab33b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0363b08",
+          "ToLb": "0363b16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3a048a00eb57f580aa831c3cad9fa8834d155a56fefbabb19c455b9a7abe95f8",
+          "MasterName": "Mazu Daoyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0262b17",
+          "ToLb": "0262c08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "21ef3c7c4f78fb96d9b91f0dd0e4b1c29f4587d7c59360448c1aba12ff765d69",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1144,
+      "id": "t_4625f09d4acc",
+      "term": "黃檗棒",
+      "reviewedEntrySha256": "e37e08d9c9f7b6680e3324d5e759655f5571b910f2fe759d76cf3daf28cf431f",
+      "postReviewEntrySha256": "e37e08d9c9f7b6680e3324d5e759655f5571b910f2fe759d76cf3daf28cf431f",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "All four rows are labelled compiler narration although three are named masters discussing 黃檗棒 in their own public addresses; record speaker, Huangbo, and Linji are distinct roles.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X71/X71n1412.xml",
+          "FromLb": "0210a08",
+          "ToLb": "0210a17",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f20595221746ff08fd1db42c92cb70da48bb0f6c55257fd53691fcd30aec6fc4",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Damei Fachang",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J27/J27nB193.xml",
+          "FromLb": "0273c19",
+          "ToLb": "0273c28",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "81731b58a2050fa5dc1de34b88747d3424d1b644843f98550b9e2b19c5a39d47",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J29/J29nB239.xml",
+          "FromLb": "0480b27",
+          "ToLb": "0480c05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f5e13f130b1ff58f886d488babca4533b203f3d9e95254f6035305523c323720",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J38/J38nB417.xml",
+          "FromLb": "0489a22",
+          "ToLb": "0489a30",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d5d2f31832844db5ec74429abb8711a7153518b4795ac3675f94c47a96b6ab74",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        }
+      ]
+    },
+    {
+      "ordinal": 1145,
+      "id": "t_38014001726f",
+      "term": "知有底人",
+      "reviewedEntrySha256": "7fc7013776c8b975808079d06f458cbda32367f0371074c7beea27b1585653ca",
+      "postReviewEntrySha256": "7fc7013776c8b975808079d06f458cbda32367f0371074c7beea27b1585653ca",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Biographical narration, named teaching speech, and an unnamed monk question are not consistently separated; occurrences 2, 3, and 6 have recoverable owners/biographers but generic labels.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0091b12",
+          "ToLb": "0091b20",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f74b4628dee197fd068e68c71e2a4826992facd4e38a0e2deae007c519bed4ac",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0071c24",
+          "ToLb": "0072a08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "495c37e30f9864e2286c821efc0063f100ab99f6963e5c04b1ad4b27aa65532d",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunju Daoying",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0037a15",
+          "ToLb": "0037a23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d84e8d78bfc88f63e8628156d470aff35d30227f1b94dd254e620a66dfec368d",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0487b17",
+          "ToLb": "0487c03",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1f08e090761fd888724392ea0cb2b1f4de75ab276b7d07fd73a649361ef216bb",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J36/J36nB369.xml",
+          "FromLb": "0922a30",
+          "ToLb": "0922b09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1e6f029183f73c3d62f0a413ea0e956df62de7f9f1d9c869466d3e9b9459a285",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0571b18",
+          "ToLb": "0571b28",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "5c46e5c11b5c39718c6518efbdba1889cfb32799cef50e453c22fbb6e433fe2e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X73/X73n1448.xml",
+          "FromLb": "0057a01",
+          "ToLb": "0057a19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "dd79abd4d99767ff67bff393b70c560262cc99e27bc5ad4afb90ace83d8c398b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        }
+      ]
+    },
+    {
+      "ordinal": 1146,
+      "id": "t_aa56c106ef82",
+      "term": "陷虎之機",
+      "reviewedEntrySha256": "df640c04f6589a945379194369cde2beb83407b21a8de6f9b5bc4363495a2b83",
+      "postReviewEntrySha256": "df640c04f6589a945379194369cde2beb83407b21a8de6f9b5bc4363495a2b83",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Inline attributions such as 雲庵悅云 and named case commentary are visible immediately before 陷虎之機, yet four rows remain anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0281a04",
+          "ToLb": "0281a15",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8612ef8f6d79e428b2fca3cc6aac9565cb7b32f8c8c4d84d740974e1ea79680b",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0054b06",
+          "ToLb": "0054b16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "fb041acf28e758f2ea6d67804b917559c457bf0455d29f2b357ad9a174242c10",
+          "MasterName": "Yun'an Keyue",
+          "ContextMasters": [
+            {
+              "MasterName": "Yun'an Keyue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "P/P154/P154n1519.xml",
+          "FromLb": "0657b07",
+          "ToLb": "0658a10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ab77f8a11bd228b873d1dc5a5b638bf872f490f3a726069be0752b15f129031a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X67/X67n1299.xml",
+          "FromLb": "0042c23",
+          "ToLb": "0043a08",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f6b20e7ba318acbff47b9334b9a1a217a52393b17ebb780169c9ad9bb0131c26",
+          "MasterName": "Nanquan Puyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0062a18",
+          "ToLb": "0062b05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "eeb7c839e26d878d7b3719c4b431820b850b912a9993d2d950879e6ac92bb01c",
+          "MasterName": "Changsha Jingcen",
+          "ContextMasters": [
+            {
+              "MasterName": "Changsha Jingcen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0154b02",
+          "ToLb": "0154b13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "e2a43a65ab5b83d433e48371e755cb3b96146c2887d46257c9fc6159ca647e2e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1147,
+      "id": "t_2281bd1c98fc",
+      "term": "過去七佛",
+      "reviewedEntrySha256": "d04e7d31d4a3727b9b260edd6d30d17e2b661432ab86df3a68715fbf77d75c06",
+      "postReviewEntrySha256": "d04e7d31d4a3727b9b260edd6d30d17e2b661432ab86df3a68715fbf77d75c06",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Occurrences include Langting Jingting speech, a named record master raising the seven-buddha bowl case, and formal precept transmission; all four are anonymously collapsed.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0784a22",
+          "ToLb": "0784a30",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "9c617146177a7f2c9d33d8004e36d198bb039ed385b6ea96cdff51b1a0e78af6",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J38/J38nB407.xml",
+          "FromLb": "0245c18",
+          "ToLb": "0245c27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "119c38f8218c5b8fb899b598f288436c659d2fd1c828490529a862174e697170",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed verse author"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J39/J39nB471.xml",
+          "FromLb": "0972c04",
+          "ToLb": "0972c12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "375a562bc1476f43def04ef0b0e9e179eaf0954b74f92cc358b07f577c9a400e",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "P/P154/P154n1519.xml",
+          "FromLb": "0481a10",
+          "ToLb": "0482a02",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "4f4f5e3027c907aec49640a95c376b511008733edb0c132156c1908f2ac1c856",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1148,
+      "id": "t_3eb1fd8df203",
+      "term": "趙州勘婆",
+      "reviewedEntrySha256": "75a3f46de69ea0986dec1e5ffa2618ab2a5fc57af411b74001397040e83b767c",
+      "postReviewEntrySha256": "75a3f46de69ea0986dec1e5ffa2618ab2a5fc57af411b74001397040e83b767c",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Confirmed: later masters, including Miaohui Huiguang, utter 趙州勘婆 while raising the inherited case; compiler narration erases the later raiser.",
+        "Later masters explicitly utter the case label while raising it (including Miaohui Huiguang); all six rows were assigned to compiler narration, erasing later raisers.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0003a13",
+          "ToLb": "0003a22",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "88bec38fedfd5cbe49fb5f9315867e8a85112906b87dbeb2fa7ec1fd55c9dfd9",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0393b24",
+          "ToLb": "0393c10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "2daa8ef8b96404b0ad2e33879e83d353de5e79c0e61e569aa68eeb4c718818b3",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Juzhi",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0346a01",
+          "ToLb": "0346a10",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "5f7cdfc0b67e61b39f9f9de9e17aed8c246c844093427d0dcda4f31b92656631",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0298c03",
+          "ToLb": "0298c12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0249b52b17af8e7f49ca35b8236e982bde4703fc903875fc58451d7ed92ef019",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0102c03",
+          "ToLb": "0102c12",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1ff86eb73445af4aeb95df645b5cd18a36332822ae51948c74e6207fced6a0a3",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0697a08",
+          "ToLb": "0697a16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "0afd0d62a040ff89785facf2bfbaf1a83e48b125f28ce1e46b5a269b032989e9",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Liangjie",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "the case compiler"
+        }
+      ]
+    },
+    {
+      "ordinal": 1149,
+      "id": "t_16c61f8e00b4",
+      "term": "物物頭頭",
+      "reviewedEntrySha256": "dc154cd828ae59f6715110353af2bc4b2b1fce482bab4296c126c68dcd3ca684",
+      "postReviewEntrySha256": "dc154cd828ae59f6715110353af2bc4b2b1fce482bab4296c126c68dcd3ca684",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "Named public-address clauses by record masters, including Yuanwu Keqin, remain anonymous; the entry does not consistently distinguish utterance from documentary explanation.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0229b10",
+          "ToLb": "0229b19",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "ea6001fa01cc01f8d67b97558d8ea30d428b9014b4bbd7506b8922731c9f44af",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0717c25",
+          "ToLb": "0718a05",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "1d898d833253d92a3d1bd6367c5f990a0797ccf078aa37438b04ef344ee23f31",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X67/X67n1304.xml",
+          "FromLb": "0327a05",
+          "ToLb": "0327a16",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "d7d2bf7269518a33d765e385d86c47b6a8cd7fe9f5337cef7553d17c52103d83",
+          "MasterName": "Danxia Tianran",
+          "ContextMasters": [
+            {
+              "MasterName": "Danxia Tianran",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0006c20",
+          "ToLb": "0007a06",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "88076caaac18fc95710eb3258c8586f6a8cd91daf8accbf3a7493c54b3e323af",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0039a13",
+          "ToLb": "0039a23",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "f60f0f71c00a0041a007d079e7d8e4ae92822b72b0def98ec6e16480178bd80e",
+          "MasterName": "Hongzhi Zhengjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X69/X69n1357.xml",
+          "FromLb": "0462a05",
+          "ToLb": "0462a13",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "b436c5976500579d0ef47421f4b7cc369cce0417e64353153fdd9bc7bf9b17fb",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        }
+      ]
+    },
+    {
+      "ordinal": 1150,
+      "id": "t_594dfb5d367f",
+      "term": "香篆",
+      "reviewedEntrySha256": "63cbbcdce5cad21216dc32077e2c2dc526fe150a211b30ab2c53990d7ea62ff6",
+      "postReviewEntrySha256": "63cbbcdce5cad21216dc32077e2c2dc526fe150a211b30ab2c53990d7ea62ff6",
+      "byteIdentical": true,
+      "priorReviewer2Verdict": "KEEP",
+      "collisionVerdict": "REVISE",
+      "verdict": "REVISE",
+      "reasons": [
+        "Reviewer-2 changed the earlier KEEP verdict to REVISE after reading the concrete named-turn counterexamples in the collision report.",
+        "The portrait verse, imperial-address exchange, Baichi Yuanshuo verse, and record interview each expose distinct actor types, but all four rows remain anonymous.",
+        "The current actor distribution fails the strengthened no-anonymous-cohort rule: actor labels cannot substitute for resolving nameable masters."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "J/J38/J38nB406.xml",
+          "FromLb": "0174b27",
+          "ToLb": "0174c07",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "8a84b146015c169c390319db5067ef872d1009bd75e3fbe99d190b6c491d385a",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0693c20",
+          "ToLb": "0694a04",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3e78337446f498e06ff1b0b721a287986b0bf5eeb87b4bfe9d90ee742d919f78",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J28/J28nB202.xml",
+          "FromLb": "0107a17",
+          "ToLb": "0107a27",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "acd9d9ca0f32d28b0937f87113c02c58637ca169d1b8ebfb44ebe76b15cdbdec",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the reviewed unnamed textual utterer"
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0679c22",
+          "ToLb": "0680a09",
+          "zcVerifyExact": true,
+          "fullCaseContextSha256": "3293d4e5ba65441cbcab7c1c8a43c6333bce1bcbe91a386582b17cc8d7aea8b6",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "the unnamed monastic questioner"
+        }
+      ]
+    }
+  ],
+  "allReviewedFilesByteIdentical": true,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

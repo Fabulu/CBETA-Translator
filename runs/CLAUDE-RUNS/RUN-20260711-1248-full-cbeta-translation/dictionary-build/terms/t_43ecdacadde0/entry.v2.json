@@ -1,0 +1,117 @@
+{
+  "Id": "t_43ecdacadde0",
+  "SourceTerm": "阿誰",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "who?",
+      "AlternateTargets": [
+        "who is it?",
+        "whom?"
+      ],
+      "Status": "preferred",
+      "Explanation": "An interrogative pronoun: 'who?' or, according to syntax, 'whom?' The records put it to several public uses. It asks a monk's identity inside the exchange 'what is buddha?' — 'who are you?' / 'so-and-so' / 'do you recognize so-and-so?' (汝是阿誰／某甲／汝識某甲否). It asks lineage in the stock interview formula 'whose song does the master sing; to whom does the house style succeed?' (師唱誰家曲，宗風嗣阿誰), agency in 'who can go?' (阿誰去得), authorship in 'who spoke this scripture?' (此經是阿誰說), and the beneficiary of activity in 'for whom are you busy every day?' (每日區區為阿誰). The Chan deviation lies in this concentration inside public identity, lineage, authorship, and accountability questions; the word itself remains the ordinary interrogative and does not name a special inward self.",
+      "Note": "Allowlist count: 2,924 hits in 345 texts. Family comparison: 'who?' (誰) and 'which one?' (阿那箇) are interrogatives; 'that one' (那箇) and 'this one' (這箇) are demonstratives; 'who?' (阿誰) does not acquire a separate 'true self' sense merely because identity is sometimes its subject. Agent, author, beneficiary, and lineage predecessor are different answers to the same pronoun, not different referents encoded by the word.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0071c19",
+          "ToLb": "0071c20",
+          "Kwic": "問。如何是佛。師曰。汝是阿誰。曰。某甲。師曰。汝識某甲否。曰。分明箇。",
+          "MasterName": "Baizhang Huaihai",
+          "Curated": true,
+          "AttributionNote": "Public identity questioning follows 'what is buddha?': who are you, and do you recognize the conventional self-name supplied?"
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0654a21",
+          "ToLb": "0654a23",
+          "Kwic": "問：師唱誰家曲，宗風嗣阿誰？師云：窣堵那叱掌上擎。僧曰：恁麼則北塔嫡子，韶石兒孫。",
+          "Curated": true,
+          "AttributionNote": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), under the explicit 洪州百丈山智映寶月禪師 heading. An unnamed monk is the exact speaker asking whose house style the teacher succeeds; Baizhang Zhiying answers. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the monk. The section is not Baizhang Huaihai's.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-14T00:35:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Zhiying",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0247a02",
+          "ToLb": "0247a04",
+          "Kwic": "師曰。此經是阿誰說。僧抗聲曰。禪師相弄。豈不知是佛說耶。",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄: complete-case exact-turn review identifies Mazu Daoyi as the actor for this occurrence.",
+          "MasterName": "Mazu Daoyi"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0071b21",
+          "ToLb": "0071b23",
+          "Kwic": "師謂眾曰。我要一人。傳語西堂。阿誰去得。五峯曰。某甲去。師曰。汝作麼生傳語。",
+          "MasterName": "Baizhang Huaihai",
+          "Curated": true,
+          "AttributionNote": "Agency question to the assembly: who can carry a message to Xitang? Wufeng volunteers and is questioned further."
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0617c11",
+          "ToLb": "0617c13",
+          "Kwic": "雲巖問和尚每日區區為阿誰師曰有一人要巖曰囙甚麼不教伊自作師曰他無家活",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Yunyan Tansheng is named immediately before 問 and asks Baizhang Huaihai for whom he busies himself every day.",
+          "MasterName": "Yunyan Tansheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "X/X78/X78n1556.xml",
+        "T/T51/T51n2076.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [
+        "Baizhang Huaihai"
+      ],
+      "RelatedTerms": [
+        "誰",
+        "阿那箇",
+        "這箇",
+        "那箇",
+        "某甲"
+      ]
+    }
+  ]
+}

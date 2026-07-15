@@ -1,0 +1,732 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T10:59:53.660791+00:00",
+  "wave": "f004",
+  "reviewLane": "A",
+  "ordinals": [
+    901,
+    905
+  ],
+  "scope": "read-only exact-hash calibration review: full cases, utterers/context roles, depth, inference, senses, translations, claims, work IDs, roster evidence",
+  "reviewedGateSha256": "887b7cb53698fddf7bb2eeff50b67a8408df977d55d1aca7411742a7945a3edf",
+  "gateRosterViewSha256": "b3ce1aef6cf273b8aca8c4cffcda3f135772d2ab7357f1bc3a3b8d55ac43e10c",
+  "entriesReviewed": 5,
+  "occurrencesReadInFullCase": 32,
+  "exactKwics": 32,
+  "keep": 1,
+  "revise": 4,
+  "entries": [
+    {
+      "ordinal": 901,
+      "id": "t_cc68e32cf1b4",
+      "term": "佛法大意",
+      "reviewedEntrySha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428",
+      "postReviewEntrySha256": "116ccdd2b6ce7f9a80c3424948c68b047f88f42f7773f6f3b2adf4fbcc9f2428",
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "draftIndependentWorkIds": [
+        "work:wudeng-quanshu",
+        "work:wudeng-yantong",
+        "work:X80n1565",
+        "work:guzunsu-yulu",
+        "work:T51n2076",
+        "work:X78n1553",
+        "work:X78n1556"
+      ],
+      "workIdSetMatchesDraft": true,
+      "depthOverrideReview": null,
+      "verdict": "KEEP",
+      "reasons": [
+        "All seven headword questions belong to the stored monk, official, or named master utterers; parallel Daolin and Linji transmissions are not confused with distinct events. The interview-event opening and translation are earned by the contrasting replies."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0425c05",
+          "ToLb": "0425c11",
+          "KwicExact": true,
+          "fullCaseContextSha256": "e0895a78910f95c9bad207ea7954b8af89037c4a414bf687613a1d2f52f0d38a",
+          "MasterName": "Baofu Congzhan",
+          "MasterInGateRosterView": false,
+          "ContextMasters": [
+            {
+              "MasterName": "Baofu Congzhan",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Budai",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): Baofu Congzhan utters the exact headword in the reviewed complete case."
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "FromLb": "0006c14",
+          "ToLb": "0006c20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "013fda2d0ae71e123989774f9d2a02436a03039a7deb76556b33ed634afa6fe5",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Qingliang Taiqin",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): an unnamed monk bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "FromLb": "0051c11",
+          "ToLb": "0051c18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0e7f1c17f8d4cf91ea0e254013c7dc0356e344d4ab595319654c794675f6af8c",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Niaoke Daolin",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "identified-non-master",
+          "ActorLabel": "Bai Juyi",
+          "AttributionNote": "Source text (五燈會元): Bai Juyi bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0640a10",
+          "ToLb": "0640a18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d86f9a716556158ec83e65c6991cf15db1fb4356a0d297887f17bc9ec989da31",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "AttributionNote": "Source text (古尊宿語錄): an unnamed monk bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "T/T51/T51n2076.xml",
+          "workId": "work:T51n2076",
+          "FromLb": "0230b21",
+          "ToLb": "0230b29",
+          "KwicExact": true,
+          "fullCaseContextSha256": "5476cbfef727b867ab820f0bc9a32f469dda8cef539d84bce40e9a4dc968f624",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Niaoke Daolin",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "identified-non-master",
+          "ActorLabel": "Bai Juyi",
+          "AttributionNote": "Source text (景德傳燈錄): Bai Juyi bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X78/X78n1553.xml",
+          "workId": "work:X78n1553",
+          "FromLb": "0466a14",
+          "ToLb": "0466a21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "4c5a92f68cab2119bbc0ec7a32f589b90e526ef478a7dd597674b77cac001da4",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "AttributionNote": "Source text (天聖廣燈錄): an unnamed monk bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X78/X78n1556.xml",
+          "workId": "work:X78n1556",
+          "FromLb": "0653b13",
+          "ToLb": "0653b20",
+          "KwicExact": true,
+          "fullCaseContextSha256": "ecc6034c8e41c5c48a6c825b156588d6ba00f8004c07045e07e3e552e22dec5d",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "AttributionNote": "Source text (建中靖國續燈錄): an unnamed monk bears the exact headword; nearby masters remain contextual only."
+        }
+      ]
+    },
+    {
+      "ordinal": 902,
+      "id": "t_77811c966dba",
+      "term": "香雲",
+      "reviewedEntrySha256": "71597daf64ca581fd61fc8f6232d895f3af0913bb0ed11f6a1589591f5757683",
+      "postReviewEntrySha256": "71597daf64ca581fd61fc8f6232d895f3af0913bb0ed11f6a1589591f5757683",
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "draftIndependentWorkIds": [
+        "work:X72n1435",
+        "work:J39nB447",
+        "work:J28nB202",
+        "work:wudeng-quanshu",
+        "work:J37nB384",
+        "work:T48n2016"
+      ],
+      "workIdSetMatchesDraft": true,
+      "depthOverrideReview": null,
+      "verdict": "REVISE",
+      "reasons": [
+        "The entry itself attests two different things—visible incense smoke and poetic auspicious cloud imagery—but merges them into one sense. Split only if full-case adjudication confirms the distinction. Occurrences 1–3 are formal master addresses, not generic editorial narration; occurrence 5 is an attributed quoted voice."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X72/X72n1435.xml",
+          "workId": "work:X72n1435",
+          "FromLb": "0264c11",
+          "ToLb": "0264c18",
+          "KwicExact": true,
+          "fullCaseContextSha256": "7d429f749548a7eb3634b4583f93d8811015f3a92d3e3985f035626fa2b2d1fa",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (無異元來禪師廣錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "J/J39/J39nB447.xml",
+          "workId": "work:J39nB447",
+          "FromLb": "0377a30",
+          "ToLb": "0377b06",
+          "KwicExact": true,
+          "fullCaseContextSha256": "5af3f1b57f41c0fe6ad97c7c73d73f69481ac07a8dc4a22caed40bdf745ec225",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (東山梅溪度禪師語錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J28/J28nB202.xml",
+          "workId": "work:J28nB202",
+          "FromLb": "0013a07",
+          "ToLb": "0013a13",
+          "KwicExact": true,
+          "fullCaseContextSha256": "9737526bcef3cef16143c4ae0ffefa2f769f43dcdee9753c115019ebb0b18412",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (百癡禪師語錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0061a12",
+          "ToLb": "0061a19",
+          "KwicExact": true,
+          "fullCaseContextSha256": "f05b4751bab7cae51f40c27e11dbedd4d2595f621b8a3b2e3f3c4b9dd49e0508",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "identified-non-master",
+          "ActorLabel": "Dai Daochun",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): Dai Daochun bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J37/J37nB384.xml",
+          "workId": "work:J37nB384",
+          "FromLb": "0244c17",
+          "ToLb": "0244c24",
+          "KwicExact": true,
+          "fullCaseContextSha256": "e0168bda7f00fa738b16ded815df29c36b191abd491dfea220e2a2d8abee28fc",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (憨休禪師敲空遺響): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "FromLb": "0535a12",
+          "ToLb": "0535a12",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d53d6dc327101a04e64293e6df98aa5ea4021c3f83eb0f555c5d768f733fb26d",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (宗鏡錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        }
+      ]
+    },
+    {
+      "ordinal": 903,
+      "id": "t_602a0b760189",
+      "term": "頂門正眼",
+      "reviewedEntrySha256": "349063873746002b87b8915392eef6ffe575d0224f6b3afac6ca1c039f2ca6e8",
+      "postReviewEntrySha256": "349063873746002b87b8915392eef6ffe575d0224f6b3afac6ca1c039f2ca6e8",
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 6,
+      "draftIndependentWorkIds": [
+        "work:X64n1260",
+        "work:wudeng-quanshu",
+        "work:J37nB383",
+        "work:J28nB202",
+        "work:J37nB386",
+        "work:X69n1359"
+      ],
+      "workIdSetMatchesDraft": true,
+      "depthOverrideReview": null,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 6 occurs in the named record master’s formal new-bell address, not a generic editorial voice. The translation and crown-eye inference otherwise fit the selected cases."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0093c03",
+          "ToLb": "0093c09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "c9ef2aa45f317989a09e20429c415294579a220d7485dc1bcb7ab6c3bb389f68",
+          "MasterName": "Yongzhang Jun",
+          "MasterInGateRosterView": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongzhang Jun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "AttributionNote": "Source text (列祖提綱錄): Yongzhang Jun utters the exact headword in the reviewed complete case."
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0060a01",
+          "ToLb": "0060a07",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d23638276118e41b8f7e4f37437ac8f19df0b7734a091fc3e1540fbc8acc7976",
+          "MasterName": "Fuxin Bencai",
+          "MasterInGateRosterView": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fuxin Bencai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): Fuxin Bencai utters the exact headword in the reviewed complete case."
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J37/J37nB383.xml",
+          "workId": "work:J37nB383",
+          "FromLb": "0199a25",
+          "ToLb": "0199b02",
+          "KwicExact": true,
+          "fullCaseContextSha256": "d265c17e7c5da97c9099aadefd2885187a235ee4990c5d0db9c6bffc3a3fb880",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Hanxiu Ruqian",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (憨休禪師語錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "J/J28/J28nB202.xml",
+          "workId": "work:J28nB202",
+          "FromLb": "0014c21",
+          "ToLb": "0014c27",
+          "KwicExact": true,
+          "fullCaseContextSha256": "09e30b5fb039d6fb203966140ccb32f52e6aecd0d487afd1b48cb8992126958c",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "reviewed-unnamed",
+          "ActorLabel": "an unnamed monk",
+          "AttributionNote": "Source text (百癡禪師語錄): an unnamed monk bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "J/J37/J37nB386.xml",
+          "workId": "work:J37nB386",
+          "FromLb": "0344c15",
+          "ToLb": "0344c22",
+          "KwicExact": true,
+          "fullCaseContextSha256": "0d53ec8533c0b9e460a37b25660372304af0366c49915ae5baac8dc7fa7fc18c",
+          "MasterName": "Yuan'an Feng",
+          "MasterInGateRosterView": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yuan'an Feng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "AttributionNote": "Source text (遠菴僼禪師語錄): Yuan'an Feng utters the exact headword in the reviewed complete case."
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X69/X69n1359.xml",
+          "workId": "work:X69n1359",
+          "FromLb": "0517a15",
+          "ToLb": "0517a21",
+          "KwicExact": true,
+          "fullCaseContextSha256": "cb18bcd153d97bb5cb0655fe3fb378c733fe6b0833ad175faf2b7faaf1309e0f",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (應菴曇華禪師語錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        }
+      ]
+    },
+    {
+      "ordinal": 904,
+      "id": "t_f5e1fe96407c",
+      "term": "知事",
+      "reviewedEntrySha256": "75d735673d87d7c9ab59c7bd26aabd3dc238598a585151e25aed0c2a301dcdef",
+      "postReviewEntrySha256": "75d735673d87d7c9ab59c7bd26aabd3dc238598a585151e25aed0c2a301dcdef",
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 7,
+      "distinctActualWorkIds": 7,
+      "draftIndependentWorkIds": [
+        "work:X63n1245",
+        "work:X63n1250",
+        "work:T48n2025",
+        "work:X64n1260",
+        "work:wudeng-quanshu",
+        "work:guzunsu-yulu",
+        "work:X68n1318"
+      ],
+      "workIdSetMatchesDraft": true,
+      "depthOverrideReview": null,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 1, 2, and 4 are table-of-contents/index material rather than substantive office deployments and require body replacements. Occurrence 5 places 知事 in compiler narration (“he admonished the administrators”), not in Fachang Yiyu’s quoted utterance."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "X/X63/X63n1245.xml",
+          "workId": "work:X63n1245",
+          "FromLb": "0522b17",
+          "ToLb": "0522b17",
+          "KwicExact": true,
+          "fullCaseContextSha256": "2b46a632c411b8f9cfd69c836281198ad95eb0088e7cdd0688bbaa2e0361330f",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text ((重雕補註)禪苑清規): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X63/X63n1250.xml",
+          "workId": "work:X63n1250",
+          "FromLb": "0621a24",
+          "ToLb": "0621b16",
+          "KwicExact": true,
+          "fullCaseContextSha256": "13c1b84d12bad29a02f384c5866be9a9dfe11a8b2d5614ac8cc5593012ac0c26",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (禪林備用清規): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "T/T48/T48n2025.xml",
+          "workId": "work:T48n2025",
+          "FromLb": "1110c15",
+          "ToLb": "1110c23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "ab20659aa7a88a5d6857ac0173a73a9c39f6c76103773abe6b6e5956e9333010",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (勅修百丈清規): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "FromLb": "0004c15",
+          "ToLb": "0005a07",
+          "KwicExact": true,
+          "fullCaseContextSha256": "2c5571c2bcdf18281c81625e7aa75756ce0d8b0a433e60c9e70f704b2a1b8445",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (列祖提綱錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0004c24",
+          "ToLb": "0005a06",
+          "KwicExact": true,
+          "fullCaseContextSha256": "baf4fad0a31643b06d88744328d4be824215a4bb1d4356f04166f2f6f9ff1aef",
+          "MasterName": "Fachang Yiyu",
+          "MasterInGateRosterView": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fachang Yiyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ActorStatus": null,
+          "ActorLabel": null,
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): Fachang Yiyu utters the exact headword in the reviewed complete case."
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "FromLb": "0728b06",
+          "ToLb": "0728b15",
+          "KwicExact": true,
+          "fullCaseContextSha256": "72c76266c24256b0a4d0fa0e39de4da266328163371f5303a9c23e3373c150d2",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (古尊宿語錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 7,
+          "RelPath": "X/X68/X68n1318.xml",
+          "workId": "work:X68n1318",
+          "FromLb": "0382a17",
+          "ToLb": "0382a23",
+          "KwicExact": true,
+          "fullCaseContextSha256": "1d6df435c57331abd87d74b12fd42213c2c2f058a3d5e2d523318504719e29fb",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Furong Daokai",
+              "Roles": [
+                "section-subject"
+              ]
+            }
+          ],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (續古尊宿語要): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        }
+      ]
+    },
+    {
+      "ordinal": 905,
+      "id": "t_1d8554f83698",
+      "term": "續傳燈錄",
+      "reviewedEntrySha256": "e076ddfb946c09d2f539a2f4b80830d6c6d2bd5b67080384bf20bb6e616680c0",
+      "postReviewEntrySha256": "e076ddfb946c09d2f539a2f4b80830d6c6d2bd5b67080384bf20bb6e616680c0",
+      "byteIdentical": true,
+      "occurrencesReadInFullCase": 6,
+      "distinctActualWorkIds": 4,
+      "draftIndependentWorkIds": [
+        "work:T51n2077",
+        "work:X83n1574",
+        "work:J34nB311",
+        "work:wudeng-quanshu"
+      ],
+      "workIdSetMatchesDraft": true,
+      "depthOverrideReview": "續傳燈錄: 6 occurrences / 4 distinct works is justified by title, expanded-title, first-person plan, collection biography, and signed-preface deployments.",
+      "verdict": "REVISE",
+      "reasons": [
+        "The six-witness depth override is honest—four distinct works and several different bibliographic functions—but attribution remains incomplete: occurrence 3 is Juelang Dasheng’s first-person compilation plan, and occurrences 5–6 belong to the signed preface voice Hongchu rather than a generic narrator. Title occurrences remain admissible because the headword itself is a bibliographic title."
+      ],
+      "cases": [
+        {
+          "occurrence": 1,
+          "RelPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "FromLb": "0469a02",
+          "ToLb": "0469a11",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fb562484d6aa28d982899f36d8ecf401fa5dc9b1d629a5569940b71796374899",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (續傳燈錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 2,
+          "RelPath": "X/X83/X83n1574.xml",
+          "workId": "work:X83n1574",
+          "FromLb": "0257a02",
+          "ToLb": "0257a02",
+          "KwicExact": true,
+          "fullCaseContextSha256": "21966c76db56f1880f8787f7d001ccdee3d433c727a169363c37b2e1a43e6126",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (增集續傳燈錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 3,
+          "RelPath": "J/J34/J34nB311.xml",
+          "workId": "work:J34nB311",
+          "FromLb": "0735a05",
+          "ToLb": "0735a12",
+          "KwicExact": true,
+          "fullCaseContextSha256": "71447be3af136080b579ef6d5d44a9a084072a59943eb4a6c68f753eb6c6fc18",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 4,
+          "RelPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "FromLb": "0351b08",
+          "ToLb": "0351b14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "fb66b2af8f7b31305caada718ba764a28bfc1b3bda5c59c39d29aa2189b8721f",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 5,
+          "RelPath": "X/X83/X83n1574.xml",
+          "workId": "work:X83n1574",
+          "FromLb": "0257a08",
+          "ToLb": "0257a14",
+          "KwicExact": true,
+          "fullCaseContextSha256": "a14073a504c22eef555c8c24dfed0455bd3fa0875ca5d4e5179debe3a50e023f",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (增集續傳燈錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        },
+        {
+          "occurrence": 6,
+          "RelPath": "X/X83/X83n1574.xml",
+          "workId": "work:X83n1574",
+          "FromLb": "0257b04",
+          "ToLb": "0257b09",
+          "KwicExact": true,
+          "fullCaseContextSha256": "b04287e424da01187db0af8d726646b84933dfdfbd2a5996db0169b058fb30df",
+          "MasterName": null,
+          "MasterInGateRosterView": null,
+          "ContextMasters": [],
+          "ActorStatus": "narrated",
+          "ActorLabel": "editorial, compiler, inscriptional, or unresolved authored voice",
+          "AttributionNote": "Source text (增集續傳燈錄): editorial, compiler, inscriptional, or unresolved authored voice bears the exact headword; nearby masters remain contextual only."
+        }
+      ]
+    }
+  ],
+  "allReviewedFilesByteIdentical": true,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "sharedRosterTouched": false
+}

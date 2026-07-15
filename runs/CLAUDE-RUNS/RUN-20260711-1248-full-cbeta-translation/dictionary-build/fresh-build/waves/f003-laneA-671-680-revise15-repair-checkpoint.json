@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "f003-revise15-repair-ledger-v1",
+  "generatedUtc": "2026-07-15T06:20:45.799324+00:00",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    671,
+    680
+  ],
+  "role": "repair-author",
+  "repairCount": 15,
+  "untouchedKeepCount": 35,
+  "allKeepsByteIdentical": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-revise15-formal-gate.json",
+    "sha256": "d8d0701de84bdf34f0f34051eee59a5a74a66a45166d0271145ba8dd41f18a8e",
+    "hardPass": true,
+    "exactKwic": 117
+  },
+  "repairs": [
+    {
+      "ordinal": 679,
+      "id": "t_4da199fae933",
+      "term": "消息",
+      "entrySha256": "f4f5caf7a3b9655dd235af2ac3cc0fb8e33511e6bf1c3a86b3b4597cd0400b27",
+      "evidenceDraftSha256": "c5e2fd96b510a1e6e6b14aa5e21ad30e9f27a48d43ca569c687b38e1b0473ad9",
+      "workSha256": "d3856f31d545c70f3da7ff51a8bb370a7532025fd74bf68d14dc5176114854e2",
+      "compileReportSha256": "70b612ae7e41479cbaeb2b8840548626f2d2cf7b07e110e83dbb95a082709a9d",
+      "occurrences": 8
+    },
+    {
+      "ordinal": 680,
+      "id": "t_2d567d37256b",
+      "term": "富樓那",
+      "entrySha256": "af5fb7fcfec9fafb0499066741ee4c24b85a7e615b43b5f58ea7085ae6f1a5df",
+      "evidenceDraftSha256": "44f6d8992e224abc971c102b98680471a44750e1a8aacb387448280d424ddcdf",
+      "workSha256": "c7ea2b670b359b20849221e0eac5c01c78c8524a7a958d72cba685b6f5d7f856",
+      "compileReportSha256": "4a3fcbe1658c13649d81850015065ed0601a149ee597f3a615501e84853f9d9a",
+      "occurrences": 4
+    }
+  ],
+  "untouchedKeeps": [
+    {
+      "ordinal": 671,
+      "id": "t_aa7b526258cc",
+      "entrySha256": "4c1fd5c3668ba5ff0a5276181c61bd85608a2f6e525a16625f9dce5335b72ce0",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 672,
+      "id": "t_935452e7a2c6",
+      "entrySha256": "a6488cb980f544045f5c1ce07d744ed1e6bf9c3f346dc8c6bec43ba74ed16fbe",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 673,
+      "id": "t_d4673502b2d2",
+      "entrySha256": "b7cac1245e22d5337219b694d8027aface7e6615d95e30021be1688641148879",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 674,
+      "id": "t_27c71a091873",
+      "entrySha256": "bae8b3c36c2d3b4d330fa29fddc1bf3f48e6103a3385823dac88828cab907c0d",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 675,
+      "id": "t_09ed57d56bcf",
+      "entrySha256": "2baadd6911bcd77f2861450b5acbb98e0594a41bf842386c33c3f7136e247b81",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 676,
+      "id": "t_68303eb8b076",
+      "entrySha256": "5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 677,
+      "id": "t_1c2ff70cf5a5",
+      "entrySha256": "3e2416b4a3311a92ea139fb7bb844236eb1bb02d468a5cae2b2ede4cb3b03f1f",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 678,
+      "id": "t_b4d4e5d50e6f",
+      "entrySha256": "8e07edf8e4728a6e7400955ad044212ba375e87ae7725de1c6103b9838240c3a",
+      "byteIdentical": true
+    }
+  ]
+}

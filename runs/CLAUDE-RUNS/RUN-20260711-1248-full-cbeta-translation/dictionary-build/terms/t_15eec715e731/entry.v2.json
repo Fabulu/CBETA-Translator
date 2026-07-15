@@ -1,0 +1,126 @@
+{
+  "Id": "t_15eec715e731",
+  "SourceTerm": "燈錄",
+  "CreatedBy": "Codex",
+  "WrittenUtc": "2026-07-12T18:50:30.596Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "lamp record",
+      "AlternateTargets": [
+        "lamp records",
+        "record of the lamp succession",
+        "lamp chronicle"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally “lamp” and “record”: “lamp record.” The compound occurs 789 times in 91 allowlisted texts and names individual records and a family of titled compilations. Attested titles include the Jingde Transmission Lamp Record, Continued Transmission Lamp Record, Tiansheng Broad Lamp Record, and Jiatai Universal Lamp Record. Their headings and contents list masters, lineage heirs, and successive sections. A compiler’s rules says that after the Jingde collection, later compilations were named Continued Lamp, Linked Lamp, Universal Lamp, or Broad Lamp. An editorial preface says that damaged encounter wording and inaccurate comments were checked against the lamp records. These passages establish the title family, collective reference, and editorial use of the term; the entry does not assign the records a further function not stated by them.",
+      "Validation": "multi-source",
+      "Note": "The headword-plus-transmission construction occurs 382 times in 61 texts; the headword-plus-continuation construction occurs 83 times in 13. Six apparent strings of the form “lamp record is...” are relative clauses about works or people listed in them, not self-definitions.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0196b09",
+          "ToLb": "0196b13",
+          "Kwic": "No.2076景德傳燈錄序景德傳燈錄序翰林學士朝散大夫行左司諫知制誥同修國史判史館",
+          "Curated": true,
+          "AttributionNote": "景德傳燈錄: complete-case exact-turn review identifies Yang Yi as the actor for this occurrence.",
+          "MasterName": "Yang Yi"
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0469a02",
+          "ToLb": "0469a07",
+          "Kwic": "No.2077大鑑下第十世卷第一目錄續傳燈錄卷第一目錄大鑑下第十世汝州首山念禪師法嗣一十六人汾陽善昭禪師葉",
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄). The lamp-record title and contents heading repeats the work and volume title before listing Shoushan Xingnian's sixteen heirs and beginning Fenyang Shanzhao's biography. It is impersonal textual metadata, not speech by Juding or any other master.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "document title and contents heading",
+            "ActorLabel": "lamp-record title and contents heading",
+            "ActorRole": "textual metadata",
+            "GrammarEvidence": "The headword occurs inside the compound title 續傳燈錄 in the document identifier, volume title, and contents heading before the lineage list and before Fenyang Shanzhao's biography begins. These are title noun phrases with no speech marker or human subject, so the occurrence is editorial textual metadata rather than a master's spoken turn.",
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T05:18:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "first listed lineage master",
+                "following biography subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0420a07",
+          "ToLb": "0420a18",
+          "Kwic": "題。天聖廣燈錄都帙目錄〔宋實〕天聖廣燈錄都帙目錄〔宋實〕天聖廣燈錄卷第一敘天竺釋迦佛下錄釋迦牟尼佛天聖廣燈錄卷第二天竺祖師八人第",
+          "Curated": true,
+          "AttributionNote": "天聖廣燈錄. Full six-rung exact-turn review identifies: Canonical title and table-of-contents heading for the Tiansheng Expanded Record of the Lamp. This is not personal speech.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "catalogue heading",
+            "ActorLabel": "Canonical title and table-of-contents heading for the Tiansheng Expanded Record of the Lamp",
+            "ActorRole": "bibliographic heading rather than a speech turn",
+            "GrammarEvidence": "The occurrence is document metadata with no grammatical personal speaker.",
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:58:26.309747Z"
+          }
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0288c05",
+          "ToLb": "0288c10",
+          "Kwic": "No.1559嘉泰普燈錄卷第一平江府報恩光孝禪寺僧編紀佛祖紀佛祖傳燈曰：如來將化，預命",
+          "Curated": true,
+          "AttributionNote": "嘉泰普燈錄. Full six-rung exact-turn review identifies: Canonical number-and-title heading for the Jiatai Record of the Lamp. This is not personal speech.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "canonical title heading",
+            "ActorLabel": "Canonical number-and-title heading for the Jiatai Record of the Lamp",
+            "ActorRole": "bibliographic heading rather than a speech turn",
+            "GrammarEvidence": "The occurrence is document metadata with no grammatical personal speaker.",
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:58:26.309747Z"
+          }
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0002b13",
+          "ToLb": "0002b16",
+          "Kwic": "，烏焉成馬之失，葢所從來。統要中有機緣脫誤，拈語失真處，稽諸燈錄，裁以祖意，一皆考證的實，決無疑溷。燈譜世系既非此書所急",
+          "Curated": true,
+          "AttributionNote": "宗門拈古彙集. Full six-rung exact-turn review identifies Jingfu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Jingfu"
+        },
+        {
+          "RelPath": "X/X83/X83n1574.xml",
+          "FromLb": "0257b18",
+          "ToLb": "0257b20",
+          "Kwic": "景德中，沙門道原所集景德傳燈錄者，其立名甚當，況有所據。後來諸師所集，或名續燈，或名聯燈、普燈、廣燈，雖各有意趣，然終欠純一",
+          "Curated": true,
+          "AttributionNote": "增集續傳燈錄. Full six-rung exact-turn review identifies Wenxiu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Wenxiu"
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "T/T51/T51n2077.xml",
+        "X/X78/X78n1553.xml",
+        "X/X79/X79n1559.xml",
+        "X/X66/X66n1296.xml",
+        "X/X83/X83n1574.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "傳燈錄",
+        "續燈錄",
+        "廣燈錄",
+        "普燈錄"
+      ]
+    }
+  ]
+}

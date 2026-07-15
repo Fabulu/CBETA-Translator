@@ -1,0 +1,179 @@
+{
+  "Id": "t_192801178305",
+  "SourceTerm": "三界唯心",
+  "CreatedBy": "Codex b033-B",
+  "WrittenUtc": "2026-07-13T12:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the three realms are mind-only",
+      "AlternateTargets": [
+        "the three realms are only mind"
+      ],
+      "SearchAliases": [
+        "three realms are mind-only",
+        "three worlds are mind-only",
+        "three realms are only mind",
+        "all three realms are mind",
+        "three realms and consciousness-only"
+      ],
+      "Status": "preferred",
+      "Explanation": "The three realms are mind-only: a received proposition that Chan records state, quote, and put under public test. Yongming Yanshou’s Record of the Source-Mirror quotes a scripture for the formula and pairs it with the myriad things being consciousness-only; the quoted document, not Yongming, utters the stored headword. Mazu Daoyi states it in his own address before saying that manifold appearances are stamped by one thing and that seen form is seeing mind. Yuanwu Keqin later attributes the same proposition to an unnamed old speaker and discusses the senses and consciousness. Xuansha Shibei asks Luohan Guichen how he understands it; Guichen points to a chair, and both call it wood. Dizang Guichen tells Fayan Wenyi that Fayan habitually states the paired formula, points to a courtyard stone, and asks whether it is inside or outside mind. Baoning Renyong states the pair before pointing to clouds, rain, stream water, and flowers and demanding that the source be investigated. The proposition remains one statement across exposition and encounter, while Zen bends it into chair, stone, and landscape tests rather than leaving it as an unchallenged formula.",
+      "Validation": "multi-source",
+      "Note": "Allowlist count: 248 hits in 88 texts. Assertion, quotation, commentary, and public testing are deployments of one proposition, not different things. The paired consciousness-only formula and the continuation of the chair exchange are related evidence, but the six exact-headword witnesses across five source texts meet depth and spread independently.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0423c25",
+          "ToLb": "0423c26",
+          "Kwic": "經云。三界唯心。萬法唯識。此是所證本理。能詮正宗",
+          "Curated": true,
+          "AttributionNote": "Record of the Source-Mirror (宗鏡錄): Yongming Yanshou introduces the formula with 'a scripture says'; the quoted document voice states that the three realms are mind-only.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "quoted document",
+            "ActorLabel": "quoted scripture voice",
+            "ActorRole": "document voice",
+            "GrammarEvidence": "經云 assigns the formula to a cited document rather than to Yongming Yanshou's own turn.",
+            "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+            "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "compiler",
+                "later-quoter"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0070b08",
+          "ToLb": "0070b09",
+          "Kwic": "故三界唯心。森羅萬象。一法之所印。凡所見色。皆是見心",
+          "MasterName": "Mazu Daoyi",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Mazu Daoyi section: Mazu's address, introduced by ‘one day he told the assembly’ (一日謂眾曰), includes the formula that the three realms are mind-only.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0166a15",
+          "ToLb": "0166a16",
+          "Kwic": "沙問。三界唯心。汝作麼生會。師指倚子曰。和尚喚這箇作甚麼",
+          "MasterName": "Xuansha Shibei",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), biography of Luohan Guichen: Xuansha Shibei asks Guichen how he understands the proposition, and Guichen points to a chair.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuansha Shibei",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0574a11",
+          "ToLb": "0574a13",
+          "Kwic": "上座尋常說三界唯心，萬法唯識。乃指庭下片石曰：且道此石在心內，在心外",
+          "MasterName": "Dizang Guichen",
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, Volumes 1–33 (五燈全書(第1卷-第33卷)), biography of Fayan Wenyi: Dizang Guichen cites Fayan's habitual formula, points to a courtyard stone, and asks whether it is inside or outside mind.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dizang Guichen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0845c17",
+          "ToLb": "0845c19",
+          "Kwic": "保寧勇示眾曰三界唯心萬法唯識檻外雲生簷前雨滴澗水湛如藍山花開似錦此時若不究根源直待當來問彌勒",
+          "MasterName": "Baoning Renyong",
+          "Curated": true,
+          "AttributionNote": "Comprehensive Collection of Linked Pearls of Chan Lineage Verses (禪宗頌古聯珠通集), words explicitly attributed to Baoning Renyong: he states the paired formula, points to the visible landscape, and says failure to investigate the source postpones the question until Maitreya.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baoning Renyong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0206b10",
+          "ToLb": "0206b12",
+          "Kwic": "古人道。三界唯心。萬法唯識。若證佛地。以八識。轉為四智。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Yuanwu Keqin introduces the formula with 'an old one said'; the old speaker is unnamed after all six rungs, and Yuanwu comments afterward.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "old speaker",
+            "ActorLabel": "unnamed old speaker",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "古人道 explicitly assigns the formula to an unnamed old speaker; Yuanwu explains it afterward.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+            "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "later-quoter",
+                "commentator"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2016.xml",
+        "X/X80/X80n1565.xml",
+        "X/X81/X81n1571.xml",
+        "C/C078/C078n1720.xml",
+        "T/T48/T48n2003.xml"
+      ],
+      "RelatedMasters": [
+        "Yongming Yanshou",
+        "Guifeng Zongmi",
+        "Xuansha Shibei",
+        "Luohan Guichen",
+        "Dizang Guichen",
+        "Fayan Wenyi",
+        "Baoning Renyong",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "萬法唯識",
+        "唯心",
+        "心"
+      ]
+    }
+  ]
+}

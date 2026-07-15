@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T14:16:03Z",
+  "role": "focused-author-repair",
+  "sourceReview": "f004-laneB-1024-1029-reviewer5-postrepair.json",
+  "repairScript": "repair_f004_b1024_1027_1029_reviewer5_all.py",
+  "entries": [
+    {
+      "ordinal": 1024,
+      "id": "t_30c5eafab07f",
+      "term": "野狐身",
+      "entrySha256": "9b276dc72256f5ae38bca6fc6ac9b26f0a04d0d5b864a285309b5692679f82ac",
+      "worksheetSha256": "a9205a21ec5860312c5091976991423ad3523afd5355788f782f1198f43183bf",
+      "repairs": [
+        "Removed the structurally impossible attribution of the anonymous former resident teacher as a generic unnamed monk.",
+        "Replaced that weak curated row with Wanru Tongwei’s direct, named public deployment of both the five-hundred-birth wild-fox body and its release.",
+        "Preserved the anonymous former resident and the complete Baizhang case in the evidence-led explanation and explicit limit note; Baizhang was not substituted as speaker.",
+        "Registered Wanru Tongwei as an evidence-backed pending-roster candidate; the actual roster was not edited."
+      ]
+    },
+    {
+      "ordinal": 1027,
+      "id": "t_13bb32cabd43",
+      "term": "弘願",
+      "entrySha256": "774d36d353700279af4f0c67a0a2ac4c6bcd1012c81e080f6937af4eebc222b1",
+      "worksheetSha256": "eb159846211eb4cb16556099b16e8072fac4c80d2421b469a8faefb4dd75bb49",
+      "repairs": [
+        "Removed the prohibited general claim about intended benefit.",
+        "Re-grounded the opening in observable grammar: a vow stated with a wide named object, followed by its attested objects and document genres."
+      ]
+    },
+    {
+      "ordinal": 1029,
+      "id": "t_f9747521d3d7",
+      "term": "授記",
+      "entrySha256": "90a45359690632dba8d398b4896a7ba136203bf37c902346820462e4c509c4ed",
+      "worksheetSha256": "4485ed0d14785449e91af87413c2879f0cb489969f85991825edc5917d166ba3",
+      "repairs": [
+        "Broadened the displayed definition to a prior declaration about what a recipient will later become or realize.",
+        "Kept future buddhahood as recurrent specified content rather than the universal definition.",
+        "Explicitly preserved Boshan’s prediction as content-unstated in the stored line and retained one sense without a noun/verb split."
+      ]
+    }
+  ],
+  "preReviewGate": {
+    "path": "f004-laneB-1024-1027-1029-reviewer5-all-author-gate-v2.json",
+    "sha256": "8ec788cab1a1f3089ce4afffe2c9cae621ff252b5a09e709eda9fe579a9f82f8",
+    "hardPass": true,
+    "exactFullSpans": "18/18",
+    "publicFeedbackFlags": 0,
+    "independentSemanticReviewRequired": true
+  },
+  "integrity": {
+    "selfReviewed": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

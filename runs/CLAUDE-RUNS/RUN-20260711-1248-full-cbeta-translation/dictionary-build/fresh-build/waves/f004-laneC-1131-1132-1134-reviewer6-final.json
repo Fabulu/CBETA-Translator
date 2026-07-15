@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh-independent-full-case-semantic-rereview",
+  "reviewer": "reviewer6",
+  "generatedUtc": "2026-07-15T17:45:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1131, 1132, 1134],
+  "entriesReviewed": 3,
+  "occurrencesReadInFullCase": 21,
+  "exactKwics": 21,
+  "exactFullSpans": 21,
+  "exactSpanFailures": 0,
+  "duplicateOccurrenceRows": 0,
+  "keep": 1,
+  "revise": 2,
+  "reviewMethod": [
+    "Read each of the 21 current occurrences through its complete encounter, address, biography, or compilation unit rather than inheriting the prior verdict.",
+    "Asked who uttered the exact headword-bearing words; a later raiser, record owner, compiler, questioner, respondent, and acting subject were kept distinct.",
+    "Ran zc.verify on every current KWIC and required returned FromLb and ToLb to equal the stored span; every selected normalized span occurs once in its file.",
+    "Compared all seven rows within each entry for duplicate evidence, then reread the current opening, sense boundary, and depth against the cases."
+  ],
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "reviewedEntrySha256": "0b7a54ca60a095a43001914fd999ef8ddbbb2d3ad45d0c04762272e97691c15f",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "uniqueRows": "7/7",
+      "verdict": "REVISE",
+      "proseAndDepth": "The deduplicated two-sentence opening is English-first, appropriately modest, and one corpus-wide sense at depth seven is adequate. The defect is actor attribution, not prose or depth.",
+      "reasons": [
+        "Occurrence 1 is not uttered by a verse compiler. The unit explicitly says Xuansha Shibei addressed the assembly that masters claim to receive people and benefit living beings before posing the three-disabled-person test; Xuansha owns the exact phrase.",
+        "Occurrence 5 is not compiler wording. In Feiyin Tongrong's own assembly address, the marked master turn says that his receiving people and benefiting living beings would be surplus talk if the lay people had already seen through it; Feiyin owns the exact phrase.",
+        "Occurrence 6 is not institutional narration. Konggu Daocheng's marked assembly turn says this is the time to raise the lineage and receive people and benefit living beings; Konggu owns the exact phrase.",
+        "Occurrence 7 is not verse-compiler wording. The marked master address, parallel to occurrence 3, describes Wuzhu Daoren becoming a nun and spreading the teaching, receiving people and benefiting living beings; Tianyin Yuanxiu owns the phrase.",
+        "Occurrences 2, 3, and 4 are currently sound: unnamed monk question; Tianyin Yuanxiu address; biographical narration of Guishan Lingyou."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Xuansha Shibei is the exact utterer in the embedded 舉玄沙示眾 turn; current compiler attribution is wrong.","spanExact":true},
+        {"occurrence":2,"decision":"The unnamed monk utters the headword in the question; Baiyu Jingsi begins the answer afterward.","spanExact":true},
+        {"occurrence":3,"decision":"Tianyin Yuanxiu utters the phrase in his uninterrupted address.","spanExact":true},
+        {"occurrence":4,"decision":"The biographer narrates Guishan Lingyou's thought that solitary residence conflicts with receiving people and benefiting beings.","spanExact":true},
+        {"occurrence":5,"decision":"Feiyin Tongrong utters 山僧接物利生 in his own assembly address; current compiler attribution is wrong.","spanExact":true},
+        {"occurrence":6,"decision":"Konggu Daocheng utters 接物利生 in his own marked address; current institutional-narrator attribution is wrong.","spanExact":true},
+        {"occurrence":7,"decision":"Tianyin Yuanxiu utters the phrase in the parallel address; current verse-compiler attribution is wrong.","spanExact":true}
+      ]
+    },
+    {
+      "ordinal": 1132,
+      "id": "t_e251ef5cbc12",
+      "term": "橫按拄杖",
+      "reviewedEntrySha256": "345d3e4b7fd42f8026ff34219c6a2e327a81e6d9cb59ef0583bfd8ba01d52d64",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "uniqueRows": "7/7",
+      "verdict": "KEEP",
+      "proseAndDepth": "The single English-first opening now appears once, describes the visible crosswise staff action without assigning an outside symbolism, and seven independent full-case actions adequately support one sense.",
+      "reasons": [
+        "All seven headword strings belong to narrator-governed bodily actions, so MasterName correctly remains absent while the performer is a ContextMaster.",
+        "Occurrence 7 is now corrected: Xiangzhou Huayan sees the visiting Linji and holds the staff crosswise in a feigned-sleep posture. Huayan Zhizang is the acting person described; Linji Yixuan is the visiting interlocutor.",
+        "No duplicate row or residual fourfold prose duplication remains."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Narrator describes Foyin Liaoyuan holding the staff crosswise.","spanExact":true},
+        {"occurrence":2,"decision":"Case compiler describes Qinshan Wensui holding the staff crosswise.","spanExact":true},
+        {"occurrence":3,"decision":"Parallel compiler describes Qinshan Wensui's same action in a distinct work.","spanExact":true},
+        {"occurrence":4,"decision":"Narrator describes Rifang Shangzuo replying by holding the staff crosswise.","spanExact":true},
+        {"occurrence":5,"decision":"Narrator describes Yungai Ben crossing the staff on reaching the teaching seat.","spanExact":true},
+        {"occurrence":6,"decision":"Narrator describes Zhenjing Kewen's teaching-seat action.","spanExact":true},
+        {"occurrence":7,"decision":"Narrator describes Huayan Zhizang holding the staff when Linji Yixuan visits; the current actor/context correction is sound.","spanExact":true}
+      ]
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "reviewedEntrySha256": "7d7135cc71b9677457e575e261d638870d219420fddae7d041391ba4b8f3299f",
+      "occurrencesRead": 7,
+      "exactSpans": "7/7",
+      "uniqueRows": "7/7",
+      "verdict": "REVISE",
+      "proseAndDepth": "The fourfold duplicate opening has been collapsed, and one inherited-case sense at seven witnesses is adequate. Five stored actor decisions still mistake the questioner or compiler for the speaker of Yunmen's quoted answer.",
+      "reasons": [
+        "Occurrences 1, 2, 4, 5, and 7 all preserve the explicit case frame: a monk asks Yunmen what it is when the trees wither and leaves fall, and Yunmen answers 體露金風. Yunmen Wenyan is the exact utterer in every one, even when a later master or compiler raises the case.",
+        "Occurrence 3 already assigns the answer correctly to Yunmen Wenyan.",
+        "Occurrence 6 is genuinely different actor grammar: the exact phrase occurs inside a source-anonymous compiled autumn verse, so its compiler/anonymous-verse handling can remain non-named. This is another deployment of the phrase, not a second thing requiring a sense split."
+      ],
+      "cases": [
+        {"occurrence":1,"decision":"Yunmen Wenyan owns the embedded answer; current unnamed-questioner attribution is wrong.","spanExact":true},
+        {"occurrence":2,"decision":"Yunmen Wenyan owns the quoted answer; the later record owner comments after the quotation. Current unnamed-questioner attribution is wrong.","spanExact":true},
+        {"occurrence":3,"decision":"The monk asks and Yunmen Wenyan utters the exact answer; current named attribution is sound.","spanExact":true},
+        {"occurrence":4,"decision":"The compilation explicitly records Yunmen's answer before the collected verses; current unnamed-questioner attribution is wrong.","spanExact":true},
+        {"occurrence":5,"decision":"The Blue Cliff Record explicitly quotes Yunmen's answer; current unnamed-questioner attribution is wrong.","spanExact":true},
+        {"occurrence":6,"decision":"The exact words occur in a source-anonymous compiled autumn verse; the non-named compiler/verse handling is sound.","spanExact":true},
+        {"occurrence":7,"decision":"The compiled case-and-verse unit explicitly quotes Yunmen's answer; current unnamed-questioner attribution is wrong.","spanExact":true}
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "artifactWasAbsentBeforeWrite": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

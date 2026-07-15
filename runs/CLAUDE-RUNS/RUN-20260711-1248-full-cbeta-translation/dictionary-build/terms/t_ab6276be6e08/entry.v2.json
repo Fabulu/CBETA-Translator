@@ -1,0 +1,202 @@
+{
+  "Id": "t_ab6276be6e08",
+  "SourceTerm": "末後句",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the last word or final phrase",
+      "AlternateTargets": ["the last utterance", "a master's final words"],
+      "SearchAliases": [
+        "last word",
+        "final phrase",
+        "last saying",
+        "final words",
+        "last utterance"
+      ],
+      "Status": "preferred",
+      "Explanation": "The last word or final phrase: in Zen records, a stock public question about the decisive final saying, and in death or memorial records, an actual final utterance. Its central case is the Deshan–Yantou story. Xuefeng reports Deshan's conduct to Yantou, who says that Deshan has not yet grasped the last word (老漢未會末後句在). Asked for it, Yantou answers only, “want to know the last word? Just this” (要識末後句，只者是). The phrase becomes the stock question “what is the last word?” (如何是末後句), receiving many recorded answers. Other texts set it beside the first word and middle word, or place it at the last locked barrier. In death and memorial settings, Zhongfeng Mingben criticizes calling seated or standing death “the last word,” Tianning Xipu uses the phrase in his death scene, Foyan Qingyuan invokes his deceased teacher's final phrase, and Sixin Wuxin answers a last-word request with a verse before dying. The sample therefore preserves both deployments of one expression instead of silently making every occurrence chronological or every occurrence technical.",
+      "Validation": "multi-source",
+      "Note": "The phrase occurs more than one thousand times across more than two hundred allowlisted texts. The Deshan–Yantou case recurs across independent records, while the bare challenge and death or memorial uses have their own spread. The former “last word” and “final words at death” targets described a general phrase and a contextual subtype of that same phrase; they remain together because several death-scene examples deliberately use the stock Zen phrase rather than a merely chronological label. Compare the way up and beyond, upward dynamic, last locked barrier, turning phrase, late teacher's last word, memorial morning, and dying seated or standing.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J25/J25nB163.xml",
+          "FromLb": "0229b05",
+          "ToLb": "0229b06",
+          "Kwic": "雪峰舉似巖頭。頭曰：「老漢未會末後句在。」山謂頭曰：「你不肯老僧那？」",
+          "MasterName": "Yantou Quanhuo",
+          "Curated": true,
+          "AttributionNote": "Abridged Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略) reproduces Yantou Quanhuo's verdict that Deshan Xuanjian has not yet grasped the last word."
+        },
+        {
+          "RelPath": "J/J25/J25nB163.xml",
+          "FromLb": "0229b08",
+          "ToLb": "0229b10",
+          "Kwic": "僧到巖頭舉似頭。頭云：「雪峰不會末後句。」僧請益巖頭。頭云：「雪峰與我同條生，不與我同條死。要識末後句，只者是。」",
+          "MasterName": "Yantou Quanhuo",
+          "Curated": true,
+          "AttributionNote": "Abridged Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略) reproduces Yantou Quanhuo's answer: 'Want to know the last word? Just this.'"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0143c24",
+          "ToLb": "0143c24",
+          "Kwic": "小德山未會末後句在。山聞。令侍者喚師去。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): complete-case exact-turn review identifies Yantou Quanhuo as the actor for this occurrence.",
+          "MasterName": "Yantou Quanhuo"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0249b14",
+          "ToLb": "0249b14",
+          "Kwic": "如何是末後句。師曰。雙林樹下。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): inside Xuansha Shibei's section, an unnamed monk asks what the final phrase is; Xuansha answers 'beneath the paired sala trees.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuansha Shibei",
+              "Roles": ["respondent", "section-subject"]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0696a13",
+          "ToLb": "0696a13",
+          "Kwic": "坐脫立亡喚作末後句。",
+          "Curated": true,
+          "AttributionNote": "The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): Zhongfeng Mingben criticizes people who call seated or standing death the 'final phrase' in his own extended address.",
+          "MasterName": "Zhongfeng Mingben"
+        },
+        {
+          "RelPath": "J/J35/J35nB336.xml",
+          "FromLb": "0691c06",
+          "ToLb": "0691c07",
+          "Kwic": "偉哉大丈夫，不會末後句。」遂就寢，右脅而化。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Huigong Xiong (南海寶象林慧弓詗禪師語錄): at death, Tianning Xipu tells the assembly 'a mighty great man does not understand the final phrase' and lies down on his right side.",
+          "MasterName": "Tianning Xipu"
+        },
+        {
+          "RelPath": "J/J33/J33nB287.xml",
+          "FromLb": "0545b15",
+          "ToLb": "0545b15",
+          "Kwic": "聲聲道：『願聞先師末後句！』",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Zixian Jue (自閒覺禪師語錄): in Zixian Jue's invitation for Chuanzi Mi to mount the hall, the unnamed personified Three-Arrivals Pavilion is the staged speaker repeatedly asking to hear the late teacher's final phrase; all six attribution rungs were checked.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "personified pavilion",
+            "ActorLabel": "personified Three-Arrivals Pavilion",
+            "ActorRole": "staged speaker",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zixian Jue",
+              "Roles": ["framing-speaker", "record-owner"]
+            },
+            {
+              "MasterName": "Chuanzi Mi",
+              "Roles": ["invited-hall-speaker"]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0817a16",
+          "ToLb": "0817a16",
+          "Kwic": "忌晨上堂先師當年末後句與人皮下挑出",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Foyan Qingyuan gives the memorial-morning address for his late teacher and says that the teacher's final phrase picked something out from beneath people's skin.",
+          "MasterName": "Foyan Qingyuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": ["deceased-teacher", "subject-of-memorial"]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0613c19",
+          "ToLb": "0613c20",
+          "Kwic": "有乞末後句者。新與偈云。末後一句子。直須心路絕。六根門既空。萬法無生滅。",
+          "Curated": true,
+          "AttributionNote": "Continued Lamp Record (續傳燈錄), in Sixin Wuxin's death biography: an unnamed requester asks for a last word, and Sixin Wuxin answers with the recorded verse. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give the requester's personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "requester",
+            "ActorLabel": "unnamed requester",
+            "ActorRole": "person requesting the last word",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r001-owner3",
+            "ReviewedUtc": "2026-07-14T10:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Sixin Wuxin",
+              "Roles": ["respondent", "biography-subject"]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "J/J25/J25nB163.xml",
+        "X/X80/X80n1565.xml",
+        "B/B25/B25n0145.xml",
+        "J/J35/J35nB336.xml",
+        "J/J33/J33nB287.xml",
+        "C/C077/C077n1710.xml",
+        "T/T51/T51n2077.xml"
+      ],
+      "RelatedMasters": ["Yantou Quanhuo", "Deshan Xuanjian", "Sixin Wuxin"],
+      "RelatedTerms": [
+        "向上一路",
+        "向上機",
+        "末後牢關",
+        "轉身句",
+        "句",
+        "先師末後句",
+        "忌晨",
+        "坐脫立亡",
+        "末後一句"
+      ]
+    }
+  ]
+}

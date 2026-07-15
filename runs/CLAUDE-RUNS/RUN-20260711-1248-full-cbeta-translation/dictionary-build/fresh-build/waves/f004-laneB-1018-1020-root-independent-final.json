@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-rereview",
+  "reviewer": "root-coordinator",
+  "generatedUtc": "2026-07-15T14:29:30Z",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1018, 1020],
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 13,
+  "exactKwics": "13/13",
+  "exactFullSpans": "13/13",
+  "keep": 2,
+  "revise": 0,
+  "entries": [
+    {
+      "ordinal": 1018,
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "reviewedEntrySha256": "b7a537bbf29141f539154bb83b9a36992af44c64f3bd107009451c0412ee05b0",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The final entry distinguishes named master utterers, the unnamed monk questioner, compiler verse, and Pang Yun as an identified non-master utterer with Mazu Daoyi as respondent. Its definition is evidence-led, notes name exact texts and actors, and all seven stored spans verify exactly."
+    },
+    {
+      "ordinal": 1020,
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "reviewedEntrySha256": "89e3ca98df4cacbb737ad2ee831f874a4a7e4456f0629ac1f7ce3812b05b2a81",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 6,
+      "reason": "The final entry separates anonymous headword-bearing questions, impersonal and compiler headings, and Hanyue Fazang's exposition while naming Cian Jingyuan and Langting Jingting as respondents. The lineage definition matches all six cases and every stored span verifies exactly."
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promotionPerformed": false,
+    "mergePerformed": false,
+    "siteTouched": false,
+    "authorReviewerSeparated": true
+  }
+}

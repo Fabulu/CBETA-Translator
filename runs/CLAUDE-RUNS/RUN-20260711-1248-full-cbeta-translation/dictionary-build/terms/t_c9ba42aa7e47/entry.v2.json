@@ -1,0 +1,106 @@
+{
+  "Id": "t_c9ba42aa7e47",
+  "SourceTerm": "掉舉",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "agitation",
+      "AlternateTargets": [
+        "mental agitation",
+        "restless excitation"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, tossing or shaking (掉) and raising up (舉). Dahui directly describes the Chan usage: deliberate attention makes thought-consciousness fly about, one thought continuing another before the previous thought stops, and the teachings call this agitation. Another record contrasts heavy dull sinking, which is hard to rouse, with fierce agitation, which is hard to suppress. It is most often paired with dull sinking as the other condition found in the Chan hall. The record does not make mere absence of both a final credential: when a student says he neither falls into dull sinking nor follows agitation and asks whether this is his entry, the teacher prescribes thirty blows. Gaofeng says dull sinking, agitation, joy, anger, grief, and pleasure are precisely true thusness, buddha-nature, wisdom, and liberation; Daodu calls the paired conditions each person's place for establishing life. The Chan bend is therefore the masters' use of a standard fault-word both as a sharply described condition and as material they refuse to set apart from the named person.",
+      "Validation": "multi-source",
+      "Note": "The corpus has 50 exact occurrences in 28 allowlisted files. Direct definition and contrast evidence is multi-source. It commonly occurs in the fixed pair “dull sinking and agitation” (昏沈掉舉); spelling of the first member varies, while the written form for “agitation” (掉舉) is stable.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0884c19",
+          "ToLb": "0884c21",
+          "Kwic": "忘懷則墮在黑山下鬼窟裏。教中謂之昏沈。著意則心識紛飛。一念續一念。前念未止後念相續。教中謂之掉舉。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "Dahui directly describes agitation as deliberate attention in which thought-consciousness flies and one thought succeeds another."
+        },
+        {
+          "RelPath": "J/J38/J38nB431.xml",
+          "FromLb": "0978b06",
+          "ToLb": "0978b07",
+          "Kwic": "所謂昏沉厚重，難以策發，掉舉猛利，不可抑伏",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yunfeng Tizong Ning (雲峰體宗寧禪師語錄): in his Kaiyuan Monastery discourse, Yunfeng Tizong Ning defines agitation as fierce and difficult to suppress.",
+          "MasterName": "Yunfeng Tizong Ning"
+        },
+        {
+          "RelPath": "J/J38/J38nB431.xml",
+          "FromLb": "0976a19",
+          "ToLb": "0976a20",
+          "Kwic": "不落昏沉，不隨掉舉，目前歷歷明明，未審是學人入處否？」師云：「腳跟下好與三十棒。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yunfeng Tizong Ning (雲峰體宗寧禪師語錄): an unnamed student claims not to fall into dull sinking or follow agitation; Yunfeng Tizong Ning prescribes thirty blows. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning student.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunfeng Tizong Ning",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning student",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X70/X70n1401.xml",
+          "FromLb": "0708a13",
+          "ToLb": "0708a13",
+          "Kwic": "昬沈掉舉，喜怒哀樂，即是真如佛性，智慧解脫。",
+          "MasterName": "Gaofeng Yuanmiao",
+          "Curated": true,
+          "AttributionNote": "Gaofeng lists dull sinking, agitation, and the four emotions as precisely true thusness, buddha-nature, wisdom, and liberation."
+        },
+        {
+          "RelPath": "X/X72/X72n1443.xml",
+          "FromLb": "0739c02",
+          "ToLb": "0739c03",
+          "Kwic": "尋常參堂中，不是昏沈，便是掉舉。不知昏沈、掉舉，就是各人安身立命之所。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Zongbao Daodu (宗寶道獨禪師語錄): in his instruction to the assembly, Zongbao Daodu says Chan-hall sitting commonly presents dull sinking or agitation.",
+          "MasterName": "Zongbao Daodu"
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1998A.xml",
+        "J/J38/J38nB431.xml",
+        "X/X70/X70n1401.xml",
+        "X/X72/X72n1443.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "Gaofeng Yuanmiao"
+      ],
+      "RelatedTerms": [
+        "昏沈",
+        "佛性"
+      ]
+    }
+  ]
+}

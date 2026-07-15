@@ -1,0 +1,162 @@
+{
+  "generatedUtc": "2026-07-15T14:16:39.067137+00:00",
+  "elapsedSeconds": 6.959,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_88de22b8a40e",
+      "term": "本來人",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+      "sha256": "b7a537bbf29141f539154bb83b9a36992af44c64f3bd107009451c0412ee05b0"
+    },
+    {
+      "id": "t_baaf8fde82d2",
+      "term": "法眼宗",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+      "sha256": "89e3ca98df4cacbb737ad2ee831f874a4a7e4456f0629ac1f7ce3812b05b2a81"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 13,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88de22b8a40e/entry.v2.json",
+        "id": "t_88de22b8a40e",
+        "term": "本來人",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baaf8fde82d2/entry.v2.json",
+        "id": "t_baaf8fde82d2",
+        "term": "法眼宗",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.195,
+    "attribution": 1.416,
+    "publicFeedback": 0.303,
+    "depthSense": 0.793,
+    "countClaims": 2.373,
+    "workSourceValidation": 0.362,
+    "corpusBaseline": 0.331,
+    "frozenHistoricalTerms": 1.12,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.416,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 13,
+        "named_occurrences": 5,
+        "context_master_links": 12,
+        "attribution_notes": 13,
+        "deferred_non_roster": 2,
+        "pending_roster_master": 2,
+        "deferred_non_roster_context": 6,
+        "pending_roster_context_master": 6,
+        "actor_reviewed_unnamed": 4,
+        "actor_narrated": 2,
+        "actor_identified_non_master": 1,
+        "actor_impersonal": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 13,\n    \"named_occurrences\": 5,\n    \"context_master_links\": 12,\n    \"attribution_notes\": 13,\n    \"deferred_non_roster\": 2,\n    \"pending_roster_master\": 2,\n    \"deferred_non_roster_context\": 6,\n    \"pending_roster_context_master\": 6,\n    \"actor_reviewed_unnamed\": 4,\n    \"actor_narrated\": 2,\n    \"actor_identified_non_master\": 1,\n    \"actor_impersonal\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.303,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpim275wrm.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.793,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_88de22b8a40e",
+        "t_baaf8fde82d2"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_88de22b8a40e\",\n    \"t_baaf8fde82d2\"\n  ]\n}\nreport: /tmp/tmpmueaah91-depth.json\n",
+    "report": "/tmp/tmpmueaah91-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.373,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 2,
+      "candidatePhraseCount": 1,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 2,\n  \"candidatePhraseCount\": 1,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.362,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.331,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.12,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_88de22b8a40e",
+    "t_baaf8fde82d2"
+  ],
+  "strictRosterScopeIds": [
+    "t_88de22b8a40e",
+    "t_baaf8fde82d2"
+  ]
+}

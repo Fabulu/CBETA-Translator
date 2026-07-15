@@ -1,0 +1,128 @@
+{
+  "Id": "t_db4a932ce500",
+  "SourceTerm": "大悟",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "great awakening",
+      "AlternateTargets": [
+        "to be greatly awakened",
+        "thorough awakening",
+        "to wake up completely"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Explanation": "(大) great / thorough + (悟) to wake up, to realize. The decisive, complete breakthrough, set against (小悟) (small, partial awakenings). Overwhelmingly a verb of the breakthrough moment: (於言下大悟) 'was greatly awakened at [these] words' — the classic form being Linji under Dayu (師於言下大悟…元來黃檗佛法無多子, 'was greatly awakened and said: so there isn't much to Huangbo's Buddha's teaching after all'). The fixed noun phrase (大悟底人) 'a greatly-awakened person' names one who has had it. It is waking up thoroughly. The case (大悟底人為甚麼卻迷) ('the greatly-awakened person, why do they fall back into delusion?') pairs (大悟) with (迷) (delusion), answered (破鏡不重照)，(落花難上枝) ('a broken mirror does not shine again; fallen blossoms do not climb back onto the branch'). Allowlist grep counts fix the breakthrough-verb profile: 2,711 hits in 308 of 462 texts; (言下大悟) 446 (師於言下大悟 151), (豁然大悟) 353, (忽然大悟) 205, (大徹大悟) 41, (遂大悟) 37, against (小悟) 58. The (迷) case's oldest lamp witness is the Zutang-ji, with archaic (什摩): (問)：「(大悟底人為什摩卻迷)？」(師云)：「(破鏡不重照)，(落花難上枝)。」 (B25n0144), and the (大悟底人) family (16 hits in 14 texts) extends to other test-questions: (僧問)：「(大悟底人還有憎愛也無)？」(師云)：「(能愛人)，(能惡人)。」 ('does the greatly-awakened person still have hatred and love? — He can love people, and can hate people', J10nA158). The record also carries the word in Yongjia's (證道歌) maxim (大象不遊於兔徑)。(大悟不拘於小節) ('the great elephant does not travel the rabbit's path; great awakening is not bound by small details', T48n2014; 大悟不拘於小節 13 hits, quoted e.g. as 故永嘉亦云。大悟不拘於小節, B25n0145), and as the stock question (如何是大悟無道) (大悟無道 22 hits), in several records asked in series with (如何是大富無糧) and answered divergently: (貧恨一身多) (J28nB220), (莫妄想) (X82n1571), (賊) (X68n1319). Dahui's record ties (悟) to doubt: (今時學道者多不自疑)。(却疑他人)。(所以道)。(大疑之下必有大悟) ('students today mostly do not doubt themselves — they doubt others; hence the saying: under great doubt there is necessarily great awakening', T47n1998A; 大疑大悟 33 hits in 28 texts).",
+      "Note": "The famous self-report (大悟十八遍)，(小悟不計數) ('eighteen great awakenings, countless small ones'), popularly credited to Dahui Zonggao, is explicitly flagged in the Zen record (J10nA158) as (本是宋儒言)，(非大慧所說) — 'actually a Song-Confucian's phrase, NOT spoken by Dahui.' Do NOT credit the eighteen-awakenings line to Dahui as authentic. The base word (大悟) is itself rock-solid multi-source; only this quantified self-report's Dahui-attribution is disputed.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0299b28",
+          "ToLb": "0299b29",
+          "Kwic": "師於言下大悟云。元來黃檗佛法無多子。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "(景德傳燈錄), (臨濟義玄) section: (師) = Linji, awakened at Dayu's words after Huangbo's blows. The verbal-breakthrough use (於言下大悟)."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0271b06",
+          "ToLb": "0271b07",
+          "Kwic": "大悟底人為甚麼却迷。師曰。破鏡不重照。落花難上枝。",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Huayan master Xiujing (Hyujeong) section. Emperor Zhuangzong is the exact questioner: after summoning Xiujing to court, Zhuangzong asks a sequence of questions, including why a greatly awakened person becomes confused again; Hyujeong supplies the mirror-and-fallen-flower reply.",
+          "MasterName": "Emperor Zhuangzong",
+          "ContextMasters": [
+            {
+              "MasterName": "Hyujeong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0564a27",
+          "ToLb": "0564a28",
+          "Kwic": "舉僧問華嚴：「大悟底人為甚麼卻迷？」嚴云：「破鏡不重照，落花難上枝。」",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): in the case raised by Tianyin Yuanxiu, an unnamed monk asks Huayan Xiujing why a greatly awakened person nevertheless becomes confused; Huayan answers with the broken mirror and fallen flower. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Huayan Xiujing",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0074a07",
+          "ToLb": "0074a08",
+          "Kwic": "大悟十八遍，小悟不計數，本是宋儒言，非大慧所說。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄): the byline to the Inscription for the Pagoda of Miyun Yuanwu's Bequeathed Robe at Jinsu names Tang Shiji as author; Tang says the claim of eighteen great awakenings and uncounted small awakenings came from a Song Confucian and was not spoken by Dahui Zonggao.",
+          "MasterName": "Tang Shiji",
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "subject-of-inscription"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "denied-speaker"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "X/X80/X80n1565.xml",
+        "J/J25/J25nB171.xml",
+        "J/J10/J10nA158.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "大悟底人",
+        "小悟",
+        "迷"
+      ]
+    }
+  ]
+}

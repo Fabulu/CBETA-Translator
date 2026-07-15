@@ -1,0 +1,13 @@
+import json,sys
+from pathlib import Path
+R=Path(__file__).resolve().parents[2];sys.path.insert(0,str(R));import zc
+def add(eid,o):
+ p=R/'fresh-build/entries'/eid/'evidence.draft.json';d=json.loads(p.read_text());s=d['Entry']['Senses'][0];s['Occurrences'].append(o);src=list(dict.fromkeys(x['RelPath'] for x in s['Occurrences']));s['SourceTexts']=src;s['Note']=f"{len(s['Occurrences'])} exact evidence rows from {len(set(zc.work_id(x) for x in src))} independent works are stored for this sense.";s['DraftEvidence']['OpeningClaimEvidenceKeys']=[f'o{i}' for i in range(1,len(s['Occurrences'])+1)];s['DraftEvidence']['IndependentWorkIds']=list(dict.fromkeys(zc.work_id(x) for x in src));p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+def named(rel,kw,name,note):
+ v=zc.verify(rel,kw);return {'RelPath':rel,'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':kw,'MasterName':name,'Curated':True,'AttributionNote':note,'ContextMasters':[{'MasterName':name,'Roles':['utterer']}],'DraftActorProof':{'ExactHeadwordClause':kw,'SpeechFrame':'The marked hall saying contains the exact headword wording.','FullCaseDecision':f'{name} owns the exact headword-bearing statement.'}}
+def narrated(rel,kw,note):
+ v=zc.verify(rel,kw);return {'RelPath':rel,'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':kw,'MasterName':None,'Curated':True,'AttributionNote':note,'ActorAttribution':{'Status':'narrated','Kind':'compiler narration','ActorLabel':'source narrator','ActorRole':'compiler','GrammarEvidence':'Continuous source narration supplies the headword-bearing report without quoting a named speaker.','ReviewedBy':'Codex f001 lane A depth repair','ReviewedUtc':'2026-07-15T00:00:00Z'},'ContextMasters':[],'DraftActorProof':{'GrammaticalSubject':'the source narrator','FullCaseDecision':'The source narrator owns the exact headword-bearing report.'}}
+add('t_7efdfe4296c6',named('J/J34/J34nB311.xml','一句父母未生前','Juelang Daosheng','Juelang Daosheng, in the Complete Record of Chan Master Tianjie Juelang Daosheng (天界覺浪盛禪師全錄), presents one phrase as “before one’s parents gave birth.”'))
+add('t_ac2e2908084d',narrated('X/X82/X82n1571.xml','直指人心，見性成佛','Source narration in the Complete Collection of the Five Lamps (五燈全書) places seeing nature and becoming Buddha in the transmitted Bodhidharma formula.'))
+add('t_33d49f4710be',narrated('X/X83/X83n1578.xml','忽聞鶯聲，頓然開悟','Source narration in the Records Pointing at the Moon (指月錄) reports an unnamed monastic suddenly opening into awakening on hearing an oriole.'))
+add('t_427fa502a11b',named('X/X82/X82n1571.xml','免見諸人話墮','Fachang Yiyu','Fachang Yiyu, quoted in the Complete Collection of the Five Lamps (五燈全書), says strict rules spare the assembly from speech-slips.'))

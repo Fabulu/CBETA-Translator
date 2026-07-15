@@ -1,0 +1,123 @@
+{
+  "Id": "t_33d49f4710be",
+  "SourceTerm": "開悟",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to open into awakening",
+      "AlternateTargets": [
+        "become enlightened",
+        "come to awakening",
+        "to open [someone] to awakening"
+      ],
+      "Status": "preferred",
+      "Explanation": "(開) 'open' + (悟) 'awaken/realize': to open into awakening — the event of a person coming to realization. In the Chan record it names the moment understanding opens, most often marked as sudden and triggered by a teacher's word or gesture: (豁然開悟) ('all at once opened into awakening'), (心忽開悟) ('the mind suddenly opened into awakening'), (遇百丈開悟) ('met Baizhang and opened into awakening'), (其僧於是開悟) ('the monk thereupon opened into awakening'). Yongming reads the opening as instantaneous — (若開悟時)，(不隔剎那)，(便成佛果) ('when one opens into awakening, not a kṣaṇa apart, one accomplishes the fruit of Buddhahood'). The same word is also used transitively/causatively — (令汝等開悟) ('to make you all open into awakening'), (開悟眾生) — with no change of core meaning, only of who does the awakening. Distinguish (大悟) (great awakening, esp. the stock 言下大悟 'greatly awakened at the words') and (頓悟) (sudden awakening), which name the same event under different emphasis; (見性成佛) names its content. The corpus's own collocation pattern draws that line: the words-trigger formula (言下) pairs almost exclusively with (大悟) (言下大悟 450 hits in 148 allowlist texts, against 言下開悟 4 hits), while (開悟) takes the suddenness adverbs — (豁然開悟) 68 hits in 38 texts, (忽然開悟) 18 in 16.",
+      "Validation": "multi-source",
+      "Note": "Very widely attested (566 raw occurrences across 147 allowlist texts). Uniform core meaning; no master bends it, so a single corpus-wide sense is honest. The intransitive 'X opened into awakening' is dominant; a transitive-causative valence ('to open others to awakening', 令汝等開悟 / 開悟眾生, especially in Yongming's 宗鏡錄 and Mazu's address to the assembly) is the same lexical sense and is documented in the occurrences. Curated witnesses span three independent texts: (景德傳燈錄) (T51n2076), (五燈會元) (X80n1565), and (宗鏡錄) (T48n2016). Collocation counts (462-text allowlist grep): (豁然開悟) 68 hits in 38 texts; (忽然開悟) 18 in 16; (言下開悟) 4 in 3 — versus (言下大悟) 450 in 148 and (豁然大悟) 353 in 126; the transitive (開悟眾生) 3 in 2.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0268a10",
+          "ToLb": "0268a11",
+          "Kwic": "行脚遇百丈開悟。却迴本寺。",
+          "Curated": true,
+          "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Guling Shenzan biography. Guling Shenzan is the exact grammatical subject who, while traveling, meets Baizhang Huaihai and opens into awakening before returning to his home temple.",
+          "MasterName": "Guling Shenzan",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "teacher-met"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0066a12",
+          "ToLb": "0066a12",
+          "Kwic": "殃崛聞之。心忽開悟。遂棄刃。投佛出家。",
+          "Curated": true,
+          "AttributionNote": "五燈會元. Full six-rung exact-turn review identifies Angulimala as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Angulimala",
+          "ContextMasters": [
+            "Nanyang Huizhong"
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0554a19",
+          "ToLb": "0554a20",
+          "Kwic": "若開悟時。不隔剎那。便成佛果。",
+          "MasterName": "Yongming Yanshou",
+          "Curated": true,
+          "AttributionNote": "(宗鏡錄), Yongming Yanshou: awakening is instantaneous — 'when one opens into awakening, not a kṣaṇa apart, one accomplishes the fruit of Buddhahood.' The non-gradual, instantaneous reading."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0070b03",
+          "ToLb": "0070b04",
+          "Kwic": "傳上乘一心之法。令汝等開悟。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Mazu Daoyi's address to his assembly. Mazu is the exact speaker who says that Bodhidharma transmitted the highest-vehicle one-mind teaching to open the listeners into awakening.",
+          "MasterName": "Mazu Daoyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "named-subject",
+                "transmitter"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0324c09",
+          "ToLb": "0324c10",
+          "Kwic": "搖三五下作蟬響聲。其僧於是開悟。",
+          "Curated": false,
+          "AttributionNote": "景德傳燈錄. Full six-rung exact-turn review identifies Unnamed monk awakened by the cicada-like sound as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk awakened by the cicada-like sound",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:48:19.232189Z"
+          },
+          "ContextMasters": [
+            "Touzi Ganwen"
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2016.xml",
+        "X/X78/X78n1556.xml",
+        "B/B25/B25n0145.xml"
+      ],
+      "RelatedMasters": [
+        "Yongming Yanshou"
+      ],
+      "RelatedTerms": [
+        "大悟",
+        "頓悟",
+        "見性成佛",
+        "見性"
+      ]
+    }
+  ]
+}

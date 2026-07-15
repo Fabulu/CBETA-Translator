@@ -1,0 +1,110 @@
+{
+  "Id": "t_461377f9b1da",
+  "SourceTerm": "顧鑒咦",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "look—‘look!’—‘hah!’",
+      "AlternateTargets": [
+        "Yunmen's look—‘look!’—‘hah!’",
+        "look—‘reflect!’—‘hah!’"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, ‘look back / look!’ (顧), ‘look, inspect, or reflect!’ (鑒), and the exclamation ‘hah!’ (咦). The headword occurs 22 times in 17 allowlisted texts; the graph variant ‘look—look!—hah!’ (顧鑑咦, using 鑑 for ‘look!’) occurs 12 times in 10. Yunmen's own record describes the interaction: he sometimes looked toward a monk and said ‘look!’; when the monk prepared to answer, Yunmen said ‘hah!’; the monasteries consequently named Yunmen ‘look—look!—hah!’ A collected transmission states the same sequence and adds that Deshan Yuanming later removed ‘look back’ (顧) and called the shortened form ‘drawn look’ (抽顧). Later texts use the compact phrase as a named case, ask ‘at meeting face to face, how is look—look!—hah!?,’ and place it alongside Yunmen's other characteristic responses. The punctuation and speaker sequence matter: this is a recorded look and two utterances, not an abstract three-word maxim.",
+      "Validation": "multi-source",
+      "Note": "Zen bends two ordinary looking verbs and an exclamation into the stable monastic name for Yunmen's repeated encounter sequence. ‘Look—look!—hah!’ written with the first graph for ‘look!’ (顧鑒咦) and the same phrase written with its witness variant (顧鑑咦) are graph variants; ‘drawn look’ (抽顧) is the later shortened form. ‘Reflect’ is retained only as an alternate lexical possibility for ‘look!’ (鑒); the explicit narratives foreground Yunmen saying the word while looking at a monk, so ‘look!’ is primary. Later aggressive metaphors applied to the sequence are recorded as later comments, not its definition.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J24/J24nB138.xml",
+          "FromLb": "0380c24",
+          "ToLb": "0380c25",
+          "Kwic": "師有時顧視僧曰：「鑒。」僧擬對之，則曰：「咦。」叢林因目師為顧鑒咦。",
+          "Curated": true,
+          "AttributionNote": "雲門匡真禪師語錄: complete-case exact-turn review identifies Yunmen Wenyan as the actor for this occurrence.",
+          "MasterName": "Yunmen Wenyan"
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0805c23",
+          "ToLb": "0806a01",
+          "Kwic": "雲門每見僧必顧視曰鑒僧擬議乃曰咦後德山圓明大師刪去顧字謂之抽顧叢林目雲門顧鑒咦",
+          "Curated": true,
+          "AttributionNote": "禪宗頌古聯珠通集: complete-case exact-turn review identifies Yunmen Wenyan as the actor for this occurrence.",
+          "MasterName": "Yunmen Wenyan"
+        },
+        {
+          "RelPath": "X/X85/X85n1593.xml",
+          "FromLb": "0501b13",
+          "ToLb": "0501b14",
+          "Kwic": "僧問：覿面相逢處，如何顧鑒咦？乞師垂半偈，免使後人疑。",
+          "Curated": true,
+          "AttributionNote": "禪宗正脉. an unnamed questioning monk is the exact actor. Record of Lineage Pivot Essentials (宗門統要續集), Zifu Quan section. An unnamed monk is the exact speaker who asks how one looks after the encounter face to face and requests half a verse; Zifu Quan answers him. All six rungs leave the questioning monk personally unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zifu Quan",
+              "Roles": [
+                "respondent",
+                "section-master"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300 research-residual-six",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0777a16",
+          "ToLb": "0777a17",
+          "Kwic": "雲門顧鑒咦。太行山前，白日打劫。顧鑒咦，慣作賊，也能殺，也能活。",
+          "Curated": true,
+          "AttributionNote": "雲溪俍亭挺禪師語錄, 舉古. Langting Jingting is the exact commentator and verse author: after explicitly raising Yunmen's 'look, inspect, yi' case, Langting supplies the stored appraisal and repeats the phrase in his own comment.",
+          "MasterName": "Langting Jingting",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-cited",
+                "case-source"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "J/J24/J24nB138.xml",
+        "C/C078/C078n1720.xml",
+        "X/X85/X85n1593.xml",
+        "J/J33/J33nB294.xml",
+        "T/T48/T48n2006.xml"
+      ],
+      "RelatedMasters": [
+        "Yunmen Wenyan",
+        "Deshan Yuanming"
+      ],
+      "RelatedTerms": [
+        "抽顧",
+        "一字關",
+        "函蓋乾坤",
+        "截斷眾流",
+        "隨波逐浪"
+      ]
+    }
+  ]
+}

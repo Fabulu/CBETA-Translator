@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "f003-c-revise24-repair-ledger-v1",
+  "generatedUtc": "2026-07-15T06:29:23.122546+00:00",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    831,
+    840
+  ],
+  "role": "repair-author",
+  "repairCount": 24,
+  "untouchedKeepCount": 26,
+  "allKeepsByteIdentical": true,
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+    "sha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+    "hardPass": true,
+    "exactKwic": 329
+  },
+  "repairs": [
+    {
+      "ordinal": 831,
+      "id": "t_663eefaa4ad7",
+      "term": "偏正",
+      "entrySha256": "b55d61dfae2289b2ab92c4a846eb0873899dffdbc2cb57d663fb37c5b15c12c0",
+      "evidenceDraftSha256": "8018f60e165b60ebe7cc8d974ecb225aca491170ed999b873622aaddbddcedd1",
+      "compileReportSha256": "6482064e3225848bccc4d081259572bfdf294568e87d37cb308bc0b13480a275",
+      "occurrences": 6
+    },
+    {
+      "ordinal": 832,
+      "id": "t_589f52acc0b0",
+      "term": "答話",
+      "entrySha256": "f7b3ea29425edc4c689c03f7b94989bd51b482e24fefb91a469585560aa46619",
+      "evidenceDraftSha256": "3d9e47b90e78d46da0150a1d7bbe9995afab6e6d4a213a1f8e5374aeca84d65d",
+      "compileReportSha256": "3b6767838bfc6b6b9cafe3af99b92c74b740c2b090c6a56d66c434cf8a5f9462",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 837,
+      "id": "t_bd0ba96ae735",
+      "term": "可惜",
+      "entrySha256": "7f8ca4b7bf9e233e55b9f807666eaee1c6716217f8ce6e54b31ba94315603612",
+      "evidenceDraftSha256": "e4763bcd3a94cf2376fd577f6c1dd955009978cc6fbd87096e0c36df3fb78418",
+      "compileReportSha256": "8f96251d41bde40527f727fe71a15b45f09c25b0fb71ad505814de454a399cf4",
+      "occurrences": 7
+    },
+    {
+      "ordinal": 840,
+      "id": "t_84406e0eca53",
+      "term": "脚跟",
+      "entrySha256": "64325209c79a8451692acfc58615c29194ed4bd5ac1c50ea398d966f69f651d8",
+      "evidenceDraftSha256": "42ee9c2de7a12920374214be628d75697558c6d59acc26b15e14ff06e0453569",
+      "compileReportSha256": "90a85d127e07e152d1a1ea794a43c841374d4e37b990ec99f61b9dc06a812a38",
+      "occurrences": 7
+    }
+  ],
+  "untouchedKeeps": [
+    {
+      "ordinal": 833,
+      "id": "t_258b079d8359",
+      "term": "女子出定",
+      "entrySha256": "a93c5f045d44582809148d8da0f6a83371ef3a813c32d76500b8e382ff58aa92",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 834,
+      "id": "t_a842c76ef637",
+      "term": "阿那箇",
+      "entrySha256": "80c9d4fcbac88346c85f7c3ce6865bf33db77616f9d290dedc14c1d406dd492f",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 835,
+      "id": "t_baf1c6b9db60",
+      "term": "如意",
+      "entrySha256": "2f20528791c190a84ff7b29c471e47a7bc0bc7b8675f3947106bffedfa4f4bb5",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 836,
+      "id": "t_65491dc99795",
+      "term": "庫司",
+      "entrySha256": "b20e296ee58ae1a046570578c7a6d7de47b53820a123c5a02e517f0ea37c86fa",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 838,
+      "id": "t_3b9857d1cc19",
+      "term": "退院",
+      "entrySha256": "5d8b4f5c2ebc5208a89f3578be8192b80c763b147d148582bd3611a54be4ec34",
+      "byteIdentical": true
+    },
+    {
+      "ordinal": 839,
+      "id": "t_7c6a61681198",
+      "term": "投機",
+      "entrySha256": "a7f8f5f6e9a976d8e68e0de7159585e8ac3efdb175443e815ef4e4c8697167ff",
+      "byteIdentical": true
+    }
+  ]
+}

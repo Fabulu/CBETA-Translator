@@ -1,0 +1,109 @@
+{
+  "Id": "t_207efae5f6bd",
+  "SourceTerm": "死句",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a dead phrase",
+      "AlternateTargets": [
+        "a lifeless phrase",
+        "dead words"
+      ],
+      "Status": "preferred",
+      "Explanation": "Literally, a \"dead\" (死) phrase or utterance (句): \"a dead phrase,\" attested 372 times in 116 allowlisted texts. Its primary corpus definition is contrastive: \"speech within speech is called a dead phrase; speech without speech is called a living phrase\" (語中有語名為死句，語中無語名為活句). A later record defines the dead category as what \"falls into verbal explanation, a track of reasoning, thought, and distinguishing\" (落言詮、理路、思惟、分別者，謂之死句). The Blue Cliff Record transmits the instruction \"investigate the living phrase; do not investigate the dead phrase\" (參活句，莫參死句), adding, \"recognition under a living phrase is never forgotten; recognition under a dead phrase cannot save oneself\" (活句下薦得，永劫不忘；死句下薦得，自救不了). Direct questions receive different recorded answers: Baofeng Shanqing answers \"what is a dead phrase?\" with \"obtained within life\" (如何是死句；活中得). A later Deshan record explicitly lists \"one speck, one buddha-land; one leaf, one Shakyamuni,\" \"raise the brows and blink the eyes; raise a finger and raise the whisk,\" and \"mountains, rivers, and the great earth, without the least error\" as dead phrases. These are the texts' definitions, examples, and answers; this entry adds no further classification.",
+      "Validation": "multi-source",
+      "Note": "The paired headword \"living phrase\" (活句) occurs 412 times. \"Investigate the dead phrase\" (參死句) occurs 82 times, \"under the dead phrase\" (死句下) 29 times, and the third member \"a phrase neither dead nor living\" (不死不活句) 18 times. Gulin Qingmao also records the reversal \"a dead phrase is precisely a living phrase; a living phrase is precisely a dead phrase\" (死句即是活句，活句即是死句), so this entry reports each text's classification rather than assigning the label independently.",
+      "Occurrences": [
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0895a19",
+          "ToLb": "0895a20",
+          "Kwic": "語中有語名為死句語中無語名為活句",
+          "MasterName": "Dongshan Shouchu",
+          "Curated": true,
+          "AttributionNote": "In Dongshan Shouchu's record: \"speech within speech is called a dead phrase; speech without speech is called a living phrase.\""
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0161a19",
+          "ToLb": "0161a20",
+          "Kwic": "須參活句。莫參死句。活句下薦得。永劫不忘。死句下薦得。自救不了。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Yuanwu's Blue Cliff Record prose: \"one must investigate the living phrase, not investigate the dead phrase. Recognition under a living phrase is never forgotten; recognition under a dead phrase cannot save oneself.\""
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0133b21",
+          "ToLb": "0133b22",
+          "Kwic": "如何是活句？師云：死中得。云：如何是死句？師云：活中得。",
+          "Curated": true,
+          "AttributionNote": "聯燈會要, Baofeng Shanqing section. The exact headword-bearing speaker is an unnamed questioning monk who asks first for the living phrase and then the dead phrase. All six rungs leave him unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baofeng Shanqing",
+              "Roles": [
+                "respondent",
+                "record-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X73/X73n1457.xml",
+          "FromLb": "0864c06",
+          "ToLb": "0864c07",
+          "Kwic": "落言詮．理路．思惟．分別者，謂之死句。",
+          "Curated": true,
+          "AttributionNote": "Mailang Minghuai's Difficult Questions about the Chan Lineage (雲門麥浪懷禪師宗門設難). Mailang Minghuai is the exact answerer and expository speaker: responding to a question about live and dead phrases, he defines a dead phrase as one that falls into verbal explanation, a path of principle, conceptual thought, and discrimination. Xu Yuanzhao is the recorder, not the speaker.",
+          "MasterName": "Mailang Minghuai"
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0114a06",
+          "ToLb": "0114a06",
+          "Kwic": "揚眉瞬目，舉指竪拂，是死句。",
+          "MasterName": "Deshan Yuanming",
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Deshan Yuanming section (鼎州德山緣密圓明禪師): Deshan Yuanming says, ‘Raising the brows and blinking the eyes; raising a finger and raising the whisk—these are dead phrases.’ This is not Deshan Xuanjian."
+        }
+      ],
+      "SourceTexts": [
+        "C/C077/C077n1710.xml",
+        "T/T48/T48n2003.xml",
+        "X/X79/X79n1557.xml",
+        "X/X73/X73n1457.xml",
+        "X/X81/X81n1568.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Shouchu",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "活句",
+        "不死不活句",
+        "參禪",
+        "竪拂"
+      ]
+    }
+  ]
+}

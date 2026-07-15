@@ -1,0 +1,100 @@
+{
+  "Id": "t_7efdfe4296c6",
+  "SourceTerm": "父母未生前",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "before your father and mother were born",
+      "AlternateTargets": [
+        "before your parents gave birth to you",
+        "before you were born",
+        "prior to your birth"
+      ],
+      "Explanation": "Literally 'before father and mother had [borne you]' — the time before you were conceived and born. A stock question-clause of the record, asked about oneself prior to birth. Its dominant form is the pairing with (本來面目) — (父母未生前本來面目) ('your original face before your father and mother were born') — and its equivalents (那箇是你本來面目) ('which one is your original face?') and the bare (畢竟是什麼) ('ultimately, what is it?'). It appears in the surname pun of the layman surnamed Wan — (弟子姓萬)，(未審父母未生前姓甚麼) ('your disciple is surnamed Wan; but before my parents were born, what was my surname?'). As a set phrase (話頭, 'word-head') it is what one is told to investigate (參) and keep raising (提撕) — (幻有正傳) (Huanyou Zhengchuan) 'habitually made people investigate: what is my original face before my father and mother were born.' In the corpus an awakening-verse answers it with (本來無一物) ('originally not a single thing'). The clause is completed by a range of attested heads: …(本來面目), …(消息) ('news'), …(一句) ('a single line'), …(一著) ('a single move'), …(本來底佛) ('the original Buddha') — the last answered (本來無佛) ('originally there is no Buddha', 雪竇石奇禪師語錄). Recorded answers to the bare challenge include (八十翁翁輥繡毬) ('an eighty-year-old granddad rolls the embroidered ball', to 如何是父母未生前一句, 季總徹禪師語錄) and (風生壁下寒) ('wind rises — cold beneath the wall', 入就瑞白禪師語錄). The texts themselves pair the clause against (已生後) / (已生底) ('after being born'): (破山) (Poshan) answers (如何是父母未生前消息) ('what is the news from before father and mother were born?') with (金剛與泥神揩背) ('a vajra guardian scrubs a clay god's back') and the paired (如何是已生後消息) ('what is the news from after birth?') with (烏龜撞著石點頭) ('a tortoise bumps a stone and nods', 破山禪師語錄); another record answers (如何是父母未生前本來面目) ('what is the original face before father and mother were born?') with (屋北鹿獨宿) ('north of the hut a deer sleeps alone') and the paired (如何是已生底) ('what about after being born?') with (溪西雞齊啼) ('west of the stream the cocks crow together', 懶石聆禪師語錄). In a palace dialogue preserved in (古尊宿語錄) the master puts the question to the emperor himself — (師云如何是父母未生前一句上曰昨夜今朝又明日) ('the master said: what is the line before father and mother were born? His Majesty said: last night, this morning, and again tomorrow'). See (本來面目) ('original face', its constant partner) and (見性) ('seeing the nature').",
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Overwhelmingly attested (771 raw occurrences across 201 allowlist texts, tags/notes/rdg stripped) and uniform — no master bends the base meaning, so a single corpus-wide sense is honest. The paired question (父母未生前本來面目) ('your original face before your father and mother were born') is the dominant form; (父母未生前) is a constituent of it (and of 父母未生前本來面目, which is not a separate entry), so per §5b the genuine semantic partner (本來面目) goes in RelatedTerms. Curated witnesses span three independent texts: (五燈全書) (X82n1571), and two Jiaxing (語錄) (J26nB177, J25nB171). Attested variants (Zen-scoped counts): (父母未生時) ('when father and mother had not yet given birth') 153x/74 texts; (父母未生已前) ('before father and mother had given birth') 119x/68; the full pairing (父母未生前本來面目) 92x/57; the challenge frame (如何是父母未生前)… ('what is … before father and mother were born?') 85x/56 (counting 何是父母未生前); the paired counterpart (如何是已生)… ('what is … after being born?') 19x/15.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0217a01",
+          "ToLb": "0217a02",
+          "Kwic": "智問：父母未生前，那箇是你本來面目？",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷). Full six-rung exact-turn review identifies Gufeng Mingde as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Gufeng Mingde"
+        },
+        {
+          "RelPath": "J/J26/J26nB177.xml",
+          "FromLb": "0029a07",
+          "ToLb": "0029a07",
+          "Kwic": "弟子姓萬，未審父母未生前姓甚麼？",
+          "Curated": true,
+          "AttributionNote": "破山禪師語錄. Full six-rung exact-turn review identifies Lay practitioner surnamed Wan as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "lay practitioner",
+            "ActorLabel": "Lay practitioner surnamed Wan",
+            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            "Poshan Haiming"
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0568c27",
+          "ToLb": "0568c28",
+          "Kwic": "呈偈云：「父母未生前，本來無一物。",
+          "Curated": true,
+          "AttributionNote": "天隱和尚語錄: complete-case exact-turn review identifies Huineng as the actor for this occurrence.",
+          "MasterName": "Huineng"
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0152c06",
+          "ToLb": "0152c07",
+          "Kwic": "上堂：父母未生前，畢竟是什麼？",
+          "MasterName": "Xueyan Zuqin",
+          "Curated": true,
+          "AttributionNote": "(五燈全書) (X-canon; FromLb is the ed=\"X\" number): a (上堂) (ascending the hall) of (袁州仰山雪巖祖欽禪師) (Xueyan Zuqin) — governing section head (袁州仰山雪巖祖欽禪師) verified, corroborated in-text by (莫道仰山今日無為人方便) ('do not say Yangshan today has no device for people'; 仰山 is his seat). 'Before your father and mother were born, ultimately what is it?' — the bare pointer form without (本來面目). The master's own hall discourse."
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0526b15",
+          "ToLb": "0526b16",
+          "Kwic": "慣教人參如何是我父母未生前本來面目。",
+          "MasterName": "Tianyin Yuanxiu",
+          "Curated": false,
+          "AttributionNote": "J25nB171, (荊溪磬山語錄): inside (磬山) (Tianyin Yuanxiu = 天隱圓修)'s own evening-assembly (晚參) address (大眾…汝等須是行也參、坐也參…, 'great assembly … you must investigate while walking, investigate while sitting') — '[my teacher] (禹門堂上幻有老人) ('the old man Huanyou in the hall at Yumen', i.e. 幻有正傳 Huanyou Zhengchuan) habitually made people investigate: what is my original face before my father and mother were born.' The master in his own voice, raising what his teacher habitually did — not narration; documents the phrase as a set question one is told to investigate (參)."
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "J/J26/J26nB177.xml",
+        "J/J25/J25nB171.xml",
+        "J/J37/J37nB399.xml",
+        "X/X84/X84n1583.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "本來面目",
+        "見性",
+        "主人公"
+      ]
+    }
+  ]
+}

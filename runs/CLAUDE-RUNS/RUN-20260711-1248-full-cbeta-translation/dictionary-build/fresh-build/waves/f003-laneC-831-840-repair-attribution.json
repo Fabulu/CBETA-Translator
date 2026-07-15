@@ -1,0 +1,30 @@
+{
+  "counts": {
+    "entries": 9,
+    "senses": 9,
+    "occurrences": 59,
+    "actor_narrated": 58,
+    "attribution_notes": 59,
+    "vague_attributor": 3,
+    "named_occurrences": 1,
+    "context_master_links": 1
+  },
+  "hardFailures": 3,
+  "failures": [
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3b9857d1cc19/entry.v2.json",
+      "detail": "退院 s1: 'a teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c6a61681198/entry.v2.json",
+      "detail": "投機 s1: 'the teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baf1c6b9db60/entry.v2.json",
+      "detail": "如意 s1: 'a master'"
+    }
+  ]
+}
