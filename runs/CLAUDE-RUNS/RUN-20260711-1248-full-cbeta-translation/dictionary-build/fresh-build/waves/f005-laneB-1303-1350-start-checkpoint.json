@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "f005-laneB-construction-start-v1",
+  "range": [1303, 1350],
+  "acceptedCanariesPreserved": {
+    "1301": "525987c476729e770717f41d5bf51d85884790666025262fe375dc2d1b414de8",
+    "1302": "4ca3ee6bdd4affd19b44d8f146148ebb4171f9e4ba84eac3cf14a243351ba305"
+  },
+  "rulesRead": [
+    "DICTIONARY_ENTRY_GUIDE.md",
+    "ATTRIBUTION_FIX.md",
+    "ACTOR_AUDIT.md"
+  ],
+  "mandatoryPreReviewGate": "authoring_risk_preflight.py",
+  "checkpointOrdinals": [1312, 1322, 1332, 1342, 1350],
+  "actorRule": "MasterName is only the utterer of the headword; a physical action performer belongs in ContextMasters with action-performer role.",
+  "state": "research-and-full-case-authoring-started",
+  "entriesAuthored": 0,
+  "selfReview": false,
+  "promoted": false,
+  "merged": false
+}
