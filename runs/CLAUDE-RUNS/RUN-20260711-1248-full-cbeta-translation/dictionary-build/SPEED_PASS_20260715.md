@@ -73,3 +73,24 @@ with the exact title and independent work ID emitted once per source. Closed act
 different-referent vocabularies travel in the same packet. The ordinary entry-first view remains intact and
 final output is unchanged; authors can read one source container continuously instead of repeatedly switching
 books, while still deciding every utterer from the complete case.
+
+## Pass 8: reject fake actor resolution before semantic review
+
+The current dominant cost is no longer XML transport.  It is reviewer churn: A926–935 first returned
+10/10 REVISE, B1031–1040 still returned 6/9 REVISE after one repair, and C1186–1195 returned 10/10
+REVISE despite exact-span and cohort gates being green.  The repeated defect was a template filling an
+actor-shaped phrase without resolving a person: `the case or verse narrator`, `the unresolved quoted
+speaker`, `the Chan verse-anthology author`, or `the ... record owner`.
+
+`audit_attribution.py` now hard-fails two forms before dispatch:
+
+1. `identified-non-master` whose `ActorLabel` begins with an indefinite/generic article.  Identification
+   requires an actual personal name; a source that supplies only a role must use the honest
+   `reviewed-unnamed` ladder (or narrated/impersonal when grammar calls for it).
+2. The newly observed narrator/speaker template families, anywhere in actor fields, notes, or prose.
+
+Measured against work already waiting in the pipeline, the first rule catches 21 of 26 nominally
+identified non-master cases.  The second rule flags all ten C1186–1195 drafts (144 field-level hits across
+51 occurrences) before a reviewer reads them.  Those ten entries had consumed a complete independent
+review turn and all ten were rejected for exactly this family.  The final dictionary schema and the
+human full-case gate are unchanged; the cheap gate now prevents known fake resolution from reaching it.

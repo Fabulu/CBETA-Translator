@@ -2,6 +2,7 @@
 
 import unittest
 from collections import Counter
+import re
 
 from audit_attribution import (
     DUPLICATED_NOTE_PREFIX_RE,
@@ -12,6 +13,19 @@ from audit_attribution import (
 
 
 class PlaceholderActorTest(unittest.TestCase):
+    def test_identified_non_master_labels_must_name_someone(self):
+        generic = re.compile(r"^(?:the|an?|one|some)\b", re.IGNORECASE)
+        for value in (
+            "the Chan verse-anthology author",
+            "an imperial memorial author",
+            "the named local-gentry invitation authors",
+        ):
+            with self.subTest(value=value):
+                self.assertIsNotNone(generic.match(value))
+        for value in ("Pei Xiu", "Puming", "Zhang Shangying"):
+            with self.subTest(value=value):
+                self.assertIsNone(generic.match(value))
+
     def test_rejects_duplicated_actor_note_prefix(self):
         self.assertIsNotNone(DUPLICATED_NOTE_PREFIX_RE.search(
             "Foyan Qingyuan: Foyan Qingyuan: Record of Foyan says..."
@@ -28,10 +42,16 @@ class PlaceholderActorTest(unittest.TestCase):
             "the fully reviewed source voice",
             "reviewed source voice",
             "the reviewed compilation voice",
+            "the named section speaker or quoted case voice",
+            "the verse or address invoking Li Guang",
+            "the record’s named-book discussion",
             "the cited voice",
             "a cited figure",
             "the presiding speaker",
             "verse voice",
+            "the case or verse narrator",
+            "an unresolved quoted speaker",
+            "the generic case narrator",
         ):
             with self.subTest(value=value):
                 self.assertIsNotNone(PLACEHOLDER_ACTOR_RE.search(value))

@@ -29,9 +29,15 @@ VAGUE_RE = re.compile(
 PLACEHOLDER_ACTOR_RE = re.compile(
     r"\b(?:the\s+)?(?:fully\s+)?reviewed\s+(?:source\s+)?voice\b"
     r"|\b(?:the\s+)?reviewed\s+compilation\s+voice\b"
+    r"|\b(?:the\s+)?named\s+section\s+speaker\s+or\s+quoted\s+case\s+voice\b"
+    r"|\b(?:the\s+)?verse\s+or\s+address\s+invoking\b"
+    r"|\b(?:the\s+)?record[’']s\s+named-book\s+discussion\b"
     r"|\b(?:the\s+)?cited\s+(?:voice|figure)\b"
     r"|\b(?:the\s+)?presiding\s+speaker\b"
-    r"|\b(?:the\s+)?verse\s+voice\b",
+    r"|\b(?:the\s+)?verse\s+voice\b"
+    r"|\b(?:the\s+)?case\s+or\s+verse\s+narrator\b"
+    r"|\b(?:the\s+)?unresolved\s+(?:quoted\s+)?speaker\b"
+    r"|\b(?:the\s+)?generic\s+(?:case\s+)?narrator\b",
     re.IGNORECASE,
 )
 DUPLICATED_NOTE_PREFIX_RE = re.compile(r"(?:^|[.!?]\s+)([^:.\n]{1,100}):\s*\1:")
@@ -246,6 +252,22 @@ def main() -> int:
                         fail("invalid_actor_role", entry, f"{term} s{si} o{oi}: {actor.get('ActorRole')!r}")
                     if re.search(r"master|teacher|禪師|和尚", str(actor.get("Kind") or ""), re.IGNORECASE):
                         fail("unnamed_master_forbidden", entry, f"{term} s{si} o{oi}: every master must be named")
+                    if status == "identified-non-master" and re.search(
+                        r"record[- ]owner|record owner|語錄主", " ".join(
+                            str(actor.get(field) or "") for field in ("Kind", "ActorLabel", "GrammarEvidence")
+                        ), re.IGNORECASE
+                    ):
+                        fail("record_owner_misclassified_non_master", entry,
+                             f"{term} s{si} o{oi}: resolve the named record owner against the roster and exact turn")
+                    if status == "identified-non-master" and re.match(
+                        r"^(?:the|an?|one|some)\b", str(actor.get("ActorLabel") or "").strip(), re.IGNORECASE
+                    ):
+                        fail(
+                            "identified_actor_not_named", entry,
+                            f"{term} s{si} o{oi}: identified-non-master requires the actor's actual name; "
+                            f"use reviewed-unnamed plus all six rungs when the source supplies only a role: "
+                            f"{actor.get('ActorLabel')!r}",
+                        )
                     if status == "reviewed-unnamed" and actor.get("RungsChecked") != ATTRIBUTION_RUNGS:
                         fail("incomplete_actor_rungs", entry, f"{term} s{si} o{oi}: expected all six ordered rungs")
                     if status in {"identified-non-master", "narrated", "impersonal"} and not actor.get("GrammarEvidence"):
