@@ -351,6 +351,29 @@ public partial class AppPaths
     }
 
     /// <summary>
+    /// Resolves the rich lineage roster asset (<c>Assets/Data/lineage-masters.json</c>,
+    /// 609 records) shipped next to the exe as Content. Backs the new tidy-forest
+    /// lineage chart (plan PR-L1); kept SEPARATE from the thin master-dates.json
+    /// roster (decision D3). Tries both casings for case-sensitive filesystems,
+    /// mirroring <see cref="GetCedictPath"/>/<see cref="GetPrebuiltIndexDir"/>.
+    /// Returns the preferred (PascalCase) path even when neither exists so callers
+    /// get a stable, reportable location.
+    /// </summary>
+    public static string LineageMastersPath
+    {
+        get
+        {
+            var upper = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Assets", "Data", "lineage-masters.json");
+            if (File.Exists(upper)) return upper;
+
+            var lower = System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "data", "lineage-masters.json");
+            if (File.Exists(lower)) return lower;
+
+            return upper;
+        }
+    }
+
+    /// <summary>
     /// Resolves the exe-adjacent prebuilt search-index bundle directory
     /// (Assets/PrebuiltIndex), or null when it does not ship in this build.
     /// CI stages the actual search.* artifacts here before publish (see the csproj

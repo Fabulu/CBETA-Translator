@@ -1,0 +1,292 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ReadZen.App.ViewModels"
+             x:Class="ReadZen.App.Views.LineageDetailPanel"
+             x:DataType="vm:LineageChartViewModel">
+
+  <!-- The reward for every click: the selected master (or book source) in full.
+       Bound with compiled bindings against the chart VM; content templated
+       against the projected LineageDetailViewModel. Theme-aware + scrollable. -->
+
+  <UserControl.Styles>
+    <!-- Link-style buttons (teacher / heir / external links / read-in-context) -->
+    <Style Selector="Button.linklike">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Foreground" Value="{DynamicResource AccentLinkFg}"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    <Style Selector="Button.linklike:pointerover">
+      <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="Button.linklike /template/ ContentPresenter">
+      <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+    </Style>
+    <!-- Small evidence / rung chip -->
+    <Style Selector="Border.chip">
+      <Setter Property="Background" Value="{DynamicResource PanelAltBg}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="6,1"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Border.chip TextBlock">
+      <Setter Property="FontSize" Value="10"/>
+    </Style>
+    <Style Selector="TextBlock.sectionhead">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Margin" Value="0,6,0,2"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Background="{DynamicResource ControlBg}"
+          BorderBrush="{DynamicResource BorderBrush}"
+          BorderThickness="1" CornerRadius="6">
+    <Panel>
+      <!-- Placeholder when nothing is selected -->
+      <TextBlock Classes="muted" FontSize="12"
+                 Margin="16" TextWrapping="Wrap"
+                 VerticalAlignment="Center" HorizontalAlignment="Center"
+                 TextAlignment="Center"
+                 IsVisible="{Binding !HasDetail}"
+                 Text="Click a master or a book source in the chart to see the evidence — the dates, the school, the stele, and who taught whom."/>
+
+      <!-- The detail card -->
+      <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto"
+                    IsVisible="{Binding HasDetail}">
+        <ContentControl Content="{Binding Detail}" Margin="14">
+          <ContentControl.ContentTemplate>
+            <DataTemplate x:DataType="vm:LineageDetailViewModel">
+              <StackPanel Spacing="8">
+
+                <!-- ══ MASTER HEADER ══ -->
+                <StackPanel Spacing="2" IsVisible="{Binding IsMaster}">
+                  <TextBlock Text="{Binding Cjk}" FontSize="22" FontWeight="Bold"
+                             IsVisible="{Binding HasCjk}"/>
+                  <TextBlock Text="{Binding Primary}" FontSize="15" FontWeight="SemiBold"/>
+                  <TextBlock Text="{Binding AltNames}" Classes="muted" FontSize="11"
+                             TextWrapping="Wrap" IsVisible="{Binding HasAlt}"/>
+                  <WrapPanel Orientation="Horizontal" IsVisible="{Binding HasDates}" Margin="0,2,0,0">
+                    <TextBlock Text="{Binding DatesLine}" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <Border Classes="chip" IsVisible="{Binding DatesUncertain}" Margin="0,0,6,0">
+                      <TextBlock Text="dates uncertain"/>
+                    </Border>
+                    <Border Classes="chip" IsVisible="{Binding DatesConflict}">
+                      <TextBlock Text="two-witness conflict"/>
+                    </Border>
+                  </WrapPanel>
+                  <TextBlock Text="{Binding DateNote}" Classes="muted" FontSize="11"
+                             TextWrapping="Wrap" IsVisible="{Binding HasDateNote}"/>
+                  <WrapPanel Orientation="Horizontal" IsVisible="{Binding HasSchool}" Margin="0,2,0,0">
+                    <Border Classes="chip" Margin="0,0,6,0">
+                      <TextBlock Text="{Binding SchoolLabel}"/>
+                    </Border>
+                    <TextBlock Text="{Binding SubBranch}" Classes="muted" FontSize="11"
+                               VerticalAlignment="Center" IsVisible="{Binding HasSubBranch}"/>
+                  </WrapPanel>
+                </StackPanel>
+
+                <!-- ══ BOOK SOURCE HEADER ══ -->
+                <StackPanel Spacing="2" IsVisible="{Binding IsSource}">
+                  <TextBlock Text="{Binding SourceTitle}" FontSize="20" FontWeight="Bold"
+                             IsVisible="{Binding HasSourceTitle}"/>
+                  <TextBlock Text="{Binding SourceTitleEn}" FontSize="14" FontWeight="SemiBold"
+                             IsVisible="{Binding HasSourceTitleEn}"/>
+                  <TextBlock Text="{Binding SourceAuthor}" Classes="muted" FontSize="12"
+                             IsVisible="{Binding HasSourceAuthor}"/>
+                  <Border Classes="chip" HorizontalAlignment="Left" Margin="0,2,0,0">
+                    <TextBlock Text="Book transmission"/>
+                  </Border>
+                </StackPanel>
+
+                <!-- ══ EVIDENCE LINE (attestation in words) + transmission ══ -->
+                <StackPanel Spacing="2" IsVisible="{Binding HasEvidence}">
+                  <TextBlock Text="{Binding AttestationSentence}" FontSize="12"
+                             FontWeight="SemiBold" TextWrapping="Wrap"
+                             IsVisible="{Binding HasAttestation}"/>
+                  <TextBlock Text="Treat this link as tradition, not fact."
+                             Foreground="{DynamicResource WarningFg}" FontSize="11"
+                             TextWrapping="Wrap" IsVisible="{Binding ShowDWarning}"/>
+                  <TextBlock Text="{Binding TransmissionSentence}" Classes="muted"
+                             FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <!-- ══ DISPUTE CARD (contested edge) ══ -->
+                <Border IsVisible="{Binding HasDispute}"
+                        Background="{DynamicResource PanelAltBg}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1" CornerRadius="6" Padding="10">
+                  <ContentControl Content="{Binding Dispute}">
+                    <ContentControl.ContentTemplate>
+                      <DataTemplate x:DataType="vm:LineageDisputeViewModel">
+                        <StackPanel Spacing="6">
+                          <TextBlock Text="Who was his teacher?" FontWeight="Bold" FontSize="13"/>
+                          <Grid ColumnDefinitions="*,12,*">
+                            <StackPanel Grid.Column="0" Spacing="3">
+                              <TextBlock Text="The tradition says" Classes="muted" FontSize="10"/>
+                              <TextBlock Text="{Binding KeepTeacher}" FontWeight="SemiBold" FontSize="13"
+                                         TextWrapping="Wrap" IsVisible="{Binding HasKeepTeacher}"/>
+                              <Border Classes="chip" HorizontalAlignment="Left" IsVisible="{Binding HasKeptRung}">
+                                <TextBlock Text="{Binding KeptRung}"/>
+                              </Border>
+                              <TextBlock Text="{Binding KeptEvidence}" FontSize="11" FontStyle="Italic"
+                                         TextWrapping="Wrap" IsVisible="{Binding HasKeptEvidence}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Spacing="3">
+                              <TextBlock Text="The stone says" Classes="muted" FontSize="10"/>
+                              <TextBlock Text="{Binding Rival}" FontWeight="SemiBold" FontSize="13"
+                                         TextWrapping="Wrap" IsVisible="{Binding HasRival}"/>
+                              <Border Classes="chip" HorizontalAlignment="Left" IsVisible="{Binding HasRivalRung}">
+                                <TextBlock Text="{Binding RivalRung}"/>
+                              </Border>
+                              <TextBlock Text="{Binding RivalEvidence}" FontSize="11" FontStyle="Italic"
+                                         TextWrapping="Wrap" IsVisible="{Binding HasRivalEvidence}"/>
+                            </StackPanel>
+                          </Grid>
+                          <TextBlock Text="{Binding Stake}" Classes="muted" FontSize="11"
+                                     TextWrapping="Wrap" IsVisible="{Binding HasStake}"/>
+                        </StackPanel>
+                      </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                  </ContentControl>
+                </Border>
+
+                <!-- ══ BIO ══ -->
+                <TextBlock Text="{Binding Bio}" FontSize="12" TextWrapping="Wrap"
+                           IsVisible="{Binding HasBio}"/>
+
+                <!-- ══ SOURCE DESCRIPTION ══ -->
+                <TextBlock Text="{Binding SourceDesc}" FontSize="12" TextWrapping="Wrap"
+                           IsVisible="{Binding HasSourceDesc}"/>
+
+                <!-- ══ STELES (rubbings) ══ -->
+                <ItemsControl ItemsSource="{Binding Steles}" IsVisible="{Binding HasSteles}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:LineageSteleViewModel">
+                      <Border Background="{DynamicResource PanelAltBg}"
+                              BorderBrush="{DynamicResource BorderBrush}"
+                              BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,4,0,0">
+                        <StackPanel Spacing="3">
+                          <TextBlock Text="{Binding Kind}" Classes="muted" FontSize="10"
+                                     IsVisible="{Binding HasKind}"/>
+                          <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="12"
+                                     TextWrapping="Wrap" IsVisible="{Binding HasTitle}"/>
+                          <TextBlock Text="{Binding Author}" Classes="muted" FontSize="11"
+                                     IsVisible="{Binding HasAuthor}"/>
+                          <Border IsVisible="{Binding HasQuote}"
+                                  BorderBrush="{DynamicResource BorderBrush}"
+                                  BorderThickness="2,0,0,0" Padding="8,2,0,2" Margin="0,2,0,0">
+                            <TextBlock Text="{Binding Quote}" FontStyle="Italic" FontSize="13"
+                                       TextWrapping="Wrap"/>
+                          </Border>
+                          <Button Classes="linklike" Content="{Binding Read.Label}"
+                                  Command="{Binding Read.ReadCommand}"
+                                  FontSize="11" IsVisible="{Binding HasRead}"/>
+                          <TextBlock Text="{Binding Note}" Classes="muted" FontSize="10"
+                                     TextWrapping="Wrap" IsVisible="{Binding HasNote}"/>
+                        </StackPanel>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- ══ EDGE NOTE ══ -->
+                <StackPanel Spacing="1" IsVisible="{Binding HasEdgeNote}">
+                  <TextBlock Text="On this link" Classes="muted" FontSize="10"/>
+                  <TextBlock Text="{Binding EdgeNote}" FontSize="11" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <!-- ══ PROVENANCE LEDGER ══ -->
+                <Expander IsVisible="{Binding HasProvenance}" Header="{Binding ProvenanceHeader}">
+                  <ItemsControl ItemsSource="{Binding Provenance}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="vm:LineageProvRowViewModel">
+                        <StackPanel Spacing="2" Margin="0,4,0,0">
+                          <WrapPanel Orientation="Horizontal">
+                            <Border Classes="chip" Margin="0,0,6,0">
+                              <TextBlock Text="{Binding Rung}"/>
+                            </Border>
+                            <TextBlock Text="{Binding Claim}" FontWeight="SemiBold" FontSize="11"
+                                       VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding Source}" Classes="muted" FontSize="11"
+                                       VerticalAlignment="Center"/>
+                          </WrapPanel>
+                          <TextBlock Text="{Binding Quote}" FontStyle="Italic" FontSize="11"
+                                     TextWrapping="Wrap" IsVisible="{Binding HasQuote}" Margin="4,0,0,0"/>
+                          <TextBlock Text="{Binding Note}" Classes="muted" FontSize="10"
+                                     TextWrapping="Wrap" IsVisible="{Binding HasNote}" Margin="4,0,0,0"/>
+                        </StackPanel>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </Expander>
+
+                <Separator Margin="0,4"/>
+
+                <!-- ══ FOOTER: teacher / heirs / links ══ -->
+                <StackPanel Spacing="2" IsVisible="{Binding HasTeacher}">
+                  <TextBlock Text="Teacher" Classes="sectionhead"/>
+                  <Button Classes="linklike" Content="{Binding Teacher.Label}"
+                          Command="{Binding Teacher.FocusCommand}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="2" IsVisible="{Binding HasStubTeacher}">
+                  <TextBlock Text="Teacher" Classes="sectionhead"/>
+                  <WrapPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding StubTeacherLabel}" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <Border Classes="chip"><TextBlock Text="named, not in corpus"/></Border>
+                  </WrapPanel>
+                </StackPanel>
+
+                <StackPanel Spacing="2" IsVisible="{Binding HasHeirs}">
+                  <TextBlock Text="{Binding HeirsHeader}" Classes="sectionhead"/>
+                  <ItemsControl ItemsSource="{Binding Heirs}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate><WrapPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="vm:LineageRefViewModel">
+                        <Button Classes="linklike" Content="{Binding Label}"
+                                Command="{Binding FocusCommand}" Margin="0,0,10,2"/>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </StackPanel>
+
+                <StackPanel Spacing="2" IsVisible="{Binding HasLinks}">
+                  <TextBlock Text="Links" Classes="sectionhead"/>
+                  <ItemsControl ItemsSource="{Binding Links}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="vm:LineageLinkViewModel">
+                        <Button Classes="linklike" Content="{Binding Label}"
+                                Command="{Binding OpenCommand}" FontSize="12" Margin="0,1"/>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </StackPanel>
+
+                <!-- ══ MASTER PROFILE ACTIONS ══ -->
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,6,0,0"
+                            IsVisible="{Binding IsMaster}">
+                  <Button Content="Open full profile" Command="{Binding OpenProfileCommand}" FontSize="12"/>
+                  <Button Content="Search texts by him" Command="{Binding OpenCorpusSearchCommand}" FontSize="12"/>
+                </StackPanel>
+
+                <!-- ══ BOOK READ LINK ══ -->
+                <Button Classes="linklike" Content="{Binding BookLink.Label}"
+                        Command="{Binding BookLink.ReadCommand}" FontSize="13"
+                        Margin="0,6,0,0" IsVisible="{Binding HasBookLink}"/>
+
+              </StackPanel>
+            </DataTemplate>
+          </ContentControl.ContentTemplate>
+        </ContentControl>
+      </ScrollViewer>
+    </Panel>
+  </Border>
+</UserControl>

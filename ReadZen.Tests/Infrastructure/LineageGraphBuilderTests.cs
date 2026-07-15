@@ -1,0 +1,248 @@
+// LineageGraphBuilderTests — pins the pure lineage normalization port
+// (Infrastructure/LineageGraphBuilder.cs) against the SPA reference module
+// (ZenLinkPage/lib/lineage-data.js). The full-roster report invariants below were
+// obtained by RUNNING the JS reference over the same data\lineage-masters.json
+// (a node harness printing report.* counts); they are the source of truth and a
+// permanent re-sync ratchet.
+//
+//   masters 609 · edges 552 · roots 6 · dangling 53 · bookSources 3 · contested 2
+//   badAttestation 0 · unknownSchool 19 · unknownTransmission 0 · unresolvedTeacherKey 2
+//   total nodes (incl 3 synthesized sources) 612
+
+using System.Collections.Generic;
+using System.Linq;
+using ReadZen.App.Infrastructure;
+using ReadZen.App.Models;
+using ReadZen.App.Services;
+using Xunit;
+
+namespace ReadZen.Tests.Infrastructure;
+
+[Trait("Domain", "Lineage")]
+public class LineageGraphBuilderTests
+{
+    // Loads the real 609-record roster via the L1 loader (asset is copied into the
+    // test output by the App csproj Content include).
+    private static IReadOnlyList<LineageMasterRecord> RealRoster()
+        => new LineageRosterService().GetAll();
+
+    private static LineageMasterRecord Rec(
+        string primary,
+        string? teacherKey = null,
+        string? attestation = null,
+        string? transmission = null,
+        string? school = null,
+        IEnumerable<string>? students = null,
+        IEnumerable<string>? extraNames = null)
+    {
+        var names = new List<string> { primary };
+        if (extraNames != null) names.AddRange(extraNames);
+        return new LineageMasterRecord
+        {
+            Names = names,
+            TeacherKey = teacherKey,
+            Attestation = attestation,
+            Transmission = transmission,
+            School = school,
+            Students = students?.ToList() ?? new List<string>(),
+        };
+    }
+
+    // ── Full-roster report invariants (pinned from the JS reference run) ──
+
+    [Fact]
+    public void FullRoster_ReportCountsMatchJsReference()
+    {
+        var roster = RealRoster();
+        Assert.Equal(609, roster.Count); // guard: the L1 asset is the 609-record roster
+
+        var g = LineageGraphBuilder.Build(roster);
+
+        Assert.Equal(609, g.Report.Masters);
+        Assert.Equal(552, g.Report.Edges);
+        Assert.Equal(6, g.Report.Roots);
+        Assert.Equal(53, g.Report.Dangling);
+        Assert.Equal(3, g.Report.BookSources);
+        Assert.Equal(2, g.Report.Contested);
+        Assert.Empty(g.Report.BadAttestation);
+        Assert.Equal(19, g.Report.UnknownSchool.Count);
+        Assert.Empty(g.Report.UnknownTransmission);
+        Assert.Equal(2, g.Report.UnresolvedTeacherKey.Count);
+    }
+
+    [Fact]
+    public void FullRoster_NodeAndCollectionCountsMatch()
+    {
+        var g = LineageGraphBuilder.Build(RealRoster());
+
+        Assert.Equal(612, g.Nodes.Count);              // 609 masters + 3 synthesized sources
+        Assert.Equal(3, g.Sources.Count);
+        Assert.Equal(g.Report.Edges, g.Edges.Count);
+        Assert.All(g.Sources, s => Assert.True(s.IsSource));
+        Assert.Equal(609, g.Nodes.Count(n => !n.IsSource));
+    }
+
+    // ── Jinul: 3 bilingual book source pseudo-nodes, edges pointing at them ──
+
+    [Fact]
+    public void Jinul_SynthesizesThreeBilingualBookSources()
+    {
+        var g = LineageGraphBuilder.Build(RealRoster());
+
+        Assert.True(g.ByName.TryGetValue("Jinul", out var jinul));
+        Assert.Equal("book", jinul!.Transmission);
+
+        var jSources = g.Nodes
+            .Where(n => n.IsSource && n.Id.StartsWith("__src__" + jinul.Id + "__"))
+            .ToList();
+        Assert.Equal(3, jSources.Count);
+
+        // Every book source is bilingual (EN + hanja), never hanja-only.
+        foreach (var s in jSources)
+        {
+            Assert.Equal(2, s.Names.Count);
+            Assert.All(s.Names, n => Assert.False(string.IsNullOrEmpty(n)));
+            Assert.False(string.IsNullOrEmpty(s.SourceTitleEn));
+            Assert.False(string.IsNullOrEmpty(s.SourceTitle)); // hanja
+        }
+
+        // Three book edges, each src -> Jinul, kind "book"; narrative parent = first book.
+        Assert.NotNull(jinul.BookEdges);
+        Assert.Equal(3, jinul.BookEdges!.Count);
+        Assert.All(jinul.BookEdges, e =>
+        {
+            Assert.Equal("book", e.Kind);
+            Assert.Same(jinul, e.To);
+            Assert.True(e.From.IsSource);
+        });
+        Assert.Same(jinul.BookEdges[0], jinul.ParentEdge);
+    }
+
+    // ── Book-master with NO book_transmissions falls back to one bilingual sutra node ──
+
+    [Fact]
+    public void BookMaster_NoTransmissions_FallsBackToBilingualSutraNode()
+    {
+        var roster = new List<LineageMasterRecord> { Rec("Bookless", transmission: "book") };
+        var g = LineageGraphBuilder.Build(roster);
+
+        Assert.Equal(1, g.Report.BookSources);
+        var src = Assert.Single(g.Sources);
+        Assert.Equal(new[] { "Sutra", "經" }, src.Names.ToArray()); // bilingual, never hanja-only
+    }
+
+    // ── A student back-edge NEVER overrides an existing teacher-key parent ──
+
+    [Fact]
+    public void StudentBackEdge_DoesNotOverrideExistingTeacherKeyParent()
+    {
+        // Child's teacher_key resolves to "Master"; "Rival" also claims Child as a student.
+        var roster = new List<LineageMasterRecord>
+        {
+            Rec("Master"),
+            Rec("Child", teacherKey: "Master"),
+            Rec("Rival", students: new[] { "Child" }),
+        };
+
+        var g = LineageGraphBuilder.Build(roster);
+
+        Assert.True(g.ByName.TryGetValue("Child", out var child));
+        Assert.NotNull(child!.ParentEdge);
+        Assert.Equal("Master", child.ParentEdge!.From.Primary); // teacher-key parent survives
+        // The rival back-edge was refused: no edge Rival -> Child exists.
+        Assert.DoesNotContain(g.Edges, e => e.From.Primary == "Rival" && e.To.Primary == "Child");
+    }
+
+    [Fact]
+    public void StudentBackEdge_RecoversParentForAnOtherwiseRootChild()
+    {
+        // Sanity counterpart: with no teacher_key on Child, the back-edge IS added.
+        var roster = new List<LineageMasterRecord>
+        {
+            Rec("Master", students: new[] { "Child" }),
+            Rec("Child"),
+        };
+
+        var g = LineageGraphBuilder.Build(roster);
+
+        Assert.True(g.ByName.TryGetValue("Child", out var child));
+        Assert.NotNull(child!.ParentEdge);
+        Assert.Equal("Master", child.ParentEdge!.From.Primary);
+        Assert.False(child.IsRoot);
+    }
+
+    // ── A bad attestation value is quarantined to null and recorded in the report ──
+
+    [Fact]
+    public void BadAttestation_QuarantinedToNull_AndReported()
+    {
+        var roster = new List<LineageMasterRecord>
+        {
+            Rec("Legit", attestation: "A"),
+            Rec("Bogus", attestation: "X"),   // invalid grade
+            Rec("Lower", attestation: "a"),   // lowercase is invalid (JS test is case-sensitive)
+        };
+
+        var g = LineageGraphBuilder.Build(roster);
+
+        Assert.Equal("A", g.ByName["Legit"].Attestation);
+        Assert.Null(g.ByName["Bogus"].Attestation);
+        Assert.Null(g.ByName["Lower"].Attestation);
+        Assert.Contains("Bogus:X", g.Report.BadAttestation);
+        Assert.Contains("Lower:a", g.Report.BadAttestation);
+        Assert.Equal(2, g.Report.BadAttestation.Count);
+    }
+
+    // ── Determinism: two builds of the same input yield identical node/edge sets ──
+
+    [Fact]
+    public void Determinism_TwoBuilds_ProduceIdenticalNodeAndEdgeSequences()
+    {
+        var roster = RealRoster();
+        var a = LineageGraphBuilder.Build(roster);
+        var b = LineageGraphBuilder.Build(roster);
+
+        Assert.Equal(a.Nodes.Select(n => n.Id), b.Nodes.Select(n => n.Id));
+        Assert.Equal(
+            a.Edges.Select(e => $"{e.From.Id}->{e.To.Id}:{e.Kind}"),
+            b.Edges.Select(e => $"{e.From.Id}->{e.To.Id}:{e.Kind}"));
+    }
+
+    // ── normalizeSchool: canonical-key mapping (spot checks incl. CJK + fallbacks) ──
+
+    [Theory]
+    [InlineData("Linji", "linji")]
+    [InlineData("臨濟", "linji")]
+    [InlineData("雲門", "yunmen")]
+    [InlineData("曹洞", "caodong")]
+    [InlineData("Korean Seon", "korean-seon")]
+    [InlineData("조계", "korean-seon")]
+    [InlineData("Kumārajīva", "pre-chan")]
+    [InlineData("chan", "early-chan")]      // ^chan$ anchored
+    [InlineData("", "other")]
+    [InlineData("   ", "other")]
+    [InlineData("something unrelated", "other")]
+    public void NormalizeSchool_MapsToCanonicalKeys(string raw, string expected)
+        => Assert.Equal(expected, LineageGraphBuilder.NormalizeSchool(raw));
+
+    // ── repYear is never invented: death, else birth+65, else floruit, else null ──
+
+    [Fact]
+    public void RepYear_NeverInvented_And_ZeroIsMissing()
+    {
+        var g = LineageGraphBuilder.Build(new List<LineageMasterRecord>
+        {
+            new() { Names = new() { "D" }, Death = 800 },
+            new() { Names = new() { "B" }, Birth = 700 },
+            new() { Names = new() { "F" }, Floruit = 900 },
+            new() { Names = new() { "Zero" }, Death = 0, Birth = 0, Floruit = 0 }, // all missing
+            new() { Names = new() { "None" } },
+        });
+
+        Assert.Equal(800, g.ByName["D"].Year);
+        Assert.Equal(765, g.ByName["B"].Year);   // birth + 65
+        Assert.Equal(900, g.ByName["F"].Year);
+        Assert.Null(g.ByName["Zero"].Year);
+        Assert.Null(g.ByName["None"].Year);
+    }
+}
