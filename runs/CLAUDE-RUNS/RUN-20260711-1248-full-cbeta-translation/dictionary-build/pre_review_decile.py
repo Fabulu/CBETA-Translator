@@ -18,6 +18,17 @@ def main() -> int:
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
+    fast_output = args.output.with_name(args.output.stem + "-fast-preflight.json")
+    fast = subprocess.run([
+        sys.executable, str(HERE / "fast_entry_preflight.py"), *args.entries,
+        "--report", str(fast_output),
+    ], cwd=HERE)
+    if fast.returncode != 0:
+        print(
+            f"PRE-REVIEW BLOCKED by cheap structural lint: {fast_output}",
+            file=sys.stderr,
+        )
+        return fast.returncode
     completed = subprocess.run([
         sys.executable, str(HERE / "run_cohort_gate.py"), *args.entries,
         "--skip-packets", "--output", str(args.output),

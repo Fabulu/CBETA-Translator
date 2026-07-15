@@ -248,3 +248,14 @@ the detector does not guess which master.
 Production trigger: two full repair rounds continued to serialize explicit `師云`/`師拈拂子` turns as narrator or
 unnamed actor despite green aggregate attribution counts. This guard converts the visible grammatical contradiction
 into an author-side failure. Regression tests and the accepted f005 canary pass.
+
+## 16. Cheap structural lint before corpus-backed pre-review gates
+
+Implementation: `fast_entry_preflight.py` accepts entry paths, directories, or bare `t_*` IDs and checks feedback
+ledger completeness, generic/vague openings, exact duplicate and bare-token witnesses, headword-free KWICs, stale
+`SourceTexts`, and untranslated speech-frame tokens in reader-facing attribution notes without loading the corpus.
+`pre_review_decile.py` now runs this first and refuses to launch the more expensive composite audit until it passes.
+
+Production trigger: the 21-entry round-three repair had only four remaining attribution/note defects after its main
+rewrite; three were raw Chinese speech-frame tokens in English notes. The fast preflight catches that class before
+`zc`, depth, packet, or Windows/Node gates. The accepted f005 canary passes the integrated two-stage command.
