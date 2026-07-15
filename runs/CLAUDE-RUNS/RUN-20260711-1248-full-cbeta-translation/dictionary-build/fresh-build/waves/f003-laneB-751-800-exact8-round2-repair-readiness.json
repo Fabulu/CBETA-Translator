@@ -1,0 +1,47 @@
+{
+  "hardPass": true,
+  "review": "fresh-build/waves/f003-laneB-751-800-final4-fresh-independent-exact-review.json",
+  "ledger": "fresh-build/waves/f003-laneB-751-800-exact8-round2-repair-author-ledger.json",
+  "formalGate": "fresh-build/waves/f003-laneB-751-800-exact8-round2-full50-formal-gate.json",
+  "counts": {
+    "rows": 4,
+    "revised": 4,
+    "kept": 0,
+    "failures": 0
+  },
+  "failures": [],
+  "results": [
+    {
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "verdict": "REVISE",
+      "previousSha256": "c2dad2312d4c195f041192a7923baa468c72247724ef1c80e27934b2532006b9",
+      "currentSha256": "fdb1607804d606d8ccf98c1d098ba8cf855a496efc3be38359b10638cab365f6",
+      "failures": []
+    },
+    {
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "verdict": "REVISE",
+      "previousSha256": "0ac276cf46cc6fc3f95770e63d171d7dba1a0986a6b09ef73e1990dba4acdc6b",
+      "currentSha256": "477d15f5e3e0babc096d46e7824c1200945280ba9fb75a140649902e2348192d",
+      "failures": []
+    },
+    {
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "verdict": "REVISE",
+      "previousSha256": "89647379a99f2fc0746d8c780b585f76bb2d8a25e0b32b84d848151908d37995",
+      "currentSha256": "eba89db36d161986c8a7d3cc73fe0f855540a6cd04be9f89c32a78f55021e107",
+      "failures": []
+    },
+    {
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "verdict": "REVISE",
+      "previousSha256": "150d406efb588b29c4c9552ad88a3ea74f74607e136d82024834ecdd59473dee",
+      "currentSha256": "1ccb412ccba9ca72ad8c6d7d82e62856d817a25396801b0d98389d7c271fb6c2",
+      "failures": []
+    }
+  ]
+}

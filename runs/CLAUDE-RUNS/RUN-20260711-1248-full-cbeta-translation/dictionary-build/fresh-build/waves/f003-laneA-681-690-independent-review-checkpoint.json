@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    700
+  ],
+  "generatedUtc": "2026-07-15T05:54:01.672098+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f003-laneA-651-700-current-semantic-review-packet.json",
+  "sourcePacketSha256": "026718d7e89c9a1264e4490f0284598ca6620d6e37e63dcb3cf59240f98b670c",
+  "sourcePacketStaleEntryHashes": 17,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-current.json",
+    "sha256": "2a942880b2e5c412f8b1687957a54d62fdbe333582d2a3a0cd4f15e28c556a9a",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerifiedAgainstFormalGate": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 690,
+  "checkpointRows": [
+    {
+      "ordinal": 681,
+      "id": "t_6e63e9087add",
+      "term": "大戒",
+      "entrySha256": "fe5631d54003dc027282ef637aa03ce78689839c70f73375431cd7f3d3cbff36",
+      "worksheetSha256": "3114c8cc2c64eba6ff28e767672cc8e7e8a37ae844d9902a09c90ce10244a9fa",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The great precepts are hard rules, but the institutional category template never identifies ordination, reception, or the corpus's tensions around them. A ceremonial narrative is treated as speech evidence and both named masters are non-roster Chinese forms."
+    },
+    {
+      "ordinal": 682,
+      "id": "t_727945764d55",
+      "term": "叢林",
+      "entrySha256": "2e98bc7e6d1e88fc596296501f4c6659cb1095e9e0967b8e2be9d93c385997c2",
+      "worksheetSha256": "5022d290dbc5caafd17343a27fdb8690f2da65bf97c83ca3c3d4e2bcb087fc11",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "叢林 bends 'grove' into the organized monastic community, but the entry never pictures that lexical/institutional shift; it merely uses generic monastery filler. Four Chinese-script MasterName values also prevent reliable master links."
+    },
+    {
+      "ordinal": 683,
+      "id": "t_0fc455356921",
+      "term": "提婆達多",
+      "entrySha256": "aa833d3e04fa1f3fc65ee1003054f1cd111bc44b505863605e17916c019a61c2",
+      "worksheetSha256": "0b644147905842e821b96096d6fb36771fc8bd7bb33b6d051fbf830281f5d3bc",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The generic Devadatta paragraph gives neither the ordinary/person identity nor the specific accusations, comparisons, or questions for which Chan speakers invoke him. Three Chinese master labels remain unresolved and the four witnesses are too thinly synthesized."
+    },
+    {
+      "ordinal": 684,
+      "id": "t_6e4cd27922bd",
+      "term": "因果",
+      "entrySha256": "63c3adfe099a1dc0a0ccc86f672a494ac6c82af81eac7e47271c4a2f3d1dbff8",
+      "worksheetSha256": "e401ea7c5c180695fad92b5f8818b8661bce72456d5698973f69f37d64578b4f",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The causal-relation opening is informative, but the assertion/negation/fox-family controls are stated rather than demonstrated from the selected contexts. One long quoted discourse is compiler-owned and the sole named master is a non-roster Chinese label."
+    },
+    {
+      "ordinal": 685,
+      "id": "t_d5d6b9fb1613",
+      "term": "長老",
+      "entrySha256": "d766b3d340e284f68856ae4806fcaca858474eca7c90bd2df8e57350b9409fce",
+      "worksheetSha256": "9cf21ec22d61b033aa77ccb304005cf81dfdc9e869f0da8ad0497422d6b95464",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "Senior elder is a title/person role, not a generic implement-office-rite menu. The entry does not distinguish address, office, collective group, and biographical narration; four named masters remain Chinese labels and one speech-like context is narrator-owned."
+    },
+    {
+      "ordinal": 686,
+      "id": "t_75c43f48c74c",
+      "term": "阿闍世",
+      "entrySha256": "a1ec3d10debeeffdf8251f58d8819031b7e69f49d0a636701c670886748f903f",
+      "worksheetSha256": "c149bf438aaf7590fcfe41c3833b19c29b4f096666131556244e2eed5aa4671d",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The generic Ajatashatru paragraph never explains the king's role in the recorded Kāśyapa/council material. All witnesses are narration or embedded quotation, yet the exact quoted actors and context figures are not separated."
+    },
+    {
+      "ordinal": 687,
+      "id": "t_d8868082a16c",
+      "term": "代云",
+      "entrySha256": "2a6806772ead2f7368f0dbafe7ff0f01b34d81fcf5885d7f6d8cf862fa44cdf5",
+      "worksheetSha256": "adc17ba4a47a3c3f6d11fe86224856879a9c2071e221a124217d3e7cd885d22d",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The semantic account of substitute answers is strong, but 師代云 and named 代云 turns are repeatedly assigned to compiler narration or to labels such as 五家. The five Chinese/title MasterName values do not resolve the actual substitute speaker."
+    },
+    {
+      "ordinal": 688,
+      "id": "t_cc8c8a1cb550",
+      "term": "羅漢",
+      "entrySha256": "64221481ed64c61831f5de5058d8990bc971ac26037c3ca511cf57eb4a17c1ce",
+      "worksheetSha256": "920d328ef85eeecac809b29802ead402b7540ac1856f083b2676a2d352187cf9",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "羅漢 is under-split between arhat as a rank/person and 羅漢 as monastery/master name in catalogue headings. The generic figure paragraph obscures that distinction; catalogue rows and compiler-owned quoted questions make the evidence unsound."
+    },
+    {
+      "ordinal": 689,
+      "id": "t_41334a089616",
+      "term": "作務",
+      "entrySha256": "46c3d423ae473e8d7a77fc48a997f75a08c1bd1a96fa87dc04c469f74d72f14a",
+      "worksheetSha256": "f7d085b5cbae0fe4a919b85fb633cedc4909f152db95aa7b5360635607528366",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The witnesses support communal monastery labor, especially Baizhang working before the assembly, but the explanation is reusable category filler and never states those concrete constraints. Four Chinese master names are not roster-exact."
+    },
+    {
+      "ordinal": 690,
+      "id": "t_7f398fa1a823",
+      "term": "識得",
+      "entrySha256": "457631900eee894537a84ecc1e748d60f281aa20bf3e3a1353c07351f92846fa",
+      "worksheetSha256": "e447b1354277a0a4c2a01edc99d2e4c12fa9b73b34f6cd410cf7d6ed3d21c331",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The public-recognition opening is useful, but one full encounter with explicit speech remains compiler-owned and five exact masters are stored in Chinese labels. The entry also needs a clearer boundary between ordinary identification and case-tested discernment."
+    }
+  ],
+  "checkpointOccurrenceCount": 67
+}

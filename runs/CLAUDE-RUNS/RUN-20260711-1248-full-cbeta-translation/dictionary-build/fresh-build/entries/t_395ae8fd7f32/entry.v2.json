@@ -1,0 +1,270 @@
+{
+  "Id": "t_395ae8fd7f32",
+  "SourceTerm": "無住",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "not dwelling",
+      "AlternateTargets": [
+        "without abiding",
+        "having no fixed lodging"
+      ],
+      "Status": "preferred",
+      "Explanation": "Not dwelling or not abiding names the phrase's relational sense. The raw headword occurs 1,252 times in 239 allowed texts; that total includes both the phrase and the personal name Wuzhu. Huineng gives the fullest direct description of the phrase: 'Not dwelling is people's original nature' (無住者，人之本性). He continues through good and bad, beautiful and ugly, hostile and friendly, and verbal conflict, saying not to think of former objects from thought to thought. He then names the contrast: if former, present, and later thoughts continue without break, this is called binding; 'from thought to thought, not dwelling on all things is no binding—this is taking not-dwelling as the root' (於諸法上念念不住，即無縛也。此是以無住為本). Fayan's recorded case begins from the line 'from the root of not-dwelling establish all things'; asked what that root is, Fayan answers, 'form arises before substance; name arises before naming' (形興未質，名起未名). Wansong's case commentary preserves another explicit exchange: asked what the root of not-dwelling rests on, the answer is 'not-dwelling has no root' (無住則無本). In the Shenhui and Huineng encounter, Shenhui says, 'Take not-dwelling as the root; seeing is the host' (以無住為本。見即是主). Later records pair 'not-dwelling as root' with 'no-thought as source' and call the root of not-dwelling the root of all things. The recurring grammar is verbal and relational: thoughts do not dwell, a root does not itself rest on another root, and things are said to be established from it.",
+      "Validation": "multi-source",
+      "Note": "The direct Huineng definition, the Fayan public case, Shenhui's reply, and later comments are retained as distinct witnesses. 'Without a place to dwell' (dwelling nowhere) occurs 370 times in 145 texts; 'not-dwelling as the root' (無住為本) occurs 44 times in 27; 'root of not-dwelling' (無住本) occurs 135 times in 64; and 'not-dwelling mind' (the non-abiding mind) occurs 38 times in 30. Biographical occurrences where these two graphs form the name Wuzhu were excluded from semantic evidence.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2008.xml",
+          "FromLb": "0353a13",
+          "ToLb": "0353a15",
+          "Kwic": "無住者，人之本性。於世間善惡好醜，乃至冤之與親，言語觸刺欺爭之時，並將為空，不思酬害，念念之中不思前境。",
+          "MasterName": "Huineng",
+          "Curated": true,
+          "AttributionNote": "(六祖大師法寶壇經). Platform Record, stability-and-discernment section. Huineng directly calls not-dwelling people's original nature and describes its deployment amid opposed conditions and verbal conflict.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2008.xml",
+          "FromLb": "0353a15",
+          "ToLb": "0353a18",
+          "Kwic": "若前念今念後念，念念相續不斷，名為繫縛。於諸法上念念不住，即無縛也。此是以無住為本。",
+          "MasterName": "Huineng",
+          "Curated": true,
+          "AttributionNote": "(六祖大師法寶壇經). Huineng immediately contrasts uninterrupted continuation, which he calls binding, with thought after thought not dwelling on all things.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0025a20",
+          "ToLb": "0025a22",
+          "Kwic": "舉僧問法眼。承教有言。從無住本立一切法。如何是無住本。眼云。形興未質名起未名。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T22:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "later-raiser",
+                "commentator"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): an unnamed monk is the exact questioner who asks Fayan Wenyi about the root of not dwelling; Fayan Wenyi answers, and Hongzhi Zhengjue later raises and verses the exchange. The line, expanded context, section header, book title, TEI header, and parallel-passage search leave the monk unnamed."
+        },
+        {
+          "RelPath": "T/T48/T48n2004.xml",
+          "FromLb": "0273c15",
+          "ToLb": "0273c15",
+          "Kwic": "答無住則無本。",
+          "Curated": true,
+          "AttributionNote": "Book of Serenity (萬松老人評唱天童覺和尚頌古從容庵錄): in Wansong Xingxiu's quotation of the Vimalakirti exchange, Vimalakirti gives the exact answer, 'Not-dwelling has no root.'",
+          "MasterName": "Vimalakirti",
+          "ContextMasters": [
+            {
+              "MasterName": "Vimalakirti",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0061c11",
+          "ToLb": "0061c11",
+          "Kwic": "師曰。以無住為本。見即是主。",
+          "Curated": true,
+          "AttributionNote": "(五燈會元): complete-case exact-turn review identifies Shenhui as the actor for this occurrence.",
+          "MasterName": "Shenhui",
+          "ContextMasters": [
+            {
+              "MasterName": "Shenhui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0042c01",
+          "ToLb": "0042c02",
+          "Kwic": "是故文殊以無住為本，曹溪以無念為宗。無念之宗為萬法之宗，無住之本為萬法之本。",
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps (五燈全書(第34卷-第120卷)), Huilin Dexun section: Huilin pairs Manjusri's 'not-dwelling as root' with Caoxi's 'no-thought as source' and calls it the root of all things.",
+          "MasterName": "Huilin Dexun",
+          "ContextMasters": [
+            {
+              "MasterName": "Huilin Dexun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0414a24",
+          "ToLb": "0414b01",
+          "Kwic": "我不依有住而住，不依無住而住，如是而住。",
+          "MasterName": "Jingangqi",
+          "ContextMasters": [
+            {
+              "MasterName": "Jingangqi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Pointing at the Moon (指月錄) names Jingangqi in the immediately preceding exchange; Jingangqi answers that he dwells by depending on neither abiding nor non-abiding."
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2008.xml",
+        "T/T48/T48n2001.xml",
+        "T/T48/T48n2004.xml",
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml",
+        "X/X83/X83n1578.xml"
+      ],
+      "RelatedMasters": [
+        "Huineng",
+        "Fayan Wenyi",
+        "Jingangqi"
+      ],
+      "RelatedTerms": [
+        "無念",
+        "無相",
+        "無所住"
+      ],
+      "SearchAliases": [
+        "not dwelling",
+        "not abiding",
+        "without dwelling",
+        "no fixed abode",
+        "non-abiding"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Baotang Wuzhu",
+      "AlternateTargets": [
+        "Chan Master Wuzhu of Baotang"
+      ],
+      "Status": "drafted",
+      "Explanation": "The exact graph sequence also names Baotang Wuzhu, a historical Chan teacher. These headed biographies are a person-name deployment and are kept separate from the lexical predicate meaning non-abiding.",
+      "Validation": "provisional",
+      "Note": "This person-name sense prevents Baotang Wuzhu from being folded into the lexical phrase. The headings occur in two distinct manifest works, work:wudeng-yantong and work:X80n1565, but they preserve the same biography formula in closely related lamp compilations; the sense therefore remains provisional rather than treating storage or work count alone as independent semantic confirmation.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1568.xml",
+          "FromLb": "0607c14",
+          "ToLb": "0607c14",
+          "Kwic": "益州保唐寺無住禪師益州保唐寺無住禪師初得法於無相大師",
+          "ContextMasters": [
+            {
+              "MasterName": "Baotang Wuzhu",
+              "Roles": [
+                "section-subject",
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (五燈嚴統(第1卷-第9卷)). Compiler heading and biography identify Baotang Wuzhu as the person named Wuzhu; the headword is not a spoken lexical predicate.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "biographical section heading",
+            "ActorLabel": "the lamp-record compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headed biography names the person and immediately begins his life record; no dialogue turn supplies the name.",
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-14T23:40:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0054c14",
+          "ToLb": "0054c14",
+          "Kwic": "益州保唐寺無住禪師益州保唐寺無住禪師初得法於無相大師",
+          "ContextMasters": [
+            {
+              "MasterName": "Baotang Wuzhu",
+              "Roles": [
+                "section-subject",
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). Compiler heading and biography identify Baotang Wuzhu as the person named Wuzhu; the headword is not a spoken lexical predicate.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "biographical section heading",
+            "ActorLabel": "the lamp-record compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headed biography names the person and immediately begins his life record; no dialogue turn supplies the name.",
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-14T23:40:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1568.xml",
+        "X/X80/X80n1565.xml"
+      ],
+      "RelatedMasters": [
+        "Baotang Wuzhu"
+      ],
+      "RelatedTerms": [],
+      "SearchAliases": [
+        "Baotang Wuzhu",
+        "Wuzhu of Baotang",
+        "Chan Master Wuzhu"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

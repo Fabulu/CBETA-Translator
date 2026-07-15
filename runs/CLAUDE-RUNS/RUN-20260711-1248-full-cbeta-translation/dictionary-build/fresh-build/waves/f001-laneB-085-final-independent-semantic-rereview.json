@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [85],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T04:25:00Z",
+  "scope": "Final read-only semantic rereview of 方丈 after removal of the unsupported historical narrowness claim, bound to the final packet and hardPass gate.",
+  "inputs": {
+    "finalRereviewPacket": {"path":"fresh-build/waves/f001-laneB-085-final-semantic-rereview-packet.json","sha256":"ea9c38c8b8fa51b84336d9f93b133fda66ba091beec65fa8df71f426069558b2"},
+    "finalRepairGate": {"path":"fresh-build/waves/f001-laneB-085-final-semantic-repair-gate.json","sha256":"6c3af9dfd92b727cda14b674ba676e9ad91ccbe4725777dd8210a61df3f3af2e"},
+    "attributionPacket": {"path":"fresh-build/waves/f001-laneB-085-final-semantic-repair-gate-attribution-packets.json","sha256":"a89bad56e4e613670b8de56fbcde6667b500cbf20deb1657676a452ba438269d"}
+  },
+  "summary": {"KEEP":1,"REVISE":0},
+  "findings": [
+    {
+      "ordinal": 85,
+      "id": "t_becc0a1ea8cb",
+      "term": "方丈",
+      "entrySha256": "0eabc1dc418fe2b05f00c1a1555114f7d86c5434909fd090487800ed080566d6",
+      "verdict": "KEEP",
+      "finding": "The unsupported 'traditionally described as a ten-foot-square space' clause is gone. The room opening now begins with the corpus-supported institutional referent and anchors movement into/return to the quarters plus the explicit 方丈地/方丈室 naming contrast. Resident-abbot metonymy remains independently anchored, Baiyu Jingsi is roster-exact, the two different-thing senses remain distinguishable, all nine KWICs verify, and no semantic or attribution regression was found.",
+      "requiredChanges": []
+    }
+  ]
+}

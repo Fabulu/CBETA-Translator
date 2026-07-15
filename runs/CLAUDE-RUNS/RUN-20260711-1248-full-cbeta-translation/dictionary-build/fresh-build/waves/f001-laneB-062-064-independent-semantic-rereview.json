@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [62, 63, 64],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T00:30:59Z",
+  "scope": "Hash-bound rereview limited to the three required repairs from the prior independent semantic review and regression detection in the repaired fields. The relevant full cases in the supplied repair attribution packet were read; entries were not edited.",
+  "inputs": {
+    "repairGate": {
+      "path": "fresh-build/waves/f001-laneB-062-064-semantic-repair-gate.json",
+      "sha256": "c6350314b28d72e0d123f77cdee414b7a38a1ee6a58602c4049825f3b9f7f2e6"
+    },
+    "semanticRereviewPacket": {
+      "path": "fresh-build/waves/f001-laneB-062-064-semantic-rereview-packet.json",
+      "sha256": "8312a9cfeda46886f84556dc7cb357cc892566776689fdb20b267f0deba0204a"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneB-062-064-semantic-repair-gate-attribution-packets.json",
+      "sha256": "9c751d4175f40f7284f877cf0d96105bb1d944c0873493f2b11f2ccac1372a72"
+    },
+    "priorIndependentReview": {
+      "path": "fresh-build/waves/f001-laneB-061-070-independent-semantic-review.json",
+      "sha256": "e6371ef9ab8a0dd2cf6dcd357de75fc885d1cd598f07f47747ea69063d0ee666"
+    }
+  },
+  "summary": {
+    "KEEP": 3,
+    "REVISE": 0,
+    "reviseOrdinals": []
+  },
+  "findings": [
+    {
+      "ordinal": 62,
+      "id": "t_21926ca0b92e",
+      "term": "頂門眼",
+      "entrySha256": "ec5dac372f0aecf1185decaba2fb54d132e5896ed9df31e9c98462459614806e",
+      "verdict": "KEEP",
+      "review": {
+        "requiredRepair": "The J34nB300 row now assigns the 進云 headword assertion to the unnamed monk, records concrete turn-marker grammar, and lists Chaozong Tongren as respondent, interlocutor, and record owner.",
+        "fullCaseCheck": "The complete exchange confirms that Chaozong's 師云 question, strike, and 擉瞎了也 comment follow the monk's turn and are not folded into MasterName.",
+        "regressionCheck": "The explanation accurately names both roles, the aliases remain distinct, and no meaning/sense/depth regression was introduced."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 63,
+      "id": "t_c327d2a1fc8c",
+      "term": "金剛眼睛",
+      "entrySha256": "f129c83d20f5f5b07187e908d47ad7e51add786c3ff430e444f757190ef22bfd",
+      "verdict": "KEEP",
+      "review": {
+        "requiredRepair": "SearchAliases is now duplicate-free and order-preserving: the vajra eye, vajra eyes, the adamantine eye.",
+        "fullCaseCheck": "No actor or context field was changed by the alias-only repair.",
+        "regressionCheck": "The one-eye-image sense, accumulated predicates, modifier restraint, explanation, and evidence depth remain intact."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 64,
+      "id": "t_07d808115439",
+      "term": "言語道斷",
+      "entrySha256": "adda3c4e7468c75b422cd63d407917ded89ed032b6aaabf5c43440a51537ebed",
+      "verdict": "KEEP",
+      "review": {
+        "requiredRepair": "The pre-保寧道 positive formula now uses the impersonal transmitted-formula branch, with Baoning Renyong only in contextual commentator/later-raiser roles. The following counter-formulation remains a separate row correctly assigned to Baoning.",
+        "fullCaseCheck": "The complete text has an explicit 保寧道 boundary between the two formulas; the repaired actor split matches it exactly.",
+        "regressionCheck": "The explanation now calls the first formula unattributed and gives Baoning ownership only of the marked reversal. The fixed-formula sense, aliases, and depth are unchanged."
+      },
+      "requiredChanges": []
+    }
+  ]
+}

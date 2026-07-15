@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [71, 72, 73, 74, 75, 76, 77, 78, 79, 80],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T00:30:59Z",
+  "scope": "Hash-bound review of meaning and different-thing sense boundaries, exact actors and contextual roles, frequency-scaled depth and uniqueness, independent-work identity, corpus-earned openings, aliases, claim anchoring, modifier controls, governed variants, and forbidden-rule compliance. Every complete case in the supplied attribution packet was read; entries were not edited.",
+  "inputs": {
+    "mechanicalGate": {
+      "path": "fresh-build/waves/f001-laneB-071-080-gate.json",
+      "sha256": "701dd3ffa7afd911268260a4de57530efb97c1d7e850d4a66450d801cf4676eb"
+    },
+    "semanticReviewPacket": {
+      "path": "fresh-build/waves/f001-laneB-071-080-semantic-review-packet.json",
+      "sha256": "f931c4284efa32fe3adb1ebf0293b2099ec963a599afad97621e026f0626336c"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneB-071-080-gate-attribution-packets.json",
+      "sha256": "9010e04a8d0e506610cec8e125e52c43c989461f22edf628133db53a785c557d"
+    },
+    "publicFeedback": "The cohort audit flags the unanchored material denial in 黑漆桶 and queues the 老僧 opening for review. The first is a substantive revision; the second opening is informative, but the same entry fails exact-actor review independently."
+  },
+  "summary": {
+    "KEEP": 2,
+    "REVISE": 8,
+    "reviseOrdinals": [71, 72, 73, 75, 76, 77, 79, 80]
+  },
+  "findings": [
+    {
+      "ordinal": 71,
+      "id": "t_ddab56ede4ef",
+      "term": "桶底脫",
+      "entrySha256": "f19fad69f2c3d6032f19038b4f318a6bafeb23f29ad8f225fd5f3fdefeb2df2a",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The physical loss of a bucket bottom and comparison with that event are one image-level sense; no abstract replacement or extra reading is needed.",
+        "actorsAndContext": "The kitchen KWIC in X80n1565 contains two occurrences in different actor layers: 忽桶底脫 is compiler narration, while 桶底脫自合歡喜 is Zhenxie Qingliao's direct speech. A single occurrence classified only as narrated violates the full-case mixed-turn rule. The Xuefeng case also makes Yantou's immediate challenge part of the article's argument but omits him from ContextMasters.",
+        "depthAndUniqueness": "Recollection, commentary, direct answer, kitchen event, predicate pairing, and later instruction are distinct and non-padded once the mixed row is separated.",
+        "workIdentity": "The selected exact evidence spans four distinct works; no split-volume inflation is present.",
+        "openingAliasesAnchors": "The bucket scene and retrieval aliases are clear, but the kitchen evidence must be represented in actor-pure rows before its two uses can support the prose.",
+        "forbiddenRules": "No imported awakening definition was found; exact-actor row purity fails."
+      },
+      "requiredChanges": [
+        "Split or re-cut X/X80/X80n1565.xml 0297a04-05 so the narrated mechanical event and Zhenxie Qingliao's direct 桶底脫 utterance are separate actor-pure evidence rows, each with the correct exact-actor branch and context.",
+        "Add Yantou Quanhuo as respondent/context master in the Xuefeng full case because the explanation and AttributionNote explicitly rely on his immediate challenge."
+      ]
+    },
+    {
+      "ordinal": 72,
+      "id": "t_398a33955019",
+      "term": "默照",
+      "entrySha256": "c7eb8974ff0942ac4e28392f96857c00097900b213b199d836ed2b739c0cee96",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One contested label is appropriate: Hongzhi's affirmative language and Dahui/later adverse classifications are stances toward the same named thing, not different referents.",
+        "actorsAndContext": "The long Dahui exchange personally identifies the questioner as the scholar Zheng Shangming (士人鄭尚明), not a visiting monastic. The null exact-actor branch is correct in kind, but ActorAttribution.Kind and the AttributionNote misstate his social role and shorten the personally attested name to Shangming.",
+        "depthAndUniqueness": "Affirmative predication, Dahui's labels and opposition, later naming formula, medicalized criticism, and a direct challenger are genuinely distinct.",
+        "workIdentity": "Five distinct works support the selected range.",
+        "openingAliasesAnchors": "The opening appropriately preserves the disagreement and the quoted formulas are anchored.",
+        "forbiddenRules": "The entry does not turn the term into an endorsed technique; identified-non-master identity precision fails."
+      },
+      "requiredChanges": [
+        "For T/T47/T47n1998A.xml 0885a18-19, identify the exact non-master as Zheng Shangming, described by the source as a scholar/layman (士人), not as a visiting monastic; correct ActorLabel, Kind, and AttributionNote consistently."
+      ]
+    },
+    {
+      "ordinal": 73,
+      "id": "t_824cfb1434b1",
+      "term": "擒縱",
+      "entrySha256": "881abd414687c8c81a96109fb260c459ec5d913b3ee49d7c20a95b6f4c03e1b8",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "Capture-and-release remains one coordinated command pair; nominal and verbal packaging do not create another thing.",
+        "actorsAndContext": "The X64n1260 heading says 愚庵及禪師: the utterer is the master named Ji (及), conventionally Yu'an Ji, not 'Yu'an Puji.' The stored name expands a different unattested personal name. Other Yuanwu and compiler layers are correctly separated, although the compiler AttributionNote repeats its opening sentence verbatim.",
+        "depthAndUniqueness": "Release/gather, kill/live, in-me control, lineage description, memorial appraisal, and compiler school exposition are distinct uses.",
+        "workIdentity": "Five distinct works support the corpus-wide deployment.",
+        "openingAliasesAnchors": "The command-pair opening follows the military predicates in the supplied cases and aliases remain coextensive.",
+        "forbiddenRules": "No hidden spiritual-force claim; a fabricated name expansion is not permissible attribution."
+      },
+      "requiredChanges": [
+        "Replace 'Yu'an Puji' on X/X64/X64n1260.xml 0233b07-08 with the attested heading identity 愚庵及禪師 (Yu'an Ji, using the roster-exact form if now rostered), and update the note/context consistently.",
+        "Remove the duplicated opening sentence in the Huiyan Zhizhao compiler AttributionNote."
+      ]
+    },
+    {
+      "ordinal": 74,
+      "id": "t_47e7132eb361",
+      "term": "六根門頭",
+      "entrySha256": "36d9969f33899300605a6d79b2a347bb8d6939000901b7fb98c46c8803428acf",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One locative six-faculty-gates expression covers the attested predicates without turning the gates into architectural objects or splitting by surrounding action.",
+        "actorsAndContext": "Zhongfeng, Yuanwu, Huangbo, Baiyu Jingsi, Yingan, and Zhuanyu own their complete turns; no respondent or narrated subject is substituted for the utterer.",
+        "depthAndUniqueness": "Recognition, exposure, scraping, shining, and the divergent recollection-of-buddha witness supply a real deployment spread rather than repetitions.",
+        "workIdentity": "Six files represent six distinct works.",
+        "openingAliasesAnchors": "The opening names the sensory-gateway scene, the aliases are bounded, and the stated predicates are present in the selected evidence.",
+        "forbiddenRules": "No imported theory of sensation or architectural literalization found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 75,
+      "id": "t_3bf26be0cd43",
+      "term": "黑漆桶",
+      "entrySha256": "31a2a3f246018d5687037e90878e46d15b493983dd4585ac5f89362d540d8532",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One bucket image supports answer, people-label, self-comparison, enclosure, bottom, hoop, breaking, and leaping uses; no different concrete object is yet established.",
+        "actorsAndContext": "The supplied full cases support Rujing, Tui'an, Chuiwan, Wumen, Yuancheng, Zhongfeng, Zhe'an, and Tianran at the exact-turn level.",
+        "depthAndUniqueness": "The eight selections are lexicographically distinct rather than quota copies.",
+        "workIdentity": "Five distinct works support the sense.",
+        "openingAliasesAnchors": "The target avoids claiming lacquer construction, but the article asserts that the bucket is opaque, that darkness is doing the work, that it need not be made/coated with lacquer, and that it may be overturned without a concrete modifier-control ledger or stored anchor for the overturning predicate. The current WORK lines merely say the check was performed and do not record evidence or counterexamples.",
+        "forbiddenRules": "The entry avoids invented symbolism, but item 13 requires evidence for both material claims and denials; a generic checked-box is not a modifier study."
+      },
+      "requiredChanges": [
+        "Run and record a real 黑/漆 modifier study with exact positive and negative controls, counterexamples, and a material/appearance/conventional-name/figurative/unresolved verdict; then narrow 'opaque,' 'darkness,' and the lacquer denial to what those anchors actually establish.",
+        "Anchor the claimed overturning deployment with a ClaimAnchor or exact-headword KWIC containing the relevant 踏翻 clause, or remove that unanchored claim while preserving the useful evidence."
+      ]
+    },
+    {
+      "ordinal": 76,
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "entrySha256": "3f81a6c3cc2d07c69913acb81c71872b3e0271c988d483a29efd0fd3b320cfca",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The imperative optical phrase is one lexical sense; complements and stances do not create another thing.",
+        "actorsAndContext": "The complete cases support Yunju, Shitou, Linji, Chengtian, Jueke, Fenyang, Zhongfeng, and Miyun as the respective utterers.",
+        "depthAndUniqueness": "The entry has strong imperative, return, anti-outward-search, complement, result, and criticism evidence, but it does not accurately classify all evidence rows.",
+        "workIdentity": "Independent-work breadth remains sufficient after variant correction.",
+        "openingAliasesAnchors": "The opening claims placement at the six faculties and amid daily activity without any stored occurrence or ClaimAnchor for those propositions. More importantly, the Note says no definition formula was found while Zhongfeng explicitly says '回光返照四字，是…' and then supplies both a description and a falsification of quiet sitting; that high-value variant witness is omitted from the explanation.",
+        "forbiddenRules": "回/迴 is a governed graphic variant, but 返照回光 is a word-order reversal, not a graph substitution. Storing it as an Occurrence with EvidenceRole variant violates the only headword-in-KWIC exception."
+      },
+      "requiredChanges": [
+        "Move 返照回光 out of Occurrences into a ClaimAnchor/related-term family row (or an independently queued entry); it is not a governed graphic variant of 迴光返照.",
+        "Treat Zhongfeng's 回光返照四字是… passage as the found variant-form definition/critique, correct the false no-definition Note, and incorporate its high-value limitation into the explanation without endorsing its prescriptions.",
+        "Anchor the six-faculties and daily-activity opening claims with exact evidence, or narrow the opening to the outward-pursuit and complement predicates actually stored."
+      ]
+    },
+    {
+      "ordinal": 77,
+      "id": "t_2facdfa49dd9",
+      "term": "末後牢關",
+      "entrySha256": "7221adb98fad2d2d028b2a5acf81f906f027b76dce7838834b098b93ece49918",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One final severe barrier/checkpoint sense covers naming, passing, questioning, and immeasurability; shorter related phrases belong in ClaimAnchors as currently modeled.",
+        "actorsAndContext": "The J36nB359 source is the same Baiyu Jingsi record correctly named elsewhere in this cohort, but this entry assigns the utterance to 'Baiyu Si.' The exact actor identity is inconsistent and not roster-exact. Other supplied turns are sound.",
+        "depthAndUniqueness": "Naming formula, post-understanding barrier, pass question, immeasurability, and later rebuke are distinct.",
+        "workIdentity": "The exact rows and related claim anchors span the stated distinct works without file double counting.",
+        "openingAliasesAnchors": "The final-checkpoint opening is supported. 'Locked' is stronger and more mechanical than the supplied predicates warrant for 牢; the corpus establishes severe/firm/formidable resistance and passing, not an actual lock or unlocking action.",
+        "forbiddenRules": "No external doctrine; roster identity and ordinary-scene precision require repair."
+      },
+      "requiredChanges": [
+        "Change J/J36/J36nB359.xml 0669c01 from 'Baiyu Si' to the roster-exact Baiyu Jingsi used for the same record elsewhere, and synchronize AttributionNote/ContextMasters.",
+        "Re-test 'final locked barrier' against the governing predicates; prefer a clean target such as 'final formidable barrier/checkpoint' unless an actual locking predicate is anchored."
+      ]
+    },
+    {
+      "ordinal": 78,
+      "id": "t_5f1287817ebd",
+      "term": "野狐禪",
+      "entrySha256": "ce4b1c2d2be86fee2baa88003517a91d9006acdf99d2bfefc3ce611f2ab10032",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One adverse label covers case-allusive and broader accusations; the Baizhang relation is not incorrectly made the whole meaning.",
+        "actorsAndContext": "Lia'an, Ruibai, Fangrong, Lianyue, Tongtian, and Xiaoyin's respective verse, address, and case layers are kept distinct.",
+        "depthAndUniqueness": "Tearing, sweeping, tricks, school-label criticism, and explicit fox-case allusion are genuinely different evidence classes.",
+        "workIdentity": "Six selected source files represent six distinct works.",
+        "openingAliasesAnchors": "The adverse-label opening is the minimum inference from the recorded corrective verbs; aliases remain term-specific and the Baizhang allusion has its own ClaimAnchor.",
+        "forbiddenRules": "No universal karma theory or imported fox symbolism found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 79,
+      "id": "t_dec67da1f076",
+      "term": "沈空滯寂",
+      "entrySha256": "c658896282566dfd400d330a056e174cdd1f25008339b4cd143b07db0333d307",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One criticized paired arrest covers both 沈 and the governed 沉 graphic variant; no stance-based split is needed.",
+        "actorsAndContext": "Yuwang, Gaofeng, Yuansou, Chushi, Baizhang, Yuanjie, and Ruibai own the supplied exact turns. The longer duplicate rows retain the same actor layers.",
+        "depthAndUniqueness": "Contrast, diagnostic question, arhat caption, illness label, classification, and explicit prohibitions provide useful spread.",
+        "workIdentity": "Seven distinct works support the selected deployment.",
+        "openingAliasesAnchors": "The opening says the phrase is opposed to responsive use, seeing one's nature, raising genuine doubt, and attending to living beings. Only the last is present in a stored extended row; the other claims occur, if at all, outside the stored KWICs and have no ClaimAnchors. The useful full-case relations should be preserved rather than asserted without reader-visible evidence.",
+        "forbiddenRules": "The article does not recommend stillness, but its opening exceeds its stored anchors."
+      },
+      "requiredChanges": [
+        "Add ClaimAnchors for each retained full-case contrast in the opening (responsive use, seeing one's nature, and genuine doubt), with exact actor/source notes, or narrow the opening to the stored condemnation, illness, self-only, and living-beings evidence."
+      ]
+    },
+    {
+      "ordinal": 80,
+      "id": "t_12e8cba30de6",
+      "term": "老僧",
+      "entrySha256": "4ae4307137d7ced39fc0847aaa5ac214715de12ec128dd1e566b80819b0c731f",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The ordinary/self-referential human-role sense should remain merged across person and definiteness. Chaozong's explicit 空劫自己謂之老僧 equation is a genuinely different local referent and is correctly isolated as provisional.",
+        "actorsAndContext": "The X68n1318 occurrence is compiler/section-master narration introducing an old monk named Puhui. Puhui is the referent of 老僧, not the utterer of the headword-bearing narration. Assigning MasterName=Puhui repeats the subject-for-speaker defect ACTOR_AUDIT forbids. The exact narrator/section master must be resolved from the 雲蓋本和尚 section; Puhui belongs in ContextMasters as person-described/case-figure.",
+        "depthAndUniqueness": "Self-reference, ordinary third person, named old monk, public-interview redirection, final address, raised case, and local equation are all high-value and justify the eleven rows.",
+        "workIdentity": "The main sense spans seven distinct works; the local sense honestly remains one-work provisional.",
+        "openingAliasesAnchors": "The main opening is informative and distinguishes grammatical readings from different things; the local opening is clearly scoped. The attribution error, not the opening detector alone, prevents KEEP.",
+        "forbiddenRules": "No restoration of the old deictic pseudo-split; exact actor must not be confused with the person described."
+      },
+      "requiredChanges": [
+        "For X/X68/X68n1318.xml 0437c11-12, resolve and assign the actual headword-bearing narrator/section speaker from the 雲蓋本和尚 section; remove Puhui from MasterName and retain him only in ContextMasters as person-described/case-figure, with the AttributionNote rewritten accordingly."
+      ]
+    }
+  ]
+}

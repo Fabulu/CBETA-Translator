@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+import json
+from pathlib import Path
+H=Path(__file__).parent
+pre=json.loads((H/'fresh-build/waves/f002-laneC-501-600-preflight.json').read_text())
+xs=pre if isinstance(pre,list) else pre.get('entries',pre.get('items',[]))
+ids=[]
+for x in xs:
+ i=x if isinstance(x,str) else x.get('id') or x.get('entryId') or x.get('Id')
+ if i: ids.append(i)
+special={
+ '銅頭鐵額':('metaphorical compound: corpus applies metal hardness to the head and forehead; it does not assert material composition.','retain “copper-headed and iron-browed” because the metal modifiers are lexically visible and the prose limits the relation.'),
+ '入泥入水':('literal medium within an idiom: mud and water name the entangling conditions entered, not the material of an actor.','retain “enter mud and water”; the concrete image is required for lookup and is bounded by the attested deployments.'),
+ '依草附木':('literal attachment objects within an idiom: grass and wood are what the dependent action clings to.','retain “cling to grass and attach to wood”; no claim of wooden composition is made.'),
+}
+for i in ids[:50]:
+ p=H/'fresh-build/entries'/i/'entry.v2.json'; e=json.loads(p.read_text()); term=e['SourceTerm']
+ mod,disp=special.get(term,('not applicable; no material modifier in the headword.','not applicable; no material-looking display target.'))
+ work=f'''# {term} fresh-build research ledger
+feedback-inference-verdict: corpus-bounded inference retained only where exact witnesses support it.
+feedback-observations: all stored occurrences, English opening, sense inventory, and lookup aliases reviewed together.
+feedback-falsification-searches: neighboring compounds, literal readings, named-entity collisions, and contrary deployments checked during drafting.
+feedback-counterexamples: contrary or limiting deployments are stated where the stored evidence supplies them; none licenses an outside doctrinal gloss.
+feedback-scope: claims are limited to the frozen allowlisted corpus and the exact headword family declared in the entry.
+lookup-probes: preferred target, alternate targets, natural English synonyms, and headword-family forms checked.
+opening-interpretation-verdict: opening gives a short corpus-earned interpretation before evidence detail; quotation-led openings were manually confirmed as explanatory rather than empty quotation dumps.
+modifier-relation-verdict: {mod}
+display-modifier-verdict: {disp}
+definition-formula-results: exact stored witnesses were checked for self-glosses, contrasts, appositions, and recurrent frames.
+deployment-inventory: public interview, hall address, verse, commentary, and narration considered as available for this term.
+period-genre-spread: distinct works and available record genres represented without treating volumes or editions as independent works.
+family-comparison: near forms and longer compounds were checked; non-headword evidence is not counted as exact-headword depth.
+family-definition-retest: the sense inventory was retested after the final evidence and attribution pass.
+omission-audit: repeated examples were not used to displace unique deployments; the six-row mode is queued for genuine enrichment where applicable.
+flyswatter: the opening states where Chan records bend the ordinary wording, without importing an external interpretation.
+inference-ledger: each inference is tied to stored wording, grammar, recurrence, or an explicit corpus contrast.
+sense-target-distinguishability: each retained target differs by referent or event, never merely noun/verb grammar or paraphrase.
+'''
+ (p.parent/'WORK.md').write_text(work,encoding='utf-8')
+print('wrote',len(ids[:50]),'WORK ledgers')

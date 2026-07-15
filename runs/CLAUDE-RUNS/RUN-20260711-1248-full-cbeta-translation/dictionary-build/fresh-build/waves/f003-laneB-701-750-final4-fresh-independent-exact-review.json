@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic review of B701-750 final4 residual repairs",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "701-750 residual repair set",
+  "generatedUtc": "2026-07-15T16:00:00Z",
+  "reviewer": "Codex fresh independent reviewer (not the final4 repair author)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "repairLedger": "f003-laneB-701-750-final4-repair-author-ledger.json",
+    "repairLedgerSha256": "4dc0afec1cc6e132a64818a8c202f2e1c0d8691adc360b85382689851a2cd39b",
+    "formalGate": "f003-laneB-701-750-final4-formal-gate-v4.json",
+    "formalGateSha256": "e1b807a185332eb9e1595a5c68ec5bea9b7894f658706c5d0786b949bf5e8386",
+    "repairReadiness": "f003-laneB-701-750-final4-repair-readiness.json",
+    "repairReadinessSha256": "418e2ed206bb6072532af4a68830bb80621a66a1d6da15d55a11922e501c9179",
+    "attributionPackets": "f003-laneB-701-750-final4-formal-gate-v4-attribution-packets.json",
+    "attributionPacketsSha256": "7161393152c4c5adce50c67438e61d0c8cab6d06d6c7ca189f22a1cb4a67a7c2"
+  },
+  "formalGateHardPass": true,
+  "repairReadinessHardPass": true,
+  "attributionPacketGeneratorVersion": 3,
+  "turnProofMissing": 0,
+  "repairedEntriesRead": 4,
+  "repairedOccurrencesReadInCompleteCaseContext": 31,
+  "priorKeepCount": 26,
+  "priorKeepHashesByteIdentical": true,
+  "summary": { "KEEP": 0, "REVISE": 4 },
+  "systemicFindings": [
+    "The formal mechanical gate is green, but full-case semantic review still finds context-master omissions and exact-turn errors that the gate does not test.",
+    "Narrator-owned action wording must still name the acting or case-owning master in ContextMasters when the complete case identifies that master.",
+    "All 26 prior KEEP rows covered by the readiness artifact remain byte-identical."
+  ],
+  "rows": [
+    {
+      "ordinal": 712,
+      "id": "t_c212062774f9",
+      "term": "禪床",
+      "entrySha256": "276bd62f3ec3d618be51c0715c8d877d703b66571b7957f4bccf15885be357f0",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "finding": "REVISE — Su Shi is now correctly separated from Foyin in O1, but O2-O10 blanket narrator-owned action clauses with empty ContextMasters. The complete cuts themselves name Zhaozhou, a 師 who descends, strikes, or circles the couch, Dahui's record owner, and Magu. Narration owns the written headword, but the acting/case masters remain reader-relevant contextual figures and must be resolved case by case. The explanation's claim about the 'headword-bearing record owner' is therefore not supported by the stored actor links."
+    },
+    {
+      "ordinal": 713,
+      "id": "t_2da0e2fc0478",
+      "term": "三門",
+      "entrySha256": "f47b087eaa683ae42b4f23741190261854efd2ad9666e4e7e857d33d0592757f",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O1 assigns 三門 to Foyan Qingyuan, but the syntax is explicit: after 師云, 進云 introduces the headword-bearing list 厨庫三門鍾樓佛殿. The advancing interlocutor/monk utters the headword and Foyan is the respondent, so MasterName and the utterer role are wrong. The rare technical 'three approaches' sense also needs enough surrounding argument to establish what the three enumerated approaches are; 前之三門 alone does not make the opening inference reader-verifiable."
+    },
+    {
+      "ordinal": 722,
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "entrySha256": "5d477c70a77d34f59b57521378992113d77746deebc9ba8e105a8265bf9f322a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O1 correctly makes 開爐日 recorder-owned and retains Fachang Yiyu, but O2-O7 reduce six named record sections to a generic compiler with empty ContextMasters even where the cuts visibly continue into a named master's 開爐上堂/示眾/晚參. The occasion label is not the master's spoken turn, yet the presiding master is still the section subject or following utterer and must be named canonically. Without those links, the prose claim that recorded sayings deploy the occasion in public addresses is not occurrence-level traceable."
+    },
+    {
+      "ordinal": 750,
+      "id": "t_74390b40f658",
+      "term": "坐斷天下人舌頭",
+      "entrySha256": "3163de7a183313d3f5eaf5ccf926f01d57b1c9941e118f5842fa925aef4d9ffe",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — O1 cites T47n1997 but assigns the utterance to Feiyin Tongrong, a Ming master who cannot be the owner of this Song-period Yuanwu record; this is a source/identity mismatch requiring full-section resolution. O6's KWIC begins with duplicated volume/editorial headings and should be recut to the actual Qianyan Yuanzhang incense address. These defects make the otherwise strong nonliteral gloss unsafe for promotion."
+    }
+  ]
+}

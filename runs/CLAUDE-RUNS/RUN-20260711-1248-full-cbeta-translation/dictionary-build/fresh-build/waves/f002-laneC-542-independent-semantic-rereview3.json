@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-focused-rereview",
+  "wave": "f002",
+  "lane": "C",
+  "ordinals": [542, 542],
+  "reviewedUtc": "2026-07-15T00:00:00Z",
+  "readOnly": true,
+  "siteTouched": false,
+  "scope": "Exact-current-hash rereview of the sole residual correction for ordinal 542 紫芝.",
+  "summary": {
+    "focusedEntries": 1,
+    "focusedKEEP": 1,
+    "focusedREVISE": 0
+  },
+  "findings": [
+    {
+      "ordinal": 542,
+      "id": "t_75a477117870",
+      "term": "紫芝",
+      "entrySha256": "bb292fba74d4d292ef4c20cf57cf4475dec8485471ebf5c5249ec6587b836a3e",
+      "worksheetSha256": "0af50caaac55f401f2b5272270cfaaec77a60edfc00c645fbbd851e3cff7caa9",
+      "verdict": "KEEP",
+      "finding": "KEEP — the dangling reference to a nonexistent following sense is gone. The Note now explicitly routes lineage-title and person uses for Zizhi Zang to the lineage roster, while the surviving lexical article coherently retains the purple-fungus and Purple Fungus Song evidence without converting the person into a dictionary sense.",
+      "formalizationCondition": "Rereview verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    }
+  ]
+}

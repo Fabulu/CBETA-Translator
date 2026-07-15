@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [71, 72, 73, 75, 76, 77, 79, 80],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T00:42:40Z",
+  "scope": "Hash-bound rereview of all eight repaired entries against every required change in the prior independent review. Current entries and every complete case in the corrected post-repair attribution packet were read; regressions and reader-visible anchoring were retested. Entries and website were not edited.",
+  "inputs": {
+    "rereviewPacket": {
+      "path": "fresh-build/waves/f001-laneB-071-080-semantic-rereview-packet.json",
+      "sha256": "b58699d6480eb76aa98e2a6569a9a307a8e78c42b10046dfed778bdaa0f368ee"
+    },
+    "repairGate": {
+      "path": "fresh-build/waves/f001-laneB-071-080-semantic-repair-gate.json",
+      "sha256": "366014b4cc35ab4c49b7684a667003cd5bf3a8940966342c17b3e25bdd2c76f1"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneB-071-080-semantic-repair-gate-attribution-packets.json",
+      "sha256": "e7ac360886e6477468593c9b5ce3bca94be3088bddc12c4b08fa510be211332c"
+    },
+    "priorIndependentReview": {
+      "path": "fresh-build/waves/f001-laneB-071-080-independent-semantic-review.json",
+      "sha256": "c2910e2e9b29c83849b8fb8166762f521b83f1e2ec173e110e3e91b7017310ed"
+    }
+  },
+  "summary": {
+    "KEEP": 6,
+    "REVISE": 2,
+    "reviseOrdinals": [76, 80]
+  },
+  "findings": [
+    {
+      "ordinal": 71,
+      "id": "t_ddab56ede4ef",
+      "term": "桶底脫",
+      "entrySha256": "ff7fea6650154a09b5beec3febe643c8501201d0403e1cd4ab8055992b645d7f",
+      "verdict": "KEEP",
+      "repairVerification": "The mixed X80n1565 row is now split into an actorless narrated mechanical event and Zhenxie Qingliao's marked speech. Both KWICs are actor-pure, and Yantou Quanhuo is now retained as respondent/interlocutor/teacher in the Xuefeng case. The added split does not create a duplicate sense or alter the literal-control boundary.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 72,
+      "id": "t_398a33955019",
+      "term": "默照",
+      "entrySha256": "6276912434019ee90dda3254c5dd12863e1eee688fe4834f70838f3e80858f68",
+      "verdict": "KEEP",
+      "repairVerification": "The complete Dahui exchange now identifies the exact questioner as the lay scholar Zheng Shangming, with MasterName null, the identified-non-master branch, and Dahui only as addressee/respondent. Kind, ActorLabel, grammar evidence, and note agree. The contested single-sense treatment remains intact.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 73,
+      "id": "t_824cfb1434b1",
+      "term": "擒縱",
+      "entrySha256": "08104a0cc22e70245c257a1a9d1110f935c268d9996374082dab16f70f0d7101",
+      "verdict": "KEEP",
+      "repairVerification": "The X64n1260 heading identity is now the attested Yu'an Ji (愚庵及禪師) throughout, and the compiler AttributionNote no longer duplicates its opening. The military command-pair boundary, work breadth, and exact actor layers did not regress.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 75,
+      "id": "t_3bf26be0cd43",
+      "term": "黑漆桶",
+      "entrySha256": "cca0f8e32df7b670c8244e4d5a2badfe1e7fbb0c75e5822ada848b45c2047c87",
+      "verdict": "KEEP",
+      "repairVerification": "The modifier study is now durable in WORK and the evidence draft: positive morphology/comparison controls, the 黑漆桶裏黃金色 counterexample, zero-result negative controls, and an unresolved material/appearance/conventional/figurative verdict are recorded. The opening no longer claims opacity, darkness as the mechanism, lacquer manufacture or denial, or an unattested overturning action. Bottom and inside rows make the retained morphology reader-visible.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 76,
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "entrySha256": "4314bbb5b851d15495dd5f21b48c4b1d0a23658a9a79131060941de09d5a951e",
+      "verdict": "REVISE",
+      "repairVerification": "The reversed 返照回光 row is correctly moved to ClaimAnchors, 回/迴 remains the governed graph variant, and the Note now recognizes Zhongfeng's explicit four-character formula. However, the explanation's key falsification—Zhongfeng says quiet withdrawal of sight and hearing like wood and stone is merely called 回光返照 by fools and is not what he means—occurs later in the complete case. The stored KWIC ends after the opening positive equation, so the claimed corrective remains invisible to the reader and unanchored. This is especially material because the prose relies on that corrective to prevent a practice reading.",
+      "requiredChanges": [
+        "Add a verified ClaimAnchor or actor-pure supporting occurrence from X/X70/X70n1402.xml 0732b22 onward that includes the quiet-sitting/wood-and-stone falsification (如今有等癡人…喚作回光返照), with Zhongfeng Mingben as exact utterer; then bind the English corrective explicitly to that anchor."
+      ]
+    },
+    {
+      "ordinal": 77,
+      "id": "t_2facdfa49dd9",
+      "term": "末後牢關",
+      "entrySha256": "941d9414af9ec132c10962ad9f9b538cb241b54dbb33e3ac8790a6a0e55607b9",
+      "verdict": "KEEP",
+      "repairVerification": "Baiyu Jingsi is now roster-exact throughout. The reader-facing target and aliases use formidable barrier/severe checkpoint rather than making 牢 into literal lock hardware. Passing, penetrating, final position, and resistance remain anchored by exact headword rows and related-form ClaimAnchors.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 79,
+      "id": "t_dec67da1f076",
+      "term": "沈空滯寂",
+      "entrySha256": "cab511cb58e359ec766015fb4f57307dcbc056e49e91236d3a03aca77b531fac",
+      "verdict": "KEEP",
+      "repairVerification": "The opening is narrowed to relations reader-visible in the stored evidence: criticized arrest, illness, explicit prohibition, self-only concern, neglect of living beings, and the one/many contrast. The former unanchored seeing-nature, genuine-doubt, and responsive-use claims are gone. The 沈/沉 governed variant and one-sense decision remain sound.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 80,
+      "id": "t_12e8cba30de6",
+      "term": "老僧",
+      "entrySha256": "c9e231aebeb57b5cfb11cfc3b0bee2ab0d58b2caf024c1384887e7af15ba43ce",
+      "verdict": "REVISE",
+      "repairVerification": "Puhui is correctly removed from MasterName and retained only as the described case figure. But the repair now makes Yungai Zhiben an ActorLabel inside a narrated/null-MasterName branch and calls him a section narrator/compiler. The complete case begins this whole passage with 師乃云; the old-monk clause is inside Yungai Zhiben's uninterrupted direct address. Under the governing exact-utterer rule, Yungai—not an impersonal compiler—utters the headword-bearing narration. The repair therefore fixes the subject-for-speaker defect but introduces a direct-speech-as-compiler defect.",
+      "requiredChanges": [
+        "For X/X68/X68n1318.xml 0437c11-12, set MasterName to roster-exact Yungai Zhiben as utterer/record-owner (the enclosing turn starts at 師乃云); remove the narrated ActorAttribution block, retain Puhui only as person-described/case-figure, and rewrite the AttributionNote to state that Yungai raises the Puhui account in his address."
+      ]
+    }
+  ]
+}

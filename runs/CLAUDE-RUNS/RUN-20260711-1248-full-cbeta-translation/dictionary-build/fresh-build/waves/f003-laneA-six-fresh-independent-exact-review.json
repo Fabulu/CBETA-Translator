@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic review after A651 six-entry repair",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": "651-700",
+  "reviewer": "Codex fresh independent reviewer",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "repairLedger": "f003-laneA-six-repair-author-ledger.json",
+    "repairLedgerSha256": "859232627f7e244c38b6911956bcbf2c704cb9d22d9fb1eac4e0880710275582",
+    "formalGate": "f003-laneA-six-complete-formal-gate.json",
+    "formalGateSha256": "4d6fcbafecab925aeba9559c54777c3542846f0dbf676caa3ed8a52fa50b2aa3",
+    "repairReadiness": "f003-laneA-six-repair-readiness.json",
+    "repairReadinessSha256": "4999b030dae459f34cbaf0a2e8a726d19a065aeac965e902ea561075cf375132",
+    "priorRejectingReview": "f003-laneA-651-700-revise15-round3-fresh-independent-exact-review.json"
+  },
+  "formalGateHardPass": true,
+  "repairReadinessHardPass": true,
+  "occurrencesReadInFullCaseContext": 52,
+  "summary": {
+    "KEEP": 6,
+    "REVISE": 0
+  },
+  "rows": [
+    {
+      "ordinal": 652,
+      "id": "t_6e4234dfd60f",
+      "term": "文殊",
+      "entrySha256": "90f53757aa5bb538bcd3369cfc880ba6fab7d56d76ae36ed31b87f9be633ee9b",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight complete cases were reread. O7 and O8 now correctly assign the containing turns to Dahui Zonggao and retain Manjusri only as the quoted or discussed participant. The other six actor decisions remain coherent."
+    },
+    {
+      "ordinal": 653,
+      "id": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "entrySha256": "a569947a316def73a346acbe4e818b034a3fc1c8c49bf6bc7352d842304fb339",
+      "verdict": "KEEP",
+      "occurrencesRead": 10,
+      "finding": "KEEP — All ten complete cases were reread. Action frames, including former defects O2, O3, O4, and O10, are now narrator-owned; staff handlers remain contextual actors rather than false utterers."
+    },
+    {
+      "ordinal": 656,
+      "id": "t_cbf868f557e2",
+      "term": "陞座",
+      "entrySha256": "412f5f2b03eb8545cfe6f9a1c16b95ee26a6bfbd2347be104f0d3f4e0905721c",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight complete cases were reread. Every headword occurrence is event framing or compiler narration; former defects O1, O3, and O6 no longer substitute the master who mounts the seat for the utterer of the frame."
+    },
+    {
+      "ordinal": 657,
+      "id": "t_cb44465faa59",
+      "term": "侍者",
+      "entrySha256": "b45ed9bc4dc0a9322117ebd4855b3bc56e8efba739d0b484f7e34eae84a792b7",
+      "verdict": "KEEP",
+      "occurrencesRead": 10,
+      "finding": "KEEP — All ten complete cases were reread. O6 correctly belongs to Lia'an Qingyu's containing quotation; O10 and the remaining narrated cases no longer confuse an attendant or described master with the exact headword utterer."
+    },
+    {
+      "ordinal": 679,
+      "id": "t_4da199fae933",
+      "term": "消息",
+      "entrySha256": "8149208763ca19440f8d7db5adffc2aff72aa3f40b04086a94298243c33e4fcc",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight complete cases across three senses were reread. S2/O4 now correctly assigns the headword-bearing question to the unnamed monk and places Dahui Zonggao only as respondent."
+    },
+    {
+      "ordinal": 688,
+      "id": "t_cc8c8a1cb550",
+      "term": "羅漢",
+      "entrySha256": "1f873dcbc65dcdffa85a5ed9930a2ba9df08ebb545f84229143adf66330aad5d",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight complete cases across the common-title and proper-name senses were reread. S1/O5 is now correctly narrator-owned event framing for the arhat blessing ceremony; Dahui remains contextual speaker of the following address, not a false headword utterer."
+    }
+  ]
+}

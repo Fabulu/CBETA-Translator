@@ -1,0 +1,851 @@
+{
+  "generatedUtc": "2026-07-15T05:46:06.049937+00:00",
+  "task": "Case-by-case actor restoration after the C801-850 independent postrepair review",
+  "reviewInput": "fresh-build/waves/f003-laneC-801-850-postrepair-independent-review.json",
+  "reviewInputSha256": "a690348c5e7f5d4b596ce1218d5f3b5bdc141f366e86aa0496889cf9be540358",
+  "method": "Restored genuine named master utterers from exact speech frames and enclosing named-master headings; retained compiler narration for documentary/action/title uses and retained non-master or reviewed-unnamed utterers. Valid semantic splits were preserved.",
+  "focusedGates": {
+    "attributionHardFailures": 0,
+    "countClaimMismatches": 0,
+    "publicFeedbackFlags": 0,
+    "depthSenseHardFailures": 0,
+    "depthSenseBatchSize": 50
+  },
+  "formalGateRun": true,
+  "formalGateRequested": true,
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneC-801-850-formal-gate-current-actor-repair.json",
+    "sha256": "299d79ac2f00afefc297f6c9acbe522e1e572aac5e5c8f4f71fbf416862f4375",
+    "hardPass": true,
+    "exactKwic": {
+      "entries": 50,
+      "verified": 329,
+      "failureCount": 0,
+      "results": [
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+          "id": "t_efbed6116e24",
+          "term": "拂袖",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5da65e2989a0/entry.v2.json",
+          "id": "t_5da65e2989a0",
+          "term": "夏末",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1dc12d84b349/entry.v2.json",
+          "id": "t_1dc12d84b349",
+          "term": "一喝分賓主",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1118b9dcbc72/entry.v2.json",
+          "id": "t_1118b9dcbc72",
+          "term": "見解",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_76466e7feed6/entry.v2.json",
+          "id": "t_76466e7feed6",
+          "term": "拈香祝聖",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7bb4ebba81b9/entry.v2.json",
+          "id": "t_7bb4ebba81b9",
+          "term": "賓主歷然",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fe8d4efe588f/entry.v2.json",
+          "id": "t_fe8d4efe588f",
+          "term": "見處",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6703082d841c/entry.v2.json",
+          "id": "t_6703082d841c",
+          "term": "禪堂",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7a9bcbfc089/entry.v2.json",
+          "id": "t_f7a9bcbfc089",
+          "term": "試道看",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b03032c64a13/entry.v2.json",
+          "id": "t_b03032c64a13",
+          "term": "眼目",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fa8ad027aa5b/entry.v2.json",
+          "id": "t_fa8ad027aa5b",
+          "term": "傳燈錄",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df404be00a88/entry.v2.json",
+          "id": "t_df404be00a88",
+          "term": "鐘鼓",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_016c13af32f9/entry.v2.json",
+          "id": "t_016c13af32f9",
+          "term": "曲彔木",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8eeed0b7412a/entry.v2.json",
+          "id": "t_8eeed0b7412a",
+          "term": "唯嫌揀擇",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_39fb2a2c1c9b/entry.v2.json",
+          "id": "t_39fb2a2c1c9b",
+          "term": "祖意",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9d8f344ad00/entry.v2.json",
+          "id": "t_d9d8f344ad00",
+          "term": "人天眼目",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+          "id": "t_8060f979f21b",
+          "term": "目前無法",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1446abf489c0/entry.v2.json",
+          "id": "t_1446abf489c0",
+          "term": "袈裟",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5120f0eca9c7/entry.v2.json",
+          "id": "t_5120f0eca9c7",
+          "term": "金剛神",
+          "verified": 4,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_654e2e9bef8d/entry.v2.json",
+          "id": "t_654e2e9bef8d",
+          "term": "臨機",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e2c93283de6e/entry.v2.json",
+          "id": "t_e2c93283de6e",
+          "term": "檢點",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_483220289b04/entry.v2.json",
+          "id": "t_483220289b04",
+          "term": "都寺",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_39d88e8cc533/entry.v2.json",
+          "id": "t_39d88e8cc533",
+          "term": "隻眼",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_088731c7824b/entry.v2.json",
+          "id": "t_088731c7824b",
+          "term": "梵王",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_374b329bb686/entry.v2.json",
+          "id": "t_374b329bb686",
+          "term": "有甚麼交涉",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cdb6aa3726b5/entry.v2.json",
+          "id": "t_cdb6aa3726b5",
+          "term": "西堂",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_86aac65d51b5/entry.v2.json",
+          "id": "t_86aac65d51b5",
+          "term": "趙州茶",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6a67fc1bf04c/entry.v2.json",
+          "id": "t_6a67fc1bf04c",
+          "term": "大機",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c552c63de77f/entry.v2.json",
+          "id": "t_c552c63de77f",
+          "term": "豎拂子",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fadc60d82192/entry.v2.json",
+          "id": "t_fadc60d82192",
+          "term": "護法神",
+          "verified": 4,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_663eefaa4ad7/entry.v2.json",
+          "id": "t_663eefaa4ad7",
+          "term": "偏正",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_589f52acc0b0/entry.v2.json",
+          "id": "t_589f52acc0b0",
+          "term": "答話",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_258b079d8359/entry.v2.json",
+          "id": "t_258b079d8359",
+          "term": "女子出定",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a842c76ef637/entry.v2.json",
+          "id": "t_a842c76ef637",
+          "term": "阿那箇",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_baf1c6b9db60/entry.v2.json",
+          "id": "t_baf1c6b9db60",
+          "term": "如意",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_65491dc99795/entry.v2.json",
+          "id": "t_65491dc99795",
+          "term": "庫司",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bd0ba96ae735/entry.v2.json",
+          "id": "t_bd0ba96ae735",
+          "term": "可惜",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3b9857d1cc19/entry.v2.json",
+          "id": "t_3b9857d1cc19",
+          "term": "退院",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c6a61681198/entry.v2.json",
+          "id": "t_7c6a61681198",
+          "term": "投機",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_84406e0eca53/entry.v2.json",
+          "id": "t_84406e0eca53",
+          "term": "脚跟",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_43291b2f0b5b/entry.v2.json",
+          "id": "t_43291b2f0b5b",
+          "term": "寺主",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_67383fd43bf4/entry.v2.json",
+          "id": "t_67383fd43bf4",
+          "term": "廓然無聖",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ab2fa6e04154/entry.v2.json",
+          "id": "t_ab2fa6e04154",
+          "term": "付囑",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ea85b794ca42/entry.v2.json",
+          "id": "t_ea85b794ca42",
+          "term": "茶湯",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e8b797e26758/entry.v2.json",
+          "id": "t_e8b797e26758",
+          "term": "無生法忍",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4bce88a70659/entry.v2.json",
+          "id": "t_4bce88a70659",
+          "term": "巴鼻",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffcb7e6e8d52/entry.v2.json",
+          "id": "t_ffcb7e6e8d52",
+          "term": "說戒",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7cfca0e9fe18/entry.v2.json",
+          "id": "t_7cfca0e9fe18",
+          "term": "行履",
+          "verified": 7,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9ba11d160033/entry.v2.json",
+          "id": "t_9ba11d160033",
+          "term": "直歲",
+          "verified": 6,
+          "failures": []
+        },
+        {
+          "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_42839688f8c2/entry.v2.json",
+          "id": "t_42839688f8c2",
+          "term": "君臣道合",
+          "verified": 6,
+          "failures": []
+        }
+      ]
+    }
+  },
+  "selfReview": false,
+  "promotion": false,
+  "siteTouched": false,
+  "range": "801-850",
+  "repairedEntries": 33,
+  "exactKwic": {
+    "passed": 221,
+    "failed": 0
+  },
+  "entries": [
+    {
+      "ordinal": 801,
+      "id": "t_efbed6116e24",
+      "sourceTerm": "拂袖",
+      "worksheetSha256": "aba02a7eae9b05089ab4d3436bdccba9dfba7d9ebe921e83609b563eff7aa260",
+      "entrySha256": "40c7d6325f0537701b5c678e4382c795147e978f2b466a69b9dfe48b08f6a0fb",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 802,
+      "id": "t_5da65e2989a0",
+      "sourceTerm": "夏末",
+      "worksheetSha256": "5df10d12a8eb7a6cc53c269a96601e54ee2ab98b42011f6ff248cd838f20e17b",
+      "entrySha256": "142a29af2e9d7d726030188d67758a18f09dc5b294b81c273e29f8ac035de4d8",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 3,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 2
+    },
+    {
+      "ordinal": 804,
+      "id": "t_1118b9dcbc72",
+      "sourceTerm": "見解",
+      "worksheetSha256": "c81533194b6684de93de3b1cd3b66cb00bc345c0c5d2c5b6cc9b6e88e33b0a5d",
+      "entrySha256": "67e351525d661689ffdd324d14937fc623f3d0c86c58372bfefb78189bf906d7",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 4,
+      "compilerNarration": 3,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 807,
+      "id": "t_fe8d4efe588f",
+      "sourceTerm": "見處",
+      "worksheetSha256": "cee23ff3158019f100a532567f45ecf060c5e43a7d3d95c66ab72f6082c1f114",
+      "entrySha256": "c46390ec958a6c8db206a02a2fe7b386fa32650513cabdebddc62a06f526b0ca",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 808,
+      "id": "t_6703082d841c",
+      "sourceTerm": "禪堂",
+      "worksheetSha256": "775fc53dc33759b9b94877d15e07e5cc3f135dd02b40251845678c85691e3238",
+      "entrySha256": "a06694646e55812ea8389da9e0efa21c6c3c21ecb7be020b85ce1dfa3fc063d2",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 809,
+      "id": "t_f7a9bcbfc089",
+      "sourceTerm": "試道看",
+      "worksheetSha256": "81b6da1ce00826b63560bba68e5909236da450dd26db3e41197c0d032b8c45ab",
+      "entrySha256": "4fb8c816e6d1acce18c4d787991b946c9155182b2294c60fa5630e14e2496eb1",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 3,
+      "compilerNarration": 2,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 2
+    },
+    {
+      "ordinal": 810,
+      "id": "t_b03032c64a13",
+      "sourceTerm": "眼目",
+      "worksheetSha256": "bba9d2c95ef90babcb00b033e51b7aa881fd87114e230b451e6001c47c480996",
+      "entrySha256": "0531b0d0e7d93227df156ba0795f87dc48920b4b3b8cc924ad0e5ca14157f060",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 812,
+      "id": "t_df404be00a88",
+      "sourceTerm": "鐘鼓",
+      "worksheetSha256": "1e6843847146004e45ea2ed3c620fbd0703b4327a42867e7fd9c3ed5585ed48b",
+      "entrySha256": "ebc51370e63d4a22413e4ac257ab706a868049d6a91eca64731c24e48c3dd3d0",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 0,
+      "compilerNarration": 7,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 813,
+      "id": "t_016c13af32f9",
+      "sourceTerm": "曲彔木",
+      "worksheetSha256": "e643d22e433c033b8420fef970c7eff4a5f76c1751cb51a4a8521967f0acd0f4",
+      "entrySha256": "05e9623f0ee35c29a327246e377e4d98a10a81bb9a89bc734dc3f993d0a73c68",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 815,
+      "id": "t_39fb2a2c1c9b",
+      "sourceTerm": "祖意",
+      "worksheetSha256": "9af3e60f3c52e6223989c2bd84c1e2f7d7bb2875ccdf18074b0c3b39ce5d86c8",
+      "entrySha256": "2cee16bdf3b7de87c243b2ae0e0055d13d31f8a33963532fd9a3f841e9cb13cc",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 0,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 816,
+      "id": "t_d9d8f344ad00",
+      "sourceTerm": "人天眼目",
+      "worksheetSha256": "3619fd5796e4e504f2c441caccdbc7dd27231342cbf28c7af2ad4a3409682927",
+      "entrySha256": "67d640ae3711c581a1e0c0033bde217a47c0cb0645f5be937167d8ca2f681fe0",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 0,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 817,
+      "id": "t_8060f979f21b",
+      "sourceTerm": "目前無法",
+      "worksheetSha256": "df95f964363a7bc046e64e7fb6fba5abfef225bfc092195f624242bad4db16bc",
+      "entrySha256": "41001f51a6fb3facc1f0e3e319f52e9c3cc7de1f8d34eb4cd58687efc444759e",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 3,
+      "compilerNarration": 2,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 2
+    },
+    {
+      "ordinal": 818,
+      "id": "t_1446abf489c0",
+      "sourceTerm": "袈裟",
+      "worksheetSha256": "fc5e8093dce0d4429389a19e89a4012fb5c236eedd64d60776ba1b2d74bb3575",
+      "entrySha256": "05e7ffe01291ceefb2b5bc5dcf788d5b4a119ffea100a950890326467211105d",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 820,
+      "id": "t_654e2e9bef8d",
+      "sourceTerm": "臨機",
+      "worksheetSha256": "ed43feb61cc6ef9a4e95ec74486613b050490b440d4812ef7e7bc77001035623",
+      "entrySha256": "8881899af11944f7021976fda15454208518f261aba2305a46aac17ab744b797",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 2
+    },
+    {
+      "ordinal": 821,
+      "id": "t_e2c93283de6e",
+      "sourceTerm": "檢點",
+      "worksheetSha256": "1559c71e095575a0074ea48f526a53895b36154d9c11753a936221960f83060f",
+      "entrySha256": "855d6afb02d586c05ddfc8c8e71ec8be9e7e2ac9f4b4f9e64124980864f22aad",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 823,
+      "id": "t_39d88e8cc533",
+      "sourceTerm": "隻眼",
+      "worksheetSha256": "17cb33083eb17ac93e74d035f7b62b07ab3e49255a62119ba59c3dacf7aca6f6",
+      "entrySha256": "f4bb96639f8cc9c0a9ccbcdf380fa65df68f0cd9c588cfb00f2d0a346a073693",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 825,
+      "id": "t_374b329bb686",
+      "sourceTerm": "有甚麼交涉",
+      "worksheetSha256": "81ce8d8cf6f05e308635f82eea350c3458ed27bd2f55691e0e82e5e267d8dbe9",
+      "entrySha256": "f113982b6d7f54bf66f9722a79e7ddd4aa3194f1dc076f9a8bba7af7b956e2e5",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 827,
+      "id": "t_86aac65d51b5",
+      "sourceTerm": "趙州茶",
+      "worksheetSha256": "2fb1a206661c52f9f3e28f10da283a3baca08fc64768d612451a7e125c937835",
+      "entrySha256": "23cde7405c4da2929547c43daf21ae2edf393c11365b3f7c9260e21ec4c6506a",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 828,
+      "id": "t_6a67fc1bf04c",
+      "sourceTerm": "大機",
+      "worksheetSha256": "4e31177694ff2943990ae2eeaa3fd8c6af8b6ce425878f15a53c573b74adb446",
+      "entrySha256": "742e3a50745fdd443bcd095003be66c275b106d97bd059425b95856ba6388198",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 4,
+      "compilerNarration": 3,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 831,
+      "id": "t_663eefaa4ad7",
+      "sourceTerm": "偏正",
+      "worksheetSha256": "9c7dd65b51469ed7f57867473a02e364a909f37e680734df40aa31ceabec5384",
+      "entrySha256": "bce156865258b6bb31b3d97673b6fac5b2e4decad61da2330207d92312f4654c",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 832,
+      "id": "t_589f52acc0b0",
+      "sourceTerm": "答話",
+      "worksheetSha256": "c23e1c80f86b73dbc8a5c85a4751cc95a3601f7cabfc7d47a6e436eb43a3e129",
+      "entrySha256": "06dba62dcf72c92a715044dea27fcdabb77ebfceb4f922477c6fae1a6c3c4b40",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 833,
+      "id": "t_258b079d8359",
+      "sourceTerm": "女子出定",
+      "worksheetSha256": "2ca5a52aa1f87a02b5ae3add52b6631527ca60602202da6ee5bdea052bde8434",
+      "entrySha256": "ac0becea47972ca1a23b950711501d6abd8db73cb21663c9ee47aa9cde1dc58a",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 835,
+      "id": "t_baf1c6b9db60",
+      "sourceTerm": "如意",
+      "worksheetSha256": "eb86c230e85a521639d461a9526177ff231270085756762d9ab5df2ffd77bf83",
+      "entrySha256": "9552914d6507342bb10612ea84bd7ad881cc93b6e84c95079079fc8308ede873",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 837,
+      "id": "t_bd0ba96ae735",
+      "sourceTerm": "可惜",
+      "worksheetSha256": "4d6debca4a31e6143793253f1594c653d86d7a9760e3d9075e9443d663f19c6a",
+      "entrySha256": "acf0bb7c7e7105728802be25469229df298bd8ba1541b6d6034c4d1d2b21b132",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 3,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 838,
+      "id": "t_3b9857d1cc19",
+      "sourceTerm": "退院",
+      "worksheetSha256": "2bd2e3db19d96dbfcd93227ff8e9ecb91d7b97f27c6de7b5fae468076fbdecb1",
+      "entrySha256": "655e4ae063cc8f1087d0d209ff3e5d4ca3e9d70b25739e82aeee552d850f49f4",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 839,
+      "id": "t_7c6a61681198",
+      "sourceTerm": "投機",
+      "worksheetSha256": "b5739b9eeb98fc88de4419da10e5d7945a88422867ecdb02e0fbcbf10a411a1a",
+      "entrySha256": "24c39c890e6b129a301fab070892c62bcf3c67f25779a984e69a8ef4bf709106",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 840,
+      "id": "t_84406e0eca53",
+      "sourceTerm": "脚跟",
+      "worksheetSha256": "357dbd80fb693fb6e8a1aad873095dbcf767bfebc6f8d25e192d98b77ba815e7",
+      "entrySha256": "1bc23860f3d369aa63dded8290958aebd297ee45f490c7d7a096da17fbf5c995",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 6,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 842,
+      "id": "t_67383fd43bf4",
+      "sourceTerm": "廓然無聖",
+      "worksheetSha256": "54756dac47c39b142b39db18dbf2f0b348a73f335998f84011cf8ee972e78a0a",
+      "entrySha256": "9e076d66568a06e9ce4ac36ae9150c94e48c7308c464896990bb1533a845ccb7",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 846,
+      "id": "t_4bce88a70659",
+      "sourceTerm": "巴鼻",
+      "worksheetSha256": "5e1dbeb26b253dd07906c100d6462cf7ec6c4df0ce49c9b6dc33b2b9e3189054",
+      "entrySha256": "bc35d5476fb11915c804ab1fa2316ab8a36071784fdd9253e0f49e114294e538",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 2,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    },
+    {
+      "ordinal": 847,
+      "id": "t_ffcb7e6e8d52",
+      "sourceTerm": "說戒",
+      "worksheetSha256": "112da8937eec28b00baf03736f5f4f030c45bea37219ad72f9bfefb1d88fd2bd",
+      "entrySha256": "421704d57d0bf518aa73ee9bc6cce05d3fd9e2560cda97abf9b1f27cb2ad3c21",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 4,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 848,
+      "id": "t_7cfca0e9fe18",
+      "sourceTerm": "行履",
+      "worksheetSha256": "0586fd89c92a4fed98e0b951641894384e8570e08a5f85a7fadb1bb5d2d5dc5a",
+      "entrySha256": "4e227dbc65617ba49eb77fa542e045f641885e8a06561d5e56583ab3587252fd",
+      "occurrences": 7,
+      "exactKwicPassed": 7,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 849,
+      "id": "t_9ba11d160033",
+      "sourceTerm": "直歲",
+      "worksheetSha256": "0f8b944234f36b17489cba8b556e64903f3d464b52942eb63ae20c391af60e53",
+      "entrySha256": "90ebe943a4eeb4a39372372c839cfe0d9d46de028b17a08307ca5235da04c737",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 0,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 1
+    },
+    {
+      "ordinal": 850,
+      "id": "t_42839688f8c2",
+      "sourceTerm": "君臣道合",
+      "worksheetSha256": "2269b9d9265cc8b0b62648eb74e6571b30e65a4223e4190dfc541d67972afc60",
+      "entrySha256": "0a5ff13f8fc028e69cb14fa80e5ce168367d390296dcc35a90a8f0e648e8a815",
+      "occurrences": 6,
+      "exactKwicPassed": 6,
+      "exactKwicFailures": [],
+      "namedMasterUtterers": 1,
+      "compilerNarration": 5,
+      "identifiedNonMasters": 0,
+      "reviewedUnnamed": 0
+    }
+  ]
+}

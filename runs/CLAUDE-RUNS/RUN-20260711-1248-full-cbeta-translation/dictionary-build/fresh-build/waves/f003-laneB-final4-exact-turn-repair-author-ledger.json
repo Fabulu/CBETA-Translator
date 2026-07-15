@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "f003-laneB-final4-repair-author-v1",
+  "role": "repair-author",
+  "sourceRejectingReview": "f003-laneB-final24-fresh-independent-exact-review.json",
+  "sourceRejectingReviewSha256": "b36b1218322308664f8169ed85fbe7f49eeb108e4d765f3e2422e4301ce1377e",
+  "finalFormalGate": "f003-laneB-final4-exact-turn-full50-formal-gate-v3.json",
+  "finalFormalGateSha256": "daee37c570f007ec6606f30688e8fc209b56295d7ed54fc0fab14a06d7d889cb",
+  "formalHardPass": true,
+  "clusterScopeIds": [
+    "t_51a4f3a03bd8",
+    "t_32a92c635f49",
+    "t_5306489d35c6",
+    "t_0229ebe0b9e7"
+  ],
+  "strictRosterScopeIds": [
+    "t_51a4f3a03bd8",
+    "t_32a92c635f49",
+    "t_5306489d35c6",
+    "t_0229ebe0b9e7"
+  ],
+  "exactKwic": {
+    "verified": 355,
+    "failures": 0
+  },
+  "attributionPackets": {
+    "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f003-laneB-final4-exact-turn-full50-formal-gate-v3-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0
+  },
+  "semanticRegressions": {
+    "path": "fresh-build/semantic-regressions.json",
+    "sha256": "defc96a31b0296f691f435f733b2bbfd136d219f2c3820d519a032491da17b0e"
+  },
+  "priorKeepHashProof": {
+    "count": 46,
+    "allPriorKeepHashesUnchanged": true,
+    "source": "final24 independent review row hashes compared to current bytes"
+  },
+  "repairedEntryHashes": {
+    "t_51a4f3a03bd8": "c2dad2312d4c195f041192a7923baa468c72247724ef1c80e27934b2532006b9",
+    "t_32a92c635f49": "0ac276cf46cc6fc3f95770e63d171d7dba1a0986a6b09ef73e1990dba4acdc6b",
+    "t_5306489d35c6": "89647379a99f2fc0746d8c780b585f76bb2d8a25e0b32b84d848151908d37995",
+    "t_0229ebe0b9e7": "150d406efb588b29c4c9552ad88a3ea74f74607e136d82024834ecdd59473dee"
+  },
+  "worksheetHashes": {
+    "t_51a4f3a03bd8": "0ba7e317ecbad511e3b86a0273acd8362128dbe76b5be350fe4bba344e59ab75",
+    "t_32a92c635f49": "ace91708905a912b82f8b172a920a18418a93cb47f20a07ed9d0847728acbfbb",
+    "t_5306489d35c6": "16776d06f2ca8a5a16a73380f12fc5e8debb728c6ae163ee099f117778f539b8",
+    "t_0229ebe0b9e7": "a9a299fd2f7c319e6692e6d1ac4785ccc9d002458ff5d199f66f3a5af1b534fa"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

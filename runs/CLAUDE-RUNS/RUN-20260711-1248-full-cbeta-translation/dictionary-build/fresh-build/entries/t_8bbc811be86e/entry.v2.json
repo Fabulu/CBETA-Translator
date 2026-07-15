@@ -1,0 +1,144 @@
+{
+  "Id": "t_8bbc811be86e",
+  "SourceTerm": "然香",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:11:46.708296+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "burn incense",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "burn incense",
+        "light incense",
+        "然香"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2021.xml",
+          "FromLb": "1009c24",
+          "ToLb": "1009c24",
+          "Kwic": "自於聖像之前然香設誓。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:11:46.708296+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (禪宗決疑集): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "J/J35/J35nB342.xml",
+          "FromLb": "0795c23",
+          "ToLb": "0795c23",
+          "Kwic": "師云：「去然香來。」",
+          "Curated": true,
+          "MasterName": "Huayan Shengke",
+          "ContextMasters": [
+            {
+              "MasterName": "Huayan Shengke",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (華嚴聖可禪師語錄): Huayan Shengke owns the exact headword-bearing clause."
+        },
+        {
+          "RelPath": "J/J27/J27nB192.xml",
+          "FromLb": "0190c30",
+          "ToLb": "0191a01",
+          "Kwic": "預夜然香，禱告龍天、十方諸佛",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:25:00+02:00",
+            "GrammarEvidence": "The exact headword is an action reported by the recorder, not quoted speech."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Daxiu Zhu",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (大休珠禪師語錄): the compiler narrates the exact action; Daxiu Zhu is the person described. Exact headword actor: the compiler narrating the headword-bearing action."
+        },
+        {
+          "RelPath": "J/J28/J28nB210.xml",
+          "FromLb": "0439c28",
+          "ToLb": "0439c29",
+          "Kwic": "遠近奔赴，然香慟哭，奉全身于伏獅之左",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:25:00+02:00",
+            "GrammarEvidence": "The exact headword is an action reported by the recorder, not quoted speech."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fushi Qiyuan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (伏獅祇園禪師語錄; person described: 伏獅祇園禪師): the compiler narrates the exact action; the named master is the person described. Exact headword actor: the compiler narrating the headword-bearing action."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J27/J27nB192.xml",
+        "J/J28/J28nB210.xml",
+        "J/J35/J35nB342.xml",
+        "T/T48/T48n2021.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "To burn incense is a literal action whose purpose changes with the surrounding ceremony. The Collection for Resolving Chan Doubts narrates incense burned before a sacred image while establishing an oath. Huayan Shengke directly tells an unnamed monastic interlocutor to go light incense; Daxiu Zhu’s biography records incense burned before a prayer to celestial protectors and the buddhas; and the record of Fushi Qiyuan describes distant and nearby mourners burning incense and weeping at his death. Oath, instruction, prayer, and mourning are distinct settings for the same incense-burning action; none of these witnesses says that incense is burned into the body."
+    }
+  ]
+}

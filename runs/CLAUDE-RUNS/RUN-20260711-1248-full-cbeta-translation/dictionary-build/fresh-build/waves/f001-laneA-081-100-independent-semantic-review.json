@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T02:20:00Z",
+  "scope": "Hash-bound semantic review of all twenty entries and all 192 supplied complete cases. Checked different-thing sense boundaries, exact headword utterers, narrated and nonverbal actors, independent-work identity, depth, openings, aliases, flyswatter deployment, and forbidden terminology. Entries and website were not edited.",
+  "inputs": {
+    "mechanicalGate": {
+      "path": "fresh-build/waves/f001-laneA-081-100-gate.json",
+      "sha256": "93df9aee69de0fcdf341986e619f01409d5ea84fae5a61535592f60b8293462f"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneA-081-100-gate-attribution-packets.json",
+      "sha256": "88b8fe7030e46e8be803401847103581b12fb9c39843c1b7dcbb5c42a4d1f5b8"
+    },
+    "rootReviewPacket": {
+      "path": "fresh-build/waves/f001-laneA-071-090-root-review-packet.json",
+      "sha256": "f5cb893f96fd89e8e5761b4b18cf2b9278c9d4b3ba39575a160beb4dd9f78f83"
+    }
+  },
+  "summary": {
+    "KEEP": 0,
+    "REVISE": 20,
+    "reviseOrdinals": [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+    "cohortDefect": "Every entry opens with substantially identical database-process boilerplate. It tells the reader that stored rows bound the sense but does not give the required short, corpus-inferred interpretation or say where Zen bends the word. This is a content defect under the flyswatter and reader-facing opening rules, not a stylistic preference."
+  },
+  "findings": [
+    {
+      "ordinal": 81,
+      "id": "t_49829f59faac",
+      "term": "函蓋乾坤",
+      "entrySha256": "6e5ad54be5ede05b6d22fdb84086a25bcc75d9d7f2d0ec4b615971ba58da4184",
+      "verdict": "REVISE",
+      "finding": "The one-sense decision is sound: the lid-and-box image names complete fit or coverage, and the Yunmen three-phrase tradition deploys it as a sentence that covers heaven and earth. The opening merely repeats the English components and never explains that deployment. Two selected questions are uttered by unnamed monks and must remain questioner-owned rather than being inherited from the record master.",
+      "requiredChanges": ["Replace the boilerplate opening with a corpus-bounded explanation of complete fit/coverage and its use in Yunmen's three phrases.", "Retain exact unnamed-questioner attribution for the two 如何是函蓋乾坤句 rows and named masters only for their own statements or citations."]
+    },
+    {
+      "ordinal": 82,
+      "id": "t_9a5dc768cbc5",
+      "term": "平常心是道",
+      "entrySha256": "c4d74f0c863d9d0e9f86c96ea099d6f051e0aed7b1e10a3d1312d06e2dc5877a",
+      "verdict": "REVISE",
+      "finding": "The six witnesses correctly preserve Nanquan's answer, but the entry does not explain the immediately attested qualification: ordinary mind is explicitly described as without contrivance and cannot be approached by deliberate aiming. Translation alone is not the required interpretation.",
+      "requiredChanges": ["Open with the corpus's own qualification of ordinary mind as uncontrived and not an object of purposeful approach, anchored to stored occurrences.", "Keep Nanquan as utterer only where the nested transmission explicitly marks 泉云/南泉曰."]
+    },
+    {
+      "ordinal": 83,
+      "id": "t_ed962dfd1158",
+      "term": "四賓主",
+      "entrySha256": "803aefb1e28cdfb947cec3ad18b9f4f7e33d04c20367a693df2451ff199239a2",
+      "verdict": "REVISE",
+      "finding": "Linji's four guest-host configurations and the separately claimed Caodong set are defensible distinct named systems. The entry never tells the reader that guest and host mark positions within an encounter, nor what makes the second sense disputed; it substitutes boilerplate for the evidence's actual distinction.",
+      "requiredChanges": ["Explain guest/host as relational positions in an encounter and summarize the attested Linji configurations without importing outside doctrine.", "State, with anchors, that the Caodong attribution is asserted as different from Linji and contested by the witness saying the Dong school has no such formulation."]
+    },
+    {
+      "ordinal": 84,
+      "id": "t_81147ad4e8bf",
+      "term": "四料揀",
+      "entrySha256": "d6f13b6dd834f4f38405468a3c682d33329ce337a04e03e04e7f7b7081c7143f",
+      "verdict": "REVISE",
+      "finding": "The Linji Four Selections and Yongming's four Chan/Pure-Land alternatives are genuinely different systems and should remain split. Neither sense explains what is being selected; the boilerplate makes the two PreferredTargets labels rather than definitions.",
+      "requiredChanges": ["Give each sense a distinguishable opening that says what its four alternatives sort or contrast, using only stored case language.", "In 永明壽禪師四料揀云, distinguish the current quoter/narrator from Yongming as the cited source rather than automatically making Yongming the live utterer."]
+    },
+    {
+      "ordinal": 85,
+      "id": "t_d11d5f0c78a5",
+      "term": "以心傳心",
+      "entrySha256": "3af5d90b5d18913fe791f89333c61398c0e2101c9401e53114c4498fabf77fc9",
+      "verdict": "REVISE",
+      "finding": "One transmission formula is correct, but the entry omits the corpus's live tension: some records pair it with not establishing written words, while another says taking transmission this way deepens the disease. The romantic alias 'heart-to-heart transmission' risks importing a modern interpersonal meaning absent from these witnesses.",
+      "requiredChanges": ["Explain the formula through the paired direct-transmission and anti-reification witnesses, without ruling which side is doctrinally correct.", "Remove or sharply qualify 'heart-to-heart transmission' unless the selected corpus itself supports that English interpersonal sense."]
+    },
+    {
+      "ordinal": 86,
+      "id": "t_121b66b78c9e",
+      "term": "逢佛殺佛",
+      "entrySha256": "0a60f89956d0ec9c690b6d2a45692d1125f2864cb1588a6b525b98cdd28b271f",
+      "verdict": "REVISE",
+      "finding": "The imperative phrase is one sense, but a literal translation is dangerously empty. The stored Linji sequence applies the same killing formula to Buddha, patriarch, arhat, parents, and kin encountered inwardly or outwardly; that patterned deployment is the minimum corpus-based interpretation the reader needs.",
+      "requiredChanges": ["Open by explaining that the phrase belongs to Linji's repeated command to cut through encountered authorities or identities, internal and external, while avoiding an outside psychological or doctrinal ruling.", "Name Linji when the phrase is explicitly cited as his saying and distinguish later quoters from the quoted utterer."]
+    },
+    {
+      "ordinal": 87,
+      "id": "t_4e10d7c80fbc",
+      "term": "四照用",
+      "entrySha256": "6094fc5e676e6a03d179815ffb0f191117ad3ea7ed2c9b25cc93c30d4344a21f",
+      "verdict": "REVISE",
+      "finding": "The entry gives a capitalized label but no definition. The first witness itself defines four orderings of illumination and function and associates them with host/guest handling. The packet's opening '四照用師一日示眾云' is not sufficient by itself to identify Zhizhao; the complete compilation context must establish who 師 denotes.",
+      "requiredChanges": ["Explain the four combinations—illumination before function, function before illumination, simultaneous, and non-simultaneous—and their interview deployment from the stored definition.", "Re-audit occurrence 1's speaker from section ownership and surrounding text; do not retain Zhizhao solely by parsing 四照用師 as a name."]
+    },
+    {
+      "ordinal": 88,
+      "id": "t_d69c18a98053",
+      "term": "吃茶去",
+      "entrySha256": "c48b4f54d9bb4b53249e1c5ac26bef45263eff969086bdd06084877ac45eaf13",
+      "verdict": "REVISE",
+      "finding": "The phrase is ordinary language used as a repeated interview answer and dismissal, especially by Zhaozhou; the current opening tells none of that. It must not be inflated into an outside tea-practice interpretation, but it also cannot remain an untranslated anecdotal label.",
+      "requiredChanges": ["Explain its attested use as Zhaozhou's repeated answer/dismissal across differently situated visitors, and distinguish later 'return to the hall' uses.", "Preserve nested Zhaozhou attribution only where 州云 marks his exact turn."]
+    },
+    {
+      "ordinal": 89,
+      "id": "t_193632bffe7b",
+      "term": "喝",
+      "entrySha256": "030751b41bae6c464f6b6b951de22f4d736c0709e7e981eb9c54460a8059e953",
+      "verdict": "REVISE",
+      "finding": "Eighteen rows show far more than the generic gloss 'a shout': the shout is exchanged, classified, tested for guest and host, paired with the staff, and explicitly distinguished from blind or random shouting. The entry fails the flyswatter test despite unusually deep evidence. Physical/narrated shout events must also be distinguished from quoted utterances of the graph.",
+      "requiredChanges": ["Replace the boilerplate with an account of the shout as an interview action whose use can expose guest/host and illumination/function, while anchoring the warning against blind shouting.", "Audit each 師便喝/僧便喝 event as narrated action: MasterName is for the headword's utterer, so use the schema's action/narration branch rather than calling the actor a quoted speaker where 喝 is narrator language."]
+    },
+    {
+      "ordinal": 90,
+      "id": "t_f25cebd24730",
+      "term": "棒",
+      "entrySha256": "3997b9e800ff55818bcafd6320e1c9643479ee5423ff5998ea20f3697b0ac698",
+      "verdict": "REVISE",
+      "finding": "Staff-object versus countable blow is the required different-thing split and should remain. The two boilerplate explanations fail to tell the reader why grammar forces the split or how staff and blow operate in interviews. Several object/action rows assign the person wielding or receiving the staff as 'utterer' even though a compiler narrates the headword.",
+      "requiredChanges": ["Give independently intelligible openings: the implement a master raises or wields, and the counted stroke someone gives or receives.", "Convert narrated actions such as 師拈棒, 師以棒趁下, and blow events to compiler/narrated attribution with the master or monk in ContextMasters/actor fields, unless that same actor directly says the headword in the retained span."]
+    },
+    {
+      "ordinal": 91,
+      "id": "t_cc840e36f2da",
+      "term": "且道",
+      "entrySha256": "f2f3cb36a530c654ec032aa27024a9c5acaf0bec86da39754b913e6f719e3422",
+      "verdict": "REVISE",
+      "finding": "One pragmatic prompt is correct, but 'now say!' alone misses its recurrent function: a master interrupts exposition or a case and demands that the audience decide the live question. The evidence is deep enough to say this without outside interpretation.",
+      "requiredChanges": ["Open with its attested public-interview function as an immediate demand for an answer or judgment, anchored across distinct works.", "Keep punctuation and English aliases searchable for 'now tell me', 'then say', and equivalent prompt forms without creating new senses."]
+    },
+    {
+      "ordinal": 92,
+      "id": "t_4cc9592e4d96",
+      "term": "一句",
+      "entrySha256": "d2401ce49df3ec2877af4b1c8bed99a9d9166df2b9c7fbc46fed30b5728440bd",
+      "verdict": "REVISE",
+      "finding": "A single sentence/phrase referent covers the evidence, but the entry does not surface its Zen loading: records ask for first, second, third, final, fitting, and further-up sentences, or claim that one sentence opens or binds innumerable others. The first KWIC contains three unnamed-monk questions and three Linji answers and cannot be treated as one undifferentiated actor row.",
+      "requiredChanges": ["Explain 一句 as the demanded or decisive phrase within an encounter, not merely the number one plus sentence.", "Split/re-cut the Linji first/second/third-sentence case into actor-pure headword turns for the unnamed questioner and Linji's replies where he repeats the term."]
+    },
+    {
+      "ordinal": 93,
+      "id": "t_a6a6351a3f29",
+      "term": "一喝",
+      "entrySha256": "72b5ebd3f75199ef97e6695dd53b6b5cc004cde172864ed15da335702d868f6a",
+      "verdict": "REVISE",
+      "finding": "One shout versus the act 'to shout once' is grammatical variation, not polysemy, so one sense is correct. The opening nevertheless omits the corpus's explicit point that one shout can perform different functions and may be exchanged, evaluated, or said not to function as a shout. Several rows are narration of a shout event rather than direct utterance of the word.",
+      "requiredChanges": ["Explain the classified and context-dependent use of a single shout from Linji's four comparisons and the 'not used as a shout' witness.", "Use narrated-action attribution for 一喝/喝一喝 events described by the compiler; reserve MasterName exact-utterer status for speakers who actually say the headword."]
+    },
+    {
+      "ordinal": 94,
+      "id": "t_3a50b1d715b3",
+      "term": "良久",
+      "entrySha256": "50866e6c2c584c2f16a53a05f2aca10a2ae37140d7f191d45d572caa764cfaf8",
+      "verdict": "REVISE",
+      "finding": "The word is a narrated interval, often a conspicuous pause inside a public exchange; it is not an utterance by the person who remains silent. Rows currently naming the Buddha, Shoushan, Zongxian, Yunfeng, Yinyuan, Yulin, or Mahakasyapa as utterer conflate the person pausing with the compiler who supplies 良久. The opening also misses the interview value of the pause.",
+      "requiredChanges": ["Set MasterName null for narrated 良久 intervals and record the compiler/narrator as source voice while retaining the pausing master, monk, or group as person-described/context actor.", "Explain its function as a marked interval or pause before an answer, gesture, departure, or lack of response; distinguish ordinary elapsed time only if the corpus supports a genuinely different thing rather than a different scene."]
+    },
+    {
+      "ordinal": 95,
+      "id": "t_4511206dcfe1",
+      "term": "拂子",
+      "entrySha256": "faab06b30694296479956cd97b9272a25b4a4d867c5dc00cc92398547a6b10a4",
+      "verdict": "REVISE",
+      "finding": "This is the guide's own flyswatter-test example, yet the entry defines only 'a fly-whisk.' The witnesses show it raised, transmitted, seized, used to strike, draw, cut off verbal entanglement, and answer a question from the teaching seat. Many rows narrate those actions and cannot simply label the wielder an utterer.",
+      "requiredChanges": ["State at the opening that in these records the fly-whisk is a teaching-seat implement and transferable emblem used to present, test, or enact authority; anchor each claim.", "Reclassify narrated raising, striking, drawing, seizing, and bestowing rows through the narration/action branch, retaining masters as actors or context persons rather than automatic headword utterers.", "Keep literal fantastic compounds such as turtle-hair fly-whisk distinguishable as quoted usage, not a new material sense."]
+    },
+    {
+      "ordinal": 96,
+      "id": "t_404d398e2cea",
+      "term": "禮拜",
+      "entrySha256": "de8e86e6589f01b2c8df64f0f30df6eb8bfa85d95c0db737075366354cb7bc1a",
+      "verdict": "REVISE",
+      "finding": "One ritual bow/prostration action is correct. Nearly every selected row is compiler narration of someone bowing after awakening, before questioning, in submission, or before being struck; the bowing person does not utter 禮拜. The boilerplate also fails to explain that the same formal act can mark entry, acknowledgment, awakening, retreat, or tactical response in an encounter.",
+      "requiredChanges": ["Convert narrated bow events to MasterName null with compiler/narrator source voice and the bowing master, monk, official, or emperor recorded as actor/person-described.", "Replace the generic opening with a neutral description of the ritual action and its attested positions within encounters, without deciding what inward state the bow proves."]
+    },
+    {
+      "ordinal": 97,
+      "id": "t_eb181981d863",
+      "term": "便打",
+      "entrySha256": "86a8eefc189fa8d0ad726e8850b6bd5296cd68fb67b1dc25978c1c992f8cc3d47",
+      "verdict": "REVISE",
+      "finding": "All eleven witnesses are narrated action sequences ('then/immediately struck'), not quotations of the headword by the striker. The existing named-master attribution therefore violates the exact-utterer rule across most or all of the entry. The opening also misses that 便 makes the blow the immediate turn following a question, shout, hesitation, entry, or gesture.",
+      "requiredChanges": ["Reclassify every occurrence through the narrated-action branch with MasterName null; record the striker and recipient in actor/context roles after reading the whole case.", "Explain 便打 as the narrative formula for an immediate strike within the turn structure of an encounter, not merely the dictionary sum 'then + hit'."]
+    },
+    {
+      "ordinal": 98,
+      "id": "t_10079ac296ae",
+      "term": "向上",
+      "entrySha256": "4fb80e4b1e36ea49b5b41b00a1aa62b545f355be54525fbf0c8bbf663bb56d17",
+      "verdict": "REVISE",
+      "finding": "Further-up register versus literal upward direction is a valid different-thing split. The first sense needs a corpus-defined explanation of the recurrent 'further-up matter/path/vehicle/aperture' rather than the opaque gloss 'register.' At least 僧問向上一路… and 僧便問如何是向上宗乘 put the headword in an unnamed monk's question, not in Renwang Jun's or Yunmen's turn.",
+      "requiredChanges": ["Reattribute the Renwang and Yunmen question rows to reviewed-unnamed monastic questioners, retaining the masters only as respondents/context masters unless their answers repeat 向上.", "Explain the first sense as the records' comparative demand for what lies beyond an already stated level or formulation; keep literal spatial upward uses separate."]
+    },
+    {
+      "ordinal": 99,
+      "id": "t_30f1b8199762",
+      "term": "鼻孔",
+      "entrySha256": "f57f9df908da202cc9fb9be8448d169305f8481929f906e031b1b9b0ae391185",
+      "verdict": "REVISE",
+      "finding": "The physical nostrils remain one referent, but the evidence overwhelmingly bends them into images of personal command and recognizability: another person can hold, pull, pierce, or make one lose them; finding one's old nostrils restores what was always on the face; nostrils can point skyward or breathe with the ancients. The generic opening hides this coherent corpus usage.",
+      "requiredChanges": ["Open with a careful inference that 'having/finding one's nostrils' marks standing on one's own while another's grip, piercing, or loss of them marks subjection or disorientation; anchor the contrasting verbs and do not turn the inference into an external doctrine.", "Distinguish direct sayings from quoted cases and biographical narration when assigning exact utterers."]
+    },
+    {
+      "ordinal": 100,
+      "id": "t_dd46f0062d66",
+      "term": "會麼",
+      "entrySha256": "e66d9d18514bed4c01984fd83159f52ac9197cc40dbdc5f0eb57306318603d2a",
+      "verdict": "REVISE",
+      "finding": "One interrogative prompt is correct. Across the witnesses it follows a gesture, pause, refusal, overturned table, or compact saying and forces the addressee or audience to answer whether they grasp what just occurred. The opening currently offers only 'do you get it?' plus process boilerplate.",
+      "requiredChanges": ["Explain its public-interview function as the demand for acknowledgment or understanding after a presented act or statement, without presuming that a claimed answer proves realization.", "Keep exact speakers tied to explicit 師云/曰 turns and retain emperors, hosts, or audiences as addressees rather than speakers."]
+    }
+  ]
+}

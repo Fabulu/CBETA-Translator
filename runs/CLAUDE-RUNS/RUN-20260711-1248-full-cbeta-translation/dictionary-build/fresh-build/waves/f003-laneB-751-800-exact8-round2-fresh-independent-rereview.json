@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case rereview of f003 lane-B exact8 round2 repairs",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "751-800",
+  "generatedUtc": "2026-07-15T10:10:57.086802+00:00",
+  "reviewer": "Codex independent reviewer; not the exact8 round2 repair author",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "sourceRejectingReview": "f003-laneB-751-800-final4-fresh-independent-exact-review.json",
+    "sourceRejectingReviewSha256": "1b4c7e859da2e9b19167453cdc861a21255656cdba656cc8d62f15fc4907796d",
+    "repairAuthorLedger": "f003-laneB-751-800-exact8-round2-repair-author-ledger.json",
+    "repairAuthorLedgerSha256": "7721b290d9105801d71dfcde6fa8599b4391084d2ab825f6f61a83ce4de59f31",
+    "repairReadiness": "f003-laneB-751-800-exact8-round2-repair-readiness.json",
+    "repairReadinessSha256": "38a1835884ca07cc3ba41d491898e78b41f1dadebc4aec8195a422dc119dced1",
+    "full50FormalGate": "f003-laneB-751-800-exact8-round2-full50-formal-gate.json",
+    "full50FormalGateSha256": "3273eb47f31b85bd0e669c4bbb380f6b42d0e9ad8df980a86e0e4b83c0036af9",
+    "v3AttributionPackets": "f003-laneB-751-800-exact8-round2-full50-formal-gate-attribution-packets.json",
+    "v3AttributionPacketsSha256": "30f923d8006218027f5ab0c22afb98a74edd9ebe10e5960cd1b00901bf649ed8",
+    "cohortLocalRosterSnapshot": "f003-laneB-exact8-cohort-pending-roster.json",
+    "cohortLocalRosterSnapshotSha256": "247dde694b742f5979020af276a98ef7a602319f25383b143e5aae300d09edaa"
+  },
+  "formalGateHardPass": true,
+  "exactKwic": {
+    "verified": 354,
+    "failures": 0
+  },
+  "attributionPacketGeneratorVersion": 3,
+  "turnProofMissing": 0,
+  "repairedEntriesRead": 4,
+  "repairedOccurrencesReadInCompleteCaseContext": 31,
+  "priorKeepCount": 46,
+  "priorKeepHashesByteIdentical": true,
+  "summary": {
+    "KEEP": 4,
+    "REVISE": 0
+  },
+  "systemicFindings": [
+    "A green exact-KWIC gate proves string identity, not that every repeated headword token inside one stored KWIC has the same actor.",
+    "Narrator ownership does not remove a clearly named master from ContextMasters when that master is the case subject, actor, respondent, or discussed figure.",
+    "Parallel recensions may be retained for textual comparison only when their shared case/work-family identity is disclosed and counted once for independence."
+  ],
+  "rows": [
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight complete cases support the single adverbial/adjectival certainty sense without a different-thing split. O1 now identifies the named lay official Zeng Hui and retains Xuedou Chongxian as respondent; O3 no longer invents a verse owner and records the anthology verse as reviewed-unnamed; O8 correctly classifies the explicit 僧問 turn as an unnamed monastic questioner with Dahui Zonggao as respondent. The glosses 'really/actual/exact/certain' remain distinguishable but co-referential grammatical readings, and the prose does not promote them into separate senses.",
+      "entrySha256": "fdb1607804d606d8ccf98c1d098ba8cf855a496efc3be38359b10638cab365f6"
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Every exact turn was reread. All five question-frame witnesses, including the former O5 defect, now assign the headword to the unnamed monastic questioner and retain the named respondent in ContextMasters. Huangbo Xiyun and Chengtian Zong remain correctly named utterers in their own turns. The X80 and T51 Letan Changxing recensions are explicitly disclosed as one case/work family and counted once in the seven-family note, so they no longer masquerade as independent deployment. The nonliteral lineage-jurisdiction gloss is anchored by the recurring 向上/極則/指示 questions.",
+      "entrySha256": "477d15f5e3e0babc096d46e7824c1200945280ba9fb75a140649902e2348192d"
+    },
+    {
+      "ordinal": 783,
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight full units distinguish officeholder, recorder, section master, and poem heading. O1 now retains Shoushan Xingnian as respondent while the narrator introduces the alms officer. O6 no longer attributes the editorial 送光化主 heading to Huilin Zongben as spoken text; Huilin is preserved only as verse-author context. O7 is likewise an impersonal poem heading, not a documentary appointment or invented utterance. The monastic-rule witnesses directly establish appointment, donor solicitation, communal support, and accounting, supporting the institutional gloss and the canary that 化主 is not the presiding teacher.",
+      "entrySha256": "eba89db36d161986c8a7d3cc73fe0f855540a6cd04be9f89c32a78f55021e107"
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — The contaminated 十二時歌 title witness has been removed rather than allowed to support the standalone all-day expression. The former anonymous 'identified commentator' is now explicitly Huanji, with Baozhi only discussed. The remaining seven witnesses were reread: Huangbo Xiyun, the Fayan questioner, Xitang Zhizang in two disclosed parallel transmissions, Maqiaoshan Benkong, and Fenyang Shanzhao all have correct turn ownership. The explanation accurately limits the phrase to the twelve traditional double-hours spanning day and night and explicitly rejects twelve modern clock-hours.",
+      "entrySha256": "1ccb412ccba9ca72ad8c6d7d82e62856d817a25396801b0d98389d7c271fb6c2"
+    }
+  ]
+}

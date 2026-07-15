@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic rereview after A revise15 repair",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": "651-700",
+  "generatedUtc": "2026-07-15T07:10:27.321942+00:00",
+  "reviewer": "Codex fresh independent reviewer (A revise15 round)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "formalGate": "fresh-build/waves/f003-laneA-651-700-revise15-formal-gate.json",
+  "formalGateSha256": "d8d0701de84bdf34f0f34051eee59a5a74a66a45166d0271145ba8dd41f18a8e",
+  "formalGateHardPass": true,
+  "repairLedger": "fresh-build/waves/f003-laneA-651-700-revise15-repair-ledger.json",
+  "repairLedgerSha256": "3bf2bda09bd5826707de60fce4b649a4e012261ff78c1437f9c6a92da57ac174",
+  "priorIndependentReview": "fresh-build/waves/f003-laneA-651-700-postrepair-independent-exact-rereview.json",
+  "priorIndependentReviewSha256": "1ed5c8fdfacde0db5e13aa51ab6500e296418b1514b3af408418ae55788772a7",
+  "attributionPackets": "fresh-build/waves/f003-laneA-651-700-revise15-formal-gate-attribution-packets.json",
+  "attributionPacketsSha256": "de0c61aae167dc12bb9f938df3384e649bce13fc1b466792a1ef7029906a8085",
+  "occurrencesReadInFullCaseContext": 356,
+  "repairedOccurrencesReadInFullCaseContext": 117,
+  "priorKeepCount": 35,
+  "priorKeepHashesByteIdentical": true,
+  "summary": {
+    "KEEP": 35,
+    "REVISE": 15
+  },
+  "keyAudit": {
+    "錯": "The semantic split is now right; marked Dahui/Yu'an/Shilin turns remain mislabelled narration.",
+    "出世": "The two-event split is right and false substring removed; questioner/utterer attribution and duplicate evidence remain.",
+    "羅漢": "The rank/proper-name split is right in kind; 供羅漢 is misallocated and catalogue rows remain.",
+    "消息": "All three explanations are now distinct; several marked speech turns remain narrator-owned.",
+    "道得": "The two 外道得 false hits are gone and genuine replacements verify; replacement actors remain unresolved.",
+    "catalogueReplacements": "Incomplete: catalogue/contents rows remain in 文殊, 拄杖, 目連, 陞座, 侍者, 羅漢, and catalogue/title contamination remains in several figure/office entries."
+  },
+  "decileCheckpoints": [
+    {
+      "throughOrdinal": 660,
+      "entriesRead": 10,
+      "occurrencesRead": 83,
+      "KEEP": 4,
+      "REVISE": 6,
+      "durable": true
+    },
+    {
+      "throughOrdinal": 670,
+      "entriesRead": 20,
+      "occurrencesRead": 153,
+      "KEEP": 10,
+      "REVISE": 10,
+      "durable": true
+    },
+    {
+      "throughOrdinal": 680,
+      "entriesRead": 30,
+      "occurrencesRead": 227,
+      "KEEP": 18,
+      "REVISE": 12,
+      "durable": true
+    },
+    {
+      "throughOrdinal": 690,
+      "entriesRead": 40,
+      "occurrencesRead": 294,
+      "KEEP": 27,
+      "REVISE": 13,
+      "durable": true
+    },
+    {
+      "throughOrdinal": 700,
+      "entriesRead": 50,
+      "occurrencesRead": 356,
+      "KEEP": 35,
+      "REVISE": 15,
+      "durable": true
+    }
+  ],
+  "rows": [
+    {
+      "ordinal": 651,
+      "id": "t_c06edf8c18f1",
+      "term": "錯",
+      "entrySha256": "2a05eee4b42c6bc6286f2af17ffa840f90a4a48f608f13c503d3048430d8e45c",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "finding": "REVISE — The new split correctly separates public wrong-answer verdicts from documentary error, but exact actors remain unresolved. O5 is explicitly 妙喜云 (Dahui Zonggao), O6 is 師云 in Yu'an Puci's named address, O8 is 妙喜代云, and O4 is Shilin's marked speech; they remain labelled compiler narration. Preserve the split and repair the full-case actors."
+    },
+    {
+      "ordinal": 652,
+      "id": "t_6e4234dfd60f",
+      "term": "文殊",
+      "entrySha256": "b3454c697e586496f1ee5f419daff46f97b42078f8c1263fb3779d0f11e9e6c6",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — Manjusri's sword, sounding-block, and manifestation deployments are now described, but O6 is still the 指月錄 table of contents, not a deployment. O5's narrated sounding-block act is useful; replace the catalogue row and re-anchor the defining figure set without duplicating the same source passage as pseudo-depth."
+    },
+    {
+      "ordinal": 653,
+      "id": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "entrySha256": "ea0fa952023f2e504bc770d2cb434bcc024885d039138f202593fbe9283939b5",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "finding": "REVISE — This entry is byte-identical to the previously rejected hash. O3 is still the 列祖提綱錄 table of contents, and direct handled-staff acts such as O2/O8/O10 remain flattened into compiler narration despite marked 師/拈 turns. The strong staff/teaching-seat prose does not cure unreplaced catalogue evidence or exact-actor defects."
+    },
+    {
+      "ordinal": 654,
+      "id": "t_11a4ff234f5a",
+      "term": "不會",
+      "entrySha256": "3e84cd5d7a08be288a67fb7f47ae03b8b1f47923f5886e22a33fc1f7422008cc",
+      "verdict": "KEEP",
+      "occurrencesRead": 10,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 655,
+      "id": "t_c193d5b26854",
+      "term": "目連",
+      "entrySha256": "3b560240f9a6279c34854e48591ee7b456d17efc8a340aec0d4f1a8588acbde1",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — This entry is byte-identical to the previously rejected hash. O3 remains a ritual table of contents, while the two claimed roles—image-maker transport and filial memorial use—have not been tested as different deployments with clean attributed cases. Replace the catalogue witness and adjudicate the role structure."
+    },
+    {
+      "ordinal": 656,
+      "id": "t_cbf868f557e2",
+      "term": "陞座",
+      "entrySha256": "52416166e10fb7922e76b6b743025a0f199f1442f9644d75789b57f352ad4754",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — The public teaching-seat event is now defined clearly, but O7 remains a long table-of-contents string rather than an actual mounting of the seat. O4 is narrator-owned action, while O1/O3/O5/O6 require their exact presider/turn decisions; replace the catalogue row with a complete hall sequence."
+    },
+    {
+      "ordinal": 657,
+      "id": "t_cb44465faa59",
+      "term": "侍者",
+      "entrySha256": "8f88d974741fe9bd3d4255ff5467f2f42cf0e24578a56e6a8dbe842062e80516",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "finding": "REVISE — The attendant's messenger and witness functions are concrete, but O3 and O4 are still tables of contents and O6 is only a personnel/name string. Those rows do not show the office acting. Replace them with full encounters and keep title/person uses from masquerading as deployment depth."
+    },
+    {
+      "ordinal": 658,
+      "id": "t_ca6da1e898b9",
+      "term": "羅睺羅",
+      "entrySha256": "cf67143617689e58393a912b59f330cab1819b8288fe0767cecf18664de9a359",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 659,
+      "id": "t_1840377e7a79",
+      "term": "鉢盂",
+      "entrySha256": "f36137d8f6c1d4227124d04606b9a18709adffa57002b3ac7a79bba5a0769423",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 660,
+      "id": "t_2bae929ad4db",
+      "term": "禪人",
+      "entrySha256": "ddf8776e7fe7f596191128844fdfaf32cd702d48f1b4efe7eaee953d306c46ca",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 661,
+      "id": "t_f74516e0ba71",
+      "term": "藥師",
+      "entrySha256": "98e7f6049f0f124ce3f9414fef9acdb5ff2533a4df580908afb6116e57eb2ccf",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — The corpus supports Medicine Master Buddha and Medicine-Master ritual/title language, but the single 'medicine master' target still blurs the named figure with scripture, rite, temple, and title strings. O3 does not visibly anchor the asserted figure in the retained window, and O6 is a heading plus formula. Re-adjudicate the name/title family and replace non-defining strings."
+    },
+    {
+      "ordinal": 662,
+      "id": "t_279cf2b97244",
+      "term": "佛祖",
+      "entrySha256": "f408a05434c16ee3cdcd6d52bd8b72c351c4b21ab1a026ee0ae7577705fe75bc",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "REVISE — The paired-authority meaning is good, but documentary voices are still generically labelled compiler narration where the memorial or preface has an identifiable author. O2/O9 duplicate one passage, and O5/O6/O8 are authored documentary claims rather than anonymous lineage speech. Name the recoverable author or record a genuinely reviewed exception, then reduce duplicate pseudo-depth."
+    },
+    {
+      "ordinal": 663,
+      "id": "t_127d59c584e2",
+      "term": "彌勒",
+      "entrySha256": "c4cbc81631ee10432babb3259f755d2aeb00dc20be5998064e36f79344f2c730",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 664,
+      "id": "t_10cf4ef63613",
+      "term": "竹篦",
+      "entrySha256": "279c5906bef099338aec326dd7896d2553747a4d6d001c9f0d3bdf083891feb9",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 665,
+      "id": "t_086985319a5b",
+      "term": "出世",
+      "entrySha256": "40f6e17ddc4e0a900e2d153675cc1a7705020359a45497841f387f53666693f1",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — The buddha/sage appearance and abbatial public-service events are now correctly split, and the false world-transcending substring is gone. Exact-turn review still fails: O5 is an unnamed monk's question ('佛未出世時如何'), not Zhimen Zuo's utterance, and direct discourse such as O1 remains compiler-owned. Repair actors and replace the duplicated J34 passage in sense 2 with independent evidence."
+    },
+    {
+      "ordinal": 666,
+      "id": "t_612cae8da268",
+      "term": "阿育王",
+      "entrySha256": "c6b485061bc94b921459de0ca42351d7c1e13953f96e3ae9e8a6e19575c2307c",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — Ashoka's relic-distribution and stupa story is now visible, but O1/O3/O6 use 阿育王 as part of Ayuwang Monastery/title material, a different referent from King Ashoka. O3 is a record heading and O6 a temple reconstruction text. Split or remove place-name uses and anchor the royal figure with actual attributed cases."
+    },
+    {
+      "ordinal": 667,
+      "id": "t_c4a694970a12",
+      "term": "洗鉢盂",
+      "entrySha256": "06691880cb7ee7c5697a1e44db087d81215c074c68de5fc9d44ff73b147aafa0",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 668,
+      "id": "t_04efe13911ae",
+      "term": "不識",
+      "entrySha256": "7b2e6290c4bfa60ed0ab6a51870fe5c1ec8b0c1ad619e2a3bef3fad7ea7ea376",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 669,
+      "id": "t_d8641f5a5751",
+      "term": "優波離",
+      "entrySha256": "fe30e1f6d07d5ecf2fa7b45f25ff038c2011462c7cc6db834b1b08d5f42269b6",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 670,
+      "id": "t_ed44feb90bc1",
+      "term": "晚參",
+      "entrySha256": "dba5af11a2c7cee241581ed73db10461936e55bf68f123ee1e49fd2b41fce985",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 671,
+      "id": "t_aa7b526258cc",
+      "term": "相見",
+      "entrySha256": "4c1fd5c3668ba5ff0a5276181c61bd85608a2f6e525a16625f9dce5335b72ce0",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 672,
+      "id": "t_935452e7a2c6",
+      "term": "觀音",
+      "entrySha256": "a6488cb980f544045f5c1ce07d744ed1e6bf9c3f346dc8c6bec43ba74ed16fbe",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 673,
+      "id": "t_d4673502b2d2",
+      "term": "未審",
+      "entrySha256": "b7cac1245e22d5337219b694d8027aface7e6615d95e30021be1688641148879",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 674,
+      "id": "t_27c71a091873",
+      "term": "首座",
+      "entrySha256": "bae8b3c36c2d3b4d330fa29fddc1bf3f48e6103a3385823dac88828cab907c0d",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 675,
+      "id": "t_09ed57d56bcf",
+      "term": "普賢",
+      "entrySha256": "2baadd6911bcd77f2861450b5acbb98e0594a41bf842386c33c3f7136e247b81",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 676,
+      "id": "t_68303eb8b076",
+      "term": "拈拄杖",
+      "entrySha256": "5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 677,
+      "id": "t_1c2ff70cf5a5",
+      "term": "禪寺",
+      "entrySha256": "3e2416b4a3311a92ea139fb7bb844236eb1bb02d468a5cae2b2ede4cb3b03f1f",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 678,
+      "id": "t_b4d4e5d50e6f",
+      "term": "護生",
+      "entrySha256": "8e07edf8e4728a6e7400955ad044212ba375e87ae7725de1c6103b9838240c3a",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 679,
+      "id": "t_4da199fae933",
+      "term": "消息",
+      "entrySha256": "f4f5caf7a3b9655dd235af2ac3cc0fb8e33511e6bf1c3a86b3b4597cd0400b27",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — The three senses now have genuinely distinct explanations: tidings from absence, a revealing sign, and regulation between extremes. Exact actors remain wrong, however: sense 1 O1 contains 師云未見通箇消息來, and sense 2 includes named whisk/address turns still labelled compiler narration. Reconstruct those speakers before acceptance."
+    },
+    {
+      "ordinal": 680,
+      "id": "t_2d567d37256b",
+      "term": "富樓那",
+      "entrySha256": "af5fb7fcfec9fafb0499066741ee4c24b85a7e615b43b5f58ea7085ae6f1a5df",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "REVISE — This entry is byte-identical to the previously rejected hash. O1 is only the bare name in inherited material, the prose still says merely 'named disciple and teacher,' and O4 identifies a different arhat named Purna without adjudicating person identity. The catalogue/person problem and generic evidence-process closing remain unresolved."
+    },
+    {
+      "ordinal": 681,
+      "id": "t_6e63e9087add",
+      "term": "大戒",
+      "entrySha256": "0cff3438744bb32f9e87ff45db111a563fc1f68f3dec3731fac8e613e32f2f84",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 682,
+      "id": "t_727945764d55",
+      "term": "叢林",
+      "entrySha256": "1ca86ccc74429efff3befbc00f36e16fed38c9293c8393729047f179e9774af3",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 683,
+      "id": "t_0fc455356921",
+      "term": "提婆達多",
+      "entrySha256": "e11a1e9fb93d833598846f70bf1c5e3e7614e8c9cd02d90df9ca4c3d75737a62",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 684,
+      "id": "t_6e4cd27922bd",
+      "term": "因果",
+      "entrySha256": "64bd7b916b52d2131a36d919367a9afde5f0f690732c6b81b41d7253b565073a",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 685,
+      "id": "t_d5d6b9fb1613",
+      "term": "長老",
+      "entrySha256": "8190a5784b9d0c4c99d108b2e6b446e9dc5a6f16ff4eae26fa075f05b3eef19d",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 686,
+      "id": "t_75c43f48c74c",
+      "term": "阿闍世",
+      "entrySha256": "66ce0537f9e4e7b35f786983516b7e785b309246f1d6999b572d51a7d51cd9ca",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 687,
+      "id": "t_d8868082a16c",
+      "term": "代云",
+      "entrySha256": "f6aa83db56f069b1268cb2f1f9d80727325e81955dc29ed02b4e0f757e55197b",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 688,
+      "id": "t_cc8c8a1cb550",
+      "term": "羅漢",
+      "entrySha256": "cca98462ba322b53dfc4d641592a0755d1324e3e6a6e13a33d4c5814b4632edd",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — Splitting arhat rank from Luohan proper-name use is necessary and now present, but the allocation is wrong. Sense 2 O5 is 供羅漢, an offering to arhats, not a proper name; O3/O4 are tables of contents, and O2's 什邡羅漢僧 requires place/name adjudication. Reallocate the ritual use and replace catalogue rows with lexical cases."
+    },
+    {
+      "ordinal": 689,
+      "id": "t_41334a089616",
+      "term": "作務",
+      "entrySha256": "ac95b47bc43d6708ae3289734194f790e33f49cddb3347c9fda690aceeb9e4bd",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 690,
+      "id": "t_7f398fa1a823",
+      "term": "識得",
+      "entrySha256": "3ac40b5b5c52823edd545c40f2909ffcfaa5c8e2e61903428f53a78dafb15e02",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 691,
+      "id": "t_9a6d7ee80974",
+      "term": "燃燈佛",
+      "entrySha256": "08059c7a3c5cf61cb5986fe67dcd2777dbc9118075f3fdbd2aaa1371526b3f98",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 692,
+      "id": "t_4f3ee4e28283",
+      "term": "業識",
+      "entrySha256": "c4a62acaa7147b3792f88509f280be7e377d2d577ec3abe013d60adbbb326d0d",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 693,
+      "id": "t_453e3c35baa6",
+      "term": "住持",
+      "entrySha256": "325a5969238b28882ca6c998ba4030ace8ee517f49d1b27f12a6efb6d417f545",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — This entry is byte-identical to the previously rejected hash. The target remains only 'abbot' although the explanation admits the verbal action 'to preside/maintain,' and five of eight witnesses are title, preface, or contents strings. Broaden or split by referent after replacing catalogue-heavy evidence; the current one-sense target is not independently readable."
+    },
+    {
+      "ordinal": 694,
+      "id": "t_0ea00341756c",
+      "term": "定光佛",
+      "entrySha256": "8cd4703d39af70e1a1d2a7bbae2df31d583b882735f8cee5ded3d59bb04dc08a",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 695,
+      "id": "t_8be916b51109",
+      "term": "剎竿",
+      "entrySha256": "a86a9de9347f544277ee5db399591a75299bcffff0f54e69c0bfc5d22bbeb5a4",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 696,
+      "id": "t_22865f34533e",
+      "term": "兒孫",
+      "entrySha256": "66aa10e94a20a83a44d93fae417d645baf5fee1b55650b5e2f40b843381dd180",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 697,
+      "id": "t_4308ebc0471c",
+      "term": "不輕菩薩",
+      "entrySha256": "4e183bfd640d047535eb0817f1dd89354f3902e678a42fb98fc7189f054eb0c5",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 698,
+      "id": "t_ff91d085da8d",
+      "term": "道得",
+      "entrySha256": "b3df88f55bf213dd91f1e806dce352ce0b8d0ad2b96d1acfc9d16fbb7f36185b",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — The two 外道得 false segmentations were successfully removed and replaced with genuine 道得 clauses. Full-case attribution remains defective: O7 is the named layman Lu's utterance, O8 is Mimo Yan's marked threat, O6 is Gushan Xian's comment, and O1 is a named master's staff challenge, yet all remain compiler narration. Keep the lexical repair and redo exact actors."
+    },
+    {
+      "ordinal": 699,
+      "id": "t_c8f127c46d44",
+      "term": "無對",
+      "entrySha256": "886cdf2d20944d195210268df7801c1461c66d9ec96d594a5db0703dd8e57b20",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 700,
+      "id": "t_1c5d1a873155",
+      "term": "常啼菩薩",
+      "entrySha256": "33682419a71394dd87f8ff538b206c96f3af4fc981441ac1b794c60954b874c9",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh rereading found no new exact-actor, sense-split, catalogue-contamination, source-spread, or prose-hygiene defect."
+    }
+  ]
+}

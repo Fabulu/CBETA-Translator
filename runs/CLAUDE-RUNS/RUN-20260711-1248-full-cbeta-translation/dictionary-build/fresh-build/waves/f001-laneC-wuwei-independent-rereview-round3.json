@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "round": 3,
+  "reviewKind": "independent-hash-only-rereview",
+  "id": "t_ff50c6974a36",
+  "term": "五位",
+  "reviewedSha256": "f94f8bcb278f8e2afad6cfcf1e3fb1bd5f90f10abea3b541489cf6a415dc9b62",
+  "verdict": "KEEP",
+  "checks": {
+    "entryJsonUnchangedFromPassingRound2Review": "PASS — current entry.v2.json SHA-256 is f94f8bcb278f8e2afad6cfcf1e3fb1bd5f90f10abea3b541489cf6a415dc9b62",
+    "workProvenanceCurrentHash": "PASS — the final Independent residual repair round 2 block now records Repaired SHA-256 f94f8bcb278f8e2afad6cfcf1e3fb1bd5f90f10abea3b541489cf6a415dc9b62",
+    "staleRejectedHashAbsent": "PASS — the superseded incorrect value 4a4c30b1c3a224c05a6ecef9b447a06faaad60d6fa7d6418828348d92fc74bf7 is absent from WORK.md",
+    "semanticRereview": "Not repeated: entry bytes are identical to the hash that passed the complete round-two semantic, evidence, actor, source/work, Validation, SenseKey, depth, alias, and forbidden-language review."
+  }
+}

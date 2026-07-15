@@ -1,0 +1,246 @@
+{
+  "Id": "t_cd14935fc028",
+  "SourceTerm": "頌古",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T22:15:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a verse on an old case",
+      "AlternateTargets": [
+        "verse on an old case",
+        "compose verses on old cases"
+      ],
+      "SearchAliases": [
+        "verse on an old case",
+        "old-case verse",
+        "compose case verses"
+      ],
+      "Status": "preferred",
+      "Explanation": "The term names a verse composed on an old case, the genre formed by such verses, and the act of composing them. Guan Youwudang calls Xuedou Chongxian's hundred verses essential study material and names Yuanwu Keqin's appraisal of Xuedou's old-case verses. Puhui places verses on old cases beside picking up old cases as distinct literary activities. Lingshu Sengyuan says one hundred such verses formed a book. Dahui Zonggao describes participants presenting interpretations and composing old-case verses. Biographical narratives say Zhengdang Mingbian composed one hundred in retirement and Dahui composed one hundred and ten while living at Yunmen Hermitage. Count, title, compilation, and composition grammar all point to the same literary product and activity; noun and verb frames do not require separate senses.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 1,152 hits in 285 files and 283 works. Seven witnesses across six independent works meet the packet floor and cover counted collection, title, genre contrast, book formation, participant composition, and two biographical composition reports.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0224b08",
+          "ToLb": "0224b08",
+          "Kwic": "雪竇頌古百則。叢林學道詮要也。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guan Youwudang",
+              "Roles": [
+                "utterer",
+                "compiler"
+              ]
+            },
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "verse-author",
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Blue Cliff Record by Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): preface author Guan Youwudang calls Xuedou Chongxian's hundred verses on old cases essential study material. The exact headword-bearing actor is the identified non-master Guan Youwudang.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "preface author",
+            "ActorLabel": "Guan Youwudang",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies this named non-master as the author or speaker of the exact headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0140a10",
+          "ToLb": "0140a11",
+          "Kwic": "師住澧州夾山靈泉禪院評唱雪竇顯和尚頌古語要",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "document title",
+            "ActorLabel": "bibliographic title line",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The line names the textual object appraising Xuedou's old-case verses; it is not a personal speech turn.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T22:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "verse-author"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record by Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): this document title names Yuanwu Keqin's appraisal of Xuedou Chongxian's old-case verses."
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0622b10",
+          "ToLb": "0622b11",
+          "Kwic": "有拈古焉有頌古焉拈古則見之於八方珠玉類要等集頌古則有寶鑑大師",
+          "MasterName": "Puhui",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Puhui",
+              "Roles": [
+                "utterer",
+                "compiler"
+              ]
+            }
+          ],
+          "AttributionNote": "Linked-Pearl Collection of Verses on Old Cases (禪宗頌古聯珠通集): preface author Puhui distinguishes picking up old cases from composing verses on old cases."
+        },
+        {
+          "RelPath": "J/J34/J34nB304.xml",
+          "FromLb": "0377b01",
+          "ToLb": "0377b01",
+          "Kwic": "頌古百首為成書",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Lingshu Sengyuan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Cloud-Crag Collection of Chan Master Lingshu Yuan (靈樹遠禪師雲嵒集): Lingshu Sengyuan says one hundred verses on old cases formed a book. The exact headword-bearing actor is the compiler; the named figure is contextual. This is compiler narration.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narration",
+            "ActorLabel": "the compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword belongs to narrator or editorial grammar; the named figure is described or supplies the surrounding discourse, not this lexical item.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0869a23",
+          "ToLb": "0869a23",
+          "Kwic": "亦來呈見解。作頌古。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao describes participants presenting interpretations and composing verses on old cases."
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0393a20",
+          "ToLb": "0393a20",
+          "Kwic": "謝事庵居，作頌古百首。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narrative",
+            "ActorLabel": "narrator describing Zhengdang Mingbian",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The biography predicates retirement and composition of one hundred verses of its section subject.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T22:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhengdang Mingbian",
+              "Roles": [
+                "verse-author",
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Universal Lamp Record of the Jiatai Era (嘉泰普燈錄): the biographical narrator says Zhengdang Mingbian composed one hundred verses on old cases in retirement."
+        },
+        {
+          "RelPath": "X/X71/X71n1416.xml",
+          "FromLb": "0424c19",
+          "ToLb": "0424c20",
+          "Kwic": "居雲門庵，作頌古一百一十則。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narrative",
+            "ActorLabel": "narrator describing Dahui Zonggao",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The biographical clause predicates residence and composition of Dahui rather than quoting him.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T22:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "verse-author",
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Shuzhong Wuyun (恕中無慍禪師語錄): the biographical narrator says Dahui Zonggao composed one hundred and ten verses on old cases at Yunmen Hermitage."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "C/C078/C078n1720.xml",
+        "J/J34/J34nB304.xml",
+        "T/T47/T47n1998A.xml",
+        "X/X79/X79n1559.xml",
+        "X/X71/X71n1416.xml"
+      ],
+      "RelatedMasters": [
+        "Guan Youwudang",
+        "Xuedou Chongxian",
+        "Yuanwu Keqin",
+        "Puhui",
+        "Lingshu Sengyuan",
+        "Dahui Zonggao",
+        "Zhengdang Mingbian"
+      ],
+      "RelatedTerms": [
+        "拈古",
+        "評唱",
+        "公案",
+        "頌古百則"
+      ]
+    }
+  ]
+}

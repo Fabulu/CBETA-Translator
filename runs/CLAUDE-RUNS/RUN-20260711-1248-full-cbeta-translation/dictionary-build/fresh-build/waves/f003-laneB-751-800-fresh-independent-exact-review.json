@@ -1,0 +1,557 @@
+{
+  "schemaVersion": "f003-fresh-independent-exact-review-v1",
+  "reviewType": "read-only fresh semantic, sense, prose, and full-case exact-actor review",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": [
+    751,
+    800
+  ],
+  "generatedUtc": "2026-07-15T06:56:29.814263+00:00",
+  "reviewer": "Codex fresh independent reviewer /root/f003_b751_800_fresh_review",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "repairLedger": "fresh-build/waves/f003-laneB-751-800-author-repair-round2-ledger.json",
+  "repairLedgerSha256": "788d921c55edc96b4d5d54b874154aefa2bf40b82b357b39c32f0b7471aa9b47",
+  "formalGate": "fresh-build/waves/f003-laneB-751-800-formal-gate-author-repair-round2.json",
+  "formalGateSha256": "17f5707a10adc196dc37f87656cbcd7bcffd53596c57c8328ec19d9780a0deca",
+  "formalGateHardPass": true,
+  "currentHashesVerified": true,
+  "occurrencesReadInFullCaseContext": 355,
+  "summary": {
+    "KEEP": 11,
+    "REVISE": 39
+  },
+  "structuralFinding": "Formal mechanics pass 355/355, but fresh reading still finds respondent-as-utterer, biography/office, embedded-quotation, TOC/nested-term, multi-actor-KWIC, and different-referent defects. Mechanics do not establish semantic or exact-turn ownership.",
+  "decileCheckpoints": [
+    {
+      "range": "751-760",
+      "KEEP": 3,
+      "REVISE": 7
+    },
+    {
+      "range": "761-770",
+      "KEEP": 2,
+      "REVISE": 8
+    },
+    {
+      "range": "771-780",
+      "KEEP": 1,
+      "REVISE": 9
+    },
+    {
+      "range": "781-790",
+      "KEEP": 2,
+      "REVISE": 8
+    },
+    {
+      "range": "791-800",
+      "KEEP": 3,
+      "REVISE": 7
+    }
+  ],
+  "rows": [
+    {
+      "ordinal": 751,
+      "id": "t_fa19bfa0d109",
+      "term": "佛殿",
+      "entrySha256": "b855b8dcffb13007261b4109e0ed762687bef75a03946b33ab784ec3b6c26dc3",
+      "worksheetSha256": "e7c41c4d8215d474679f92c1a5d9ea0511fd205f15334f5d5364384fa51ebe1a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O4 is narrator-owned: 文遠侍者在佛殿禮拜次 reports Wenyuan in the hall; Nanquan speaks only after 師見. The building prose is useful, but the exact actor remains wrong."
+    },
+    {
+      "ordinal": 752,
+      "id": "t_a29504cc83be",
+      "term": "願力",
+      "entrySha256": "5733204a8b4e9fa54ac23d5201f49d233299a32f1a75b9ed2af5e77539055409",
+      "worksheetSha256": "634084fd65c4186253a9badd2d6312b37add66a943cf1eb605e26e3d8ca66e29",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O3 and O5 still use generic compilation/preface labels where the section or preface owner must be recovered. A hard mechanical pass does not establish those exact documentary owners."
+    },
+    {
+      "ordinal": 753,
+      "id": "t_2fe5c4171ea6",
+      "term": "且道作麼生",
+      "entrySha256": "ab587949732af2c3b75416d9247ca3e3afefe2bcf5db9ebec2f9117e6315cf28",
+      "worksheetSha256": "aed6bb01e20c5929c13b608fee76f45c87301b56eb60614825a33c672c1fdacb",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "The reusable demand formula is distinguished from its varying answers; all six selected clauses sit inside the attributed masters' own addresses or commentary turns, with no different referent found."
+    },
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "entrySha256": "c51c4c41f8fd89e7ad4e5086cf18bb803315346875d5c4e5e906808be8dda950",
+      "worksheetSha256": "b7bdd9df632f2a4d8fc2dc9c16834ee5f4c9391d5e4438fdfd3025cf3a0d158d",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O2 explicitly introduces 浪山嶼云 and O7 寶掌白云, but both rows are assigned to a generic compiler. Those named quoted speakers must own their exact turns."
+    },
+    {
+      "ordinal": 755,
+      "id": "t_1853f433aff5",
+      "term": "開山",
+      "entrySha256": "3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169",
+      "worksheetSha256": "1dc3577d51e1c4490c2bbcb23571d10f7f70d89552b965a909a78a33c40d5948",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "The verb 'found/open a monastery' is correctly separated from the institutional title 'founding abbot'. Biography narration is no longer assigned to its subjects, while the two memorial incense turns remain master speech."
+    },
+    {
+      "ordinal": 756,
+      "id": "t_f28429436009",
+      "term": "且喜沒交涉",
+      "entrySha256": "b294f75aed3d320d980417543325c1885e55fe6a9e2e5fb0104bd697928bb379",
+      "worksheetSha256": "28bf071ad3ab3b4f54f8f278f84f465e93d50d9fd077290fef285bd1d5576f50",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "O4 is a duplicate of the named 南明 sermon preserved in a compilation, not anonymous compiler wording. The named sermon owner must be recovered before KEEP."
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "entrySha256": "cf6b92c2979f2c30c828dd53a7d9a4e0eca7b9ba6999c73c704ec1b5284752d6",
+      "worksheetSha256": "4f872fc87e7d51907b0c1a369bba342c68dc124ccebd16cc145f79c3fe79f800",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O6 says 師問百丈從上宗乘如何指示於人: the section master asks Baizhang, so Baizhang is respondent, not the headword utterer."
+    },
+    {
+      "ordinal": 758,
+      "id": "t_166e179e928c",
+      "term": "藥王菩薩",
+      "entrySha256": "545456a783f997d4db930283b490f95e6b446d326f27b96acaa0aada08609fac",
+      "worksheetSha256": "2965df1be396770f40cd620b0f666fcfabe596cd0c332c4e41853bc739c80779",
+      "verdict": "KEEP",
+      "occurrencesRead": 3,
+      "finding": "All three witnesses use Medicine King as the invoked figure in named master speech. O2 correctly belongs to Miyun Yuanwu, and the explanation remains limited to the Chan deployment of the burning-body episode."
+    },
+    {
+      "ordinal": 759,
+      "id": "t_72ba0d559d5a",
+      "term": "衲僧家",
+      "entrySha256": "9f8ae0898420023bf3aca05615f6f98d4b319e97d6d5d31dfb55e3598dbaeae4",
+      "worksheetSha256": "b4be28070afc494c9d7a998f75adacc8ad1238a91e2d5e90a5c7cac3a2050a2e",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O3 is in T48n2001, Hongzhi Zhengjue's Extensive Record, yet is assigned to Dahui Zonggao. The stored title-owner attribution is factually wrong."
+    },
+    {
+      "ordinal": 760,
+      "id": "t_1b62ec7f731e",
+      "term": "禪者",
+      "entrySha256": "a60b6055a7665d766457a8e571e0af185434b9c6a44e055a9ea8d7c920c780d6",
+      "worksheetSha256": "4441b08fa0ba8b8352b8084cf0e9ad1e55375261955a9fda7a5d3c12e79951fb",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O4 故禪者，誠去執之虛名 uses 禪者 as 'as for Chan/Chan', not a person who practices Chan. This is a different lexical referent, not evidence for the sole practitioner sense."
+    },
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "entrySha256": "c2f994279f0e765d2efe81e8e32c9dda0ad5f5dc6c4f6687be7544ce4c395700",
+      "worksheetSha256": "939864cc1bcb28bef0466b8f28867448ef26d51dc7d69ca8edb7fe756d82cc5c",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "O9 is the unnamed monk's question 維摩丈室…和尚丈室以何為明, not documentary narration. The respondent belongs only in ContextMasters."
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "term": "山門",
+      "entrySha256": "cff823431fde611f8483aa72715b1816e8177a17a8c3cc3b9902ae3c022c5732",
+      "worksheetSha256": "f3f325e995d2ea3ae5e3c7ff24b42276be51821ee276f08db95a2f194ff213dc",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "The sole physical-gate sense merges different things: 洞山門下 is Dongshan's lineage, 山門老宿 and 山門功德 use the monastery/community institution, while 山門之右 is the physical gate."
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "term": "千佛",
+      "entrySha256": "811179e047c6be744214248ce642d2e9283efeac835fd135325e4660744e3d23",
+      "worksheetSha256": "115e3c0ccedaea2325ab9c076e4e469bdde80a29e7dc32e85f77488b81e22bb0",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "The inherited company and its Chan uses in sermons, ritual assemblies, and the Guang'e case remain one referent; the selected turns and narration boundaries are coherent."
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "term": "且道畢竟如何",
+      "entrySha256": "5e7e1a541900bf42aa318689c03a58530e5f430691a22f95da24f105781d0051",
+      "worksheetSha256": "49cac4f1dd3fc193072f558868616e0e329d309420ea9af4d8ed84b5483afc0d",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "O3 explicitly has 正覺云 before the headword and O5 places it in a named current sermon; both are mislabeled as compiler narration."
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "term": "藏主",
+      "entrySha256": "0856a83fa8f1937da71cbeb8bd772bcba8ed0375c9cb69b4a48b5a5031651ca3",
+      "worksheetSha256": "ccbe22198adbf52fddfbc96792cd74b4d75b5af349283dc619360f5ba1495349",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "O2 時翠巖真為首座，藏主問真 is narrator-owned office identification, while O3/O4/O8/O9 include invitation or thanks occasion labels. These are not utterances by the nearby presiding masters."
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "b8b297dfbf2298f89cd2bced43a4d8e388b3511878dcae5b55ccb7a8f298a1d4",
+      "worksheetSha256": "258299b0c8f80466882bd36071d5275553ddc5e05df67a10ed17306182377019",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "finding": "O7 occurs inside the master's 乃云 speech as 臘八午夜…, not in an editorial 臘八，上堂 label. The blanket impersonal classification is false for that row."
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "71be75822bf55166d9167ecf5d84b959a6c39ec4e5fab6228e9fad8e8dbf9769",
+      "worksheetSha256": "bb0cb6c19db5cf93fcba024b3d7916727d4c1591abb97da56b1865fa477d02e9",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O2/O4/O7/O8 place 如何是第一句 in a monk's question but assign the respondent. O3 contains both Linji's statement and a monk's question in one KWIC, violating the one-actor-per-occurrence rule."
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "term": "頂門",
+      "entrySha256": "e960647d8dcd288dc556cf68c307da209e88a9bf565cd3a00e76486fcdf676df",
+      "worksheetSha256": "9dab9579f25950e5a68fc8f03437c579a702ca1d2ff73fa155d0eab3fdbd7cb5",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O4 is a preface author's praise of Jifei, not Jifei's speech. O5 contains named Baiyun Duan and Huanglong Xin comments and cannot be left as a generic case narrator."
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "term": "龍王",
+      "entrySha256": "69564c49b8e6cf3935b805955cfc5a355afafa7c68d59980f5412f4dd383e34b",
+      "worksheetSha256": "fb369d4841a734f961cf56a7218b1889f235203fdb209d4f3cbb7a1cd05a9e6a",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "O2 explicitly names Dawei Tai's rain sermon; O6 is Pindola's speech, O7 is the master's question, O8 is Chushi Fanqi's hall speech, and O9 contains quoted Pindola/Dawei turns. Their current owners are wrong."
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "term": "末後一著",
+      "entrySha256": "8a330e838fb593d100011d3442869ba7016e48dd3bceda7bed00fa12f566ee4a",
+      "worksheetSha256": "aff53b4d03141ba75b29ce747fd93067ca59662a09511c6f8ec80e5e2981852c",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "The final-move gloss is narrow, concrete, and survives the negative witness where a purported 'final move' is rejected. The six current turns have coherent owners."
+    },
+    {
+      "ordinal": 771,
+      "id": "t_708834b4cb89",
+      "term": "法堂",
+      "entrySha256": "6bccb377199b1ae934ac8db911f304ff58d650aaf5586a9df562a37a3bfc0ce1",
+      "worksheetSha256": "d015006903e72086327f3ac67080e0c3ac85df0223080069c4f9f98556ca99cf",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "The building referent is consistently the public teaching hall; construction, entry, seating, and rule narration are correctly documentary rather than falsely assigned master speech."
+    },
+    {
+      "ordinal": 772,
+      "id": "t_67bf0bf87ebe",
+      "term": "子路",
+      "entrySha256": "3bfae305f3936874823dfa0a95708e5a40c866092a54f39c46060fbe4d4e4917",
+      "worksheetSha256": "4a149e3af9b491823b3e50b060a342a67d5f4f6a6eef5fab17d9d33deecb2893",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "O4 is not Zilu: 沒髭鬚底胡子，路見不平 crosses the punctuation boundary between 胡子 and 路. It is an accidental string match and cannot evidence the named disciple."
+    },
+    {
+      "ordinal": 773,
+      "id": "t_10d93a67ea99",
+      "term": "言句",
+      "entrySha256": "2691c4d74ee2724e26efe40eafe88b484f574403935bdf2fa3dff3346c8030e0",
+      "worksheetSha256": "75eb5df7e94ac873dbeb14eb6383858978cfcd27d9329b720bf1207f0b6fb41b",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O3/O4/O7 mark Huineng with 祖曰/祖云 as the headword utterer, not Jiangxi Zhiche, Heze Shenhui, or Fada. O8 is a preface voice, not Yuanwu's own turn."
+    },
+    {
+      "ordinal": 774,
+      "id": "t_a9a874976d5b",
+      "term": "提綱",
+      "entrySha256": "f36e85243113a77f70a16e720c4a8aeb189e031fa680ea863b3a33e5bdc2375e",
+      "worksheetSha256": "e50bf73022ed0d33a77dad7c00b5817e43e86f1e317fae7f7de2ad8bd7381f3c",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O1 is the book-title/TOC string 列祖提綱錄, O2 is a questioner's turn, and O7 embeds 大溈喆云. Title, questioner, and quoted speaker remain flattened."
+    },
+    {
+      "ordinal": 775,
+      "id": "t_eb17a30eecaa",
+      "term": "浴佛",
+      "entrySha256": "861e34cd3cfa763fe82a9e7c81405af73a2a387012eff5639c45288bf2e5d362",
+      "worksheetSha256": "bb4914e85524a27eafd6ec64042c936f0745001a2617cfcb32708eb8e6d5c01e",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O2-O7 use 浴佛，上堂 as an editorial occasion label rather than speech by the named sermon owner. O1 uniquely also contains spoken 天下精藍皆悉浴佛 and correctly belongs to Huanglong Huinan."
+    },
+    {
+      "ordinal": 776,
+      "id": "t_b4b6091cf9cb",
+      "term": "出身",
+      "entrySha256": "4da836df9153d273d4fcfddf7d2a3d0c4357ae9e5074fcce1fa4fc63737941e7",
+      "worksheetSha256": "470d23f67d32e02cdc69e621dd41df7cca4d606ea078a359bf3608d401edf615",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O5 is the monk's question 三世諸佛出身處, not the respondent's turn. O7/O8 explicitly quote Yunfeng Wenyue's 出身之路 wording but are left as generic narration."
+    },
+    {
+      "ordinal": 777,
+      "id": "t_33ae72debe2c",
+      "term": "聖僧",
+      "entrySha256": "25927d872d25db2b88c23896c776fef0cee1c8a83064db04a6614352f433f4fe",
+      "worksheetSha256": "a30e221396c342fb49b225db84dcad065249bb2b0be652fd82580a51439e59af",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O2 is a table-of-contents occurrence inside the longer office 聖僧侍者. It contradicts the worksheet's stated TOC/nested-compound exclusion and cannot buy depth for the sacred-monk image."
+    },
+    {
+      "ordinal": 778,
+      "id": "t_073dcbf657a3",
+      "term": "如何是無寒暑處",
+      "entrySha256": "38303af4b3606004384980b9b98b47a2319bdc0d1c989b020473a962fdfaa519",
+      "worksheetSha256": "8c28bbe9c162011c53ce7c71fc24f8e6369c90f70e401054c13686e9dffabd93",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The KWICs include both the original unnamed monk's question and later masters such as Langya Huijue repeating the identical full headword. Each row therefore contains multiple headword turns with different actors and must be recut."
+    },
+    {
+      "ordinal": 779,
+      "id": "t_5835e3ae094b",
+      "term": "髑髏",
+      "entrySha256": "235fe7bab7e5e609aaa945add81be3bb85bd03d9fa37b6517315f2bebe8b304b",
+      "worksheetSha256": "77e713f2d5af8d18649a91bf2365933a121f76059ec2d26607ffe7e0c9013fb6",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O4 is again T48n2001, Hongzhi Zhengjue's record, not Dahui. O2's verse owner and O7's named rain-sermon owner are also left generic despite recoverable contexts."
+    },
+    {
+      "ordinal": 780,
+      "id": "t_d4560fb0c07b",
+      "term": "天龍八部",
+      "entrySha256": "0e9806d670031dff156d21524864d0417a3fc845950de2d8474253b6bb3d3d1f",
+      "worksheetSha256": "5567846228d3674634e52299d353be2bcceba93b7346a60772f666f2c56480f4",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "O3 is continuous named-master sermon speech in Yinyuan Longqi's lineage record, not an anonymous 'assembly speaker'. The inscription and assembly provenance are not yet exact enough."
+    },
+    {
+      "ordinal": 781,
+      "id": "t_19635cfe9de8",
+      "term": "參學事畢",
+      "entrySha256": "b5dda27c097e66af2c8e6ac267691743b32fef2ad6c3d0f938dbfea96c5e0560",
+      "worksheetSha256": "0f76dcf12fadc6329bbf0f1d707b534b3d88cde1b51702314d8fe81f26ba02e1",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "O1's header names Dunan Zongyan, not Fozhao Deguang. O2 explicitly names Lingyan Chu, O4 Chengshan Qia, and O5 a recoverable sermon owner; all are misowned or left generic."
+    },
+    {
+      "ordinal": 782,
+      "id": "t_ba4b06d70a44",
+      "term": "坐具",
+      "entrySha256": "6fcc73f2136abc4a9a52f7bce96b5313f06e0677539c164666d7dc25813aa582",
+      "worksheetSha256": "02464dd9f66ac081839eb007f4e7052fc7f3ccfe371414182321cebfa9822de7",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "The bowing cloth remains one concrete object across prostration, display, spreading, and the Caoqi land-measure story. All eight selected uses are correctly classified as encounter narration."
+    },
+    {
+      "ordinal": 783,
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "entrySha256": "8b8b354079a75015670ac6143424d1ee3551f7fba2c7d183796415ae8add0ec8",
+      "worksheetSha256": "c2e62cc0f93131399be9918a2a43d93516fbfd707f3ad702030d0f63467eca91",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O1/O3/O4 identify an alms officer in narration or an occasion heading; O5 is a thanks heading. The officeholder, record subject, or respondent is repeatedly assigned as if uttering 化主."
+    },
+    {
+      "ordinal": 784,
+      "id": "t_a2ccc2d35ae3",
+      "term": "如何是禪",
+      "entrySha256": "fd214a2cd30e6f5ef2fffa86bbc2859fd7053c65cd55ae86068cb8446809a8be",
+      "worksheetSha256": "691311c019c747298b866018555ce06fc7c3c1726092726e81483dea45d99ee7",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "All six exact headword turns are now correctly assigned to unnamed questioners, with Wuye, Muzhou Daoming, and Tiantai Deshao linked separately as respondents. The differing answers properly limit the entry."
+    },
+    {
+      "ordinal": 785,
+      "id": "t_168078a96bd7",
+      "term": "明眼",
+      "entrySha256": "33adc5fd2fc5193207e07cb0c3ecb02cee507ab0246fc8e3086596b8b3a6d7a8",
+      "worksheetSha256": "7333ea0bcc0595280c9f33dfd68b2c1bb11bd974574c4abf2b51445559ec2199",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "O9 is the layman's direct threat 待我一一舉向明眼人, not documentary narration. Other verse/commentary and sermon owners remain generic where their sections identify them."
+    },
+    {
+      "ordinal": 786,
+      "id": "t_53d86caa85c2",
+      "term": "四天王",
+      "entrySha256": "85143dccb363ea564dfa3ed8392425dac5207339f85c799c73f99c96f6092b18",
+      "worksheetSha256": "120ed40c1d29fdc6563138fd103c07ac66ac25e41faae83c010c68b4977375d3",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "O3 is the questioner's 四天王天 phrase, not Langting Jingting's answer. O4 is a current named-master sermon rather than a generic assembly voice."
+    },
+    {
+      "ordinal": 787,
+      "id": "t_e3231052e685",
+      "term": "用處",
+      "entrySha256": "c1280dcf9dc24a1e1efb407b570f42c8cb2bb9663ece01b38a73adf89958ac3b",
+      "worksheetSha256": "433b2b5c55c0ae66b3e6fde4cb02f872cad7230f4c1dac1a6d75c4072178cf18",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "The preferred target 'where it is used' misdefines 用處 as use, function, utility, or effective point. The nested 不用處定 occurrence is a distinct longer term and cannot support this single sense."
+    },
+    {
+      "ordinal": 788,
+      "id": "t_d7c62e900a42",
+      "term": "舍利弗",
+      "entrySha256": "4ba636634166c78c75f3bc5003ffefd62719902ae4d3af0bedc53694fc12da38",
+      "worksheetSha256": "8cf5e60f07afb09ece79a6fe6f41b1a404a887f27706a465587bd186454b336a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O2/O3/O7 are TOC-only name listings despite the worksheet's claimed TOC exclusion. The opening's imported 'foremost in wisdom' identification is not established by the selected Chan deployments."
+    },
+    {
+      "ordinal": 789,
+      "id": "t_7c69e364232c",
+      "term": "入門便棒",
+      "entrySha256": "0ec239e31c49f73291adbec7b26e7468e34c1b7ad02602bc1e49b81e997f2bd7",
+      "worksheetSha256": "f9f7663ea2351399fbfcdf42c6df929d5432e08abdc5c82f23b7128f7d11d0c7",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "O2/O3/O4/O6 place 德山入門便棒 in the monk's question, not in Yunfeng, Baofu, Zhimen, or Zeng Kai's response. The respondent-as-utterer defect survives."
+    },
+    {
+      "ordinal": 790,
+      "id": "t_a2e606b74ee9",
+      "term": "把住",
+      "entrySha256": "2189b878aea5bc298f65746e20b422708ce3ee074269e8f9077f70dadb2489f0",
+      "worksheetSha256": "977c5b95d4d4aeef93e2460256ee6ae707c1860c6ff6a5033c2f4bfc15e01c96",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O3 explicitly introduces 寶峯弁云 before 把住要津 yet uses a generic later-commentator branch. The named quoted actor must be recovered and linked."
+    },
+    {
+      "ordinal": 791,
+      "id": "t_7106d3345b14",
+      "term": "須菩提",
+      "entrySha256": "9f2112542a4217b5cbf8c3b1a6d9745b3f1cb50af8cb04794214a317380dabb8",
+      "worksheetSha256": "a80b19d97fe51a8b7070903a3c82395a7e45eb92e76fda144f03f60f312f40ee",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O3/O6 are TOC-only listings. O8 places 須菩提 in the Buddha's quoted rebuke, not generic documentary narration, and the opening imports an emptiness association broader than these Chan deployments establish."
+    },
+    {
+      "ordinal": 792,
+      "id": "t_5cde0218375f",
+      "term": "把住放行",
+      "entrySha256": "982fc7a849a099225ce7a215bf4fe789d1b6ce8e7655095e3ced692b73519148",
+      "worksheetSha256": "b007f3c4074e138fa47a3fae0be1853d65dd945577dede16e6fcf688652e462b",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "O4 has 夾山…示眾云 immediately before the headword: Jiashan Shanhui owns the utterance, not a generic commentator on Jiashan."
+    },
+    {
+      "ordinal": 793,
+      "id": "t_73656adc1e50",
+      "term": "蒼天",
+      "entrySha256": "f73560c53a1ca78142478b607012f6b4b4aa7554cc7554c05979489d962cf6d8",
+      "worksheetSha256": "1bf795f6471894a425e46658d913188c63750294f05b8ce016999ffa8b12f8cc",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O3/O5 contain Hanshan and Zhaozhou turns rather than Fenggan speech; O4 embeds Linji's exclamation; O7 embeds Shitou's exclamation. Nearby record owners or later quoters are not the exact quoted actors."
+    },
+    {
+      "ordinal": 794,
+      "id": "t_c051d6f277af",
+      "term": "佛誕",
+      "entrySha256": "bf5897cbc0b7b9fa0de55f9ac67476750bbcd506a537a400de81aac2c343c7b9",
+      "worksheetSha256": "e6cf0e69786993feb78f8d99831adc3728c140feb6a996f5885652c51d82dfa6",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O6 is documentary date prose 辛酉佛誕日 inside a preface/letter, not an editorial occasion label. The actor kind and grammar proof are false even though most other rows are headings."
+    },
+    {
+      "ordinal": 795,
+      "id": "t_f266d9e034ea",
+      "term": "主中主",
+      "entrySha256": "eda609a28de2e95432f23e1509c82e02d5d3036e1b0f44be0daed26b476807fd",
+      "worksheetSha256": "933c314f57387bc0535f776fafad23e78d4aaeb207e2c0853132adb3a120db1f",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "O1/O2/O5/O6 put 如何是主中主 in questioner turns but assign respondents. O3 is prefatory narration, O7 embeds Dongshan's quoted definition, and O8 is a recoverable sermon owner."
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "entrySha256": "81503a028990adf28834aaf0d1ac6bba33912247f0adefefe5ed4f844e701bb0",
+      "worksheetSha256": "c250aa18f8527391a16378d7886deff1ec71108e0c76e162478ac2e3ddfb2949",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "finding": "O1 is Nanquan's question to Huangbo; O3 is a monk's question to Fayan; O4/O6 are Zhizang's question; O7 is Maqiaoshan Benkong's sermon. O2 is biographical title narration and O9 a TOC, not the current actor states."
+    },
+    {
+      "ordinal": 797,
+      "id": "t_eeb3c71567a1",
+      "term": "僧臘",
+      "entrySha256": "3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b",
+      "worksheetSha256": "b5126ee8615db62d3faf87245ae0377f78c85c05b008124680d97d9803c589b8",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "All eight selected clauses are now correctly death-biography narration, with each deceased master only a person-described context. The years-since-ordination seniority referent is consistent."
+    },
+    {
+      "ordinal": 798,
+      "id": "t_dc24f92ead78",
+      "term": "問訊",
+      "entrySha256": "063fb6f842b672d7768bb46fe13f75e1cc36c68190f078c5bc46520aac50c9f1",
+      "worksheetSha256": "ea98c010b97a72aead231fc91ea519d8764f28a958026384cbb4f494ddec3787",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "The greeting remains the same formal salutation across rule prose and encounter narration. Performers and respondents are no longer misrepresented as uttering the narrator's 問訊 wording."
+    },
+    {
+      "ordinal": 799,
+      "id": "t_7ee93f6b90cf",
+      "term": "三要",
+      "entrySha256": "ec1bf60ddcb0bf87427709b4ed14e227134b65efb9dac65b03b1e4400fca6a54",
+      "worksheetSha256": "da5fef26d0d0524063124ec4a395b01a71ea269631e76a9ff36fd5360d6bdc2f",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "O2's 三要 is the woman's three requested things, not Linji's Three Essentials. That different lexical referent contaminates the sole Linji-category sense."
+    },
+    {
+      "ordinal": 800,
+      "id": "t_e1a5fc496deb",
+      "term": "香積",
+      "entrySha256": "4c26516f5e43b827349872ea598641f1f39d140688cd4eb2ed1cd68f2c722867",
+      "worksheetSha256": "782004d17b352c1f440245c3e4bf480e1acfc008afc3ee221f969d3abe69a050",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "The three referents are distinguishable and separately anchored: Fragrant Accumulation realm, Master Xiangji Zi, and Xiangji Monastery. O3/O4 correctly belong to Yunfeng Wenyue, and the proper-name rows are narration."
+    }
+  ]
+}

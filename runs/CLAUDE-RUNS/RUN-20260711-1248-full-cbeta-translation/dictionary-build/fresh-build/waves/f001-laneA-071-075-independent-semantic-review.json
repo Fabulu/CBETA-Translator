@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [71, 72, 73, 74, 75],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T00:37:18Z",
+  "scope": "Hash-bound review of meaning and different-thing sense boundaries, exact actors and contextual roles, frequency-scaled depth and uniqueness, independent-work identity, corpus-earned openings, aliases, claim anchoring, and forbidden-rule compliance. Every complete case in the supplied attribution packet was read; entries were not edited.",
+  "inputs": {
+    "mechanicalGate": {
+      "path": "fresh-build/waves/f001-laneA-071-075-gate.json",
+      "sha256": "00c58639797ca4a7a8e96caac53ff45560d03976ea026d93bd5aad94670fb575"
+    },
+    "semanticReviewPacket": {
+      "path": "fresh-build/waves/f001-laneA-071-075-semantic-review-packet.json",
+      "sha256": "a8dc1ee17b5c096af239e8b3c410933f7e494107c3927616ce222b30633fec79"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneA-071-075-gate-attribution-packets.json",
+      "sha256": "e476cd57c6d73ef50f44aa40db1bb991783b5d739230ebd481bd7094f0b442e6"
+    }
+  },
+  "summary": {
+    "KEEP": 3,
+    "REVISE": 2,
+    "reviseOrdinals": [71, 75]
+  },
+  "findings": [
+    {
+      "ordinal": 71,
+      "id": "t_dc02eefd07f5",
+      "term": "偏中正",
+      "entrySha256": "d718b6e78a1fb38f4f5b83785236de57eb8b3ed10453e9501c4ccda511be01e6",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One second-rank relation is appropriate. The paired affairs/principle glosses, rank sequences, mirror verses, and later diagrams are deployments of the same named relation, not different things.",
+        "actorsAndContext": "The T48n2006 row is compiler exposition and therefore belongs to the narrated branch, not reviewed-unnamed. More importantly, the J38nB406 complete case explicitly introduces 原頌曰 and then reproduces Dongshan's original old-woman-and-mirror stanza before Tianran answers it with his own verse. The stored headword is inside Dongshan's nested quotation, so Tianran Hanshi is not its utterer; he is the later quoter/commentator.",
+        "depthAndUniqueness": "Definition, paired rank exposition, two independent verse sequences, later diagram, shout classification, and nested original-plus-response treatment are distinct evidence classes.",
+        "workIdentity": "Seven selected files represent seven distinct works; no split-volume pair supplies false independence.",
+        "openingAliasesAnchors": "The reverse nested relation and conventional absolute-relative aliases are corpus-earned. Caoshan's minister-toward-lord wording is present in the supplied complete case but not reader-visible in the stored KWIC; retain it only with an anchor or a widened verified occurrence.",
+        "forbiddenRules": "No outside doctrinal interpretation was imported, but compiler narration and an embedded quotation are assigned to the wrong attribution branches."
+      },
+      "requiredChanges": [
+        "Change T/T48/T48n2006.xml 0313c09-10 from reviewed-unnamed compiler-narrator to the narrated ActorAttribution branch, preserving the compiler-exposition description.",
+        "For J/J38/J38nB406.xml 0424b15-17, assign the exact headword utterance in 原頌曰 to Dongshan Liangjie as verse-author/cited master; retain Tianran Hanshi only as later-quoter/commentator/record-owner and rewrite the AttributionNote and explanation accordingly.",
+        "Anchor the explanation's minister-turning-toward-lord claim with a verified reader-visible ClaimAnchor or widened occurrence, or remove that clause.",
+        "Correct the English source title for 人天眼目 from 'Mirror of Humans and Devas' to the project's canonical 'Eyes of Humans and Devas' form."
+      ]
+    },
+    {
+      "ordinal": 72,
+      "id": "t_78f95517a347",
+      "term": "生死事大",
+      "entrySha256": "0494ad86e5a8b9f6cbb8865f6b45506571913c82b04ff80b2e6610bb1ebeea91",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "The exact formula is one assertion. Reordered wording and differences between definition, exhortation, and rebuke do not denote different things.",
+        "actorsAndContext": "Dahui, Tianru, Xueyan, Yuanwu, Zhongfeng, Dufeng, and Shending own the exact quoted turns in their complete cases; no narrator, questioner, or cited speaker is substituted for an utterer.",
+        "depthAndUniqueness": "Two explicit coming-and-going definitions, weight and urgency, initial approach to an instructor, paper-phrase criticism, and two distinct insufficiency checks provide strong non-padded depth.",
+        "workIdentity": "Seven selected files represent seven independent works.",
+        "openingAliasesAnchors": "The opening states the formula before explaining its attested urgency and direct self-glosses. Search aliases remain synonymous and bounded to the phrase.",
+        "forbiddenRules": "The entry expressly refuses to turn repetition of the slogan into resolution and does not import a theory of rebirth."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 73,
+      "id": "t_ccd48e1c9145",
+      "term": "正中來",
+      "entrySha256": "7d079b11c5fbee2c58394b6cf8d07de549192203fdd33c371f130f71e96599c5",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One third-rank relation covers the Caoshan definition, verse labels, later questions, diagrams, and shout classification. Their images and schemata do not establish different referents.",
+        "actorsAndContext": "Caoshan, Hongzhi, Langting, Juelang, Yongjue, and Ruibai own their exact turns. In the Fenyang row the unnamed monastic utters the headword question and Fenyang answers separately, which the entry correctly represents.",
+        "depthAndUniqueness": "Definition, no-speech examples, several nonduplicative verse images, a public-interview question, later diagrammatic exposition, and shout classification are a genuine spread.",
+        "workIdentity": "Seven exact witnesses come from seven distinct works.",
+        "openingAliasesAnchors": "The opening's movement from the correct/upright position is directly grounded in Caoshan's 正位中來 gloss; aliases keep the conventional and literal terminology searchable.",
+        "forbiddenRules": "The article keeps later images attributed and illustrative rather than converting them into an imported metaphysical system."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 74,
+      "id": "t_61c90d3a8edd",
+      "term": "兼中到",
+      "entrySha256": "3c8f44fc5bd332d06c0a847981b0915ea69fb73597beed92cb31d44f386de510",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One fifth-rank relation is warranted. Neither-existence-nor-nonexistence, exhausted distinctions, mixed black and white, and the changing verse images remain descriptions of the same named rank.",
+        "actorsAndContext": "Dongshan, Hongzhi, Langting, Juelang, Yongjue, and Ruibai own their complete turns. The 人天眼目 row correctly assigns the headword question to an unnamed monastic while placing Fenyang in respondent context.",
+        "depthAndUniqueness": "Foundational verse, independent verse sequences, question-and-answer, explicit mixed-diagram account, affairs/principle exhaustion, and shout classification supply distinct evidence.",
+        "workIdentity": "The seven selected files are seven independent works.",
+        "openingAliasesAnchors": "The integration language is earned by 混融, 全放全收, 事理全銷, and the repeated exhaustion of paired distinctions; the aliases remain rank-specific.",
+        "forbiddenRules": "No external map of attainment is imposed; later black-white and shout accounts stay named as attributed illustrations."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 75,
+      "id": "t_1d3706324b0c",
+      "term": "打成一片",
+      "entrySha256": "73faa16c826e0148c640eb61ab4ebfee91f125da60e103842e68a08b91d079a7",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One becoming-one-piece sense covers continuity, paired distinctions disappearing, and the one-colour description. The negative silver-mountain/iron-wall witness is a boundary test for the same phrase, not another sense.",
+        "actorsAndContext": "Zhongfeng, Tianyin, Weian, Ruibai, Xiangyan within Guting's quotation, and Yuanwu own the exact headword turns. The nested Xiangyan/Guting roles are correctly separated.",
+        "depthAndUniqueness": "Long continuity, all twelve periods, arising/perishing and motion/stillness, subject/object, forty years, one-colour terminology, and explicit negative control are high-value nonduplicates.",
+        "workIdentity": "Seven exact rows represent seven distinct works.",
+        "openingAliasesAnchors": "The core continuity and paired-distinction language is supported, but 'the relation of worldly and recorded teaching contexts' has no clear referent in the selected cases and does not tell a reader what corpus predicate earned it. The alias 'make practice continuous' introduces the prohibited and misleading practice frame rather than a synonym for the headword.",
+        "forbiddenRules": "The entry avoids the forbidden word meditation, but the SearchAlias 'make practice continuous' violates the no-practice framing and broadens retrieval beyond the lexical phrase."
+      },
+      "requiredChanges": [
+        "Delete the SearchAlias 'make practice continuous'; replace it only with a coextensive phrase that does not introduce the forbidden practice category, if an additional alias is needed.",
+        "Remove or rewrite 'the relation of worldly and recorded teaching contexts' so every opening proposition names an attested division actually shown by the stored evidence (time, motion/stillness, arising/perishing, subject/object), without vague imported framing."
+      ]
+    }
+  ]
+}

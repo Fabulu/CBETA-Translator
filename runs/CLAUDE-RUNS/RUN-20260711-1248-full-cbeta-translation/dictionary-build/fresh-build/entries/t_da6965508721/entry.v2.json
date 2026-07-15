@@ -1,0 +1,219 @@
+{
+  "Id": "t_da6965508721",
+  "SourceTerm": "休歇",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "rest",
+      "AlternateTargets": [
+        "cease",
+        "stop",
+        "come to rest"
+      ],
+      "SearchAliases": [
+        "rest",
+        "cease",
+        "stop",
+        "come to rest",
+        "resting place",
+        "take a rest",
+        "settle down",
+        "find rest"
+      ],
+      "Status": "preferred",
+      "Explanation": "The two graphs overlap in stopping and resting: 'rest,' 'cease,' or 'come to rest.' The allowlisted record has 801 occurrences in 215 storage files. The word functions as a verb in imperatives such as 'go rest' (休歇去), as a predicate in questions such as 'have you yet found rest?' (還得個休歇也未), and as an attributive noun in 'a resting place' (休歇處) and 'ground of rest' (休歇地). Linji Yixuan says, 'better to be without concerns and go rest; hungry, eat; tired, close your eyes' (不如無事休歇去，飢來喫飯，困來合眼). Qingyuan Weixin says that after first seeing mountains as mountains, then not as mountains, he had now 'found a resting place' and again saw mountains simply as mountains and waters as waters (而今得箇休歇處，依然見山秖是山，見水秖是水). Zishou Chuyan asks what the resting place is and answers, 'when cold, sit around the stove; when at leisure, sleep as one pleases' (寒則圍爐座，閑時任性眠). Fayan Wenyi counters a monk's question with 'what did you get that you do not rest?' (汝得箇什麼即不休歇去). Zhenxie Qingliao rejects making a resting place out of dwelling in empty stillness and guarding the lifelessness before a dead tree, saying that this 'has no connection' (沒交涉). Zen therefore bends ordinary rest into a questioned and publicly tested resting place while preserving eating, sleeping, and stove-sitting as its plain-language control.",
+      "Validation": "multi-source",
+      "Note": "Corpus counts: 801 hits in 215 storage files. Attested formations include 'go rest,' 118/61; 'resting place,' 71/53; 'great rest,' 72/44; doubled 'stop and rest,' 158/80; 'have [you] rested yet?,' 7/7; and 'ground of rest,' 11/9. The single older-index 'is called a resting place' occurrence is Zhenxie Qingliao's rejection of that label, not his endorsement. The single person-marker construction asks why ancestral teachers sought people's rest; it is a question, not a self-definition.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X71/X71n1426.xml",
+          "FromLb": "0781b10",
+          "ToLb": "0781b12",
+          "Kwic": "心住空寂、坐空劫中，守枯木岩前孤危死底，喚作休歇處，且喜沒交涉。",
+          "MasterName": "Zhenxie Qingliao",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Zhenxie Qingliao (真歇清了禪師語錄), in Zhenxie Qingliao's section 'do not chase conditions; do not dwell in empty endurance' (莫逐有緣勿住空忍), records him rejecting the label 'a resting place' for dwelling in empty stillness and guarding lifelessness before a dead tree. This is a text-drawn exclusion, not the entry's inference.",
+          "ContextMasters": [{"MasterName": "Zhenxie Qingliao", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0088c24",
+          "ToLb": "0089a01",
+          "Kwic": "不如無事休歇去。飢來喫飯，困來合眼",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "The governing head in the Linked Lamps Compendium (聯燈會要) is Linji Yixuan. He says, 'better to be without concerns and go rest; hungry, eat; tired, close your eyes.'",
+          "ContextMasters": [{"MasterName": "Linji Yixuan", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0557b07",
+          "ToLb": "0557b09",
+          "Kwic": "祖師西來道箇休歇。敢問諸人。作麼生是休歇處。還會麼。寒則圍爐座。閑時任性眠。",
+          "Curated": true,
+          "AttributionNote": "The Continued Record of the Lamp (續傳燈錄), in the Zishou Chuyan section, identifies Zishou Chuyan as the exact speaker: in his own hall address he asks what the resting place proclaimed by the patriarch's coming from the West is, then answers with sitting by the stove when cold and sleeping freely when idle.",
+          "MasterName": "Zishou Chuyan",
+          "ContextMasters": [{"MasterName": "Zishou Chuyan", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0614c02",
+          "ToLb": "0614c04",
+          "Kwic": "而今得箇休歇處。依然見山秖是山。見水秖是水。",
+          "Curated": true,
+          "AttributionNote": "The Continued Record of the Lamp (續傳燈錄), in the Qingyuan Weixin section, identifies Qingyuan Weixin as the exact speaker: recounting his three stages of seeing mountains and waters, he says that now he has obtained a resting place and again sees mountains simply as mountains and waters as waters.",
+          "MasterName": "Qingyuan Weixin",
+          "ContextMasters": [{"MasterName": "Qingyuan Weixin", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0400b21",
+          "ToLb": "0400b22",
+          "Kwic": "問古人得箇什麼即便休歇去。師曰。汝得箇什麼即不休歇去。",
+          "Curated": true,
+          "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Fayan Wenyi section. An unnamed monk asks what the ancients obtained that let them go to rest; Fayan answers by returning the question. The six-rung ladder does not name the monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:11:41Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0876b15",
+          "ToLb": "0876b16",
+          "Kwic": "達磨曰。與汝安心竟。二祖當時便休歇去。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao raises the older case. Bodhidharma speaks the preceding answer; the narrative voice then says that Huike rested. Huike is the person described by the headword clause, not its utterer.",
+          "MasterName": null,
+          "ActorAttribution": {"Status": "narrated", "Kind": "narrated action", "ActorLabel": "Dahui Zonggao narrating Huike's resting in the raised case", "ActorRole": "person-described", "GrammarEvidence": "The headword occurs in the narrator's clause 二祖當時便休歇去; Huike performs the described action but does not utter the clause.", "ReviewedBy": "Codex full-case attribution review", "ReviewedUtc": "2026-07-15T02:12:00Z"},
+          "ContextMasters": [
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            },
+            {"MasterName": "Huike", "Roles": ["person-described", "case-figure"]},
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0016b29",
+          "ToLb": "0016b29",
+          "Kwic": "諸人還得個休歇也未？若得個休歇",
+          "MasterName": "Miyun Yuanwu",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Miyun (密雲禪師語錄), during Miyun Yuanwu's second residence at Guanghui Monastery on Mount Jinsu, records him asking the assembly, 'have you yet found rest? If you have found rest...' The retained span records the interrogative deployment without extending into later claims.",
+          "ContextMasters": [{"MasterName": "Miyun Yuanwu", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0882a29",
+          "ToLb": "0882b02",
+          "Kwic": "老漢常愛真淨和尚道。如今人多是得箇身心寂滅前後際斷。休去歇去一念萬年去。",
+          "MasterName": "Zhenjing Kewen",
+          "Curated": true,
+          "EvidenceRole": "variant",
+          "VariantForm": "休去歇去",
+          "AttributionNote": "The Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄) records Dahui Zonggao explicitly quoting Zhenjing Kewen's instruction to 'stop and rest'; Zhenjing Kewen is the exact quoted speaker and Dahui is the later raiser.",
+          "ContextMasters": [
+            {"MasterName": "Zhenjing Kewen", "Roles": ["utterer", "case-figure"]},
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X70/X70n1390.xml",
+          "FromLb": "0421c10",
+          "ToLb": "0421c11",
+          "Kwic": "總饒伊眼裏著得須彌山，耳裏盛得四海水，裂斷千差到休歇地。",
+          "MasterName": "Xisou Shaotan",
+          "Curated": true,
+          "AttributionNote": "The Extended Record of Chan Master Xisou Shaotan (希叟紹曇禪師廣錄), in Xisou Shaotan's upper-hall address at Xuedou Zisheng Monastery, records him speaking of severing manifold distinctions and reaching a ground of rest.",
+          "ContextMasters": [{"MasterName": "Xisou Shaotan", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "J/J36/J36nB357.xml",
+          "FromLb": "0588b05",
+          "ToLb": "0588b06",
+          "Kwic": "所以從上佛祖不令人泥著文字，只求休歇者何？祇教伊明自心、見自性",
+          "MasterName": "Xiuyelin",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Xiuyelin (秀野林禪師語錄), in Xiuyelin's public instruction, records him asking why the buddhas and patriarchs sought people's rest and answering that it was only to make them clarify their own mind and see their own nature.",
+          "ContextMasters": [{"MasterName": "Xiuyelin", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "X/X69/X69n1357.xml",
+          "FromLb": "0467a17",
+          "ToLb": "0467a18",
+          "Kwic": "到極深處無深，極妙處無妙，大休歇，大安穩，不動纖塵，只守閑閑地",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Essentials of Chan Master Foguo Keqin (佛果克勤禪師心要), in Yuanwu Keqin's instruction to the monastic storekeeper Min, records Yuanwu pairing 'great rest' with 'great stability' and not moving a speck of dust.",
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner"]}]
+        }
+      ],
+      "SourceTexts": [
+        "X/X71/X71n1426.xml",
+        "X/X79/X79n1557.xml",
+        "T/T51/T51n2077.xml",
+        "T/T51/T51n2076.xml",
+        "T/T47/T47n1998A.xml",
+        "J/J10/J10nA158.xml",
+        "X/X70/X70n1390.xml",
+        "J/J36/J36nB357.xml",
+        "X/X69/X69n1357.xml"
+      ],
+      "RelatedMasters": [
+        "Zhenxie Qingliao",
+        "Linji Yixuan",
+        "Dahui Zonggao",
+        "Miyun Yuanwu"
+      ],
+      "RelatedTerms": [
+        "無事",
+        "休去歇去",
+        "大休大歇",
+        "枯木"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": [
+    751,
+    800
+  ],
+  "generatedUtc": "2026-07-15T06:04:42.641766+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneB-751-800-formal-gate.json",
+    "sha256": "a7c8649a68bbc96eb770511e3cda57c18d2e4e502250ad246211dc4c6d361296",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerified": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 770,
+  "checkpointRows": [
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "entrySha256": "f763dfb6829682760713d46da85c66584aca6f1894342abe76b4aca422c9007a",
+      "worksheetSha256": "79ce7e2f1ea6c25e61e8642697bdedf01b2107ad453642428f6b71e44b649dc2",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The physical room and Vimalakirti comparison are well bounded, but 'documentary narrator of the Niutou lineage case' is stored in MasterName. Xu Fu and other non-master/imperial actors also require ActorAttribution rather than master links."
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "term": "山門",
+      "entrySha256": "d870610815aee49976ef1800ec564f2860decda07e14521e66cacfa54d302d41",
+      "worksheetSha256": "df3aee1b232a5633d1f65cbc274cefafa94c699ac4b71035306f9dc4b1f1a1f0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The architectural gate and threshold deployment are strong, but two documentary-narrator labels are MasterName values. The monastic-code row and narrated gate case must use reviewed narration, not invented masters."
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "term": "千佛",
+      "entrySha256": "70a0bd90abf1fb034c553ef5d03f33563720537f0ba31c0565515bc118c1d530",
+      "worksheetSha256": "80cf0f65e1b36ba6a09dc7e5705d1b1e85f83165d8acafe8fa1ce0535084f5da",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The collective sense is clear, yet every occurrence is forced into MasterName despite sermon, canonical, and documentary frames. Recheck who actually utters 千佛, especially quoted material, instead of assuming the nearby named master."
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "term": "且道畢竟如何",
+      "entrySha256": "a0a8f8a7cc1dd51e1165305ffcb4fa9da8b41108b752a4db3e2edc7eb56e1d1c",
+      "worksheetSha256": "5f37c8811d099cf7f948d6aa265235358bb5c8ff12dca3daea63ea879d430711",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The final-response handoff is well described, but two compiler labels are MasterName values. Those documentary rows and any embedded quotation need reviewed narration or the true quoter, not a compiler master link."
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "term": "藏主",
+      "entrySha256": "fec4ca6213cfff9bce5f8e811d4b8d3a746a8ff922d93bbc96a4a61e53bcd713",
+      "worksheetSha256": "7448e4bdb7d2e7d7cc902611138d1b33b581edc014467a799a89d69171a2be8d",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The canon-librarian office is concrete, but two documentary-narrator labels occupy MasterName and appointment/roster rows are not utterances. Separate office-holder speech from compiler naming and institutional catalogue evidence."
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "57929c7463deb09289b1c61cd1c18f6c39ef7a6e4f37cb888c7baa4072f6564e",
+      "worksheetSha256": "ac4dbfe1731c28a425ead362a1d4256deb6606ccacd8231f49dddcafc6328946",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The calendrical event is well distinguished from reenactment, but three documentary-narrator strings are MasterName. Date headings and assembly labels have no master utterer unless the exact headword lies inside a preserved speech turn."
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "21daef48e665641683430f9167bc8b548a4be382824cf01fb596b5449b297e75",
+      "worksheetSha256": "97a3896b47f6cbb870131ed345bce46e70fabcce137e78e780cfed8d9c27f155",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The positional phrase is plausibly bounded, but 'Songshan monk' is not a roster-exact master and may be an unnamed/non-master actor. Quoted Linji material also needs exact quoter versus historical speaker separation."
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "term": "頂門",
+      "entrySha256": "1626729fb574cf27b1317f48ba9fe683321a6c2bdf711d8db6a3d4d384463860",
+      "worksheetSha256": "54a7c34e4043dc8440579698835d34640c9b654c43e045bf925d69790a3d5d21",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The bodily-location definition appropriately rejects abstraction, but 'Shakyamuni Buddha' may be performer/subject rather than utterer in the marked occurrence. All action and quoted-case rows need the exact-headword actor rule reapplied."
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "term": "龍王",
+      "entrySha256": "50887b752841426b19ed7737e146d661f1bccd2a586ae748e120bdbeecb152b5",
+      "worksheetSha256": "71fdf70a2d758119691151814df46685782741431aeb71b63c16075463c74548",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The dragon-king roles are useful, but MasterName contains ceremony speaker, questioning monk, and two documentary narrators. These are precisely non-master or narration branches and cannot remain master links."
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "term": "末後一著",
+      "entrySha256": "89844dba2bd996481ed020a199fcb2c5d5fe645ceb22715572f8dd5a73b5cdd8",
+      "worksheetSha256": "f23f634562a59e58825285ad50db20fb9447c301d9538abad8349712eb0b6d06",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The final-move slot is well explained, but every row is assigned a master with no exception despite quotations and later comments. Verify whether the named person utters 末後一著 or is merely the subject/owner of the cited case."
+    }
+  ],
+  "checkpointOccurrences": 81
+}

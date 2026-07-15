@@ -1,0 +1,50 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_46c30c5d57d4",
+    "SourceTerm": "不立文字",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T10:30:00Z",
+    "Senses": [{
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "not established in written words",
+      "AlternateTargets": ["not setting up words and letters", "not founded on textual formulations"],
+      "SearchAliases": ["not relying on words and letters", "Chan beyond written words", "not established in texts"],
+      "Status": "preferred",
+      "ExplanationParts": {
+        "CorpusEarnedOpening": "Chan records use “not established in written words” as part of the direct-pointing formula associated with Bodhidharma, but their own objections show that it does not amount to a blanket rejection of texts or speech.",
+        "EvidenceBody": [
+          "Yuanwu Keqin gives the familiar sequence—Bodhidharma did not establish written words, directly pointed to the human mind, and disclosed one's nature—then cites the Sixth Patriarch's warning that even the two words “not establish” have already established something. Dahui Zonggao contrasts the extensive canon with single transmission not established in written language and asks why the formula points to one's own mind rather than transmitting verbal subtleties.",
+          "Mi'an Xianjie and Tianyin Yuanxiu deploy the formula as a concise account of Bodhidharma's coming. Zhongfeng Mingben argues that Sengcan's written Trust in Mind and the no-written-words saying can travel together without contradiction. Juelang Daosheng likewise raises Bodhidharma's use of the Laṅkāvatāra as a challenge and answers that words can point to the mind. Guting Shanmi deliberately calls “not established in written words” a world full of verbal vines and “self-contradiction,” preventing an anti-text slogan from passing as the whole usage."
+        ]
+      },
+      "Validation": "multi-source",
+      "Note": "Seven exact witnesses in seven independent works support the direct-pointing formula and its internal qualifications; the target avoids the unsupported absolute “without words.”",
+      "Occurrences": [
+        {"RelPath":"T/T47/T47n1997.xml","FromLb":"0769b07","ToLb":"0769b09","Kwic":"所以達磨西來不立文字。直指人心見性成佛。後來六祖大鑑禪師。尚自道。只這不立兩字。早是立了也。","MasterName":"Yuanwu Keqin","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Foguo Yuanwu (圓悟佛果禪師語錄): Yuanwu Keqin states the Bodhidharma formula and quotes the Sixth Patriarch's warning that “not establish” already establishes something.","ContextMasters":[{"MasterName":"Yuanwu Keqin","Roles":["utterer","record-owner"]},{"MasterName":"Huineng","Roles":["person-discussed"]}],"DraftActorProof":{"ExactHeadwordClause":"達磨西來不立文字。","SpeechFrame":"The formula occurs in Yuanwu's address; 後來…道 introduces the separate Huineng quotation.","FullCaseDecision":"Yuanwu owns the framing and quotation choice; Huineng owns the quoted caution."}},
+        {"RelPath":"T/T47/T47n1998A.xml","FromLb":"0880b15","ToLb":"0880b16","Kwic":"因甚麼達磨西來却言。單傳心印不立文字。語言。直指人心見性成佛。","MasterName":"Dahui Zonggao","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao asks why Bodhidharma's transmission is said not to be established in written language despite the extensive canon.","ContextMasters":[{"MasterName":"Dahui Zonggao","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"單傳心印不立文字。語言。","SpeechFrame":"因甚麼 marks Dahui's rhetorical question in his own address.","FullCaseDecision":"Dahui owns the headword-bearing question and ensuing explanation."}},
+        {"RelPath":"T/T47/T47n1999.xml","FromLb":"0974a24","ToLb":"0974a25","Kwic":"單傳心印。不立文字。直指人心。見性成佛","MasterName":"Mi'an Xianjie","Curated":true,"AttributionNote":"Recorded Sayings of Mi'an (密菴和尚語錄): Mi'an Xianjie recites single transmission, no establishment in written words, direct pointing, and seeing one's nature as a connected sequence.","ContextMasters":[{"MasterName":"Mi'an Xianjie","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"不立文字。","SpeechFrame":"The sentence occurs in Mi'an Xianjie's own address about Bodhidharma.","FullCaseDecision":"Mi'an owns the complete headword-bearing sequence."}},
+        {"RelPath":"J/J25/J25nB171.xml","FromLb":"0582a28","ToLb":"0582a28","Kwic":"鼻祖西來，不立文字，直指人心，初無委曲。","MasterName":"Tianyin Yuanxiu","Curated":true,"AttributionNote":"Recorded Sayings of Tianyin (天隱和尚語錄): Tianyin Yuanxiu says the founding ancestor came without establishing written words and pointed directly, without indirection.","ContextMasters":[{"MasterName":"Tianyin Yuanxiu","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"不立文字","SpeechFrame":"The clause opens Tianyin Yuanxiu's instruction to a named practitioner.","FullCaseDecision":"Tianyin owns the headword-bearing formulation."}},
+        {"RelPath":"B/B25/B25n0145.xml","FromLb":"0821b19","ToLb":"0821b20","Kwic":"故此銘與不立文字之說。並驅於千古之下而不相悖者。","MasterName":"Zhongfeng Mingben","Curated":true,"AttributionNote":"Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): Zhongfeng Mingben argues that Sengcan's written Trust in Mind and the no-written-words saying endure together without contradiction.","ContextMasters":[{"MasterName":"Zhongfeng Mingben","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"不立文字之說","SpeechFrame":"The conclusion belongs to Zhongfeng Mingben's sustained written argument.","FullCaseDecision":"Zhongfeng owns the compatibility claim."}},
+        {"RelPath":"J/J34/J34nB311.xml","FromLb":"0642c16","ToLb":"0642c17","Kwic":"或謂達祖既以不立文字直指人心，何復以《楞伽》為印乎？","MasterName":"Juelang Daosheng","Curated":true,"AttributionNote":"Complete Record of Chan Master Tianjie Juelang Daosheng (天界覺浪盛禪師全錄): Juelang Daosheng raises Bodhidharma's use of the Laṅkāvatāra as a challenge to a simplistic reading of the formula.","ContextMasters":[{"MasterName":"Juelang Daosheng","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"不立文字直指人心","SpeechFrame":"或謂 introduces an objection within Juelang's own argument, which he answers immediately.","FullCaseDecision":"Juelang owns the framed objection and response; no separate historical speaker is identified."}},
+        {"RelPath":"J/J25/J25nB163.xml","FromLb":"0230c23","ToLb":"0230c24","Kwic":"不立文字，遍界葛藤，直指人心，白雲萬里，見性成佛，自家矛盾。","MasterName":"Guting Shanmi","Curated":true,"AttributionNote":"Selected Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略): Guting Shanmi subjects each element of the formula to a deliberately counter-turning comment, calling “not established in written words” a world full of verbal vines.","ContextMasters":[{"MasterName":"Guting Shanmi","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"不立文字，遍界葛藤","SpeechFrame":"我說 introduces Guting Shanmi's own counter-formulation.","FullCaseDecision":"Guting owns the entire headword-bearing sequence and its reversals."}}
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["T/T47/T47n1997.xml","T/T47/T47n1998A.xml","T/T47/T47n1999.xml","J/J25/J25nB171.xml","B/B25/B25n0145.xml","J/J34/J34nB311.xml","J/J25/J25nB163.xml"],
+      "RelatedMasters": ["Yuanwu Keqin","Dahui Zonggao","Mi'an Xianjie","Tianyin Yuanxiu","Zhongfeng Mingben","Juelang Daosheng","Guting Shanmi","Huineng"],
+      "RelatedTerms": ["教外別傳","直指人心","見性成佛","單傳心印"],
+      "DraftEvidence": {
+        "OpeningClaimEvidenceKeys": ["o1","o2","o3","o4","o5","o6","o7"],
+        "ZenBend": "The formula directs attention away from making textual formulation the ground of transmission, while its own speakers use texts and verbal reversals to expose absolutized readings.",
+        "CounterexampleOrLimit": "Huineng's quoted warning, Zhongfeng's defense of a written inscription, Juelang's Laṅkāvatāra discussion, and Guting's self-contradiction all block the claim that the phrase simply bans texts or speech.",
+        "DifferentThingTest": {"Decision":"one-thing","ComparedThings":["Bodhidharma formula","rhetorical problem","compatibility with written works","counter-turning critique"],"Reason":"All witnesses debate or deploy the same formula's relation to transmission and written formulation."},
+        "AliasRationale": "Aliases cover words-and-letters, texts, and non-reliance searches while the preferred target preserves 立 as establishment rather than absolute absence.",
+        "ModifierControls": [{"Control":"negated establishment","Finding":"不 negates 立, not the existence of 文字; multiple witnesses explicitly retain written works and speech."}],
+        "FamilyControls": [{"Term":"教外別傳","Finding":"Frequent neighboring clause, kept distinct."},{"Term":"直指人心","Finding":"Frequent next clause that states the positive direction, kept distinct."}],
+        "IndependentWorkIds": ["work:T47n1997","work:T47n1998A","work:T47n1999","work:J25nB171","work:B25n0145","work:J34nB311","work:J25nB163"]
+      }
+    }]
+  }
+}

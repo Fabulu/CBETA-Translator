@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "f003-repair2-independent-exact-rereview-v1",
+  "reviewType": "read-only independent semantic and exact-actor rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    801,
+    810
+  ],
+  "generatedUtc": "2026-07-15T06:23:52.919296+00:00",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "sourcePriorReview": "fresh-build/waves/f003-laneC-801-850-actor-repair-independent-rereview.json",
+  "sourcePriorReviewSha256": "120d848e08fb6ef02b8b40b353954020d8628902d8660e06472124c224d103df",
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-exact-actor-repair2-ledger.json",
+  "repairLedgerSha256": "524d801200adbe90d25e348422a468b7cbf0fa959c389154e80a34160bfacf16",
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-current-repair2.json",
+  "formalGateSha256": "ebfed53b863ae772895a6b2ae0c756dc44233c29fdc61a639822b52a97eb8d62",
+  "formalGateHardPass": true,
+  "occurrencesReadInFullCaseContext": 70,
+  "summary": {
+    "KEEP": 4,
+    "REVISE": 6
+  },
+  "seventeenPriorKeepHashesUnchanged": true,
+  "rows": [
+    {
+      "ordinal": 801,
+      "id": "t_efbed6116e24",
+      "term": "拂袖",
+      "entrySha256": "9ec877cdb53d04db76f9eccde92af946a75ddce12d08c7ffec7811752a121fd0",
+      "evidenceDraftSha256": "c886a496dbab3e4849395b494d7b124944ecd612c7ee8125fc090e9538392024",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O2 assigns MasterName `謂弟子`, a speech-frame fragment; 長爪梵志 performs the sleeve-sweeping action in compiler narration and later speaks to his disciples.",
+      "finding": "KEEP — The sleeve-sweeping clauses are narrated bodily actions, not words spoken by the later disciples; the repair correctly removes the syntax fragment and leaves later speech separate."
+    },
+    {
+      "ordinal": 802,
+      "id": "t_5da65e2989a0",
+      "term": "夏末",
+      "entrySha256": "0ed474dc1cd78be5f91732a130e5d4630c237d3a19a0db0b21501c240707fe24",
+      "evidenceDraftSha256": "3e2aec317c0d5ccb347e6d59c3b9e5dbaf69745511abc929bb03685400ec4d4e",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O4 is a verse spoken in the enclosing master's hall address, but is classified as compiler narration; exact utterer ownership is still lost.",
+      "finding": "REVISE — O4 is still labelled compiler narration although the headword occurs in the verse delivered inside the enclosing hall address. Demoting the former bad label did not recover the utterer."
+    },
+    {
+      "ordinal": 803,
+      "id": "t_1dc12d84b349",
+      "term": "一喝分賓主",
+      "entrySha256": "602f0367ba5539cde22b8ccff126172e922c7e21a5c9530c6301dcca8997410e",
+      "evidenceDraftSha256": "ae4443d5df7f7c418a5930981e9a30c1e18786c0cec0c5e36fa5520ac7fa0d76",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 804,
+      "id": "t_1118b9dcbc72",
+      "term": "見解",
+      "entrySha256": "64e79363f9b9578da91244dea31aa5160c93c04db496651c2d0563fc1802ee37",
+      "evidenceDraftSha256": "20d83be05949afb029a6aa91349dc099376e04f2f044af3e50181c0ee8619d9a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Named values such as `師斥`, `潭州興化紹銑禪師`, and `藏語之` are action/syntax or raw headings rather than roster-canonical exact utterers.",
+      "finding": "REVISE — O1 begins with “the master rebuked, saying” and O2 with “the master said,” yet both headword-bearing judgments remain assigned to the source compiler. Syntax-fragment removal became over-broad narration."
+    },
+    {
+      "ordinal": 805,
+      "id": "t_76466e7feed6",
+      "term": "拈香祝聖",
+      "entrySha256": "a56b15f33f749e9191045b910d044c3b367abf61c66d7f212e8b1dfa29f5ef1e",
+      "evidenceDraftSha256": "d51d54504fffadbf2f537119972a8f9a7778b74eb9af4fb1fed0ce6f4b7413b3",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 806,
+      "id": "t_7bb4ebba81b9",
+      "term": "賓主歷然",
+      "entrySha256": "b7ce0a14560a529ace8597031d2fbb934d823d6c23b319118408b9c260f61dc5",
+      "evidenceDraftSha256": "027cffa465cc7f82db15d4578280703ee64cf3eed2167a75d60f502c82156807",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 807,
+      "id": "t_fe8d4efe588f",
+      "term": "見處",
+      "entrySha256": "00034117c085a0035ff6de1f9b0b60718ad3d774fb6bf36236beda919f057923",
+      "evidenceDraftSha256": "07882437cf8bf4db6fc76b0915810e43005c9abdbcc2c1c46d6626b1256d0f7d",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O4 stores the raw section heading `常州正勤院希奉禪師`; the exact name/link form and utterer proof remain unresolved.",
+      "finding": "REVISE — The raw heading was removed, but spoken evaluations of a person’s point of seeing remain broadly compiler-owned. The repair fixes link shape without completing turn ownership."
+    },
+    {
+      "ordinal": 808,
+      "id": "t_6703082d841c",
+      "term": "禪堂",
+      "entrySha256": "4f15f6570350748c782f77e7179dfa3fa4c010b720f7a0da766caf2335396309",
+      "evidenceDraftSha256": "0a8c524a93c0445ce93225ea7b72df1953b87743f4426cd28f7b4adcf3958f45",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Several headword-bearing sermon clauses are still collapsed to compiler narration; the two restored names do not cure the full occurrence set.",
+      "finding": "REVISE — O6 preserves a quoted question about the Chan hall and O7 continues marked address language, but both are compiler-owned. Building narration and a participant’s uttered hall-reference still need separate actors."
+    },
+    {
+      "ordinal": 809,
+      "id": "t_f7a9bcbfc089",
+      "term": "試道看",
+      "entrySha256": "41b168096eb62f63bea83dcf89c858d7214991f4e6286a295339dc9ccb84e2e9",
+      "evidenceDraftSha256": "6bd4271d9a0d73186513391b06a355e66e5b14a162b007e555337bd0b1782c2f",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: The repaired set still mixes exact speech with broad compiler narration; every `試道看` imperative must be assigned to its marked speaker or reviewed unnamed interlocutor.",
+      "finding": "REVISE — O1 is introduced by “the master asked” but is labelled the unnamed questioner, while other imperatives are compiler events. The person issuing “try saying it” must be recovered from each enclosing turn."
+    },
+    {
+      "ordinal": 810,
+      "id": "t_b03032c64a13",
+      "term": "眼目",
+      "entrySha256": "4a6114f37d12f022b7dcbc57f52f5c20b71f57668b2f3276ae78092339a0a6d4",
+      "evidenceDraftSha256": "c7cabb95fbbeca4087dabca955fd7dc92756c5ee6066e14dd811f3aa8b9088ed",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Six of seven uses remain compiler narration although the full cases include spoken evaluative uses; the restoration did not reconstruct exact turns.",
+      "finding": "REVISE — The literal/discernment split stands, but nearly every discernment witness remains compiler narration even where a hall address supplies the wording. Sense repair did not cure exact utterer ownership."
+    }
+  ]
+}

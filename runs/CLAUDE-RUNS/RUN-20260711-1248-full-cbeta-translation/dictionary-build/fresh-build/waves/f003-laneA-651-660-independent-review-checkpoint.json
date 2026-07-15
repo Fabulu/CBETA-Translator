@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    700
+  ],
+  "generatedUtc": "2026-07-15T05:54:01.672098+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f003-laneA-651-700-current-semantic-review-packet.json",
+  "sourcePacketSha256": "026718d7e89c9a1264e4490f0284598ca6620d6e37e63dcb3cf59240f98b670c",
+  "sourcePacketStaleEntryHashes": 17,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-current.json",
+    "sha256": "2a942880b2e5c412f8b1687957a54d62fdbe333582d2a3a0cd4f15e28c556a9a",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerifiedAgainstFormalGate": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 660,
+  "checkpointRows": [
+    {
+      "ordinal": 651,
+      "id": "t_c06edf8c18f1",
+      "term": "錯",
+      "entrySha256": "5865e47bf74f10dd3ac1bd8c313e20cad2f0f9c647263aa5c4c35a6f225781dc",
+      "worksheetSha256": "7b132c7b66ca46ea656859a9235312eada93d6cf8035a1f830daf03911701564",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The opening makes 錯 a public Zen verdict, but the evidence also contains ordinary textual error and simple misnaming; it neither splits/narrows those referents nor owns speech marked 妙喜云 and 師云, which is left as compiler narration."
+    },
+    {
+      "ordinal": 652,
+      "id": "t_6e4234dfd60f",
+      "term": "文殊",
+      "entrySha256": "0d29c408c69ce5a417c921beccec56a217f83a8c4a306ca4d77db121f26142eb",
+      "worksheetSha256": "002413db95f66e4d1b3e9ab16c82130741bd84494f1b7266843da01853e90f06",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The generic figure template never says what Manjusri does in these records. Three selected rows are catalogues or tables of contents, while the question 文殊仗劒 and the narrated 文殊白椎 require concrete case explanation and exact actors."
+    },
+    {
+      "ordinal": 653,
+      "id": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "entrySha256": "e7f211a3c826d2b6e5cb9cab052665454b0e2f83dc07c1045cb7823e8ed3b0a6",
+      "worksheetSha256": "b22f66a14c8fd5f73d12b467d9b7150ba5cb5b832fbdf15385123e30757e8cee",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The staff's teaching-seat deployment is identified, but catalogue material is retained as defining evidence and several direct staff acts after 師/拈 are assigned to compiler narration. Genuine Chinese master labels also remain non-roster-exact."
+    },
+    {
+      "ordinal": 654,
+      "id": "t_11a4ff234f5a",
+      "term": "不會",
+      "entrySha256": "db5536e595f92796c36c3bbb6783007beb73efee5f808c06c721d5e9c60683cf",
+      "worksheetSha256": "4bbbf3393aea3c2f7427e2cf8c367ce935cf4d3f68654872aa64baf221140493",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The semantic distinction between inability, denial, and an exchange answer is only announced, not represented as different-things/sense adjudication. Most direct quoted turns, including 云不會 and 翠巖芝云, are incorrectly compiler-owned."
+    },
+    {
+      "ordinal": 655,
+      "id": "t_c193d5b26854",
+      "term": "目連",
+      "entrySha256": "5b049d75dc34f4618a2dd8b32d3a0bd10cf6d61b39ec1a55df4ea1e6fc217d56",
+      "worksheetSha256": "e96059483bc56c2ab87d56abe1de566620e365a239c31c6c065cd8ee2df84c48",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The generic Maudgalyayana paragraph does not define his Zen deployment; one witness is a ritual catalogue. The useful Nanquan image-making account is not synthesized, and the repeated Chinese master name is not roster-exact."
+    },
+    {
+      "ordinal": 656,
+      "id": "t_cbf868f557e2",
+      "term": "陞座",
+      "entrySha256": "953cdec2f45f7ab56df6309b96a44ab89dc684a11ed57dc277701e9488b77c08",
+      "worksheetSha256": "4ff61945f9c058df716f96e98b5c6fb7ef1f95a00faf16a43b3b9b7ca7335469",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The opening is category filler—mounting a seat is an act, not an implement, office, rite, or communal act menu. Catalogue/title rows dilute the evidence and named masters remain in unresolved Chinese labels."
+    },
+    {
+      "ordinal": 657,
+      "id": "t_cb44465faa59",
+      "term": "侍者",
+      "entrySha256": "435aa443b957f74334e8bffbe4476e5435b03ecb76ba7bfcbc2e4b4e80816450",
+      "worksheetSha256": "47c0d02832e7ce6b370957c76bdc933b0e133ccdacd4d9fabcebd94a8a459d60",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The attendant is an institutional office, but the paragraph is reusable category filler and never distinguishes personal attendant, role title, and catalogue occurrence. Several biographical actions and named record owners are flattened into narration/non-roster Chinese names."
+    },
+    {
+      "ordinal": 658,
+      "id": "t_ca6da1e898b9",
+      "term": "羅睺羅",
+      "entrySha256": "8bce11f2f131d20402a2c9314890df4f19bd561cd6100bbc64ab994ddfadd26d",
+      "worksheetSha256": "2018a9552c92bb8f4b9de9f67c7dcad5884d37aee18aed3a7f81c34d2c1dd06a",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The witnesses overwhelmingly denote the sixteenth patriarch Rahulatā rather than Buddha's son Rahula, so the preferred target is the wrong person. Genealogical catalogues dominate and require a person/title sense correction, not generic figure prose."
+    },
+    {
+      "ordinal": 659,
+      "id": "t_1840377e7a79",
+      "term": "鉢盂",
+      "entrySha256": "18d323f46b28fe06f4f0e16254d99cc47d01fbaa5f680e0675bca48d68ce1753",
+      "worksheetSha256": "33b068de326b96f672050f7203a828c0f805ed764eef78746e86cde07313971c",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The bowl's physical scene and Zen bend are not stated; the paragraph is reusable institutional filler. A contents-list row and a long lineage poem are not defining bowl witnesses, while five exact masters remain Chinese/non-roster labels."
+    },
+    {
+      "ordinal": 660,
+      "id": "t_2bae929ad4db",
+      "term": "禪人",
+      "entrySha256": "27accb9b570b9bc80ad4b4a7f607df56dcfcb1c2b32dbe34c5e05d519e2d187d",
+      "worksheetSha256": "50d61e79c7be9ba91f61e5221c5095b38b81eed8ef342bcc4853572d56942fb8",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "A Chan person is not an implement, office, rite, or communal act. The entry fails to distinguish named addressees/titles from the general class, and its prose never explains how 禪人 functions in addresses and warnings."
+    }
+  ],
+  "checkpointOccurrenceCount": 83
+}

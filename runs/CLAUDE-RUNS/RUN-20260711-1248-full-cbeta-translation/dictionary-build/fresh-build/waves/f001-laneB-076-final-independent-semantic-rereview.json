@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "final-independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [76],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T01:00:00Z",
+  "scope": "Final hash-bound rereview of the residual 迴光返照 prose repair, preserving the previously verified semantic and attribution evidence. Read-only; entry and website were not edited.",
+  "inputs": {
+    "rereviewPacket": {"path": "fresh-build/waves/f001-laneB-076-final-semantic-rereview-packet.json", "sha256": "2622608f6014415e88ae2417ded63365dc8af8081e09db10d714933be667f5af"},
+    "repairGate": {"path": "fresh-build/waves/f001-laneB-076-final-residual-repair-gate.json", "sha256": "c1ecef8f1176e3d6cc0330fa551eedf242d0850aef2c8de742b043c32c771298"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneB-076-final-residual-repair-gate-attribution-packets.json", "sha256": "33e82ef85a0d24327d450ebb8dab140d236e8dfdbba05a245fae7086150d6a61"},
+    "priorResidualReview": {"path": "fresh-build/waves/f001-laneB-076-080-residual-independent-semantic-rereview.json", "sha256": "f14f4990df2145248fa6e9ea92f378e44014e163932c805ace1aba76b3ca7c21"}
+  },
+  "summary": {"KEEP": 1, "REVISE": 0, "reviseOrdinals": []},
+  "findings": [
+    {
+      "ordinal": 76,
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "entrySha256": "b4bf8a216f982482e769e8590de2c9a08ea74a796f02bec575aa39846c0bb3e8",
+      "verdict": "KEEP",
+      "repairVerification": "The duplicated closing block is reduced to exactly one Zhongfeng description/falsification paragraph followed by one Miyun reversed-form sentence. The verified X70n1402 ClaimAnchor remains unchanged and reader-visible, with Zhongfeng Mingben as exact utterer. The Miyun 返照回光 ClaimAnchor remains a related word-order reversal rather than a governed graph variant. No actor, sense, count, alias, or prose regression was found, and the final mechanical gate is hardPass.",
+      "requiredChanges": []
+    }
+  ]
+}

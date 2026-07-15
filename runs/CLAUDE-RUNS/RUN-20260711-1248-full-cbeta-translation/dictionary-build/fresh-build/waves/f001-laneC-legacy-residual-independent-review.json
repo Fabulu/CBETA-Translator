@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "reviewKind": "independent-legacy-residual-semantic-review",
+  "scope": {
+    "entries": 11,
+    "pointerLedger": "fresh-build/waves/f001-laneC-legacy-residual-owner-recommendations.json"
+  },
+  "policy": "Hash-bound read-only review under the current DICTIONARY_ENTRY_GUIDE.md. Repair and cohort ledgers were used only to locate current packets. KEEP requires correct headword meaning and different-thing boundaries, exact utterer/context separation, evidence-specific opening prose, anchored quotations, useful aliases, exact KWIC and line replay, honest depth and independent-work support, schema-valid provisional/multi-source labels and sense keys, and zero forbidden framing.",
+  "reviewed": 11,
+  "keep": 5,
+  "revise": 6,
+  "jointChecks": {
+    "exactKwicAndLineReplay": "97/97 PASS",
+    "headwordPresentInKwic": "97/97 PASS",
+    "attributionHardFailures": 0,
+    "quotedChineseAnchored": "37/37 PASS",
+    "publicFeedbackFlags": 0,
+    "forbiddenTermHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_ff50c6974a36",
+      "term": "五位",
+      "reviewedSha256": "e8a9f81e20ec4b4473abd6071550363f589e6297113497a23fa49f6f0aba897c",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "sense-boundary",
+          "finding": "The two-sense structure is correct. The Caodong Five Ranks are a named house scheme; Gaitong's path positions and Yongming Yanshou's hundred-element and prenatal sequences are ordinary five-member classifications. These are different referents, and the PreferredTargets distinguish them without a reading menu."
+        },
+        {
+          "kind": "source-inventory",
+          "finding": "Both senses retain stale SourceTexts that have no current occurrence or ClaimAnchor. Sense 1 lists B/B27/B27n0152.xml and J/J26/J26nB185.xml without evidence rows; sense 2 lists J/J26/J26nB180.xml and J/J34/J34nB311.xml without evidence rows. The displayed source/depth inventory therefore overstates the repaired packet. Remove those four stale paths or restore exact verified evidence deliberately."
+        },
+        {
+          "kind": "validation-and-work-support",
+          "finding": "The ordinary 'five positions' sense is labelled provisional even though its current anchors span the Patriarchs' Hall Collection and Yongming Yanshou's Source-Mirror Record, two independent works. After cleaning SourceTexts, adjudicate and record those work IDs; if they remain independent, Validation should be multi-source. Do not count the two Yanshou rows as two works."
+        },
+        {
+          "kind": "actor-and-prose",
+          "finding": "Exact actors survive review: Gaitong and Zhang Dangong are named non-master utterers, and the Caoshan question occurrences belong to the unnamed monks rather than Caoshan. The opening prose, aliases, quotation anchoring, and forbidden-language gate pass."
+        }
+      ]
+    },
+    {
+      "id": "t_9199b9a31645",
+      "term": "盡大地",
+      "reviewedSha256": "3c03f0d5b9a885144301312be7b32b882f41f8577acf7e711530fd0ecc2b5bfa",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One sense is correct: gathering, equating, including, or appraising the whole earth predicates different claims over the same maximal terrestrial scope. Quoted Xuefeng sayings and different surrounding appraisals are not separate meanings."
+        },
+        {
+          "kind": "source-inventory",
+          "finding": "SourceTexts omits two files that supply retained occurrences: B/B27/B27n0152.xml and T/T47/T47n1997.xml. Add both current occurrence sources. The two Yuanwu rows preserve the same formula and must not be counted as independent semantic works merely because they occur in two storage files."
+        },
+        {
+          "kind": "depth-and-work-support",
+          "finding": "Multi-source validation still survives independently through Xuefeng, Shangfeng Huihe, Yinyuan Longqi, Yuanwu Keqin, and Yulin Tongxiu deployments, but the Note's claim about independent spread should be recalculated from explicit work IDs after SourceTexts is synchronized."
+        },
+        {
+          "kind": "actor-and-prose",
+          "finding": "The headword utterers and quoted-source actors are correctly separated, including Xuefeng as historical utterer in later quotations. The opening interpretation, aliases, quote anchoring, and forbidden-language gate pass."
+        }
+      ]
+    },
+    {
+      "id": "t_7887dc8d449f",
+      "term": "尊宿",
+      "reviewedSha256": "3d8fb7a2f1833f80328ad7de9f1997a5bcbe0d17f530559aea16493f077f7437",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "All eight witnesses use 尊宿 as a status description for established senior teachers, whether collectively praised, sought, criticized, or described historically. Favorable and hostile appraisals do not create different referents; title-only occurrences were properly excluded."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "Direct speakers, the reviewed unnamed monk, lamp-record narration, and signed-preface voice are correctly separated. Eight exact anchors from eight occurrence sources support multi-source status, SourceTexts is synchronized, prose is evidence-specific, aliases are natural, and no forbidden framing appears."
+        }
+      ]
+    },
+    {
+      "id": "t_3972185a2e25",
+      "term": "宗門",
+      "reviewedSha256": "1751c322ef55aa844051299260f282895da5537ff078800fbe764cccfe26a1ff",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The broad tradition, its gate, its characteristic business, and what counts within it are institutional deployments of one Chan lineage-tradition referent. Grammatical variants and particular houses do not establish another object, and title-only graph collisions are excluded."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "The two unnamed questioners own their exact turns, Wuyi Yuanlai's repeated-work rows remain one work for validation, and the signed preface is correctly a non-dialogue preface voice. Eight anchors across seven source files retain ample independent support; SourceTexts, aliases, prose, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_d926adb80feb",
+      "term": "良久曰",
+      "reviewedSha256": "a6ad81444a8b6bfae136a356dc0d1da7d4d4c78e9dd3d9945154a68e44141998",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "Every occurrence is the same recorder-level narrative marker: an interval elapses and the participant then speaks. Different lengths of pause, following speakers, and case settings are not different events denoted by the headword."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "All eight headword actors are correctly impersonal case recorders or compilers; each following named master is contextual person/speaker of the subsequent words rather than utterer of 良久曰. The six-source spread, exact replay, opening, aliases, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_b191c4fa2e9f",
+      "term": "請益",
+      "reviewedSha256": "5f881d5ba0d070cb536dd77e8aac1c4d087bc6293c32281672f1fd8d5929a337",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "An initial announced request, a follow-up after an exchange, a named question-type, and biographical seeking of further instruction are deployments of one request-for-instruction act. Noun/verb grammar and first/further timing do not create separate referents."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "Yuanwu's classifications, Yaoshan's question, Layman Jinghui's named non-master question, two reviewed unnamed requesters, and two biographical compiler rows are correctly attributed. Eight anchors across seven source files support multi-source validation; SourceTexts, prose, aliases, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_1274824e797b",
+      "term": "普請",
+      "reviewedSha256": "64611ab9cd84c6f0f42e4f30bfa9a446555465981a58c48012c8296dcc44cc44",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The one-sense decision survives. Regulations, work occasions, a summons placard, and 'beat the drum and call everyone to look' retain the same communal-call referent; the assigned activity changes, but the headword remains the summons. A labor-versus-viewing split would confuse the action summoned with the summons itself."
+        },
+        {
+          "kind": "sense-key",
+          "finding": "The corpus-wide institutional sense incorrectly stores SenseKey='institutional-work-summons'. Under the schema, a corpus-wide sense uses null; a non-null key is reserved for a genuinely master-specific meaning and normally carries the roster's canonical master name. Set SenseKey to null."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "Procedural compiler narration, narrated work scenes, Nanquan's exact question, and the three named hall-address speakers are correctly separated. Ten anchors across eight source files retain multi-source support; SourceTexts, evidence-specific prose, aliases, and forbidden-language checks otherwise pass."
+        }
+      ]
+    },
+    {
+      "id": "t_00e8627f3a48",
+      "term": "歷歷",
+      "reviewedSha256": "12188ab68b7cc6b648ff0ad6f1fa747ac0f4149bf9ed5d129d1445eab2b599d0",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One adjective/adverb sense is correct. A listener, scenery, calls, buildings, bells, a phrase, or brightness can all be distinctly clear; subjects and grammatical placement vary without creating a second property. The entry properly avoids imported awareness terminology."
+        },
+        {
+          "kind": "depth-prose",
+          "finding": "The Note says 'Seven anchors' but the repaired sense contains eight exact occurrences, including the added Ruibai Mingxue witness. Correct the evidence count so reader-facing provenance matches the current packet."
+        },
+        {
+          "kind": "actor-and-support",
+          "finding": "All eight exact utterers and seven source files pass attribution and replay; repeated storage within the same source is not used to fabricate work spread. SourceTexts, aliases, opening interpretation, and forbidden-language checks otherwise pass."
+        }
+      ]
+    },
+    {
+      "id": "t_c968268a64d1",
+      "term": "心印",
+      "reviewedSha256": "6706fd2820e44acb36ac17a712a356f3ccaa86006d6a2013bef4d39cea406d8e",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "sense-boundary",
+          "finding": "The split is required and correctly drawn: the transmitted lineage seal applied to mind is a lexical/institutional image, while 'Mind-seal' in the Kaixian heading is Zhixun's bestowed personal title. Capitalization is not the distinction; the referents are a lineage-seal phrase and one named master's title."
+        },
+        {
+          "kind": "validation-label",
+          "finding": "The title sense uses Validation='single-source', which is outside the schema's allowed values provisional, multi-source, and disputed. It has one source and one occurrence, so set Validation to provisional."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "The title row is correctly impersonal biographical-heading metadata with Kaixian Zhixun as section subject/person described, not an utterance. The primary sense has seven exact anchors and multiple independent works; all Chinese quotations are anchored, aliases distinguish lexical and title lookup, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_52fdda90e9ab",
+      "term": "行腳",
+      "reviewedSha256": "c78cd8b56f0edd1c57514c2a975b9f16323406e30320700d6e60ca0d663b63df",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "Departing, journeying through regions, seeking teachers, being called a travelling person, and being questioned about the affair of travelling on foot retain the same itinerant walking activity. Public-test deployment does not turn it into a prescribed system or second event."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "The Poshan headword belongs to the unnamed questioner, Huangbo remains the exact historical utterer of the later quotation, and Minister Chen Cao is correctly a named non-master questioner. Seven anchors across six source files support multi-source validation; SourceTexts, opening prose, aliases, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_395ae8fd7f32",
+      "term": "無住",
+      "reviewedSha256": "5173aeeae9c50e3ea00154ebbb53c0efe3c92f5946d4127a62384017a30d59d4",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "sense-boundary",
+          "finding": "The two senses are genuinely different: 'not dwelling' is a relational lexical predicate, while Baotang Wuzhu is a historical person's name. Huineng's definition, Fayan's root question, and later formulas remain one lexical sense; the headed biographies cannot be folded into it."
+        },
+        {
+          "kind": "validation-label",
+          "finding": "The person sense uses the prose sentence 'Two independent lamp compilations preserve the headed biography.' as its Validation value. This is not schema-valid. Because the two headings repeat the same biography formula in closely related lamp compilations, do not presume independent semantic support from storage count alone: record work identity explicitly and use provisional unless independence is demonstrated; otherwise multi-source is permissible only after that demonstration."
+        },
+        {
+          "kind": "sense-key",
+          "finding": "SenseKey='person-baotang-wuzhu' is a custom category string, not a roster canonical master name or a warranted master-specific semantic key. A corpus-wide proper-name sense may remain null; if the implementation intentionally keys a person sense, it must use the exact canonical roster name after roster reconciliation. Do not retain the custom token."
+        },
+        {
+          "kind": "actor-evidence-and-depth",
+          "finding": "The two person-name rows are correctly impersonal lamp-record headings with Baotang Wuzhu as section subject/person described. The lexical sense has seven exact anchors across six source files and correct utterer/context separation, including Vimalakirti as the exact quoted answerer. Quotations, aliases, opening prose, and forbidden-language checks pass."
+        }
+      ]
+    }
+  ]
+}

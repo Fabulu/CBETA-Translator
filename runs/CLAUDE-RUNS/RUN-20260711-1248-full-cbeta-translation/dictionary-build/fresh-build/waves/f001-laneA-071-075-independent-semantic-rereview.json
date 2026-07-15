@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [71, 75],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T00:50:00Z",
+  "scope": "Hash-bound rereview of the two repaired A71–75 entries against the original independent review, focused repair gate, complete attribution cases, and the supplied prior root-review packet. Read-only; entries and website were not edited.",
+  "inputs": {
+    "focusedRepairGate": {"path": "fresh-build/waves/f001-laneA-071-075-focused-repair-gate.json", "sha256": "3d3dd79c13d8eab818f5e8a4d09ccc7a48c13068338ef876c19052d0480a996e"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneA-071-075-focused-repair-gate-attribution-packets.json", "sha256": "86b684c0573cf0738df3e71c1672e1899ace3d98b9b8f02b55b5419d23402e5f"},
+    "priorIndependentReview": {"path": "fresh-build/waves/f001-laneA-071-075-independent-semantic-review.json", "sha256": "ce4badf0bb04895ff449fbb22af6cc2abba0bfaf9c24189513ae505b475e34ee"},
+    "rootReviewPacket": {"path": "fresh-build/waves/f001-laneA-061-065-root-review-packet.json", "sha256": "fe1ec4be8a76b0e9c5ec014e84fcc5d4bb5594988bac768351aa443c3ac2fdd3"}
+  },
+  "summary": {"KEEP": 2, "REVISE": 0, "reviseOrdinals": []},
+  "findings": [
+    {
+      "ordinal": 71,
+      "id": "t_dc02eefd07f5",
+      "term": "偏中正",
+      "entrySha256": "ff510c904f7e90e0411225996b06ecd8684ce933eb987276fdad24891319c9b0",
+      "verdict": "KEEP",
+      "repairVerification": "All four required repairs hold. T48n2006 is now narrated compiler exposition by Huiyan Zhizhao; J38nB406 assigns the headword-bearing 原頌 to Dongshan Liangjie and keeps Tianran Hanshi as later quoter/commentator; the unanchored minister-toward-lord clause is removed; and 人天眼目 is rendered Eyes of Humans and Devas. All seven complete cases retain exact actor layers, seven independent works, one rank relation, and nonduplicative evidence.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 75,
+      "id": "t_1d3706324b0c",
+      "term": "打成一片",
+      "entrySha256": "d8e18914aaa27bc3964a15dfaa99423c9a2c5450af2945e331f62bed30d46a82",
+      "verdict": "KEEP",
+      "repairVerification": "The prohibited 'make practice continuous' alias is gone. The vague worldly/recorded-context clause is replaced by the exact attested divisions: time, motion/stillness, arising/perishing, and subject/object. The seven full cases preserve correct actors, including Xiangyan inside Guting's quotation, and the negative silver-mountain/iron-wall witness continues to bound the single continuity/unification sense without importing a technique category.",
+      "requiredChanges": []
+    }
+  ]
+}

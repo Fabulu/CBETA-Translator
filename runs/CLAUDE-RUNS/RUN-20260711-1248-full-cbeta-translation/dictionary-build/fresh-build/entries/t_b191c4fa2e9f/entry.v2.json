@@ -1,0 +1,273 @@
+{
+  "Id": "t_b191c4fa2e9f",
+  "SourceTerm": "請益",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "request instruction",
+      "AlternateTargets": [
+        "request further instruction",
+        "ask for clarification",
+        "seek instruction"
+      ],
+      "SearchAliases": [
+        "request instruction",
+        "request further instruction",
+        "ask for clarification",
+        "seek instruction",
+        "follow-up question"
+      ],
+      "Status": "preferred",
+      "Explanation": "To request instruction is to approach an instructor for an answer, clarification, or further examination. The Blue Cliff Record uses the term as a named question-type and distinguishes a long-standing student's request after seeing but not penetrating or penetrating but not clarifying. Other records use it for a first announced request, an attendant's follow-up after an exchange, and biographical visits to an instructor. These are deployments of the same act of asking to receive further explanation; noun and verb grammar do not make separate senses.",
+      "Validation": "multi-source",
+      "Note": "The frozen corpus has 1,949 exact hits in 314 files representing 310 works. Eight anchors cover direct requests, narrated teacher-student visits, follow-up questioning, and explicit classification of the request-for-instruction question across independent works.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0149b01",
+          "ToLb": "0149b04",
+          "Kwic": "可謂如龍得水。似虎靠山。久參先德。有見而未透。透而未明。謂之請益。若是見得透請益。却要語句上周旋。無有凝滯。久參請益。與",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Yuanwu Keqin defines requesting further instruction as the condition of a long-standing student who has seen but not penetrated, or penetrated but not clarified.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0155a21",
+          "ToLb": "0155a26",
+          "Kwic": "非目前事時如何門云。倒一說。這僧不妨是箇作家。解恁麼問。頭邊謂之請益。此是呈解問。亦謂之藏鋒問。若不是雲門。也不奈他何。雲門",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). Yuanwu Keqin classifies the opening portion of the unnamed monk's question as requesting further instruction (請益), then supplies two additional question labels; Yunmen Wenyan belongs to the raised exchange, not the classificatory prose.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0746a08",
+          "ToLb": "0746a10",
+          "Kwic": "「汾陽十八問還許辯驗也無？」師云：「疑則任舉。」士云：「如何是請益問？」師云：「山門八字開。」「如何是呈解問？」師云：「賣寶",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yunxi Langting (雲溪俍亭挺禪師語錄): Layman Jinghui is the exact questioner requesting instruction; Yunxi Langting is the contextual respondent.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunxi Langting",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "named lay questioner",
+            "ActorLabel": "Layman Jinghui",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The expanded exchange explicitly introduces Layman Jinghui and assigns the headword-bearing request for instruction to him; Yunxi Langting gives the response.",
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-14T23:25:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0116a12",
+          "ToLb": "0116a12",
+          "Kwic": "山曰。汝從看經得。請益得。",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), biography of the novice Gao: Yaoshan Weiyan asks whether Gao obtained his answer from reading scripture or from requesting instruction. Gao's reply denies both, but this narrowed KWIC stores Yaoshan's exact question turn.",
+          "MasterName": "Yaoshan Weiyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0036a21",
+          "ToLb": "0036a23",
+          "Kwic": "沒先聖。且道說箇甚麼？師乃拂袖下去。穴擲下拄杖，歸方丈。侍者隨後請益曰：念法華因甚不祇對和尚？穴曰：念法華會也。次日，師與真",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "attendant",
+            "ActorLabel": "unnamed attendant",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T23:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fengxue Yanzhao",
+              "Roles": [
+                "addressee",
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the Shoushan Xingnian biography: an unnamed attendant is the exact questioner seeking clarification from Fengxue Yanzhao about why Shoushan did not answer him; Fengxue responds that Shoushan understood. The line, expanded context, section header, book title, TEI header, and parallel-passage search leave the attendant unnamed."
+        },
+        {
+          "RelPath": "J/J29/J29nB244.xml",
+          "FromLb": "0709b10",
+          "ToLb": "0709b12",
+          "Kwic": "打云：「蒼天蒼天！」一僧進方丈，纔展具，師便喝，僧云：「特來請益和尚！」師驀面一掌，僧云：「痛快痛快！」師復打，僧擬進語，師",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Sanshan Lai (三山來禪師語錄): an unnamed monk tells Sanshan Denglai that he has come especially to request instruction. The line, expanded context, section header, book title, TEI header, and parallel search leave the monk unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk requesting instruction",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Sanshan Denglai",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0512a22",
+          "ToLb": "0512a24",
+          "Kwic": "古禪師郡之江氏子，少列黌序。初參萬松於華嚴，三載始薙髮。請益於松，松示偈曰：閃灼電光寒，忻然出寶匣。曠劫無明根，一時都抹",
+          "Curated": true,
+          "AttributionNote": "Orthodox Continuation of the Lamp (續燈正統): the compiler narrates Yun’an Denggu requesting further instruction from Wansong Xingxiu; the wording is biography, not either participant’s utterance.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunan Denggu",
+              "Roles": [
+                "person-described",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler biography",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The biography says 雲菴登古禪師…請益於松: its compiler narrates Yunan Denggu's request to Wansong Xingxiu; neither participant speaks this clause.",
+            "ReviewedBy": "Codex fresh lane-C complete-case review",
+            "ReviewedUtc": "2026-07-14T20:10:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0070a08",
+          "ToLb": "0070a11",
+          "Kwic": "但覺心境對立，與古人「天地同根，萬物一體」語不能契合，因請益於龍池，龍池云：「汝若到這田地，便乃放身倒臥，更無別語。」後屢請益，惟遭罵詈",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Miyun (密雲禪師語錄): the compiler narrates Miyun Yuanwu requesting further instruction from Longchi Huanyou; the line is biography rather than Miyun’s utterance.",
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "person-described",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Longchi Huanyou",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler biography",
+            "ActorLabel": "the record compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The biographical sequence says 因請益於龍池 and 後屢請益 about Miyun Yuanwu's approaches to Longchi Huanyou; it is not direct speech by either master.",
+            "ReviewedBy": "Codex fresh lane-C complete-case review",
+            "ReviewedUtc": "2026-07-14T20:10:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "J/J33/J33nB294.xml",
+        "X/X80/X80n1565.xml",
+        "X/X81/X81n1568.xml",
+        "J/J29/J29nB244.xml",
+        "X/X84/X84n1583.xml",
+        "J/J10/J10nA158.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Jinghui",
+        "Yunxi Langting Ting",
+        "Yaoshan Weiyan",
+        "Fengxue Yanzhao",
+        "Shoushan Xingnian",
+        "Sanshan Denglai",
+        "Wansong Yunyan Denggu",
+        "Wansong Xingxiu",
+        "Miyun Yuanwu",
+        "Huanyou Zhengchuan"
+      ],
+      "RelatedTerms": [
+        "呈解問",
+        "藏鋒問",
+        "參問",
+        "請教"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

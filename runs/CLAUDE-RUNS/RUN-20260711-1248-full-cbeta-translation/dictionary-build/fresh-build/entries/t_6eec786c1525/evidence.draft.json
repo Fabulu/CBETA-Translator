@@ -1,0 +1,258 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_6eec786c1525",
+    "SourceTerm": "堂奧",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f003 Lane B evidence-first",
+    "WrittenUtc": "2026-07-15T03:40:09.317118+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the inner chamber or inner depths",
+        "AlternateTargets": [
+          "the inner recesses",
+          "the inside of the teaching house"
+        ],
+        "SearchAliases": [
+          "inner chamber",
+          "inner sanctum",
+          "inner depths",
+          "inside the teaching house",
+          "beyond the outer gate"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The six witnesses use one inside-of-a-house image across public-front/inner-chamber contrast, entry, depth, and lineage-house deployment. No stored witness establishes a separately named physical room requiring another sense.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J34/J34nB311.xml",
+            "FromLb": "0592c23",
+            "ToLb": "0592c24",
+            "Kwic": "問：「春間羅山結制，冬下蓮嶼開堂，總是和上高蹤，還有門庭堂奧之別也無？」",
+            "Curated": true,
+            "AttributionNote": "Source record (天界覺浪盛禪師全錄; J/J34/J34nB311.xml). Exact actor: the unnamed questioner. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "unnamed monastic questioner",
+              "ActorLabel": "the unnamed questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The explicit 問/僧問 frame assigns the headword-bearing words to an unnamed questioner; the following 師曰/師云 response is a separate turn.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問：「春間羅山結制，冬下蓮嶼開堂，總是和上高蹤，還有門庭堂奧之別也無？」",
+              "GrammaticalSubject": "the unnamed questioner",
+              "SpeechFrame": "The explicit 問/僧問 frame assigns the headword-bearing words to an unnamed questioner; the following 師曰/師云 response is a separate turn.",
+              "FullCaseDecision": "Source record (天界覺浪盛禪師全錄; J/J34/J34nB311.xml). Exact actor: the unnamed questioner. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0114b16",
+            "ToLb": "0114b16",
+            "Kwic": "須是入得無門之門，方可坐登堂奧。",
+            "MasterName": "Wanan Daoyan",
+            "Curated": true,
+            "AttributionNote": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Wanan Daoyan. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Wanan Daoyan",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "須是入得無門之門，方可坐登堂奧。",
+              "SpeechFrame": "Complete Collection of the Five Lamps (五燈全書), Wanan Daoyan section: Wanan says one must enter the gateless gate before sitting within the inner chamber.",
+              "FullCaseDecision": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Wanan Daoyan. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB299.xml",
+            "FromLb": "0135c08",
+            "ToLb": "0135c09",
+            "Kwic": "臨濟老人于一句中分出玄要、賓主等堂奧",
+            "MasterName": "Sanfeng Hanyue Fazang",
+            "Curated": true,
+            "AttributionNote": "Source record (三峰藏和尚語錄; J/J34/J34nB299.xml). Exact actor: Sanfeng Hanyue Fazang. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Sanfeng Hanyue Fazang",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "臨濟老人于一句中分出玄要、賓主等堂奧",
+              "SpeechFrame": "Recorded Sayings of Sanfeng Zang (三峰藏和尚語錄): Sanfeng Hanyue Fazang says Linji distinguished mysteries, essentials, guest, host, and other inner matters within one phrase.",
+              "FullCaseDecision": "Source record (三峰藏和尚語錄; J/J34/J34nB299.xml). Exact actor: Sanfeng Hanyue Fazang. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "J/J36/J36nB359.xml",
+            "FromLb": "0621b16",
+            "ToLb": "0621b17",
+            "Kwic": "不須此外尋堂奧，諸向華林問主人。",
+            "MasterName": "Baiyu Jingsi",
+            "Curated": true,
+            "AttributionNote": "Source record (百愚禪師語錄; J/J36/J36nB359.xml). Exact actor: Baiyu Jingsi. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Baiyu Jingsi",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "不須此外尋堂奧，諸向華林問主人。",
+              "SpeechFrame": "Recorded Sayings of Baiyu (百愚禪師語錄): Baiyu Jingsi says not to seek the inner chamber outside this and directs the audience toward the host in the flowering grove.",
+              "FullCaseDecision": "Source record (百愚禪師語錄; J/J36/J36nB359.xml). Exact actor: Baiyu Jingsi. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB190.xml",
+            "FromLb": "0107b01",
+            "ToLb": "0107b02",
+            "Kwic": "僧問：「趙州門墻承引入，願聞堂奧事如何。」",
+            "Curated": true,
+            "AttributionNote": "Source record (石雨禪師法檀; J/J27/J27nB190.xml). Exact actor: the unnamed questioner. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "unnamed monastic questioner",
+              "ActorLabel": "the unnamed questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The explicit 問/僧問 frame assigns the headword-bearing words to an unnamed questioner; the following 師曰/師云 response is a separate turn.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "僧問：「趙州門墻承引入，願聞堂奧事如何。」",
+              "GrammaticalSubject": "the unnamed questioner",
+              "SpeechFrame": "The explicit 問/僧問 frame assigns the headword-bearing words to an unnamed questioner; the following 師曰/師云 response is a separate turn.",
+              "FullCaseDecision": "Source record (石雨禪師法檀; J/J27/J27nB190.xml). Exact actor: the unnamed questioner. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB286.xml",
+            "FromLb": "0493b12",
+            "ToLb": "0493b12",
+            "Kwic": "若要深登堂奧，共相參請金僊老和尚去。",
+            "MasterName": "Yingning Jing",
+            "Curated": true,
+            "AttributionNote": "Source record (攖寧靜禪師語錄; J/J33/J33nB286.xml). Exact actor: Yingning Jing. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yingning Jing",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "若要深登堂奧，共相參請金僊老和尚去。",
+              "SpeechFrame": "Recorded Sayings of Yingning Jing (攖寧靜禪師語錄): Yingning Jing directs anyone wishing to enter deeply into the inner chamber to inquire of the named elder.",
+              "FullCaseDecision": "Source record (攖寧靜禪師語錄; J/J33/J33nB286.xml). Exact actor: Yingning Jing. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J34/J34nB311.xml",
+          "X/X82/X82n1571.xml",
+          "J/J34/J34nB299.xml",
+          "J/J36/J36nB359.xml",
+          "J/J27/J27nB190.xml",
+          "J/J33/J33nB286.xml"
+        ],
+        "RelatedMasters": [
+          "Baiyu Jingsi",
+          "Sanfeng Hanyue Fazang",
+          "Wanan Daoyan",
+          "Yingning Jing"
+        ],
+        "RelatedTerms": [
+          "門庭",
+          "門墻",
+          "入室",
+          "玄要",
+          "賓主"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The inner chamber is what lies past a house’s public gate and hall; Chan records bend that architectural depth into the inner matter of the named teaching figure’s house, lineage formulations, or an encounter.",
+          "EvidenceBody": [
+            "An interlocutor asks whether two establishments differ in “public frontage and inner chamber,” making the outer/inner house contrast explicit. Wanan Daoyan says only one who enters the gateless gate can sit within the inner chamber. Sanfeng Hanyue Fazang calls Linji’s mysteries, essentials, guest, and host the inner matters differentiated within one phrase. Baiyu Jingsi says not to seek the inner chamber elsewhere; an unnamed monk says Zhaozhou’s walls admitted him and asks about the inner-chamber matter; Yingning Jing directs one who wants to enter deeply to inquire of an elder. The Zen bend preserves the spatial constraint—past frontage into the inside—while applying it to what is intimate or internal to a teaching house, without inventing a secret teaching formulation."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "ZenBend": "The inner part of a house becomes the intimate or internal matter reached beyond a Chan house’s public frontage.",
+          "CounterexampleOrLimit": "The witnesses license architectural-to-institutional depth, not a universal secret teaching or one fixed doctrinal content.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "an inner chamber or inner depth",
+              "its use for the inside matter of a teaching house"
+            ],
+            "Reason": "The stored predicates retain one inside-beyond-frontage relation; the applications change while the referent image remains."
+          },
+          "AliasRationale": "Chamber, recess, depths, and house-inside probes recover the spatial relation without making “sanctum” the displayed translation.",
+          "ModifierControls": [
+            {
+              "finding": "ordinary-scene-established",
+              "reason": "門庭 contrast and verbs of entering deeply establish an inside beyond the public front."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "門庭, 門墻, 入室, and lineage categories clarify the spatial family but remain separate headwords."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J34nB311",
+            "work:wudeng-quanshu",
+            "work:J34nB299",
+            "work:J36nB359",
+            "work:J27nB190",
+            "work:J33nB286"
+          ]
+        }
+      }
+    ]
+  }
+}

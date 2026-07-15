@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    700
+  ],
+  "generatedUtc": "2026-07-15T05:54:01.672098+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f003-laneA-651-700-current-semantic-review-packet.json",
+  "sourcePacketSha256": "026718d7e89c9a1264e4490f0284598ca6620d6e37e63dcb3cf59240f98b670c",
+  "sourcePacketStaleEntryHashes": 17,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-current.json",
+    "sha256": "2a942880b2e5c412f8b1687957a54d62fdbe333582d2a3a0cd4f15e28c556a9a",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerifiedAgainstFormalGate": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 680,
+  "checkpointRows": [
+    {
+      "ordinal": 671,
+      "id": "t_aa7b526258cc",
+      "term": "相見",
+      "entrySha256": "5e8c7de6c661980d925fef90a2556999a634b238681628d26ac48f31fcb0df7b",
+      "worksheetSha256": "d8fd3e1daa249ada843e3e5c360ac2824ca288a27417e3310c8a1c94a16bf1a2",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The face-to-face inference is plausible, but the article does not distinguish ordinary meeting, formal audience, and challenge formula. A long doctrinal speech is compiler-owned despite an enclosing speaker, and three master labels remain Chinese."
+    },
+    {
+      "ordinal": 672,
+      "id": "t_935452e7a2c6",
+      "term": "觀音",
+      "entrySha256": "d5271f7726a891830f39f31e196bf0903cf5d7483941ee6f1a7d8279d2f2d582",
+      "worksheetSha256": "f5897d49d80c85f0c5bf8d6e5653fb7c608adc638deb6645ec3da24f2e59756f",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The generic Guanyin template does not define the figure's Chan use (including hearing/seeing and quoted case roles). Catalogue evidence is retained, two speech-bearing contexts are narrator-owned, and two masters are non-roster Chinese strings."
+    },
+    {
+      "ordinal": 673,
+      "id": "t_d4673502b2d2",
+      "term": "未審",
+      "entrySha256": "912ebc1b7063bcb8865828d50ad9ca3fa2a443103786027537dae8f424297a00",
+      "worksheetSha256": "f172897e820fc3f7c992b3d114b9743ac00499d34b505b1c597235cc36e1d49a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The turn-taking definition is useful, but direct questions such as 者曰未審 and other marked turns are assigned to compiler narration. The entry therefore contradicts its own claim that 未審 belongs to the questioner; its named masters are also non-roster forms."
+    },
+    {
+      "ordinal": 674,
+      "id": "t_27c71a091873",
+      "term": "首座",
+      "entrySha256": "27a2864edc28dbd429d38f179b6333dd18d018299d8f0404f1c53004c2150eb5",
+      "worksheetSha256": "efcdb83513d0ff6995f045b82ad3e97eaf274f044e49bee1a502e58e0034dbbb",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The head monk is an office, but the paragraph is reusable filler and catalogue/lineage-list rows dominate. It does not distinguish office-holder speech from compiler lists, and the one master name is not roster-exact."
+    },
+    {
+      "ordinal": 675,
+      "id": "t_09ed57d56bcf",
+      "term": "普賢",
+      "entrySha256": "914fd523f0abd6ee348e4f1d504b43b310ccc521f3b7477fe776260725737f32",
+      "worksheetSha256": "753b6af238afc9178564d533ee2870bb7f2ee27a0b743561b4016e7880cc4e2a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The generic Samantabhadra paragraph withholds the actual Zen predicates and boundaries. An embedded 師曰 turn is compiler-owned and three MasterName strings are titles/Chinese labels rather than roster-exact utterers."
+    },
+    {
+      "ordinal": 676,
+      "id": "t_68303eb8b076",
+      "term": "拈拄杖",
+      "entrySha256": "8fdbd57a818d3c6b77081454a3602f501818921e6ba4d8a0c59364e6b4a86175",
+      "worksheetSha256": "571cb2ff6b57fef57805ac2d4ce0a9e30a2577d5c8319f2742ce78a8b0ab99dd",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "Taking up the staff is a visible hall action, but the opening is category filler and never tells what the selected masters do with it. Four direct 師/拈 contexts are classified as narration and four Chinese names remain unresolved."
+    },
+    {
+      "ordinal": 677,
+      "id": "t_1c2ff70cf5a5",
+      "term": "禪寺",
+      "entrySha256": "fcd6cb3cd00bf8c00dfede2197333a815acd0074e6c1116740631d5f9898961d",
+      "worksheetSha256": "eaa6a7184cd7735d2e9e1a171ba1ca9b2b91acce3c46c665dd5e3c92b2d449bb",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The selected rows are mainly titles, colophons, and catalogues naming Chan monasteries, not evidence for a characteristic Zen lexical bend. The generic institutional paragraph overclaims encounters while no exact named utterer is established."
+    },
+    {
+      "ordinal": 678,
+      "id": "t_b4d4e5d50e6f",
+      "term": "護生",
+      "entrySha256": "00e1da3f306ac25bacf8fda281c07f6e09d40cbf8b0a281fe098af6011a43f7b",
+      "worksheetSha256": "6b27420b9d3c4475142b6d0a54d7895fb85619145f79c53df64d4557624f1475",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The hard-rule framing is useful, but the entry does not adjudicate ordinary life-protection against the paradoxical 護生須是殺 formula or anchor who quotes it. Five Chinese-script masters and a compiler-owned 古德偈 turn require exact actor repair."
+    },
+    {
+      "ordinal": 679,
+      "id": "t_4da199fae933",
+      "term": "消息",
+      "entrySha256": "395c4ce4cf7439846b1b30e5ae2638c9369c2fbd9649f1d6af9f48b0fd10f812",
+      "worksheetSha256": "2ad4947e461ae0f57e68c2724762abf20ca3d2d7f15cab74991059e25f556b3e",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "Three genuinely different referents are plausibly split, but each explanation ends in the same evidence-process filler instead of showing its actual predicates. The source allocation and exact actors, including three Chinese master names and a narrated speech frame, need case-by-case proof."
+    },
+    {
+      "ordinal": 680,
+      "id": "t_2d567d37256b",
+      "term": "富樓那",
+      "entrySha256": "67ced87a8bf7ff29665a71b784caa3266193f6a0780e1efa51bb9504b33450ae",
+      "worksheetSha256": "f85667c52648d0a76543611d78c29776db98cf2b0323cfcd233131f561d4bf65",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The generic Purna paragraph does not say which Purna the witnesses invoke or what his Chan deployment is. A patriarchal title string and embedded speech are mixed with person evidence, while two Chinese actor labels remain unresolved."
+    }
+  ],
+  "checkpointOccurrenceCount": 74
+}

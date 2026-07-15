@@ -1,0 +1,125 @@
+{
+  "generatedUtc": "2026-07-15T05:52:21.293345+00:00",
+  "scope": "f003 Lane C 831-840 independent actor-repair rereview checkpoint",
+  "readOnly": true,
+  "method": "Current exact hashes checked against the serialized hard-pass gate; every occurrence reread in its complete-case packet with MasterName restricted to the utterer of the headword.",
+  "summary": {
+    "entries": 10,
+    "KEEP": 2,
+    "REVISE": 8
+  },
+  "rows": [
+    {
+      "ordinal": 831,
+      "id": "t_663eefaa4ad7",
+      "term": "偏正",
+      "entrySha256": "bce156865258b6bb31b3d97673b6fac5b2e4decad61da2330207d92312f4654c",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O6 stores `則川和尚`, a noncanonical source label, and multiple headword-bearing spoken uses remain generic narration.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "3dbd00c53299e3f0f32d8ce90ebc6d3c5058118053b2055bb6dca59c7e3ecd3c",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 832,
+      "id": "t_589f52acc0b0",
+      "term": "答話",
+      "entrySha256": "06dba62dcf72c92a715044dea27fcdabb77ebfceb4f922477c6fae1a6c3c4b40",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O1/O2 store `南康廬山萬杉善爽禪師` and `羅漢機`; the latter is a phrase fragment and neither is a demonstrated canonical exact utterer for the stored turn.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "f13bc5daf9507767f68c6d0036eef6de1ae764507f2830762e72e1b88823d9b9",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 833,
+      "id": "t_258b079d8359",
+      "term": "女子出定",
+      "entrySha256": "ac0becea47972ca1a23b950711501d6abd8db73cb21663c9ee47aa9cde1dc58a",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O1/O5 store raw Chinese headings/names (`建康府蔣山一庵善直禪師`, `洪覺範`) rather than roster-canonical exact utterers; the full set remains inconsistent.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "c95ee43c76ff4ef138384f94e376a0199c6fd348f2b946ba7a83e30defcdb055",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 834,
+      "id": "t_a842c76ef637",
+      "term": "阿那箇",
+      "entrySha256": "80c9d4fcbac88346c85f7c3ce6865bf33db77616f9d290dedc14c1d406dd492f",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "priorVerdict": "KEEP",
+      "priorEntrySha256": "80c9d4fcbac88346c85f7c3ce6865bf33db77616f9d290dedc14c1d406dd492f",
+      "priorKeepHashUnchanged": true
+    },
+    {
+      "ordinal": 835,
+      "id": "t_baf1c6b9db60",
+      "term": "如意",
+      "entrySha256": "9552914d6507342bb10612ea84bd7ad881cc93b6e84c95079079fc8308ede873",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O6 stores the entire action phrase `如意子鞠躬向前問訊` as MasterName, not a person.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "9e28968d15c376df8ccec2c568bb83b8d458946a8b4b208816d56c61597047ec",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 836,
+      "id": "t_65491dc99795",
+      "term": "庫司",
+      "entrySha256": "b20e296ee58ae1a046570578c7a6d7de47b53820a123c5a02e517f0ea37c86fa",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "priorVerdict": "KEEP",
+      "priorEntrySha256": "b20e296ee58ae1a046570578c7a6d7de47b53820a123c5a02e517f0ea37c86fa",
+      "priorKeepHashUnchanged": true
+    },
+    {
+      "ordinal": 837,
+      "id": "t_bd0ba96ae735",
+      "term": "可惜",
+      "entrySha256": "acf0bb7c7e7105728802be25469229df298bd8ba1541b6d6034c4d1d2b21b132",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: Restored values `昭覺勤` and `瑞州清涼覺範慧洪禪師` are abbreviated/raw headings rather than canonical exact utterers; turn ownership remains unsafe.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "ecc4bf50447d049a4c33c8192ffcddb61deaa14c1c58c456a16dfdafbdb9067f",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 838,
+      "id": "t_3b9857d1cc19",
+      "term": "退院",
+      "entrySha256": "655e4ae063cc8f1087d0d209ff3e5d4ca3e9d70b25739e82aeee552d850f49f4",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O2 stores raw heading `建康府華藏密印安民禪師`; the remaining documentary and spoken uses still require exact actor adjudication.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "7c4d1d63bc7413ff139d8da224484de80ae559a88cc1a5273de40a98bb37fbaf",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 839,
+      "id": "t_7c6a61681198",
+      "term": "投機",
+      "entrySha256": "24c39c890e6b129a301fab070892c62bcf3c67f25779a984e69a8ef4bf709106",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O1 stores `作投機偈`, an action/title phrase, as MasterName rather than the person who composed or uttered the wording.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "70f637f5447db42f52f56c7b4fac95b9d93e885cd8a7336bb4d72251b5106bbf",
+      "priorKeepHashUnchanged": false
+    },
+    {
+      "ordinal": 840,
+      "id": "t_84406e0eca53",
+      "term": "脚跟",
+      "entrySha256": "1bc23860f3d369aa63dded8290958aebd297ee45f490c7d7a096da17fbf5c995",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O5 stores abbreviated `法昌遇` rather than a canonical linked utterer, while the other cases are broadly demoted to narration.",
+      "priorVerdict": "REVISE",
+      "priorEntrySha256": "5a15486db6615f33b62d2fabfa76ef033e8f407cab8e087c0822eb2e5c2216a0",
+      "priorKeepHashUnchanged": false
+    }
+  ],
+  "promotionOrMergePerformed": false,
+  "siteTouched": false
+}

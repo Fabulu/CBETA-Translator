@@ -1,0 +1,117 @@
+{
+  "generatedUtc": "2026-07-14T17:23:27.900088+00:00",
+  "elapsedSeconds": 88.176,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_c13928184189",
+      "term": "見性",
+      "path": "fresh-build/entries/t_c13928184189/entry.v2.json",
+      "sha256": "8536c89d98a3fa2d176b35473524742331ba1aa1d390c153a28ef94bf61df942"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 11,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_c13928184189/entry.v2.json",
+        "id": "t_c13928184189",
+        "term": "見性",
+        "verified": 11,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.106,
+    "attribution": 3.035,
+    "publicFeedback": 33.695,
+    "depthSense": 8.873,
+    "workSourceValidation": 1.573,
+    "corpusBaseline": 2.125,
+    "attributionPackets": 37.586
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.035,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "occurrences": 11,
+        "named_occurrences": 8,
+        "context_master_links": 15,
+        "attribution_notes": 11,
+        "actor_reviewed_unnamed": 3,
+        "deferred_non_roster": 1,
+        "deferred_non_roster_context": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"occurrences\": 11,\n    \"named_occurrences\": 8,\n    \"context_master_links\": 15,\n    \"attribution_notes\": 11,\n    \"actor_reviewed_unnamed\": 3,\n    \"deferred_non_roster\": 1,\n    \"deferred_non_roster_context\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 33.695,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp9wdronus.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 8.873,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.573,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.125,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 37.586,
+    "payload": {
+      "entries": 1,
+      "occurrences": 11,
+      "tierACandidates": 0,
+      "reviewRequired": 11
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 11,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 11\n}\nreport: fresh-build/entries/t_c13928184189/gate-attribution-packets.json\n",
+    "report": "fresh-build/entries/t_c13928184189/gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

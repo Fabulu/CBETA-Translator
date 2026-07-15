@@ -1,0 +1,273 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_663eefaa4ad7",
+    "SourceTerm": "偏正",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f003 Lane C evidence-first",
+    "WrittenUtc": "2026-07-15T06:55:28.173422+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "side and center",
+        "AlternateTargets": [
+          "the paired and central positions"
+        ],
+        "SearchAliases": [
+          "relative true",
+          "partial upright",
+          "Caodong pair",
+          "host guest positions"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The displayed sense is bounded by the stored exact uses; related compounds and quoted formulas were not allowed to create additional headword depth.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T48/T48n2001.xml",
+            "FromLb": "0002b23",
+            "ToLb": "0002b23",
+            "Kwic": "誰辨箇中偏正方。",
+            "Curated": true,
+            "AttributionNote": "Source record (宏智禪師廣錄; T/T48/T48n2001.xml). Exact actor: Hongzhi Zhengjue. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+            "ContextMasters": [
+              {
+                "MasterName": "Hongzhi Zhengjue",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "誰辨箇中偏正方。",
+              "GrammaticalSubject": "Hongzhi Zhengjue",
+              "SpeechFrame": "The complete marked turn assigns the headword-bearing words to this named master.",
+              "FullCaseDecision": "Source record (宏智禪師廣錄; T/T48/T48n2001.xml). Exact actor: Hongzhi Zhengjue. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+            },
+            "MasterName": "Hongzhi Zhengjue"
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0058a23",
+            "ToLb": "0058b01",
+            "Kwic": "祇這個，在臨濟則照用齊行，在雲門則理事俱備，在曹洞則偏正叶通，在溈山則暗機圓合，在法眼則何止唯心。",
+            "Curated": true,
+            "AttributionNote": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "祇這個，在臨濟則照用齊行，在雲門則理事俱備，在曹洞則偏正叶通，在溈山則暗機圓合，在法眼則何止唯心。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "FullCaseDecision": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
+              "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
+            }
+          },
+          {
+            "RelPath": "X/X72/X72n1437.xml",
+            "FromLb": "0413c22",
+            "ToLb": "0413c23",
+            "Kwic": "婆云：語不知偏正，理不識倒邪，為人即禍生。",
+            "Curated": true,
+            "AttributionNote": "Source record (永覺元賢禪師廣錄; X/X72/X72n1437.xml): Lingxing Po (凌行婆) is the exact headword actor; The case introduction names (凌行婆) and (婆云) marks her exact utterance.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fubei",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "婆云：語不知偏正，理不識倒邪，為人即禍生。",
+              "GrammaticalSubject": "Lingxing Po (凌行婆)",
+              "SpeechFrame": "The case introduction names 凌行婆 and 婆云 marks her exact utterance.",
+              "FullCaseDecision": "Source record (永覺元賢禪師廣錄; X/X72/X72n1437.xml): Lingxing Po (凌行婆) is the exact headword actor; The case introduction names (凌行婆) and (婆云) marks her exact utterance."
+            },
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "named laywoman",
+              "ActorLabel": "Lingxing Po (凌行婆)",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The case introduction names 凌行婆 and 婆云 marks her exact utterance.",
+              "ReviewedBy": "Codex f003 C24 manual full-case repair author",
+              "ReviewedUtc": "2026-07-15T06:55:28.173422+00:00"
+            }
+          },
+          {
+            "RelPath": "J/J36/J36nB359.xml",
+            "FromLb": "0621b29",
+            "ToLb": "0621b29",
+            "Kwic": "雲封雉堞，偏正何分？",
+            "Curated": true,
+            "AttributionNote": "Source record (百愚禪師語錄; J/J36/J36nB359.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "雲封雉堞，偏正何分？",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "FullCaseDecision": "Source record (百愚禪師語錄; J/J36/J36nB359.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
+              "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
+            }
+          },
+          {
+            "RelPath": "J/J36/J36nB369.xml",
+            "FromLb": "0895a13",
+            "ToLb": "0895a16",
+            "Kwic": "或驗龍蛇于主賓玄要，或顯尊貴于偏正君臣，或寄聲脫象骨枷鎖，或原夢彰鶖子神通，以至天下老和尚逞盡伎倆、竭盡機思，總秖是應病與藥、憫物施權。",
+            "Curated": true,
+            "AttributionNote": "Source record (蔗菴範禪師語錄; J/J36/J36nB369.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "或驗龍蛇于主賓玄要，或顯尊貴于偏正君臣，或寄聲脫象骨枷鎖，或原夢彰鶖子神通，以至天下老和尚逞盡伎倆、竭盡機思，總秖是應病與藥、憫物施權。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "FullCaseDecision": "Source record (蔗菴範禪師語錄; J/J36/J36nB369.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
+              "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
+              "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
+            }
+          },
+          {
+            "RelPath": "X/X83/X83n1578.xml",
+            "FromLb": "0501b06",
+            "ToLb": "0501b07",
+            "Kwic": "婆曰：語不知偏正，理不識倒邪，為人即禍生。",
+            "Curated": true,
+            "AttributionNote": "Source record (指月錄; X/X83/X83n1578.xml). Exact actor: Zechuan. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zechuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "婆曰：語不知偏正，理不識倒邪，為人即禍生。",
+              "GrammaticalSubject": "Zechuan",
+              "SpeechFrame": "The complete marked turn assigns the headword-bearing words to this named master.",
+              "FullCaseDecision": "Source record (指月錄; X/X83/X83n1578.xml). Exact actor: Zechuan. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+            },
+            "MasterName": "Zechuan"
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T48/T48n2001.xml",
+          "X/X82/X82n1571.xml",
+          "X/X72/X72n1437.xml",
+          "J/J36/J36nB359.xml",
+          "J/J36/J36nB369.xml",
+          "X/X83/X83n1578.xml"
+        ],
+        "RelatedMasters": [
+          "Hongzhi Zhengjue",
+          "Zechuan"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Side and center are paired Caodong positions whose predicates concern distinction, coordination, and mutual inclusion; center is not glossed as abstract truth here.",
+          "EvidenceBody": [
+            "Addresses speak of their mutual inclusion, their coordinated use, and the danger of speech that cannot distinguish them."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "ZenBend": "The ordinary contrast becomes a named house vocabulary tested in speech rather than two fixed substances.",
+          "CounterexampleOrLimit": "The evidence establishes the described deployment but does not establish a hidden doctrine, fixed intention, or uniform appraisal.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "relative and true",
+              "its attested grammatical and encounter deployments"
+            ],
+            "Reason": "The selected witnesses retain one referent or expression; different speakers, appraisals, and grammatical frames are not different things."
+          },
+          "AliasRationale": "The aliases are natural English retrieval probes for the same stored sense, not additional interpretations.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "No apparent material or color modifier controls this headword."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Longer compounds and nearby family phrases were inventoried and were not used to pad exact standalone depth."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T48n2001",
+            "work:wudeng-quanshu",
+            "work:X72n1437",
+            "work:J36nB359",
+            "work:J36nB369",
+            "chan:zhiyue-lu"
+          ]
+        }
+      }
+    ]
+  }
+}

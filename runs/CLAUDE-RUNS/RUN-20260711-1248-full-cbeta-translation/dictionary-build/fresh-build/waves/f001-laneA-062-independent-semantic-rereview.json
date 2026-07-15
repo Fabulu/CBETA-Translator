@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "scope": {
+    "ordinal": 62,
+    "entries": 1,
+    "priorReview": "fresh-build/waves/f001-laneA-060-065-independent-semantic-review.json",
+    "repairGate": "fresh-build/waves/f001-laneA-062-actor-repair2-gate.json"
+  },
+  "reviewKind": "independent-hash-bound-semantic-rereview",
+  "policy": "The repaired entry was reread against every actor-layer finding in the prior independent review using the full stored cases. KEEP requires exact separation of the headword-bearing report/request frame from the author of the inserted comment, correct retention of contextual masters, a sound sense boundary, and a passing one-entry repair gate at the reviewed hash.",
+  "reviewed": 1,
+  "keep": 1,
+  "revise": 0,
+  "jointChecks": {
+    "repairGateHardPass": true,
+    "repairGateSha256": "413ea7623c0301c4d147005ac975cd601239c76f8205887c31c2efc1939409f1",
+    "exactKwicAndLineReplay": "7/7 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "namedOccurrences": 3,
+    "reviewedUnnamedActors": 4,
+    "workSourceHardFailures": 0,
+    "depthSenseHardFailures": 0,
+    "publicFeedbackFlags": 0,
+    "forbiddenEnglishHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_0a686fa27769",
+      "term": "著語",
+      "ordinal": 62,
+      "reviewedSha256": "413ea7623c0301c4d147005ac975cd601239c76f8205887c31c2efc1939409f1",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 1, T/T48/T48n2003.xml 0143b06",
+          "finding": "In the full Blue Cliff case, Yuanwu Keqin supplies the current report frame 雪竇著語云, while Xuedou Chongxian is the historical author of 勘破了也. The repair correctly assigns Yuanwu as exact utterer/commentator and retains Xuedou as case figure rather than collapsing the two layers."
+        },
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 2, T/T47/T47n1997.xml 0796a11",
+          "finding": "師著語云錯 is third-person record narration introducing Yuanwu's inserted verdicts. The repaired reviewed-unnamed compiler-narrator owns the headword frame, while Yuanwu remains the described comment author and record owner."
+        },
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 3, T/T48/T48n2004.xml 0241c10",
+          "finding": "The full Book of Serenity commentary shows that Wansong Xingxiu supplies 佛果著語云 and subsequently distinguishes his own response from Yuanwu's quoted comments. Wansong is therefore correctly assigned as exact report-frame utterer/commentator, with Yuanwu retained as historical comment author/case figure."
+        },
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 4, J/J25/J25nB171.xml 0514c11",
+          "finding": "The repeated 師著語云 formulas are third-person narration around Tianyin Yuanxiu's comments. The reviewed-unnamed compiler-narrator correctly owns the headword-bearing frames, and Tianyin remains the author of the reported comments and record owner."
+        },
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 5, J/J33/J33nB294.xml 0748b24",
+          "finding": "The full exchange grammatically assigns 求著語 to the unnamed monastic who raises the oil-cake case; 師云 then begins Langting Ting's separate answer. The repair correctly uses a six-rung reviewed-unnamed questioner and retains Langting as respondent and record owner."
+        },
+        {
+          "kind": "actor-layer",
+          "coordinate": "sense 1 occurrence 7, J/J32/J32nB272.xml 0192c29",
+          "finding": "Within the cited Magu exchange, 師著語云 is the compiler's third-person report frame for Hongzhi Zhengjue's inserted verdict. The reviewed-unnamed compiler-narrator correctly owns the headword, while Hongzhi remains comment author and record owner."
+        },
+        {
+          "kind": "control-actor",
+          "coordinate": "sense 1 occurrence 6, J/J27/J27nB191.xml 0161c25",
+          "finding": "Xiangtian Jinian's first-person 山僧...一一下個著語 remains the unambiguous direct master utterance and is still correctly assigned."
+        },
+        {
+          "kind": "meaning-sense-and-depth",
+          "finding": "One case-comment sense remains warranted: the inserted wording, the act of inserting it, a request for such wording, and a set of comments are grammatical/editorial packages of the same referent rather than different things. Seven exact witnesses in seven independent works satisfy the depth and multi-source gates; ordinary authorship false segmentation remains explicitly excluded."
+        },
+        {
+          "kind": "repair-gate-confirmation",
+          "finding": "The one-entry actor-repair2 gate is bound to the reviewed SHA, hard-passes all mechanical phases, replays 7/7 KWICs, records three named exact actors and four reviewed-unnamed frame actors, and reports zero attribution, source, depth, public-feedback, or forbidden-English failures."
+        }
+      ]
+    }
+  ]
+}

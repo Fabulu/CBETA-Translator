@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": [
+    751,
+    800
+  ],
+  "generatedUtc": "2026-07-15T06:04:42.641766+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneB-751-800-formal-gate.json",
+    "sha256": "a7c8649a68bbc96eb770511e3cda57c18d2e4e502250ad246211dc4c6d361296",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerified": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 760,
+  "checkpointRows": [
+    {
+      "ordinal": 751,
+      "id": "t_fa19bfa0d109",
+      "term": "佛殿",
+      "entrySha256": "9f1075d6c6e6e31b2b320c7f948ed4a58537ce3a4e751a82264c3d4cbbf4b732",
+      "worksheetSha256": "b3fc62406c57197f1c5f4ab6d072429d05058facfc5fd784df944e60d727a2d0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The building/Zen-bend prose is strong, but MasterName contains 'compiler of Zongjian Falin'; a compiler is not a master utterer. The documentary row needs ActorAttribution and all eight turns need exact-case ownership rechecked."
+    },
+    {
+      "ordinal": 752,
+      "id": "t_a29504cc83be",
+      "term": "願力",
+      "entrySha256": "3f74c31143772e2f1b6f1e6882cb9c8d6b5c04c0b31cfa901f22c5831a7d6b96",
+      "worksheetSha256": "1a2c9a1f6d9a0d1c93af493b9331f5145fa220733bef3bc31fcbfe4b4e4797bf",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The vow-efficacy definition is plausible, but 'compiler of Liezu tigang lu' and 'preface author to Yaodi dashi' are stored as MasterName. Those non-master roles invalidate exact actor ownership and the compassionate-return inference needs named anchors."
+    },
+    {
+      "ordinal": 753,
+      "id": "t_2fe5c4171ea6",
+      "term": "且道作麼生",
+      "entrySha256": "7321bdc0536a170e549db9c80a86b46bbdf95ccf17149f5fc200620069dda077",
+      "worksheetSha256": "072016c814112f8be2fbc61094e5fcd5d22f06b4f7457d005b9e690bf7c3c9c5",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The public-demand gloss fits the cases, but 'Nanyuan practitioner' is a role label rather than a roster master and several named owners may be questioners/quoters. Reconstruct each formula's exact utterer before KEEP."
+    },
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "entrySha256": "b2d699e1aeb7eef08873720bc581cb1b1b1056d43e4d6d8a4f236082054c8e61",
+      "worksheetSha256": "429313b9b74f75bbdf14619e374832401be3c59eb6c4e50d30303842a4b627c9",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The exactness sense is defensible, but two compiler labels occupy MasterName and the entry does not separate adverbial 'really' from nominal 'the exact point' where grammar makes different things. Actor and sense review remain open."
+    },
+    {
+      "ordinal": 755,
+      "id": "t_1853f433aff5",
+      "term": "開山",
+      "entrySha256": "1c3db7a6746c008d3bd77186fb8a043e77069a0855ca39308fb6ffaf5376d9dd",
+      "worksheetSha256": "f4fbe33c68c92eea66c8d00776cde819fdd0b096991ce1c769039a2b405d5e0b",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "Action and founding-abbot office are different referents despite arising from one event; the one-sense explanation merges them. 'preface author to Jifei Ruyi' is also a non-master MasterName and catalogue/biographical narration needs the exception branch."
+    },
+    {
+      "ordinal": 756,
+      "id": "t_f28429436009",
+      "term": "且喜沒交涉",
+      "entrySha256": "e2951cc0c0dc7392b530864beb9fbff53ebb51a48b3b9c16d2e84c0940409c41",
+      "worksheetSha256": "6d66d51e73d5ef759f04a0e0a35eed44dc69dcaf18ea4e598d0f564b382ea873",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The dismissive formula is well explained, but 'compiler of Liezu tigang lu' is incorrectly a MasterName. Later quotation/commentary turns must be assigned to their actual quoter rather than container or compiler."
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "entrySha256": "cc36458eb6d17a814f7c23f27610f90cd7567bd8fa06b76946da14487bc41589",
+      "worksheetSha256": "4e337e63eeea7e6dcd432d83942410f92c31786b70fde30b3cbbfff54734abf0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The lineage-jurisdiction bend is useful, but exact actors require rereading: the entry stores all rows as named masters without any reviewed exception, including contexts that may be narration or questions. The 'vehicle' ordinary image also needs a clearer physical bridge."
+    },
+    {
+      "ordinal": 758,
+      "id": "t_166e179e928c",
+      "term": "藥王菩薩",
+      "entrySha256": "385ccef173e203e847d4400969e3da4e7fbaf2c6901dae9e9e48e1845a607229",
+      "worksheetSha256": "d26e14bfe972765237426bce0d4e0e57ea315d00e03383a11f7cb3e9be70e040",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The Medicine King self-burning deployment is specific, but two 'ritual compiler' strings are placed in MasterName. Ritual headings/narration require ActorAttribution, and the quoted Lotus episode's speaker must be separated from the sermon owner."
+    },
+    {
+      "ordinal": 759,
+      "id": "t_72ba0d559d5a",
+      "term": "衲僧家",
+      "entrySha256": "4102a1266624185b597a227e5dccb9fb8115c2daab5c869553a5938dc2e39aa9",
+      "worksheetSha256": "267a274dc2a2a98e595082d379a69f34eadcfead2ae72fcd66eb5ed001fe7c22",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The collective professional-identity reading is plausible, but 'we patch-robed monks' versus 'a patch-robed monk's household/type' needs grammar control. Every row is named, so quoted or narrator-governed uses need adversarial exact-turn verification."
+    },
+    {
+      "ordinal": 760,
+      "id": "t_1b62ec7f731e",
+      "term": "禪者",
+      "entrySha256": "9751b3b457f2dd7cb711c8e20db2d3ede936c84a3578bb5626b7689ab1540773",
+      "worksheetSha256": "4e14e7fb8a05df66d6dc929794b574ceca9930b2137a28f876891043361e59c2",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The human-role definition is useful, but several labels (Yanshen, Hui’an, Zhihuang) require roster/exact-person verification and title/addressee uses may not be uttered by the named record owner. No exception branch appears across eight varied contexts."
+    }
+  ],
+  "checkpointOccurrences": 69
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [101,102,103,104,105,106,107,108,109,110],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T04:12:00Z",
+  "scope": "Final read-only rereview bound only to the latest focused gate and packet after the proactive duplicate-opening repair. Checked all original required changes, action/narration attribution, openings, senses, and regressions.",
+  "inputs": {
+    "focusedRepairGate": {"path": "fresh-build/waves/f001-laneA-101-110-focused-repair-gate.json", "sha256": "a10c0d0b2bb1091f8d93124cb35f3b24bbe9832de966d6196e449d76142d9158"},
+    "originalReview": {"path": "fresh-build/waves/f001-laneA-101-110-independent-semantic-review.json", "sha256": "568c2f798ccbb28ded3eed85a402752e3c5ea6710824b73bbe95a2ad3d9a01a5"},
+    "updatedRootReviewPacket": {"path": "fresh-build/waves/f001-laneA-091-100-root-review-packet.json", "sha256": "755f4ad0a1c68b3d4be1a7f2cedf0fdcc50c6122559f2ab97a284da276a0967a"}
+  },
+  "summary": {"KEEP": 10, "REVISE": 0, "duplicateOpeningInspection": "All eleven sense explanations were checked. The previously observed verbatim duplication is absent in the latest hashes."},
+  "findings": [
+    {"ordinal":101,"id":"t_4e30d47a452c","term":"便喝","entrySha256":"4e6726b1f9f70a5bcce172010042fc5a3d4a0326e49762d05fb702ba40a58db7","verdict":"KEEP","assessment":"Immediate narrated shout action is explained; action actors and source voice are distinguished."},
+    {"ordinal":102,"id":"t_ef39bdc0eb99","term":"擬議","entrySha256":"40eef4560dd8202c45851e07556120bb2a6bd4ff8246c93f4d92b3bc743f477f","verdict":"KEEP","assessment":"Hesitation's attested distance/error/shout/blow deployment is clear; narrated events are not treated as utterances."},
+    {"ordinal":103,"id":"t_937f63a4fb51","term":"目前","entrySha256":"f69fe2a816effe8ff158c7f4d8923bf16f0ff1b388a75b4c444ee312f9f65bd9","verdict":"KEEP","assessment":"Immediate presence versus objectification is cautiously corpus-inferred and fragment repairs retain exact context."},
+    {"ordinal":104,"id":"t_87cc840b8f33","term":"拄杖子","entrySha256":"879a965429f02ec7421aa060c727b5967512e312360f4acb792a0771664991de","verdict":"KEEP","assessment":"Teaching/testing implement, naming, transfer, gesture, and opposed recognition claims satisfy #0g."},
+    {"ordinal":105,"id":"t_ada407625f42","term":"珍重","entrySha256":"df6ecd3198e46b6602d93dc910676105f64fcf54b8153084cadade9f902f8136","verdict":"KEEP","assessment":"Valedictory dismissal and active valuing/preserving are distinct, intelligible senses with clean openings."},
+    {"ordinal":106,"id":"t_2f4b60453d19","term":"承當","entrySha256":"5bfa138d6a0df683579f2c5ed165d68c3e79f2dea61adcd3e19cb135daa21cfb","verdict":"KEEP","assessment":"Direct ownership/acceptance and warnings against premature acceptance are both preserved."},
+    {"ordinal":107,"id":"t_15026800437e","term":"分別","entrySha256":"5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9","verdict":"KEEP","assessment":"Opposing evaluations remain readings of one distinguishing act rather than a false split."},
+    {"ordinal":108,"id":"t_8f41e0da5a71","term":"意旨如何","entrySha256":"1fc56573600c58409e2e9b037453087eab3ef85b307ee068751d353bda6927aa","verdict":"KEEP","assessment":"Follow-up interview function is explicit; unnamed questioners, respondents, and cited figures are separated."},
+    {"ordinal":109,"id":"t_8a016f49e5b8","term":"思量","entrySha256":"eeffa7c65bf73c9bffc3e948f198c1e9549a509010afa983a3e137e044a2c2f3","verdict":"KEEP","assessment":"Yaoshan's marked exchange and warnings against deliberation are actor-pure and free of forbidden language."},
+    {"ordinal":110,"id":"t_cf0513be4012","term":"宗旨","entrySha256":"d4e3aee933e21316e98689ae8d3d8178122462a804345e4c4e63a4f04e7fd52d","verdict":"KEEP","assessment":"Lineage/house purport is clearly defined; biography, questioner, quoted Bodhidharma, and later quoter layers are corrected."}
+  ]
+}

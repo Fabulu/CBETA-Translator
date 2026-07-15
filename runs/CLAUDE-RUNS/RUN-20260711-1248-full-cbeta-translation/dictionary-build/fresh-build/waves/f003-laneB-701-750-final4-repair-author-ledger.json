@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "f003-laneB-701-750-final4-repair-author-v1",
+  "role": "repair-author",
+  "sourceRejectingReview": "f003-laneB-701-750-round2-fresh-independent-exact-review.json",
+  "sourceRejectingReviewSha256": "f4570ce95e50c057d6f001ef6ebcb79df495ad9070b1d328ce036bd59a47e905",
+  "finalFormalGate": "f003-laneB-701-750-final4-formal-gate-v4.json",
+  "finalFormalGateSha256": "e1b807a185332eb9e1595a5c68ec5bea9b7894f658706c5d0786b949bf5e8386",
+  "formalHardPass": true,
+  "clusterScopeIds": [
+    "t_c212062774f9",
+    "t_2da0e2fc0478",
+    "t_298f7fdd14bd",
+    "t_74390b40f658"
+  ],
+  "strictRosterScopeIds": [
+    "t_c212062774f9",
+    "t_2da0e2fc0478",
+    "t_298f7fdd14bd",
+    "t_74390b40f658"
+  ],
+  "exactKwic": {
+    "verified": 369,
+    "failures": 0
+  },
+  "attributionPackets": {
+    "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f003-laneB-701-750-final4-formal-gate-v4-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0
+  },
+  "pendingRosterPacket": "f003-laneB-701-750-final4-roster-candidates.json",
+  "priorKeepHashProof": {
+    "count": 46,
+    "allPriorKeepHashesUnchanged": true
+  },
+  "repairedEntryHashes": {
+    "t_c212062774f9": "276bd62f3ec3d618be51c0715c8d877d703b66571b7957f4bccf15885be357f0",
+    "t_2da0e2fc0478": "f47b087eaa683ae42b4f23741190261854efd2ad9666e4e7e857d33d0592757f",
+    "t_298f7fdd14bd": "5d477c70a77d34f59b57521378992113d77746deebc9ba8e105a8265bf9f322a",
+    "t_74390b40f658": "3163de7a183313d3f5eaf5ccf926f01d57b1c9941e118f5842fa925aef4d9ffe"
+  },
+  "worksheetHashes": {
+    "t_c212062774f9": "54b1184938d723863f63003853dcdacd1b11e5f307b0f0a97e3b1c7fdc329128",
+    "t_2da0e2fc0478": "abf2aaf73c2f303f86d17e732a9640356a279f74dfb70b93ae4e7a9093c07f04",
+    "t_298f7fdd14bd": "34b404b03609bbb9f31072e0e4e23dd0c55eaab4c3fab470dabbc1c8e7b1afe6",
+    "t_74390b40f658": "25009681e93c4ce13fcfcb5602ef05a35d9eb7b165fc9cb3b8d6f09cc2e93bb9"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

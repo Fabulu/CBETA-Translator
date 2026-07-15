@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": "811-820",
+  "generatedUtc": "2026-07-15T06:35:35.914034+00:00",
+  "reviewer": "Codex fresh independent reviewer (revise24 round)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+  "formalGateSha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+  "formalGateHardPass": true,
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-revise24-repair-ledger.json",
+  "repairLedgerSha256": "14ad4d62f9d0b520f08d2307bdd39adb0f7e6c9864aa7c9c143ab970f94c7994",
+  "priorIndependentReview": "fresh-build/waves/f003-laneC-801-850-repair2-independent-exact-rereview.json",
+  "priorIndependentReviewSha256": "5c3be081b84ec6ed960e50b46f8f3ed8c9e6ed2fe9f4fa3176d0d716eb12d442",
+  "occurrencesReadInFullCaseContext": 66,
+  "twentySixPriorKeepHashesUnchanged": true,
+  "summary": {
+    "KEEP": 5,
+    "REVISE": 5
+  },
+  "systemicFinding": "The exact KWIC and formal gates are genuinely clean, but the repair script used local punctuation patterns to replace compiler labels with generic reviewed-unnamed voices. Complete-case reading repeatedly finds named section masters and explicit names (including 了庵欲禪師, 道吾真, 羅漢機, and 凌行婆). Mechanical hardPass therefore does not license promotion.",
+  "checkpoint": true,
+  "rows": [
+    {
+      "ordinal": 811,
+      "id": "t_fa8ad027aa5b",
+      "term": "傳燈錄",
+      "entrySha256": "46b9710cff03ae375d9e27b59802923d5ef6ebd0d59c57e0fb62a5df9e7aa80a",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 812,
+      "id": "t_df404be00a88",
+      "term": "鐘鼓",
+      "entrySha256": "109d9963ae4af27c83e4fa6d1823b4acc28503949308503dec665f1ebf3220c8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — The headword occurs in a named address verse (O3), a named whisk discourse (O4), a named teaching turn (O6), and a citation introduced as 正法眼藏云 (O7). These require separate verse-author, utterer, and later-quoter decisions; one anonymous presiding-speaker label erases those distinctions."
+    },
+    {
+      "ordinal": 813,
+      "id": "t_016c13af32f9",
+      "term": "曲彔木",
+      "entrySha256": "98e93050dfba5ac601b5601f30fec58a9e4b90ee7d7c0c418e0dd270aeab522b",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 814,
+      "id": "t_8eeed0b7412a",
+      "term": "唯嫌揀擇",
+      "entrySha256": "e433eaf43dc02e14c00d61d6167e5e5bc5a8dbe1bcd336132484870899a2c57a",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 815,
+      "id": "t_39fb2a2c1c9b",
+      "term": "祖意",
+      "entrySha256": "6ebc53dbdc35ef69495f730978cc308bd5bdba2895c64d698eb2efeaa4b4929a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O4 is in Linji Yixuan's recorded discourse and O3 is in a named master's section; neither is an anonymous presiding voice. O6 may be a non-master questioner, but the repair did not distinguish that legitimate exception from the recoverable masters."
+    },
+    {
+      "ordinal": 816,
+      "id": "t_d9d8f344ad00",
+      "term": "人天眼目",
+      "entrySha256": "830dac97209437bbc03de8651657e03c0674f790ba67a9f97c661453e35c4615",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 817,
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "entrySha256": "d86eb0131500f8d740e6609c00309387bc3fcc99c589b25259b00570efaa3e81",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O2 is explicitly 示眾云 in the named section surrounding the passage. The exact master is recoverable from the section header, so a reviewed-unnamed presiding speaker is not an acceptable final attribution."
+    },
+    {
+      "ordinal": 818,
+      "id": "t_1446abf489c0",
+      "term": "袈裟",
+      "entrySha256": "41f3faad3ed7c09bcd47721dcef8264bf3d7a999a987e1297a5cc7b01f9453b7",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O2 is a long first-person teaching discourse whose named record owner is recoverable, while O7 is an embedded exchange involving Xiaotang and another speaker. Both are collapsed into the same anonymous voice rather than assigned turn by turn."
+    },
+    {
+      "ordinal": 819,
+      "id": "t_5120f0eca9c7",
+      "term": "金剛神",
+      "entrySha256": "d834cb99c5ebc873d879fd534111a0744390728f31db1350d0b1dda47567218f",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 820,
+      "id": "t_654e2e9bef8d",
+      "term": "臨機",
+      "entrySha256": "3bf95c63217eca83a9670ef3911dd969b311c28224eaf4918228764717d54095",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O2–O4 are spoken verse/discourse in named sections. The repair correctly stops calling them compiler narration but stops one rung too soon: it never resolves the named speaker, and records no respondent/quoted-case exception that would justify anonymity."
+    }
+  ]
+}

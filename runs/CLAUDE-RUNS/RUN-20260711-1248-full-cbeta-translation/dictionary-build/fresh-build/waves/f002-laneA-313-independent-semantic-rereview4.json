@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-focused-rereview",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": [
+    313,
+    313
+  ],
+  "reviewedUtc": "2026-07-15T03:02:04.958100+00:00",
+  "readOnly": true,
+  "siteTouched": false,
+  "summary": {
+    "KEEP": 1,
+    "REVISE": 0
+  },
+  "findings": [
+    {
+      "ordinal": 313,
+      "id": "t_c81bf91e508f",
+      "term": "換卻眼睛",
+      "entrySha256": "c4aecd775c595a546b4efdc138e50981e0e467eac0d462924a9a6f5bd57a2221",
+      "worksheetSha256": "82cbe2682bb03874ff28f370c99a6393c435819b2fe792458792784d5f154ee8",
+      "verdict": "KEEP",
+      "finding": "KEEP — the formerly broken frequency sentence is repaired (“The exact phrase occurs in 45 allowlisted texts”). The exact actor/action remains correct: Miaoyun’s commentary makes the unnamed questioner the person whose eyes are swapped out by Xuansha’s reply. The adverse seeing-displacement definition, cases, and no-literal-operation limit remain coherent at this exact hash.",
+      "formalizationCondition": "Verdict applies only to this exact entry SHA-256."
+    }
+  ]
+}

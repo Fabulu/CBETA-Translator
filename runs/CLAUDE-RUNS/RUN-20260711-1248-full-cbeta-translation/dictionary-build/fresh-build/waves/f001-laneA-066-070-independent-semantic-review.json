@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "scope": {
+    "ordinals": [66, 70],
+    "entries": 5,
+    "packet": "fresh-build/waves/f001-laneA-066-070-semantic-review-packet.json"
+  },
+  "reviewKind": "independent-full-case-semantic-review",
+  "policy": "Hash-bound read-only review under the current DICTIONARY_ENTRY_GUIDE.md. KEEP requires correct meaning and different-thing boundaries, explicit control of literal versus Zen-loaded inference, exact headword utterer rather than later transmitter or contextual master, independent work support, sufficient depth, a corpus-earned English opening, accurate rank-pair vocabulary, controlled aliases, anchored claims and quotations, public-feedback compliance, and zero forbidden framing.",
+  "reviewed": 5,
+  "keep": 3,
+  "revise": 2,
+  "jointChecks": {
+    "exactOccurrences": 35,
+    "exactKwicAndLineReplay": "35/35 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "quotedChineseAnchored": "2/2 PASS",
+    "depthSenseHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "publicFeedbackMechanicalFlags": 0,
+    "forbiddenTermHits": 0,
+    "independentActorLayerDefects": 5,
+    "independentAliasDefects": 1
+  },
+  "entries": [
+    {
+      "id": "t_fd1759947989",
+      "term": "大死",
+      "ordinal": 66,
+      "reviewedSha256": "491cc0b189dca2ccf1a92d0728c585362595beb5c156ab29b47c9ca7365f78ea",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-literal-control",
+          "finding": "The death image is preserved rather than replaced by an abstraction, while five witnesses explicitly pair the great death with rising alive, turning back, emerging, or returning alive. That repeated completion excludes both bodily death and a final inert state without requiring imported symbolism. The remaining bite-through and true/false witnesses describe the same demanded event, not another object or sense."
+        },
+        {
+          "kind": "opening-and-evidence",
+          "finding": "The opening states the attested falling-away and return-to-response pattern before detailing speakers. It does not convert the image into a doctrinal attainment. Each named contrast—discriminations made one, contention ceasing, biting through, true and false passing together, conditioned dust falling away, and returning alive—is supported by its full case."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All seven rows are direct statements by the assigned masters. The two Yuanwu witnesses are independent works rather than double-counted as independent speakers; the batch still has seven works and six speakers. Depth, source inventory, death/return aliases, quotation boundaries, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_f7bdd2def0ec",
+      "term": "截斷眾流",
+      "ordinal": 67,
+      "reviewedSha256": "975ef8db944da8fad026247fa282eb1d65d5baa9383dc41a2fe5c6923aabd3ee",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-literal-control",
+          "finding": "The entry correctly retains the stream-cutting image while describing its attested application to a phrase, shout, voicing, movement, sword-like capacity, and fragrant-elephant comparison. No witness reports literal hydrological work. These are deployments and comparisons of one image, not different things."
+        },
+        {
+          "kind": "opening-and-counterevidence",
+          "finding": "The opening first explains the observable corpus action—stopping proliferating routes of discrimination and response—and then locates the image in the Yunmen three-phrase frame. Tianyin Yuanxiu's statement that even stream-cutting remains outside the gate is retained prominently, preventing a final-attainment gloss."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All seven exact turns belong to the assigned current speakers; Yunmen is correctly contextual rather than made the utterer of Yuanwu's classification. Seven independent works meet depth. Aliases, SourceTexts, anchored evidence, public-feedback rules, and forbidden framing pass."
+        }
+      ]
+    },
+    {
+      "id": "t_097f38f58678",
+      "term": "庭前柏樹子",
+      "ordinal": 68,
+      "reviewedSha256": "0630e852673e6a3b84086d2014e2b7b91d23400d4effa67b461cf966f837b41b",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-literal-control",
+          "finding": "One fixed case-answer sense is correct. The entry appropriately preserves the courtyard tree, reports Zhaozhou's denial that he is showing an external scene, and limits itself to rejecting the specifically attested cosmic-body explanation rather than inventing a replacement symbolism. Later questioning, warnings about dying in the words, and the attribution dispute concern the same case-answer."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 1, T/T47/T47n1998A.xml 0831b01",
+          "finding": "The stored KWIC contains two headword tokens at different quoted layers: Zhaozhou's 州云。庭前柏樹子 and Wuzu Fayan's subsequent raising/repetition. Dahui supplies the outer report and later comment but does not utter either embedded headword token. The row cannot remain MasterName=Dahui; separate or otherwise represent the token layers, naming Zhaozhou and Wuzu as their exact quoted speakers and Dahui as later transmitter/commentator."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 2, T/T47/T47n2000.xml 0989c29",
+          "finding": "The headword follows 州云 inside the raised historical exchange. Zhaozhou Congshen is the exact quoted utterer; Xutang Zhiyu is the later raiser/commentator. Current MasterName=Xutang collapses those layers."
+        },
+        {
+          "kind": "exact-actor-and-attribution-dispute",
+          "coordinate": "sense 1 occurrence 3, T/T48/T48n2004.xml 0256c28",
+          "finding": "In the stored KWIC, 往來皆謂 introduces a conventional report and 州曰 assigns the headword to Zhaozhou, after which Huijue explicitly denies that his former teacher ever said it. Wansong is the current reporter/commentator, not the quoted headword speaker. Represent the saying as conventionally attributed to Zhaozhou, retain Wansong as reporter and Huijue as denier, and preserve the dispute rather than silently authenticating or orphaning the saying."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 6, J/J26/J26nB188.xml 0766a11",
+          "finding": "The stored headword is directly inside Ruibai Mingxue's quotation 州云：庭前柏樹子. Zhaozhou is the exact historical utterer; Ruibai is later quoter and commentator. Current MasterName=Ruibai is incorrect at the headword layer."
+        },
+        {
+          "kind": "actor-controls",
+          "finding": "Occurrences 4, 5, and 7 remain correctly assigned to Tianran Hanshi, Hanyue Fazang, and Langting Ting because each owns the headword in his present commentary or question rather than merely transmitting a direct Zhaozhou quotation."
+        },
+        {
+          "kind": "depth-work-and-retrieval",
+          "finding": "Seven works, the corpus-earned opening, aliases, sense boundary, source inventory, and quotation anchoring otherwise pass. Repairing the quotation layers must preserve work independence rather than counting nested speakers as new works."
+        }
+      ]
+    },
+    {
+      "id": "t_d4661c1b4dbb",
+      "term": "正中偏",
+      "ordinal": 69,
+      "reviewedSha256": "02e274d6e36695572fae65b48ad9f6a90130c001c8cc310251a7560eaef924a6",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-rank-boundary",
+          "finding": "One Five Ranks relation is warranted. Caoshan's full case explicitly defines 正 as the empty/upright position, 偏 as the forms/partial position, glosses 正中偏 as turning from principle toward affairs, and gives the lord-looking-toward-minister relation. The conventional target 'the relative within the absolute' follows that direction. Later verses, a diagram, and Ruibai's shout illustrate or apply the same named rank and do not establish another sense."
+        },
+        {
+          "kind": "rank-pair-alias",
+          "finding": "SearchAliases contains 'upright within partial Five Ranks,' which reverses the pair and describes the direction associated with 偏中正 rather than 正中偏. Replace it with 'partial within upright Five Ranks' (or another correctly ordered equivalent). The current PreferredTarget and AlternateTarget 'the partial within the upright' are correctly ordered."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 7, J/J38/J38nB406.xml 0160a04",
+          "finding": "Tianran explicitly labels the stanza 原頌, records it, and then supplies a separate 和曰 matching verse. He is later quoter and response-author, not the author of the headword-bearing original stanza. Resolve the original verse author through the six-rung ladder/parallel witness (the entry currently calls it Dongshan's older verse), assign that historical author if established, and retain Tianran as later quoter/commentator; otherwise use a reviewed-unnamed historical verse-author rather than Tianran."
+        },
+        {
+          "kind": "actor-controls",
+          "finding": "Caoshan, Hongzhi, Langting, Juelang, and Ruibai own their exact prose, verse, diagrammatic statement, or applied classification. The anonymous monastic correctly owns 如何是正中偏 while Fenyang remains respondent."
+        },
+        {
+          "kind": "opening-depth-and-evidence",
+          "finding": "The opening's relational account is corpus-earned from Caoshan's full case and cautiously treats changing images as illustrative rather than definitions. Seven independent works meet depth; SourceTexts and anchored quotations otherwise pass."
+        }
+      ]
+    },
+    {
+      "id": "t_2852a9ae231c",
+      "term": "隨波逐浪",
+      "ordinal": 70,
+      "reviewedSha256": "3aac6fc2c72842cb6bb738d9e4842dd785167a09238d2dd176776a934ac708d5",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "Responsive movement with the occasion and criticized drift with discriminating thought are positive and negative evaluations of the same wave-following action, not different objects or incompatible subject frames. The technical Yunmen phrase-function remains visibly connected to the ordinary wave image rather than being replaced by an abstract doctrinal label."
+        },
+        {
+          "kind": "opening-and-counterevidence",
+          "finding": "The opening states responsive movement first and immediately retains Feiyin Tongrong's critical deployment. Yuanwu's knowing-companion and paired stream-cutting passages, Hongzhi's appraisal of Yunmen, Tianyin's turning back, Ruibai's affair-with-affair definition, and Shiyu's 'only managed' limitation all follow from the respective full cases."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All seven exact headword turns belong to the assigned current commentators or record owners; Yunmen and the criticized monastic are correctly persons discussed rather than headword utterers. Seven independent works meet depth. Natural wave/current aliases, sources, quote boundaries, public-feedback rules, and forbidden-language checks pass."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "residual-independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [76, 80],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T00:47:38Z",
+  "scope": "Hash-bound rereview of the two residual semantic repairs against the preceding independent rereview and the corrected complete-case attribution packet. The requested fixes and regressions were checked read-only; entries and website were not edited.",
+  "inputs": {
+    "rereviewPacket": {
+      "path": "fresh-build/waves/f001-laneB-076-080-residual-semantic-rereview-packet.json",
+      "sha256": "a73aadfef9dfb741fe9a833357f7e9db7d571aa97eb21a36901d75ca8ee1343f"
+    },
+    "repairGate": {
+      "path": "fresh-build/waves/f001-laneB-076-080-residual-repair-gate.json",
+      "sha256": "99b7e1c11956ad494e8f28e174e936c4c4673a4a0a39791ef17ef7d27c28d9fd"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneB-076-080-residual-repair-gate-attribution-packets.json",
+      "sha256": "52dbc13ff98b3295d00d738351a77e5f2c915a2c4206021aea85cdb97c9c0c23"
+    },
+    "priorIndependentRereview": {
+      "path": "fresh-build/waves/f001-laneB-071-080-independent-semantic-rereview.json",
+      "sha256": "11283e17cf07a886496dabc0149246d02fc44fe89ac8028db4017bafbb8ed794"
+    }
+  },
+  "summary": {
+    "KEEP": 1,
+    "REVISE": 1,
+    "reviseOrdinals": [76]
+  },
+  "findings": [
+    {
+      "ordinal": 76,
+      "id": "t_b26bfa9e399e",
+      "term": "迴光返照",
+      "entrySha256": "fc4dd950fadc609cf20b6ac0e872206b84019e4f85a550ef5574c2158fe9338f",
+      "verdict": "REVISE",
+      "repairVerification": "The requested X70n1402 ClaimAnchor is now present, verified, actor-pure, and reader-visible: Zhongfeng Mingben directly criticizes those who withdraw sight and hearing in quiet, become like wood and stone, and call that 回光返照. The anchor fully repairs the prior evidentiary defect. However, the repair introduced a prose regression: the final three-sentence Zhongfeng/Miyun paragraph is duplicated three times verbatim in Explanation. This is visible template corruption and cannot pass as publishable prose even though the evidence mechanics pass.",
+      "requiredChanges": [
+        "Deduplicate Explanation so the closing Zhongfeng description/falsification and Miyun reversed-form sentence appear exactly once; preserve the new X70n1402 ClaimAnchor unchanged and rerun the mechanical gate."
+      ]
+    },
+    {
+      "ordinal": 80,
+      "id": "t_12e8cba30de6",
+      "term": "老僧",
+      "entrySha256": "7a58955d0ef46d5533bf285c95a533812d4d49a715247cb9b06b47559da2a8a2",
+      "verdict": "KEEP",
+      "repairVerification": "The X68n1318 full case opens the enclosing turn with 師乃云. The repaired row now correctly assigns MasterName=Yungai Zhiben with utterer/record-owner/later-raiser roles, removes the false narrated/compiler branch, and retains Puhui only as person-described/case-figure. The AttributionNote states the same actor distinction. Both the corpus-wide human-role sense and Chaozong's separate local explicit equation remain unchanged and sound.",
+      "requiredChanges": []
+    }
+  ]
+}

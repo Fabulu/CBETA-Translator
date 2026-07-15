@@ -1,0 +1,250 @@
+{
+  "Id": "t_1e41b014d80e",
+  "SourceTerm": "向上一路",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T23:45:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the road upward",
+      "AlternateTargets": [
+        "the upward road",
+        "the way beyond"
+      ],
+      "SearchAliases": [
+        "road upward",
+        "upward road",
+        "way beyond"
+      ],
+      "Status": "preferred",
+      "Explanation": "The phrase names a singular “road upward” repeatedly posed as beyond transmitted formulas. Panshan Baoji places it after both mind-is-Buddha and not-mind-not-Buddha and says the thousand sages do not transmit it, while students exhaust themselves like apes grasping reflections. An unnamed monk asks Dongyan Kexiu what the road is, and Dongyan answers by raising his robe collar. Ciming Chuyuan's variation says the thousand sages do not make it so. Other unnamed monks ask Xuedou Daorong, Bianlong, and Foyan Qingyuan about the road and receive sharply different replies: numerical nonsense, “beneath your feet,” and a refusal to frame it as upward or downward. The stable lexical item is the challenged road; the divergent answers prevent converting it into one explanatory teaching. Juelang Daosheng later distinguishes the road as separately honored after a three-sentence classification, adding an institutional deployment rather than another copy of Panshan’s line.",
+      "Validation": "multi-source",
+      "Note": "Seven exact witnesses from six distinct works. The duplicate Panshan parallel was retained only as attribution support outside curated depth and replaced by Juelang Daosheng’s distinct deployment.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0077b08",
+          "ToLb": "0077b09",
+          "Kwic": "若言非心非佛。猶是指蹤極則。向上一路。千聖不傳。學者勞形。如猿捉影。",
+          "MasterName": "Panshan Baoji",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Panshan Baoji",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Panshan Baoji says the road upward is not transmitted by the thousand sages and students chase it like apes grasping reflections."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0354b10",
+          "ToLb": "0354b11",
+          "Kwic": "問如何是向上一路。師舉衣領示之。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dongyan Kexiu",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Record of the Transmission of the Lamp Published in the Jingde Era (景德傳燈錄): an unnamed monk asks what the road upward is; Dongyan Kexiu raises his robe collar."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0096a19",
+          "ToLb": "0096a19",
+          "Kwic": "向上一路，千聖不然。",
+          "MasterName": "Ciming Chuyuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Ciming Chuyuan",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "later-quoter",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): Dahui Zonggao quotes Ciming Chuyuan's variation that the thousand sages do not make the road upward so."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0021a10",
+          "ToLb": "0021a10",
+          "Kwic": "如何是向上一路？師曰：七六八。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Daorong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): an unnamed monk asks what the road upward is; Xuedou Daorong answers “seven, six, eight.”"
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0020b12",
+          "ToLb": "0020b13",
+          "Kwic": "如何是向上一路？師曰：脚下底。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Bianlong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps, fascicles 10–25 (五燈嚴統(第10卷-第25卷)): an unnamed monk asks about the road upward; Bianlong answers “beneath your feet.”"
+        },
+        {
+          "RelPath": "D/D48/D48n8939.xml",
+          "FromLb": "0013b09",
+          "ToLb": "0013b10",
+          "Kwic": "向上一路還許學人會也無師云不論向上向下却許你會",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): an unnamed monk asks whether the road upward may be understood; Foyan Qingyuan refuses the upward-versus-downward frame."
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0596a04",
+          "ToLb": "0596a05",
+          "Kwic": "須知向上一路尊貴自別。",
+          "MasterName": "Juelang Daosheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Record of Chan Master Juelang Daosheng (天界覺浪盛禪師全錄): Juelang Daosheng distinguishes the upward road as separately honored after a three-sentence classification."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2076.xml",
+        "X/X82/X82n1571.xml",
+        "X/X81/X81n1568.xml",
+        "D/D48/D48n8939.xml",
+        "J/J34/J34nB311.xml"
+      ],
+      "RelatedMasters": [
+        "Panshan Baoji",
+        "Dongyan Kexiu",
+        "Ciming Chuyuan",
+        "Dahui Zonggao",
+        "Xuedou Daorong",
+        "Bianlong",
+        "Foyan Qingyuan",
+        "Juelang Daosheng"
+      ],
+      "RelatedTerms": [
+        "千聖不傳",
+        "向上",
+        "向下",
+        "一路"
+      ]
+    }
+  ]
+}

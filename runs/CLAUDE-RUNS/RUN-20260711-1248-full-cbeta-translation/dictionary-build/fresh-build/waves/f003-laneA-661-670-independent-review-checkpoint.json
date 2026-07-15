@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    700
+  ],
+  "generatedUtc": "2026-07-15T05:54:01.672098+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f003-laneA-651-700-current-semantic-review-packet.json",
+  "sourcePacketSha256": "026718d7e89c9a1264e4490f0284598ca6620d6e37e63dcb3cf59240f98b670c",
+  "sourcePacketStaleEntryHashes": 17,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-current.json",
+    "sha256": "2a942880b2e5c412f8b1687957a54d62fdbe333582d2a3a0cd4f15e28c556a9a",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerifiedAgainstFormalGate": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 670,
+  "checkpointRows": [
+    {
+      "ordinal": 661,
+      "id": "t_f74516e0ba71",
+      "term": "藥師",
+      "entrySha256": "e4744be7b5b2580e6ce4408950fb0dd3f1c8d1c308e5618e1dbd72c879cff01c",
+      "worksheetSha256": "efd072bf49f929cb9824c6a3d02bbc077bd793d276c146fdba57926698569f96",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "藥師 is under-split: the corpus includes Medicine Buddha/ritual-title material, temple/name strings, and likely occupational wording, while the single target 'medicine master' and generic figure paragraph identify none of them. Actor labels such as 御選 and a poem title are not masters."
+    },
+    {
+      "ordinal": 662,
+      "id": "t_279cf2b97244",
+      "term": "佛祖",
+      "entrySha256": "2b725ef6ce27d38f5973ad23273858f5341c8ef60a625b012caa32fdc5a2677c",
+      "worksheetSha256": "d1c069df7fc53e5652fafd4d30a313706a9e8cb20a2ee970266fc35b650589a8",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "佛祖 is a collective phrase, not one 'figure.' The generic template omits its paired authority/lineage usage; the 古庭語錄 preface occurrence is specifically written by the named preface author Wu Yingbin (吳應賓), not an anonymous compiler, while other catalogue/preface rows and Chinese master labels remain unresolved."
+    },
+    {
+      "ordinal": 663,
+      "id": "t_127d59c584e2",
+      "term": "彌勒",
+      "entrySha256": "39c5a5b49ede88a5d11d2bcec634cfe23b3f514ae031984608a045b4c9fb8b7b",
+      "worksheetSha256": "2fbe8994871b2027693e709cffcfdd13049ff7d6e13fc85c60b7b053f109c6a5",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The Maitreya article is generic and does not surface the Chan deployments visible in the witnesses, including public questions and named-case uses. A catalogue row contributes no defining action, and Chinese master labels remain unresolved."
+    },
+    {
+      "ordinal": 664,
+      "id": "t_10cf4ef63613",
+      "term": "竹篦",
+      "entrySha256": "c583e114bd8122545544031c7992520ceaaf3a897c462117c5dc3c6dd856be0d",
+      "worksheetSha256": "921c51fa1076ee40773c048c45fcc2e8e38ce538ac9f16ca653cfd973966466e",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The bamboo-switch interpretation is promising, but the full contexts include Dahui's explicit naming/refusal test and quoted older turns whose utterers are not reliably separated. Five Chinese-script MasterName values violate roster-exact linkage and one quoted turn is compiler-owned."
+    },
+    {
+      "ordinal": 665,
+      "id": "t_086985319a5b",
+      "term": "出世",
+      "entrySha256": "b81fd19f665cba23e3a0457d5b03a0dca34833d8024dfe9f07a7c7b0fe9e556b",
+      "worksheetSha256": "cfb914d0da61b46c6dbe8cf5366213f69244abc6f8ae02874cb14d366f8d9933",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The explanation merges a buddha's appearance, a master's inauguration/public service, and ordinary emergence without a different-referent test. Catalogue evidence and non-roster actor names prevent the claimed Zen institutional bend from being securely anchored."
+    },
+    {
+      "ordinal": 666,
+      "id": "t_612cae8da268",
+      "term": "阿育王",
+      "entrySha256": "5615d249b40f701be87cf607f40269582ca72ed0cb504123f116b127fd01329d",
+      "worksheetSha256": "f66ba9fe7567fd7b9d9558e00b7a07fa8ffebd22e941e78e26a922e3a622c1ad",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The generic Ashoka paragraph never identifies the relic/stupa and royal-question deployments actually present. Two catalogue/genealogy rows and four Chinese-script actor labels make the selected evidence both semantically thin and attribution-defective."
+    },
+    {
+      "ordinal": 667,
+      "id": "t_c4a694970a12",
+      "term": "洗鉢盂",
+      "entrySha256": "11fd5159f4e11143096ef606d9dfb5c124bd84c6c78ae8a3f167d8c08fcf331c",
+      "worksheetSha256": "dfb9204fd5f9ece535bfc93c290b3c4649a6823e47864e8cf73b6c65b64ca106",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The ordinary bowl-washing scene and Zhaozhou bend are well stated, but later quoted retellings are assigned to compiler narration and the named masters are stored in non-roster Chinese forms. Exact utterer ownership therefore still fails."
+    },
+    {
+      "ordinal": 668,
+      "id": "t_04efe13911ae",
+      "term": "不識",
+      "entrySha256": "3e87b15ae928ec79e0cdf140974ea3cba5648c92b4f6c6fbee9f8870259fd6ed",
+      "worksheetSha256": "15926f0ae4f920e31a1479753c6df79fb4971c6c090a512db2d138b51187a764",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The prose usefully distinguishes denial from ignorance but claims a corpus test it does not spell out witness by witness. Multiple 師云/quoted answers remain narrator-owned, and the two named masters are not roster-exact."
+    },
+    {
+      "ordinal": 669,
+      "id": "t_d8641f5a5751",
+      "term": "優波離",
+      "entrySha256": "426bb4ba3ca75d72315d72f0fc05da38a066d23ca34942c45e23008cd6b35ca0",
+      "worksheetSha256": "686d6e04a9a6ac4b6062a68208b47297d9b1e0f48fa04646c621e02ea106b023",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The generic Upali paragraph omits his precept/Vinaya role—the reason the Chan record invokes him—and does not separate the person from names/titles. Both named masters are Chinese-script labels and an embedded speech passage is compiler-owned."
+    },
+    {
+      "ordinal": 670,
+      "id": "t_ed44feb90bc1",
+      "term": "晚參",
+      "entrySha256": "a80288a95f46182e926f4ac72516801cfcb2cd18ec2143093aa45b9799d977ff",
+      "worksheetSha256": "dbcd75cc317a9eb1a0128d7c90a58e27c2cba3eeb055b046c26fdf7e59fa3360",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "An evening address is an institutional event, not the category menu 'implement, office, rite, or communal act.' The entry needs the actual evening hall sequence and contrast with other address forms, and its four master names are not roster-exact."
+    }
+  ],
+  "checkpointOccurrenceCount": 70
+}

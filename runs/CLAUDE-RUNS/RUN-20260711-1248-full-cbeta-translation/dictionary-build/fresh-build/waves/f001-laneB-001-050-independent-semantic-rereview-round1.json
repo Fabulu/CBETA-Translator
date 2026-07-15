@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "B",
+  "round": 1,
+  "reviewKind": "independent-semantic-repair-rereview",
+  "repairLedger": "fresh-build/waves/f001-laneB-001-050-repairs-round1.json",
+  "policy": "Hash-bound read-only re-review of the repaired entries. KEEP requires genuinely different referents, distinguishable PreferredTargets, honest one-work provisional labelling, an exact headword actor, exact source-backed KWIC and line replay, valid source/work spread, evidence-specific reader prose, useful non-display aliases, and zero forbidden framing.",
+  "reviewed": 2,
+  "keep": 2,
+  "revise": 0,
+  "jointChecks": {
+    "exactKwicAndLineReplay": "16/16 PASS",
+    "headwordPresentInKwic": "16/16 PASS",
+    "attributionHardFailures": 0,
+    "depthSenseHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "publicFeedbackFlags": 0,
+    "forbiddenTermHits": 0,
+    "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  },
+  "entries": [
+    {
+      "id": "t_48e808f5d2a7",
+      "term": "門庭",
+      "reviewedSha256": "f76e07ab027aea19c7913bea7f823da84e838640994ccbe736c7e0b41abadcfb",
+      "verdict": "KEEP",
+      "findings": {
+        "differentThings": "PASS — 'the public teaching front of a Chan house' denotes an institution's outward teaching arrangement, whereas 'a gate and entrance court' denotes an architectural structure and spatial threshold. The targets distinguish the referents without relying on capitalization, grammar, stance, or explanatory prose.",
+        "literalSenseConfidence": "PASS — the physical sense has one independent work and is labelled provisional. The entry and WORK.md explicitly say that the search found no equally unambiguous second architectural full case; it does not borrow institutional witnesses to inflate confidence.",
+        "evidenceAssignment": "PASS — seven institutional occurrences remain under the primary multi-source sense. Konggu Daocheng's Sansheng Monastery entrance case alone anchors the physical sense: 至殿門 supplies the hall-gate setting, his pointing supplies the visible object, and enter/leave/reside supply spatial predicates.",
+        "exactActor": "PASS — Konggu Daocheng is the exact headword utterer, pointing actor, verse-free direct speaker, and record owner in the literal witness. The other seven rows pass the attribution audit, including the reviewed unnamed questioner and the identified non-master preface writer Li Pan.",
+        "depthAndWorkIdentity": "PASS — the primary sense has seven witnesses from seven source files/works and multi-source validation; the literal sense has one source/work and provisional validation. SourceTexts exactly match the occurrence-source sets.",
+        "readerProseAndAliases": "PASS — both explanations begin with the actual referent, describe only predicates present in the stored cases, preserve the physical/institutional bridge without re-collapsing it, and provide separate institutional versus architectural lookup probes.",
+        "forbiddenLanguage": "PASS — no forbidden framing hit appears in reader-facing fields."
+      }
+    },
+    {
+      "id": "t_efa1e241a7f0",
+      "term": "擔荷",
+      "reviewedSha256": "44e43e03f9bd531cc2c0bfba43f57b06b1144b2292c331223000dd9101937250",
+      "verdict": "KEEP",
+      "findings": {
+        "differentThings": "PASS — 'to shoulder responsibility' denotes assuming and bearing an institutional or lineage charge, whereas 'to carry a load on the shoulder' denotes physical transport of cargo. Explicit firewood and a broken carrying pole create an incompatible physical-object/event frame rather than a mere grammatical or speaker difference.",
+        "literalSenseConfidence": "PASS — the physical-cargo sense has one independent work and is labelled provisional. The entry and WORK.md record the unsuccessful search for an equally explicit second cargo case and do not use figurative one-shoulder language as padding.",
+        "evidenceAssignment": "PASS — seven responsibility, succession, authority, ability, and inability witnesses remain under the primary multi-source sense. Xisou Shaotan's firewood verse alone anchors the physical sense and explicitly supplies cargo, one shoulder, and the broken pole.",
+        "exactActor": "PASS — Xisou Shaotan is correctly identified as exact verse-author, headword utterer, and record owner. The other seven exact actors are named and all attribution rows pass the audit.",
+        "depthAndWorkIdentity": "PASS — the responsibility sense has seven witnesses across five source files and multiple independent works; the literal sense has one source/work and provisional validation. SourceTexts exactly match occurrence-source sets.",
+        "readerProseAndAliases": "PASS — the two explanations are evidence-specific, keep responsibility and cargo separate while naming the bodily metaphorical bridge, and store distinct responsibility versus cargo lookup probes without treating aliases as extra meanings.",
+        "forbiddenLanguage": "PASS — no forbidden framing hit appears in reader-facing fields."
+      }
+    }
+  ]
+}

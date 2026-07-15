@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": [
+    751,
+    800
+  ],
+  "generatedUtc": "2026-07-15T06:04:42.641766+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneB-751-800-formal-gate.json",
+    "sha256": "a7c8649a68bbc96eb770511e3cda57c18d2e4e502250ad246211dc4c6d361296",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerified": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "rows": [
+    {
+      "ordinal": 751,
+      "id": "t_fa19bfa0d109",
+      "term": "佛殿",
+      "entrySha256": "9f1075d6c6e6e31b2b320c7f948ed4a58537ce3a4e751a82264c3d4cbbf4b732",
+      "worksheetSha256": "b3fc62406c57197f1c5f4ab6d072429d05058facfc5fd784df944e60d727a2d0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The building/Zen-bend prose is strong, but MasterName contains 'compiler of Zongjian Falin'; a compiler is not a master utterer. The documentary row needs ActorAttribution and all eight turns need exact-case ownership rechecked."
+    },
+    {
+      "ordinal": 752,
+      "id": "t_a29504cc83be",
+      "term": "願力",
+      "entrySha256": "3f74c31143772e2f1b6f1e6882cb9c8d6b5c04c0b31cfa901f22c5831a7d6b96",
+      "worksheetSha256": "1a2c9a1f6d9a0d1c93af493b9331f5145fa220733bef3bc31fcbfe4b4e4797bf",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The vow-efficacy definition is plausible, but 'compiler of Liezu tigang lu' and 'preface author to Yaodi dashi' are stored as MasterName. Those non-master roles invalidate exact actor ownership and the compassionate-return inference needs named anchors."
+    },
+    {
+      "ordinal": 753,
+      "id": "t_2fe5c4171ea6",
+      "term": "且道作麼生",
+      "entrySha256": "7321bdc0536a170e549db9c80a86b46bbdf95ccf17149f5fc200620069dda077",
+      "worksheetSha256": "072016c814112f8be2fbc61094e5fcd5d22f06b4f7457d005b9e690bf7c3c9c5",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The public-demand gloss fits the cases, but 'Nanyuan practitioner' is a role label rather than a roster master and several named owners may be questioners/quoters. Reconstruct each formula's exact utterer before KEEP."
+    },
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "entrySha256": "b2d699e1aeb7eef08873720bc581cb1b1b1056d43e4d6d8a4f236082054c8e61",
+      "worksheetSha256": "429313b9b74f75bbdf14619e374832401be3c59eb6c4e50d30303842a4b627c9",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The exactness sense is defensible, but two compiler labels occupy MasterName and the entry does not separate adverbial 'really' from nominal 'the exact point' where grammar makes different things. Actor and sense review remain open."
+    },
+    {
+      "ordinal": 755,
+      "id": "t_1853f433aff5",
+      "term": "開山",
+      "entrySha256": "1c3db7a6746c008d3bd77186fb8a043e77069a0855ca39308fb6ffaf5376d9dd",
+      "worksheetSha256": "f4fbe33c68c92eea66c8d00776cde819fdd0b096991ce1c769039a2b405d5e0b",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "Action and founding-abbot office are different referents despite arising from one event; the one-sense explanation merges them. 'preface author to Jifei Ruyi' is also a non-master MasterName and catalogue/biographical narration needs the exception branch."
+    },
+    {
+      "ordinal": 756,
+      "id": "t_f28429436009",
+      "term": "且喜沒交涉",
+      "entrySha256": "e2951cc0c0dc7392b530864beb9fbff53ebb51a48b3b9c16d2e84c0940409c41",
+      "worksheetSha256": "6d66d51e73d5ef759f04a0e0a35eed44dc69dcaf18ea4e598d0f564b382ea873",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The dismissive formula is well explained, but 'compiler of Liezu tigang lu' is incorrectly a MasterName. Later quotation/commentary turns must be assigned to their actual quoter rather than container or compiler."
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "entrySha256": "cc36458eb6d17a814f7c23f27610f90cd7567bd8fa06b76946da14487bc41589",
+      "worksheetSha256": "4e337e63eeea7e6dcd432d83942410f92c31786b70fde30b3cbbfff54734abf0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The lineage-jurisdiction bend is useful, but exact actors require rereading: the entry stores all rows as named masters without any reviewed exception, including contexts that may be narration or questions. The 'vehicle' ordinary image also needs a clearer physical bridge."
+    },
+    {
+      "ordinal": 758,
+      "id": "t_166e179e928c",
+      "term": "藥王菩薩",
+      "entrySha256": "385ccef173e203e847d4400969e3da4e7fbaf2c6901dae9e9e48e1845a607229",
+      "worksheetSha256": "d26e14bfe972765237426bce0d4e0e57ea315d00e03383a11f7cb3e9be70e040",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The Medicine King self-burning deployment is specific, but two 'ritual compiler' strings are placed in MasterName. Ritual headings/narration require ActorAttribution, and the quoted Lotus episode's speaker must be separated from the sermon owner."
+    },
+    {
+      "ordinal": 759,
+      "id": "t_72ba0d559d5a",
+      "term": "衲僧家",
+      "entrySha256": "4102a1266624185b597a227e5dccb9fb8115c2daab5c869553a5938dc2e39aa9",
+      "worksheetSha256": "267a274dc2a2a98e595082d379a69f34eadcfead2ae72fcd66eb5ed001fe7c22",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The collective professional-identity reading is plausible, but 'we patch-robed monks' versus 'a patch-robed monk's household/type' needs grammar control. Every row is named, so quoted or narrator-governed uses need adversarial exact-turn verification."
+    },
+    {
+      "ordinal": 760,
+      "id": "t_1b62ec7f731e",
+      "term": "禪者",
+      "entrySha256": "9751b3b457f2dd7cb711c8e20db2d3ede936c84a3578bb5626b7689ab1540773",
+      "worksheetSha256": "4e14e7fb8a05df66d6dc929794b574ceca9930b2137a28f876891043361e59c2",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The human-role definition is useful, but several labels (Yanshen, Hui’an, Zhihuang) require roster/exact-person verification and title/addressee uses may not be uttered by the named record owner. No exception branch appears across eight varied contexts."
+    },
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "entrySha256": "f763dfb6829682760713d46da85c66584aca6f1894342abe76b4aca422c9007a",
+      "worksheetSha256": "79ce7e2f1ea6c25e61e8642697bdedf01b2107ad453642428f6b71e44b649dc2",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The physical room and Vimalakirti comparison are well bounded, but 'documentary narrator of the Niutou lineage case' is stored in MasterName. Xu Fu and other non-master/imperial actors also require ActorAttribution rather than master links."
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "term": "山門",
+      "entrySha256": "d870610815aee49976ef1800ec564f2860decda07e14521e66cacfa54d302d41",
+      "worksheetSha256": "df3aee1b232a5633d1f65cbc274cefafa94c699ac4b71035306f9dc4b1f1a1f0",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The architectural gate and threshold deployment are strong, but two documentary-narrator labels are MasterName values. The monastic-code row and narrated gate case must use reviewed narration, not invented masters."
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "term": "千佛",
+      "entrySha256": "70a0bd90abf1fb034c553ef5d03f33563720537f0ba31c0565515bc118c1d530",
+      "worksheetSha256": "80cf0f65e1b36ba6a09dc7e5705d1b1e85f83165d8acafe8fa1ce0535084f5da",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The collective sense is clear, yet every occurrence is forced into MasterName despite sermon, canonical, and documentary frames. Recheck who actually utters 千佛, especially quoted material, instead of assuming the nearby named master."
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "term": "且道畢竟如何",
+      "entrySha256": "a0a8f8a7cc1dd51e1165305ffcb4fa9da8b41108b752a4db3e2edc7eb56e1d1c",
+      "worksheetSha256": "5f37c8811d099cf7f948d6aa265235358bb5c8ff12dca3daea63ea879d430711",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The final-response handoff is well described, but two compiler labels are MasterName values. Those documentary rows and any embedded quotation need reviewed narration or the true quoter, not a compiler master link."
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "term": "藏主",
+      "entrySha256": "fec4ca6213cfff9bce5f8e811d4b8d3a746a8ff922d93bbc96a4a61e53bcd713",
+      "worksheetSha256": "7448e4bdb7d2e7d7cc902611138d1b33b581edc014467a799a89d69171a2be8d",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The canon-librarian office is concrete, but two documentary-narrator labels occupy MasterName and appointment/roster rows are not utterances. Separate office-holder speech from compiler naming and institutional catalogue evidence."
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "57929c7463deb09289b1c61cd1c18f6c39ef7a6e4f37cb888c7baa4072f6564e",
+      "worksheetSha256": "ac4dbfe1731c28a425ead362a1d4256deb6606ccacd8231f49dddcafc6328946",
+      "verdict": "REVISE",
+      "occurrencesRead": 10,
+      "reviewNotes": "The calendrical event is well distinguished from reenactment, but three documentary-narrator strings are MasterName. Date headings and assembly labels have no master utterer unless the exact headword lies inside a preserved speech turn."
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "21daef48e665641683430f9167bc8b548a4be382824cf01fb596b5449b297e75",
+      "worksheetSha256": "97a3896b47f6cbb870131ed345bce46e70fabcce137e78e780cfed8d9c27f155",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The positional phrase is plausibly bounded, but 'Songshan monk' is not a roster-exact master and may be an unnamed/non-master actor. Quoted Linji material also needs exact quoter versus historical speaker separation."
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "term": "頂門",
+      "entrySha256": "1626729fb574cf27b1317f48ba9fe683321a6c2bdf711d8db6a3d4d384463860",
+      "worksheetSha256": "54a7c34e4043dc8440579698835d34640c9b654c43e045bf925d69790a3d5d21",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The bodily-location definition appropriately rejects abstraction, but 'Shakyamuni Buddha' may be performer/subject rather than utterer in the marked occurrence. All action and quoted-case rows need the exact-headword actor rule reapplied."
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "term": "龍王",
+      "entrySha256": "50887b752841426b19ed7737e146d661f1bccd2a586ae748e120bdbeecb152b5",
+      "worksheetSha256": "71fdf70a2d758119691151814df46685782741431aeb71b63c16075463c74548",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The dragon-king roles are useful, but MasterName contains ceremony speaker, questioning monk, and two documentary narrators. These are precisely non-master or narration branches and cannot remain master links."
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "term": "末後一著",
+      "entrySha256": "89844dba2bd996481ed020a199fcb2c5d5fe645ceb22715572f8dd5a73b5cdd8",
+      "worksheetSha256": "f23f634562a59e58825285ad50db20fb9447c301d9538abad8349712eb0b6d06",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The final-move slot is well explained, but every row is assigned a master with no exception despite quotations and later comments. Verify whether the named person utters 末後一著 or is merely the subject/owner of the cited case."
+    },
+    {
+      "ordinal": 771,
+      "id": "t_708834b4cb89",
+      "term": "法堂",
+      "entrySha256": "9e4cfd550984675a24b1a512d48437929da5a4b420a197bce3b661e4d4fd5dc8",
+      "worksheetSha256": "1c6d98649e389c02eb46308fa8202ddc370b2c3ef211b11350bb5d4cc05b2d8c",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The teaching-hall referent is concrete, but documentary narrators and a ceremony speaker are stored as MasterName. Building narration and imperial-occasion directions require non-master/narrated attribution, not linked masters."
+    },
+    {
+      "ordinal": 772,
+      "id": "t_67bf0bf87ebe",
+      "term": "子路",
+      "entrySha256": "f44c66eed26bb546688b1dc9270fbc9aacfa595f2fff59bcd5abd9ca3742acd0",
+      "worksheetSha256": "d32d1dac565a70255cb36e1969561efb9298bc6ae1e8ff266d1d97c9bc7c58c8",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The Zilu citation-life is appropriately narrow, but quotation ownership is not demonstrated: named Chan speakers may quote a Confucian line whose embedded utterer differs. Full-case actor notes must distinguish quoter from quoted figure."
+    },
+    {
+      "ordinal": 773,
+      "id": "t_10d93a67ea99",
+      "term": "言句",
+      "entrySha256": "b3f56f4023cdbe4bff0c14e4b8a0f7c8a405c309377a318b821368acd7f0a59a",
+      "worksheetSha256": "5e17f2ece405d694c1cf2b50c908adcf8216a66d59059aff3029974e87c3692a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The verbal-material definition is strong, but Fada and Jiangxi Zhiche may be discussed figures or questioners rather than exact utterers. Eight universally named rows need turn-by-turn proof, especially inherited quotations."
+    },
+    {
+      "ordinal": 774,
+      "id": "t_a9a874976d5b",
+      "term": "提綱",
+      "entrySha256": "02d62681bcee4d89b0bc1ae2eebcb810f9791d0b542aededf6d0cab5ad8867d3",
+      "worksheetSha256": "fb8bf2d6208bf4828ed56fd575a0cc1dffe04de67a2229981a0491b7a332d483",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The public-theme act is plausible, but 'raise the theme' as action and a book/section heading are different grammatical owners. The all-named attribution pattern needs narration and request turns separated from the master performing 提綱."
+    },
+    {
+      "ordinal": 775,
+      "id": "t_eb17a30eecaa",
+      "term": "浴佛",
+      "entrySha256": "cb63f0ad9f1c940b109c862fe0d8d5812f74e06078a0229247af26778c4e0b1c",
+      "worksheetSha256": "f1c0afe42058a8dc9ae3d0d5af0d3b90768975509444e9165d2b5bd09b2d29ab",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The bathing rite and anti-symbolism boundary are strong, but Dogen is forbidden/out of Chinese-Chan scope and cannot be a MasterName or source authority here. That contamination alone requires replacement; ceremony actors also need exact review."
+    },
+    {
+      "ordinal": 776,
+      "id": "t_b4b6091cf9cb",
+      "term": "出身",
+      "entrySha256": "99750ba9232868dc5d3306c37aa3eb074471a8b7231682f8a5d04995da9ffdd3",
+      "worksheetSha256": "f8d818aa757799c05961a98e8b985e2892a75f690d65d49cc1829a5ba5811d3a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The emergence action is useful, but two documentary-narrator labels and a compiler label occupy MasterName. Narrated cases and quoted Linji positions must be attributed to exact utterers, not database role strings."
+    },
+    {
+      "ordinal": 777,
+      "id": "t_33ae72debe2c",
+      "term": "聖僧",
+      "entrySha256": "a8f9c4acbb54deb9995b4e9d5f029889a1efbe8549cb7349d96cb52363445990",
+      "worksheetSha256": "7b11908847e5562f645aa727e26713f22d580505f4b7ff1c97e95c5c38cfee34",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The institutional sacred-monk image is clearly pictured, but compiler and ceremony-speaker labels are MasterName. Rules assigning the image a seat are narration; Danxia may act on or mention the image without owning every stored clause."
+    },
+    {
+      "ordinal": 778,
+      "id": "t_073dcbf657a3",
+      "term": "如何是無寒暑處",
+      "entrySha256": "10024a34c3b677269f14594152abdedb9c2d872952501e894e3bdbd5f80259d9",
+      "worksheetSha256": "0009069d45a5d6837411f3c7d1b30c2f44b1e8d1428df4b1cfdd3b592bede670",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The heat-and-cold question is accurately bounded, but the later commemoration speaker is a syntax label, not a roster master. Jiashan's original questioner versus answerer and Yuanwu's later citation need distinct exact actors."
+    },
+    {
+      "ordinal": 779,
+      "id": "t_5835e3ae094b",
+      "term": "髑髏",
+      "entrySha256": "9b825c88106b72dc7efc37b64b25a8e5c529c9c7967da60d90d067152c3c0bbf",
+      "worksheetSha256": "41480b0d76abe68939b7d47843f84f4a4c6a2e68617150ccae17702d45e61712",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The literal skull and speech bend are strong, but ceremony-speaker and Shakyamuni rows require quoted/narrative ownership review. A person appearing in the skull story is not automatically the utterer of the headword-bearing narration."
+    },
+    {
+      "ordinal": 780,
+      "id": "t_d4560fb0c07b",
+      "term": "天龍八部",
+      "entrySha256": "4aa901b1e9b54bf5cd5e89819b5b9406b30c1d9094cd42df9b20cbccd2b5a7e4",
+      "worksheetSha256": "a34f55ef8abfabb1af9b5604972738e1507af5328a5931c71d555a1260f5fc8c",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The grouped audience definition is useful, but inscription author and assembly speaker are non-master role labels in MasterName. Documentary inscription language requires identified author/narration, not fabricated master links."
+    },
+    {
+      "ordinal": 781,
+      "id": "t_19635cfe9de8",
+      "term": "參學事畢",
+      "entrySha256": "79b8132d03783e87da4f5c4902d9e3654c1e3ea9e3310f0accf38833fd44fd9d",
+      "worksheetSha256": "fe8d23fee9d043839ed652f42143013238543f3c443ebf03081d01f746011d5e",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The completion-verdict boundary is good, but two compiler labels occupy MasterName and quoted Zhaozhou material may belong to a later raiser. Exact actor ownership is not solved by naming the case's best-known master."
+    },
+    {
+      "ordinal": 782,
+      "id": "t_ba4b06d70a44",
+      "term": "坐具",
+      "entrySha256": "746ca5709d16a11c21ddcac21c805544535a774489cd347b900015133b1366c5",
+      "worksheetSha256": "ebb9fbb727b0abf8c3a257020c6ff7d2772673e97e21b528bce21cd81c2dcae6",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The bowing cloth is properly concrete, but action narration and greetings may be performed by a visitor while the named master is respondent or subject. Eight uniformly named rows need exact grammatical actor review."
+    },
+    {
+      "ordinal": 783,
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "entrySha256": "4b06e81a5047f65f19949358bf3bf1972831e3cf42c18cddf203d4d624ede336",
+      "worksheetSha256": "1a672f21029b1ce4ba93405e245f45ebd97ec2bffa163f163b4068024632bb97",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The alms-raising office is clear, but compiler and two documentary-narrator labels are MasterName; 'Zonggao' is not roster-exact. Appointment narration, office-holder speech, and record-owner context must be separated."
+    },
+    {
+      "ordinal": 784,
+      "id": "t_a2ccc2d35ae3",
+      "term": "如何是禪",
+      "entrySha256": "3353f51757ad7ff579f7099a30510b8a542d585188f79d440eb8d203cacb2d25",
+      "worksheetSha256": "f6082269bad242fb849d95cbede26e5815d10f845812ceacf6a71d56d24ca13f",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The reusable interview question is well defined, but the headword is ordinarily uttered by the questioning monk, not the master who answers. All six occurrences are assigned named masters, strongly indicating respondent-as-utterer errors."
+    },
+    {
+      "ordinal": 785,
+      "id": "t_168078a96bd7",
+      "term": "明眼",
+      "entrySha256": "d33deebc148b4da8cd26027ba828279584c2ec902bf6466680ebae0f8810e289",
+      "worksheetSha256": "c53edf073fbf6a7534bd0a3ebb1567a302760b21eabe88ee63506c48d5201ea8",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The tested-discerner reading is plausible, but commentator, compiler, and two documentary-narrator labels are MasterName values. Questions about a clear-eyed person also belong to their questioner/quoter, not automatically the named subject."
+    },
+    {
+      "ordinal": 786,
+      "id": "t_53d86caa85c2",
+      "term": "四天王",
+      "entrySha256": "52215ad984c894807d80468a3daeeec3ab509ec5a176a21caf20bf2f1268f8ff",
+      "worksheetSha256": "296785000d9a65804af68b267fd4b65fee1a7272fac1010050688754dbd8d4d7",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The four guardians' office is bounded, but monastic-rule narrator and assembly speaker are not masters. Canonical narration and immediate address require separate exact-actor branches."
+    },
+    {
+      "ordinal": 787,
+      "id": "t_e3231052e685",
+      "term": "用處",
+      "entrySha256": "78f28de49fdb8609086e72841802a91c518645ab708a38cf816a3ad60683cc33",
+      "worksheetSha256": "ee18822681f844af61edc5e9caa463f7ee1865f72f66ea03ad94a58b0d159f00",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The variable-function gloss is useful, but one documentary narrator is a MasterName and Shakyamuni/Mahakasyapa may be quoted case figures rather than present utterers. Quoter, quoted actor, and subject must be distinguished."
+    },
+    {
+      "ordinal": 788,
+      "id": "t_d7c62e900a42",
+      "term": "舍利弗",
+      "entrySha256": "40544aa03e5f17e93162a2b5de9475be8a806404fe6adb4b8cd5db22dc132a0a",
+      "worksheetSha256": "305edde9a844fb3d75c6af865afa16b375e92c8957d594febf988fbfd4247513",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The Shariputra citation-life is appropriately limited, but compiler, lineage narrator, and documentary narrator labels occupy MasterName. The entry must identify exact quoted speakers or narration rather than linking those roles as masters."
+    },
+    {
+      "ordinal": 789,
+      "id": "t_7c69e364232c",
+      "term": "入門便棒",
+      "entrySha256": "874c3fad5fc021def32fe5723591f974e43ea4303a0557e99d6479234e42c787",
+      "worksheetSha256": "a3ef2983841cb295ae33783a1ea935eb189d5879fc5d77878917799394469fa1",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The immediate bodily strike is clearly pictured, but the actor can be striker, narrator, visitor, or later commentator. Six universally named rows need proof that each named master actually utters the phrase rather than performs the blow or owns the case."
+    },
+    {
+      "ordinal": 790,
+      "id": "t_a2e606b74ee9",
+      "term": "把住",
+      "entrySha256": "6336b96dc3d1a146cfaea88fcf8b04fb97bbf2708da112ff6fa784223f2bea57",
+      "worksheetSha256": "1dff5cf6ad18ff9277036ae85966eaad3042e2844ea0df239ad0aaa2fc54bd0d",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The physical restraint sense is clear, but Shakyamuni and a hermit may be quoted figures or performers rather than utterers. The all-named pattern needs full-case speaker/action ownership and a different-thing test for literal grasp versus encounter control."
+    },
+    {
+      "ordinal": 791,
+      "id": "t_7106d3345b14",
+      "term": "須菩提",
+      "entrySha256": "a61e25b533e54f5fa659434b99d1603cc215fd0ea89224e658ab8ca0afb99d10",
+      "worksheetSha256": "6836887db07cf1b81ed16818805bb15592aee2ffd14899765932924fa612eb6a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The Subhuti citation scope is useful, but compiler, documentary narrator, and quoted-scripture ownership are all placed in MasterName. These roles must move to ActorAttribution/ContextMasters and exact utterers must be named."
+    },
+    {
+      "ordinal": 792,
+      "id": "t_5cde0218375f",
+      "term": "把住放行",
+      "entrySha256": "1732e7862cb361ad3c21bc5a540a977aef61d8d18bb46de0185166f4377dd6cb",
+      "worksheetSha256": "9a53774a100bc2ee587f8abffadb81e7032f4fb5b74de44715ac4fd5a74314b3",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The paired maneuvers are well distinguished from 把住 alone, but 'case commentator on Jiashan Shanhui' is a syntax label, not a roster master. Identify the commentator or use the reviewed non-master/narrated branch."
+    },
+    {
+      "ordinal": 793,
+      "id": "t_73656adc1e50",
+      "term": "蒼天",
+      "entrySha256": "203fcd724de537f6d00696b298be0cbd4d5696b2e1bf012c84c2ae3edfb40f47",
+      "worksheetSha256": "7c15a3f303b4fe58e18b28eddf0d766f881b64b6931cafc158cc2069832016ed",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The exclamation/sky distinction is good, but compiler and documentary narrator labels occupy MasterName and Shakyamuni may be a quoted case figure. Speech punctuation alone does not establish the current container owner as utterer."
+    },
+    {
+      "ordinal": 794,
+      "id": "t_c051d6f277af",
+      "term": "佛誕",
+      "entrySha256": "3253f734ab810ec0b3e6bda9e3292ad1374b7c0fd43ae6c6d1fb3e8f34d68047",
+      "worksheetSha256": "c41512e79d6e186a1f8dae1a25637d8072e0908c307ebe92cdc2a61ffb3b30d8",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The birthday/calendar boundary is strong, but two documentary narrator labels and 'Zhenzong monk' are invalid MasterName values. Date headings and ceremony narration require exact non-master/narrated treatment."
+    },
+    {
+      "ordinal": 795,
+      "id": "t_f266d9e034ea",
+      "term": "主中主",
+      "entrySha256": "7fd63fa434be162c80cb2bc35d714198f777849ad58e26ee849a2055213bb288",
+      "worksheetSha256": "c92f0c7532cbd874abdf2c4a5e9ec9b2dddac8bcfa713571feacae600e825654",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The relational slot and anti-self warning are good, but a documentary narrator is stored as MasterName and quoted classification material may have later raisers. Verify exact utterers across the Caodong/Linji commentary chain."
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "entrySha256": "5481f0216e4adc033a2f556d572744628c5f8004693925dd1e16cb93a9897dbc",
+      "worksheetSha256": "6a3b9d30a9d64adcab5dadefde98fd1cca2a9979822807119cf2f5916ce7841b",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "reviewNotes": "The full-day time span is correctly pictured, but compiler and two documentary narrator labels occupy MasterName. Catalogue/narrative rows cannot be linked as masters, and Baozhi quotations need quoter versus original speaker separation."
+    },
+    {
+      "ordinal": 797,
+      "id": "t_eeb3c71567a1",
+      "term": "僧臘",
+      "entrySha256": "7d8392e891f2865248b0bd6d282f1d2e8248ca1e8eeb31e352a72c8bb0555668",
+      "worksheetSha256": "0a210e66fc682e7bd0373ecafd04f15b740706b37cc02336d3ee5a1b86e19b91",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The ordination-year seniority distinction is strong, but a documentary narrator is MasterName and several biographical counts are narration about a master, not speech by him. Person-described belongs in ContextMasters."
+    },
+    {
+      "ordinal": 798,
+      "id": "t_dc24f92ead78",
+      "term": "問訊",
+      "entrySha256": "97c8c6f3fbe142d516a796feb36c9dfe4a16ab5328eabfd0ae22a5eb4b3b3329",
+      "worksheetSha256": "7092fa84f651b01129d5d4cb206a65b54141cfd78e7f928b9204aaa71906bfcc",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The formal greeting is concrete, but compiler, ceremony narrator, monastic-rule compiler, and lineage narrator labels are all MasterName. Most selected rows are actions/narration, so the current attribution model is inverted."
+    },
+    {
+      "ordinal": 799,
+      "id": "t_7ee93f6b90cf",
+      "term": "三要",
+      "entrySha256": "64c1a1a02afad448c1fdd792dce21398580b411f0def629772ad738b1f9d7581",
+      "worksheetSha256": "7156884751b76f6b43b05f8fcac2a1dc5dfde4e492a32e6d5b5a7364f5c2c65a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The named Linji category is cautiously handled, but compiler and lineage-sermon labels occupy MasterName and later quotations need quoter/original separation. The absence of three invented definitions is good but does not cure attribution."
+    },
+    {
+      "ordinal": 800,
+      "id": "t_e1a5fc496deb",
+      "term": "香積",
+      "entrySha256": "1bd3b0e555b9cab346a48a3356d14e0694b5e1d28da89880bf501aab4d59b285",
+      "worksheetSha256": "9e05aabf94a7801fc5cbf5f9cc8d0e8da332471f13a253f11fec74d547db9aa4",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "reviewNotes": "The three referents are correctly split and distinguishable, but 'lineage narrator of Dayang disciples' and 'Fuxing monastery speaker' are role strings in MasterName. Proper-name catalogue and monastery-heading uses need narration/identified actors, not master links."
+    }
+  ]
+}

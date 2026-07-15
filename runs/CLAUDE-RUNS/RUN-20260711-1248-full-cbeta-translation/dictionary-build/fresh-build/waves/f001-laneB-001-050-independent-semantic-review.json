@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "B",
+  "reviewKind": "independent-different-thing-semantic-review",
+  "scope": {
+    "packetItems": 41,
+    "checkpoint": 50,
+    "packet": "fresh-build/waves/f001-laneB-001-050-semantic-review-packet.json"
+  },
+  "policy": "Hash-bound independent review under DICTIONARY_ENTRY_GUIDE.md section 5 items 8, 12, 14, 15, 16, 17, and 18. Split only for a different object, event, person/title, institutional referent, or incompatible subject frame. Differences of reading, response, stance, speaker, grammar, capitalization, or master alone do not warrant a split. KEEP means the stored sense structure and reader-facing target survive this test; REVISE identifies the exact structural change required. No entry was edited.",
+  "reviewed": 41,
+  "keep": 39,
+  "revise": 2,
+  "entries": [
+    {
+      "id": "t_ad0a8e5aac3d",
+      "term": "佛性",
+      "ordinal": 6,
+      "reviewedSha256": "3880e45d1d3b1b85f7581256d67085df93df8035cee099217a817536d6009528",
+      "verdict": "KEEP",
+      "finding": "Affirmation, denial, geographic qualification, location, size, seeing, and quotation are predicates or stances toward the same buddha-nature category. No witness establishes a second object or person/title referent; the one-sense target remains distinguishable and searchable."
+    },
+    {
+      "id": "t_49efe4fed8d4",
+      "term": "祖師西來意",
+      "ordinal": 8,
+      "reviewedSha256": "d64e11bd9b07264f06777b0d4d6d9e5fc7cb82be9de4ea7c9ec4392f5fc8177a",
+      "verdict": "KEEP",
+      "finding": "The bare topic, its full interrogative expansion, later raisings, and incompatible answers all retain one question-referent: the meaning or point of Bodhidharma's coming. The longer full question is a related lexical entry, not a second sense bought by response diversity."
+    },
+    {
+      "id": "t_970c3f191929",
+      "term": "正法眼",
+      "ordinal": 111,
+      "reviewedSha256": "f833bf266216030c61e187bbe86220ee0b270918e1ba11c3574c6ffa19da1719",
+      "verdict": "KEEP",
+      "finding": "Transmission, opening, blinding, locating, and public answers all predicate acts or claims of one true-eye referent. The longer treasury compound and its book title were explicitly excluded from standalone evidence, so neither creates a hidden title sense here."
+    },
+    {
+      "id": "t_7c1991e9eabb",
+      "term": "宗風",
+      "ordinal": 112,
+      "reviewedSha256": "738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df",
+      "verdict": "KEEP",
+      "finding": "Inheritance, public display, support, fanning, and flourishing concern the same lineage house style. No occurrence uses the headword for literal meteorological wind or a named work/person, and named houses do not make separate meanings."
+    },
+    {
+      "id": "t_4aa0ae72820e",
+      "term": "現成",
+      "ordinal": 114,
+      "reviewedSha256": "c5ffd81d1536ad772cda8b7bb15fa9bc2bce4ba3e99bf31766ca94ff901007c9",
+      "verdict": "KEEP",
+      "finding": "Adjectival, predicative, and adverbial uses all assert that something is already present, complete, or ready at hand. The varying things described do not change the property denoted, and no incompatible event or title use appears."
+    },
+    {
+      "id": "t_48e808f5d2a7",
+      "term": "門庭",
+      "ordinal": 116,
+      "reviewedSha256": "7afb00a45682d0ab7c0552052359803a3976e8b9f0490aa91698180c366a5c9a",
+      "verdict": "REVISE",
+      "finding": "The stored set contains two different referents. Most witnesses use 門庭 for a Chan house's institutional/public teaching front (建化門庭, 衲僧門庭, a steep or distinctive house-front), while the Konggu Daocheng witness explicitly stages an architectural frontage at the temple entrance (至殿門 ... 者門庭) and points to that gate-and-court. A bridge token can activate both referents; it does not erase the object/institution distinction.",
+      "requiredSenseChange": "Retain Senses[0] as the primary Zen-technical sense 'the public teaching front of a Chan house'. Add a corpus-wide literal sense 'a gate and entrance court' (or equally explicit architectural target), anchor it with the Konggu occurrence and another unequivocal architectural witness if available, and keep the bridge relation in the explanations. Do not split individual masters or merely physical metaphors beyond these two referents."
+    },
+    {
+      "id": "t_07343f750f68",
+      "term": "蹉過",
+      "ordinal": 117,
+      "reviewedSha256": "73e59b562c28c90a43c73219875e76b4217de93fcbee7fbc499121bcbcb71999",
+      "verdict": "KEEP",
+      "finding": "Missing by asking, intending, opening or closing the eyes, hurrying, slowing, or claiming understanding are circumstances of the same act of missing. Different triggers and omitted objects do not establish different lexical things."
+    },
+    {
+      "id": "t_84043ffcdf90",
+      "term": "具眼",
+      "ordinal": 118,
+      "reviewedSha256": "edc66169e82dc62c4f6f3385d09f32eab9265ba9a1e9097d3edb0275294bd89d",
+      "verdict": "KEEP",
+      "finding": "Predicative possession, a person described as eye-equipped, and forehead-eye expansions all retain the same discernment property. The nominal/verbal packaging and qualification of the eye are grammar and intensification, not distinct faculties."
+    },
+    {
+      "id": "t_37771a869b4f",
+      "term": "如何是祖師西來意",
+      "ordinal": 119,
+      "reviewedSha256": "2f2d0a2ef7b6ae411730c1458876f3a6b0b2305004340d86224d14dd68bb732b",
+      "verdict": "KEEP",
+      "finding": "Every stored occurrence is the same lexicalized public question or a later raising of it. Different respondents and answers belong to its case history; none supplies a second meaning of the question."
+    },
+    {
+      "id": "t_01a355a89ba1",
+      "term": "當下",
+      "ordinal": 120,
+      "reviewedSha256": "929f4c0072242acf7ecdbc934e62c7e3bca6f97e8742cd3c0d4b08194b73b1fe",
+      "verdict": "KEEP",
+      "finding": "All witnesses locate an event or state immediately, right then and there. Narrative, verse, and direct-speech frames do not create a temporal object, and the entry correctly refuses a separate 'present moment' doctrine-sense."
+    },
+    {
+      "id": "t_aef7434b8470",
+      "term": "沒交涉",
+      "ordinal": 122,
+      "reviewedSha256": "1c2b634d526074ede9008ee0b0db5a9531df88a2ee616037ad4b3d427ebd4697",
+      "verdict": "KEEP",
+      "finding": "A flat assertion of no connection and a dismissive verdict that an answer has no bearing both deny the same relation. Intensity, rhetoric, and challenge-response packaging do not change the referent."
+    },
+    {
+      "id": "t_e84753568cda",
+      "term": "向上事",
+      "ordinal": 123,
+      "reviewedSha256": "d0accc76e3adbe94db976cb0dbf893faf4d02c935c50e8a4a7e42a52e6bd6179",
+      "verdict": "KEEP",
+      "finding": "The relative limit can be what was reached, buddha, or Vairocana, but each occurrence names a further matter beyond the stated limit. Answers, negations, and qualified family compounds do not create another headword thing."
+    },
+    {
+      "id": "t_26d1f4bf3890",
+      "term": "殺活",
+      "ordinal": 124,
+      "reviewedSha256": "fda22c18fb1c79e4c9841fa86e9166d6665afc32068b8924f9e298d252b31f6b",
+      "verdict": "KEEP",
+      "finding": "Simultaneous versus different-time operation, noun versus verb packaging, and favorable versus critical deployment all retain the same paired acts of killing and giving life. The killing sword and life-giving sword are anchored contrasts, not independent meanings of the pair."
+    },
+    {
+      "id": "t_6b8e3b4f44bb",
+      "term": "照用",
+      "ordinal": 125,
+      "reviewedSha256": "22615adfadc3b3affeec5a57095f514aaf6a1f8b07e062e4cc3c80e78f279db9",
+      "verdict": "KEEP",
+      "finding": "Linji's four orderings organize one illumination/function pair. First/second, simultaneous/separate, question/answer, and later repetition are modes and explanations of the same two operations, not four separate referents."
+    },
+    {
+      "id": "t_882860247a9b",
+      "term": "惺惺",
+      "ordinal": 126,
+      "reviewedSha256": "8eb87ac654fb5e0b396262d9f6c1ce25251f1f0aa3a8d7d5860ec23cd1d5dfc9",
+      "verdict": "KEEP",
+      "finding": "Command, condition, paired still-and-alert formula, and alert-person construction all instantiate one alert or wide-awake property. Criticisms of Ruiyan's use are stances toward that deployment, and person grammar does not create an epithet referent."
+    },
+    {
+      "id": "t_7bd745af24d7",
+      "term": "格外",
+      "ordinal": 127,
+      "reviewedSha256": "15ce1933a57b4551473608bee1d3a9669c130a40871f884676b02b6a3f39e433",
+      "verdict": "KEEP",
+      "finding": "Sayings, phrases, actions, workings, people, and house styles can all be described as outside the ordinary frame; these are subjects bearing one relational property. Approval and rejection are stances, not meanings, and no title/person use appears."
+    },
+    {
+      "id": "t_6edb551acb53",
+      "term": "知解",
+      "ordinal": 128,
+      "reviewedSha256": "3f29ddaab18bbdfa1d2a20ac5505a14cedc87826edc1cdcd9bc85197f0ba25db",
+      "verdict": "KEEP",
+      "finding": "Lineage-follower labels, warnings not to harbor it, digestion imagery, deception, and exclusion from the matter all concern the same intellectual or explanation-derived understanding. Longer compounds remain family deployments, not separate bare-headword objects."
+    },
+    {
+      "id": "t_82829641b07c",
+      "term": "未在",
+      "ordinal": 129,
+      "reviewedSha256": "7b60cb4be8d5ab4552fcf4b4df355c009317032c6ea01d09a7199ee70e085c46",
+      "verdict": "KEEP",
+      "finding": "Teaching-seat verdicts and ordinary temporal statements both mark a condition or threshold as not yet reached. The complement changes, but the relational state does not; evaluative force is a deployment rather than a second thing."
+    },
+    {
+      "id": "t_561817f02529",
+      "term": "放行",
+      "ordinal": 130,
+      "reviewedSha256": "77bbcab4b694c883d4cdeecb635dd0186d87a212c99b3fc3213d672756edc997",
+      "verdict": "KEEP",
+      "finding": "The retained witnesses consistently use opening/release as one side of the public authority contrast with holding fast. Different images and persons released do not establish a literal transport sense or another event beyond allowing movement."
+    },
+    {
+      "id": "t_d6453d4183ed",
+      "term": "面門",
+      "ordinal": 131,
+      "reviewedSha256": "cd6823bed36dc113484841b1c6e2b15cc1783e731255953000aa59fee1a3905c",
+      "verdict": "KEEP",
+      "finding": "Splitting, scorching, pressing through, entering and leaving, and naming eyes/nose/ears all retain the anatomical face-front. The spatial gate imagery is a deployment of that same bodily referent, not a separately attested architectural object."
+    },
+    {
+      "id": "t_dfd1dbffe9f2",
+      "term": "即心即佛",
+      "ordinal": 132,
+      "reviewedSha256": "12a48204d04b6eaa84ba1a16ac4642d6df2fb5415631e49cac616c2bdf0f402e",
+      "verdict": "KEEP",
+      "finding": "Explanation, question, quotation, defense, rejection, and contrast with 'not mind, not buddha' are deployments and stances toward one identity formula. Speaker-specific uses do not change the lexical statement into different referents."
+    },
+    {
+      "id": "t_efa1e241a7f0",
+      "term": "擔荷",
+      "ordinal": 133,
+      "reviewedSha256": "9b94a692da1e2c3cc76cff1b21187a82189081c0d5540d4933b6bcb700f30e7d",
+      "verdict": "REVISE",
+      "finding": "The final firewood witness denotes literal cargo carried on the shoulder, while the dominant evidence denotes accepting responsibility, succession, inheritance, or lineage work. These require different objects and event frames: a physical transport event versus assumption/bearing of responsibility. Calling them merely 'different loads borne by the same act' leaves a literal-versus-Chan-loaded split hidden inside a broad English verb.",
+      "requiredSenseChange": "Make the primary corpus-wide Zen sense 'to shoulder responsibility' or 'to take responsibility upon oneself', assigning the succession, inheritance, full-body, and one-shoulder responsibility witnesses to it. Add a second corpus-wide literal sense 'to carry a load on the shoulder', anchored by the firewood/pole witness and another unequivocal physical-cargo occurrence if available; mark that literal sense provisional if it remains one independent source."
+    },
+    {
+      "id": "t_644a3152952c",
+      "term": "全機",
+      "ordinal": 134,
+      "reviewedSha256": "55e524a44ba075a5266c933744da9fa0af3ca46aa056be8b408a1bb5456f5ad1",
+      "verdict": "KEEP",
+      "finding": "Manifesting, functioning, being exposed, being freed, and a speaker's predicative deployment all describe the complete working of one pivot/dynamic. Grammatical realization and different surrounding images do not establish a machine-object or title sense."
+    },
+    {
+      "id": "t_e96268628f2c",
+      "term": "萬法歸一",
+      "ordinal": 135,
+      "reviewedSha256": "7f66aa0a85261d1432425ecfbfe0fd69640f4708a264f09eb36f515e68d3fa53",
+      "verdict": "KEEP",
+      "finding": "The proposition and its use as the first clause of a portable question remain one lexical statement. The second clause and divergent answers are case context; none turns the first clause into a separate doctrinal object or speaker-specific meaning."
+    },
+    {
+      "id": "t_dc81acde25fd",
+      "term": "那畔",
+      "ordinal": 136,
+      "reviewedSha256": "a29afc3c07765b9b6faf6ae015a99068abebbf69d95cbd8e967f887f19d8d6f1",
+      "verdict": "KEEP",
+      "finding": "Matter, person, saying, road, and news are located on one deictic 'that side'; Awesome-Sound qualification supplies a landmark without creating another place. No unequivocal literal riverbank referent is stored that would require a second sense."
+    },
+    {
+      "id": "t_a0f2bb1de215",
+      "term": "卜度",
+      "ordinal": 137,
+      "reviewedSha256": "8a54b68aa83ee4ad14ee7383072a91414b381c291f7a220fd8a8afe216d95162",
+      "verdict": "KEEP",
+      "finding": "Reckoning under thought, affective cognition, consciousness, or public-case interpretation is one act of conjectural calculation. Different cognitive containers and hostile judgments do not create distinct events."
+    },
+    {
+      "id": "t_80ea075a6c5d",
+      "term": "綱宗",
+      "ordinal": 138,
+      "reviewedSha256": "a0619ff20acfb1b95564a797fb8db27fac59ae0f50f7e5d20efff796e4774322",
+      "verdict": "KEEP",
+      "finding": "Generic and named-house compounds all refer to the organizing lineage framework; establishing, knowing, restoring, and distinguishing it are predicates of that institutional-discursive object. No named work or person bearing the bare title appears."
+    },
+    {
+      "id": "t_9a7a00ea0cd1",
+      "term": "一歸何處",
+      "ordinal": 139,
+      "reviewedSha256": "0551d4d52a3ec0a9bacacd0929f7e23433ac002bc5f677f0fd35a40657c1c31d",
+      "verdict": "KEEP",
+      "finding": "All witnesses preserve one destination question whose antecedent is supplied by the first clause. Different answer histories, chamber use, hall use, and later repetition do not change what the question asks."
+    },
+    {
+      "id": "t_8c870cb5e69d",
+      "term": "把定",
+      "ordinal": 140,
+      "reviewedSha256": "f6b939536992b1db31623f1fb408be7e5a47303fa2d0f7672f7c32709edfd04f",
+      "verdict": "KEEP",
+      "finding": "Holding a throat, crossing, world, heaven-and-earth, or authority all preserve one transitive act of keeping firmly under control. The paired release contrast and longer 'eye that holds heaven and earth' expression do not create a second bare-headword object."
+    },
+    {
+      "id": "t_6457935dff62",
+      "term": "非心非佛",
+      "ordinal": 141,
+      "reviewedSha256": "b3913f48aaa0e7a560f6e87c424b5b96f1965ffa355c72831c42a6517c972504",
+      "verdict": "KEEP",
+      "finding": "Answer, question, quotation, classification, challenge, and contrast with the positive formula are uses and appraisals of one double-negation saying. Mazu's association is historical ownership, not a distinct master-specific meaning."
+    },
+    {
+      "id": "t_da6965508721",
+      "term": "休歇",
+      "ordinal": 142,
+      "reviewedSha256": "3f236dd743241a800a6204ed47498ea3f5ac71c8ef7bb6af5729dcea61b54209",
+      "verdict": "KEEP",
+      "finding": "Imperative rest, coming to rest, finding a resting place, and criticism of a claimed resting place all concern stopping/resting. Noun, verb, location packaging, and approval or rejection do not establish a different event; eating, sleeping, and stove-sitting remain useful literal controls."
+    },
+    {
+      "id": "t_e5259ce8bbf5",
+      "term": "垂示",
+      "ordinal": 143,
+      "reviewedSha256": "4ff0d65ad59d7487fafb67c563b81c360dec0953431de5ca73cd461246396439",
+      "verdict": "KEEP",
+      "finding": "A requested/delivered indication, printed case-preface pointer, chamber heading, and catalogued indication are interpersonal, grammatical, and editorial packages of the same indicatory address. Restoring a noun-versus-verb or printed-versus-spoken split would recreate the prohibited paraphrase defect."
+    },
+    {
+      "id": "t_5e59b126e608",
+      "term": "三關",
+      "ordinal": 144,
+      "reviewedSha256": "d0b14297588fc205dde5edf03a76450ba0f6911a67af5241f3405cf19d2aa841",
+      "verdict": "KEEP",
+      "finding": "All three senses are legitimate and non-paraphrastic. The generic sense denotes an unassigned countable category/set of three checkpoints, while Huanglong's fixed buddha-hand/donkey-foot/birth-circumstance list and Doushuai's fixed nature/death/destination list are two incompatible named taxonomies. They are different lexical referents, not merely different masters' readings of one list; the explicit master labels make the targets distinguishable on sight."
+    },
+    {
+      "id": "t_ffb0ee18f1a2",
+      "term": "牢關",
+      "ordinal": 145,
+      "reviewedSha256": "0e350d6022930dcfff140634087f39143171e23de31c7917fe56325ade6ddfa4",
+      "verdict": "KEEP",
+      "finding": "Holding, shutting, breaking, passing, and getting free all act on the same deliberately secured final barrier/checkpoint. The retained evidence does not establish an ordinary fortified pass independent of the Chan-loaded barrier."
+    },
+    {
+      "id": "t_23204fbd253c",
+      "term": "玄旨",
+      "ordinal": 147,
+      "reviewedSha256": "e5fd6e8f59ff85e1718fc69472da48de1b59b666f50bd33d5d2d522e8a84aa7c",
+      "verdict": "KEEP",
+      "finding": "Seeking, asking, recognizing, awakening to, or answering about the mysterious purport all retain one sought gist. Tongue replies and mutually incompatible answers belong to public-question deployment and cannot be promoted into separate lexical meanings."
+    },
+    {
+      "id": "t_49704a7bbd4d",
+      "term": "死水",
+      "ordinal": 148,
+      "reviewedSha256": "bbe0a0111e2a42fe14f163f9fb2be481463d6ece961e1a792c56a2d482f02bb9",
+      "verdict": "KEEP",
+      "finding": "Every stored witness uses dead/stagnant water as the same critical image for unresponsive stillness, often against living water. No independent ordinary hydrological pool is attested in this evidence set, so a literal-versus-loaded split would invent rather than expose a second referent."
+    },
+    {
+      "id": "t_e7a86b9e58d8",
+      "term": "提撕",
+      "ordinal": 149,
+      "reviewedSha256": "1a4a34126f576530238885cd5211b2b6f5d984221ccd7f44a0d978fcb5a3ca32",
+      "verdict": "KEEP",
+      "finding": "Prompting a person, bringing up a matter, and repeatedly calling attention to a recorded saying are applications of one transitive act. Objects and frequency vary; the event remains bringing something to notice/examination."
+    },
+    {
+      "id": "t_df3e128ab4c1",
+      "term": "竪拂",
+      "ordinal": 151,
+      "reviewedSha256": "9d88ec7ab630b3f41193ef4d1e6b515327e8cabc927cadf568fd94a24e093f33",
+      "verdict": "KEEP",
+      "finding": "Every witness denotes the same public action of raising the teaching-seat whisk. Answer, demonstration, challenge, criticism, spelling variation, and different surrounding sayings are readings and deployments of the gesture, never separate referents."
+    },
+    {
+      "id": "t_6e762a1da16f",
+      "term": "情識",
+      "ordinal": 152,
+      "reviewedSha256": "1552bfa35265ba3242c20b91361999d505f67d659b91dfd7d1bfe33d03ecb9b1",
+      "verdict": "KEEP",
+      "finding": "Estimating, distinguishing, interpreting, and depending on affective cognition are predicates of one feeling-bound cognitive faculty. Different co-terms and speakers' criticisms do not yield an independently denoted thing."
+    },
+    {
+      "id": "t_4b1991d604f8",
+      "term": "言下大悟",
+      "ordinal": 153,
+      "reviewedSha256": "5c9de3073e20d8055888551b51711a2e3adae81a9536dc43a4e2af35414d870a",
+      "verdict": "KEEP",
+      "finding": "The formula consistently denotes one narrated event: a named person is reported greatly awakened upon the preceding words. Different speakers, recipients, triggering words, and case sequels are event participants and contexts, not lexical senses."
+    },
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王",
+      "ordinal": 154,
+      "reviewedSha256": "283468ff1a06477b609ded6af326c737138ff8a0740af3f9de179d1eb8a99ed4",
+      "verdict": "KEEP",
+      "finding": "Before, after, and beyond formulas, paintings, questions, criticisms, and source-specific name exposition all invoke the same named Buddha figure. Boundary deployment does not create a place or era referent separate from Mighty-Sound King Buddha."
+    }
+  ]
+}

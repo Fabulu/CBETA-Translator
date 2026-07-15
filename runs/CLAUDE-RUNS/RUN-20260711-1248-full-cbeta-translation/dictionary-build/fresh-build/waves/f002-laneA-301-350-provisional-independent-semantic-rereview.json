@@ -1,0 +1,551 @@
+{
+  "generatedUtc": "2026-07-15T02:43:31.227486+00:00",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": [
+    301,
+    350
+  ],
+  "reviewMode": "provisional-independent-semantic-rereview-read-only",
+  "entryEditsMade": false,
+  "formal": false,
+  "formalizationRule": "This rereview becomes formal only for entries whose focused-gate output is hard-pass and whose entry SHA-256 is identical to the hash recorded here. Any changed hash requires rereview.",
+  "systemicBoilerplateCheck": {
+    "entriesChecked": 50,
+    "oldProcessSentenceRemaining": 0,
+    "oldScopeSentenceRemaining": 0,
+    "finding": "All 50 articles replaced the repeated process prose with substantive term-specific prose."
+  },
+  "currentMechanicalSnapshot": {
+    "compilerHardPass": "50/50",
+    "exactEvidenceRows": 322,
+    "exactEvidenceErrors": 0,
+    "depthHardFailures": 0,
+    "attributionHardFailures": 49,
+    "attributionAffectedEntries": 13,
+    "note": "The pending focused gate has not yet cleared the current hashes; the 13 affected entries are provisionally REVISE."
+  },
+  "verdictCounts": {
+    "KEEP": 35,
+    "REVISE": 15
+  },
+  "exactIdFindings": {
+    "passed": [
+      "拈華微笑",
+      "提起"
+    ],
+    "incompleteSemantic": [
+      "一行三昧",
+      "石女"
+    ],
+    "attributionRegressed": [
+      "便下座",
+      "歸方丈",
+      "面壁",
+      "呵呵大笑",
+      "應諾"
+    ]
+  },
+  "verdicts": [
+    {
+      "ordinal": 301,
+      "id": "t_ae026a775df5",
+      "term": "如人飲水",
+      "entrySha256": "658d4149b38f2024b5eedf421a979901dfc72dd7bc5350f66ebec4b09879493c",
+      "priorEntrySha256": "ccdae91ff6d7b4d95088cb5a332b959e019a563c8224644d65d47c0c1c0480e8",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 302,
+      "id": "t_31575552ede2",
+      "term": "頑空",
+      "entrySha256": "9223271f139f46654dce7def4d8854ff2ef40288208f9b8c77d92e712c37f672",
+      "priorEntrySha256": "908c80015d2ce50ecd3a3b108e25d5fcb05666e06c445bf427719d34223f4e49",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 303,
+      "id": "t_167e8b0c7ba3",
+      "term": "畫餅",
+      "entrySha256": "c774f3f2684ad5811fd5baec944ec0cc61c07745dfbfaf8c16374f0d300c9000",
+      "priorEntrySha256": "92d05972c0431965655d346cfbd8d3a174467c47919a8a92aa8d81415c045ddd",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 304,
+      "id": "t_327d40c2c9cb",
+      "term": "飢來喫飯",
+      "entrySha256": "0f0233ddf06e0e687419a2120ca7998eeb34c3e36b9e262fdd951d7653293d2b",
+      "priorEntrySha256": "d7aa85ddf0d118519c236c99f7ce0746d3f0312591b2f71025f55bebee4a9a0a",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 305,
+      "id": "t_6c58ed7a7c6c",
+      "term": "一行三昧",
+      "entrySha256": "c6912d6786367328903f3fe4bda0b87ee25066fb4a0577e93857b48bfab9bf52",
+      "priorEntrySha256": "a4014f6d68c64dfeeb8e73023e5d648a0e0b411631a7177829157464bf569068",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "The preferred target was improved, but the article still repeatedly replaces 三昧 with “complete command,” and its note explicitly defends that replacement. The required repair asked for Huineng’s corpus definition and a searchable rendering without an unattested competence claim; that repair is incomplete.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 306,
+      "id": "t_f6c2a28b1c6e",
+      "term": "參同契",
+      "entrySha256": "f1ba905b6ae073bc731905c3b428bf6c90b01274f901ac27b3a9c1ed01c34f14",
+      "priorEntrySha256": "5b7c84a21db2f870c25dd34c6bbe838276113b1c5b6150f8eca88197f39631fa",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 307,
+      "id": "t_79090ea8b22c",
+      "term": "動念即乖",
+      "entrySha256": "44577a10b7c77d7a30bfcc9c6851922d15ca1bfd8fb8a392e2433bccf0b235f1",
+      "priorEntrySha256": "5e3616138f468d6f8c02eb74ca190678cb645e24d9a3878e699bb96d141b9cdb",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 308,
+      "id": "t_370bda2b6291",
+      "term": "無依道人",
+      "entrySha256": "2fbc265a834f5b8f4c8707417a6663c513bcd5f09f924f353d0c0531038809ad",
+      "priorEntrySha256": "d61b755c94292380f437cc4922cddc557e9bad223e04aec89781242ccf80f037",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 309,
+      "id": "t_cf1445e57ef2",
+      "term": "擬心即差",
+      "entrySha256": "44d8cd786e78e2d63ff2f09f5fd4b7d918abf2b108601d0895aec08fa6596317",
+      "priorEntrySha256": "65e72c87d1a52add7edc4ea92e8f009352c26f70387c0a4d72617fac67fb9810",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 310,
+      "id": "t_d02b40e03f5d",
+      "term": "一切現成",
+      "entrySha256": "0507bce71d4e625166063e23d96a69268decbd0c29709c8a94f8412708b18b75",
+      "priorEntrySha256": "d05b0e8ac61b072e5f7c63e2ced1248501b58f188efe701f8060935332181233",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 311,
+      "id": "t_659e88cc44d5",
+      "term": "冷暖自知",
+      "entrySha256": "5cbcc87820ec37af04ec59a9eac84ba445f4d5c7ca63eca3d4a7e9687ac090bb",
+      "priorEntrySha256": "639c0471c756cbacbe7cd91fbc88bdc6d81a9b01c1af9e3aa35bc03b4f54360c",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 312,
+      "id": "t_6a1ea4df00ce",
+      "term": "騰騰任運",
+      "entrySha256": "406686204e98aecbeca7b990c7aa81a1aa1f611675e7667b3569e8e7e719e1a8",
+      "priorEntrySha256": "79d605e99b0cef6339c3386e60b4da7b783145bcedb5347c24a9a497b6edefe3",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 313,
+      "id": "t_c81bf91e508f",
+      "term": "換卻眼睛",
+      "entrySha256": "543c5fae38091b4b5a1de040666001d438d16d9b43ee118d82ba83d139296566",
+      "priorEntrySha256": "d38ca19201cb64730f310ac8c778445881b5deddbaa3f7f2917710ef942b5be0",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “a monk/a master” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 314,
+      "id": "t_63ee0f50447f",
+      "term": "昏沈",
+      "entrySha256": "146b1d68fb4367b230c2885be7b03166bfbeb4d8c8e702b830b2a006683a3a7b",
+      "priorEntrySha256": "0d9d92a402e86ff23d08fdfb201a844dc0190c535ff069bba8eef9320bd82244",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 315,
+      "id": "t_5ac2c5d1fc1e",
+      "term": "寸絲不掛",
+      "entrySha256": "54349c94ad2e9c3c8a882b3dfbb484020de74a7160810482a2d87395b5bffb1a",
+      "priorEntrySha256": "d17de2382f7ce328518583545ef5a8e08e401477166ccdb5c500f285ffb742e0",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “the speaker/a monk” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 316,
+      "id": "t_e931d476fd02",
+      "term": "鬱鬱黃花",
+      "entrySha256": "a495b221b5a3426c9e73e2a5ac5c066362a543b3545f4f2af01dc6b40f9a543b",
+      "priorEntrySha256": "56f4967a30434a229982a508d70b8f1ff85a067545c302bcd460011a536fe7b8",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 317,
+      "id": "t_c9ba42aa7e47",
+      "term": "掉舉",
+      "entrySha256": "81f358a47c16cb3cf52c6138ac62c4b100f8ef668ba78c51e0f0bb41d82e297f",
+      "priorEntrySha256": "5a8ccfda60078a3e2ec00335bf2ea68df06d324b9bb38712d6d09dc3b42c5147",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “the teacher” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 318,
+      "id": "t_1bbc921aed44",
+      "term": "逢祖殺祖",
+      "entrySha256": "5f62cb795038fc83deb69896be0c9bbf3b3a3cd86bd1801f60b086e345464af1",
+      "priorEntrySha256": "9e90e422c84add70e835cf5867eccf251b7a2b245f45de578c828d1ead3f28e9",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 319,
+      "id": "t_bcf65a900b7a",
+      "term": "煩惱即菩提",
+      "entrySha256": "3e36d3153c12f61baa3b7e6ee19fa5958168459151afdeb33959efc2e28d2bd4",
+      "priorEntrySha256": "706c66b9ea40650cc46c365d55137b8687fb885457d8d44e71aab6dea2b21b98",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 320,
+      "id": "t_200fc439a99e",
+      "term": "磨磚作鏡",
+      "entrySha256": "ca8b45bd5892e448e197de4b40afc331736d6ebfc965a5a48f5d26cca8968a51",
+      "priorEntrySha256": "739e1714a209d69755a1f1fa5b49b343f85375b7d7d1d8d29d3405736a07d544",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 321,
+      "id": "t_2745ffff5972",
+      "term": "開口即錯",
+      "entrySha256": "666bbdcdd8c5c7cc06f2fa2637652d93d2866d86b5aaca2d422fb130abe42f35",
+      "priorEntrySha256": "678208b09d06ea2eb305798986cfc377a7b1ba8386bb0154b4ed0f232b4f9bff",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “a monk/the monk/the speaker” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 322,
+      "id": "t_af212eccb3c0",
+      "term": "騎牛覓牛",
+      "entrySha256": "f10e4e69653a307883f8fc9b93245b3afee54b42dec98a94dab8e2a02c0888c2",
+      "priorEntrySha256": "4f6d68fcbc87b17e69b11a4a608ebed96f372afd511543d26a8de3d9ffb46737",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 323,
+      "id": "t_f04c29743e77",
+      "term": "閑道人",
+      "entrySha256": "5e69e45a52c5653a336c7af52718022bca7110abe550bbaaeb7eca4622f048c7",
+      "priorEntrySha256": "c77b775f9ff4266e5fd38a8d965f930ae0f88e8542ccd69ebdd85d7452907488",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 324,
+      "id": "t_986000f3d4d3",
+      "term": "拈華微笑",
+      "entrySha256": "2b786aa1e5f9e74be19440469f34c52d39e9644d61fa919968fb1381e13f0ba6",
+      "priorEntrySha256": "511d79afbcbff9693411ab1127ca316275a82995510846d5a84225b328e678c3",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The Buddha–Kashyapa scene now leads the article, distinguishes the two actors, preserves entrustment, and includes affirmative, hostile, and cautionary later receptions.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 325,
+      "id": "t_0899655df243",
+      "term": "立處皆真",
+      "entrySha256": "4e108fd0b084feb5b1fa3be1b05ffc6b4bba1d977b867d2c34e588bceb414dd1",
+      "priorEntrySha256": "038437a69cae8c328b2df4f5a3189eef04cac978aaeecdbead25d2dee2998f75",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 326,
+      "id": "t_4ac7eef36f48",
+      "term": "擔雪填井",
+      "entrySha256": "13f0191e04e77c0bf9e69016be2ed64cb73964ac0087c1417cf5577fe9e86d89",
+      "priorEntrySha256": "690bfaa196e55aa07c99780573fa34afe065f949c10fbed19a262bad8538a682",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 327,
+      "id": "t_afefc1399aed",
+      "term": "本無一物",
+      "entrySha256": "1d7af5b088a888477ca861f1ce46401b85ee79964ec556b19be6d326c7b98315",
+      "priorEntrySha256": "f4c866e36cd8bb9aaed520b779ed7939f6ed2d95f7035746e0cda87b42e79749",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 328,
+      "id": "t_2398f8fb6328",
+      "term": "困來即眠",
+      "entrySha256": "82b0090bf35762aebfd621cb5431485566b3d04c4cf5d8b6b753ea6aa49ba057",
+      "priorEntrySha256": "be4c10bd0ca012998d460fb0665b960d3c2df4f03cae92c631e3e098bd5116c4",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 329,
+      "id": "t_fe093b3a621c",
+      "term": "一絲不掛",
+      "entrySha256": "79c9ae54cd2437e977bfd06d2d0df5d6ce50b3b348d9105179cc3e4623a484bb",
+      "priorEntrySha256": "d3bc11fceb858278ba7016df75a1279f3c8453cf95fa9afb8ee296e45ef5b667",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 330,
+      "id": "t_ab715aa474d5",
+      "term": "一日不作一日不食",
+      "entrySha256": "7707eea6567e8c0aa12b8164f28d9432e61e9499125b7254472da573766d21d9",
+      "priorEntrySha256": "7e6748e58c2c165616d01930b96954ed37d1ebb2131555433c4498571c25e77d",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “the teacher” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 331,
+      "id": "t_707c9af5cb8e",
+      "term": "恁麼則",
+      "entrySha256": "cde05165fd751a258c845fc99186183866ae0cad07dc4650c483f79f243af62f",
+      "priorEntrySha256": "23fca729342ffd9d7f80a8d28fd109d5a5fcb07cb362f59d7620e83cda7bf886",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 332,
+      "id": "t_72e01bbb3474",
+      "term": "咄",
+      "entrySha256": "46dabfe1cd855f54a56be4ef1433ce9226fc1800e9bc1fb919c11b77a292887d",
+      "priorEntrySha256": "ccc1a40f7243f92a6bc2eb55b5ecadae78491ced5acc67998e16ec47344d1096",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “a master/the monk” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 333,
+      "id": "t_af92172da506",
+      "term": "只如",
+      "entrySha256": "d3e54fa3a9b4a40424fe675d2b99f50c4f86d9a7d6a325c0b46909dbaa639987",
+      "priorEntrySha256": "a7090d71da206b207b41b06ec0d6d071886099f9020a205fb7effe612fb2b08b",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “a speaker” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 334,
+      "id": "t_44d14cd3a935",
+      "term": "師子",
+      "entrySha256": "3f2aef0924eaf4ed800d8445b7a04838ed72e15ff1c331a9052e10ec2d6c2ff2",
+      "priorEntrySha256": "71b99aed1fd86c2c5b73a1a67beeb80384d411abd94681f1cbaf958bced7ff55",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 335,
+      "id": "t_f1eb87aa18ef",
+      "term": "露柱",
+      "entrySha256": "3255a0f8b4364e4370aafa3191ecc7590e8df681e347a36633bce1fe94ec6c0b",
+      "priorEntrySha256": "63a3cf6a35021b3995c1f47547b4fed64a8e2346415fa30ff270cb818a4fbfac",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Substantive term prose replaced the boilerplate, but current reader-facing prose still uses vague “a monk/one master” attribution and fails the attribution audit.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 336,
+      "id": "t_1a86ee3d406f",
+      "term": "便下座",
+      "entrySha256": "acba2c45a5c73b21f719f8e4037d6cb9ae5c1f869eca8164c82f19f73d668808",
+      "priorEntrySha256": "2f8edba5b6e751615e8a1d60f9761f834e15e5ee463b4563c0ce0ffe28f4eaf1",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "The occurrence fields now correctly make descent narrated, but all eight current AttributionNotes call the descending figure the “exact actor” and omit the narrative speaker. The current hash therefore fails the no-regression check for the exact-ID repair.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 337,
+      "id": "t_cc5235f9eb39",
+      "term": "舌頭",
+      "entrySha256": "9acf05487f49ba934b78058dffa0104a3649bd5219811f81f01e243718e4f99f",
+      "priorEntrySha256": "62a059c0cfd35efcda37d1d80577e9be1b9025c9034cbdbfb300596c67c2c906",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 338,
+      "id": "t_fb9ab5bac0bf",
+      "term": "草鞋",
+      "entrySha256": "9049893d2705d5d5f489a2a498ac175fd24ed2fd9059be41a1f666f39d48c127",
+      "priorEntrySha256": "4aa789f5a6ac4da369df7149952a48e6acc9a2725ead0d4e65b2fa1fed2c4126",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 339,
+      "id": "t_15eac1a3b037",
+      "term": "歸方丈",
+      "entrySha256": "6968ce461ab62ad7db2582fc2fe1ccb2ef24102bb18a93542cd8f6e9c048f0ac",
+      "priorEntrySha256": "9c82ed748d4e882eee8937b9c6e18ed836263b4f0d3171a7cc8d98e63d75a272",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "The occurrence fields now correctly make the movement narrated, but every current AttributionNote calls the moving master the “exact actor” and fails to name the narrative speaker. The article also retains vague “a master/a monk/the master” prose. Current hash therefore regresses the required attribution repair.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 340,
+      "id": "t_694f447dbd89",
+      "term": "面壁",
+      "entrySha256": "1ef6c7e831967fe7e9775b2e8b9b57d43424df07a9aab7f840480078f7ce09e3",
+      "priorEntrySha256": "58d9bb00d3ae1bfdadce4e5d66bd5c9a6d5817062a9326b11e8437e429597761",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "The row-by-row MasterName/ActorAttribution split is substantively correct, but the four narrated rows’ current AttributionNotes call Bodhidharma or Datong Ji the “exact actor” and omit the narrative speaker; vague “a monk” prose also remains. Current hash is not attribution-clean.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 341,
+      "id": "t_e1bba3f0355e",
+      "term": "全提",
+      "entrySha256": "c4b26d74c2a4ddb19441d8755481c903d292fa2c8c04215b1d8f75be8a2e1eb7",
+      "priorEntrySha256": "1b6b405c4391852857b5f22658d4c7ea7d540ec8857cdc54961c6bbeab9454ef",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 342,
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "entrySha256": "450c6cc79e893931f40fab0ba484ef78e27a82f4233a3f3e1dc8a1ac2505aadd",
+      "priorEntrySha256": "672010a0c47201f2047b35866c6ad76dff7983565540585f431998d76f946e3a",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 343,
+      "id": "t_1f6124388d25",
+      "term": "燈籠",
+      "entrySha256": "057ed964f7e8ecac933929bc4ff2da4becd0bca3db44728b9b12c3817044fe9b",
+      "priorEntrySha256": "4b7e4912546e8f7f54fc6e82bebbe094e38296d41bbb5f1eedfc1ec9a2a03e8e",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 344,
+      "id": "t_18b083a026ba",
+      "term": "提起",
+      "entrySha256": "bc3297354c24615889aa71ff68ffee244b221ff01cfcaed1aeeb44b27db1410d",
+      "priorEntrySha256": "9ce80504a3b274c55a5bbfa407ace2f0c7b0ac3b830825f1b924f493d3c5c2b0",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The two different acts remain split, and sense 2 now leads with the attested act “take up a saying or question”; the sustained-attention continuation is tied to the stored Zhongfeng instructions rather than built into the PreferredTarget.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 345,
+      "id": "t_20a56b9c1026",
+      "term": "鐵牛",
+      "entrySha256": "125187fff0edcc769fd1a9b60ca1e8c396b5723a4849dd0e4e67cb92e2f4bf2d",
+      "priorEntrySha256": "8fed43182f173daa1984155886cd1e342b6cac1e8ed799c26a4eaf0f239b15cc",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 346,
+      "id": "t_68835cda6c3f",
+      "term": "正令",
+      "entrySha256": "79a376e76f32f3ab9c23a3505d1d34984552e0b54c3132ef003a8ef85cfb3dd2",
+      "priorEntrySha256": "fcc96ccfbdc2d554ac974925a5ebd2192e36d38e433e8504fbcbacf763ebfccb",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 347,
+      "id": "t_aab4ca02ec21",
+      "term": "呵呵大笑",
+      "entrySha256": "b25b4656ba85fdacca3210990d84636cb777caf189e4bfe9375bfbea7cec1c84",
+      "priorEntrySha256": "bf8e8f41fd4ab62863ffa0e41be4551193efc33bd8df34e3255321d6d243dcb9",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "All seven laughter rows are now correctly stored as narrated actions, but every current AttributionNote calls the laughing person the “exact actor” and omits the narrative speaker. Current hash regresses the exact-ID attribution repair.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 348,
+      "id": "t_0fb97dffe2bc",
+      "term": "咦",
+      "entrySha256": "415555e75143b594605c582f1d00583c180735960d2995c6396fef5374aef540",
+      "priorEntrySha256": "c10f2c31282eb6fdf1dec99cd80039e1a69952e80074fdc664727961a93021e5",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "The repeated process and scope boilerplate is absent. The current article gives a term-specific definition, Chan deployment, and corpus-bounded limit grounded in its stored evidence; no unresolved exact-ID defect or semantic regression was found in this read-only rereview.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 349,
+      "id": "t_7653f61478aa",
+      "term": "石女",
+      "entrySha256": "3ea28a00ff940601b029df00a855b8a51f3766b42834991b96c8da393112da0e",
+      "priorEntrySha256": "5b4e961125b2f03fc81383f4e6166bc85bb545c0efae5c13b56b404713603c23",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "The preferred target now says “stone woman,” but the reader-facing opening and body still define her as “the barren woman,” and the note says “stone woman” is only a search alias. This directly reverses the required flyswatter repair: the animated stone woman must lead, with infertility or impossible birth limited to cases that state it.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    },
+    {
+      "ordinal": 350,
+      "id": "t_a784d81e277b",
+      "term": "應諾",
+      "entrySha256": "c874c6b8e1226b9b1cd9a51a33853357fd26772a4a6c8baa98ec0fa3e8d92722",
+      "priorEntrySha256": "a87f79ee394e71cdf65cf3029b38e19409d09c6050d777ee0eac7a06ca83f690",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "Occurrence 7 now correctly stores the raised Zhaoqing case as narration, but its current AttributionNote identifies Dahui Zonggao as the exact actor. The nested-case repair is therefore not clean at the reader-facing attribution layer.",
+      "formalizationCondition": "Formal only if the focused cohort gate confirms this exact entrySha256 and reports no hard failure."
+    }
+  ]
+}

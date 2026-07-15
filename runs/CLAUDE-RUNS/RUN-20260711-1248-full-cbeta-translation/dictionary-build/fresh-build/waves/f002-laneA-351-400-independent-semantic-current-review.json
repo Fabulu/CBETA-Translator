@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-full-current-packet-review",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": [
+    351,
+    400
+  ],
+  "reviewedUtc": "2026-07-15T03:37:06.569135+00:00",
+  "readOnly": true,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f002-laneA-351-400-independent-semantic-review-packet.json",
+  "scope": "Full current-hash semantic/flyswatter/gloss/sense/actor-prose review of all 50 entries and 418 exact rows after formal repair.",
+  "summary": {
+    "entries": 50,
+    "KEEP": 2,
+    "REVISE": 48,
+    "genericFullyReviewedSourceVoiceEntries": 46,
+    "genericFullyReviewedSourceVoiceRows": 46,
+    "consolidatedKEEPEmitted": false
+  },
+  "structuralFinding": "The formal repair introduced one generic “fully reviewed source voice” row into 46 entries. A six-rung assertion is not actor identification; the recurring repair pattern itself violates the name-the-speaker gate and requires source-by-source adjudication, not wording substitution.",
+  "findings": [
+    {
+      "ordinal": 351,
+      "id": "t_16bbc5599cd2",
+      "term": "木人",
+      "entrySha256": "b98ea12e48def493a2d4630142ed24162bb74574e7df5ad368005c0f650de094",
+      "worksheetSha256": "d6e4794b1232528fa48899058e06884bcd266e20fe603c071b1d6ebd8ee162c0",
+      "verdict": "REVISE",
+      "finding": "REVISE — the eighth Occurrence is the distinct longer compound 刻木人 (“carved wooden person”), which the prose itself calls a different person-epithet. Rule 16 requires routing it to family/claim evidence rather than letting it buy 木人 depth; re-test the single-sense explanation after rerouting.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 352,
+      "id": "t_79e00cdbc129",
+      "term": "安心",
+      "entrySha256": "c584a247ef5fc90de01096e18e45093e6908966974c27d6b11526701cb18466e",
+      "worksheetSha256": "d8d98c506bc750f61b410842d9c30894c6a4001fafd232de3666a0b296d59e21",
+      "verdict": "KEEP",
+      "finding": "KEEP — the mind-at-ease referent, Bodhidharma–Huike case, later testing, and ordinary reassurance uses are distinguished without inventing a doctrinal resolution. All eight actors are specific, including the reviewed unnamed attendant, and the target/aliases are reader-searchable.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 353,
+      "id": "t_f3488daf27fd",
+      "term": "較些子",
+      "entrySha256": "02e4f7cce23e19771db8ced1cc12a999d4648b937c513511e29a8c9b6f523cde",
+      "worksheetSha256": "459c8ffa32ceaac9af59d8254492da323784d01db2603dfe2739c6b8da5474ff",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 354,
+      "id": "t_3414320aa87c",
+      "term": "命根",
+      "entrySha256": "c2b70ac85b5050f67284bb1d727451bed86f0919bf9ff340a1ff23604af48a97",
+      "worksheetSha256": "2af0aa69c840d7fd64d7a6b43b54c2aa14120181a2e730f1f9de18b0a5b81826",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 355,
+      "id": "t_8482770fe735",
+      "term": "象王",
+      "entrySha256": "52d8ac4553034f580f004eb10835322236785454188b029b1bfe2fd67616e26d",
+      "worksheetSha256": "1c5b79bd08515db8ca2c46a33d570cce34372f85150ea26f489cfa7f33a764f3",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 356,
+      "id": "t_d055e572dc64",
+      "term": "依前",
+      "entrySha256": "c02fb8eb829e7dbf71b49dfadc91038e6c51bea90f52c8d3a6f495ad97b8820a",
+      "worksheetSha256": "251bfe1888b5e01011b722a6be971f0669ff2f109c8c2d9a55cdc5862d9a79e4",
+      "verdict": "KEEP",
+      "finding": "KEEP — one unchanged-from-before adverbial sense covers repeated conduct and continuing states; the Zen bend is clearly the recurrent verdict that a new answer or relabeling changed nothing. Actors and prose remain specific and the aliases are distinguishable.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 357,
+      "id": "t_a9f422b3b249",
+      "term": "生緣",
+      "entrySha256": "27da59f24ec55176ba6c6b78331f31d87c728994cccc9af0bf3add8963d3214b",
+      "worksheetSha256": "da014c045b1a449f67e3205b42fdfeb9bbee1f0daac48a37420938f98b00b331",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 358,
+      "id": "t_84e490b1773f",
+      "term": "撫掌",
+      "entrySha256": "68eebc75efe5883fc6baf3be597a71b817e01bddb737cb3647a72ae484af7ccd",
+      "worksheetSha256": "2c5fff27675a03d871a2059f33761d75606128e9e88948351ade23b89d2a1c13",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 359,
+      "id": "t_a989d784dc81",
+      "term": "話會",
+      "entrySha256": "4a07a77257648086827b9c5f9dbe6a6143d6900117b9cf2df62a550099132789",
+      "worksheetSha256": "ca8eb46dc19b387c019e422fd65a4242a1f54c8dad3c652f832b01f4ab27a2ae",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 360,
+      "id": "t_130eccf5145c",
+      "term": "重關",
+      "entrySha256": "e884f07ad36c53038831acdc0266d9832bfc3521c4c1883f04d84f5cb56d4db3",
+      "worksheetSha256": "dd5e114ef6d5d4a9d25f1cace8734d99164b5167d12aa93a4c3b8a37baebceb3",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 361,
+      "id": "t_e2c55f8feca0",
+      "term": "三寸",
+      "entrySha256": "d45b736856a6961713e854e7231f9da827150754e30a6f4f716c00712e9308f9",
+      "worksheetSha256": "f674b6cb0165474532d6884dd9bab637ca697ecd339d4ded7972857b13e5d15d",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 362,
+      "id": "t_e9847e6f41c9",
+      "term": "腳跟下",
+      "entrySha256": "0febb4f3c02699adde21c711d8cd8870d9722ba39f32b4145e7cf3dc00c13a8c",
+      "worksheetSha256": "afa18b5e3a74df5a4f19103dd1f7819f9a3fca09013895c4e14cf2cf08b4250d",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 363,
+      "id": "t_a8b4f101d192",
+      "term": "玄關",
+      "entrySha256": "7f400299cff931d6def5574367d2bb41eccd742a1062fb288ef227977a95fada",
+      "worksheetSha256": "e9fc787045cafdbc7da73a57dd6c27a7c9d3d9f56b378b7aa77be18bd2fb4395",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 364,
+      "id": "t_757827b8d4cb",
+      "term": "喪身失命",
+      "entrySha256": "7e8b81900b107b177b27c6c999b4224a84a6b2c0993b0db0a618bb17df6623d8",
+      "worksheetSha256": "730e3d60aea50e1b4f80b2fa57f977b015d1954c50ccec395ac1b48fcccb69aa",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 365,
+      "id": "t_897ae83b4a57",
+      "term": "一莖草",
+      "entrySha256": "8d8e1fc46cad78661c86990cc4bed29785f92238f54b0558c0e5aa193eba38b7",
+      "worksheetSha256": "694bb20ff63c9bd62adaf24faf0c3f768ed8a9708347f7b9e8f51426f8d9e07d",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 366,
+      "id": "t_bf467ac18ec0",
+      "term": "佛手",
+      "entrySha256": "286d6f2a1ab355311cbef9818ac2b246ba5cc231c7bb63434abce966c4e249a3",
+      "worksheetSha256": "7b586eef4b88a687923316708f32280f272aa69c124cce8d6ec77b1e5f9e7567",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 367,
+      "id": "t_f41961e0e5be",
+      "term": "牧牛",
+      "entrySha256": "e7f772397736d8f08ffb1348bd88c3864d0b5b0af2f45f2eacc5961bc7dc5903",
+      "worksheetSha256": "d350475f7f717a64061d9b5e3cb0d0797d5f4bdeb157285d95adb382037c0644",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 368,
+      "id": "t_58099932161b",
+      "term": "斷臂",
+      "entrySha256": "b0e0ab1d647ae2c94694b25d9c6d5acfc1bf37091a5389c4963d09a1f2efdbf1",
+      "worksheetSha256": "8671c2d1c3743e21c4961067e33607d00efc46579f5ca65d5a01bba90f012db1",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 369,
+      "id": "t_811316de4c5f",
+      "term": "解會",
+      "entrySha256": "c8f68b9c4945ba7f0542d4da749afe25e5f38875689c20e2a1c86de24e27ae8a",
+      "worksheetSha256": "736557375a04668dc00b9ec778dcce76d6570f15dacba7342914361e69bd2b05",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 370,
+      "id": "t_f56016646d8f",
+      "term": "吐舌",
+      "entrySha256": "ee6a106784ef082cb12345038a2c2a2e25c0d94dec255db6ba270f0151f51dd0",
+      "worksheetSha256": "86456b8895969af5c961f2bf6d41fada2ee5fae2ae41ae04d550f74e73079c3c",
+      "verdict": "REVISE",
+      "finding": "REVISE — in addition to the generic added “fully reviewed source voice,” the 古尊宿 row assigns Mazu Daoyi as actor although the headword is narrator-reported Huangbo sticking out his tongue after hearing of Mazu’s shout. Rebuild exact action/narrator attribution and re-test every prose claim.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 371,
+      "id": "t_eedf4100b3d7",
+      "term": "師子吼",
+      "entrySha256": "4c7ad55eb1e522bdd7e4f8b0ea8324389af22745ea44e097278355538969744c",
+      "worksheetSha256": "5ca4a4fc41017a433e8f9581f055c5200a05efe0966cdb380e32ca4af280576f",
+      "verdict": "REVISE",
+      "finding": "REVISE — one row stores the literal string “unnamed monk” in MasterName instead of reviewed ActorAttribution, and the Guizong Cezhen row assigns the respondent although the headword occurs in the unnamed monk’s question. The lion/jackal semantic explanation is strong, but actor ownership fails.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 372,
+      "id": "t_d2892b1eaae0",
+      "term": "立雪",
+      "entrySha256": "4f5139e8a766a2aa0e630dfd2d5fa15b941c91bf21317cf19b66b9e3fa719115",
+      "worksheetSha256": "9e0a2234a1c47d770dae066405a8f16a27c57beb50e0aa3280afb3c11c5efdf4",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 373,
+      "id": "t_a14a883193a5",
+      "term": "德山棒",
+      "entrySha256": "e05f45c51eb164c74c48fde00d2a494949681d484a21352cf115c6dfc590f4c7",
+      "worksheetSha256": "408402dbe4d3f364e3036cf40408454e31f5ae4ec3704b6f42c18c7cc3b6fa11",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 374,
+      "id": "t_1403ddf1e83b",
+      "term": "臨濟喝",
+      "entrySha256": "ff4b1093ebfefe7d4f477bda17e56b105864c3b2eef6f171c93bb76e64e74db3",
+      "worksheetSha256": "92816aef01ea61c5de1d90b8d3880d8df25f49f7f0b4a152d8e7ea5e6ec3a002",
+      "verdict": "REVISE",
+      "finding": "REVISE — multiple rows confuse the referent Linji with the exact textual actor: later speakers say “Linji’s shout,” and two questions contain the headword before the current master replies. The added generic source-voice row also fails rule 10. Re-adjudicate all seven turns, not only the new row.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 375,
+      "id": "t_f59209907f3d",
+      "term": "單提",
+      "entrySha256": "a1161dac33731cbcdf6e1bfeff7fe7fe98fc7a903a0214798064aa4730a5c375",
+      "worksheetSha256": "712fe2bb958b43fbda6578b1805580b9dac1289ae49db853224219d2678b5c95",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 376,
+      "id": "t_6ba271127127",
+      "term": "破草鞋",
+      "entrySha256": "94d14dfcb1f6e147579a161137e7ec3aa5191ec047c4defce83b12dc67a800c7",
+      "worksheetSha256": "fbdad0c5b569eab23a43bdd26a5b4c944b13c02af5e0c8581774e5774d542188",
+      "verdict": "REVISE",
+      "finding": "REVISE — the article lets the longer resultative compound 踏破草鞋 (“wear/walk through straw sandals”) dominate a bare 破草鞋 article and count as occurrences, even while defining the headword as worn-out sandals. Rule 16 requires longest-object classification and a fresh sense/depth decision; the new generic actor also fails.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 377,
+      "id": "t_e3a829e28b09",
+      "term": "丈六金身",
+      "entrySha256": "579811de2fc4d09afde1b2dff9d5863031b94cdc6c8f43fe57fb803ebbe5f6a7",
+      "worksheetSha256": "39184f618f47f49f851e98182e41e62c3695c49b37eb065359f302016657711d",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 378,
+      "id": "t_18ec645f99f7",
+      "term": "賓中主",
+      "entrySha256": "7477422e73852de1df8fef5a1804bd48478b86bfc68464728c0eb7488a0dc784",
+      "worksheetSha256": "bd2262c18c5504ddeaaea92b35265be11b021a7e279aeb903002c88abb92918d",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 379,
+      "id": "t_4fbc901cf73a",
+      "term": "人境俱不奪",
+      "entrySha256": "ac99dd46a586d12a737b8a2ab289de6d5de0ba1afaa7a151134a5679044e3447",
+      "worksheetSha256": "6d383bcb4642355f0ce27671ab6cd5fb81b4a457dd476d4385d263ec46b3267a",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 380,
+      "id": "t_332a9a8accb6",
+      "term": "主中賓",
+      "entrySha256": "f7f40ddc3dc3fcfdeea0932cc8cac80bb9598be5083795223ede8a380fc5bb98",
+      "worksheetSha256": "01e8f345d382baa3136e6a879854d47ac23452ec6536c8a40741d380aa8d3d3c",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 381,
+      "id": "t_dda048ca832d",
+      "term": "金鎖",
+      "entrySha256": "65527c0ea1e26c08c6b83ada6eb48bd06c6f59a8b43d54f0cc74051546b03853",
+      "worksheetSha256": "37c2165173ac23f271054c774bc0fb6577e5cd1a528a53fb0e74c647bca00ef9",
+      "verdict": "REVISE",
+      "finding": "REVISE — the displayed target was improved to “ornate lock-barrier,” but the Explanation still opens “A golden lock names…” and “binding golden chain,” reinstating the material-looking public-reader defect. The new generic source-voice occurrence also fails actor identification. Propagate the modifier correction through 金鎖玄路 and linked family.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 382,
+      "id": "t_ecac19a083df",
+      "term": "奪人不奪境",
+      "entrySha256": "159b49f2de64144ee41c235b6652c530154191bba638d045df2f19b185a5e4aa",
+      "worksheetSha256": "259573743073dc0200c7234cd70522b67e8aa0c31590047d6d33797bf74ff537",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 383,
+      "id": "t_bf1399632fd6",
+      "term": "奪境不奪人",
+      "entrySha256": "7f96c3b13bf5079418d65d635a4722c4c288633ca5e51a7b985b13f7211400e9",
+      "worksheetSha256": "71274196001c63647fe09762fc1e93090e6a8e4c4de6702a61b2148cf0b7178b",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 384,
+      "id": "t_fb331b159983",
+      "term": "死蛇",
+      "entrySha256": "3bcbfee9ae6c61705045e0666572cfc448299000d991123f4e03aae86c9775a4",
+      "worksheetSha256": "e9b64e1771a22d399c03593acdcd8ab26fbb5d1fe1607b1b373a7a0a13c8d3af",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 385,
+      "id": "t_1e3e02536ca2",
+      "term": "疑團",
+      "entrySha256": "7f80517fb6a7c92fe37133a2307cbdb68740e092ab069ab863a07774c04412bd",
+      "worksheetSha256": "c48f398d71e68f9f10fa6e83e7fcc01816a00e462daeb1e9b0f331d958083563",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 386,
+      "id": "t_f4c65b25832f",
+      "term": "斬貓",
+      "entrySha256": "be10b82f1b1d681a4c60013df464ee092248797e6a9c926f708a9edc27a0d463",
+      "worksheetSha256": "56ba771b24b3642452efc26dab5a7458e1053bee3fdc53205988add5ce823358",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 387,
+      "id": "t_6dadcc69c361",
+      "term": "料揀",
+      "entrySha256": "917aa1dc5ceff9902f2c6c20de6c9f844366ee495aed5db83058401cdb95f317",
+      "worksheetSha256": "c3008eea59d204424bf33193726d89ebbdfd1df72f54183e4b56d75fb52dd08b",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 388,
+      "id": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "entrySha256": "9a1b84275f53610e55b1fda95b7cd9944d3b5f9c0e15e9f3c57ddfa279e261a8",
+      "worksheetSha256": "a710ded94fdfd42332fe0183f9382f12999bf3afde7d28509aefb84b851b3d83",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 389,
+      "id": "t_586bc9a3f0a8",
+      "term": "懸崖撒手",
+      "entrySha256": "51d7d4dd762b0342e85e341e2fc55d10506107eef33c6169317a64cf182822f3",
+      "worksheetSha256": "d7c7af1e8b55625444794025a7975aae7adc4879b7e1c3e6dceffa70935d051e",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 390,
+      "id": "t_ec1241360056",
+      "term": "無孔鐵鎚",
+      "entrySha256": "dc3666143a5743ce760c449eed5b76070dd563ef071a32e1bd3a9fac506c6314",
+      "worksheetSha256": "901427acf8d9cf1e6521fe2426360134ede5c03a38a35389d178d8f0b5ca48a0",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 391,
+      "id": "t_d95b944e0749",
+      "term": "透網金鱗",
+      "entrySha256": "5dc8522930e94a624616d82c9ac5c8f290855eadb8df340b687b84a7c67d0610",
+      "worksheetSha256": "59abc3a03c2d086db5538d7b8dc6b7b7a9881f3d0c1c43c226148fe472c908be",
+      "verdict": "REVISE",
+      "finding": "REVISE — the added generic source voice fails rule 10, and the Baohua row assigns the respondent although 透網金鱗 occurs in the unnamed monk’s question before Baohua answers. Retain the strong net-escape inference only after exact-turn repair.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 392,
+      "id": "t_114bbd284d1c",
+      "term": "東山水上行",
+      "entrySha256": "04e68117b2f73fa67100c8d27e86ee87b6ceb118b0b93eafd6bd1dc9cdc6bd30",
+      "worksheetSha256": "4900cf637e252236e570063c55f8ac0c957070c0a3d7684166f03d1ce9031e55",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 393,
+      "id": "t_f7c3da035832",
+      "term": "金剛王寶劍",
+      "entrySha256": "5f51f00cac2775299d7394f9deee8024b5dbd310b4097c04597d6864b1a72743",
+      "worksheetSha256": "d64e7aa0c4cbaa75352ab62d69f24f747e72013c89a09ba3800720c0dd88eef3",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 394,
+      "id": "t_bf67613e4573",
+      "term": "千手眼",
+      "entrySha256": "9d87307f67494b39c0893ef089019bb0cff7d13cd463cd7cf2120c1ebab37939",
+      "worksheetSha256": "b1611a3a5dd322d8e42857079115ef35762cb186e7d3df7b34e91f1f3dc01264",
+      "verdict": "REVISE",
+      "finding": "REVISE — the added generic source voice fails rule 10. The Linji row contains Magu’s headword-bearing question and Linji’s repeated challenge in one KWIC but attributes the occurrence simply to Linji; split/narrow the exact clause or explicitly represent both turns so claim ownership is unambiguous.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 395,
+      "id": "t_5369e90b59b3",
+      "term": "百丈野狐",
+      "entrySha256": "b54633495f96fbaa42186292f51fa6f78c4214997b20a06c27739e078fcb81be",
+      "worksheetSha256": "b39a83d3a66eb39ad81a8c0b01f2d1b92fe2187fc9c6ac123552518cacad9104",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 396,
+      "id": "t_fac9b9afebf6",
+      "term": "探竿影草",
+      "entrySha256": "3f82f210fc8ccd3fcc92acdccd6f655da656962e9620060bb8d1bb7e6a1a7af0",
+      "worksheetSha256": "a70f3b36b3a6692a79e1de29160254871c5e3e2a5e2ce7c873653eaf7d474e52",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 397,
+      "id": "t_a38d5c680c67",
+      "term": "咬嚼",
+      "entrySha256": "56d7b3f69f1995c4487dde3f0aac602012fa20fdc97777b9aa54b26c520f4cac",
+      "worksheetSha256": "c3a29b632f0bb1ca4a98e32933ba967561bc56827eb421ae5d5f6f6e3b693731",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 398,
+      "id": "t_bd2caabef956",
+      "term": "南泉斬貓",
+      "entrySha256": "0128bd4607f6c45ebfbaa306832103003e8b7921f38fd8b55c684eeac68cf5cf",
+      "worksheetSha256": "d81e85bee6d4dba49d2dbab8f6bdcd507c217a833d1dde61d43ba5b5fe973111",
+      "verdict": "REVISE",
+      "finding": "REVISE — Miyun Yuanwu is again falsely assigned the precept question “why did Nanquan cut the cat?”; the unnamed monk owns that headword-bearing question and Miyun owns only the replies. The added generic source voice likewise fails rule 10. Apply the already-established correction from 斬貓 consistently.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 399,
+      "id": "t_78bd967fdcd6",
+      "term": "大疑",
+      "entrySha256": "3545b789f526fd7f072738f24b85d6b0dfdc6e377c056fa298e1956847e75f6e",
+      "worksheetSha256": "8013fa5a6e2d371e78f172a93ac32fb0ee6f51c26d03c1d5db318bb234017ac2",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    },
+    {
+      "ordinal": 400,
+      "id": "t_b8c3ecb60618",
+      "term": "啐啄同時",
+      "entrySha256": "45e331e99a4c17e273ebb0b6967aae13df7fd5b16207c5919f841eba57e2cbad",
+      "worksheetSha256": "fcc5127684c321852e2ace54ebc86638118f5e50a7d83aeb85caafaf3cc47114",
+      "verdict": "REVISE",
+      "finding": "REVISE — the formally added occurrence is assigned only to “the fully reviewed source voice,” and its AttributionNote merely says that this generic voice owns the deployment after six rungs. That is not an identified speaker, narrator, compiler, verse author, or reviewed unnamed participant. Resolve the visible section/book actor and exact turn under rule 10, then re-test the definition and sense split against the repaired witness.",
+      "formalizationCondition": "Verdict applies only to these exact current entry and worksheet SHA-256 hashes."
+    }
+  ]
+}

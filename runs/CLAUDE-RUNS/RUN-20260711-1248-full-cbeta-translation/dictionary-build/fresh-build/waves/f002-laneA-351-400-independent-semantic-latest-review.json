@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-full-latest-exact-packet-review",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": [351, 400],
+  "readOnly": true,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f002-laneA-351-400-independent-semantic-review-packet.json",
+  "sourcePacketSha256": "57acefa723a2702cfcc0819af558c2549c7ec91afd216c773f3258a77d4d1785",
+  "scope": "Fresh independent review of the latest formal 50-entry, 416-row packet. Every sense, explanation, exact occurrence, and actor assignment was reviewed; earlier packet verdicts were treated as superseded evidence, not inherited decisions.",
+  "summary": {
+    "entries": 50,
+    "occurrences": 416,
+    "KEEP": 45,
+    "REVISE": 5,
+    "consolidatedKEEPEmitted": false
+  },
+  "keepOrdinals": [351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 371, 372, 373, 375, 377, 378, 379, 380, 382, 383, 384, 385, 386, 387, 388, 389, 390, 392, 393, 394, 395, 396, 397, 398, 399, 400],
+  "keepFinding": "KEEP at the packet's embedded exact entry hashes: these entries now distinguish the ordinary referent from its recorded Chan deployment, preserve genuinely different things as senses without splitting grammatical variants, and identify headword-bearing questioners or narrators instead of transferring their words to the respondent. The former defects in 木人, 師子吼, 千手眼, and 南泉斬貓 are materially repaired in this packet.",
+  "reviseFindings": [
+    {
+      "ordinal": 370,
+      "id": "t_f56016646d8f",
+      "term": "吐舌",
+      "entrySha256": "5dc8450d94a14358697034bfe2fcaf2b904d49ae3dadcd36ec628ffc962aee74",
+      "worksheetSha256": "2e2b0615389be7fd63eb9219061f05a920c5ef02ac933ac8dd83c16d6b959537",
+      "verdict": "REVISE",
+      "finding": "Actor ownership remains wrong in multiple rows. In 被馬大師一喝...黃檗聞舉不覺吐舌, Huangbo performs 吐舌, yet the C077 row assigns Mazu Daoyi. In 年吐舌曰真是龍象, the visitor 年 performs it, yet the row assigns Ciming Chuyuan; the explanation itself correctly calls him a visitor. Repair every full turn and then re-test the prose against the corrected actor set."
+    },
+    {
+      "ordinal": 374,
+      "id": "t_1403ddf1e83b",
+      "term": "臨濟喝",
+      "entrySha256": "be7826fbcb36d3b485a59670a3288135a2701bdee4917cb2c152279f8419525d",
+      "worksheetSha256": "c57bb880f92d5706473c83963e89e50749cf47ae3045a6b81a6241211d5216c1",
+      "verdict": "REVISE",
+      "finding": "The first two retrospective device-list rows assign Linji Yixuan merely because the phrase names his shout; he is the person discussed, not automatically the later utterer. The Dahui-record line 德山棒如雨點，臨濟喝似雷奔 especially cannot be owned by Linji. The final long row likewise says its complete case identifies Xiangyan without displaying the speech transition that proves that ownership. Re-adjudicate later speaker/verse author versus named case figure row by row."
+    },
+    {
+      "ordinal": 376,
+      "id": "t_6ba271127127",
+      "term": "破草鞋",
+      "entrySha256": "ff17a25c69b45486f53150c2dbff963880d1bea304a7135dd9420eb5aaa6ddd3",
+      "worksheetSha256": "de97b4edfbdd7caba07a571a70c97d93769fac105cd49bb23da1d5b669f906bc",
+      "verdict": "REVISE",
+      "finding": "Three of six rows are the longer construction 踏破草鞋 (‘wear out straw sandals’). That family phrase cannot buy bare-headword depth or be silently folded into the same lexical claim under the modifier/longer-compound gate. The prose accordingly blurs discarded 破草鞋 with the different predicate 踏破. Route the longer phrase to family evidence or a separate entry, rebuild bare 破草鞋 depth, and re-check the first two actor assignments (the explanation names Huangbo and Jiashan while the stored actors name Jiashan and Yantou)."
+    },
+    {
+      "ordinal": 381,
+      "id": "t_dda048ca832d",
+      "term": "金鎖",
+      "entrySha256": "63bb08675063fc5cd298855473a16af271fefae41c15512006d026b2f5d5074e",
+      "worksheetSha256": "6c28406962304fdded7d1cc82588937297cfe1ff7d08fa4a00c0f9574e6aab05",
+      "verdict": "REVISE",
+      "finding": "The material-gold overclaim was removed, but ‘ornate lock-barrier’ substitutes a new unproved modifier reading. Palace diction establishes the scene, not that 金 lexically means ornate. Keep the modifier visibly unresolved in the displayed target (for example a controlled ‘gold-lock barrier’ calque with clear search aliases) unless a corpus self-gloss proves ornamental force. Also remove the duplicated phrase ‘a separate sense is a binding ornate binding chain.’"
+    },
+    {
+      "ordinal": 391,
+      "id": "t_d95b944e0749",
+      "term": "透網金鱗",
+      "entrySha256": "1411f121e2bdb74ead969301f785f850ccc797d5a2b189b048ae541d294c2c1c",
+      "worksheetSha256": "8ac9c244be04215e4a8e526d4242525a3026e68b11a32304011fd87152af8fbc",
+      "verdict": "REVISE",
+      "finding": "The prose says Yuanwu Keqin hails the unnamed monastic with 俊哉衲子，透網金鱗, but the stored occurrence and attribution assign that clause to Baowen Hongyin. This is exactly the stale-prose defect the full-turn repair must catch. Correct the named speaker only after confirming the source turn, and re-cross-check every explanation name against the final occurrence actor."
+    }
+  ],
+  "formalizationCondition": "All verdicts apply only to source packet SHA-256 57acefa7... and its embedded entry hashes. No entry, worksheet, site artifact, status, or promotion state was edited."
+}

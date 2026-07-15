@@ -1,0 +1,50 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_ccd48e1c9145",
+    "SourceTerm": "正中來",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T00:00:00Z",
+    "Senses": [{
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "coming from within the absolute",
+      "AlternateTargets": ["coming from within the upright", "the coming-from-within-the-correct rank"],
+      "SearchAliases": ["third of the Five Ranks", "coming from within absolute", "coming from within upright", "upright within coming Five Ranks"],
+      "Status": "preferred",
+      "ExplanationParts": {
+        "CorpusEarnedOpening": "Within the Caodong Five Ranks, coming from within the absolute (正中來) names a movement from the upright or correct position; Caoshan describes it as words within no-words, without setting up rank or falling to either side.",
+        "EvidenceBody": [
+          "Caoshan Benji explains the label through coming from the correct position and gives examples of speech within no-speech. Hongzhi Zhengjue's verse pictures a great fish shedding its shell and taking the bird path, while an unnamed monastic later asks Fenyang Shanzhao for the rank and receives the image of lotuses opening on dry ground.",
+          "Langting Ting pairs the rank with partridge calls and opening flowers. Juelang Daosheng later explains it through a ruler at the highest point, Yongjue Yuanxian gives a midnight plum opening against snow, and Ruibai Mingxue classifies a shout free of names and words as this rank. These changing images and schemata illustrate one named relation rather than establish separate senses."
+        ]
+      },
+      "Validation": "multi-source",
+      "Note": "The exact rank label occurs 320 times in 96 allowlisted files. Seven witnesses in seven independent works support one Five Ranks relation; later diagrammatic systems remain attributed examples rather than the lexical definition.",
+      "Occurrences": [
+        {"RelPath":"T/T47/T47n1987A.xml","FromLb":"0531c20","ToLb":"0531c22","Kwic":"正位中來者。句句無語。不立尊貴。不落左右。故云正中來也。","MasterName":"Caoshan Benji","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Caoshan Yuanzheng (撫州曹山元證禪師語錄): Caoshan Benji directly explains coming from the correct position as words within no-words that neither establish rank nor fall to either side.","ContextMasters":[{"MasterName":"Caoshan Benji","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"故云正中來也。","SpeechFrame":"The definition belongs to Caoshan's sustained explanation and selection of Five Ranks examples.","FullCaseDecision":"Caoshan owns the headword-bearing definition."}},
+        {"RelPath":"T/T48/T48n2001.xml","FromLb":"0099a10","ToLb":"0099a11","Kwic":"正中來。月夜長鯤蛻甲開。大背摩天振雲羽。翔游鳥道類難該。","MasterName":"Hongzhi Zhengjue","Curated":true,"AttributionNote":"Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue's own Five Ranks sequence labels and versifies this rank with a great fish taking the bird path.","ContextMasters":[{"MasterName":"Hongzhi Zhengjue","Roles":["utterer","verse-author","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"正中來。","SpeechFrame":"The labeled stanza occurs in Hongzhi's own Five Ranks verse sequence.","FullCaseDecision":"Hongzhi owns the complete headword-bearing stanza."}},
+        {"RelPath":"T/T48/T48n2006.xml","FromLb":"0314b06","ToLb":"0314b07","Kwic":"如何是正中來。汾云。旱地蓮華朵朵開。","MasterName":null,"Curated":true,"AttributionNote":"Mirror of Humans and Devas (人天眼目): an unnamed monastic asks what this rank is; Fenyang Shanzhao separately answers that lotuses open on dry ground.","ActorAttribution":{"Status":"reviewed-unnamed","Kind":"monastic questioner","ActorLabel":"an unnamed monastic questioner","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"GrammarEvidence":"The headword occurs in the question; the formula 'Fenyang said' (汾云) introduces Fenyang Shanzhao's separate answer.","ReviewedBy":"Codex fresh f001 lane A evidence-first","ReviewedUtc":"2026-07-15T00:00:00Z"},"ContextMasters":[{"MasterName":"Fenyang Shanzhao","Roles":["respondent","case-figure"]}],"DraftActorProof":{"GrammaticalSubject":"The unnamed monastic asking the headword question.","FullCaseDecision":"The unnamed questioner owns the headword; Fenyang owns only the answer."}},
+        {"RelPath":"J/J33/J33nB294.xml","FromLb":"0729a23","ToLb":"0729a23","Kwic":"正中來，鷓鴣啼處百花開","MasterName":"Langting Ting","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Yunxi Langting Ting (雲溪俍亭挺禪師語錄): Langting Ting directly pairs the rank with partridge calls and flowers opening.","ContextMasters":[{"MasterName":"Langting Ting","Roles":["utterer","verse-author","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"正中來，鷓鴣啼處百花開","SpeechFrame":"The line occurs in Langting's own small-assembly Five Ranks sequence.","FullCaseDecision":"Langting owns the headword-bearing verse line."}},
+        {"RelPath":"J/J34/J34nB311.xml","FromLb":"0650c04","ToLb":"0650c05","Kwic":"正中來者，即君御極也。以黑在白中，而體已成其用","MasterName":"Juelang Daosheng","Curated":true,"AttributionNote":"Complete Record of Chan Master Tianjie Juelang Daosheng (天界覺浪盛禪師全錄): Juelang Daosheng directly presents his later ruler-and-colour account of the rank.","ContextMasters":[{"MasterName":"Juelang Daosheng","Roles":["utterer","commentator","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"正中來者，即君御極也。","SpeechFrame":"The sentence belongs to Juelang's sustained written explanation of the Five Ranks.","FullCaseDecision":"Juelang owns this later explanatory schema."}},
+        {"RelPath":"X/X72/X72n1437.xml","FromLb":"0426a18","ToLb":"0426a24","Kwic":"舉洞山五位正中偏，黑漆崑崙空裏眠。雖是不曾親切得，眼前影象却昭然。偏中正，將軍手持無字印。鐵馬金戈事正勤，未得歇時難自信。正中來，夜半梅花鬬雪開。一陣香風飄出谷，始知未許雪深埋。","MasterName":"Yongjue Yuanxian","Curated":true,"AttributionNote":"Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄): Yongjue Yuanxian raises the Five Ranks and supplies his own labeled verse sequence, including the midnight plum opening against snow.","ContextMasters":[{"MasterName":"Yongjue Yuanxian","Roles":["utterer","verse-author","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"正中來，夜半梅花鬬雪開。","SpeechFrame":"The line occurs in Yongjue's own continuous Five Ranks verse sequence after the formula 'raising Dongshan's Five Ranks.'","FullCaseDecision":"Yongjue owns the selected verse line and its images."}},
+        {"RelPath":"J/J26/J26nB188.xml","FromLb":"0758a16","ToLb":"0758a17","Kwic":"即此一喝，不帶名言，是正中來也。","MasterName":"Ruibai Mingxue","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Ruibai Mingxue (入就瑞白禪師語錄): Ruibai Mingxue directly classifies his own shout, insofar as it bears no names or words, as this rank.","ContextMasters":[{"MasterName":"Ruibai Mingxue","Roles":["utterer","commentator","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"是正中來也。","SpeechFrame":"Ruibai's sustained address classifies one shout across the Five Ranks.","FullCaseDecision":"Ruibai owns the headword-bearing applied classification."}}
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["T/T47/T47n1987A.xml","T/T48/T48n2001.xml","T/T48/T48n2006.xml","J/J33/J33nB294.xml","J/J34/J34nB311.xml","X/X72/X72n1437.xml","J/J26/J26nB188.xml"],
+      "RelatedMasters": ["Caoshan Benji","Hongzhi Zhengjue","Fenyang Shanzhao","Langting Ting","Juelang Daosheng","Yongjue Yuanxian","Ruibai Mingxue"],
+      "RelatedTerms": ["正中偏","偏中正","偏中至","兼中至","兼中到","五位君臣"],
+      "DraftEvidence": {
+        "OpeningClaimEvidenceKeys": ["o1","o2","o3","o4","o5","o6","o7"],
+        "ZenBend": "A compact relational rank is repeatedly rendered through movement, verse, colour, office, and an applied shout.",
+        "CounterexampleOrLimit": "Later images and diagrams conflict at the surface and remain attributed examples; none replaces Caoshan's relational account.",
+        "DifferentThingTest": {"Decision":"one-thing","ComparedThings":["Caoshan definition","rank question","Five Ranks verses","ruler schema","shout classification"],"Reason":"Every witness explicitly labels the same Five Ranks member despite differing images."},
+        "AliasRationale": "Aliases preserve the ordered coming-from-within relation and conventional absolute/upright vocabulary.",
+        "ModifierControls": [{"Control":"nested directional relation","Finding":"The phrase names coming from within 正; aliases do not reverse it into another rank."}],
+        "FamilyControls": [{"Term":"正中偏","Finding":"Relative within absolute, a different rank."},{"Term":"偏中正","Finding":"Absolute within relative, a different rank."},{"Term":"兼中到","Finding":"A later rank in the same sequence, not an alias."}],
+        "IndependentWorkIds": ["work:T47n1987A","work:T48n2001","work:T48n2006","work:J33nB294","work:J34nB311","work:X72n1437","work:J26nB188"]
+      }
+    }]
+  }
+}

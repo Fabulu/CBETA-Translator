@@ -1,0 +1,309 @@
+{
+  "Id": "t_e96268628f2c",
+  "SourceTerm": "萬法歸一",
+  "CreatedBy": "Codex GPT-5.6",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the myriad things return to one",
+      "AlternateTargets": [
+        "all things return to one",
+        "the ten thousand things return to one"
+      ],
+      "SearchAliases": [
+        "all things return to one",
+        "the myriad things return to one",
+        "ten thousand things return to one",
+        "everything returns to one",
+        "all phenomena return to one"
+      ],
+      "Status": "preferred",
+      "Explanation": "The myriad things return to one: the opening clause of a stock public question (萬法歸一). It most often forms the first clause of the stock question, 'The myriad things return to one; where does the one return?' (萬法歸一；一歸何處). In Zhaozhou Congshen's case the answer is: 'When I was in Qingzhou; I made a cloth shirt, weighing seven catties' (我在青州；作一領布衫，重七斤). The corpus preserves other answers without making any of them a dictionary gloss: Wenshu Yingzhen says, 'The Yellow River has nine bends' (黃河九曲); Baizhang Mingzhao An says, 'There has not been a single person who did not ask' (未有一箇人不問); Shending Yikui answers the first clause with 'rain comes, the mountain colors darken' (雨來山色暗), then answers the second with 'clouds clear, the moon is newer' (雲淨月彌新). The phrase is therefore not merely a proposition. Zen records bend it into the opening move of a portable public-interview case whose second clause and sharply speaker-specific answers must remain attached. Juelang Daosheng answers the inherited question by challenging who taught the monk to ask it; Zhean Fan raises the Zhaozhou version and comments on its pressure. Both keep the headword as the first clause of the same public question.",
+      "Validation": "multi-source",
+      "Note": "The exact four-character string occurs 955 times in 236 allowlisted storage files. The unpunctuated full question occurs 56 times in 22 files, while its second clause occurs 838 times in 216. Standard self-definition searches yielded no direct definition; their zero results are recorded in WORK rather than printed as unattested Chinese evidence. The attested question, the label for Zhaozhou's case, and later verse headings share one referent. Answers remain attached to their respective speakers and do not become additional senses of the headword.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0181c14",
+          "ToLb": "0181c22",
+          "Kwic": "疾焰過風。奔流度刃。拈起向上鉗鎚。未免亡鋒結舌。放一線道。試舉看。【四五】舉。僧問趙州。萬法歸一。一歸何處州云。我在青州。作一領布衫。重七斤。若向一擊便行處會去。天下老和尚鼻孔一時穿却。不奈爾何",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄), case forty-five. An unnamed monk is the exact questioner who asks, 'The ten thousand things return to one; where does the one return?' All six attribution rungs leave him unnamed; Zhaozhou Congshen gives the seven-cattie cloth-shirt answer.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-13T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0040b03",
+          "ToLb": "0040b08",
+          "Kwic": "。上堂云。一月雨半夏涼。莆團禪板坐相當。泥牛踏破澄潭月。光影芒芒夜未央。上堂舉僧問趙州。萬法歸一。一歸何處。州云。我在青州。作一領布衫重七斤。又僧問文殊。萬法歸一。一歸何處。殊云",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monks",
+            "ActorLabel": "two unnamed monks",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T22:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Wenshu Yingzhen",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "record-owner",
+                "later-raiser"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): two unnamed monks are the exact quoted questioners who each ask ‘The myriad things return to one; where does the one return?’ Zhaozhou Congshen and Wenshu are the respective respondents, and Hongzhi Zhengjue later raises the cases side by side. The line, expanded context, section header, book title, TEI header, and parallel-passage search leave both monks unnamed."
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0831a16",
+          "ToLb": "0831b02",
+          "Kwic": "西來意師曰布袋盛烏龜。頌曰。剖出驚人句布袋裏烏龜衲僧莫錯會黑豆未生時鼎州文殊應真禪師僧問萬法歸一一歸何處師曰黃河九曲。頌曰。問法窮因歸何處黃河透過碧波瀾須知雲外千峯上別有靈松帶露寒路窮崖斷進無",
+          "Curated": true,
+          "AttributionNote": "Connected Anthology of Verses on Old Chan Cases (禪宗頌古聯珠通集): after the preceding Shimen Shaoyuan case, the anthology explicitly introduces Wenshu Yingzhen; an unnamed monk asks him where the ten thousand things return when they return to one, and Wenshu answers 'the Yellow River's nine bends.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Wenshu Yingzhen",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0279b04",
+          "ToLb": "0279b08",
+          "Kwic": "遠來。曰。莫便是一藏圓光麼。師曰。更喫一椀茶。問。如何是和尚家風。師曰。手巾寸半布。問。萬法歸一。一歸何處。師曰。未有一箇人不問。問。如何是極則處。師曰。空王殿裏登九五。野老門前不立人。問。隨緣",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Baizhang Mingzhao An section. An unnamed monk questioning Baizhang Mingzhao An is the exact speaker who asks, ‘the ten thousand things return to one; where does the one return?’ Baizhang Mingzhao An answers that there has not been one person who did not ask. All six attribution rungs leave this monk personally unnamed; Baizhang Huaihai is not the section subject.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk questioning Baizhang Mingzhao An",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/feedback_lexicography",
+            "ReviewedUtc": "2026-07-14T06:35:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Mingzhao An",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J37/J37nB388.xml",
+          "FromLb": "0450a19",
+          "ToLb": "0450a23",
+          "Kwic": "悔？」起身，云：「龍袖拂開全體現，象王行處絕狐蹤。」下座。請上堂。問：「鐘鼓交參即不問，如何是萬法歸一？」師云：「雨來山色暗。」進云：「畢竟一歸何處？」師云：「雲淨月彌新。」問：「達磨西來，",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Shending Yikui (神鼎一揆禪師語錄): an unnamed monk asks Shending Yikui how the ten thousand things return to one and then where the one returns. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shending Yikui",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0622a27",
+          "ToLb": "0622a27",
+          "Kwic": "進云：「萬法歸一，一歸何處？」師云：「那箇教你恁麼問？」",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed monk questioning Juelang Daosheng",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex lane-B depth checkpoint",
+            "ReviewedUtc": "2026-07-14T20:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Recorded Sayings of Chan Master Juelang Daosheng (天界覺浪盛禪師全錄): an unnamed monk asks where the one is to which the myriad things return; Juelang asks who taught him to ask that way. All six attribution rungs leave the monk unnamed."
+        },
+        {
+          "RelPath": "J/J36/J36nB369.xml",
+          "FromLb": "0898c08",
+          "ToLb": "0898c09",
+          "Kwic": "復舉：「僧問趙州：『萬法歸一，一歸何處？』州曰：『我在青州做領布衫，重七斤。』」",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed monk in the Zhaozhou case",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex lane-B depth checkpoint",
+            "ReviewedUtc": "2026-07-14T20:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhean Fan",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Zhean Fan (蔗菴範禪師語錄): Zhean Fan raises the case in which an unnamed monk asks Zhaozhou Congshen where the one is to which the myriad things return, and Zhaozhou answers with the seven-pound robe. All six attribution rungs leave the historical monk unnamed."
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "T/T48/T48n2001.xml",
+        "C/C078/C078n1720.xml",
+        "X/X80/X80n1565.xml",
+        "J/J37/J37nB388.xml",
+        "J/J34/J34nB311.xml",
+        "J/J36/J36nB369.xml"
+      ],
+      "RelatedMasters": [
+        "Zhaozhou Congshen",
+        "Juelang Daosheng",
+        "Zhean Fan"
+      ],
+      "RelatedTerms": [
+        "一歸何處",
+        "青州布衫",
+        "黃河九曲"
+      ]
+    }
+  ]
+}

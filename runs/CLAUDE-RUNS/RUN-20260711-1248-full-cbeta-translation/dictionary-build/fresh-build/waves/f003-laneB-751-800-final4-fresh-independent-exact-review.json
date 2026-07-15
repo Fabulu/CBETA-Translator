@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic review of B751-800 final4 residual repairs",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "751-800 residual repair set",
+  "generatedUtc": "2026-07-15T16:00:00Z",
+  "reviewer": "Codex fresh independent reviewer (not the final4 repair author)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "repairLedger": "f003-laneB-final4-exact-turn-repair-author-ledger.json",
+    "repairLedgerSha256": "796358fe9e196607b946b3a6f053e9bfc8012648e02401473bf4f742b63448df",
+    "formalGate": "f003-laneB-final4-exact-turn-full50-formal-gate-v3.json",
+    "formalGateSha256": "daee37c570f007ec6606f30688e8fc209b56295d7ed54fc0fab14a06d7d889cb",
+    "repairReadiness": "f003-laneB-final4-exact-turn-repair-readiness.json",
+    "repairReadinessSha256": "dc44f16cca8a0803b51f80ec262578cb64f56eec1726e00a31596b0bd5856c36",
+    "attributionPackets": "f003-laneB-final4-exact-turn-full50-formal-gate-v3-attribution-packets.json",
+    "attributionPacketsSha256": "7367ba09ed819f0a01a49632a3e05b1994cdd6c5c5b5182616808609b68c66c3"
+  },
+  "formalGateHardPass": true,
+  "repairReadinessHardPass": true,
+  "attributionPacketGeneratorVersion": 3,
+  "turnProofMissing": 0,
+  "repairedEntriesRead": 4,
+  "repairedOccurrencesReadInCompleteCaseContext": 32,
+  "priorKeepCount": 46,
+  "priorKeepHashesByteIdentical": true,
+  "summary": { "KEEP": 0, "REVISE": 4 },
+  "systemicFindings": [
+    "The four respondent-substitution defects were partly repaired, but actor-role precision, heading ownership, and contaminated substring evidence still fail fresh reading.",
+    "A green exact-KWIC gate proves text presence, not that a title substring is a valid witness or that a named contextual figure uttered the heading.",
+    "All 46 prior KEEP rows covered by the readiness artifact remain byte-identical."
+  ],
+  "rows": [
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "entrySha256": "c2dad2312d4c195f041192a7923baa468c72247724ef1c80e27934b2532006b9",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O8 now removes Dahui from MasterName, but the explicit 僧問 headword turn is classified only as an unnamed 'interlocutor' rather than a questioner; the following 師便下座 confirms Dahui is the respondent. O1 likewise leaves an explicitly introduced lay official generic even though the expanded passage and office/name ladder should be exhausted to identify him. O3's 頌曰 witness also needs its named verse owner demonstrated rather than assumed from anthology context."
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "entrySha256": "0ac276cf46cc6fc3f95770e63d171d7dba1a0986a6b09ef73e1990dba4acdc6b",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O5 has removed Letan Changxing from MasterName, but the exact turn remains labelled an unnamed 'interlocutor' even though 僧問 explicitly establishes the utterer as the monastic questioner and 師云 introduces Letan's response. This is still an exact-role defect, and the X80/T51 parallel recensions must be treated as one case/work-family rather than evidence of independent deployment."
+    },
+    {
+      "ordinal": 783,
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "entrySha256": "89647379a99f2fc0746d8c780b585f76bb2d8a25e0b32b84d848151908d37995",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O6 assigns 送光化主 to Huilin Zongben as utterer, but the exact headword occurs in a poem/occasion heading, not in the following verse body; authorship of a poem does not make its editorial title a spoken headword turn. O1's narration introduces a 化主 who then asks the master, yet the respondent and section owner are absent from ContextMasters. O7 similarly calls a 送湖州覺化主 heading a documentary appointment without establishing that genre from the complete section."
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "entrySha256": "150d406efb588b29c4c9552ad88a3ea74f74607e136d82024834ecdd59473dee",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O2 matches 十二時 only as part of the longer work title 十二時歌; it is narrator-owned title evidence, not an occurrence of the standalone all-day expression, and cannot support the single ordinary-time sense without explicit title treatment. O5 claims an 'identified treatise commentator' but supplies no identity, so identified-non-master is unsupported. The explanation recognizes the title contamination but leaves it inside the same evidentiary sense instead of excluding it or distinguishing title evidence."
+    }
+  ]
+}

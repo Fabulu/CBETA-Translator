@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [76, 77, 78, 79],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T01:10:00Z",
+  "scope": "Hash-bound rereview of the four repaired A76–79 entries against every required change in the original independent semantic review, the focused repair gate, complete post-repair attribution cases, and supplied root-review packet. Read-only; entries and website were not edited.",
+  "inputs": {
+    "focusedRepairGate": {"path": "fresh-build/waves/f001-laneA-076-079-focused-repair-gate.json", "sha256": "94e35633361b9b4a61f42d9cf2ed57e4542f8a299324490d4e24f4983300a20f"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneA-076-079-focused-repair-gate-attribution-packets.json", "sha256": "18bea888a3a5ac69b71309a57418f3a7f3cdaa58f6b81a48b3f4d2a6b1de3549"},
+    "priorIndependentReview": {"path": "fresh-build/waves/f001-laneA-076-080-independent-semantic-review.json", "sha256": "f565841ab56a0e103691e4c27b5f719d9c46249de1fb5dc9029ac40a97ee8c83"},
+    "rootReviewPacket": {"path": "fresh-build/waves/f001-laneA-066-069-root-review-packet.json", "sha256": "f5fea846f017c8448edbc7cc99415907f1215420e0d985a93fd9259f9af74b42"}
+  },
+  "summary": {"KEEP": 4, "REVISE": 0, "reviseOrdinals": []},
+  "findings": [
+    {
+      "ordinal": 76,
+      "id": "t_e6eb14b6c1ca",
+      "term": "活人劍",
+      "entrySha256": "38e570d9f57d6975bef25ca6154be3ab49ddd6e703b20a6e695c0eece9426f01",
+      "verdict": "KEEP",
+      "repairVerification": "The Miyun row now assigns the exact headword to a reviewed-unnamed monastic questioner and keeps Miyun Yuanwu only as respondent/record-owner; the full case confirms the marked question precedes Miyun's headword-free blow and reply. The Note now accurately reports seven evidence rows across seven independent works. The one kill/live paired-image sense, nested Dahui quotation, aliases, and prose did not regress.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 77,
+      "id": "t_d03aa9267f79",
+      "term": "大機大用",
+      "entrySha256": "c1f27cb7597580b83214b16466781a2785dd63c5accc2411c474f94b56c5b4f4",
+      "verdict": "KEEP",
+      "repairVerification": "The Tianyin interview row now assigns the three headword questions to a reviewed-unnamed monastic and keeps Tianyin as respondent/record-owner. The Note correctly states six rows across five works. Unanchored Yangshan and Yuanwu claims and corresponding unsupported framing are removed, while every retained prose claim is represented by stored evidence. Generic aliases were replaced by pair-specific forms. One coordinated capacity/function sense remains sound.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 78,
+      "id": "t_1da939bf1267",
+      "term": "呵佛罵祖",
+      "entrySha256": "13e4e3f4daec4ccde16c2814dcac6bc091470e0a0edf7f1de95d8f48b0513303",
+      "verdict": "KEEP",
+      "repairVerification": "The Sanshan row now correctly assigns 訶佛罵祖是甚麼人 to a reviewed-unnamed monastic and retains Sanshan Denglai as respondent/record-owner. The Note distinguishes eleven stored rows from independent works and explicitly canonicalizes C077n1710/D48n8939 as editions of one work. Governed 訶/呵 and 叱/罵 variants remain labeled, quotation layers remain exact, and stance is not mis-split into senses.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 79,
+      "id": "t_8650004bb9d7",
+      "term": "兼中至",
+      "entrySha256": "7affef6574a870079d21dfc273720f83402139bda64953c1a6732f3d63c743c9",
+      "verdict": "KEEP",
+      "repairVerification": "All three public-question rows now put the headword on reviewed-unnamed monastic questioners and retain Fenyang Shanzhao, Feiyin Tongrong, and Sanyi Yu only as respondents/record owners. The displayed target is now 'reaching within integration,' explicitly distinguished from fifth-rank 兼中到 and its dao wording; overlapping aliases were revised accordingly and the explanation marks the nuance uncertain. The Note separates eight rows from canonicalized work identity, 偏中至 remains an explicit governed variant, and the naming dispute stays one fourth-slot family rather than an invented second sense.",
+      "requiredChanges": []
+    }
+  ]
+}

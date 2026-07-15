@@ -1,0 +1,245 @@
+{
+  "Id": "t_5d8f2f79dc60",
+  "SourceTerm": "竿頭進步",
+  "CreatedBy": "Codex f002 Lane B evidence-first refresh",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the step beyond the pole-top, where no footing remains",
+      "AlternateTargets": [
+        "stepping forward from the pole-top",
+        "an impossible next step beyond the pole"
+      ],
+      "SearchAliases": [
+        "step beyond the top of the pole",
+        "hundred-foot pole next step",
+        "advance where there is no footing",
+        "Shishuang pole-top question",
+        "Changsha hundred-foot pole verse"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 123 exact hits in 87 storage files representing 86 independent works. Six exact witnesses plus one marked family verse cover case title, Changsha attribution, early lamp discourse, public interviews, and later commentary. Title, quotation, instruction, and question all name the same step from the same pole-top image, not different things. Frozen-corpus concordance: 123 exact hits in 87 storage files representing 86 independent works. Frozen-corpus concordance: 123 exact hits in 87 storage files representing 86 independent works. Frozen-corpus concordance: 123 exact hits in 87 storage files representing 86 independent works.",
+      "RelatedMasters": [
+        "Shishuang Qingzhu",
+        "Changsha Jingcen",
+        "Fojian Huiqin",
+        "Yexian Guixing",
+        "Linye Qi",
+        "Shanduo Zhenzai",
+        "Langye Huijue",
+        "Wumen Huikai"
+      ],
+      "RelatedTerms": [
+        "百尺竿頭",
+        "百尺竿頭須進步",
+        "十方世界是全身",
+        "死中得活"
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2005.xml",
+        "C/C078/C078n1720.xml",
+        "C/C077/C077n1710.xml",
+        "J/J26/J26nB186.xml",
+        "J/J38/J38nB414.xml",
+        "X/X79/X79n1557.xml"
+      ],
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0298c11",
+          "ToLb": "0298c12",
+          "Kwic": "竿頭進步石霜和尚云。百尺竿頭如何進步。",
+          "MasterName": "Shishuang Qingzhu",
+          "ContextMasters": [
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "compiler",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Shishuang Qingzhu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (無門關). Shishuang Qingzhu owns the exact quoted clause in the complete case."
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0705a16",
+          "ToLb": "0705a16",
+          "Kwic": "百尺竿頭進步時築着磕著自家底老長沙",
+          "MasterName": "Fojian Huiqin",
+          "Curated": true,
+          "AttributionNote": "Source text (禪宗頌古聯珠通集). Fojian Huiqin owns the exact quoted clause in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fojian Huiqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0790b16",
+          "ToLb": "0790b17",
+          "Kwic": "問如何是百尺竿頭進步底句師云南贍部洲北欝單越",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r002-owner1",
+            "ReviewedUtc": "2026-07-14T00:00:00Z",
+            "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to an unnamed questioning monk, rather than to a section owner or respondent."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yexian Guixing",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (古尊宿語錄). an unnamed questioning monk owns the exact clause in the complete case."
+        },
+        {
+          "RelPath": "J/J26/J26nB186.xml",
+          "FromLb": "0651a10",
+          "ToLb": "0651a10",
+          "Kwic": "僧參，問：「百尺竿頭進步時如何？」師云：「退後即得。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r002-owner1",
+            "ReviewedUtc": "2026-07-14T00:00:00Z",
+            "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to an unnamed questioning monk, rather than to a section owner or respondent."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Linye Qi",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (林野奇禪師語錄). an unnamed questioning monk owns the exact clause in the complete case."
+        },
+        {
+          "RelPath": "J/J38/J38nB414.xml",
+          "FromLb": "0420c06",
+          "ToLb": "0420c06",
+          "Kwic": "猷蒙指示，竿頭進步事如何？」師曰：「斷頭船子下揚州。",
+          "MasterName": "Gulun",
+          "ContextMasters": [
+            {
+              "MasterName": "Shanduo Zhenzai",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Gulun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (山鐸真在禪師語錄). Gulun owns the exact quoted clause in the complete case."
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0112a10",
+          "ToLb": "0112a12",
+          "Kwic": "若能如是，方解百尺竿頭進步，句中無意，意中無句。既然如是，且作麼生吐氣？",
+          "MasterName": "Langye Huijue",
+          "Curated": true,
+          "AttributionNote": "Source text (聯燈會要). Langye Huijue owns the exact quoted clause in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Langye Huijue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2004.xml",
+          "FromLb": "0278b16",
+          "ToLb": "0278b17",
+          "Kwic": "古人把定處放得行竿頭進步。放行時把得定壁立千仞。",
+          "MasterName": "Wansong Xingxiu",
+          "Curated": true,
+          "AttributionNote": "Source text (萬松老人評唱天童覺和尚頌古從容庵錄). Wansong Xingxiu owns the exact quoted clause in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0298c13",
+          "ToLb": "0298c14",
+          "Kwic": "百尺竿頭坐底人。雖然得入。未為真。百尺竿頭須進步十方世界現全身。",
+          "MasterName": "Changsha Jingcen",
+          "EvidenceRole": "family",
+          "Curated": true,
+          "AttributionNote": "Source text (無門關). Changsha Jingcen owns the exact quoted clause in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Changsha Jingcen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ClaimText": "百尺竿頭坐底人。雖然得入。未為真。百尺竿頭須進步十方世界現全身。"
+        }
+      ],
+      "Explanation": "The step beyond the top of a hundred-foot pole, where the image leaves no footing for another step. The fixed phrase and case title are drawn from Changsha Jingcen's verse: the person sitting atop a hundred-foot pole, although having gained entry, is not yet real; the verse then requires a step forward and says that the worlds in the ten directions are the whole body (百尺竿頭坐底人，雖然得入，未為真；百尺竿頭須進步，十方世界現全身). Wumen Huikai's Case 46 titles the case Stepping Forward from the Pole-top and attributes the question “atop a hundred-foot pole, how does one step forward?” to Shishuang Qingzhu (石霜和尚云，百尺竿頭如何進步). Fojian Huiqin's later verse explicitly names Old Changsha at the time of the pole-top step (百尺竿頭進步時……老長沙). The phrase then circulates as a public question: Yexian Guixing answers “the southern continent, the northern continent” (南贍部洲，北欝單越), Linye Qi answers “then retreat” (退後即得), and Shanduo Zhenzai answers “a beheaded boatman goes down to Yangzhou” (斷頭船子下揚州). Langye Huijue places the pole-top step beside a saying with no intent in the phrase and no phrase in the intent, then asks how to breathe out. Zen bends the impossible ordinary action into a named case, a quoted verse-line, and a repeatedly answered public question; the records give different answers without changing the action denoted."
+    }
+  ]
+}

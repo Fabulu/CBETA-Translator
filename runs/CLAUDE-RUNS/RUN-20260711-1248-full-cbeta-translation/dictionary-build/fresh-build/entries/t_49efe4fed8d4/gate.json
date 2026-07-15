@@ -1,0 +1,121 @@
+{
+  "generatedUtc": "2026-07-14T17:45:36.504535+00:00",
+  "elapsedSeconds": 47.794,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_49efe4fed8d4",
+      "term": "祖師西來意",
+      "path": "fresh-build/entries/t_49efe4fed8d4/entry.v2.json",
+      "sha256": "d64e11bd9b07264f06777b0d4d6d9e5fc7cb82be9de4ea7c9ec4392f5fc8177a"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 10,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_49efe4fed8d4/entry.v2.json",
+        "id": "t_49efe4fed8d4",
+        "term": "祖師西來意",
+        "verified": 10,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.743,
+    "attribution": 2.112,
+    "publicFeedback": 9.851,
+    "depthSense": 4.642,
+    "workSourceValidation": 1.252,
+    "corpusBaseline": 0.775,
+    "attributionPackets": 27.201
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.112,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 8,
+        "named_occurrences": 4,
+        "context_master_links": 15,
+        "attribution_notes": 10,
+        "actor_reviewed_unnamed": 5,
+        "deferred_non_roster_context": 3,
+        "actor_identified_non_master": 1,
+        "claim_anchors": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 8,\n    \"named_occurrences\": 4,\n    \"context_master_links\": 15,\n    \"attribution_notes\": 10,\n    \"actor_reviewed_unnamed\": 5,\n    \"deferred_non_roster_context\": 3,\n    \"actor_identified_non_master\": 1,\n    \"claim_anchors\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 9.851,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1,
+        "search-alias-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1,\n    \"search-alias-review\": 1\n  }\n}\nreport: /tmp/tmp_zz6dufd.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 4.642,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.252,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.775,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 27.201,
+    "payload": {
+      "entries": 1,
+      "occurrences": 8,
+      "tierACandidates": 0,
+      "reviewRequired": 8
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 8,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 8\n}\nreport: fresh-build/entries/t_49efe4fed8d4/gate-attribution-packets.json\n",
+    "report": "fresh-build/entries/t_49efe4fed8d4/gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

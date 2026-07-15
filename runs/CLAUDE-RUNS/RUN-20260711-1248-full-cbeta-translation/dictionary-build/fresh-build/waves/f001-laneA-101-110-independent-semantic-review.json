@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T02:55:00Z",
+  "scope": "Hash-bound semantic review of all ten entries and all 97 supplied complete cases. Checked reader-facing interpretation, different-thing sense boundaries, exact headword utterers, narrated/action roles, nested quotation, depth, work identity, flyswatter deployment, and forbidden terminology. Entries and website were not edited.",
+  "inputs": {
+    "mechanicalGate": {"path": "fresh-build/waves/f001-laneA-101-110-gate.json", "sha256": "235e63eea8ed6ee3fcd51f6a5da88e457ef67024c24aff80852a5d61918aea92"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneA-101-110-gate-attribution-packets.json", "sha256": "aaae9f98fa0cfde6a291c7f81b88ddafe1a1da2de442ee08b6dd4be564ebcf44"},
+    "rootReviewPacket": {"path": "fresh-build/waves/f001-laneA-091-100-root-review-packet.json", "sha256": "a0a7b64ec05fdf751032071f27d181bc6e2eed440cb746327c02b823e7efd7ee"}
+  },
+  "summary": {
+    "KEEP": 0,
+    "REVISE": 10,
+    "reviseOrdinals": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    "cohortDefect": "All ten explanations are essentially identical process boilerplate. They say that attributed rows bound the sense but do not provide the required short corpus-inferred interpretation or identify where Zen bends the word."
+  },
+  "findings": [
+    {
+      "ordinal": 101,
+      "id": "t_4e30d47a452c",
+      "term": "便喝",
+      "entrySha256": "826719c939eddf40b3eea66ab1f47cd1b8c4d8e2d14886d13f290579defbc395",
+      "verdict": "REVISE",
+      "finding": "The expression is a narrator's action formula—someone then or immediately shouts—not a word uttered by the named shouter. All ten rows describe an action inside an exchange. Several current MasterNames therefore confuse the actor with the exact source voice. The opening also loses 便's turn-sequencing force: the shout immediately follows hesitation, arrival, a bow, an answer, or another shout.",
+      "requiredChanges": ["Reclassify all ten rows through the narrated-action branch with MasterName null; record the named or unnamed shouter as action actor/person-described and preserve other participants with roles.", "Replace the process boilerplate with a corpus-based explanation of the immediate shout as a turn in public encounter, without making all shouts equivalent in function."]
+    },
+    {
+      "ordinal": 102,
+      "id": "t_ef39bdc0eb99",
+      "term": "擬議",
+      "entrySha256": "d5444306d819c1b9deb5ab88eed1c24d07f70865a8b568e89d81f15860ad7fc8",
+      "verdict": "REVISE",
+      "finding": "One hesitation/deliberation sense is supported. The records repeatedly make 擬議 the missed instant: it is already error or great distance and provokes a shout, blow, or staff strike. The opening says none of this. Rows such as 僧擬議 and 待伊擬議便打 are narrator-described mental/action events, not utterances by Yunmen, the monk, or another actor.",
+      "requiredChanges": ["Explain the corpus pattern that deliberative hesitation marks loss of the immediate encounter and is paired with distance, error, shout, or blow.", "Use narrated-event attribution where the compiler says a monk hesitated; retain exact MasterName only for masters who directly say the headword-bearing warning."]
+    },
+    {
+      "ordinal": 103,
+      "id": "t_937f63a4fb51",
+      "term": "目前",
+      "entrySha256": "472519e4dcb95ef9460349ec57ca668dfb0e849d15ccd35430990ab2de9f16da",
+      "verdict": "REVISE",
+      "finding": "The deictic sense is one thing, but 'right before you' is insufficient. Jiashan's repeated formula deliberately contrasts 'nothing before the eyes,' 'meaning before the eyes,' and 'not a before-the-eyes object'; other rows say the Way or the Buddha is immediately present yet difficult to see. Three KWICs are fragmentary enough to obscure their speaker and claim boundaries.",
+      "requiredChanges": ["Open with the attested contrast between immediate presence and treating that presence as an observable object; keep the inference bounded to the stored sayings.", "Re-cut occurrences 7–9 to complete, actor-pure sentences and re-verify; identify direct speakers from the full case rather than leaving contextual fragments."]
+    },
+    {
+      "ordinal": 104,
+      "id": "t_87cc840b8f33",
+      "term": "拄杖子",
+      "entrySha256": "8f3ad5dbbd798ef1662eb2354ae2ccbd2c50102c3b4b49da9bac5c042ca426d0",
+      "verdict": "REVISE",
+      "finding": "Calling it merely 'the staff' fails the flyswatter test. In the selected records it is the master's teaching-seat implement: raised, handed over, broken, made to speak, used as an object of naming tests, and said to contain or transform the world. The evidence also records gestures with the staff in narrator voice alongside direct speech about it.",
+      "requiredChanges": ["Write a short opening that identifies the staff as a teaching and testing implement in public encounters, anchored to naming tests, transfer, gesture, and impossible predicates.", "Separate narrated raising, striking, handing, breaking, and planting from direct headword utterances; the wielder is an action actor, not automatically the word's utterer.", "Preserve the disagreement between 'recognizing the staff finishes travel' and 'recognizing it leads to hell' as an attested tension, not a resolved doctrine."]
+    },
+    {
+      "ordinal": 105,
+      "id": "t_ada407625f42",
+      "term": "珍重",
+      "entrySha256": "b165a81bb1b1d01a94250e04db634e16adef7f1bce1664d50c2e5bbe1bbbe812",
+      "verdict": "REVISE",
+      "finding": "Valedictory 'take care' and transitive 'treasure/value' are genuinely different things and the split should remain. The first sense is specifically a closing formula used before leaving or descending the seat, not just generic concern. Several stored KWICs run into adjacent titles or new sections, and 僧珍重而去 is narrated action/formula rather than the record master's speech.",
+      "requiredChanges": ["Give the two senses distinguishable reader-facing openings: a conventional closing/dismissal at the end of an address or encounter, and actively valuing/preserving a teaching, record, or matter.", "Re-cut the truncated or boundary-contaminated rows 1.6–1.9 and verify exact speakers; classify 僧珍重而去 to the monk's action/direct formula rather than inheriting the master's identity."]
+    },
+    {
+      "ordinal": 106,
+      "id": "t_2f4b60453d19",
+      "term": "承當",
+      "entrySha256": "432cf2a0bc25c09988f59cd0ed1faebc1e7b9d9c829f2ebe22ea04a973799977",
+      "verdict": "REVISE",
+      "finding": "One act of personally taking up or owning the matter is supported. The evidence repeatedly contrasts direct acceptance with failing, refusing, or trying to receive it from another person. 'Take on directly' does not communicate that responsibility and the process boilerplate does no interpretive work. Several later rows are clipped mid-sentence and cannot make their attribution clear to a reader.",
+      "requiredChanges": ["Explain 承當 as directly owning or taking responsibility for what the records say is already one's own, while retaining warnings that premature acceptance can itself be wrong.", "Re-cut rows 5–9 into complete actor-pure claims and verify the actual speaker from their cases."]
+    },
+    {
+      "ordinal": 107,
+      "id": "t_15026800437e",
+      "term": "分別",
+      "entrySha256": "590b01bf77624e260ba37ed08d9d40e719326e3b1f704e7ab45360e6822827e8",
+      "verdict": "REVISE",
+      "finding": "The corpus uses the same act of distinguishing in both an affirmative capacity ('skillfully distinguish characteristics') and as discriminative thought that erects subject/object or named boundaries. Those are different readings and judgments of one act, not automatically different things, so one sense may remain. The opening must surface that tension rather than blur it. Several witnesses are scripture or compiler narration and should not receive a Zen master's name merely because a master quotes or discusses them.",
+      "requiredChanges": ["Explain both attested deployments without ruling that distinguishing is inherently good or bad and without splitting solely by normative reading.", "Audit quoted scripture and narrator rows for source voice: name the exact quoted speaker when supplied, otherwise use compiler/scriptural source attribution and keep the discussing master as quoter/context.", "Re-cut fragmentary rows 5–9 so claims and speakers are visible."]
+    },
+    {
+      "ordinal": 108,
+      "id": "t_8f41e0da5a71",
+      "term": "意旨如何",
+      "entrySha256": "381d1325656de190a28a547357023504e47dc1ea4ce5a439a04bda8e0f90e612",
+      "verdict": "REVISE",
+      "finding": "This is a recurrent follow-up question demanding the point of an answer, gesture, or cited case. In most selected rows the headword is uttered by an unnamed monk or questioner, not by the named master who answers it. Two similar Yangshan rows may represent independent witnesses, but must not be treated as independent ideas without work-id accounting.",
+      "requiredChanges": ["Set MasterName null with reviewed-unnamed questioner for the monk/follow-up rows; retain the answering master and cited figures in ContextMasters with exact roles.", "Explain its interview function as pressing for the purport after an initial response or inherited case, rather than merely translating the words.", "Confirm rows 6 and 7 are distinct works under work_id and identify the current quoter versus Yangshan as cited respondent."]
+    },
+    {
+      "ordinal": 109,
+      "id": "t_8a016f49e5b8",
+      "term": "思量",
+      "entrySha256": "ccbe742b4f80c68cb2b84a7daf20c90145aa0a9fa84a8b1ecbc40555100de8a2",
+      "verdict": "REVISE",
+      "finding": "One pondering/thinking act is correct. The records do not merely ban it: Yaoshan's exchange says he thinks what does not think and answers with 非思量, while other masters say thought cannot reach the matter or creates distance. The opening suppresses this central tension. The two Yaoshan witnesses contain both an unnamed monk's questions and Yaoshan's replies and must be actor-pure.",
+      "requiredChanges": ["Open with the corpus's contrast between ordinary deliberation that cannot reach the matter and Yaoshan's paradoxical 'thinking the not-thinking,' without importing meditation terminology.", "Split/re-cut both Yaoshan cases so unnamed-monk questions and Yaoshan's headword-bearing replies have exact actor attribution.", "In the Huineng/Dongshan citation row, distinguish the current questioner from the two quoted masters."]
+    },
+    {
+      "ordinal": 110,
+      "id": "t_cf0513be4012",
+      "term": "宗旨",
+      "entrySha256": "ec273882c2f268ed2d79524ba615dcd02cf9a425122432cd4ad2d38b2030c04c",
+      "verdict": "REVISE",
+      "finding": "The one-sense decision is plausible, but 'essential purport' misses the institutional edge: 宗旨 is what a lineage establishes, transmits, comprehends, or asks a master to set forth. Attribution is mixed. Bodhidharma directly says 以定宗旨 in nested speech; Liu Jingchen and Xu Fang write their own prose; 得悟黃龍宗旨 is compiler biography about Shishuang Lin, not his utterance; 建法幢、立宗旨者 is an unnamed monk's question.",
+      "requiredChanges": ["Explain 宗旨 as the defining purport or governing point of a lineage/house as transmitted, established, and tested in encounters.", "Convert the Shishuang biography row to compiler narration with Shishuang as person-described, and the 建法幢 row to reviewed-unnamed questioner with the master as respondent.", "For repeated 以定宗旨 quotations, name Bodhidharma as quoted utterer only where the case explicitly supplies his speech, and record the later master as quoter/context rather than duplicating ownership."]
+    }
+  ]
+}

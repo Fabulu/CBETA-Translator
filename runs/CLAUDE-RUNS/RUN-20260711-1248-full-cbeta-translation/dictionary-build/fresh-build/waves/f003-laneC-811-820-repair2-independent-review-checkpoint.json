@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "f003-repair2-independent-exact-rereview-v1",
+  "reviewType": "read-only independent semantic and exact-actor rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    811,
+    820
+  ],
+  "generatedUtc": "2026-07-15T06:23:52.919296+00:00",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "sourcePriorReview": "fresh-build/waves/f003-laneC-801-850-actor-repair-independent-rereview.json",
+  "sourcePriorReviewSha256": "120d848e08fb6ef02b8b40b353954020d8628902d8660e06472124c224d103df",
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-exact-actor-repair2-ledger.json",
+  "repairLedgerSha256": "524d801200adbe90d25e348422a468b7cbf0fa959c389154e80a34160bfacf16",
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-current-repair2.json",
+  "formalGateSha256": "ebfed53b863ae772895a6b2ae0c756dc44233c29fdc61a639822b52a97eb8d62",
+  "formalGateHardPass": true,
+  "occurrencesReadInFullCaseContext": 66,
+  "summary": {
+    "KEEP": 5,
+    "REVISE": 5
+  },
+  "seventeenPriorKeepHashesUnchanged": true,
+  "rows": [
+    {
+      "ordinal": 811,
+      "id": "t_fa8ad027aa5b",
+      "term": "傳燈錄",
+      "entrySha256": "46b9710cff03ae375d9e27b59802923d5ef6ebd0d59c57e0fb62a5df9e7aa80a",
+      "evidenceDraftSha256": "8aa73873fc80238c26cb43e367c1bfaf8f7e918c79d77493cb4ffd9c457f89a7",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 812,
+      "id": "t_df404be00a88",
+      "term": "鐘鼓",
+      "entrySha256": "b4ea9a801b1cc51a16344875cc1ccb130cc7fdf54d69c30e7044cec77a6c945d",
+      "evidenceDraftSha256": "ed77a4d0259a1b5499ab5a4d3acecf378c1327b3e0bfc08d13d7a0b3c03b27ff",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: All seven `鐘鼓` occurrences are labeled compiler narration, including headword-bearing address/verse language; actor classification remains over-broad.",
+      "finding": "REVISE — O3 is a quoted verse and O4–O6 are address or saying language, yet every occurrence remains compiler narration. All-narrator demotion is not a full-case attribution audit."
+    },
+    {
+      "ordinal": 813,
+      "id": "t_016c13af32f9",
+      "term": "曲彔木",
+      "entrySha256": "98e93050dfba5ac601b5601f30fec58a9e4b90ee7d7c0c418e0dd270aeab522b",
+      "evidenceDraftSha256": "dc74efb276c608649a0e1f32391ee9dad5c5c8f62c87b53e815d7f4b53a0bf79",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O5/O6 store syntax fragments `師以杖指法座` and `指座` as MasterName values, not people.",
+      "finding": "KEEP — The former labels were action fragments. Current narration owns the chair-pointing actions while the explanation remains bounded to the institutional seat."
+    },
+    {
+      "ordinal": 814,
+      "id": "t_8eeed0b7412a",
+      "term": "唯嫌揀擇",
+      "entrySha256": "e433eaf43dc02e14c00d61d6167e5e5bc5a8dbe1bcd336132484870899a2c57a",
+      "evidenceDraftSha256": "1a05b9a6954f777b9cf1b2db23e1b376bdf7827aba293f6da157bccf55368661",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 815,
+      "id": "t_39fb2a2c1c9b",
+      "term": "祖意",
+      "entrySha256": "fcd108faf74c8f8dabe79510ff9a7f508ddf5f80e78a92677d12f7e27478c587",
+      "evidenceDraftSha256": "478cb19d4fa05a9caecb3d49799c5311dd12a2532ecb1ccd909fe82c686be6ea",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Six of seven `祖意` uses are labeled compiler narration despite question/address speech frames; exact utterers were not recovered.",
+      "finding": "REVISE — O1 correctly assigns the questioner, but several remaining question/address clauses carrying “patriarch’s meaning” are still source-compiler wording. Exact speakers were not reconstructed."
+    },
+    {
+      "ordinal": 816,
+      "id": "t_d9d8f344ad00",
+      "term": "人天眼目",
+      "entrySha256": "830dac97209437bbc03de8651657e03c0674f790ba67a9f97c661453e35c4615",
+      "evidenceDraftSha256": "756e2de614e3ef10a05b378b43d1b32b55ba3854708e3f2cc84cb8a31d863f72",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "priorFinding": "REVISE: Every `人天眼目` witness is classified as compiler narration, including spoken address/comment language; exact-turn ownership remains unreviewed in the data.",
+      "finding": "KEEP — The split between discernment phrase and book title is supported; the selected headword clauses are documentary appraisals/title references rather than recoverable direct turns."
+    },
+    {
+      "ordinal": 817,
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "entrySha256": "99ce5bd03250ea0083c6bb16a26c718e481086289bf9892c764480509aea856a",
+      "evidenceDraftSha256": "03e98069eea375785bc60b7069c9fa348b20fcc2eb258ac4c9221e569fe24997",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O2 stores `示眾` as MasterName, an event/heading rather than an utterer; other speech/narration boundaries also remain inconsistent.",
+      "finding": "REVISE — O2 explicitly says “instructing the assembly, [he] said,” but remains compiler narration. The section owner must be named or reviewed as the utterer."
+    },
+    {
+      "ordinal": 818,
+      "id": "t_1446abf489c0",
+      "term": "袈裟",
+      "entrySha256": "89a54b542039ab4a567c548351d58db9df7ac51af5cb1814e036f949d3c502a8",
+      "evidenceDraftSha256": "af0f0eedc77881554bc512ca4c5b62a0db3864ad4e671590e214a04a43f9807f",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: The repair leaves six of seven `袈裟` witnesses as generic compiler narration even where the complete cases contain spoken clauses; the exact-turn audit is incomplete.",
+      "finding": "REVISE — O2 is extended first-person teaching speech and O5/O7 contain a robe action inside a recorded turn, yet six rows remain generic narration. The garment/action boundary does not excuse losing the speaker."
+    },
+    {
+      "ordinal": 819,
+      "id": "t_5120f0eca9c7",
+      "term": "金剛神",
+      "entrySha256": "d834cb99c5ebc873d879fd534111a0744390728f31db1350d0b1dda47567218f",
+      "evidenceDraftSha256": "f28a29b3b154c399c153d0ed838588d13711ce96d70a67e6800e9c4eaee05055",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 820,
+      "id": "t_654e2e9bef8d",
+      "term": "臨機",
+      "entrySha256": "f1bf2b80f4845dd7368ea9a6903a1cd9664e61412cd29f3ae29405c827ef199a",
+      "evidenceDraftSha256": "29a31387ef1ae45a0377fce76d3ffffc03ee44077fde9f13d96fabf6b441b127",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Only one of seven `臨機` witnesses is named while several headword-bearing sayings/questions remain narration or coarse unnamed classifications; exact actors are not consistently represented.",
+      "finding": "REVISE — O2–O4 are maxim, verse, or hall-address wording but were demoted wholesale to compiler events. “Meeting the occasion” needs its actual quoted evaluators, not a narrator default."
+    }
+  ]
+}

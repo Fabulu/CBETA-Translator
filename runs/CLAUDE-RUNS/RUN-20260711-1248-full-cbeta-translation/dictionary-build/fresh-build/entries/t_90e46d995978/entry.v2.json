@@ -1,0 +1,270 @@
+{
+  "Id": "t_90e46d995978",
+  "SourceTerm": "參請",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "visit and inquire",
+      "AlternateTargets": [
+        "attend and inquire",
+        "consult a teacher",
+        "a visit for inquiry"
+      ],
+      "SearchAliases": [
+        "seek instruction in person",
+        "visit a teacher for questions",
+        "attend and inquire",
+        "formal inquiry visit",
+        "join the assembly and inquire"
+      ],
+      "Status": "preferred",
+      "Explanation": "A visit to a named instructor or assembly in order to ask questions and request instruction. It occurs 243 times in 121 allowlisted texts and includes both institutional attendance and the encounter itself. Zhicheng leaves Shenxiu, travels to Shaoyang, and \"joins the assembly to visit and inquire\" (隨眾參請); Shuangfeng Gu's biography says that at Shishuang he merely followed the assembly and \"no longer visited and inquired\" (更不參請). The monastic regulations place \"traveling from place to place to visit and inquire\" (遊方參請) under a heading that lists departure from one's teacher, seeking a respected elder, requesting lodging, first reporting to the guest office, and next registering at the hall office. Huanyuan Fuyu \"bent his knees to visit and inquire\" (屈膝參請), after which Lingyin Tai addressed his understanding. Tianning's monastic and lay followers visited and inquired morning and evening while Huqiu Shaolong answered them without weariness (晨夕參請，師與唱酬無倦). The recorded actions are visits, institutional participation, questions, and responses in Chinese Chan texts.",
+      "Validation": "multi-source",
+      "Note": "Productive constructions mark the same range: \"join the assembly to visit and inquire\" (隨眾參請, 23 occurrences), \"enter the room to visit and inquire\" (入室參請, 2), \"travel from place to place to visit and inquire\" (遊方參請, 6), and headings for \"circumstances of visiting and inquiry\" (參請因緣, 2). Fayan can ask what scripture someone reads \"apart from visiting and inquiry\" (於參請外), placing it among the ordinary activities of a visitor's life. The Blue Cliff Record contrasts a superintendent's not having \"visited and inquired or entered the room\" (不曾參請入室) with Fayan subsequently asking why he does not come enter the room. The overlap between travel, residence in an assembly, and direct exchange is native to the term, so these are kept as deployments of one sense.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0055c06",
+          "ToLb": "0055c07",
+          "Kwic": "師聞此語。禮辭至韶陽。隨眾參請。不言來處。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). Compiler narration reports the formal-inquiry action of Zhicheng.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhicheng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex lane-C second independent semantic repair",
+            "ReviewedUtc": "2026-07-15T01:15:00Z",
+            "GrammarEvidence": "The Five Lamps compiler narrates Zhicheng travelling to Shaoyang, joining the assembly in formal inquiry, and withholding where he came from."
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0194a22",
+          "ToLb": "0194a23",
+          "Kwic": "後到石霜。但隨眾而已。更不參請。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). Compiler narration reports the formal-inquiry action of Shuangfeng.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shuangfeng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex lane-C second independent semantic repair",
+            "ReviewedUtc": "2026-07-15T01:15:00Z",
+            "GrammarEvidence": "The Five Lamps compiler narrates Shuangfeng’s later arrival at Shishuang and says he merely followed the assembly without making formal inquiry."
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0204b13",
+          "ToLb": "0204b14",
+          "Kwic": "眼問曰。子於參請外。看甚麼經。",
+          "MasterName": "Fayan Wenyi",
+          "Curated": true,
+          "AttributionNote": "The Five Lamps Compendium (五燈會元) records Fayan Wenyi asking what scripture the visitor reads apart from visiting and inquiry, marking the term as an ordinary category of the visitor's activity.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1140a13",
+          "ToLb": "1140a16",
+          "Kwic": "遊方參請遊方參請稟辭師長。慕有道尊宿處。依棲求掛搭古規首到客司相看。次往堂司掛搭。",
+          "Curated": true,
+          "AttributionNote": "The Imperially Revised Baizhang Monastic Regulations (勅修百丈清規) presents an impersonal procedural scene: the section on traveling to visit and inquire begins with taking leave of one's teacher.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dehui",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "institutional procedure",
+            "ActorLabel": "the institutional procedure section",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex remaining300 research A",
+            "ReviewedUtc": "2026-07-14T00:00:00Z",
+            "GrammarEvidence": "It is a heading plus unframed procedural sequence, with no personal speech verb or first-person actor."
+          }
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0613c11",
+          "ToLb": "0613c13",
+          "Kwic": "企靈隱泰道眼精明，乃屈膝參請焉。泰甞謂師曰：我舉拂子，你便向拂子上會；",
+          "Curated": true,
+          "AttributionNote": "Source text (續燈正統). Compiler narration reports the formal-inquiry action of Huanyuan.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huanyuan Fuyu",
+              "Roles": [
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Lingyin Tai",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex lane-C second independent semantic repair",
+            "ReviewedUtc": "2026-07-15T01:15:00Z",
+            "GrammarEvidence": "The biography of Huanyuan Fuyu narrates his bending the knee to inquire of Lingyin Tai; Tai’s quoted correction begins only after 泰甞謂師曰."
+          }
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0506b11",
+          "ToLb": "0506b12",
+          "Kwic": "晨夕參請，師與唱酬無倦，一時達者稱為大慧再來。",
+          "Curated": true,
+          "AttributionNote": "Source text (續燈正統). Compiler narration reports the formal-inquiry action.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huqiu Shaolong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex lane-C second independent semantic repair",
+            "ReviewedUtc": "2026-07-15T01:15:00Z",
+            "GrammarEvidence": "In Huqiu Shaolong’s biography, the compiler says the community made inquiry morning and evening and Huqiu answered tirelessly; the headword names the community’s narrated activity."
+          }
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0147b13",
+          "ToLb": "0147b14",
+          "Kwic": "也不曾參請入室。一日法眼問云。則監院何不來入室。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). Yuanwu Keqin narrates that superintendent Ze had never visited for inquiry or entered Fayan Wenyi's room; the headword-bearing narrative clause is Yuanwu's, not Fayan's later question.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J33/J33nB280.xml",
+          "FromLb": "0279c19",
+          "ToLb": "0279c19",
+          "Kwic": "山僧雖不上堂，然何曾不許你們入室參請？",
+          "MasterName": "Shending Yunwai Ze",
+          "Curated": true,
+          "AttributionNote": "In the Recorded Sayings of Shending Yunwai Ze (神鼎雲外澤禪師語錄), Shending Yunwai Ze says that although he does not mount the hall, he has never forbidden the assembly to enter his room to visit and inquire.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shending Yunwai Ze",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml",
+          "FromLb": "0811c06",
+          "ToLb": "0811c07",
+          "Kwic": "參請因緣師初行腳參請七大師因緣師參雲棲大師",
+          "Curated": true,
+          "AttributionNote": "Source text (入就瑞白禪師語錄). Compiler narration reports the formal-inquiry action.",
+          "ContextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex lane-C second independent semantic repair",
+            "ReviewedUtc": "2026-07-15T01:15:00Z",
+            "GrammarEvidence": "The record’s section heading “inquiry encounters” and following compiler line introduce Ruibai Mingxue’s seven visits to great teachers; the headword is metadata/narration, not a quoted turn."
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2025.xml",
+        "X/X84/X84n1583.xml",
+        "T/T48/T48n2003.xml",
+        "J/J26/J26nB188.xml",
+        "J/J33/J33nB280.xml",
+        "X/X63/X63n1250.xml"
+      ],
+      "RelatedMasters": [
+        "Fayan Wenyi",
+        "Lingyin Tai",
+        "Shending Yunwai Ze",
+        "Ruibai Mingxue",
+        "Huqiu Shaolong"
+      ],
+      "RelatedTerms": [
+        "travel from place to place to visit and inquire (遊方參請)",
+        "join the assembly to visit and inquire (隨眾參請)",
+        "enter the room to visit and inquire (入室參請)",
+        "circumstances of visiting and inquiry (參請因緣)",
+        "enter the room (入室)"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

@@ -1,0 +1,201 @@
+{
+  "Id": "t_68d495f2868b",
+  "SourceTerm": "印板",
+  "CreatedBy": "Codex f002 Lane C author",
+  "WrittenUtc": "2026-07-15T02:14:48.696452+00:00",
+  "SchemaVersion": 2,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "model-stamped Chan speech",
+      "AlternateTargets": [
+        "printing-block Chan"
+      ],
+      "Status": "preferred",
+      "Note": "Primary Zen-loaded sense. Family checked against mold (模子), printing-block Chan (印板禪), stamped from a printing block (印板上打來), and released from a mold (模子裏脫出).",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "J/J27/J27nB198.xml",
+          "FromLb": "0490c10",
+          "ToLb": "0490c12",
+          "Kwic": "印板禪印板禪何謂印板？有等靠墻摸壁，自無真正見解，全藉古人言句做拄杖子。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Xueguan (雪關禪師語錄): in his extended classification of Chan defects, Xueguan Zhiyin asks what block-print Chan is and defines it as lacking genuine insight while leaning entirely on old masters' sayings as a staff.",
+          "MasterName": "Xueguan Zhiyin",
+          "ContextMasters": [
+            {
+              "MasterName": "Xueguan Zhiyin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB187.xml",
+          "FromLb": "0700a08",
+          "ToLb": "0700a09",
+          "Kwic": "印板禪者，熟讀圓悟、大慧、中峰諸尊宿語錄，依稀脫出者是也；",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Tian'an Sheng (天岸昇禪師語錄): Tian'an Sheng stages his staff as reporting three kinds of Jiangnan Chan; the personified staff defines block-print Chan as memorizing the records of Yuanwu Keqin, Dahui Zonggao, and Zhongfeng Mingben and producing something vaguely resembling them. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the personified staff.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "personified object",
+            "ActorLabel": "personified staff",
+            "ActorRole": "later-quoter",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z",
+            "ActorType": "reviewed-unnamed",
+            "GrammarEvidence": "The full case was read: the headword is not uttered by a nameable Zen master in this occurrence.",
+            "ContextEvidence": "Recorded Sayings of Chan Master Tian'an Sheng (天岸昇禪師語錄): Tian'an Sheng stages his staff as reporting three kinds of Jiangnan Chan; the personified staff defines block-print Chan as memorizing the records of Yuanwu Keqin, Dahui Zonggao, and Zhongfeng Mingben and producing something vaguely resembling them. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the personified staff."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tian'an Sheng",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0084c21",
+          "ToLb": "0084c23",
+          "Kwic": "而今天下老和尚多是師承學解，露布葛藤，印板上打來，模子裏脫出。當人若是明去，何不一切臨時？",
+          "Curated": true,
+          "AttributionNote": "Record of the Ancestral Guidelines (列祖提綱錄): a later speaker explicitly quotes Yunmen Wenyan as saying that present-day old monks all set up mechanisms and devices and strike from a printing block.",
+          "MasterName": "Yunmen Wenyan",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "J/J27/J27nB198.xml",
+        "J/J26/J26nB187.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "模子",
+        "印板禪"
+      ],
+      "SearchAliases": [
+        "model-stamped Chan speech",
+        "printing-block Chan",
+        "model stamped Chan speech",
+        "Zen model-stamped Chan speech"
+      ],
+      "Explanation": "Chan records load the ordinary printing block into a criticism of sayings and conduct reproduced from fixed models. One record asks, 'what is block-stamped?' and answers: people who grope along walls, have no genuine understanding of their own, and rely entirely on ancient sayings as a staff. Another defines 'printing-block Chan' as reading the records of Yuanwu, Dahui, and Zhongfeng and turning out something resembling them. The widespread paired formula says that teachers or learned sayings are 'stamped from a printing block and released from a mold,' then contrasts this with responding as circumstances arise. The Zen deviation is this printing-shop language for publicly criticized, model-bound Chan speech; the term does not merely mean generic sameness.",
+      "ClaimAnchors": []
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "engraved printing block",
+      "AlternateTargets": [
+        "printing block"
+      ],
+      "Status": "allowed",
+      "Note": "Literal object sense, independently attested in a printing colophon and an imperial book-production record. No specifically Chan bend belongs to this physical sense.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0647a17",
+          "ToLb": "0647a19",
+          "Kwic": "彫造續燈錄印板一部，計三函。時崇寧二年十月日謹題。",
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): in the colophon signed by Puming, Puming records collecting money for the printing-block heads and carving one set of printing blocks for the Continuation of the Lamp Record in three cases.",
+          "MasterName": "Puming",
+          "ContextMasters": [
+            {
+              "MasterName": "Puming",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0688b13",
+          "ToLb": "0688b14",
+          "Kwic": "但有藏經印板處。教刊板入藏經。",
+          "Curated": true,
+          "AttributionNote": "The named imperial decree is the exact documentary speaker. The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): the quoted imperial decree orders that Zhongfeng Mingben's collected writings be carved for every Tripitaka printing-block collection.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "imperial decree",
+            "ActorLabel": "imperial decree",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The occurrence is inside a formally introduced 聖旨 whose command voice governs 教刊板入藏經; it is documentary speech rather than a Chan master's turn.",
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z",
+            "ActorType": "reviewed-unnamed",
+            "ContextEvidence": "The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄): the quoted imperial decree orders that Zhongfeng Mingben's collected writings be carved for every Tripitaka printing-block collection."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X78/X78n1556.xml",
+        "B/B25/B25n0145.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "刊板",
+        "印藏經"
+      ],
+      "SearchAliases": [
+        "engraved printing block",
+        "printing block",
+        "Zen engraved printing block"
+      ],
+      "Explanation": "The physical engraved block used to print a text. One colophon records carving a set of printing blocks for the Continued Transmission of the Lamp, comprising three cases. An imperial instruction orders Zhongfeng's writings printed and entered into the canon wherever canon printing blocks are held. This book-production object is a different thing from speech criticized as block-stamped, so it has its own sense.",
+      "ClaimAnchors": []
+    }
+  ]
+}

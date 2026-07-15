@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "reviewType": "independent-semantic-full-exact-packet-review",
+  "wave": "f002",
+  "lane": "C",
+  "ordinals": [551, 600],
+  "readOnly": true,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f002-laneC-551-600-semantic-review-packet.json",
+  "sourcePacketSha256": "2a953366e6fd6b5f6160e4b6459460c662fb5b1062521370c1b3679aec308a98",
+  "scope": "Independent full-entry review of all 50 packet entries and all 329 exact occurrence rows: referent, gloss, sense split, flyswatter deployment, claim support, and exact actor ownership. The packet SHA freezes the per-entry SHA-256 manifest embedded in the reviewed packet; verdicts do not survive any hash change.",
+  "summary": {
+    "entries": 50,
+    "occurrences": 329,
+    "KEEP": 34,
+    "REVISE": 16,
+    "consolidatedKEEPEmitted": false
+  },
+  "keepOrdinals": [552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585],
+  "keepFinding": "KEEP at the exact packet hashes: the referents and different-thing splits are intelligible from PreferredTarget alone; the prose states the ordinary scene and then shows the attested Chan deployment without forcing a universal interpretation; stored rows support the quoted claims; and actor labels are sufficiently specific for the reviewed evidence. One-witness subsidiary senses at 554, 561, and 565 are retained because each is an explicitly attested different thing (title/person, literal grain, or place), not an attempt to buy depth for the dominant sense.",
+  "reviseFindings": [
+    {
+      "ordinal": 551,
+      "id": "t_19f9e99d5304",
+      "term": "莊周",
+      "entrySha256": "0509535aa3e859224940ff9db87e6bbb725af344287c69c30976e0f644ef5ae5",
+      "worksheetSha256": "49ff8abf8993ac195b1b06c3bf895d37dfc35e2941d06254456fd60f08212648",
+      "verdict": "REVISE",
+      "finding": "Five AttributionNotes are procedural assertions (‘full six-rung exact-turn review identifies...’) rather than evidence-readable identifications of text, section, speech frame, and actor. The X81 biographical sentence 師於... is narration about Wansong, yet the occurrence stores Wansong as MasterName/utterer. Recast narrated grammatical subjects as narrated actors, and replace the boilerplate notes with the actual source-and-turn proof. Re-test the prose after actor repair; the Zhuang Zhou referent itself is sound."
+    },
+    {
+      "ordinals": [586, 600],
+      "terms": ["壓良為賤", "逢場作戲", "賊過後張弓", "鑽龜打瓦", "掩耳偷鈴", "一盲引眾盲", "畫蛇添足", "守株待兔", "水中捉月", "認影迷頭", "緣木求魚", "拋磚引玉", "貧兒思舊債", "入海算沙", "眾盲摸象"],
+      "entrySha256": ["791fcceebf5306552d4e1b558a0c1ea74ae3d0e1abf87c00de84c395fd5ff6ff", "0e962468b68d4822d1d337b67c54672ccc6e095a7eaf79f1bcbec59b94edd694", "af4562515a085a8a6e575dae373e6c8b9132eaa72511bfab8605f2d95ab99fdb", "827409aa9ed66d033c1f43a4518f36f24443f7ea9b703ef91f4c18ec73cd6e32", "ea2672bbd6fdaa463d12bed5482f80299f4c6f890756e080c1afdbd2ee651b3d", "99aaddbbb00c621021557c7188bb908e50bef457b69f10dc26258932d0cd2956", "fd54ddbf4055743992371579a2b93716ed18a0f53e4bfa85b0a7955d91b91d34", "7e0ee23277d67ae61a02131178a61b3effa7b242aa57691e02c8b03c1535f99e", "426421201443e54f4cf2b4cdfc56b92a52b0469cb9f909b95abdbad73d59930e", "790af8d11a5665afbc0fd934cba0941778720fb215dca0481db9a20b7ced9804", "73619bc1d0788eaf137a87b6632fe91e278dc2955bdc324fe577b5538956fa13", "5c2f199428c0782d9de1603d0b8a212446ea8bf098e7624df37c3c2e1e98478b", "dedd681d75309640ae621e161863443ff27ac77534cab0df1aa6c1035ef39ced", "ee094af5e2f2746776f72823f5dc2eee9c1ab63d11c15792d7466b1808d94f41", "88cf4509042a3058b6d7916f1cf8db54803ba0e271aff5575cf961c66d770df3"],
+      "worksheetSha256": ["83d8eff39129a00bfde2e5ae9b81fef661ab8042d7c7c412acd296fcefaa66df", "06adf8587f790962760254fe4f0df5e6364cf2d4724820dca2df04e8389c9832", "34f8a2571b3582a2dfab5a1a2859e4d57034552b10131126717fd42100298afe", "3ded969f110e9577d00145370553c557784b8b1f957f39197fcf8668bc3dc7a5", "195d10497274291d9f989fbb65eb34477c0e2f2ae914f28b7e98000e38bc5fa5", "48eeb248ae99de1a15936c8a2423eecb83cdf27bbd53c5f5b8824bfe08ed1e2c", "cde6e0c5933cb7d250183a4cb00574ecb4c9a82cc7ba347ee47a1712b147a816", "ce762012c4e459d310ebcb69d0bc2145dc7a5555fbdc2646735e6ea871bf2e06", "ce0234419bd0e07baed6f7e43e51b2169958f36123e9232f061d26babbf11ea3", "90399d7c1c26b10797f5eee0f73ecca695016ac79c63f0f5c75819a9dadf1abc", "482ba895f44b4cba710fb3ffd2d1822ccb96e9f4837f9e888718408f9178bf65", "450dff4a942623ea6969de9c236ba5d5ad49cd6d23b61b7774ace156141e1202", "e633a9480bf4ec4055f124a042a6d9f889e4e5255a1d333c6c11b148d2d487fe", "cf10fd540f6942d9246795148e2ef491f32d7aceef746adea5fd630d14709698", "7bfe6c58a0ce3329640412510bcd482733cbe8302a54b0aac3a3ba3cca0c182d"],
+      "verdict": "REVISE",
+      "finding": "All fifteen explanations are the same generic template with the headword substituted. Each repeats the PreferredTarget verbatim, claims unnamed ‘contrasting deployments’ without describing any stored case, and says speakers may negate or redirect the expression even where the selected witnesses do not establish that inventory. This fails the flyswatter test and is not an evidence-based definition. Rewrite each independently: explain the ordinary scene, name the actual speakers and concrete stored deployments, preserve genuine stance differences only where witnessed, and anchor every quoted or paraphrased claim."
+    }
+  ],
+  "formalizationCondition": "Every verdict applies only to the source packet SHA and its embedded exact per-entry hashes. No entry, worksheet, site artifact, or promotion state was edited."
+}

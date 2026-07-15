@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh-independent-exact-hash-semantic-rereview",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": "601-650",
+  "generatedUtc": "2026-07-15T08:36:43.858543+00:00",
+  "reviewer": "Codex fresh independent reviewer (not repair author)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "siteTouched": false,
+  "sourceRejectingReview": "f003-laneA-601-650-evidence-repair-independent-exact-review.json",
+  "sourceRejectingReviewSha256": "442e5a8102f93333b270a42a3553f1462ef6600235b088c352e8e89ed0ae3e00",
+  "repairLedger": "f003-laneA-601-650-corrective-author-ledger.json",
+  "repairLedgerSha256": "41ca6a1c85aab99156e4d3cbfeff5ed641c028e9c3038df52ded29775dc75d84",
+  "formalGate": "f003-laneA-601-650-corrective-author-formal-gate-v13.json",
+  "formalGateSha256": "2346a3863e85caa01509429bc5af1aa6ea3d24cbe1183e690023e8551c377a00",
+  "formalGateHardPass": true,
+  "readiness": "f003-laneA-601-650-corrective-author-readiness.json",
+  "readinessSha256": "167cd7d4c87fb8944016527fd602fe5560b569acfe94f256e11d7fee8d6c84a6",
+  "readinessHardPass": true,
+  "attributionPacket": "f003-laneA-601-650-corrective-author-formal-gate-v13-attribution-packets.json",
+  "attributionPacketSha256": "da03625e0658f7bde81afc4821e2a0fa429817c07ee9dfc326195bfd9ffedd73",
+  "attributionPacketGeneratorVersion": 3,
+  "currentHashesVerified": true,
+  "storedOccurrencesRead": 285,
+  "claimAnchorsRead": 5,
+  "verifiedEvidenceObjectsRead": 290,
+  "reviewMethod": "Read the current entries against their complete-case v3 packets, exact headword turns, current actor/context structures, source-specific prose, sense allocation, recurrence/work claims, and regression requirements. The 285 stored occurrences plus five verified claim anchors account for the formal gate’s 290 exact evidence objects.",
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "systemicFindings": [
+    "120 occurrence MasterName values and 172 ContextMasters values still contain Chinese source-heading/title strings rather than canonical roster names[0]. Mechanical allowance as deferred_non_roster does not make them link-safe canonical identities.",
+    "Several direct speech turns remain classified as compiler narration or unnamed actors, including Li Bo in 芥子納須彌, the collective petitioners in 燒指, and the sermon owner in 發願.",
+    "TOC/heading contamination survives in 發願 and 誓願, despite the corrective prose acknowledging or claiming exclusion of such material.",
+    "Recension accounting remains semantically wrong where different cases were collapsed: 不動尊 contains several masters and several distinct answers, not five recensions of one Muzhou exchange."
+  ],
+  "rows": [
+    {
+      "ordinal": 601,
+      "id": "t_d1aa91b2b347",
+      "term": "刻舟求劍",
+      "entrySha256": "84f3939e63488df17191a283c74c70364bb450dab557b0c4ea575d01e19fb58d",
+      "worksheetSha256": "70d7c81ca257e73c3c2c39a3f78024c23cead9a39e0dbea65dbfcfb6814da7f7",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The main prose correction is substantially better, but the current occurrences still store source-heading strings such as 遠菴僼禪師 and 三宜盂禪師 as MasterName instead of roster names[0]; the public master links therefore cannot resolve canonically."
+    },
+    {
+      "ordinal": 602,
+      "id": "t_a9babbddf1a8",
+      "term": "效顰",
+      "entrySha256": "a3517985741fed78acd97bba98ced70ac4c5942d0c1427c1aca656cc72fc9682",
+      "worksheetSha256": "f086aafa440de0d75f2616326ad8b0bf0029356baf30e02a03c107bee7111827",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 雪關禪師; 永覺元賢禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 603,
+      "id": "t_f9be0a6314a0",
+      "term": "抱橋柱",
+      "entrySha256": "fe710187f341af024b41bf84e0574a70df11b3b44ac7f94d0833f54340a33056",
+      "worksheetSha256": "3edcefbb7e331a5e81573063ae58f927e14e81537748a28dfdcea2f1241f4075",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 江州東林興龍寺常總照覺禪師; 費隱禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 604,
+      "id": "t_32b7255009f7",
+      "term": "買帽相頭",
+      "entrySha256": "8bf23a15e563bd961fdfc5623e84e585536e5e78897b148d6042352fba9a66f2",
+      "worksheetSha256": "57b4fe1c5c67e62f3782e2f51dc487bc8db537b1bb17f23d2301ea7edcd51755",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "Xutang is still stored as the title-like 虛堂和尚 rather than the canonical roster identity. The two Tiantong witnesses are parallel recensions of one comment and must not be represented as independent deployments."
+    },
+    {
+      "ordinal": 605,
+      "id": "t_8f91a9f06c79",
+      "term": "繫驢橛",
+      "entrySha256": "7656b0c26f78531550c5587440643e75e7b7219181a38f109e123616423d0e22",
+      "worksheetSha256": "50b6648d04ec396c0320d60d13cca519013991116f9bd33d50f67608fa6e0257",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 杭州徑山元叟行端禪師; 鎮州臨濟義玄禪師凡四十八) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 606,
+      "id": "t_18a76480bf9b",
+      "term": "空華",
+      "entrySha256": "512b3d2725802d785283d25dc20db55d7ece5f14835b0bc2c2b848d246abe00a",
+      "worksheetSha256": "77e7aedae79afa922c94a12fc6b925890646b1f2c92fc6c4af676a7952369b44",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 古雪哲禪師; 南康軍雲居真如院元祐禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 607,
+      "id": "t_d27432779ce8",
+      "term": "水月",
+      "entrySha256": "c1656b59b9630517485055e76c5275934f87683f84d592bc9a8bcb85a0e3d341",
+      "worksheetSha256": "49f14f76407c008f1f6a9da56d2407a7d432f5ea2ce28df31549fca3216c4b2c",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 普菴印肅禪師; 宏智禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 608,
+      "id": "t_9b56e29eddb6",
+      "term": "電光石火",
+      "entrySha256": "46f90ff975c3cf29e39ddc262c5bb2fbc0a53bce4a6c94872cac25a515d0c6c7",
+      "worksheetSha256": "ffeb56204629417779c926e11496590867fccb5de0257973318a31907e0d2143",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 洪州百丈懷海大智禪師馬祖一嗣; 洪州百丈懷海禪師凡十六) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 609,
+      "id": "t_e1b4c379b919",
+      "term": "紅爐點雪",
+      "entrySha256": "7bbf8d1a45f4c5fd7b29d5b1e1b5ec6db42485c0c1597c5234d101316a259f04",
+      "worksheetSha256": "3e13de2f763722058585e0f4ab92a54054657d96262e5d2ccb372383f35686ee",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 宜興芙蓉自閒覺禪師; 隱元禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 610,
+      "id": "t_e7c65905ecb5",
+      "term": "無縫塔",
+      "entrySha256": "c7af9b3e7231a57efda63b19b8ba1f1c60dc2545d074b3d3a772a9dbebc28f4c",
+      "worksheetSha256": "5b78fc971962c0973f086734e86f30819c2b64f92be755285fcfffbe8a981cc3",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The central Huizhong/emperor relation is now correct, but the same speaker is encoded both as 南陽慧忠國師 and Nanyang Huizhong, while Stone-Rain remains 石雨禪師; exact attribution is not canonical or link-safe."
+    },
+    {
+      "ordinal": 611,
+      "id": "t_612a2e5cbf5d",
+      "term": "無孔笛",
+      "entrySha256": "dbe03d80de2e11a5b6c031e4e2c5d62eb6bbc0aa83d5dacfc05fe6ee417997db",
+      "worksheetSha256": "09412874bf8b6010455f6ceea4d31266194a37c05b5b50159c483a646825c08a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 岳州平江長慶應圓禪師; 東山梅溪度禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 612,
+      "id": "t_c86b1e91c7b5",
+      "term": "陽焰",
+      "entrySha256": "458f9ada3c7101e53f444db1989fc8bce3f7b808a7cacbed6d87ab8755e6a9d7",
+      "worksheetSha256": "af751a1975744152d3d6bbb2d56a00b7a818b075123b7784c0acd90be7398ed5",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 懷讓禪師第二世; 入就瑞白禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 613,
+      "id": "t_502eeb8c9b1e",
+      "term": "驪珠",
+      "entrySha256": "5cc74062799e1ae9af89e563d5579b1505b8f86c0175363e40a01cb95d9dfcfe",
+      "worksheetSha256": "f456d1cd68fa45108a63e0f81ad2bf8950a4a6b939284db21714a5c86d4840ea",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 百癡禪師; 岳州君山顯昇禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 614,
+      "id": "t_e1eda88159c6",
+      "term": "優曇華",
+      "entrySha256": "ae3aac8e02bfc6b1b454beb8f664419b10667cfac291c3836da62b64c3a8c8a6",
+      "worksheetSha256": "3dccd03795ff7e7e7f7413472c5e5fcd34862088c7d629623062ae54e49a7f50",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 天目中峰; 青原山行思禪師第六世之三) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 615,
+      "id": "t_da967fbd07da",
+      "term": "鏡花",
+      "entrySha256": "bc624c2fa52a3d895ec98cafa535a9506660cf73084f61815bc8058a1ab15dab",
+      "worksheetSha256": "5306059785e4398dc4b6b192d21cbd9a7e939597ded0bb66051fc5b9f8ad2d5b",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 空谷道澄禪師; 吹萬禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 616,
+      "id": "t_40bcab45a004",
+      "term": "枯木生花",
+      "entrySha256": "c3a21ea99c3a4c2800580ead6dd6c1f9fcb6a84cafe02f0231c7c963a673680a",
+      "worksheetSha256": "d7522b3db1f48536be457db5f04a4c8eaf1c66bfd543397fbae67cdaadaf43d7",
+      "verdict": "REVISE",
+      "occurrencesRead": 5,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 廬州澄慧咸詡禪師; 入就瑞白禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 617,
+      "id": "t_35cd0cccddc7",
+      "term": "摩尼珠",
+      "entrySha256": "f268c674d937f1c7f3531d4a4714844561aa03e6de1eed71d27164a76dc572cf",
+      "worksheetSha256": "d6e31782db456e367be2c6801541a98a07c877596ed33917bcee981e66f7c622",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 了菴清欲禪師; 子湖山第一代神力禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 618,
+      "id": "t_b15eaab0dc3c",
+      "term": "無絃琴",
+      "entrySha256": "08fd5d1914b6de8be5faccc86fbc2d30ac479d367da3a046364b90e517d79fea",
+      "worksheetSha256": "fbc371f9cbd724d87fdb937753d329208ed2671303db8477f24edec8a6a547b1",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 了菴清欲禪師; 蔗菴範禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 619,
+      "id": "t_60251334dc81",
+      "term": "芥子納須彌",
+      "entrySha256": "6a873469e2d6b375c0b4baa95514ec6a171c1d826545e6cec95bc712e2aa9af5",
+      "worksheetSha256": "71293abf2acbb1312422062de604ed4705692e1601ff79eb7898f04b6399ef45",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The first, second, and fourth witnesses explicitly name Jiangzhou prefect Li Bo as the headword utterer, yet all three are classified as an unnamed questioner. The third witness is a different anonymous monastic question to another master, so the actor and case-family accounting remain wrong."
+    },
+    {
+      "ordinal": 620,
+      "id": "t_a6754d726742",
+      "term": "定盤星",
+      "entrySha256": "31f7f74b62de7fbeec0f70013cd79f725674aea79dc85d70716a4e8349642924",
+      "worksheetSha256": "1c0d43b4d420f2c58a0c38873e63db441d90aacd9e50b7b2a2e207afd22c7b24",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 壽州資壽院圓澄巖禪師; 衡州南嶽懷讓禪師大鑒能嗣) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 621,
+      "id": "t_c625645e445c",
+      "term": "草鞋錢",
+      "entrySha256": "521e9f9c4e6ffed812b907ca1f10806fe8ea25404bb2268be92fb6ece870aa11",
+      "worksheetSha256": "a33e0dc60d74430a6f399dcbaa100869ea14130b4c59b46180cfe76d9658f447",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 東京慧林常悟禪師; 蔗菴範禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 622,
+      "id": "t_9cd83a160990",
+      "term": "飯袋子",
+      "entrySha256": "a8e9a60554f862022bedf92c6533b20d58d8698f8a31c6efac2167951df053a5",
+      "worksheetSha256": "17aac89519d4ce5a198054cb8868c2e9b5b825e98984c1253e4eaa8e755ca2a2",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 東京慧林懷深慈受禪師; 雲門匡真禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 623,
+      "id": "t_3dd73fb3b40d",
+      "term": "酒糟漢",
+      "entrySha256": "92eda2cd467bbbd72b220d8ae73cb8aa3452a7f1e484c42d8204245b515c9e91",
+      "worksheetSha256": "73f342ba845fbe1f6c66092d70712942d918b15494dfd123e2dc3ab125723276",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 杭州海門天真惟則禪師; 虛堂和尚) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 624,
+      "id": "t_bd6a1e9054a5",
+      "term": "白拈賊",
+      "entrySha256": "5813c3fb4bbf36cbc09bcc2acad911e9da8c326b15243f518791552be82ded5e",
+      "worksheetSha256": "be6d727279d147bf12d5d0255a4adc5eb6a045cfeb99995c609c5e390ca01654",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 慶元府東山全菴齊己禪師; 吉州躭源山應真禪師六二南陽忠嗣) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 625,
+      "id": "t_f3554afe74df",
+      "term": "運水搬柴",
+      "entrySha256": "8d114fc6ac8927ee7e2552400b7c3e3040382ddee278b057cb7e3055f8085344",
+      "worksheetSha256": "d4aa14027d5a0edb1761e705d4ae21f1d04095bfee0f36ab3f0353ecf66e3ff0",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 青州普照寺一辨禪師; 天隱和尚) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 626,
+      "id": "t_3600c4babcdf",
+      "term": "秤錘",
+      "entrySha256": "006b3fba401018504f2d5b8ff70cabdd253a3da11000b3b8f42061b3d6c372ec",
+      "worksheetSha256": "17a87242eda6423022737ac68dd6f3f3d5a5ac080dc76ff87e85f7b9e47110cb",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 長沙東明慧遷禪師; 潭州龍山隱山禪師馬祖一嗣) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 627,
+      "id": "t_2f6dd23d26e9",
+      "term": "栗棘蓬",
+      "entrySha256": "3b49d9a283c2908bcd7905c0d4ea71f96e022a42c67b51ded7fe9bd342dd9d69",
+      "worksheetSha256": "726c30a34e8eee4a76a62b454a36258fdcc0d0f9eed990894f9888dd9ca24cc8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 安吉州道場正堂明辯禪師; 圓悟佛果禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 628,
+      "id": "t_cff94bb09481",
+      "term": "蒲團",
+      "entrySha256": "7b90fae380d555e531d4377cc193e9feb43a8c525beb7e6194d6e04e9ab8ec0a",
+      "worksheetSha256": "4294517875f846e2ee5e9d9758354e5de59020765262bb058aac56e94f8dd150",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 東京智海本逸正覺禪師; 山暉禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 629,
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "entrySha256": "3654f1bd5fac5292ea0bc83da1ef25e7fd2dab859fba108264388db5b8da4812",
+      "worksheetSha256": "4089ea76fba93e36e5665ffa06763f4ee2f9ccaa0e08fa4767c9e5fa03e854f6",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 舒州山谷三祖冲會圓智禪師; 洪州百丈道恒禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 630,
+      "id": "t_3efd163c8697",
+      "term": "龍女",
+      "entrySha256": "8a3a11161bda59bfd35f0b5dd63400c7035acce44eb52d10b97cb48bfa954c5c",
+      "worksheetSha256": "3f995822d44852f0d000a196baf04a691ca3b7ac6c4c814eb88a99616f36dfdd",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The Zihu question has no respondent in ContextMasters, and the long J34 verse is left as anonymous compiler narration despite belonging to a named authored verse sequence. The explanation claims Zihu and later verse deployment without making those actors reader-visible or canonical."
+    },
+    {
+      "ordinal": 631,
+      "id": "t_3279df87a9f1",
+      "term": "家常",
+      "entrySha256": "3e3baea4b965abb9d070689076d1e3e9b49235db0ce1c2114668b093467cc103",
+      "worksheetSha256": "d9c702c237752dc65238d934dc7f066620bfb3688a98d13db91a2a973d9c6c05",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 常德府梁山廓庵師遠禪師; 不會禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 632,
+      "id": "t_7ede0e195d2b",
+      "term": "業",
+      "entrySha256": "aec5d7159686e045b0d3a00153f485481f5afddd3432e0f29c2a085a9e90ba72",
+      "worksheetSha256": "ca72fd61a5968611a1fdc0a6b6e78c6aa7e2da659e514f080e2b4160648f6b1e",
+      "verdict": "REVISE",
+      "occurrencesRead": 13,
+      "finding": "The karma entry still mixes canonical and source-title identities (for example 朝宗禪師 and long Chinese section headings) across its 13 occurrences. For a hard-gated entry, those unresolved identities make the quote links and claimed source-specific controls unreliable."
+    },
+    {
+      "ordinal": 633,
+      "id": "t_179e443ac255",
+      "term": "無繩自縛",
+      "entrySha256": "92d0e5767fa6f78d05f2d1ec4acb7835df16017ccef4f68c860c9b624b54a6aa",
+      "worksheetSha256": "9d062a7324f57fae3e18579142b39d45aee26781e095ea7ba11d8d453fae856d",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 慶元府天童密菴咸傑禪師; 靈隱禮) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 634,
+      "id": "t_c95d0abb6577",
+      "term": "撥無因果",
+      "entrySha256": "a2cf1948b7db01512a86e94e9b69adc0a5083a465e16858d40fe0319bfe242a3",
+      "worksheetSha256": "ef03e61f20b655383de08d0277823036a54ff53d0831d1f9132b60f60b6045bf",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 古庭禪師; 古雪哲禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 635,
+      "id": "t_ad54a629dff9",
+      "term": "然指然頂",
+      "entrySha256": "d4b3551be58933469929cdc43e569a3a5e38261fc8f5ea3590e4aad4f4404ea1",
+      "worksheetSha256": "aff2e5ff887daa2c260b6ec12ad53c9b355f45223e0b49c84acfc952eec4fcd4",
+      "verdict": "REVISE",
+      "occurrencesRead": 1,
+      "finding": "The sole witness is attributed to the noncanonical title string 雪關禪師 rather than Xueguan Zhiyin. With only one occurrence, that unresolved identity is the entire evidentiary attribution."
+    },
+    {
+      "ordinal": 636,
+      "id": "t_32289452a85b",
+      "term": "燒指",
+      "entrySha256": "61d22ee865c320c6e5f0fe45a76a5c76c7ac3d012ab15d226f349fe21e306b9e",
+      "worksheetSha256": "61521d3e2712305cad50a6e4246d08c893ceedda6c09fc25b1189766b79844ae",
+      "verdict": "REVISE",
+      "occurrencesRead": 3,
+      "finding": "The first witness is direct collective speech (某等…今謹割耳燒指), not compiler narration. The third is a compact legal/list string and carries the nonsensical ContextMasters value 三祖鑑智禪師信心銘, which is a title-plus-person string rather than the contextual actor."
+    },
+    {
+      "ordinal": 637,
+      "id": "t_6e57aada2121",
+      "term": "然頂",
+      "entrySha256": "b3c4c08a0c342bc337cb201229a3eafc3d29e4ef4b1114d29d38627597b3202f",
+      "worksheetSha256": "6bc94325ce07aa3e1097590a23f30075122920e3154a9b4dcd88df147a14c847",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The prose is careful, but the first occurrence still places the long title 常州宜興龍池一源永寧禪師 in ContextMasters instead of the canonical roster name, so the biographical deployment cannot produce the required master link."
+    },
+    {
+      "ordinal": 638,
+      "id": "t_8bbc811be86e",
+      "term": "然香",
+      "entrySha256": "d8d5867158d7846035dd4a687780da32d2c2cdfe005c357cc7af7ab3b9238dfa",
+      "worksheetSha256": "ace929dcadc6b171d3b407861aff60d8a3f759aa5ee873b9e6276737dc83a5d2",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The last narrated mourning occurrence still uses 伏獅祇園禪師 rather than the canonical Fushi Qiyuan in ContextMasters. The source-specific prose names Fushi, but the stored link target does not."
+    },
+    {
+      "ordinal": 639,
+      "id": "t_a805d0c76bbd",
+      "term": "拈香",
+      "entrySha256": "6035fb4cca8e8bcc34422a5946345984fe385645cef2e72dc8515198105e1eeb",
+      "worksheetSha256": "976cc46848f7c208413f48471b8428db87c4d27cb01fe23ce0fd1bc40ccbe51c",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 空谷道澄禪師; 石門山慈照禪師蘊聦) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 640,
+      "id": "t_0ad6dd1a4717",
+      "term": "燒香",
+      "entrySha256": "e69544ffb62cb1fb2c35dd7ec13b256fa8c1ef9b5304e1fe2e72f8a7675a9ff1",
+      "worksheetSha256": "46c282c971a20f932b0b5e5712a360f3e05f17a2dd0a6062e239dab7e9d7e86a",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 越州雲門靈侃禪師; 首山禪師大鑑下八世風穴) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 641,
+      "id": "t_37cd9bfc3e67",
+      "term": "焚香",
+      "entrySha256": "ac6216f834c4b21afa1bb9e7a6d5dbe5a84cd6401cf61135300e67929196b66f",
+      "worksheetSha256": "640fd3cb3f9d23cefc399844e8d06ee5503aa3399e975eb8928d11053f0a00c7",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 長沙東明慧遷禪師; 明州奉化縣布袋和尚) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 642,
+      "id": "t_08c0c321eb2a",
+      "term": "炷香",
+      "entrySha256": "ee8e02443be319cb4506f9021d424ca2050791b79e6b102a846cf907be1de993",
+      "worksheetSha256": "72031a1771c12ff7e076230c9cb170cf0d63440e8dd339efe18a138b99d19043",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The first regulation occurrence describes an attendant lighting incense and reporting, but is classified as an unnamed utterer/interlocutor; the headword is an action, not quoted words. Other contexts still contain title strings such as 雲居佛印元禪師."
+    },
+    {
+      "ordinal": 643,
+      "id": "t_0f4c2ed08d86",
+      "term": "一炷香",
+      "entrySha256": "40e20e9a6ad07ea50dce5c4ba987c2bc931b3f383e82a0c7d294d881ce955339",
+      "worksheetSha256": "3f685a0403ef19bdab73e70a309d5b63faaa14b80ce7360117d5a61ea3319c1f",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 臨濟慧照禪師餘錄; 普濟玉琳國師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 644,
+      "id": "t_d801848213ab",
+      "term": "發願",
+      "entrySha256": "f978e93805751a7aac09ca39027feb51c7ad1af880715f4f8d94d348231dac5f",
+      "worksheetSha256": "01341da9e28cff133cf7164c94de3e6a1132ae8e419101dab1f22acb51aae4e7",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "A table-of-contents string remains as occurrence 1 despite the prose saying such material ranges among the witnesses, and occurrence 6 is misclassified as the earlier unnamed questioner although 發願 occurs in the master’s later 乃云 sermon. Both contamination and exact-turn ownership remain wrong."
+    },
+    {
+      "ordinal": 645,
+      "id": "t_e89833bb5e63",
+      "term": "誓願",
+      "entrySha256": "dc7b26d3ccaa4f35ea55ad9564a0bb07bbd14ee22395c7aa2d75a2fed37d9f90",
+      "worksheetSha256": "eefd3e3f5c67e531891557e0161c6f7bf43a48af3a50265d27162a031b112a3d",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "Occurrence 3 retains duplicated volume and compilation headings before the actual question instead of a clean case cut. Occurrences 5–6 are blanket compiler narration even though the formulas occur in an explicitly led Huineng recitation/instruction sequence; exact utterers remain unresolved."
+    },
+    {
+      "ordinal": 646,
+      "id": "t_084fac11e2ac",
+      "term": "發誓",
+      "entrySha256": "57b66f2707de7761241edaa24af77e89c9e783b48fd2319c44c5007484664504",
+      "worksheetSha256": "a57e0cee5cc67c5ebd427b0520793ecd0dc36dac49e328f403f5c52cb42b0b22",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 福州雪峰亘信彌禪師; 寶誌禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 647,
+      "id": "t_11c14d7191f1",
+      "term": "立誓",
+      "entrySha256": "d80cead431418ffae3be82114e1d17b7f95b6b3c571d2feacfe8c5e581a8b15b",
+      "worksheetSha256": "503f23618ea6e7d479ef3d574448f9e84841d01a68e62185d4686a75122086cc",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The first-person 我本立誓願 witness is left as generic compiler narration without resolving its continuous authorial voice. The two biographies also retain source-title strings rather than canonical ContextMasters."
+    },
+    {
+      "ordinal": 648,
+      "id": "t_ee77766b424b",
+      "term": "安心斷臂",
+      "entrySha256": "5e93943a15c68a80e54eeb6026a4b60228e87074d0b75604f1243c2b4754d9d3",
+      "worksheetSha256": "2026b0fdd3dade10cb361aaddbc16fdd0a554eb141402b39bd3ad36ac04443db",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 盛京奉天般若古林禪師; 山暉禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 649,
+      "id": "t_376913189794",
+      "term": "心如牆壁",
+      "entrySha256": "11dc77e57981093ac9756cca3ce675cc47b44fbd2b89347c9fee79ded2e5fe0c",
+      "worksheetSha256": "33122a4522f48e6e77da26fb25afbb1467da80c6bd7fe5ab590f70276805dfb8",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "finding": "The semantic rewrite is improved, but exact attribution still stores noncanonical Chinese source-heading/title strings as MasterName or ContextMasters (for example 博山無異大師; 大慧普覺禪師) instead of roster names[0]. These values cannot satisfy canonical master linking and show the six-rung attribution result was not normalized."
+    },
+    {
+      "ordinal": 650,
+      "id": "t_5517bf8c66c2",
+      "term": "不動尊",
+      "entrySha256": "542866022bcb90544d1222395c9b231c8147e171aafebbd0d5ed47b4d7790261",
+      "worksheetSha256": "271c87244f9a815278501f46dee17bed08bae699b0e701b7bc4b51c822c8e84e",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "The prose falsely says five witnesses are recensions of the same question and centers only Muzhou’s reply. The complete cases contain different masters and different answers: 寸步千里, 邂逅到崖州, 飛飛颺颺, and 四王擡不起. This is a multi-case family, not one fivefold recension."
+    }
+  ]
+}
+

@@ -1,0 +1,297 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_61c90d3a8edd",
+    "SourceTerm": "兼中到",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T00:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "arrival within integration",
+        "AlternateTargets": [
+          "arriving within the combined",
+          "integration attained"
+        ],
+        "SearchAliases": [
+          "fifth of the Five Ranks",
+          "arrival within integration",
+          "integration attained",
+          "combined within arrival Five Ranks"
+        ],
+        "Status": "preferred",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Within the Caodong Five Ranks, arrival within integration (兼中到) is the fifth named relation. Dongshan’s verse places it outside the opposition of existence and nonexistence; later records repeatedly describe distinctions as exhausted or integrated.",
+          "EvidenceBody": [
+            "Dongshan Liangjie begins the fifth-rank verse by saying it falls into neither existence nor nonexistence. Hongzhi Zhengjue gives it a dawn verse, while an unnamed monastic asks Fenyang Shanzhao for it and receives images of a weaving jade woman and a drumming stone man.",
+            "Langting Ting uses a returning cuckoo, Juelang Daosheng offers a later black-white diagram, Yongjue Yuanxian says affairs and principle are both gone, and Ruibai Mingxue applies it to a shout after holy and ordinary, subject and object, and existence and nonexistence are exhausted. These remain attributed illustrations of one rank."
+          ]
+        },
+        "Validation": "multi-source",
+        "Note": "The exact label occurs 303 times in 95 allowlisted files. Seven witnesses in seven independent works support one fifth-rank relation.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1986B.xml",
+            "FromLb": "0525c07",
+            "ToLb": "0525c07",
+            "Kwic": "兼中到。不落有無誰敢和。",
+            "MasterName": "Dongshan Liangjie",
+            "Curated": true,
+            "AttributionNote": "Recorded Sayings of Chan Master Dongshan Liangjie (瑞州洞山良价禪師語錄): Dongshan Liangjie begins his fifth-rank verse with the label and says it falls into neither existence nor nonexistence.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Liangjie",
+                "Roles": [
+                  "utterer",
+                  "verse-author",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兼中到。不落有無誰敢和。",
+              "SpeechFrame": "Dongshan Liangjie begins his fifth-rank verse with the label and says it falls into neither existence nor nonexistence.",
+              "FullCaseDecision": "Dongshan Liangjie owns the selected headword-bearing statement."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2001.xml",
+            "FromLb": "0099a14",
+            "ToLb": "0099a15",
+            "Kwic": "兼中到。斗柄橫斜天未曉。鶴夢初醒露氣寒。舊巢飛出雲松倒。",
+            "MasterName": "Hongzhi Zhengjue",
+            "Curated": true,
+            "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue supplies the labeled fifth-rank stanza in his own verse sequence.",
+            "ContextMasters": [
+              {
+                "MasterName": "Hongzhi Zhengjue",
+                "Roles": [
+                  "utterer",
+                  "verse-author",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兼中到。斗柄橫斜天未曉。鶴夢初醒露氣寒。舊巢飛出雲松倒。",
+              "SpeechFrame": "Hongzhi Zhengjue supplies the labeled fifth-rank stanza in his own verse sequence.",
+              "FullCaseDecision": "Hongzhi Zhengjue owns the selected headword-bearing statement."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0314b17",
+            "ToLb": "0314b19",
+            "Kwic": "如何是兼中到。汾云。玉女拋梭機軋軋。石人打鼓韻鼕鼕。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Mirror of Humans and Devas (人天眼目): an unnamed monastic asks the headword question; Fenyang Shanzhao answers separately.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic questioner",
+              "ActorLabel": "an unnamed monastic questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The question contains the headword; the formula 'Fenyang said' (汾云) begins the separate answer.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Fenyang Shanzhao",
+                "Roles": [
+                  "respondent",
+                  "case-figure"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "The unnamed monastic asking the headword question.",
+              "FullCaseDecision": "The questioner owns the headword; Fenyang Shanzhao owns the separate answer."
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB294.xml",
+            "FromLb": "0729a24",
+            "ToLb": "0729a24",
+            "Kwic": "兼中到，杜鵑歸去西溪道。",
+            "MasterName": "Langting Ting",
+            "Curated": true,
+            "AttributionNote": "Recorded Sayings of Chan Master Yunxi Langting Ting (雲溪俍亭挺禪師語錄): Langting Ting gives the fifth rank a cuckoo-returning verse image.",
+            "ContextMasters": [
+              {
+                "MasterName": "Langting Ting",
+                "Roles": [
+                  "utterer",
+                  "verse-author",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兼中到，杜鵑歸去西溪道。",
+              "SpeechFrame": "Langting Ting gives the fifth rank a cuckoo-returning verse image.",
+              "FullCaseDecision": "Langting Ting owns the selected headword-bearing statement."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB311.xml",
+            "FromLb": "0650b08",
+            "ToLb": "0650b10",
+            "Kwic": "兼中到者，以全放全收其黑白而混融之，不可以黑白表顯名跡。",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "AttributionNote": "Complete Record of Chan Master Tianjie Juelang Daosheng (天界覺浪盛禪師全錄): Juelang Daosheng presents his later black-white diagrammatic account of the fifth rank.",
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兼中到者，以全放全收其黑白而混融之，不可以黑白表顯名跡。",
+              "SpeechFrame": "Juelang Daosheng presents his later black-white diagrammatic account of the fifth rank.",
+              "FullCaseDecision": "Juelang Daosheng owns the selected headword-bearing statement."
+            }
+          },
+          {
+            "RelPath": "X/X72/X72n1437.xml",
+            "FromLb": "0426b03",
+            "ToLb": "0426b04",
+            "Kwic": "兼中到，事理全銷無可道。不是寒巖獨守空，本無變易閑名埽。",
+            "MasterName": "Yongjue Yuanxian",
+            "Curated": true,
+            "AttributionNote": "Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄): Yongjue Yuanxian labels his own fifth-rank verse and says affairs and principle are both gone.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yongjue Yuanxian",
+                "Roles": [
+                  "utterer",
+                  "verse-author",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兼中到，事理全銷無可道。不是寒巖獨守空，本無變易閑名埽。",
+              "SpeechFrame": "Yongjue Yuanxian labels his own fifth-rank verse and says affairs and principle are both gone.",
+              "FullCaseDecision": "Yongjue Yuanxian owns the selected headword-bearing statement."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB188.xml",
+            "FromLb": "0758a18",
+            "ToLb": "0758a19",
+            "Kwic": "我此一喝，聖凡情盡，能所兩忘，妙盡有無，是兼中到也。",
+            "MasterName": "Ruibai Mingxue",
+            "Curated": true,
+            "AttributionNote": "Recorded Sayings of Chan Master Ruibai Mingxue (入就瑞白禪師語錄): Ruibai Mingxue classifies his own shout after holy/ordinary and subject/object distinctions are exhausted.",
+            "ContextMasters": [
+              {
+                "MasterName": "Ruibai Mingxue",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "我此一喝，聖凡情盡，能所兩忘，妙盡有無，是兼中到也。",
+              "SpeechFrame": "Ruibai Mingxue classifies his own shout after holy/ordinary and subject/object distinctions are exhausted.",
+              "FullCaseDecision": "Ruibai Mingxue owns the selected headword-bearing statement."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T47/T47n1986B.xml",
+          "T/T48/T48n2001.xml",
+          "T/T48/T48n2006.xml",
+          "J/J33/J33nB294.xml",
+          "J/J34/J34nB311.xml",
+          "X/X72/X72n1437.xml",
+          "J/J26/J26nB188.xml"
+        ],
+        "RelatedMasters": [
+          "Dongshan Liangjie",
+          "Hongzhi Zhengjue",
+          "Fenyang Shanzhao",
+          "Langting Ting",
+          "Juelang Daosheng",
+          "Yongjue Yuanxian",
+          "Ruibai Mingxue"
+        ],
+        "RelatedTerms": [
+          "正中偏",
+          "偏中正",
+          "正中來",
+          "兼中至",
+          "五位君臣"
+        ],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "ZenBend": "The fifth relational label is repeatedly illustrated through verses, diagrams, and applied classifications in which paired distinctions no longer govern.",
+          "CounterexampleOrLimit": "The images and later schemata differ and are not collapsed into one invented picture or system.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "Dongshan verse",
+              "later Five Ranks verses",
+              "diagrammatic account",
+              "shout classification"
+            ],
+            "Reason": "Each explicitly labels the same fifth rank."
+          },
+          "AliasRationale": "Aliases cover the conventional fifth-rank rendering and ordered combined/arrival vocabulary.",
+          "ModifierControls": [
+            {
+              "Control": "rank relation",
+              "Finding": "兼 and 到 jointly name the fifth relation; the alias does not reverse it or merge it with the fourth rank."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "兼中至",
+              "Finding": "Adjacent fourth rank, kept separate."
+            },
+            {
+              "Term": "正中來",
+              "Finding": "Third rank, kept separate."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1986B",
+            "work:T48n2001",
+            "work:T48n2006",
+            "work:J33nB294",
+            "work:J34nB311",
+            "work:X72n1437",
+            "work:J26nB188"
+          ]
+        }
+      }
+    ]
+  }
+}

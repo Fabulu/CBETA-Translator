@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [76, 77, 78, 79, 80],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T00:55:00Z",
+  "scope": "Hash-bound full semantic review of meaning, different-thing boundaries, exact headword utterers, nested context roles, frequency-scaled depth, independent-work identity, openings, aliases, anchors, variants, and forbidden-rule compliance. Every complete case in the supplied attribution packet was read; entries and website were not edited.",
+  "inputs": {
+    "mechanicalGate": {"path": "fresh-build/waves/f001-laneA-076-080-gate.json", "sha256": "0e17fe07d933fff1c2afe11205ceefdd992b92cabe86b7cb062dd28285e15d51"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneA-076-080-gate-attribution-packets.json", "sha256": "a179c5187a7d7cdcf765eb795b51c7b2cdee0e639a125bf2f0dfcc46d8a2d578"},
+    "rootReviewPacket": {"path": "fresh-build/waves/f001-laneA-066-070-root-review-packet.json", "sha256": "a7dcbb469af6909c062675cfbd52514a575e7de28bb669f78c5f7ef2ebcc7f42"}
+  },
+  "summary": {"KEEP": 1, "REVISE": 4, "reviseOrdinals": [76, 77, 78, 79]},
+  "findings": [
+    {
+      "ordinal": 76,
+      "id": "t_e6eb14b6c1ca",
+      "term": "活人劍",
+      "entrySha256": "0b61ae28c8e9be6f04bcdf423c9814a40f2d0bfdc7bcb1b7c3ba7f45bdd841e4",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One life-giving-sword member of the kill/live pair is correct; appraisals, questions, verse predicates, and paired formulas do not create different things.",
+        "actorsAndContext": "In the Miyun public interview the unnamed monk utters 如何是活人劍; Miyun's marked reply is a blow plus 自領出去 and does not repeat the headword. MasterName=Miyun therefore violates the exact-utterer rule. The other nested Dahui/Tianyin and raised-case layers are sound.",
+        "depthAndUniqueness": "Question, paired maxim, four-turn taxonomy, verse, teacher appraisal, quoted Dahui judgment, and later comment are distinct. The Note nevertheless says six witnesses/six works while seven exact rows in seven source files are stored.",
+        "workIdentity": "The seven selected source files are seven independent works.",
+        "openingAliasesAnchors": "The paired killing/life-giving opening and aliases are bounded by the selected evidence.",
+        "forbiddenRules": "No material weapon claim, but exact headword actor and evidence-count accuracy fail."
+      },
+      "requiredChanges": [
+        "For J/J10/J10nA158.xml 0017a24, set MasterName null and use the reviewed-unnamed monastic-questioner branch for the exact headword utterer; retain Miyun Yuanwu in ContextMasters as respondent who answers by striking and saying 自領出去.",
+        "Correct the Note's six-witness/six-work count to the actual reviewed evidence count, or remove the unsupported numeric claim after any row changes."
+      ]
+    },
+    {
+      "ordinal": 77,
+      "id": "t_d03aa9267f79",
+      "term": "大機大用",
+      "entrySha256": "8ae9d47f1693424b9a5c0bc86c56dff766ce972642c590664c12718b417510ff",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The coordinated capacity/function device is one thing; comparison of its two members does not warrant a split.",
+        "actorsAndContext": "The first KWIC consists entirely of an unnamed questioner's three questions. Tianyin answers afterward with 看孔著楔，買帽相頭 and never utters the headword in the stored turn, so assigning him MasterName is wrong. Huangbo's statement inside Baizhang's section is correctly attributed to Huangbo.",
+        "depthAndUniqueness": "Only six rows are stored, not the nine exact witnesses claimed in Note. Five distinct works support them. The prose additionally relies on Yangshan's Baizhang/Huangbo distinction and Yuanwu's unobstructed responsiveness without any stored occurrence or ClaimAnchor for either claim.",
+        "workIdentity": "Repeated Tianyin rows correctly count once; the stored support is five independent works, still multi-source.",
+        "openingAliasesAnchors": "Capacity/function is plausible from the pair, but aliases such as 'great ability and action' and 'great potential and exercise' are broad enough to retrieve ordinary English outside this fixed Chan expression and should be narrowed.",
+        "forbiddenRules": "No meditation language, but actor, count, dangling prose support, and alias specificity fail."
+      },
+      "requiredChanges": [
+        "For J/J25/J25nB171.xml 0571a02-03, assign the headword to an unnamed monastic questioner with MasterName null and retain Tianyin Yuanxiu as respondent/context master.",
+        "Correct 'Nine exact witnesses' to the actual stored/reviewed count and state distinct-work breadth accurately.",
+        "Add verified, actor-exact ClaimAnchors/occurrences for the Yangshan and Yuanwu claims, or delete those unsupported clauses and RelatedMasters references.",
+        "Remove or narrow generic SearchAliases that are not coextensive with the fixed pair, especially 'great ability and action' and 'great potential and exercise.'"
+      ]
+    },
+    {
+      "ordinal": 78,
+      "id": "t_1da939bf1267",
+      "term": "呵佛罵祖",
+      "entrySha256": "024fbff84c62af75c2280c3a00194a86ef8869bee3abc616da080297258c6e56",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One named verbal act remains correct across approval, criticism, prediction, answer, quotation, and self-description. 訶/呵 and 叱/罵 are governed family variants, not new senses.",
+        "actorsAndContext": "In Sanshan's exchange, the unnamed monk asks 訶佛罵祖是甚麼人 and Sanshan answers 闡提漢. The headword is therefore uttered by the monk, not Sanshan Denglai. Wufeng and Lianyue, by contrast, do utter the phrase in their marked answers; Guishan and Dahui quotation layers are otherwise represented correctly.",
+        "depthAndUniqueness": "The eleven stored rows are varied, but Note calls them ten witnesses. C077n1710 and D48n8939 are two editions of 古尊宿語錄, not independent works, and repeated Zhenjing/Guishan material must not inflate work breadth.",
+        "workIdentity": "The sense remains amply multi-work after canonicalizing the C/D duplicate edition, but the current numeric framing is inaccurate.",
+        "openingAliasesAnchors": "The act-level opening and English synonyms are specific and corpus-earned.",
+        "forbiddenRules": "Stance is correctly not converted into senses; exact actor and count/work bookkeeping fail."
+      },
+      "requiredChanges": [
+        "For J/J29/J29nB244.xml 0710c14, set MasterName null with a reviewed-unnamed monastic-questioner ActorAttribution; retain Sanshan Denglai only as respondent who says 闡提漢.",
+        "Reconcile the Note with eleven stored evidence rows and count C077n1710/D48n8939 as one work_id; report rows and independent works separately rather than saying ten witnesses ambiguously."
+      ]
+    },
+    {
+      "ordinal": 79,
+      "id": "t_8650004bb9d7",
+      "term": "兼中至",
+      "entrySha256": "6c47f9ac9bc03f0b8b70984c9b662b3f7e597c32a857138813616ce1c2fc953c",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "One disputed fourth-slot label family is supported, with 偏中至 as an attested alternate reading/name and 兼中到 kept as the fifth. The entry is right not to split the naming dispute into two things.",
+        "actorsAndContext": "Three public-question rows misidentify respondents as headword utterers: unnamed monks ask 如何是兼中至 before Fenyang, Feiyin, and Sanyi give image answers that do not repeat the term. Dongshan, Caoshan, and Juelang directly utter their stored clauses.",
+        "depthAndUniqueness": "Foundational verse, parallel Caoshan readings, Juelang's explicit dispute, and three later public interviews are useful, but the question rows need exact actor repair.",
+        "workIdentity": "The two Caoshan editions/records require work-id canonicalization rather than raw-file counting; breadth remains multi-work.",
+        "openingAliasesAnchors": "The PreferredTarget 'arrival within integration' is identical to the already reviewed fifth-rank target for 兼中到, so a reader cannot distinguish fourth and fifth from PreferredTarget alone. It also blurs 至 and 到 precisely where Juelang insists they must not be conflated.",
+        "forbiddenRules": "No external Five-Ranks system is imposed, but exact actors and distinguishable gloss hygiene fail."
+      },
+      "requiredChanges": [
+        "For C/C077/C077n1710.xml 0685a03-04, J/J26/J26nB178.xml 0111c07, and J/J27/J27nB189.xml 0038b28-29, assign the exact headword to reviewed-unnamed monastic questioners with MasterName null; retain Fenyang Shanzhao, Feiyin Tongrong, and Sanyi Yu respectively as respondents/context masters.",
+        "Replace the PreferredTarget and overlapping aliases with a fourth-rank gloss distinguishable from 兼中到 from the gloss alone and faithful to 至 rather than 到 (while stating that translation uncertainty remains); do not use the fifth rank's exact English target for both.",
+        "Retest the claimed eight witnesses as evidence rows versus independent works, canonicalizing parallel Caoshan witnesses by work_id."
+      ]
+    },
+    {
+      "ordinal": 80,
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物",
+      "entrySha256": "c836fdbabd56d626815030c562e72126e690b1775adcdcfaca6160e47b78b5e9",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One received verse-line and its later tests are correctly retained as one thing; textual variants in surrounding lines do not make new senses.",
+        "actorsAndContext": "The three verse witnesses explicitly assign the line to Huineng even where another person writes it; Dongshan, Huangbo, Yulin's nested Huineng quotation, and Zhongfeng are mapped to the exact utterer layers correctly.",
+        "depthAndUniqueness": "Received verse traditions, two independent Dongshan checks, Huangbo's denial of reifying 'no,' Yulin's counter-statement, and Zhongfeng's interpretation warning provide strong non-padded depth.",
+        "workIdentity": "Repeated files are not claimed as separate works; the evidence spans multiple independent works and received traditions.",
+        "openingAliasesAnchors": "The opening states the received line and immediately limits it through variant history and corpus challenges. Aliases are synonymous and bounded.",
+        "forbiddenRules": "The entry explicitly blocks turning the line into a self-explaining metaphysical theory and does not import an outside emptiness doctrine."
+      },
+      "requiredChanges": []
+    }
+  ]
+}

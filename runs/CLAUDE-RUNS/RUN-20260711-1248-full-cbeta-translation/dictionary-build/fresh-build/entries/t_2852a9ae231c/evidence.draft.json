@@ -1,0 +1,50 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_2852a9ae231c",
+    "SourceTerm": "隨波逐浪",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T14:15:00Z",
+    "Senses": [{
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "follow the waves and ride the swells",
+      "AlternateTargets": ["go with the current", "follow wave after wave"],
+      "SearchAliases": ["Yunmen wave-following phrase", "follow the waves", "go with the flow Chan"],
+      "Status": "preferred",
+      "ExplanationParts": {
+        "CorpusEarnedOpening": "Records use this phrase for moving responsively with the occasion, but Feiyin Tongrong turns it into criticism when the historical monastic in Zhaozhou's cypress case drifts with discriminating thought. The image is “follow the waves and ride the swells,” one member of the Yunmen three-phrase frame.",
+        "EvidenceBody": [
+          "In the Blue Cliff Record, Yuanwu Keqin says a phrase can follow the waves when used on the road, meeting a knowing companion and distinguishing what the occasion calls for. His recorded sayings contrast going with the waves, where varied establishments are responsive at every point, with cutting off all streams and barring ordinary and sage.",
+          "Hongzhi Zhengjue says Yunmen, steady in body and mind, knew how to follow the waves. Tianyin Yuanxiu's verse follows waves and wind in a small boat but turns back rather than remaining midstream. Ruibai Mingxue defines the phrase-function through a shout that answers an affair with the affair and principle with principle. Feiyin Tongrong, by contrast, criticizes a monastic whose discriminating mind follows the waves and misses what is directly present; Shiyu Mingfang similarly says Yunmen “only managed” to follow the waves in a disputed case."
+        ]
+      },
+      "Validation": "multi-source",
+      "Note": "Seven exact witnesses in seven independent works support one wave-following image with positive and critical stances; the stance changes, not the lexical object.",
+      "Occurrences": [
+        {"RelPath":"T/T48/T48n2003.xml","FromLb":"0148a23","ToLb":"0148a25","Kwic":"有時一句。隨波逐浪。若也途中受用。遇知音別機宜。識休咎相共證明。","MasterName":"Yuanwu Keqin","Curated":true,"AttributionNote":"Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Yuanwu Keqin says a phrase may follow the waves on the road, meeting a knowing companion and distinguishing the occasion.","ContextMasters":[{"MasterName":"Yuanwu Keqin","Roles":["utterer","commentator"]}],"DraftActorProof":{"ExactHeadwordClause":"有時一句。隨波逐浪。","SpeechFrame":"The classification occurs in Yuanwu Keqin's own case commentary.","FullCaseDecision":"Yuanwu owns the headword-bearing phrase classification and its occasion conditions."}},
+        {"RelPath":"T/T47/T47n1997.xml","FromLb":"0754a23","ToLb":"0754a24","Kwic":"若隨波逐浪去。種種建立觸處圓融。若截斷眾流去。把住要津不通凡聖。","MasterName":"Yuanwu Keqin","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Foguo Yuanwu (圓悟佛果禪師語錄): Yuanwu Keqin contrasts wave-following responsiveness with stream-cutting closure.","ContextMasters":[{"MasterName":"Yuanwu Keqin","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"若隨波逐浪去。","SpeechFrame":"The contrast belongs to Yuanwu Keqin's own winter-night small assembly address.","FullCaseDecision":"Yuanwu owns both sides of the headword-bearing contrast."}},
+        {"RelPath":"T/T48/T48n2001.xml","FromLb":"0037b28","ToLb":"0037b28","Kwic":"雲門優穩身心。自解隨波逐浪。","MasterName":"Hongzhi Zhengjue","Curated":true,"AttributionNote":"Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue says Yunmen Wenyan, steady in body and mind, knew how to follow the waves.","ContextMasters":[{"MasterName":"Hongzhi Zhengjue","Roles":["utterer","record-owner"]},{"MasterName":"Yunmen Wenyan","Roles":["person-discussed"]}],"DraftActorProof":{"ExactHeadwordClause":"自解隨波逐浪。","SpeechFrame":"上堂云 introduces Hongzhi Zhengjue's comparison of Yunmen, Linji, and his own house.","FullCaseDecision":"Hongzhi owns the evaluative words; Yunmen is the person evaluated."}},
+        {"RelPath":"J/J25/J25nB171.xml","FromLb":"0566a12","ToLb":"0566a13","Kwic":"隨波逐浪趁風遊，月下垂鉤放小舟，識得句中消息子，回頭不住在中流。","MasterName":"Tianyin Yuanxiu","Curated":true,"AttributionNote":"Recorded Sayings of Tianyin (天隱和尚語錄): Tianyin Yuanxiu's verse follows waves and wind in a small boat but turns back rather than remaining midstream.","ContextMasters":[{"MasterName":"Tianyin Yuanxiu","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"隨波逐浪趁風遊","SpeechFrame":"The stanza occurs in Tianyin Yuanxiu's own verse sequence on the three phrase-functions.","FullCaseDecision":"Tianyin owns the complete headword-bearing stanza."}},
+        {"RelPath":"J/J26/J26nB188.xml","FromLb":"0758a23","ToLb":"0758a24","Kwic":"即此一喝問事荅事，問理荅理，謂之隨波逐浪句。","MasterName":"Ruibai Mingxue","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Ruibai Mingxue (入就瑞白禪師語錄): Ruibai Mingxue calls a shout that answers affair with affair and principle with principle the wave-following phrase.","ContextMasters":[{"MasterName":"Ruibai Mingxue","Roles":["utterer","record-owner"]}],"DraftActorProof":{"ExactHeadwordClause":"謂之隨波逐浪句。","SpeechFrame":"The classification occurs in Ruibai Mingxue's own comparison of one shout across house styles.","FullCaseDecision":"Ruibai owns the headword-bearing classification."}},
+        {"RelPath":"J/J26/J26nB178.xml","FromLb":"0132c14","ToLb":"0132c15","Kwic":"者僧用揀擇心隨波逐浪，當陽不薦，覿面蹉過。","MasterName":"Feiyin Tongrong","Curated":true,"AttributionNote":"Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): Feiyin Tongrong criticizes the monastic in the Zhaozhou cypress case for following the waves with a discriminating mind and missing what is directly present.","ContextMasters":[{"MasterName":"Feiyin Tongrong","Roles":["utterer","commentator"]}],"DraftActorProof":{"ExactHeadwordClause":"者僧用揀擇心隨波逐浪","SpeechFrame":"The appraisal follows Feiyin Tongrong's quotation of the Zhaozhou case.","FullCaseDecision":"Feiyin owns the headword-bearing criticism; the historical monastic is its object."}},
+        {"RelPath":"J/J27/J27nB190.xml","FromLb":"0087b27","ToLb":"0087b28","Kwic":"雲門也只得隨波逐浪。","MasterName":"Shiyu Mingfang","Curated":true,"AttributionNote":"Teaching Collection of Chan Master Shiyu (石雨禪師法檀): Shiyu Mingfang says Yunmen only managed to follow the waves in his judgment of the Qianfeng case.","ContextMasters":[{"MasterName":"Shiyu Mingfang","Roles":["utterer","commentator"]},{"MasterName":"Yunmen Wenyan","Roles":["person-discussed"]}],"DraftActorProof":{"ExactHeadwordClause":"雲門也只得隨波逐浪。","SpeechFrame":"師曰 introduces Shiyu Mingfang's own judgment after raising the case.","FullCaseDecision":"Shiyu owns the evaluative words; Yunmen is the person evaluated."}}
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["T/T48/T48n2003.xml","T/T47/T47n1997.xml","T/T48/T48n2001.xml","J/J25/J25nB171.xml","J/J26/J26nB188.xml","J/J26/J26nB178.xml","J/J27/J27nB190.xml"],
+      "RelatedMasters": ["Yuanwu Keqin","Hongzhi Zhengjue","Yunmen Wenyan","Tianyin Yuanxiu","Ruibai Mingxue","Feiyin Tongrong","Shiyu Mingfang"],
+      "RelatedTerms": ["函蓋乾坤","截斷眾流","途中受用","逐浪隨波"],
+      "DraftEvidence": {
+        "OpeningClaimEvidenceKeys": ["o1","o2","o3","o4","o5","o6","o7"],
+        "ZenBend": "Following waves can mark exact responsiveness to the present affair, while the same movement becomes drift when driven by discriminating thought or secondhand wording.",
+        "CounterexampleOrLimit": "Feiyin and Shiyu use the phrase critically, and Tianyin's verse turns back rather than remaining midstream; adaptive movement cannot be reduced to passive conformity.",
+        "DifferentThingTest": {"Decision":"one-thing","ComparedThings":["Yunmen phrase-function","occasion-sensitive use","responsive establishment","small-boat verse","shout answering affairs","discriminating drift","critical judgment"],"Reason":"Positive and critical passages evaluate the same wave-following action-image under different ownership and conditions."},
+        "AliasRationale": "Aliases cover literal wave language, the Yunmen classification, and the common go-with-the-flow lookup while explanation controls the passive-drift overreading.",
+        "ModifierControls": [{"Control":"paired motion verbs","Finding":"隨 and 逐 both mark movement with wave and swell; the witnesses determine whether that movement is responsive or merely drifting."}],
+        "FamilyControls": [{"Term":"截斷眾流","Finding":"Companion cutoff function that Yuanwu explicitly contrasts with wave-following."},{"Term":"函蓋乾坤","Finding":"Companion encompassing function within Yunmen's three-phrase frame."}],
+        "IndependentWorkIds": ["work:T48n2003","work:T47n1997","work:T48n2001","work:J25nB171","work:J26nB188","work:J26nB178","work:J27nB190"]
+      }
+    }]
+  }
+}

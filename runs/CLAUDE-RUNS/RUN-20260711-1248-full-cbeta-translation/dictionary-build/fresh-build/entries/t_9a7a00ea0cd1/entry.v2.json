@@ -1,0 +1,209 @@
+{
+  "Id": "t_9a7a00ea0cd1",
+  "SourceTerm": "一歸何處",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "where does the one return?",
+      "AlternateTargets": [
+        "where does the one go back to?",
+        "to where does the one return?"
+      ],
+      "SearchAliases": ["where does the one return", "where does the one go back", "all things return to one", "ten thousand things return to one", "Zhaozhou's seven-catty cloth shirt", "Zhaozhou's seven-pound shirt", "one returns where"],
+      "Status": "preferred",
+      "Explanation": "This is the stock second half of the question 'the ten thousand things return to one; where does the one return?' The first half supplies the otherwise missing antecedent of 'the one.' An unnamed monk puts the complete question to Zhaozhou Congshen, who answers that in Qingzhou he made a cloth shirt weighing seven catties. The question is not confined to that exchange: Hongzhi Zhengjue places beside it a version answered by Wenshu Yingzhen with 'the Yellow River's nine bends,' and Baizhang Mingzhao An answers that not one person has failed to ask. Gaofeng Yuanmiao makes the question his entire address before looking left and right and leaving the seat; Lanan Dingxu uses it as a chamber test; Zhuquan Liaohuan Falin supplies another answer. Zen bends an ordinary destination question into a portable public-interview challenge whose divergent answers are the history of one stable question, not different meanings of the headword.",
+      "Validation": "multi-source",
+      "Note": "The exact question occurs 838 times in 216 allowlisted storage files; the full two-part question is also extensively attested with and without punctuation. No equation-style self-definition was found. Multiple respondents, answers, later comments, an entire hall address, a chamber test, and continuous use as an assigned saying all preserve one question rather than an individual-specific meaning.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0793b24",
+          "ToLb": "0793b25",
+          "Kwic": "舉。僧問趙州。萬法歸一。一歸何處。州云。我在青州作一領布衫。重七斤。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yuanwu Foguo (圓悟佛果禪師語錄): inside a case raised and commented on by Yuanwu Keqin, an unnamed monk asks Zhaozhou Congshen where the one returns when the ten thousand things return to one; Zhaozhou answers with his seven-catty cloth shirt. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0040b06",
+          "ToLb": "0040b08",
+          "Kwic": "上堂舉僧問趙州。萬法歸一。一歸何處。州云。我在青州。作一領布衫重七斤。又僧問文殊。萬法歸一。一歸何處。殊云。黃河九曲。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monks",
+            "ActorLabel": "two unnamed monks",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T22:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Wenshu Yingzhen",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "record-owner",
+                "later-raiser"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): two unnamed monks are the exact quoted questioners who each ask where the one returns. Zhaozhou Congshen answers with his seven-catty cloth shirt, Wenshu Yingzhen answers ‘The Yellow River's nine bends,’ and Hongzhi Zhengjue later raises both records side by side. The line, expanded context, section header, book title, TEI header, and parallel-passage search leave both monks unnamed."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0367c16",
+          "ToLb": "0367c17",
+          "Kwic": "問萬法歸一一歸何處。師曰。未有一箇不問。",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): inside Baizhang Mingzhao An's explicitly headed section, an unnamed monk asks where the one returns when the ten thousand things return to one; Baizhang Mingzhao An answers that not one person has failed to ask. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Mingzhao An",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X70/X70n1400.xml",
+          "FromLb": "0679b05",
+          "ToLb": "0679b05",
+          "Kwic": "上堂：萬法歸一，一歸何處？乃顧視左右，下座。",
+          "MasterName": "Gaofeng Yuanmiao",
+          "ContextMasters": [{"MasterName": "Gaofeng Yuanmiao", "Roles": ["utterer", "record-owner"]}],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Gaofeng Yuanmiao (高峰原妙禪師語錄). Gaofeng Yuanmiao makes the complete question his hall address, then looks left and right and leaves the seat."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0115b06",
+          "ToLb": "0115b07",
+          "Kwic": "室中問僧：萬法歸一，一歸何處？曰：新羅國裏。",
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Lanan Dingxu's explicitly headed section, Lanan Dingxu asks a monk in the private room where the one returns when the ten thousand things return to one; the monk answers 'inside Korea.'",
+          "MasterName": "Lanan Dingxu",
+          "ContextMasters": [{"MasterName": "Lanan Dingxu", "Roles": ["utterer", "questioner", "section-subject"]}]
+        },
+        {
+          "RelPath": "X/X84/X84n1585.xml",
+          "FromLb": "0706c09",
+          "ToLb": "0706c10",
+          "Kwic": "忽有僧問：萬法歸一，一歸何處？只向他道：今日熱如昨日。",
+          "Curated": true,
+          "AttributionNote": "Draft Continuation of the Lamp (續燈存稿): in his headed section, Zhuquan Liaohuan Falin says that if asked where the one returns he would answer that today is as hot as yesterday.",
+          "MasterName": "Zhuquan Liaohuan Falin",
+          "ContextMasters": [{"MasterName": "Zhuquan Liaohuan Falin", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "X/X70/X70n1402.xml",
+          "FromLb": "0728a13",
+          "ToLb": "0728a15",
+          "Kwic": "十二時中單單提起箇萬法歸一、一歸何處話，行疑坐疑，猛利無間，",
+          "Curated": true,
+          "AttributionNote": "Miscellaneous Records of Chan Master Tianmu Mingben (天目明本禪師雜錄). Zhongfeng Mingben tells the assembly to take up throughout the day the question 'the ten thousand things return to one; where does the one return?' and continue questioning while walking or sitting.",
+          "MasterName": "Zhongfeng Mingben",
+          "ContextMasters": [{"MasterName": "Zhongfeng Mingben", "Roles": ["utterer", "record-owner"]}]
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "T/T48/T48n2001.xml",
+        "T/T51/T51n2076.xml",
+        "X/X70/X70n1400.xml",
+        "X/X82/X82n1571.xml",
+        "X/X84/X84n1585.xml",
+        "X/X70/X70n1402.xml"
+      ],
+      "RelatedMasters": [
+        "Zhaozhou Congshen",
+        "Hongzhi Zhengjue",
+        "Wenshu Yingzhen",
+        "Baizhang Mingzhao An",
+        "Gaofeng Yuanmiao",
+        "Lanan Dingxu",
+        "Zhuquan Liaohuan Falin",
+        "Zhongfeng Mingben"
+      ],
+      "RelatedTerms": [
+        "萬法歸一",
+        "青州布衫",
+        "麻三斤",
+        "庭前柏樹子"
+      ]
+    }
+  ]
+}

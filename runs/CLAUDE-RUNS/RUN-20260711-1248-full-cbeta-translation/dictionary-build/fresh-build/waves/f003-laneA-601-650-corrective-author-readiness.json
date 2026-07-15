@@ -1,0 +1,415 @@
+{
+  "hardPass": true,
+  "review": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f003-laneA-601-650-evidence-repair-independent-exact-review.json",
+  "ledger": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f003-laneA-601-650-corrective-author-ledger.json",
+  "formalGate": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f003-laneA-601-650-corrective-author-formal-gate-v13.json",
+  "counts": {
+    "rows": 50,
+    "revised": 50,
+    "kept": 0,
+    "failures": 0
+  },
+  "failures": [],
+  "results": [
+    {
+      "id": "t_d1aa91b2b347",
+      "term": "刻舟求劍",
+      "verdict": "REVISE",
+      "previousSha256": "e2421e3030cd4fea2f81c69c0b0738a341dc1ad52693a0446702f11f91ff1cfb",
+      "currentSha256": "84f3939e63488df17191a283c74c70364bb450dab557b0c4ea575d01e19fb58d",
+      "failures": []
+    },
+    {
+      "id": "t_a9babbddf1a8",
+      "term": "效顰",
+      "verdict": "REVISE",
+      "previousSha256": "12b0378f17d41a0a73321e441ec48fa6300c2c12748470180f7d0628466e9a01",
+      "currentSha256": "a3517985741fed78acd97bba98ced70ac4c5942d0c1427c1aca656cc72fc9682",
+      "failures": []
+    },
+    {
+      "id": "t_f9be0a6314a0",
+      "term": "抱橋柱",
+      "verdict": "REVISE",
+      "previousSha256": "9a75935ff12e9d1b49a752dabb01cdb2866fc493eb0aa83258c07f0a5d36f075",
+      "currentSha256": "fe710187f341af024b41bf84e0574a70df11b3b44ac7f94d0833f54340a33056",
+      "failures": []
+    },
+    {
+      "id": "t_32b7255009f7",
+      "term": "買帽相頭",
+      "verdict": "REVISE",
+      "previousSha256": "03935f44fbe2103a8a3d910522aca60b30919f0bf35cbfad59da8e1bf3705c25",
+      "currentSha256": "8bf23a15e563bd961fdfc5623e84e585536e5e78897b148d6042352fba9a66f2",
+      "failures": []
+    },
+    {
+      "id": "t_8f91a9f06c79",
+      "term": "繫驢橛",
+      "verdict": "REVISE",
+      "previousSha256": "682efdd2a9e141d4a996bf6c6532fb88e4537c55d414cad331c1bed9f9bdfbbe",
+      "currentSha256": "7656b0c26f78531550c5587440643e75e7b7219181a38f109e123616423d0e22",
+      "failures": []
+    },
+    {
+      "id": "t_18a76480bf9b",
+      "term": "空華",
+      "verdict": "REVISE",
+      "previousSha256": "4e12d75d1419f14138ae2fa843d36d3e47f444bc2b4b3334f719c2e44e39f482",
+      "currentSha256": "512b3d2725802d785283d25dc20db55d7ece5f14835b0bc2c2b848d246abe00a",
+      "failures": []
+    },
+    {
+      "id": "t_d27432779ce8",
+      "term": "水月",
+      "verdict": "REVISE",
+      "previousSha256": "eeaf0ca771f51ad228f934f97ace38be999c8f887a878fd4eba331cea0cd8b14",
+      "currentSha256": "c1656b59b9630517485055e76c5275934f87683f84d592bc9a8bcb85a0e3d341",
+      "failures": []
+    },
+    {
+      "id": "t_9b56e29eddb6",
+      "term": "電光石火",
+      "verdict": "REVISE",
+      "previousSha256": "04968dbd1c43c90b317650c8008816e35930cccb2692cf697c69a644aff4c4d8",
+      "currentSha256": "46f90ff975c3cf29e39ddc262c5bb2fbc0a53bce4a6c94872cac25a515d0c6c7",
+      "failures": []
+    },
+    {
+      "id": "t_e1b4c379b919",
+      "term": "紅爐點雪",
+      "verdict": "REVISE",
+      "previousSha256": "aae60d31b4be8055acd6bc9fe9ee13bae9387680e387914b8fb6193a60bc9e69",
+      "currentSha256": "7bbf8d1a45f4c5fd7b29d5b1e1b5ec6db42485c0c1597c5234d101316a259f04",
+      "failures": []
+    },
+    {
+      "id": "t_e7c65905ecb5",
+      "term": "無縫塔",
+      "verdict": "REVISE",
+      "previousSha256": "eff36c197c16d9eb40132565850c774bda8de007073d1bc63d89a71b879fe7df",
+      "currentSha256": "c7af9b3e7231a57efda63b19b8ba1f1c60dc2545d074b3d3a772a9dbebc28f4c",
+      "failures": []
+    },
+    {
+      "id": "t_612a2e5cbf5d",
+      "term": "無孔笛",
+      "verdict": "REVISE",
+      "previousSha256": "2609cb8eb67009c7c383fd40b34353b7d1f3e754d3df47670b2120f5f72f5d75",
+      "currentSha256": "dbe03d80de2e11a5b6c031e4e2c5d62eb6bbc0aa83d5dacfc05fe6ee417997db",
+      "failures": []
+    },
+    {
+      "id": "t_c86b1e91c7b5",
+      "term": "陽焰",
+      "verdict": "REVISE",
+      "previousSha256": "5162a578f66f604c271646708fff16598ec344857773dc70c640c5522356e9a5",
+      "currentSha256": "458f9ada3c7101e53f444db1989fc8bce3f7b808a7cacbed6d87ab8755e6a9d7",
+      "failures": []
+    },
+    {
+      "id": "t_502eeb8c9b1e",
+      "term": "驪珠",
+      "verdict": "REVISE",
+      "previousSha256": "64adb22b68c2064cec96dabc3ccf6cbe3a3a26dd754f9eb30bb2a1a55fe6bd6e",
+      "currentSha256": "5cc74062799e1ae9af89e563d5579b1505b8f86c0175363e40a01cb95d9dfcfe",
+      "failures": []
+    },
+    {
+      "id": "t_e1eda88159c6",
+      "term": "優曇華",
+      "verdict": "REVISE",
+      "previousSha256": "6350adfe8208f46074e01973cb0647766bcfde61ee2f5bce8215158677c9713c",
+      "currentSha256": "ae3aac8e02bfc6b1b454beb8f664419b10667cfac291c3836da62b64c3a8c8a6",
+      "failures": []
+    },
+    {
+      "id": "t_da967fbd07da",
+      "term": "鏡花",
+      "verdict": "REVISE",
+      "previousSha256": "eca83223f798854d440366ea5094895e30674862d0d893f3e3584624c8f17ca6",
+      "currentSha256": "bc624c2fa52a3d895ec98cafa535a9506660cf73084f61815bc8058a1ab15dab",
+      "failures": []
+    },
+    {
+      "id": "t_40bcab45a004",
+      "term": "枯木生花",
+      "verdict": "REVISE",
+      "previousSha256": "235b446749d991936a058e889bdcace75176ebaff9e033a5250135b3bc3dd80e",
+      "currentSha256": "c3a21ea99c3a4c2800580ead6dd6c1f9fcb6a84cafe02f0231c7c963a673680a",
+      "failures": []
+    },
+    {
+      "id": "t_35cd0cccddc7",
+      "term": "摩尼珠",
+      "verdict": "REVISE",
+      "previousSha256": "5800e18a9ec100a8f7e822e88735681ad7441f66e5001c5275e8887a90fc362f",
+      "currentSha256": "f268c674d937f1c7f3531d4a4714844561aa03e6de1eed71d27164a76dc572cf",
+      "failures": []
+    },
+    {
+      "id": "t_b15eaab0dc3c",
+      "term": "無絃琴",
+      "verdict": "REVISE",
+      "previousSha256": "36009b7704505c4e77d1ae6fa04aa6ae7720e731d52bc54841ceb3d6c283ea12",
+      "currentSha256": "08fd5d1914b6de8be5faccc86fbc2d30ac479d367da3a046364b90e517d79fea",
+      "failures": []
+    },
+    {
+      "id": "t_60251334dc81",
+      "term": "芥子納須彌",
+      "verdict": "REVISE",
+      "previousSha256": "bfe5953e0c6684c3ced84e080f9d378a58552abda709dc931cd1990c5701d2fd",
+      "currentSha256": "6a873469e2d6b375c0b4baa95514ec6a171c1d826545e6cec95bc712e2aa9af5",
+      "failures": []
+    },
+    {
+      "id": "t_a6754d726742",
+      "term": "定盤星",
+      "verdict": "REVISE",
+      "previousSha256": "4962b51c79d61dffc9014ea82feda0dc1131b8a2af744cad67d446a3e379a6cd",
+      "currentSha256": "31f7f74b62de7fbeec0f70013cd79f725674aea79dc85d70716a4e8349642924",
+      "failures": []
+    },
+    {
+      "id": "t_c625645e445c",
+      "term": "草鞋錢",
+      "verdict": "REVISE",
+      "previousSha256": "862b2dd381890124581c393aeb5dc149d5d972d65f2a6227de929d99d0be52d0",
+      "currentSha256": "521e9f9c4e6ffed812b907ca1f10806fe8ea25404bb2268be92fb6ece870aa11",
+      "failures": []
+    },
+    {
+      "id": "t_9cd83a160990",
+      "term": "飯袋子",
+      "verdict": "REVISE",
+      "previousSha256": "d15bad3ee012f30942962172a10bbd837d1faeba37dc8e1380aac1c13bc04137",
+      "currentSha256": "a8e9a60554f862022bedf92c6533b20d58d8698f8a31c6efac2167951df053a5",
+      "failures": []
+    },
+    {
+      "id": "t_3dd73fb3b40d",
+      "term": "酒糟漢",
+      "verdict": "REVISE",
+      "previousSha256": "af9416036c6bace064e43dc368f3b0b9976aaeeee944dc1f2f2d0fb3157fa585",
+      "currentSha256": "92eda2cd467bbbd72b220d8ae73cb8aa3452a7f1e484c42d8204245b515c9e91",
+      "failures": []
+    },
+    {
+      "id": "t_bd6a1e9054a5",
+      "term": "白拈賊",
+      "verdict": "REVISE",
+      "previousSha256": "960c458d632c1ae2ab15949d7ca778acffdb2a8e596522b67ca20fa025119d0b",
+      "currentSha256": "5813c3fb4bbf36cbc09bcc2acad911e9da8c326b15243f518791552be82ded5e",
+      "failures": []
+    },
+    {
+      "id": "t_f3554afe74df",
+      "term": "運水搬柴",
+      "verdict": "REVISE",
+      "previousSha256": "561f4d7ffa8460257add358dcb58efa1b82779b17fb8c42f7c76ab71f2cd5c7f",
+      "currentSha256": "8d114fc6ac8927ee7e2552400b7c3e3040382ddee278b057cb7e3055f8085344",
+      "failures": []
+    },
+    {
+      "id": "t_3600c4babcdf",
+      "term": "秤錘",
+      "verdict": "REVISE",
+      "previousSha256": "ab336bbe4ced813daefff37a965e27a37a04fa808e886ff2771f5d0041b10567",
+      "currentSha256": "006b3fba401018504f2d5b8ff70cabdd253a3da11000b3b8f42061b3d6c372ec",
+      "failures": []
+    },
+    {
+      "id": "t_2f6dd23d26e9",
+      "term": "栗棘蓬",
+      "verdict": "REVISE",
+      "previousSha256": "bb00f5ca875a3b44445cf572bd1635a74d69f8171a9eeb4ca05adde7f3d50f4f",
+      "currentSha256": "3b49d9a283c2908bcd7905c0d4ea71f96e022a42c67b51ded7fe9bd342dd9d69",
+      "failures": []
+    },
+    {
+      "id": "t_cff94bb09481",
+      "term": "蒲團",
+      "verdict": "REVISE",
+      "previousSha256": "83686920f06e836af78a4e5eda9b26e9d120b87bf824480d37cd4a018459e1a9",
+      "currentSha256": "7b90fae380d555e531d4377cc193e9feb43a8c525beb7e6194d6e04e9ab8ec0a",
+      "failures": []
+    },
+    {
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "verdict": "REVISE",
+      "previousSha256": "bacea0441322de2bb1c391703f3c4a42581d4105b1260ff31cd092a62fcc81bd",
+      "currentSha256": "3654f1bd5fac5292ea0bc83da1ef25e7fd2dab859fba108264388db5b8da4812",
+      "failures": []
+    },
+    {
+      "id": "t_3efd163c8697",
+      "term": "龍女",
+      "verdict": "REVISE",
+      "previousSha256": "dfd685c312220ec3981b63665b078bfd679e5a70217778fd00ef3deb0e612af5",
+      "currentSha256": "8a3a11161bda59bfd35f0b5dd63400c7035acce44eb52d10b97cb48bfa954c5c",
+      "failures": []
+    },
+    {
+      "id": "t_3279df87a9f1",
+      "term": "家常",
+      "verdict": "REVISE",
+      "previousSha256": "c2f5ba48af1132321358798ab1eeaac2d7f2e904b7dace2d0f7187acfbe302a8",
+      "currentSha256": "3e3baea4b965abb9d070689076d1e3e9b49235db0ce1c2114668b093467cc103",
+      "failures": []
+    },
+    {
+      "id": "t_7ede0e195d2b",
+      "term": "業",
+      "verdict": "REVISE",
+      "previousSha256": "cc6aca20863834a76866a978bc7bb200274dec90c548c34249669649a90e8f6e",
+      "currentSha256": "aec5d7159686e045b0d3a00153f485481f5afddd3432e0f29c2a085a9e90ba72",
+      "failures": []
+    },
+    {
+      "id": "t_179e443ac255",
+      "term": "無繩自縛",
+      "verdict": "REVISE",
+      "previousSha256": "3b0951ced77a2fe7216dca09b82d83f0d9515afdb0ab713cfe02f93620421159",
+      "currentSha256": "92d0e5767fa6f78d05f2d1ec4acb7835df16017ccef4f68c860c9b624b54a6aa",
+      "failures": []
+    },
+    {
+      "id": "t_c95d0abb6577",
+      "term": "撥無因果",
+      "verdict": "REVISE",
+      "previousSha256": "5ef546f8c92ef895beddf1148f74ee9315f323ddb1e62e5d46e0ea1738e9a1f8",
+      "currentSha256": "a2cf1948b7db01512a86e94e9b69adc0a5083a465e16858d40fe0319bfe242a3",
+      "failures": []
+    },
+    {
+      "id": "t_ad54a629dff9",
+      "term": "然指然頂",
+      "verdict": "REVISE",
+      "previousSha256": "b2107124224cf4ca49293cae4200424cf1bfb4ef8a661f4637fc6ce29c372f99",
+      "currentSha256": "d4b3551be58933469929cdc43e569a3a5e38261fc8f5ea3590e4aad4f4404ea1",
+      "failures": []
+    },
+    {
+      "id": "t_32289452a85b",
+      "term": "燒指",
+      "verdict": "REVISE",
+      "previousSha256": "aa7b48cc637e42390d7778001780e8b144ab44975b898d707f078cee9fd6627c",
+      "currentSha256": "61d22ee865c320c6e5f0fe45a76a5c76c7ac3d012ab15d226f349fe21e306b9e",
+      "failures": []
+    },
+    {
+      "id": "t_6e57aada2121",
+      "term": "然頂",
+      "verdict": "REVISE",
+      "previousSha256": "f13b6af86257dc569db7e51a90ce8ecf2fea4bbf542e05a88eb95d449120805d",
+      "currentSha256": "b3c4c08a0c342bc337cb201229a3eafc3d29e4ef4b1114d29d38627597b3202f",
+      "failures": []
+    },
+    {
+      "id": "t_8bbc811be86e",
+      "term": "然香",
+      "verdict": "REVISE",
+      "previousSha256": "dd6cbe802904526cf9ef1545925260aa11476db5c663e0b7915fa93c2465f010",
+      "currentSha256": "d8d5867158d7846035dd4a687780da32d2c2cdfe005c357cc7af7ab3b9238dfa",
+      "failures": []
+    },
+    {
+      "id": "t_a805d0c76bbd",
+      "term": "拈香",
+      "verdict": "REVISE",
+      "previousSha256": "897da4f9f2141649587f794d9306fac9677bf07efacc5f80832b43b7ccb35414",
+      "currentSha256": "6035fb4cca8e8bcc34422a5946345984fe385645cef2e72dc8515198105e1eeb",
+      "failures": []
+    },
+    {
+      "id": "t_0ad6dd1a4717",
+      "term": "燒香",
+      "verdict": "REVISE",
+      "previousSha256": "80f9dd5c9fa23385e910955509de6931027c43fddf0e59ff1844e8fd9a25ac1d",
+      "currentSha256": "e69544ffb62cb1fb2c35dd7ec13b256fa8c1ef9b5304e1fe2e72f8a7675a9ff1",
+      "failures": []
+    },
+    {
+      "id": "t_37cd9bfc3e67",
+      "term": "焚香",
+      "verdict": "REVISE",
+      "previousSha256": "41324e9773ab23ee0791494b93b856ca29b4d141f0a68fd3716d5fadf14f6a36",
+      "currentSha256": "ac6216f834c4b21afa1bb9e7a6d5dbe5a84cd6401cf61135300e67929196b66f",
+      "failures": []
+    },
+    {
+      "id": "t_08c0c321eb2a",
+      "term": "炷香",
+      "verdict": "REVISE",
+      "previousSha256": "d920e329a0fb2c7a7bc0ae4fd0beeea07d5c0e4472a35e2d65c004f630a835ae",
+      "currentSha256": "ee8e02443be319cb4506f9021d424ca2050791b79e6b102a846cf907be1de993",
+      "failures": []
+    },
+    {
+      "id": "t_0f4c2ed08d86",
+      "term": "一炷香",
+      "verdict": "REVISE",
+      "previousSha256": "d87c15d4472695ea30e692eae38f73cb93385d87382edbef0fa8fc9a1c5b86c1",
+      "currentSha256": "40e20e9a6ad07ea50dce5c4ba987c2bc931b3f383e82a0c7d294d881ce955339",
+      "failures": []
+    },
+    {
+      "id": "t_d801848213ab",
+      "term": "發願",
+      "verdict": "REVISE",
+      "previousSha256": "6e812759e550d4b1c68308f65caf498c22e74c9a5819241e25f206e93e95c3fd",
+      "currentSha256": "f978e93805751a7aac09ca39027feb51c7ad1af880715f4f8d94d348231dac5f",
+      "failures": []
+    },
+    {
+      "id": "t_e89833bb5e63",
+      "term": "誓願",
+      "verdict": "REVISE",
+      "previousSha256": "c0f3c471953b1f0f8f8150b16efa8bede55f7a391ad670286a2f033ca155413c",
+      "currentSha256": "dc7b26d3ccaa4f35ea55ad9564a0bb07bbd14ee22395c7aa2d75a2fed37d9f90",
+      "failures": []
+    },
+    {
+      "id": "t_084fac11e2ac",
+      "term": "發誓",
+      "verdict": "REVISE",
+      "previousSha256": "f3a50299425748eee5f3d45ddbe9a589733be208ef3467b3184ea4126eee454b",
+      "currentSha256": "57b66f2707de7761241edaa24af77e89c9e783b48fd2319c44c5007484664504",
+      "failures": []
+    },
+    {
+      "id": "t_11c14d7191f1",
+      "term": "立誓",
+      "verdict": "REVISE",
+      "previousSha256": "2a5dc97253fdbfe17975503f370536b2f57812ef250bb94dc093579a769a185f",
+      "currentSha256": "d80cead431418ffae3be82114e1d17b7f95b6b3c571d2feacfe8c5e581a8b15b",
+      "failures": []
+    },
+    {
+      "id": "t_ee77766b424b",
+      "term": "安心斷臂",
+      "verdict": "REVISE",
+      "previousSha256": "d7cba5a3441a711d19b7770adc2c34868572073d6f3667db9e22839d6060f1c7",
+      "currentSha256": "5e93943a15c68a80e54eeb6026a4b60228e87074d0b75604f1243c2b4754d9d3",
+      "failures": []
+    },
+    {
+      "id": "t_376913189794",
+      "term": "心如牆壁",
+      "verdict": "REVISE",
+      "previousSha256": "0183d15693329bf69011250f6b7fed79e49a840c6639913f8c7ca85c0c3f3a9f",
+      "currentSha256": "11dc77e57981093ac9756cca3ce675cc47b44fbd2b89347c9fee79ded2e5fe0c",
+      "failures": []
+    },
+    {
+      "id": "t_5517bf8c66c2",
+      "term": "不動尊",
+      "verdict": "REVISE",
+      "previousSha256": "b7efa6816ea6871af715a0ee438be20397ddddf02dabeb3235f08dc2de04ab01",
+      "currentSha256": "542866022bcb90544d1222395c9b231c8147e171aafebbd0d5ed47b4d7790261",
+      "failures": []
+    }
+  ]
+}

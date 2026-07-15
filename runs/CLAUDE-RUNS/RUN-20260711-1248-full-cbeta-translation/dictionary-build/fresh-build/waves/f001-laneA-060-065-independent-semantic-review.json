@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "scope": {
+    "ordinals": [60, 65],
+    "entries": 6,
+    "packet": "fresh-build/waves/f001-laneA-060-065-semantic-review-packet.json"
+  },
+  "reviewKind": "independent-full-case-semantic-review",
+  "policy": "Hash-bound read-only review under the current DICTIONARY_ENTRY_GUIDE.md. KEEP requires correct meaning and different-thing boundaries, exact headword utterer versus context master/comment author, independent work support, sufficient depth, corpus-earned English opening interpretation, controlled aliases, anchored quotations, public-feedback compliance, and zero forbidden framing.",
+  "reviewed": 6,
+  "keep": 5,
+  "revise": 1,
+  "jointChecks": {
+    "exactOccurrences": 42,
+    "exactKwicAndLineReplay": "42/42 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "quotedChineseAnchored": "3/3 PASS",
+    "depthSenseHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "publicFeedbackMechanicalFlags": 0,
+    "forbiddenTermHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_52391cba2cdf",
+      "term": "三玄三要",
+      "ordinal": 60,
+      "reviewedSha256": "a86360724c60a0ad3c7f0ae26b7b4e393ff1a4566cf9271874c06f5276acc583",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One Linji-house paired device is supported. A phrase or shout containing it, questions asking for its phrase, later family lists, and instructions to discard it are predicates and stances toward the same paired label. The evidence does not supply incompatible enumerated taxonomies comparable to the separate 三句 or 三關 families, so no master-specific split is warranted."
+        },
+        {
+          "kind": "opening-and-evidence",
+          "finding": "The opening identifies the house device and immediately reports its phrase/shout deployment without inventing a numbered taxonomy. Fenyang, Huiyan, Tianyin, Qiran, and Jie'an claims are evidence-specific and restrained by the direct quotations."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All exact speakers are correctly named. Seven anchors across five independent works meet depth and multi-source support; repeated Fenyang and Qiran rows count once per work. SourceTexts, aliases, quotation anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_d7167b5f3236",
+      "term": "殺人刀",
+      "ordinal": 61,
+      "reviewedSha256": "d5f0c8773e4645fd5dc75eade5cd56f72e897e1d56cc9d1d82d577c634cdcea3",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The entry preserves the blade image while reporting its attested pairing with the life-giving sword as an evaluative capacity of encounter speech and action. Reversed killing/living predicates, possession of one or both, and critical appraisal remain uses of one killing-blade image rather than distinct objects. No stored witness is a literal weapon report requiring a split."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "Yuanwu's two works are not used as two speakers, Wansong correctly owns his assessment of Linji, and the five later record speakers own their direct turns. Seven occurrences in seven distinct works exceed the floor. Opening prose, paired aliases, source inventory, evidence anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_0a686fa27769",
+      "term": "著語",
+      "ordinal": 62,
+      "reviewedSha256": "27fee2e38859a5d9f97aaae0896d9e4d5932e924c7c26e1e67d18fecdd7d903d",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The one-sense structure and opening are correct. The inserted comment, the act of inserting it, a request for one, and a collection of such comments are grammatical/editorial packages of the same case-comment referent; ordinary authorship false segmentation is explicitly excluded."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 1, T/T48/T48n2003.xml 0143b06",
+          "finding": "雪竇著語云 is Yuanwu's current commentarial/narrating phrase reporting that Xuedou appended the following words. Xuedou owns 勘破了也, not the headword-bearing reporter clause. Assign Yuanwu as current commentator/utterer of the frame, or the appropriate narrator branch if the local textual layer is adjudicated impersonal; retain Xuedou as historical comment author/case figure."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 2, T/T47/T47n1997.xml 0796a11",
+          "finding": "師著語云錯 is record narration introducing Yuanwu's inserted word. Yuanwu is the comment author/person described, but the headword itself belongs to the record compiler's narrated frame. Use narrated compiler attribution and retain Yuanwu as comment-author/record-owner context."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 3, T/T48/T48n2004.xml 0241c10",
+          "finding": "佛果著語云 is Wansong's current quotation/report of Yuanwu's comments. Wansong owns the headword-bearing report frame; Yuanwu owns the quoted comments and remains historical comment author/case figure. Current MasterName=Yuanwu collapses those layers."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrences 4 and 7, J/J25/J25nB171.xml 0514c11 and J/J32/J32nB272.xml 0192c29",
+          "finding": "Both 師著語云 formulas are recorder narration introducing comments by Tianyin Yuanxiu and Hongzhi Zhengjue. Use narrated compiler attribution for the headword, retaining each master as comment author and record subject/owner."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 5, J/J33/J33nB294.xml 0748b24",
+          "finding": "The headword occurs in the unnamed monk's request 舉...話求著語. Langting Ting supplies the answer 賊... but does not utter 著語 in the stored turn. Reassign the occurrence to a six-rung reviewed-unnamed questioner and retain Langting as respondent/record owner."
+        },
+        {
+          "kind": "depth-work-and-retrieval",
+          "finding": "Xiangtian Jinian's first-person announcement is the one unambiguous direct master utterance and remains correct. Seven exact witnesses across seven works otherwise satisfy depth and multi-source support; SourceTexts, aliases, English opening, and forbidden-language checks pass after attribution repair."
+        }
+      ]
+    },
+    {
+      "id": "t_831f84399d0b",
+      "term": "本地風光",
+      "ordinal": 63,
+      "reviewedSha256": "d1f03263bdda7fe662ceeef60b6abd665350f28e4e7ebafa635fc7a700d24e44",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One original-landscape image is supported. Pairing it with each person's original face, saying it appears, denying outside search, extending it through ordinary activity, including dullness/distraction, and excluding uniform purity are claims and limits about the same landscape image—not separate geographic or metaphysical objects."
+        },
+        {
+          "kind": "opening-and-counterevidence",
+          "finding": "The opening preserves the landscape image and cautiously describes it as one's own. Zhongfeng's warning against merely adopting his formulation and Sanyi's rejection of pure uniformity prevent the prose from hardening it into a fixed state. No imported geography or doctrine appears."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "Seven named speakers in seven independent works provide adequate breadth. Exact actors, SourceTexts, natural original/native/own-landscape aliases, anchored evidence, public-feedback requirements, and forbidden-language checks all pass."
+        }
+      ]
+    },
+    {
+      "id": "t_46c30c5d57d4",
+      "term": "不立文字",
+      "ordinal": 64,
+      "reviewedSha256": "318306560a803870cd6ab1e0d02f7783178f5ca8f26835b0c51bf2f2311bcb30",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The target correctly preserves non-establishment in written words rather than falsely claiming that Chan has no texts or speech. The Bodhidharma formula, internal Sixth Patriarch objection, extensive-canon question, Trust in Mind comparison, Laṅkāvatāra challenge, and deliberate self-contradiction are qualifications and debates around one formula."
+        },
+        {
+          "kind": "opening-and-counterevidence",
+          "finding": "The opening states the formula's Chan deployment and immediately denies the unsupported blanket anti-text reading. Every limiting claim is anchored in a named speaker's explicit objection, so the synthesis is corpus-earned rather than apologetic interpolation."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All seven named speakers and quotation boundaries are correct across seven independent works. Search aliases cover words/letters, texts, and common beyond-written-words lookup without changing the target. Depth, source inventory, quote anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "ordinal": 65,
+      "reviewedSha256": "fafd5b194231eb3f3782f9fef3977e0b9af7594a28adad615f18b9a72c07de21",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One inherited appearance formula is warranted. The reason for buddhas' appearance becomes a live question with different answers and present demonstrations, but those responses do not redefine the stable question/formula into multiple senses. The explanation keeps 因緣 visible as reason/occasion even though the established lookup target is 'the single great matter.'"
+        },
+        {
+          "kind": "opening-and-evidence",
+          "finding": "The opening states the inherited reason-for-appearance deployment and then names the observed Chan shift into public questioning. Yuanwu, Touzi, Tianyin, Juelang, Guxue, Ruibai, and Jie'an claims remain separately attributed rather than harmonized into one doctrinal definition."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "The Jingde occurrence correctly belongs to the reviewed unnamed monastic questioner with Touzi as respondent; all other exact speakers are named. Seven witnesses in seven independent works meet depth. SourceTexts, aliases including reason/purpose retrieval, quote boundaries, and forbidden-language checks pass."
+        }
+      ]
+    }
+  ]
+}

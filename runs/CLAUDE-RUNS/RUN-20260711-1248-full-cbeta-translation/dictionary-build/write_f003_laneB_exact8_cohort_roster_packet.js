@@ -1,0 +1,11 @@
+const fs=require('fs'),crypto=require('crypto'),path=require('path');
+const base=__dirname, fresh=path.join(base,'fresh-build'), waves=path.join(fresh,'waves');
+const shared=path.join(fresh,'pending-roster.json'), raw=fs.readFileSync(shared), x=JSON.parse(raw);
+const candidate={canonicalName:'Niutou Huizhong',aliases:['牛頭慧忠','第六世慧忠禪師'],evidence:[{RelPath:'T/T51/T51n2076.xml',FromLb:'0229a27',ToLb:'0229a27',Kwic:'師敲禪床。'}],reviewedBy:'Codex f003 laneB exact8 priority repair author',reviewReport:'fresh-build/waves/f003-laneB-701-750-final4-fresh-independent-exact-review.json',status:'awaiting-roster-integration'};
+if(!x.candidates.some(v=>v.canonicalName===candidate.canonicalName))x.candidates.push(candidate);
+const yuanan={canonicalName:"Yuan'an Liao",aliases:['遠菴僼禪師','遠菴僼'],evidence:[{RelPath:'J/J37/J37nB386.xml',FromLb:'0339b02',ToLb:'0339b05',Kwic:'是箇什麼？」眾無語。師復云：「欲得不招無間罪，莫謗如來正法輪。」開爐，示眾。「神鼎火種雖無，卻有衝天氣燄，嬾拈向上鉗鎚，撥置作家爐扇'}],reviewedBy:'Codex f003 laneB exact8 priority repair author',reviewReport:'fresh-build/waves/f003-laneB-701-750-final4-fresh-independent-exact-review.json',status:'awaiting-roster-integration'};
+if(!x.candidates.some(v=>v.canonicalName===yuanan.canonicalName))x.candidates.push(yuanan);
+x.sourceSharedPendingRosterSha256=crypto.createHash('sha256').update(raw).digest('hex');
+x.cohort='f003 laneB exact8 repair; read-only snapshot plus cohort-local Niutou Huizhong candidate';
+fs.writeFileSync(path.join(waves,'f003-laneB-exact8-cohort-pending-roster.json'),JSON.stringify(x,null,2)+'\n');
+console.log(JSON.stringify({sourceSharedPendingRosterSha256:x.sourceSharedPendingRosterSha256,candidates:x.candidates.length},null,2));

@@ -1,0 +1,133 @@
+{
+  "Id": "t_40bcab45a004",
+  "SourceTerm": "枯木生花",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:09:02.950859+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a dead tree flowers",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "a dead tree flowers",
+        "枯木生花"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0637b16",
+          "ToLb": "0637b17",
+          "Kwic": "向下商確，何妨枯木生花，寒灰發𦦨？",
+          "Curated": true,
+          "MasterName": "Chenghui Xianxu",
+          "ContextMasters": [
+            {
+              "MasterName": "Chenghui Xianxu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): exact actor (廬州澄慧咸詡禪師) owns the headword-bearing wording. Exact headword utterer: Chenghui Xianxu."
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml",
+          "FromLb": "0752a27",
+          "ToLb": "0752a28",
+          "Kwic": "』今日雲門不問東去西去，直須向枯木生花處去，冰河發焰處去。",
+          "Curated": true,
+          "MasterName": "Ruibai Mingxue",
+          "ContextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (入就瑞白禪師語錄): exact actor (入就瑞白禪師) owns the headword-bearing wording. Exact headword utterer: Ruibai Mingxue."
+        },
+        {
+          "RelPath": "J/J33/J33nB286.xml",
+          "FromLb": "0490b25",
+          "ToLb": "0490b25",
+          "Kwic": "飄空玉露，橫施枯木生花；",
+          "Curated": true,
+          "MasterName": "Yingning Jing",
+          "ContextMasters": [
+            {
+              "MasterName": "Yingning Jing",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (攖寧靜禪師語錄): exact actor (攖寧靜禪師) owns the headword-bearing wording. Exact headword utterer: Yingning Jing."
+        },
+        {
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0722b15",
+          "ToLb": "0722b17",
+          "Kwic": "若是我洞山門下，子順父、臣奉君，個裏獨彰尊貴，唱出還鄉曲調，果然枯木生花。",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Langting Jingting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). Langting Jingting utters this line in his own uninterrupted small address.",
+          "MasterName": "Langting Jingting"
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0720a20",
+          "ToLb": "0720a21",
+          "Kwic": "僧曰：汾陽浪裏，競棹孤舟；枯木生花，別迎春色。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "explicit speech turn",
+            "ActorLabel": "the unnamed monk advancing the exchange",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A repair author",
+            "ReviewedUtc": "2026-07-15T07:15:00Z",
+            "GrammarEvidence": "The explicit 僧曰 assigns the headword-bearing comparison to the unnamed monk, not to the master who answers next."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (建中靖國續燈錄): an unnamed monk advances the exchange by pairing a dead tree flowering with welcoming spring; the respondent answers in the following turn. Exact headword actor: the unnamed monk advancing the exchange."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J26/J26nB188.xml",
+        "J/J33/J33nB286.xml",
+        "J/J33/J33nB294.xml",
+        "X/X78/X78n1556.xml",
+        "X/X81/X81n1571.xml"
+      ],
+      "RelatedMasters": [
+        "入就瑞白禪師",
+        "廬州澄慧咸詡禪師",
+        "攖寧靜禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "A dead tree flowering joins a tree without living growth to the appearance of blossom. Several Chan speakers direct listeners toward the place where a dead tree flowers or say that discussion can flower there. Yingning Jing and Yunxi Ting use the phrase in praise or verse. The selected witnesses are positive or directional; none of them supplies a warning against 'lodging in deadness.' An unnamed monk in the Continued Lamp Record pairs the dead tree’s flower with welcoming spring before the response that follows."
+    }
+  ]
+}

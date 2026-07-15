@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": "821-830",
+  "generatedUtc": "2026-07-15T06:35:35.914034+00:00",
+  "reviewer": "Codex fresh independent reviewer (revise24 round)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+  "formalGateSha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+  "formalGateHardPass": true,
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-revise24-repair-ledger.json",
+  "repairLedgerSha256": "14ad4d62f9d0b520f08d2307bdd39adb0f7e6c9864aa7c9c143ab970f94c7994",
+  "priorIndependentReview": "fresh-build/waves/f003-laneC-801-850-repair2-independent-exact-rereview.json",
+  "priorIndependentReviewSha256": "5c3be081b84ec6ed960e50b46f8f3ed8c9e6ed2fe9f4fa3176d0d716eb12d442",
+  "occurrencesReadInFullCaseContext": 63,
+  "twentySixPriorKeepHashesUnchanged": true,
+  "summary": {
+    "KEEP": 5,
+    "REVISE": 5
+  },
+  "systemicFinding": "The exact KWIC and formal gates are genuinely clean, but the repair script used local punctuation patterns to replace compiler labels with generic reviewed-unnamed voices. Complete-case reading repeatedly finds named section masters and explicit names (including 了庵欲禪師, 道吾真, 羅漢機, and 凌行婆). Mechanical hardPass therefore does not license promotion.",
+  "checkpoint": true,
+  "rows": [
+    {
+      "ordinal": 821,
+      "id": "t_e2c93283de6e",
+      "term": "檢點",
+      "entrySha256": "e97697bd27b80e52fb65ec16e35136c5c7488022301bd9f5b05a9e55eedb7c59",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O5 literally opens 了庵欲禪師，上堂, yet MasterName is null and the actor is 'the presiding speaker.' O4 is in Huiyue Xu's own record and O7 in Baiyu's own address. These direct counterexamples prove the anonymous template is not a completed attribution audit."
+    },
+    {
+      "ordinal": 822,
+      "id": "t_483220289b04",
+      "term": "都寺",
+      "entrySha256": "b4a2d5c573f342bdae858f8a42d3046dcc4c93519c20b0bc43995fb68b3edecd",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 823,
+      "id": "t_39d88e8cc533",
+      "term": "隻眼",
+      "entrySha256": "395d3c8dd1df1d8f7b71c48bf9ab523c30e5e18b58eaa4dd1fcf2647554fe644",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O7 begins 道吾真云 and O3–O5 lie in named addresses, but all remain anonymous. The article also fuses the literal bodily eye and the Chan discerning eye in one target/explanation; item 8 requires adjudicating whether these are different referents and anchoring each retained sense."
+    },
+    {
+      "ordinal": 824,
+      "id": "t_088731c7824b",
+      "term": "梵王",
+      "entrySha256": "72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 825,
+      "id": "t_374b329bb686",
+      "term": "有甚麼交涉",
+      "entrySha256": "8f0c629510b4ee3636ecb8d6729909e9740b65a90590d0e4256fe4844f19ff18",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — The rejection formula is visibly uttered in all repaired rows, but the complete sections identify the masters or embedded case roles. O1 follows a named hall address and O6 is a marked 曰 turn; 'presiding speaker' neither names the master nor maps the preceding turn."
+    },
+    {
+      "ordinal": 826,
+      "id": "t_cdb6aa3726b5",
+      "term": "西堂",
+      "entrySha256": "80afd46b22e71523779114face946c58c49b807f99d40493197f37d7af596411",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 827,
+      "id": "t_86aac65d51b5",
+      "term": "趙州茶",
+      "entrySha256": "9c24082469b0689541b89dd6cc1185f581d3f5d7742c22ac44a93aa953ef549c",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — O4–O6 mix a named formal address, a later quotation, and a marked 曰 turn. The repair assigns the same anonymous presiding voice to all three, so requester, record owner, later quoter, and exact utterer remain unresolved."
+    },
+    {
+      "ordinal": 828,
+      "id": "t_6a67fc1bf04c",
+      "term": "大機",
+      "entrySha256": "3feb48ab75c15f31497c0aafffba6dfd0bf150ee3f86439209b07d89b67641a8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O4 and O7 are first-person hall/commentary discourse inside named records. Their masters are recoverable and must be named; the current anonymous labels do not establish whether either line is the record owner or an embedded quotation."
+    },
+    {
+      "ordinal": 829,
+      "id": "t_c552c63de77f",
+      "term": "豎拂子",
+      "entrySha256": "fd32722f09cbfd529268241d04c8fccc68e2e0413927981d2bfc4f6851efd3a4",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 830,
+      "id": "t_fadc60d82192",
+      "term": "護法神",
+      "entrySha256": "6836ee799ba9085a0e98772403f4963d6db9d1a25d3605380623079e3038a2b7",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    }
+  ]
+}

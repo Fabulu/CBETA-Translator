@@ -1,0 +1,69 @@
+{
+  "SchemaVersion": 2,
+  "Id": "t_ad0a8e5aac3d",
+  "SourceTerm": "佛性",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "buddha-nature",
+      "AlternateTargets": ["the nature of a buddha"],
+      "SearchAliases": ["buddha nature", "nature of a buddha", "does a dog have buddha nature", "no buddha nature", "seeing buddha nature"],
+      "Status": "preferred",
+      "Explanation": "Buddha-nature is an inherited category that the Chan record turns into a contested public claim rather than leaving as a settled possession. Named speakers say that all sentient beings have it and that none have it; Hongren denies it to a southerner, while Huineng answers that it does not follow north and south. Secretary Zhu asks where it is when both halves of a cut earthworm move, and an unnamed participant asks Nagarjuna about its size. Baizhang Huaihai describes a failure to see it, while Dahui Zonggao raises Yongjia Xuanjue's verse containing it. The same headword is affirmed, denied, located, questioned, missed, and raised for later scrutiny; this entry records that range without supplying a metaphysical substance behind the word.",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 4,694 exact hits in 389 files and 384 independent works in the f001 preflight. The affirmative and negative statements concern the same lexical category and are stances, not different things. The legacy article was consulted only after this independent structure and evidence set were complete; its dog and cypress cases confirm the public-test family but are not needed to meet this draft's depth floor.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1990.xml", "FromLb": "0583a25", "ToLb": "0583a25", "Kwic": "溈山示眾云：「一切眾生皆無佛性。」", "MasterName": "Guishan Lingyou", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yangshan Huiji of Yuanzhou (袁州仰山慧寂禪師語錄). The embedded attribution names Guishan Lingyou as the exact speaker who says that all sentient beings lack buddha-nature.",
+          "ContextMasters": [{"MasterName":"Guishan Lingyou","Roles":["utterer"]},{"MasterName":"Yangshan Huiji","Roles":["record-owner","later-quoter"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1990.xml", "FromLb": "0583a25", "ToLb": "0583a26", "Kwic": "鹽官示眾云：「一切眾生皆有佛性。」", "MasterName": "Yanguan Qi'an", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yangshan Huiji of Yuanzhou (袁州仰山慧寂禪師語錄). The embedded attribution names Yanguan Qi'an as the exact speaker who says that all sentient beings have buddha-nature.",
+          "ContextMasters": [{"MasterName":"Yanguan Qi'an","Roles":["utterer"]},{"MasterName":"Yangshan Huiji","Roles":["record-owner","later-quoter"]}]
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml", "FromLb": "0340a12", "ToLb": "0340a12", "Kwic": "師云：「汝嶺南人，無佛性也。」", "MasterName": "Hongren", "Curated": true,
+          "AttributionNote": "Patriarchs' Hall Collection (祖堂集), Hongren section. Hongren is the exact speaker who tells the visiting southerner that he has no buddha-nature.",
+          "ContextMasters": [{"MasterName":"Hongren","Roles":["utterer","respondent"]},{"MasterName":"Huineng","Roles":["interlocutor"]}]
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml", "FromLb": "0340a12", "ToLb": "0340a13", "Kwic": "行者云：「人則有南北，佛性無南北。」", "MasterName": "Huineng", "Curated": true,
+          "AttributionNote": "Patriarchs' Hall Collection (祖堂集), Hongren section. Huineng, still called the postulant, is the exact speaker who answers that people have north and south but buddha-nature does not.",
+          "ContextMasters": [{"MasterName":"Huineng","Roles":["utterer","respondent"]},{"MasterName":"Hongren","Roles":["interlocutor"]}]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml", "FromLb": "0062c20", "ToLb": "0062c21", "Kwic": "竺尚書問：蚯蚓斬為兩段，兩頭俱動，未審佛性在阿那頭？", "MasterName": null, "Curated": true,
+          "AttributionNote": "Linked Lamps Compendium (聯燈會要), Changsha Jingcen section. The source names Secretary Zhu as the exact non-master questioner asking where buddha-nature is in the divided earthworm; Changsha Jingcen answers.",
+          "ActorAttribution": {"Status":"identified-non-master","Kind":"named official","ActorLabel":"Secretary Zhu","ActorRole":"questioner","GrammarEvidence":"The line explicitly introduces Secretary Zhu as the person asking the headword-bearing question.","ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T18:00:00Z"},
+          "ContextMasters": [{"MasterName":"Changsha Jingcen","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0035b03", "ToLb": "0035b04", "Kwic": "彼人曰。佛性大小。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Nagarjuna section. An unnamed member of the people addressed by Nagarjuna asks whether buddha-nature is large or small; all six attribution rungs leave that non-master participant unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Nagarjuna","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T18:00:00Z"},
+          "ContextMasters": [{"MasterName":"Nagarjuna","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml", "FromLb": "0616a19", "ToLb": "0616a20", "Kwic": "諸菩薩觀如地獄苦沉空滯寂不見佛性", "MasterName": "Baizhang Huaihai", "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Baizhang Huaihai record. Baizhang Huaihai is the exact speaker who describes remaining sunk in emptiness and stuck in stillness as not seeing buddha-nature.",
+          "ContextMasters": [{"MasterName":"Baizhang Huaihai","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml", "FromLb": "0814c06", "ToLb": "0814c07", "Kwic": "上堂舉永嘉云。江月照松風吹。永夜清宵何所為。佛性戒珠心地印。霧露雲霞體上衣。", "MasterName": "Yongjia Xuanjue", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄). Dahui Zonggao explicitly raises a verse by Yongjia Xuanjue. Under the quoted-speech rule, Yongjia is the historical utterer of the headword-bearing verse, while Dahui is the current reciter and later raiser.",
+          "ContextMasters": [{"MasterName":"Yongjia Xuanjue","Roles":["utterer","verse-author"]},{"MasterName":"Dahui Zonggao","Roles":["later-raiser","commentator","record-owner"]}]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["T/T47/T47n1990.xml","B/B25/B25n0144.xml","X/X79/X79n1557.xml","X/X80/X80n1565.xml","C/C077/C077n1710.xml","T/T47/T47n1998A.xml"],
+      "RelatedMasters": ["Guishan Lingyou","Yanguan Qi'an","Hongren","Huineng","Changsha Jingcen","Nagarjuna","Baizhang Huaihai","Yongjia Xuanjue","Dahui Zonggao"],
+      "RelatedTerms": ["見性","狗子無佛性","佛"]
+    }
+  ],
+  "CreatedBy": "Codex fresh-build f001 lane B",
+  "WrittenUtc": "2026-07-14T18:00:00Z"
+}

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T01:35:00Z",
+  "scope": "Hash-bound full semantic review of all twenty entries. Every complete case in the supplied attribution packet was read and checked for different-thing sense boundaries, exact headword utterers, nested and narrated roles, independent-work identity, depth uniqueness, openings, aliases, anchors, governed families, and forbidden-rule compliance. Entries and website were not edited.",
+  "inputs": {
+    "mechanicalGate": {"path": "fresh-build/waves/f001-laneB-081-100-gate.json", "sha256": "ee675120cddd304395b2b7c59f413a614a02cba977a4a07a8828701cebbe4174"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneB-081-100-gate-attribution-packets.json", "sha256": "32ef0a72cb1398a655de954c0a8fe62f90ea3e85bc1b1b59a13b52a227d7c478"},
+    "semanticReviewPacket": {"path": "fresh-build/waves/f001-laneB-081-100-semantic-review-packet.json", "sha256": "6c09c6595a38e891a50835c7bd10378b0d503d2f7d197cf253e3235b2ad1de2c"}
+  },
+  "summary": {
+    "KEEP": 7,
+    "REVISE": 13,
+    "reviseOrdinals": [81, 83, 84, 85, 86, 87, 88, 91, 93, 95, 96, 97, 98]
+  },
+  "findings": [
+    {
+      "ordinal": 81,
+      "id": "t_8a06e7d99b19",
+      "term": "法嗣",
+      "entrySha256": "0fd70349e7862275328e7fa5adf08cf32ab8b29dad9305acc9119cfd9a42c0e1",
+      "verdict": "REVISE",
+      "finding": "Person-heir versus affiliation/status is a defensible different-thing split, and catalogue headings are mostly handled correctly. The shared 五峰禪師，嗣法於天童密雲悟和尚 row, however, is unquoted biographical narration. Wufeng is the grammatical subject/person described, not the utterer. It is also the reversed verbal form 嗣法, duplicated into both senses, even though the Note says that verb belongs in its own entry. The lineage-heir sense should not use this reversed verb as variant evidence, and the affiliation sense must not call the narrated subject an utterer.",
+      "requiredChanges": [
+        "Remove 五峰禪師，嗣法於天童密雲悟和尚 from the lineage-heir sense; 嗣法 is a reversed verbal construction, not a governed graph variant of 法嗣.",
+        "If retained as family support in the affiliation sense, classify it as narrated compiler/biographical prose with MasterName null, Wufeng Ruxue as person-described and Miyun Yuanwu as lineage teacher; otherwise move it to the 嗣法 entry.",
+        "Reconcile SourceTexts/work counts after removing the duplicated row."
+      ]
+    },
+    {
+      "ordinal": 82,
+      "id": "t_acccac1051a4",
+      "term": "衲僧",
+      "entrySha256": "fe4d1c9f5c2eb6e7812fb7a780f15c4f1f002e274bdedbec0826ed7fcf4ecd96",
+      "verdict": "KEEP",
+      "finding": "One patch-robed-monk role correctly covers individual, collective, possessive, and compound uses. All four public-question rows put the headword on unnamed questioners and retain the masters as respondents. Eye, conduct, house, own affair, and manner are distinct deployments, not separate people or padded duplicates.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 83,
+      "id": "t_0fb794f515bd",
+      "term": "法身",
+      "entrySha256": "3ac9c02d6aa68de867dc063ac607e0fb2cf8249d8e3322024bf1d9bb72424c3b",
+      "verdict": "REVISE",
+      "finding": "One teaching-body referent is supported by varied definitions and predicates. Three interview KWICs are not actor-pure: Lishan's case contains Lishan's own prompt and the monk's repeated 如何是法身; Xiyuan's row contains the monk's headword question and Xiyuan's headword-bearing answer; Jiashan's compressed row likewise contains both questioner and respondent occurrences. Assigning each whole row only to the master hides exact headword utterers.",
+      "requiredChanges": [
+        "Split/re-cut the Lishan, Xiyuan Daan, and Jiashan Shanhui interview evidence into actor-pure rows for every retained headword occurrence; unnamed monastic questions require MasterName null, while masters own only their marked headword-bearing turns.",
+        "Update counts and prose anchors after the split without changing the one-sense decision."
+      ]
+    },
+    {
+      "ordinal": 84,
+      "id": "t_b48fa1daa7d4",
+      "term": "虛空",
+      "entrySha256": "004382bd40ce4de123232795622ad947fd8322f2633c7edea4856e47c7f901b8",
+      "verdict": "REVISE",
+      "finding": "The single ordinary empty-space referent and its impossible predicates are sound. The memorial/biographical sentence 舉頭頓忘迷悟如虛空玲瓏不可湊泊 is narration describing Cao Benrong, not Cao Benrong's utterance. It repeats the subject-for-speaker defect. Other selected direct sayings and Longji's explicitly written death verse are actor-exact.",
+      "requiredChanges": [
+        "For the Cao Benrong memorial row, set MasterName null with narrated/biographical ActorAttribution and retain Cao Benrong only as person-described; rewrite the note accordingly."
+      ]
+    },
+    {
+      "ordinal": 85,
+      "id": "t_becc0a1ea8cb",
+      "term": "方丈",
+      "entrySha256": "3244ecd067137f112ad5e25141a13a10f965fb6869ea1e0faa64d7998e971547",
+      "verdict": "REVISE",
+      "finding": "Room versus resident abbot is a legitimate different-thing split, and movement/narration evidence generally respects it. The resident row 更須請問方丈和尚 uses the stale non-roster identity Baiyu Si; this project has already established the same record-owner as Baiyu Jingsi. The opening also calls the room traditionally ten-foot-square without a stored anchor; that historical etymology is unnecessary to the corpus-defined institutional room.",
+      "requiredChanges": [
+        "Replace Baiyu Si with roster-exact Baiyu Jingsi in MasterName, ContextMasters, RelatedMasters, and note for 更須請問方丈和尚.",
+        "Anchor the ten-foot-square historical description from the allowlisted corpus or remove it from the opening."
+      ]
+    },
+    {
+      "ordinal": 86,
+      "id": "t_ca8f7f2d5d03",
+      "term": "法眼",
+      "entrySha256": "72fac2bba6ae24a75ae9d3ad445b50de9396e2acc80eefd4203d924a808c56b8",
+      "verdict": "REVISE",
+      "finding": "Teaching-eye versus the person Fayan Wenyi is exactly the word/person split required by item 8. Attribution is defective in both senses. The compressed Jiashan exchange 曰如何是法眼曰法眼無瑕 contains an unnamed questioner's headword and Jiashan's answer and must be split. In the person sense, the lineage heading 金陵清凉大法眼文益禪師法嗣一十三人 and biography heading 清涼法眼文益禪師… are compiler narration/headings, not utterances by Fayan Wenyi; only 法眼益云 marks Fayan speaking.",
+      "requiredChanges": [
+        "Split the Jiashan exchange into actor-pure questioner and respondent evidence.",
+        "Convert the Fayan lineage and biography headings to impersonal/narrated compiler rows with MasterName null and Fayan Wenyi as person-named/person-described; retain Fayan as MasterName only where 法眼益云 marks his speech."
+      ]
+    },
+    {
+      "ordinal": 87,
+      "id": "t_ac4749b5b609",
+      "term": "無生",
+      "entrySha256": "dfa65a378ab5bc94732d3ab783883a38b9a5c0214dff4b12785f54d65963c474",
+      "verdict": "REVISE",
+      "finding": "One no-arising claim, tested by direct definition and reversals, is well supported; compounds are properly treated as families rather than senses. The Touzi row 問如何是無生曲師云無人唱得… assigns the whole row to Touzi Datong, but the exact family phrase is uttered by the unnamed monk and Touzi's reply does not repeat it. This is the same questioner/respondent error found in earlier cohorts.",
+      "requiredChanges": [
+        "For C/C077/C077n1710.xml 0883a03, set MasterName null with reviewed-unnamed monastic questioner and retain Touzi Datong as respondent/context master; preserve 無生曲 as family evidence rather than bare-headword depth."
+      ]
+    },
+    {
+      "ordinal": 88,
+      "id": "t_04bce52397dc",
+      "term": "三昧",
+      "entrySha256": "db747e8ac70fcb72481deede2a728604187fff6046fb69eb685db2a3863bd272",
+      "verdict": "REVISE",
+      "finding": "Word versus named Master Sanmei is a genuine split, but the lexical gloss 'complete command' is not established by the selected corpus definitions; the records define particular compounds and Xuansha explicitly resists multiplying them. 'Meditative command' violates the project's absolute ban on meditation-family English. The proper-name sense also misattributes the biography 從三昧和尚受具 to Zhangxue Tongzui as utterer although it is narrated biography, and inexplicably includes Huineng's 一行三昧 lexical occurrence as a fourth person-sense row.",
+      "requiredChanges": [
+        "Remove the forbidden SearchAlias 'meditative command' and search the entire entry/WORK prose for meditation-family language.",
+        "Re-test 'complete command' against corpus self-definitions; replace it with a corpus-honest English label that does not invent command semantics, while preserving attributed compound definitions and the no-outside-interpretation rule.",
+        "Delete Huineng's 一行三昧 row from the Master Sanmei person sense.",
+        "Classify 二十一從三昧和尚受具 as narrated biography with MasterName null; keep Master Sanmei as ordination teacher/person-described and the biography's subject in context, not Zhangxue Tongzui as utterer."
+      ]
+    },
+    {
+      "ordinal": 89,
+      "id": "t_5d84cccab8df",
+      "term": "須彌",
+      "entrySha256": "b3c4ed0e81abb6744cc7cfaa1ddfb4b8bd19aba92e972204499c1f3b88bc5d32",
+      "verdict": "KEEP",
+      "finding": "Sumeru remains one named mountain across questions, comparisons, summit compounds, destruction, carrying, mustard-seed, and local-equation uses. Li Bo correctly owns the mustard-seed question, respondents and nested figures are separated, and Gulin's local equation is explicitly not generalized.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 90,
+      "id": "t_c3a7862b9971",
+      "term": "自在",
+      "entrySha256": "3bd865d73f560c4753e3b2116d69c09709d1751acc14445781e3b7764da87a19",
+      "verdict": "KEEP",
+      "finding": "One freedom/ease condition correctly spans adjective, adverb, result phrase, repetition, response, movement, birth/death tests, and Baizhang's caution. Proper names are excluded rather than mis-split, all selected turns are exact, and the opening stays descriptive.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 91,
+      "id": "t_549e7766dfa1",
+      "term": "一著",
+      "entrySha256": "8e13e936cfbc893e74456f05b5f572d8069cd5537175c78daa8a6972c36e16e2",
+      "verdict": "REVISE",
+      "finding": "One move/play sense is correct and questioners are mostly exact. The J36nB359 row uses the stale identity Baiyu Si for the same 百愚 record whose roster-exact owner is Baiyu Jingsi. This prevents master links from resolving consistently.",
+      "requiredChanges": [
+        "Replace Baiyu Si with roster-exact Baiyu Jingsi for J/J36/J36nB359.xml 0624c24 and synchronize note, context, and RelatedMasters."
+      ]
+    },
+    {
+      "ordinal": 92,
+      "id": "t_b6a1c449bd53",
+      "term": "坐斷",
+      "entrySha256": "117e49608d3a9cdac7762e00d24466a90922a589b941b285e7143ebc79b4538f",
+      "verdict": "KEEP",
+      "finding": "The transitive passage-blocking action is corpus-earned across tongues, directions, crossings, past/present, and branching differences. The unnamed monk correctly owns 坐斷十方, Yuanwu/Miyun/Tianyin own their direct turns, and the opening explicitly rejects quiet-sitting reinterpretation.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 93,
+      "id": "t_358f56dbf990",
+      "term": "善知識",
+      "entrySha256": "88cb922c47034e5a390a0bda522f79c76e36b077f004c4eeecb190524d560cad",
+      "verdict": "REVISE",
+      "finding": "The entry collapses two different human-role frames. Dahui's teacher/guide, visiting a good teacher, and Shenhui's encountered great teacher denote a guide approached for direction. Huineng and Huiyue use 善知識 as a vocative hailing the listening assembly; those listeners are not thereby the speaker's teachers or guides. This is not mere grammar because the referent and relational role change. The current PreferredTarget cannot gloss the vocative without calling the audience guides.",
+      "requiredChanges": [
+        "Split the guide/teacher role from the assembly-vocative 'good friends' use, anchoring at least one occurrence under each sense; keep ordinary referential number/definiteness merged within each.",
+        "Move Huineng/Huiyue vocative rows and aliases such as 'good friends' to the vocative sense, and keep teacher/guide aliases in the guide sense.",
+        "Re-test Fohai's lantern/pillar/cat/dog answer against both sense boundaries without converting its case answer into the universal gloss."
+      ]
+    },
+    {
+      "ordinal": 94,
+      "id": "t_94ee610a30f7",
+      "term": "一物",
+      "entrySha256": "ea8702ba34dd65871803c9fe281b02a709dbfa8065c6eef07d5a6a339b65b984",
+      "verdict": "KEEP",
+      "finding": "One deliberately unspecified thing/object correctly spans positive, negative, interrogative, and rejected-label constructions. The unnamed questioner owns 如何是一物, nested Dongshan and Huineng quotations are exact, and the entry resists turning the phrase into a fixed metaphysical entity.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 95,
+      "id": "t_62bc43101d57",
+      "term": "無相",
+      "entrySha256": "8f0414b3ea7a4d7b80678910d614f4aa7a7ec99f671ee9b79a785419efe77790",
+      "verdict": "REVISE",
+      "finding": "Without-marks versus named Master Wuxiang is a necessary word/person split. All three person-sense rows are headings or biographical narration naming Wuxiang, not utterances by Wuxiang: 益州無相禪師法嗣一人 is a catalogue heading, and both 初得法於無相大師 clauses narrate Wuzhu's relation. Assigning MasterName=Wuxiang repeats the named-subject-for-speaker defect.",
+      "requiredChanges": [
+        "Convert all three Master Wuxiang rows to impersonal/narrated compiler evidence with MasterName null; retain Wuxiang as person-named/lineage-teacher in ContextMasters and Wuzhu as heir/student where named.",
+        "Preserve the adjective/person split and six lexical rows unchanged unless full-case rereading exposes another actor layer."
+      ]
+    },
+    {
+      "ordinal": 96,
+      "id": "t_d1e06fd225fa",
+      "term": "入室",
+      "entrySha256": "7032bcea09be62f4b5d86e10e36f664f972e018f749d13b908bdffd83b55d68c",
+      "verdict": "REVISE",
+      "finding": "Interview-chamber entry versus ordinary room entry is a genuine different-event split, but most movement rows confuse the person entering with an utterer. Huqiu entering, Kaixian entering to present understanding, Tianyi's interview setting, Zhengwu entering to ask, the 139 chamber-entering disciples, Hongren entering and dying, and Hanshan entering to fetch a book are all compiler/biographical narration at the headword, not quoted speech by those subjects. Only the already narrated Fayan summary and anonymous entrant row use the proper branch.",
+      "requiredChanges": [
+        "Reclassify occurrences 1–5 of the interview sense as narrated/impersonal where the headword is in narration, with MasterName null and the entering person/teacher represented in ContextMasters; preserve separately marked quoted turns only in notes/context.",
+        "Reclassify both ordinary-room rows as narrated biography with MasterName null, retaining Hongren and Hanshan Deqing as persons-described/grammatical actors.",
+        "Recount named/narrated evidence and verify both sense openings after actor repair."
+      ]
+    },
+    {
+      "ordinal": 97,
+      "id": "t_0427b79d8ba4",
+      "term": "衲子",
+      "entrySha256": "98dbcee3e6fac434503e0f4be1f913654e51402611e6b7ed183366f7bc6cf48c",
+      "verdict": "REVISE",
+      "finding": "One patch-robed-monk role is appropriate and the clothing/institutional spread is strong. In the final public interview, however, 僧問：如何是衲子 is the unnamed monk's headword-bearing question; Shanhui's answer begins 赤身須彌頂 and does not repeat the term. Assigning MasterName=Shanhui is wrong.",
+      "requiredChanges": [
+        "For the Shanhui interview, set MasterName null with reviewed-unnamed monastic questioner and retain Shanhui as respondent/record-owner; keep his case-specific answer in the note without substituting it for the gloss."
+      ]
+    },
+    {
+      "ordinal": 98,
+      "id": "t_6293dead3bb2",
+      "term": "轉身",
+      "entrySha256": "a159503c90784d61075fcc1f6926acde84cdf95a18e9305b1432f86ac6729478",
+      "verdict": "REVISE",
+      "finding": "One turning action can underlie literal motion and road/place/phrase compounds without a grammar split. Two physical-motion rows are unquoted narration: 谷轉身擬坐，師便打 describes Mayu Baoche turning, and 師轉身便行 describes Hanyue Fazang turning and leaving. Both are assigned as if the grammatical subject uttered the headword.",
+      "requiredChanges": [
+        "Convert the Mayu Baoche and Hanyue Fazang physical-motion rows to narrated compiler/record prose with MasterName null and retain each master as person-described/grammatical actor; rewrite AttributionNotes accordingly."
+      ]
+    },
+    {
+      "ordinal": 99,
+      "id": "t_1459058101b7",
+      "term": "落處",
+      "entrySha256": "7b7edfed89774d85a079b14c4c3fe38f09656593680b8d47c0ed712489995186",
+      "verdict": "KEEP",
+      "finding": "One landing/place-of-application relation remains stable across sayings, cases, lives, origin/destination, and the rich Xiuyelin relation. The unnamed ancient is correctly separated from Lia'an as later raiser, and no imported abstraction replaces the verbal image.",
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 100,
+      "id": "t_dd3bf8dd507a",
+      "term": "自性",
+      "entrySha256": "a743bd315b0cf3ad0316733eda313d1c9d89370236b6855438721e6f7cdc588f",
+      "verdict": "KEEP",
+      "finding": "One own-nature possessive relation correctly varies with grammatical subject without becoming multiple things. Huineng's direct predicates, later attributed explanations, anonymous questions, and compound uses are actor-exact and explicitly presented as corpus predicates rather than imported doctrine.",
+      "requiredChanges": []
+    }
+  ]
+}

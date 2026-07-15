@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "scope": {
+    "ordinals": [68, 69],
+    "entries": 2,
+    "priorReview": "fresh-build/waves/f001-laneA-066-070-independent-semantic-review.json",
+    "repairGate": "fresh-build/waves/f001-laneA-068-069-repair3-gate.json"
+  },
+  "reviewKind": "independent-hash-bound-semantic-rereview",
+  "policy": "Each current repaired hash was reread against every finding in the prior independent review. KEEP requires correct token-level nested-speaker attribution, explicit preservation of the Huijue attribution dispute, correct Five Ranks alias direction, an honestly exhausted six-rung ladder for the original stanza author, correct separation of Tianran's quotation and response roles, English-first attribution notes, exact anchors, and preservation of meaning, sense, depth, and work independence.",
+  "reviewed": 2,
+  "keep": 2,
+  "revise": 0,
+  "jointChecks": {
+    "repairGateHardPass": true,
+    "exactKwicAndLineReplay": "14/14 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "namedOccurrences": 12,
+    "reviewedUnnamedActors": 2,
+    "workSourceHardFailures": 0,
+    "depthSenseHardFailures": 0,
+    "publicFeedbackFlags": 0,
+    "forbiddenEnglishHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_097f38f58678",
+      "term": "庭前柏樹子",
+      "ordinal": 68,
+      "reviewedSha256": "82ca53428df24c5c583c72f10469e90c4a161929aa224f7c52af18b7899e036c",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "nested-speaker-repair",
+          "coordinate": "sense 1 occurrence 1, T/T47/T47n1998A.xml 0831b01",
+          "finding": "The stored KWIC is now narrowed to the first headword token introduced by 州云 and ends before Wuzu Fayan's later repetition. Zhaozhou Congshen therefore correctly owns the selected token; Wuzu is retained as later raiser/quoter/commentator and Dahui as outer reporter/commentator and record owner. The note explicitly distinguishes the unselected later token rather than forcing both speakers into one occurrence."
+        },
+        {
+          "kind": "nested-speaker-repair",
+          "coordinate": "sense 1 occurrence 2, T/T47/T47n2000.xml 0989c29",
+          "finding": "州云 directly assigns the selected courtyard-cypress answer to Zhaozhou. Xutang Zhiyu is now correctly retained only as later raiser, commentator, and record owner."
+        },
+        {
+          "kind": "attribution-dispute-repair",
+          "coordinate": "sense 1 occurrence 3, T/T48/T48n2004.xml 0256c28",
+          "finding": "The entry records Zhaozhou as the speaker conventionally attributed by 州曰 while explicitly preserving Huijue's denial that his former teacher ever said it. The note states that MasterName represents the quoted conventional attribution rather than a historical-authenticity judgment; Wansong remains reporter/commentator and Huijue remains the denier."
+        },
+        {
+          "kind": "nested-speaker-repair",
+          "coordinate": "sense 1 occurrence 6, J/J26/J26nB188.xml 0766a11",
+          "finding": "The compact KWIC directly contains 州云 followed by the headword answer, so Zhaozhou correctly owns the token and Ruibai Mingxue is correctly retained as later quoter, commentator, and record owner."
+        },
+        {
+          "kind": "actor-controls",
+          "finding": "Tianran Hanshi, Hanyue Fazang, and Langting Ting still correctly own their present commentary or question in occurrences 4, 5, and 7. Their uses discuss or reopen the Zhaozhou case but are not embedded direct quotations falsely reassigned to Zhaozhou."
+        },
+        {
+          "kind": "meaning-opening-and-evidence",
+          "finding": "One fixed case-answer sense remains correct. The English-first note and explanation preserve the courtyard tree, the scene-presentation denial, the specifically rejected cosmic-body explanation, the danger of dying in the words, and the transmission dispute without inventing replacement symbolism. Seven exact witnesses in seven independent works remain anchored and sufficient."
+        }
+      ]
+    },
+    {
+      "id": "t_d4661c1b4dbb",
+      "term": "正中偏",
+      "ordinal": 69,
+      "reviewedSha256": "e740af4e681d9eaa1dcde8747836c42c50225bb414d09dd373ec1a15d7d01861",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "rank-pair-alias-repair",
+          "finding": "The reversed alias has been replaced by 'partial within upright Five Ranks,' which follows the same direction as the conventional target 'the relative within the absolute' and the alternate 'the partial within the upright.' It no longer points toward 偏中正."
+        },
+        {
+          "kind": "six-rung-anonymous-author-repair",
+          "coordinate": "sense 1 occurrence 7, J/J38/J38nB406.xml 0160a04",
+          "finding": "The headword-bearing stanza is now assigned to a reviewed-unnamed historical verse author. The actor record explicitly exhausts line, expanded context, section header, book title, TEI metadata, and parallel passage, and its grammar evidence correctly identifies 原頌曰 as the older-stanza frame. It does not repeat the earlier unsupported Dongshan assignment."
+        },
+        {
+          "kind": "Tianran-role-repair",
+          "coordinate": "sense 1 occurrence 7, J/J38/J38nB406.xml 0160a04",
+          "finding": "Tianran Hanshi is correctly retained as later quoter, commentator, record owner, and author of the distinct matching verse introduced by 和曰—not as author of the stored original stanza. The English-first AttributionNote and GrammarEvidence make this boundary unambiguous."
+        },
+        {
+          "kind": "actor-controls",
+          "finding": "Caoshan, Hongzhi, Langting, Juelang, and Ruibai remain correct exact speakers. The reviewed-unnamed monastic still owns 如何是正中偏 while Fenyang remains respondent."
+        },
+        {
+          "kind": "meaning-opening-and-evidence",
+          "finding": "One Five Ranks relation remains warranted. Caoshan's directional gloss supports the corpus-earned relational opening, while the later verses, diagram, and shout are treated as applications rather than rival definitions. Seven exact witnesses in seven independent works remain anchored; source, depth, public-feedback, and forbidden-framing gates pass."
+        }
+      ]
+    }
+  ]
+}

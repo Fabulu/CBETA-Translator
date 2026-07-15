@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash final2 full-case rereview",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "701-750 final2 repair set",
+  "generatedUtc": "2026-07-15T10:16:56.560906+00:00",
+  "reviewer": "Codex independent reviewer; not the final2 repair author",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "sourceRejectingReview": "f003-laneB-701-750-exact8-round2-fresh-independent-rereview.json",
+    "sourceRejectingReviewSha256": "dd6f808c1c5b9cac4a7cf9b21c3f986af054f1d7ff9e56664f32c21458084a37",
+    "repairAuthorLedger": "f003-laneB-701-750-final2-repair-author-ledger.json",
+    "repairAuthorLedgerSha256": "96ee3f16851ba23be81d5781d74cb82965fa0d3b3ceadc67f30276f986822cc4",
+    "repairReadiness": "f003-laneB-701-750-final2-repair-readiness.json",
+    "repairReadinessSha256": "019542972cb2c3d15d8453bca88d0487f0e0d600d7839e6949d1713a7363fc31",
+    "full50FormalGate": "f003-laneB-701-750-final2-full50-formal-gate.json",
+    "full50FormalGateSha256": "88e7517ec891e832b0e5dad515e5bc05ae444318a3d2da47cc242cfb5e2b4f26",
+    "v3AttributionPackets": "f003-laneB-701-750-final2-full50-formal-gate-attribution-packets.json",
+    "v3AttributionPacketsSha256": "e3382c6ffe0c1a29b0c3235e525e2c20f1abd736365e5419589f86ea7368489f"
+  },
+  "formalGateHardPass": true,
+  "repairReadinessHardPass": true,
+  "exactKwic": {
+    "verified": 369,
+    "failures": 0
+  },
+  "attributionPacketGeneratorVersion": 3,
+  "turnProofMissing": 0,
+  "repairedEntriesRead": 2,
+  "repairedOccurrencesReadInCompleteCaseContext": 15,
+  "priorKeepCount": 48,
+  "priorKeepHashesByteIdentical": true,
+  "summary": {
+    "KEEP": 2,
+    "REVISE": 0
+  },
+  "systemicFindings": [
+    "Narrator ownership and named contextual-master linkage are separate decisions; both Sengcan witnesses now encode both correctly.",
+    "A repeated headword inside one broad KWIC can conceal multiple actors; the repaired spoken 開爐 witnesses now each contain exactly one headword token and one attributable turn."
+  ],
+  "rows": [
+    {
+      "ordinal": 713,
+      "id": "t_2da0e2fc0478",
+      "term": "三門",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — All seven current occurrences were reread in their complete v3 units. The two biographical gate witnesses now retain Sengcan canonically in ContextMasters with the exact role person-described while correctly leaving MasterName null because the recorder, not Sengcan, writes the headword-bearing narration. The Foyan questioner/respondent split remains exact, the other three spoken gate witnesses retain their utterers, and the full 前之三門 enumeration supports the separate different-thing sense 'three approaches.' The architectural canary remains concrete and the prose does not turn passage through the gate into an imported doctrine.",
+      "entrySha256": "5dedc0c77c7fc561b09609f7fd00aff2d01fc6ecb1075b1ed78874e214b13502"
+    },
+    {
+      "ordinal": 722,
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — All eight current occurrences were reread. The three formerly ambiguous witnesses are now unambiguous single-token occurrences with synchronized line bounds: Fachang Yiyu utters 法昌今日開爐; an unnamed monastic questioner utters 明旦開爐 with Tian'an Sheng retained only as respondent; Hansong Zhicao utters 青龍今日開爐 after the earlier quoted masters are excluded from the KWIC. The five remaining occasion-label or address witnesses preserve their section subjects/utterers correctly. The prose and canary accurately distinguish the calendrical public furnace-opening occasion from merely lighting a household fire, without splitting the heading and address uses into different things.",
+      "entrySha256": "905d5a6bdfeae457992411d464995b2397d864b7c406f6448f96c9bca57bf17c"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "reviewer": "a_checkpoint_review",
+  "scope": "Final independent re-review of the five lane-A second semantic repairs against the residual findings in f001-laneA-postrepair-independent-review.json and the hard-pass cohort.",
+  "policy": "Every cited repair coordinate was read in expanded full-case context. KEEP is bound to the current entry SHA-256; mechanical cohort PASS does not override actor, sense, modifier, nesting, opening, or WORK-ledger defects.",
+  "summary": {
+    "reviewed": 5,
+    "keep": 5,
+    "revise": 0,
+    "staleHashes": 0,
+    "verdict": "PASS"
+  },
+  "entries": {
+    "t_8f7b20536cb6": {
+      "term": "和尚",
+      "verdict": "KEEP",
+      "reviewedSha256": "3731fa77c628b373965095c7d974544dd64a9ef311198a33d6de1ea2b0b40c0f",
+      "finding": "The three residual role defects are resolved. X79n1557:1018b29 now treats Wuzu Fayan as person-described under compiler narration; X80n1565:0116a19 treats Yezhu Fusheng as record-owner and Budai Qici as person-described; J38nB417:0493c02 treats Tianze Neng as verse-author under an impersonal heading. AttributionNotes explicitly deny exact headword utterance in each case. The compound-only pseudo-sense remains removed, while teaching master and ordination preceptor remain distinct and supported."
+    },
+    "t_6f47a97d45b0": {
+      "term": "序",
+      "verdict": "KEEP",
+      "reviewedSha256": "4535bb6c1c3d2ef081b49265a92b02b51a29aa2242436c052899fcbd79af785a",
+      "finding": "The two residual metadata-role defects are resolved. X72n1437:0384b20 now places Lin Zhifan only in compiler context, and X67n1303:0267c05 places Linquan Conglun only as commentator; neither is represented as uttering the title-heading headword. Notes make the preface-author or title context explicit. The single preface sense still fits all reviewed rows."
+    },
+    "t_5ddde30711a4": {
+      "term": "金鎖玄路",
+      "verdict": "KEEP",
+      "reviewedSha256": "3a9d112cd7618091c59fd02dc14ecb826310f4009983a4d8fa452772ee37f5d3",
+      "workSha256": "6ffbdb9a95b9f314265334b78bb4f618661af618f6b92a1bc42b7078ac4f6386",
+      "finding": "The modifier study is now durable and agrees with the displayed `gold-lock barrier on the dark road`. WORK records the fresh 494-file/487-work baseline; corrected headword and family counts; exact verified material, appearance, conventional-name, figurative, chain/fetter, and counterexample controls; passage-level classifications; dependent-family verdicts; and an explicit unresolved ruling for isolated 金. It rejects both material hardware and the unsupported equation gold=enlightenment while distinguishing barrier and chain verb frames. All four headword cases and actors remain sound, and the one compound sense still holds."
+    },
+    "t_4f7bd98ad40f": {
+      "term": "上堂",
+      "verdict": "KEEP",
+      "reviewedSha256": "0a27ece4b2f588a63443469b77dc1746de88d2858688342ec664e196e79eaecf",
+      "finding": "All three residual actor outcomes are corrected after full-case reading. X72n1437:0577a14 is compiler narration with Yongjue Yuanxian person-described; X64n1260:0001a17 is Jiexian's authored utterance; T47n1985:0496b14 is compiler narration with Linji Yixuan person-described and speech beginning only after 云. The merged prose still defines the formal teaching-hall address without reviving a physical-action pseudo-sense."
+    },
+    "t_8ece09f6b91a": {
+      "term": "正法眼藏",
+      "verdict": "KEEP",
+      "reviewedSha256": "abf19daf143cb924e7d22a8933d579c9a608f280a8ff4098602e6f10cc558211",
+      "finding": "The remaining title-heading defect is resolved. X72n1444:0828b03 now keeps MasterName null and places Zhanran Yuancheng only in compiler context, with an explicit note that the heading is not an utterance; the companion narrated title occurrence likewise keeps Zhanran as compiler and Dahui Zonggao as person-described. The lineage-possession phrase and book-title senses remain independently readable and genuinely distinct."
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "round": 2,
+  "reviewKind": "independent-legacy-residual-repair-rereview",
+  "repairLedger": "fresh-build/waves/f001-laneC-legacy-residual-repairs-round2.json",
+  "policy": "Hash-bound read-only rereview of all six repaired hashes against the prior independent findings and the current full cases. KEEP requires synchronized source inventories, explicit work identities, schema-valid Validation and SenseKey values, accurate displayed depth, exact actors, anchored evidence, exact KWIC/line replay, evidence-specific prose and aliases, and zero forbidden framing. A false repair-provenance hash in WORK.md is a revision even when entry semantics pass.",
+  "reviewed": 6,
+  "keep": 5,
+  "revise": 1,
+  "jointChecks": {
+    "exactKwicAndLineReplay": "58/58 PASS",
+    "headwordPresentInKwic": "58/58 PASS",
+    "attributionHardFailures": 0,
+    "quotedChineseAnchored": "32/32 PASS",
+    "depthSenseHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "publicFeedbackFlags": 0,
+    "forbiddenTermHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_ff50c6974a36",
+      "term": "五位",
+      "reviewedSha256": "f94f8bcb278f8e2afad6cfcf1e3fb1bd5f90f10abea3b541489cf6a415dc9b62",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "entry-repair-pass",
+          "finding": "The entry-level repair passes. Both SourceTexts arrays now exactly equal their occurrence-source sets. The ordinary five-position sense explicitly records work:B25n0144 and work:T48n2016, counts the two Yanshou rows once, and correctly uses multi-source. The Caodong scheme versus unrelated five-member sequences remains a genuine different-referent split; actors, aliases, prose, exact evidence, and forbidden-language checks pass."
+        },
+        {
+          "kind": "repair-provenance-hash",
+          "finding": "WORK.md's final round-two block says 'Repaired SHA-256: 4a4c30b1c3a224c05a6ecef9b447a06faaad60d6fa7d6418828348d92fc74bf7', but the current entry hashes to f94f8bcb278f8e2afad6cfcf1e3fb1bd5f90f10abea3b541489cf6a415dc9b62, which is also the hash recorded by the authoritative round-two repair ledger. Correct the stale WORK.md repaired-hash line to the actual current hash; no entry semantic change is required."
+        }
+      ]
+    },
+    {
+      "id": "t_9199b9a31645",
+      "term": "盡大地",
+      "reviewedSha256": "53f6c0a92f7f46a2ed12f89c94820f4feaf5fa2208432644e035c74a93596fec",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "repair-confirmation",
+          "finding": "SourceTexts now contains all seven occurrence-source files, including B/B27/B27n0152.xml and T/T47/T47n1997.xml. The Note names seven explicit work identities, acknowledges that the two Yuanwu witnesses repeat a related formula, and grounds independence additionally in Xuefeng, Shangfeng Huihe, Yinyuan Longqi, Yulin Tongxiu, and Yuanwu deployments. One whole-earth scope sense remains correct; actors, depth, aliases, prose, evidence anchors, and all automated gates pass."
+        }
+      ]
+    },
+    {
+      "id": "t_1274824e797b",
+      "term": "普請",
+      "reviewedSha256": "d0d29de2366b6ab098304ece5ae8b90d486a521c6b1d4673d29f8deb9e68951c",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "repair-confirmation",
+          "finding": "SenseKey is now null, correctly marking the communal summons as corpus-wide rather than inventing a master key. Regulations, work occasions, the placard, and the call for everyone to look retain one summons referent while the assigned action varies. Ten exact anchors across eight source files retain multi-source support; procedural narration and named hall speakers are correctly separated, and all gates pass."
+        }
+      ]
+    },
+    {
+      "id": "t_00e8627f3a48",
+      "term": "歷歷",
+      "reviewedSha256": "80b105c7e9c28607290447af7b100729cc271fb71d5a15964f50dc4d70c4cd0b",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "repair-confirmation",
+          "finding": "The Note now accurately reports eight anchors. Those anchors span seven source files and retain one distinctly-clear property across listener, scenery, calls, structures, bells, verse, and named clarity formulas. Exact speakers, source inventory, multi-source support, aliases, evidence-specific prose, quote anchoring, and forbidden-language checks all pass."
+        }
+      ]
+    },
+    {
+      "id": "t_c968268a64d1",
+      "term": "心印",
+      "reviewedSha256": "cfb3c5d5cda2c0dd05b40169eb8c4ab73062236e5b8d4a4885336620405dc5f7",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "repair-confirmation",
+          "finding": "The Kaixian Zhixun personal-title sense now uses schema-valid provisional validation for its single heading witness. The lineage-seal phrase and bestowed title remain different referents, both SenseKeys are correctly null, and the title occurrence remains impersonal heading metadata with Zhixun only as section subject/person described. The primary sense's seven anchors, all quoted formulas, aliases, depth, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_395ae8fd7f32",
+      "term": "無住",
+      "reviewedSha256": "d2700bef226d0fe4bc8e1ce5a917e167fc790513f342a965ff93593da5bf1c16",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "repair-confirmation",
+          "finding": "The Baotang Wuzhu person-name sense now has null SenseKey and schema-valid provisional validation. Its Note explicitly distinguishes the two manifest work IDs from semantic independence and preserves provisional status because the closely related lamp compilations repeat the same biography formula. The relational phrase versus historical person split remains required; heading actors, Vimalakirti's exact quoted turn, source inventories, depth, aliases, anchored evidence, and all gates pass."
+        }
+      ]
+    }
+  ]
+}

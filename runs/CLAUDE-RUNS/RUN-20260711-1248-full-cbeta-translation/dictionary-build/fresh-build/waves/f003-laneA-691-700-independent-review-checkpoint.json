@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-full-exact-hash-review",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    651,
+    700
+  ],
+  "generatedUtc": "2026-07-15T05:54:01.672098+00:00",
+  "reviewer": "Codex independent reviewer /root/fresh_semantic_reviewer/f003_c851_900",
+  "readOnly": true,
+  "entriesEdited": false,
+  "siteTouched": false,
+  "sourcePacket": "fresh-build/waves/f003-laneA-651-700-current-semantic-review-packet.json",
+  "sourcePacketSha256": "026718d7e89c9a1264e4490f0284598ca6620d6e37e63dcb3cf59240f98b670c",
+  "sourcePacketStaleEntryHashes": 17,
+  "mechanicalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-current.json",
+    "sha256": "2a942880b2e5c412f8b1687957a54d62fdbe333582d2a3a0cd4f15e28c556a9a",
+    "hardPass": true,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "currentHashesVerifiedAgainstFormalGate": true,
+  "occurrencesRead": 356,
+  "summary": {
+    "entries": 50,
+    "KEEP": 0,
+    "REVISE": 50
+  },
+  "checkpointThrough": 700,
+  "checkpointRows": [
+    {
+      "ordinal": 691,
+      "id": "t_9a6d7ee80974",
+      "term": "燃燈佛",
+      "entrySha256": "98603d4c6f8f57033c541391109bbd597c9cbcd520cd45281f7ce410f627f8c1",
+      "worksheetSha256": "187ea69462696bd78cb25b6e9f1aa2d1fcf638ab101a9a6afc778e262714874e",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The article does not explain Dipankara's specific Chan deployment: Śākyamuni's 'no teaching obtained' and prediction formula. Three narration rows and one non-roster Chinese master leave the quoted ownership and figure bend underdescribed."
+    },
+    {
+      "ordinal": 692,
+      "id": "t_4f3ee4e28283",
+      "term": "業識",
+      "entrySha256": "cada0bc5afba5484183f9857a4560533cc1d2edd51868112e4129e76a782a0fe",
+      "worksheetSha256": "4bf040a55b5e6f447763a0f94ca9ee8405be6156ca13e31f25be02eaeee836a2",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The definition imports 'conditioned by accumulated action and habit' without an anchored self-definition and does not translate or unpack the busy/entangled predicates. Several direct speeches are narrator-owned and four Chinese MasterName values fail exact linkage."
+    },
+    {
+      "ordinal": 693,
+      "id": "t_453e3c35baa6",
+      "term": "住持",
+      "entrySha256": "f3843552ab9ef8e20cc3d57b6b7363da5a9699a95da691977f4a3bb1daa8ea54",
+      "worksheetSha256": "91dd90f581bc70f013ce8369a29be41fdadb0c9632c3505785f664283d214bbd",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "住持 is both the act 'to maintain/occupy' and the institutional abbot title in these contexts; the one-sense 'abbot' entry does not adjudicate that grammar. Catalogue/colophon rows dominate and the generic category prose supplies no Zen bend."
+    },
+    {
+      "ordinal": 694,
+      "id": "t_0ea00341756c",
+      "term": "定光佛",
+      "entrySha256": "d63f24e579044b5fbb67d18771789bd6b1534937f52c43caed3727f37fbe64e1",
+      "worksheetSha256": "b143d8093c88c65933942595bb65461f1812bc7f527160fa33ec6de8a6bf4db2",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "Although equivalent to Dipankara in some contexts, 定光佛 also appears in ritual titles and a direct 'what is 定光佛?' interview. The generic figure prose ignores that deployment and leaves the questioning monk/answer context largely unresolved."
+    },
+    {
+      "ordinal": 695,
+      "id": "t_8be916b51109",
+      "term": "剎竿",
+      "entrySha256": "f6662d5e957f12e1efddc6cb9dbc7e12d60e2eceba1c9477b42ffa69b1394d5d",
+      "worksheetSha256": "8697bc85f862e6c732309f2ffe6f15df5d40bdd1384ffd8ab97cfa79983bebf8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "reviewNotes": "The flagpole is concrete, but the paragraph is generic and never explains the gate/monastery landmark or the repeated 'topple the flagpole' case. Two long quoted contexts are compiler-owned and three named masters are Chinese labels."
+    },
+    {
+      "ordinal": 696,
+      "id": "t_22865f34533e",
+      "term": "兒孫",
+      "entrySha256": "86348c26b21b8a82645a80137ee975eef3a7b0ddbef4d52ef9f9668118c69052",
+      "worksheetSha256": "d5f7df7ca510a724d61f138ff1acf899432539f4dcbfc11a1c6282bda6329f26",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The lineage-descendant inference is good, but several later commentators explicitly marked X云 are left as compiler narration and two masters remain non-roster Chinese. The entry also needs to separate literal family offspring if any survive the concordance."
+    },
+    {
+      "ordinal": 697,
+      "id": "t_4308ebc0471c",
+      "term": "不輕菩薩",
+      "entrySha256": "74025d0ecbe4896aa881ff09b946758560d38a674176dd48f9c0115baf6d46f9",
+      "worksheetSha256": "3183d4623c6fedde0b9633bcda795577b637e60aef8ff6a8d8b3ad32c1f42e4d",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The witnesses supply a distinctive Chan bend—Never-Disparaging's prediction is answered with hitting—yet the generic figure template never says so. Three Chinese master names remain unresolved and the scriptural quotation's narrator/quoted actor needs separation."
+    },
+    {
+      "ordinal": 698,
+      "id": "t_ff91d085da8d",
+      "term": "道得",
+      "entrySha256": "b0954ec2df80155a05d6b19be72faaba290740cf51139bf2cdb76524598d93c5",
+      "worksheetSha256": "6c6cfa2e51a6440422ff5e0f6e030ee8958c9413173ab7ea25f128502a912f6a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The public-answer definition is useful, but the selected evidence includes the unrelated segmentation 外道得 ('what principle did the outsider obtain'), which is not an occurrence of lexical 道得. Multiple direct turns are narrator-owned and three master labels remain Chinese."
+    },
+    {
+      "ordinal": 699,
+      "id": "t_c8f127c46d44",
+      "term": "無對",
+      "entrySha256": "b9221edfcd6c1f19fa19ed8b58a1ede1ebf7523e46c004ba0c4c880e9b969cfc",
+      "worksheetSha256": "dcb11905343d8d883b6e950e0e3522c8a235d58d11e9f12c6afbeb17ec61ffa8",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "reviewNotes": "The no-reply outcome is well bounded, but every witness is assigned to compiler narration although the headword grammatically describes named case participants such as Kāśyapa, a monk, or a lecturer. ContextMasters and exact impersonal/narrative ownership need full-case correction."
+    },
+    {
+      "ordinal": 700,
+      "id": "t_1c5d1a873155",
+      "term": "常啼菩薩",
+      "entrySha256": "978ff67f7bffad18fe2d392a28185b804eca0a943c4d0264546a5d909f7ca11a",
+      "worksheetSha256": "e605a7ba6bb12e53e3bb2327a0f48a15a9b8784a2d01fd18d2667c125ad4e6da",
+      "verdict": "REVISE",
+      "occurrencesRead": 4,
+      "reviewNotes": "The corpus gives a concrete Zen deployment—Ever-Weeping sells heart and liver to seek prajna and is raised in challenges—but the generic figure paragraph withholds it. The unnamed questioner and two Tianjie Juelang attributions need exact turn/context verification."
+    }
+  ],
+  "checkpointOccurrenceCount": 62
+}

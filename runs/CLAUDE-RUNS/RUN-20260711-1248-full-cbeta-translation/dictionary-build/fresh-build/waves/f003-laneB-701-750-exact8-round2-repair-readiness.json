@@ -1,0 +1,47 @@
+{
+  "hardPass": true,
+  "review": "fresh-build/waves/f003-laneB-701-750-final4-fresh-independent-exact-review.json",
+  "ledger": "fresh-build/waves/f003-laneB-701-750-exact8-round2-repair-author-ledger.json",
+  "formalGate": "fresh-build/waves/f003-laneB-701-750-exact8-round2-full50-formal-gate.json",
+  "counts": {
+    "rows": 4,
+    "revised": 4,
+    "kept": 0,
+    "failures": 0
+  },
+  "failures": [],
+  "results": [
+    {
+      "id": "t_c212062774f9",
+      "term": "禪床",
+      "verdict": "REVISE",
+      "previousSha256": "276bd62f3ec3d618be51c0715c8d877d703b66571b7957f4bccf15885be357f0",
+      "currentSha256": "bdb3102a0bd4c489bb8f3b083b09d62b41cec792823be439ca507b26efbbd3d4",
+      "failures": []
+    },
+    {
+      "id": "t_2da0e2fc0478",
+      "term": "三門",
+      "verdict": "REVISE",
+      "previousSha256": "f47b087eaa683ae42b4f23741190261854efd2ad9666e4e7e857d33d0592757f",
+      "currentSha256": "99e5f137e756c89136967fa28b1a36f58ff3bc3cd73c00d29dc6a3433da508da",
+      "failures": []
+    },
+    {
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "verdict": "REVISE",
+      "previousSha256": "5d477c70a77d34f59b57521378992113d77746deebc9ba8e105a8265bf9f322a",
+      "currentSha256": "dc4a03e9aa3ba4590ba54d9929cd22d021158344142660be560753be6142da34",
+      "failures": []
+    },
+    {
+      "id": "t_74390b40f658",
+      "term": "坐斷天下人舌頭",
+      "verdict": "REVISE",
+      "previousSha256": "3163de7a183313d3f5eaf5ccf926f01d57b1c9941e118f5842fa925aef4d9ffe",
+      "currentSha256": "8bf51716568121ee052746b657122fa8526f4872f85a74f3c6fd50d2fb42a21e",
+      "failures": []
+    }
+  ]
+}

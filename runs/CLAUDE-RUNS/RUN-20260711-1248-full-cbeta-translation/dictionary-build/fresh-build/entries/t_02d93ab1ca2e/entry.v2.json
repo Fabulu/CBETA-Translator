@@ -1,0 +1,165 @@
+{
+  "Id": "t_02d93ab1ca2e",
+  "SourceTerm": "透關",
+  "CreatedBy": "Codex fresh f001 lane B evidence-first",
+  "WrittenUtc": "2026-07-15T05:30:00Z",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "pass through the barrier",
+      "AlternateTargets": [
+        "get through the barrier",
+        "clear the barrier"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The attributive forms 'one already through the barrier' and 'one not through the barrier' recur across the corpus. Broader verbs meaning 'get through' or 'pass through' are not counted as headword occurrences unless they are followed by the graph for barrier. Zhongfeng explicitly distinguishes loose passing-through language from passing the tight barrier underfoot; that text-drawn distinction is retained.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0506c05",
+          "ToLb": "0506c06",
+          "Kwic": "已過關者掉臂徑去。安知有關吏。從吏問可否。此未透關者也。",
+          "MasterName": "Huanglong Huinan",
+          "Curated": true,
+          "AttributionNote": "Source text (續傳燈錄): Huanglong Huinan is the exact headword-bearing speaker or grammatical actor in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0802a10",
+          "ToLb": "0802a12",
+          "Kwic": "盡將古今公案一串穿却謂之透關。殊不知脚跟下一座生死牢關。政好不曾透得。",
+          "MasterName": "Zhongfeng Mingben",
+          "Curated": true,
+          "AttributionNote": "Source text (天目中峰廣錄): Zhongfeng Mingben is the exact headword-bearing speaker or grammatical actor in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0725b24",
+          "ToLb": "0725b25",
+          "Kwic": "莫有具透關眼底。便請出來激揚看。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Source text (圓悟佛果禪師語錄): Yuanwu Keqin is the exact headword-bearing speaker or grammatical actor in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X70/X70n1376.xml",
+          "FromLb": "0041c19",
+          "ToLb": "0041c20",
+          "Kwic": "所以道：透關須具透關眼，得寶須還別寶人",
+          "MasterName": "Chijue Daochong",
+          "Curated": true,
+          "AttributionNote": "Source text (痴絕道冲禪師語錄): Chijue Daochong is the exact headword-bearing speaker or grammatical actor in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Chijue Daochong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB177.xml",
+          "FromLb": "0009a26",
+          "ToLb": "0009a27",
+          "Kwic": "上堂，問：「如何是透關句？」師云：「胡笳塞上知音少，羌笛城頭和者稀。」",
+          "Curated": true,
+          "AttributionNote": "Source text (破山禪師語錄): an unnamed questioning monk is the exact headword-bearing textual actor after complete-case review.",
+          "ContextMasters": [
+            {
+              "MasterName": "Poshan Haiming",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "ReviewedBy": "Codex lane-B 61-70 repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z",
+            "GrammarEvidence": "問 introduces 如何是透關句; 師云 introduces Poshan Haiming’s reply.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          }
+        },
+        {
+          "RelPath": "J/J29/J29nB248.xml",
+          "FromLb": "0806a30",
+          "ToLb": "0806b01",
+          "Kwic": "諸仁！莫若一時放卻，已透關者自然七縱八橫，未透關者難免無繩自縛。",
+          "MasterName": "Dabian Xianquan",
+          "Curated": true,
+          "AttributionNote": "Source text (達變權禪師語錄): Dabian Xianquan is the exact headword-bearing speaker or grammatical actor in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dabian Xianquan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2077.xml",
+        "B/B25/B25n0145.xml",
+        "T/T47/T47n1997.xml",
+        "X/X70/X70n1376.xml",
+        "J/J26/J26nB177.xml",
+        "J/J29/J29nB248.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "牢關",
+        "透關眼",
+        "透關句",
+        "公案"
+      ],
+      "SearchAliases": [
+        "pass through the barrier",
+        "get through the barrier",
+        "clear the barrier"
+      ],
+      "Explanation": "To pass the barrier is to get through a tested obstruction: the records contrast those already through with those still stopped, and extend the phrase to a barrier-passing eye and phrase. Huanglong Huinan distinguishes the two conditions: 'one already past the barrier swings his arms and goes straight on' (已過關者掉臂徑去), whereas 'this is one who has not passed the barrier' (此未透關者也). Zhongfeng Mingben records a corrective contrast: people thread all old and new public cases onto one string and call it 'passing the barrier' (謂之透關), while 'the tight barrier of life and death beneath their heels has not actually been passed' (脚跟下一座生死牢關，政好不曾透得). The phrase also builds 'an eye that passes the barrier' (透關眼). Yuanwu Keqin asks whether anyone present has such an eye. Chijue Daochong says, 'Passing the barrier requires a barrier-passing eye; obtaining treasure requires one who can distinguish treasure' (透關須具透關眼，得寶須還別寶人). Poshan Haiming answers the question 'What is a phrase that passes the barrier?' (如何是透關句), and Dabian Xianquan contrasts 'one already through the barrier' (已透關者) with 'one not through the barrier' (未透關者). These are recorded descriptions, corrections, and compounds; this entry adds no unrecorded destination beyond the barrier.",
+      "ClaimAnchors": []
+    }
+  ]
+}

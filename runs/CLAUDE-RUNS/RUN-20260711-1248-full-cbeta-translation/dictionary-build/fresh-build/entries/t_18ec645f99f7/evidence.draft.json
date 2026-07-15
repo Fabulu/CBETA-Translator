@@ -1,0 +1,351 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_18ec645f99f7",
+    "SourceTerm": "賓中主",
+    "CreatedBy": "Codex fresh f002 Lane A evidence-first",
+    "WrittenUtc": "2026-07-15T03:45:30.586880+00:00",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "Linji host-within-guest configuration",
+        "AlternateTargets": [
+          "Linji's host-within-guest"
+        ],
+        "Status": "preferred",
+        "Note": "Primary Linji sense within the four guest-host configurations. The exact nose-hole definition and the stated contrast with Caodong are preserved. Split is required under §5 #0f.8 because the corpus says the identically written category belongs to two different named systems.",
+        "Validation": "multi-source",
+        "Occurrences": [
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0303b09",
+            "ToLb": "0303b09",
+            "Kwic": "如何是賓中主。穴云。入市雙瞳瞽。",
+            "Curated": true,
+            "AttributionNote": "In the source record (人天眼目), (人天眼目): the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "如何是賓中主。穴云。入市雙瞳瞽。",
+              "GrammaticalSubject": "the unnamed monk in the marked headword-bearing turn",
+              "SpeechFrame": "The turn is marked as a monk’s speech or question.",
+              "FullCaseDecision": "人天眼目: the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the unnamed monk in the marked headword-bearing turn",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete exchange marks this monk’s turn but gives no personal name in the line, surrounding context, section, title, header, or parallel passage.",
+              "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
+              "ReviewedUtc": "2026-07-15T03:47:50.463526+00:00"
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2077.xml",
+            "FromLb": "0469c24",
+            "ToLb": "0469c25",
+            "Kwic": "曰如何是賓中主。師曰。對面無儔侶。",
+            "Curated": true,
+            "AttributionNote": "In the source record (續傳燈錄), Source text (續傳燈錄); an unnamed questioning monk owns the exact evidence clause after complete-case review.",
+            "ContextMasters": [
+              {
+                "MasterName": "an unnamed questioning monk",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "an unnamed questioning monk",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "曰如何是賓中主。師曰。對面無儔侶。",
+              "GrammaticalSubject": "an unnamed questioning monk",
+              "SpeechFrame": "an unnamed questioning monk owns the exact headword-bearing turn after review of the complete exchange and section heading.",
+              "FullCaseDecision": "an unnamed questioning monk owns the exact headword-bearing turn after review of the complete exchange and section heading."
+            }
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0044c06",
+            "ToLb": "0044c14",
+            "Kwic": "外境，白雲明月露全真。頭頭盡是吾家物，信手拈來不是塵。遂舉拂子曰：會麼？認著依前還不是。擊禪牀，下座。泗州龜山水陸院曉津禪師泗州龜山水陸院曉津禪師僧問：如何是賓中賓？師曰：巢父飲牛。曰：如何是賓中主？師曰：許由洗耳。曰：如何是主中賓？師便喝。曰：如何是主中主？師曰：禮拜了退。上堂：田地穩密，過犯彌天，灼然擡脚不起。神通遊戲，無瘡自傷，特地下脚不得。且道過在甚麼處？具參學眼底，出來共相理論",
+            "Curated": true,
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "compiler",
+              "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete passage presents 賓中主 in compiler narration rather than a marked speech turn.",
+              "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
+              "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
+            },
+            "ContextMasters": [],
+            "AttributionNote": "In the source record (五燈全書(第34卷-第120卷)), (五燈全書(第34卷-第120卷)): the compiler-narrator of (五燈全書(第34卷-第120卷)) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "外境，白雲明月露全真。頭頭盡是吾家物，信手拈來不是塵。遂舉拂子曰：會麼？認著依前還不是。擊禪牀，下座。泗州龜山水陸院曉津禪師泗州龜山水陸院曉津禪師僧問：如何是賓中賓？師曰：巢父飲牛。曰：如何是賓中主？師曰：許由洗耳。曰：如何是主中賓？師便喝。曰：如何是主中主？師曰：禮拜了退。上堂：田地穩密，過犯彌天，灼然擡脚不起。神通遊戲，無瘡自傷，特地下脚不得。且道過在甚麼處？具參學眼底，出來共相理論",
+              "GrammaticalSubject": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml",
+              "FullCaseDecision": "Full passage read: no named utterer speaks 賓中主; the stored wording belongs to the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "T/T48/T48n2006.xml",
+          "T/T51/T51n2077.xml",
+          "X/X82/X82n1571.xml"
+        ],
+        "RelatedMasters": [
+          "Linji Yixuan"
+        ],
+        "RelatedTerms": [
+          "四賓主",
+          "賓主",
+          "主中主",
+          "主中賓",
+          "賓中賓"
+        ],
+        "SearchAliases": [
+          "Linji host-within-guest configuration"
+        ],
+        "ClaimAnchors": [
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0311b16",
+            "ToLb": "0311b17",
+            "Kwic": "四賓主者。師家有鼻孔。名主中主。學人有鼻孔。名賓中主。",
+            "ClaimText": "學人有鼻孔",
+            "MasterName": "Huiyan Zhizhao",
+            "Curated": true,
+            "AttributionNote": "Source text (人天眼目); Huiyan Zhizhao owns the exact evidence clause after complete-case review.",
+            "ContextMasters": [
+              {
+                "MasterName": "Huiyan Zhizhao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "四賓主者。師家有鼻孔。名主中主。學人有鼻孔。名賓中主。",
+              "GrammaticalSubject": "Huiyan Zhizhao",
+              "SpeechFrame": "Complete-case review assigns this exact source phrase to Huiyan Zhizhao.",
+              "FullCaseDecision": "Huiyan Zhizhao owns the exact restored source phrase."
+            }
+          }
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The host within the guest names a guest–host position whose interpretation is explicitly system-dependent in later Chan analysis.",
+          "EvidenceBody": [
+            "In the later systematic account of Linji's four guest-host configurations, this is the configuration named when ‘the student has a nose-hole’ (學人有鼻孔). Records then raise the label as a public question and preserve different answers, including 'facing him, there is no companion.' This is one member of the fourfold set alongside host-within-host, guest-within-host, and guest-within-guest. The texts explicitly say that Linji's guest-host system differs from Caodong's, so the shared graphs must not blur the two school-specific things."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2"
+          ],
+          "ZenBend": "The host within the guest names a guest–host position whose interpretation is explicitly system-dependent in later Chan analysis.",
+          "CounterexampleOrLimit": "Primary sense because the wave groups the term with Linji's four guest-host configurations. Family check with the four guest-host configurations (四賓主) and guest and host (賓主) preserves its explicit nostrils-definition and the stated contrast with Caodong. Split is required under §5 #0f.8: the corpus says the identically written category belongs to two different named systems.",
+          "DifferentThingTest": {
+            "Decision": "different-thing",
+            "ComparedThings": [
+              "Linji host-within-guest configuration",
+              "Caodong host-within-guest position"
+            ],
+            "Reason": "Only incompatible referents or explicitly distinct technical systems are split."
+          },
+          "AliasRationale": "Close English lookup wording only.",
+          "ModifierControls": [
+            "Longer formulas and paired devices were checked separately."
+          ],
+          "FamilyControls": [
+            "Related family terms do not donate meaning or source independence."
+          ],
+          "IndependentWorkIds": [
+            "work:T48n2006",
+            "work:T51n2077",
+            "work:wudeng-quanshu"
+          ]
+        }
+      },
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "Caodong host-within-guest position",
+        "AlternateTargets": [
+          "the Caodong host-within-guest"
+        ],
+        "Status": "preferred",
+        "Note": "Separate school-specific referent, not a competing reading of one saying. Variant answers are retained as deployments within the Caodong positional category and are not split further.",
+        "Validation": "multi-source",
+        "Occurrences": [
+          {
+            "RelPath": "B/B25/B25n0144.xml",
+            "FromLb": "0682a11",
+            "ToLb": "0682a12",
+            "Kwic": "洞山便問：「如何是賓中主？」云：「白雲蓋青山。」",
+            "MasterName": "Dongshan Liangjie",
+            "Curated": true,
+            "AttributionNote": "In the source record (祖堂集), Source text (祖堂集); Dongshan Liangjie owns the exact evidence clause after complete-case review.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Liangjie",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "洞山便問：「如何是賓中主？」云：「白雲蓋青山。」",
+              "GrammaticalSubject": "Dongshan Liangjie",
+              "SpeechFrame": "Dongshan Liangjie owns the exact headword-bearing turn after review of the complete exchange and section heading.",
+              "FullCaseDecision": "Dongshan Liangjie owns the exact headword-bearing turn after review of the complete exchange and section heading."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0087b15",
+            "ToLb": "0087b15",
+            "Kwic": "如何是賓中主。師曰。長年不出戶。",
+            "Curated": true,
+            "AttributionNote": "In the source record (五燈會元), Source text (五燈會元); Dongshan Liangjie owns the exact evidence clause after complete-case review.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Liangjie",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Dongshan Liangjie",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "如何是賓中主。師曰。長年不出戶。",
+              "GrammaticalSubject": "Dongshan Liangjie",
+              "SpeechFrame": "Dongshan Liangjie owns the exact headword-bearing turn after review of the complete exchange and section heading.",
+              "FullCaseDecision": "Dongshan Liangjie owns the exact headword-bearing turn after review of the complete exchange and section heading."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1403.xml",
+            "FromLb": "0792a04",
+            "ToLb": "0792a04",
+            "Kwic": "賓中主即主中賓，逆順縱橫莫認真",
+            "Curated": true,
+            "AttributionNote": "In the source record (天如惟則禪師語錄), Source text (天如惟則禪師語錄); Tianru Weize owns the exact evidence clause after complete-case review.",
+            "MasterName": "Tianru Weize",
+            "ContextMasters": [
+              {
+                "MasterName": "Tianru Weize",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "賓中主即主中賓，逆順縱橫莫認真",
+              "GrammaticalSubject": "Tianru Weize",
+              "SpeechFrame": "Tianru Weize owns the exact headword-bearing turn after review of the complete exchange and section heading.",
+              "FullCaseDecision": "Tianru Weize owns the exact headword-bearing turn after review of the complete exchange and section heading."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0320c12",
+            "ToLb": "0320c13",
+            "Kwic": "四賓主。不同臨濟。主中賓。體中用也。賓中主。用中體也。",
+            "Curated": true,
+            "AttributionNote": "In the source record (人天眼目), Source text (人天眼目); Huiyan Zhizhao owns the exact evidence clause after complete-case review.",
+            "MasterName": "Huiyan Zhizhao",
+            "ContextMasters": [
+              {
+                "MasterName": "Huiyan Zhizhao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "四賓主。不同臨濟。主中賓。體中用也。賓中主。用中體也。",
+              "GrammaticalSubject": "Huiyan Zhizhao",
+              "SpeechFrame": "Huiyan Zhizhao owns the exact headword-bearing turn after review of the complete exchange and section heading.",
+              "FullCaseDecision": "Huiyan Zhizhao owns the exact headword-bearing turn after review of the complete exchange and section heading."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "B/B25/B25n0144.xml",
+          "X/X80/X80n1565.xml",
+          "X/X70/X70n1403.xml",
+          "T/T48/T48n2006.xml"
+        ],
+        "RelatedMasters": [
+          "Dongshan Liangjie"
+        ],
+        "RelatedTerms": [
+          "賓主",
+          "偏正",
+          "主中賓",
+          "主中主",
+          "賓中賓"
+        ],
+        "SearchAliases": [
+          "Caodong host-within-guest position"
+        ],
+        "ClaimAnchors": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "This separate sense denotes Caodong host-within-guest position, not Linji host-within-guest configuration.",
+          "EvidenceBody": [
+            "In Caodong guest-host discourse the same words name a position paired with host-within-guest's converse and with the bent-and-upright vocabulary. The Eye of Humans and Gods explicitly glosses Caodong's host-within-guest as 'function within essence' (用中體) and says this fourfold guest-host system is not the same as Linji's. In the Dongshan encounter, Dongshan asks 'what is host within guest?' and receives 'white clouds cover the green mountain'; another transmitted version assigns 'long years not leaving the house.' Later verse can say 'host within guest is precisely guest within host' and tell the hearer not to recognize a fixed pattern in reversal and accord. These are recorded formulas and answers, not an invitation to supply an interpretation beyond them."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "This separate sense denotes Caodong host-within-guest position, not Linji host-within-guest configuration.",
+          "CounterexampleOrLimit": "Separate school-specific referent, not a competing reading of one saying. Variant answers are retained as deployments within the Caodong positional category and are not split further.",
+          "DifferentThingTest": {
+            "Decision": "different-thing",
+            "ComparedThings": [
+              "Linji host-within-guest configuration",
+              "Caodong host-within-guest position"
+            ],
+            "Reason": "Only incompatible referents or explicitly distinct technical systems are split."
+          },
+          "AliasRationale": "Close English lookup wording only.",
+          "ModifierControls": [
+            "Longer formulas and paired devices were checked separately."
+          ],
+          "FamilyControls": [
+            "Related family terms do not donate meaning or source independence."
+          ],
+          "IndependentWorkIds": [
+            "work:B25n0144",
+            "work:T48n2006",
+            "work:X70n1403",
+            "work:X80n1565"
+          ]
+        }
+      }
+    ]
+  }
+}

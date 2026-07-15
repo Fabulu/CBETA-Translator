@@ -1,0 +1,95 @@
+{
+  "generatedUtc": "2026-07-15T05:55:40.529527+00:00",
+  "scope": "f003 Lane B 721-730 independent semantic review checkpoint",
+  "readOnly": true,
+  "method": "Every occurrence was read in its complete-case packet. MasterName was accepted only for the actual utterer of the headword; documentary narration, headings, action subjects, questioners, and section owners were distinguished. Prose hygiene and sense structure were also reviewed.",
+  "summary": {
+    "entries": 10,
+    "KEEP": 4,
+    "REVISE": 6
+  },
+  "rows": [
+    {
+      "ordinal": 721,
+      "id": "t_b90114146ebc",
+      "term": "本分",
+      "entrySha256": "9f2b19892a6f42b5ddc8f1ba4a35813e6f58726ecdea09333d0fe7a9c7afb57b",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 722,
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "entrySha256": "805aa6d9d2699704e7e62491a9834ca3f56a0de02f37778a6a39484ebeb14af0",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: Seasonal headings and event narration are assigned to record owners as if they uttered 開爐; heading/event actor attribution must be separated from speech."
+    },
+    {
+      "ordinal": 723,
+      "id": "t_cd69e0f9c10a",
+      "term": "古佛",
+      "entrySha256": "a1fdbd8f7beed06ba034a07fa8f009994b83e19ccc15ec2e6c38016fe7d21706",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 724,
+      "id": "t_44de1ff0a008",
+      "term": "帝釋",
+      "entrySha256": "c4252d7c6a8795a5cf036a1871fb77cf8cc57292799c90d8159d218982620919",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 725,
+      "id": "t_08bc07eb58ed",
+      "term": "一喝不作一喝用",
+      "entrySha256": "a883d6a2cc8be5ef61785e53f4ec410572f27bd05c01628cee83ce81fbacb0a9",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 726,
+      "id": "t_b59c4546a854",
+      "term": "行者",
+      "entrySha256": "58262762f80646feb0ad181dcb87a38ed95bc0f3a976a3c8bd81245e6a39907c",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O1-O4 put `monastery attendant recorded by the compiler` in MasterName. This is neither a personal name nor an utterer; narrative role evidence belongs in ActorAttribution."
+    },
+    {
+      "ordinal": 727,
+      "id": "t_a301d1290a7a",
+      "term": "庵主",
+      "entrySha256": "03714a29eae94b3d0f73df0bf28310662ce9d2e95bad99b6f48d758dd1891906",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: MasterName contains role labels and compiler descriptions (`Huxi hermitage keeper`, `compiler of the lamp record`) rather than exact headword utterers."
+    },
+    {
+      "ordinal": 728,
+      "id": "t_14fd93081516",
+      "term": "法語",
+      "entrySha256": "d94dfb7a220e0e85972c65fc499fb56665fbc7a51a1480126e32e713cafcb26c",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: Genre headings and compiler narration are stored as MasterName values such as `compiler of the ancestral guidelines` and `monastery ritual compiler`."
+    },
+    {
+      "ordinal": 729,
+      "id": "t_b54b72a8ff12",
+      "term": "殺人",
+      "entrySha256": "de7e4cf9c547e104ccc17393e5a294f1c43738c765d32cd95b768f52b2bc05db",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: The split between killing and resultative intensification is sound, but MasterName includes compiler/figure labels and does not consistently identify who utters the headword."
+    },
+    {
+      "ordinal": 730,
+      "id": "t_202ca9c2b59f",
+      "term": "結夏",
+      "entrySha256": "a8f425b40b1c92bb4c87301d4daf3c7054043c655444d6b5a9ef394ec213c9b8",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: Retreat openings and headings are assigned to masters/compilers as speech; narrator-governed institutional events need null MasterName with exact ActorAttribution."
+    }
+  ],
+  "promotionOrMergePerformed": false,
+  "siteTouched": false
+}

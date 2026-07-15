@@ -1,0 +1,130 @@
+{
+  "Id": "t_e5259ce8bbf5",
+  "SourceTerm": "垂示",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "an indication to an assembly or interlocutor",
+      "AlternateTargets": [
+        "case-preface pointer",
+        "catalogued textual indication",
+        "to offer an indication",
+        "to show or address"
+      ],
+      "SearchAliases": ["indication", "offer an indication", "give an indication", "public indication", "case pointer", "case preface", "case introduction", "prefatory pointer", "prefatory indication", "textual indication", "pointer before a case", "please show me", "request an indication", "teaching-seat indication"],
+      "Status": "preferred",
+      "Explanation": "An indication is an address or showing offered to an assembly or interlocutor. The same referent appears as an act, a fixed case-preface rubric, and a catalogued textual item; these are grammatical and editorial packages, not different things. The compound occurs 721 times in 201 allowlisted storage files. The Blue Cliff Record's fixed rubric “the indication says” (垂示云) introduces Yuanwu Keqin's pointer before a case. One begins, “a phrase that settles heaven and earth, honored through ten thousand generations” (定乾坤句，萬世共遵). Yunmen Wenyan's Extended Record counts “185 items of essential chamber sayings; 290 items of indications and substitute answers” (室中語要一百八十五則，垂示代語二百九十則). Tianyin Yuanxiu's record prints “chamber indication” (室中垂示) before his words. Public interviews expose the same act from the requesting side: unnamed monks ask Jiufeng Qin and Shoushan Xingnian to offer an indication, while Touzi Datong asks Cuiwei Wuxue. The answers—including Cuiwei's ‘Do you want a second ladle of foul water?’—show Zen bending ordinary indication into a named teaching-seat event that can be requested, delivered, prefaced, and collected.",
+      "Validation": "multi-source",
+      "Note": "The earlier draft split the printed pointer from the requested act. Full-family retesting collapses them: a rubric or contents heading packages the same indicatory address as text, while a public request asks for its delivery. Noun, verb, rubric, and catalogued item therefore remain one corpus-wide sense. No equation-style self-definition was found; the fixed rubric, counted division, and request-and-answer frames jointly establish usage.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0180a12",
+          "ToLb": "0180a13",
+          "Kwic": "垂示云。定乾坤句。萬世共遵。擒虎兕機。千聖莫辨。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): the headword is the impersonal editorial heading introducing Yuanwu Keqin's case pointer, not a phrase Yuanwu utters inside it. Yuanwu's following prose begins with a phrase settling heaven and earth.",
+          "ActorAttribution": {"Status": "impersonal", "Kind": "editorial rubric", "ActorLabel": "Blue Cliff Record case-pointer rubric", "ActorRole": "compiler", "GrammarEvidence": "垂示云 is a fixed label preceding Yuanwu's pointer prose; it has no human subject or speech turn of its own.", "ReviewedBy": "Codex full-case rubric review", "ReviewedUtc": "2026-07-15T02:38:00Z"},
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["record-owner", "commentator"]}]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0181c13",
+          "ToLb": "0181c14",
+          "Kwic": "垂示云。要道便道。舉世無雙。當行即行。全機不讓。",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): the headword is the impersonal editorial heading introducing Yuanwu Keqin's case pointer, not a phrase Yuanwu utters inside it. Yuanwu's following prose says to speak when speaking and act when acting.",
+          "ActorAttribution": {"Status": "impersonal", "Kind": "editorial rubric", "ActorLabel": "Blue Cliff Record case-pointer rubric", "ActorRole": "compiler", "GrammarEvidence": "垂示云 is a fixed label preceding Yuanwu's pointer prose; it has no human subject or speech turn of its own.", "ReviewedBy": "Codex full-case rubric review", "ReviewedUtc": "2026-07-15T02:38:00Z"},
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["record-owner", "commentator"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1988.xml",
+          "FromLb": "0553c24",
+          "ToLb": "0553c25",
+          "Kwic": "室中語要一百八十五則垂示代語二百九十則",
+          "Curated": true,
+          "AttributionNote": "The collection contents heading in the Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄) counts 185 essential chamber sayings and 290 indications and substitute answers. This is an impersonal editorial heading, not a narrated speaking turn; Yunmen Wenyan is the record-subject rather than its speaker.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "collection contents heading",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The two parallel noun phrases count the contents of the following divisions: 185 essential chamber sayings and 290 indications and substitute answers. In the XML they are separate paragraphs immediately after the volume heading and collector byline and before the 室中語要 section head, with no speech marker or human subject; the occurrence is therefore an editorial contents statement, not Yunmen Wenyan's spoken turn.",
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T04:45:53Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0528c18",
+          "ToLb": "0528c19",
+          "Kwic": "室中垂示，師云：「五更熟睡時，撞鐘不聞鐘聲，頃寤時鳴鼓，便聞鼓聲。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu gives the private-room indication and opens it with the contrast between not hearing the bell in deep sleep and hearing the drum upon waking.",
+          "MasterName": "Tianyin Yuanxiu",
+          "ContextMasters": [{"MasterName": "Tianyin Yuanxiu", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0654c02",
+          "ToLb": "0654c03",
+          "Kwic": "問：方便門中，請師垂示。師云：佛不奪眾生願。",
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): inside Jiufeng Qin's explicitly headed section, an unnamed monk asks Jiufeng Qin to offer an indication within the gate of expedients; Jiufeng answers that Buddha does not take away beings' wishes. All six rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed questioning monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex hard-w2-remaining300", "ReviewedUtc": "2026-07-14T07:45:00Z"},
+          "ContextMasters": [{"MasterName": "Jiufeng Qin", "Roles": ["respondent", "section-subject"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0116b21",
+          "ToLb": "0116b22",
+          "Kwic": "子曰。乞師垂示。師曰。更要第二杓惡水那。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Cuiwei Wuxue section: Touzi Datong is the exact speaker who asks the teacher to offer an indication; Cuiwei answers that he would then be asking for a second ladleful of foul water.",
+          "MasterName": "Touzi Datong",
+          "ContextMasters": [{"MasterName": "Touzi Datong", "Roles": ["utterer", "questioner"]}, {"MasterName": "Cuiwei Wuxue", "Roles": ["respondent", "section-subject"]}]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0669c04",
+          "ToLb": "0669c05",
+          "Kwic": "臨機一句截断眾流請師垂示師云棒下迸流星",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk requests an indication; Shoushan answers 'under the staff a shooting star bursts.' All six rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status": "reviewed-unnamed", "Kind": "monk", "ActorLabel": "unnamed monk", "ActorRole": "questioner", "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"], "ReviewedBy": "Codex hard-w2-b1", "ReviewedUtc": "2026-07-14T07:15:00Z"},
+          "ContextMasters": [{"MasterName": "Shoushan Xingnian", "Roles": ["respondent", "section-subject"]}]
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "T/T47/T47n1988.xml",
+        "C/C077/C077n1710.xml",
+        "J/J25/J25nB171.xml",
+        "X/X78/X78n1556.xml",
+        "X/X80/X80n1565.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Yunmen Wenyan",
+        "Tianyin Yuanxiu",
+        "Jiufeng Qin",
+        "Touzi Datong",
+        "Cuiwei Wuxue",
+        "Shoushan Xingnian"
+      ],
+      "RelatedTerms": []
+    }
+  ]
+}

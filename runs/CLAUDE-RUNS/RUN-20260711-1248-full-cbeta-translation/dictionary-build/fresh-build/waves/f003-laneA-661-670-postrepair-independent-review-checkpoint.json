@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "f003-postrepair-independent-exact-rereview-v1",
+  "reviewType": "read-only independent semantic rereview",
+  "wave": "f003",
+  "lane": "A",
+  "ordinals": [
+    661,
+    670
+  ],
+  "generatedUtc": "2026-07-15T06:08:52.170980+00:00",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "siteTouched": false,
+  "sourcePriorReview": "fresh-build/waves/f003-laneA-651-700-independent-exact-review.json",
+  "sourcePriorReviewSha256": "46165266b2fcc314f6ab4ed269f13805cfc053f53642d06ba407893329f7c687",
+  "formalGate": "fresh-build/waves/f003-laneA-651-700-formal-gate-author-repair.json",
+  "formalGateSha256": "0c9b2d2a06f8d9763ce1c4031dc3760a19b9020b7aa7c8b7ae135781ce28ff2d",
+  "formalGateHardPass": true,
+  "currentHashesVerified": true,
+  "occurrencesRead": 70,
+  "summary": {
+    "KEEP": 6,
+    "REVISE": 4
+  },
+  "rows": [
+    {
+      "ordinal": 661,
+      "id": "t_f74516e0ba71",
+      "term": "藥師",
+      "entrySha256": "30eb332474a04626e9dc8dc3fdd15c46cda5382116922778335759e54a36bf62",
+      "evidenceDraftSha256": "3101a988d7bc9e17f9df122dc931337d0907e6817c32550bfa6c903635aa2c02",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "藥師 is under-split: the corpus includes Medicine Buddha/ritual-title material, temple/name strings, and likely occupational wording, while the single target 'medicine master' and generic figure paragraph identify none of them. Actor labels such as 御選 and a poem title are not masters.",
+      "finding": "REVISE — The single target “medicine master” still merges Medicine Buddha, Medicine-Buddha scripture/ritual titles, and proper-name strings, while one selected row is a contents catalogue. Adjudicate the title/person family and remove catalogue contamination; the prose’s hypothetical ordinary physician is not anchored."
+    },
+    {
+      "ordinal": 662,
+      "id": "t_279cf2b97244",
+      "term": "佛祖",
+      "entrySha256": "fb965efd92dc71dd0e09d60d752b45371a5b771ce1f9bef9d64b29fda1c47585",
+      "evidenceDraftSha256": "a7761845fdd58421a2f5d8838ed5a85492e8a084f3ebf65451815fedce67d583",
+      "verdict": "REVISE",
+      "occurrencesRead": 9,
+      "priorFinding": "佛祖 is a collective phrase, not one 'figure.' The generic template omits its paired authority/lineage usage; the 古庭語錄 preface occurrence is specifically written by the named preface author Wu Yingbin (吳應賓), not an anonymous compiler, while other catalogue/preface rows and Chinese master labels remain unresolved.",
+      "finding": "REVISE — The paired-authority meaning is now clear, but preface/catalogue prose remains in the evidence and must be owned by its actual author rather than used as anonymous lineage speech. Replace or explicitly allocate documentary use."
+    },
+    {
+      "ordinal": 663,
+      "id": "t_127d59c584e2",
+      "term": "彌勒",
+      "entrySha256": "c4cbc81631ee10432babb3259f755d2aeb00dc20be5998064e36f79344f2c730",
+      "evidenceDraftSha256": "b0a0e211777c6c72e8be821f0652b67797df3e3100acfce1bcc0e1321282e294",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "priorFinding": "The Maitreya article is generic and does not surface the Chan deployments visible in the witnesses, including public questions and named-case uses. A catalogue row contributes no defining action, and Chinese master labels remain unresolved.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    },
+    {
+      "ordinal": 664,
+      "id": "t_10cf4ef63613",
+      "term": "竹篦",
+      "entrySha256": "279c5906bef099338aec326dd7896d2553747a4d6d001c9f0d3bdf083891feb9",
+      "evidenceDraftSha256": "ba41923783021324b7d4ef762f1e3f815b708a621a6b2c1d1e85ba2b33ebd40e",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "The bamboo-switch interpretation is promising, but the full contexts include Dahui's explicit naming/refusal test and quoted older turns whose utterers are not reliably separated. Five Chinese-script MasterName values violate roster-exact linkage and one quoted turn is compiler-owned.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    },
+    {
+      "ordinal": 665,
+      "id": "t_086985319a5b",
+      "term": "出世",
+      "entrySha256": "f97f2a05608a1689a19ca0b93c4f3f23e81c1cd3a655c6b81fbecab4a52ab4aa",
+      "evidenceDraftSha256": "f53297bb41ada939f07391e2e308b30cd76298731ca3d564f79202fe8843c875",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "priorFinding": "The explanation merges a buddha's appearance, a master's inauguration/public service, and ordinary emergence without a different-referent test. Catalogue evidence and non-roster actor names prevent the claimed Zen institutional bend from being securely anchored.",
+      "finding": "REVISE — A buddha appearing in the world and a lineage master taking up an abbacy are different events, not merely two readings. Split and anchor both; remove the unrelated “world-transcending dharma” substring and catalogue/preface material."
+    },
+    {
+      "ordinal": 666,
+      "id": "t_612cae8da268",
+      "term": "阿育王",
+      "entrySha256": "770717c863ba019193f2224912ae45f4f2b26a41b2e98b72a0dc8e7ae8391af8",
+      "evidenceDraftSha256": "b5bb8821aa671833b871be0bec6d58eff847c9b09d646b50941489780c7e3750",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "The generic Ashoka paragraph never identifies the relic/stupa and royal-question deployments actually present. Two catalogue/genealogy rows and four Chinese-script actor labels make the selected evidence both semantically thin and attribution-defective.",
+      "finding": "REVISE — Ashoka’s relic and stupa deployment is now visible, but genealogy/catalogue rows remain defining witnesses. Replace them with attributed royal-question or relic-distribution cases."
+    },
+    {
+      "ordinal": 667,
+      "id": "t_c4a694970a12",
+      "term": "洗鉢盂",
+      "entrySha256": "06691880cb7ee7c5697a1e44db087d81215c074c68de5fc9d44ff73b147aafa0",
+      "evidenceDraftSha256": "85f079af704f68ecc55f2d19d60b7e9f2dc16eedea425e4666d3f63a7f9ff580",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "priorFinding": "The ordinary bowl-washing scene and Zhaozhou bend are well stated, but later quoted retellings are assigned to compiler narration and the named masters are stored in non-roster Chinese forms. Exact utterer ownership therefore still fails.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    },
+    {
+      "ordinal": 668,
+      "id": "t_04efe13911ae",
+      "term": "不識",
+      "entrySha256": "7b2e6290c4bfa60ed0ab6a51870fe5c1ec8b0c1ad619e2a3bef3fad7ea7ea376",
+      "evidenceDraftSha256": "a506f8b56eb0b4e7f8857c99c601e496a424591bb8fc8b4df5ab0d6c6afafceb",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "priorFinding": "The prose usefully distinguishes denial from ignorance but claims a corpus test it does not spell out witness by witness. Multiple 師云/quoted answers remain narrator-owned, and the two named masters are not roster-exact.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    },
+    {
+      "ordinal": 669,
+      "id": "t_d8641f5a5751",
+      "term": "優波離",
+      "entrySha256": "fe30e1f6d07d5ecf2fa7b45f25ff038c2011462c7cc6db834b1b08d5f42269b6",
+      "evidenceDraftSha256": "4e400f7ab76b1591585d29e0b97d7830b990aecaff969b47f6519a13d3ecd4d5",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "priorFinding": "The generic Upali paragraph omits his precept/Vinaya role—the reason the Chan record invokes him—and does not separate the person from names/titles. Both named masters are Chinese-script labels and an embedded speech passage is compiler-owned.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    },
+    {
+      "ordinal": 670,
+      "id": "t_ed44feb90bc1",
+      "term": "晚參",
+      "entrySha256": "dba5af11a2c7cee241581ed73db10461936e55bf68f123ee1e49fd2b41fce985",
+      "evidenceDraftSha256": "66d6d09ca18e36ebf8941625346f0bc5899c49be19ce81d37647258c8cd5ba11",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "priorFinding": "An evening address is an institutional event, not the category menu 'implement, office, rite, or communal act.' The entry needs the actual evening hall sequence and contrast with other address forms, and its four master names are not roster-exact.",
+      "finding": "KEEP — The repaired entry answers its prior individualized finding: its English-first gloss states the corpus-bounded referent, the explanation names the characteristic Zen deployment, stored occurrences support that account without a newly exposed different-thing split, and the current exact-attribution/full-case metadata gives no remaining semantic or catalogue defect."
+    }
+  ]
+}

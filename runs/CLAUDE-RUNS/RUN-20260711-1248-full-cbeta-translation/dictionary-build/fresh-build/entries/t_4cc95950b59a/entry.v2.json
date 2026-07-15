@@ -1,0 +1,351 @@
+{
+  "Id": "t_4cc95950b59a",
+  "SourceTerm": "一句",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A evidence-first",
+  "WrittenUtc": "2026-07-15T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "one sentence or phrase",
+      "AlternateTargets": [
+        "a single unit of wording",
+        "one clause",
+        "one line",
+        "one saying"
+      ],
+      "SearchAliases": [
+        "one sentence",
+        "single sentence",
+        "one phrase",
+        "single phrase",
+        "one clause",
+        "single clause",
+        "one line",
+        "single line",
+        "one saying",
+        "single saying",
+        "unit of wording"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "15 exact evidence rows from 9 independent works are stored for this sense; repeated files or editions are not counted as separate works.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0497a15",
+          "ToLb": "0497a15",
+          "Kwic": "如何是第一句？",
+          "MasterName": null,
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The marked question assigns the exact headword to the unnamed monastic; the named teacher responds afterward.",
+            "ReviewedBy": "Codex f001 lane A independent-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "An unnamed monastic questioner in Source Record (鎮州臨濟慧照禪師語錄) owns the exact headword-bearing question; Linji Yixuan answers afterward."
+        },
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0497a19",
+          "ToLb": "0497a20",
+          "Kwic": "一句語須具三玄門，一玄門須具三要，有權、有用。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄), spoken by Linji Yixuan: Linji states that one phrase must contain three mysterious gates, each with three essentials, authority, and function.",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0140b22",
+          "ToLb": "0140b23",
+          "Kwic": "參得一句透。千句萬句一時透。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄), commentary by Yuanwu Keqin: Yuanwu says that penetrating one phrase penetrates a thousand and ten thousand phrases at once.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0140b24",
+          "ToLb": "0140b24",
+          "Kwic": "粉骨碎身未足酬。一句了然超百億。",
+          "MasterName": "Yongjia Xuanjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongjia Xuanjue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄): Yuanwu Keqin quotes a verse by Yongjia Xuanjue saying that pulverizing body and bones is insufficient repayment and that one phrase clearly understood surpasses a hundred billion. Parallel records explicitly introduce the line as Yongjia Xuanjue's."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0056b16",
+          "ToLb": "0056b17",
+          "Kwic": "經誦三千部。曹谿一句亡。",
+          "MasterName": "Fada",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), section on Fada: Fada speaks the verse contrasting three thousand recited scripture sections with their vanishing before one phrase of Caoxi.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fada",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0083a20",
+          "ToLb": "0083a21",
+          "Kwic": "士曰。不消一句。",
+          "MasterName": "Pang Yun",
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), section on Furong Taiyu: Pang Yun is the marked speaker (士曰) who says that not even one phrase is needed in his exchange with Furong Taiyu.",
+          "ContextMasters": [
+            {
+              "MasterName": "Pang Yun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0260a02",
+          "ToLb": "0260a03",
+          "Kwic": "悄然一句作麼生。師乃近前三步。",
+          "MasterName": "Mazu Daoyi",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), section on Shijiu: Mazu Daoyi asks how the silent phrase is; Shijiu answers by stepping forward three paces. The headword belongs to Mazu's question.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0564a10",
+          "ToLb": "0564a10",
+          "Kwic": "一句合頭語萬劫繫驢橛",
+          "MasterName": "Yulin Tongxiu",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of National Teacher Yulin (普濟玉琳國師語錄), small inquiry by Yulin Tongxiu: after raising Nanquan's ox case, Yulin comments that one conforming phrase is a donkey-tethering stake for ten thousand kalpas.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0384b09",
+          "ToLb": "0384b10",
+          "Kwic": "我有一句子，未曾向人說。",
+          "MasterName": "Yaoshan Weiyan",
+          "Curated": true,
+          "AttributionNote": "Anthology of the Patriarchal Hall (祖堂集), Yaoshan Weiyan section: Yaoshan says that he has one phrase he has never told anyone; Daowu Yuanzhi immediately answers him.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0469c12",
+          "ToLb": "0469c13",
+          "Kwic": "一句明明該萬象。重陽九日菊花新。",
+          "MasterName": "Fenyang Shanzhao",
+          "Curated": true,
+          "AttributionNote": "Supplement to the Transmission of the Lamp (續傳燈錄), section on Fenyang Shanzhao: Fenyang speaks the verse saying that one phrase plainly encompasses the myriad forms and that the Double-Ninth chrysanthemum is fresh.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0016b10",
+          "ToLb": "0016b11",
+          "Kwic": "作麼生道得出格一句？良久，喝一喝",
+          "MasterName": "Muchen Daomin",
+          "Curated": true,
+          "AttributionNote": "Compilation of Raised Old Cases in the Chan Gate (宗門拈古彙集), explicitly introduced as Tiantong Muchen Daomin's comment (天童忞云): Muchen asks the assembly to produce an out-of-pattern phrase, pauses, and shouts once.",
+          "ContextMasters": [
+            {
+              "MasterName": "Muchen Daomin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0006c18",
+          "ToLb": "0006c19",
+          "Kwic": "且道報恩一句作麼生道？一爐沉水一聲佛",
+          "MasterName": "Ying'an Tanhua",
+          "Curated": true,
+          "AttributionNote": "Record of Guidelines by Successive Patriarchs (列祖提綱錄), imperial-birthday hall address explicitly assigned to Ying'an Tanhua (應庵華禪師): Ying'an asks how the gratitude-repaying phrase is voiced and supplies the capping line.",
+          "ContextMasters": [
+            {
+              "MasterName": "Ying'an Tanhua",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0018c01",
+          "ToLb": "0018c01",
+          "Kwic": "祖師有末後一句，吞栗棘蓬，跳金剛圈。",
+          "MasterName": "Yuanwu Keqin",
+          "EvidenceRole": "family",
+          "Curated": true,
+          "AttributionNote": "Record of Guidelines by Successive Patriarchs (列祖提綱錄), return-to-monastic-robes address explicitly assigned to Yuanwu Keqin: Yuanwu says that the patriarchs have a final phrase, followed by swallowing the thorny chestnut burr and leaping the diamond ring.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0134c10",
+          "ToLb": "0134c11",
+          "Kwic": "向上一句作麼生論量？常憶江南三月裏，鷓鴣啼處百花香。",
+          "MasterName": "Chushi Fanqi",
+          "EvidenceRole": "family",
+          "Curated": true,
+          "AttributionNote": "Record of Guidelines by Successive Patriarchs (列祖提綱錄), water-and-land assembly address in which Chushi Fanqi identifies himself by name: Chushi asks how the upward phrase can be assessed and answers with a remembered Jiangnan spring scene.",
+          "ContextMasters": [
+            {
+              "MasterName": "Chushi Fanqi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0075b16",
+          "ToLb": "0075b17",
+          "Kwic": "直饒一句下承當得，猶是瞌睡漢。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "AttributionNote": "Record of Guidelines by Successive Patriarchs (列祖提綱錄), hall address explicitly assigned to Yunmen Wenyan: Yunmen says that even someone who accepts it under one phrase is still a dozing fellow.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1985.xml",
+        "T/T48/T48n2003.xml",
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2076.xml",
+        "B/B27/B27n0152.xml",
+        "B/B25/B25n0144.xml",
+        "T/T51/T51n2077.xml",
+        "X/X66/X66n1296.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Yuanwu Keqin",
+        "Yongjia Xuanjue",
+        "Pang Yun",
+        "Mazu Daoyi",
+        "Yulin Tongxiu",
+        "Yaoshan Weiyan",
+        "Fenyang Shanzhao",
+        "Muchen Daomin",
+        "Ying'an Tanhua",
+        "Chushi Fanqi",
+        "Yunmen Wenyan",
+        "Yantou Quanhuo"
+      ],
+      "RelatedTerms": [
+        "句",
+        "第一句",
+        "末後一句",
+        "向上一句",
+        "出格一句",
+        "一句子",
+        "一句合頭語",
+        "三玄三要"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "A single phrase is the demanded or decisive saying within an encounter: records ask for first, second, third, final, or beyond-level phrases and test whether one phrase can carry the matter. The selected exact turns and their attributed speakers or narrators bound this account; the entry does not add a resolution beyond those deployments."
+    }
+  ]
+}

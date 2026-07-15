@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [81, 83, 84, 85, 86, 87, 88, 91, 93, 95, 96, 97, 98],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T03:45:00Z",
+  "scope": "Read-only rereview of all thirteen repaired entries against the original independent findings, focused hard gate, promoted hashes, semantic rereview packet, complete cases, exact actor repairs, sense boundaries, openings, and forbidden terminology.",
+  "inputs": {
+    "semanticRereviewPacket": {"path": "fresh-build/waves/f001-laneB-081-100-semantic-rereview-packet.json", "sha256": "c113cee65b1b9b8305a94d12a11c4fae0171d0631997fe49794d4824eb62dbb7"},
+    "focusedRepairGate": {"path": "fresh-build/waves/f001-laneB-081-100-semantic-repair-gate.json", "sha256": "82bd1fac5b29573e87b10060e61b2bf58f6a4afb5e56764e7c1685569acc8166"},
+    "attributionPacket": {"path": "fresh-build/waves/f001-laneB-081-100-semantic-repair-gate-attribution-packets.json", "sha256": "fe8c822aff43d204c8b7e2c4dc747157e92f6d10e49e746317663c596f6af92d"},
+    "originalReview": {"path": "fresh-build/waves/f001-laneB-081-100-independent-semantic-review.json", "sha256": "32d6b5ee36856ec622829d0206063beebc289b6af63406667cf8c4743855c3e2"}
+  },
+  "summary": {"KEEP": 12, "REVISE": 1, "reviseOrdinals": [85], "assessment": "Twelve repairs satisfy every original required change. 方丈 retains one explicitly identified unanchored historical claim."},
+  "findings": [
+    {"ordinal": 81, "id": "t_8a06e7d99b19", "term": "法嗣", "entrySha256": "b8c074024622f573372c43a3db625c040f9ad0b0ab5b48869dfa9b09e4242c9d", "verdict": "KEEP", "assessment": "The reversed 嗣法 row was removed from both senses, work counts were reconciled, and person-heir versus affiliation remains a clear different-thing split."},
+    {"ordinal": 83, "id": "t_0fb794f515bd", "term": "法身", "entrySha256": "db0e4fc79f789d7ea0c98dfd9fa2ce619fbb79f53287bb31201dd19a2efff323", "verdict": "KEEP", "assessment": "Lishan, Xiyuan, and Jiashan interview evidence is now actor-pure, with unnamed questions separated from named responses; the one-sense decision remains coherent."},
+    {"ordinal": 84, "id": "t_b48fa1daa7d4", "term": "虛空", "entrySha256": "229520b2fb6f9d2118889a6bf673ce3552842007e131051b7c54db875dfc5aae", "verdict": "KEEP", "assessment": "The Cao Benrong memorial is now compiler narration with Cao retained only as person described. No semantic regression."},
+    {"ordinal": 85, "id": "t_becc0a1ea8cb", "term": "方丈", "entrySha256": "81a9f91c32f38ad02f5403c2367de956f62e3d48ab5dcf34988314639fbe3966", "verdict": "REVISE", "assessment": "Baiyu Jingsi is correctly roster-normalized throughout and room versus resident remains a sound split. However, the opening still says the room is 'traditionally described as a ten-foot-square space.' None of the nine stored occurrences anchors that historical description. The original review required an allowlisted anchor or deletion; neither occurred.", "requiredChanges": ["Remove the ten-foot-square historical clause, or add and verify an allowlisted occurrence that explicitly supports it; do not rely on outside etymology."]},
+    {"ordinal": 86, "id": "t_ca8f7f2d5d03", "term": "法眼", "entrySha256": "18f6a24845257071797a760204c3300541e880f6a04fa452899f3f96d6ae49a5", "verdict": "KEEP", "assessment": "Jiashan question and answer are separated; Fayan headings/biography are narrator-owned while 法眼益云 remains Fayan's speech. Word/person split is preserved."},
+    {"ordinal": 87, "id": "t_ac4749b5b609", "term": "無生", "entrySha256": "eb27201004ebe2f9b42c419418ef459d542faf7e7ba60e9472ea578f20edf0c1", "verdict": "KEEP", "assessment": "The 無生曲 question now belongs to the unnamed monk with Touzi as respondent/context, and family evidence is not miscounted as bare-headword depth."},
+    {"ordinal": 88, "id": "t_04bce52397dc", "term": "三昧", "entrySha256": "96dd61eefef4601f914544225d18625a91f2d03a46cd30572ccd24b9ec9a878c", "verdict": "KEEP", "assessment": "Forbidden meditation language and invented 'complete command' were removed; the Huineng lexical row left the person sense; ordination biography is narrator-owned. The cautious 'named condition' label is corpus-honest, if deliberately noncommittal."},
+    {"ordinal": 91, "id": "t_549e7766dfa1", "term": "一著", "entrySha256": "84876d14ded14922069b0bf4cf10f84988da867e4f937faf4dceea37078192b6", "verdict": "KEEP", "assessment": "Baiyu Jingsi is roster-exact and synchronized across attribution and context."},
+    {"ordinal": 93, "id": "t_358f56dbf990", "term": "善知識", "entrySha256": "f1caf4d8b5962acc739ee7fa6765bec208a1d330d18af38de0f291459f9de22d", "verdict": "KEEP", "assessment": "Guide/teacher and assembly vocative are now distinguishable senses with evidence under each; Fohai's case answer remains case evidence rather than the universal gloss."},
+    {"ordinal": 95, "id": "t_62bc43101d57", "term": "無相", "entrySha256": "5645aa06573c488e2246f5073ac3b97a226fd03b4abaae9e0f00c77681dc1194", "verdict": "KEEP", "assessment": "All Master Wuxiang headings and biographies are narrator-owned with the named people retained contextually; adjective/person split remains intact."},
+    {"ordinal": 96, "id": "t_d1e06fd225fa", "term": "入室", "entrySha256": "e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff", "verdict": "KEEP", "assessment": "Interview entry and ordinary room entry remain different events, and all requested movement rows are correctly narrator-owned with entrants represented as actors/context people."},
+    {"ordinal": 97, "id": "t_0427b79d8ba4", "term": "衲子", "entrySha256": "dc4ef7eb36815c92580c6f3e1e17c388f9c2924124b15468eb3f853871135c52", "verdict": "KEEP", "assessment": "The Shanhui case now assigns the headword question to the unnamed monk and retains Shanhui solely as respondent/context; the answer is not substituted for the gloss."},
+    {"ordinal": 98, "id": "t_6293dead3bb2", "term": "轉身", "entrySha256": "a68f07447986426385e13aefd1296787b88e1a13f5add2f74be6e6690883dff0", "verdict": "KEEP", "assessment": "Magu and Hanyue physical turns are narrator-owned with the masters as grammatical actors. Literal motion and productive compounds correctly remain one turning action."}
+  ]
+}

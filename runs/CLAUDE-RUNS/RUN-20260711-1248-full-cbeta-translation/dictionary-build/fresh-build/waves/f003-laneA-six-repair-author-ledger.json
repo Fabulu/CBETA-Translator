@@ -1,0 +1,17 @@
+{
+  "wave":"f003","lane":"A","role":"repair author",
+  "sourceReview":"fresh-build/waves/f003-laneA-651-700-revise15-round3-fresh-independent-exact-review.json",
+  "scope":{"entries":50,"revised":6,"repaired":6,"priorKeepsUntouched":44},
+  "verification":{"fullFormalGate":"fresh-build/waves/f003-laneA-six-complete-formal-gate.json","hardPass":true,"exactKwic":356,"exactFailures":0,"attributionPacketGeneratorVersion":3,"clusterScopeEntries":6,"strictRosterScopeEntries":6},
+  "pendingRoster":{"path":"fresh-build/pending-roster.json","status":"awaiting-roster-integration","evidenceRequirement":"Every added candidate has source-exact zc.verify-backed Kwic, reviewedBy, and reviewReport."},
+  "repairedEntryHashes":{
+    "t_6e4234dfd60f":"90f53757aa5bb538bcd3369cfc880ba6fab7d56d76ae36ed31b87f9be633ee9b",
+    "t_df0ba3a57ecf":"a569947a316def73a346acbe4e818b034a3fc1c8c49bf6bc7352d842304fb339",
+    "t_cbf868f557e2":"412f5f2b03eb8545cfe6f9a1c16b95ee26a6bfbd2347be104f0d3f4e0905721c",
+    "t_cb44465faa59":"b45ed9bc4dc0a9322117ebd4855b3bc56e8efba739d0b484f7e34eae84a792b7",
+    "t_4da199fae933":"8149208763ca19440f8d7db5adffc2aff72aa3f40b04086a94298243c33e4fcc",
+    "t_cc8c8a1cb550":"1f873dcbc65dcdffa85a5ed9930a2ba9df08ebb545f84229143adf66330aad5d"
+  },
+  "selfReview":false,"promotion":false,"merge":false,"siteTouched":false,
+  "status":"repair-author-work-complete; independent rereview required"
+}

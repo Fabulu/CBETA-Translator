@@ -1,0 +1,130 @@
+{
+  "Id": "t_e1eda88159c6",
+  "SourceTerm": "優曇華",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:09:02.950859+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the udumbara flower",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "the udumbara flower",
+        "優曇華"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0754a16",
+          "ToLb": "0754a16",
+          "Kwic": "萬靈體之如優曇華。",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (天目中峰廣錄). The sentence belongs to Zhongfeng Mingben’s continuous authored record context.",
+          "MasterName": "Zhongfeng Mingben"
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0359b14",
+          "ToLb": "0359b14",
+          "Kwic": "曰恁麼即優曇華折曲為今時。",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Gule Yuanyan",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), Gule Yuanyan section: an unnamed monk utters the headword in his follow-up. Exact headword actor: unnamed monk questioning Gule Yuanyan.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk questioning Gule Yuanyan",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 A601-650 round3 repair author",
+            "ReviewedUtc": "2026-07-15T09:05:00Z",
+            "GrammarEvidence": "The complete case assigns the exact headword clause to this unnamed turn, not to the surrounding lineage or section heading."
+          }
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0841c07",
+          "ToLb": "0841c08",
+          "Kwic": "如優曇華時一現。",
+          "Curated": true,
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (大慧普覺禪師語錄): exact actor (大慧普覺禪師) owns the headword-bearing wording. Exact headword utterer: Dahui Zonggao."
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0015a06",
+          "ToLb": "0015a07",
+          "Kwic": "道人優曇華，迢迢遠山綠。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (列祖提綱錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "B/B25/B25n0145.xml",
+        "T/T47/T47n1998A.xml",
+        "T/T51/T51n2076.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "The udumbara flower is invoked as something that appears only rarely. Dahui says it appears once in its season. Other records apply the flower to a person, a present occasion, or a folded appearance; the word can praise rarity without every use naming the same meeting or figure."
+    }
+  ]
+}

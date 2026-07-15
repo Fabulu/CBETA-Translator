@@ -1,0 +1,95 @@
+{
+  "generatedUtc": "2026-07-15T05:55:40.529527+00:00",
+  "scope": "f003 Lane B 701-710 independent semantic review checkpoint",
+  "readOnly": true,
+  "method": "Every occurrence was read in its complete-case packet. MasterName was accepted only for the actual utterer of the headword; documentary narration, headings, action subjects, questioners, and section owners were distinguished. Prose hygiene and sense structure were also reviewed.",
+  "summary": {
+    "entries": 10,
+    "KEEP": 6,
+    "REVISE": 4
+  },
+  "rows": [
+    {
+      "ordinal": 701,
+      "id": "t_8fab213d600f",
+      "term": "老子",
+      "entrySha256": "f855a117a8ad0ea528bb73e0dbc1cd81c874ccbfa6d8229865fdfe2c5bd786ad",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 702,
+      "id": "t_171059a90935",
+      "term": "西來意",
+      "entrySha256": "d81dae76c19e1baee5173e94ccd94b49b0957b930aae5831c5a9ff071ab45055",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: Unnamed monks utter O1-O4 and O7-O8, but ActorAttribution.Status is `narrated`; these are reviewed-unnamed questioners, not compiler narration."
+    },
+    {
+      "ordinal": 703,
+      "id": "t_6eec786c1525",
+      "term": "堂奧",
+      "entrySha256": "23e9ce9396bd039f858a3f03ab8d58e31398d603cd66966da38e3a851704b7a9",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O1 and O5 are uttered by unnamed questioners but encoded as `narrated`; the full cases explicitly open 問/僧問."
+    },
+    {
+      "ordinal": 704,
+      "id": "t_fe03a2a24e00",
+      "term": "維那",
+      "entrySha256": "f12b6e4d565e5fe01966d3b8d76d796a34fd036f017a239011e5f5f44bd0a550",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 705,
+      "id": "t_eea2b5e58c24",
+      "term": "院主",
+      "entrySha256": "fd2446340d7b640cceaf73055cedeba431300a65770b6a2605eb45107ae36a07",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 706,
+      "id": "t_a5ffef8b3f2d",
+      "term": "堂頭和尚",
+      "entrySha256": "3143aa3472ef0b4df2bf8b18ba38865070189ebbf591ffe70e6c73e50939137f",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 707,
+      "id": "t_af814bc95cd7",
+      "term": "開口",
+      "entrySha256": "0ae7d9998ed0640527d6acee402d04a3d6e64b17fc422920920f5691016e70e1",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O8 stores `the identified teaching-seat speaker in the Ancestral Guidelines section` in MasterName; this is an unresolved descriptive label, not a named exact utterer."
+    },
+    {
+      "ordinal": 708,
+      "id": "t_21d597c07ca4",
+      "term": "禪院",
+      "entrySha256": "53aeafa068f31a9283b0a1d6de45939a0a9a827748ac54aa041aeff86d553606",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    },
+    {
+      "ordinal": 709,
+      "id": "t_9edf120e470a",
+      "term": "商量",
+      "entrySha256": "9d66ac265b606d21dfb0948190f8ce8755317b37758a407c4471a85dd7f67819",
+      "verdict": "REVISE",
+      "reviewNotes": "REVISE: O6 contains Nanquan's direct `從來與師兄商量語句`, but is assigned to the compiler-narrator; O9 is likewise a marked hall-address turn demoted to narration."
+    },
+    {
+      "ordinal": 710,
+      "id": "t_f66eb09413fb",
+      "term": "三十棒",
+      "entrySha256": "0b4d31676fc8f9ca1c58075f0c9c8b6cac06adc62a10473a33684dafd5cc245c",
+      "verdict": "KEEP",
+      "reviewNotes": "KEEP: full-case occurrence review supports the exact actors, sense boundary, English gloss, anchored prose, and corpus-specific Chan deployment on this hash."
+    }
+  ],
+  "promotionOrMergePerformed": false,
+  "siteTouched": false
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "A",
+  "reviewer": "a_checkpoint_review",
+  "scope": "Independent post-repair review of the 16 prior REVISE entries plus immutable-hash audit of the 24 prior KEEP entries.",
+  "policy": "Every repaired coordinate and enrichment was read in expanded full-case context. KEEP is bound to the current entry SHA-256; mechanical cohort PASS does not override actor, sense, modifier, nesting, opening, or WORK-ledger defects.",
+  "originalKeepIntegrity": {
+    "expected": 24,
+    "checked": 24,
+    "unchanged": 24,
+    "changed": 0,
+    "verdict": "PASS"
+  },
+  "entries": {
+    "t_ab6276be6e08": {
+      "term": "末後句",
+      "verdict": "KEEP",
+      "reviewedSha256": "4ab889f6100fa01b4d4e9fe648284da0cfd927fe730c57099b5a0e53d526f41c",
+      "finding": "The repair genuinely resolves item 8. Six independently attested verbal phrase/test uses remain in sense 1; Zhongfeng Mingben's explicitly reported seated-or-standing death classification is isolated as one provisional act-referent in sense 2. The full context shows Zhongfeng reporting and criticizing that classification, and the prose correctly attributes rather than universalizes it. No actor or new gloss defect was introduced."
+    },
+    "t_67bff0d0e5d3": {
+      "term": "僧問",
+      "verdict": "KEEP",
+      "reviewedSha256": "42b3cfe30fead565ae796079030e309d24a4ea4ab8323ae44e1468f2f3c6a786",
+      "finding": "The four formerly orphaned respondents are now resolved in full context as Oxhead Zhiwei, Helin Xuansu, Budai Qici, and Tianyi Yihuai. All ten headword occurrences remain compiler-governed recorder formulas, and none transfers ownership to the respondent. The explanation names the repaired respondents while preserving the reviewed-unnamed questioning monks."
+    },
+    "t_8f7b20536cb6": {
+      "term": "和尚",
+      "verdict": "REVISE",
+      "reviewedSha256": "12c97968a0e2e63824e8f79a3a5c2e683f59e862934cf917a7b28376988b65fd",
+      "finding": "The compound-only plural sense was correctly removed and the two actual roles remain distinguishable, but the heading/narrator repair is incomplete in structured roles. Sense 1 occurrence 4 (X79n1557:1018b29) correctly has MasterName null and narrated/compiler, yet ContextMasters still calls Wuzu Fayan `utterer` of the headword-bearing recorder formula; occurrence 7 (X80n1565:0116a19) likewise calls Yezhu Fusheng `utterer` while classifying the Budai title formula as compiler narration. Sense 2 occurrence 1 (J38nB417:0493c02) is an impersonal `得戒和尚贊` heading but calls Tianze Neng `utterer` rather than verse-author/compiler context. Replace exact-headword-utterer implications with the accurate closed contextual roles and make AttributionNotes unambiguous."
+    },
+    "t_e4d6ebff1bb2": {
+      "term": "如何是佛",
+      "verdict": "KEEP",
+      "reviewedSha256": "89276b7cd9cb4e642c4b9f09a6938f05b9bc866d49920973da118d7741a2ca6d",
+      "finding": "Every retained respondent is now named after full-case review: Mazu Daoyi, Xuefeng Yicun, Baizhang Huaihai, Guyin Yuncong, Tianyi Yihuai, Dongshan Shouchu, and Zhu'an Shigui. Question ownership remains with Damei or the reviewed-unnamed monk. The revised opening names the answerers, keeps the public question stable, and does not promote any answer into its definition."
+    },
+    "t_6f47a97d45b0": {
+      "term": "序",
+      "verdict": "REVISE",
+      "reviewedSha256": "520a55b621e89c951ff473fc8af122231638835a0e9f21e78fc0d503f1dc4e5f",
+      "finding": "The prose now states the metadata distinction, but the structured data still contradicts it. Occurrence 2 (X72n1437:0384b20) is correctly impersonal/compiler for the repeated `永覺和尚廣錄序` heading yet ContextMasters still labels Lin Zhifan `utterer`; occurrence 6 (X67n1303:0267c05) is likewise an impersonal `林泉老人評唱…總序` title but labels Linquan Conglun `utterer`. Use compiler/preface-author/commentator contextual roles without claiming utterance of impersonal metadata, and recheck the same role pattern on all heading rows."
+    },
+    "t_5ddde30711a4": {
+      "term": "金鎖玄路",
+      "verdict": "REVISE",
+      "reviewedSha256": "fec8f612f35768077ff5dbdbe7d73b261c6d88f1211ad9bcc0ba4ef7dc98e310",
+      "finding": "The displayed `gold-lock barrier` target fixes the material-looking English, but the mandatory modifier study is not durably evidenced and WORK contradicts the entry. WORK still says `display-modifier-verdict: retain golden lock`, provides no representative exact anchors or counterexamples for the claimed 397 金鎖 / 49 黃金鎖 controls, and even states `gold functions as a lock` rather than classifying material, conventional-name, appearance, figurative-image, or unresolved relations passage by passage. Update WORK with counts, exact controls/counterexamples, and family keep/revise decisions, then make it agree with the non-materially misleading target. The four headword cases and their actors remain sound."
+    },
+    "t_4f7bd98ad40f": {
+      "term": "上堂",
+      "verdict": "REVISE",
+      "reviewedSha256": "b821ee54d3208b78d22c092347f755e657cdaff6e238adfe6baa8b25663a02b0",
+      "finding": "The unsupported physical sense was correctly merged, but the merged enrichment exposes exact-actor defects. Occurrence 13 (T47n1985:0496b14) stores Linji Yixuan as MasterName although `師上堂云` is the compiler's event narration and Linji only begins speaking after 云. Occurrence 11 (X72n1437:0577a14) is biographical narration that Yongjue had prohibited hall addresses and later mounted the seat, so it is narrated/compiler, not impersonal metadata. Occurrence 12 (X64n1260:0001a17) occurs inside Jiexian's authored preface sentence; either Jiexian utters the headword or his authorship must be represented precisely, not null/impersonal while ContextMasters says utterer. Correct these three actor outcomes and re-read the merged prose."
+    },
+    "t_f6dadadcbef5": {
+      "term": "無事",
+      "verdict": "KEEP",
+      "reviewedSha256": "39b6823ddc5fc92568922e4489113d58ec4df2645b3c26ce997c5ab3d81dc0f5",
+      "finding": "The depth repair adds three distinct later works and full contexts by Yuanwu Keqin, Dahui Zonggao, and Yongjue Yuanxian. Their exact turns establish later assertion, qualification, and institutional dismissal rather than duplicating Linji/Huangbo. All eleven actors are supported, seven-work breadth is real, and the opening still fits the enriched evidence without claiming inactivity."
+    },
+    "t_dab856504b69": {
+      "term": "作家",
+      "verdict": "KEEP",
+      "reviewedSha256": "c6abc5ca023c8a147c97b383b9540e1c85a34a05414b4819e0e73057967c6531",
+      "finding": "Two independent later witnesses broaden the entry to six works: Yuanwu uses the term for the required hand/capability, and Mingjue Cong applies it to Emperor Zhuangzong as an adept ruler. Full contexts preserve demonstrated competence across teacher, interlocutor, battle-general, poet, and ruler roles. The recorded ordinary author/maker falsification supports retaining one adept sense; no new actor or split defect appears."
+    },
+    "t_3a0a4e68cf13": {
+      "term": "葛藤",
+      "verdict": "KEEP",
+      "reviewedSha256": "0d511b0cf0699cdc196fde97c8e76840e1a17b7d57c53e192d212477bf82e5f8",
+      "finding": "All eight selected contexts remain named speech and visibly govern words, cases, teaching labels, or discourse offered for disentangling. The added literal-control record reports plant predicates and collocations across the exact pool and finds them governing discourse/lineage proliferation rather than an independently active botanical object. The verbal-tangle opening remains supported and no second retained thing is evidenced."
+    },
+    "t_8ece09f6b91a": {
+      "term": "正法眼藏",
+      "verdict": "REVISE",
+      "reviewedSha256": "bd12d210c24377b2d05e9abe95ed72ce6bdb8e698f878fbecefe4df629be3519",
+      "finding": "The two PreferredTargets are now independently readable and the prose cleanly distinguishes lineage possession from Dahui's book, but title sense occurrence 1 (X72n1444:0828b03) still labels Zhanran Yuancheng `utterer` in ContextMasters while MasterName/ActorAttribution correctly classify `重刻正法眼藏序` as impersonal compiler metadata. Change Zhanran to preface-author/compiler context without an exact-headword utterer implication. Occurrence 2 is correctly narrated/compiler with Zhanran as compiler and Dahui person-described."
+    },
+    "t_7182bedf65d1": {
+      "term": "下語",
+      "verdict": "KEEP",
+      "reviewedSha256": "7f97772424bd57acaaeb5fe156b23bfea004c7b06e6695385500c517b6e6747a",
+      "finding": "Occurrences 1, 3, 4, and 5 now correctly classify the headword-bearing action reports as compiler narration; occurrence 7 correctly changes Nanyue Huairang to person-described while Hongzhi remains later quoter/record owner. Langye's own response remains his exact utterance. The one public response operation still covers act and product without a grammatical pseudo-split."
+    },
+    "t_ebb0995c99fc": {
+      "term": "頓悟",
+      "verdict": "KEEP",
+      "reviewedSha256": "30d366c332c2cf06d0c115152ce8b9788f3fc3cd4cc9a19c0c8871043fefd6a4",
+      "finding": "The longer treatise title has been removed from occurrences, prose, and exact-depth accounting. Seven exact lexical witnesses across six works still cover direct definition, sudden/gradual contrasts, encounter narration, matrix classification, and capacity testing. Their actors and the single awakening-event sense remain supported."
+    },
+    "t_1e41b014d80e": {
+      "term": "向上一路",
+      "verdict": "KEEP",
+      "reviewedSha256": "6bf07c9f25c6600a06d3e2b3c1634218ef9b686598d158bfdc01bb18134bb1a0",
+      "finding": "The duplicate Panshan parallel is no longer curated. Juelang Daosheng's distinct hall statement supplies the seventh witness and applies the road as a separately honored institutional classification after a three-sentence framework. All seven actors are supported, six-work spread is real, and the diverse replies still prevent a fabricated universal route explanation."
+    },
+    "t_62044e7bbb87": {
+      "term": "本分事",
+      "verdict": "KEEP",
+      "reviewedSha256": "ea1a12ea8189dcad2cf1311c89bd4c117a44fa8ab1086918e71d42da04c172aa",
+      "finding": "The final occurrence, explanation, AttributionNote, ContextMasters, and related-master inventory now consistently use roster-canonical Nanquan Puyuan. Full-case review supports Nanquan as the exact utterer. The interview matter and role-specific proper-duty senses remain different things and no other name drift was introduced."
+    },
+    "t_ba841f6e11c8": {
+      "term": "乾屎橛",
+      "verdict": "KEEP",
+      "reviewedSha256": "318fa9e58292ec772563c9b14f954d454b5c8d0151d53159837c11b26554ca65",
+      "finding": "The opening now follows the controlling calibration: it names the dry shit-stick as the latrine wiping-tool, immediately grounds the Chan deployment, and refuses material-construction or symbolic reading menus. All seven actors and cases remain supported, including Wanpu Zhao as identified non-master questioner and Miyun Yuanwu as respondent."
+    }
+  }
+}

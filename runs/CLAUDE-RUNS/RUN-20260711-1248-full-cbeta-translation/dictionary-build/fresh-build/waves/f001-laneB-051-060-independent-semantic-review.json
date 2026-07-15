@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "B",
+  "scope": {
+    "ordinals": [51, 60],
+    "entries": 10,
+    "packet": "fresh-build/waves/f001-laneB-051-060-semantic-review-packet.json"
+  },
+  "reviewKind": "independent-full-case-semantic-review",
+  "policy": "Hash-bound read-only review under the current DICTIONARY_ENTRY_GUIDE.md. Prior attribution packets were navigation only. KEEP requires correct meaning and different-thing boundaries, exact headword utterer versus context master, independent work support, sufficient depth, a corpus-earned English opening rather than calque/quotation-first prose, controlled aliases, anchored quotations, public-feedback compliance, modifier-family compliance, and zero forbidden framing.",
+  "reviewed": 10,
+  "keep": 4,
+  "revise": 6,
+  "jointChecks": {
+    "exactOccurrences": 65,
+    "exactClaimAnchors": 3,
+    "exactKwicAndLineReplay": "68/68 PASS",
+    "headwordOccurrencesHaveOwnSense": "10/10 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "quotedChineseAnchored": "77/77 PASS",
+    "depthSenseHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "publicFeedbackMechanicalFlags": 0,
+    "forbiddenTermHits": 0
+  },
+  "entries": [
+    {
+      "id": "t_0b8912312b92",
+      "term": "大用現前",
+      "ordinal": 51,
+      "reviewedSha256": "3981fd590be639cb6367c6aff77a7337954f9dea73d2293886b876ee2698d07c",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One sense is warranted: appearing, being demanded at an encounter, being asked about, and being rejected as an explanation of killing cases all concern full capacity/function coming into view. Different actions and Dahui's hostile appraisal are deployments or stances, not different referents."
+        },
+        {
+          "kind": "opening-and-evidence",
+          "finding": "The opening supplies a reader-ready English referent before examples, then limits the Chan bend to anchored public questions, assembly demands, and case commentary. Dazhu's equation, Changqing and Yunmen questions, Yuanwu's comparison, and Dahui's rejection are all individually anchored."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "The two unnamed monks own their question turns; named respondents remain context only where they do not repeat the headword. Seven occurrences across four independent works satisfy depth and multi-source support. SourceTexts, aliases, quotation anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_372fb5a2b7ce",
+      "term": "活句",
+      "ordinal": 52,
+      "reviewedSha256": "4a5b6c51c755c226b97aaab6de505e82930d001cd62cc78cf29bc1850ec23d23",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One living-phrase sense is correct. Direct definitions, the living/dead reversal, the investigate-living instruction, and varied answers classify the same phrase category; stance and answer diversity do not create another thing."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 3, X/X79/X79n1557.xml 0133b21",
+          "finding": "The exact headword turn is the unnamed monk's question 如何是活句. Baofeng Shanqing replies 死中得 but does not utter 活句 in the stored KWIC. Replace Baofeng as MasterName with a six-rung reviewed-unnamed questioner and retain Baofeng as respondent/section context."
+        },
+        {
+          "kind": "opening-interpretation",
+          "finding": "The explanation opens with graph decomposition ('The two graphs mean...') and immediately moves into quotations. Rule 18 requires a corpus-earned interpretation before graph evidence or source quotations. Open in plain English with the attested classification—for example, a phrase the records describe as not caught in verbal explanation, fixed reasoning, or deliberation—while preserving the explicit reversal as a limit."
+        },
+        {
+          "kind": "depth-work-and-retrieval",
+          "finding": "Six exact anchors from six independent works otherwise meet depth and multi-source support. SourceTexts, aliases, quotation anchors, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_2b6fde4fdf58",
+      "term": "壁立千仞",
+      "ordinal": 53,
+      "reviewedSha256": "683bda3012f2faea549bad93302e260706d0cfd40073f5eafe3d8580020608d2",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The entry first pictures the sheer thousand-fathom wall and then reports its attested application to a face, saying, or encounter position. Mud-mixing contrasts, reciprocal reversals, three-phrase classification, and Langya's appraisal all concern one cliff-like image rather than separate objects."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "Nanyuan's original statement, the unnamed monk's repetition, Dongshan, Yuanwu, Cuiyan, and Langya's later raising are correctly distinguished; the later raising retains Nanyuan as historical quoted utterer and Langya as commentator. Seven anchors across five works meet depth. Aliases cover wall/cliff/sheerness, and all evidence, source, public-feedback, and forbidden-language gates pass."
+        }
+      ]
+    },
+    {
+      "id": "t_5b39f18f89ff",
+      "term": "狗子無佛性",
+      "ordinal": 54,
+      "reviewedSha256": "792e7f649f4026ac3891a99990ab32d2c356a22557d0b1f0c92e00359615db0e",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One lexicalized case-title/saying sense is correct. The phrase, its raised-case label, the longer 話 form, and later questioning all identify the dog-has-no-buddha-nature case; the earlier full exchange and the affirmative control are related evidence, not second meanings."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 1, T/T47/T47n1998A.xml 0851c26",
+          "finding": "趙州狗子無佛性。頌云 is an editorial case/verse heading in Dahui's record, not a headword utterance by Zhaozhou. The following verse quotes Zhaozhou only for the answer 無. Classify the heading as impersonal editorial/recorder text, retain Dahui as verse-author/current commentator context, and Zhaozhou as historical case figure/quoted answerer."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 4, T/T51/T51n2077.xml 0694a21",
+          "finding": "慧舉狗子無佛性話問之 is lamp-record narration describing Dahui raising the case; Dahui performs the raising but does not utter the headword-bearing recorder sentence. Use narrated compiler attribution with Dahui as person-described/later raiser and Wu Weiming as respondent."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 5, X/X68/X68n1319.xml 0562b08",
+          "finding": "The headword occurs in an unnamed participant's question 如何是狗子無佛性. The Yongzheng Emperor gives the one-word answer 釣 and is respondent, not exact headword utterer. Reassign the row to a six-rung reviewed-unnamed questioner and retain the emperor as contextual respondent."
+        },
+        {
+          "kind": "opening-and-depth",
+          "finding": "Rewrite the ungrammatical first sentence ('identifies a dog has...') so the opening plainly names a case-title/saying built from Zhaozhou's recorded answer. Seven occurrences plus the affirmative ClaimAnchor otherwise supply adequate multi-work depth; aliases, quote anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "ordinal": 55,
+      "reviewedSha256": "6cd2d119fc40c551f08037293935837db3e118a18b780043ebf92378cf332d98",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One dead-phrase category is correct. Contrastive definitions, investigation instructions, direct questions, Deshan's examples, and Gulin's reversal all classify the same phrase category; they are not different lexical objects."
+        },
+        {
+          "kind": "opening-interpretation",
+          "finding": "The opening merely repeats the target ('the expression identifies a dead phrase') and then begins quoting. Rule 18 requires the entry's corpus-earned synthesis before quotations. Open with the attested classification—speech the records place within verbal explanation, reasoning tracks, thought, and distinction—then immediately retain Gulin's explicit reversal as counterevidence against an invariant independent label."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "The unnamed monk correctly owns the direct 死句 question while Baofeng remains respondent. Six occurrences and the neither-dead-nor-living ClaimAnchor span seven source works, meeting depth and multi-source support. SourceTexts, aliases, exact anchors, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_8107ccae18eb",
+      "term": "拈提",
+      "ordinal": 56,
+      "reviewedSha256": "6e63e72b813871d5b50edff077644e652aead6c2986836c9b4e0d409fae43e36",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "Taking up a case, inherited encounter, saying, or collected commentarial statement for public handling remains one event. Verb, agent, and editorial-item grammar do not create different things; the explanation correctly distinguishes the inherited material from the act performed on it."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "Wumen's publication notice, Yuanwu, Dahui, Jingfu's preface/editorial voice, Dagui, and Yulin are correctly attributed. Seven occurrences across five works cover publication, public handling, withholding comment, editorial classification, and appraisal. Opening prose, aliases, sources, quotation anchors, and all gates pass."
+        }
+      ]
+    },
+    {
+      "id": "t_db103ad2434d",
+      "term": "鬼窟裏",
+      "ordinal": 57,
+      "reviewedSha256": "c65f03b96a0463afea802bbc9f0c0abee1ac2bbae7add8f962d0f03ea7398380",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One ghost-cave image is warranted. Reckoning, sitting immobile, making a living, and being unable to move are predicates of the same enclosed place-image; no independently attested literal cavern or person/title requires a split."
+        },
+        {
+          "kind": "opening-interpretation",
+          "finding": "The explanation begins with the tautology 'the expression identifies inside a ghost cave' and then count-led collocations. Replace it with a corpus-earned visual and deployment statement before counts: an enclosed cave-image in which speakers place calculation, immobile sitting, and attempted livelihood. This states the observable bend without importing a psychological or doctrinal category."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "The attribution supplement survives full-case review: Dahui owns three exact turns across two works, Yuanwu owns the two Blue Cliff comments despite embedded cases, and Yunmen owns the chamber saying. Six anchors across four works meet depth and multi-source support. Sources, aliases, exact anchoring, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_bbee6625a4d5",
+      "term": "赤肉團上",
+      "ordinal": 58,
+      "reviewedSha256": "041ad065e0361f3a083f09372ec7ef93a25ca2d5bb041d342322c3a86d6c3e20",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One bodily-location phrase is correct. Linji's no-rank-person saying, Nanyuan's sheer-wall saying, later quotations, and other predicates all locate their stated subject on the red flesh-lump; differing predicates do not create another place or object."
+        },
+        {
+          "kind": "exact-actor",
+          "coordinate": "sense 1 occurrence 3, C/C077/C077n1710.xml 0662a06",
+          "finding": "The source explicitly opens the 宝应南院禪師語錄 and names 寶應南院禪師諱慧顒 immediately before this hall statement. Nanyuan Huiyong—not Muzhou Daoming—is the exact utterer of 赤肉團上壁立千仞. This is corroborated by the parallel X64 occurrence already stored as Nanyuan. Correct MasterName, ContextMasters, and AttributionNote."
+        },
+        {
+          "kind": "opening-interpretation",
+          "finding": "The first sentence is a tautological calque. Open by identifying the literal bodily surface/site and the corpus's two dominant attributed formulations before moving to quotations; do not replace the body wording with an imported abstraction."
+        },
+        {
+          "kind": "depth-work-and-retrieval",
+          "finding": "Six occurrences plus the adjacent-form ClaimAnchor otherwise provide sufficient multi-work depth. SourceTexts, aliases, anchored quotations, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_a0634fecce83",
+      "term": "拖泥帶水",
+      "ordinal": 59,
+      "reviewedSha256": "ff1a2dfa459e1a63e99a61ede1a111527e15cdaffbe210150c066f3d3667214e",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "The opening first pictures cumbersome movement through mud and water, then states the attested appraisal of sayings, answers, explanations, and conduct. Luohan's 'no small amount of disorder,' Zhanran's 'seven hands and eight feet,' Yuanwu's uses, and Lingyin's reciprocal wall contrast all concern one messy/encumbered image."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "All six exact speakers across six independent works are correctly named. The reversed word order and reciprocal wall construction remain variants/deployments, not another sense. Depth, source inventory, aliases including common English cumbersome/messy lookup, quote anchoring, public-feedback, and forbidden-language checks pass."
+        }
+      ]
+    },
+    {
+      "id": "t_6c20139c8cc0",
+      "term": "銀山鐵壁",
+      "ordinal": 60,
+      "reviewedSha256": "9f07ce6174b847890a1122c36ff7fcc151b24ec0953f3aa02fe8a8f4cf2172d7",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "kind": "meaning-and-sense",
+          "finding": "One compound image is supported: speakers ask about it, compare unresolved sayings or life-and-death wording to it, report it collapsing, and identify oneself with it after passage. These changing predicates and stances do not by themselves establish a second referent."
+        },
+        {
+          "kind": "modifier-hard-gate",
+          "finding": "The entry displays the materially natural English 'a silver mountain and iron wall' but contains no required item-13 classification or corpus-wide modifier study for 銀 and 鐵. Graph composition alone cannot establish a mountain made of silver or a wall made of iron. Test material predicates, appearance/color uses, conventional names, figurative comparisons, and closest 銀/鐵 compounds; record material-attested, appearance/color, conventional-name, figurative-image, or unresolved separately for each modifier."
+        },
+        {
+          "kind": "opening-and-target",
+          "finding": "The first sentence is only a calque, and the current target may mislead a reader about composition. After the modifier study, open with the corpus-established barrier/obstruction image and use a non-materially misleading displayed target unless direct material evidence survives. Do not invent what silver or iron symbolizes."
+        },
+        {
+          "kind": "actor-depth-work-and-retrieval",
+          "finding": "Foyan, Xueyan, Zhongfeng, and Shui'an actors are correctly assigned; seven occurrences across four works meet the numerical floor and multi-source gate. Exact anchors and forbidden-language scan pass, but aliases must be retested after the modifier verdict."
+        }
+      ]
+    }
+  ]
+}

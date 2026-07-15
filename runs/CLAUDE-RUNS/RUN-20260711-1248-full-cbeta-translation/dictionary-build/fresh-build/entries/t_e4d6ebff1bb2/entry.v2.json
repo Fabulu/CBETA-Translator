@@ -1,0 +1,310 @@
+{
+  "Id": "t_e4d6ebff1bb2",
+  "SourceTerm": "如何是佛",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "What is Buddha?",
+      "AlternateTargets": [
+        "What is a buddha?"
+      ],
+      "SearchAliases": [
+        "What is Buddha?",
+        "What is a buddha?"
+      ],
+      "Status": "preferred",
+      "Explanation": "This direct public-interview question asks ‘What is Buddha?’ The question remains stable while named respondents answer differently. Mazu Daoyi answers Damei Fachang with ‘this very mind is Buddha’; Xuefeng Yicun cries ‘blue sky’; Baizhang Huaihai asks the monk’s identity; Guyin Yuncong names Qiongzhou’s nine-jointed staffs; Tianyi Yihuai says ‘spread hair over mud, lay the body across the ground’; Dongshan Shouchu says ‘three pounds of flax’; and Zhu'an Shigui names the stone tortoise at Huayang cave. The recurring question belongs to its named or reviewed-unnamed questioner, never automatically to the respondent, and no one answer becomes the definition of the question.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 4,295 hits in 350 files and 344 works. Eight curated occurrences from eight independent works meet the floor.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0449b06",
+          "ToLb": "0449b07",
+          "Kwic": "問：如何是佛？師云：即心是佛。",
+          "MasterName": "Damei Fachang",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Damei Fachang",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "respondent",
+                "teacher"
+              ]
+            }
+          ],
+          "AttributionNote": "Expanded Lamp Record of the Tiansheng Era (天聖廣燈錄), Damei Fachang section: Damei Fachang is the named questioner and Mazu Daoyi the respondent."
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0646b11",
+          "ToLb": "0646b12",
+          "Kwic": "一日遇陞堂，僧問：如何是佛？峰云：蒼天！蒼天！",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record of the Jianzhong Jingguo Era (建中靖國續燈錄): the monk remains unnamed; Xuefeng Yicun is the respondent."
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0618c08",
+          "ToLb": "0618c09",
+          "Kwic": "問如何是佛師云汝是阿誰云某甲師云汝識某甲否",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): all six rungs leave the identity-question exchange’s questioner unnamed. Full section and case review identifies Baizhang Huaihai as respondent; the unnamed monk alone utters the headword question."
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0471c20",
+          "ToLb": "0471c21",
+          "Kwic": "住後僧問。如何是佛。師曰。卭州多出九節杖。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Guyin Yuncong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Continuation of the Transmission of the Lamp (續傳燈錄): the post-appointment questioner remains unnamed after all six checks. Full section and case review identifies Guyin Yuncong as respondent; the unnamed monk alone utters the headword question."
+        },
+        {
+          "RelPath": "X/X85/X85n1593.xml",
+          "FromLb": "0396b17",
+          "ToLb": "0396b17",
+          "Kwic": "僧問：如何是佛？師曰：汝是阿誰？曰：某甲。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Orthodox Lineage of the Chan School (禪宗正脉): the unnamed monk calls himself only “this person”; no personal name appears in six-rung review. Full section and case review identifies Baizhang Huaihai as respondent; the unnamed monk alone utters the headword question."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001b05",
+          "ToLb": "0001b06",
+          "Kwic": "住後，僧問：如何是佛？師曰：布髮掩泥，橫身臥地。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Yihuai",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): the questioner remains unnamed after six-rung review. Full section and case review identifies Tianyi Yihuai as respondent; the unnamed monk alone utters the headword question."
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0291b16",
+          "ToLb": "0291b17",
+          "Kwic": "僧出問：如何是佛？山答曰：麻三斤。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Shouchu",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Universal Lamp Record of the Jiatai Era (嘉泰普燈錄): the monk remains unnamed; Dongshan Shouchu answers with three pounds of hemp."
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0423a15",
+          "ToLb": "0423a15",
+          "Kwic": "問：如何是佛？師曰：華陽洞口石烏龜。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhu'an Shigui",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Orthodox Continuation of the Lamp (續燈正統): the questioner remains unnamed after all six checks. Full section and case review identifies Zhu'an Shigui as respondent; the unnamed monk alone utters the headword question."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X78/X78n1553.xml",
+        "X/X78/X78n1556.xml",
+        "C/C077/C077n1710.xml",
+        "T/T51/T51n2077.xml",
+        "X/X85/X85n1593.xml",
+        "X/X82/X82n1571.xml",
+        "X/X79/X79n1559.xml",
+        "X/X84/X84n1583.xml"
+      ],
+      "RelatedMasters": [
+        "Damei Fachang",
+        "Mazu Daoyi",
+        "Xuefeng Yicun",
+        "Dongshan Shouchu",
+        "Baizhang Huaihai",
+        "Guyin Yuncong",
+        "Tianyi Yihuai",
+        "Zhu'an Shigui"
+      ],
+      "RelatedTerms": [
+        "如何是佛法大意",
+        "即心是佛",
+        "麻三斤"
+      ]
+    }
+  ]
+}

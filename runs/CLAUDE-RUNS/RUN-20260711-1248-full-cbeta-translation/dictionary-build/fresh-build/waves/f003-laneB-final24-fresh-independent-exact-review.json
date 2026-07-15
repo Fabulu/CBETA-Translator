@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic review after laneB final24 repair",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "751-800",
+  "generatedUtc": "2026-07-15T08:40:51.698Z",
+  "reviewer": "Codex fresh independent reviewer (laneB final24)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "rejectingReview": "f003-laneB-751-800-repaired-final-independent-exact-review.json",
+    "rejectingReviewSha256": "7def7115709bcf6d40e5ec19025559b5b9b706e4fc02f010f35053b251b1bf71",
+    "finalLedger": "f003-laneB-final24-repair-author-ledger.json",
+    "finalLedgerSha256": "bad3e5d04b9ca20c20ccbc4069b5b205b9346bdc24903f8886e0cf76f883a84f",
+    "formalGate": "f003-laneB-final24-complete-formal-gate.json",
+    "formalGateSha256": "c3ebb1aa4e268da3dc3f0bc78441028df9f2dd9e53e337caf44c56e06f1cedf2",
+    "repairReadiness": "f003-laneB-final24-repair-readiness.json",
+    "repairReadinessSha256": "d42d10adb9892342e6c4a1561ca96c3a75758427504fc4e0d5e06e4009ea0a42",
+    "attributionPackets": "f003-laneB-final24-complete-formal-gate-attribution-packets.json",
+    "attributionPacketsSha256": "7e50ca7bf2b44aa26900d815b4fa057cddf1d0304866b3403af6bfb56a62c238"
+  },
+  "formalGateHardPass": true,
+  "repairReadinessHardPass": true,
+  "occurrencesReadInCompleteCaseContext": 355,
+  "repairedOccurrencesReadInCompleteCaseContext": 178,
+  "priorKeepCount": 26,
+  "priorKeepHashesByteIdentical": true,
+  "summary": {
+    "KEEP": 46,
+    "REVISE": 4
+  },
+  "repairSummary": {
+    "KEEP": 20,
+    "REVISE": 4
+  },
+  "systemicFindings": [
+    "Twenty of the twenty-four repaired entries now pass fresh full-case semantic review.",
+    "Four residual defects share one cause: MasterName still follows the respondent, mentioned officeholder, or contextual master rather than the utterer of the exact headword-bearing words.",
+    "The 26 prior KEEP entries remain byte-identical. No authoring, promotion, merge, or site operation occurred."
+  ],
+  "rows": [
+    {
+      "ordinal": 751,
+      "id": "t_fa19bfa0d109",
+      "term": "佛殿",
+      "entrySha256": "6303e16e7205fa16eea3e8742b7633f12dfa5b81e0ebc8693541c1ddc4af9358",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 752,
+      "id": "t_a29504cc83be",
+      "term": "願力",
+      "entrySha256": "0ca73984bdcc348764b408d6c9376b760e31a3b24f0d0b4570a7d088461dba09",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 753,
+      "id": "t_2fe5c4171ea6",
+      "term": "且道作麼生",
+      "entrySha256": "ab587949732af2c3b75416d9247ca3e3afefe2bcf5db9ebec2f9117e6315cf28",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 754,
+      "id": "t_51a4f3a03bd8",
+      "term": "端的",
+      "entrySha256": "50ad01be36d3ae0033813b1ca5dd014f117e5d83444cf7b119c11968b37bf961",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — S1/O8 is a monk’s explicit question: “is it really so?” Dahui then leaves the seat without answering. The current MasterName assigns the questioner’s headword to Dahui. The lay-official contradiction was fixed, but this respondent substitution remains.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 755,
+      "id": "t_1853f433aff5",
+      "term": "開山",
+      "entrySha256": "3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 756,
+      "id": "t_f28429436009",
+      "term": "且喜沒交涉",
+      "entrySha256": "96ba8a3f807cb8129a9838bfdef96cc672c79406b4734e20e1bf1f37eadd08b8",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 757,
+      "id": "t_32a92c635f49",
+      "term": "宗乘",
+      "entrySha256": "8252a0661e9fce0bf3f713a20b0abdf26d586fd62a573e7377f6b8d86df349e1",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O1–O4 and O7 are corrected to their unnamed monastic questioners, but O5 is the parallel Letan Changxing record and still reads “the monk asked: what is the ultimate matter of the lineage vehicle?” The monk utters 宗乘; Letan supplies the following answer and cannot occupy MasterName for the question.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 758,
+      "id": "t_166e179e928c",
+      "term": "藥王菩薩",
+      "entrySha256": "545456a783f997d4db930283b490f95e6b446d326f27b96acaa0aada08609fac",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 3,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 759,
+      "id": "t_72ba0d559d5a",
+      "term": "衲僧家",
+      "entrySha256": "0386ea5af4f70a24fe2fb004da28f92cac868f3ab930937e6c486ab0379955d2",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 760,
+      "id": "t_1b62ec7f731e",
+      "term": "禪者",
+      "entrySha256": "431b41d4a7766d61fba80a2a1f2e4c3d00e1b031178f13018c41294a9738270f",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The forbidden practice-family gloss is removed; poem headings are explicitly editorial evidence rather than falsely spoken turns.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "term": "丈室",
+      "entrySha256": "40d074761f62cbd705d96986b56869b0d7c118cdd42bec9a3a5e82c45933ff19",
+      "verdict": "KEEP",
+      "occurrencesRead": 9,
+      "finding": "KEEP — The monk now owns the 丈室 question and the remaining room references retain eligible narrator or speaker roles.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "term": "山門",
+      "entrySha256": "5f8a49cd6d6b4c5575f4b70f61a1cecb42c9b3e86df4ee94e7adddd70b3c50bc",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The gate response is assigned to Juelang Daosheng and the three senses are now counted and described honestly.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "term": "千佛",
+      "entrySha256": "811179e047c6be744214248ce642d2e9283efeac835fd135325e4660744e3d23",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "term": "且道畢竟如何",
+      "entrySha256": "59f120c8c9121bcbd56d3d44f9299bd65484950881fa42098f7650d89d75f45e",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "term": "藏主",
+      "entrySha256": "ee953105233574809acd150c1113f51b88073b401cdb9154c38a1d4510ca64d4",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 9,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "6fd50ccf256d85060565c116e035ed14368324b69f51e9cc9ce599233f85ab2e",
+      "verdict": "KEEP",
+      "occurrencesRead": 10,
+      "finding": "KEEP — Occasion labels are treated as editorial labels, while the one spoken headword turn and named contextual speakers are synchronized with the prose.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "12d8f8c1293bcb4ee68ca017acbd3a27717d0a96766c9e3f076719b873f04d7e",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "term": "頂門",
+      "entrySha256": "d4d8bbcacdefffbed7175ab1fa21e2e13406d22ec1abd572773b081dd536ba69",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "term": "龍王",
+      "entrySha256": "7e02bc2f2855b477798ff750004e5eaa08623f8316aa40921e74c5665502d32b",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 9,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "term": "末後一著",
+      "entrySha256": "8a330e838fb593d100011d3442869ba7016e48dd3bceda7bed00fa12f566ee4a",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 771,
+      "id": "t_708834b4cb89",
+      "term": "法堂",
+      "entrySha256": "6bccb377199b1ae934ac8db911f304ff58d650aaf5586a9df562a37a3bfc0ce1",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 772,
+      "id": "t_67bf0bf87ebe",
+      "term": "子路",
+      "entrySha256": "cbbc48a29b175a5d6544ae70df7fdfdd97be364095eddf8bc5f49559edb8bada",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 4,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 773,
+      "id": "t_10d93a67ea99",
+      "term": "言句",
+      "entrySha256": "cea60e3e7115d8125a58de605f024a847afc74b97ef37d1a40a233c59f55d1cc",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The Yongzheng passage is correctly assigned to the emperor as an identified non-master; the remaining turns are coherent.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 774,
+      "id": "t_a9a874976d5b",
+      "term": "提綱",
+      "entrySha256": "0467ae22ce10b511a2971fcee8dd96598c5860027247963290c98db67f87d525",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — Title and contents strings are separated into a title/heading sense rather than padding the action sense; the five action witnesses remain eligible.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 775,
+      "id": "t_eb17a30eecaa",
+      "term": "浴佛",
+      "entrySha256": "e21aa92c78e921c72bb4b012b27f641c4cd26e10f07f523db9902e4b06521d7a",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — The prose now distinguishes editorial occasion labels from Huanglong Huinan’s spoken description of the bathing rite.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 776,
+      "id": "t_b4b6091cf9cb",
+      "term": "出身",
+      "entrySha256": "b37ab4bb20d93616f46898610486943b19a993df249495eff590485ed03db82b",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The stale Kaixian claim is removed and the explanation now matches Chongsheng Yi and the remaining exact speakers.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 777,
+      "id": "t_33ae72debe2c",
+      "term": "聖僧",
+      "entrySha256": "7d5f35054d2c9150c0cb23dc5013584639d8016565477185a3da9204b0281d2e",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — The duplicated case was removed; Yunju Yineng and Weizhou Qingman now support separate eligible deployments.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 778,
+      "id": "t_073dcbf657a3",
+      "term": "如何是無寒暑處",
+      "entrySha256": "f7f1f04f1993d93810ab2968e1abf6a2b60970c2e3bfc2339ba2d48cb52f31a7",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — All four parallel question witnesses correctly assign the headword to the unnamed questioner and identify Dongshan as respondent/context.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 779,
+      "id": "t_5835e3ae094b",
+      "term": "髑髏",
+      "entrySha256": "716ffc78ac4ee525bbb792d570bf80181f71b660054d56b5e9408de30dcb6078",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — The Tiantai case is recut to the monk’s exact question, and literal, verse, and narrated skull evidence remains distinguishable.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 780,
+      "id": "t_d4560fb0c07b",
+      "term": "天龍八部",
+      "entrySha256": "56256c66a7136590e6d1d2d1036d87179c3e4d8af1312bb7602bb02f1a540b70",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 4,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 781,
+      "id": "t_19635cfe9de8",
+      "term": "參學事畢",
+      "entrySha256": "2131f0f1cff430a85db7ddd0fc0014d31f5aa632edd56380685ad0159a98d9d1",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — The stale Fozhao reference is replaced with Dunan Zongyan, matching the repaired evidence.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 782,
+      "id": "t_ba4b06d70a44",
+      "term": "坐具",
+      "entrySha256": "6fcc73f2136abc4a9a52f7bce96b5313f06e0677539c164666d7dc25813aa582",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 783,
+      "id": "t_5306489d35c6",
+      "term": "化主",
+      "entrySha256": "15f8eceb6467fc9608fe0aaa60a0ce78cc1febf39bf9aa611e0c2f22acf5f06a",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O1 says that an alms officer asked a question, but 化主 occurs only in the narrator’s turn-introduction (“at that time an alms officer asked”); the officer’s quoted words begin afterward and do not contain the headword. The officer is the person described, not the utterer of the headword-bearing wording.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 784,
+      "id": "t_a2ccc2d35ae3",
+      "term": "如何是禪",
+      "entrySha256": "fd214a2cd30e6f5ef2fffa86bbc2859fd7053c65cd55ae86068cb8446809a8be",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 785,
+      "id": "t_168078a96bd7",
+      "term": "明眼",
+      "entrySha256": "18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a",
+      "verdict": "KEEP",
+      "occurrencesRead": 9,
+      "finding": "KEEP — The structured commentary and preface owners are recovered as Daochang Ru and Jiexian.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 786,
+      "id": "t_53d86caa85c2",
+      "term": "四天王",
+      "entrySha256": "eb5d45ba15b6574ff66ef3acd451c31e86c86364a52808d3ec39fdd5d036a3bc",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — The imported cardinal-direction claim is removed; the prose now stays with attested deployments and names Sanyi Mingyu.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 787,
+      "id": "t_e3231052e685",
+      "term": "用處",
+      "entrySha256": "5726449f58a02e1e0a0f0453eecd562908b7bf318b10a1a80f9072ff7650ab28",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Both Shilin Ze commentaries now carry the recovered exact owner and no generic documentary placeholder remains.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 788,
+      "id": "t_d7c62e900a42",
+      "term": "舍利弗",
+      "entrySha256": "75489b2677a33b7c3a5ed1128cad534a69cb02ff1f4a88b136f09de0a1beb3a9",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 789,
+      "id": "t_7c69e364232c",
+      "term": "入門便棒",
+      "entrySha256": "2564bb33157dd1be2c4ff4d7e48e17d803de520a2a99121b2f132cfbf9ca196d",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 790,
+      "id": "t_a2e606b74ee9",
+      "term": "把住",
+      "entrySha256": "26dd45904628d61c185615149b7fb39aadce1345d9677396b7b5237ee28a86a7",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 791,
+      "id": "t_7106d3345b14",
+      "term": "須菩提",
+      "entrySha256": "04acb414deac63cf19297e73d7ce7740c1fbe0f7e1716f9cec2453a610da9e0a",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 792,
+      "id": "t_5cde0218375f",
+      "term": "把住放行",
+      "entrySha256": "14c977d400fb820fb3aaef5d0102bcab1458eacf808487b42624a59802b6f270",
+      "verdict": "KEEP",
+      "occurrencesRead": 4,
+      "finding": "KEEP — The monk, not Yuezhang Shoujing, now owns the exact question containing the compound.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 793,
+      "id": "t_73656adc1e50",
+      "term": "蒼天",
+      "entrySha256": "c77d9e8110169e5074dc25cc4752de873e8cf60955b578380eed54f37afa3063",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The prose now names Hanshan, Linji, and Shitou consistently with the repaired turns.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 794,
+      "id": "t_c051d6f277af",
+      "term": "佛誕",
+      "entrySha256": "aa51803fd635c8584ccc9233696fad4a303ab044b32faf918ad4260b3bf1e6d7",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The entry describes editorial Buddha-birthday labels and signed date prose without inventing unsupported headword speakers.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 795,
+      "id": "t_f266d9e034ea",
+      "term": "主中主",
+      "entrySha256": "aa0918b656d77eff8b03ee7a508b321004e63f7751fe9b7ee0915c0c7b2af0de",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — The self-definition “continuity is called host within host” is surfaced and anchored; questioners and quoted speakers are distinguished.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 796,
+      "id": "t_0229ebe0b9e7",
+      "term": "十二時",
+      "entrySha256": "a3d6d5665943a0c661c59e5a5b1a4c8fa3370a15dcb1eaf86cc872a0988874d2",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — O1 has Nanquan ask the section master about his conduct; the section master answers “through all twelve hours I rely on nothing.” The repair changed MasterName to Nanquan, but Nanquan does not utter 十二時. He is the questioner/context master; the answering record master owns the headword-bearing sentence.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 797,
+      "id": "t_eeb3c71567a1",
+      "term": "僧臘",
+      "entrySha256": "3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 8,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 798,
+      "id": "t_dc24f92ead78",
+      "term": "問訊",
+      "entrySha256": "063fb6f842b672d7768bb46fe13f75e1cc36c68190f078c5bc46520aac50c9f1",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 7,
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 799,
+      "id": "t_7ee93f6b90cf",
+      "term": "三要",
+      "entrySha256": "e46973bb971ab635b8fec68076ca4be0cf99b37cb6f5328dc674ebcc03c1c673",
+      "verdict": "KEEP",
+      "occurrencesRead": 8,
+      "finding": "KEEP — Huitang and Linji are correctly named as exact utterers, with Caotang and Hanyue retained only as recipient or later quoter context.",
+      "occurrenceFindings": []
+    },
+    {
+      "ordinal": 800,
+      "id": "t_e1a5fc496deb",
+      "term": "香積",
+      "entrySha256": "4c26516f5e43b827349872ea598641f1f39d140688cd4eb2ed1cd68f2c722867",
+      "verdict": "KEEP",
+      "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
+      "occurrencesRead": 6,
+      "occurrenceFindings": []
+    }
+  ]
+}

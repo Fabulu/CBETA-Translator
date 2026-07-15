@@ -1,0 +1,205 @@
+{
+  "Id": "t_ebb0995c99fc",
+  "SourceTerm": "頓悟",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T23:30:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "sudden awakening",
+      "AlternateTargets": [
+        "awaken suddenly"
+      ],
+      "SearchAliases": [
+        "sudden awakening",
+        "awaken suddenly",
+        "sudden realization"
+      ],
+      "Status": "preferred",
+      "Explanation": "The phrase denotes awakening characterized as sudden rather than staged gradually. Huineng says one's own nature awakens itself, with sudden awakening and sudden refinement and no gradual sequence. An unnamed monk contrasts sudden awakening of principle with gradual removal of affairs and asks Sanzu Chonghui for its principle. A case narrative describes Bao'en Xuance awakening suddenly at the fire-boy answer. Guxue Zhe likewise contrasts principle, which must be awakened to suddenly, with affairs removed gradually. Yongming Yanshou places sudden awakening in a fourfold matrix with gradual awakening and sudden or gradual refinement. Guifeng Zongmi defines turning from ordinary person to sage as sudden awakening. Yulin Tongxiu asks whether an addressee has the capacity for sudden awakening and sudden refinement. These uses distinguish sudden awakening from later refinement without forcing every record into one historical classification.",
+      "Validation": "multi-source",
+      "Note": "Seven exact lexical witnesses across six distinct works cover self-awakening, encounter narration, sudden/gradual contrast, a fourfold matrix, direct definition, and capacity test. The longer Treatise on the Essential Gate of Entering the Way through Sudden Awakening title was excluded under the substring gate and buys no bare-headword depth.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2008.xml",
+          "FromLb": "0358c27",
+          "ToLb": "0358c28",
+          "Kwic": "自性自悟，頓悟頓修，亦無漸次，所以不立一切",
+          "MasterName": "Huineng",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Platform Sutra of the Sixth Patriarch (六祖大師法寶壇經): Huineng says one's own nature awakens itself, with sudden awakening and sudden refinement and no gradual sequence."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0011c11",
+          "ToLb": "0011c12",
+          "Kwic": "理雖頓悟，事假漸除。除即不問，如何是頓悟底道理？",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Sanzu Chonghui",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): an unnamed monk contrasts sudden awakening of principle with gradual removal of affairs and asks Sanzu Chonghui for the principle of sudden awakening."
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0836a11",
+          "ToLb": "0836a11",
+          "Kwic": "曰丙丁童子來求火師於言下頓悟",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narrative",
+            "ActorLabel": "narrator describing Bao'en Xuance",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The case narrator predicates awakening of Bao'en Xuance after quoting the fire-boy response.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T23:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Bao'en Xuance",
+              "Roles": [
+                "person-described",
+                "case-figure"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Linked-Pearl Collection of Verses on Old Cases (禪宗頌古聯珠通集): the case narrator describes Bao'en Xuance awakening suddenly at the fire-boy response."
+        },
+        {
+          "RelPath": "J/J28/J28nB208.xml",
+          "FromLb": "0358b22",
+          "ToLb": "0358b23",
+          "Kwic": "理須頓悟，乘悟并銷，白雲斷處見明月；事在漸除，因次第盡，黃葉落時聞擣衣。",
+          "MasterName": "Guxue Zhe",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): Guxue Zhe says principle must be awakened to suddenly while affairs are removed gradually."
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0626b29",
+          "ToLb": "0626c01",
+          "Kwic": "一漸修頓悟。二頓悟漸修。三漸修漸悟。四頓悟頓修。",
+          "MasterName": "Yongming Yanshou",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer",
+                "compiler",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Records of the Source-Mirror (宗鏡錄): Yongming Yanshou gives a fourfold matrix crossing sudden and gradual awakening with sudden and gradual refinement."
+        },
+        {
+          "RelPath": "X/X63/X63n1225.xml",
+          "FromLb": "0035b11",
+          "ToLb": "0035b11",
+          "Kwic": "從迷而悟即頓，轉凡成聖即頓悟也。",
+          "MasterName": "Guifeng Zongmi",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guifeng Zongmi",
+              "Roles": [
+                "utterer",
+                "compiler"
+              ]
+            }
+          ],
+          "AttributionNote": "Chart of the Master-Disciple Succession of the Chan Gate That Transmits the Mind-Ground in China (中華傳心地禪門師資承襲圖): Guifeng Zongmi defines turning from ordinary person to sage as sudden awakening."
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0612b13",
+          "ToLb": "0612b14",
+          "Kwic": "更須自己覺察是頓悟頓修根器否",
+          "MasterName": "Yulin Tongxiu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): Yulin Tongxiu asks the addressee to examine whether they have the capacity for sudden awakening and sudden refinement."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2008.xml",
+        "X/X82/X82n1571.xml",
+        "C/C078/C078n1720.xml",
+        "J/J28/J28nB208.xml",
+        "T/T48/T48n2016.xml",
+        "X/X63/X63n1225.xml",
+        "B/B27/B27n0152.xml"
+      ],
+      "RelatedMasters": [
+        "Huineng",
+        "Jianfu Hongbian",
+        "Bao'en Xuance",
+        "Guxue Zhe",
+        "Yongming Yanshou",
+        "Guifeng Zongmi",
+        "Yulin Tongxiu"
+      ],
+      "RelatedTerms": [
+        "漸悟",
+        "頓修",
+        "漸修",
+        "言下頓悟"
+      ]
+    }
+  ]
+}

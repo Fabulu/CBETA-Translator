@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-review",
+  "wave": "f001",
+  "lane": "B",
+  "ordinals": [61, 62, 63, 64, 65, 66, 67, 68, 69, 70],
+  "reviewer": "Codex independent reviewer (not lane author)",
+  "reviewedUtc": "2026-07-15T00:00:00Z",
+  "scope": "Hash-bound review of meaning and sense boundaries, exact actors and context masters, depth and enrichment uniqueness, work identity, corpus-earned opening interpretation, aliases, anchored quotations, public-feedback availability, and forbidden-rule compliance. Full cases in the supplied attribution packet were read; entries were not edited.",
+  "inputs": {
+    "semanticReviewPacket": {
+      "path": "fresh-build/waves/f001-laneB-061-070-semantic-review-packet.json",
+      "sha256": "5681632175f74d3fc3e5f34085082f17ae3bb063e2cfde93482a2c316a3ffb4a"
+    },
+    "attributionPacket": {
+      "path": "fresh-build/waves/f001-laneB-061-070-gate-attribution-packets.json",
+      "sha256": "f91ab64974772765efec97fba2b5e459036683167b8053767125ca74ec3d4480"
+    },
+    "publicFeedback": "No public-feedback artifact is present in any of the ten scoped entry directories; no public-feedback claim was inferred."
+  },
+  "summary": {
+    "KEEP": 7,
+    "REVISE": 3,
+    "reviseOrdinals": [62, 63, 64]
+  },
+  "findings": [
+    {
+      "ordinal": 61,
+      "id": "t_02d93ab1ca2e",
+      "term": "透關",
+      "entrySha256": "d4798b75c8bfa8cc858b049b14f420c6f33fc3420fb50a1f842fbea1d9f29b48",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One barrier-passing sense is supported; Zhongfeng's contrast limits rather than splits it.",
+        "actorsAndContext": "The six full cases support the named utterers; the Poshan occurrence correctly belongs to an unnamed questioning monk with Poshan as respondent.",
+        "depthAndUniqueness": "The evidence supplies distinct contrastive, corrective, compound, question, and attributive deployments without quota padding.",
+        "workIdentity": "Six source files represent six distinct works in this selection; no split-volume double count is present.",
+        "openingAliasesAnchors": "The opening stays with the observable barrier image, aliases are coextensive, and quoted clauses are anchored in selected KWIC/full cases.",
+        "forbiddenRules": "No invented destination, enlightenment equation, title-as-speaker error, or unsupported doctrinal gloss found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 62,
+      "id": "t_21926ca0b92e",
+      "term": "頂門眼",
+      "entrySha256": "9504f2d63267edede133c0ef43681db10635bd64a3ad0345ecac5b85d6767057",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The single crown-of-head eye image is sound and is not presented as literal anatomy or an imported esoteric organ.",
+        "actorsAndContext": "Occurrence J/J34/J34nB300.xml correctly makes the monk the headword utterer, but its ContextMasters is empty even though Chaozong Tongren immediately responds, asks what the eye is, strikes, and comments. Its ActorAttribution.GrammarEvidence is also a generic impersonal-proposition sentence that contradicts the displayed dialogue and the actor label.",
+        "depthAndUniqueness": "Possessing, opening, testing, appraising Zhaozhou, striking blind, and direct questioning are genuinely distinct deployments.",
+        "workIdentity": "Six distinct works support the claimed work spread; repeated occurrences in 續傳燈錄 do not inflate it.",
+        "openingAliasesAnchors": "Opening and aliases remain at the text's image-level; quotations are anchored.",
+        "forbiddenRules": "No anatomical or imported-symbolism violation; the defect is exact-turn metadata."
+      },
+      "requiredChanges": [
+        "For J/J34/J34nB300.xml, add Chaozong Tongren as respondent in ContextMasters.",
+        "Replace the contradictory generic GrammarEvidence with evidence matching the explicit 進云／師云 dialogue and monk/master turns."
+      ]
+    },
+    {
+      "ordinal": 63,
+      "id": "t_c327d2a1fc8c",
+      "term": "金剛眼睛",
+      "entrySha256": "872e7477d19d566a5bc0f86cb22ef2294fa52badb0d40de6f77faca338d916e4",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The vajra/adamantine eye rendering is corpus-safe. The entry properly preserves blind, weighed, possessed, world-wide, discriminating, and traded-away predicates without forcing them into a material eye or invented symbolism. Shishuang's case earns the limited discrimination statement.",
+        "actorsAndContext": "Full cases support the selected utterers and the Fushan quotation/later-raiser distinction.",
+        "depthAndUniqueness": "The seven selections give genuinely different predicates and include new M-series enrichment; no sense split is warranted.",
+        "workIdentity": "Seven occurrences resolve to five distinct works; repeated 續傳燈錄 cases are correctly not counted as separate works.",
+        "openingAliasesAnchors": "Opening and quotes are anchored, but SearchAliases contains the exact duplicate string 'vajra eyes' twice.",
+        "forbiddenRules": "No material-calque theory or invented special-perception doctrine found; alias uniqueness fails."
+      },
+      "requiredChanges": [
+        "Remove the duplicate 'vajra eyes' element from SearchAliases while retaining the full accumulated alias set in its existing order."
+      ]
+    },
+    {
+      "ordinal": 64,
+      "id": "t_07d808115439",
+      "term": "言語道斷",
+      "entrySha256": "cc960bdb565a1532178352ea1819f7105c81967ef26fb146e7221d26df26a66b",
+      "verdict": "REVISE",
+      "review": {
+        "meaningAndSenseBoundary": "The fixed language-road-cut-off formula is one sense; questions, reversals, and Tiantai's closed-eyes exclusion are deployments, not new referents.",
+        "actorsAndContext": "The first X/X68/X68n1318 occurrence is wrongly assigned to Baoning Renyong. The full case places the positive formula before the explicit marker 保寧道 and Baoning's following counter-formulation. The paired 心行處滅 entry correctly labels the same pre-marker formula impersonal, exposing the inconsistency.",
+        "depthAndUniqueness": "The formula, paired form, counter-form, question, exclusion, and later test are distinct and non-padded.",
+        "workIdentity": "Five distinct works support the claimed spread; duplicate Baiyu selections do not inflate it.",
+        "openingAliasesAnchors": "The opening and aliases are defensible calque/retrieval variants, and the quotations are anchored, but the explanation's statement that Baoning first says the positive formula repeats the attribution error.",
+        "forbiddenRules": "No equation with blankness or mere silence; exact-speaker ownership fails."
+      },
+      "requiredChanges": [
+        "Reclassify X/X68/X68n1318.xml 0409a02 as an impersonal or unattributed quoted formula, with Baoning Renyong only as commentator/context master.",
+        "Revise the explanation so Baoning owns only the explicit 保寧道 counter-formulation, not the preceding positive formula."
+      ]
+    },
+    {
+      "ordinal": 65,
+      "id": "t_6f138f2956d8",
+      "term": "不落因果",
+      "entrySha256": "652d7a6e629b348fb953afb47989b87fc31b655c6c90c983999ec047e0c4ad2e",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "Correctly retained as the old man's rejected/fatal answer, distinct from 不昧因果; the entry does not endorse it as doctrine.",
+        "actorsAndContext": "The old man, Wumen, Baizhang's later questioning, unnamed monks, and embedded debate turns are assigned at the exact utterance level.",
+        "depthAndUniqueness": "Original answer/consequence, paired interrogation, rebuke, debate, and later public question are distinct enrichments.",
+        "workIdentity": "Six distinct works support the spread; no two-volume identity trap appears in the selected evidence.",
+        "openingAliasesAnchors": "Opening foregrounds the case consequence and correction; aliases preserve the phrase rather than collapse it into 不昧; quotations are anchored.",
+        "forbiddenRules": "No generalized karma theory, conflation with the corrective answer, or unearned resolution found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 66,
+      "id": "t_1307081cf96c",
+      "term": "不昧因果",
+      "entrySha256": "6436bfc78ae4e7b0e48aa595e856bcf021abb95e9be1aa9922818ef815465a6a",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "The corrective turning answer remains distinct from 不落因果 while later disputes are preserved as stances toward the same phrase.",
+        "actorsAndContext": "Baizhang, Wansong, Wumen, Chaozong, and unnamed questioners/commenters are separated accurately in the selected cases.",
+        "depthAndUniqueness": "Answer, explicit contrast, objection, paired questions, same/different pressure, and Chaozong's anti-clinging treatment are non-duplicative.",
+        "workIdentity": "Six distinct works support the spread; repeated case traditions are not represented as independent works merely because the story recurs.",
+        "openingAliasesAnchors": "The opening is corpus-earned, aliases do not absorb the rejected companion phrase, and quoted claims are anchored.",
+        "forbiddenRules": "No adjudication of the later debate or invented causal doctrine found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 67,
+      "id": "t_10ca0857a11b",
+      "term": "評唱",
+      "entrySha256": "ef2a788ea46ed8d0989bb8d258faa7ec9afd820579e0f1e3d1ffd4034610c266",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "Verbal, nominal, and title-modifier uses remain one appraisal-commentary activity/product sense; adjacent devices are explicitly excluded.",
+        "actorsAndContext": "Four title occurrences are honestly labeled editorial headings rather than attributed speech; Daguan, the poem heading, and the unnamed guest retain their proper textual layers.",
+        "depthAndUniqueness": "All seven works contribute identifiable value: three different named appraisal traditions across four title witnesses, a documentary genealogy of genres, a hostile poem heading, and a guest's critical question. This is honest enrichment, not a seven-row quota disguised as seven speakers.",
+        "workIdentity": "Seven source files are seven distinct works in the selected set; no split-volume duplicate is present.",
+        "openingAliasesAnchors": "Opening identifies the ordinary literary activity/product before its Chan corpus deployments; aliases aid case-commentary retrieval; quoted claims are anchored.",
+        "forbiddenRules": "No title-as-utterer error, no collapse with 著語／代語／下語／頌古／拈古, and no anti-quota breach found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 68,
+      "id": "t_300236cb6368",
+      "term": "當面錯過",
+      "entrySha256": "35b8dbec7df4ceed44d5a8244ddd7e06e14eafdf484a738a5649258c7f4fba3b",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One ordinary spatial-verbal sense covers the person, ordinary sights, staff, and assembly encounter without supplying an omitted object.",
+        "actorsAndContext": "Meixi, Wuyi, Langting, and Panlong own the selected utterances; repeated selections within two works are not misrepresented as new works.",
+        "depthAndUniqueness": "Verdict, self-acknowledgment, warning after valuation, ordinary examples, landscape presentation, and raised-staff encounter are distinct uses.",
+        "workIdentity": "Six occurrences resolve to four distinct works, matching the packet.",
+        "openingAliasesAnchors": "Opening is plain-language and corpus-earned, aliases remain coextensive, and all quoted details are anchored.",
+        "forbiddenRules": "No inserted metaphysical object or enlightenment claim found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 69,
+      "id": "t_438eb81f17bf",
+      "term": "心行處滅",
+      "entrySha256": "c24b9dd96b94b1b380bfb6ee340b984418910b470247a34b2e0a44206397cd64",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One fixed formula is supported; the paired language formula, counter-form 心行不滅, question, and contested equation do not require a split.",
+        "actorsAndContext": "The pre-保寧道 formula is correctly impersonal here, Hongzhi and later masters are exact, and Zhongfeng is correctly only record-owner for the hypothetical interpreter's equation.",
+        "depthAndUniqueness": "Parallel explanation, impersonal formula/counter, public question, rejected interpretation, and later address uses are distinct.",
+        "workIdentity": "Six selections are six distinct works.",
+        "openingAliasesAnchors": "Opening avoids equating cessation with blankness, aliases remain bounded, and quoted claims are anchored.",
+        "forbiddenRules": "No blank-mind prescription, title-owner substitution, or unsupported doctrinal completion found."
+      },
+      "requiredChanges": []
+    },
+    {
+      "ordinal": 70,
+      "id": "t_90435e47b008",
+      "term": "休去歇去",
+      "entrySha256": "13d6f3d667ae5dd411f03f6c4082794a634c27b3d256b068c34f2a3ddd24f2ff",
+      "verdict": "KEEP",
+      "review": {
+        "meaningAndSenseBoundary": "One doubled rest/cease command supports the stock sequence, direct imperatives, negated counter-form, and later criticisms without turning the phrase into a prescribed system.",
+        "actorsAndContext": "Shishuang, Yunfeng, Yulin, Dahui, Zhongfeng, Yunmen, Dafang, and Yuanwu turns are distinguished; variants and contrasts are explicitly marked.",
+        "depthAndUniqueness": "The nine rows include family, variant, contrast, literal instruction/question, and two different critiques; repeated Shishuang witnesses are disclosed rather than treated as different meanings.",
+        "workIdentity": "Nine occurrences resolve to seven distinct works. The selected 五燈全書 evidence uses only X82n1571, so it is not doubled with X81n1571 as a second work.",
+        "openingAliasesAnchors": "Opening and aliases retain the accumulated term list in order and quotations support each stated deployment.",
+        "forbiddenRules": "No quietist prescription, no negation conflation, and no split-volume multi-source inflation found."
+      },
+      "requiredChanges": []
+    }
+  ]
+}

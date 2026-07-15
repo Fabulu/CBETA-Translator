@@ -1,0 +1,116 @@
+{
+  "generatedUtc": "2026-07-15T06:26:26.408782+00:00",
+  "wave": "f003",
+  "lane": "B",
+  "range": "751-800",
+  "role": "repair author",
+  "reviewInput": "fresh-build/waves/f003-laneB-751-800-independent-exact-review.json",
+  "reviewInputSha256": "ac61f7e85de4d4f0296f91bb7a5bfaa70ca7b398cf0db07a81481c82adbebd2a",
+  "repairs": "All 50 individualized actor findings addressed. MasterName is restricted to the exact headword utterer; documentary, action-subject, ceremony, questioner, and later-quoter conflations were removed. 開山 was split by action versus founding office; 藥王 and 浴佛 evidence was brought in scope; 如何是禪 questioner/respondent assignments were corrected; 香積 retained its three distinct senses.",
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneB-751-800-formal-gate-author-repair.json",
+    "sha256": "01c9ac4606660228bd0be72133b6469a08245b08a1fce5593b3dc080562d58fc",
+    "hardPass": true,
+    "entries": 50,
+    "exactKwicVerified": 355,
+    "exactKwicFailures": 0
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "checkpointRange": "761-770",
+  "entries": [
+    {
+      "ordinal": 761,
+      "id": "t_ec09781522d8",
+      "sourceTerm": "丈室",
+      "worksheetSha256": "eb3fd39ba0d28b51e57d2f3f3843ecefd613eee56f3bd73085bc997b0e3916dc",
+      "entrySha256": "01aeec97db1ebd308f4fd0fcd853adca28cc8c8596e1c396d471f49a74d0aed5",
+      "occurrences": 9,
+      "compileReceiptSha256": "45102cee16701215121836aedd7fb027548e9c7366d5cd996056b8c1ad1fd6e1"
+    },
+    {
+      "ordinal": 762,
+      "id": "t_d67829b96305",
+      "sourceTerm": "山門",
+      "worksheetSha256": "46639f18f5ec4b5d37fcb50563366a400967b825a28403f1053f62ecb1d9e9aa",
+      "entrySha256": "7a6f13e770c6f73f2fe8926150f1f2898eed5755d965bff7074a2b8d8c24b084",
+      "occurrences": 8,
+      "compileReceiptSha256": "d96fbe3c4af3b2dfa53dc1b72eb4d2c7d633a97207562e0cbb4967d875a0e78c"
+    },
+    {
+      "ordinal": 763,
+      "id": "t_49cf304c2028",
+      "sourceTerm": "千佛",
+      "worksheetSha256": "deb19e37d6a42cfa4e6a580086a670ede3b06216931366a09610f05b196f855a",
+      "entrySha256": "b4c09c49ef8a33d380dca8298ac3eaa0dc9524e9017303d3d93bc9b217b47323",
+      "occurrences": 8,
+      "compileReceiptSha256": "9eb28a520c144c7c94fc32f2b5fe936d4d547c350e7c64e1ba7d19b124054460"
+    },
+    {
+      "ordinal": 764,
+      "id": "t_0e981298ab8f",
+      "sourceTerm": "且道畢竟如何",
+      "worksheetSha256": "effb0666ca9f9fca4e050e95646f2618f63d4d54ce2349a482386c922cb340c5",
+      "entrySha256": "164380da5f7c40de846793af6dd8d6bc3a6fb4c5a4a375aecb1a8254f03a1844",
+      "occurrences": 6,
+      "compileReceiptSha256": "6083fd1c36702c50b06f3d1701816b0c6ce142d672d9c89ee63400aa1fada19b"
+    },
+    {
+      "ordinal": 765,
+      "id": "t_6925efbeeb22",
+      "sourceTerm": "藏主",
+      "worksheetSha256": "d6b01299aff5b408b4a0dab511b35bcafb0dce05ed4326613509a17f8684c466",
+      "entrySha256": "c0342df00edaf1d5e5430c52e9df335f9109bbba76801dc38eda9efb7ead4905",
+      "occurrences": 9,
+      "compileReceiptSha256": "a844e5a1dd3ac2194b2b28625b139b70f6aae2aba466992e60d53014386bb233"
+    },
+    {
+      "ordinal": 766,
+      "id": "t_a2c5b2af7b10",
+      "sourceTerm": "臘八",
+      "worksheetSha256": "6d26077b1de8b1d2a3ff7a3067be7b93dbd5dc533c77330bfd2f24e78f96acf7",
+      "entrySha256": "9d91c30f0fc484d41b9af8542e01761f88d07f4979ad3901ec80ec6269da8193",
+      "occurrences": 10,
+      "compileReceiptSha256": "a61ce09e79a106c93b01d6d6f0e577ecc68a074c04c21b49b4826389d7a7b60c"
+    },
+    {
+      "ordinal": 767,
+      "id": "t_d0d82a2681a0",
+      "sourceTerm": "第一句",
+      "worksheetSha256": "82aae2e2709bb773443f442f01db805fb298897946c4ebdf0499359c3bdaa07a",
+      "entrySha256": "72ee1783d4b50d7963d4ca9b2f729adaaeef51f0e4355d1f79f3980f84153e93",
+      "occurrences": 8,
+      "compileReceiptSha256": "8995c918250c01fdba2e9d9a02c31d6ffda78280b11328e4c08fa89a0242eff7"
+    },
+    {
+      "ordinal": 768,
+      "id": "t_f9d90e213b23",
+      "sourceTerm": "頂門",
+      "worksheetSha256": "6c937400ee3206de6fbc1feb6d5bf495e7a1a92f250bd91881a7d1e0b10bbb46",
+      "entrySha256": "effb30a0958e0c62fcff99a9469f24fe56f58bf366ca63ebc921212e553ceca6",
+      "occurrences": 8,
+      "compileReceiptSha256": "47a4df96bd944252909b5d7a09304a36788feaff3def7fc4fc76273f6449b36f"
+    },
+    {
+      "ordinal": 769,
+      "id": "t_9be973a866fc",
+      "sourceTerm": "龍王",
+      "worksheetSha256": "fa718272bbfea851e019db768026efe09e1e54888ba99d082cec553d7b208760",
+      "entrySha256": "8f50a0efc95ff14fc4c6b27b1250100594264e01a12872b97e51d623abb73d2e",
+      "occurrences": 9,
+      "compileReceiptSha256": "0e786dc233a0e5e1449c091be1e8c7627de445d51e5aea94d0b99acb9b8bcfb8"
+    },
+    {
+      "ordinal": 770,
+      "id": "t_f47e0cb15568",
+      "sourceTerm": "末後一著",
+      "worksheetSha256": "7f51b82fc8768c935d56d9786ef38c6ff935271e382edd8cd48788a3ebfaeba7",
+      "entrySha256": "d680f144d0c3cc4ce6e7e98d99fc259c55bdba01048664c9c7cc0cec91cea066",
+      "occurrences": 6,
+      "compileReceiptSha256": "50745a91b82c2dc7a9fbaaa422f3b67046143aa84e81f6c199e9acf07af65d1b"
+    }
+  ],
+  "occurrences": 81
+}

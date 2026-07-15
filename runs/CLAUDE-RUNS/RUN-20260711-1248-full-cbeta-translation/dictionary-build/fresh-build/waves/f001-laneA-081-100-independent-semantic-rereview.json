@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-semantic-rereview",
+  "wave": "f001",
+  "lane": "A",
+  "ordinals": [81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],
+  "reviewer": "Codex independent reviewer (not lane author or repair author)",
+  "reviewedUtc": "2026-07-15T04:15:00Z",
+  "scope": "Final read-only rereview bound only to the latest focused gate and packet after duplicate-opening and residual semantic repairs. Checked every original required change, all term-specific openings, actor fixes, #0g, senses, and regressions.",
+  "inputs": {
+    "focusedRepairGate": {"path":"fresh-build/waves/f001-laneA-081-100-focused-repair-gate.json","sha256":"d28d5c589556266ffccbd8180fe443bfaafd1f6fc2378cc615bc36bea193f264"},
+    "originalReview": {"path":"fresh-build/waves/f001-laneA-081-100-independent-semantic-review.json","sha256":"fd3152f40572cd8991743b0abc8fbe5caa94a09799eb7fb2d10426c96b4c7cb7"},
+    "updatedRootReviewPacket": {"path":"fresh-build/waves/f001-laneA-071-090-root-review-packet.json","sha256":"2f36345ac1434ee98273502844e133adad4f3061682c86815ecb0a29f7b0f747"}
+  },
+  "summary": {"KEEP":20,"REVISE":0,"duplicateOpeningInspection":"All 24 sense explanations were checked. The verbatim duplication is absent in the latest hashes.","residualInspection":"四料揀 now spells out Yongming's four pairs. 四照用 retains narrator ownership for the heading occurrence and no longer presents the former unreviewed attribution as a direct headword utterance."},
+  "findings": [
+    {"ordinal":81,"id":"t_49829f59faac","term":"函蓋乾坤","entrySha256":"0a3e52a9d14092b3c91a0811e75594de56b12197a17ca68e215efa114e67efa2","verdict":"KEEP"},
+    {"ordinal":82,"id":"t_9a5dc768cbc5","term":"平常心是道","entrySha256":"bd22730d38a53ea75cbdf8668618f40ef4e1cf301417d1aa9979dc47f648f5cf","verdict":"KEEP"},
+    {"ordinal":83,"id":"t_ed962dfd1158","term":"四賓主","entrySha256":"fd3f465c9b5c42a9ca98dec67cec36bf5e6a4ab36df6e48c6493c4b6a366c850","verdict":"KEEP"},
+    {"ordinal":84,"id":"t_81147ad4e8bf","term":"四料揀","entrySha256":"f3d4935c1d008037b00e9fa246bdb8f3e47fb877bc34cdaaa43e09085eeaff92","verdict":"KEEP"},
+    {"ordinal":85,"id":"t_d11d5f0c78a5","term":"以心傳心","entrySha256":"773280de74792f465934b406c1d8c1ae86200327814b4203e9fe08e5b5285de3","verdict":"KEEP"},
+    {"ordinal":86,"id":"t_121b66b78c9e","term":"逢佛殺佛","entrySha256":"2cd87bb1540f82d1f2bce34ab587862969fd4e6522da6dd3749363d962484ea1","verdict":"KEEP"},
+    {"ordinal":87,"id":"t_4e10d7c80fbc","term":"四照用","entrySha256":"38658a0023dfea553fec58d1d5e43c7b904a52d2716edee9930beac50d9acd39","verdict":"KEEP"},
+    {"ordinal":88,"id":"t_d69c18a98053","term":"吃茶去","entrySha256":"7a6538511724dfbbce5097139eef6abfcf6d27b3bbc1a2cad2494daa28370dbd","verdict":"KEEP"},
+    {"ordinal":89,"id":"t_193632bffe7b","term":"喝","entrySha256":"0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7","verdict":"KEEP"},
+    {"ordinal":90,"id":"t_f25cebd24730","term":"棒","entrySha256":"4194aee028f9835da4182a923484e51288180feb4753b042a6644cd20e8372dc","verdict":"KEEP"},
+    {"ordinal":91,"id":"t_cc840e36f2da","term":"且道","entrySha256":"df3ababa3676213c785529d2a3c70b0215bf95256880e2ad74a4c0c4d9b89628","verdict":"KEEP"},
+    {"ordinal":92,"id":"t_4cc95950b59a","term":"一句","entrySha256":"347d8d79a220daa773ac969eed2d0604c130622fe04b786648b05a256f75a960","verdict":"KEEP"},
+    {"ordinal":93,"id":"t_8bd6933e6de3","term":"一喝","entrySha256":"4b6353547a31eec6f36ebd54b0dde69f62aa31098ccff93889d2fb9dd4d59b7f","verdict":"KEEP"},
+    {"ordinal":94,"id":"t_6abcff898d95","term":"良久","entrySha256":"4066c9ef046290d242d826b440774e23a968cc645086602c807bd99dfd645132","verdict":"KEEP"},
+    {"ordinal":95,"id":"t_9f119d7965c2","term":"拂子","entrySha256":"ebadd142c6bfe16065c672cd8f6eeec57af04a8fdbee38eb90924696c767a295","verdict":"KEEP"},
+    {"ordinal":96,"id":"t_1d3473614976","term":"禮拜","entrySha256":"0db741f7ca7ae5f36cee5a31805a722e44e457d579e6ec2bf1491255b15acda7","verdict":"KEEP"},
+    {"ordinal":97,"id":"t_8879b278cd83","term":"便打","entrySha256":"bc4bb65dd50a35c98dec663848bdccdca83852e87d3f9bb2e1470353889c2cf7","verdict":"KEEP"},
+    {"ordinal":98,"id":"t_0ad9fc2dfdda","term":"向上","entrySha256":"599029e5752ba8d5ea05d1efa5e579c3c5cbf8cfb5bc41629b2c6323f6805755","verdict":"KEEP"},
+    {"ordinal":99,"id":"t_ea138c7335d3","term":"鼻孔","entrySha256":"92132f90effc7c3b5c90c104cea28e69d41d81d5e1e062349ee385c8ac883203","verdict":"KEEP"},
+    {"ordinal":100,"id":"t_0e7b683790e8","term":"會麼","entrySha256":"4e49013248c9e607046e8a239c6cf57b67f06b2c988bd02ecaf82832af62e54a","verdict":"KEEP"}
+  ]
+}

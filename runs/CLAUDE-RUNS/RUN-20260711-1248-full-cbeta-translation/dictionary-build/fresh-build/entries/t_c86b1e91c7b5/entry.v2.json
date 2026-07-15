@@ -1,0 +1,121 @@
+{
+  "Id": "t_c86b1e91c7b5",
+  "SourceTerm": "陽焰",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:09:02.950859+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a shimmering mirage",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "a shimmering mirage",
+        "陽焰"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0455b20",
+          "ToLb": "0455b21",
+          "Kwic": "如陽焰如幻。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (宗鏡錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0260c26",
+          "ToLb": "0260c26",
+          "Kwic": "空華陽焰。",
+          "Curated": true,
+          "MasterName": "Lishan",
+          "ContextMasters": [
+            {
+              "MasterName": "Lishan",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), Lishan section: Lishan answers the monk with “empty blossoms, a shimmering mirage.”"
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml",
+          "FromLb": "0777a22",
+          "ToLb": "0777a22",
+          "Kwic": "荅：陽焰翻波。",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (入就瑞白禪師語錄). The explicit answer marker in Ruibai Mingxue’s own record assigns “a shimmering mirage turns waves” to Ruibai.",
+          "MasterName": "Ruibai Mingxue"
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0212b09",
+          "ToLb": "0212b10",
+          "Kwic": "雪峰和尚三登投子、九到洞山，如渴鹿趂陽焰，不知費了多少脚頭。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (列祖提綱錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J26/J26nB188.xml",
+        "T/T48/T48n2016.xml",
+        "T/T51/T51n2076.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "A shimmering mirage is the appearance of water produced by heat over dry ground. The Collected Essentials compares Xuefeng’s repeated journeys to a thirsty deer chasing a mirage. Other Chan records list the mirage with illusion or put waves on it. The thirsty-deer clause supplies the ordinary visual mistake; the shorter formulas show how widely the image is redeployed without explaining it each time."
+    }
+  ]
+}

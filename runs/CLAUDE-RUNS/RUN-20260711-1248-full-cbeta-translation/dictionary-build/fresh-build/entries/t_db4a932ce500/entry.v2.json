@@ -1,0 +1,303 @@
+{
+  "Id": "t_db4a932ce500",
+  "SourceTerm": "大悟",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T21:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "great awakening",
+      "AlternateTargets": [
+        "awaken greatly",
+        "thorough awakening"
+      ],
+      "SearchAliases": [
+        "great awakening",
+        "awaken greatly",
+        "thorough awakening"
+      ],
+      "Status": "preferred",
+      "Explanation": "The phrase marks a decisive breakthrough or describes a person credited with one. Linji Yixuan is narrated as awakening greatly at Dayu's words. Emperor Zhuangzong asks why a greatly awakened person could nevertheless become deluded, and the answer denies reversal through the broken-mirror and fallen-flower images. Tang Shiji distinguishes reports of repeated great and small awakenings. Biographical passages narrate breakthroughs by Fayan Wenyi and Faxiu, while the Record of Pointing at the Moon applies the phrase to Shakyamuni's awakening under the morning star. A preface narrates Dingxu's sudden breakthrough under Dahui Zonggao's blows. Dahui also transmits the maxim that great doubt necessarily has great awakening beneath it. These uses establish magnitude and decisiveness while leaving later records free to test claims made about awakened persons.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 3,323 hits in 337 files and 331 works. Eight exact witnesses from eight independent works cover breakthrough narrative, awakened-person question, comparative report, biography, Buddha narrative, preface narrative, and doubt formula.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0299b28",
+          "ToLb": "0299b29",
+          "Kwic": "師於言下大悟云。元來黃檗佛法無多子。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "awakening narrative",
+            "ActorLabel": "narrator describing Linji Yixuan",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "師於言下大悟 narrates Linji's breakthrough before quoting his response; the narrator, not Linji, supplies the headword.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Dayu",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Record of the Transmission of the Lamp Published in the Jingde Era (景德傳燈錄): the narrative voice describes Linji Yixuan awakening greatly at Dayu’s words before quoting Linji’s response."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0271b06",
+          "ToLb": "0271b07",
+          "Kwic": "大悟底人為甚麼却迷。師曰。破鏡不重照。落花難上枝。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Emperor Zhuangzong",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Huarong Xiuyuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Emperor Zhuangzong asks why a greatly awakened person becomes deluded; Huarong Xiuyuan answers with the broken mirror and fallen flower. The exact headword-bearing actor is the identified non-master Emperor Zhuangzong.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "emperor",
+            "ActorLabel": "Emperor Zhuangzong",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies this named non-master as the author or speaker of the exact headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0074a07",
+          "ToLb": "0074a08",
+          "Kwic": "大悟十八遍，小悟不計數，本是宋儒言，非大慧所說。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Tang Shiji",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄): Tang Shiji says the report of eighteen great awakenings and uncounted small awakenings came from a Song scholar, not Dahui Zonggao. The exact headword-bearing actor is the identified non-master Tang Shiji.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "identified author or speaker",
+            "ActorLabel": "Tang Shiji",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies this named non-master as the author or speaker of the exact headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0001b01",
+          "ToLb": "0001b01",
+          "Kwic": "師於言下大悟",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narrative",
+            "ActorLabel": "narrator describing Fayan Wenyi",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The biographical construction 師於言下大悟 predicates awakening of the section subject rather than quoting his speech.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps, fascicles 10–25 (五燈嚴統(第10卷-第25卷)): the biographical narrator describes Fayan Wenyi awakening greatly at the words."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0009c23",
+          "ToLb": "0009c24",
+          "Kwic": "師忽大悟，直詣方丈，陳其所證。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narrative",
+            "ActorLabel": "narrator describing Faxiu",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The narrator predicates sudden awakening and subsequent movement of the section subject Faxiu.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Faxiu",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): the biographical narrator describes Faxiu suddenly awakening greatly and reporting his realization."
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0405c16",
+          "ToLb": "0405c16",
+          "Kwic": "至八日明星出時，廓然大悟，成等正覺。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "Buddha biography",
+            "ActorLabel": "narrator describing Shakyamuni Buddha",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The passage narrates Shakyamuni's awakening under the morning star; it is not direct speech.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Record of Pointing at the Moon (指月錄): the biographical narrator describes Shakyamuni Buddha awakening greatly when the morning star appeared."
+        },
+        {
+          "RelPath": "X/X84/X84n1580.xml",
+          "FromLb": "0158a22",
+          "ToLb": "0158a22",
+          "Kwic": "需忽大悟。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "preface narrative",
+            "ActorLabel": "preface author describing Dingxu",
+            "ActorRole": "person-described",
+            "GrammarEvidence": "The preface narrator predicates sudden awakening of Dingxu after Dahui's blows.",
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Dingxu",
+              "Roles": [
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Separate Transmission Outside the Teaching (教外別傳): the preface narrator describes Dingxu suddenly awakening greatly after Dahui Zonggao struck him."
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0886a28",
+          "ToLb": "0886a28",
+          "Kwic": "大疑之下必有大悟",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao transmits the maxim that beneath great doubt there is necessarily great awakening."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "X/X80/X80n1565.xml",
+        "J/J10/J10nA158.xml",
+        "X/X81/X81n1568.xml",
+        "X/X82/X82n1571.xml",
+        "X/X83/X83n1578.xml",
+        "X/X84/X84n1580.xml",
+        "T/T47/T47n1998A.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Emperor Zhuangzong",
+        "Tang Shiji",
+        "Fayan Wenyi",
+        "Faxiu",
+        "Shakyamuni Buddha",
+        "Dingxu",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "小悟",
+        "大疑",
+        "言下大悟",
+        "豁然大悟",
+        "徹悟"
+      ]
+    }
+  ]
+}

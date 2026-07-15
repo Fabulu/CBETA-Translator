@@ -1,0 +1,502 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_c212062774f9",
+    "SourceTerm": "禪床",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f003 laneB exact8 priority repair author",
+    "WrittenUtc": "2026-07-15T17:30:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the Chan couch",
+        "AlternateTargets": [
+          "monastic sitting couch",
+          "teaching-seat couch",
+          "Chan seat"
+        ],
+        "SearchAliases": [
+          "Chan couch",
+          "monastic sitting couch",
+          "teaching couch",
+          "teacher couch"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "10 independent works anchor the headword and delimit the gloss.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0005b23",
+            "ToLb": "0005b24",
+            "Kwic": "是故東坡不敢惜，借君四大作禪床。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): Su Shi utters the headword in his explicitly introduced verse (士乃作偈曰); Foyin Liaoyuan is the person addressed and discussed.",
+            "ContextMasters": [
+              {
+                "MasterName": "Foyin Liaoyuan",
+                "Roles": [
+                  "person-discussed"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "lay authorial speech",
+              "ActorLabel": "Su Shi",
+              "ActorRole": "verse-author",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex f003 B701-750 final4 repair author",
+              "ReviewedUtc": "2026-07-15T14:00:00Z",
+              "GrammarEvidence": "The explicit frame 士乃作偈曰 introduces Su Shi’s verse; the verse itself contains 借君四大作禪床."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "是故東坡不敢惜，借君四大作禪床。",
+              "GrammaticalSubject": "Su Shi",
+              "SpeechFrame": "士乃作偈曰 explicitly introduces Su Shi’s verse.",
+              "FullCaseDecision": "Su Shi, not Foyin Liaoyuan, utters the headword-bearing line."
+            }
+          },
+          {
+            "RelPath": "D/D48/D48n8939.xml",
+            "FromLb": "0058a05",
+            "ToLb": "0058a08",
+            "Kwic": "舉趙州和尚一日趙王來不下禪床曰會麼王曰不會州曰自小持齋身已老見人無力下禪床騰騰和尚朝見則天仰視則天曰會麼天曰不會騰騰曰山僧持不語戒忠國師見肅宗帝",
+            "Curated": true,
+            "AttributionNote": "Source text (古尊宿語錄): the recorder narrates Zhaozhou Congshen remaining on the Chan couch before King Zhao and quotes his reply; Zhaozhou is the acting case figure, not the utterer of the narrated headword.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhaozhou Congshen",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "舉趙州和尚一日趙王來不下禪床曰會麼王曰不會州曰自小持齋身已老見人無力下禪床騰騰和尚朝見則天仰視則天曰會麼天曰不會騰騰曰山僧持不語戒忠國師見肅宗帝",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (古尊宿語錄; D/D48/D48n8939.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0006c05",
+            "ToLb": "0006c06",
+            "Kwic": "遂下禪床作舞，曰：會麼？",
+            "Curated": true,
+            "AttributionNote": "Source text (列祖提綱錄): the recorder narrates Ying'an Tanhua descending from the Chan couch and dancing before his marked speech; the action clause, not the following marked speech turn, contains the headword.",
+            "ContextMasters": [
+              {
+                "MasterName": "Ying'an Tanhua",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "遂下禪床作舞，曰：會麼？",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (列祖提綱錄; X/X64/X64n1260.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2077.xml",
+            "FromLb": "0470c07",
+            "ToLb": "0470c08",
+            "Kwic": "師拍禪床一下。",
+            "Curated": true,
+            "AttributionNote": "Source text (續傳燈錄), Shexian Guisheng section: the recorder narrates the presiding master striking the Chan couch between a monk’s question and reply.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shexian Guisheng",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師拍禪床一下。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (續傳燈錄; T/T51/T51n2077.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X79/X79n1559.xml",
+            "FromLb": "0294b02",
+            "ToLb": "0294b03",
+            "Kwic": "上堂：以拄杖擊禪床，召大眾，曰：還聞麼？",
+            "Curated": true,
+            "AttributionNote": "Source text (嘉泰普燈錄), Shishuang Chuyuan section: the recorder narrates the presiding master striking the Chan couch before he addresses the assembly.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shishuang Chuyuan",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "上堂：以拄杖擊禪床，召大眾，曰：還聞麼？",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (嘉泰普燈錄; X/X79/X79n1559.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0229a27",
+            "ToLb": "0229a27",
+            "Kwic": "師敲禪床。",
+            "Curated": true,
+            "AttributionNote": "Source text (景德傳燈錄): the biographer narrates Niutou Huizhong striking the Chan couch to summon his tigers; the action is not quoted speech.",
+            "ContextMasters": [
+              {
+                "MasterName": "Niutou Huizhong",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師敲禪床。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (景德傳燈錄; T/T51/T51n2076.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "C/C078/C078n1720.xml",
+            "FromLb": "0659a06",
+            "ToLb": "0659a10",
+            "Kwic": "不用不用千聖不共如是如是蝮蝎蛇虺不是不是徹骨徹髓進前退後遶禪床掣電之機落二三國師問紫璘供奉甚處來曰城南來師曰城南草作何色曰作黃色師乃",
+            "Curated": true,
+            "AttributionNote": "Source text (禪宗頌古聯珠通集): the verse narrator describes circling the Chan couch in a verse attached to the Nanyang Huizhong case; the following prose case names Huizhong separately.",
+            "ContextMasters": [
+              {
+                "MasterName": "Nanyang Huizhong",
+                "Roles": [
+                  "person-discussed"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "不用不用千聖不共如是如是蝮蝎蛇虺不是不是徹骨徹髓進前退後遶禪床掣電之機落二三國師問紫璘供奉甚處來曰城南來師曰城南草作何色曰作黃色師乃",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (禪宗頌古聯珠通集; C/C078/C078n1720.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1998A.xml",
+            "FromLb": "0812b09",
+            "ToLb": "0812b09",
+            "Kwic": "拍禪床下座。",
+            "Curated": true,
+            "AttributionNote": "Source text (大慧普覺禪師語錄): the recorder narrates Dahui Zonggao striking the Chan couch and leaving the seat after his address.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "拍禪床下座。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (大慧普覺禪師語錄; T/T47/T47n1998A.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0676c12",
+            "ToLb": "0676c12",
+            "Kwic": "敲禪床下座",
+            "Curated": true,
+            "AttributionNote": "Source text (古尊宿語錄), Shimen Yuncong record: the recorder narrates the presiding master striking the Chan couch and leaving the seat.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shimen Yuncong",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "敲禪床下座",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X81/X81n1571.xml",
+            "FromLb": "0443a10",
+            "ToLb": "0443a12",
+            "Kwic": "麻谷到參，繞禪床三匝，振錫而立",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈全書(第1卷-第33卷)), Nanyang Huizhong section: the recorder narrates Mayu Baoche circling the Chan couch; Nanyang Huizhong then responds.",
+            "ContextMasters": [
+              {
+                "MasterName": "Mayu Baoche",
+                "Roles": [
+                  "person-described"
+                ]
+              },
+              {
+                "MasterName": "Nanyang Huizhong",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "麻谷到參，繞禪床三匝，振錫而立",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (五燈全書(第1卷-第33卷); X/X81/X81n1571.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X82/X82n1571.xml",
+          "D/D48/D48n8939.xml",
+          "X/X64/X64n1260.xml",
+          "T/T51/T51n2077.xml",
+          "X/X79/X79n1559.xml",
+          "T/T51/T51n2076.xml",
+          "C/C078/C078n1720.xml",
+          "T/T47/T47n1998A.xml",
+          "C/C077/C077n1710.xml",
+          "X/X81/X81n1571.xml"
+        ],
+        "RelatedMasters": [
+          "Foyin Liaoyuan"
+        ],
+        "RelatedTerms": [],
+        "Explanation": "A couch or raised seat used at a Chan teaching assembly is a physical furnishing that records make part of public action: Zhaozhou remains on it before a king; Niutou Huizhong, Shishuang Chuyuan, Dahui Zonggao, and Shimen Yuncong strike it or leave it; Magu Baoche circles it. The compound names a real couch or seat. Its Chan force comes from its placement at the teaching seat and from recorded gestures performed on or around it, not from turning the furniture into an abstract symbol.",
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7",
+            "o8",
+            "o9",
+            "o10"
+          ],
+          "ZenBend": "The compound names a real couch or seat. Its Chan force comes from its placement at the teaching seat and from recorded gestures performed on or around it, not from turning the furniture into an abstract symbol.",
+          "CounterexampleOrLimit": "The witnesses do not license an imported doctrinal definition or a separate sense for every rhetorical stance.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the Chan couch",
+              "its attested deployments"
+            ],
+            "Reason": "The witnesses preserve one referent or action across different predicates and settings."
+          },
+          "AliasRationale": "Aliases provide natural English spelling and close synonyms needed for lookup.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "Compounds and surrounding predicates were not allowed to redefine the bare headword."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Related titles and formulas were treated as context rather than synonyms."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:wudeng-quanshu",
+            "work:guzunsu-yulu",
+            "work:X64n1260",
+            "work:T51n2077",
+            "work:X79n1559",
+            "work:T51n2076",
+            "work:C078n1720",
+            "work:T47n1998A",
+            "work:guzunsu-yulu",
+            "work:wudeng-quanshu"
+          ]
+        },
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A couch or raised seat used at a Chan teaching assembly is a physical furnishing that records make part of public action: Zhaozhou remains on it before a king; Niutou Huizhong, Shishuang Chuyuan, Dahui Zonggao, and Shimen Yuncong strike it or leave it; Magu Baoche circles it.",
+          "EvidenceBody": [
+            "The compound names a real couch or seat. Its Chan force comes from its placement at the teaching seat and from recorded gestures performed on or around it, not from turning the furniture into an abstract symbol."
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "generatedUtc": "2026-07-15T06:01:40.825300+00:00",
+  "wave": "f003",
+  "lane": "A",
+  "range": "651-700",
+  "role": "repair author",
+  "reviewInput": "fresh-build/waves/f003-laneA-651-700-independent-exact-review.json",
+  "reviewInputSha256": "46165266b2fcc314f6ab4ed269f13805cfc053f53642d06ba407893329f7c687",
+  "repairs": "All 50 individualized semantic/prose findings addressed; reusable figure/institution prose removed; ordinary referents and corpus-specific deployments stated; Rahulata corrected; title/catalogue strings explicitly bounded; exact actor metadata normalized where roster evidence resolved it.",
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneA-651-700-formal-gate-author-repair.json",
+    "sha256": "0c9b2d2a06f8d9763ce1c4031dc3760a19b9020b7aa7c8b7ae135781ce28ff2d",
+    "hardPass": true,
+    "entries": 50,
+    "exactKwicVerified": 356,
+    "exactKwicFailures": 0
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "checkpointRange": "671-680",
+  "entries": [
+    {
+      "ordinal": 671,
+      "id": "t_aa7b526258cc",
+      "sourceTerm": "相見",
+      "worksheetSha256": "6fce32f91bb8e93040f03e297bd78701c9db631f10352414673eb04b550e3392",
+      "entrySha256": "4c1fd5c3668ba5ff0a5276181c61bd85608a2f6e525a16625f9dce5335b72ce0",
+      "occurrences": 8,
+      "compileReceiptSha256": "9aa1f91b1967126b81a938e7c593d83b800741573d9a3dc512a99863268e7bfb"
+    },
+    {
+      "ordinal": 672,
+      "id": "t_935452e7a2c6",
+      "sourceTerm": "觀音",
+      "worksheetSha256": "98fe7ec50cd6765b47c425b7ca574608dabe4b9b62b54dc4ee554490158d33a2",
+      "entrySha256": "a6488cb980f544045f5c1ce07d744ed1e6bf9c3f346dc8c6bec43ba74ed16fbe",
+      "occurrences": 8,
+      "compileReceiptSha256": "861bf5acd7710fa2ab885945f7a9cf1698357666be50f77bbc5642a3b5a38803"
+    },
+    {
+      "ordinal": 673,
+      "id": "t_d4673502b2d2",
+      "sourceTerm": "未審",
+      "worksheetSha256": "5a2fcca3a0097a3e3486bc2373bade9bbff1ed2a87843fcedb978dae9485ad86",
+      "entrySha256": "b7cac1245e22d5337219b694d8027aface7e6615d95e30021be1688641148879",
+      "occurrences": 8,
+      "compileReceiptSha256": "3ca2cb4ee80f59dca45f980d9cf811f9493ecc5c36616c7db5feb40f92e3ee8b"
+    },
+    {
+      "ordinal": 674,
+      "id": "t_27c71a091873",
+      "sourceTerm": "首座",
+      "worksheetSha256": "2a2c3e5a98fe7d7b3feaa79ff52be243c71e842c72611427674c5fafd9eeff91",
+      "entrySha256": "bae8b3c36c2d3b4d330fa29fddc1bf3f48e6103a3385823dac88828cab907c0d",
+      "occurrences": 8,
+      "compileReceiptSha256": "577a9962a277bb6f476f7ab1d07c325d1f42fa4d20a872014c10a7cb24869387"
+    },
+    {
+      "ordinal": 675,
+      "id": "t_09ed57d56bcf",
+      "sourceTerm": "普賢",
+      "worksheetSha256": "f6464cfc94c50bd78a45be6cb4e4d303eca820f3edac7531bd77781355a790ac",
+      "entrySha256": "2baadd6911bcd77f2861450b5acbb98e0594a41bf842386c33c3f7136e247b81",
+      "occurrences": 8,
+      "compileReceiptSha256": "3c1ab10a7a7cbcdf6a999d1a6ddb3feaaae3585f8503f92a6bd404eecd907c93"
+    },
+    {
+      "ordinal": 676,
+      "id": "t_68303eb8b076",
+      "sourceTerm": "拈拄杖",
+      "worksheetSha256": "b1b53ad4982f69559949cc2a033e576bfaaa913e8aaea83faf67f839603a8ca3",
+      "entrySha256": "5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee",
+      "occurrences": 8,
+      "compileReceiptSha256": "c9201a0652e07f8bed8a0bb02efcc70b1ae56ea7e9d5018c05bdb9ba2810dece"
+    },
+    {
+      "ordinal": 677,
+      "id": "t_1c2ff70cf5a5",
+      "sourceTerm": "禪寺",
+      "worksheetSha256": "fca9e67fbf4953d1a58c4693c8beb58d433d427001957e3ce17db469cefb4387",
+      "entrySha256": "3e2416b4a3311a92ea139fb7bb844236eb1bb02d468a5cae2b2ede4cb3b03f1f",
+      "occurrences": 8,
+      "compileReceiptSha256": "7cab73a2aec8e64696d17d9a2b33d87a72051ee3dd8b4e2e4bb8327120bcf20e"
+    },
+    {
+      "ordinal": 678,
+      "id": "t_b4d4e5d50e6f",
+      "sourceTerm": "護生",
+      "worksheetSha256": "d6fb1173800cd4383152a6c6972fcf2a88b91af1a53257720ab63ab1f04fd2dd",
+      "entrySha256": "8e07edf8e4728a6e7400955ad044212ba375e87ae7725de1c6103b9838240c3a",
+      "occurrences": 6,
+      "compileReceiptSha256": "d3a33574a2fbe90d096af77a51ef1353841360aa2a1fab0c1b0ae4ca8df68b1a"
+    },
+    {
+      "ordinal": 679,
+      "id": "t_4da199fae933",
+      "sourceTerm": "消息",
+      "worksheetSha256": "4a164a6d229ffe8f737b0882fb73fcd97a269a8b2e5b22cf05055030fbb8e58b",
+      "entrySha256": "ab174abddd3a435c225bfb5c1dbc873697279f6424576f2b9b73029592a808bb",
+      "occurrences": 8,
+      "compileReceiptSha256": "c3acdc83ca9c34a17f714834229469d54a079abd34b9da0000388ad6fad1ee94"
+    },
+    {
+      "ordinal": 680,
+      "id": "t_2d567d37256b",
+      "sourceTerm": "富樓那",
+      "worksheetSha256": "44f6d8992e224abc971c102b98680471a44750e1a8aacb387448280d424ddcdf",
+      "entrySha256": "af5fb7fcfec9fafb0499066741ee4c24b85a7e615b43b5f58ea7085ae6f1a5df",
+      "occurrences": 4,
+      "compileReceiptSha256": "4a3fcbe1658c13649d81850015065ed0601a149ee597f3a615501e84853f9d9a"
+    }
+  ],
+  "occurrences": 74
+}

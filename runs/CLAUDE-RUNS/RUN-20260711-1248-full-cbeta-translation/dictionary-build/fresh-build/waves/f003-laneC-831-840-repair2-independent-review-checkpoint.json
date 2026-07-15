@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "f003-repair2-independent-exact-rereview-v1",
+  "reviewType": "read-only independent semantic and exact-actor rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": [
+    831,
+    840
+  ],
+  "generatedUtc": "2026-07-15T06:23:52.919296+00:00",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "sourcePriorReview": "fresh-build/waves/f003-laneC-801-850-actor-repair-independent-rereview.json",
+  "sourcePriorReviewSha256": "120d848e08fb6ef02b8b40b353954020d8628902d8660e06472124c224d103df",
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-exact-actor-repair2-ledger.json",
+  "repairLedgerSha256": "524d801200adbe90d25e348422a468b7cbf0fa959c389154e80a34160bfacf16",
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-current-repair2.json",
+  "formalGateSha256": "ebfed53b863ae772895a6b2ae0c756dc44233c29fdc61a639822b52a97eb8d62",
+  "formalGateHardPass": true,
+  "occurrencesReadInFullCaseContext": 66,
+  "summary": {
+    "KEEP": 6,
+    "REVISE": 4
+  },
+  "seventeenPriorKeepHashesUnchanged": true,
+  "rows": [
+    {
+      "ordinal": 831,
+      "id": "t_663eefaa4ad7",
+      "term": "偏正",
+      "entrySha256": "548078eb1e004ea48f17b21c46d69aa108adb023ae9430c62977986c0c1628a2",
+      "evidenceDraftSha256": "5c158d915eca770e3f0d661d7d08f4e9f6fe8c2d0c03db0a340ae1347bbda364",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "priorFinding": "REVISE: O6 stores `則川和尚`, a noncanonical source label, and multiple headword-bearing spoken uses remain generic narration.",
+      "finding": "REVISE — O3 explicitly has the old woman speak the headword clause but labels it compiler narration; O6 names the later quoter. Those two speakers cannot be collapsed."
+    },
+    {
+      "ordinal": 832,
+      "id": "t_589f52acc0b0",
+      "term": "答話",
+      "entrySha256": "d099f0ac70da66acc82a721c5852aa7f48a38d51730716af70338cf018f5eaf8",
+      "evidenceDraftSha256": "a175853f88fefde7298cf8f269063d41a8b3df84d29517eb22dee9745e465cc0",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O1/O2 store `南康廬山萬杉善爽禪師` and `羅漢機`; the latter is a phrase fragment and neither is a demonstrated canonical exact utterer for the stored turn.",
+      "finding": "REVISE — O2 and O4 mark Luohan Ji as the one saying the appraisal, while the entry still assigns the compiler. The phrase-fragment label was removed without installing the recoverable speaker."
+    },
+    {
+      "ordinal": 833,
+      "id": "t_258b079d8359",
+      "term": "女子出定",
+      "entrySha256": "a93c5f045d44582809148d8da0f6a83371ef3a813c32d76500b8e382ff58aa92",
+      "evidenceDraftSha256": "90787db6f96da3b887bbce4f828bfab4a43bec7a4572e19814ab549180369efa",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "priorFinding": "REVISE: O1/O5 store raw Chinese headings/names (`建康府蔣山一庵善直禪師`, `洪覺範`) rather than roster-canonical exact utterers; the full set remains inconsistent.",
+      "finding": "KEEP — The two recoverable commentators now use canonical names, and the remaining case-title or compiler-summary clauses are genuinely documentary."
+    },
+    {
+      "ordinal": 834,
+      "id": "t_a842c76ef637",
+      "term": "阿那箇",
+      "entrySha256": "80c9d4fcbac88346c85f7c3ce6865bf33db77616f9d290dedc14c1d406dd492f",
+      "evidenceDraftSha256": "2fa54a7ddd11bb588de2c44f186c04cecdc2085b99c89838fa1b5d15358e37ce",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 835,
+      "id": "t_baf1c6b9db60",
+      "term": "如意",
+      "entrySha256": "2f20528791c190a84ff7b29c471e47a7bc0bc7b8675f3947106bffedfa4f4bb5",
+      "evidenceDraftSha256": "8c581df56ecd191519a0eaa1eb5db920fc5377c9a0eb44fa4ce7c1bfa486c324",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O6 stores the entire action phrase `如意子鞠躬向前問訊` as MasterName, not a person.",
+      "finding": "KEEP — The scepter occurrences are narrated handled-object actions or proper-name contrasts; no action phrase remains masquerading as a MasterName."
+    },
+    {
+      "ordinal": 836,
+      "id": "t_65491dc99795",
+      "term": "庫司",
+      "entrySha256": "b20e296ee58ae1a046570578c7a6d7de47b53820a123c5a02e517f0ea37c86fa",
+      "evidenceDraftSha256": "f721bd07eda0bebbb107fd0bfb56bd3ebb2828a093d18c8ddbae09eb1fca6752",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "priorFinding": "KEEP: prior independent full-occurrence semantic verdict remains applicable; the exact entry hash is unchanged after the actor-repair round.",
+      "finding": "KEEP — Current hash and full-case rereading preserve the prior accepted semantic verdict; no syntax/action label, recoverable speaker, catalogue contamination, hidden different-thing split, or prose-hygiene defect remains."
+    },
+    {
+      "ordinal": 837,
+      "id": "t_bd0ba96ae735",
+      "term": "可惜",
+      "entrySha256": "e5d6b20ca6d4e8478751d5a7ead7bd56c213c976861153df2b622e45a2976c2f",
+      "evidenceDraftSha256": "04a59f2ffb62620eb50c85450e800a8c371a9e44eaaeadb82c0dc68f16a7b402",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: Restored values `昭覺勤` and `瑞州清涼覺範慧洪禪師` are abbreviated/raw headings rather than canonical exact utterers; turn ownership remains unsafe.",
+      "finding": "REVISE — O2 and O5 are quoted appraisals parallel to the named Yuanwu witnesses, but remain compiler narration. The repeated saying needs consistent speaker/quoter attribution."
+    },
+    {
+      "ordinal": 838,
+      "id": "t_3b9857d1cc19",
+      "term": "退院",
+      "entrySha256": "5d8b4f5c2ebc5208a89f3578be8192b80c763b147d148582bd3611a54be4ec34",
+      "evidenceDraftSha256": "46d2e8e71db9fa042c839ed711c1cc1f3716478cc07202950d6ff7fb96f631c9",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "priorFinding": "REVISE: O2 stores raw heading `建康府華藏密印安民禪師`; the remaining documentary and spoken uses still require exact actor adjudication.",
+      "finding": "KEEP — Retirement headings and biographical clauses are properly documentary, while the direct challenge is assigned to Huazang Anmin."
+    },
+    {
+      "ordinal": 839,
+      "id": "t_7c6a61681198",
+      "term": "投機",
+      "entrySha256": "a7f8f5f6e9a976d8e68e0de7159585e8ac3efdb175443e815ef4e4c8697167ff",
+      "evidenceDraftSha256": "10caf4731bce2a58c720cb780016dda7aeeab00e9d270a595da0232371b666bb",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O1 stores `作投機偈`, an action/title phrase, as MasterName rather than the person who composed or uttered the wording.",
+      "finding": "KEEP — “Compose an accord-with-the-working verse” is narrator-owned action/title language, and the remaining selected clauses are documentary or unattributed without a false person label."
+    },
+    {
+      "ordinal": 840,
+      "id": "t_84406e0eca53",
+      "term": "脚跟",
+      "entrySha256": "30a83b83f1280bc04d14b9464e917ca16a92691ffc40341a4678d9e42b8ba77b",
+      "evidenceDraftSha256": "127369616afb27293e7cdbbae8e43a7b2be79793116b155391edbc62798b5629",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "priorFinding": "REVISE: O5 stores abbreviated `法昌遇` rather than a canonical linked utterer, while the other cases are broadly demoted to narration.",
+      "finding": "REVISE — O1–O4, O6, and O7 contain address or evaluative language using “heel,” yet remain generic narration. Only the Fachang quotation is linked, so the broad demotion persists."
+    }
+  ]
+}

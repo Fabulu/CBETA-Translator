@@ -1,0 +1,212 @@
+{
+  "SchemaVersion": 2,
+  "Id": "t_5d6035b1e800",
+  "SourceTerm": "露地白牛",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh-build f001 lane B",
+  "WrittenUtc": "2026-07-14T19:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the white ox in the open ground",
+      "AlternateTargets": [
+        "the white bull standing in the open"
+      ],
+      "SearchAliases": [
+        "white ox in open ground",
+        "white bull in the open",
+        "open-ground white ox",
+        "white ox in the field",
+        "tamed white ox"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 418 exact apparatus-clean hits in 178 files and 174 independent works in the canonical f001 preflight. The tamed-animal account, interview question, animal calls, agricultural warnings, feast, and snow verse all retain one identifiable ox figure; they are deployments, not different referents.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0614b01",
+          "ToLb": "0614b03",
+          "Kwic": "如今一時變作個露地白牛，常在面前，終日露迥迥地，趁亦不肯去。",
+          "MasterName": "Changqing Da'an",
+          "Curated": true,
+          "AttributionNote": "Patriarchs' Hall Collection (祖堂集), Changqing Da'an section. Changqing Da'an is the exact speaker concluding his self-account of thirty years at Guishan, where he repeatedly pulled a water buffalo away from the road and crops: it has now changed into the white ox in the open ground and will not leave even when driven.",
+          "ContextMasters": [
+            {
+              "MasterName": "Changqing Da'an",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "teacher",
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0652b05",
+          "ToLb": "0652b05",
+          "Kwic": "問：如何是露地白牛？師云：莫教喫人苗稼。",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Lantian Zhen section. An unnamed participant asks what the white ox in the open ground is, and Lantian Zhen answers not to let it eat another person's seedlings; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed participant questioning Lantian Zhen",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh f001 lane B exact-turn review",
+            "ReviewedUtc": "2026-07-14T19:00:00Z",
+            "GrammarEvidence": "The complete-case speech and narration markers assign the headword-bearing clause to an unnamed participant questioning Lantian Zhen, as recorded in the attribution note."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Lantian Zhen",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0013b09",
+          "ToLb": "0013b10",
+          "Kwic": "問：一色無變異，喚作露地白牛，還端的也無？師曰：頭角生也。曰：頭角未生時如何？師曰：不要犯人苗稼。",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 34 through 120 (五燈全書(第34卷-第120卷)), Fozu Chuxiang section. An unnamed participant asks whether one unvarying color is truly called the white ox in the open ground, and Fozu Chuxiang answers first that horns have grown and then warns against trespassing on people's crops; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed participant questioning Fozu Chuxiang",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh f001 lane B exact-turn review",
+            "ReviewedUtc": "2026-07-14T19:00:00Z",
+            "GrammarEvidence": "The complete-case speech and narration markers assign the headword-bearing clause to an unnamed participant questioning Fozu Chuxiang, as recorded in the attribution note."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fozu Chuxiang",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0120a10",
+          "ToLb": "0120a12",
+          "Kwic": "臨濟問。如何是露地白牛。師曰。吽吽。濟曰。瘂却杏山口。師曰。老兄作麼生。濟曰。這畜生。師便休。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Xingshan Jianhong section. Linji Yixuan is the exact questioner asking about the white ox in the open ground; Xingshan Jianhong bellows, Linji says Xingshan has become mute, and the exchange continues by treating the figure as an animal.",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Xingshan Jianhong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0479a26",
+          "ToLb": "0479a28",
+          "Kwic": "老僧烹一頭露地白牛。炊土田米飯。煮菜根燒榾柮火。與大眾圍爐唱歸田樂。",
+          "MasterName": "Beichan Zhixian",
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄), Beichan Zhixian section. Beichan Zhixian is the exact speaker announcing that he will cook a white ox in the open ground for the year-end gathering and eat with the assembly around the fire.",
+          "ContextMasters": [
+            {
+              "MasterName": "Beichan Zhixian",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0381b08",
+          "ToLb": "0381b09",
+          "Kwic": "六牙香象木人騎，露地白牛無處著。",
+          "MasterName": "Furong Daokai",
+          "Curated": true,
+          "AttributionNote": "Continued Essentials of the Old Venerable Masters' Sayings (續古尊宿語要), Furong Daokai record. Furong Daokai is the exact verse speaker saying that in the all-white snow the white ox in the open ground has nowhere to be placed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Furong Daokai",
+              "Roles": [
+                "utterer",
+                "verse-author",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "X/X78/X78n1556.xml",
+        "X/X82/X82n1571.xml",
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2077.xml",
+        "X/X68/X68n1318.xml"
+      ],
+      "RelatedMasters": [
+        "Changqing Da'an",
+        "Guishan Lingyou",
+        "Lantian Zhen",
+        "Fozu Chuxiang",
+        "Linji Yixuan",
+        "Xingshan Jianhong",
+        "Beichan Zhixian",
+        "Furong Daokai"
+      ],
+      "RelatedTerms": [
+        "水牯牛",
+        "牧牛",
+        "一色"
+      ],
+      "Explanation": "The white ox in the open ground. Changqing Da'an describes a water buffalo he tended during thirty years at Guishan, repeatedly pulling it back from crops until it changed into this white ox, plainly present and no longer needing to be driven. Other named speakers keep the animal imagery active: it grows horns, must not eat another's seedlings, bellows when Linji Yixuan asks about it, is cooked for a year-end communal meal, or has nowhere to be placed when snow makes everything one color. Chan thus uses the open-ground white ox as a publicly handled figure of an animal no longer straying or concealed, while interview answers and seasonal talks keep testing whether that description has become another object to possess."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case rereview of f003 lane-B exact8 round2 repairs",
+  "wave": "f003",
+  "lane": "B",
+  "ordinals": "701-750",
+  "generatedUtc": "2026-07-15T10:10:57.086802+00:00",
+  "reviewer": "Codex independent reviewer; not the exact8 round2 repair author",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "inputs": {
+    "sourceRejectingReview": "f003-laneB-701-750-final4-fresh-independent-exact-review.json",
+    "sourceRejectingReviewSha256": "f32fed38c44b015776deeb8f626e9633852facb2b050a18ee01f4c95ed108486",
+    "repairAuthorLedger": "f003-laneB-701-750-exact8-round2-repair-author-ledger.json",
+    "repairAuthorLedgerSha256": "a18d0e0a9329bbc58c75a69ddf3d04f7b5ac329ee9db3e41b8953fc90ea93b50",
+    "repairReadiness": "f003-laneB-701-750-exact8-round2-repair-readiness.json",
+    "repairReadinessSha256": "55e076b713669e75e2d30441605b4cc2a628c4c6a09c676b3f8e464c72b0ef86",
+    "full50FormalGate": "f003-laneB-701-750-exact8-round2-full50-formal-gate.json",
+    "full50FormalGateSha256": "bc924fceee5585028aed570b25d485a41845a960208b8cf69ad679653c0e74b9",
+    "v3AttributionPackets": "f003-laneB-701-750-exact8-round2-full50-formal-gate-attribution-packets.json",
+    "v3AttributionPacketsSha256": "f5ca67d6350bc6477581c92e932ffde076fb01ec229f7c636d42e0ae0f31e391",
+    "cohortLocalRosterSnapshot": "f003-laneB-exact8-cohort-pending-roster.json",
+    "cohortLocalRosterSnapshotSha256": "247dde694b742f5979020af276a98ef7a602319f25383b143e5aae300d09edaa"
+  },
+  "formalGateHardPass": true,
+  "exactKwic": {
+    "verified": 369,
+    "failures": 0
+  },
+  "attributionPacketGeneratorVersion": 3,
+  "turnProofMissing": 0,
+  "repairedEntriesRead": 4,
+  "repairedOccurrencesReadInCompleteCaseContext": 31,
+  "priorKeepCount": 46,
+  "priorKeepHashesByteIdentical": true,
+  "summary": {
+    "KEEP": 2,
+    "REVISE": 2
+  },
+  "systemicFindings": [
+    "A green exact-KWIC gate proves string identity, not that every repeated headword token inside one stored KWIC has the same actor.",
+    "Narrator ownership does not remove a clearly named master from ContextMasters when that master is the case subject, actor, respondent, or discussed figure.",
+    "Parallel recensions may be retained for textual comparison only when their shared case/work-family identity is disclosed and counted once for independence."
+  ],
+  "rows": [
+    {
+      "ordinal": 712,
+      "id": "t_c212062774f9",
+      "term": "禪床",
+      "verdict": "KEEP",
+      "occurrencesRead": 10,
+      "finding": "KEEP — All ten current occurrences were reread in their complete v3 case units. The original blanket-empty ContextMasters defect is repaired case by case: Su Shi is the verse author with Foyin Liaoyuan discussed; Zhaozhou Congshen, Ying'an Tanhua, Shexian Guisheng, Shishuang Chuyuan, Niutou Huizhong, Nanyang Huizhong, Dahui Zonggao, Shimen Yuncong, Mayu Baoche, and the respondent in the Mayu case are now represented in their exact contextual roles. MasterName remains null where the recorder, not the acting master, writes the headword. The literal couch/teaching-seat gloss, non-symbolic canary, and named-action explanation are supported by the stored cases.",
+      "entrySha256": "bdb3102a0bd4c489bb8f3b083b09d62b41cec792823be439ca507b26efbbd3d4"
+    },
+    {
+      "ordinal": 713,
+      "id": "t_2da0e2fc0478",
+      "term": "三門",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — The original O1 turn defect is fixed: 進云 belongs to the unnamed monastic questioner and Foyan Qingyuan is only the respondent. The technical 前之三門 witness now includes the full enumeration and supports the different-thing sense 'three approaches.' However, the two biographical monastery-gate witnesses X81n1571 and X80n1565 explicitly narrate Sengcan speaking below the gate and then being persecuted, yet both still have empty ContextMasters. The actor is the recorder, but the named master being described is reader-relevant and canonically nameable as Sengcan. This violates the every-master/context rule twice and requires repair before promotion.",
+      "entrySha256": "99e5f137e756c89136967fa28b1a36f58ff3bc3cd73c00d29dc6a3433da508da"
+    },
+    {
+      "ordinal": 722,
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "verdict": "REVISE",
+      "occurrencesRead": 8,
+      "finding": "REVISE — The original missing-section-master defect is repaired: all seven editorial occasion labels now retain the presiding master in ContextMasters, and the eighth spoken witness names Hongjue Min. But exact evidence identity remains unresolved. O1 stores both narrator-owned 開爐日 and Fachang Yiyu's spoken 法昌今日開爐 in one KWIC while assigning one null MasterName; O6 stores the editorial heading and the monk's 明旦開爐 question together; O7 stores the heading plus three separately attributed spoken 開爐 tokens. A single occurrence/attribution cannot represent headword tokens with different utterers. Recut these into unambiguous occurrences (and retain enough complete-case context) before promotion.",
+      "entrySha256": "dc4a03e9aa3ba4590ba54d9929cd22d021158344142660be560753be6142da34"
+    },
+    {
+      "ordinal": 750,
+      "id": "t_74390b40f658",
+      "term": "坐斷天下人舌頭",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — All six current cases were reread. The Song 圓悟佛果禪師語錄 occurrence is now correctly Yuanwu Keqin rather than Ming master Feiyin Tongrong, and the Qianyan Yuanzhang incense-address KWIC is cleanly recut without duplicated volume headings. The remaining utterers and discussed figures match their exact turns. The explanation's public-verdict inference is supported across replies, comments, a departure judgment, and the memorial address, while the explicit non-mutilation canary prevents literalization.",
+      "entrySha256": "8bf51716568121ee052746b657122fa8526f4872f85a74f3c6fd50d2fb42a21e"
+    }
+  ]
+}

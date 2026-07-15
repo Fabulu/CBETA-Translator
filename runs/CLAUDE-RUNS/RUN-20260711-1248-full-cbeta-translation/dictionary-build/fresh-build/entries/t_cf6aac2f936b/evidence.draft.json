@@ -1,0 +1,209 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_cf6aac2f936b",
+    "SourceTerm": "一字關",
+    "CreatedBy": "Codex f002 Lane B evidence-first refresh",
+    "WrittenUtc": null,
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the one-word barrier",
+        "AlternateTargets": [
+          "Yunmen's one-word barrier"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Zen bends ordinary ‘one word’ plus ‘barrier’ language into the monastic name for Yunmen's recurrent single-graph answers. The naming formula is explicit, so this deviation is corpus-stated. Cross-check with ‘look—look!—hah!’ (顧鑒咦): one later text says the shortened ‘look!—hah!’ became a one-word barrier, but that later comparison does not make the two labels identical or create a second sense. Frozen-corpus concordance: 78 exact hits in 55 storage files representing 54 independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0312c12",
+            "ToLb": "0312c12",
+            "Kwic": "故叢林目之。曰一字關云。",
+            "Curated": true,
+            "AttributionNote": "Source text (人天眼目). anthology's lineage-labeling statement narrates the exact clause in the complete case.",
+            "ActorAttribution": {
+              "Status": "impersonal",
+              "Kind": "compiler narrative",
+              "ActorLabel": "anthology's lineage-labeling statement",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The sentence is third-person documentary classification, with 叢林 as the naming community and no speech turn.",
+              "ReviewedBy": "Codex hard-w2-remaining300",
+              "ReviewedUtc": "2026-07-14T07:45:00Z"
+            },
+            "DraftActorProof": {
+              "GrammaticalSubject": "anthology's lineage-labeling statement",
+              "FullCaseDecision": "Eyes of Humans and Devas (人天眼目): the anthology's lineage-labeling statement says that because the master commonly responded to circumstances in this fashion, the Chan community called it the One-Word Checkpoint."
+            },
+            "ContextMasters": []
+          },
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0312b28",
+            "ToLb": "0312b29",
+            "Kwic": "一字關一字關僧問師。如何是雲門劍。師云祖",
+            "Curated": true,
+            "AttributionNote": "Source text (人天眼目). anthology's One-Word Checkpoint heading narrates the exact clause in the complete case.",
+            "ActorAttribution": {
+              "Status": "impersonal",
+              "Kind": "compiler narrative",
+              "ActorLabel": "anthology's One-Word Checkpoint heading",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The headword is the anthology's rubric for the collected exchange, not a spoken word inside the exchange.",
+              "ReviewedBy": "Codex hard-w2-remaining300",
+              "ReviewedUtc": "2026-07-14T07:45:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "anthology's One-Word Checkpoint heading",
+              "FullCaseDecision": "Eyes of Humans and Devas (人天眼目): the anthology's One-Word Checkpoint heading introduces a sequence of questions answered by Yunmen Wenyan with single written characters, beginning with the Yunmen sword."
+            }
+          },
+          {
+            "RelPath": "J/J29/J29nB244.xml",
+            "FromLb": "0719a09",
+            "ToLb": "0719a11",
+            "Kwic": "有人透得此關，許他親見雲門。」頌：「一字關、一字關，何不成雙獨成單？",
+            "Curated": true,
+            "AttributionNote": "Source text (三山來禪師語錄). Sanshan Denglai owns the exact quoted clause in the complete case.",
+            "MasterName": "Sanshan Denglai",
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Sanshan Denglai",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "有人透得此關，許他親見雲門。」頌：「一字關、一字關，何不成雙獨成單？",
+              "SpeechFrame": "Recorded Sayings of Chan Master Sanshan Lai (三山來禪師語錄): after commenting on Yunmen Wenyan's one-word answer 'ancestor,' Sanshan Denglai introduces his own verse, repeats 'one-word barrier,' and asks why it is single rather than paired.",
+              "FullCaseDecision": "Recorded Sayings of Chan Master Sanshan Lai (三山來禪師語錄): after commenting on Yunmen Wenyan's one-word answer 'ancestor,' Sanshan Denglai introduces his own verse, repeats 'one-word barrier,' and asks why it is single rather than paired."
+            }
+          },
+          {
+            "RelPath": "J/J35/J35nB340.xml",
+            "FromLb": "0763c23",
+            "ToLb": "0763c23",
+            "Kwic": "」問：「臨濟三玄要，雲門一字關。",
+            "Curated": true,
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "GrammarEvidence": "The question marker assigns the exact headword-bearing question to this monk.",
+              "ReviewedBy": "Codex f002 B401-450 full-case review",
+              "ReviewedUtc": "2026-07-15T00:00:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            },
+            "AttributionNote": "Source text (慧覺衣禪師語錄). the unnamed questioning monk owns the exact clause in the complete case.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed questioning monk",
+              "FullCaseDecision": "Source text (慧覺衣禪師語錄). the unnamed questioning monk owns the exact headword-bearing clause; all six attribution rungs were checked."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "T/T48/T48n2006.xml",
+          "J/J29/J29nB244.xml",
+          "J/J35/J35nB340.xml",
+          "X/X85/X85n1590.xml"
+        ],
+        "RelatedMasters": [
+          "Yunmen Wenyan"
+        ],
+        "RelatedTerms": [
+          "顧鑒咦",
+          "三玄三要",
+          "關棙子"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The one-word barrier is the monastic name for Yunmen’s recurrent single-graph answers, established by an explicit corpus naming formula.",
+          "EvidenceBody": [
+            "The Human and Celestial Eyes supplies the corpus's naming formula: after examples of Yunmen answering prompts with a single graph—‘ancestor’ to ‘what is Yunmen's sword?,’ ‘mound’ to ‘what is within the mysterious?,’ ‘bones’ or ‘a corpse’ to ‘what is the hair-blown sword?,’ and ‘everywhere’ to ‘what is the eye of the true teaching?’—it says that Yunmen often responded to encounters this way, ‘therefore the monasteries named it the one-word barrier.’ Later texts consequently pair ‘Yunmen's one-word barrier’ with Linji's three mysteries, Caoshan's three falls, and other house-associated rosters. A later verse repeats ‘one-word barrier’ and asks why it remains single rather than becoming a pair. The term names the rostered one-word response, not every ordinary barrier containing one written character."
+          ]
+        },
+        "DraftEvidence": {
+          "ZenBend": "For 一字關, the stored cases establish this term-specific deployment: Literally, ‘one-word barrier.",
+          "CounterexampleOrLimit": "Zen bends ordinary ‘one word’ plus ‘barrier’ language into the monastic name for Yunmen's recurrent single-graph answers. The naming formula is explicit, so this deviation is corpus-stated. Cross-check with ‘look—look!—hah!’ (顧鑒咦): one later text says the shortened ‘look!—hah!’ became a one-word barrier, but that later comparison does not make the two labels identical or create a second sense.",
+          "AliasRationale": "Aliases retrieve the same attested referent as the one-word barrier in ordinary English.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "Reason": "All selected cases retain the one-word barrier despite different predicates."
+          },
+          "ModifierControls": [
+            "No material, symbolic, or morphology claim is added beyond the attested form 一字關."
+          ],
+          "FamilyControls": [
+            "Related compounds and case-family forms remain controls and are not substituted for 一字關."
+          ],
+          "IndependentWorkIds": [
+            "work:J29nB244",
+            "work:J35nB340",
+            "work:T48n2006"
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ]
+        },
+        "SearchAliases": [
+          "the one-word barrier",
+          "Yunmen's one-word barrier"
+        ],
+        "ClaimAnchors": [
+          {
+            "RelPath": "J/J24/J24nB138.xml",
+            "FromLb": "0380c24",
+            "ToLb": "0380c25",
+            "Kwic": "師有時顧視僧曰：「鑒。」僧擬對之，則曰：「咦。」叢林因目師為顧鑒咦。",
+            "Curated": true,
+            "AttributionNote": "Source text (雲門匡真禪師語錄). Yunmen Wenyan owns the exact quoted clause in the complete case.",
+            "MasterName": "Yunmen Wenyan",
+            "ClaimText": "顧鑒咦",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師有時顧視僧曰：「鑒。」僧擬對之，則曰：「咦。」叢林因目師為顧鑒咦。",
+              "SpeechFrame": "Previously curated complete-case attribution.",
+              "FullCaseDecision": "雲門匡真禪師語錄: complete-case exact-turn review identifies Yunmen Wenyan as the actor for this occurrence."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  }
+}

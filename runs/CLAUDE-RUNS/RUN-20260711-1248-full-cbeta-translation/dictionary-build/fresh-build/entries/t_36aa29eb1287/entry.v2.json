@@ -1,0 +1,184 @@
+{
+  "Id": "t_36aa29eb1287",
+  "SourceTerm": "水牯牛",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "water buffalo",
+      "AlternateTargets": [
+        "buffalo"
+      ],
+      "SearchAliases": [
+        "water buffalo",
+        "buffalo",
+        "water ox",
+        "oxherding buffalo"
+      ],
+      "Status": "preferred",
+      "Explanation": "The water buffalo remains a bovine, but Chan records also make it a name borne by Guishan Lingyou, a label applied to people, a herded case figure, and an explicitly borrowed form for “the different kind.” Guishan says that after death he will become one marked with his monastic name and asks whether it should be called Guishan or a water buffalo (喚作溈山僧又是水牯牛；喚作水牯牛又是溈山僧, “call it Guishan and it is also a water buffalo; call it a water buffalo and it is also Guishan”). Changqing Da’an reports watching one, pulling it from grass, and restraining it from damaging crops until it becomes “the white ox in the open field” (露地白牛). Nanquan Puyuan says Old Teacher Wang has raised one, and elsewhere answers Zhaozhou Congshen’s question by saying that the person who knows-there-is goes to become one at a patron’s house. Zhaozhou calls Hanshan and Shide two water buffaloes. Caoshan Benji explicitly says that earlier people “provisionally borrowed the water buffalo for the different kind” (權借水牯牛為異類) and distinguishes a different kind in affairs from one in words. These uses retain the named animal while putting it into distinct recorded situations.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 1,220 hits in 283 files. The seven curated occurrences span six distinct works and preserve self-naming, herding, teasing, a public answer, an explicit retrospective description, and a test exchange. The text-drawn relation to moving among different kinds does not turn the animal into a second referent.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0187b06",
+          "ToLb": "0187b09",
+          "Kwic": "老僧百年後。向山下作一頭水牯牛。左脇下書五字。曰。溈山僧某甲。當恁麼時。喚作溈山僧又是水牯牛。喚作水牯牛又是溈山僧。畢竟喚作甚麼即得。",
+          "MasterName": "Guishan Lingyou",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Guishan Lingyou section: Guishan Lingyou delivers the hall statement and utters every instance of the headword."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0267c07",
+          "ToLb": "0267c10",
+          "Kwic": "不學溈山禪。只看一頭水牯牛。若落路入草便牽出。若犯人苗稼即鞭撻調伏。既久可憐生受人言語。如今變作箇露地白牛常在面前。終日露逈逈地。趁亦不去也。",
+          "MasterName": "Changqing Da'an",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Changqing Da'an",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), Fuzhou Da'an section: Changqing Da'an utters the first-person account of watching and restraining a water buffalo."
+        },
+        {
+          "RelPath": "J/J24/J24nB137.xml",
+          "FromLb": "0369c30",
+          "ToLb": "0370a01",
+          "Kwic": "久響寒山、拾得，到來只見兩頭水牯牛。",
+          "MasterName": "Zhaozhou Congshen",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Master Zhaozhou (趙州和尚語錄): Zhaozhou Congshen says that he had long heard of Hanshan and Shide but saw only two water buffaloes."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0073b10",
+          "ToLb": "0073b12",
+          "Kwic": "上堂曰。王老師自小養一頭水牯牛。擬向溪東牧。不免食他國王水草。擬向溪西牧。亦不免食他國王水草。不如隨分納些些。總不見得。",
+          "MasterName": "Nanquan Puyuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Nanquan Puyuan section: Nanquan Puyuan uses his self-name Old Teacher Wang and says in a hall address that he has raised a water buffalo."
+        },
+        {
+          "RelPath": "J/J24/J24nB137.xml",
+          "FromLb": "0358a14",
+          "ToLb": "0358a16",
+          "Kwic": "師問南泉：「知有底人向什麼處去？」泉云：「山前檀越家作一頭水牯牛去。」師云：「謝和尚指示。」泉云：「昨夜三更月到窗。」",
+          "MasterName": "Nanquan Puyuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "questioner",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Master Zhaozhou (趙州和尚語錄): Nanquan Puyuan is the exact utterer who answers Zhaozhou Congshen that the person who knows-there-is becomes a water buffalo at a patron’s house."
+        },
+        {
+          "RelPath": "T/T47/T47n1987A.xml",
+          "FromLb": "0533c09",
+          "ToLb": "0533c11",
+          "Kwic": "所以古人權借水牯牛為異類。秖是事上異類。非言語中異類。",
+          "MasterName": "Caoshan Benji",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Caoshan Benji",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Caoshan Yuanzheng (撫州曹山元證禪師語錄): Caoshan Benji says earlier people provisionally borrowed the water buffalo for the different kind and draws the affairs-versus-words distinction."
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0672c18",
+          "ToLb": "0672c20",
+          "Kwic": "師云水牯牛安樂麼僧云及時水草師云為什麼傷人苗稼僧云對和尚不敢造次",
+          "MasterName": "Shoushan Xingnian",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Shoushan Xingnian section: Shoushan Xingnian utters the headword while asking an unnamed interlocutor whether the water buffalo is at ease."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T51/T51n2076.xml",
+        "J/J24/J24nB137.xml",
+        "T/T47/T47n1987A.xml",
+        "C/C077/C077n1710.xml"
+      ],
+      "RelatedMasters": [
+        "Guishan Lingyou",
+        "Changqing Da'an",
+        "Zhaozhou Congshen",
+        "Nanquan Puyuan",
+        "Caoshan Benji",
+        "Shoushan Xingnian"
+      ],
+      "RelatedTerms": [
+        "露地白牛",
+        "異類中行",
+        "知有底人"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "schemaVersion": "f003-laneA-601-650-round4-repair-author-v1",
+  "role": "repair-author",
+  "sourceRejectingReview": "f003-laneA-601-650-round4-fresh-independent-exact-review.json",
+  "sourceRejectingReviewSha256": "7d32f13fde4e8f210223ea89146525d48f3850f2235a1c614b764ae8f64d4bc4",
+  "finalFormalGate": "f003-laneA-601-650-round4-repair-formal-gate-v7.json",
+  "finalFormalGateSha256": "d087c3f496630c982fe587373e4438cae5fbce2a4c6f7f35e05a3209b44e76af",
+  "formalHardPass": true,
+  "clusterScopeIds": [
+    "t_d1aa91b2b347",
+    "t_a9babbddf1a8",
+    "t_8f91a9f06c79",
+    "t_18a76480bf9b",
+    "t_d27432779ce8",
+    "t_e1b4c379b919",
+    "t_612a2e5cbf5d",
+    "t_c86b1e91c7b5",
+    "t_e1eda88159c6",
+    "t_40bcab45a004",
+    "t_35cd0cccddc7",
+    "t_b15eaab0dc3c",
+    "t_a6754d726742",
+    "t_9cd83a160990",
+    "t_bd6a1e9054a5",
+    "t_3600c4babcdf",
+    "t_2f6dd23d26e9",
+    "t_cff94bb09481",
+    "t_a66ef543d2ea",
+    "t_3efd163c8697",
+    "t_37cd9bfc3e67",
+    "t_0f4c2ed08d86",
+    "t_d801848213ab",
+    "t_e89833bb5e63",
+    "t_ee77766b424b",
+    "t_376913189794"
+  ],
+  "strictRosterScopeIds": [
+    "t_d1aa91b2b347",
+    "t_a9babbddf1a8",
+    "t_8f91a9f06c79",
+    "t_18a76480bf9b",
+    "t_d27432779ce8",
+    "t_e1b4c379b919",
+    "t_612a2e5cbf5d",
+    "t_c86b1e91c7b5",
+    "t_e1eda88159c6",
+    "t_40bcab45a004",
+    "t_35cd0cccddc7",
+    "t_b15eaab0dc3c",
+    "t_a6754d726742",
+    "t_9cd83a160990",
+    "t_bd6a1e9054a5",
+    "t_3600c4babcdf",
+    "t_2f6dd23d26e9",
+    "t_cff94bb09481",
+    "t_a66ef543d2ea",
+    "t_3efd163c8697",
+    "t_37cd9bfc3e67",
+    "t_0f4c2ed08d86",
+    "t_d801848213ab",
+    "t_e89833bb5e63",
+    "t_ee77766b424b",
+    "t_376913189794"
+  ],
+  "exactKwic": {
+    "verified": 290,
+    "failures": 0
+  },
+  "attributionPackets": {
+    "path": "fresh-build/waves/f003-laneA-601-650-round4-repair-formal-gate-v7-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0,
+    "cacheHit": false
+  },
+  "semanticRegressions": {
+    "path": "fresh-build/semantic-regressions.json",
+    "sha256": "1d25774979e64798e96883ff42711b546a1868707f1a2d24ae2d39ff462d0f57"
+  },
+  "pendingRosterPacket": {
+    "path": "fresh-build/waves/f003-laneA-601-650-round4-roster-candidates.json",
+    "sha256": "df26159cd48ce47472821c624e52ebecdbc525f92e34a729a2c65b706be498df",
+    "mergedPendingRosterPostSha256": "9c0ea751f4ab749872a864bd95c3da6dcbbdf2f7805d9af5ea73f9f6e0f0dab8",
+    "preMergeSha256": null,
+    "preMergeNote": "The append occurred before the collision warning; no honest pre-merge SHA was captured."
+  },
+  "priorKeepHashProof": {
+    "count": 24,
+    "allPriorKeepHashesUnchanged": true
+  },
+  "repairedEntryHashes": {
+    "t_d1aa91b2b347": "e3191d569aba2dea655f8a47768417701032c3aa6773f78f58b1c9a968ad861b",
+    "t_a9babbddf1a8": "999c68ca246161a3119b8c7fb3b6eb1489353ca0f3c1f5c4d4e7eb52e748e3da",
+    "t_8f91a9f06c79": "a7b97a9a5e943ace0cb9295797d38c51aa56b65761964d66746fac5d5ab62513",
+    "t_18a76480bf9b": "0d4e38010ffd5f65ffcf2aac7433e53396cf9ba8e42465e9e4c2e3d1964dc147",
+    "t_d27432779ce8": "7aefb3f6602fe6a7da55edf6f52dcb29b9af7b9f1939ed58b098879168a5be22",
+    "t_e1b4c379b919": "b2a624bb2be80460fd96b9866f948353fe888643ae66cb4e6cc41a1888fa62ae",
+    "t_612a2e5cbf5d": "da5ac5131e82ece6fce1538fe3395685742c751c4cad3af0864b23bae1a9ff2d",
+    "t_c86b1e91c7b5": "71b60a5a3bf62ea31678ccfa2e517730f9818d4dc61d9f246abd568aef1fb2aa",
+    "t_e1eda88159c6": "80287a01fed39f848c772eee59598200539db98c844d0e6abd7b50a0cac5adfc",
+    "t_40bcab45a004": "ecdb7744094bf0e281096e6a722f4ed3a5e776fbde71374e2420a45cc8b71bbd",
+    "t_35cd0cccddc7": "1f401aa66fd8b9ffe29e4ea7273daf85f79d29c1219776b3993e5975e3efb994",
+    "t_b15eaab0dc3c": "7993d97815a34d43922b1f5b94564a99e0796c0c36e2766e2747cf1c8c32e715",
+    "t_a6754d726742": "aec97f72e9af7dd7cf1834f51fdb1e17ec97e9bfbcfe79a52527c87f1042317b",
+    "t_9cd83a160990": "eb60ec5797ef3bfd8a1de0dd6bd987c6194dfe13e7ed9dbd1dcacb0b7a266a5b",
+    "t_bd6a1e9054a5": "f41fdabfb3c513783a368dd2100019ce39dd497f2b90182be6e1eb3b882cfe5f",
+    "t_3600c4babcdf": "f5a14121c7447b1a4265f7cc49c605fc0ffa8f01b734cbb3513fc3cfcbfa1df6",
+    "t_2f6dd23d26e9": "9ef09cd0a701b551ce8ef2db618eb341058af22dd727e4081982c1f7aba386ba",
+    "t_cff94bb09481": "cd1d98d054dc04bdd48ddca07f950894e757045462b724690db7cdc83cbdc1ba",
+    "t_a66ef543d2ea": "4c2b3cc037dc1091b6c6d9f5c6303bc3778045fdc126dba7e93f996faa44f403",
+    "t_3efd163c8697": "23c58407568bd5ee7fbb19c3daacd4d1cb66b62bcec089378e53a22b6b12fd96",
+    "t_37cd9bfc3e67": "cd352dcf3433ceb2227880705aae7677c04e15317ef6557e49540718e5266f2a",
+    "t_0f4c2ed08d86": "05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e",
+    "t_d801848213ab": "26cfd29527f716dc90dff19f467efceffc4ef8c2fdaed4e11a7bb3cc04ee4bbd",
+    "t_e89833bb5e63": "d4a2687a5b0afaeedcbe8befaaebd7bf4b5b64abd21f674f42bcff6060986ac9",
+    "t_ee77766b424b": "13d775c2467fd8ed196ac8f4bfb29f88258e48d2bed533fbf6cfac4581d61eca",
+    "t_376913189794": "38049ff855c10301bc1dfc2df389340e456b590b2709fed67d04d3549e8957a8"
+  },
+  "worksheetHashes": {
+    "t_d1aa91b2b347": "5cd48d56fae9ff4f3885fdf1bd76d514c3196453eea9a4a402acb46f0a7435cf",
+    "t_a9babbddf1a8": "c7ae3b594fba0211dec53e2cd0ec25148fc630f06c4c8cc8cd59b8282034d87e",
+    "t_8f91a9f06c79": "7f3b5c41644d1b930b20bf33e3d25460c9944c5ad26cbaa4d9d6173ad2ac366a",
+    "t_18a76480bf9b": "3d50d1ddd85f399d630069b2611e882c9eb0a7513c305641362656482fb49b11",
+    "t_d27432779ce8": "b7977cdbe57f8bb24544202dcdab9bae11542c3241fa727aef963039d832be6f",
+    "t_e1b4c379b919": "cb7c0fea116a1cf82f152698208febbdf5c8463780124107ee7c4d31523ffae6",
+    "t_612a2e5cbf5d": "1d8998584e0d965dee710b91e1d34090156f99a47458a661499453df810d0a81",
+    "t_c86b1e91c7b5": "3f22e3e8ffa5290dc6fbca0985568618692a8113d11b7562050ae3a865b43a36",
+    "t_e1eda88159c6": "a1f1679f5c172134c6bc5750d48d4d0cfca99eff447894901874e44d2bfa9d4d",
+    "t_40bcab45a004": "750b2df445c28e2794986d3bba82feb4e2af2500fe1ae6919c85be842c539605",
+    "t_35cd0cccddc7": "ad077f5ade7072efbc979b2bab6d02ac37b26332f774d30f80280508cc7d973c",
+    "t_b15eaab0dc3c": "135dd13395f41da025224ecd100c761648677ebd15155aaa6069c2d7ac75e1a2",
+    "t_a6754d726742": "a6d7b9132bd362fd854b95fc61e6e8f47de281aad00bd2ec947c7cf4f0d5de16",
+    "t_9cd83a160990": "58b7c67e5c726ef5a5b7d7b2fb4e760e015d1a381719910a82b8d601c6a7130f",
+    "t_bd6a1e9054a5": "bb7eef106b05ca4674adad523748070366e6468b7031e126676b89da19230c37",
+    "t_3600c4babcdf": "3619ec48082144dc7101c1e0a284b74eeaf1d13e6bb76e6d760645627468e46f",
+    "t_2f6dd23d26e9": "74e5c87c8fa8f9600746e1e8bf914e2ad0f655418430140c3c70e003a3d8b457",
+    "t_cff94bb09481": "322dcccc94d50a89f49f5e7c9c25e93bfcce877c534fa5b8a0625170f8e5ddff",
+    "t_a66ef543d2ea": "a1f29b5817fe65d552b54501bd1f50232f388285294f922cd629b0de12d9f737",
+    "t_3efd163c8697": "dadc695a4a5a42f61d5fc3beb504b35d3c624732ed616fdeebf82009eaffdbb2",
+    "t_37cd9bfc3e67": "e4df325cdb6bf086fdf7341ddeaaa49efc3f8d82623879d33d9a275cedfc5b2d",
+    "t_0f4c2ed08d86": "50d9223e104fc8cfc36b4dde8e870335c557583de9679dd87604f073f60cee3d",
+    "t_d801848213ab": "c26f3762342c53b3d5b24609005b35b4de324a3051f669bfd870805e1121a6d8",
+    "t_e89833bb5e63": "8bc1ff6c0b52502c0e1b6269f15522631c4ac31cd4140e4a72df6887d5620651",
+    "t_ee77766b424b": "eb057a2f2b986f0ef4e3edae522bf0c608b9962ac44c5508aba91c2f4e6b8999",
+    "t_376913189794": "7617cde6e6562e2e20c18bf615d1ca7e26b8cd6dc7f4a1c204a7f1146adc4177"
+  },
+  "rows": [
+    {
+      "ordinal": 601,
+      "id": "t_d1aa91b2b347",
+      "term": "刻舟求劍",
+      "priorVerdict": "REVISE",
+      "currentSha256": "e3191d569aba2dea655f8a47768417701032c3aa6773f78f58b1c9a968ad861b"
+    },
+    {
+      "ordinal": 602,
+      "id": "t_a9babbddf1a8",
+      "term": "效顰",
+      "priorVerdict": "REVISE",
+      "currentSha256": "999c68ca246161a3119b8c7fb3b6eb1489353ca0f3c1f5c4d4e7eb52e748e3da"
+    },
+    {
+      "ordinal": 605,
+      "id": "t_8f91a9f06c79",
+      "term": "繫驢橛",
+      "priorVerdict": "REVISE",
+      "currentSha256": "a7b97a9a5e943ace0cb9295797d38c51aa56b65761964d66746fac5d5ab62513"
+    },
+    {
+      "ordinal": 606,
+      "id": "t_18a76480bf9b",
+      "term": "空華",
+      "priorVerdict": "REVISE",
+      "currentSha256": "0d4e38010ffd5f65ffcf2aac7433e53396cf9ba8e42465e9e4c2e3d1964dc147"
+    },
+    {
+      "ordinal": 607,
+      "id": "t_d27432779ce8",
+      "term": "水月",
+      "priorVerdict": "REVISE",
+      "currentSha256": "7aefb3f6602fe6a7da55edf6f52dcb29b9af7b9f1939ed58b098879168a5be22"
+    },
+    {
+      "ordinal": 609,
+      "id": "t_e1b4c379b919",
+      "term": "紅爐點雪",
+      "priorVerdict": "REVISE",
+      "currentSha256": "b2a624bb2be80460fd96b9866f948353fe888643ae66cb4e6cc41a1888fa62ae"
+    },
+    {
+      "ordinal": 611,
+      "id": "t_612a2e5cbf5d",
+      "term": "無孔笛",
+      "priorVerdict": "REVISE",
+      "currentSha256": "da5ac5131e82ece6fce1538fe3395685742c751c4cad3af0864b23bae1a9ff2d"
+    },
+    {
+      "ordinal": 612,
+      "id": "t_c86b1e91c7b5",
+      "term": "陽焰",
+      "priorVerdict": "REVISE",
+      "currentSha256": "71b60a5a3bf62ea31678ccfa2e517730f9818d4dc61d9f246abd568aef1fb2aa"
+    },
+    {
+      "ordinal": 614,
+      "id": "t_e1eda88159c6",
+      "term": "優曇華",
+      "priorVerdict": "REVISE",
+      "currentSha256": "80287a01fed39f848c772eee59598200539db98c844d0e6abd7b50a0cac5adfc"
+    },
+    {
+      "ordinal": 616,
+      "id": "t_40bcab45a004",
+      "term": "枯木生花",
+      "priorVerdict": "REVISE",
+      "currentSha256": "ecdb7744094bf0e281096e6a722f4ed3a5e776fbde71374e2420a45cc8b71bbd"
+    },
+    {
+      "ordinal": 617,
+      "id": "t_35cd0cccddc7",
+      "term": "摩尼珠",
+      "priorVerdict": "REVISE",
+      "currentSha256": "1f401aa66fd8b9ffe29e4ea7273daf85f79d29c1219776b3993e5975e3efb994"
+    },
+    {
+      "ordinal": 618,
+      "id": "t_b15eaab0dc3c",
+      "term": "無絃琴",
+      "priorVerdict": "REVISE",
+      "currentSha256": "7993d97815a34d43922b1f5b94564a99e0796c0c36e2766e2747cf1c8c32e715"
+    },
+    {
+      "ordinal": 620,
+      "id": "t_a6754d726742",
+      "term": "定盤星",
+      "priorVerdict": "REVISE",
+      "currentSha256": "aec97f72e9af7dd7cf1834f51fdb1e17ec97e9bfbcfe79a52527c87f1042317b"
+    },
+    {
+      "ordinal": 622,
+      "id": "t_9cd83a160990",
+      "term": "飯袋子",
+      "priorVerdict": "REVISE",
+      "currentSha256": "eb60ec5797ef3bfd8a1de0dd6bd987c6194dfe13e7ed9dbd1dcacb0b7a266a5b"
+    },
+    {
+      "ordinal": 624,
+      "id": "t_bd6a1e9054a5",
+      "term": "白拈賊",
+      "priorVerdict": "REVISE",
+      "currentSha256": "f41fdabfb3c513783a368dd2100019ce39dd497f2b90182be6e1eb3b882cfe5f"
+    },
+    {
+      "ordinal": 626,
+      "id": "t_3600c4babcdf",
+      "term": "秤錘",
+      "priorVerdict": "REVISE",
+      "currentSha256": "f5a14121c7447b1a4265f7cc49c605fc0ffa8f01b734cbb3513fc3cfcbfa1df6"
+    },
+    {
+      "ordinal": 627,
+      "id": "t_2f6dd23d26e9",
+      "term": "栗棘蓬",
+      "priorVerdict": "REVISE",
+      "currentSha256": "9ef09cd0a701b551ce8ef2db618eb341058af22dd727e4081982c1f7aba386ba"
+    },
+    {
+      "ordinal": 628,
+      "id": "t_cff94bb09481",
+      "term": "蒲團",
+      "priorVerdict": "REVISE",
+      "currentSha256": "cd1d98d054dc04bdd48ddca07f950894e757045462b724690db7cdc83cbdc1ba"
+    },
+    {
+      "ordinal": 629,
+      "id": "t_a66ef543d2ea",
+      "term": "善財",
+      "priorVerdict": "REVISE",
+      "currentSha256": "4c2b3cc037dc1091b6c6d9f5c6303bc3778045fdc126dba7e93f996faa44f403"
+    },
+    {
+      "ordinal": 630,
+      "id": "t_3efd163c8697",
+      "term": "龍女",
+      "priorVerdict": "REVISE",
+      "currentSha256": "23c58407568bd5ee7fbb19c3daacd4d1cb66b62bcec089378e53a22b6b12fd96"
+    },
+    {
+      "ordinal": 641,
+      "id": "t_37cd9bfc3e67",
+      "term": "焚香",
+      "priorVerdict": "REVISE",
+      "currentSha256": "cd352dcf3433ceb2227880705aae7677c04e15317ef6557e49540718e5266f2a"
+    },
+    {
+      "ordinal": 643,
+      "id": "t_0f4c2ed08d86",
+      "term": "一炷香",
+      "priorVerdict": "REVISE",
+      "currentSha256": "05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e"
+    },
+    {
+      "ordinal": 644,
+      "id": "t_d801848213ab",
+      "term": "發願",
+      "priorVerdict": "REVISE",
+      "currentSha256": "26cfd29527f716dc90dff19f467efceffc4ef8c2fdaed4e11a7bb3cc04ee4bbd"
+    },
+    {
+      "ordinal": 645,
+      "id": "t_e89833bb5e63",
+      "term": "誓願",
+      "priorVerdict": "REVISE",
+      "currentSha256": "d4a2687a5b0afaeedcbe8befaaebd7bf4b5b64abd21f674f42bcff6060986ac9"
+    },
+    {
+      "ordinal": 648,
+      "id": "t_ee77766b424b",
+      "term": "安心斷臂",
+      "priorVerdict": "REVISE",
+      "currentSha256": "13d775c2467fd8ed196ac8f4bfb29f88258e48d2bed533fbf6cfac4581d61eca"
+    },
+    {
+      "ordinal": 649,
+      "id": "t_376913189794",
+      "term": "心如牆壁",
+      "priorVerdict": "REVISE",
+      "currentSha256": "38049ff855c10301bc1dfc2df389340e456b590b2709fed67d04d3549e8957a8"
+    }
+  ],
+  "processDefense": {
+    "path": "compile_evidence_draft.py",
+    "rule": "Authored-speech/quote/verse risk cues reject the generic compiler-narration template unless explicit human full-case adjudication is recorded; automation does not prove the actor."
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false
+}

@@ -1,0 +1,297 @@
+{
+  "generatedUtc": "2026-07-15T09:02:58.492578+00:00",
+  "scope": "f003 Lane B701-750 round-2 exact-utterer, roster, placeholder, and semantic repair",
+  "sourceIndependentReview": {
+    "path": "fresh-build/waves/f003-laneB-701-750-independent-exact-review.json",
+    "sha256": "ff1ab8b9a635b1e56f0b8aa7fae0138304621eb0540aa2cb3b5fad5d531d401d"
+  },
+  "repairedRows": 30,
+  "unchangedPriorKeepRows": 20,
+  "allPriorKeepEntriesByteIdentical": true,
+  "candidatePacket": {
+    "path": "fresh-build/waves/f003-laneB-701-750-pending-roster-candidates.json",
+    "sha256": "a08c73fc19dc74c9e0131c06003f3f7c3820f86470b27921678d2e94bc4c3098"
+  },
+  "formalGate": {
+    "path": "fresh-build/waves/f003-laneB-701-750-round2-current-formal-gate.json",
+    "sha256": "0bee5d157ca9240a8829a9fdda231bbc9d934894c51b7c8ada2cf9cfafdbf9f4",
+    "hardPass": true,
+    "exactVerified": 369,
+    "exactFailures": 0,
+    "packetGeneratorVersion": 3
+  },
+  "repairedEntryHashes": {
+    "t_171059a90935": "53fae87ef08a7fc7a4d5f3c64acb56176482a98e153ac6ada5507560117bd595",
+    "t_6eec786c1525": "a572f4b44e2e2eb2c84b4b10de145c59affb739a0f8c80120ae919f50a59cdf7",
+    "t_af814bc95cd7": "c7508f71e54e90c9b1cd42bac6e074ec9f6157503b25dc5282b90d9ba8eef0f3",
+    "t_9edf120e470a": "ae27b503c21dd108b14509a6b836999a4d4b72cf88420d140f3a3bcfc4584cef",
+    "t_c212062774f9": "d2d4563e2f1dda1800a1a86b392b58ab188c7ff2f6ddae7667ccff54a58a53ec",
+    "t_2da0e2fc0478": "9aaa0c4be3ea5af50c9d8c8aa1c7afb397f090e4dcca7eae763a5828350e7938",
+    "t_6b14162ca1c6": "9ec3eb869876159be7015b1ce2bc6f0cf6bcc66f7d79e2b8a0c1d559966ae5d5",
+    "t_298f7fdd14bd": "365e6304063834847173165769705e9018a4920d8b8346097dcb22e09e34f18c",
+    "t_b59c4546a854": "1a1f6009aaa6941786daa07842e9ac0dbf81e17c41940f70fce95537f6578db6",
+    "t_a301d1290a7a": "0e2fbd01bacb5d4949467ddd0400657b0e2343aaf13d4a4a99bb7dd1a2f5b9b9",
+    "t_14fd93081516": "55da5af56cb560db84b78bef3b8f41d7d86c8e78974effde6234b87529c67199",
+    "t_b54b72a8ff12": "097f99c9ad511e1ef7f0c85aba3cdb5589cce233ee135d849cba5398e1a73058",
+    "t_202ca9c2b59f": "f1a93d1530eb65e75f4372724c2ac1d49e500417ffc17da497352d4981a11ba2",
+    "t_bd6fe823c9dc": "56e430adebbecaf6ebc8f50033cd39cb8e24da1f42a7aeee973539eeb98d95cf",
+    "t_2dbefddd6938": "a0a1fdc1a1f99760877f8dcdde0bd4f099277b17d7548c893f675b6e62992990",
+    "t_804dc8bdce55": "171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844",
+    "t_0c53a5a2243b": "ccf605a9d81ecc5362f7c23b1e4bcd0a9e6c5d6e0f2eca0d742df48fe1d9344e",
+    "t_8d1415ab86a5": "57c26a9eaa76bd0355b044c2e7982360688a5065e9472c1fad7a6d229652fbb6",
+    "t_e7ad5446610c": "e9d998b3cb20637ccb743e41a350b403cd11a75407033645d8b66c6b85c229af",
+    "t_55471c55400c": "57d8b6ca12af503fa9d5679f120ca2827570016afc66ee89127770d0c40fa09c",
+    "t_a7f67b4983d9": "b7dcb0d63f80dc7e8ef2c661d9f19661db1cd26b8ea8b3c022eb9ad1d69d70d3",
+    "t_e4864973c156": "6271d6d18f841922481721f6a5a63e8c4b57a7497b4315b0cb2ac7e18ef6b19d",
+    "t_04c265211035": "a0dbd7db692d28c7562ae81ea043e677378be53f20795eeefa6de08d0da3d267",
+    "t_5cade7a4f4ba": "e93b13c4f4c5da36cdc1c901cf9e5da72e08b93487f5dacb7dc8da552f4646d2",
+    "t_2448c3c3ed9f": "19a1ca447b5f30a7cf8c4966f7169a87de4b232c1aa60bb270476bf6c087bacf",
+    "t_04a3e3d24a1d": "f1e2600f92d46a917134f22a9e3c2f06d86ae8fd2cf707e31aa4033808b5b306",
+    "t_2b657c0d219b": "aa7abd48ef556f142e150323fdbbc58bc4403fa89455873f2ba7ad5822a9dc03",
+    "t_c11c5f262dc7": "c5b18a4f900e3183b69fe2c8bf837614286c0a750c414d57f61607de3f0d73eb",
+    "t_05fe9a440eef": "a207b5b22d78980413cedd960a6933c9ff0c2383adee20a0d06df083d2372f23",
+    "t_74390b40f658": "7ff824524fa24a11ff9875d6d258ecfc9951951920c1fcd9e01962670f217894"
+  },
+  "repairedEntries": [
+    {
+      "ordinal": 702,
+      "id": "t_171059a90935",
+      "term": "西來意",
+      "priorEntrySha256": "d81dae76c19e1baee5173e94ccd94b49b0957b930aae5831c5a9ff071ab45055",
+      "entrySha256": "53fae87ef08a7fc7a4d5f3c64acb56176482a98e153ac6ada5507560117bd595",
+      "changed": true
+    },
+    {
+      "ordinal": 703,
+      "id": "t_6eec786c1525",
+      "term": "堂奧",
+      "priorEntrySha256": "23e9ce9396bd039f858a3f03ab8d58e31398d603cd66966da38e3a851704b7a9",
+      "entrySha256": "a572f4b44e2e2eb2c84b4b10de145c59affb739a0f8c80120ae919f50a59cdf7",
+      "changed": true
+    },
+    {
+      "ordinal": 707,
+      "id": "t_af814bc95cd7",
+      "term": "開口",
+      "priorEntrySha256": "0ae7d9998ed0640527d6acee402d04a3d6e64b17fc422920920f5691016e70e1",
+      "entrySha256": "c7508f71e54e90c9b1cd42bac6e074ec9f6157503b25dc5282b90d9ba8eef0f3",
+      "changed": true
+    },
+    {
+      "ordinal": 709,
+      "id": "t_9edf120e470a",
+      "term": "商量",
+      "priorEntrySha256": "9d66ac265b606d21dfb0948190f8ce8755317b37758a407c4471a85dd7f67819",
+      "entrySha256": "ae27b503c21dd108b14509a6b836999a4d4b72cf88420d140f3a3bcfc4584cef",
+      "changed": true
+    },
+    {
+      "ordinal": 712,
+      "id": "t_c212062774f9",
+      "term": "禪床",
+      "priorEntrySha256": "fe4582710a93b06dae6911b9ac32533779e43068e47320e4ee37c5e5214295c8",
+      "entrySha256": "d2d4563e2f1dda1800a1a86b392b58ab188c7ff2f6ddae7667ccff54a58a53ec",
+      "changed": true
+    },
+    {
+      "ordinal": 713,
+      "id": "t_2da0e2fc0478",
+      "term": "三門",
+      "priorEntrySha256": "dfdc0e47e860d5c9655ffb06637fe64b6a4a4c35f161aed6782480c67c5eba87",
+      "entrySha256": "9aaa0c4be3ea5af50c9d8c8aa1c7afb397f090e4dcca7eae763a5828350e7938",
+      "changed": true
+    },
+    {
+      "ordinal": 719,
+      "id": "t_6b14162ca1c6",
+      "term": "一瓣香",
+      "priorEntrySha256": "b1885347361e72fe93ae0ffe1b747e3c64ea9ed84fa4a51b6837cb17a6549f5e",
+      "entrySha256": "9ec3eb869876159be7015b1ce2bc6f0cf6bcc66f7d79e2b8a0c1d559966ae5d5",
+      "changed": true
+    },
+    {
+      "ordinal": 722,
+      "id": "t_298f7fdd14bd",
+      "term": "開爐",
+      "priorEntrySha256": "805aa6d9d2699704e7e62491a9834ca3f56a0de02f37778a6a39484ebeb14af0",
+      "entrySha256": "365e6304063834847173165769705e9018a4920d8b8346097dcb22e09e34f18c",
+      "changed": true
+    },
+    {
+      "ordinal": 726,
+      "id": "t_b59c4546a854",
+      "term": "行者",
+      "priorEntrySha256": "58262762f80646feb0ad181dcb87a38ed95bc0f3a976a3c8bd81245e6a39907c",
+      "entrySha256": "1a1f6009aaa6941786daa07842e9ac0dbf81e17c41940f70fce95537f6578db6",
+      "changed": true
+    },
+    {
+      "ordinal": 727,
+      "id": "t_a301d1290a7a",
+      "term": "庵主",
+      "priorEntrySha256": "03714a29eae94b3d0f73df0bf28310662ce9d2e95bad99b6f48d758dd1891906",
+      "entrySha256": "0e2fbd01bacb5d4949467ddd0400657b0e2343aaf13d4a4a99bb7dd1a2f5b9b9",
+      "changed": true
+    },
+    {
+      "ordinal": 728,
+      "id": "t_14fd93081516",
+      "term": "法語",
+      "priorEntrySha256": "d94dfb7a220e0e85972c65fc499fb56665fbc7a51a1480126e32e713cafcb26c",
+      "entrySha256": "55da5af56cb560db84b78bef3b8f41d7d86c8e78974effde6234b87529c67199",
+      "changed": true
+    },
+    {
+      "ordinal": 729,
+      "id": "t_b54b72a8ff12",
+      "term": "殺人",
+      "priorEntrySha256": "de7e4cf9c547e104ccc17393e5a294f1c43738c765d32cd95b768f52b2bc05db",
+      "entrySha256": "097f99c9ad511e1ef7f0c85aba3cdb5589cce233ee135d849cba5398e1a73058",
+      "changed": true
+    },
+    {
+      "ordinal": 730,
+      "id": "t_202ca9c2b59f",
+      "term": "結夏",
+      "priorEntrySha256": "a8f425b40b1c92bb4c87301d4daf3c7054043c655444d6b5a9ef394ec213c9b8",
+      "entrySha256": "f1a93d1530eb65e75f4372724c2ac1d49e500417ffc17da497352d4981a11ba2",
+      "changed": true
+    },
+    {
+      "ordinal": 731,
+      "id": "t_bd6fe823c9dc",
+      "term": "曹洞",
+      "priorEntrySha256": "b40654531708d86f23cc36dfa537943322902b6d15b679c92c38785d7c9019c6",
+      "entrySha256": "56e430adebbecaf6ebc8f50033cd39cb8e24da1f42a7aeee973539eeb98d95cf",
+      "changed": true
+    },
+    {
+      "ordinal": 733,
+      "id": "t_2dbefddd6938",
+      "term": "入院",
+      "priorEntrySha256": "2097e5479b2490099fa1d5c9918034a9ecaeaa7f3e86a683aa30ff69986ff700",
+      "entrySha256": "a0a1fdc1a1f99760877f8dcdde0bd4f099277b17d7548c893f675b6e62992990",
+      "changed": true
+    },
+    {
+      "ordinal": 735,
+      "id": "t_804dc8bdce55",
+      "term": "開堂",
+      "priorEntrySha256": "aeee7c44b513c2d900ea0dd7dc9bccf118834f5ae24bd5a3479abf0601782af8",
+      "entrySha256": "171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844",
+      "changed": true
+    },
+    {
+      "ordinal": 736,
+      "id": "t_0c53a5a2243b",
+      "term": "知客",
+      "priorEntrySha256": "4f4cb12ac36c7ebdf8e2b3ca994a6fe18ef7bb5cf5ef385ea40effeca6550e4f",
+      "entrySha256": "ccf605a9d81ecc5362f7c23b1e4bcd0a9e6c5d6e0f2eca0d742df48fe1d9344e",
+      "changed": true
+    },
+    {
+      "ordinal": 737,
+      "id": "t_8d1415ab86a5",
+      "term": "正眼",
+      "priorEntrySha256": "a15fa9e9709aec0d0380f171423caad746ab85b9254e0a64caecdf425d0bdb36",
+      "entrySha256": "57c26a9eaa76bd0355b044c2e7982360688a5065e9472c1fad7a6d229652fbb6",
+      "changed": true
+    },
+    {
+      "ordinal": 738,
+      "id": "t_e7ad5446610c",
+      "term": "地藏",
+      "priorEntrySha256": "a65cafea7c271b1f453fd6dbef7e9c209eb80dc49e86f6308be26fe8128c15a0",
+      "entrySha256": "e9d998b3cb20637ccb743e41a350b403cd11a75407033645d8b66c6b85c229af",
+      "changed": true
+    },
+    {
+      "ordinal": 739,
+      "id": "t_55471c55400c",
+      "term": "五位君臣",
+      "priorEntrySha256": "4620839ce40d2345e38309b51e967377b72dcb5df797032a927baedd77511299",
+      "entrySha256": "57d8b6ca12af503fa9d5679f120ca2827570016afc66ee89127770d0c40fa09c",
+      "changed": true
+    },
+    {
+      "ordinal": 740,
+      "id": "t_a7f67b4983d9",
+      "term": "日用",
+      "priorEntrySha256": "9b72cc06b25e04dd62a34aa075e1953ffe3e8b5be51595f72e8697d4d8bf9ddd",
+      "entrySha256": "b7dcb0d63f80dc7e8ef2c661d9f19661db1cd26b8ea8b3c022eb9ad1d69d70d3",
+      "changed": true
+    },
+    {
+      "ordinal": 741,
+      "id": "t_e4864973c156",
+      "term": "法席",
+      "priorEntrySha256": "84a75059e105ee8aef0cb05fddc06d686b4ea6299b8ace428c0c6f5a2c33cccb",
+      "entrySha256": "6271d6d18f841922481721f6a5a63e8c4b57a7497b4315b0cb2ac7e18ef6b19d",
+      "changed": true
+    },
+    {
+      "ordinal": 742,
+      "id": "t_04c265211035",
+      "term": "末後一句",
+      "priorEntrySha256": "c0e7f7d37dfe73d7c25028d03a099aec290ef1685edd3c8233535e72eb82cef9",
+      "entrySha256": "a0dbd7db692d28c7562ae81ea043e677378be53f20795eeefa6de08d0da3d267",
+      "changed": true
+    },
+    {
+      "ordinal": 743,
+      "id": "t_5cade7a4f4ba",
+      "term": "作禮",
+      "priorEntrySha256": "7b660a3953d19e1eef3d06493a54031cad7c871d25f58dfe92e833a8e0736cf0",
+      "entrySha256": "e93b13c4f4c5da36cdc1c901cf9e5da72e08b93487f5dacb7dc8da552f4646d2",
+      "changed": true
+    },
+    {
+      "ordinal": 745,
+      "id": "t_2448c3c3ed9f",
+      "term": "三玄",
+      "priorEntrySha256": "577c0bd46b36a649ebce5601913b2f1dcae575b29805bd978bbe00228483e4bb",
+      "entrySha256": "19a1ca447b5f30a7cf8c4966f7169a87de4b232c1aa60bb270476bf6c087bacf",
+      "changed": true
+    },
+    {
+      "ordinal": 746,
+      "id": "t_04a3e3d24a1d",
+      "term": "言下",
+      "priorEntrySha256": "75ebf3ebbdae95d7177898ec0c12f0bb6095288ac5a7a6795acadb7a42a3aa95",
+      "entrySha256": "f1e2600f92d46a917134f22a9e3c2f06d86ae8fd2cf707e31aa4033808b5b306",
+      "changed": true
+    },
+    {
+      "ordinal": 747,
+      "id": "t_2b657c0d219b",
+      "term": "七佛",
+      "priorEntrySha256": "80d4a80ccd19c36be98895e9274d7896e76ceffccbc79bad101dee72ff7a3d66",
+      "entrySha256": "aa7abd48ef556f142e150323fdbbc58bc4403fa89455873f2ba7ad5822a9dc03",
+      "changed": true
+    },
+    {
+      "ordinal": 748,
+      "id": "t_c11c5f262dc7",
+      "term": "主人",
+      "priorEntrySha256": "50ca462e0656655e51738459fdc30ba5d1ef6f1b175f9fc21b172c6ca0bdffaf",
+      "entrySha256": "c5b18a4f900e3183b69fe2c8bf837614286c0a750c414d57f61607de3f0d73eb",
+      "changed": true
+    },
+    {
+      "ordinal": 749,
+      "id": "t_05fe9a440eef",
+      "term": "解夏",
+      "priorEntrySha256": "268c993957f59f0c6b16b137e6462c8fa7435448583edda5421be494330d2d07",
+      "entrySha256": "a207b5b22d78980413cedd960a6933c9ff0c2383adee20a0d06df083d2372f23",
+      "changed": true
+    },
+    {
+      "ordinal": 750,
+      "id": "t_74390b40f658",
+      "term": "坐斷天下人舌頭",
+      "priorEntrySha256": "1a4acbb2b3df68c33228dc5efc046674fb5c6819d88a034f558c3cc23dffddea",
+      "entrySha256": "7ff824524fa24a11ff9875d6d258ecfc9951951920c1fcd9e01962670f217894",
+      "changed": true
+    }
+  ]
+}

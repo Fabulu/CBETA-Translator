@@ -1,0 +1,215 @@
+{
+  "Id": "t_3972185a2e25",
+  "SourceTerm": "宗門",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the Chan lineage tradition",
+      "AlternateTargets": [
+        "the lineage tradition",
+        "the ancestral school"
+      ],
+      "SearchAliases": [
+        "Chan lineage",
+        "lineage tradition",
+        "ancestral school",
+        "school tradition"
+      ],
+      "Status": "preferred",
+      "Explanation": "The Chan lineage tradition is the inherited school domain invoked when speakers distinguish its characteristic questions, ways, vocabulary, or business from other forms of exposition. The phrase can refer broadly to the tradition or narrowly to what counts within its gate. A book title containing the graphs is not by itself evidence for this common-noun use.",
+      "Validation": "multi-source",
+      "Note": "The frozen corpus has 2,253 exact hits in 312 files representing 306 works. Eight anchors span definitions, questions about lineage business, house comparison, instruction, and direct address across independent works; title-only hits were excluded.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0786a25",
+          "ToLb": "0786a25",
+          "Kwic": "佛語心為宗。宗通說亦通。既謂之宗門。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), instruction to Zongjue: Yuanwu Keqin directly links the source graph to mind and then uses the compound lineage gate.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0655c08",
+          "ToLb": "0655c09",
+          "Kwic": "有座主問三乘十二分教即不問如何是宗門中事",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), in Muzhou Daoming's section. An unnamed lecturer (座主) is the exact speaker of the headword question; Muzhou answers. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the lecturer.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "lecturer",
+            "ActorLabel": "unnamed lecturer",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "有座主問 marks the lecturer as the subject of 問; the following quoted question contains 宗門, and Muzhou Daoming's answer follows it.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-13T23:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0050b21",
+          "ToLb": "0050b22",
+          "Kwic": "問。宗門中事。請師舉唱。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Tianzhu Chonghui section. An unnamed monk is the exact speaker who asks the named record subject to raise and proclaim the matter within the lineage gate; Tianzhu Chonghui answers with the stone ox and wooden horse couplet. The line, expanded context, section header, book title, TEI header, and the corpus-wide exact parallel search do not give the questioning monk a personal name.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianzhu Chonghui",
+              "Roles": [
+                "section-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "問 introduces the monk's exact question containing 宗門; 請師 then addresses Tianzhu Chonghui, whose reply follows.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:24:20Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0004a05",
+          "ToLb": "0004a06",
+          "Kwic": "以拄杖畫一畫，曰：這箇即且止，宗門事作麼生？",
+          "Curated": true,
+          "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the Fachang Yiyu section, Fachang Yiyu draws a line with his staff and asks Ying what the lineage matter is.",
+          "MasterName": "Fachang Yiyu",
+          "ContextMasters": [
+            {
+              "MasterName": "Fachang Yiyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0251a04",
+          "ToLb": "0251a06",
+          "Kwic": "此是教家極則，若以思惟心測度，如將螢火燒須彌山，終不能著。然雖如是，更須知有宗門中長處始得。",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), complete hall address: Wuyi Yuanlai contrasts the teaching families' utmost reach with a strong point within the Zen lineage.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1435.xml",
+          "FromLb": "0265c11",
+          "ToLb": "0265c12",
+          "Kwic": "且道：如何是宗門下長處？",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), restriction-period hall address: Wuyi Yuanlai directly asks for the strong point under the Zen lineage.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB178.xml",
+          "FromLb": "0111b07",
+          "ToLb": "0111b07",
+          "Kwic": "如此跳躍掀騰，始稱宗門中客。",
+          "MasterName": "Feiyin Tongrong",
+          "ContextMasters": [
+            {
+              "MasterName": "Feiyin Tongrong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "(費隱禪師語錄): full-case review identifies Feiyin Tongrong, speaking in his own record, as the utterer of the headword."
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0588c21",
+          "ToLb": "0588c22",
+          "Kwic": "始知吾宗門大事，時時激揚。",
+          "ContextMasters": [],
+          "Curated": true,
+          "AttributionNote": "Complete Record of Tianjie Juelang Sheng (天界覺浪盛禪師全錄), signed preface: the preface writer says that he then understood the great matter of 'our lineage' and repeatedly raised it; this is the signed preface voice, not a master's dialogue turn.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "signed preface prose",
+            "ActorLabel": "the preface voice",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The sentence 始知吾宗門大事，時時激揚 is continuous first-person preface prose; no 師曰, 問, or quoted encounter assigns it to a Zen master.",
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-14T23:25:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "C/C077/C077n1710.xml",
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml",
+        "X/X72/X72n1435.xml",
+        "J/J26/J26nB178.xml",
+        "J/J34/J34nB311.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "宗旨",
+        "宗乘"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

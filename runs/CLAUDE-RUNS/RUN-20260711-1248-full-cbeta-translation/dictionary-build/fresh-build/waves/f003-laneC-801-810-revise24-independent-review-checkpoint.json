@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": "801-810",
+  "generatedUtc": "2026-07-15T06:35:35.914034+00:00",
+  "reviewer": "Codex fresh independent reviewer (revise24 round)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+  "formalGateSha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+  "formalGateHardPass": true,
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-revise24-repair-ledger.json",
+  "repairLedgerSha256": "14ad4d62f9d0b520f08d2307bdd39adb0f7e6c9864aa7c9c143ab970f94c7994",
+  "priorIndependentReview": "fresh-build/waves/f003-laneC-801-850-repair2-independent-exact-rereview.json",
+  "priorIndependentReviewSha256": "5c3be081b84ec6ed960e50b46f8f3ed8c9e6ed2fe9f4fa3176d0d716eb12d442",
+  "occurrencesReadInFullCaseContext": 70,
+  "twentySixPriorKeepHashesUnchanged": true,
+  "summary": {
+    "KEEP": 4,
+    "REVISE": 6
+  },
+  "systemicFinding": "The exact KWIC and formal gates are genuinely clean, but the repair script used local punctuation patterns to replace compiler labels with generic reviewed-unnamed voices. Complete-case reading repeatedly finds named section masters and explicit names (including 了庵欲禪師, 道吾真, 羅漢機, and 凌行婆). Mechanical hardPass therefore does not license promotion.",
+  "checkpoint": true,
+  "rows": [
+    {
+      "ordinal": 801,
+      "id": "t_efbed6116e24",
+      "term": "拂袖",
+      "entrySha256": "9ec877cdb53d04db76f9eccde92af946a75ddce12d08c7ffec7811752a121fd0",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 802,
+      "id": "t_5da65e2989a0",
+      "term": "夏末",
+      "entrySha256": "3bb5043004275ae66c585a7dbc1ba2a7295da9b6b90be5627a0ccd9834b56a31",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O4 is not an unplaceable verse voice: the complete section is the hall record of Dayu Shouzhi, who says 聽取一頌 before the verse containing 夏末. Name the verse utterer and retain the section master in ContextMasters."
+    },
+    {
+      "ordinal": 803,
+      "id": "t_1dc12d84b349",
+      "term": "一喝分賓主",
+      "entrySha256": "602f0367ba5539cde22b8ccff126172e922c7e21a5c9530c6301dcca8997410e",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 804,
+      "id": "t_1118b9dcbc72",
+      "term": "見解",
+      "entrySha256": "6e6a81a5c15f8870b065778ff92f3c05ae838fcc06e5d80d7df2f4580c6fae34",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — The repair replaces six compiler labels with a generic anonymous presiding speaker, but the cases are nameable. O1 has 師斥曰 within a named section, O2 has 師曰 in Fachang Yiyu's section, O4 already proves Huineng, and the remaining section/header evidence was not resolved. 'Presiding speaker' is not the six-rung result."
+    },
+    {
+      "ordinal": 805,
+      "id": "t_76466e7feed6",
+      "term": "拈香祝聖",
+      "entrySha256": "a56b15f33f749e9191045b910d044c3b367abf61c66d7f212e8b1dfa29f5ef1e",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 806,
+      "id": "t_7bb4ebba81b9",
+      "term": "賓主歷然",
+      "entrySha256": "b7ce0a14560a529ace8597031d2fbb934d823d6c23b319118408b9c260f61dc5",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 807,
+      "id": "t_fe8d4efe588f",
+      "term": "見處",
+      "entrySha256": "12052557cac4ba850fb7c8ffa1da97303e680f0a6a594c0ecf9edf3ce8ed5fcd",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — Several exact utterers remain hidden behind a generic voice although the complete passages identify them: O1 is Huangbo's discourse, O4 explicitly says 端曰, and O7 is a verse in a named commentary section. O3 is correctly an unnamed monk and O5 is correctly Tiantong Wuzheng; that does not cure the unresolved named turns."
+    },
+    {
+      "ordinal": 808,
+      "id": "t_6703082d841c",
+      "term": "禪堂",
+      "entrySha256": "1660392b162b88e450d6705ff7ea7b52c23ac1fad4bc42acaefa102304353f34",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O6 is an embedded old case introduced by 復舉 and contains separate Wang, Linji, and monastic turns; O7 is a saying inside the named record owner's address. Both are flattened into one anonymous 'presiding speaker' instead of reconstructing the exact turn and its contextual masters."
+    },
+    {
+      "ordinal": 809,
+      "id": "t_f7a9bcbfc089",
+      "term": "試道看",
+      "entrySha256": "f466b7f7295a856ee5842c701b7f20629b0da0fb2972a4f9f04184e30049ff35",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O1 begins 師問 and the complete case identifies the teacher; it is not an unnamed questioner. O3/O5/O6 are likewise inside named masters' sections or addresses. The repair classified punctuation locally instead of applying the six-rung full-case ladder."
+    },
+    {
+      "ordinal": 810,
+      "id": "t_b03032c64a13",
+      "term": "眼目",
+      "entrySha256": "83991c69cd5c1dbc7a4588818c7d7f4c8b22f766aef55cd2b89ea464fa0a2ac4",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O4 and O6 are extended named discourses, not genuinely anonymous hall voices. Their record/section owners and exact turns remain recoverable from the complete passages, so the placeholder ActorAttribution violates 'every master must be named.'"
+    }
+  ]
+}

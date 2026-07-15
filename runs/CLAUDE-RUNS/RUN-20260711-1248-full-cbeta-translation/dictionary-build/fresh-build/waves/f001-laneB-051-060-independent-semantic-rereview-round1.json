@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "B",
+  "scope": {
+    "ordinals": [52, 54, 55, 57, 58, 60],
+    "entries": 6,
+    "priorReview": "fresh-build/waves/f001-laneB-051-060-independent-semantic-review.json",
+    "repairGate": "fresh-build/waves/f001-laneB-051-060-repair-gate.json"
+  },
+  "reviewKind": "independent-hash-bound-semantic-rereview-round1",
+  "policy": "Each repaired entry was reread against every REVISE finding in the prior independent review. KEEP requires the cited actor repair or corpus-earned opening to be present, the different-things sense boundary to remain sound, all quotations and claims to remain anchored, and—in the modifier case—a documented corpus study, a non-misleading target and aliases, and no invented materiality or symbolism.",
+  "reviewed": 6,
+  "keep": 6,
+  "revise": 0,
+  "jointChecks": {
+    "repairGateHardPass": true,
+    "exactKwicAndLineReplay": "41/41 PASS",
+    "mechanicalAttributionHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "forbiddenEnglishHits": 0,
+    "publicFeedbackMechanicalFlags": 1,
+    "publicFeedbackFlagAdjudication": "FALSE POSITIVE: 銀山鐵壁 explicitly denies that the present compound evidence establishes objects made of silver or iron; the detector matched the negated wording. The entry makes no positive material-composition or symbolic-value claim."
+  },
+  "entries": [
+    {
+      "id": "t_372fb5a2b7ce",
+      "term": "活句",
+      "ordinal": 52,
+      "reviewedSha256": "eab93aa3db8b2a5e944121525b3733c10b55d1b86cd7b59de5f831a0f4f98f40",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "actor-repair",
+          "finding": "At X79 0133b21 the unnamed questioning monk now owns 如何是活句 under reviewed-unnamed attribution; Baofeng Shanqing is retained as respondent rather than misassigned as the exact headword utterer."
+        },
+        {
+          "kind": "opening-and-sense",
+          "finding": "The entry now opens with the corpus-earned category: a phrase not caught in verbal explanation, fixed reasoning tracks, thought, or deliberation. One sense remains warranted, and Gulin Qingmao's attested reversal is preserved as an explicit limit rather than suppressed or turned into a second thing."
+        },
+        {
+          "kind": "evidence",
+          "finding": "Six occurrences from six independent works preserve sufficient depth, source independence, exact anchoring, and attribution support."
+        }
+      ]
+    },
+    {
+      "id": "t_5b39f18f89ff",
+      "term": "狗子無佛性",
+      "ordinal": 54,
+      "reviewedSha256": "837fd32d71fc91fba8716abb7062d6df452260ffcf90c393bb15b04c0759649a",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "actor-repairs",
+          "finding": "All three challenged rows are repaired at the exact-turn level: T47 0851c26 is an impersonal editorial case-and-verse heading with Dahui and Zhaozhou retained in their proper contextual roles; T51 0694a21 is narrated lamp-record prose describing Dahui's raising and Wu's response; X68 0562b08 assigns the headword question to a reviewed-unnamed participant and the answer to the Yongzheng Emperor."
+        },
+        {
+          "kind": "opening-and-sense",
+          "finding": "The target and opening now plainly identify Zhaozhou's dog-has-no-buddha-nature case and derive the case-title from his recorded answer 'no.' The case title, longer 話 form, later raisings, and affirmative control remain evidence around one lexicalized case, not different referents."
+        },
+        {
+          "kind": "evidence",
+          "finding": "Seven occurrences plus the affirmative ClaimAnchor remain multi-work, exact, and anchored."
+        }
+      ]
+    },
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "ordinal": 55,
+      "reviewedSha256": "ee887ee56064d12eb2cb69b9ab2d403f7df2a1f9bc09b671672ebf8354536466",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "opening-and-sense",
+          "finding": "The tautological opening has been replaced by a corpus-earned definition: speech placed within verbal explanation, a reasoning track, thought, and distinction. The same passage immediately preserves Gulin Qingmao's reversal, so the entry describes attested classification without presenting an invariant doctrinal definition. One dead-phrase category remains the correct boundary."
+        },
+        {
+          "kind": "actor-and-evidence",
+          "finding": "The unnamed monk still owns the direct question while Baofeng remains respondent. Six occurrences and one ClaimAnchor across independent works satisfy the challenged actor, depth, source, and anchoring requirements."
+        }
+      ]
+    },
+    {
+      "id": "t_db103ad2434d",
+      "term": "鬼窟裏",
+      "ordinal": 57,
+      "reviewedSha256": "9582a71ba8f7009fc853ce5acd70daf1764bd7f9956c154eea066ecc0e111297",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "opening-and-sense",
+          "finding": "The new opening supplies the corpus-earned visual before examples: an enclosed ghost cave in which the records place calculation, immobile sitting, and attempted livelihood. These are predicates of one place-image; the evidence does not support a literal-cavern split or an imported psychological category."
+        },
+        {
+          "kind": "actor-and-evidence",
+          "finding": "Full-case actor review remains coherent: Dahui owns three exact turns across two works, Yuanwu owns both Blue Cliff comments, and Yunmen owns the chamber saying. Six occurrences across four sources remain exact and independently supported."
+        }
+      ]
+    },
+    {
+      "id": "t_bbee6625a4d5",
+      "term": "赤肉團上",
+      "ordinal": 58,
+      "reviewedSha256": "e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "actor-repair",
+          "finding": "C077 0662a06 now correctly names Nanyuan Huiyong, corroborated by the explicit 宝应南院禪師語錄 / 南院慧顒 heading and the stored parallel, rather than Muzhou Daoming."
+        },
+        {
+          "kind": "opening-and-sense",
+          "finding": "The opening now identifies the literal bodily site and reports the two dominant attributed deployments before quotation-led detail. The distinct predicates remain located on the same red-flesh lump and do not warrant separate senses."
+        },
+        {
+          "kind": "evidence",
+          "finding": "Six occurrences and one adjacent-form ClaimAnchor retain adequate multi-work depth and exact anchoring."
+        }
+      ]
+    },
+    {
+      "id": "t_6c20139c8cc0",
+      "term": "銀山鐵壁",
+      "ordinal": 60,
+      "reviewedSha256": "37fc0058b7593d79b6bbf39317d2a35fd00ce4041723ce63b12bbafdf1c08200",
+      "verdict": "KEEP",
+      "findings": [
+        {
+          "kind": "modifier-hard-gate",
+          "finding": "The repair records the required corpus study: 339 headword occurrences across 151 files plus material, appearance, conventional-name, and figurative controls for 銀 and 鐵. The headword evidence establishes the compound's impassable barrier image but does not directly establish a mountain materially made of silver, a wall materially made of iron, or a symbolic value for either modifier. The entry says exactly that."
+        },
+        {
+          "kind": "target-aliases-and-opening",
+          "finding": "The displayed target 'an impassable mountain-and-wall barrier' and its principal aliases are retrieval-friendly without making a composition claim. 'Silver mountain iron wall' is retained only as a source-image lookup alias. The opening is grounded in attested collision, stoppage, passage, and collapse rather than graph decomposition or invented symbolism."
+        },
+        {
+          "kind": "sense-and-flag-adjudication",
+          "finding": "One compound barrier image remains warranted across changing predicates and stances. The mechanical materiality flag is a false positive caused by the entry's negated sentence explaining what the evidence does not establish; it is not a substantive defect. WORK's '鐵 = figurative-image' is acceptable only as classification of that modifier's participation in the attested whole image, not as a claim that bare 鐵 has an independently proven symbolic meaning; the reader-facing entry observes this boundary."
+        },
+        {
+          "kind": "actor-and-evidence",
+          "finding": "Foyan, Xueyan, Zhongfeng, and Shui'an remain correctly assigned, and seven exact anchors across four works preserve multi-source support."
+        }
+      ]
+    }
+  ]
+}

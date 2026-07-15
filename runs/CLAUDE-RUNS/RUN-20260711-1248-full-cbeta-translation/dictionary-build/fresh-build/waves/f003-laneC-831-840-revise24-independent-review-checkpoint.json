@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "fresh independent exact-hash full-case semantic rereview",
+  "wave": "f003",
+  "lane": "C",
+  "ordinals": "831-840",
+  "generatedUtc": "2026-07-15T06:35:35.914034+00:00",
+  "reviewer": "Codex fresh independent reviewer (revise24 round)",
+  "readOnly": true,
+  "entriesEdited": 0,
+  "promotionOrMergePerformed": false,
+  "siteTouched": false,
+  "formalGate": "fresh-build/waves/f003-laneC-801-850-formal-gate-revise24-repair.json",
+  "formalGateSha256": "57ef7ed18af1df03d095ff9234fe74461471eae8a17c083b9ebbb33c7492e28e",
+  "formalGateHardPass": true,
+  "repairLedger": "fresh-build/waves/f003-laneC-801-850-revise24-repair-ledger.json",
+  "repairLedgerSha256": "14ad4d62f9d0b520f08d2307bdd39adb0f7e6c9864aa7c9c143ab970f94c7994",
+  "priorIndependentReview": "fresh-build/waves/f003-laneC-801-850-repair2-independent-exact-rereview.json",
+  "priorIndependentReviewSha256": "5c3be081b84ec6ed960e50b46f8f3ed8c9e6ed2fe9f4fa3176d0d716eb12d442",
+  "occurrencesReadInFullCaseContext": 66,
+  "twentySixPriorKeepHashesUnchanged": true,
+  "summary": {
+    "KEEP": 6,
+    "REVISE": 4
+  },
+  "systemicFinding": "The exact KWIC and formal gates are genuinely clean, but the repair script used local punctuation patterns to replace compiler labels with generic reviewed-unnamed voices. Complete-case reading repeatedly finds named section masters and explicit names (including 了庵欲禪師, 道吾真, 羅漢機, and 凌行婆). Mechanical hardPass therefore does not license promotion.",
+  "checkpoint": true,
+  "rows": [
+    {
+      "ordinal": 831,
+      "id": "t_663eefaa4ad7",
+      "term": "偏正",
+      "entrySha256": "b55d61dfae2289b2ab92c4a846eb0873899dffdbc2cb57d663fb37c5b15c12c0",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "finding": "REVISE — O3 is not merely 'the old woman': the complete case explicitly identifies her as Lingxing Po (凌行婆) before 婆云. The six-rung ladder therefore succeeds at the expanded case, and the personally named actor plus Fubei as respondent/context must be recorded rather than declared reviewed-unnamed."
+    },
+    {
+      "ordinal": 832,
+      "id": "t_589f52acc0b0",
+      "term": "答話",
+      "entrySha256": "f7b3ea29425edc4c689c03f7b94989bd51b482e24fefb91a469585560aa46619",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O2 and O4 explicitly say 羅漢機云, while O5/O6 are requests spoken by questioners and O7 is a separately framed quoted turn. The generic presiding-speaker replacement misses both a named utterer and the non-master questioner branch."
+    },
+    {
+      "ordinal": 833,
+      "id": "t_258b079d8359",
+      "term": "女子出定",
+      "entrySha256": "a93c5f045d44582809148d8da0f6a83371ef3a813c32d76500b8e382ff58aa92",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 834,
+      "id": "t_a842c76ef637",
+      "term": "阿那箇",
+      "entrySha256": "80c9d4fcbac88346c85f7c3ce6865bf33db77616f9d290dedc14c1d406dd492f",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 835,
+      "id": "t_baf1c6b9db60",
+      "term": "如意",
+      "entrySha256": "2f20528791c190a84ff7b29c471e47a7bc0bc7b8675f3947106bffedfa4f4bb5",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 836,
+      "id": "t_65491dc99795",
+      "term": "庫司",
+      "entrySha256": "b20e296ee58ae1a046570578c7a6d7de47b53820a123c5a02e517f0ea37c86fa",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 837,
+      "id": "t_bd0ba96ae735",
+      "term": "可惜",
+      "entrySha256": "7f8ca4b7bf9e233e55b9f807666eaee1c6716217f8ce6e54b31ba94315603612",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O5 now correctly names Yuanwu Keqin, but O2/O4/O7 remain generic voices despite belonging to named discourses or quoted cases. The entry therefore still mixes the exact speaker, later commentator, and record owner."
+    },
+    {
+      "ordinal": 838,
+      "id": "t_3b9857d1cc19",
+      "term": "退院",
+      "entrySha256": "5d8b4f5c2ebc5208a89f3578be8192b80c763b147d148582bd3611a54be4ec34",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 839,
+      "id": "t_7c6a61681198",
+      "term": "投機",
+      "entrySha256": "a7f8f5f6e9a976d8e68e0de7159585e8ac3efdb175443e815ef4e4c8697167ff",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "finding": "KEEP — This is one of the 26 prior KEEPs and its entry hash is byte-identical. Full-case rereading of its unchanged occurrences found no new exact-actor, different-referent, source-spread, or prose-hygiene defect."
+    },
+    {
+      "ordinal": 840,
+      "id": "t_84406e0eca53",
+      "term": "脚跟",
+      "entrySha256": "64325209c79a8451692acfc58615c29194ed4bd5ac1c50ea398d966f69f651d8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "finding": "REVISE — O1–O7 include named hall addresses, a staff action followed by speech, quoted-case prose, and extended record-owner discourse. The anonymous template fails to distinguish them. The single fused gloss also needs an item-8 test of bodily heel versus established footing before acceptance."
+    }
+  ]
+}

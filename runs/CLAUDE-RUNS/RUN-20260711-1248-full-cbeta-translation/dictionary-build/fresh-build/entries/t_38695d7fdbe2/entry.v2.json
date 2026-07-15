@@ -1,0 +1,310 @@
+{
+  "Id": "t_38695d7fdbe2",
+  "SourceTerm": "如何是道",
+  "CreatedBy": "Codex f002 Lane B evidence-first refresh",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "what is the Way?",
+      "AlternateTargets": [
+        "what is the way?"
+      ],
+      "SearchAliases": [
+        "what is the Way",
+        "what is the way",
+        "what is the path",
+        "what is the road"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Capitalize “Way” when the exchange distinguishes it from an ordinary road, but translate the road wordplay explicitly where it occurs. Frozen-corpus concordance: 1703 exact hits in 226 storage files representing 221 independent works. Frozen-corpus concordance: 1703 exact hits in 226 storage files representing 221 independent works. Frozen-corpus concordance: 1703 exact hits in 226 storage files representing 221 independent works.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0295b14",
+          "ToLb": "0295b15",
+          "Kwic": "南泉因趙州問。如何是道。泉云。平常心是道。州云。還可趣向否。泉云。擬向即乖。",
+          "Curated": true,
+          "AttributionNote": "Source text (無門關). Zhaozhou Congshen owns the exact clause in the complete case.",
+          "MasterName": "Zhaozhou Congshen",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0050b19",
+          "ToLb": "0050b20",
+          "Kwic": "問。如何是道。師曰。白雲覆青嶂。蜂蝶戀庭華。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). unnamed questioner owns the exact clause in the complete case.",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "questioner",
+            "ActorLabel": "unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T12:17:00Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed questioner."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tianzhu Chonghui",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0064a16",
+          "ToLb": "0064a17",
+          "Kwic": "一問。如何是道。何以修之。為復必須修成。為復不假功用。答。無礙是道。覺妄是修。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). unnamed questioner owns the exact clause in the complete case.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "questioner",
+            "ActorLabel": "unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:07:59Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed questioner."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Sikong Benjing",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0077b05",
+          "ToLb": "0077b06",
+          "Kwic": "問。如何是道。師便咄。僧曰。學人未領旨。師曰。去。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). unnamed monk owns the exact clause in the complete case.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:07:59Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed monk."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Panshan Baoji",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0093a04",
+          "ToLb": "0093a06",
+          "Kwic": "問。如何是道。師曰。墻外底。曰。不問這箇。師曰。你問那箇。曰。大道。師曰。大道透長安。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). unnamed monk owns the exact clause in the complete case.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T06:07:59Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed monk."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0650b22",
+          "ToLb": "0650b22",
+          "Kwic": "問：如何是道？師云：家家門口通長安。",
+          "Curated": true,
+          "AttributionNote": "Source text (建中靖國續燈錄). unnamed questioner owns the exact clause in the complete case.",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "questioner",
+            "ActorLabel": "unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex /root/repair_bird_path",
+            "ReviewedUtc": "2026-07-14T12:17:00Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed questioner."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Luohan",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0649c15",
+          "ToLb": "0649c15",
+          "Kwic": "問：如何是道？師云：甜底是甘草。",
+          "Curated": true,
+          "AttributionNote": "Source text (建中靖國續燈錄). unnamed questioner owns the exact clause in the complete case.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "questioner",
+            "ActorLabel": "unnamed questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex",
+            "ReviewedUtc": "2026-07-14T00:35:00Z",
+            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed questioner."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhimen Guangzuo",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0005b17",
+          "ToLb": "0005b18",
+          "Kwic": "上堂舉。李翱相公問藥山。如何是道。山指天復指淨缾云。會麼。",
+          "MasterName": "Li Ao",
+          "Curated": true,
+          "AttributionNote": "Source text (宏智禪師廣錄). Li Ao owns the exact clause in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Li Ao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2005.xml",
+        "X/X80/X80n1565.xml",
+        "X/X78/X78n1556.xml",
+        "T/T48/T48n2001.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "道",
+        "大道",
+        "平常心是道",
+        "如何是佛",
+        "如何是禪",
+        "道中人"
+      ],
+      "Explanation": "This stock public-interview question asks what the Way is. Nanquan answers Zhaozhou, ‘the ordinary mind is the Way’ (平常心是道); when Zhaozhou asks whether one can head toward it, Nanquan says that intending to head toward it departs from it (擬向即乖). Other records preserve unlike answers without a single harmonizing gloss: ‘white clouds cover the green peaks; bees and butterflies love the courtyard flowers’ (白雲覆青嶂，蜂蝶戀庭華), ‘every household's gate opens onto Chang'an’ (家家門口通長安), and ‘what is sweet is licorice’ (甜底是甘草). Panshan Baoji merely rebuffs the question and sends the recorded questioner away. In a longer written questionnaire, the answer begins ‘unobstructed is the Way’ (無礙是道). Zhaozhou's record also makes the ordinary road-word audible: Zhaozhou first answers ‘the one outside the wall’ (墻外底); when the recorded questioner says he means the great Way, the answer is ‘the great road runs through Chang'an’ (大道透長安). The dictionary therefore retains the direct question and its observable public-interview role; the mutually different recorded answers are not converted into an interpretive menu.",
+      "ClaimAnchors": []
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "Id": "t_efa1e241a7f0",
+  "SourceTerm": "擔荷",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to shoulder responsibility",
+      "AlternateTargets": [
+        "take responsibility for",
+        "bear the charge"
+      ],
+      "SearchAliases": ["shoulder responsibility", "take responsibility", "bear the charge", "assume lineage work", "carry the responsibility"],
+      "Status": "preferred",
+      "Explanation": "To assume and bear responsibility, especially for the teaching or its succession. Yuanwu Keqin places successful shouldering beside accepting, heading toward, and carrying out; elsewhere he says only Shenguang was permitted to bear the subtle key of Shaolin. Guangzhi Quanwu calls for someone able to shoulder it with the whole body, and Xueqiao Yuanxin calls a person with strength to come forward and bear it on one shoulder. Jiufeng Daoqian explicitly defines inward accepting and shouldering as inner succession, then contrasts it with the person who has no accepting and no shouldering. These responsibility, authority, and succession frames make the omitted load institutional and figurative. They are a different referent from physically carrying cargo, even though the metaphor retains the bodily image.",
+      "Validation": "multi-source",
+      "Note": "The headword occurs 969 times in 265 allowlisted texts. This sense is restricted to responsibility, authority, teaching, and succession frames. Attested formations include successful shouldering, whole-body shouldering, one-shoulder shouldering, accepting and shouldering, and inability to shoulder. Physical cargo is separated below because the corpus uses the word for a different thing there.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0738c08",
+          "ToLb": "0738c09",
+          "Kwic": "驀然有箇承當得。擔荷得。趣向得。行履得。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), addresses to the assembly, six: Yuanwu Keqin enumerates four parallel successful verbs—accepting, shouldering, heading toward, and carrying out."
+          ,"ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0760a28",
+          "ToLb": "0760a29",
+          "Kwic": "少林演妙訣。唯許神光擔荷。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), minor addresses, three: Yuanwu Keqin says that Shaolin expounded the subtle key and only Shenguang was allowed to shoulder it."
+          ,"ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0761c21",
+          "ToLb": "0761c21",
+          "Kwic": "眾中有全身擔荷者出來與山僧相見。",
+          "Curated": true,
+          "AttributionNote": "Records of the Ancient Worthies (古尊宿語錄): Guangzhi Quanwu calls for anyone in the assembly who can shoulder it with the whole body to come forward and meet him.",
+          "MasterName": "Guangzhi Quanwu",
+          "ContextMasters": [{"MasterName": "Guangzhi Quanwu", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "J/J27/J27nB189.xml",
+          "FromLb": "0011b02",
+          "ToLb": "0011b03",
+          "Kwic": "歷代祖師有擎山舉鼎之力，也擔荷不起",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Sanyi Mingyu (三宜盂禪師語錄), in Sanyi Mingyu's Yunmen Xiansheng Monastery address. Sanyi Mingyu says that even ancestral teachers with strength to lift mountains and tripods could not shoulder it, then contrasts them with what this old mountain monk has gathered away. Yunmen here names the monastery, not Yunmen Wenyan.",
+          "MasterName": "Sanyi Mingyu",
+          "ContextMasters": [{"MasterName": "Sanyi Mingyu", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0124c02",
+          "ToLb": "0124c02",
+          "Kwic": "知向裏許承當擔荷。是為內紹。",
+          "MasterName": "Jiufeng Daoqian",
+          "Curated": true,
+          "AttributionNote": "The governing head in the Five Lamps Compendium (五燈會元) is Jiufeng Daoqian. Asked about inner succession, he says, 'knowing to accept and shoulder it inwardly is inner succession.' This is the corpus's clearest explicit classification involving the headword."
+          ,"ContextMasters": [{"MasterName": "Jiufeng Daoqian", "Roles": ["utterer", "respondent", "section-subject"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0124c03",
+          "ToLb": "0124c04",
+          "Kwic": "須見無承當底人。無擔荷底人。始得同一色。",
+          "MasterName": "Jiufeng Daoqian",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Jiufeng Daoqian section: Jiufeng Daoqian continues that one must see the person with no accepting and no shouldering before reaching one color."
+          ,"ContextMasters": [{"MasterName": "Jiufeng Daoqian", "Roles": ["utterer", "section-subject"]}]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0379b07",
+          "ToLb": "0379b07",
+          "Kwic": "有力量者進前來一肩擔荷得去",
+          "MasterName": "Xueqiao Yuanxin",
+          "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), Xueqiao Yuanxin section: Xueqiao Yuanxin calls those with strength to come forward and shoulder it on one shoulder."
+          ,"ContextMasters": [{"MasterName": "Xueqiao Yuanxin", "Roles": ["utterer", "section-subject"]}]
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "C/C077/C077n1710.xml",
+        "J/J27/J27nB189.xml",
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Yuanwu Keqin",
+        "Jiufeng Daoqian",
+        "Xueqiao Yuanxin"
+      ],
+      "RelatedTerms": [
+        "承當",
+        "荷擔",
+        "內紹",
+        "同一色"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to carry a load on the shoulder",
+      "AlternateTargets": ["to shoulder physical cargo", "to bear a shoulder-load"],
+      "SearchAliases": ["carry cargo", "carry a load", "shoulder a load", "carry firewood", "physical load", "carrying pole"],
+      "Status": "preferred",
+      "Explanation": "To bear physical cargo on the shoulder. In Xisou Shaotan's verse the object is firewood and the bodily mechanics are explicit: one shoulder carries it until the carrying pole breaks. The named cargo and broken pole make this an ordinary transport action, not responsibility for teaching or succession.",
+      "Validation": "provisional",
+      "Note": "This different-thing split is anchored by one unequivocal full-case witness. A corpus-wide collocation search did not locate a second independent occurrence with equally explicit cargo, so this literal sense remains provisional rather than being padded with figurative one-shoulder language.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X70/X70n1390.xml",
+          "FromLb": "0471a23",
+          "ToLb": "0471a24",
+          "Kwic": "爭得盧公賽子雲，一肩擔荷柴衝折。",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Xisou Shaotan (希叟紹曇禪師廣錄), a verse by Xisou Shaotan. Xisou Shaotan is the exact verse-author describing firewood borne on one shoulder until the carrying pole breaks.",
+          "MasterName": "Xisou Shaotan",
+          "ContextMasters": [{"MasterName": "Xisou Shaotan", "Roles": ["utterer", "record-owner", "verse-author"]}]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["X/X70/X70n1390.xml"],
+      "RelatedMasters": ["Xisou Shaotan"],
+      "RelatedTerms": ["柴", "擔子", "荷擔"]
+    }
+  ]
+}

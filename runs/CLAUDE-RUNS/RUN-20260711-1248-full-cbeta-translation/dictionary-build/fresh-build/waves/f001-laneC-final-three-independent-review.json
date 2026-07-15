@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "wave": "f001",
+  "lane": "C",
+  "reviewKind": "final-three-independent-review",
+  "scope": "傳衣, 聯燈, 客塵 final repairs; 27 prior KEEP entries hash-checked only",
+  "policy": {"reviewOnly": true, "fullCaseReadRequired": true, "mechanicalHardPassNotSemanticApproval": true},
+  "protectedHashCheck": {"count": 27, "unchanged": 27, "collisions": 0},
+  "reviewed": 3,
+  "keep": 3,
+  "revise": 0,
+  "entries": [
+    {
+      "position": 59,
+      "id": "t_c657778889b0",
+      "term": "傳衣",
+      "entrySha256": "cc785e2e4b668968590bb4e60a3505688ddb6acd82b33598abb56e3e00275bec",
+      "verdict": "KEEP",
+      "reviewFinding": "御製序 is the governing authored section; the Yongzheng Emperor's rhetorical question contains 傳衣, and its concrete GrammarEvidence correctly distinguishes that exact turn from compiler narration. Definition and sense split remain sound."
+    },
+    {
+      "position": 91,
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "entrySha256": "dfa0aec5f018eed0a877690dfffc7a6e4785cde2bda58ccd86bd79de1fabc307",
+      "verdict": "KEEP",
+      "reviewFinding": "The complete Huiweng Wuming biography uses 師 as subject of 纂修 and 傳; this is compiler bibliographic narration, with Huiweng correctly retained as person-described. The book-title sense remains distinct from lineage-lamp continuation."
+    },
+    {
+      "position": 99,
+      "id": "t_57fd70bfc9ec",
+      "term": "客塵",
+      "entrySha256": "9e7a7163a860636262a7a7a8cd6992a7829314db5ac7abd3cc54dc38f53ac12e",
+      "verdict": "KEEP",
+      "reviewFinding": "持世經云 explicitly opens the quoted-scripture boundary containing 客塵煩惱染; Yongming Yanshou is correctly a later-quoter rather than exact utterer. The inherited guest-dust sense remains distinct from Baizhang's functional classification."
+    }
+  ]
+}

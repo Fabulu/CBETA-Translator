@@ -1,0 +1,62 @@
+{
+  "wave": "f003",
+  "lane": "B",
+  "role": "repair author",
+  "sourceReview": "fresh-build/waves/f003-laneB-751-800-repaired-final-independent-exact-review.json",
+  "scope": {"entries": 50, "revised": 24, "repaired": 24, "priorKeepsUntouched": 26},
+  "checkpoints": [
+    {"completed": 10, "artifact": "fresh-build/waves/f003-laneB-final24-checkpoint1-formal-gate.json"},
+    {"completed": 20, "artifact": "fresh-build/waves/repair_f003_laneB_final24.py"},
+    {"completed": 24, "artifact": "fresh-build/waves/f003-laneB-final24-complete-formal-gate.json"}
+  ],
+  "verification": {
+    "fullFormalGate": "fresh-build/waves/f003-laneB-final24-complete-formal-gate.json",
+    "hardPass": true,
+    "exactKwic": 355,
+    "exactFailures": 0,
+    "attributionPacketGeneratorVersion": 3,
+    "turnProofMissing": 0,
+    "clusterScopeEntries": 24
+  },
+  "provenanceCorrections": [
+    {
+      "entryId": "t_10d93a67ea99",
+      "term": "言句",
+      "incorrectReviewerRelPath": "X/X68/X68n1318.xml",
+      "verifiedRelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0526b15",
+      "finding": "zc.find confirms the imperial first-person passage in n1319; n1318 contains different headword passages. The valid quote was retained and classified identified-non-master."
+    }
+  ],
+  "repairedEntryHashes": {
+    "t_51a4f3a03bd8": "50ad01be36d3ae0033813b1ca5dd014f117e5d83444cf7b119c11968b37bf961",
+    "t_32a92c635f49": "8252a0661e9fce0bf3f713a20b0abdf26d586fd62a573e7377f6b8d86df349e1",
+    "t_1b62ec7f731e": "431b41d4a7766d61fba80a2a1f2e4c3d00e1b031178f13018c41294a9738270f",
+    "t_ec09781522d8": "40d074761f62cbd705d96986b56869b0d7c118cdd42bec9a3a5e82c45933ff19",
+    "t_d67829b96305": "5f8a49cd6d6b4c5575f4b70f61a1cecb42c9b3e86df4ee94e7adddd70b3c50bc",
+    "t_a2c5b2af7b10": "6fd50ccf256d85060565c116e035ed14368324b69f51e9cc9ce599233f85ab2e",
+    "t_10d93a67ea99": "cea60e3e7115d8125a58de605f024a847afc74b97ef37d1a40a233c59f55d1cc",
+    "t_a9a874976d5b": "0467ae22ce10b511a2971fcee8dd96598c5860027247963290c98db67f87d525",
+    "t_eb17a30eecaa": "e21aa92c78e921c72bb4b012b27f641c4cd26e10f07f523db9902e4b06521d7a",
+    "t_b4b6091cf9cb": "b37ab4bb20d93616f46898610486943b19a993df249495eff590485ed03db82b",
+    "t_33ae72debe2c": "7d5f35054d2c9150c0cb23dc5013584639d8016565477185a3da9204b0281d2e",
+    "t_073dcbf657a3": "f7f1f04f1993d93810ab2968e1abf6a2b60970c2e3bfc2339ba2d48cb52f31a7",
+    "t_5835e3ae094b": "716ffc78ac4ee525bbb792d570bf80181f71b660054d56b5e9408de30dcb6078",
+    "t_19635cfe9de8": "2131f0f1cff430a85db7ddd0fc0014d31f5aa632edd56380685ad0159a98d9d1",
+    "t_5306489d35c6": "15f8eceb6467fc9608fe0aaa60a0ce78cc1febf39bf9aa611e0c2f22acf5f06a",
+    "t_168078a96bd7": "18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a",
+    "t_53d86caa85c2": "eb5d45ba15b6574ff66ef3acd451c31e86c86364a52808d3ec39fdd5d036a3bc",
+    "t_e3231052e685": "5726449f58a02e1e0a0f0453eecd562908b7bf318b10a1a80f9072ff7650ab28",
+    "t_5cde0218375f": "14c977d400fb820fb3aaef5d0102bcab1458eacf808487b42624a59802b6f270",
+    "t_73656adc1e50": "c77d9e8110169e5074dc25cc4752de873e8cf60955b578380eed54f37afa3063",
+    "t_c051d6f277af": "aa51803fd635c8584ccc9233696fad4a303ab044b32faf918ad4260b3bf1e6d7",
+    "t_f266d9e034ea": "aa0918b656d77eff8b03ee7a508b321004e63f7751fe9b7ee0915c0c7b2af0de",
+    "t_0229ebe0b9e7": "a3d6d5665943a0c661c59e5a5b1a4c8fa3370a15dcb1eaf86cc872a0988874d2",
+    "t_7ee93f6b90cf": "e46973bb971ab635b8fec68076ca4be0cf99b37cb6f5328dc674ebcc03c1c673"
+  },
+  "selfReview": false,
+  "promotion": false,
+  "merge": false,
+  "siteTouched": false,
+  "status": "repair-author-work-complete; independent rereview required"
+}

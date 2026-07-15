@@ -1,0 +1,61 @@
+{
+  "generatedUtc": "2026-07-15T02:52:42.695552+00:00",
+  "wave": "f002",
+  "lane": "A",
+  "ordinals": "301-350 focused repaired ordinals 305/313/321/332",
+  "reviewMode": "provisional independent semantic rereview3; read-only",
+  "entryEditsMade": false,
+  "siteTouched": false,
+  "formal": false,
+  "scope": "Latest hashes and reader prose for the four rereview2 repairs.",
+  "diagnostics": {
+    "latestHashesReadDirectly": true,
+    "priorRereview2Consulted": true
+  },
+  "verdictCounts": {
+    "KEEP": 3,
+    "REVISE": 1
+  },
+  "verdicts": [
+    {
+      "ordinal": 305,
+      "id": "t_6c58ed7a7c6c",
+      "term": "一行三昧",
+      "entrySha256": "4c5ebdae31e4c1bcaa950f3df98e2130f69b76e2f6f90a9d81ab950b24f19a90",
+      "worksheetSha256": "6da4759d01d3b30d3033f0a255d0eb5757e1005ff7619c787335a8633948d1be",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "KEEP: the banned untranslated loan and prior false gloss are removed; the entry now foregrounds Huineng’s direct four-posture/straightforward-mind definition in English-first prose.",
+      "formalizationCondition": "Formal only if the focused gate confirms this exact entry SHA-256 with no hard failure."
+    },
+    {
+      "ordinal": 313,
+      "id": "t_c81bf91e508f",
+      "term": "換卻眼睛",
+      "entrySha256": "138ae3c3a05da2b4ca3cf3776a19246a1e094d82f136dc735a9028948da034ad",
+      "worksheetSha256": "12bc471b219cd74e8bdf2322be0cfe03b30ccfa665b3d387a597472b9e3ead06",
+      "provisionalIndependentVerdict": "REVISE",
+      "reviewNotes": "REVISE: the actor/action sentence is now correct, but the Note contains a broken frequency sentence: “The exact phrase has in 45 allowlisted texts.” Restore the missing hit count or rewrite without it; current reader prose remains unpublishable.",
+      "formalizationCondition": "Formal only if the focused gate confirms this exact entry SHA-256 with no hard failure."
+    },
+    {
+      "ordinal": 321,
+      "id": "t_2745ffff5972",
+      "term": "開口即錯",
+      "entrySha256": "8e68f8a60f9b4d9af02da4103858861dedce139e8995e1778ebc40aac325664e",
+      "worksheetSha256": "87ffce25de3301b5a28b0f5ce6d74d92595a17cc95725d4ac9e26585bb08a1b2",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "KEEP: the prior subject/verb error is repaired; the Dabe exchange now has the unnamed questioner ask Dabe, and the self-applying verdict remains exact.",
+      "formalizationCondition": "Formal only if the focused gate confirms this exact entry SHA-256 with no hard failure."
+    },
+    {
+      "ordinal": 332,
+      "id": "t_72e01bbb3474",
+      "term": "咄",
+      "entrySha256": "f6e0abf64cf6afa079e42bd70a1279c35c12f8beab8692bfb215c64e45302900",
+      "worksheetSha256": "dfda7a669cd88b79f1633c2f17c595fc7d8a8461d4803fee4231185ce2bbc344",
+      "provisionalIndependentVerdict": "KEEP",
+      "reviewNotes": "KEEP: predicate agreement is repaired (“insert… use… direct”), and the exclamation’s encounter deployments remain accurately distinguished without oversplitting.",
+      "formalizationCondition": "Formal only if the focused gate confirms this exact entry SHA-256 with no hard failure."
+    }
+  ]
+}
