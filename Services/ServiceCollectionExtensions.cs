@@ -40,6 +40,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITranslationQaService, TranslationQaService>();
         services.AddSingleton<ITermbaseService, TermbaseService>();
         services.AddSingleton<ITermbaseStorageService, TermbaseStorageService>();
+        services.AddSingleton<IDictionaryStore, DictionaryStore>();
+        services.AddSingleton<IDictionaryEvidenceService, DictionaryEvidenceService>();
         services.AddSingleton<ICommunityDataService, CommunityDataService>();
         services.AddSingleton<ITranslationStarService, TranslationStarService>();
         services.AddSingleton<ICitationService, CitationService>();

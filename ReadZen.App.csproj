@@ -88,6 +88,10 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
+		<Content Include="Assets\Data\zen-corpus.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 		<!--
 		S7 bundled prebuilt search index. Ships the Assets/PrebuiltIndex DIRECTORY next to
 		the exe (mirrors the cedict pattern above). In a source build this carries only the
