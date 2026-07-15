@@ -66,8 +66,10 @@ def verify_entries(paths: list[Path]) -> dict:
         entry = json.loads(path.read_text(encoding="utf-8-sig"))
         failures = []
         total = 0
+        totals_by_kind = {"occurrence": 0, "claim-anchor": 0}
         for evidence_kind, sense_index, occurrence_index, occurrence in _occurrences(entry):
             total += 1
+            totals_by_kind[evidence_kind] += 1
             actual = zc.verify(occurrence["RelPath"], occurrence["Kwic"])
             if (
                 not actual.get("ok")
@@ -86,11 +88,15 @@ def verify_entries(paths: list[Path]) -> dict:
             "id": entry.get("Id"),
             "term": entry.get("SourceTerm"),
             "verified": total,
+            "occurrenceVerified": totals_by_kind["occurrence"],
+            "claimAnchorVerified": totals_by_kind["claim-anchor"],
             "failures": failures,
         })
     return {
         "entries": len(results),
         "verified": sum(row["verified"] for row in results),
+        "occurrenceVerified": sum(row["occurrenceVerified"] for row in results),
+        "claimAnchorVerified": sum(row["claimAnchorVerified"] for row in results),
         "failureCount": sum(len(row["failures"]) for row in results),
         "results": results,
     }

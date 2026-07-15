@@ -268,6 +268,8 @@ def main() -> int:
     print(json.dumps({
         "entries": len(entries),
         "exactKwic": exact["verified"],
+        "exactOccurrences": exact["occurrenceVerified"],
+        "exactClaimAnchors": exact["claimAnchorVerified"],
         "exactFailures": exact["failureCount"],
         "hardPass": hard_pass,
         "elapsedSeconds": payload["elapsedSeconds"],
