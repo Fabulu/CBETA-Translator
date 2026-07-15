@@ -154,16 +154,24 @@ def anonymous_actor_collapse_failure(
     named_count: int,
     signatures: Counter,
 ) -> dict[str, object] | None:
-    """Flag large cohorts in which actor adjudication resolves no named utterer."""
+    """Flag large cohorts whose actor adjudication collapses into anonymity.
+
+    A token handful of names must not disable the canary for hundreds of
+    narrator/default labels.  This is a review stop, not a claim that any
+    individual occurrence must have a named utterer.
+    """
     total = sum(signatures.values())
     narrated = sum(amount for signature, amount in signatures.items() if signature and signature[0] == "narrated")
-    if entry_count < 10 or named_count or total < 30:
+    all_occurrences = total + named_count
+    named_share = named_count / all_occurrences if all_occurrences else 0.0
+    if entry_count < 10 or total < 30 or named_share >= 0.15:
         return None
     return {
         "kind": "batch-anonymous-actor-collapse",
         "entry": "<cohort>",
         "detail": (
-            f"{entry_count} entries / {total} anonymous occurrences contain no named utterer; "
+            f"{entry_count} entries / {all_occurrences} occurrences contain only {named_count} named "
+            f"utterers ({named_share:.1%}); "
             f"status labels cannot substitute for full-case name resolution "
             f"({narrated} narrated, {total - narrated} other anonymous)"
         ),

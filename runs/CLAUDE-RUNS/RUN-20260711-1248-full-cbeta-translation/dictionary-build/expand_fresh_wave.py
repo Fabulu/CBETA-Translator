@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -23,7 +24,11 @@ if any(len(rows) > args.per_lane for rows in lane_rows.values()):
 assigned_all = {
     row.get("id")
     for wave_path in (FRESH / "waves").glob("*.json")
-    if not wave_path.name.endswith("-preflight.json")
+    # Only canonical wave manifests have the fNNN.json shape.  The directory
+    # also contains verdicts, checkpoints, and occasional non-object reports;
+    # treating every JSON artifact as a wave made expansion crash on unrelated
+    # ledgers before doing any useful work.
+    if re.fullmatch(r"f\d{3}\.json", wave_path.name)
     for row in json.loads(wave_path.read_text(encoding="utf-8-sig")).get("entries", [])
 }
 pending = [row for row in queue["rows"] if row.get("state") == "pending" and row["id"] not in assigned_all]

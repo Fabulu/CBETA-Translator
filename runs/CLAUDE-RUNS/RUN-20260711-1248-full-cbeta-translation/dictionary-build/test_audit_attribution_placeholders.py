@@ -102,9 +102,10 @@ class PlaceholderActorTest(unittest.TestCase):
         self.assertIsNotNone(failure)
         self.assertEqual("batch-anonymous-actor-collapse", failure["kind"])
 
-    def test_allows_a_cohort_only_when_it_has_named_utterers_or_is_small(self):
+    def test_requires_a_meaningful_named_share_or_a_small_cohort(self):
         mostly_narrated = Counter({("narrated",): 40, ("reviewed-unnamed",): 5})
-        self.assertIsNone(anonymous_actor_collapse_failure(10, 1, mostly_narrated))
+        self.assertIsNotNone(anonymous_actor_collapse_failure(10, 1, mostly_narrated))
+        self.assertIsNone(anonymous_actor_collapse_failure(10, 10, mostly_narrated))
         mixed = Counter({("narrated",): 20, ("reviewed-unnamed",): 20})
         self.assertIsNotNone(anonymous_actor_collapse_failure(10, 0, mixed))
         self.assertIsNone(anonymous_actor_collapse_failure(5, 0, mixed))
