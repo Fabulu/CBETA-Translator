@@ -140,73 +140,79 @@
                                     <Setter Property="MinHeight" Value="0"/>
                                     <Setter Property="Height" Value="22"/>
                                 </Style>
-                                <Style Selector="TabStrip#MainTabs TabItem">
+                                <!-- Shell nav is a TabStrip; the selectable container is TabStripItem
+                                     (a TabItem's :selected never matches here). Mirror App.axaml's
+                                     TabItem highlight onto the real container, scoped to this strip. -->
+                                <Style Selector="TabStrip#MainTabs > TabStripItem">
                                     <Setter Property="Padding" Value="6,0"/>
                                     <Setter Property="Margin" Value="0,0,1,0"/>
                                     <Setter Property="MinHeight" Value="20"/>
                                     <Setter Property="Height" Value="22"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource TabFgMuted}"/>
+                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs > TabStripItem:pointerover">
+                                    <Setter Property="Background" Value="{DynamicResource TabBgHover}"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs > TabStripItem:selected">
+                                    <Setter Property="Background" Value="{DynamicResource TabBgSelected}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource TabFgSelected}"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabAccent}"/>
                                 </Style>
                             </TabStrip.Styles>
-                            <TabItem ToolTip.Tip="Side-by-side Chinese/English reader">
-                                <TabItem.Header>
+                            <TabStripItem ToolTip.Tip="Side-by-side Chinese/English reader">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 19.5 6.5 19.5C8.45 19.5 10.55 20.4 12 21.5C13.35 20.65 15.8 19.5 17.5 19.5C19.15 19.5 20.85 20.3 21.75 21.1C21.85 21.1 21.9 21.15 22 21.15C22.25 21.15 22.5 20.9 22.5 20.65V6C22.35 5.65 21.7 5.3 21 5Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Read" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
-                            <TabItem ToolTip.Tip="Markdown translation editor">
-                                <TabItem.Header>
+                            </TabStripItem>
+                            <TabStripItem ToolTip.Tip="Markdown translation editor">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M12.87 15.07L10.33 12.56L10.36 12.53C12.1 10.59 13.34 8.36 14.07 6H17V4H10V2H8V4H1V6H12.17C11.5 7.92 10.44 9.75 9 11.35C8.07 10.32 7.3 9.19 6.69 8H4.69C5.42 9.63 6.42 11.17 7.67 12.56L2.58 17.58L4 19L9 14L12.11 17.11L12.87 15.07M18.5 10H16.5L12 22H14L15.12 19H19.87L21 22H23L18.5 10M15.88 17L17.5 12.67L19.12 17H15.88Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Translate" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
-                            <TabItem ToolTip.Tip="Full-text corpus search">
-                                <TabItem.Header>
+                            </TabStripItem>
+                            <TabStripItem ToolTip.Tip="Full-text corpus search">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M9.5 3A6.5 6.5 0 0 1 16 9.5C16 11.11 15.41 12.59 14.44 13.73L14.71 14H15.5L20.5 19L19 20.5L14 15.5V14.71L13.73 14.44C12.59 15.41 11.11 16 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3M9.5 5C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Search" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
-                            <TabItem ToolTip.Tip="Git sync: share and receive translations">
-                                <TabItem.Header>
+                            </TabStripItem>
+                            <TabStripItem ToolTip.Tip="Git sync: share and receive translations">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M12 4V1L8 5L12 9V6C15.31 6 18 8.69 18 12C18 13.01 17.75 13.97 17.3 14.8L18.76 16.26C19.54 15.03 20 13.57 20 12C20 7.58 16.42 4 12 4M12 18C8.69 18 6 15.31 6 12C6 10.99 6.25 10.03 6.7 9.2L5.24 7.74C4.46 8.97 4 10.43 4 12C4 16.42 7.58 20 12 20V23L16 19L12 15V18Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Sync" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
-                            <TabItem ToolTip.Tip="Passage collections for research">
-                                <TabItem.Header>
+                            </TabStripItem>
+                            <TabStripItem ToolTip.Tip="Passage collections for research">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H8V4H20V16M10 9H18V11H10V9M10 12H14V14H10V12M10 6H18V8H10V6Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Collect" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
-                            <TabItem ToolTip.Tip="Zen master lineage explorer">
-                                <TabItem.Header>
+                            </TabStripItem>
+                            <TabStripItem ToolTip.Tip="Zen master lineage explorer">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
                                         <PathIcon Width="12" Height="12"
                                                   Data="M12 5.5A3.5 3.5 0 0 1 15.5 9A3.5 3.5 0 0 1 12 12.5A3.5 3.5 0 0 1 8.5 9A3.5 3.5 0 0 1 12 5.5M5 8C5.56 8 6.08 8.15 6.53 8.42C6.38 9.85 6.8 11.27 7.66 12.38C7.16 13.34 6.16 14 5 14A3 3 0 0 1 2 11A3 3 0 0 1 5 8M19 8A3 3 0 0 1 22 11A3 3 0 0 1 19 14C17.84 14 16.84 13.34 16.34 12.38C17.2 11.27 17.62 9.85 17.47 8.42C17.92 8.15 18.44 8 19 8M5.5 18.25C5.5 16.18 8.41 14.5 12 14.5S18.5 16.18 18.5 18.25V20H5.5V18.25Z"
-                                                  Foreground="{Binding $parent[TabItem].Foreground}"/>
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Lineage" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                </TabItem.Header>
-                            </TabItem>
+                            </TabStripItem>
                         </TabStrip>
                     </Grid>
                 </Border>
