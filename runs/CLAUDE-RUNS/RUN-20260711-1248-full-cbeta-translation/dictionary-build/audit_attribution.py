@@ -28,6 +28,7 @@ VAGUE_RE = re.compile(
 )
 PLACEHOLDER_ACTOR_RE = re.compile(
     r"\b(?:the\s+)?(?:fully\s+)?reviewed\s+(?:source\s+)?voice\b"
+    r"|\b(?:the\s+)?reviewed\s+compilation\s+voice\b"
     r"|\b(?:the\s+)?cited\s+(?:voice|figure)\b"
     r"|\b(?:the\s+)?presiding\s+speaker\b"
     r"|\b(?:the\s+)?verse\s+voice\b",

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-post-recovery-full-case-review",
+  "reviewer": "reviewer8",
+  "generatedUtc": "2026-07-15T15:31:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1141, 1150],
+  "sourceGate": "f004-laneC-1141-1150-reviewer7-recovery-author-pre-review-v2.json",
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 55,
+  "exactKwics": 55,
+  "exactFullSpans": 55,
+  "exactSpanFailures": 0,
+  "keep": 10,
+  "revise": 0,
+  "reviewMethod": [
+    "Confirmed every current entry hash against the reviewer7 recovery gate v2 before semantic review.",
+    "Read every occurrence in a 10,000-character complete-case window, distinguishing exact utterers from respondents, quoted speakers, case figures, described actors, compilers, and institutional paratext.",
+    "Independently reran zc.verify on all 55 KWICs and required returned FromLb and ToLb to equal the stored values and each KWIC to contain its headword.",
+    "Retested the public opening, #0g Zen deployment, sense structure, depth, and distinct-work validation rather than treating the recovery gate as semantic approval.",
+    "No entry was edited, promoted, merged, or published."
+  ],
+  "entries": [
+    {
+      "ordinal": 1141,
+      "id": "t_652dbd8f5c83",
+      "term": "西序",
+      "reviewedEntrySha256": "7b35c7b2953b7688f4f51d4f30e2d9adb703e8e9b72d4d7acaecd0b389fa88cf",
+      "occurrencesRead": 4,
+      "distinctWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": ["The three institutional witnesses correctly remain contents/rules narration, while Chaoding Yuxuan’s explicit hall instruction is correctly named as speech. The western-rank gloss, east/west institutional contrast, single sense, and four-work depth are all borne by the stored contexts."]
+    },
+    {
+      "ordinal": 1142,
+      "id": "t_4a5ef260448f",
+      "term": "心地法門",
+      "reviewedEntrySha256": "0795c360c1e3455edfe5744f9a80ee239cbda7a20197152b7385dd9b8d27c8f4",
+      "occurrencesRead": 7,
+      "distinctWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": ["The Buddha quotation, Zhuanyu Guanheng, Tianyin Yuanxiu, and Nanyue Huairang turns are correctly separated from two unnamed monks’ questions and from Dahui/Yunfeng’s later responses. The entry describes a named teaching gate through questions and transmission claims without importing a practice system or merging distinct things."]
+    },
+    {
+      "ordinal": 1143,
+      "id": "t_9b760056ea15",
+      "term": "驀口",
+      "reviewedEntrySha256": "11b49b0eee4e06477b9b0f7f6e0968ec0396338b2db4df20ba4da1d25dcb211d",
+      "occurrencesRead": 7,
+      "distinctWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": ["Zhaozhou’s exact spoken use is named, while the six visible mouth-blocking or striking actions correctly remain lamp-record narration with the acting masters in ContextMasters. The physical/figurative interruption gloss covers one attested action family and the seven-work depth is adequate."]
+    },
+    {
+      "ordinal": 1144,
+      "id": "t_4625f09d4acc",
+      "term": "黃檗棒",
+      "reviewedEntrySha256": "5052d9b3e3a1ad24d3dff520a20da050a91033bb1eabd7536598892c8db366e4",
+      "occurrencesRead": 4,
+      "distinctWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": ["All four exact phrases belong to their later commenting masters, with Huangbo Xiyun and Linji Yixuan retained as case figures. The prose clearly defines the specific Huangbo–Linji blows case-family rather than every blow Huangbo delivered."]
+    },
+    {
+      "ordinal": 1145,
+      "id": "t_38014001726f",
+      "term": "知有底人",
+      "reviewedEntrySha256": "a23648091d4d32e50fddab4c381c0f598e27d5efc7127a7009cf6541f21914e5",
+      "occurrencesRead": 7,
+      "distinctWorkIds": 7,
+      "verdict": "KEEP",
+      "reasons": ["Zhaozhou, Yunju, Dawei, and Zhe’an’s turns, two biographical descriptions of Kaiyuan Ziqi, and the final unnamed monk’s question are correctly distinguished. The guarded-acquaintance opening is carefully limited as a tested designation rather than a dictionary certification of realization."]
+    },
+    {
+      "ordinal": 1146,
+      "id": "t_aa56c106ef82",
+      "term": "陷虎之機",
+      "reviewedEntrySha256": "6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": ["The signed non-master Yilinzu comment is not promoted to MasterName; five master utterers and their discussed case figures are correctly named. The encounter-device gloss captures the observable deployment and avoids imposing a free-standing tiger symbolism."]
+    },
+    {
+      "ordinal": 1147,
+      "id": "t_2281bd1c98fc",
+      "term": "過去七佛",
+      "reviewedEntrySha256": "e31012114c7ccd3d3003cfc438886c0d31a4ca46641dbf7d42ff0bf0af2f6d7e",
+      "occurrencesRead": 4,
+      "distinctWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": ["Two embedded Buddha turns are correctly assigned to Shakyamuni Buddha with Ananda as respondent, and Langting Jingting and Konggu Daocheng’s later deployments remain distinct. The collective is defined by its Zen ritual, precept, transmission, and case uses rather than outside hagiography."]
+    },
+    {
+      "ordinal": 1148,
+      "id": "t_3eb1fd8df203",
+      "term": "趙州勘婆",
+      "reviewedEntrySha256": "9b2b023f7865fcc8af7fb5bdc01290dede89cda3c84d69b4f5d564c89442dec6",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": ["The inviting official’s exact question remains identified as non-master speech, while five later master raisers are correctly named and Zhaozhou remains the case figure. The explanation preserves the disputed who-tested-whom verdict instead of settling it."]
+    },
+    {
+      "ordinal": 1149,
+      "id": "t_16c61f8e00b4",
+      "term": "物物頭頭",
+      "reviewedEntrySha256": "3da8ceefb99fc3c11e3c7ead9a0b5e5e70de44f9e873beb17d22fa6e422cc557",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "KEEP",
+      "reasons": ["Five named master utterances and one ceremonial-address transcription are correctly separated. The distributive gloss is supported across particulars, dusts and lands, and whole-body activity, while the prose explicitly avoids claiming that all things are interchangeable."]
+    },
+    {
+      "ordinal": 1150,
+      "id": "t_594dfb5d367f",
+      "term": "香篆",
+      "reviewedEntrySha256": "610abc3f8d2c3983b12bf684141ae2b2dd464853affc1e1f46850d2c9bfb23d5",
+      "occurrencesRead": 4,
+      "distinctWorkIds": 4,
+      "verdict": "KEEP",
+      "reasons": ["Lushan Tianran, Baichi Yuanshuo, and Shimen Yuncong’s exact voices are correctly named, and the remaining phrase is correctly placed in the unnamed monk’s blessing before the master responds. The incense coil/smoke object and ceremonial-time deployment form one coherent sense without an unstored symbolic code."]
+    }
+  ],
+  "reviewIntegrity": {
+    "allCurrentHashesMatchRecoveryGateV2": true,
+    "allReviewedEntryHashesStable": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

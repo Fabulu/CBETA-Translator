@@ -787,6 +787,9 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       Consecutively duplicated opening sentences are a hard public-feedback failure. Compilation or repair
       helpers must be idempotent: rerunning them may not prepend the same interpretation again.
       The same idempotence rule applies to attribution notes: `Name: Name:` is a hard attribution failure.
+      `the reviewed compilation voice` is also a forbidden generated placeholder. A compilation may genuinely
+      supply an anonymous compiler or verse voice, but that conclusion must be case-specific and observable;
+      it may never be filled as the default when exact-turn resolution is unfinished.
       **Coalesce publication, never adjudication:** exact-hash KEEPs may be promoted as each independent report
       lands, but regenerate root/index/shards once after the concurrently reviewed round is settled (or at an
       explicitly requested checkpoint), not after every two- or three-entry partial result. Before reporting the

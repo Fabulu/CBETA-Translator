@@ -1,0 +1,983 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-stale-hash-recovery-full-case-review",
+  "reviewer": "reviewer8",
+  "generatedUtc": "2026-07-15T15:18:38.777163+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1133,
+    1135,
+    1136,
+    1137,
+    1138,
+    1139,
+    1140
+  ],
+  "sourceRecoveryLedger": "f004-laneC-1133-1140-stalehash-author-recovery-ledger.json",
+  "sourceRecoveryLedgerSha256": "5186eb469e07ea715b34e7c91c7c892247686b9d09f9d2ca86cace9033e0dfbb",
+  "entriesReviewed": 7,
+  "occurrencesReadInFullCase": 37,
+  "exactKwics": 37,
+  "exactFullSpans": 37,
+  "exactSpanFailures": 0,
+  "keep": 7,
+  "revise": 0,
+  "reviewMethod": [
+    "Read each stored witness in a 5,000-character corpus context covering its complete encounter, address, verse, heading, or narrative unit.",
+    "Reran zc.verify and required both returned FromLb and ToLb to equal the stored bounds and each KWIC to contain its headword.",
+    "Reviewed exact headword voice separately from respondents, embedded case figures, later raisers, persons described, and editorial narration.",
+    "Checked public prose, corpus-earned depth, different-thing decisions, counterexamples/limits, sense structure, and independent-work support.",
+    "Bound every verdict to both current entry and worksheet hashes from the recovery ledger."
+  ],
+  "entries": [
+    {
+      "ordinal": 1133,
+      "id": "t_68fbf8a2329c",
+      "term": "雲巖掃地",
+      "entrySha256": "15f1e120fb8e1d1e4a17dd01a8278b19d92a88d6e1b5a104d826df2b58853c75",
+      "worksheetSha256": "3b0930ccb24c6c9e0013e90a5fee8e9d2271c05f708457456fbaf0d58a53d022",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "fullCaseFinding": "The heading is editorial; the other three witnesses explicitly raise the Yunyan-Daowu case. Yunyan and Daowu remain case figures, not replacement utterers.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0020b14",
+          "toLb": "0020b20",
+          "actor": "Hongzhi Zhengjue",
+          "contextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunyan Tansheng",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Daowu Yuanzhi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J39/J39nB469.xml",
+          "fromLb": "0925b17",
+          "toLb": "0925b29",
+          "actor": "the collected-record editor",
+          "contextMasters": [
+            {
+              "MasterName": "Yunyan Tansheng",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Daowu Yuanzhi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0423c03",
+          "toLb": "0423c13",
+          "actor": "Yongjue Yuanxian",
+          "contextMasters": [
+            {
+              "MasterName": "Yongjue Yuanxian",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunyan Tansheng",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Daowu Yuanzhi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0735b17",
+          "toLb": "0735c04",
+          "actor": "Yunmen Wenyan",
+          "contextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunyan Tansheng",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Daowu Yuanzhi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1135,
+      "id": "t_4c1e5a42155d",
+      "term": "不放過",
+      "entrySha256": "65993aaac82009d552f3ad289a8b8a05edd1d53d14020f071b54442ae69c0ddd",
+      "worksheetSha256": "13be45fa887bfebe7ca1134acf38cbd01335316171032139a750522c694238d0",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "fullCaseFinding": "All seven full units assign the exact phrase to the stored address, demonstration, comment, or reply voice; embedded figures are retained only as context.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0098c10",
+          "toLb": "0098c18",
+          "actor": "Cian Jingyuan",
+          "contextMasters": [
+            {
+              "MasterName": "Cian Jingyuan",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0629b16",
+          "toLb": "0629c03",
+          "actor": "Huangbo Xiyun",
+          "contextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0020c20",
+          "toLb": "0021a07",
+          "actor": "Xuedou Chongxian",
+          "contextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0296b12",
+          "toLb": "0296b21",
+          "actor": "Xuedou Chongxian",
+          "contextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0088c07",
+          "toLb": "0088c15",
+          "actor": "Huangbo Xiyun",
+          "contextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0078c16",
+          "toLb": "0078c24",
+          "actor": "Lumen Chuzhen",
+          "contextMasters": [
+            {
+              "MasterName": "Lumen Chuzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0545b17",
+          "toLb": "0545c03",
+          "actor": "Yunmen Wenyan",
+          "contextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1136,
+      "id": "t_b6da6fc1c9bf",
+      "term": "安單",
+      "entrySha256": "a07f2e0bdded78427b034cc54361e9a2c324baa831feabce11c875d555c533ee",
+      "worksheetSha256": "4a2adce49c0bdd87931f33dfd696cadd1f16c81f49c0059b3eb4a00850645373",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "fullCaseFinding": "The four cases distinguish a monk's quoted question, Zhufeng's reply, narrated placement by a guest prefect, and Mingjue's authored recollection.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J26/J26nB186.xml",
+          "fromLb": "0650a01",
+          "toLb": "0650a07",
+          "actor": "the unnamed monastic questioner",
+          "contextMasters": [
+            {
+              "MasterName": "Linye Tongqi",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J38/J38nB412.xml",
+          "fromLb": "0401b19",
+          "toLb": "0401b27",
+          "actor": "Zhufeng Fa",
+          "contextMasters": [
+            {
+              "MasterName": "Zhufeng Fa",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J38/J38nB428.xml",
+          "fromLb": "0909a06",
+          "toLb": "0909a15",
+          "actor": "the record narrator",
+          "contextMasters": [
+            {
+              "MasterName": "Mixing Jiren",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0169b02",
+          "toLb": "0169b14",
+          "actor": "Mingjue Cong",
+          "contextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Fushan Fayuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1137,
+      "id": "t_bdabbe0d39fa",
+      "term": "主人翁",
+      "entrySha256": "2c1c8156dc10db47eafe6fcf06532e82505dc369e00a9c4ecc62c31d3153f67d",
+      "worksheetSha256": "774a6b6c1e7071530b7ecfd4c2aa2433d0f4681c85ab50b348d8273abe7b521c",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "fullCaseFinding": "Named verse, incense address, Ruiyan's embedded self-call, and three public/verse voices are individually supported; later raiser and embedded speaker are not conflated.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0134a24",
+          "toLb": "0134b09",
+          "actor": "Baizhuo Shandeng",
+          "contextMasters": [
+            {
+              "MasterName": "Baizhuo Shandeng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0036a13",
+          "toLb": "0036a23",
+          "actor": "Shuzhong Wuyun",
+          "contextMasters": [
+            {
+              "MasterName": "Shuzhong Wuyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X71/X71n1416.xml",
+          "fromLb": "0414a15",
+          "toLb": "0414a24",
+          "actor": "Ruiyan Shiyan",
+          "contextMasters": [
+            {
+              "MasterName": "Ruiyan Shiyan",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Shuzhong Wuyun",
+              "Roles": [
+                "later-raiser"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X86/X86n1605.xml",
+          "fromLb": "0514b22",
+          "toLb": "0514c07",
+          "actor": "Yuansou Xingduan",
+          "contextMasters": [
+            {
+              "MasterName": "Yuansou Xingduan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0157a06",
+          "toLb": "0157a14",
+          "actor": "Tianran Hanshi",
+          "contextMasters": [
+            {
+              "MasterName": "Tianran Hanshi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0793a11",
+          "toLb": "0793a22",
+          "actor": "Wuzu Fayan",
+          "contextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1138,
+      "id": "t_b495de9e2b11",
+      "term": "神農",
+      "entrySha256": "1feb30ba090d23576796af2aa588332f26f674acc1e1a7a927ffc91810f97672",
+      "worksheetSha256": "5605d0f6bc61b6c280a67079897f98488ec07710bb9bd9c448fc5deda6b940bf",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "fullCaseFinding": "The preface, farewell address, and two portrait-verse sections identify four authors. Shennong is invoked or depicted and is not the exact voice.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0662c25",
+          "toLb": "0663a04",
+          "actor": "Juelang Daosheng",
+          "contextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J27/J27nB190.xml",
+          "fromLb": "0106a05",
+          "toLb": "0106a13",
+          "actor": "Shiyu Mingfang",
+          "contextMasters": [
+            {
+              "MasterName": "Shiyu Mingfang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0675a06",
+          "toLb": "0675a20",
+          "actor": "Jifei Ruyi",
+          "contextMasters": [
+            {
+              "MasterName": "Jifei Ruyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J39/J39nB441.xml",
+          "fromLb": "0292c05",
+          "toLb": "0292c14",
+          "actor": "Wanfeng Tongzhen",
+          "contextMasters": [
+            {
+              "MasterName": "Wanfeng Tongzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1139,
+      "id": "t_3ae11b4bc79f",
+      "term": "無常迅速",
+      "entrySha256": "94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e",
+      "worksheetSha256": "eb7844ef8837d80645637a2dda3acd8f984bdbae10c3dc1e38e0af5e4c1a5cfc",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "fullCaseFinding": "Five master instructions and the disciples' explicit incense-and-kneeling request are correctly separated; Dufeng is respondent to the final request.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0790a16",
+          "toLb": "0790b04",
+          "actor": "Dahui Zonggao",
+          "contextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0864c16",
+          "toLb": "0864c25",
+          "actor": "Dahui Zonggao",
+          "contextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0158b18",
+          "toLb": "0158c02",
+          "actor": "Xixi Ze",
+          "contextMasters": [
+            {
+              "MasterName": "Xixi Ze",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0700b07",
+          "toLb": "0700b15",
+          "actor": "Zhongfeng Mingben",
+          "contextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X70/X70n1397.xml",
+          "fromLb": "0610b04",
+          "toLb": "0610b13",
+          "actor": "Xueyan Zuqin",
+          "contextMasters": [
+            {
+              "MasterName": "Xueyan Zuqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J25/J25nB159.xml",
+          "fromLb": "0137a23",
+          "toLb": "0137b02",
+          "actor": "the named group of lay disciples",
+          "contextMasters": [
+            {
+              "MasterName": "Dufeng Benshan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1140,
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "entrySha256": "e0644db3852a814b124d7d4b5a995f7578b42dcdf952268e7069ab6094668011",
+      "worksheetSha256": "3a0097191e5532bcf1957a83a8e6abff5854a71a875e54524cb0f72a38183b86",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "fullCaseFinding": "The parallel Muzhou cases assign 何不領話 to the elder; four other explicit 師云/師曰/長慶云 frames identify their exact speakers.",
+      "proseDepthSenseFinding": "Preferred target, definition, explanation, corpus-earned opening, evidence body, Zen bend, counterexample/limit, different-thing test, modifier/family controls, and independent-work support are present and fit the stored cases.",
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0478a19",
+          "toLb": "0478b02",
+          "actor": "the unnamed elder monk",
+          "contextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J40/J40nB494.xml",
+          "fromLb": "0527a20",
+          "toLb": "0527a27",
+          "actor": "Yushan Shangsi",
+          "contextMasters": [
+            {
+              "MasterName": "Yushan Shangsi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0101a24",
+          "toLb": "0101b07",
+          "actor": "the unnamed elder monk",
+          "contextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0187b03",
+          "toLb": "0187b12",
+          "actor": "Foyan Qingyuan",
+          "contextMasters": [
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0013b02",
+          "toLb": "0013b11",
+          "actor": "Jingzun Tonghui",
+          "contextMasters": [
+            {
+              "MasterName": "Jingzun Tonghui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0286c22",
+          "toLb": "0287a03",
+          "actor": "Changqing Huileng",
+          "contextMasters": [
+            {
+              "MasterName": "Changqing Huileng",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "fullCaseRead": true,
+          "actorProofPresent": false,
+          "verdict": "KEEP"
+        }
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

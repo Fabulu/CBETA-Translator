@@ -27,6 +27,7 @@ class PlaceholderActorTest(unittest.TestCase):
         for value in (
             "the fully reviewed source voice",
             "reviewed source voice",
+            "the reviewed compilation voice",
             "the cited voice",
             "a cited figure",
             "the presiding speaker",
