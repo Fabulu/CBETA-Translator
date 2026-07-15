@@ -83,6 +83,16 @@ def main() -> int:
             packet = attribution_packet.packet(
                 occurrence["RelPath"], occurrence["FromLb"], occurrence["Kwic"]
             )
+            packet["turnProofCandidates"] = attribution_packet.turn_proof_candidates(
+                packet.get("caseText") or "",
+                term or "",
+                packet.get("storedKwicStart"),
+                packet.get("storedKwicEnd"),
+            )
+            packet["boundTurnProofCandidates"] = [
+                candidate for candidate in packet["turnProofCandidates"]
+                if candidate.get("overlapsStoredKwic")
+            ]
             packet.update({
                 "entryId": entry.get("Id"),
                 "sourceTerm": term,
@@ -110,6 +120,10 @@ def main() -> int:
                 f"- Risk flags: {cell(', '.join(packet.get('riskFlags') or []))}",
                 f"- Inline speaker markers: {cell(', '.join(packet.get('inlineSpeakerMarkers') or []))}",
                 f"- Unit contains stored KWIC: **{bool(packet.get('storedKwicContainedInUnit'))}**",
+                f"- Occurrence identity: **{cell(packet.get('occurrenceIdentityStatus'))}** "
+                f"(source matches: {cell(packet.get('kwicMatchCountInSource'))}; "
+                f"FromLb matches: {cell(packet.get('kwicFromLbMatchCount'))}; "
+                f"bound proofs: {len(packet.get('boundTurnProofCandidates') or [])})",
                 "",
                 "Stored KWIC:",
                 "",
