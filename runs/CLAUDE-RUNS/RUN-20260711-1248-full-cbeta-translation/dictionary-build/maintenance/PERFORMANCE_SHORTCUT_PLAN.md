@@ -212,3 +212,13 @@ invalidates the cache; full entry SHA-256 remains separately recorded by the coh
 - Regression test proves a prose-only edit preserves the packet fingerprint while an actor change invalidates it.
 - This directly targets repair waves, where prose changes were repeatedly paying the 12.5-second 59-case packet cost
   despite unchanged corpus evidence.
+
+## 13. Reject the “referent or formula” prose template before review
+
+Implementation: the compiler/public-feedback generic-prose detector now hard-fails all three clauses of the template
+that says a term “names the referent or formula,” that complete-case reading shows it functioning in a generic list of
+genres, and that the entry follows predicates and speakers. A regression test exercises the exact production wording.
+
+Production trigger: an independent reviewer spent 131 full-case reads on 21 entries that were mechanically green but
+all carried this prose. Those 21 were correctly rejected. The detector converts that entire class from an expensive
+post-author review finding into an immediate author-side failure.

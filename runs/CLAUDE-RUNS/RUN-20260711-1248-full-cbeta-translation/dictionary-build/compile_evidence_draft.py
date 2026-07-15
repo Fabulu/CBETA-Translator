@@ -34,6 +34,9 @@ GENERIC = re.compile(
     r"is the plain-English referent tested by the selected Chan records|"
     r"the selected cases place .{0,160} inside lineage records, public addresses, institutional narration, or inherited cases|"
     r"the exact surrounding predicates delimit how the records use it rather than importing an external definition|"
+    r"names the referent or formula used in the selected zen records|"
+    r"complete-case reading shows how .{0,160} functions in exchanges, formal addresses, institutional records, or inherited cases|"
+    r"the entry follows those predicates and speakers rather than an outside interpretation|"
     r"complete-unit reading separates direct speech, quoted verse, authored exposition, invitation or memorial prose, action narration, and duplicate recensions|"
     r"the expression .{0,120} occurs in the cited questions, answers, actions, narration, or verse|"
     r"this sense remains limited to those deployments)(?:\b|$)", re.I

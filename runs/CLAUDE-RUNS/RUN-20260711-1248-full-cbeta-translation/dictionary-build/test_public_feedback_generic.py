@@ -42,6 +42,17 @@ class PublicFeedbackGenericTests(unittest.TestCase):
         self.assertFalse(result["passes"])
         self.assertTrue(any(flag["kind"] == "generic-template-prose" for flag in result["flags"]))
 
+    def test_referent_or_formula_template_fails_reader_prose(self):
+        path = self.write_entry(
+            "The teaching drum names the referent or formula used in the selected Zen records. "
+            "Complete-case reading shows how the teaching drum functions in exchanges, formal addresses, "
+            "institutional records, or inherited cases; the entry follows those predicates and speakers "
+            "rather than an outside interpretation."
+        )
+        result = audit(path)
+        self.assertFalse(result["passes"])
+        self.assertTrue(any(flag["kind"] == "generic-template-prose" for flag in result["flags"]))
+
     def test_specific_prose_is_not_flagged_as_generic(self):
         path = self.write_entry(
             "The bird course pictures flight through open sky: a passage can be made, but no track remains for a follower."
