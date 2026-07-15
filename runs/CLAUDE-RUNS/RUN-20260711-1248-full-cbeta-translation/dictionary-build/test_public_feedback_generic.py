@@ -33,6 +33,15 @@ class PublicFeedbackGenericTests(unittest.TestCase):
         self.assertFalse(result["passes"])
         self.assertTrue(any(flag["kind"] == "generic-template-prose" for flag in result["flags"]))
 
+    def test_review_process_sentence_fails_reader_prose(self):
+        path = self.write_entry(
+            "The phrase names family disgrace in the school. Complete-unit reading separates direct speech, "
+            "quoted verse, authored exposition, invitation or memorial prose, action narration, and duplicate recensions."
+        )
+        result = audit(path)
+        self.assertFalse(result["passes"])
+        self.assertTrue(any(flag["kind"] == "generic-template-prose" for flag in result["flags"]))
+
     def test_specific_prose_is_not_flagged_as_generic(self):
         path = self.write_entry(
             "The bird course pictures flight through open sky: a passage can be made, but no track remains for a follower."
