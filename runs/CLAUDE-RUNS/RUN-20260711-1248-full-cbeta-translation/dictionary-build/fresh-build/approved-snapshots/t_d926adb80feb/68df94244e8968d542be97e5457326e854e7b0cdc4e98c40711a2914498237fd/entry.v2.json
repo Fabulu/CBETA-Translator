@@ -1,0 +1,246 @@
+{
+  "Id": "t_d926adb80feb",
+  "SourceTerm": "良久曰",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "PreferredTarget": "after a while, he said",
+      "AlternateTargets": [
+        "after a pause, he said",
+        "after a long pause, he said"
+      ],
+      "SearchAliases": [
+        "after a while he said",
+        "after a pause he said",
+        "long pause then said"
+      ],
+      "Status": "preferred",
+      "Explanation": "A narrative turn marker used by case recorders: after an interval, the record says that someone spoke. It packages an elapsed pause together with the resumption-of-speech verb. The named master supplies the words that follow the marker, but the marker itself belongs to the recorder’s narration.",
+      "Validation": "multi-source",
+      "Note": "The frozen corpus has 2,184 exact hits in 98 files representing 95 works. Eight anchors cover hall addresses, replies after questions, a response after group silence, and transmitted early cases across six independent works. Repeated witnesses from one work do not inflate work spread.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0470c23",
+          "ToLb": "0470c24",
+          "Kwic": "上堂良久曰。夫行脚禪流直須著忖。",
+          "ContextMasters": [
+            {
+              "MasterName": "Shexian Guisheng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄), Shexian Guisheng section: recorder narration marks an interval before Shexian resumes a hall address with an instruction to travelling Chan people.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "上堂良久曰 places the pause-and-said formula in recorder narration after the hall-address heading; Shexian's direct speech starts with 夫行脚禪流.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0472b02",
+          "ToLb": "0472b03",
+          "Kwic": "良久曰。春雨一滴滑如油。",
+          "ContextMasters": [
+            {
+              "MasterName": "Guyin Yuncong",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄), Guyin Yuncong section: recorder narration marks an interval before Guyin says, 'A drop of spring rain is slick as oil.'",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "良久曰 links the narrated interval to the following quotation 春雨一滴滑如油; the formula itself is outside Guyin's quoted words.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0476b10",
+          "ToLb": "0476b11",
+          "Kwic": "良久曰。美食不中飽人喫。便下座。",
+          "ContextMasters": [
+            {
+              "MasterName": "Jiufeng Qin",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄), Jiufeng Qin section: recorder narration marks an interval before Jiufeng says, 'Fine food does not suit a person already full,' and leaves the seat.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The sequence 上堂曰…良久曰…便下座 narrates Jiufeng's pause and stage movement around the words 美食不中飽人喫.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0001b15",
+          "ToLb": "0001b16",
+          "Kwic": "且作麼生即是？良久曰：還會麼？珍重！",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Yihuai",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps (五燈全書(第34卷-第120卷)), Tianyi Yihuai section: recorder narration marks an interval before Tianyi says, 'Do you understand? Take care.'",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The case voice asks 且作麼生即是, then 良久曰 narrates Tianyi's pause; his quoted continuation begins 還會麼.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0015c24",
+          "ToLb": "0015c24",
+          "Kwic": "上堂，良久曰：大眾看看。便下座。",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyun Zhifeng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), Wuyun Zhifeng section: recorder narration marks an interval before Wuyun tells the assembly to look and then leaves the seat.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "上堂，良久曰：大眾看看。便下座 is a hall-event record: the compiler supplies the temporal marker and stage direction, while Wuyun supplies 大眾看看.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0415c08",
+          "ToLb": "0415c09",
+          "Kwic": "且道彌勒在甚麼處？良久曰：夜行莫踏白，不是水便是石。",
+          "ContextMasters": [
+            {
+              "MasterName": "Sengzhao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Orthodox Continuation of the Lamp (續燈正統), Xuansha Sengzhao section: recorder narration marks an interval before Sengzhao answers where Maitreya is with 'When walking at night, do not step on white.'",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "且道彌勒在甚麼處 is followed by 良久曰; the narrator records Sengzhao's pause and his direct answer begins 夜行莫踏白.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "J/J36/J36nB369.xml",
+          "FromLb": "0896a30",
+          "ToLb": "0896b01",
+          "Kwic": "眾無語。師良久曰：「金輪懶向當堂坐，何用丹墀擊靜鞭？」",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhean Fan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Zhean Fan (蔗菴範禪師語錄): after the assembly gives no answer, recorder narration marks an interval before Zhean Fan's two-line response.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "眾無語。師良久曰 explicitly assigns the silence and elapsed interval to the record voice; Zhean's quoted verse starts 金輪懶向當堂坐.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0043a06",
+          "ToLb": "0043a07",
+          "Kwic": "可良久曰。覔心了不可得。祖曰。我與汝安心竟。",
+          "ContextMasters": [
+            {
+              "MasterName": "Dazu Huike",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元), Dazu Huike case: recorder narration marks Huike's interval before he answers Bodhidharma that the mind cannot be found.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "dialogue-turn narration",
+            "ActorLabel": "the case recorder or compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "可良久曰 contains Huike's name as the subject of the narrated pause-and-said construction; Huike's direct words begin 覔心了不可得.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "J/J36/J36nB369.xml",
+        "T/T51/T51n2077.xml",
+        "X/X80/X80n1565.xml",
+        "X/X81/X81n1568.xml",
+        "X/X82/X82n1571.xml",
+        "X/X84/X84n1583.xml"
+      ],
+      "RelatedMasters": [
+        "Shexian Guisheng",
+        "Tianyi Yihuai",
+        "Sengzhao"
+      ],
+      "RelatedTerms": [
+        "良久",
+        "曰",
+        "默然"
+      ]
+    }
+  ]
+}

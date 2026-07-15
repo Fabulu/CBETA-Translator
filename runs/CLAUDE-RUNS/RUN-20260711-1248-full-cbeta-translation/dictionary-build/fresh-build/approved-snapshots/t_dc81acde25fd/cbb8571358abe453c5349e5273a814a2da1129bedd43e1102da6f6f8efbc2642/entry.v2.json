@@ -1,0 +1,204 @@
+{
+  "Id": "t_dc81acde25fd",
+  "SourceTerm": "那畔",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "that side",
+      "AlternateTargets": [
+        "the other side",
+        "over there",
+        "beyond"
+      ],
+      "SearchAliases": [
+        "that side",
+        "the other side",
+        "far side",
+        "other bank",
+        "opposite shore",
+        "over there",
+        "beyond",
+        "yonder"
+      ],
+      "Status": "preferred",
+      "Explanation": "That side, the other side, or beyond: a relational expression built from 'that bank or side' (那畔). The allowlisted record has 866 occurrences in 233 storage files. The deictic contrast is explicit. Faxi Yin asks about 'the matter on that side' (那畔事) and then 'the matter on this side' (者邊事). In another public exchange, an unnamed monk says that as soon as words are involved one falls on 'this side' (遮畔), then asks Shending Yunwai Ze for news from 'that side' (那畔底消息). The word builds noun phrases for a matter, person, saying, road, or news located there. Its most frequent fixed expansion is 'beyond Awesome Sound' (威音那畔), a locative formula used in addresses and verses. Yuanjie Ying speaks of 'one saying from beyond Awesome Sound' (威音那畔一句); Cishou Huaishen asks 'what is the road on that side?' (如何是那畔路). Zen thus bends an ordinary demonstrative into a productive way of marking what a teaching-seat question places beyond the present side, while the exact referent remains deliberately supplied by each surrounding exchange. Yinyuan Longqi places the direct-teaching gateway on the far side of Awesome Sound; Yuanwu Keqin asks who can distinguish its clue. These extend the same relational ‘far side’ into lineage address without making it a second place.",
+      "Validation": "multi-source",
+      "Note": "Corpus counts: 866 hits in 233 storage files. The Awesome-Sound expansion has 470 hits in 173 files; 'the matter on that side,' 41/29; 'a person on that side,' 10/7; 'a saying on that side,' 4/3; and direct 'what is that side?' constructions, 5/5. Standard self-definition searches returned no Chinese Chan equation. Their zero results and excluded non-Chinese evidence are preserved in WORK rather than printed as unattested quotations.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J28/J28nB220.xml",
+          "FromLb": "0802b03",
+          "ToLb": "0802b04",
+          "Kwic": "問僧：「如何是那畔事？」僧云：「不是山，不是水。」師云：「如何是者邊事？」僧云：「是山是水。」",
+          "MasterName": "Faxi Yin",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Faxi Yin (法璽印禪師語錄), public exchange: Faxi Yin is the exact headword-bearing questioner who asks an unnamed monk about the matter on that side and then about the matter on this side; the monk gives the two recorded answers.",
+          "ContextMasters": [
+            {
+              "MasterName": "Faxi Yin",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J33/J33nB280.xml",
+          "FromLb": "0277b16",
+          "ToLb": "0277b18",
+          "Kwic": "一涉言詮，便落遮畔。如何是那畔底消息？」師云：「你在遮畔多少時也？",
+          "Curated": true,
+          "AttributionNote": "The cited recorded-sayings collection (神鼎雲外澤禪師語錄). Full six-rung exact-turn review identifies Unnamed monk asking for news from the far side as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "Unnamed monk asking for news from the far side",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shending Yunwai Ze",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X73/X73n1451.xml",
+          "FromLb": "0132c08",
+          "ToLb": "0132c09",
+          "Kwic": "一等要行那畔路。且道：如何是那畔路？",
+          "MasterName": "Cishou Huaishen",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Chan Master Cishou Huaishen (慈受懷深禪師廣錄), funeral address for Yincheng: Cishou Huaishen says that all alike must travel the road on that side and asks what that road is.",
+          "ContextMasters": [
+            {
+              "MasterName": "Cishou Huaishen",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J39/J39nB453.xml",
+          "FromLb": "0557c07",
+          "ToLb": "0557c08",
+          "Kwic": "威音那畔一句圓該，全體現前纖塵不立",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanjie Ying (元潔瑩禪師語錄), in Yuanjie Ying's opening hall address at Ancient Dongshan Anou Chan Monastery. Yuanjie Ying is the exact speaker who says that a phrase from beyond Awesome Sound encompasses the whole and that the complete body appears with not a mote established. Dongshan in the venue heading names the monastery; it does not make Dongshan Liangjie the speaker of this address.",
+          "MasterName": "Yuanjie Ying",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanjie Ying",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J36/J36nB369.xml",
+          "FromLb": "0901b01",
+          "ToLb": "0901b01",
+          "Kwic": "威音那畔，洗腳上床，和衣倒臥，秖得一橛。",
+          "Curated": true,
+          "AttributionNote": "The cited recorded-sayings collection (蔗菴範禪師語錄). Full six-rung exact-turn review identifies Zhean Jingfan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Zhean Jingfan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhean Jingfan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J27/J27nB193.xml",
+          "FromLb": "0223b05",
+          "ToLb": "0223b06",
+          "Kwic": "直指門頭，威音那畔，能嘲風弄月，展演神通",
+          "ContextMasters": [
+            {
+              "MasterName": "Yinyuan Longqi",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (隱元禪師語錄): The exact headword actor is Saodao ren (the Sweeping Daoist). The full preface names the Sweeping Daoist as its author; he uses the headword while praising Yinyuan Longqi, who is the subject rather than the utterer.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "signed preface",
+            "ActorLabel": "Saodao ren (the Sweeping Daoist)",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex v6 full-case manual audit 036-045",
+            "ReviewedUtc": "2026-07-16T15:20:00Z",
+            "GrammarEvidence": "Source text (隱元禪師語錄): The exact headword actor is Saodao ren (the Sweeping Daoist). The full preface names the Sweeping Daoist as its author; he uses the headword while praising Yinyuan Longqi, who is the subject rather than the utterer."
+          }
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0725b18",
+          "ToLb": "0725b18",
+          "Kwic": "威音那畔誰辨端倪。",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Yuanwu Keqin asks who can distinguish the clue on the far side of Awesome Sound."
+        }
+      ],
+      "SourceTexts": [
+        "J/J28/J28nB220.xml",
+        "J/J33/J33nB280.xml",
+        "X/X73/X73n1451.xml",
+        "J/J39/J39nB453.xml",
+        "J/J36/J36nB369.xml",
+        "J/J27/J27nB193.xml",
+        "T/T47/T47n1997.xml"
+      ],
+      "RelatedMasters": [
+        "Cishou Huaishen",
+        "Yinyuan Longqi",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "這邊",
+        "者邊",
+        "威音那畔",
+        "空劫以前"
+      ]
+    }
+  ]
+}

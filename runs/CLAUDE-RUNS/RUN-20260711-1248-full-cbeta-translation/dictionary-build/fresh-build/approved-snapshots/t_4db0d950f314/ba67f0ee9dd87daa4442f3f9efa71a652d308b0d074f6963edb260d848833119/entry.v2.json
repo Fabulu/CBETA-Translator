@@ -1,0 +1,161 @@
+{
+  "Id": "t_4db0d950f314",
+  "SourceTerm": "白居易",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f004 lane B complete-case author",
+  "WrittenUtc": "2026-07-15T10:38:49.311314+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Bai Juyi",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "Bai Juyi"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "5 distinct work IDs selected after complete-case actor review.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0230b18",
+          "ToLb": "0230b25",
+          "Kwic": "往諸方學佛法去。師曰。若是佛法。吾此間亦有少許。曰如何是和尚佛法。師於身上拈起布毛吹之。會通遂領悟玄旨。元和中白居易出守茲郡。因入山禮謁。乃問師曰。禪師住處甚危險。師曰。太守危險尤甚。曰弟子位鎮江山。何險之有。師曰。薪火相交識性不停。得非險乎。又問如何是佛法大意。師",
+          "Curated": true,
+          "AttributionNote": "Source text (景德傳燈錄). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "B/B14/B14n0082.xml",
+          "FromLb": "0170b05",
+          "ToLb": "0170b12",
+          "Kwic": "去師問曰汝今何往對曰和尚不垂慈誨今往諸方學佛法去師曰若是佛法吾此間亦有少許師於身上拈起布毛吹之會通遂領悟元和中白居易出守茲郡因入山禮謁乃問師曰禪師住處甚危險師曰太守危險尤甚曰弟子位鎮江山何險之有師曰薪火相交識性不停得非險乎又問如何是佛法大意師曰諸惡莫作眾善奉行白曰三",
+          "Curated": true,
+          "AttributionNote": "Source text (傳燈玉英集（殘卷）; B/B14/B14n0082.xml). Exact actor: the compilation narrator. The narrator introduces Bai Juyi as governor before the following question begins; the headword belongs to that introduction.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "the compilation narrator",
+            "ActorLabel": "the compilation narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The narrator introduces Bai Juyi as governor before the following question begins; the headword belongs to that introduction.",
+            "ReviewedBy": "Codex f004 checkpoint2 delta7",
+            "ReviewedUtc": "2026-07-15T17:49:05.392685+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0352a13",
+          "ToLb": "0352a14",
+          "Kwic": "師問白舍人：「汝是白家兒不？」舍人稱名：「白居易。」",
+          "Curated": true,
+          "AttributionNote": "Source text (祖堂集; B/B25/B25n0144.xml). Exact actor: Bai Juyi. The retained evidence is anchored to Bai Juyi’s quoted self-identification; the preceding narrative introduction is context rather than the selected token’s voice.",
+          "ContextMasters": [
+            {
+              "MasterName": "Bai Juyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Bai Juyi"
+        },
+        {
+          "RelPath": "J/J29/J29nB239.xml",
+          "FromLb": "0480c27",
+          "ToLb": "0480c27",
+          "Kwic": "所以白居易侍郎問惟寬和尚曰：『禪師何以說法？』",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chuiwan Guangzhen (吹萬禪師語錄), complete hall address: Chuiwan Guangzhen names Bai Juyi while raising Bai's extended exchange with Weikuan. Bai and Weikuan are case figures; Chuiwan is the headword utterer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Chuiwan Guangzhen",
+              "Roles": [
+                "utterer",
+                "record-owner",
+                "later-raiser"
+              ]
+            },
+            {
+              "MasterName": "Weikuan",
+              "Roles": [
+                "case-figure",
+                "respondent"
+              ]
+            }
+          ],
+          "MasterName": "Chuiwan Guangzhen"
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0051c08",
+          "ToLb": "0051c14",
+          "Kwic": "諸方學佛法去。師曰。若是佛法。吾此間亦有少許。曰。如何是和尚佛法。師於身上拈起布毛吹之。通遂領悟玄旨。元和中。白居易侍郎出守茲郡。因入山謁師。問曰。禪師住處甚危險。師曰。太守危險尤甚。白曰。弟子位鎮江山。何險之有。師曰。薪火相交。識性不停。得非險乎。又問。如何是佛法",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "B/B14/B14n0082.xml",
+        "B/B25/B25n0144.xml",
+        "J/J29/J29nB239.xml",
+        "X/X80/X80n1565.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "Bai Juyi, the poet-official as represented in Chan encounter records. The sources narrate Bai Juyi’s meetings and also quote his own name and questions. Three witnesses transmit the same Bird’s-Nest exchange, so they are parallel recensions of one encounter rather than three independent events."
+    }
+  ]
+}

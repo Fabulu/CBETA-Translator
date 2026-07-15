@@ -146,21 +146,19 @@
     },
     "t_901f410fce73": {
       "term": "飯頭",
-      "verdict": "REVISE",
-      "reviewedSha256": "af0dcdc7e1c380bac526beda0ca2d90e285aa1f8c757a140da9e2afbb2126335",
-      "finding": "Current attribution ground truth records 3 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "edcdf1766cd518e36c1ae30e8538a7f7396e772778487c8841a496970966ce48",
+      "finding": "Seven full cases support the monastery rice-steward office. In the interview cases the headword is uttered by a questioner addressing or asking about the officer, so leaving the officer as referent rather than MasterName is correct.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave9-f003-laneC.json",
       "supersedes": {
-        "term": "飯頭",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "af0dcdc7e1c380bac526beda0ca2d90e285aa1f8c757a140da9e2afbb2126335",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_901f410fce73/af0dcdc7e1c380bac526beda0ca2d90e285aa1f8c757a140da9e2afbb2126335/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_901f410fce73/af0dcdc7e1c380bac526beda0ca2d90e285aa1f8c757a140da9e2afbb2126335/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_901f410fce73/af0dcdc7e1c380bac526beda0ca2d90e285aa1f8c757a140da9e2afbb2126335/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_901f410fce73/edcdf1766cd518e36c1ae30e8538a7f7396e772778487c8841a496970966ce48/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_901f410fce73/edcdf1766cd518e36c1ae30e8538a7f7396e772778487c8841a496970966ce48/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_901f410fce73/edcdf1766cd518e36c1ae30e8538a7f7396e772778487c8841a496970966ce48/receipt.json"
       }
     },
     "t_4d1513a6cd98": {
@@ -215,21 +213,19 @@
     },
     "t_d247a2ea7cc3": {
       "term": "好手",
-      "verdict": "REVISE",
-      "reviewedSha256": "a0156e68d3eab1c630fb4a5430efb721cb29308bae8a0473f69f00d3b749af23",
-      "finding": "Current attribution ground truth records 3 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "46cc0936401325881a23bbd4593be8808ed268ddcdce9958a492dc2da782b10d",
+      "finding": "Seven complete contexts support a skilled person recognized through handling an encounter, verse, or task. Compiler verse, anonymous speech, and named but unrostered speakers are not falsely assigned to a nearby master.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave9-f003-laneC.json",
       "supersedes": {
-        "term": "好手",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "a0156e68d3eab1c630fb4a5430efb721cb29308bae8a0473f69f00d3b749af23",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_d247a2ea7cc3/a0156e68d3eab1c630fb4a5430efb721cb29308bae8a0473f69f00d3b749af23/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_d247a2ea7cc3/a0156e68d3eab1c630fb4a5430efb721cb29308bae8a0473f69f00d3b749af23/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_d247a2ea7cc3/a0156e68d3eab1c630fb4a5430efb721cb29308bae8a0473f69f00d3b749af23/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_d247a2ea7cc3/46cc0936401325881a23bbd4593be8808ed268ddcdce9958a492dc2da782b10d/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_d247a2ea7cc3/46cc0936401325881a23bbd4593be8808ed268ddcdce9958a492dc2da782b10d/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_d247a2ea7cc3/46cc0936401325881a23bbd4593be8808ed268ddcdce9958a492dc2da782b10d/receipt.json"
       }
     },
     "t_2e8a84aaf4a6": {
@@ -1515,21 +1511,19 @@
     },
     "t_68303eb8b076": {
       "term": "拈拄杖",
-      "verdict": "REVISE",
-      "reviewedSha256": "5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee",
-      "finding": "Current attribution ground truth records 3 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field, explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "88e1715ce420afaad8f59d55361057038445ed5f0efeeae0ed1560eb0a4a364a",
+      "finding": "Eight cases establish taking up the staff as visible presiding action used to open, answer, punctuate, strike, or scatter; compiler wording remains distinct from following speech.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-1-3-016-025-f003-laneA.json",
       "supersedes": {
-        "term": "拈拄杖",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee",
-        "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
-        "sourceReview": "fresh-build/waves/f003-laneA-651-700-revise15-round3-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_68303eb8b076/5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_68303eb8b076/5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_68303eb8b076/5c75099bfb03db761da2358cd708cca182e23c3d751596d9c34b3f28f94927ee/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_68303eb8b076/88e1715ce420afaad8f59d55361057038445ed5f0efeeae0ed1560eb0a4a364a/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_68303eb8b076/88e1715ce420afaad8f59d55361057038445ed5f0efeeae0ed1560eb0a4a364a/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_68303eb8b076/88e1715ce420afaad8f59d55361057038445ed5f0efeeae0ed1560eb0a4a364a/receipt.json"
       }
     },
     "t_1c2ff70cf5a5": {
@@ -2044,21 +2038,19 @@
     },
     "t_eeb3c71567a1": {
       "term": "僧臘",
-      "verdict": "REVISE",
-      "reviewedSha256": "3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b",
-      "finding": "Current attribution ground truth records 1 hard failure(s): action_performer_context_missing.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "c012a6009b5e9d6dac25d08bfc66e7cd6ea12b48198e3cc51cdb312fb6836174",
+      "finding": "Eight biographies consistently record ordination seniority beside lifespan. Residual o4 action-context flag is false: 師打 occurs earlier in an over-wide KWIC; headword 僧臘二十 is later compiler biography and requires no action-performer ContextMaster.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-036-045-f003-laneB.json",
       "supersedes": {
-        "term": "僧臘",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b",
-        "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
-        "sourceReview": "fresh-build/waves/f003-laneB-final24-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_eeb3c71567a1/3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_eeb3c71567a1/3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_eeb3c71567a1/3a29e5c145257aac9d55c000b5409089540b885401474892ed8897e6e875c25b/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_eeb3c71567a1/c012a6009b5e9d6dac25d08bfc66e7cd6ea12b48198e3cc51cdb312fb6836174/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_eeb3c71567a1/c012a6009b5e9d6dac25d08bfc66e7cd6ea12b48198e3cc51cdb312fb6836174/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_eeb3c71567a1/c012a6009b5e9d6dac25d08bfc66e7cd6ea12b48198e3cc51cdb312fb6836174/receipt.json"
       }
     },
     "t_dc24f92ead78": {
@@ -3306,21 +3298,19 @@
     },
     "t_804dc8bdce55": {
       "term": "開堂",
-      "verdict": "REVISE",
-      "reviewedSha256": "171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844",
-      "finding": "Current attribution ground truth records 3 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "45ad77f597d0395b9c6132e9341cfe6ec54d7489827430f99821b0e14926d4fa",
+      "finding": "Eight cases ground the inaugural teaching-hall assembly and distinguish invitations/requested action from the discourse delivered there.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-1-3-016-025-f003-laneB.json",
       "supersedes": {
-        "term": "開堂",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844",
-        "finding": "KEEP — Full-case rereading found the round-two repair resolves the prior exact-actor/roster defect without introducing a new evidence, sense, depth, or prose failure.",
-        "sourceReview": "fresh-build/waves/f003-laneB-701-750-round2-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_804dc8bdce55/171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_804dc8bdce55/171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_804dc8bdce55/171703d3457fda663abf9b32a175e13940477eae1d440fcf4cedb3ee77118844/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_804dc8bdce55/45ad77f597d0395b9c6132e9341cfe6ec54d7489827430f99821b0e14926d4fa/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_804dc8bdce55/45ad77f597d0395b9c6132e9341cfe6ec54d7489827430f99821b0e14926d4fa/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_804dc8bdce55/45ad77f597d0395b9c6132e9341cfe6ec54d7489827430f99821b0e14926d4fa/receipt.json"
       }
     },
     "t_0c53a5a2243b": {
@@ -3732,21 +3722,19 @@
     },
     "t_a805d0c76bbd": {
       "term": "拈香",
-      "verdict": "REVISE",
-      "reviewedSha256": "2e79eeedf75f6e1b253c53597a9e6c7a86470dcd4ab40620529c4f55a12512e0",
-      "finding": "Current attribution ground truth records 4 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field, reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "66b60ad2e6d8317f143061719dacc9e0444ae50422270ea82bf87b380e1e9909",
+      "finding": "Eight full cases establish taking up incense as compiler-narrated ritual action before source-specific speech, dedication, question, or verdict; it remains distinct from burning.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-1-3-016-025-f003-laneA.json",
       "supersedes": {
-        "term": "拈香",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "2e79eeedf75f6e1b253c53597a9e6c7a86470dcd4ab40620529c4f55a12512e0",
-        "finding": "Taking up incense is correctly distinguished from subsequent burning; non-master and narrated action actors are not forced into MasterName.",
-        "sourceReview": "fresh-build/waves/f003-laneA-601-650-round4-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_a805d0c76bbd/2e79eeedf75f6e1b253c53597a9e6c7a86470dcd4ab40620529c4f55a12512e0/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_a805d0c76bbd/2e79eeedf75f6e1b253c53597a9e6c7a86470dcd4ab40620529c4f55a12512e0/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_a805d0c76bbd/2e79eeedf75f6e1b253c53597a9e6c7a86470dcd4ab40620529c4f55a12512e0/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_a805d0c76bbd/66b60ad2e6d8317f143061719dacc9e0444ae50422270ea82bf87b380e1e9909/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_a805d0c76bbd/66b60ad2e6d8317f143061719dacc9e0444ae50422270ea82bf87b380e1e9909/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_a805d0c76bbd/66b60ad2e6d8317f143061719dacc9e0444ae50422270ea82bf87b380e1e9909/receipt.json"
       }
     },
     "t_0ad6dd1a4717": {

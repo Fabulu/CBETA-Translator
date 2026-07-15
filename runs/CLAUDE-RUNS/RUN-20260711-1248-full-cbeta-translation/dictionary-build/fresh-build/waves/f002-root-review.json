@@ -1353,20 +1353,13 @@
     "t_8cf244d2d802": {
       "term": "拈出",
       "verdict": "REVISE",
-      "reviewedSha256": "49cf9af9c588322da92c992880978c2eae3d215e899cbfde9f23212239afedf7",
-      "finding": "Current attribution ground truth records 3 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "reviewedSha256": "91bced794898d32d42c7a1f07c8dcd4804c4549651f627a4f8d37478b3a5d470",
+      "finding": "Nine full contexts support one transitive selecting-and-presenting action across sayings, doubts, jewels, pearls, and incense, and the actor assignments hold. Prose hygiene fails mechanically: the Note repeats the identical frozen-corpus concordance sentence four times; retain it once.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave9-f002-laneB.json",
       "supersedes": {
-        "term": "拈出",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "49cf9af9c588322da92c992880978c2eae3d215e899cbfde9f23212239afedf7",
-        "finding": "KEEP at this hash: 9 exact occurrences across 9 independent works, with 3 claim anchors. Full-case actor/action assignments are exact and attribution-clean; aliases remain within the preferred target, depth rows add distinct deployments without work-count padding, and #0g reveals no unrepresented incompatible referent.",
-        "sourceReview": "fresh-build/waves/f002-laneB-451-500-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_8cf244d2d802/49cf9af9c588322da92c992880978c2eae3d215e899cbfde9f23212239afedf7/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_8cf244d2d802/49cf9af9c588322da92c992880978c2eae3d215e899cbfde9f23212239afedf7/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_8cf244d2d802/49cf9af9c588322da92c992880978c2eae3d215e899cbfde9f23212239afedf7/receipt.json"
-        }
+        "sourceReview": null
       }
     },
     "t_9b71e523fe10": {
@@ -1728,21 +1721,19 @@
     },
     "t_bc7bbb4299f1": {
       "term": "如何是佛法大意",
-      "verdict": "REVISE",
-      "reviewedSha256": "ae000670701a418c1560363b573decc7ab58a6547e0f878e2a72dc02d961f496",
-      "finding": "Current attribution ground truth records 3 hard failure(s): action_performer_context_missing, anonymous_monk_question_assigned_to_master, explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "34ee52de2e5b6c39f9412a14f2729ec2072a909aa7932d5c5141a4c0dba197d7",
+      "finding": "Eight complete interviews establish the exact stock question and its deliberately nonuniform replies. Bai Juyi and Ding Shangzuo are correctly named as utterers; anonymous monks remain unnamed rather than inheriting the respondent's identity.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave9-f002-laneB.json",
       "supersedes": {
-        "term": "如何是佛法大意",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "ae000670701a418c1560363b573decc7ab58a6547e0f878e2a72dc02d961f496",
-        "finding": "KEEP at this hash: 8 exact occurrences across 7 independent works, with 0 claim anchors. Full-case actor/action assignments are exact and attribution-clean; aliases remain within the preferred target, depth rows add distinct deployments without work-count padding, and #0g reveals no unrepresented incompatible referent.",
-        "sourceReview": "fresh-build/waves/f002-laneB-451-500-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_bc7bbb4299f1/ae000670701a418c1560363b573decc7ab58a6547e0f878e2a72dc02d961f496/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_bc7bbb4299f1/ae000670701a418c1560363b573decc7ab58a6547e0f878e2a72dc02d961f496/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_bc7bbb4299f1/ae000670701a418c1560363b573decc7ab58a6547e0f878e2a72dc02d961f496/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_bc7bbb4299f1/34ee52de2e5b6c39f9412a14f2729ec2072a909aa7932d5c5141a4c0dba197d7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_bc7bbb4299f1/34ee52de2e5b6c39f9412a14f2729ec2072a909aa7932d5c5141a4c0dba197d7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_bc7bbb4299f1/34ee52de2e5b6c39f9412a14f2729ec2072a909aa7932d5c5141a4c0dba197d7/receipt.json"
       }
     },
     "t_bb3cdb68e388": {
@@ -2497,21 +2488,19 @@
     },
     "t_dd2b39789323": {
       "term": "格外句",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43",
-      "finding": "Current attribution ground truth records 1 hard failure(s): action_performer_context_missing.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "Seven cases support a phrase outside the standard. Residual action-context flag on o5 is false: unnamed monk utters `向上機、格外句，拈置一邊`; 拈置 is part of his request, not a named master's narrated action; Feiyin is correctly respondent/context master.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-036-045-f002-laneB.json",
       "supersedes": {
-        "term": "格外句",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43",
-        "finding": "KEEP at this hash: 7 exact occurrences across 5 independent works, with 0 explicit claim anchors. Full-case actor/action assignments agree with the zero-failure attribution audit; aliases stay within the preferred target, stored claims remain source-visible, and the depth rows add distinct deployments rather than file-count padding. The evidence does not expose a second incompatible referent under #0g.",
-        "sourceReview": "fresh-build/waves/f002-laneB-401-450-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_dd2b39789323/74d1ba66764c8c8e7f7058fdad45d9f9efdb0e61ea90bed4cf556b90151afe43/receipt.json"
       }
     },
     "t_5bc4624579e5": {
@@ -2528,21 +2517,19 @@
     },
     "t_9a4a6df85ba0": {
       "term": "眉毛墮落",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7",
-      "finding": "Current attribution ground truth records 4 hard failure(s): placeholder_actor_forbidden, reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "Four stored occurrence cases support eyebrow-loss as consequence/accusation attached to handling speech, while the entry declines anatomical explanation. Three additional ClaimAnchors account for the gate's seven verified evidence quotations; they are not attribution occurrences.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-046-055-f002-laneB.json",
       "supersedes": {
-        "term": "眉毛墮落",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7",
-        "finding": "KEEP at the current formal-gate hash. The four exact headword witnesses remain four distinct works and retain their previously reviewed utterer, unnamed-interlocutor, and context-master assignments. Three separately anchored family forms support the stated family comparison without being counted as exact-headword depth. The count-only rebaseline from 40 to 48 occurrences for 眉毛落 changes neither the preferred target nor the one-referent decision, and no added evidence exposes a second incompatible thing under #0g.",
-        "sourceReview": "fresh-build/waves/f002-laneB-401-450-consolidated-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_9a4a6df85ba0/acd6cc1b83d2c7875b2f7d098911a6609b7586a2ff736f23afa97b5cb3629cc7/receipt.json"
       }
     },
     "t_26ea593a58e2": {

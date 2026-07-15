@@ -1,0 +1,469 @@
+{
+  "Id": "t_ff50c6974a36",
+  "SourceTerm": "五位",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the Caodong Five Ranks",
+      "AlternateTargets": [
+        "the Five Ranks",
+        "the five positions of the Caodong house"
+      ],
+      "SearchAliases": [
+        "Caodong Five Ranks",
+        "Five Ranks",
+        "five positions",
+        "upright and crooked ranks"
+      ],
+      "Status": "preferred",
+      "Explanation": "The Caodong Five Ranks are a named five-part scheme associated with Dongshan Liangjie and Caoshan Benji. Corpus passages identify sets framed through upright and crooked, ruler and minister, merit, princes, or facing the guest; later records repeatedly pair the Five Ranks with the Linji house's Three Mysteries when distinguishing house vocabularies. Questions can ask for the ranks as a whole or for each member in order. The headword names the fivefold scheme, while the particular paired terms specify its formulation.",
+      "Note": "The frozen corpus has 1,279 exact hits in 233 files representing 230 works. The technical anchors include defining enumerations, verses, house comparisons, interview questions, and later summaries. In the Caoshan facing-the-guest cases, the unnamed monk—not Caoshan—utters the headword.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0040b17",
+          "ToLb": "0040b20",
+          "Kwic": "然後所立君臣、偏正、王子、功勳各五位者，若我臨濟大師要且不然，但曰：「赤肉團上有無位真人嘗在面門出入，未證據者看看。」",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄): replying to the monk Cunyi, Miyun Yuanwu names the ruler-minister, upright-crooked, princes, and merit arrangements as five-rank systems, then contrasts them with Linji Yixuan's true person of no rank.",
+          "MasterName": "Miyun Yuanwu",
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml",
+          "FromLb": "0756a04",
+          "ToLb": "0756a08",
+          "Kwic": "五位君臣事若何？」師云：「爐中香裊裊。」進云：「如何是正中偏？」師云：「石女夜不眠。」進云：「如何是偏中正？」師云：「秋到樹頭赤。」進云：「如何是正中來？」師云：「泥牛上五台。」進云：「如何是兼中至？」師云：「黃葉頗相似。」進云：「如何是兼中到？」師云：「踏破波底月。」",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Ruibai (入就瑞白禪師語錄): an unnamed monk asks Ruibai Mingxue about the five ruler-minister positions and then asks successively about each named position; Ruibai supplies each answer. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB163.xml",
+          "FromLb": "0256a14",
+          "ToLb": "0256a15",
+          "Kwic": "曹山寂禪師。僧問：「五位對賓時如何？」山云：「汝今問那箇位？」僧云：「某甲從偏位中來，請師正位中接。」",
+          "Curated": true,
+          "AttributionNote": "(古庭禪師語錄輯略): the unnamed monk utters the headword in his question; Caoshan Benji is the respondent and section subject.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh lane-C complete-case review",
+            "ReviewedUtc": "2026-07-14T17:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Caoshan Benji",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0787b02",
+          "ToLb": "0787b04",
+          "Kwic": "曹山因僧問五位對賔時如何師曰汝即今問那箇位曰某甲從偏位中來請師向正位中接師曰不接",
+          "Curated": true,
+          "AttributionNote": "(禪宗頌古聯珠通集): the unnamed monk utters the headword in his question; Caoshan Benji is the respondent and section subject.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh lane-C complete-case review",
+            "ReviewedUtc": "2026-07-14T17:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Caoshan Benji",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB156.xml",
+          "FromLb": "0062c07",
+          "ToLb": "0062c08",
+          "Kwic": "洞山五位悟非悟，臨濟三玄然未然",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Wuhuan (無幻禪師語錄): in the first of his six occasional verses beyond things, Wuhuan Xingchong sets Dongshan's five positions beside Linji's three mysteries and questions both as awakening and as so-yet-not-so.",
+          "MasterName": "Wuhuan Xingchong",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuhuan Xingchong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1986B.xml",
+          "FromLb": "0525c01",
+          "ToLb": "0525c08",
+          "Kwic": "師。作五位君臣頌云。正中偏。三更初夜月明前。莫怪相逢不相識。隱隱猶懷舊日嫌。偏中正。失曉老婆逢古鏡。分明覿面別無真。休更迷頭猶認影。正中來。無中有路隔塵埃。但能不觸當今諱。也勝前朝斷舌才。兼中至。兩刃交鋒不須避。好手猶如火裏蓮。宛然自有冲天志。兼中到。不落有無誰敢和。人人盡欲出常流。折合還歸炭裏坐。",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "The cited Caodong source (T47n1986B), complete composition unit: the compiler says that Dongshan Liangjie composed a Five Ranks lord-and-minister verse; Dongshan is the attributed verse author, but the headword occurs in the compiler's introduction.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Liangjie",
+              "Roles": [
+                "person-described",
+                "attributed-author"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler introducing Dongshan Liangjie's verse",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師作五位君臣頌云 is the compiler's attribution formula; Dongshan's quoted verse begins with 正中偏.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T47/T47n1987A.xml",
+          "FromLb": "0527a05",
+          "ToLb": "0527a12",
+          "Kwic": "因有僧問五位君臣旨訣。師曰。正位即空界。本來無物。偏位即色界。有萬象形。正中偏者背理就事。偏中正者舍事入理。兼帶者冥應眾緣。不墮諸有。非染非淨。非正非偏。故曰虛玄大道無著真宗。從上先德推此一位最妙最玄。當詳審辨明。君為正位。臣為偏位。臣向君是偏中正。君視臣是正中偏。君臣道合是兼帶語。",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Caoshan (曹山大師語錄), complete question-and-answer: an unnamed monk asks for the key to the Five Ranks of lord and minister; Caoshan Benji gives the extended answer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Caoshan Benji",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "因有僧問五位君臣旨訣 assigns the headword-bearing question to 僧; Caoshan's answer begins after 師曰.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0320c08",
+          "ToLb": "0320c19",
+          "Kwic": "示以偏正五位。",
+          "MasterName": "Huiyan Zhizhao",
+          "Curated": true,
+          "AttributionNote": "The Eyes of Humans and Gods (人天眼目), compiled by Huiyan Zhizhao, explains the upright-and-crooked, merit, ruler-and-minister, and prince Five Ranks and relates the positions to substance, function, succession, and the Caodong house style.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huiyan Zhizhao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "D/D51/D51n8948.xml",
+          "FromLb": "0007a06",
+          "ToLb": "0007a07",
+          "Kwic": "不是臨濟三玄不是曹洞五位不是入理深談不是門庭施設",
+          "MasterName": "Foguo",
+          "Curated": true,
+          "AttributionNote": "In the Recorded Sayings of Chan Master Foguo (佛國禪師語錄), Foguo rejects identification with Linji's three mysteries, Caodong's Five Ranks, deep talk entering principle, or institutional devices.",
+          "ContextMasters": [
+            {
+              "MasterName": "Foguo",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J27/J27nB189.xml",
+          "FromLb": "0053c23",
+          "ToLb": "0053c27",
+          "Kwic": "問：「如何是洞上五位？」荅：「除夜舊門神。」君義臣忠，父慈子孝，要嫁竹夫人，土地前討笤，報道石幢子，生來多不肖。且道侍奉一句又作麼生？若還借借終不玅。問：「如何是三要？」荅：「棺材屋裏掛鍾馗。」",
+          "Curated": true,
+          "AttributionNote": "In the Recorded Sayings of Chan Master Sanyi Mingyu (三宜盂禪師語錄), an unnamed monk asks what the Dongshan-school Five Ranks are; Sanyi Mingyu answers ‘old door-gods on New Year's Eve’ without repeating the headword, and later answers a separate question about the three essentials. All six attribution rungs leave the questioner personally unnamed.",
+          "ContextMasters": [
+            {
+              "MasterName": "Sanyi Mingyu",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex semantic-r002-owner1 reviewer3 repair",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T48/T48n2006.xml",
+          "FromLb": "0316b19",
+          "ToLb": "0316b26",
+          "Kwic": "五位功勳圖正中偏君位向黑白未變時",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "The cited compiled Caodong material (T48n2006), complete diagram unit: the editor labels the Five Ranks of merit diagram before its rank descriptions. The headword is an editorial heading, not speech by Huiyan Zhizhao.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiled diagram heading",
+            "ActorLabel": "compiler of the Five Ranks of merit diagram",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "五位功勳圖 is a repeated editorial diagram heading, not direct speech by Huiyan Zhizhao.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0749c12",
+          "ToLb": "0749c13",
+          "Kwic": "張旦公居士問：「五位君臣，古人作兼中至，《智證傳》作偏中至，近世或仍覺範作兼作偏，未知孰是？」",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunxi Langting",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Yunxi Langting (雲溪俍亭挺禪師語錄): the named layman Zhang Dangong asks whether the fourth of the Five Ranks should use the 'arriving from both' or 'arriving from the crooked' wording; Yunxi Langting is the respondent.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "named lay questioner",
+            "ActorLabel": "Layman Zhang Dangong",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "張旦公居士問 explicitly makes Layman Zhang Dangong the named non-master subject of the headword-bearing question; Yunxi Langting supplies the answer.",
+            "ReviewedBy": "Codex lane-C residual semantic repair",
+            "ReviewedUtc": "2026-07-14T21:20:19Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "J/J10/J10nA158.xml",
+        "J/J26/J26nB188.xml",
+        "J/J25/J25nB163.xml",
+        "C/C078/C078n1720.xml",
+        "J/J25/J25nB156.xml",
+        "T/T47/T47n1986B.xml",
+        "T/T47/T47n1987A.xml",
+        "T/T48/T48n2006.xml",
+        "D/D51/D51n8948.xml",
+        "J/J27/J27nB189.xml",
+        "J/J33/J33nB294.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Liangjie",
+        "Caoshan Benji",
+        "Huiyan Zhizhao",
+        "Foguo",
+        "Sanyi Mingyu"
+      ],
+      "RelatedTerms": [
+        "正中偏",
+        "偏中正",
+        "正中來",
+        "兼中到",
+        "君臣五位",
+        "功勳五位",
+        "臨濟三玄三要"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "five positions",
+      "AlternateTargets": [
+        "five ranks",
+        "five stages"
+      ],
+      "SearchAliases": [
+        "five positions",
+        "five ranks",
+        "five stages"
+      ],
+      "Status": "allowed",
+      "Explanation": "Five positions is also an ordinary count phrase for a five-member sequence not referring to the Caodong scheme. Context identifies the particular series, such as successive positions in an explanatory classification or an ordinal place. This sense is retained to prevent every standalone occurrence from being forced into the house-specific reading.",
+      "Note": "This sense denotes five-member sequences other than the named Caodong Five Ranks. Its three exact anchors come from two independent works: the Patriarchs' Hall Collection (work:B25n0144) and Yongming Yanshou's Source-Mirror Record (work:T48n2016); the two Yanshou rows count once.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0676a05",
+          "ToLb": "0676a06",
+          "Kwic": "寄因五位，乃至果位。雖寄此位，不住此位。",
+          "Curated": true,
+          "AttributionNote": "Patriarchs’ Hall Collection (祖堂集): the immortal Gaitong is the exact identified non-master utterer of the five-position line.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "immortal and teaching-dialogue figure",
+            "ActorLabel": "the immortal Gaitong",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "The expanded dialogue explicitly names Gaitong, identifies him as an immortal, and assigns the headword-bearing turn to him.",
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-14T23:25:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0436c29",
+          "ToLb": "0437a01",
+          "Kwic": "五位百法。理之與事。皆不離識。",
+          "MasterName": "Yongming Yanshou",
+          "Curated": true,
+          "AttributionNote": "Yongming Yanshou, in the Record of the Source-Mirror (宗鏡錄), uses five positions for the fivefold classification of the hundred elements and says both principle and events do not leave consciousness.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0711b26",
+          "ToLb": "0711b27",
+          "Kwic": "在胎五位者。初七日內名雜穢。狀如薄酪。",
+          "MasterName": "Yongming Yanshou",
+          "Curated": true,
+          "AttributionNote": "Yongming Yanshou, in the Record of the Source-Mirror (宗鏡錄), introduces the five prenatal positions and begins with the first seven-day interval.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "T/T48/T48n2016.xml"
+      ],
+      "RelatedMasters": [
+        "Gaitong",
+        "Shunzhi Emperor",
+        "Hongjue Min",
+        "Juelang Daosheng",
+        "Yongming Yanshou"
+      ],
+      "RelatedTerms": [
+        "因位",
+        "果位"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}
