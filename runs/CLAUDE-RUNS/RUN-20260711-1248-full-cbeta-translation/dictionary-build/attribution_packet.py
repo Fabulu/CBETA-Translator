@@ -131,7 +131,7 @@ def heads_from_raw(raw: str, position: int, limit: int = 12):
 
 def enclosing_unit(raw: str, position: int) -> tuple[str, str, int, int]:
     """Return smallest defensible complete structural unit around raw position."""
-    for tag in ("p", "lg", "div"):
+    for tag in ("p", "lg", "cb:div", "div"):
         start = raw.rfind(f"<{tag}", 0, position + 1)
         if start < 0:
             continue
@@ -150,11 +150,16 @@ def enclosing_unit(raw: str, position: int) -> tuple[str, str, int, int]:
     return "head-section", raw[start:end], start, end
 
 
-def paragraph_span_containing_kwic(raw: str, rel: str, normalized_kwic: str):
+def paragraph_span_containing_kwic(
+    raw: str,
+    rel: str,
+    normalized_kwic: str,
+    normalized_start: int,
+):
     """Return the minimal first-to-last ``p`` span containing a cross-sibling KWIC."""
     normalized, positions = zc._raw_position_index_for_rel(rel)
-    index = normalized.find(normalized_kwic)
-    if index < 0:
+    index = normalized_start
+    if index < 0 or normalized[index:index + len(normalized_kwic)] != normalized_kwic:
         return None
     first_raw = positions[index]
     last_raw = positions[min(index + len(normalized_kwic) - 1, len(positions) - 1)]
@@ -169,7 +174,13 @@ def paragraph_span_containing_kwic(raw: str, rel: str, normalized_kwic: str):
     return None
 
 
-def wider_unit_containing_kwic(raw: str, rel: str, position: int, normalized_kwic: str):
+def wider_unit_containing_kwic(
+    raw: str,
+    rel: str,
+    position: int,
+    normalized_kwic: str,
+    normalized_start: int,
+):
     """Widen a too-small unit until it contains the stored KWIC.
 
     Stored evidence windows can cross sibling ``p`` elements.  A narrow first
@@ -177,10 +188,10 @@ def wider_unit_containing_kwic(raw: str, rel: str, position: int, normalized_kwi
     an enclosing div, then the governing head section, and only finally a
     marked raw context window.
     """
-    paragraph_span = paragraph_span_containing_kwic(raw, rel, normalized_kwic)
+    paragraph_span = paragraph_span_containing_kwic(raw, rel, normalized_kwic, normalized_start)
     if paragraph_span:
         return paragraph_span
-    for tag in ("lg", "div"):
+    for tag in ("lg", "cb:div", "div"):
         start = raw.rfind(f"<{tag}", 0, position + 1)
         end = raw.find(f"</{tag}>", position)
         if start >= 0 and end >= position:
@@ -220,7 +231,13 @@ def packet(rel: str, lb: str, kwic: str) -> dict:
     case_text = clean_text(unit_raw)
     normalized_kwic = clean_text(kwic)
     if normalized_kwic and normalized_kwic not in case_text:
-        wider = wider_unit_containing_kwic(raw, rel, position, normalized_kwic)
+        wider = wider_unit_containing_kwic(
+            raw,
+            rel,
+            position,
+            normalized_kwic,
+            identity["selectedNormalizedStart"],
+        )
         if wider:
             unit_type, unit_raw, start, end = wider
             case_text = clean_text(unit_raw)
