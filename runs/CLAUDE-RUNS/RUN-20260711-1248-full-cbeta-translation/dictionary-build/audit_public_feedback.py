@@ -59,6 +59,11 @@ def load_entry(path: Path) -> dict:
 
 
 def audit(path: Path) -> dict:
+    # Cohort callers may supply repository-relative paths.  Normalize once so
+    # the report path and all sibling WORK.md lookups behave identically to
+    # absolute-path invocations instead of crashing and silently forfeiting
+    # the public-prose gate.
+    path = path.resolve()
     entry = load_entry(path)
     term = str(entry.get("SourceTerm", ""))
     senses = entry.get("Senses") or []

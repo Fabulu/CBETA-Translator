@@ -110,3 +110,18 @@ The normalizer now refuses such states, and the attribution audit hard-fails bot
 left unresolved and a `reviewed-unnamed` label that does not explicitly say the actor is unnamed.  Thus
 the transform removes repetitive formatting labor but cannot launder an unresolved master into clean
 prose.  Human reading is concentrated on those 36 actual decisions instead of 161 note rewrites.
+
+## Pass 10: composite readiness only
+
+A speed-triage ledger labeled 35 entries “mechanically clean” after running only
+`audit_attribution.py`. Independent reading then rejected 32; every rejected entry carried an explicit
+batch prose template such as “is the plain-English referent tested by the selected Chan records.” The
+public-feedback gate already bans that exact text, so this was not a missing detector. It was a readiness
+classifier bypassing the composite gate.
+
+From now on, “semantic-review-ready” means `run_cohort_gate.py --skip-packets` is hard green at the exact
+current hashes. No individual audit can confer readiness. While enforcing that rule, the composite run
+also found `audit_public_feedback.py` crashed when a cohort supplied repository-relative paths; it now
+normalizes paths at entry and has a regression test. The composite cheap gate takes tens of seconds for
+dozens of entries, versus a full independent turn reading 202 cases. This prevents that entire class of
+wasted review round.

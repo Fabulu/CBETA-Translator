@@ -40,6 +40,15 @@ class PublicFeedbackGenericTests(unittest.TestCase):
         result = audit(path)
         self.assertTrue(result["passes"], result["flags"])
 
+    def test_relative_entry_path_runs_the_same_gate(self):
+        path = self.write_entry(
+            "A test expression is the plain-English referent tested by the selected Chan records."
+        )
+        relative = path.relative_to(Path(__file__).resolve().parent)
+        result = audit(relative)
+        self.assertFalse(result["passes"])
+        self.assertTrue(any(flag["kind"] == "generic-template-prose" for flag in result["flags"]))
+
     def test_consecutive_duplicate_opening_fails(self):
         path = self.write_entry(
             "The staff is held crosswise in the case. The staff is held crosswise in the case. A monk then answers."
