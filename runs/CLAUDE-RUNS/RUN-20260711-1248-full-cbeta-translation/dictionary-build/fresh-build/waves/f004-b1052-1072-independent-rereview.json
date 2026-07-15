@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-rereview",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T20:05:00+02:00",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [1052, 1053, 1057, 1058, 1059, 1060, 1062, 1066, 1067, 1072],
+  "sourceAuthorCheckpoint": "fresh-build/waves/f004-b1052-1072-independent-rereview-author-repair-checkpoint-20.json",
+  "sourcePreReview": "fresh-build/waves/f004-b1052-1072-independent-rereview-author-repair-pre-review.json",
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 58,
+  "exactKwicsAndSpans": 58,
+  "keep": 3,
+  "revise": 7,
+  "entries": [
+    {
+      "ordinal": 1052,
+      "id": "t_4db0d950f314",
+      "term": "白居易",
+      "reviewedEntrySha256": "6a759706d6239ad9d6deceb83f52bc6be8bf8126b227ce6baf3b2c50afa9c399",
+      "occurrencesReadInFullCase": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "REVISE",
+      "findings": [
+        "o2 is compiler narration ('元和中白居易出守茲郡'), not an unnamed monastic questioner. The question begins only after the narrator introduces Bai Juyi, so its ActorAttribution assigns the headword to the wrong grammatical actor.",
+        "o3 begins with narration and later has Bai identify himself as 白居易. If retained as one span, it contains both narrator and Bai voices; the headword-bearing occurrence must be cut or explicitly anchor which token supplies the evidence.",
+        "The Bai Juyi figure sense holds, but three witnesses repeat the same Bird's-Nest exchange. State the recurrence honestly and distinguish Bai's own quoted name/questions from compiler introductions."
+      ]
+    },
+    {
+      "ordinal": 1053,
+      "id": "t_590004996a4d",
+      "term": "行住坐臥",
+      "reviewedEntrySha256": "92ec92de99f3848a66b15d8172680736de32404a5a0d930fa2e3636e20d8e59c",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All seven passages use the same four-posture formula and collectively cover biography, direct discourse, Platform Record definition, later quotation, verse/prose address, and a full conduct list.",
+        "The actor states correctly distinguish compiler biography from named direct or quoted master voices. The English-first gloss, posture-wide deployment inference, work identities, and stored anchors hold."
+      ]
+    },
+    {
+      "ordinal": 1057,
+      "id": "t_4c1448553bb6",
+      "term": "拍禪床",
+      "reviewedEntrySha256": "f8c295d9833cbbfd43e2eb39eb98259865a2d640c5664d7f3af94f31e45351eb",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "o1 explicitly introduces Baoning Yong's snow hall address ('保寧勇禪師因雪，上堂') and the same named master performs 拍禪床 before descending. It is not an unnameable compiler action.",
+        "The other five named direct actions support the teaching-seat implementation and public-response prose. Repair o1's exact actor and add the section master to ContextMasters without changing the well-supported sense."
+      ]
+    },
+    {
+      "ordinal": 1058,
+      "id": "t_91f04bfa2237",
+      "term": "楊億",
+      "reviewedEntrySha256": "78cb47c0c163370cf97447c4bcccb6b2b3623fe83fd4d37e1ef1a55c67cc386b",
+      "occurrencesReadInFullCase": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "KEEP",
+      "findings": [
+        "The five complete units distinguish compilation biography, Wuzu Fayan quoting Yang's verse, Shanhui Ji using his name as an answer, Yang Yi's signed preface, and compiler narration introducing his question to Guanghui.",
+        "The figure gloss and explanation do not attribute every mention to Yang himself; exact actors, sources, prose, and work identities hold."
+      ]
+    },
+    {
+      "ordinal": 1059,
+      "id": "t_afade752976d",
+      "term": "威音那畔",
+      "reviewedEntrySha256": "a4d983fc9740a7ab4df2ca70156b73697bcf82783ca05b9c033d4ceed013e781",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "All six exact actors are named and the passages place the phrase beyond/before current temporal and teaching frames, but none of the selected occurrences defines Awesome-Voice as 'the earliest named Buddha.' That external superlative must be anchored from this corpus or removed.",
+        "The explanation says masters use it in questions whose answers test the demand, while the stored evidence consists chiefly of formal addresses, incense wording, and declarative contrasts. Describe those attested deployments instead of an absent question-answer pattern."
+      ]
+    },
+    {
+      "ordinal": 1060,
+      "id": "t_d01493daf491",
+      "term": "關捩",
+      "reviewedEntrySha256": "679e001c76ba74bb908ac8fcd20bae1bd515bac4d37c13e4bb4c4c4d264090a9",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "o3 repeats Juelang Daosheng's '撥轉上頭關捩子，大千法界現全機' address from another Juelang record, but labels the voice an unnamed compiler. The exact utterer is recoverable from the uninterrupted address.",
+        "The J34 and J25 witnesses are not independent semantic deployments merely because they have different work IDs: they reproduce the same speaker and wording. Re-grade source independence after controlling this duplicate-record family.",
+        "The pivotal-catch sense is supported by the remaining direct masters, but 'makes the whole exchange turn' is broader than several occurrences; tether the explanation to turning/operating the named 關捩 and the explicit failure of the mechanism to turn."
+      ]
+    },
+    {
+      "ordinal": 1062,
+      "id": "t_98c97bba590b",
+      "term": "別云",
+      "reviewedEntrySha256": "d4cc72b45523e4826af4e959507d29ca81019ee288d6677ad18935b2fe24f394",
+      "occurrencesReadInFullCase": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "Every passage uses 別云 as a narrator/editorial label that introduces an alternate saying beside a prior answer; none uses the phrase as ordinary direct speech meaning merely 'say differently.'",
+        "The stored actor states appropriately assign the marker to anthology/record narration rather than to the master whose alternative follows. The lexical boundary, English-first gloss, exact spans, and prose hold."
+      ]
+    },
+    {
+      "ordinal": 1066,
+      "id": "t_0051fc72360c",
+      "term": "臨濟四喝",
+      "reviewedEntrySha256": "b13b929dedebdbee3c4b0f93b0e41be0e6afe9a317a282ffff7e7c2932980418",
+      "occurrencesReadInFullCase": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "REVISE",
+      "findings": [
+        "o5 is inside Chaozong Tongren's direct 小參: he himself says '又僧問雪峰：臨濟四喝...' and comments on it. It is not speech by an unnameable compiler.",
+        "o2 introduces a named commentary voice ('起綱宗云') before the headword, while o3 is compilation exposition. Resolve the named commentator and preserve the distinction between original question, later exposition, authored verse, and Chaozong's direct raising.",
+        "The four-shouts lexical unit and enumeration are supported by the authored verse, but the actor repair must land before promotion."
+      ]
+    },
+    {
+      "ordinal": 1067,
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "reviewedEntrySha256": "9fd4d040b55ae48e962ef57e5e52be63b48391037e1ad7873dd55bd8abce0ee9",
+      "occurrencesReadInFullCase": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "o1 is a signed 金陵語錄序 by the lay disciple Li Pan ('淮南弟子李盤拜題'), not an unnameable compiler. Its praise of Juelang must name Li Pan as exact author and Juelang as person described.",
+        "o3 is direct speech in Miyun Yuanwu's record explaining Mazu's great function/use, not compiler narration. The complete address identifies the record owner as utterer.",
+        "The gloss imports 'responsive capacity' and 'whole mechanism' where the sources variously praise a master's entire activity and demand great use. Tighten the inference to the observable 全/機/大用 wording and named deployments."
+      ]
+    },
+    {
+      "ordinal": 1072,
+      "id": "t_c49116ead4fc",
+      "term": "睦州擔板",
+      "reviewedEntrySha256": "efaeb311f9133a02c21564145f88332e43c1da0effb3080bb6fa27996ce5ca47",
+      "occurrencesReadInFullCase": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "REVISE",
+      "findings": [
+        "The explanation's central negative claim is false: o2 explicitly glosses the image in verse as '睦州檐板漢，擔來見一邊'—the board carrier carries it and sees one side. The entry says the witnesses do not supply a one-sided-vision gloss, but its own defining occurrence does.",
+        "Revise the interpretation from this corpus evidence, preserving the named stock phrase and explicitly anchoring the one-side inference to o2 rather than importing it from an outside dictionary.",
+        "o4 and o5 are later compiler/commentary uses, while o1 and o3 are direct Dahui and Liao'an deployments; keep those voice distinctions during repair."
+      ]
+    }
+  ],
+  "systemicFindings": [
+    "The residual unnamed-compiler category again masks recoverable direct masters and signed authors (Baoning Yong, Chaozong Tongren, Miyun Yuanwu, Li Pan).",
+    "Repeated editions/records of one master's same utterance can pass distinct work_id counting while remaining one semantic deployment; duplicate-case-family control is still required above the manifest's work identity.",
+    "A prose author contradicted a stored occurrence in 睦州擔板. Semantic canaries should search explanations for explicit negative claims ('the texts do not...') and require a reviewer to test them against every selected KWIC."
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "sourceFilesByteModified": false,
+    "selfReview": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-canary-review",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T17:15:31.913925+00:00",
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 9,
+  "exactKwicsAndSpans": 9,
+  "keep": 1,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 1201,
+      "id": "t_9808ec580b69",
+      "term": "金屑落眼",
+      "reviewedEntrySha256": "10ce85bcbd7a7b21da240cd0530e28ec6bcdb85351989bfd4139e6411bc66cd8",
+      "occurrencesReadInFullCase": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "findings": [
+        "All four full cases support one image: even fine gold dust obstructs sight when retained.",
+        "The prose correctly distinguishes Huangbo Wunian Shenyou, Huayan Shengke, Weilin Daopei, and the non-master participant Yuzhi; every quoted claim is contained by its stored occurrence."
+      ]
+    },
+    {
+      "ordinal": 1202,
+      "id": "t_130d20fb3834",
+      "term": "眼裏著沙",
+      "reviewedEntrySha256": "36a3794637f352f2a2ecb08755bfd6940ec3f622604acc8e2bf548d91c6ac349",
+      "occurrencesReadInFullCase": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "REVISE",
+      "findings": [
+        "Occurrence 1 stops after Baishui Benren’s paired maxim and does not store his requested explanation or the answer 應真無比 (“a worthy one without peer”), although the prose quotes that answer. Extend and re-verify o1 or add a separate anchored occurrence; do not delete the claim merely to clear the gate.",
+        "The remaining four cases support the exclusion/inclusion contrast and Daowu Wujin Wen’s transitive deployment; their actors and one-thing sense boundary hold."
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false
+  }
+}

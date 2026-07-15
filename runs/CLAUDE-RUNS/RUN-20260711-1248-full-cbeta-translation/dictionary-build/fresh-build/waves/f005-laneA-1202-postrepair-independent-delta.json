@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-postrepair-exact-hash-delta-review",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T17:31:08.670608+00:00",
+  "ordinal": 1202,
+  "id": "t_130d20fb3834",
+  "term": "眼裏著沙",
+  "priorReviewedSha256": "36a3794637f352f2a2ecb08755bfd6940ec3f622604acc8e2bf548d91c6ac349",
+  "reviewedEntrySha256": "3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed",
+  "occurrencesReadInFullCase": 5,
+  "exactKwicsAndSpans": 5,
+  "verdict": "KEEP",
+  "deltaFindings": [
+    "Occurrence 1 is now widened through Baishui Benren’s full exchange and contains his answer 應真無比; the formerly dangling prose claim is anchored.",
+    "The five full cases continue to support the single sense “sand getting into the eye,” including the exclusion/inclusion contrast and Daowu Wujin Wen’s transitive deployment.",
+    "Actor assignments remain sound: Baishui Benren (with Hongzhi Zhengjue only as record-owner), Shending Yikui, Chushi Fanqi, Linye Qi, and Daowu Wujin Wen."
+  ],
+  "verification": [
+    {
+      "occurrence": 1,
+      "ok": true,
+      "verifiedFromLb": "0181c15",
+      "verifiedToLb": "0181c16",
+      "storedFromLb": "0181c15",
+      "storedToLb": "0181c16",
+      "spanExact": true
+    },
+    {
+      "occurrence": 2,
+      "ok": true,
+      "verifiedFromLb": "0448a22",
+      "verifiedToLb": "0448a22",
+      "storedFromLb": "0448a22",
+      "storedToLb": "0448a22",
+      "spanExact": true
+    },
+    {
+      "occurrence": 3,
+      "ok": true,
+      "verifiedFromLb": "0567b14",
+      "verifiedToLb": "0567b15",
+      "storedFromLb": "0567b14",
+      "storedToLb": "0567b15",
+      "spanExact": true
+    },
+    {
+      "occurrence": 4,
+      "ok": true,
+      "verifiedFromLb": "0638b10",
+      "verifiedToLb": "0638b11",
+      "storedFromLb": "0638b10",
+      "storedToLb": "0638b11",
+      "spanExact": true
+    },
+    {
+      "occurrence": 5,
+      "ok": true,
+      "verifiedFromLb": "0453c16",
+      "verifiedToLb": "0453c17",
+      "storedFromLb": "0453c16",
+      "storedToLb": "0453c17",
+      "spanExact": true
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "wave": "f005",
+  "reviewer": "root",
+  "policy": "Independent semantic and exact-turn review. Owner-drafted is never final; KEEP requires a current hash after all requested revisions and a clean formal gate.",
+  "entries": {
+    "t_9808ec580b69": {
+      "term": "金屑落眼",
+      "verdict": "KEEP",
+      "reviewedSha256": "10ce85bcbd7a7b21da240cd0530e28ec6bcdb85351989bfd4139e6411bc66cd8",
+      "finding": "Independent semantic review passed at the recorded hash.",
+      "sourceReview": "fresh-build/waves/f005-laneA-1201-1202-independent-review.json",
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_9808ec580b69/10ce85bcbd7a7b21da240cd0530e28ec6bcdb85351989bfd4139e6411bc66cd8/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_9808ec580b69/10ce85bcbd7a7b21da240cd0530e28ec6bcdb85351989bfd4139e6411bc66cd8/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_9808ec580b69/10ce85bcbd7a7b21da240cd0530e28ec6bcdb85351989bfd4139e6411bc66cd8/receipt.json"
+      }
+    },
+    "t_130d20fb3834": {
+      "term": "眼裏著沙",
+      "verdict": "KEEP",
+      "reviewedSha256": "3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed",
+      "finding": "Independent semantic review passed at the recorded hash.",
+      "sourceReview": "fresh-build/waves/f005-laneA-1202-postrepair-independent-delta.json",
+      "supersedes": {
+        "verdict": "REVISE",
+        "reviewedSha256": "36a3794637f352f2a2ecb08755bfd6940ec3f622604acc8e2bf548d91c6ac349",
+        "sourceReview": "fresh-build/waves/f005-laneA-1201-1202-independent-review.json"
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_130d20fb3834/3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_130d20fb3834/3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_130d20fb3834/3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed/receipt.json"
+      }
+    }
+  }
+}
