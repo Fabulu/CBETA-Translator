@@ -1,0 +1,182 @@
+{
+  "Id": "t_2b02b05d68b6",
+  "SourceTerm": "不是心不是佛不是物",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f004 lane A rereview repair author",
+  "WrittenUtc": "2026-07-15T15:15:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "not mind, not Buddha, not a thing",
+      "AlternateTargets": [
+        "it is not mind, not Buddha, not any object"
+      ],
+      "SearchAliases": [
+        "not mind not Buddha not thing",
+        "neither mind nor Buddha nor thing"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Nanquan Puyuan’s fixed three-part answer, preserved and later raised as a case; its three negations refuse the questioner all three proposed places to identify it.",
+      "Occurrences": [
+        {
+          "RelPath": "M/M59/M59n1540.xml",
+          "FromLb": "0809b01",
+          "ToLb": "0809b04",
+          "Kwic": "到馬大師處大師云你去向他道馬大師近日佛法又別僧馳此語問之梅云如何別僧云馬大師近日道非心非佛不是心不是佛不是物梅云從這老漢非心非佛我這裏只是即心是佛僧回舉似馬大師",
+          "Curated": true,
+          "AttributionNote": "Source text (大慧普覺禪師普說): an unnamed messenger monk reports Mazu Daoyi's formula to Damei Fachang.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Damei Fachang",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed messenger monk",
+            "ActorLabel": "the unnamed messenger monk",
+            "ActorRole": "later-quoter",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧云 voices Mazu's reported 非心非佛，不是心不是佛不是物; Mazu is the named quoted origin.",
+            "ReviewedBy": "Codex cohorts 1-3 full-case hand-read repair",
+            "ReviewedUtc": "2026-07-15T21:11:28.666541Z",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0695a07",
+          "ToLb": "0695a08",
+          "Kwic": "故江西大師云不是心不是佛不是物且教",
+          "Curated": true,
+          "AttributionNote": "Source text (古尊宿語錄): the explicit Jiangxi master speech frame attributes the formula to Mazu Daoyi.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "MasterName": "Mazu Daoyi"
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0812b17",
+          "ToLb": "0812b22",
+          "Kwic": "叉頭。為甚麼如此。但辦肯心。必不相賺。上堂舉。南泉云。江西馬祖說即心即佛。王老師不恁麼道。不是心不是佛不是物。恁麼道。還有過麼。趙州禮拜而出。時有僧隨問趙州云。上座禮拜了便出。意作麼生。州云。汝却問取和尚。僧上問云。適來諗上座意",
+          "Curated": true,
+          "AttributionNote": "Source text (大慧普覺禪師語錄): Nanquan Puyuan speaks the formula inside the case raised by Dahui Zonggao.",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "later-raiser",
+                "later-quoter",
+                "record-owner"
+              ]
+            }
+          ],
+          "MasterName": "Nanquan Puyuan"
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0560b18",
+          "ToLb": "0560b25",
+          "Kwic": "法號總持門。得之者不立階梯頓齊諸聖。失之者塵劫不復徒自勞形。或得失兩忘凡聖情盡。正當恁麼時不是心不是佛不是物。敢問諸禪德。畢竟是什麼。若向這裏倜儻分明。便能獨步大方橫身三界。握金剛寶劍破生死魔軍。良久曰。劄。香山延泳禪師明州香山",
+          "Curated": true,
+          "AttributionNote": "Source text (續傳燈錄): Suzhou Wanshou Puqin speaks the formula in his uninterrupted public address.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "named public-address speaker",
+            "ActorLabel": "Suzhou Wanshou Puqin",
+            "ActorRole": "utterer",
+            "RungsChecked": [],
+            "GrammarEvidence": "蘇州萬壽普懃禪師上堂曰 opens the uninterrupted address containing the formula.",
+            "ReviewedBy": "Codex cohorts 1-3 full-case hand-read repair",
+            "ReviewedUtc": "2026-07-15T21:11:28.666541Z",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "P/P155/P155n1519.xml",
+          "FromLb": "0196b05",
+          "ToLb": "0197a03",
+          "Kwic": "師剖露師云剎竿頭上翻筋斗僧云恁麼則嶽麓山前祥霧起祝融峯下瑞雲生師云紫羅帳裏璨真珠遂拈拄杖云不是心不是佛不是物擊禪牀一下云與君打破精靈窟簸土揚塵無處尋千山萬山空突兀復擊禪牀一下云歸堂去。俞道婆賣油餈為業㕘瑯瑘瑘示以臨濟無位真人話一",
+          "Curated": true,
+          "AttributionNote": "Source text (宗門統要正續集(第13卷-第20卷)): Zixian Jue lifts his staff and speaks the formula.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zixian Jue",
+              "Roles": [
+                "utterer",
+                "record-owner",
+                "action-performer"
+              ]
+            }
+          ],
+          "MasterName": "Zixian Jue"
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0670c18",
+          "ToLb": "0671a01",
+          "Kwic": "栽花分外奇枝頭春色暗芳菲馨香遍界無人齅一任狂風取次吹南泉曰江西馬祖說即心即佛王老師不恁麼道不是心不是佛不是物恁麼道還有過麼趙州禮拜而出僧隨問州曰上座禮拜了便出意作麼生曰汝却問取和尚僧問師曰適來諗上座意作麼生師曰他却領得老僧意旨。",
+          "Curated": true,
+          "AttributionNote": "Source text (禪宗頌古聯珠通集): the explicit Nanquan speech frame assigns the formula to Nanquan Puyuan.",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "MasterName": "Nanquan Puyuan"
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "M/M59/M59n1540.xml",
+        "C/C077/C077n1710.xml",
+        "T/T47/T47n1998A.xml",
+        "T/T51/T51n2077.xml",
+        "P/P155/P155n1519.xml",
+        "C/C078/C078n1720.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "不是心不是佛不是物 is ‘not mind, not Buddha, not a thing.’ The corpus transmits more than one explicit attribution: some witnesses introduce it with 故江西大師云 or report that 馬大師近日道 it, while the Nanquan–Zhaozhou case has 南泉云 or 南泉曰 before the same three-part formula. Later record owners raise, quote, or wield the wording in public addresses. The three coordinated negatives form one inherited utterance, but the evidence does not permit collapsing its Mazu and Nanquan transmission strands into a single origin."
+    }
+  ]
+}

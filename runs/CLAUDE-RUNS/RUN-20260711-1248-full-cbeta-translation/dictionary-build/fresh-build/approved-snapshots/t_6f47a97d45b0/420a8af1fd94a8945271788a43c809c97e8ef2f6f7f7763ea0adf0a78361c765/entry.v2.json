@@ -1,0 +1,192 @@
+{
+  "Id": "t_6f47a97d45b0",
+  "SourceTerm": "序",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "preface",
+      "AlternateTargets": [
+        "foreword"
+      ],
+      "SearchAliases": [
+        "preface",
+        "foreword",
+        "prefatory note"
+      ],
+      "Status": "preferred",
+      "Explanation": "The headword names a preface: prose placed before a record, collection, or scripture to introduce its compilation, transmission, author, or publication. In the stored evidence, six occurrences are the source's own preface headings, while Yunqi Zhuhong and Hanyue Fazang utter the word when describing requests to preface works. The title blocks also name writers such as Xu Fu, Xiong Kaiyuan, and Yang Yi, but a writer named beside a title is not thereby the utterer of the title's headword.",
+      "Validation": "multi-source",
+      "Note": "Eight exact witnesses across six distinct works. All heading rows were re-audited: metadata has impersonal actor status; named prose or requests retain their actual writer/speaker.",
+      "Occurrences": [
+        {
+          "RelPath": "D/D48/D48n8939.xml",
+          "FromLb": "0001b01",
+          "ToLb": "0001b03",
+          "Kwic": "舒州龍門佛眼和尚語錄序佛眼禪師語錄序豫章徐俯撰佛眼禪師之語侍者道昕所錄",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (古尊宿語錄): (舒州龍門佛眼和尚語錄序)…(豫章徐俯撰) is a title/author block; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (古尊宿語錄): 舒州龍門佛眼和尚語錄序…豫章徐俯撰 is a title/author block; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0384b20",
+          "ToLb": "0384c05",
+          "Kwic": "百年來僅此人，是聖是凡休浪說。No.1437-C永覺和尚廣錄序No.1437-C永覺和尚廣錄序鼓山大和尚永覺賢",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (永覺元賢禪師廣錄): No.1437-C(永覺和尚廣錄序) is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (永覺元賢禪師廣錄): No.1437-C永覺和尚廣錄序 is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "J/J34/J34nB299.xml",
+          "FromLb": "0125a01",
+          "ToLb": "0125a02",
+          "Kwic": "序熊開元序三峰藏和尚語錄序武林衛軍嘉魚學人熊開元撰",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (三峰藏和尚語錄): (序熊開元序三峰藏和尚語錄序) is the title block; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (三峰藏和尚語錄): 序熊開元序三峰藏和尚語錄序 is the title block; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "J/J25/J25nB156.xml",
+          "FromLb": "0053b16",
+          "ToLb": "0053b17",
+          "Kwic": "門人錄其語為帙，將鋟梓以傳，徵序於予。",
+          "MasterName": "Yunqi Zhuhong",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunqi Zhuhong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (無幻禪師語錄): Yunqi Zhuhong's written voice says (門人)…(徵序於予); he utters the headword in the request he received."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0196b09",
+          "ToLb": "0196b13",
+          "Kwic": "No.2076景德傳燈錄序景德傳燈錄序翰林學士朝散大夫行左司諫知制誥同修國史判史館",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (景德傳燈錄): No.2076(景德傳燈錄序) is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (景德傳燈錄): No.2076景德傳燈錄序 is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "X/X67/X67n1303.xml",
+          "FromLb": "0267c05",
+          "ToLb": "0267c05",
+          "Kwic": "林泉老人評唱投子丹霞頌古總序",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (林泉老人評唱投子青和尚頌古空谷集): (林泉老人評唱投子丹霞頌古總序) is the preface heading; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (林泉老人評唱投子青和尚頌古空谷集): 林泉老人評唱投子丹霞頌古總序 is the preface heading; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0386b08",
+          "ToLb": "0386b11",
+          "Kwic": "No.1437-G鼓山晚錄序No.1437-G鼓山晚錄序余當晚歲，悞入世網",
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source text (永覺元賢禪師廣錄): No.1437-G(鼓山晚錄序) is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "the source title compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (永覺元賢禪師廣錄): No.1437-G鼓山晚錄序 is an editorial title; no human speaker utters the headword in this stored heading. This is an editorial heading."
+          }
+        },
+        {
+          "RelPath": "J/J34/J34nB299.xml",
+          "FromLb": "0201a24",
+          "ToLb": "0201a25",
+          "Kwic": "敬刻此經，布震旦國，俾見此經者皆入光明大三昧中，為三會同心法侶，屬山僧序其端。",
+          "MasterName": "Hanyue Fazang",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Hanyue Fazang",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (三峰藏和尚語錄): Hanyue Fazang says (屬山僧序其端) in his own written voice."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "D/D48/D48n8939.xml",
+        "X/X72/X72n1437.xml",
+        "J/J34/J34nB299.xml",
+        "J/J25/J25nB156.xml",
+        "T/T51/T51n2076.xml",
+        "X/X67/X67n1303.xml"
+      ],
+      "RelatedMasters": [
+        "Yunqi Zhuhong",
+        "Linquan Conglun",
+        "Yongjue Yuanxian",
+        "Hanyue Fazang"
+      ],
+      "RelatedTerms": [
+        "總序",
+        "序其端",
+        "撰",
+        "鋟梓"
+      ]
+    }
+  ]
+}
