@@ -227,3 +227,13 @@ genres, and that the entry follows predicates and speakers. A regression test ex
 Production trigger: an independent reviewer spent 131 full-case reads on 21 entries that were mechanically green but
 all carried this prose. Those 21 were correctly rejected. The detector converts that entire class from an expensive
 post-author review finding into an immediate author-side failure.
+
+## 14. Reject nested cuts of one passage as duplicate depth
+
+Implementation: the depth audit now hard-fails two witnesses when they come from the same source, their line ranges
+overlap, and one normalized KWIC contains the other. Exact duplicates were already blocked; this closes the cheaper
+variant where the same headword-bearing passage is cut once narrowly and once broadly to masquerade as two witnesses.
+Nearby independent occurrences remain allowed.
+
+Production trigger: independent review found two overlapping `戒和尚` witnesses from one passage after mechanical
+depth had passed. The new check moves that finding ahead of semantic review. The accepted f005 canary remains green.

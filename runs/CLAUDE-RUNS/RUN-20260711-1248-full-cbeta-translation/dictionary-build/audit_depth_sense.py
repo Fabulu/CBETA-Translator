@@ -281,6 +281,27 @@ def audit_entry(path: Path, count_info: dict) -> dict:
     for anchor, indexes in anchor_groups.items():
         if anchor[0] and len(indexes) > 1:
             hard.append({"kind": "duplicate-passage-anchor", "anchor": anchor[:3], "occurrenceIndexes": indexes})
+    # Different KWIC cuts of the same underlying witness must not pad depth.
+    # The containment guard keeps this fail-closed rule narrow: ordinary nearby
+    # occurrences are allowed, while a short span nested inside a longer span
+    # from the same source and line interval is one passage, not two witnesses.
+    for left_index, left in enumerate(occurrences):
+        for right_index, right in enumerate(occurrences[left_index + 1:], left_index + 1):
+            if left.get("RelPath") != right.get("RelPath"):
+                continue
+            left_kwic = re.sub(r"\s+", "", str(left.get("Kwic") or ""))
+            right_kwic = re.sub(r"\s+", "", str(right.get("Kwic") or ""))
+            if not left_kwic or not right_kwic or not (left_kwic in right_kwic or right_kwic in left_kwic):
+                continue
+            left_from, left_to = str(left.get("FromLb") or ""), str(left.get("ToLb") or "")
+            right_from, right_to = str(right.get("FromLb") or ""), str(right.get("ToLb") or "")
+            if left_from and left_to and right_from and right_to and left_from <= right_to and right_from <= left_to:
+                hard.append({
+                    "kind": "overlapping-passage-witness",
+                    "occurrenceIndexes": [left_index, right_index],
+                    "relPath": left.get("RelPath"),
+                    "lineRanges": [[left_from, left_to], [right_from, right_to]],
+                })
     for index, sense in enumerate(senses):
         if not (sense.get("Occurrences") or []):
             hard.append({"kind": "unanchored-sense", "senseIndex": index})
