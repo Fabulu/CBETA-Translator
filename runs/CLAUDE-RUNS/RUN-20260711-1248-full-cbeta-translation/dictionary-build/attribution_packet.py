@@ -310,6 +310,31 @@ def turn_proof_candidates(case_text: str, source_term: str) -> list[dict]:
     return rows
 
 
+def packet_input_sha256(entry: dict) -> str:
+    """Hash only fields that can change an attribution packet.
+
+    Definition/prose repairs do not alter complete-case retrieval. Keying the
+    cache to the entire entry forced every prose-only revision to rebuild all
+    XML packets. Actor or evidence changes still invalidate this fingerprint.
+    """
+    payload = {
+        "Id": entry.get("Id"),
+        "SourceTerm": entry.get("SourceTerm"),
+        "Occurrences": [
+            {
+                "RelPath": occurrence.get("RelPath"),
+                "FromLb": occurrence.get("FromLb"),
+                "Kwic": occurrence.get("Kwic"),
+                "MasterName": occurrence.get("MasterName"),
+            }
+            for sense in entry.get("Senses") or []
+            for occurrence in sense.get("Occurrences") or []
+        ],
+    }
+    rendered = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("paths", nargs="+", type=Path, help="entry.v2.json file or term directory")
@@ -322,7 +347,7 @@ def main() -> int:
         path = supplied / "entry.v2.json" if supplied.is_dir() else supplied
         raw_entry = path.read_bytes()
         entry = json.loads(raw_entry.decode("utf-8-sig"))
-        input_hashes[entry.get("Id")] = hashlib.sha256(raw_entry).hexdigest()
+        input_hashes[entry.get("Id")] = packet_input_sha256(entry)
         for sense_index, sense in enumerate(entry.get("Senses") or [], 1):
             for occurrence_index, occurrence in enumerate(sense.get("Occurrences") or [], 1):
                 pending.append({
@@ -352,8 +377,8 @@ def main() -> int:
         completed.append((item["_order"], row))
     rows = [row for _, row in sorted(completed)]
     payload = {
-        "generatorVersion": 3,
-        "inputEntrySha256": input_hashes,
+        "generatorVersion": 4,
+        "inputPacketSha256": input_hashes,
         "entries": len({row["entryId"] for row in rows}),
         "occurrences": len(rows),
         "tierACandidates": sum(row.get("tier", "").startswith("A") for row in rows),

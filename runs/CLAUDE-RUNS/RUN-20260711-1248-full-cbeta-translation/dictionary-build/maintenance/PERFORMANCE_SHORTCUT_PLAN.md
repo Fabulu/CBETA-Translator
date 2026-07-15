@@ -199,3 +199,16 @@ reading found that the explanation quoted Baishui's answer `應真無比` (“a 
 KWIC stopped before that answer. Catching this after two entries costs one widened occurrence; catching the same
 template habit after 100 entries would create another review-and-repair wave. The canary therefore optimizes the
 dominant cost—semantic rework—rather than just validator runtime.
+
+## 12. Evidence-scoped attribution-packet cache
+
+Implementation: attribution packet version 4 hashes only the fields that can change packet retrieval or display:
+entry ID, headword, ordered `RelPath`/`FromLb`/`Kwic` evidence, and current `MasterName`. Definition, alias, note, and
+other prose-only repairs reuse the exact packet instead of rereading XML. Any evidence or named-utterer change still
+invalidates the cache; full entry SHA-256 remains separately recorded by the cohort gate and semantic verdict.
+
+- Two-entry canary: first v4 packet build + composite gate 4.860 s; identical rerun 1.787 s, with a proven packet cache
+  hit and 0 packet-generation seconds.
+- Regression test proves a prose-only edit preserves the packet fingerprint while an actor change invalidates it.
+- This directly targets repair waves, where prose changes were repeatedly paying the 12.5-second 59-case packet cost
+  despite unchanged corpus evidence.

@@ -29,6 +29,7 @@ if _fresh_state.get("corpusFrozen") and _fresh_state.get("corpusBaselineSha256")
     os.environ.setdefault("AUDIT_DEPTH_EPHEMERAL", "1")
 
 from zc_batch import verify_entries
+from attribution_packet import packet_input_sha256
 
 
 FORBIDDEN = re.compile(r"\b(?:Buddhism|meditation|Bodhiteaching)\b", re.I)
@@ -42,7 +43,7 @@ def public_feedback_hard_pass(result: dict) -> bool:
         and isinstance(payload, dict)
         and payload.get("flagged") == 0
     )
-PACKET_GENERATOR_VERSION = 3
+PACKET_GENERATOR_VERSION = 4
 
 
 def command(arguments: list[str]) -> dict:
@@ -80,14 +81,14 @@ def entry_path(value: str) -> Path:
     raise FileNotFoundError(value)
 
 
-def load_cached_packet(path: Path, entry_hashes: dict[str, str]) -> dict | None:
+def load_cached_packet(path: Path, packet_hashes: dict[str, str]) -> dict | None:
     try:
         candidate = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError):
         return None
     if candidate.get("generatorVersion") != PACKET_GENERATOR_VERSION:
         return None
-    if candidate.get("inputEntrySha256") != entry_hashes:
+    if candidate.get("inputPacketSha256") != packet_hashes:
         return None
     return candidate
 
@@ -106,6 +107,7 @@ def main() -> int:
     entries = [json.loads(path.read_text(encoding="utf-8-sig")) for path in paths]
     ids = [entry["Id"] for entry in entries]
     entry_hashes = {entry["Id"]: hashlib.sha256(path.read_bytes()).hexdigest() for path, entry in zip(paths, entries)}
+    packet_hashes = {entry["Id"]: packet_input_sha256(entry) for entry in entries}
     exact_started = time.perf_counter()
     exact = verify_entries(paths)
     exact_elapsed = round(time.perf_counter() - exact_started, 3)
@@ -177,7 +179,7 @@ def main() -> int:
     packets = None
     if not args.skip_packets:
         packet_output = (args.output.parent / (args.output.stem + "-attribution-packets.json")) if args.output else Path(tempfile.mktemp(suffix="-packets.json"))
-        cached = load_cached_packet(packet_output, entry_hashes)
+        cached = load_cached_packet(packet_output, packet_hashes)
         if cached is not None:
             packets = {
                 "exitCode": 0,
@@ -190,7 +192,7 @@ def main() -> int:
             packets = command([sys.executable, "attribution_packet.py", *map(str, paths), "--output", str(packet_output)])
             packets["cacheHit"] = False
         packets["report"] = str(packet_output)
-        packet_payload = load_cached_packet(packet_output, entry_hashes)
+        packet_payload = load_cached_packet(packet_output, packet_hashes)
         packets["generatorVersion"] = packet_payload.get("generatorVersion") if packet_payload else None
         packets["turnProofMissing"] = (
             sum(not row.get("turnProofCandidates") for row in packet_payload.get("packets") or [])
