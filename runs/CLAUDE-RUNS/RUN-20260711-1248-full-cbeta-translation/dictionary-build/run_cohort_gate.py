@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -118,13 +119,12 @@ def main() -> int:
     else:
         attribution_command.append("--strict-roster")
     attribution_command.extend(map(str, paths))
-    attribution = command(attribution_command)
     with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as temporary:
         public_report = Path(temporary.name)
-    public_feedback = command([
+    public_command = [
         sys.executable, "audit_public_feedback.py", "--paths", *map(str, paths),
         "--report", str(public_report)
-    ])
+    ]
     with tempfile.NamedTemporaryFile(suffix="-depth.json", delete=False) as temporary:
         depth_report = Path(temporary.name)
     depth_command = [
@@ -133,17 +133,40 @@ def main() -> int:
     ]
     for entry_id in args.cluster_id:
         depth_command.extend(["--cluster-id", entry_id])
-    depth = command(depth_command)
-    depth["report"] = str(depth_report)
-    count_claims = command([sys.executable, "audit_count_claims.py", "--json", "--paths", *map(str, paths)])
-    work_sources = command([sys.executable, "audit_work_source_validation.py", *map(str, paths)])
-    corpus_baseline = command([sys.executable, "audit_corpus_baseline.py", *map(str, paths)])
+    count_claims_command = [sys.executable, "audit_count_claims.py", "--json", "--paths", *map(str, paths)]
+    work_sources_command = [sys.executable, "audit_work_source_validation.py", *map(str, paths)]
+    corpus_baseline_command = [sys.executable, "audit_corpus_baseline.py", *map(str, paths)]
     windows_build = HERE.as_posix().replace("/mnt/c/", "C:/")
     windows_frozen_auditor = (HERE.parents[3] / "eng" / "tools" / "audit-frozen-historical-terms.js").as_posix().replace("/mnt/c/", "C:/")
-    frozen_historical_terms = command([
+    frozen_historical_command = [
         "cmd.exe", "/d", "/c", "node", windows_frozen_auditor,
         f"--build-dir={windows_build}",
-    ])
+    ]
+
+    # These audits are read-only and operate on the same immutable entry cohort.
+    # Running them serially made process startup and repeated WSL filesystem reads
+    # dominate small checkpoints. Keep exact KWIC verification above as the first
+    # fail-closed operation, then collect every independent audit concurrently.
+    audit_commands = {
+        "attribution": attribution_command,
+        "publicFeedback": public_command,
+        "depthSense": depth_command,
+        "countClaims": count_claims_command,
+        "workSourceValidation": work_sources_command,
+        "corpusBaseline": corpus_baseline_command,
+        "frozenHistoricalTerms": frozen_historical_command,
+    }
+    with ThreadPoolExecutor(max_workers=len(audit_commands)) as executor:
+        futures = {name: executor.submit(command, argv) for name, argv in audit_commands.items()}
+        audit_results = {name: future.result() for name, future in futures.items()}
+    attribution = audit_results["attribution"]
+    public_feedback = audit_results["publicFeedback"]
+    depth = audit_results["depthSense"]
+    depth["report"] = str(depth_report)
+    count_claims = audit_results["countClaims"]
+    work_sources = audit_results["workSourceValidation"]
+    corpus_baseline = audit_results["corpusBaseline"]
+    frozen_historical_terms = audit_results["frozenHistoricalTerms"]
 
     forbidden = []
     for path, entry in zip(paths, entries):
