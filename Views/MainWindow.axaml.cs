@@ -134,6 +134,9 @@ public partial class MainWindow : Window
     // Termbase editor (non-modal -- at most one instance per main window)
     private TermbaseEditorWindow? _termbaseEditorWindow;
 
+    // Rich Zen dictionary editor (non-modal -- at most one instance per main window)
+    private DictionaryEditorWindow? _dictionaryEditorWindow;
+
     // Tag editor (non-modal -- at most one instance per main window)
     private TagEditorWindow? _tagEditorWindow;
 
@@ -2257,6 +2260,7 @@ private async Task LoadConfigAndAutoloadAsync()
             ("Lineage: Open masters",        () => ForceTab(5)),
             ("Settings: Open preferences",   () => _ = _vm.OpenSettingsAsync()),
             ("Termbase: Open editor",        () => _ = _vm.OpenTermbaseEditorAsync()),
+            ("Zen Dictionary (Rich): Open editor", () => _ = OpenDictionaryEditorWindowAsync()),
             ("Index: Build search index",    () => _searchView?.ViewModel.BuildIndexCommand.Execute(null)),
             ("Theme: Toggle dark/light",     () => ToggleDarkLight()),
             ("Search: Clear all filters",    () => _searchView?.Clear()),
@@ -2477,6 +2481,59 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             _vm.SetStatus("Open dictionary failed: " + ex.Message);
         }
+    }
+
+    // ===========================================================
+    // Rich Zen dictionary editor window
+    // ===========================================================
+
+    private Task OpenDictionaryEditorWindowAsync()
+    {
+        if (BlockIfTourActive()) return Task.CompletedTask;
+        try
+        {
+            if (_dictionaryEditorWindow != null)
+            {
+                _dictionaryEditorWindow.Activate();
+                return Task.CompletedTask;
+            }
+
+            var root = _vm.TranslationRoot ?? _vm.Root;
+            if (string.IsNullOrWhiteSpace(root))
+            {
+                _vm.SetStatus("Open a corpus before editing the Zen dictionary.", StatusSeverity.Warning);
+                return Task.CompletedTask;
+            }
+
+            var origDir = _vm.OriginalDir ?? "";
+            var transDir = _vm.GetActiveTranslatedDir() ?? "";
+            // Best-effort master rollup: the master-corpus cache lives next to the parent root.
+            var masterCacheDir = string.IsNullOrWhiteSpace(_vm.Root)
+                ? null
+                : MasterCorpusSearchService.GetCacheDir(_vm.Root!);
+
+            var win = new DictionaryEditorWindow(root!, origDir, transDir, masterCacheDir, _vm.Username)
+            {
+                RequestedThemeVariant = this.ActualThemeVariant
+            };
+
+            win.TermsSaved += (_, _) =>
+            {
+                _vm.HandleTermsSaved();
+                _scholarView?.InvalidateTermbaseCache();
+            };
+            win.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
+            win.Closed += (_, _) => _dictionaryEditorWindow = null;
+
+            _dictionaryEditorWindow = win;
+            win.Show();
+        }
+        catch (Exception ex)
+        {
+            _vm.SetStatus("Open rich dictionary failed: " + ex.Message, StatusSeverity.Warning);
+        }
+
+        return Task.CompletedTask;
     }
 
     // ===========================================================

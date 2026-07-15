@@ -128,7 +128,9 @@ public partial class ReadableTabViewModel : ViewModelBase
     public void SetZenContext(string? relPath, bool isZen)
     {
         CurrentRelPathForZen = relPath;
-        IsZenEnabled = !string.IsNullOrWhiteSpace(relPath);
+        // Zen classification is prescriptive (Assets/Data/zen-corpus.json) — display it, but
+        // the toggle is always disabled: users can no longer change what counts as Zen.
+        IsZenEnabled = false;
         // Suppress zen events for programmatic toggle
         _suppressZenEvents = true;
         try { IsZenText = isZen; }

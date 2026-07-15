@@ -6,118 +6,84 @@ using Xunit;
 namespace ReadZen.Tests.Services;
 
 /// <summary>
-/// Tests for ZenTextsService. The bug this guards against: when the user
-/// switches between CBETA and OpenZen corpora, the in-memory _zen set must
-/// be reloaded from the new corpus's zen_texts.json. Failing to do so makes
-/// the "Zen only" filter return no results until the app is restarted
-/// (reported against the post-RUN-20260416-2302 build).
+/// Tests for ZenTextsService. Zen membership is now PRESCRIPTIVE: it comes from the
+/// app-baked allowlist Assets/Data/zen-corpus.json (derived from ZEN_TEXT_WORKLIST.md),
+/// not from a per-repo, user-editable zen_texts.json. These tests point the service at a
+/// temp asset file via the constructor override.
 /// </summary>
 public class ZenTextsServiceTests
 {
-    /// <summary>
-    /// Creates a clean temp directory + writes a minimal zen_texts.json
-    /// listing the supplied relative paths.
-    /// </summary>
-    private static string MakeRoot(params string[] relPaths)
+    /// <summary>Writes a temp zen-corpus.json asset listing the supplied relpaths; returns its path.</summary>
+    private static string MakeAsset(params string[] relPaths)
     {
-        var dir = Path.Combine(Path.GetTempPath(), "zen_texts_test_" + Path.GetRandomFileName());
+        var dir = Path.Combine(Path.GetTempPath(), "zencorpus_test_" + Path.GetRandomFileName());
         Directory.CreateDirectory(dir);
-        var json = "{\"Version\":1,\"UpdatedUtc\":\"2026-04-16T00:00:00Z\",\"Zen\":["
+        var path = Path.Combine(dir, "zen-corpus.json");
+        var json = "{\"version\":1,\"source\":\"test\",\"texts\":["
                  + string.Join(",", System.Array.ConvertAll(relPaths, p => "\"" + p + "\""))
                  + "]}";
-        File.WriteAllText(Path.Combine(dir, "zen_texts.json"), json);
-        return dir;
+        File.WriteAllText(path, json);
+        return path;
     }
 
     [Fact]
-    public async Task LoadAsync_FromRoot_LoadsEntries()
+    public async Task LoadAsync_LoadsPrescriptiveAllowlist()
     {
-        var root = MakeRoot("T01/a.xml", "T02/b.xml");
-        var svc = new ZenTextsService();
+        var svc = new ZenTextsService(MakeAsset("T/T48/T48n2005.xml", "J/J24/J24nB137.xml"));
 
-        await svc.LoadAsync(root);
+        await svc.LoadAsync(root: "anything-ignored");
 
-        Assert.True(svc.IsZen("T01/a.xml"));
-        Assert.True(svc.IsZen("T02/b.xml"));
-        Assert.False(svc.IsZen("T03/c.xml"));
+        Assert.True(svc.IsZen("T/T48/T48n2005.xml"));
+        Assert.True(svc.IsZen("J/J24/J24nB137.xml"));
+        Assert.False(svc.IsZen("T/T47/T47n1960.xml")); // a Pure Land text — not Zen
     }
 
     [Fact]
-    public async Task LoadAsync_SecondTime_FromDifferentRoot_ReplacesSet()
+    public async Task LoadAsync_RootArgumentIsIgnored_MembershipIsAppGlobal()
     {
-        // THIS IS THE CORPUS-SWITCH REGRESSION GUARD.
-        //
-        // Scenario: user starts in CBETA (5 zen entries loaded), switches to
-        // OpenZen (empty file), switches back to CBETA. If LoadAsync isn't
-        // called with the right root on every switch, the _zen HashSet
-        // reflects the wrong corpus.
-        //
-        // Expected semantics: each LoadAsync fully replaces the in-memory
-        // set with the content of the specified root's zen_texts.json.
-        var cbetaRoot = MakeRoot("T01/a.xml", "T02/b.xml", "T03/c.xml");
-        var openRoot = MakeRoot(); // empty — mirrors OpenZen's "all-zen-by-default" semantics
+        // The prescriptive list is the same regardless of which repo root is passed.
+        var svc = new ZenTextsService(MakeAsset("T/T48/T48n2005.xml"));
 
-        var svc = new ZenTextsService();
-        await svc.LoadAsync(cbetaRoot);
-        Assert.True(svc.IsZen("T01/a.xml"));
+        await svc.LoadAsync("C:/some/cbeta/root");
+        Assert.True(svc.IsZen("T/T48/T48n2005.xml"));
 
-        // Switch to OpenZen
-        await svc.LoadAsync(openRoot);
-        Assert.False(svc.IsZen("T01/a.xml"));
-        Assert.False(svc.IsZen("T02/b.xml"));
-
-        // Switch back to CBETA — the earlier entries must reappear. If the
-        // app fails to call LoadAsync here (the pre-fix SwitchCorpusAsync
-        // bug), IsZen would still return false for everything from the
-        // last-loaded empty OpenZen root, and the "Zen only" filter would
-        // hide every CBETA file.
-        await svc.LoadAsync(cbetaRoot);
-        Assert.True(svc.IsZen("T01/a.xml"));
-        Assert.True(svc.IsZen("T02/b.xml"));
-        Assert.True(svc.IsZen("T03/c.xml"));
-    }
-
-    [Fact]
-    public async Task LoadAsync_MissingFile_CreatesEmptyWithNoException()
-    {
-        // First-run scenario for a corpus that's never had zen_texts.json
-        // written. Must not throw; IsZen must return false for everything.
-        var dir = Path.Combine(Path.GetTempPath(), "zen_texts_empty_" + Path.GetRandomFileName());
-        Directory.CreateDirectory(dir);
-
-        var svc = new ZenTextsService();
-        await svc.LoadAsync(dir);
-
-        Assert.False(svc.IsZen("any/path.xml"));
-        Assert.True(File.Exists(Path.Combine(dir, "zen_texts.json")),
-            "LoadAsync should have created an empty zen_texts.json");
+        await svc.LoadAsync("C:/a/totally/different/root");
+        Assert.True(svc.IsZen("T/T48/T48n2005.xml"));
     }
 
     [Fact]
     public async Task IsZen_NormalizesBackslashesToForwardSlashes()
     {
-        // Windows-path regression guard: the stored key is forward-slash
-        // normalized, so a Windows-style backslash lookup must still match.
-        var root = MakeRoot("T01/a.xml");
-        var svc = new ZenTextsService();
-        await svc.LoadAsync(root);
+        var svc = new ZenTextsService(MakeAsset("T/T48/T48n2005.xml"));
+        await svc.LoadAsync("");
 
-        Assert.True(svc.IsZen(@"T01\a.xml"));
-        Assert.True(svc.IsZen("T01/a.xml"));
+        Assert.True(svc.IsZen(@"T\T48\T48n2005.xml"));
+        Assert.True(svc.IsZen("T/T48/T48n2005.xml"));
     }
 
     [Fact]
-    public async Task SetZenAsync_Persists_AcrossLoad()
+    public async Task SetZenAsync_IsNoOp_CannotAddOrRemove()
     {
-        var root = MakeRoot();
-        var svc = new ZenTextsService();
-        await svc.LoadAsync(root);
+        var svc = new ZenTextsService(MakeAsset("T/T48/T48n2005.xml"));
+        await svc.LoadAsync("");
 
-        await svc.SetZenAsync(root, "T05/new.xml", isZen: true);
+        // Attempting to "add" a non-Zen text must NOT make it Zen (prescriptive, not editable).
+        await svc.SetZenAsync("root", "T/T47/T47n1960.xml", isZen: true);
+        Assert.False(svc.IsZen("T/T47/T47n1960.xml"));
 
-        // Reload with a fresh service instance to confirm the file was written
-        var svc2 = new ZenTextsService();
-        await svc2.LoadAsync(root);
-        Assert.True(svc2.IsZen("T05/new.xml"));
+        // Attempting to "remove" a Zen text must NOT change it.
+        await svc.SetZenAsync("root", "T/T48/T48n2005.xml", isZen: false);
+        Assert.True(svc.IsZen("T/T48/T48n2005.xml"));
+    }
+
+    [Fact]
+    public async Task LoadAsync_MissingAsset_NoThrow_EverythingFalse()
+    {
+        var missing = Path.Combine(Path.GetTempPath(), "zencorpus_missing_" + Path.GetRandomFileName(), "zen-corpus.json");
+        var svc = new ZenTextsService(missing);
+
+        await svc.LoadAsync(""); // must not throw
+
+        Assert.False(svc.IsZen("T/T48/T48n2005.xml"));
     }
 }

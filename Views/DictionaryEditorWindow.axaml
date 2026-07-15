@@ -1,0 +1,307 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:ReadZen.App.Models"
+        xmlns:vm="using:ReadZen.App.ViewModels"
+        x:Class="ReadZen.App.Views.DictionaryEditorWindow"
+        x:DataType="vm:DictionaryEditorWindowViewModel"
+        x:Name="Root"
+        Width="1100"
+        Height="720"
+        Title="Zen Dictionary (Rich)"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid RowDefinitions="*,Auto" ColumnDefinitions="320,12,*" Margin="12">
+
+		<!-- Left: entry list -->
+		<Border Grid.Row="0"
+				Grid.Column="0"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="8">
+			<Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+				<TextBlock Text="Entries" FontWeight="Bold"/>
+
+				<TextBox Grid.Row="1"
+						 Text="{Binding SearchQuery}"
+						 Watermark="Search term / target / note..."/>
+
+				<ListBox Grid.Row="2"
+						 ItemsSource="{Binding FilteredEntries}"
+						 SelectedItem="{Binding SelectedEntry}">
+					<ListBox.ItemTemplate>
+						<DataTemplate x:DataType="models:DictionaryEntry">
+							<Border Padding="6" Margin="0,0,0,4">
+								<StackPanel Spacing="2">
+									<TextBlock Text="{Binding SourceTerm}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding FirstSenseTarget}"
+											   Opacity="0.85"
+											   TextWrapping="Wrap"/>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</Border>
+
+		<GridSplitter Grid.Row="0"
+					  Grid.Column="1"
+					  Width="12"
+					  ResizeDirection="Columns"
+					  Background="Transparent"/>
+
+		<!-- Right: entry header + senses + sense editor + evidence -->
+		<Border Grid.Row="0"
+				Grid.Column="2"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="8">
+			<ScrollViewer>
+				<StackPanel Spacing="10">
+
+					<!-- Entry header -->
+					<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+						<TextBlock Text="Chinese head term" VerticalAlignment="Center"/>
+						<TextBox Name="TxtSourceTerm"
+								 Grid.Column="1"
+								 Text="{Binding SourceTerm}"/>
+					</Grid>
+
+					<!-- Senses list -->
+					<Border Background="{DynamicResource BarBg}"
+							BorderBrush="{DynamicResource BorderBrush}"
+							BorderThickness="1"
+							CornerRadius="6"
+							Padding="8">
+						<Grid RowDefinitions="Auto,Auto">
+							<Grid ColumnDefinitions="*,Auto,Auto">
+								<TextBlock Text="Senses" FontWeight="Bold" VerticalAlignment="Center"/>
+								<Button Grid.Column="1" Content="Add Sense"
+										Command="{Binding AddSenseCommand}"
+										FontSize="11" Padding="8,2" Margin="0,0,6,0"/>
+								<Button Grid.Column="2" Content="Remove"
+										Command="{Binding RemoveSenseCommand}"
+										FontSize="11" Padding="8,2"/>
+							</Grid>
+							<ListBox Grid.Row="1" Margin="0,6,0,0"
+									 MaxHeight="120"
+									 ItemsSource="{Binding Senses}"
+									 SelectedItem="{Binding SelectedSense}">
+								<ListBox.ItemTemplate>
+									<DataTemplate x:DataType="vm:SenseEditViewModel">
+										<StackPanel Orientation="Horizontal" Spacing="8" Margin="0,2">
+											<TextBlock Text="{Binding DisplayLabel}" FontWeight="SemiBold"/>
+											<TextBlock Text="→" Opacity="0.5"/>
+											<TextBlock Text="{Binding PreferredTarget}" Opacity="0.85" TextWrapping="Wrap"/>
+										</StackPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Grid>
+					</Border>
+
+					<!-- Selected sense editor -->
+					<StackPanel Spacing="8"
+								IsVisible="{Binding SelectedSense, Converter={x:Static ObjectConverters.IsNotNull}}">
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Preferred target" VerticalAlignment="Center"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.PreferredTarget, Mode=TwoWay}"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Explanation" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1"
+									 Text="{Binding SelectedSense.Explanation, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="70"
+									 Watermark="Prose explanation of the Zen sense, in context"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,200,120,*" ColumnSpacing="10">
+							<TextBlock Text="Status" VerticalAlignment="Center"/>
+							<ComboBox Grid.Column="1" SelectedIndex="{Binding SelectedSense.SelectedStatusIndex, Mode=TwoWay}">
+								<ComboBoxItem Content="preferred"/>
+								<ComboBoxItem Content="allowed"/>
+								<ComboBoxItem Content="deprecated"/>
+								<ComboBoxItem Content="forbidden"/>
+							</ComboBox>
+							<TextBlock Grid.Column="2" Text="Validation" VerticalAlignment="Center"/>
+							<ComboBox Grid.Column="3" SelectedIndex="{Binding SelectedSense.SelectedValidationIndex, Mode=TwoWay}">
+								<ComboBoxItem Content="provisional"/>
+								<ComboBoxItem Content="multi-source"/>
+								<ComboBoxItem Content="disputed"/>
+							</ComboBox>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*,Auto" ColumnSpacing="10">
+							<TextBlock Text="Master" VerticalAlignment="Center"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.MasterName, Mode=TwoWay}"
+									 Watermark="Blank = corpus-wide Zen sense"/>
+							<Button Grid.Column="2" Name="BtnPickMaster" Content="Pick..."/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Alternates" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.AlternatesText, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="60"
+									 Watermark="One alternate per line"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Search aliases" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.SearchAliasesText, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="50"
+									 Watermark="Lookup-only synonyms, one per line"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Note" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.NoteText, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="60"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Related terms" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.RelatedTermsText, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="50"
+									 Watermark="One head term per line"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="140,*" ColumnSpacing="10">
+							<TextBlock Text="Related masters" VerticalAlignment="Top"/>
+							<TextBox Grid.Column="1" Text="{Binding SelectedSense.RelatedMastersText, Mode=TwoWay}"
+									 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="50"
+									 Watermark="One master per line"/>
+						</Grid>
+
+						<!-- Curated occurrences for this sense -->
+						<TextBlock Text="Curated occurrences" FontWeight="Bold" Margin="0,4,0,0"/>
+						<ItemsControl ItemsSource="{Binding SelectedSense.CuratedOccurrences}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate x:DataType="models:DictOccurrence">
+									<Border Padding="6" Margin="0,0,0,4"
+											Background="{DynamicResource ControlBg}"
+											BorderBrush="{DynamicResource BorderBrush}"
+											BorderThickness="1" CornerRadius="4">
+										<Grid ColumnDefinitions="*,Auto,Auto">
+											<StackPanel Spacing="2">
+												<TextBlock Text="{Binding Kwic}" TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding RelPath}" Opacity="0.6" FontSize="11"/>
+											</StackPanel>
+											<Button Grid.Column="1" Content="Open" FontSize="11" Padding="6,2" Margin="0,0,6,0"
+													Command="{Binding #Root.((vm:DictionaryEditorWindowViewModel)DataContext).OpenOccurrenceCommand}"
+													CommandParameter="{Binding}"/>
+											<Button Grid.Column="2" Content="★ Unstar" FontSize="11" Padding="6,2"
+													Command="{Binding #Root.((vm:DictionaryEditorWindowViewModel)DataContext).UncurateOccurrenceCommand}"
+													CommandParameter="{Binding}"/>
+										</Grid>
+									</Border>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+
+					<!-- Evidence panel -->
+					<Border Background="{DynamicResource BarBg}"
+							BorderBrush="{DynamicResource BorderBrush}"
+							BorderThickness="1"
+							CornerRadius="6"
+							Padding="8">
+						<StackPanel Spacing="6">
+							<Grid ColumnDefinitions="*,Auto">
+								<TextBlock Text="Corpus evidence" FontWeight="Bold" VerticalAlignment="Center"/>
+								<Button Grid.Column="1" Content="Refresh"
+										Command="{Binding LoadEvidenceCommand}"
+										FontSize="11" Padding="8,2"/>
+							</Grid>
+							<TextBlock Text="{Binding EvidenceStatus}" Opacity="0.85" TextWrapping="Wrap"/>
+
+							<!-- Masters rollup -->
+							<ItemsControl ItemsSource="{Binding CurrentEvidence.Masters}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate x:DataType="models:DictMasterUsage">
+										<StackPanel Orientation="Horizontal" Spacing="8" Margin="0,1">
+											<TextBlock Text="{Binding MasterName}" FontWeight="SemiBold"
+													   Foreground="{DynamicResource AccentLinkFg}"/>
+											<TextBlock Opacity="0.7" FontSize="11">
+												<TextBlock.Text>
+													<MultiBinding StringFormat="{}{0} text(s) · {1} hit(s)">
+														<Binding Path="TextCount"/>
+														<Binding Path="HitCount"/>
+													</MultiBinding>
+												</TextBlock.Text>
+											</TextBlock>
+										</StackPanel>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+
+							<!-- Per-text groups with sample occurrences -->
+							<ItemsControl ItemsSource="{Binding CurrentEvidence.Texts}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate x:DataType="models:DictEvidenceGroup">
+										<Border Padding="6" Margin="0,2"
+												Background="{DynamicResource ControlBg}"
+												BorderBrush="{DynamicResource BorderBrush}"
+												BorderThickness="1" CornerRadius="4">
+											<StackPanel Spacing="4">
+												<StackPanel Orientation="Horizontal" Spacing="8">
+													<TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold"/>
+													<TextBlock Text="{Binding MasterName}" FontSize="11"
+															   Foreground="{DynamicResource AccentLinkFg}"
+															   IsVisible="{Binding MasterName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+													<TextBlock FontSize="11" Opacity="0.6" Text="{Binding HitCount, StringFormat='{}{0} hit(s)'}"/>
+												</StackPanel>
+												<ItemsControl ItemsSource="{Binding Samples}">
+													<ItemsControl.ItemTemplate>
+														<DataTemplate x:DataType="models:DictOccurrence">
+															<Grid ColumnDefinitions="Auto,Auto,*" Margin="0,1">
+																<Button Content="★" FontSize="11" Padding="6,1" Margin="0,0,4,0"
+																		ToolTip.Tip="Curate this occurrence"
+																		Command="{Binding #Root.((vm:DictionaryEditorWindowViewModel)DataContext).CurateOccurrenceCommand}"
+																		CommandParameter="{Binding}"/>
+																<Button Grid.Column="1" Content="Open" FontSize="11" Padding="6,1" Margin="0,0,6,0"
+																		Command="{Binding #Root.((vm:DictionaryEditorWindowViewModel)DataContext).OpenOccurrenceCommand}"
+																		CommandParameter="{Binding}"/>
+																<TextBlock Grid.Column="2" Text="{Binding Kwic}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+															</Grid>
+														</DataTemplate>
+													</ItemsControl.ItemTemplate>
+												</ItemsControl>
+											</StackPanel>
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</StackPanel>
+					</Border>
+
+					<TextBlock Text="{Binding StatusMessage}" Opacity="0.8"/>
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
+
+		<!-- Bottom buttons -->
+		<Border Grid.Row="1"
+				Grid.ColumnSpan="3"
+				Margin="0,12,0,0"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="10">
+			<Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto" ColumnSpacing="8">
+				<Button Content="New" Command="{Binding NewEntryCommand}"/>
+				<Button Grid.Column="1" Content="Delete" Command="{Binding DeleteEntryCommand}"/>
+				<Button Grid.Column="2" Content="Duplicate" Command="{Binding DuplicateEntryCommand}"/>
+				<Button Grid.Column="4" Content="Close" MinWidth="100" Command="{Binding CloseWindowCommand}"/>
+				<Button Grid.Column="5" Content="Save" MinWidth="100" Command="{Binding SaveCommand}"/>
+			</Grid>
+		</Border>
+
+	</Grid>
+</Window>
