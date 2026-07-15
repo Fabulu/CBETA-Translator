@@ -19,6 +19,16 @@ class TurnProofCandidateTests(unittest.TestCase):
     def test_absent_headword_has_no_proof(self):
         self.assertEqual(turn_proof_candidates("師云庭前柏樹子。", "宗乘"), [])
 
+    def test_repeated_headword_marks_only_the_stored_kwic_overlap(self):
+        case = "妙喜云四料揀。師云三玄三要四料揀四賓主。"
+        stored = "師云三玄三要四料揀四賓主。"
+        start = case.index(stored)
+        rows = turn_proof_candidates(case, "四料揀", start, start + len(stored))
+        self.assertEqual(len(rows), 2)
+        self.assertFalse(rows[0]["overlapsStoredKwic"])
+        self.assertTrue(rows[1]["overlapsStoredKwic"])
+        self.assertIn("師云", rows[1]["headwordClause"])
+
 
 if __name__ == "__main__":
     unittest.main()

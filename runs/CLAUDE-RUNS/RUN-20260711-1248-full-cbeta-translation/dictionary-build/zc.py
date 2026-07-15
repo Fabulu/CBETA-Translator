@@ -317,6 +317,53 @@ def _raw_pos_for_rel_kwic(rel, kwic):
     return raw_positions[pos] if pos >= 0 else None
 
 
+def _normalized_positions_for_rel_kwic(rel, kwic):
+    """Return every normalized-text start for ``kwic`` in ``rel``.
+
+    Attribution review cannot assume the first identical KWIC in a source is
+    the saved occurrence.  Keep this helper overlap-aware so repeated matches
+    are explicit rather than silently collapsed by ``str.find``.
+    """
+    normalized, _ = _raw_position_index_for_rel(rel)
+    needle = _WS.sub("", kwic)
+    if not needle:
+        return []
+    starts, offset = [], 0
+    while True:
+        found = normalized.find(needle, offset)
+        if found < 0:
+            return starts
+        starts.append(found)
+        offset = found + 1
+
+
+def _raw_pos_for_rel_kwic_lb(rel, kwic, from_lb):
+    """Bind an identical KWIC to its saved primary-edition start line.
+
+    Returns ``(raw_position, metadata)``.  A unique KWIC+lb match is selected;
+    zero or multiple lb matches fail closed instead of returning the first
+    textual match.  Callers may surface the metadata to a human reviewer.
+    """
+    _, raw_positions = _raw_position_index_for_rel(rel)
+    _, idx2lb = _load(rel)
+    starts = _normalized_positions_for_rel_kwic(rel, kwic)
+    lb_starts = [start for start in starts if start < len(idx2lb) and idx2lb[start] == from_lb]
+    metadata = {
+        "kwicMatchCountInSource": len(starts),
+        "kwicFromLbMatchCount": len(lb_starts),
+        "normalizedMatchStarts": starts,
+        "normalizedFromLbMatchStarts": lb_starts,
+        "occurrenceIdentityStatus": "unique-kwic-fromlb" if len(lb_starts) == 1 else (
+            "kwic-fromlb-not-found" if not lb_starts else "ambiguous-kwic-fromlb"
+        ),
+    }
+    if len(lb_starts) != 1:
+        return None, metadata
+    start = lb_starts[0]
+    metadata["selectedNormalizedStart"] = start
+    return raw_positions[start], metadata
+
+
 def heads(rel, lb, limit=12, kwic=None):
     """Return preceding TEI head texts, nearest first, for ladder rung 3."""
     raw = open(_abs(rel), encoding="utf-8").read()

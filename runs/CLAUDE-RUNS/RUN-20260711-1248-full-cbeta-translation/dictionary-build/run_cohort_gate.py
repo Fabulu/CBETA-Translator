@@ -43,7 +43,7 @@ def public_feedback_hard_pass(result: dict) -> bool:
         and isinstance(payload, dict)
         and payload.get("flagged") == 0
     )
-PACKET_GENERATOR_VERSION = 5
+PACKET_GENERATOR_VERSION = 6
 
 
 def command(arguments: list[str]) -> dict:
@@ -195,13 +195,22 @@ def main() -> int:
         packet_payload = load_cached_packet(packet_output, packet_hashes)
         packets["generatorVersion"] = packet_payload.get("generatorVersion") if packet_payload else None
         packets["turnProofMissing"] = (
-            sum(not row.get("turnProofCandidates") for row in packet_payload.get("packets") or [])
+            sum(not row.get("boundTurnProofCandidates") for row in packet_payload.get("packets") or [])
+            if packet_payload else len(paths)
+        )
+        packets["occurrenceIdentityFailures"] = (
+            sum(
+                row.get("occurrenceIdentityStatus") != "unique-kwic-fromlb"
+                or not row.get("storedKwicOffsetBound")
+                for row in packet_payload.get("packets") or []
+            )
             if packet_payload else len(paths)
         )
         packets["hardPass"] = bool(
             packets["exitCode"] == 0
             and packet_payload is not None
             and packets["turnProofMissing"] == 0
+            and packets["occurrenceIdentityFailures"] == 0
         )
 
     hard_pass = (

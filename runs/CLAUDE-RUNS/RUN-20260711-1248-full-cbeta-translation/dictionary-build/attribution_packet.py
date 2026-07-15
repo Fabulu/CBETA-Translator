@@ -205,9 +205,17 @@ def wider_unit_containing_kwic(raw: str, rel: str, position: int, normalized_kwi
 
 def packet(rel: str, lb: str, kwic: str) -> dict:
     raw = read_raw(rel)
-    position = zc._raw_pos_for_rel_kwic(rel, kwic)
+    position, identity = zc._raw_pos_for_rel_kwic_lb(rel, kwic, lb)
     if position is None:
-        return {"RelPath": rel, "FromLb": lb, "error": "KWIC_NOT_FOUND"}
+        return {
+            "RelPath": rel,
+            "FromLb": lb,
+            "storedKwic": kwic,
+            **identity,
+            "error": "OCCURRENCE_IDENTITY_NOT_UNIQUE",
+            "riskFlags": ["occurrence-identity-not-unique"],
+            "tier": "B-review",
+        }
     unit_type, unit_raw, start, end = enclosing_unit(raw, position)
     case_text = clean_text(unit_raw)
     normalized_kwic = clean_text(kwic)
@@ -216,6 +224,13 @@ def packet(rel: str, lb: str, kwic: str) -> dict:
         if wider:
             unit_type, unit_raw, start, end = wider
             case_text = clean_text(unit_raw)
+    # Bind the stored occurrence inside the extracted unit by the selected raw
+    # source position, not by another ``find`` that could jump back to the
+    # first identical string in the case.
+    stored_kwic_start = len(clean_text(raw[start:position]))
+    stored_kwic_end = stored_kwic_start + len(normalized_kwic)
+    bound_text = case_text[stored_kwic_start:stored_kwic_end]
+    bound_ok = bool(normalized_kwic and bound_text == normalized_kwic)
     heads = heads_from_raw(raw, position, 12)
     title = title_from_raw(raw)
     title_candidates = owner_candidates(title)
@@ -232,6 +247,8 @@ def packet(rel: str, lb: str, kwic: str) -> dict:
         risks.append("inline-speaker-marker")
     if not normalized_kwic or normalized_kwic not in case_text:
         risks.append("stored-kwic-not-contained-in-unit")
+    if not bound_ok:
+        risks.append("stored-kwic-offset-binding-failed")
     if any(EXCLUDED_HEAD.search(head) for head in heads[:3]):
         risks.append("excluded-contributor-or-document-section")
     if unit_type in {"paragraph-span", "div", "head-section"}:
@@ -267,6 +284,10 @@ def packet(rel: str, lb: str, kwic: str) -> dict:
         "caseText": case_text,
         "storedKwic": kwic,
         "storedKwicContainedInUnit": bool(normalized_kwic and normalized_kwic in case_text),
+        "storedKwicStart": stored_kwic_start if bound_ok else None,
+        "storedKwicEnd": stored_kwic_end if bound_ok else None,
+        "storedKwicOffsetBound": bound_ok,
+        **identity,
         "inlineSpeakerMarkers": inline_markers,
         "inlineNamedOwnerCandidates": inline_named_candidates,
         "riskFlags": sorted(set(risks)),
@@ -275,7 +296,12 @@ def packet(rel: str, lb: str, kwic: str) -> dict:
     }
 
 
-def turn_proof_candidates(case_text: str, source_term: str) -> list[dict]:
+def turn_proof_candidates(
+    case_text: str,
+    source_term: str,
+    stored_kwic_start: int | None = None,
+    stored_kwic_end: int | None = None,
+) -> list[dict]:
     """Expose reproducible local turn evidence without declaring an utterer.
 
     The result is deliberately a reviewer aid rather than a speaker oracle. It
@@ -300,6 +326,12 @@ def turn_proof_candidates(case_text: str, source_term: str) -> list[dict]:
             "headwordStart": match.start(),
             "headwordEnd": match.end(),
             "headwordClause": case_text[left:right],
+            "overlapsStoredKwic": bool(
+                stored_kwic_start is not None
+                and stored_kwic_end is not None
+                and match.start() < stored_kwic_end
+                and match.end() > stored_kwic_start
+            ),
             "nearestPrecedingCue": preceding[-1] if preceding else None,
             "nearestFollowingCue": following[0] if following else None,
             "reviewInstruction": (
@@ -374,9 +406,13 @@ def main() -> int:
     if args.output and args.output.exists():
         try:
             prior = json.loads(args.output.read_text(encoding="utf-8-sig"))
-            cached_hashes = prior.get("inputPacketSha256") or {}
-            for row in prior.get("packets") or []:
-                cached_by_entry.setdefault(row.get("entryId"), []).append(row)
+            # Packet schema changes can alter occurrence identity without any
+            # entry field changing.  Never reuse a pre-v6 packet: versions 5
+            # and earlier did not bind turn candidates to the stored KWIC.
+            if prior.get("generatorVersion") == 6:
+                cached_hashes = prior.get("inputPacketSha256") or {}
+                for row in prior.get("packets") or []:
+                    cached_by_entry.setdefault(row.get("entryId"), []).append(row)
         except (OSError, UnicodeError, json.JSONDecodeError, TypeError):
             cached_by_entry = {}
             cached_hashes = {}
@@ -403,14 +439,23 @@ def main() -> int:
             continue
         row = packet(item["RelPath"], item["FromLb"], item["Kwic"])
         row.update({key: value for key, value in item.items() if not key.startswith("_") and key not in {"RelPath", "FromLb", "Kwic"}})
-        row["turnProofCandidates"] = turn_proof_candidates(row.get("caseText") or "", item.get("sourceTerm") or "")
-        if not row["turnProofCandidates"]:
+        row["turnProofCandidates"] = turn_proof_candidates(
+            row.get("caseText") or "",
+            item.get("sourceTerm") or "",
+            row.get("storedKwicStart"),
+            row.get("storedKwicEnd"),
+        )
+        row["boundTurnProofCandidates"] = [
+            candidate for candidate in row["turnProofCandidates"]
+            if candidate.get("overlapsStoredKwic")
+        ]
+        if not row["boundTurnProofCandidates"]:
             row["riskFlags"] = sorted(set((row.get("riskFlags") or []) + ["headword-not-located-for-turn-proof"]))
             row["tier"] = "B-review"
         completed.append((item["_order"], row))
     rows = [row for _, row in sorted(completed)]
     payload = {
-        "generatorVersion": 5,
+        "generatorVersion": 6,
         "inputPacketSha256": input_hashes,
         "entries": len({row["entryId"] for row in rows}),
         "occurrences": len(rows),

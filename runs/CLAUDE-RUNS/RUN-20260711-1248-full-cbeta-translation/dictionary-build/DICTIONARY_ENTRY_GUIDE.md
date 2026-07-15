@@ -1008,6 +1008,16 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
    `turnProofCandidates`: the exact headword-bearing clause plus the nearest
    visible speaker cue before and after it.  The author must decide from the
    complete case, but must record a decision consistent with that local proof.
+   **OCCURRENCE-IDENTITY GATE:** a packet candidate is navigation only until its
+   character span is proved to overlap the occurrence's complete stored `Kwic`.
+   Never take `turnProofCandidates[0]` merely because it contains the headword:
+   a full case can contain several questions, quotations, recensions, or speakers
+   using the same term.  First locate the exact normalized stored KWIC in the
+   full case.  If it occurs more than once, bind the intended copy with the
+   source offset / `FromLb` plus enough distinguishing Chinese on both sides.
+   Record that binding in the review ledger.  No bound overlap means the packet
+   is defective and the occurrence must be re-extracted before actor review;
+   it may not receive a default `KEEP`, `REVISE`, or attribution decision.
    In `僧問…X。師云…`, the monk utters X; the master's following response may
    supply context but cannot be assigned backward.  Generic actor prose and
    record ownership are never substitutes for this turn proof.
