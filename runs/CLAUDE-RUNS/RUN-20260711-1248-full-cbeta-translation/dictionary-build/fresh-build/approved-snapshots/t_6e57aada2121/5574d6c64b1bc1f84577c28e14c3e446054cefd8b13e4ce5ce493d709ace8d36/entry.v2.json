@@ -1,0 +1,134 @@
+{
+  "Id": "t_6e57aada2121",
+  "SourceTerm": "然頂",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:11:46.708296+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "burn the crown of the head",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "burn the crown of the head",
+        "然頂"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0215c20",
+          "ToLb": "0215c21",
+          "Kwic": "時緇白戀慕，至有然頂灼臂以供養者。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:11:46.708296+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yiyuan Yongning",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "J/J38/J38nB425.xml",
+          "FromLb": "0689c11",
+          "ToLb": "0689c12",
+          "Kwic": "徹骨徹髓之言，炙膚然頂，難報此恩。",
+          "Curated": true,
+          "MasterName": "Jifei Ruyi",
+          "ContextMasters": [
+            {
+              "MasterName": "Jifei Ruyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (即非禪師全錄): Jifei Ruyi owns the exact headword-bearing clause."
+        },
+        {
+          "RelPath": "X/X70/X70n1400.xml",
+          "FromLb": "0700a01",
+          "ToLb": "0700a02",
+          "Kwic": "於塔前慟哭，然頂煉臂者猶憧憧不絕。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:25:00+02:00",
+            "GrammarEvidence": "The exact headword is an action reported by the recorder, not quoted speech."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Gaofeng Yuanmiao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (高峰原妙禪師語錄): the compiler narrates the exact action; Gaofeng Yuanmiao is the person described. Exact headword actor: the compiler narrating the headword-bearing action."
+        },
+        {
+          "RelPath": "J/J27/J27nB198.xml",
+          "FromLb": "0449b05",
+          "ToLb": "0449b06",
+          "Kwic": "然指然頂，無非示誠重之心",
+          "Curated": true,
+          "MasterName": "Xueguan Zhiyin",
+          "ContextMasters": [
+            {
+              "MasterName": "Xueguan Zhiyin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (雪關禪師語錄): Xueguan Zhiyin owns the exact headword-bearing clause."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J27/J27nB198.xml",
+        "J/J38/J38nB425.xml",
+        "X/X70/X70n1400.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "Burning the crown of the head is literal bodily burning offered as devotion, recompense, or proof of serious intent. The Complete Record of the Five Lamps narrates monastic and lay admirers burning their crowns and cauterizing their arms as offerings after Longchi Yiyuan’s death. Gaofeng Yuanmiao’s biography likewise reports mourners burning their crowns and arms before his stupa. Xueguan Zhiyin says Gaofeng required burning a finger or the crown to show a weighty and sincere heart, while Jifei Ruyi pairs scorching the skin and burning the crown with an inability to repay instruction. These distinct deployments keep the act literal without claiming that every passage records the same ceremony."
+    }
+  ]
+}

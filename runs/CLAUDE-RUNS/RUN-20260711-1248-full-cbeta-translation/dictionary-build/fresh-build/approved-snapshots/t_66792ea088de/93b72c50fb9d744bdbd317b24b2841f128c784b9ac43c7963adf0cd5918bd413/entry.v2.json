@@ -1,0 +1,270 @@
+{
+  "Id": "t_66792ea088de",
+  "SourceTerm": "拈古",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A evidence-first",
+  "WrittenUtc": "2026-07-15T07:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "take up an old case for comment",
+      "AlternateTargets": [
+        "an old-case comment",
+        "raise and comment on an old case"
+      ],
+      "SearchAliases": [
+        "old case commentary",
+        "comment on old case",
+        "raise old case",
+        "niangu"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Seven exact witnesses across six source files and five independent works cover enumeration, reading, counting, collection title, contents headings, and a demonstrated section.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X67/X67n1307.xml",
+          "FromLb": "0469a13",
+          "Kwic": "古來有拈古、頌古、徵古、代古、別古",
+          "Curated": true,
+          "AttributionNote": "Wansong Xingxiu's Evaluations of Hongzhi Zhengjue's Old Cases (萬松老人評唱天童覺和尚拈古請益錄): Wansong Xingxiu is the exact speaker in this continuous evaluation and enumerates old-case raising, verse, probing, substitution, and alternative responses. Shakyamuni Buddha, Yangshan Huiji, and Fayan Wenyi are quoted or discussed within Wansong's evaluation, while Hongzhi Zhengjue is the old-case author being commented upon. The Fayan header is not the speaker of this genre list.",
+          "ToLb": "0469a13",
+          "MasterName": "Wansong Xingxiu",
+          "ContextMasters": [
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "utterer",
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yangshan Huiji",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "commentator"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0001a02",
+          "Kwic": "宗門拈古彙集序",
+          "Curated": true,
+          "AttributionNote": "Collected Anthology of Raising Old Cases in the Zen Lineage (宗門拈古彙集), preface by compiler Jingfu: the impersonal document heading names the preface to the collection of comments on old cases; it is not a speech turn.",
+          "ToLb": "0001a02",
+          "ContextMasters": [
+            {
+              "MasterName": "Jingfu",
+              "Roles": [
+                "compiler"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "document-section",
+            "ActorLabel": "the title of Jingfu's preface",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword is embedded in the cb:mulu and head title 宗門拈古彙集序 before the preface prose begins; it has no speech predicate or personal grammatical subject.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-remaining300",
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0526b02",
+          "Kwic": "余閱雪竇拈古至百丈再叅馬祖因",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's later raising: Zhang Shangying, called Zhang Wujin (張無盡), is the exact first-person speaker who says that he was reading Xuedou Chongxian's comments on old cases. Xuedou is the author discussed, not the speaker of the quoted line.",
+          "ToLb": "0526b02",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "lay official",
+            "ActorLabel": "Zhang Shangying",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "余閱 makes the quoted speaker the first-person subject who says he was reading Xuedou's old-case comments; Yulin Tongxiu introduces and raises Zhang's statement in his own record.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T16:25:00Z"
+          }
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0580a09",
+          "Kwic": "呈拈古十餘則",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), instruction to Huiji Zhou: Yulin Tongxiu says that after Huiji returned to his hall office he presented more than ten old-case comments. Huiji is the person described as presenting them; Yulin is the exact utterer of the written headword.",
+          "ToLb": "0580a09",
+          "MasterName": "Yulin Tongxiu",
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "utterer",
+                "record-owner",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Huiji Zhou",
+              "Roles": [
+                "person-described",
+                "student"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0692a05",
+          "Kwic": "卷第三拈古頌古",
+          "Curated": true,
+          "AttributionNote": "Extensive Record of Tianmu Zhongfeng (天目中峰廣錄), impersonal table-of-contents scene: the fascicle-three heading labels old-case comments and verse comments; it is document structure, not a saying by Zhongfeng Mingben.",
+          "ToLb": "0692a05",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "document heading",
+            "ActorLabel": "the table-of-contents heading",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w1-b1",
+            "ReviewedUtc": "2026-07-14T00:00:00Z",
+            "GrammarEvidence": "卷第三拈古頌古 is a table-of-contents label naming the contents of fascicle three; it is not a personal utterance or action."
+          },
+          "ContextMasters": []
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0714b08",
+          "Kwic": "卷第十八　　拈古下　頌古上",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), impersonal table-of-contents scene: the fascicle-eighteen heading labels the lower old-case-comment section and upper verse-comment section. Yuanwu Keqin owns the record but does not utter the heading.",
+          "ToLb": "0714b08",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "table-of-contents heading",
+            "ActorLabel": "fascicle-eighteen contents heading",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword occurs between 卷第十八 and paired section labels; the line has no speech marker or human grammatical subject.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T16:25:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0541c03",
+          "ToLb": "0541c06",
+          "Kwic": "拈古拈古舉：「僧問百丈：『如何是奇特事？』丈云：『獨坐大雄峰。』僧禮拜，丈便打。」師拈云：「百丈和尚可謂寰中獨據，振閫外之威權。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Master Tiyin (天隱和尚語錄), impersonal old-case-comment section heading followed by the first case: the document labels the section, raises Baizhang's great-peak case, and then marks the prose response 'Tiyin comments.' The heading itself is not Tiyin's speech.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "section heading and case transition",
+            "ActorLabel": "old-case-comment section heading",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword appears as a repeated section heading before 舉 introduces the case; 師拈云 later marks Tiyin Yuanxiu's response, distinguishing the editorial label from his quoted comment.",
+            "ReviewedBy": "Codex /root/feedback_lexicography/remaining137_research",
+            "ReviewedUtc": "2026-07-14T16:25:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tiyin Yuanxiu",
+              "Roles": [
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X67/X67n1307.xml",
+        "X/X66/X66n1296.xml",
+        "B/B27/B27n0152.xml",
+        "B/B25/B25n0145.xml",
+        "T/T47/T47n1997.xml",
+        "J/J25/J25nB171.xml"
+      ],
+      "RelatedMasters": [
+        "Wansong Xingxiu",
+        "Hongzhi Zhengjue",
+        "Xuedou Chongxian",
+        "Yulin Tongxiu",
+        "Yuanwu Keqin",
+        "Tiyin Yuanxiu"
+      ],
+      "RelatedTerms": [
+        "頌古",
+        "徵古",
+        "代古",
+        "公案"
+      ],
+      "Explanation": "Chan records use this label for a specific prose operation: taking up a preserved old case so a later commentator can place a fresh response beside it. Wansong Xingxiu enumerates it alongside versifying, probing, substituting, and giving an alternative to an old case, which marks it as a distinct commentarial operation. Zhang Shangying says he was reading Xuedou’s old-case comments, and Yulin Tongxiu counts more than ten pieces presented by a student. Book, fascicle, and section headings label collections or divisions of these comments. Tiyin Yuanxiu’s section then demonstrates the form by raising Baizhang’s great-peak case before marking Tiyin’s prose comment. Act, resulting piece, and editorial section are grammatical views of the same operation."
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "Id": "t_b8d2633b12ef",
+  "SourceTerm": "敗闕",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "an exposed failure",
+      "AlternateTargets": [
+        "failure",
+        "exposed fault",
+        "defeat",
+        "shortcoming",
+        "breakdown"
+      ],
+      "Status": "preferred",
+      "Explanation": "On a battlefield, 'defeat' (敗) is a rout and 'breach' (闕) is a gap. In Chinese Chan records the compound is a recurrent verdict of failure on an exchange, statement, answer, or speaker. The allowlisted corpus has 594 hits in 193 texts. It records the constructions 'incur a failure' (納敗闕, 130 hits in 80 texts), 'a whole episode of failure' (一場敗闕, 129 hits in 85 texts), and 'the place of the failure' (敗闕處, 39 hits in 28 texts). In one direct exchange an unnamed questioner asks, 'What failure do I have?' and receives the answer 'Wrong.' Elsewhere Dahui quotes Linji calling an old man's response 'a failure today,' then answers the question 'Where is his failure?' with 'The road is far and the night is long; stop carrying a torch, everyone, and blow it out while walking in the dark.' Yuan Cheng is asked how to have no failure and replies, 'Eat three meals.' A later comment can apply the verdict to both parties while also calling both adept: 'As failures, both are failures; as adepts, both are adepts.' These records leave the verdict attached to the cited exchange rather than supplying one universal defect that the word always names.",
+      "Validation": "multi-source",
+      "Note": "The word carries a military register: 'rout' (敗) plus 'breach' (闕) becomes a verdict that an exchange has failed, as in 'a whole episode of failure' (一場敗闕) and 'incur a failure' (納敗闕). All seven required definition formulas were searched; none produced a lexical definition. The entry therefore foregrounds the direct 'what failure?' exchange, the 'where is the failure?' retrospective, verdict uses, and the corpus's own two-party contrast. The rare 'no failure' construction (無敗闕) has one hit in one text. Exact actors are named on every retained occurrence except the source-anonymous questioning monk, whose reviewed exception record preserves all six attribution rungs.",
+      "Occurrences": [
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0673b02",
+          "ToLb": "0673b03",
+          "Kwic": "一日因僧入室師喚僧名僧應諾師云錯僧云某甲有什麼敗闕處師云錯",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk asks what exposed fault he has after Shoushan calls his answer wrong. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-b1",
+            "ReviewedUtc": "2026-07-14T07:15:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0831a19",
+          "ToLb": "0831a19",
+          "Kwic": "臨濟云。這老漢今日敗闕。",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (大慧普覺禪師語錄). Linji Yixuan states that the old fellow has shown a defect today.",
+          "MasterName": "Linji Yixuan"
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0831a19",
+          "ToLb": "0831a20",
+          "Kwic": "堂頭法叔禪師道。那裏是他敗闕處。",
+          "ContextMasters": [
+            {
+              "MasterName": "Tangtou Fashu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (大慧普覺禪師語錄). Tangtou Fashu asks where that defect lies.",
+          "MasterName": "Tangtou Fashu"
+        },
+        {
+          "RelPath": "X/X72/X72n1444.xml",
+          "FromLb": "0801c14",
+          "ToLb": "0801c14",
+          "Kwic": "如何得無敗闕？",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhanran Yuancheng",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (湛然圓澄禪師語錄). An unnamed monk asks how to be without defect; Zhanran Yuancheng responds.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-15T00:10:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0053a22",
+          "ToLb": "0053a24",
+          "Kwic": "士便打，師一摑，云：不多好。師方拈棒，士把住，云：這賊今日一場敗闕。師笑云：是我拙？是公巧？士撫掌，云：平交，平交。",
+          "Curated": true,
+          "AttributionNote": "Linked Lamps Compendium (聯燈會要): inside Qifeng Heshang's section, Pang Yun is the exact lay speaker who seizes Qifeng's staff and says that the thief has suffered an exposed failure today.",
+          "MasterName": "Pang Yun",
+          "ContextMasters": [
+            {
+              "MasterName": "Pang Yun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J28/J28nB208.xml",
+          "FromLb": "0322c13",
+          "ToLb": "0322c13",
+          "Kwic": "敗闕則二俱敗闕，作家則彼此作家",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): after raising the Shoukuo and Fengxue case and interspersing comments, Guxue Zhe tells his assembly that both parties show a failure and both are adepts.",
+          "MasterName": "Guxue Zhe",
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0033a24",
+          "ToLb": "0033b01",
+          "Kwic": "四十九年播土揚塵，三百餘會納盡敗闕。",
+          "Curated": true,
+          "AttributionNote": "Record of the Ancestral Guidelines (列祖提綱錄): the anthology explicitly introduces Zhantang Shen, who says that forty-nine years and more than three hundred assemblies took in every exposed failure.",
+          "MasterName": "Zhantang Shen",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhantang Shen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0067b11",
+          "ToLb": "0067b11",
+          "Kwic": "如何自納敗闕？",
+          "ContextMasters": [
+            {
+              "MasterName": "Baohua Xian",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (列祖提綱錄). An unnamed questioner asks how one incurs a defect oneself; Baohua Xian responds after a pause.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex root-revision repair",
+            "ReviewedUtc": "2026-07-15T00:10:00Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "C/C077/C077n1710.xml",
+        "T/T47/T47n1998A.xml",
+        "X/X72/X72n1444.xml",
+        "X/X79/X79n1557.xml",
+        "J/J28/J28nB208.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Zhanran Yuancheng",
+        "Pang Yun",
+        "Guxue Zhe",
+        "Zhantang Shen",
+        "Baohua Xian"
+      ],
+      "RelatedTerms": [
+        "納敗闕",
+        "敗闕處"
+      ],
+      "SearchAliases": [
+        "exposed failure",
+        "failed exchange",
+        "exposed fault",
+        "defeat in an exchange",
+        "breakdown"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

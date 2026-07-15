@@ -1,0 +1,139 @@
+{
+  "Id": "t_084fac11e2ac",
+  "SourceTerm": "發誓",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T04:48:06.197823+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "swear an oath",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "swear an oath",
+        "發誓"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0339a23",
+          "ToLb": "0339a23",
+          "Kwic": "發誓參方，首造鼓山，謁無異來受戒具。",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Hengxin",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler owns the documentary headword-bearing wording. Exact headword actor: the compiler narrating the headword-bearing clause.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T09:30:00+02:00",
+            "GrammarEvidence": "The headword occurs in documentary narration rather than an isolated speech turn."
+          }
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0617b09",
+          "ToLb": "0617b10",
+          "Kwic": "洎乎大和年中，私發誓願，往遊中華，遂投入朝王子金公義琮，披露所懷。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:48:06.197823+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (祖堂集): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X63/X63n1259.xml",
+          "FromLb": "0775b20",
+          "ToLb": "0775b20",
+          "Kwic": "不發誓願，則必不肯為鍛鍊故而忍苦。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:48:06.197823+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (禪門鍛鍊說): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0418a18",
+          "ToLb": "0418a19",
+          "Kwic": "會有天竺僧嵩頭陀曰：我與汝毗婆尸佛所發誓，今兜率宮衣鉢現在，何日當還？",
+          "Curated": true,
+          "MasterName": "Baozhi",
+          "ContextMasters": [
+            {
+              "MasterName": "Baozhi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (指月錄): exact actor (寶誌禪師) owns the headword-bearing wording. Exact headword utterer: Baozhi."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "B/B25/B25n0144.xml",
+        "X/X63/X63n1259.xml",
+        "X/X82/X82n1571.xml",
+        "X/X83/X83n1578.xml"
+      ],
+      "RelatedMasters": [
+        "寶誌禪師",
+        "福州雪峰亘信彌禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "To swear an oath is to make an explicit pledge; the surviving witnesses record different oath contents and do not all describe a public performance. The Xuefeng Genxin row is compiler biography: it says he vowed to travel and then went to Gushan, not that he utters the headword. Another biography records a private vow to travel to China, a training text says one must vow in order to endure discipline, and Baozhi recalls a vow made with an Indian monk. The common element is an explicit pledge, while publicity is not established as defining."
+    }
+  ]
+}

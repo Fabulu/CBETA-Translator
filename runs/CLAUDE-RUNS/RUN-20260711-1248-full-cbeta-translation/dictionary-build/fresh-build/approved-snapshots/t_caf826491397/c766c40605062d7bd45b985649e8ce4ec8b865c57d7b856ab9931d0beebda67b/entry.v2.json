@@ -1,0 +1,120 @@
+{
+  "Id": "t_caf826491397",
+  "SourceTerm": "高高峰頂立",
+  "CreatedBy": "Codex f002 Lane C author",
+  "WrittenUtc": "2026-07-15T02:14:49.133922+00:00",
+  "SchemaVersion": 2,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "stand atop the highest peak",
+      "AlternateTargets": [
+        "standing on the lofty summit",
+        "stand at the top of the high peak"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The summit half is retained as its own headword because it recurs independently, but its dominant corpus relation is the sea-floor half. Question, answer, instruction, and date-pairing all use the same spatial action; they do not warrant multiple senses. The biography names a student's awakening at the question but does not define the phrase as awakening itself.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0068a22",
+          "ToLb": "0068a24",
+          "Kwic": "覺一日問師：高高峰頂立，深深海底行。汝作麼生會？師于言下頓悟曰：釘殺脚跟也。覺拈起拂子曰：這箇又作麼生？師一笑而出。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): (五燈全書)(第34卷-第120卷). Complete Book of the Five Lamps (五燈全書), Zhengjue Zongxian biography. Zhaojue Chunbai is the exact teacher marked (覺) who asks Zongxian how he understands standing on the highest peak and walking on the deepest sea floor; Zongxian awakens at the words.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhengjue Zongxian",
+              "Roles": [
+                "addressee",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Zhaojue Chunbai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Zhaojue Chunbai"
+        },
+        {
+          "RelPath": "J/J28/J28nB220.xml",
+          "FromLb": "0785a06",
+          "ToLb": "0785a07",
+          "Kwic": "諸仁者！到恁麼地，正好高高峰頂立，深深海底行，",
+          "Curated": true,
+          "AttributionNote": "(法璽印禪師語錄), celebratory hall address. Faxi Yin is the exact speaker: he says that upon recognizing the present occasion one may stand on the highest peak and walk in the deepest ocean, before calling this still a course of establishment and transformation.",
+          "MasterName": "Faxi Yin",
+          "ContextMasters": [
+            {
+              "MasterName": "Faxi Yin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J28/J28nB218.xml",
+          "FromLb": "0640b18",
+          "ToLb": "0640b18",
+          "Kwic": "師云：「高高峰頂立，深深海底行。」",
+          "Curated": true,
+          "AttributionNote": "(懶石聆禪師語錄), Buddha-birthday public exchange. Lanshi Ling is the exact speaker of the stored answer: after the monk's advance, he says, 'stand on the highest peak; walk in the deepest ocean.'",
+          "MasterName": "Lanshi Ling",
+          "ContextMasters": [
+            {
+              "MasterName": "Lanshi Ling",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J28/J28nB218.xml",
+          "FromLb": "0643c01",
+          "ToLb": "0643c04",
+          "Kwic": "二十五日已前，虛空包不住，深深海底行；二十五日已後，大地載不起，高高峰頂立；正當二十五日，十方俱坐斷，縱橫得自由。",
+          "Curated": true,
+          "AttributionNote": "(懶石聆禪師語錄), twenty-fifth-day hall address. Lanshi Ling is the exact speaker: he places walking in the deepest sea before the day, standing on the highest peak after it, and sitting cut off in all ten directions on the day itself.",
+          "MasterName": "Lanshi Ling",
+          "ContextMasters": [
+            {
+              "MasterName": "Lanshi Ling",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "J/J28/J28nB220.xml",
+        "J/J28/J28nB218.xml"
+      ],
+      "RelatedMasters": [
+        "Zhaojue"
+      ],
+      "RelatedTerms": [
+        "深深海底行",
+        "腳跟",
+        "拂子"
+      ],
+      "SearchAliases": [
+        "stand atop the highest peak",
+        "standing on the lofty summit",
+        "stand at the top of the high peak",
+        "Zen stand atop the highest peak"
+      ],
+      "Explanation": "It is overwhelmingly paired with \"walk on the floor of the deepest sea\" (深深海底行). In a recorded biography, Zhaojue asks a student, \"stand atop the highest peak; walk on the floor of the deepest sea—how do you understand it?\" The student awakens at the words and says, \"my heels are nailed fast\" (釘殺脚跟也); Zhaojue then raises the whisk and asks another question. The paired line also serves as a direct answer in public interview and as an instruction to an assembly: \"at this point it is just right to stand atop the highest peak and walk on the floor of the deepest sea\" (到恁麼地，正好高高峰頂立，深深海底行). Another address distributes the pair across dates: before the twenty-fifth, the ocean-floor line; after it, the summit line; on the twenty-fifth, all ten directions cut off. Zen turns impossible vertical extremes into a fixed paired demand, question, answer, and biographical exchange; the corpus does not require this entry to decode the image further.",
+      "ClaimAnchors": []
+    }
+  ]
+}

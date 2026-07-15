@@ -1,0 +1,313 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_427fa502a11b",
+    "SourceTerm": "話墮",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T05:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a speech-slip that loses the exchange",
+        "AlternateTargets": [
+          "being caught by one’s own words",
+          "a losing slip in dialogue"
+        ],
+        "SearchAliases": [
+          "speech slip",
+          "caught by words",
+          "lose the exchange",
+          "where is the speech slip"
+        ],
+        "Status": "preferred",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "In Chan dialogue, this verdict marks a participant as caught or defeated by the words just used, and it can be turned back on either side.",
+          "EvidenceBody": [
+            "Muzhou and Yunmen issue the verdict to interlocutors; Luohan Guichen does likewise. Baozi Xiaowu immediately applies it both to the monastic and to his own speech, showing that the label is not reserved for one side.",
+            "Dahui applies it retrospectively to Bodhidharma, an unnamed monastic turns it against Baojue Zuxin, and Sanyi Mingyu applies it to himself while inviting discernment. The records repeatedly ask where the fall lies but answer through further encounter rather than a stable prose definition."
+          ]
+        },
+        "Validation": "multi-source",
+        "Note": "8 exact evidence rows from 7 independent works are stored for this sense.",
+        "Occurrences": [
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0657c09",
+            "ToLb": "0657c09",
+            "Kwic": "師云你為什麼話墮",
+            "MasterName": "Muzhou Daoming",
+            "ContextMasters": [
+              {
+                "MasterName": "Muzhou Daoming",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Muzhou Daoming asks why the interlocutor has slipped in speech.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "你為什麼話墮",
+              "SpeechFrame": "師云 introduces Muzhou’s turn.",
+              "FullCaseDecision": "The recut ends before the monastic’s separate question."
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1988.xml",
+            "FromLb": "0550b06",
+            "ToLb": "0550b07",
+            "Kwic": "師云。話墮也。進云。",
+            "MasterName": "Yunmen Wenyan",
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄): Yunmen Wenyan declares a speech-slip before the interlocutor advances.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "話墮也",
+              "SpeechFrame": "師云 introduces Yunmen’s verdict.",
+              "FullCaseDecision": "進云 begins the next turn after the complete verdict."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0375c01",
+            "ToLb": "0375c02",
+            "Kwic": "師曰。爾話墮也。又曰。我話亦墮汝作麼生。僧無對。",
+            "MasterName": "Baozi Xiaowu",
+            "ContextMasters": [
+              {
+                "MasterName": "Baozi Xiaowu",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Jingde Lamp Record (景德傳燈錄): Baozi Xiaowu first judges the monastic’s speech fallen and then says his own speech also falls.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "爾話墮也。又曰。我話亦墮",
+              "SpeechFrame": "Both clauses are linked by 又曰 under the same 師.",
+              "FullCaseDecision": "Baozi owns both headword-bearing clauses; the monastic gives no answer."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0404a19",
+            "ToLb": "0404a20",
+            "Kwic": "老胡九年話墮。可惜當時放過。",
+            "MasterName": "Dahui Zonggao",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "utterer",
+                  "commentator"
+                ]
+              },
+              {
+                "MasterName": "Bodhidharma",
+                "Roles": [
+                  "person-discussed",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Five Lamps Meeting the Source (五燈會元): Dahui Zonggao calls Bodhidharma’s nine years a speech-fall and says it was regrettably let pass.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "老胡九年話墮",
+              "SpeechFrame": "The comment is Dahui’s raised-case judgment.",
+              "FullCaseDecision": "Dahui is current commentator; Bodhidharma is discussed."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0167a22",
+            "ToLb": "0167a23",
+            "Kwic": "和尚因甚麼如此。師曰。汝話墮也。",
+            "MasterName": "Luohan Guichen",
+            "ContextMasters": [
+              {
+                "MasterName": "Luohan Guichen",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Five Lamps Meeting the Source (五燈會元): Luohan Guichen replies that the questioner has slipped in speech.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "汝話墮也",
+              "SpeechFrame": "師曰 introduces Guichen’s response after the question.",
+              "FullCaseDecision": "Only Guichen’s answer contains the headword."
+            }
+          },
+          {
+            "RelPath": "X/X69/X69n1343.xml",
+            "FromLb": "0222a06",
+            "ToLb": "0222a06",
+            "Kwic": "僧曰：和尚話墮也。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic interlocutor",
+              "ActorLabel": "unnamed monastic interlocutor",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "僧曰 explicitly assigns the verdict to the unnamed monastic; 師曰 later begins Baojue’s response.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T05:00:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Baojue Zuxin",
+                "Roles": [
+                  "addressee",
+                  "respondent",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Recorded Sayings of Chan Master Baojue Zuxin, second of the Four Huanglong Records (寶覺祖心禪師語錄（黃龍四家錄第二）): an unnamed monastic tells Baojue Zuxin that the master has slipped in speech.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "The unnamed monastic marked by 僧曰.",
+              "FullCaseDecision": "The stored headword occurs only in the monastic’s turn; the master’s response begins after 師曰."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB189.xml",
+            "FromLb": "0019b30",
+            "ToLb": "0019c01",
+            "Kwic": "老僧話墮也。明眼者試辨看。",
+            "MasterName": "Sanyi Mingyu",
+            "ContextMasters": [
+              {
+                "MasterName": "Sanyi Mingyu",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Recorded Sayings of Chan Master Sanyi Mingyu (三宜盂禪師語錄): Sanyi Mingyu says that this old monk has slipped in speech and asks clear-eyed people to discern it.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "老僧話墮也",
+              "SpeechFrame": "The self-reference occurs in Sanyi Mingyu’s continuing address.",
+              "FullCaseDecision": "Sanyi owns the self-directed verdict and following challenge."
+            }
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0004b20",
+            "ToLb": "0004b20",
+            "Kwic": "免見諸人話墮",
+            "MasterName": "Fachang Yiyu",
+            "Curated": true,
+            "AttributionNote": "Fachang Yiyu, quoted in the Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), says strict rules spare the assembly from speech-slips.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fachang Yiyu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "免見諸人話墮",
+              "SpeechFrame": "The marked hall saying contains the exact headword wording.",
+              "FullCaseDecision": "Fachang Yiyu owns the exact headword-bearing statement."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "C/C077/C077n1710.xml",
+          "T/T47/T47n1988.xml",
+          "T/T51/T51n2076.xml",
+          "X/X80/X80n1565.xml",
+          "X/X69/X69n1343.xml",
+          "J/J27/J27nB189.xml",
+          "X/X82/X82n1571.xml"
+        ],
+        "RelatedMasters": [
+          "Muzhou Daoming",
+          "Yunmen Wenyan",
+          "Baozi Xiaowu",
+          "Dahui Zonggao",
+          "Bodhidharma",
+          "Luohan Guichen",
+          "Baojue Zuxin",
+          "Sanyi Mingyu"
+        ],
+        "RelatedTerms": [
+          "墮負",
+          "轉語",
+          "機鋒"
+        ],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7",
+            "o8"
+          ],
+          "ZenBend": "A fall verb becomes a reciprocal public verdict about losing footing in one’s own words.",
+          "CounterexampleOrLimit": "The sources offer no stable prose definition, and self-application prevents treating it as a simple teacher-over-student victory label.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "verdict against interlocutor",
+              "self-verdict",
+              "later case judgment"
+            ],
+            "Reason": "All judge speech as having lost footing despite changes in target and time."
+          },
+          "AliasRationale": "Aliases expose the dialogical loss and common where-is-the-slip follow-up without presenting a literal fall.",
+          "ModifierControls": [
+            {
+              "Control": "not-applicable",
+              "Finding": "No apparent material modifier occurs."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "墮負",
+              "Finding": "Related defeat expression, not substituted."
+            },
+            {
+              "Term": "轉語",
+              "Finding": "A demanded turning phrase may answer an impasse but is distinct."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:guzunsu-yulu",
+            "work:T47n1988",
+            "work:T51n2076",
+            "work:X80n1565",
+            "work:X69n1343",
+            "work:J27nB189",
+            "work:wudeng-quanshu"
+          ]
+        }
+      }
+    ]
+  }
+}

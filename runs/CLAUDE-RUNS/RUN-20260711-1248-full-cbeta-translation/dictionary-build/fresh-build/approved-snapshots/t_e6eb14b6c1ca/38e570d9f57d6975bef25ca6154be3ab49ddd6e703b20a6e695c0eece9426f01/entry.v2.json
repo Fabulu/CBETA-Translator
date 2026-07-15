@@ -1,0 +1,203 @@
+{
+  "Id": "t_e6eb14b6c1ca",
+  "SourceTerm": "活人劍",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A evidence-first",
+  "WrittenUtc": "2026-07-15T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the sword that gives life",
+      "AlternateTargets": [
+        "the life-giving sword",
+        "the life-giving blade"
+      ],
+      "SearchAliases": [
+        "sword that gives life",
+        "life-giving sword",
+        "life-giving blade",
+        "sword that brings people to life"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Seven exact evidence rows across seven independent works support the paired life-giving-sword expression.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0017a24",
+          "ToLb": "0017a24",
+          "Kwic": "如何是活人劍？」師打云：「自領出去。」",
+          "MasterName": null,
+          "Curated": true,
+          "AttributionNote": "An unnamed monastic questioner in the Recorded Sayings of Chan Master Miyun (密雲禪師語錄) utters the exact headword; Miyun Yuanwu responds afterward without repeating it.",
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The marked monastic question contains the exact headword; the named teacher answers afterward without repeating it.",
+            "ReviewedBy": "Codex fresh f001 lane A independent-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J25/J25nB163.xml",
+          "FromLb": "0256c12",
+          "ToLb": "0256c12",
+          "Kwic": "殺人刀，活人劍，死者死，活者活。",
+          "Curated": true,
+          "AttributionNote": "Guting Shanjian, in the Abridged Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略), raises Luopu's final instruction and pairs the killing knife with the life-giving sword.",
+          "MasterName": "Guting Shanjian",
+          "ContextMasters": [
+            {
+              "MasterName": "Guting Shanjian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB187.xml",
+          "FromLb": "0707c16",
+          "ToLb": "0707c18",
+          "Kwic": "一轉語是殺人刀、一轉語是活人劍、一轉語殺活同時、一轉語殺活不同時。",
+          "Curated": true,
+          "AttributionNote": "Tian'an Sheng, in the Recorded Sayings of Chan Master Tian'an Sheng (天岸昇禪師語錄), gives the four-turn formulation in a precept-giving hall address.",
+          "MasterName": "Tian'an Sheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Tian'an Sheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB183.xml",
+          "FromLb": "0521a28",
+          "ToLb": "0521a29",
+          "Kwic": "活人須是活人劍，殺賊應還殺賊刀，",
+          "Curated": true,
+          "AttributionNote": "The Recorded Sayings of Chan Master Xuedou Shiqi (雪竇石奇禪師語錄), in Shiqi Tongyun's verse titled 'Rhyming While in Retreat' (關中次韻). Shiqi Tongyun writes that giving life requires the life-giving sword and killing thieves requires the thief-killing knife. The title's Xuedou is the monastery, not Xuedou Chongxian; the TEI header identifies Tongyun as speaker, and the biography gives his name as Tongyun and style-name Shiqi.",
+          "MasterName": "Shiqi Tongyun",
+          "ContextMasters": [
+            {
+              "MasterName": "Shiqi Tongyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0490b01",
+          "ToLb": "0490b02",
+          "Kwic": "最初秪見師翁殺人刀未見師翁活人劍",
+          "MasterName": "Yulin Tongxiu",
+          "Curated": true,
+          "AttributionNote": "Yulin Tongxiu, in the Recorded Sayings of National Teacher Puji Yulin (普濟玉琳國師語錄), speaks about his teacher Huanyou's killing knife and life-giving sword during a hall address.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0549a07",
+          "ToLb": "0549a08",
+          "Kwic": "黃檗只有殺人刀，且無活人劍。",
+          "Curated": true,
+          "AttributionNote": "Dahui Zonggao, quoted by Tianyin Yuanxiu in the Recorded Sayings of Master Tianyin (天隱和尚語錄), says that Huangbo has only the killing sword and lacks the life-giving sword.",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "later-raiser",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J38/J38nB415.xml",
+          "FromLb": "0452c28",
+          "ToLb": "0452c29",
+          "Kwic": "殺人須是殺人刀，活人須是活人劍。",
+          "MasterName": "Miaoyun Xiong",
+          "Curated": true,
+          "AttributionNote": "Miaoyun Xiong, in the Recorded Sayings of Chan Master Dabei Miaoyun (大悲妙雲禪師語錄), comments after raising Deshan's words that the killing knife must kill and the life-giving sword must give life.",
+          "ContextMasters": [
+            {
+              "MasterName": "Miaoyun Xiong",
+              "Roles": [
+                "utterer",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J10/J10nA158.xml",
+        "J/J25/J25nB163.xml",
+        "J/J26/J26nB187.xml",
+        "J/J26/J26nB183.xml",
+        "B/B27/B27n0152.xml",
+        "J/J25/J25nB171.xml",
+        "J/J38/J38nB415.xml"
+      ],
+      "RelatedMasters": [
+        "Miyun Yuanwu",
+        "Yulin Tongxiu",
+        "Tianyin Yuanxiu"
+      ],
+      "RelatedTerms": [
+        "殺人刀",
+        "殺活",
+        "殺活同時",
+        "吹毛劍"
+      ],
+      "Explanation": "The sword that gives life is the recurring partner and counterweight of the sword or blade that kills; records ask for it, answer with it, and test whether a named teacher possesses killing and life-giving capacities. Miyun Yuanwu answers a direct question about the sword with a blow and tells the questioner to take it away. Guting Shanjian pairs the killing blade and life-giving sword with the dead dying and the living living, while Tian’an Sheng distinguishes turning words that kill, give life, do both at once, or do them at different times. Shiqi Tongyun says giving life requires the life-giving sword. Yulin Tongxiu contrasts first seeing his teacher’s killing blade with not yet seeing the life-giving sword, and a later record quotes Dahui judging that Huangbo had only the killing blade and lacked the life-giving sword. These are paired tests and appraisals, not a claim about a material weapon."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "SchemaVersion": 2,
+  "Id": "t_37771a869b4f",
+  "SourceTerm": "如何是祖師西來意",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "What is the patriarch's purpose in coming from the West?",
+      "AlternateTargets": ["What did the patriarch come from the West for?", "What is the meaning of the patriarch's coming from the West?"],
+      "SearchAliases": ["why did Bodhidharma come from the west", "why did the patriarch come from the west", "what did Bodhidharma come west for", "meaning of Bodhidharma coming from the west", "purpose of the patriarch's coming", "patriarch came from the west", "what is the meaning of the patriarch coming west", "Bodhidharma's purpose"],
+      "Status": "preferred",
+      "Explanation": "The fixed public question, 'What is the patriarch's purpose in coming from the West?' In this corpus the patriarch in the formula is Bodhidharma, but the phrase functions as a repeatable question rather than as the name of one settled answer. An unnamed monk asks Jingshan Daoqin, who says the question is not properly put. Zhaozhou Congshen asks it while Linji Yixuan is washing his feet; Longya Judun asks Linji the same formula in another encounter. Jixian Wang puts it to Fahua Zhiyan. Other anonymous questioners receive sharply different replies from Baizhang Daoheng, Weifu Dajue, Fenyang Shanzhao, and Xianglin Chengyuan: the question misses, an announcement at the crossroads, a blue-silk fan's cooling breeze, or something presented face to face. Dahui Zonggao later raises the famous Zhaozhou exchange in which the answer is the cypress tree in the courtyard. These incompatible responses are part of the phrase's public-interview deployment; none is silently substituted for the English meaning of the question itself.",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 2,126 exact hits in 259 files and 254 independent works. The full interrogative is a lexicalized case-question linked to, but not merged with, the shorter nominal 'the patriarch's purpose in coming from the West' (祖師西來意). Response diversity is not polysemy in the question. Search aliases deliberately cover 'purpose', 'meaning', 'why', 'come west', 'coming from the West', 'Bodhidharma', and 'the patriarch'.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0051a06", "ToLb": "0051a07",
+          "Kwic": "問。如何是祖師西來意。師曰。汝問不當。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Jingshan Daoqin section. An unnamed monk is the exact headword-bearing questioner; Jingshan Daoqin answers that the question is not properly put. All six rungs leave the monk unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed monk questioning Jingshan Daoqin","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Jingshan Daoqin","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml", "FromLb": "0467c06", "ToLb": "0467c07",
+          "Kwic": "趙州行脚時參師，遇師洗脚次，州便問：如何是祖師西來意？", "MasterName": "Zhaozhou Congshen", "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄), Linji Yixuan section. The narration explicitly names Zhaozhou Congshen as the exact questioner who asks the full formula while Linji is washing his feet.",
+          "ContextMasters": [{"MasterName":"Zhaozhou Congshen","Roles":["utterer","questioner"]},{"MasterName":"Linji Yixuan","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml", "FromLb": "0650a21", "ToLb": "0650a21",
+          "Kwic": "龍牙問如何是祖師西來意", "MasterName": "Longya Judun", "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), supplementary Linji Yixuan record. The line explicitly names Longya Judun as the exact questioner; Linji Yixuan responds in the ensuing turn.",
+          "ContextMasters": [{"MasterName":"Longya Judun","Roles":["utterer","questioner"]},{"MasterName":"Linji Yixuan","Roles":["respondent","record-owner"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml", "FromLb": "0426a14", "ToLb": "0426a15",
+          "Kwic": "集仙王質問：如何是祖師西來意？", "MasterName": null, "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 1–33 (五燈全書(第1卷-第33卷)), Fahua Zhiyan section. The line names Jixian Wang as the exact non-master questioner who puts the formula to Fahua Zhiyan.",
+          "ActorAttribution": {"Status":"identified-non-master","Kind":"named official","ActorLabel":"Jixian Wang","ActorRole":"questioner","GrammarEvidence":"The line explicitly introduces Jixian Wang as the person asking the headword-bearing question.","ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Fahua Zhiyan","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml", "FromLb": "0008a10", "ToLb": "0008a11",
+          "Kwic": "問：如何是祖師西來意？師曰：往往問不著。", "MasterName": null, "Curated": true,
+          "AttributionNote": "The Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)), Baizhang Daoheng section. An unnamed participant is the exact headword-bearing questioner; Baizhang Daoheng answers that such questions often miss. All six rungs leave the participant unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Baizhang Daoheng","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Baizhang Daoheng","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml", "FromLb": "0475a14", "ToLb": "0475a15",
+          "Kwic": "問：如何是祖師西來意？師云：十字街頭，望空啟告。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄), Weifu Dajue section. An unnamed participant asks the full formula; Weifu Dajue answers with making an announcement into the air at the crossroads. All six rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Weifu Dajue","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Weifu Dajue","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml", "FromLb": "0646c18", "ToLb": "0646c19",
+          "Kwic": "問：如何是祖師西來意？師云：青絹扇子足風涼。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Fenyang Shanzhao section. An unnamed participant asks the full formula; Fenyang Shanzhao answers with a blue-silk fan and cooling breeze. All six rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Fenyang Shanzhao","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Fenyang Shanzhao","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml", "FromLb": "0647c02", "ToLb": "0647c03",
+          "Kwic": "問：如何是祖師西來意？師云：覿面相呈，更無餘事。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Xianglin Chengyuan section. An unnamed participant asks the full formula; Xianglin Chengyuan answers that it is presented face to face with no further matter. All six rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Xianglin Chengyuan","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Xianglin Chengyuan","Roles":["respondent","section-subject"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        },
+        {
+          "RelPath": "M/M59/M59n1540.xml", "FromLb": "0901a18", "ToLb": "0901a18",
+          "Kwic": "僧問趙州如何是祖師西來意", "MasterName": null, "Curated": true,
+          "AttributionNote": "Dahui Pujue's General Addresses (大慧普覺禪師普說), Dahui Zonggao's general address requested by Layman Zhitong. Dahui raises the Zhaozhou cypress case. The exact historical headword-bearing actor is the case's unnamed monk; Zhaozhou Congshen is respondent and Dahui is the later raiser. All six rungs leave the historical monk unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"the unnamed monk in the Zhaozhou cypress case","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T20:10:00Z"},
+          "ContextMasters": [{"MasterName":"Zhaozhou Congshen","Roles":["respondent","case-figure"]},{"MasterName":"Dahui Zonggao","Roles":["later-raiser","record-owner"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["X/X80/X80n1565.xml", "X/X78/X78n1553.xml", "C/C077/C077n1710.xml", "X/X81/X81n1571.xml", "X/X81/X81n1568.xml", "X/X78/X78n1556.xml", "M/M59/M59n1540.xml"],
+      "RelatedMasters": ["Bodhidharma", "Jingshan Daoqin", "Zhaozhou Congshen", "Linji Yixuan", "Longya Judun", "Fahua Zhiyan", "Baizhang Daoheng", "Weifu Dajue", "Fenyang Shanzhao", "Xianglin Chengyuan", "Dahui Zonggao"],
+      "RelatedTerms": ["祖師西來意", "庭前柏樹子", "西來意", "達磨"]
+    }
+  ],
+  "CreatedBy": "Codex fresh-build f001 lane B",
+  "WrittenUtc": "2026-07-14T20:10:00Z"
+}

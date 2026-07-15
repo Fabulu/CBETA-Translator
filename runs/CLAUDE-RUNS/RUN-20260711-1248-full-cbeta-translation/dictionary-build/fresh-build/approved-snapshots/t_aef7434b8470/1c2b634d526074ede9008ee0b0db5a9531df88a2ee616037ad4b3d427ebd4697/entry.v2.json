@@ -1,0 +1,185 @@
+{
+  "Id": "t_aef7434b8470",
+  "SourceTerm": "沒交涉",
+  "CreatedBy": "Fabulu",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "no connection at all",
+      "AlternateTargets": [
+        "utterly beside the point",
+        "has nothing to do with it",
+        "no bearing whatever",
+        "off the mark"
+      ],
+      "SearchAliases": [
+        "no connection",
+        "nothing to do with it",
+        "beside the point",
+        "no bearing",
+        "unrelated",
+        "off the mark",
+        "what connection",
+        "not connected"
+      ],
+      "Status": "preferred",
+      "Explanation": "There is none (沒) of the dealings, involvement, connection, or bearing named by the compound (交涉): 'there is no connection' or 'it has no bearing.' The records deploy this one literal sense in two ways. First, as a plain statement of no connection. Shitou says that speech and action have no connection (言語動用沒交涉), and his disciple replies that non-speech and non-action also have no connection (非言語動用亦沒交涉). Another line says, 'before the King of Awe-Voice, no connection' (威音已前沒交涉). Second, as a dismissive verdict on a wrong answer. Blue Cliff Record comments repeatedly use 'well, no connection!' (且喜沒交涉 / 且得沒交涉), meaning that the offered account misses the recorded matter. The verdict can itself be challenged: when a monk says 'well, no connection' (且得沒交涉), Yuanwu asks, 'Where is there no connection?' (什麼處沒交涉). Intensified forms include 'utterly no connection' (全沒交涉 / 總沒交涉, 82 combined instances in the cited count), often in the line that something has utterly no bearing on one's own share (於自己分上全沒交涉). The rhetorical question 'what connection is there?' (有甚麼交涉 / 有什麼交涉, 114 occurrences of each graph form in the recorded count) states the same absence by question. The headword occurs 1,389 times in 244 allowlist texts.",
+      "Validation": "multi-source",
+      "Note": "One meaning, 'no connection' or 'no bearing,' with two deployments: a flat statement and a dismissive verdict. Counted forms include 'well, no connection' (且得沒交涉), 37; 'utterly no connection' (全沒交涉), 21; 'altogether no connection' (總沒交涉), 93; 'completely no connection' (了沒交涉), 42; and 'a place of no connection' (沒交涉處), 14. It is corpus-wide rather than an individual signature.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0140b19",
+          "ToLb": "0140b20",
+          "Kwic": "瞠眼睛云。廓然無聖。且喜沒交涉。",
+          "Curated": true,
+          "AttributionNote": "Foguo Yuanwu's Blue Cliff Record (佛果圜悟禪師碧巖錄): complete-case exact-turn review identifies Yuanwu Keqin as the actor for this occurrence.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner", "commentator"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0719c01",
+          "ToLb": "0719c01",
+          "Kwic": "進云。且得沒交涉。師云。什麼處沒交涉。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yuanwu Foguo (圓悟佛果禪師語錄): in Yuanwu Keqin's hall address, an unnamed monk advances the comment 'well, no connection'; Yuanwu presses him by asking where there is no connection. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0109b17",
+          "ToLb": "0109b18",
+          "Kwic": "後石頭垂語曰。言語動用沒交涉。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元). Shitou Xiqian gives the exact headword-bearing statement that speech and action have no connection; Yaoshan Weiyan answers immediately after this recut exact turn.",
+          "MasterName": "Shitou Xiqian",
+          "ContextMasters": [
+            {"MasterName": "Shitou Xiqian", "Roles": ["utterer", "case-figure"]},
+            {
+              "MasterName": "Yaoshan Weiyan",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0109b18", "ToLb": "0109b18", "Kwic": "師曰。非言語動用亦沒交涉。", "MasterName": "Yaoshan Weiyan", "Curated": true,
+          "ContextMasters": [{"MasterName": "Yaoshan Weiyan", "Roles": ["utterer", "respondent", "section-subject"]}, {"MasterName": "Shitou Xiqian", "Roles": ["interlocutor", "case-figure"]}],
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Yaoshan Weiyan section: Yaoshan Weiyan answers Shitou Xiqian that non-speech and non-action also have no connection."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0114b20",
+          "ToLb": "0114b21",
+          "Kwic": "山曰。三千里外。且喜沒交涉。",
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Five Lamps (五燈會元). Yaoshan Weiyan is the exact speaker who tells Yunyan Tansheng, 'three thousand miles away—well, no connection' (三千里外且喜沒交涉); Yunyan is the interlocutor and biography subject.",
+          "MasterName": "Yaoshan Weiyan",
+          "ContextMasters": [
+            {"MasterName": "Yaoshan Weiyan", "Roles": ["utterer", "case-figure"]},
+            {
+              "MasterName": "Yunyan Tansheng",
+              "Roles": [
+                "interlocutor",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0725a27",
+          "ToLb": "0725a28",
+          "Kwic": "威音已前沒交涉。祖師不西來。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yuanwu Foguo (圓悟佛果禪師語錄): in his own hall address, Yuanwu Keqin says that before the King of Awe-Voice there is no connection, the patriarch did not come from the west, and Shaolin has a subtle key.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "J/J28/J28nB219.xml",
+          "FromLb": "0663c23",
+          "ToLb": "0663c23",
+          "Kwic": "於自己分上全沒交涉。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): in his instruction to Huixin Zhao, Zhuanyu Guanheng says that merely memorizing abstruse sayings, even eloquently enough to make a stubborn stone nod, has no connection at all with one's own share.",
+          "MasterName": "Zhuanyu Guanheng",
+          "ContextMasters": [{"MasterName": "Zhuanyu Guanheng", "Roles": ["utterer", "record-owner"]}]
+        },
+        {
+          "RelPath": "J/J26/J26nB185.xml", "FromLb": "0575c04", "ToLb": "0575c05", "Kwic": "師云：「了沒交涉。」", "MasterName": "Fushi Tongxian", "Curated": true,
+          "ContextMasters": [{"MasterName": "Fushi Tongxian", "Roles": ["utterer", "record-owner"]}],
+          "AttributionNote": "The cited recorded-sayings collection (浮石禪師語錄): Fushi Tongxian gives the dismissive verdict that it has completely no connection."
+        },
+        {
+          "RelPath": "X/X70/X70n1386.xml", "FromLb": "0338b08", "ToLb": "0338b09", "Kwic": "從上若佛若祖，只於沒交涉處順時保愛", "MasterName": "Shitian Faxun", "Curated": true,
+          "ContextMasters": [{"MasterName": "Shitian Faxun", "Roles": ["utterer", "record-owner"]}],
+          "AttributionNote": "The cited recorded-sayings collection (石田法薰禪師語錄): Shitian Faxun says that the buddhas and patriarchs preserved themselves according to circumstances at the place of no connection."
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml", "FromLb": "0760c17", "ToLb": "0760c18", "Kwic": "師云：「總沒交涉。」便回方丈。", "MasterName": "Ruibai Mingxue", "Curated": true,
+          "ContextMasters": [{"MasterName": "Ruibai Mingxue", "Roles": ["utterer", "record-owner"]}],
+          "AttributionNote": "The cited recorded-sayings collection (入就瑞白禪師語錄): Ruibai Mingxue answers that it is altogether without connection and returns to the abbot's quarters."
+        }
+      ],
+      "ClaimAnchors": [
+        {
+          "ClaimText": "有什麼交涉", "RelPath": "T/T48/T48n2003.xml", "FromLb": "0146b03", "ToLb": "0146b04", "Kwic": "後人只管隨語生解。有什麼交涉他雲門立箇宗風。", "MasterName": "Yuanwu Keqin", "Curated": true,
+          "ContextMasters": [{"MasterName": "Yuanwu Keqin", "Roles": ["utterer", "record-owner", "commentator"]}, {"MasterName": "Yunmen Wenyan", "Roles": ["person-discussed"]}],
+          "AttributionNote": "佛果圜悟禪師碧巖錄: Yuanwu Keqin asks what connection later interpretations have with Yunmen Wenyan establishing a house style."
+        },
+        {
+          "ClaimText": "有甚麼交涉", "RelPath": "J/J34/J34nB300.xml", "FromLb": "0232a06", "ToLb": "0232a07", "Kwic": "者是一塊頑土，有甚麼交涉？", "MasterName": "Chaozong Tongren", "Curated": true,
+          "ContextMasters": [{"MasterName": "Chaozong Tongren", "Roles": ["utterer", "record-owner"]}],
+          "AttributionNote": "朝宗禪師語錄: Chaozong Tongren calls the proposed location a clod of stubborn earth and asks what connection it has."
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "T/T47/T47n1997.xml",
+        "X/X80/X80n1565.xml",
+        "J/J28/J28nB219.xml"
+        ,"J/J26/J26nB185.xml"
+        ,"J/J34/J34nB300.xml"
+        ,"X/X70/X70n1386.xml"
+        ,"J/J26/J26nB188.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "且喜沒交涉",
+        "有甚麼交涉",
+        "廓然無聖"
+      ]
+    }
+  ]
+}

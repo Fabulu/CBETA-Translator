@@ -1,0 +1,119 @@
+{
+  "Id": "t_32289452a85b",
+  "SourceTerm": "燒指",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A independent-reject corrective author",
+  "WrittenUtc": "2026-07-15T10:15:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "burn a finger",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "burn a finger",
+        "燒指"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X69/X69n1335.xml",
+          "FromLb": "0107c09",
+          "ToLb": "0107c10",
+          "Kwic": "某等不以銜愆帶舋，罪垢深重，今謹割耳燒指，殷勤勸請。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "utterer",
+            "ActorLabel": "the named collective petitioners speaking as “we”",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 A601-650 round3 repair author",
+            "ReviewedUtc": "2026-07-15T09:05:00Z",
+            "GrammarEvidence": "The first-person plural 某等…今謹 marks the petitioners’ direct collective declaration, not compiler narration."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Fu Dashi",
+              "Roles": [
+                "addressee",
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (善慧大士語錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording. Exact headword actor: the named collective petitioners speaking as “we”."
+        },
+        {
+          "RelPath": "T/T48/T48n2017.xml",
+          "FromLb": "0969c01",
+          "ToLb": "0969c03",
+          "Kwic": "見後新學菩薩，有從百里千里，來求大乘經律，應如法為說一切苦行：若燒身、燒臂、燒指。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:11:46.708296+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (萬善同歸集): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "T/T48/T48n2023.xml",
+          "FromLb": "1060a26",
+          "ToLb": "1060a27",
+          "Kwic": "方便偷蘭燒指然香。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the disciplinary compiler listing a legal category",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:11:46.708296+00:00",
+            "GrammarEvidence": "The compact legal list has no speech turn; the former title-plus-person ContextMasters value was metadata, not an actor."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (緇門警訓): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording. Exact headword actor: the disciplinary compiler listing a legal category."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2017.xml",
+        "T/T48/T48n2023.xml",
+        "X/X69/X69n1335.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [],
+      "Explanation": "To burn a finger is literal bodily burning; the selected sources place it in distinct pleas, austerity lists, and disciplinary lists. In Fu Dashi’s record, petitioners say they cut their ears and burn fingers while urgently pressing a request. The Records of Returning All Good lists finger burning beside burning the body and arm as austerities; the Admonitions text lists it beside burning incense in a legal or disciplinary sequence. Only the first witness ties it to that plea, so no single vow, offering, or institutional purpose is projected across all three."
+    }
+  ]
+}

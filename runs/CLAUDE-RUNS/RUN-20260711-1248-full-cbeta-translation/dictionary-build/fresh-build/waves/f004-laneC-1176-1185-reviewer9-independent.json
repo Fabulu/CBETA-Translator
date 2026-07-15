@@ -1,0 +1,1610 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-sourcegroups-full-case-semantic-review",
+  "reviewer": "reviewer9",
+  "generatedUtc": "2026-07-15T15:34:50.511505+00:00",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [
+    1176,
+    1185
+  ],
+  "sourceAuthorLedger": "f004-laneC-1176-1185-sourcegroups-author-ledger.json",
+  "sourceAuthorLedgerSha256": "9e18e2d181003563856cc41531007133ec2cbe74264c530766bd8d0e11716ff9",
+  "sourceGroups": "f004-laneC-1176-1185-source-groups-v2.json",
+  "sourceGroupsSha256": "0806187a61623468a91d2001ce3dfe8318dc69a6288a72785d4c478a3f94a003",
+  "sourceCasePacket": "f004-laneC-1176-1185-shared-case-packet-v2.json",
+  "sourceCasePacketSha256": "5061c26a430e96e806a89b6b86f2608a0a93d96d929abe7cd3f78e1f91ec4ff1",
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 63,
+  "exactKwics": 63,
+  "exactFullSpans": 63,
+  "exactSpanFailures": 0,
+  "gate0gPassed": 63,
+  "containedOnlyWitnessesRemovedAndConfirmed": 4,
+  "keep": 7,
+  "revise": 3,
+  "cohortFinding": "All 63 retained witnesses are bounded Chan deployments and their source recurrence groups are disclosed. Four excluded witnesses are correctly absent, but C1183-C1185 retain the removed works in DraftEvidence.IndependentWorkIds and require synchronization.",
+  "reviewMethod": [
+    "Read every retained occurrence in a 10,000-character complete-case context.",
+    "Reran zc.verify and required exact stored FromLb and ToLb plus a headword-bearing KWIC.",
+    "Retested exact actor separately from respondents, later quoters, narrators, anonymous verse authors, and case figures.",
+    "Confirmed contained-only removals and retested #0g, recurrence/source groups, prose, senses, depth controls, and storage work IDs.",
+    "Bound verdicts to current entry hashes from the sourceGroups author ledger and recorded current worksheet hashes."
+  ],
+  "entries": [
+    {
+      "ordinal": 1176,
+      "id": "t_9cfec92c6982",
+      "term": "鐵蛇鑽不入",
+      "entrySha256": "ac722ae0cbca3aff74742d36dfad37e42fb34c9706e5a0be33518cf8c6cde203",
+      "worksheetSha256": "a803fef5d69f74e17b8818182607c53d1b7f1097de4f221e664f6613553cbfb9",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctStorageWorkIds": 7,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "storageWitnesses": 7,
+        "principalDeployments": 5,
+        "clusters": [
+          {
+            "voice": "Ying",
+            "occurrences": [
+              2,
+              4,
+              7
+            ],
+            "case": "Ying–Fachang exchange"
+          }
+        ]
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0789b09",
+          "toLb": "0789b17",
+          "actor": "the unnamed monastic interlocutor",
+          "contextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0497a09",
+          "toLb": "0497a19",
+          "actor": "Ying",
+          "contextMasters": [
+            {
+              "MasterName": "Ying",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0133c20",
+          "toLb": "0134a05",
+          "actor": "Liutong Shao",
+          "contextMasters": [
+            {
+              "MasterName": "Liutong Shao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0135c20",
+          "toLb": "0136a04",
+          "actor": "Ying",
+          "contextMasters": [
+            {
+              "MasterName": "Ying",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0072b23",
+          "toLb": "0072c10",
+          "actor": "Jinsheng Wen",
+          "contextMasters": [
+            {
+              "MasterName": "Jinsheng Wen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0339c25",
+          "toLb": "0340a03",
+          "actor": "Yuanan Feng",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanan Feng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X67/X67n1309.xml",
+          "fromLb": "0571a02",
+          "toLb": "0571a10",
+          "actor": "Ying",
+          "contextMasters": [
+            {
+              "MasterName": "Ying",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1177,
+      "id": "t_8aa9485f0650",
+      "term": "鐵饅頭",
+      "entrySha256": "02495dc33f9e6f5ecc064d408ac2a6e2c135bbfe3fc47f867ce61ed0c815e2d1",
+      "worksheetSha256": "1425fb4caebee371122c2e142a2404a2d2cc722adfcab431f0d9c02892d23dad",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J28/J28nB209.xml",
+          "fromLb": "0413a01",
+          "toLb": "0413a12",
+          "actor": "Yongji Rong",
+          "contextMasters": [
+            {
+              "MasterName": "Yongji Rong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0443b30",
+          "toLb": "0443c08",
+          "actor": "Xueguan Zhiyin",
+          "contextMasters": [
+            {
+              "MasterName": "Xueguan Zhiyin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0682a22",
+          "toLb": "0682a30",
+          "actor": "Juelang Daosheng",
+          "contextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0631b06",
+          "toLb": "0631b13",
+          "actor": "Jifei Ruyi",
+          "contextMasters": [
+            {
+              "MasterName": "Jifei Ruyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0069b03",
+          "toLb": "0070a01",
+          "actor": "Mingjue Cong",
+          "contextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "D/D50/D50n8945.xml",
+          "fromLb": "0040b01",
+          "toLb": "0041a02",
+          "actor": "Xuefeng Kong",
+          "contextMasters": [
+            {
+              "MasterName": "Xuefeng Kong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1178,
+      "id": "t_97e211e4846e",
+      "term": "鐵橛子",
+      "entrySha256": "f9a1eb1b1fac27354b8ddbf44416efead4936eec4f32a359a927b78fe1c6f0df",
+      "worksheetSha256": "b4b6eacaa3231e86b390e9fc84b57f1be6cee0fcd4a930b871794c36fc66c9c4",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X69/X69n1360.xml",
+          "fromLb": "0581c09",
+          "toLb": "0581c18",
+          "actor": "Xiatang Huiyuan",
+          "contextMasters": [
+            {
+              "MasterName": "Xiatang Huiyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0606b28",
+          "toLb": "0606c06",
+          "actor": "Juelang Daosheng",
+          "contextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0208b13",
+          "toLb": "0209a15",
+          "actor": "Mingjue Cong",
+          "contextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0146a16",
+          "toLb": "0146a26",
+          "actor": "Yuanwu Keqin",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X70/X70n1397.xml",
+          "fromLb": "0606c14",
+          "toLb": "0606c23",
+          "actor": "Xueyan Zuqin",
+          "contextMasters": [
+            {
+              "MasterName": "Xueyan Zuqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X79/X79n1563.xml",
+          "fromLb": "0705a06",
+          "toLb": "0705a17",
+          "actor": "the biographical narrator describing Yanyang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1179,
+      "id": "t_37229194d73a",
+      "term": "無孔鐵笛",
+      "entrySha256": "41874f37cd9a1f6645d7fc8898f53d4f06d11dfc5685b50ea7839c866c62eb23",
+      "worksheetSha256": "03990f641c90e47f2c2873952c76a13f822ddfb3de9e4686ed244e563b885e00",
+      "occurrencesRead": 5,
+      "exactKwicsAndSpans": 5,
+      "distinctStorageWorkIds": 5,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0607b01",
+          "toLb": "0608a01",
+          "actor": "Yulin Tongxiu",
+          "contextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0568b09",
+          "toLb": "0568b17",
+          "actor": "Ruoan",
+          "contextMasters": [
+            {
+              "MasterName": "Ruoan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J35/J35nB336.xml",
+          "fromLb": "0704c09",
+          "toLb": "0704c18",
+          "actor": "Qianan Yuji Hongqian",
+          "contextMasters": [
+            {
+              "MasterName": "Qianan Yuji Hongqian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0920b02",
+          "toLb": "0920b11",
+          "actor": "Zhean Fan",
+          "contextMasters": [
+            {
+              "MasterName": "Zhean Fan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J37/J37nB383.xml",
+          "fromLb": "0214b24",
+          "toLb": "0214c02",
+          "actor": "Hanxiu",
+          "contextMasters": [
+            {
+              "MasterName": "Hanxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1180,
+      "id": "t_f6be4323dd4d",
+      "term": "沒底籃",
+      "entrySha256": "7edfcbc9206ab2e60bd34a5fa06075ed0285b2fa02a69001a95d7a8a49d8f231",
+      "worksheetSha256": "e989b2cf9cfbd189f526c2a38b0a17f1b5995944533cc58d6b42a5c44c92fda7",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J28/J28nB220.xml",
+          "fromLb": "0798a04",
+          "toLb": "0798a12",
+          "actor": "Faxi Yin",
+          "contextMasters": [
+            {
+              "MasterName": "Faxi Yin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0678a03",
+          "toLb": "0678a15",
+          "actor": "Jifei Ruyi",
+          "contextMasters": [
+            {
+              "MasterName": "Jifei Ruyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J38/J38nB429.xml",
+          "fromLb": "0921b12",
+          "toLb": "0921b20",
+          "actor": "Gulin Zhi",
+          "contextMasters": [
+            {
+              "MasterName": "Gulin Zhi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X69/X69n1353.xml",
+          "fromLb": "0339a18",
+          "toLb": "0339b02",
+          "actor": "Kaifu Daoning",
+          "contextMasters": [
+            {
+              "MasterName": "Kaifu Daoning",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J27/J27nB189.xml",
+          "fromLb": "0072b05",
+          "toLb": "0072b13",
+          "actor": "Sanyi Yu",
+          "contextMasters": [
+            {
+              "MasterName": "Sanyi Yu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0150a06",
+          "toLb": "0150a15",
+          "actor": "Baichi Yuanshuo",
+          "contextMasters": [
+            {
+              "MasterName": "Baichi Yuanshuo",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1181,
+      "id": "t_9dee3a6b835d",
+      "term": "無底鉢",
+      "entrySha256": "8a12ed3432b1b62219c3d167fe09421bcdbca4a1649ba46e8b443e06268f52ba",
+      "worksheetSha256": "8ace483d1cd362551ed22abbd2cb75a233d7f3230dbce7b03d6981cf82d44723",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0650c04",
+          "toLb": "0650c12",
+          "actor": "the unnamed monastic questioner",
+          "contextMasters": [
+            {
+              "MasterName": "Shuangquan Qiong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0643c05",
+          "toLb": "0643c15",
+          "actor": "Yefu Daochuan",
+          "contextMasters": [
+            {
+              "MasterName": "Yefu Daochuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0306c02",
+          "toLb": "0306c19",
+          "actor": "Zong Commentator",
+          "contextMasters": [
+            {
+              "MasterName": "Zong Commentator",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0423c04",
+          "toLb": "0423c13",
+          "actor": "Xisou Shaotan",
+          "contextMasters": [
+            {
+              "MasterName": "Xisou Shaotan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0772c23",
+          "toLb": "0773a11",
+          "actor": "Wuzu Fayan",
+          "contextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0598c18",
+          "toLb": "0598c28",
+          "actor": "the unnamed monastic questioner",
+          "contextMasters": [
+            {
+              "MasterName": "Donglin Changzong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1182,
+      "id": "t_745dde2c8711",
+      "term": "三脚驢",
+      "entrySha256": "afe022ddfaae9b761a34eca295c8c0241c0ee66ece2c564a172d3169c644b59f",
+      "worksheetSha256": "af84ba01d82ad51a7205403a48914750a725ff800425f58ac1ae230d07f74727",
+      "occurrencesRead": 10,
+      "exactKwicsAndSpans": 10,
+      "distinctStorageWorkIds": 10,
+      "verdict": "KEEP",
+      "containedOnlyRemovalReview": [],
+      "recurrenceReview": {
+        "storageWitnesses": 10,
+        "principalDeployments": 6,
+        "clusters": [
+          {
+            "voice": "Yuanri",
+            "occurrences": [
+              1,
+              6,
+              8
+            ]
+          },
+          {
+            "voice": "Natang Fansi",
+            "occurrences": [
+              3,
+              4,
+              9
+            ]
+          }
+        ]
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "PASS: public prose, target, corpus-earned opening, evidence body, Zen bend, limit, different-thing test, sense structure, and storage work IDs fit the retained deployments and recurrence controls.",
+      "staleIndependentWorkIds": [],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0031b16",
+          "toLb": "0031c01",
+          "actor": "Yuanri",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanri",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0038c19",
+          "toLb": "0039a04",
+          "actor": "Huitong Dan",
+          "contextMasters": [
+            {
+              "MasterName": "Huitong Dan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0418a06",
+          "toLb": "0418a14",
+          "actor": "Natang Fansi",
+          "contextMasters": [
+            {
+              "MasterName": "Natang Fansi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0380c12",
+          "toLb": "0380c20",
+          "actor": "Natang Fansi",
+          "contextMasters": [
+            {
+              "MasterName": "Natang Fansi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0412a15",
+          "toLb": "0412b01",
+          "actor": "Xisou Shaotan",
+          "contextMasters": [
+            {
+              "MasterName": "Xisou Shaotan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0156c16",
+          "toLb": "0157a02",
+          "actor": "Yuanri",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanri",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0830a07",
+          "toLb": "0830a17",
+          "actor": "the unnamed monastic questioner",
+          "contextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0351b03",
+          "toLb": "0351b13",
+          "actor": "Yuanri",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanri",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0658c15",
+          "toLb": "0658c26",
+          "actor": "Natang Fansi",
+          "contextMasters": [
+            {
+              "MasterName": "Natang Fansi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 10,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0350a11",
+          "toLb": "0350a23",
+          "actor": "an anonymous case-verse author in Zongjian Falin",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1183,
+      "id": "t_dcb8d664b64f",
+      "term": "第二月",
+      "entrySha256": "df34a1ab23b6ac58f1e2251583a9f436695df71257b9b21f0e7ac1c8821b58aa",
+      "worksheetSha256": "b80051bb5fe5a4c906dbb195b1eba4455cf0e613264110fd64329c62db67fe19",
+      "occurrencesRead": 9,
+      "exactKwicsAndSpans": 9,
+      "distinctStorageWorkIds": 9,
+      "verdict": "REVISE",
+      "containedOnlyRemovalReview": [
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "reason": "contained-only Zongjing lu exposition"
+        }
+      ],
+      "recurrenceReview": {
+        "storageWitnesses": 9,
+        "principalDeployments": "fewer than storage witnesses",
+        "clusters": [
+          {
+            "case": "recurrent Yunyan dialogues",
+            "finding": "recensions, not independent inventions"
+          }
+        ]
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "REVISE: contained-only occurrences were removed, but DraftEvidence.IndependentWorkIds still retains removed work IDs: work:T48n2016.",
+      "staleIndependentWorkIds": [
+        "work:T48n2016"
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0492a04",
+          "toLb": "0492a12",
+          "actor": "Daowu Zongzhi",
+          "contextMasters": [
+            {
+              "MasterName": "Daowu Zongzhi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0338a19",
+          "toLb": "0338b08",
+          "actor": "an anonymous case-verse author in Zongjian Falin",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0676a19",
+          "toLb": "0676b02",
+          "actor": "Wuwei Layman",
+          "contextMasters": [
+            {
+              "MasterName": "Wuwei Layman",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0114c22",
+          "toLb": "0115a06",
+          "actor": "Daowu Zongzhi",
+          "contextMasters": [
+            {
+              "MasterName": "Daowu Zongzhi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0002c01",
+          "toLb": "0002c11",
+          "actor": "the unnamed monastic questioner",
+          "contextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0315a24",
+          "toLb": "0315b05",
+          "actor": "Guishan Lingyou",
+          "contextMasters": [
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0399a10",
+          "toLb": "0399b04",
+          "actor": "the temple director addressing Yunyan",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0520a16",
+          "toLb": "0520a26",
+          "actor": "Shishuang Yong",
+          "contextMasters": [
+            {
+              "MasterName": "Shishuang Yong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0045b03",
+          "toLb": "0045b15",
+          "actor": "Weishan Guo",
+          "contextMasters": [
+            {
+              "MasterName": "Weishan Guo",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1184,
+      "id": "t_b7fd3f3a1395",
+      "term": "蛇入竹筒",
+      "entrySha256": "b030ec0435c483d9bf76238e4fbb844d10e39d0ef2cf38f45a752d85853318f1",
+      "worksheetSha256": "5908d2b1775b294fa7f0382978e972a6fa3b004e86bf6b81c0169fdc83ca328c",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "distinctStorageWorkIds": 4,
+      "verdict": "REVISE",
+      "containedOnlyRemovalReview": [
+        {
+          "relPath": "T/T48/T48n2006.xml",
+          "reason": "contained-only glossary/list"
+        }
+      ],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "REVISE: contained-only occurrences were removed, but DraftEvidence.IndependentWorkIds still retains removed work IDs: work:T48n2006.",
+      "staleIndependentWorkIds": [
+        "work:T48n2006"
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0602c13",
+          "toLb": "0602c22",
+          "actor": "the source’s unnamed old worthy",
+          "contextMasters": [
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "later-quoter"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "L/L154/L154n1639.xml",
+          "fromLb": "0174a06",
+          "toLb": "0174b02",
+          "actor": "the source’s unnamed old worthy",
+          "contextMasters": [
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "later-quoter"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T47/T47n2000.xml",
+          "fromLb": "0997b16",
+          "toLb": "0997b26",
+          "actor": "Xutang Zhiyu",
+          "contextMasters": [
+            {
+              "MasterName": "Xutang Zhiyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0235a14",
+          "toLb": "0235a23",
+          "actor": "Wansong Xingxiu",
+          "contextMasters": [
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    },
+    {
+      "ordinal": 1185,
+      "id": "t_ce08a150ae0a",
+      "term": "舟行岸移",
+      "entrySha256": "5af7d7a3233d575bb39838092e1baa94282c43a641faca958b8aa305089eb769",
+      "worksheetSha256": "eba14231a833e99c9b5b46cae51287cb06ab588dbed6fcc145beb5a320af271c",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "distinctStorageWorkIds": 4,
+      "verdict": "REVISE",
+      "containedOnlyRemovalReview": [
+        {
+          "relPath": "D/D48/D48n8939.xml",
+          "reason": "inscription rather than Chan deployment"
+        },
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "reason": "contained-only explanatory analogy"
+        }
+      ],
+      "recurrenceReview": {
+        "clusters": [],
+        "finding": "No material within-entry recurrence cluster requiring a disclosed principal-deployment discount."
+      },
+      "fullCaseFinding": "PASS: the exact headword voice and surrounding respondents, later quoters, narrators, and case figures agree with the full source unit.",
+      "proseSenseDepthWorkFinding": "REVISE: contained-only occurrences were removed, but DraftEvidence.IndependentWorkIds still retains removed work IDs: work:T48n2016, work:guzunsu-yulu.",
+      "staleIndependentWorkIds": [
+        "work:T48n2016",
+        "work:guzunsu-yulu"
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0490a15",
+          "toLb": "0490a23",
+          "actor": "Zhiyue Record Owner",
+          "contextMasters": [
+            {
+              "MasterName": "Zhiyue Record Owner",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0766b14",
+          "toLb": "0766b21",
+          "actor": "the unnamed monastic respondent",
+          "contextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0722b29",
+          "toLb": "0722c08",
+          "actor": "Yunxi Ting",
+          "contextMasters": [
+            {
+              "MasterName": "Yunxi Ting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J34/J34nB308.xml",
+          "fromLb": "0541c27",
+          "toLb": "0542a06",
+          "actor": "Xiangya Ting",
+          "contextMasters": [
+            {
+              "MasterName": "Xiangya Ting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS",
+          "verdict": "KEEP"
+        }
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

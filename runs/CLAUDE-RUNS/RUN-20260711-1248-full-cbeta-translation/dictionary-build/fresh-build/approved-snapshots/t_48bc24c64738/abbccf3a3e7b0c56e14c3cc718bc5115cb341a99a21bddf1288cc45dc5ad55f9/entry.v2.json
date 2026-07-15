@@ -1,0 +1,204 @@
+{
+  "Id": "t_48bc24c64738",
+  "SourceTerm": "應物現形",
+  "CreatedBy": "Codex f002 Lane C author",
+  "WrittenUtc": "2026-07-15T01:46:59.220806+00:00",
+  "SchemaVersion": 2,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "responding to things, showing a form",
+      "AlternateTargets": [
+        "meet the object and manifest a form",
+        "show a form in response to things"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "One corpus-wide sense covers the grammatical uses found: the subject responds to an encountered thing by taking or displaying a form. The moon comparison, public-interview answers, and gesture deployments are different attestations of that same action, not different referents. The phrase is often embedded in older quoted wording; no quoted occurrence is reassigned to the later recorder.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0287a28",
+          "ToLb": "0287a29",
+          "Kwic": "僧問。如何是應物現形。師曰。與我拈床子過來。",
+          "Curated": true,
+          "AttributionNote": "(景德傳燈錄). An unnamed monk asks what responding to things and manifesting forms is; Zhaozhou Congshen answers by requesting the stool. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex source-batched exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:01:35Z",
+            "ActorType": "reviewed-unnamed",
+            "GrammarEvidence": "The full case was read: the headword is not uttered by a nameable Zen master in this occurrence.",
+            "ContextEvidence": "景德傳燈錄. An unnamed monk asks what responding to things and manifesting forms is; Zhaozhou Congshen answers by requesting the stool. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0382a14",
+          "ToLb": "0382a15",
+          "Kwic": "問應物現形如水中月。如何是月。師提起拂子。",
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): inside Anguo Xiang's explicitly headed section, an unnamed monk quotes responsive manifestation as like the moon in water and asks what the moon is; Anguo Xiang raises the fly-whisk. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-w2-remaining300",
+            "ReviewedUtc": "2026-07-14T07:45:00Z",
+            "ActorType": "reviewed-unnamed",
+            "GrammarEvidence": "The full case was read: the headword is not uttered by a nameable Zen master in this occurrence.",
+            "ContextEvidence": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): inside Anguo Xiang's explicitly headed section, an unnamed monk quotes responsive manifestation as like the moon in water and asks what the moon is; Anguo Xiang raises the fly-whisk. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Anguo Xiang",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0671a23",
+          "ToLb": "0671b01",
+          "Kwic": "法身無象，應物現形。諸禪德作麼生說箇應物現形底道理？拈拄杖示眾云：世尊身長丈六，遮箇拄杖子亦長丈六。",
+          "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): inside Zhongshan Tan's explicitly headed section, Zhongshan Tan says that the teaching body has no image yet manifests form in response to things, then uses his staff to question the assembly about that response.",
+          "MasterName": "Zhongshan Tan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongshan Tan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0049a10",
+          "ToLb": "0049a12",
+          "Kwic": "如賓主相見，便有言論往來，或應物現形，或全體作用，或把機權喜怒，或現半身，或乘獅子，或乘象王。",
+          "Curated": true,
+          "AttributionNote": "Record of the Ancestral Guidelines (列祖提綱錄): in Linji Yixuan's instruction on discerning guest and host, Linji says that when guest and host meet there is verbal exchange, responsive manifestation toward things, whole-body function, and displays of authority.",
+          "MasterName": "Linji Yixuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0006b06",
+          "ToLb": "0006b08",
+          "Kwic": "紹興諸暨鍾山報恩譚禪師紹興諸暨鍾山報恩譚禪師上堂：法身無像，應物現形。諸禪德作麼生說箇應物現形底道理？拈拄杖示眾曰：世尊身長丈六，這箇拄杖子亦長丈六。",
+          "Curated": true,
+          "AttributionNote": "Source record (五燈全書(第34卷-第120卷)): Complete Collection of the Five Lamps (五燈全書), Zhongshan Baoen Tan section. The duplicated section heading names Baoen Tan; he ascends the hall, states the headword, asks its principle, and answers demonstratively with his staff.",
+          "MasterName": "Zhongshan Baoen Tan",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongshan Baoen Tan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0026a01",
+          "ToLb": "0026a03",
+          "Kwic": "示眾：參學之人，大須子細。如賓主相見，便有言論往來。或應物現形，或全體作用，或把機權喜怒，或現半身，或乘師子，或乘象王。",
+          "Curated": true,
+          "AttributionNote": "Source record (五燈嚴統(第10卷-第25卷)): Strict Five Lamps Lineage (五燈嚴統), Linji Yixuan section. Linji addresses students and places responding to things and manifesting form among the shifting actions in a guest-host encounter.",
+          "MasterName": "Linji Yixuan",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1993.xml",
+          "FromLb": "0630b06",
+          "ToLb": "0630b08",
+          "Kwic": "法身無相。應物現形。般若無知。隨緣即照。遂豎起拂子云。拂子豎起。謂之法身。豈不是應物現形。",
+          "MasterName": "Huanglong Huinan",
+          "Curated": true,
+          "AttributionNote": "Source text (黃龍慧南禪師語錄): T/T47/T47n1993.xml: exact retained passage identifies Huanglong Huinan as the headword utterer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "X/X78/X78n1556.xml",
+        "X/X64/X64n1260.xml",
+        "X/X82/X82n1571.xml",
+        "X/X81/X81n1568.xml",
+        "T/T47/T47n1993.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "拂子",
+        "拄杖子",
+        "賓主",
+        "全體作用"
+      ],
+      "SearchAliases": [
+        "responding to things, showing a form",
+        "meet the object and manifest a form",
+        "show a form in response to things",
+        "Zen responding to things, showing a form"
+      ],
+      "Explanation": "The phrase occurs 209 times in 105 allowlisted texts. The records repeatedly pair it with the comparison \"like the moon in water\" (如水中月). They also make it a public-interview question: asked \"what is responding to things, showing a form?\" Zhaozhou Congshen says, \"bring the bed-seat over for me\" (如何是應物現形；與我拈床子過來). In another exchange the monk asks which is the moon in the water comparison and the responding master raises the whisk. A later hall address says, \"the body has no form; responding to things, it shows a form\" (法身無象，應物現形), then raises the staff and measures the staff against the recorded heights of the World-Honored One and Maitreya. Thus the phrase is not left as an abstract proposition in the Chan corpus: masters put it into questions and answer it with the teaching-seat furniture and implements in front of the assembly.",
+      "ClaimAnchors": []
+    }
+  ]
+}

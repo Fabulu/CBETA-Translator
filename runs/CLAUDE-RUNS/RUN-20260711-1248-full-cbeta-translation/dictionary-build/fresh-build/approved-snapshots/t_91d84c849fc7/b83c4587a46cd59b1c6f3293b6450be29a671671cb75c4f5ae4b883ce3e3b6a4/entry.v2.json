@@ -1,0 +1,289 @@
+{
+  "Id": "t_91d84c849fc7",
+  "SourceTerm": "保任",
+  "CreatedBy": "Codex fresh-build lane B",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to guard and maintain",
+      "AlternateTargets": [
+        "to keep charge of",
+        "to preserve",
+        "to sustain"
+      ],
+      "SearchAliases": [
+        "guard and maintain",
+        "keep maintaining",
+        "preserve it",
+        "sustain it",
+        "keep charge of",
+        "how to maintain",
+        "how to preserve",
+        "maintain after realization"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The frozen allowlisted corpus has 592 exact hits in 198 files representing 195 works. Eight anchors cover four questioners, four distinct named replies or definitions, and the split question/answer turns in Deshan Zhixian's exchange. The differing answers concern the same requested continuation and do not become separate master-specific senses.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0267b26",
+          "ToLb": "0267b28",
+          "Kwic": "師曰。未審始終如何保任。百丈曰。如牧牛人執杖視之不令犯人苗稼。師自茲領旨更不馳求。",
+          "MasterName": "Changqing Da'an",
+          "ContextMasters": [
+            {
+              "MasterName": "Changqing Da'an",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "teacher"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): Changqing Da'an asks how to guard and maintain from beginning to end; Baizhang Huaihai answers with the cattle-herder comparison without repeating the headword."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0280c25",
+          "ToLb": "0280c26",
+          "Kwic": "宗曰。即汝便是。師曰。如何保任。宗曰。一翳在眼空華亂墜",
+          "MasterName": "Furong Lingxun",
+          "ContextMasters": [
+            {
+              "MasterName": "Furong Lingxun",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Guizong Zhichang",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): Furong Lingxun asks how to guard and maintain; Guizong Zhichang answers with the film-in-the-eye line without repeating the headword."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0299a17",
+          "ToLb": "0299a18",
+          "Kwic": "問此事如何保任師曰。切忌。問如何是最初一句。師便喝。",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh lane-B complete-case review",
+            "ReviewedUtc": "2026-07-15T04:45:00Z",
+            "GrammarEvidence": "The complete-case speech and narration markers assign the headword-bearing clause to the unnamed questioning monk, as recorded in the attribution note."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zizhou Shuilu Heshang",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): the unnamed questioning monk asks Zizhou Shuilu Heshang how to preserve this matter; Shuilu answers, \"Take care!\" All six attribution rungs leave the monk unnamed."
+        },
+        {
+          "RelPath": "X/X72/X72n1437.xml",
+          "FromLb": "0417c12",
+          "ToLb": "0417c14",
+          "Kwic": "然所謂保任者，非假造作有為之法，不過嘗惺惺地，不為凡心所雜而已。",
+          "MasterName": "Yongjue Yuanxian",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongjue Yuanxian",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "The cited extensive recorded-sayings collection (永覺元賢禪師廣錄): Yongjue Yuanxian explicitly says that what is called guarding and maintaining is no fabricated conditioned act, but constant alertness unmixed with ordinary mind."
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0539c24",
+          "ToLb": "0540a01",
+          "Kwic": "進云：時中如何保任？",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex fresh lane-B complete-case review",
+            "ReviewedUtc": "2026-07-15T04:45:00Z",
+            "GrammarEvidence": "The complete-case speech and narration markers assign the headword-bearing clause to the unnamed questioning monk, as recorded in the attribution note."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Deshan Zhixian",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄): the unnamed questioning monk asks Deshan Zhixian how to guard and maintain throughout the day; all six attribution rungs leave the monk unnamed."
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0540a01",
+          "ToLb": "0540a01",
+          "Kwic": "師云：保任即錯。",
+          "MasterName": "Deshan Zhixian",
+          "ContextMasters": [
+            {
+              "MasterName": "Deshan Zhixian",
+              "Roles": [
+                "utterer",
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄): Deshan Zhixian answers the preceding question by saying that guarding and maintaining is itself wrong."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0135a16",
+          "ToLb": "0135a17",
+          "Kwic": "慧曰：如何保任？師曰：饑來喫飯，困來打眠。",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Xin'an Weiyin",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "The Full Collection of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): Dahui Zonggao asks Xin'an Weiyin how to guard and maintain; Weiyin answers that he eats when hungry and sleeps when tired."
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "X/X72/X72n1437.xml",
+        "X/X78/X78n1553.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Changqing Da'an",
+        "Baizhang Huaihai",
+        "Furong Lingxun",
+        "Guizong Zhichang",
+        "Zizhou Shuilu Heshang",
+        "Yongjue Yuanxian",
+        "Deshan Zhixian",
+        "Dahui Zonggao",
+        "Xin'an Weiyin"
+      ],
+      "RelatedTerms": [
+        "牧牛",
+        "承當",
+        "本分事"
+      ],
+      "Explanation": "To guard, maintain, or keep charge of something over time. In Chan records it is frequently asked after recognition or arrival: how is this to be maintained? Changqing Da'an asks Baizhang Huaihai, who answers with the cattle-herder watching with a staff and not letting the animal trespass on another's seedlings. Furong Lingxun asks Guizong Zhichang, who answers with a film in the eye and falling empty flowers. Other questioners receive \"Take care!\" and, from Deshan Zhixian, \"Guarding and maintaining is itself wrong.\" Dahui Zonggao asks Xin'an Weiyin and is told to eat when hungry and sleep when tired. Yongjue Yuanxian explicitly describes the term as no fabricated conditioned act, but constant alertness unmixed with ordinary mind. The Zen bend is the public challenge over what follows an apparent attainment: the question asks for continued custody, while the named answers range from herding imagery to direct rejection of the very maintenance proposed.",
+      "ClaimAnchors": []
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to vouch for",
+      "AlternateTargets": [
+        "to guarantee",
+        "to assure",
+        "to warrant"
+      ],
+      "SearchAliases": [
+        "vouch for it",
+        "guarantee it",
+        "assure someone",
+        "warrant its truth",
+        "promise it is true"
+      ],
+      "Status": "allowed",
+      "Validation": "provisional",
+      "Note": "The full formula has parallel witnesses in two texts that appear to transmit one exchange. The different participant structure warrants a separate sense, while the lack of an independent second exchange keeps validation provisional.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0043c14",
+          "ToLb": "0043c15",
+          "Kwic": "師云：我今為汝保任此事，終不虗也。僧作禮。",
+          "MasterName": "Damei Fachang",
+          "ContextMasters": [
+            {
+              "MasterName": "Damei Fachang",
+              "Roles": [
+                "utterer",
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "The Compendium of the Linked Lamps (聯燈會要): Damei Fachang tells the unnamed questioner that he now vouches for this matter for him and that it will never be false."
+        }
+      ],
+      "SourceTexts": [
+        "X/X79/X79n1557.xml"
+      ],
+      "RelatedMasters": [
+        "Damei Fachang"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "To vouch for or guarantee something to someone. This is an act of assurance rather than continued custody, so it is a genuinely different thing from guarding and maintaining. Damei Fachang tells an unnamed questioner, \"I now vouch for this matter for you; in the end it is not false.\"",
+      "ClaimAnchors": []
+    }
+  ]
+}

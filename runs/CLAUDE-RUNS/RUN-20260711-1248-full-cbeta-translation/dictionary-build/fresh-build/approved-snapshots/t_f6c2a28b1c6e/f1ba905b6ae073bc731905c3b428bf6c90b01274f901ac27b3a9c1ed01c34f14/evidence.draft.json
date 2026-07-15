@@ -1,0 +1,290 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_f6c2a28b1c6e",
+    "SourceTerm": "參同契",
+    "CreatedBy": "Codex fresh f002 Lane A evidence-first",
+    "WrittenUtc": "2026-07-15T12:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "The Accord of Difference and Sameness",
+        "AlternateTargets": [
+          "Accord of Difference and Sameness",
+          "Shitou's Accord of Difference and Sameness"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The corpus has 88 exact occurrences in 50 allowlisted files. Four exact title occurrences and one quoted-family witness establish authorship, title use, later deployment, and transmitted wording. The evidence still denotes one work; no second referent was found.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0309c07",
+            "ToLb": "0309c08",
+            "Kwic": "師著參同契一篇。辭旨幽𤀹頗有注解大行於世。",
+            "Curated": true,
+            "AttributionNote": "Source text (景德傳燈錄), file T/T51/T51n2076.xml; exact actor: the lamp-record compiler narrating Shitou Xiqian’s authorship; actor state: narrated. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the lamp-record compiler narrating Shitou Xiqian’s authorship",
+              "ActorRole": "compiler",
+              "ReviewedBy": "Codex f002 Lane A full-case review",
+              "ReviewedUtc": "2026-07-15T12:00:00Z",
+              "GrammarEvidence": "The headword occurs in third-person editorial narration, not in speech by Shitou Xiqian.",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Shitou Xiqian",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the lamp-record compiler narrating Shitou Xiqian’s authorship",
+              "ExactHeadwordClause": "師著參同契一篇。辭旨幽𤀹頗有注解大行於世。",
+              "FullCaseDecision": "The compiler narrates the headword-bearing clause about Shitou Xiqian; Shitou Xiqian is not its utterer."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0459b07",
+            "ToLb": "0459b08",
+            "Kwic": "南嶽石頭和尚參同契南嶽石頭和尚參同契竺土大仙心。東西密相付。",
+            "Curated": true,
+            "AttributionNote": "Source text (景德傳燈錄), file T/T51/T51n2076.xml; exact actor: the repeated title heading of Shitou Xiqian’s verse; actor state: impersonal; this is impersonal narration and the record does not name a speaker. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ActorAttribution": {
+              "Status": "impersonal",
+              "Kind": "work heading",
+              "ActorLabel": "the repeated title heading of Shitou Xiqian’s verse",
+              "ActorRole": "compiler",
+              "ReviewedBy": "Codex f002 Lane A full-case review",
+              "ReviewedUtc": "2026-07-15T12:00:00Z",
+              "GrammarEvidence": "The headword is printed as the work title immediately before the verse; no person utters this heading.",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Shitou Xiqian",
+                "Roles": [
+                  "verse-author"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the repeated title heading of Shitou Xiqian’s verse",
+              "ExactHeadwordClause": "南嶽石頭和尚參同契南嶽石頭和尚參同契竺土大仙心。東西密相付。",
+              "FullCaseDecision": "This is an impersonal work heading; Shitou Xiqian is retained only as verse-author context."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0399b07",
+            "ToLb": "0399b09",
+            "Kwic": "有一片言語喚作參同契。末上云。竺土大僊心無過此語也。中間也只隨時說話。",
+            "MasterName": "Fayan Wenyi",
+            "Curated": true,
+            "AttributionNote": "Source text (景德傳燈錄), file T/T51/T51n2076.xml; exact actor: Fayan Wenyi. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fayan Wenyi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "有一片言語喚作參同契。末上云。竺土大僊心無過此語也。中間也只隨時說話。",
+              "SpeechFrame": "Complete-case review assigns the stored headword-bearing turn to Fayan Wenyi.",
+              "FullCaseDecision": "Fayan Wenyi is the exact speaker of the stored headword-bearing turn; nearby people, if any, are not substituted for the utterer."
+            }
+          },
+          {
+            "RelPath": "X/X79/X79n1557.xml",
+            "FromLb": "0232a14",
+            "ToLb": "0232a16",
+            "Kwic": "石頭初看肇論，至會萬物為己者，其惟聖人乎，則曰：聖人無己，靡所不己。乃作參同契",
+            "MasterName": "Fayan Wenyi",
+            "Curated": true,
+            "AttributionNote": "Source text (聯燈會要), file X/X79/X79n1557.xml; exact actor: Fayan Wenyi. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fayan Wenyi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "石頭初看肇論，至會萬物為己者，其惟聖人乎，則曰：聖人無己，靡所不己。乃作參同契",
+              "SpeechFrame": "Complete-case review assigns the stored headword-bearing turn to Fayan Wenyi.",
+              "FullCaseDecision": "Fayan Wenyi is the exact speaker of the stored headword-bearing turn; nearby people, if any, are not substituted for the utterer."
+            }
+          },
+          {
+            "RelPath": "X/X83/X83n1578.xml",
+            "Kwic": "遂著參同契曰：竺土大仙心，東西密相付。",
+            "Curated": true,
+            "AttributionNote": "Source text (指月錄), file X/X83/X83n1578.xml; exact actor: the compiler narrating Shitou Xiqian’s authorship; actor state: narrated. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the compiler narrating Shitou Xiqian’s authorship",
+              "ActorRole": "compiler",
+              "ReviewedBy": "Codex f002 Lane A full-case review",
+              "ReviewedUtc": "2026-07-15T12:00:00Z",
+              "GrammarEvidence": "遂著參同契曰 is third-person biographical narration introducing the verse attributed to Shitou Xiqian.",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Shitou Xiqian",
+                "Roles": [
+                  "person-described",
+                  "verse-author"
+                ]
+              }
+            ],
+            "FromLb": "0454c10",
+            "ToLb": "0454c11",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the compiler narrating Shitou Xiqian’s authorship",
+              "ExactHeadwordClause": "遂著參同契曰：竺土大仙心，東西密相付。",
+              "FullCaseDecision": "遂著參同契曰 is third-person biographical narration introducing the verse attributed to Shitou Xiqian."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB311.xml",
+            "Kwic": "《參同契》曰：『萬物各有功，當知用及處。本末盡歸宗，尊卑用其語。』",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "AttributionNote": "Source text (天界覺浪盛禪師全錄), file J/J34/J34nB311.xml; exact actor: Juelang Daosheng. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "FromLb": "0631b06",
+            "ToLb": "0631b07",
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "《參同契》曰：『萬物各有功，當知用及處。本末盡歸宗，尊卑用其語。』",
+              "SpeechFrame": "Complete-case review assigns the stored headword-bearing turn to Juelang Daosheng.",
+              "FullCaseDecision": "Juelang Daosheng is the exact speaker of the stored headword-bearing turn; nearby people, if any, are not substituted for the utterer."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "T/T51/T51n2076.xml",
+          "X/X79/X79n1557.xml",
+          "X/X83/X83n1578.xml",
+          "J/J34/J34nB311.xml"
+        ],
+        "RelatedMasters": [
+          "Shitou Xiqian",
+          "Fayan Wenyi"
+        ],
+        "RelatedTerms": [
+          "信心銘",
+          "寶鏡三昧",
+          "證道歌"
+        ],
+        "SearchAliases": [
+          "Accord of Difference and Sameness",
+          "Harmony of Difference and Sameness",
+          "Shitou poem"
+        ],
+        "ClaimAnchors": [
+          {
+            "RelPath": "X/X72/X72n1442.xml",
+            "FromLb": "0727b02",
+            "ToLb": "0727b03",
+            "Kwic": "承言須會宗，勿自立規矩。觸目不會道，運足焉知路。進步非近遠，迷隔山河固。謹白參玄人，光陰莫虗度。",
+            "MasterName": "Shitou Xiqian",
+            "Curated": true,
+            "AttributionNote": "Source text (為霖禪師旅泊菴稿), file X/X72/X72n1442.xml; exact actor: Shitou Xiqian. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shitou Xiqian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "承言須會宗，勿自立規矩。觸目不會道，運足焉知路。進步非近遠，迷隔山河固。謹白參玄人，光陰莫虗度。",
+              "SpeechFrame": "Complete-case review assigns the stored headword-bearing turn to Shitou Xiqian.",
+              "FullCaseDecision": "Shitou Xiqian is the exact speaker of the stored headword-bearing turn; nearby people, if any, are not substituted for the utterer."
+            },
+            "ClaimText": "承言須會宗，勿自立規矩。觸目不會道，運足焉知路。進步非近遠，迷隔山河固。謹白參玄人，光陰莫虗度。"
+          }
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The Accord of Difference and Sameness is the title of Shitou Xiqian’s verse, identified as a composed work, quoted by its opening and closing lines, and discussed by later masters.",
+          "EvidenceBody": [
+            "The title combines participation or joining , sameness , and accord or tally . In the Chan corpus it is the proper name of Shitou Xiqian's verse. The Transmission of the Lamp says that Shitou wrote it, calls its language deep, and prints the work under his name. Its opening says that the mind of the great Indian immortal is intimately transmitted east and west ; its closing tells the person investigating the mystery to meet the source on hearing words and not waste the daylight . Fayan Wenyi later invokes the title in hall discourse, calls it a piece of wording, and quotes its opening. The Joint Essentials of the Lamps connects Shitou's composition with his reading that the sage has no self and nothing is not himself . Zen bends the phrase into a lineage-specific bibliographic name: these records use it not for a general agreement but for Shitou's transmitted Chan poem and for quotations from that poem."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "ZenBend": "The Accord of Difference and Sameness is the title of Shitou Xiqian’s verse, identified as a composed work, quoted by its opening and closing lines, and discussed by later masters.",
+          "CounterexampleOrLimit": "The corpus has 88 exact occurrences in 50 allowlisted files. Four exact title occurrences and one quoted-family witness establish authorship, title use, later deployment, and transmitted wording. The evidence still denotes one work; no second referent was found.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "The Accord of Difference and Sameness"
+            ],
+            "Reason": "The full cases show grammatical and rhetorical variation around one referent or formula, not a second lexical thing."
+          },
+          "AliasRationale": "Aliases expose the preferred literal wording and close English lookup forms without adding an interpretation.",
+          "ModifierControls": [
+            "Headword-bearing compounds and graphic variants were checked separately; they do not silently count as exact headword evidence."
+          ],
+          "FamilyControls": [
+            "The overlapping term family was retested against the expanded frozen corpus; no related entry donates an unsupported sense."
+          ],
+          "IndependentWorkIds": [
+            "chan:zhiyue-lu",
+            "work:J34nB311",
+            "work:T51n2076",
+            "work:X79n1557"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "Id": "t_08ffd55c812e",
+  "SourceTerm": "杜撰",
+  "CreatedBy": "Codex fresh-build lane C",
+  "WrittenUtc": null,
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "fabricated",
+      "AlternateTargets": [
+        "make up",
+        "bogus",
+        "unfounded"
+      ],
+      "Status": "preferred",
+      "Explanation": "The compound occurs 381 times in 145 allowed texts as a verdict on a person, answer, explanation, or speech, and as a verb for making such material up. A late direct naming statement criticizes assigning difficult cases to newcomers without matching the person and the case: after comparing it to fitting a square timber into a round hole and losing people's time, Jiexian says, 'To call it fabricated—is that not fitting?' (謂之杜撰，不亦宜乎). A playful assembly exchange separates the graphs as a surname and personal name: the staff says, 'My surname is Du, given name Zhuan'; asked why it is called 'fabricated,' it answers, 'If the elder did not fabricate, how could he spend all day talking about Zhang and Li?' (長老若不杜撰，如何終日與人說張說李). Dahui uses the word self-deprecatingly when he says, 'I have not read Guo Xiang's explanation or the various commentators' explanations; I only rely on my own fabrication to explain your silence' (我也不曾看郭象解并諸家注解，只據我杜撰說破爾這默然). The stock rebuke 'fabricated elder' (杜撰長老) occurs 68 times in 40 texts, often in the fuller comparison 'fabricated elders are like hemp and millet'—that is, extremely numerous (杜撰長老如麻似粟). 'Fabricated Chan fellow' (杜撰禪和) likewise appears as a verdict on a respondent, while 'fabricated conjectural talk' (杜撰臆說) names speech. These are grammatical deployments of one shared judgment; the texts do not establish a distinct sense from the proper name Du Mo, whose 18 hits refer to a person or to being silent.",
+      "Validation": "multi-source",
+      "Note": "No corpus witness derives the headword from the person Du Mo. Those proper-name and silence occurrences were excluded rather than used to repeat an external etymology. The alternate 'bogus' is reserved for personal epithets such as 'bogus elder' or 'bogus Chan fellow'; 'fabricated' remains the broad target for speech, explanations, and claims.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X63/X63n1259.xml",
+          "FromLb": "0776b14",
+          "ToLb": "0776b17",
+          "Kwic": "最悞人者，有初進禪門，根本未悟，遂令參南泉斬猫，百丈野狐，丹霞燒佛，女子出定等話，此真方木逗圓孔，唐喪人光陰，而天地懸隔者矣。謂之杜撰，不亦宜乎？",
+          "MasterName": "Jiexian",
+          "Curated": true,
+          "AttributionNote": "Sayings on Tempering the Chan Gate (禪門鍛鍊說), selecting-material section: Jiexian calls mismatching a newcomer and assigned cases fabricated. Jiexian is not yet in the roster.",
+          "ContextMasters": [
+            {
+              "MasterName": "Jiexian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J26/J26nB187.xml",
+          "FromLb": "0689b15",
+          "ToLb": "0689b16",
+          "Kwic": "你如何喚作杜撰？",
+          "ContextMasters": [
+            {
+              "MasterName": "Tian'an Sheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (天岸昇禪師語錄). The elder asks why the personified figure is called Du-zuan. Exact source voice: Tian'an Sheng.",
+          "MasterName": "Tian'an Sheng"
+        },
+        {
+          "RelPath": "J/J26/J26nB187.xml",
+          "FromLb": "0689b17",
+          "ToLb": "0689b17",
+          "Kwic": "長老若不杜撰，如何終日與人說張說李？",
+          "ContextMasters": [
+            {
+              "MasterName": "Tian'an Sheng",
+              "Roles": [
+                "interlocutor"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source text (天岸昇禪師語錄). The self-named personified Du-zuan answers that the elder fabricates stories all day. Exact source voice: the personified speaker named Du-zuan.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "personified object speech",
+            "ActorLabel": "a personified staff named Du Zhuan",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "The case explicitly makes the staff answer under the punning personal name Du Zhuan; no unnamed human actor is implied.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex lane-C independent semantic repair",
+            "ReviewedUtc": "2026-07-14T23:30:00Z"
+          }
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0652a14",
+          "ToLb": "0652a15",
+          "Kwic": "我也不曾看郭象解并諸家注解。只據我杜撰說破爾這默然。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄): Dahui Zonggao applies the word self-deprecatingly to his own explanation in a reply to a scholar.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0486a02",
+          "ToLb": "0486a04",
+          "Kwic": "曰不涉程途一句作麼生道。師以坐具摵一摵曰。杜撰長老如麻似粟。拂袖而出。",
+          "MasterName": "Fahua Quanju",
+          "Curated": true,
+          "AttributionNote": "Continuation of the Lamp Record (續傳燈錄), Fahua Quanju section: Fahua Quanju rebukes Langya Huijue with fabricated elders being like hemp and millet. Fahua Quanju is not yet in the roster.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fahua Quanju",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0190a16",
+          "ToLb": "0190a18",
+          "Kwic": "師嘗勘一新到曰：何方聖者？甚處靈祇？僧曰：臨朕碪。師曰：杜撰禪和，如麻似粟。參堂去！",
+          "MasterName": "Yuansou Xingduan",
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps (五燈全書(第34卷-第120卷)), Yuansou Xingduan section: Yuansou Xingduan tests a newcomer and calls him a fabricated Chan fellow.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuansou Xingduan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0158a14",
+          "ToLb": "0158a15",
+          "Kwic": "莫是智過佛祖耶？杜撰臆說耶？卓拄杖曰：好向暮天沙上望，西風驚起鴈行斜。",
+          "MasterName": "Juean Mengzhen",
+          "Curated": true,
+          "AttributionNote": "Complete Collection of the Five Lamps (五燈全書(第34卷-第120卷)), Juean Mengzhen section: Juean Mengzhen rejects a claim as fabricated conjectural talk. Juean Mengzhen is not yet in the roster.",
+          "ContextMasters": [
+            {
+              "MasterName": "Juean Mengzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X63/X63n1259.xml",
+        "J/J26/J26nB187.xml",
+        "T/T51/T51n2077.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "杜撰長老",
+        "杜撰禪和",
+        "穿鑿",
+        "臆說"
+      ],
+      "SearchAliases": [
+        "fabricated",
+        "made up",
+        "bogus",
+        "invented",
+        "spurious"
+      ]
+    }
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+}

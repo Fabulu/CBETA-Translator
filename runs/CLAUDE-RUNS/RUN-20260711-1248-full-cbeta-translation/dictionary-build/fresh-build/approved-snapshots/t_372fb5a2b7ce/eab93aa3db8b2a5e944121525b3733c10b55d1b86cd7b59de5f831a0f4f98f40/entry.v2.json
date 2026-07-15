@@ -1,0 +1,166 @@
+{
+  "Id": "t_372fb5a2b7ce",
+  "SourceTerm": "活句",
+  "CreatedBy": "Codex fresh f001 lane B evidence-first",
+  "WrittenUtc": "2026-07-15T05:30:00Z",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a living phrase",
+      "AlternateTargets": [
+        "a live phrase",
+        "living words"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The opposite “dead phrase” occurs 372 times. “Investigate the living phrase” occurs 90 times, and “under the living phrase” occurs 33 times. Gulin also records the explicit reversal, “A dead phrase is precisely a living phrase; a living phrase is precisely a dead phrase.” The contrast is therefore reported as a recurring textual classification rather than imposed as an invariant property of particular words.",
+      "Occurrences": [
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0895a19",
+          "ToLb": "0895a20",
+          "Kwic": "語中有語名為死句語中無語名為活句",
+          "MasterName": "Dongshan Shouchu",
+          "Curated": true,
+          "AttributionNote": "Source text (古尊宿語錄): Dongshan Shouchu is the exact speaker in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Shouchu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X69/X69n1368.xml",
+          "FromLb": "0744a02",
+          "ToLb": "0744a02",
+          "Kwic": "語中有語，謂之死句；語中無語，謂之活句。",
+          "Curated": true,
+          "AttributionNote": "Source text (偃溪廣聞禪師語錄): Yanxi Guangwen is the exact speaker in the complete case.",
+          "MasterName": "Yanxi Guangwen",
+          "ContextMasters": [
+            {
+              "MasterName": "Yanxi Guangwen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0133b21",
+          "ToLb": "0133b22",
+          "Kwic": "如何是活句？師云：死中得。云：如何是死句？師云：活中得。",
+          "Curated": true,
+          "AttributionNote": "Source text (聯燈會要): an unnamed questioning monk is the exact textual actor for 'What is a living phrase?'; Baofeng Shanqing supplies the reply.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baofeng Shanqing",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "person",
+            "ActorLabel": "an unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex lane-B independent-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z",
+            "GrammarEvidence": "The interrogative 如何是活句 belongs to the unnamed monk; 師云 then introduces Baofeng Shanqing's answer 死中得."
+          }
+        },
+        {
+          "RelPath": "X/X71/X71n1412.xml",
+          "FromLb": "0209a22",
+          "ToLb": "0209a23",
+          "Kwic": "死句即是活句，活句即是死句。其活也，羅籠不肯住，呼喚不迴頭，古聖不安排，至今無處所；",
+          "Curated": true,
+          "AttributionNote": "Source text (古林清茂禪師語錄): Gulin Qingmao is the exact speaker in the complete case.",
+          "MasterName": "Gulin Qingmao",
+          "ContextMasters": [
+            {
+              "MasterName": "Gulin Qingmao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0161a19",
+          "ToLb": "0161a20",
+          "Kwic": "須參活句。莫參死句。活句下薦得。永劫不忘。死句下薦得。自救不了。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Source text (佛果圜悟禪師碧巖錄): Yuanwu Keqin is the exact speaker in the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X73/X73n1457.xml",
+          "FromLb": "0864c05",
+          "ToLb": "0864c06",
+          "Kwic": "不落言詮，不墮理路，不入思惟，不容擬議，千變萬化，八面受敵者，謂之活句",
+          "Curated": true,
+          "AttributionNote": "Source text (雲門麥浪懷禪師宗門設難): Mailang Minghuai is the exact speaker in the complete case.",
+          "MasterName": "Mailang Minghuai",
+          "ContextMasters": [
+            {
+              "MasterName": "Mailang Minghuai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "C/C077/C077n1710.xml",
+        "X/X69/X69n1368.xml",
+        "X/X73/X73n1457.xml",
+        "X/X79/X79n1557.xml",
+        "X/X71/X71n1412.xml",
+        "T/T48/T48n2003.xml"
+      ],
+      "RelatedMasters": [
+        "Dongshan Shouchu",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "死句",
+        "不死不活句",
+        "末後句",
+        "話頭"
+      ],
+      "SearchAliases": [
+        "a living phrase",
+        "a live phrase",
+        "living words"
+      ],
+      "Explanation": "A living phrase is a phrase the records describe as not caught in verbal explanation, a fixed reasoning track, thought, or deliberation. One direct definition is contrastive: “Speech containing speech is called a dead phrase; speech without speech is called a living phrase.” Another says that a phrase which does not fall into verbal explanation, does not drop into a track of reasoning, does not enter thought, does not permit deliberation, changes a thousand and ten thousand ways, and meets opposition on eight sides is called a living phrase. Gulin Qingmao records another description: “As for its living: a net will not hold it, a call will not turn its head, the ancient sages do not arrange it, and to this day it has no place.” A recurrent instruction says, “Investigate the living phrase; do not investigate the dead phrase.” Blue Cliff Record says that recognition under a living phrase is never forgotten, whereas recognition under a dead phrase cannot save oneself. Records also ask “What is a living phrase?” and preserve different answers, including “obtained within death.” An intermediate category, “a phrase neither dead nor living,” also occurs. These are the records' descriptions and classifications; the entry does not infer a hidden force behind them.",
+      "ClaimAnchors": []
+    }
+  ]
+}

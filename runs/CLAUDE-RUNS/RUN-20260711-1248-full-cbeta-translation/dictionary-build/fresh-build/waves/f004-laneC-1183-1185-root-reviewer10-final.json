@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-exact-hash-ledger-fix-rereview",
+  "reviewer": "root-coordinator",
+  "generatedUtc": "2026-07-15T15:34:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1183, 1184, 1185],
+  "entriesReviewed": 3,
+  "occurrencesReadInPriorIndependentReview": 17,
+  "exactKwics": "17/17",
+  "exactFullSpans": "17/17",
+  "keep": 3,
+  "revise": 0,
+  "entries": [
+    {"ordinal": 1183, "id": "t_dcb8d664b64f", "term": "第二月", "reviewedEntrySha256": "df34a1ab23b6ac58f1e2251583a9f436695df71257b9b21f0e7ac1c8821b58aa", "reviewedWorksheetSha256": "0ef1a2ae9201713a3ae4e1676181a97af364a31f3f96ef4dfa4a32167fa5eb38", "verdict": "KEEP", "reason": "The prior independent review passed all nine complete cases and rejected only the stale removed work:T48n2016 worksheet ID. The retained IndependentWorkIds now exactly match the nine occurrence works and omit that ID; entry bytes are unchanged."},
+    {"ordinal": 1184, "id": "t_b7fd3f3a1395", "term": "蛇入竹筒", "reviewedEntrySha256": "b030ec0435c483d9bf76238e4fbb844d10e39d0ef2cf38f45a752d85853318f1", "reviewedWorksheetSha256": "395cf8feb33880867129ded46c6fc37bdf3f039c3f046488d067e4c161a52aa5", "verdict": "KEEP", "reason": "The prior independent review passed all four complete cases and rejected only stale work:T48n2006 in the worksheet. The retained IndependentWorkIds now exactly match the four occurrence works and omit that ID; entry bytes are unchanged."},
+    {"ordinal": 1185, "id": "t_ce08a150ae0a", "term": "舟行岸移", "reviewedEntrySha256": "5af7d7a3233d575bb39838092e1baa94282c43a641faca958b8aa305089eb769", "reviewedWorksheetSha256": "b0124a054903d5a9b51481d2ef7d12884bee99d78a6f934e8e9f560714a51c33", "verdict": "KEEP", "reason": "The prior independent review passed all four complete cases and rejected only stale work:T48n2016 and work:guzunsu-yulu worksheet IDs. The retained IndependentWorkIds now exactly match the four occurrence works and omit both; entry bytes are unchanged."}
+  ],
+  "reviewIntegrity": {"entriesEdited": false, "promotionPerformed": false, "mergePerformed": false, "siteTouched": false, "authorReviewerSeparated": true}
+}

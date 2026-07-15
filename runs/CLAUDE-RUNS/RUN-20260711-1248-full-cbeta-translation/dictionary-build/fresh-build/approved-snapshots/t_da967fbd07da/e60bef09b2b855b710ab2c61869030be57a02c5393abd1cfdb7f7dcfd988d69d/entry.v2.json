@@ -1,0 +1,122 @@
+{
+  "Id": "t_da967fbd07da",
+  "SourceTerm": "鏡花",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:09:02.950859+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a flower in a mirror",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "a flower in a mirror",
+        "鏡花"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J39/J39nB471.xml",
+          "FromLb": "0953b07",
+          "ToLb": "0953b07",
+          "Kwic": "」師云：「佛不許人成，鏡花任憑摘。",
+          "Curated": true,
+          "MasterName": "Konggu Daocheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Konggu Daocheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (空谷道澄禪師語錄): exact actor (空谷道澄禪師) owns the headword-bearing wording. Exact headword utterer: Konggu Daocheng."
+        },
+        {
+          "RelPath": "J/J29/J29nB239.xml",
+          "FromLb": "0488b22",
+          "ToLb": "0488b22",
+          "Kwic": "圓覺覺圓，鏡花水月。",
+          "Curated": true,
+          "MasterName": "Chuiwan Guangzhen",
+          "ContextMasters": [
+            {
+              "MasterName": "Chuiwan Guangzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (吹萬禪師語錄): exact actor (吹萬禪師) owns the headword-bearing wording. Exact headword utterer: Chuiwan Guangzhen."
+        },
+        {
+          "RelPath": "J/J27/J27nB190.xml",
+          "FromLb": "0096a07",
+          "ToLb": "0096a08",
+          "Kwic": "覺浪和尚白槌竟，師曰：「拈鏡花，捉水月，祖禰不了，殃及兒孫。",
+          "Curated": true,
+          "MasterName": "Shiyu Mingfang",
+          "ContextMasters": [
+            {
+              "MasterName": "Shiyu Mingfang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (石雨禪師法檀): exact actor (石雨禪師) owns the headword-bearing wording. Exact headword utterer: Shiyu Mingfang."
+        },
+        {
+          "RelPath": "J/J28/J28nB219.xml",
+          "FromLb": "0690c30",
+          "ToLb": "0691a02",
+          "Kwic": "其辭匹鏡花水月、其義奪杲日晴空，性相全彰、宗教圓備，豈非剖一微塵見大千經卷者哉？",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhuanyu Guanheng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (紫竹林顓愚衡和尚語錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J27/J27nB190.xml",
+        "J/J28/J28nB219.xml",
+        "J/J29/J29nB239.xml",
+        "J/J39/J39nB471.xml"
+      ],
+      "RelatedMasters": [
+        "吹萬禪師",
+        "石雨禪師",
+        "空谷道澄禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "A flower in a mirror is visible as an image but cannot be plucked from the mirror as a separate flower. Konggu Daocheng makes the failed-plucking feature explicit: 'mirror flower—pluck as you please.' Shiyu pairs plucking the mirror flower with grasping the water-moon, while other records use mirror-flower and water-moon as a paired image or literary comparison."
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "Id": "t_0fc455356921",
+  "SourceTerm": "提婆達多",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T04:52:26.825273+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Devadatta",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "Devadatta",
+        "提婆達多"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0594b25",
+          "ToLb": "0594b25",
+          "Kwic": "」大宰出云：「近日有提婆達多一頌呈上。",
+          "Curated": true,
+          "MasterName": "天界覺浪盛禪師",
+          "ContextMasters": [
+            {
+              "MasterName": "天界覺浪盛禪師",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): exact actor (天界覺浪盛禪師) owns the headword-bearing wording."
+        },
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0442a17",
+          "ToLb": "0442a18",
+          "Kwic": "提婆達多所有言說。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:52:26.825273+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (宗鏡錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X72/X72n1444.xml",
+          "FromLb": "0788a17",
+          "ToLb": "0788a19",
+          "Kwic": "是故提婆達多是佛積劫惡友，而云：我因提婆達多善知識故，令我疾得阿耨菩提，乃至證得三十二相、八十種好。",
+          "Curated": true,
+          "MasterName": "湛然圓澄禪師",
+          "ContextMasters": [
+            {
+              "MasterName": "湛然圓澄禪師",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (湛然圓澄禪師語錄): exact actor (湛然圓澄禪師) owns the headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0455c06",
+          "ToLb": "0455c07",
+          "Kwic": "舉提婆達多在地獄中受罪，師曰：既無出分，又無入分，喚甚麼作釋迦老子？",
+          "Curated": true,
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (嘉泰普燈錄): The source's full turn identifies Dahui Zonggao as the exact headword utterer."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J34/J34nB311.xml",
+        "T/T48/T48n2016.xml",
+        "X/X72/X72n1444.xml",
+        "X/X79/X79n1559.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "天界覺浪盛禪師",
+        "湛然圓澄禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Devadatta is the hostile kinsman whom Chan speakers invoke in questions about opposition, wrongdoing, and the Buddha's own relations. The record uses those sharply bounded case predicates rather than importing a complete religious biography."
+    }
+  ]
+}

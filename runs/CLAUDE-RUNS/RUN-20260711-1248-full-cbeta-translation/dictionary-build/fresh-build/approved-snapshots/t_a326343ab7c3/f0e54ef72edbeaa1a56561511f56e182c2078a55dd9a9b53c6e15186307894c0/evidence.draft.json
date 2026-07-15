@@ -1,0 +1,243 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_a326343ab7c3",
+    "SourceTerm": "日日是好日",
+    "CreatedBy": "Codex f002 Lane B evidence-first refresh",
+    "WrittenUtc": null,
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "every day is a good day",
+        "AlternateTargets": [
+          "day after day is a good day"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "192 occurrences in 100 allowlisted texts. The calendar phrase and Yunmen quotation name the same statement, not separate readings or things. Frozen-corpus concordance: 211 exact hits in 107 storage files representing 105 independent works. Frozen-corpus concordance: 211 exact hits in 107 storage files representing 105 independent works. Frozen-corpus concordance: 211 exact hits in 107 storage files representing 105 independent works. Frozen-corpus concordance: 211 exact hits in 107 storage files representing 105 independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X81/X81n1568.xml",
+            "FromLb": "0111b16",
+            "ToLb": "0111b18",
+            "Kwic": "十五日已前不問汝，十五日已後道將一句來。眾無對。自代曰：日日是好日。",
+            "MasterName": "Yunmen Wenyan",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Yunmen Wenyan owns the exact quoted clause in the complete case.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "十五日已前不問汝，十五日已後道將一句來。眾無對。自代曰：日日是好日。",
+              "SpeechFrame": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Yunmen Wenyan section: Yunmen Wenyan asks for a line after the fifteenth day and, when the assembly gives no answer, supplies his own exact answer, ‘Every day is a good day.’",
+              "FullCaseDecision": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), in the explicitly headed Yunmen Wenyan section: Yunmen Wenyan asks for a line after the fifteenth day and, when the assembly gives no answer, supplies his own exact answer, ‘Every day is a good day.’"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0121b06",
+            "ToLb": "0121b07",
+            "Kwic": "日日是好日，佛法世法盡周畢。不須特地覓幽玄，祇管鉢盂兩度濕。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Miaozong owns the exact quoted clause in the complete case.",
+            "MasterName": "Miaozong",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "日日是好日，佛法世法盡周畢。不須特地覓幽玄，祇管鉢盂兩度濕。",
+              "SpeechFrame": "五燈全書(第34卷-第120卷): complete-case exact-turn review identifies Miaozong as the actor for this occurrence.",
+              "FullCaseDecision": "五燈全書(第34卷-第120卷): complete-case exact-turn review identifies Miaozong as the actor for this occurrence."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Miaozong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X71/X71n1420.xml",
+            "FromLb": "0563c19",
+            "ToLb": "0563c20",
+            "Kwic": "年年是好年，日日是好日。師云：瞎老婆吹火。",
+            "Curated": true,
+            "AttributionNote": "Source text (楚石梵琦禪師語錄). unnamed monk owns the exact clause in the complete case.",
+            "ContextMasters": [
+              {
+                "MasterName": "Chushi Fanqi",
+                "Roles": [
+                  "respondent",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "unnamed monk",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex",
+              "ReviewedUtc": "2026-07-14T04:22:24Z",
+              "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to unnamed monk, rather than to a section owner or respondent."
+            },
+            "DraftActorProof": {
+              "GrammaticalSubject": "unnamed monk",
+              "FullCaseDecision": "Recorded Sayings of Chan Master Chushi Fanqi (楚石梵琦禪師語錄), Chushi Fanqi's New Year's Eve informal convocation. An unnamed monk is the exact speaker who advances 'every year is a good year; every day is a good day'; Chushi answers, 'a blind old woman blows the fire.' The line, expanded context, section header, book title, TEI header, exact-case search, and independent parallel witnesses preserve the exchange without naming this monk."
+            }
+          },
+          {
+            "RelPath": "C/C078/C078n1720.xml",
+            "FromLb": "0803a08",
+            "ToLb": "0803a09",
+            "Kwic": "日日是好日年年是好年為甚𨚫無師曰張公喫酒李公醉",
+            "Curated": true,
+            "AttributionNote": "Source text (禪宗頌古聯珠通集). unnamed monk owns the exact clause in the complete case.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "unnamed monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex hard-w2-b1",
+              "ReviewedUtc": "2026-07-14T07:30:00Z",
+              "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to unnamed monk, rather than to a section owner or respondent."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Mingjiao Kuan",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "unnamed monk",
+              "FullCaseDecision": "Connected Anthology of Verses on Old Chan Cases (禪宗頌古聯珠通集): an unnamed monk tells Mingjiao Kuan that every day is a good day and every year a good year, then asks why there is no New Year Buddha-teaching. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk."
+            }
+          },
+          {
+            "RelPath": "X/X84/X84n1583.xml",
+            "FromLb": "0412a02",
+            "ToLb": "0412a04",
+            "Kwic": "若也踏著此門，年年是好年，月月是好月，日日是好日，時時是好時，明如杲日，寬若太虗。",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Huqiu Shaolong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Huqiu Shaolong",
+            "AttributionNote": "Source text (續燈正統). Huqiu Shaolong owns the exact quoted clause in the complete case.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "若也踏著此門，年年是好年，月月是好月，日日是好日，時時是好時，明如杲日，寬若太虗。",
+              "SpeechFrame": "佛語心為宗，一切即一；無門為法門，一即一切。是汝諸人高肩拄杖，天下橫行，還踏著此門也未？若也踏著此門，年年是好年，月月是好月，日日是好日，時時是好時，明如杲日，寬若太虗。三世諸佛以此門生凡育聖，廣利羣品；歷代祖師以此門以心契心，流通正續；天下宗祖以此門揭示人天眼目，提持向上一路；乾坤以此門為覆藏；日月以此門為照臨；四時以此門為寒暑；國王以此門治天下；百官以此門盡忠盡孝；庶人以此門治生產業；衲僧以此門撥轉天關，掀飜地軸，失口說著佛之一字，潄口三年。雖然如此，事無一向。若或尚留門外，不免露箇消息去也。遂拈拄杖，云：還見麼？復卓一卓，云：還聞麼？已為諸人八字打開了也。直須無見而見，是名真見；無聞而聞，是名真聞；無說而說，是名真說。真見、真聞、真說是甚麼熱椀鳴聲？豈不見道：從無住本，流出萬端。便知歿故太夫人於無相中示現受生，一切諸相悉皆真實；於無滅中示現入滅，一切生滅之相本來空寂，凝然不動，正體如如，亘古亘今，曾無變易。正當恁麼時，畢竟如何？風恬波浪靜，直下見青天。復舉：陸亘大夫問南泉和尚云：弟子家中有一片石，亦曾坐，亦曾臥，欲䥴作佛，得麼？泉云：得。大夫云：莫不得麼？泉云：不得。師云：南泉雖似鏡之臨形，胡來胡現，漢來漢現，只是不通簡點。當時待他道：弟子家中有一片石，亦曾坐，亦曾臥，欲鑴作佛，得麼？只對道：莫惜高名鑴石上，維摩傾盡此時心。",
+              "FullCaseDecision": "Source text (續燈正統). Huqiu Shaolong owns the exact headword-bearing turn in the complete case."
+            }
+          },
+          {
+            "RelPath": "J/J38/J38nB425.xml",
+            "FromLb": "0635c26",
+            "ToLb": "0635c26",
+            "Kwic": "』又自代云：『日日是好日。",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Yunmen Wenyan",
+            "AttributionNote": "Source text (即非禪師全錄). Yunmen Wenyan owns the exact quoted clause in the complete case.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "』又自代云：『日日是好日。",
+              "SpeechFrame": "十九日，宮本居士為師祝壽，請上堂。龍舟問：「如何是如來禪？」師云：「滿天瑞氣。」進云：「如何是和尚禪？」師云：「匝地祥光。」進云：「恁麼則將此祥瑞祝和尚壽福檀那去也。」師云：「如何是闍黎禪？」僧禮拜。東曉問：「佛言：『佛法付囑國王大臣、有力檀那。』今日宮本居士欽護法筵，祝我師華誕，正與麼時，酬檀恩一句作麼生？」師云：「拈出雲門棒。」進云：「世尊初生，金蓮捧足，和尚華誕有何祥瑞？」師云：「坐斷千差，放開線路。」進云：「與麼則人天龍象嘆希有，艸木林巒獻瑞徵去也。」師云：「還我獨尊一句。」進云：「真獅子吼。」師云：「莫謗山僧好。」問：「和尚壽展越六日，諸方慶讚猶未休，如何是重重慶祝一句？」師云：「錦上鋪花色轉鮮。」進云：「恁麼則一點元辰亙古今也。」師云：「如何是亙古今一句？」進云：「誕出恒沙功德聚，寶華座上現全身。」師云：「禮拜著。」乃云：「廣壽門下日日生辰，福聚堂中時時慶祝，說甚麼初度越六日？偏頗之人必以刻舟共哂，正信之士競來錦上鋪紅，所謂欲知宮本事，須是宮裏人，若非宮裏人，焉知宮本事？」復舉：「雲門和尚曰：『十五日已前則不問你，十五日已後道將一句來。』又自代云：『日日是好日。』廣壽云：若會得日日是好日，不求福而福自至，不求壽而壽自增，乃至齊家治政、成佛作祖，莫不皆從此日日是好日流出。且道日日是好日向甚麼處流出？華藏界中纔一念，閻浮早已八千年。」下座。",
+              "FullCaseDecision": "Source text (即非禪師全錄). Yunmen Wenyan owns the exact headword-bearing turn in the complete case."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "X/X81/X81n1568.xml",
+          "X/X82/X82n1571.xml",
+          "X/X71/X71n1420.xml",
+          "C/C078/C078n1720.xml"
+        ],
+        "RelatedMasters": [
+          "Yunmen Wenyan"
+        ],
+        "RelatedTerms": [
+          "十五日以前",
+          "十五日以後",
+          "年年是好年"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The expression denotes every day is a good day in these Chan records. Its wording is \"every day is a good day.\" Yunmen tells the assembly, \"I do not ask you about before the fifteenth day; bring me a phrase about after the fifteenth.\" When the assembly gives no answer, he answers for them: \"every day is a good day.\" The corpus thereafter quotes it as Yunmen's answer, pairs it with \"every year is a good year,\" challenges it in questions, rebukes the recorded questioner who offers it, and expands it in later teaching-seat verse.",
+          "EvidenceBody": [
+            "Its specifically Chan deployment is therefore as Yunmen's public answer and a line later masters openly quote, test, contradict, and comment on; the record supplies no mystical paraphrase for \"good.\""
+          ]
+        },
+        "DraftEvidence": {
+          "ZenBend": "For 日日是好日, the stored cases establish this term-specific deployment: Literally, \"every day is a good day.\" Yunmen tells the assembly, \"I do not ask you about before the fifteenth day; bring me a phrase about after the fifteenth.\" When the assembly gives no answer, he answers for them: \"every day is a good day.\" The corpus thereafter quotes it as Yunmen's answer, pairs it with \"every year is a good year,\" challenges it in questions, rebukes the recorded questioner who offers it, and expands it in later teaching-seat verse.",
+          "CounterexampleOrLimit": "192 occurrences in 100 allowlisted texts. The calendar phrase and Yunmen quotation name the same statement, not separate readings or things.",
+          "AliasRationale": "Aliases retrieve the same attested referent as every day is a good day in ordinary English.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "Reason": "All selected cases retain every day is a good day despite different predicates."
+          },
+          "ModifierControls": [
+            "No material, symbolic, or morphology claim is added beyond the attested form 日日是好日."
+          ],
+          "FamilyControls": [
+            "Related compounds and case-family forms remain controls and are not substituted for 日日是好日."
+          ],
+          "IndependentWorkIds": [
+            "work:C078n1720",
+            "work:J38nB425",
+            "work:X71n1420",
+            "work:X84n1583",
+            "work:wudeng-quanshu",
+            "work:wudeng-yantong"
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ]
+        },
+        "SearchAliases": [
+          "every day is a good day",
+          "day after day is a good day"
+        ]
+      }
+    ],
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  }
+}

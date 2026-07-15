@@ -1,0 +1,121 @@
+{
+  "Id": "t_d1aa91b2b347",
+  "SourceTerm": "刻舟求劍",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T05:09:02.950859+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "carve the boat to seek the sword",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "carve the boat to seek the sword",
+        "刻舟求劍"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J33/J33nB294.xml",
+          "FromLb": "0739a28",
+          "ToLb": "0739b01",
+          "Kwic": "一等刻舟求劍漢，步步擬議、句句刻畫，將佛法當作個死規模，趙錢孫李、周吳鄭王，逐句逐字，從頭解去、從頭認去，越發不是了也，直教彌勒下生，有甚麼限？",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Langting Jingting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). Langting Jingting’s own general discourse: Langting utters the criticism containing the headword.",
+          "MasterName": "Langting Jingting"
+        },
+        {
+          "RelPath": "J/J37/J37nB386.xml",
+          "FromLb": "0346c20",
+          "ToLb": "0346c20",
+          "Kwic": "」師云：「刻舟求劍幾時休？",
+          "Curated": true,
+          "MasterName": "Yuan'an Feng",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuan'an Feng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (遠菴僼禪師語錄): exact actor (遠菴僼禪師) owns the headword-bearing wording. Exact headword utterer: Yuan'an Feng."
+        },
+        {
+          "RelPath": "J/J27/J27nB189.xml",
+          "FromLb": "0016a16",
+          "ToLb": "0016a17",
+          "Kwic": "」顧左右云：「切莫刻舟求劍。",
+          "Curated": true,
+          "MasterName": "Sanyi Mingyu",
+          "ContextMasters": [
+            {
+              "MasterName": "Sanyi Mingyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (三宜盂禪師語錄): exact actor (三宜盂禪師) owns the headword-bearing wording. Exact headword utterer: Sanyi Mingyu."
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0325c22",
+          "ToLb": "0325c23",
+          "Kwic": "白雲深處挂腰包，遊罷江湖樂自饒，堪笑刻舟求劍者，要來陸地起波濤。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhihuang",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (宗鑑法林): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J27/J27nB189.xml",
+        "J/J33/J33nB294.xml",
+        "J/J37/J37nB386.xml",
+        "X/X66/X66n1297.xml"
+      ],
+      "RelatedMasters": [
+        "三宜盂禪師",
+        "遠菴僼禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Carving the boat to seek the sword is the old image of fixing a mark where a sword fell from a moving boat and later searching at that fixed mark. Yunxi Ting calls people who deliberate step by step and parse character by character the mark-the-boat-to-seek-the-sword saying fellows, then says they make the teaching into a dead model. Sanyi Yu warns the assembly not to do it, and Yuan’an Feng asks when it will stop. The stored Zen uses therefore apply the inherited image to rigidly retrieving a living exchange from fixed wording; they do not themselves retell every detail of the old story."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "SchemaVersion": 2,
+  "Id": "t_d190cf45c531",
+  "SourceTerm": "話頭",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a selected saying under examination",
+      "AlternateTargets": ["a word or question repeatedly brought up"],
+      "SearchAliases": ["saying under examination", "word under investigation", "selected saying", "investigated question", "critical phrase"],
+      "Status": "preferred",
+      "Explanation": "A selected word, question, or saying brought up for repeated examination. Dahui Zonggao tells listeners to look at one while moving or still; Zhongfeng Mingben says to raise one that offers no ready meaning. Hanyue Fazang and Ruibai Mingxue each give explicit but different descriptions of what counts as one. Weilin Daopei places the expression in a historical account of Song-period instruction, while Jiexian attacks lifelessly guarding one without doubt. Chan bends the ordinary sense of a spoken phrase by making it something deliberately selected, raised, watched, and disputed in named instruction.",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 2,779 exact hits in 325 files and 320 independent works in the canonical f001 preflight. This sense is distinct from an already-spoken conversational turn: its referent has been selected for continuing examination, not merely recalled from the preceding exchange.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml", "FromLb": "0886a04", "ToLb": "0886a04", "Kwic": "只就動止處。看箇話頭。", "MasterName": "Dahui Zonggao", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄). Dahui Zonggao is the exact speaker telling the two named Chan practitioners to look at a selected saying while moving or still.",
+          "ContextMasters": [{"MasterName":"Dahui Zonggao","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "X/X70/X70n1402.xml", "FromLb": "0714c20", "ToLb": "0714c21", "Kwic": "單單提起箇無義味話頭", "MasterName": "Zhongfeng Mingben", "Curated": true,
+          "AttributionNote": "Miscellaneous Record of Chan Master Tianmu Mingben (天目明本禪師雜錄). Zhongfeng Mingben is the exact speaker directing the listener to raise only a selected saying that offers no ready meaning.",
+          "ContextMasters": [{"MasterName":"Zhongfeng Mingben","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "J/J34/J34nB299.xml", "FromLb": "0154c29", "ToLb": "0154c29", "Kwic": "所謂話頭者，即目前一事一法也。", "MasterName": "Hanyue Fazang", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Master Sanfeng Cang (三峰藏和尚語錄). Hanyue Fazang is the exact speaker defining the selected saying in terms of the matter immediately before one.",
+          "ContextMasters": [{"MasterName":"Hanyue Fazang","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "J/J34/J34nB299.xml", "FromLb": "0158c23", "ToLb": "0158c24", "Kwic": "只者一問，便收盡世出世間一切有言無言等語，故謂之話頭。", "MasterName": "Hanyue Fazang", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Master Sanfeng Cang (三峰藏和尚語錄). Hanyue Fazang is the exact speaker explaining why a single question is called the selected saying under examination.",
+          "ContextMasters": [{"MasterName":"Hanyue Fazang","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "J/J26/J26nB188.xml", "FromLb": "0786c06", "ToLb": "0786c07", "Kwic": "所言話頭者，即自己本地風光，歷歷孤明，不可絲毫間斷。", "MasterName": "Ruibai Mingxue", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Ruibai (入就瑞白禪師語錄). Ruibai Mingxue is the exact speaker giving his own description of the selected saying and insisting that it not be interrupted.",
+          "ContextMasters": [{"MasterName":"Ruibai Mingxue","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "X/X72/X72n1440.xml", "FromLb": "0653a16", "ToLb": "0653a17", "Kwic": "直至宋朝，始有看話頭、作工夫之說。", "MasterName": "Weilin Daopei", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Weilin (為霖道霈禪師還山錄). Weilin Daopei is the exact speaker placing talk of examining a selected saying in a historical account of Song-period instruction.",
+          "ContextMasters": [{"MasterName":"Weilin Daopei","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "X/X63/X63n1259.xml", "FromLb": "0777b22", "ToLb": "0777b22", "Kwic": "而世有教人死守話頭，不起疑情者，此參禪大病也。", "MasterName": "Jiexian", "Curated": true,
+          "AttributionNote": "Discourse on Forging at the Chan Gate (禪門鍛鍊說). Jiexian is the exact speaker criticizing instruction that makes people guard a selected saying lifelessly without arousing doubt.",
+          "ContextMasters": [{"MasterName":"Jiexian","Roles":["utterer","record-owner"]}]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["T/T47/T47n1998A.xml", "X/X70/X70n1402.xml", "J/J34/J34nB299.xml", "J/J26/J26nB188.xml", "X/X72/X72n1440.xml", "X/X63/X63n1259.xml"],
+      "RelatedMasters": ["Dahui Zonggao", "Zhongfeng Mingben", "Hanyue Fazang", "Ruibai Mingxue", "Weilin Daopei", "Jiexian"],
+      "RelatedTerms": ["提起", "看話", "疑情"]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a spoken remark in an exchange",
+      "AlternateTargets": ["the words just spoken"],
+      "SearchAliases": ["spoken remark", "conversational turn", "words just spoken", "remark under discussion", "return my remark"],
+      "Status": "preferred",
+      "Explanation": "A spoken remark or conversational turn already exchanged. Caoshan Baoji Xiong tells the assembly to remember another participant's remark. Sansheng Huiran says that a large community's leader cannot recognize the remark before him; Fengxue Yanzhao asks an elder whether he remembers it. Luohan Yuanzhao demands his remark back, and Dongshan Liangjie appraises a remark as good but lacking a follow-up. Here the word names the identifiable verbal turn that participants can remember, recognize, return, or answer, not a separately chosen object of continuing examination.",
+      "Validation": "multi-source",
+      "Note": "This ordinary exchange-level referent is retained separately because the corpus treats it as a completed utterance with an owner and conversational consequences. Noun and verbal surroundings do not create further senses.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml", "FromLb": "0006c09", "ToLb": "0006c10", "Kwic": "師曰：大眾分明記取這僧話頭。", "MasterName": "Caoshan Baoji Xiong", "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 34 through 120 (五燈全書(第34卷-第120卷)), Caoshan Baoji Xiong section. Caoshan Baoji Xiong is the exact speaker telling the assembly to remember the other participant's spoken remark.",
+          "ContextMasters": [{"MasterName":"Caoshan Baoji Xiong","Roles":["utterer","section-subject"]}]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml", "FromLb": "0823c04", "ToLb": "0823c05", "Kwic": "三聖云。一千五百人善知識。話頭也不識。", "MasterName": "Sansheng Huiran", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄). Dahui Zonggao raises the exchange and explicitly attributes this headword-bearing response to Sansheng Huiran; Xuefeng Yicun is the respondent Sansheng addresses.",
+          "ContextMasters": [{"MasterName":"Sansheng Huiran","Roles":["utterer","questioner"]},{"MasterName":"Xuefeng Yicun","Roles":["respondent","interlocutor"]},{"MasterName":"Dahui Zonggao","Roles":["later-raiser","record-owner"]}]
+        },
+        {
+          "RelPath": "J/J27/J27nB197.xml", "FromLb": "0416c15", "ToLb": "0416c15", "Kwic": "穴打一拂子：「還記得話頭麼？」", "MasterName": "Fengxue Yanzhao", "Curated": true,
+          "AttributionNote": "Essential Collection of the Recorded Sayings of Master Boshan Wuyi (博山無異大師語錄集要). The quoted case identifies Fengxue Yanzhao as the exact speaker striking with the whisk and asking the elder whether he remembers the spoken remark.",
+          "ContextMasters": [{"MasterName":"Fengxue Yanzhao","Roles":["utterer","questioner","case-figure"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0216a21", "ToLb": "0216a21", "Kwic": "師曰。還我話頭來。", "MasterName": "Luohan Yuanzhao", "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Luohan Cloister Yuanzhao section. Luohan Yuanzhao is the exact speaker demanding that his spoken remark be returned.",
+          "ContextMasters": [{"MasterName":"Luohan Yuanzhao","Roles":["utterer","section-subject"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0103a12", "ToLb": "0103a13", "Kwic": "山曰。好箇話頭。祇欠進語。", "MasterName": "Dongshan Liangjie", "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Caoshan Benji section. Dongshan Liangjie is the exact speaker appraising the reported remark as good but lacking a follow-up statement.",
+          "ContextMasters": [{"MasterName":"Dongshan Liangjie","Roles":["utterer","teacher"]},{"MasterName":"Caoshan Benji","Roles":["student","interlocutor"]}]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": ["X/X82/X82n1571.xml", "T/T47/T47n1998A.xml", "J/J27/J27nB197.xml", "X/X80/X80n1565.xml"],
+      "RelatedMasters": ["Caoshan Baoji Xiong", "Sansheng Huiran", "Xuefeng Yicun", "Dahui Zonggao", "Fengxue Yanzhao", "Luohan Yuanzhao", "Dongshan Liangjie", "Caoshan Benji"],
+      "RelatedTerms": ["進語", "問答", "下語"]
+    }
+  ],
+  "CreatedBy": "Codex fresh-build f001 lane B",
+  "WrittenUtc": "2026-07-14T19:00:00Z"
+}

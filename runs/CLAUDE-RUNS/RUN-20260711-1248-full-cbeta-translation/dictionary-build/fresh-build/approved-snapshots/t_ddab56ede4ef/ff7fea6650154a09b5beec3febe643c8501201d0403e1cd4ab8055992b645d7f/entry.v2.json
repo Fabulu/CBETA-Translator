@@ -1,0 +1,183 @@
+{
+  "Id": "t_ddab56ede4ef",
+  "SourceTerm": "桶底脫",
+  "CreatedBy": "Codex fresh f001 lane B evidence-first",
+  "WrittenUtc": "2026-07-15T05:30:00Z",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the bucket-bottom falls out",
+      "AlternateTargets": [
+        "the bottom drops out of the bucket",
+        "bucket-bottom gone"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The corpus does not provide a required direct-definition formula. It does provide a literal control case involving a noodle bucket, which prevents the comparison from being replaced by an imported abstraction. Xuefeng's report is preserved together with Yantou's objection rather than being treated as a standalone verdict.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X69/X69n1333.xml",
+          "FromLb": "0071c23",
+          "ToLb": "0071c24",
+          "Kwic": "我當時如桶底脫相似。",
+          "MasterName": "Xuefeng Yicun",
+          "Curated": true,
+          "AttributionNote": "Source text Record of Xuefeng Yicun (雪峰義存禪師語錄（真覺禪師語錄）): Xuefeng Yicun is the exact speaker. Xuefeng Yicun's own record. Xuefeng recounts his response to Deshan's strike as 'I was then as if the bucket-bottom had fallen out'; Yantou's challenge follows immediately in the source.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yantou Quanhuo",
+              "Roles": [
+                "respondent",
+                "interlocutor",
+                "teacher"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0147b12",
+          "ToLb": "0147b12",
+          "Kwic": "所以一言之下。如桶底脫相似。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Source text Blue Cliff Record (佛果圜悟禪師碧巖錄): Yuanwu Keqin is the exact speaker. Yuanwu's Blue Cliff Record prose commentary: 'therefore, under one phrase, it was like the bucket-bottom falling out.'",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0238a09",
+          "ToLb": "0238a09",
+          "Kwic": "問。如何是佛。師曰。桶底脫。",
+          "Curated": true,
+          "AttributionNote": "Source text Five Lamps Meeting the Source (五燈會元): Shoushan Huaizhi is the exact speaker. Five Lamps Meeting the Source (五燈會元), Shoushan Huaizhi section. Shoushan Huaizhi is the exact respondent who answers the question 'What is buddha?' with 'the bucket-bottom falls out.'",
+          "MasterName": "Shoushan Huaizhi",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Huaizhi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0297a04",
+          "ToLb": "0297a04",
+          "Kwic": "忽桶底脫。",
+          "Curated": true,
+          "AttributionNote": "Source text Five Lamps Meeting the Source (五燈會元): the compiler narrates the noodle bucket suddenly losing its bottom; Zhenxie Qingliao comments only in the following marked speech turn.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "narrated mechanical event",
+            "ActorLabel": "the noodle bucket's bottom",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "In 忽桶底脫, 桶底 is the grammatical subject of 脫; no speech marker assigns the event to a human voice.",
+            "ReviewedBy": "Codex semantic-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhenxie Qingliao",
+              "Roles": [
+                "commentator",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0297a04",
+          "ToLb": "0297a05",
+          "Kwic": "師曰。桶底脫自合歡喜。",
+          "MasterName": "Zhenxie Qingliao",
+          "Curated": true,
+          "AttributionNote": "Source text Five Lamps Meeting the Source (五燈會元): Zhenxie Qingliao is the exact speaker. (師曰) marks his comment that the bucket-bottom falling out should itself occasion joy.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhenxie Qingliao",
+              "Roles": [
+                "utterer",
+                "commentator",
+                "section-subject"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0172c05",
+          "ToLb": "0172c05",
+          "Kwic": "這箇些子。須是桶底脫機關盡。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "AttributionNote": "Source text Blue Cliff Record (佛果圜悟禪師碧巖錄): Yuanwu Keqin is the exact speaker. Yuanwu's Blue Cliff Record comment joins the two predicates 'bucket-bottom gone' and 'mechanisms exhausted.' The entry reports the pairing without treating it as a definition of hidden intent.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J36/J36nB369.xml",
+          "FromLb": "0962a06",
+          "ToLb": "0962a07",
+          "Kwic": "白汗出過幾身，桶底脫落一番，洞見釋迦心肝",
+          "MasterName": "Zhe'an Jingfan",
+          "AttributionNote": "Source text Recorded Sayings of Zhe’an Jingfan (蔗菴範禪師語錄): Zhe'an Jingfan is the exact speaker. Zhe’an Jingfan tells practitioners that after repeated exertion, ‘the bucket-bottom falls away once,’ followed in his sentence by seeing Shakyamuni’s heart and guts.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhe'an Jingfan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true
+        }
+      ],
+      "SourceTexts": [
+        "X/X69/X69n1333.xml",
+        "T/T48/T48n2003.xml",
+        "X/X80/X80n1565.xml",
+        "J/J36/J36nB369.xml"
+      ],
+      "RelatedMasters": [
+        "Xuefeng Yicun",
+        "Yuanwu Keqin"
+      ],
+      "RelatedTerms": [
+        "機關盡",
+        "如何是佛"
+      ],
+      "SearchAliases": [
+        "the bucket-bottom falls out",
+        "the bottom drops out of the bucket",
+        "bucket-bottom gone"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "A bucket loses its bottom in the middle of use: contents spill, the vessel no longer holds, and the event can be seen. Chan records reuse that concrete collapse as a comparison after a blow or a phrase, as a direct answer to ‘What is buddha?’, and as an image whose literal kitchen occurrence remains visible. Its comparison form 'like the bucket-bottom falls out' (如桶底脫) occurs 38 times, including 26 exact endings in 'resembling the bucket-bottom falling out' (桶底脫相似). Xuefeng reports that after Deshan struck him, 'at that time I was as if the bucket-bottom had fallen out' (我當時如桶底脫相似); Yantou immediately challenges what Xuefeng brought in through the gate. Yuanwu uses the same comparison after 'under one phrase' (一言之下) and elsewhere joins the literal image to 'the mechanisms are exhausted' (桶底脫機關盡). The phrase is also recorded as a direct answer: asked 'What is buddha?' (如何是佛), Shoushan Huaizhi says, 'the bucket-bottom falls out' (桶底脫). A separate kitchen encounter uses the words literally: while noodles are cooking, the bucket-bottom suddenly falls out, the assembly cries that it is a pity, and the cited speaker says, 'the bucket-bottom falling out should itself be cause for joy—why are you distressed?' (桶底脫自合歡喜), before agreeing that the lost bucket of noodles is regrettable. The physical event and its simile therefore share one graph-level sense while appearing in an answer, recollection, comment, and kitchen exchange."
+    }
+  ]
+}

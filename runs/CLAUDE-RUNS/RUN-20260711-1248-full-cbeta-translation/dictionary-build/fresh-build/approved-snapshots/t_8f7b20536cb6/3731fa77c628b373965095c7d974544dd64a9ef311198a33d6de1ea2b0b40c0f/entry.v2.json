@@ -1,0 +1,424 @@
+{
+  "Id": "t_8f7b20536cb6",
+  "SourceTerm": "和尚",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "master",
+      "AlternateTargets": [
+        "preceptor",
+        "reverend"
+      ],
+      "SearchAliases": [
+        "master",
+        "preceptor",
+        "reverend",
+        "abbot"
+      ],
+      "Status": "preferred",
+      "Explanation": "In Chan records, the headword is the respectful title used to address or identify a senior monastic master. Huike addresses Bodhidharma; Huang Tingjian addresses the senior monastic before him; Guishan Lingyou and Zhaozhou Congshen address their teachers; Linji Yixuan and Huangbo Xiyun speak of the old masters under heaven. Compiler narration also attaches the title to Wuzu Fayan, Budai Qici, Master An of Songshan, and Wuzu Jie. Direct address, honorific naming, and collective description retain the same senior-master referent; a narrator’s title is not an utterance by its bearer.",
+      "Validation": "multi-source",
+      "Note": "Ten exact witnesses from ten distinct works cover address, title, collective description, and named designation. The nested ‘sons of masters’ compound was excluded under the substring gate and supplies no bare-headword plural-vocative sense.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0042c23",
+          "ToLb": "0042c24",
+          "Kwic": "光悲淚曰。惟願和尚慈悲。開甘露門。廣度羣品。",
+          "MasterName": "Huike",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "utterer",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "addressee",
+                "teacher"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Huike utters the address to Bodhidharma."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0045b18",
+          "ToLb": "0045b19",
+          "Kwic": "公釋然，即拜之曰：和尚得恁麼老婆心切？",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Huang Tingjian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): Huang Tingjian utters the title in direct address. The exact headword-bearing actor is the identified non-master Huang Tingjian.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "lay author",
+            "ActorLabel": "Huang Tingjian",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies the named non-master as author or speaker of the headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:30:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0071b18",
+          "ToLb": "0071b19",
+          "Kwic": "山曰。却請和尚道。",
+          "MasterName": "Guishan Lingyou",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guishan Lingyou",
+              "Roles": [
+                "utterer",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Guishan Lingyou utters the request to his master; this row documents address usage, not an additional independent work claim."
+        },
+        {
+          "RelPath": "T/T48/T48n2022.xml",
+          "FromLb": "1018b29",
+          "ToLb": "1018c01",
+          "Kwic": "五祖演和尚曰。今時叢林學道之士。聲名不揚。",
+          "MasterName": null,
+          "Curated": true,
+      "ContextMasters": [
+        {
+          "MasterName": "Wuzu Fayan",
+          "Roles": [
+            "person-described"
+          ]
+        }
+      ],
+      "AttributionNote": "Chanlin Baoxun (禪林寶訓): the compiler narrates the title formula naming Wuzu Fayan; Wuzu is the person described, not the exact utterer of the headword in this line.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The title belongs to heading or narrator grammar and is not uttered by the named section figure.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:30:00Z"
+          }
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0615a21",
+          "ToLb": "0615a21",
+          "Kwic": "師云嵩山安和尚處來",
+          "MasterName": "Nanyue Huairang",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Nanyue Huairang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): Nanyue Huairang utters the designation Master An of Songshan."
+        },
+        {
+          "RelPath": "J/J24/J24nB137.xml",
+          "FromLb": "0358a15",
+          "ToLb": "0358a15",
+          "Kwic": "師云：「謝和尚指示。」",
+          "MasterName": "Zhaozhou Congshen",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Zhaozhou (趙州和尚語錄): Zhaozhou Congshen utters the thanks to his master."
+        },
+        {
+          "RelPath": "J/J29/J29nB224.xml",
+          "FromLb": "0116a19",
+          "ToLb": "0116a19",
+          "Kwic": "明州布袋和尚常攜一布袋",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+        {
+          "MasterName": "Yezhu Fusheng",
+          "Roles": [
+            "record-owner"
+          ]
+            },
+            {
+              "MasterName": "Budai",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+      "AttributionNote": "Recorded Sayings of Chan Master Yezhu Fusheng (嵩山野竹禪師語錄): the compiler narrates the title formula naming Budai; Yezhu Fusheng is the record owner, not the exact utterer of the headword.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The title belongs to heading or narrator grammar and is not uttered by the named section figure.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:30:00Z"
+          }
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0629b20",
+          "ToLb": "0629b21",
+          "Kwic": "天下老和尚緫在這裏我若放一線道從汝七縱八橫",
+          "MasterName": "Huangbo Xiyun",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): Huangbo Xiyun utters the collective phrase old masters under heaven."
+        },
+        {
+          "RelPath": "J/J23/J23nB134.xml",
+          "FromLb": "0525a25",
+          "ToLb": "0525a29",
+          "Kwic": "道流！出家兒且要學道，秪如山僧往日曾向毘尼中留心，亦曾於經論尋討，後方知是濟世藥表顯之說，遂乃一時拋卻。即訪道參禪，後遇大善知識，方乃道眼分明，始識得天下老和尚，知其邪正。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Selected Recorded Sayings of the Five Houses (五家語錄（選錄）): Linji Yixuan utters the collective title in his established address."
+        },
+        {
+          "RelPath": "T/T47/T47n1993.xml",
+          "FromLb": "0633b02",
+          "ToLb": "0633b04",
+          "Kwic": "舉五祖戒和尚。為智門馳書到德山。圓明接得乃問。這箇是智門底。那箇是專使底。",
+          "MasterName": "Huanglong Huinan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Huanglong Huinan",
+              "Roles": [
+                "utterer",
+                "later-raiser",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Huanglong Huinan (黃龍慧南禪師語錄): Huanglong Huinan raises the case naming Wuzu Jie Heshang; the title functions as the named preceptor’s designation. Here Jie is Master Wuzu Jie’s personal name; it does not mean precept conferral."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "X/X82/X82n1571.xml",
+        "T/T48/T48n2022.xml",
+        "C/C077/C077n1710.xml",
+        "J/J24/J24nB137.xml",
+        "J/J29/J29nB224.xml",
+        "J/J23/J23nB134.xml",
+        "T/T47/T47n1993.xml"
+      ],
+      "RelatedMasters": [
+        "Huike",
+        "Bodhidharma",
+        "Huang Tingjian",
+        "Guishan Lingyou",
+        "Wuzu Fayan",
+        "Nanyue Huairang",
+        "Zhaozhou Congshen",
+        "Huangbo Xiyun",
+        "Xuefeng Yicun",
+        "Linji Yixuan"
+      ],
+      "RelatedTerms": [
+        "老和尚",
+        "和尚子",
+        "善知識"
+      ]
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "ordination preceptor",
+      "AlternateTargets": [
+        "precept-conferring master"
+      ],
+      "SearchAliases": [
+        "ordination preceptor",
+        "precept master",
+        "precept-conferring master"
+      ],
+      "Status": "preferred",
+      "Explanation": "In explicit precept-reception and ordination frames, the headword names the preceptor from whom ordination was received. The records use an ‘ordination preceptor’ heading, say that He Yizi received precepts from Yulin Tongxiu, ask Ruogan Heshang to serve as ordination master, and offer incense to an ordination preceptor. These office frames distinguish the ordination role from ordinary direct address.",
+      "Validation": "multi-source",
+      "Note": "Four explicit office-context witnesses from four distinct works establish this narrower role. Wuzu Jie’s non-ordination title occurrence remains only in the general master sense.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J38/J38nB417.xml",
+          "FromLb": "0493c02",
+          "ToLb": "0493c03",
+          "Kwic": "得戒和尚贊稽首如是，佛門宗匠，悟大總持，纔得心放。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+        {
+          "MasterName": "Tianze Neng",
+          "Roles": [
+            "verse-author"
+          ]
+        }
+      ],
+      "AttributionNote": "Recorded Sayings of Chan Master Tianze Neng (天則能禪師語錄): an impersonal heading names a praise for an ordination preceptor; Tianze Neng is the verse author, not an utterer of the heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "ActorLabel": "an impersonal textual heading",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The title belongs to heading or narrator grammar and is not uttered by the named section figure.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:30:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J39/J39nB462.xml",
+          "FromLb": "0782b28",
+          "ToLb": "0782b29",
+          "Kwic": "余挂錫半載，辭水月方丈，北遊燕山，聽教於不夜天師、受戒於玉林和尚。後住崇寧禪院",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "He Yizi",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "teacher"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Buzhuo Jun (何一自禪師語錄): He Yizi states that he received precepts from Yulin Tongxiu. The exact headword-bearing actor is the identified non-master He Yizi.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "preface author",
+            "ActorLabel": "He Yizi",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies the named non-master as author or speaker of the headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:30:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J28/J28nB205.xml",
+          "FromLb": "0241b01",
+          "ToLb": "0241b02",
+          "Kwic": "復乞漏澤箬菴和尚為得戒師，是時余居三師之列。違今年已六十矣",
+          "MasterName": "Jie Weizhou",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Jie Weizhou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Weizhou (介為舟禪師語錄): Jie Weizhou utters the request naming Ruogan Heshang as ordination master."
+        },
+        {
+          "RelPath": "J/J40/J40nB483.xml",
+          "FromLb": "0226c15",
+          "ToLb": "0226c17",
+          "Kwic": "此瓣香，分弗為兩，析不成三，爇向爐中，奉上高峰得戒和尚、薙髮二位尊師，伏願三聚嚴明",
+          "MasterName": "Zhufeng Huanmin",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhufeng Huanmin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Zhufeng Huanmin (竺峰敏禪師語錄): Zhufeng Huanmin offers incense to his ordination and tonsure preceptors."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J38/J38nB417.xml",
+        "J/J39/J39nB462.xml",
+        "J/J28/J28nB205.xml",
+        "J/J40/J40nB483.xml",
+        "T/T47/T47n1993.xml"
+      ],
+      "RelatedMasters": [
+        "Tianze Neng",
+        "He Yizi",
+        "Yulin Tongxiu",
+        "Jie Weizhou",
+        "Zhufeng Huanmin",
+        "Huanglong Huinan"
+      ],
+      "RelatedTerms": [
+        "得戒和尚",
+        "受戒",
+        "得戒師",
+        "薙髮師"
+      ]
+    }
+  ]
+}

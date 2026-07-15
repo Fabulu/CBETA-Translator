@@ -1,0 +1,338 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_33d49f4710be",
+    "SourceTerm": "開悟",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T04:30:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "to open into awakening",
+        "AlternateTargets": [
+          "come to awakening",
+          "open someone to awakening"
+        ],
+        "SearchAliases": [
+          "open into awakening",
+          "come to awakening",
+          "awakening opens",
+          "open others to awakening"
+        ],
+        "Status": "preferred",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Chan records use this verb for an awakening event that breaks open in a person and, in direct address, for bringing listeners to that event.",
+          "EvidenceBody": [
+            "Lamp compilers narrate Guling Shenzan, Angulimala, an unnamed monk, and Ashvaghosha as persons who open into awakening after an encounter, words, or a sound. The actors undergo the event; they do not utter its lexical label.",
+            "Yongming Yanshou stresses that the event admits no intervening instant, Mazu Daoyi uses the verb causatively for opening his listeners into awakening, and Zhongfeng Mingben speaks of a time when it occurs naturally in sustained inquiry. Intransitive and causative syntax retain one core event while changing who undergoes or brings it about."
+          ]
+        },
+        "Validation": "multi-source",
+        "Note": "8 exact evidence rows from 6 independent works are stored for this sense.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0268a10",
+            "ToLb": "0268a11",
+            "Kwic": "行脚遇百丈開悟。却迴本寺。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "biographical narration",
+              "ActorLabel": "the lamp-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The narrative clause makes Guling Shenzan the person undergoing the event; the recorder supplies the lexical predicate rather than quoting that person.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T04:30:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Guling Shenzan",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Baizhang Huaihai",
+                "Roles": [
+                  "teacher",
+                  "person-discussed"
+                ]
+              }
+            ],
+            "AttributionNote": "Jingde Lamp Record (景德傳燈錄): the compiler says Guling Shenzan met Baizhang Huaihai while traveling, opened into awakening, and returned to his temple. This is biographical narration.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "Guling Shenzan",
+              "FullCaseDecision": "The stored clause narrates Guling Shenzan undergoing the event and contains no speech marker assigning the headword to that person."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0066a12",
+            "ToLb": "0066a12",
+            "Kwic": "殃崛聞之。心忽開悟。遂棄刃。投佛出家。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "biographical narration",
+              "ActorLabel": "the lamp-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The narrative clause makes Angulimala the person undergoing the event; the recorder supplies the lexical predicate rather than quoting that person.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T04:30:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Angulimala",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Five Lamps Meeting the Source (五燈會元): the compiler narrates that Angulimala heard the words, his mind suddenly opened into awakening, and he discarded his blade. This is biographical narration.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "Angulimala",
+              "FullCaseDecision": "The stored clause narrates Angulimala undergoing the event and contains no speech marker assigning the headword to that person."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2016.xml",
+            "FromLb": "0554a19",
+            "ToLb": "0554a20",
+            "Kwic": "若開悟時。不隔剎那。便成佛果。",
+            "MasterName": "Yongming Yanshou",
+            "ContextMasters": [
+              {
+                "MasterName": "Yongming Yanshou",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Record of the Source Mirror (宗鏡錄): Yongming Yanshou says that when awakening opens there is not even an instant’s separation before the Buddha-result.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "若開悟時",
+              "SpeechFrame": "The conditional clause occurs in Yongming Yanshou’s continuing authored exposition.",
+              "FullCaseDecision": "Yongming owns the proposition; no quoted speaker intervenes."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0070b03",
+            "ToLb": "0070b04",
+            "Kwic": "傳上乘一心之法。令汝等開悟。",
+            "MasterName": "Mazu Daoyi",
+            "ContextMasters": [
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "utterer",
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Bodhidharma",
+                "Roles": [
+                  "person-discussed"
+                ]
+              }
+            ],
+            "AttributionNote": "Five Lamps Meeting the Source (五燈會元): Mazu Daoyi tells his assembly that the one-mind teaching was transmitted to open them into awakening.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "令汝等開悟",
+              "SpeechFrame": "The second-person clause occurs within Mazu Daoyi’s address to his assembly.",
+              "FullCaseDecision": "Mazu is current utterer; Bodhidharma is the transmitter discussed."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0324c09",
+            "ToLb": "0324c10",
+            "Kwic": "搖三五下作蟬響聲。其僧於是開悟。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "biographical narration",
+              "ActorLabel": "the lamp-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The narrative clause makes the unnamed monk the person undergoing the event; the recorder supplies the lexical predicate rather than quoting that person.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T04:30:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Touzi Ganwen",
+                "Roles": [
+                  "case-figure",
+                  "teacher"
+                ]
+              }
+            ],
+            "AttributionNote": "Jingde Lamp Record (景德傳燈錄): the compiler says the unnamed monk thereupon opened into awakening after hearing the cicada-like sound. This is biographical narration.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk",
+              "FullCaseDecision": "The stored clause narrates the unnamed monk undergoing the event and contains no speech marker assigning the headword to that person."
+            }
+          },
+          {
+            "RelPath": "X/X78/X78n1556.xml",
+            "FromLb": "0642c03",
+            "ToLb": "0642c03",
+            "Kwic": "馬鳴豁然開悟，因付正法眼藏",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "biographical narration",
+              "ActorLabel": "the lamp-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The narrative clause makes Ashvaghosha the person undergoing the event; the recorder supplies the lexical predicate rather than quoting that person.",
+              "ReviewedBy": "Codex fresh f001 lane A evidence-first",
+              "ReviewedUtc": "2026-07-15T04:30:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Ashvaghosha",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄): the compiler narrates that Ashvaghosha abruptly opened into awakening and was then entrusted with the treasury. This is biographical narration.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "Ashvaghosha",
+              "FullCaseDecision": "The stored clause narrates Ashvaghosha undergoing the event and contains no speech marker assigning the headword to that person."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1402.xml",
+            "FromLb": "0729c03",
+            "ToLb": "0729c04",
+            "Kwic": "不知不覺，自然有開悟之時。",
+            "MasterName": "Zhongfeng Mingben",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Miscellaneous Records of Tianmu Mingben (天目明本禪師雜錄): Zhongfeng Mingben says that sustained inquiry without alteration naturally has a time when awakening opens.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "自然有開悟之時",
+              "SpeechFrame": "The sentence occurs in Zhongfeng Mingben’s direct instruction to a Chan student.",
+              "FullCaseDecision": "Zhongfeng is the current instructor and utterer; no nested quotation intervenes."
+            }
+          },
+          {
+            "RelPath": "X/X83/X83n1578.xml",
+            "FromLb": "0412b04",
+            "ToLb": "0412b05",
+            "Kwic": "忽聞鶯聲，頓然開悟",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source narration in the Records Pointing at the Moon (指月錄) reports an unnamed monastic suddenly opening into awakening on hearing an oriole.",
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narration",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Continuous source narration supplies the headword-bearing report without quoting a named speaker.",
+              "ReviewedBy": "Codex f001 lane A depth repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            },
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The source narrator owns the exact headword-bearing report."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T51/T51n2076.xml",
+          "X/X80/X80n1565.xml",
+          "T/T48/T48n2016.xml",
+          "X/X78/X78n1556.xml",
+          "X/X70/X70n1402.xml",
+          "X/X83/X83n1578.xml"
+        ],
+        "RelatedMasters": [
+          "Guling Shenzan",
+          "Baizhang Huaihai",
+          "Angulimala",
+          "Yongming Yanshou",
+          "Mazu Daoyi",
+          "Touzi Ganwen",
+          "Ashvaghosha",
+          "Zhongfeng Mingben"
+        ],
+        "RelatedTerms": [
+          "大悟",
+          "頓悟",
+          "見性成佛",
+          "見性"
+        ],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7",
+            "o8"
+          ],
+          "ZenBend": "The record uses the event both as a narrated biographical turn and as something a teacher says words can open in listeners.",
+          "CounterexampleOrLimit": "Not every occurrence names a spectacular trigger, and causative uses do not establish a separate lexical sense.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "person opens into awakening",
+              "open listeners into awakening",
+              "future time of awakening"
+            ],
+            "Reason": "The event remains awakening opening; syntactic valence changes participant roles rather than referent."
+          },
+          "AliasRationale": "Aliases cover intransitive, causative, and event-noun searches without replacing the distinct stronger term great awakening.",
+          "ModifierControls": [
+            {
+              "Control": "not-applicable",
+              "Finding": "No apparent material modifier occurs; 開 is the event predicate."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "大悟",
+              "Finding": "Stronger stock event label, distinct entry."
+            },
+            {
+              "Term": "頓悟",
+              "Finding": "Suddenness-emphasizing relative, distinct entry."
+            },
+            {
+              "Term": "見性成佛",
+              "Finding": "States recognized content/result rather than this event verb."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T51n2076",
+            "work:X80n1565",
+            "work:T48n2016",
+            "work:X78n1556",
+            "work:X70n1402",
+            "chan:zhiyue-lu"
+          ]
+        }
+      }
+    ]
+  }
+}

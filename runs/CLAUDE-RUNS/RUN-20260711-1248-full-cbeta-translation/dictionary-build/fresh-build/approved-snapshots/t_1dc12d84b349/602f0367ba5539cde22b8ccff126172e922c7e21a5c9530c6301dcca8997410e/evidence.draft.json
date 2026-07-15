@@ -1,0 +1,302 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_1dc12d84b349",
+    "SourceTerm": "一喝分賓主",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f003 Lane C evidence-first",
+    "WrittenUtc": "2026-07-15T04:51:16.010993+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "one shout distinguishes guest and host",
+        "AlternateTargets": [
+          "a shout separates guest from host"
+        ],
+        "SearchAliases": [
+          "guest host shout",
+          "one shout guest and host",
+          "Linji shout",
+          "shout distinguishes roles"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The displayed sense is bounded by the stored exact uses; related compounds and quoted formulas were not allowed to create additional headword depth.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0074a14",
+            "ToLb": "0074a15",
+            "Kwic": "一日問師：一喝分賓主，照用一時行。",
+            "Curated": true,
+            "AttributionNote": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: the source record (五燈全書(第34卷-第120卷)).",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一日問師：一喝分賓主，照用一時行。",
+              "GrammaticalSubject": "the unnamed questioner in the recorded exchange",
+              "SpeechFrame": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 五燈全書(第34卷-第120卷).",
+              "FullCaseDecision": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 五燈全書(第34卷-第120卷)."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "questioner",
+              "ActorLabel": "the unnamed questioner in the recorded exchange",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The full turn marks the headword-bearing wording as the questioner's speech, but the six-rung source review does not safely normalize a roster name.",
+              "ReviewedBy": "Codex f003 C801-850 independent-review repair",
+              "ReviewedUtc": "2026-07-15T04:51:46.033848+00:00"
+            }
+          },
+          {
+            "RelPath": "J/J36/J36nB356.xml",
+            "FromLb": "0573a05",
+            "ToLb": "0573a07",
+            "Kwic": "」示眾示眾師云：「三玄三要四料揀，一喝分賓主，照用一時行。",
+            "Curated": true,
+            "AttributionNote": "Source text (奇然智禪師語錄): whole-address review assigns the exact headword-bearing wording to Qiran Zhizhi.",
+            "ContextMasters": [
+              {
+                "MasterName": "Qiran Zhizhi",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "」示眾示眾師云：「三玄三要四料揀，一喝分賓主，照用一時行。",
+              "GrammaticalSubject": "Qiran Zhizhi",
+              "SpeechFrame": "Source text (奇然智禪師語錄): whole-address review assigns the exact headword-bearing wording to Qiran Zhizhi.",
+              "FullCaseDecision": "Source text (奇然智禪師語錄): whole-address review assigns the exact headword-bearing wording to Qiran Zhizhi."
+            },
+            "MasterName": "Qiran Zhizhi"
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0051c08",
+            "ToLb": "0051c08",
+            "Kwic": "上堂：一喝分賓主，照用一時行。",
+            "Curated": true,
+            "AttributionNote": "In the source record (列祖提綱錄), documentary narration by the compiler narrating the headword-bearing event preserves the exact headword-bearing clause.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "上堂：一喝分賓主，照用一時行。",
+              "GrammaticalSubject": "the compiler narrating the headword-bearing event",
+              "SpeechFrame": "In the source record (列祖提綱錄), documentary narration by the compiler narrating the headword-bearing event preserves the exact headword-bearing clause.",
+              "FullCaseDecision": "In the source record (列祖提綱錄), documentary narration by the compiler narrating the headword-bearing event preserves the exact headword-bearing clause."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the compiler narrating the headword-bearing event",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The selected span presents headword in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
+              "ReviewedBy": "Codex f003 Lane C full-turn author",
+              "ReviewedUtc": "2026-07-15T04:51:16.010993+00:00"
+            }
+          },
+          {
+            "RelPath": "X/X84/X84n1583.xml",
+            "FromLb": "0444c05",
+            "ToLb": "0444c06",
+            "Kwic": "一日問師：一喝分賓主，照用一時行。",
+            "Curated": true,
+            "AttributionNote": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: the source record (續燈正統).",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一日問師：一喝分賓主，照用一時行。",
+              "GrammaticalSubject": "the unnamed questioner in the recorded exchange",
+              "SpeechFrame": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 續燈正統.",
+              "FullCaseDecision": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 續燈正統."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "questioner",
+              "ActorLabel": "the unnamed questioner in the recorded exchange",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The full turn marks the headword-bearing wording as the questioner's speech, but the six-rung source review does not safely normalize a roster name.",
+              "ReviewedBy": "Codex f003 C801-850 independent-review repair",
+              "ReviewedUtc": "2026-07-15T04:51:46.033848+00:00"
+            }
+          },
+          {
+            "RelPath": "X/X84/X84n1585.xml",
+            "FromLb": "0671c03",
+            "ToLb": "0671c04",
+            "Kwic": "一日問師：一喝分賓主，照用一時行。",
+            "Curated": true,
+            "AttributionNote": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: the source record (續燈存稿).",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一日問師：一喝分賓主，照用一時行。",
+              "GrammaticalSubject": "the unnamed questioner in the recorded exchange",
+              "SpeechFrame": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 續燈存稿.",
+              "FullCaseDecision": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: 續燈存稿."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "questioner",
+              "ActorLabel": "the unnamed questioner in the recorded exchange",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The full turn marks the headword-bearing wording as the questioner's speech, but the six-rung source review does not safely normalize a roster name.",
+              "ReviewedBy": "Codex f003 C801-850 independent-review repair",
+              "ReviewedUtc": "2026-07-15T04:51:46.033848+00:00"
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1997.xml",
+            "FromLb": "0735b20",
+            "ToLb": "0735b20",
+            "Kwic": "一喝分賓主。",
+            "Curated": true,
+            "AttributionNote": "Source text (圓悟佛果禪師語錄): whole-address review assigns the exact headword-bearing wording to Yuanwu Keqin.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一喝分賓主。",
+              "GrammaticalSubject": "Yuanwu Keqin",
+              "SpeechFrame": "Source text (圓悟佛果禪師語錄): whole-address review assigns the exact headword-bearing wording to Yuanwu Keqin.",
+              "FullCaseDecision": "Source text (圓悟佛果禪師語錄): whole-address review assigns the exact headword-bearing wording to Yuanwu Keqin."
+            },
+            "MasterName": "Yuanwu Keqin"
+          },
+          {
+            "RelPath": "X/X68/X68n1318.xml",
+            "FromLb": "0356c09",
+            "ToLb": "0356c09",
+            "Kwic": "一喝分賓主，照用一時行，要會箇中意，日午打三更。",
+            "Curated": true,
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narration",
+              "ActorLabel": "the compiler or recorder of the source passage",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The full headword-bearing clause is documentary narration, a heading, a title, or a quoted formula rather than a safely attributable spoken turn.",
+              "ReviewedBy": "Codex f003 C801-850 independent-review repair",
+              "ReviewedUtc": "2026-07-15T04:51:46.033848+00:00"
+            },
+            "AttributionNote": "In the source record (續古尊宿語要), documentary narration by the compiler or recorder of the source passage preserves the exact headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一喝分賓主，照用一時行，要會箇中意，日午打三更。",
+              "GrammaticalSubject": "the compiler or recorder of the source passage",
+              "SpeechFrame": "In the source record (續古尊宿語要), documentary narration by the compiler or recorder of the source passage preserves the exact headword-bearing clause.",
+              "FullCaseDecision": "In the source record (續古尊宿語要), documentary narration by the compiler or recorder of the source passage preserves the exact headword-bearing clause."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X82/X82n1571.xml",
+          "J/J36/J36nB356.xml",
+          "X/X64/X64n1260.xml",
+          "X/X84/X84n1583.xml",
+          "X/X84/X84n1585.xml",
+          "T/T47/T47n1997.xml",
+          "X/X68/X68n1318.xml"
+        ],
+        "RelatedMasters": [
+          "Qiran Zhizhi",
+          "Yuanwu Keqin"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "This Linji-house formula says that one shout distinguishes guest and host, exposing the two positions in an encounter.",
+          "EvidenceBody": [
+            "The record immediately tests the formula by asking whether a particular shout is guest or host; later addresses pair it with illumination and function occurring at once."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "ZenBend": "The shout is not merely loud speech here: it is handled as a public discriminator whose own classification must withstand questioning.",
+          "CounterexampleOrLimit": "The evidence establishes the described deployment but does not establish a hidden doctrine, fixed intention, or uniform appraisal.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "one shout distinguishes guest and host",
+              "its attested grammatical and encounter deployments"
+            ],
+            "Reason": "The selected witnesses retain one referent or expression; different speakers, appraisals, and grammatical frames are not different things."
+          },
+          "AliasRationale": "The aliases are natural English retrieval probes for the same stored sense, not additional interpretations.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "No apparent material or color modifier controls this headword."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Longer compounds and nearby family phrases were inventoried and were not used to pad exact standalone depth."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:wudeng-quanshu",
+            "work:J36nB356",
+            "work:X64n1260",
+            "work:X84n1583",
+            "work:X84n1585",
+            "work:T47n1997"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "Id": "t_ffb0ee18f1a2",
+  "SourceTerm": "牢關",
+  "CreatedBy": "Codex",
+  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the tight barrier",
+      "AlternateTargets": [
+        "the secure pass",
+        "the locked barrier"
+      ],
+      "SearchAliases": [
+        "tight barrier",
+        "locked barrier",
+        "secure pass",
+        "final barrier",
+        "last barrier",
+        "final checkpoint",
+        "break through the barrier",
+        "pass the barrier",
+        "close the barrier"
+      ],
+      "Status": "preferred",
+      "Explanation": "A tight barrier or secured pass: a checkpoint represented as shut against passage and therefore as something to hold, close, break, or get through. In Luopu Yuanan's recorded formula, the last phrase first reaches this barrier, which shuts the critical crossing so that neither ordinary nor sage passes. Yuanwu Keqin repeats the same formula. The records also make the image operational: Puming holds the barrier shut through a ninety-day restriction period and then breaks it open; Baiyu Jingsi holds it with no inside or outside; Juelang Daosheng asks for the phrase that gets free of it. When an unnamed monk asks Tianyin Yuanxiu what the barrier is, Tianyin answers, \"Break through it and come meet me.\" The Zen-loaded phrase is thus not merely a difficult obstacle: it names the deliberately secured final checkpoint that a named record speaker can hold fast and a respondent must break through.",
+      "Validation": "multi-source",
+      "Note": "The frozen allowlisted corpus has 670 exact hits in 209 files representing 207 works. Seven anchors from seven works cover the inherited formula, a later quotation of that formula, breaking, holding, getting free, and a direct question asking what the barrier is. The compact form \"final tight barrier\" and action collocations were used as discovery leads, not as separate senses. The object remains one barrier across these actions; differences between holding, closing, breaking, and passing it are deployments rather than different things.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0757a19",
+          "ToLb": "0757a19",
+          "Kwic": "末後一句始到牢關。把斷要津不通凡聖。",
+          "Curated": true,
+          "AttributionNote": "The cited recorded-sayings collection (圓悟佛果禪師語錄): complete-case exact-turn review identifies Yuanwu Keqin as the actor for this occurrence.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": ["utterer", "record-owner"]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0812b07",
+          "ToLb": "0812b08",
+          "Kwic": "古者道。末後一句始到牢關。把斷要津不通凡聖。",
+          "Curated": true,
+          "AttributionNote": "The cited recorded-sayings collection (大慧普覺禪師語錄): Dahui Zonggao introduces this formula as words of an ancient. The parallel passage in the Jingde Record of the Transmission of the Lamp (景德傳燈錄) places the exact saying inside Luopu Yuanan's biographical section and explicitly introduces his address; this rung-six witness identifies Luopu Yuanan as the quoted utterer. Dahui is the later quoter and record owner.",
+          "MasterName": "Luopu Yuanan",
+          "ContextMasters": [
+            {
+              "MasterName": "Luopu Yuanan",
+              "Roles": ["utterer", "case-figure"]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "later-quoter",
+                "record-owner"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1999.xml",
+          "FromLb": "0962b04",
+          "ToLb": "0962b05",
+          "Kwic": "打破牢關。天寬地寬。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Mi'an (密菴和尚語錄): in his Jiangshan monastery discourse, Mi'an Xianjie says 'break the solid checkpoint; heaven is broad and earth is broad.'",
+          "MasterName": "Mi'an Xianjie",
+          "ContextMasters": [
+            {
+              "MasterName": "Mi'an Xianjie",
+              "Roles": ["utterer", "record-owner"]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0569b23",
+          "ToLb": "0569b24",
+          "Kwic": "問：「末後一著始到牢關。如何是牢關？」師云「打破來，與汝相見。」",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "ReviewedBy": "Codex fresh lane-B complete-case review",
+            "ReviewedUtc": "2026-07-15T03:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": ["respondent", "record-owner"]
+            }
+          ],
+          "AttributionNote": "The cited recorded-sayings collection (天隱和尚語錄): the unnamed questioning monk asks what the tight barrier is; Tianyin Yuanxiu answers that he should break through and come meet him. All six attribution rungs leave the monk unnamed."
+        },
+        {
+          "RelPath": "J/J38/J38nB424.xml",
+          "FromLb": "0611b10",
+          "ToLb": "0611b12",
+          "Kwic": "所以普明於此九十日內把定牢關，不容出入，只要諸人了取自心境界。即今九十日圓滿，打破牢關，解開布袋",
+          "Curated": true,
+          "MasterName": "Puming",
+          "ContextMasters": [
+            {
+              "MasterName": "Puming",
+              "Roles": ["utterer", "record-owner"]
+            }
+          ],
+          "AttributionNote": "The cited recorded-sayings collection (香嚴禪師語錄): Puming says that during the ninety-day restriction period he held the tight barrier shut against entry and exit, and that at its completion he breaks the barrier and opens the bag."
+        },
+        {
+          "RelPath": "J/J36/J36nB359.xml",
+          "FromLb": "0637b09",
+          "ToLb": "0637b10",
+          "Kwic": "運鉗錘，開爐韝，把定牢關無內外，虛空擊出髓常流，大地山河成一塊。",
+          "Curated": true,
+          "MasterName": "Baiyu Jingsi",
+          "ContextMasters": [
+            {
+              "MasterName": "Baiyu Jingsi",
+              "Roles": ["utterer", "record-owner"]
+            }
+          ],
+          "AttributionNote": "The cited recorded-sayings collection (百愚禪師語錄): in his restriction-opening hall address, Baiyu Jingsi says to wield the tongs and hammer, open the forge, and hold the tight barrier with no inside or outside."
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0594b16",
+          "ToLb": "0594b17",
+          "Kwic": "師云：「末後一句始到牢關，秪如透脫牢關，大方獨步一句作麼生道？」",
+          "Curated": true,
+          "MasterName": "Juelang Daosheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": ["utterer", "record-owner"]
+            }
+          ],
+          "AttributionNote": "The cited complete recorded-sayings collection (天界覺浪盛禪師全錄): after dismissing the questioning monk, Juelang Daosheng says that the final phrase first reaches the tight barrier and asks for the phrase that gets free of it and walks alone in every direction."
+        }
+      ],
+      "SourceTexts": [
+        "T/T47/T47n1997.xml",
+        "T/T47/T47n1998A.xml",
+        "T/T47/T47n1999.xml",
+        "J/J25/J25nB171.xml",
+        "J/J34/J34nB311.xml",
+        "J/J36/J36nB359.xml",
+        "J/J38/J38nB424.xml"
+      ],
+      "RelatedMasters": [
+        "Luopu Yuanan",
+        "Yuanwu Keqin",
+        "Dahui Zonggao",
+        "Mi'an Xianjie",
+        "Tianyin Yuanxiu",
+        "Puming",
+        "Baiyu Jingsi",
+        "Juelang Daosheng"
+      ],
+      "RelatedTerms": [
+        "末後句",
+        "末後一著",
+        "把定",
+        "放行"
+      ]
+    }
+  ]
+}

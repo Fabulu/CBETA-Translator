@@ -1,0 +1,619 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_193632bffe7b",
+    "SourceTerm": "喝",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex fresh f001 lane A evidence-first",
+    "WrittenUtc": "2026-07-15T00:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a shout",
+        "AlternateTargets": [
+          "to shout",
+          "to cry out",
+          "the shout"
+        ],
+        "SearchAliases": [
+          "yell",
+          "loud cry",
+          "public interview shout",
+          "Zen shout"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "18 exact evidence rows from 13 independent works are stored for this sense; repeated files or editions are not counted as separate works.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1985.xml",
+            "FromLb": "0504a26",
+            "ToLb": "0504a29",
+            "Kwic": "師問僧：「有時一喝如金剛王寶劍、有時一喝如踞地金毛師子、有時一喝如探竿影草、有時一喝不作一喝用，汝作麼生會？」僧擬議，師便喝。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (鎮州臨濟慧照禪師語錄) reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
+            "ContextMasters": [
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1985.xml",
+            "FromLb": "0496c19",
+            "ToLb": "0496c21",
+            "Kwic": "是日，兩堂首座相見，同時下喝。僧問師：「還有賓主也無？」師云：「賓主歷然。」",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "head monks",
+              "ActorLabel": "two unnamed hall head monks",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex independent exact-turn review",
+              "ReviewedUtc": "2026-07-13T20:55:00Z",
+              "GrammarEvidence": "The full passage assigns the stored wording to the reviewed textual actor."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "record-owner"
+                ]
+              }
+            ],
+            "Curated": true,
+            "AttributionNote": "Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄), Linji Yixuan's own record. Two unnamed hall head monks are the joint exact shouters; all six attribution rungs, including parallel recensions, leave them unnamed. Linji Yixuan speaks only the later host-and-guest verdict.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "two unnamed hall head monks",
+              "FullCaseDecision": "two unnamed hall head monks owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0311b24",
+            "ToLb": "0311b26",
+            "Kwic": "一喝分賓主者。一喝中。自有賓有主也。照用一時行者。一喝中。自有照有用。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            },
+            "ContextMasters": [],
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (人天眼目) reports the exact headword-bearing action or interval.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            }
+          },
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0766b05",
+            "ToLb": "0766b05",
+            "Kwic": "臨濟喝。德山棒。天皇餅。趙州茶。",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "AttributionNote": "Extended Record of Zhongfeng of Tianmu (天目中峰廣錄), by Zhongfeng Mingben. Zhongfeng Mingben places Linji's shout beside Deshan's staff, Tianhuang's cake, and Zhaozhou's tea in his device list.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "臨濟喝。德山棒。天皇餅。趙州茶。",
+              "SpeechFrame": "Extended Record of Zhongfeng of Tianmu (天目中峰廣錄), by Zhongfeng Mingben. Zhongfeng Mingben places Linji's shout beside Deshan's staff, Tianhuang's cake, and Zhaozhou's tea in his device list.",
+              "FullCaseDecision": "Zhongfeng Mingben owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0071b05",
+            "ToLb": "0071b05",
+            "Kwic": "祖振威一喝。師直得三日耳聾。",
+            "MasterName": null,
+            "ContextMasters": [
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Mazu Daoyi is the participant described, not a quoted headword speaker.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0084c12",
+            "ToLb": "0084c13",
+            "Kwic": "有僧從外來。師便喝。僧曰。好箇來由。師曰。猶要棒在。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Mengxi Heshang is the participant described, not a quoted headword speaker.",
+            "ContextMasters": [
+              {
+                "MasterName": "Mengxi Heshang",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2077.xml",
+            "FromLb": "0473b01",
+            "ToLb": "0473b02",
+            "Kwic": "僧便喝。師便打。",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            },
+            "ContextMasters": [],
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (續傳燈錄) reports the exact headword-bearing action or interval.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            }
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0009a19",
+            "ToLb": "0009a19",
+            "Kwic": "喝一喝，下座。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (列祖提綱錄) reports the exact headword-bearing action or interval. Zhenjing Kewen is the participant described, not a quoted headword speaker.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhenjing Kewen",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0012c21",
+            "ToLb": "0012c21",
+            "Kwic": "或行棒，或行喝，或詞辨縱橫，或寂寥無說",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "AttributionNote": "Essentials from the Patriarchs' Addresses (列祖提綱錄), explicitly introduced as a requested hall address by Yuanwu Keqin. Yuanwu Keqin enumerates wielding the shout beside wielding the staff, verbal eloquence, and silence.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "或行棒，或行喝，或詞辨縱橫，或寂寥無說",
+              "SpeechFrame": "Essentials from the Patriarchs' Addresses (列祖提綱錄), explicitly introduced as a requested hall address by Yuanwu Keqin. Yuanwu Keqin enumerates wielding the shout beside wielding the staff, verbal eloquence, and silence.",
+              "FullCaseDecision": "Yuanwu Keqin owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "C/C078/C078n1720.xml",
+            "FromLb": "0733b13",
+            "ToLb": "0733b13",
+            "Kwic": "普化見馬步使出喝道",
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "road officer",
+              "ActorLabel": "unnamed road-clearing officer",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex independent exact-turn review",
+              "ReviewedUtc": "2026-07-13T20:55:00Z",
+              "GrammarEvidence": "The full passage assigns the stored wording to the reviewed textual actor."
+            },
+            "ContextMasters": [],
+            "Curated": true,
+            "AttributionNote": "Linked Pearls Comprehensive Collection of Chan Verses on Old Cases (禪宗頌古聯珠通集), Puhua case. An unnamed road-clearing officer is the exact first crier; all six rungs leave his personal name unstated. Puhua observes him and answers in the following turn.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "unnamed road-clearing officer",
+              "FullCaseDecision": "unnamed road-clearing officer owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "C/C078/C078n1720.xml",
+            "FromLb": "0733b13",
+            "ToLb": "0733b15",
+            "Kwic": "師亦喝道作相撲勢",
+            "MasterName": "Puhua",
+            "Curated": true,
+            "AttributionNote": "Linked Pearls Comprehensive Collection of Chan Verses on Old Cases (禪宗頌古聯珠通集), Puhua case. Puhua is the exact actor of the second cry and accompanies it with a wrestling gesture; the unnamed road-clearing officer performed the preceding cry.",
+            "ContextMasters": [
+              {
+                "MasterName": "Puhua",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師亦喝道作相撲勢",
+              "SpeechFrame": "Linked Pearls Comprehensive Collection of Chan Verses on Old Cases (禪宗頌古聯珠通集), Puhua case. Puhua is the exact actor of the second cry and accompanies it with a wrestling gesture; the unnamed road-clearing officer performed the preceding cry.",
+              "FullCaseDecision": "Puhua owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1985.xml",
+            "FromLb": "0496c16",
+            "ToLb": "0496c18",
+            "Kwic": "又有僧問：「如何是佛法大意？」師便喝，僧禮拜，師云：「爾道好喝也無？」僧云：「草賊大敗。」",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source narration in Source Record (鎮州臨濟慧照禪師語錄) reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
+            "ContextMasters": [
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the source narrator",
+              "FullCaseDecision": "The narrator owns the exact wording; the participant is retained as the person described."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "narrated action or interval",
+              "ActorLabel": "source narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+              "ReviewedBy": "Codex f001 lane A independent-review repair",
+              "ReviewedUtc": "2026-07-15T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0667b17",
+            "ToLb": "0667b17",
+            "Kwic": "諸上座不得盲喝亂喝",
+            "MasterName": "Shoushan Xingnian",
+            "Curated": true,
+            "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Shoushan Xingnian's recorded sayings. After an unnamed participant shouts twice, Shoushan Xingnian explicitly warns the assembly not to shout blindly or at random. Shoushan is the exact speaker of the stored warning.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shoushan Xingnian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "諸上座不得盲喝亂喝",
+              "SpeechFrame": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Shoushan Xingnian's recorded sayings. After an unnamed participant shouts twice, Shoushan Xingnian explicitly warns the assembly not to shout blindly or at random. Shoushan is the exact speaker of the stored warning.",
+              "FullCaseDecision": "Shoushan Xingnian owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1386.xml",
+            "FromLb": "0319c13",
+            "ToLb": "0319c13",
+            "Kwic": "喝水成水，敲骨出髓。",
+            "MasterName": "Shitian Faxun",
+            "Curated": true,
+            "AttributionNote": "Recorded Sayings of Chan Master Shitian Faxun (石田法薰禪師語錄), Shitian Faxun's own hall address. Shitian Faxun says 'shout at water and make water; knock the bones and bring out marrow'; this exact control uses the graph as shouting at water, not drinking it.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shitian Faxun",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "喝水成水，敲骨出髓。",
+              "SpeechFrame": "Recorded Sayings of Chan Master Shitian Faxun (石田法薰禪師語錄), Shitian Faxun's own hall address. Shitian Faxun says 'shout at water and make water; knock the bones and bring out marrow'; this exact control uses the graph as shouting at water, not drinking it.",
+              "FullCaseDecision": "Shitian Faxun owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "J/J29/J29nB224.xml",
+            "FromLb": "0114b22",
+            "ToLb": "0114b23",
+            "Kwic": "棒喝若是禪，則十字街頭、三家村裏，擔來負去、掄拳喝罵者，亦應是禪邪？",
+            "MasterName": "Songshan Yezhu",
+            "Curated": true,
+            "EvidenceRole": "family",
+            "AttributionNote": "Recorded Sayings of Chan Master Songshan Yezhu (嵩山野竹禪師語錄), Songshan Yezhu's own address. Songshan Yezhu asks whether people in streets and villages who swing fists and shout abuse would count if staff-and-shout itself were Chan; the longer shouted-abuse compound is family evidence, not a bare-headword sense or depth witness.",
+            "ContextMasters": [
+              {
+                "MasterName": "Songshan Yezhu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "棒喝若是禪，則十字街頭、三家村裏，擔來負去、掄拳喝罵者，亦應是禪邪？",
+              "SpeechFrame": "Recorded Sayings of Chan Master Songshan Yezhu (嵩山野竹禪師語錄), Songshan Yezhu's own address. Songshan Yezhu asks whether people in streets and villages who swing fists and shout abuse would count if staff-and-shout itself were Chan; the longer shouted-abuse compound is family evidence, not a bare-headword sense or depth witness.",
+              "FullCaseDecision": "Songshan Yezhu owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB174.xml",
+            "FromLb": "0736c05",
+            "ToLb": "0736c06",
+            "Kwic": "密用潛行神忽悟，不禁喝采叫奇哉！",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "EvidenceRole": "family",
+            "AttributionNote": "Recorded Sayings of Chan Master Juelang of Tianjie (天界覺浪盛禪師語錄), Juelang Daosheng's verse to Layman Fang Rui. Juelang Daosheng says one cannot help cheering and crying 'marvellous'; the longer cheer compound is family evidence, not a bare-headword sense or depth witness.",
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "密用潛行神忽悟，不禁喝采叫奇哉！",
+              "SpeechFrame": "Recorded Sayings of Chan Master Juelang of Tianjie (天界覺浪盛禪師語錄), Juelang Daosheng's verse to Layman Fang Rui. Juelang Daosheng says one cannot help cheering and crying 'marvellous'; the longer cheer compound is family evidence, not a bare-headword sense or depth witness.",
+              "FullCaseDecision": "Juelang Daosheng owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0017a28",
+            "ToLb": "0017a29",
+            "Kwic": "師云：「三喝四喝後作麼生？」僧佇思，師連打",
+            "MasterName": "Miyun Yuanwu",
+            "Curated": true,
+            "EvidenceRole": "family",
+            "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄), Miyun Yuanwu's own record. Miyun Yuanwu asks what happens after three shouts and Four Shouts, then strikes when the unnamed participant pauses; the Four Shouts phrase is family evidence rather than a separate bare-headword sense.",
+            "ContextMasters": [
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師云：「三喝四喝後作麼生？」僧佇思，師連打",
+              "SpeechFrame": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄), Miyun Yuanwu's own record. Miyun Yuanwu asks what happens after three shouts and Four Shouts, then strikes when the unnamed participant pauses; the Four Shouts phrase is family evidence rather than a separate bare-headword sense.",
+              "FullCaseDecision": "Miyun Yuanwu owns the stored wording after full-case review."
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1997.xml",
+            "FromLb": "0719c20",
+            "ToLb": "0719c21",
+            "Kwic": "更須知棒喝交馳。照用同時。向上一竅始得。",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "EvidenceRole": "family",
+            "AttributionNote": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), Yuanwu Keqin's own record. Yuanwu Keqin states that staff and shout cross in action with illumination and function simultaneous; the longer staff-and-shout compound is family evidence rather than a separate bare-headword sense.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "更須知棒喝交馳。照用同時。向上一竅始得。",
+              "SpeechFrame": "Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), Yuanwu Keqin's own record. Yuanwu Keqin states that staff and shout cross in action with illumination and function simultaneous; the longer staff-and-shout compound is family evidence rather than a separate bare-headword sense.",
+              "FullCaseDecision": "Yuanwu Keqin owns the stored wording after full-case review."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "T/T47/T47n1985.xml",
+          "T/T48/T48n2006.xml",
+          "B/B25/B25n0145.xml",
+          "X/X80/X80n1565.xml",
+          "T/T51/T51n2077.xml",
+          "X/X64/X64n1260.xml",
+          "C/C078/C078n1720.xml",
+          "C/C077/C077n1710.xml",
+          "X/X70/X70n1386.xml",
+          "J/J29/J29nB224.xml",
+          "J/J25/J25nB174.xml",
+          "J/J10/J10nA158.xml",
+          "T/T47/T47n1997.xml"
+        ],
+        "RelatedMasters": [
+          "Linji Yixuan",
+          "Mazu Daoyi",
+          "Baizhang Huaihai",
+          "Zhongfeng Mingben",
+          "Mengxi Heshang",
+          "Sanjiao Zhisong",
+          "Zhenjing Kewen",
+          "Yuanwu Keqin",
+          "Puhua",
+          "Shoushan Xingnian",
+          "Shitian Faxun",
+          "Songshan Yezhu",
+          "Juelang Daosheng",
+          "Miyun Yuanwu"
+        ],
+        "RelatedTerms": [
+          "一喝",
+          "四喝",
+          "棒",
+          "棒喝",
+          "喝道",
+          "喝采",
+          "喝罵"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A shout is an interview action whose placement can expose guest and host or illumination and function; the same records warn that blind or imitative shouting does not reproduce its use.",
+          "EvidenceBody": [
+            "The selected exact turns and their attributed speakers or narrators bound this account; the entry does not add a resolution beyond those deployments."
+          ]
+        },
+        "ClaimAnchors": [],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7",
+            "o8",
+            "o9",
+            "o10",
+            "o11",
+            "o12",
+            "o13",
+            "o14",
+            "o15",
+            "o16",
+            "o17",
+            "o18"
+          ],
+          "ZenBend": "A shout is an interview action whose placement can expose guest and host or illumination and function; the same records warn that blind or imitative shouting does not reproduce its use.",
+          "CounterexampleOrLimit": "The selected exact turns and their attributed speakers or narrators bound this account; the entry does not add a resolution beyond those deployments.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "selected formulations",
+              "contrasts and responses"
+            ],
+            "Reason": "This worksheet preserves the legacy sense boundary pending serialized semantic review."
+          },
+          "AliasRationale": "The retained lookup forms preserve the accumulated target list and its established order.",
+          "ModifierControls": [
+            {
+              "Control": "stored compound or formula",
+              "Finding": "The target preserves the attested term order pending serialized review."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "一喝",
+              "Finding": "Retained as a related term rather than silently merged."
+            },
+            {
+              "Term": "四喝",
+              "Finding": "Retained as a related term rather than silently merged."
+            },
+            {
+              "Term": "棒",
+              "Finding": "Retained as a related term rather than silently merged."
+            },
+            {
+              "Term": "棒喝",
+              "Finding": "Retained as a related term rather than silently merged."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1985",
+            "work:T48n2006",
+            "work:B25n0145",
+            "work:X80n1565",
+            "work:T51n2077",
+            "work:X64n1260",
+            "work:C078n1720",
+            "work:guzunsu-yulu",
+            "work:X70n1386",
+            "work:J29nB224",
+            "work:J25nB174",
+            "work:J10nA158",
+            "work:T47n1997"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "Id": "t_0ed8638229a9",
+  "SourceTerm": "無位真人",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T22:30:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the true person of no rank",
+      "AlternateTargets": [
+        "rankless true person"
+      ],
+      "SearchAliases": [
+        "true person of no rank",
+        "rankless true person"
+      ],
+      "Status": "preferred",
+      "Explanation": "The true person of no rank is Linji Yixuan's figure for what he says constantly goes in and out through each person's face. Later records repeatedly raise, question, verse, criticize, and reinterpret that formulation. Xitai Bian explicitly raises Linji's phrase and rejects both the dried-shit-stick retort and easy appropriation. Gulin Qingmao depicts the figure as difficult to distinguish while manifesting at the crown and in the eyes. An unnamed monk asks Lingji Xingguan what it is; Lingji answers “met face to face” and then contrasts a person with rank. Shanfeng Xian lists it as Linji's signature expression beside other teachers' stock responses. The Yongzheng Emperor says the rankless designation is itself only a forced name and plays rank against no-rank. Caoyuan Sheng scolds Linji for calling it a true person of no rank. These conflicting deployments preserve one Linji-derived figure without licensing one uniform later explanation.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 1,407 hits in 273 files and 267 works. Seven witnesses across six independent works meet the packet floor and cover founding formulation, two later addresses, interview question, signature-expression list, imperial reinterpretation, and criticism.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1985.xml",
+          "FromLb": "0496c10",
+          "ToLb": "0496c11",
+          "Kwic": "赤肉團上有一無位真人，常從汝等諸人面門出入",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): Linji Yixuan introduces the true person of no rank as constantly entering and leaving through each person's face."
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0080b19",
+          "ToLb": "0080b19",
+          "Kwic": "西臺辯禪師上堂，舉臨濟無位真人語",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xitai Bian",
+              "Roles": [
+                "utterer",
+                "later-raiser"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Outline Record of the Successive Patriarchs (列祖提綱錄): Xitai Bian raises Linji Yixuan's phrase in his own hall address. The exact headword-bearing actor is the compiler; the named figure is contextual. This is compiler narration.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narration",
+            "ActorLabel": "the compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword belongs to narrator or editorial grammar; the named figure is described or supplies the surrounding discourse, not this lexical item.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0096c22",
+          "ToLb": "0096c22",
+          "Kwic": "無位真人突出難辨。頂門上時時顯現，眼睛裏處處",
+          "MasterName": "Gulin Qingmao",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Gulin Qingmao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Outline Record of the Successive Patriarchs (列祖提綱錄): Gulin Qingmao says the true person of no rank stands out yet is difficult to distinguish."
+        },
+        {
+          "RelPath": "J/J39/J39nB448.xml",
+          "FromLb": "0437b27",
+          "ToLb": "0437b27",
+          "Kwic": "問：「如何是無位真人？」師云：「覿面相逢。」",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T22:30:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Lingji Xingguan",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Lingji (靈機禪師語錄): an unnamed monk asks what the true person of no rank is; Lingji Xingguan answers “met face to face.”"
+        },
+        {
+          "RelPath": "J/J34/J34nB298.xml",
+          "FromLb": "0105b22",
+          "ToLb": "0105b23",
+          "Kwic": "雲門喚作乾矢橛，洞山喚作麻三斤，趙州喚作柏樹子，臨濟喚作無位真人。",
+          "MasterName": "Shanfeng Xian",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shanfeng Xian",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Recorded Sayings of Chan Master Shanfeng Xian (屾峰憲禪師語錄): Shanfeng Xian lists the true person of no rank as Linji Yixuan's signature expression."
+        },
+        {
+          "RelPath": "X/X68/X68n1319.xml",
+          "FromLb": "0560b17",
+          "ToLb": "0560b18",
+          "Kwic": "言無位真人者，本非無位，強名之曰無位耳。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongzheng Emperor",
+              "Roles": [
+                "utterer",
+                "compiler"
+              ]
+            }
+          ],
+          "AttributionNote": "Imperially Selected Recorded Sayings (御選語錄): the Yongzheng Emperor says the true person of no rank is not originally rankless and is only forcibly named so. The exact headword-bearing actor is the identified non-master Yongzheng Emperor.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "emperor",
+            "ActorLabel": "Yongzheng Emperor",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The surrounding source identifies this named non-master as the author or speaker of the exact headword-bearing clause.",
+            "ReviewedBy": "Codex fresh f001 lane A root review",
+            "ReviewedUtc": "2026-07-15T02:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0452c08",
+          "ToLb": "0452c08",
+          "Kwic": "尀耐臨濟賊漢，喚作無位真人。",
+          "MasterName": "Caoyuan Sheng",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Caoyuan Sheng",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Continued Essentials of the Recorded Sayings of Ancient Worthies (續古尊宿語要): Caoyuan Sheng scolds Linji Yixuan for calling it the true person of no rank."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T47/T47n1985.xml",
+        "X/X64/X64n1260.xml",
+        "J/J39/J39nB448.xml",
+        "J/J34/J34nB298.xml",
+        "X/X68/X68n1319.xml",
+        "X/X68/X68n1318.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Xitai Bian",
+        "Gulin Qingmao",
+        "Lingji Xingguan",
+        "Shanfeng Xian",
+        "Yongzheng Emperor",
+        "Caoyuan Sheng"
+      ],
+      "RelatedTerms": [
+        "真人",
+        "無位",
+        "乾屎橛",
+        "面門出入"
+      ]
+    }
+  ]
+}

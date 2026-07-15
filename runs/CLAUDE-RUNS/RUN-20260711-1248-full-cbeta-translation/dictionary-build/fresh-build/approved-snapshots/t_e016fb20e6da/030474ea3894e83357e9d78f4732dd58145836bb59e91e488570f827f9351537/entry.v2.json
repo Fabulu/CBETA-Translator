@@ -1,0 +1,193 @@
+{
+  "Id": "t_e016fb20e6da",
+  "SourceTerm": "認賊為子",
+  "CreatedBy": "Codex f002 Lane C author",
+  "WrittenUtc": "2026-07-15T01:57:20.603930+00:00",
+  "SchemaVersion": 2,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "mistake the thief for your son",
+      "AlternateTargets": [
+        "take the thief as your son"
+      ],
+      "Status": "preferred",
+      "Note": "Allowlist count: 132 hits in 88 texts. One metaphorical referent across applications. Related inverse and servant/master phrases are linked, not collapsed.",
+      "Validation": "multi-source",
+      "Occurrences": [
+        {
+          "RelPath": "X/X67/X67n1307.xml",
+          "FromLb": "0474c12",
+          "ToLb": "0474c14",
+          "Kwic": "天童略舉云：若能推底是汝心，則認賊為子。衲僧門下謂之認奴作郎。",
+          "Curated": true,
+          "AttributionNote": "(萬松老人評唱天童覺和尚拈古請益錄). Full six-rung exact-turn review identifies Wansong Xingxiu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Wansong Xingxiu",
+          "ContextMasters": [
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0272a06",
+          "ToLb": "0272a07",
+          "Kwic": "慎勿向外逐境為心。是認賊為子。為有貪瞋癡即立戒定慧。本無煩惱焉有菩提。",
+          "Curated": true,
+          "AttributionNote": "(景德傳燈錄): complete-case exact-turn review identifies Huangbo Xiyun as the actor for this occurrence.",
+          "MasterName": "Huangbo Xiyun",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0040c10",
+          "ToLb": "0040c11",
+          "Kwic": "問：「黑夜中，認賊為子、認子為賊，作何判斷？」答：「各打三十棒。」",
+          "Curated": true,
+          "AttributionNote": "(密雲禪師語錄). Full six-rung exact-turn review identifies Unnamed questioner asking about mistaking thief and son as the exact actor; all six rungs leave this non-master unnamed.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "questioner",
+            "ActorLabel": "Unnamed questioner asking about mistaking thief and son",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+            "ReviewedUtc": "2026-07-14T06:38:09.734372Z",
+            "ActorType": "reviewed-unnamed",
+            "GrammarEvidence": "The full case was read: the headword is not uttered by a nameable Zen master in this occurrence.",
+            "ContextEvidence": "密雲禪師語錄. Full six-rung exact-turn review identifies Unnamed questioner asking about mistaking thief and son as the exact actor; all six rungs leave this non-master unnamed."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J39/J39nB460.xml",
+          "FromLb": "0735b03",
+          "ToLb": "0735b05",
+          "Kwic": "舉起拄杖，云：「若喚這箇作主人公，也是認賊為子、喚奴作郎；若喚這箇不是主人公，猶是捨父逃逝、向外馳求。",
+          "Curated": true,
+          "AttributionNote": "(灤州萬善暉州昊禪師語錄). Full six-rung exact-turn review identifies Huizhou Hao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+          "MasterName": "Huizhou Hao",
+          "ContextMasters": [
+            {
+              "MasterName": "Huizhou Hao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J27/J27nB197.xml",
+          "FromLb": "0414a12",
+          "ToLb": "0414a13",
+          "Kwic": "問：「黑夜中認賊為子、認子為賊，作何判斷？」",
+          "Curated": true,
+          "AttributionNote": "Essential Recorded Sayings of Boshan Wuyi (博山無異大師語錄集要). The enclosing exchange explicitly names Chen Yunyi as uttering the headword-bearing question; Wuyi Yuanlai answers, “call the name and he responds.”",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "layman",
+            "ActorType": "named-non-master",
+            "ActorLabel": "Chen Yunyi",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The explicit formula 陳雲怡問 or the enclosing named-question heading identifies Chen Yunyi as uttering the headword-bearing question.",
+            "ContextEvidence": "Essential Recorded Sayings of Boshan Wuyi (博山無異大師語錄集要). The enclosing exchange explicitly names Chen Yunyi as uttering the headword-bearing question; Wuyi Yuanlai answers, “call the name and he responds.”",
+            "ReviewedBy": "Codex f002 C formal-gate repair",
+            "ReviewedUtc": "2026-07-15T02:28:35.058520+00:00"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J38/J38nB418.xml",
+          "FromLb": "0536b03",
+          "ToLb": "0536b04",
+          "Kwic": "瞿曇、龍濟好各與三十棒。何故？能推的是心不是心，一任卜度，認賊為子，放過不可。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Huiyue Xu (晦嶽旭禪師語錄), old-case comments. Huiyue Xu sentences both cited formulations to thirty blows and says that reckoning whether the projecting faculty is mind or not mind remains recognizing a thief as one’s son and cannot be let pass.",
+          "MasterName": "Huiyue Xu",
+          "ContextMasters": [
+            {
+              "MasterName": "Huiyue Xu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0546b27",
+          "ToLb": "0546c04",
+          "Kwic": "人底，若未曾體究得石霜和尚底，爭解脫得起滅不停時也。所以道：『靈光獨耀，迥脫根塵，體露真常，不拘文字。心性無染，本自圓成，但離妄緣，即如如佛。』若不如是，敢保你認賊為子在。今時人還會得二大老異口同音麼？」良久，云：「一片白雲橫谷口，幾多歸鳥盡迷巢。」舉：「雲巖掃地次，道吾云：『太區區生。』巖云：『須知有不區區者。』吾云：『恁麼",
+          "Curated": true,
+          "MasterName": "Tianyin Yuanxiu",
+          "AttributionNote": "Source text (天隱和尚語錄): Tianyin Yuanxiu is the exact headword utterer; complete-turn review: own-record warning that failure to meet the cited standard guarantees mistaking thief for son.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyin Yuanxiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "X/X67/X67n1307.xml",
+        "T/T51/T51n2076.xml",
+        "J/J10/J10nA158.xml",
+        "J/J39/J39nB460.xml",
+        "J/J27/J27nB197.xml",
+        "J/J38/J38nB418.xml",
+        "J/J25/J25nB171.xml"
+      ],
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "認奴作郎",
+        "認子為賊",
+        "主人公",
+        "拄杖"
+      ],
+      "SearchAliases": [
+        "mistake the thief for your son",
+        "take the thief as your son",
+        "Zen mistake the thief for your son"
+      ],
+      "Explanation": "The records preserve the quoted formulation 'if what can infer is your mind, then you mistake the thief for your son,' and immediately state that 'in the patch-robed monk's gate this is called mistaking the servant for the household head' (衲僧門下謂之認奴作郎). Chan records then use the kinship error in admonition and public interview: pursuing external objects as mind is named with the phrase; an unnamed questioner asks how to judge, in darkness, mistaking thief for son and son for thief and receives 'thirty blows each'; and Huizhou Hao raises his staff and says that calling it the household head is mistaking thief for son, while denying it is fleeing the father and seeking outside. The Zen deviation is this recurrent use as a public diagnostic accusation, linked by the texts themselves to servant/master and host language. The entry reports those applications without deciding what should count as the 'true son.'",
+      "ClaimAnchors": []
+    }
+  ]
+}

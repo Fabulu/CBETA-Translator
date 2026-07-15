@@ -1,0 +1,129 @@
+{
+  "Id": "t_1c5d1a873155",
+  "SourceTerm": "常啼菩薩",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T04:53:36.766800+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Ever-Weeping Bodhisattva",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "Ever-Weeping Bodhisattva",
+        "常啼菩薩"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0059b20",
+          "ToLb": "0059b21",
+          "Kwic": "心見，知其所得，便問：常啼菩薩賣却心肝，教誰學般若？",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed interlocutor asking the recorded question",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:53:36.766800+00:00",
+            "GrammarEvidence": "The headword lies in the question before the separately marked response."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the unnamed interlocutor asking the recorded question owns the exact headword turn."
+        },
+        {
+          "RelPath": "J/J40/J40nB493.xml",
+          "FromLb": "0516c27",
+          "ToLb": "0516c28",
+          "Kwic": "」舉：「常啼菩薩賣心肝學般若。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:53:36.766800+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "磬山牧亭樸夫拙禪師",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (磬山牧亭樸夫拙禪師語錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "J/J25/J25nB174.xml",
+          "FromLb": "0688a24",
+          "ToLb": "0688a25",
+          "Kwic": "」福山上堂，乃畫○云：「常啼菩薩賣心肝求般若；",
+          "Curated": true,
+          "MasterName": "天界覺浪盛禪師",
+          "ContextMasters": [
+            {
+              "MasterName": "天界覺浪盛禪師",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (天界覺浪盛禪師語錄): exact actor (天界覺浪盛禪師) owns the headword-bearing wording."
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0613b27",
+          "ToLb": "0613b27",
+          "Kwic": "常啼菩薩賣心肝，無厭足王好捏怪。",
+          "Curated": true,
+          "MasterName": "天界覺浪盛禪師",
+          "ContextMasters": [
+            {
+              "MasterName": "天界覺浪盛禪師",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): exact actor (天界覺浪盛禪師) owns the headword-bearing wording."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "J/J40/J40nB493.xml",
+        "J/J25/J25nB174.xml",
+        "J/J34/J34nB311.xml"
+      ],
+      "RelatedMasters": [
+        "天界覺浪盛禪師"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Ever-Weeping is the figure who sells his heart and liver in order to seek prajna in the inherited story. Chan speakers raise that extreme transaction in questions, hall addresses, and paired judgments, making the concrete sale—not a generic sacred biography—the recorded deployment."
+    }
+  ]
+}

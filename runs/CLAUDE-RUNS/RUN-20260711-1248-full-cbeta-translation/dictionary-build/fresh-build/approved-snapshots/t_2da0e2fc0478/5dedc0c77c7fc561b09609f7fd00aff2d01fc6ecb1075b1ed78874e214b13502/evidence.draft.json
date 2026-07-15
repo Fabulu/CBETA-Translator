@@ -1,0 +1,366 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_2da0e2fc0478",
+    "SourceTerm": "三門",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f003 laneB final2 repair author",
+    "WrittenUtc": "2026-07-15T18:30:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the monastery gate",
+        "AlternateTargets": [
+          "main monastery gate",
+          "temple gate"
+        ],
+        "SearchAliases": [
+          "monastery gate",
+          "temple gate",
+          "main gate",
+          "three gates"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Six independent works use the word for the monastery entrance.",
+        "Occurrences": [
+          {
+            "RelPath": "D/D48/D48n8939.xml",
+            "FromLb": "0011a10",
+            "ToLb": "0011b02",
+            "Kwic": "師云古之今之進云栽松人老難傳鉢盧老區區入嶺南師云你試舉古人底看進云厨庫三門鍾樓佛殿師云恁麼又爭得進云忽遇七手八脚底人來又作麼生師云截斷脚根道將一",
+            "Curated": true,
+            "AttributionNote": "Source text (古尊宿語錄), Foyan Qingyuan record: the unnamed monastic questioner lists kitchen, storehouse, monastery gate, bell tower, and Buddha hall; Foyan gives the following marked response.",
+            "ContextMasters": [
+              {
+                "MasterName": "Foyan Qingyuan",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "anonymous monastic speech",
+              "ActorLabel": "the unnamed monastic questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex f003 laneB exact8 priority repair author",
+              "ReviewedUtc": "2026-07-15T17:30:00Z",
+              "GrammarEvidence": "The explicit 僧問/問 frame assigns the headword-bearing question to the monk; the following 師 turn belongs to the named respondent."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師云古之今之進云栽松人老難傳鉢盧老區區入嶺南師云你試舉古人底看進云厨庫三門鍾樓佛殿師云恁麼又爭得進云忽遇七手八脚底人來又作麼生師云截斷脚根道將一",
+              "GrammaticalSubject": "the unnamed monastic questioner",
+              "SpeechFrame": "The explicit 僧問/問 frame introduces the headword-bearing question; the following 師 turn is the response.",
+              "FullCaseDecision": "The unnamed monastic questioner owns the exact headword-bearing question; Foyan Qingyuan is the respondent."
+            }
+          },
+          {
+            "RelPath": "X/X81/X81n1571.xml",
+            "FromLb": "0420a20",
+            "ToLb": "0420a21",
+            "Kwic": "又於筦城縣匡救寺三門下談無上道，聽者林集。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): the biographical recorder narrates Sengcan speaking below the monastery gate; Sengcan is the named person described, not the utterer of the narrator-owned headword.",
+            "ContextMasters": [
+              {
+                "MasterName": "Sengcan",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "又於筦城縣匡救寺三門下談無上道，聽者林集。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (五燈全書(第1卷-第33卷); X/X81/X81n1571.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0021b12",
+            "ToLb": "0021b14",
+            "Kwic": "雲門大師忍俊不禁，向佛殿裏燒香，三門頭合掌，禱祝呪願：願黃梅石女生兒，子母團圓；",
+            "Curated": true,
+            "MasterName": "Zhantang Wenzhun",
+            "AttributionNote": "Source text (列祖提綱錄): Zhantang Wenzhun utters the headword in the explicitly headed rain-clearing hall address (湛堂準禪師祈晴，上堂).",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhantang Wenzhun",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "雲門大師忍俊不禁，向佛殿裏燒香，三門頭合掌，禱祝呪願：願黃梅石女生兒，子母團圓；",
+              "GrammaticalSubject": "Zhantang Wenzhun",
+              "SpeechFrame": "湛堂準禪師祈晴，上堂 explicitly opens the containing address.",
+              "FullCaseDecision": "Zhantang Wenzhun is the exact utterer; Gaofeng Yuanmiao is not the section speaker."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0044b06",
+            "ToLb": "0044b06",
+            "Kwic": "又於筦城縣匡救寺三門下。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈會元): the biographical recorder narrates Sengcan speaking below the monastery gate; Sengcan is the named person described, not the utterer of the narrator-owned headword.",
+            "ContextMasters": [
+              {
+                "MasterName": "Sengcan",
+                "Roles": [
+                  "person-described"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler or recorder narration",
+              "ActorLabel": "the source compiler or recorder",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
+              "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "又於筦城縣匡救寺三門下。",
+              "GrammaticalSubject": "the source compiler or recorder",
+              "SpeechFrame": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
+              "FullCaseDecision": "Source record (五燈會元; X/X80/X80n1565.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X81/X81n1568.xml",
+            "FromLb": "0011a02",
+            "ToLb": "0011a03",
+            "Kwic": "諸上座欲得省要，僧堂裏、三門下、寮舍裏參取好。",
+            "Curated": true,
+            "MasterName": "Daoqin",
+            "AttributionNote": "Source record (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: Daoqin. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Daoqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "諸上座欲得省要，僧堂裏、三門下、寮舍裏參取好。",
+              "SpeechFrame": "The complete headword-bearing turn is assigned after full context review. Speaker: Daoqin. Source text (五燈嚴統(第10卷-第25卷)).",
+              "FullCaseDecision": "Source record (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: Daoqin. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1318.xml",
+            "FromLb": "0353c09",
+            "ToLb": "0353c10",
+            "Kwic": "師云：你看這瞎漢本是打出三門外，念你是新到，且坐喫茶。",
+            "Curated": true,
+            "MasterName": "Xuedou Zhijian",
+            "AttributionNote": "Source record (續古尊宿語要; X/X68/X68n1318.xml). Exact actor: Xuedou Zhijian. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Xuedou Zhijian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師云：你看這瞎漢本是打出三門外，念你是新到，且坐喫茶。",
+              "SpeechFrame": "The complete headword-bearing turn is assigned after full context review. Speaker: Xuedou Zhijian. Source text (續古尊宿語要).",
+              "FullCaseDecision": "Source record (續古尊宿語要; X/X68/X68n1318.xml). Exact actor: Xuedou Zhijian. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "D/D48/D48n8939.xml",
+          "X/X81/X81n1571.xml",
+          "X/X64/X64n1260.xml",
+          "X/X80/X80n1565.xml",
+          "X/X81/X81n1568.xml",
+          "X/X68/X68n1318.xml"
+        ],
+        "RelatedMasters": [
+          "Daoqin",
+          "Fayan Qingyuan",
+          "Zhantang Wenzhun",
+          "Xuedou Zhijian"
+        ],
+        "RelatedTerms": [],
+        "Explanation": "At a monastery, the three-gate is the main entrance through which people enter, leave, wait, or are driven out. The records keep the architectural gate concrete while using arrival, exclusion, and passage through it as parts of public encounters.",
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "ZenBend": "The records keep the architectural gate concrete while using arrival, exclusion, and passage through it as parts of public encounters.",
+          "CounterexampleOrLimit": "The witnesses do not license an imported doctrinal definition or a separate sense for every rhetorical stance.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the monastery gate",
+              "its attested deployments"
+            ],
+            "Reason": "The witnesses preserve one referent or action across different predicates and settings."
+          },
+          "AliasRationale": "Aliases provide natural English spelling and close synonyms needed for lookup.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "Compounds and surrounding predicates were not allowed to redefine the bare headword."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Related titles and formulas were treated as context rather than synonyms."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:guzunsu-yulu",
+            "work:wudeng-quanshu",
+            "work:X64n1260",
+            "work:X80n1565",
+            "work:wudeng-yantong",
+            "work:X68n1318"
+          ]
+        },
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "At a monastery, the three-gate is the main entrance through which people enter, leave, wait, or are driven out.",
+          "EvidenceBody": [
+            "The records keep the architectural gate concrete while using arrival, exclusion, and passage through it as parts of public encounters."
+          ]
+        }
+      },
+      {
+        "SenseKey": "three-approaches",
+        "MasterName": null,
+        "PreferredTarget": "three approaches",
+        "AlternateTargets": [
+          "three categories"
+        ],
+        "SearchAliases": [
+          "three approaches",
+          "three categories",
+          "three methods"
+        ],
+        "Status": "preferred",
+        "Validation": "single-source",
+        "Note": "A distinct technical enumeration in the Mirror Record uses the same graph sequence for three approaches, not for a building.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T48/T48n2016.xml",
+            "FromLb": "0493a06",
+            "ToLb": "0493a07",
+            "Kwic": "前之三門。",
+            "Curated": true,
+            "MasterName": "Yongming Yanshou",
+            "AttributionNote": "Source record (宗鏡錄; T/T48/T48n2016.xml). Exact actor: Yongming Yanshou. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yongming Yanshou",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "前之三門。",
+              "SpeechFrame": "The complete headword-bearing turn is assigned after full context review. Speaker: Yongming Yanshou. Source text (宗鏡錄).",
+              "FullCaseDecision": "Source record (宗鏡錄; T/T48/T48n2016.xml). Exact actor: Yongming Yanshou. The complete case distinguishes the headword-bearing turn from surrounding narration and replies."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T48/T48n2016.xml"
+        ],
+        "RelatedMasters": [
+          "Yongming Yanshou"
+        ],
+        "RelatedTerms": [],
+        "Explanation": "In a technical enumeration, the three approaches are three analytical ways of arranging the topic. This is a different thing from a monastery entrance and therefore remains a separate sense even though the current selected evidence is rare.",
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1"
+          ],
+          "ZenBend": "The records keep the architectural gate concrete while using arrival, exclusion, and passage through it as parts of public encounters.",
+          "CounterexampleOrLimit": "The witnesses do not license an imported doctrinal definition or a separate sense for every rhetorical stance.",
+          "DifferentThingTest": {
+            "Decision": "different-thing",
+            "ComparedThings": [
+              "a monastery entrance",
+              "three analytical approaches"
+            ],
+            "Reason": "One is architecture and the other is an enumerated taxonomy."
+          },
+          "AliasRationale": "Aliases provide natural English spelling and close synonyms needed for lookup.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "Compounds and surrounding predicates were not allowed to redefine the bare headword."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Related titles and formulas were treated as context rather than synonyms."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T48n2016"
+          ]
+        },
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "In a technical enumeration, the three approaches are three analytical ways of arranging the topic.",
+          "EvidenceBody": [
+            "This is a different thing from a monastery entrance and therefore remains a separate sense even though the current selected evidence is rare."
+          ]
+        }
+      }
+    ]
+  }
+}

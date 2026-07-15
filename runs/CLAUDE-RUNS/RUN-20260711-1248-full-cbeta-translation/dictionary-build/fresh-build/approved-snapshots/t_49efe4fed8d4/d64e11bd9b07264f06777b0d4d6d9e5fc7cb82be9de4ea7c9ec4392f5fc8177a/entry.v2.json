@@ -1,0 +1,86 @@
+{
+  "SchemaVersion": 2,
+  "Id": "t_49efe4fed8d4",
+  "SourceTerm": "祖師西來意",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the meaning of the patriarch's coming from the West",
+      "AlternateTargets": ["the point of Bodhidharma's journey from the West"],
+      "SearchAliases": ["patriarch came from the west", "meaning of Bodhidharma's journey", "why Bodhidharma came", "point of the patriarch's coming", "patriarch's western journey"],
+      "Status": "preferred",
+      "Explanation": "The meaning or point of the patriarch's coming from the West, with the patriarch understood in these records as Bodhidharma coming to China. The words usually form a stock public question rather than a request for travel history. Named respondents answer with a cypress, washing feet, a Chan board, ripe plums, a fan, landscape lines, a refusal, or a demand that the questioner turn toward his own intent. Dahui Zonggao can also name it as a topic for which there is not yet time to speak, and Zhongfeng Mingben warns that interchangeable verbal explanations miss it. The phrase therefore names one recurring question whose Chan force lies in the publicly testable answer, not a fixed route or a single explanatory paraphrase.",
+      "Validation": "multi-source",
+      "Note": "Frozen-corpus concordance: 2,387 exact apparatus-clean hits in 279 files and 274 independent works in the canonical f001 preflight. The bare phrase and the full question belong to one referent; response diversity does not create separate senses because every response is presented as answering or discussing the same question.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n1998A.xml", "FromLb": "0816c14", "ToLb": "0816c14", "Kwic": "若是祖師西來意。未有工夫說得。", "MasterName": "Dahui Zonggao", "Curated": true,
+          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄). Dahui Zonggao is the exact speaker distinguishing routine announcements from the meaning of the patriarch's coming from the West, for which he says there is not yet time to speak.",
+          "ContextMasters": [{"MasterName":"Dahui Zonggao","Roles":["utterer","record-owner"]}]
+        },
+        {
+          "RelPath": "J/J34/J34nB299.xml", "FromLb": "0135b23", "ToLb": "0135b24", "Kwic": "僧出問：「如何是祖師西來意？」師云：「爛熟黃梅落滿地。」", "MasterName": null, "Curated": true,
+          "AttributionNote": "Recorded Sayings of Master Sanfeng Cang (三峰藏和尚語錄). An unnamed assembly participant asks the exact question, and Hanyue Fazang answers with ripe yellow plums covering the ground; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed assembly participant","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Hanyue Fazang","Roles":["respondent","record-owner"]}]
+        },
+        {
+          "RelPath": "X/X70/X70n1402.xml", "FromLb": "0743c05", "ToLb": "0743c05", "Kwic": "僧問趙州：如何是祖師西來意？州云：庭前栢樹子。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Miscellaneous Record of Chan Master Tianmu Mingben (天目明本禪師雜錄). Zhongfeng Mingben quotes the case in which an unnamed participant asks Zhaozhou Congshen the exact question and Zhaozhou answers with the cypress in the courtyard; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"the unnamed questioner in the Zhaozhou case","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Zhaozhou Congshen","Roles":["respondent","case-figure"]},{"MasterName":"Zhongfeng Mingben","Roles":["later-quoter","commentator","record-owner"]}]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml", "FromLb": "0051a06", "ToLb": "0051a07", "Kwic": "問。如何是祖師西來意。師曰。汝問不當。曰。如何得當。師曰。待吾滅後。即向汝說。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Five Lamps Compendium (五燈會元), Jingshan Daoqin section. An unnamed participant asks the exact question, and Jingshan Daoqin says it was asked wrongly and postpones an answer until after his death; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Jingshan Daoqin","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Jingshan Daoqin","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml", "FromLb": "0467c06", "ToLb": "0467c07", "Kwic": "趙州行脚時參師，遇師洗脚次，州便問：如何是祖師西來意？師云：恰值老僧洗脚。", "MasterName": "Zhaozhou Congshen", "Curated": true,
+          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄), Linji Yixuan section. The case names Zhaozhou Congshen as the exact questioner and Linji Yixuan as the respondent who points to his washing feet.",
+          "ContextMasters": [{"MasterName":"Zhaozhou Congshen","Roles":["utterer","questioner"]},{"MasterName":"Linji Yixuan","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml", "FromLb": "0646c18", "ToLb": "0646c19", "Kwic": "問：如何是祖師西來意？師云：青絹扇子足風涼。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Fenyang Shanzhao section. An unnamed participant asks the exact question, and Fenyang Shanzhao answers that a blue-silk fan provides ample cool wind; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Fenyang Shanzhao","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Fenyang Shanzhao","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml", "FromLb": "0426a14", "ToLb": "0426a15", "Kwic": "集仙王質問：如何是祖師西來意？師曰：青山影裏潑藍起，寶塔高吟撼曉風。", "MasterName": null, "Curated": true,
+          "AttributionNote": "Complete Book of the Five Lamps, volumes 1 through 33 (五燈全書(第1卷-第33卷)), Fahua Zhiyan section. The source names Wang Zhi of Jixian as the exact non-master questioner, and Fahua Zhiyan answers with blue rising in a green mountain's shadow and a jeweled pagoda sounding in the dawn wind.",
+          "ActorAttribution": {"Status":"identified-non-master","Kind":"named official","ActorLabel":"Wang Zhi of Jixian","ActorRole":"questioner","GrammarEvidence":"The line explicitly introduces Wang Zhi before the question verb and the exact headword-bearing question.","ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Fahua Zhiyan","Roles":["respondent","section-subject"]}]
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml", "FromLb": "0650a21", "ToLb": "0650a22", "Kwic": "龍牙問如何是祖師西來意師云与我過禪板來", "MasterName": "Longya Judun", "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), supplementary Linji Yixuan record. The case names Longya Judun as the exact questioner and Linji Yixuan as the respondent who asks him to pass over the Chan board.",
+          "ContextMasters": [{"MasterName":"Longya Judun","Roles":["utterer","questioner"]},{"MasterName":"Linji Yixuan","Roles":["respondent","record-owner"]}]
+        }
+      ],
+      "ClaimAnchors": [
+        {
+          "ClaimText": "往往不識趙州本意，乃註解云：即色明心，附物顯理。信手拈，信口道，皆可答之。",
+          "RelPath": "X/X70/X70n1402.xml", "FromLb": "0743c05", "ToLb": "0743c07", "Kwic": "往往不識趙州本意，乃註解云：即色明心，附物顯理。信手拈，信口道，皆可答之。", "MasterName": "Zhongfeng Mingben",
+          "AttributionNote": "Miscellaneous Record of Chan Master Tianmu Mingben (天目明本禪師雜錄). Zhongfeng Mingben is the exact current speaker warning that common explanations of Zhaozhou's answer turn it into interchangeable verbal formulas.",
+          "ContextMasters": [{"MasterName":"Zhongfeng Mingben","Roles":["utterer","commentator","record-owner"]},{"MasterName":"Zhaozhou Congshen","Roles":["case-figure","person-discussed"]}]
+        },
+        {
+          "ClaimText": "達磨西來意若何",
+          "RelPath": "J/J28/J28nB202.xml", "FromLb": "0003c26", "ToLb": "0003c27", "Kwic": "進云：「人境且置，達磨西來意若何？」師豎拂，云：「向這裏薦取。」", "MasterName": null,
+          "AttributionNote": "Recorded Sayings of Chan Master Baichi (百癡禪師語錄). An unnamed participant explicitly asks for the meaning of Bodhidharma's coming from the West, and Baichi Xingyuan raises the whisk in response; all six attribution rungs leave the questioner unnamed.",
+          "ActorAttribution": {"Status":"reviewed-unnamed","Kind":"person","ActorLabel":"an unnamed participant questioning Baichi Xingyuan","ActorRole":"questioner","RungsChecked":["line","expanded-context","section-header","book-title","tei-header","parallel-passage"],"ReviewedBy":"Codex fresh f001 lane B exact-turn review","ReviewedUtc":"2026-07-14T19:00:00Z"},
+          "ContextMasters": [{"MasterName":"Baichi Xingyuan","Roles":["respondent","record-owner"]},{"MasterName":"Bodhidharma","Roles":["person-discussed"]}]
+        }
+      ],
+      "SourceTexts": ["T/T47/T47n1998A.xml", "J/J34/J34nB299.xml", "X/X70/X70n1402.xml", "X/X80/X80n1565.xml", "X/X78/X78n1553.xml", "X/X78/X78n1556.xml", "X/X81/X81n1571.xml", "C/C077/C077n1710.xml"],
+      "RelatedMasters": ["Bodhidharma", "Dahui Zonggao", "Hanyue Fazang", "Zhaozhou Congshen", "Zhongfeng Mingben", "Jingshan Daoqin", "Linji Yixuan", "Fenyang Shanzhao", "Fahua Zhiyan", "Longya Judun"],
+      "RelatedTerms": ["如何是祖師西來意", "西來意", "庭前柏樹子"]
+    }
+  ],
+  "CreatedBy": "Codex fresh-build f001 lane B",
+  "WrittenUtc": "2026-07-14T19:00:00Z"
+}

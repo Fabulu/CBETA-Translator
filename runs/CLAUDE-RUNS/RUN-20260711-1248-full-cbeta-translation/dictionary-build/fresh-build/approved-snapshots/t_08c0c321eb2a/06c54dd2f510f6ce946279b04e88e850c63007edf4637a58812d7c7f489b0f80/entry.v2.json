@@ -1,0 +1,209 @@
+{
+  "Id": "t_08c0c321eb2a",
+  "SourceTerm": "炷香",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 Lane A full-case author",
+  "WrittenUtc": "2026-07-15T04:48:06.197823+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "light incense",
+      "AlternateTargets": [
+        "burn incense"
+      ],
+      "SearchAliases": [
+        "a stick of incense",
+        "炷香"
+      ],
+      "Status": "provisional",
+      "Validation": "multi-source",
+      "Note": "Different speakers and grammatical roles do not create extra senses; only a different referent does.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X63/X63n1250.xml",
+          "FromLb": "0622b12",
+          "ToLb": "0622b13",
+          "Kwic": "行者覆住持出，即炷香稟云：。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "monastic regulation",
+            "ActorLabel": "the monastic-code compiler prescribing the attendant’s action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 A601-650 round3 repair author",
+            "ReviewedUtc": "2026-07-15T09:05:00Z",
+            "GrammarEvidence": "The code narrates/prescribes the attendant lighting incense before reporting; 炷香 is the action, not words uttered by the attendant."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (禪林備用清規): Full-case review assigns the exact headword wording to the reviewed but unnamed utterer. Exact headword actor: the monastic-code compiler prescribing the attendant’s action."
+        },
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1113a10",
+          "ToLb": "1113a11",
+          "Kwic": "炷香觸禮一拜稟云僉訖。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:48:06.197823+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source text (勅修百丈清規): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X70/X70n1382.xml",
+          "FromLb": "0233a04",
+          "ToLb": "0233a04",
+          "Kwic": "下座，同詣妙勝殿炷香作禮。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the incense-lighting action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:05:00+02:00",
+            "GrammarEvidence": "The headword is the narrated action surrounding or introducing a separately marked utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzhun Shifan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (無準師範禪師語錄): the compiler narrates the exact incense-lighting action; Wuzhun Shifan is context rather than utterer of the headword. Exact headword actor: the compiler narrating the incense-lighting action."
+        },
+        {
+          "RelPath": "J/J40/J40nB479.xml",
+          "FromLb": "0132a13",
+          "ToLb": "0132a13",
+          "Kwic": "遂炷香云：「相看投機處，青山覆白雲。」",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the incense-lighting action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:05:00+02:00",
+            "GrammarEvidence": "The headword is the narrated action surrounding or introducing a separately marked utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Zhufeng Zhenxu",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (昭覺竹峰續禪師語錄; context master: 昭覺竹峰續禪師): the compiler narrates the exact incense-lighting action; the named master is contextual rather than utterer of the headword. Exact headword actor: the compiler narrating the incense-lighting action."
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0672a17",
+          "ToLb": "0672a18",
+          "Kwic": "師炷香曰：此香為殺人不眨眼上將軍，立地成佛大居士。",
+          "Curated": true,
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the incense-lighting action",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A corrective author",
+            "ReviewedUtc": "2026-07-15T10:05:00+02:00",
+            "GrammarEvidence": "The headword is the narrated action surrounding or introducing a separately marked utterance."
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Foyin Liaoyuan",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (指月錄; context master: 雲居佛印元禪師): the compiler narrates the exact incense-lighting action; the named master is contextual rather than utterer of the headword. Exact headword actor: the compiler narrating the incense-lighting action."
+        },
+        {
+          "RelPath": "X/X70/X70n1376.xml",
+          "FromLb": "0055a02",
+          "ToLb": "0055a02",
+          "Kwic": "昨日徒弟德言炷香請就五參，時為眾東語西話",
+          "Curated": true,
+          "MasterName": "Chijue Daochong",
+          "ContextMasters": [
+            {
+              "MasterName": "Chijue Daochong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (痴絕道冲禪師語錄): Chijue Daochong owns the exact clause in his formal discourse; disciple Deyan performs the narrated action inside that utterance."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J40/J40nB479.xml",
+        "T/T48/T48n2025.xml",
+        "X/X63/X63n1250.xml",
+        "X/X70/X70n1376.xml",
+        "X/X70/X70n1382.xml",
+        "X/X83/X83n1578.xml"
+      ],
+      "RelatedMasters": [
+        "普濟玉琳國師",
+        "臨濟慧照禪師餘錄"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Here the headword is either the act of lighting incense or the counted incense inside the longer one-stick-of-incense phrase; those grammatical units must not be treated as one undifferentiated noun. Monastic regulations use the headword as an instruction to light incense and report. Wuzhun Shifan’s record narrates going to the hall to light incense and bow; other records narrate lighting incense before a verse or dedication. Chijue Daochong says that his disciple Deyan lit incense to request the formal discourse. Counted one-stick constructions remain in the separate phrase entry, and a table-of-contents string is excluded."
+    }
+  ]
+}

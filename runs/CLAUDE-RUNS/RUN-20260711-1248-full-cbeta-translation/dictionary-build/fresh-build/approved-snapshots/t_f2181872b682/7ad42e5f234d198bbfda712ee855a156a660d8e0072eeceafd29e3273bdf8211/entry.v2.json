@@ -1,0 +1,224 @@
+{
+  "Id": "t_f2181872b682",
+  "SourceTerm": "轉語",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh f001 lane A",
+  "WrittenUtc": "2026-07-14T21:45:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a turning word",
+      "AlternateTargets": [
+        "a pivoting response",
+        "a case-turning phrase"
+      ],
+      "SearchAliases": [
+        "turning word",
+        "pivoting response",
+        "case-turning phrase"
+      ],
+      "Status": "preferred",
+      "Explanation": "A turning word is a response demanded or supplied to pivot a case or stuck encounter. In the wild-fox case the old man asks Baizhang Huaihai to provide one in his place, and Baizhang's answer releases him. Wumen Huikai challenges readers to lay one down at the decisive point of a case. Yunmen Wenyan prizes Baling's three turning words as sufficient repayment of his teaching debt. Xuedou Chongxian asks each Chan guest to supply one to the broken-fan challenge. Baiyan Mingzhe asks an interlocutor for a different turning word that would accord with him. Tianyi Yihuai asks the community to provide one on Shakyamuni's behalf against the demon king. In a reported exchange Shun Bujue criticizes Sheng for winning a monastery with only one turning word while still not having dreamed of the teaching. The term therefore names a consequential pivoting response, not any clever sentence.",
+      "Validation": "multi-source",
+      "Note": "Exact frozen-corpus count: 1,769 hits in 294 files and 289 works. Seven witnesses across five independent works meet the packet floor and cover substitution, challenge, three-word set, case response, alternate response, representative defense, and critical use.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0071c04",
+          "ToLb": "0071c05",
+          "Kwic": "今請和尚代一轉語。貴脫野狐身。師曰。汝問。老人曰。大修行人還落因果也無。師曰。不昧因果。",
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "old man in the wild-fox case",
+            "ActorLabel": "unnamed old man",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex exact-turn review",
+            "ReviewedUtc": "2026-07-14T21:45:00Z"
+          },
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): the unnamed old man asks Baizhang Huaihai to supply a turning word in his place; Baizhang answers that one is not blind to cause and effect."
+        },
+        {
+          "RelPath": "T/T48/T48n2005.xml",
+          "FromLb": "0294c17",
+          "ToLb": "0294c18",
+          "Kwic": "無門曰。且道。趙州頂草鞋意作麼生。若向者裏下得一轉語。便見南泉令不虛行。",
+          "MasterName": "Wumen Huikai",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "utterer",
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "The Gateless Barrier (無門關): Wumen Huikai challenges the reader to lay down a turning word at the point of Zhaozhou's sandals."
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0154b03",
+          "ToLb": "0154b03",
+          "Kwic": "他日老僧忌辰只舉此三轉語。報恩足矣。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "Blue Cliff Record by Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): the raised case quotes Yunmen Wenyan saying Baling's three turning words suffice to repay his debt."
+        },
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0216b05",
+          "ToLb": "0216b07",
+          "Kwic": "雪竇復云。若要清風再復頭角重生。請禪客各下一轉語。問云。扇子既破。還我犀牛兒來。",
+          "MasterName": "Xuedou Chongxian",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "later-quoter",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Blue Cliff Record by Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Xuedou Chongxian asks each Chan guest to lay down a turning word for the broken-fan challenge."
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0116a01",
+          "ToLb": "0116a01",
+          "Kwic": "今請闍黎別下一轉語。若愜老僧意。",
+          "MasterName": "Baiyan Mingzhe",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baiyan Mingzhe",
+              "Roles": [
+                "utterer",
+                "questioner",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Baiyan Mingzhe asks the interlocutor to supply a different turning word that accords with him."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0012a21",
+          "ToLb": "0012a22",
+          "Kwic": "作麼生着得一轉語與黃面老子出氣？",
+          "MasterName": "Tianyi Yihuai",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Yihuai",
+              "Roles": [
+                "utterer",
+                "later-raiser"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Collected Ancient Case Comments of the Chan School (宗門拈古彙集): Tianyi Yihuai asks how to provide a turning word that speaks up for Shakyamuni Buddha."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0034c12",
+          "ToLb": "0034c13",
+          "Kwic": "勝首座祇下得一轉語，便得黃檗住",
+          "MasterName": "Shun Bujue",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shun Bujue",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Yun'an Kewen",
+              "Roles": [
+                "later-quoter",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)): Yun'an Kewen's report quotes Shun Bujue saying Sheng obtained Huangbo after supplying only one turning word."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2005.xml",
+        "T/T48/T48n2003.xml",
+        "X/X66/X66n1296.xml",
+        "X/X82/X82n1571.xml"
+      ],
+      "RelatedMasters": [
+        "Baizhang Huaihai",
+        "Wumen Huikai",
+        "Yunmen Wenyan",
+        "Xuedou Chongxian",
+        "Baiyan Mingzhe",
+        "Tianyi Yihuai",
+        "Shun Bujue",
+        "Yun'an Kewen"
+      ],
+      "RelatedTerms": [
+        "三轉語",
+        "下一轉語",
+        "代一轉語",
+        "不落因果",
+        "不昧因果"
+      ]
+    }
+  ]
+}
