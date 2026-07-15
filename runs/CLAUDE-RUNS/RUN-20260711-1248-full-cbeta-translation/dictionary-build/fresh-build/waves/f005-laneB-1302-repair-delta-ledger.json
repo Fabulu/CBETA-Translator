@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T19:05:35.580221+00:00",
+  "role": "f005-laneB-1302-independent-finding-repair-author",
+  "sourceReview": {
+    "path": "fresh-build/waves/f005-laneB-1301-1302-independent-canary-review.json",
+    "sha256": "458df621d4e824278c24c066966986171da5dc6d7fa32f1b488eb2e44160a11d"
+  },
+  "preservedEntry": {
+    "ordinal": 1301,
+    "id": "t_df028fd6bd35",
+    "term": "語言",
+    "byteIdentical": true,
+    "sha256": "525987c476729e770717f41d5bf51d85884790666025262fe375dc2d1b414de8"
+  },
+  "repairedEntry": {
+    "ordinal": 1302,
+    "id": "t_705aabe99572",
+    "term": "卓一下",
+    "sha256": "4ca3ee6bdd4affd19b44d8f146148ebb4171f9e4ba84eac3cf14a243351ba305",
+    "worksheetSha256": "638af25a9cf535cb34d8a70e9c2b15b3fbb38dca17fa82cf29ec7225c19acbb6",
+    "compileReportSha256": "f94c8fcebf699ddc56643885619cc59bb5c850674d4f2b55fa984420f9e558f1",
+    "changes": [
+      "All seven physical stage directions now have null MasterName and narrated ActorAttribution.",
+      "Each named master is represented only as an action-performer ContextMaster.",
+      "Occurrence 7 performer corrected from Yunju Shouyi to Jinshan Tanying (Daguan).",
+      "Reader prose distinguishes narrated action performers from utterers."
+    ]
+  },
+  "authoringRisk": {
+    "path": "fresh-build/waves/f005-laneB-1302-repair-authoring-risk.json",
+    "sha256": "7d35d558e4057d5ce83335dd3580e97648842efc325178b0635c35c2062d41ea",
+    "passing": 1,
+    "flagged": 0
+  },
+  "compositeGate": {
+    "path": "fresh-build/waves/f005-laneB-1302-repair-composite-gate.json",
+    "sha256": "0a6377c1117c5c2285d82b4be644b218913aa5f0b68fc591711321ba12a46b3e",
+    "hardPass": true,
+    "exactKwic": 14,
+    "exactFailures": 0
+  },
+  "pendingRoster": {
+    "path": "fresh-build/waves/f005-laneB-1301-1302-pending-roster.json",
+    "sha256": "0c301fc1004ec83641c3085702ddcbea6c5fc5972badcc7a7e22dcbe2e042662",
+    "correctedCandidate": "Jinshan Tanying"
+  },
+  "selfReviewed": false,
+  "promoted": false,
+  "merged": false,
+  "published": false
+}

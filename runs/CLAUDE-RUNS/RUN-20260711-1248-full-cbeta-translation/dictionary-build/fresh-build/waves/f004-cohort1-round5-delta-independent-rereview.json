@@ -1,0 +1,295 @@
+{
+  "schemaVersion": "f004-cohort1-round5-delta-independent-rereview-v1",
+  "reviewType": "independent full-case semantic rereview",
+  "reviewer": "Codex independent reviewer; no entry edits",
+  "generatedUtc": "2026-07-15T19:03:49.813427+00:00",
+  "sourceLedger": "f004-cohort1-round5-delta-final-ledger.json",
+  "sourceLedgerSha256": "50d2182bcc3a067e24ab080b98f15e8dd1d647132632ebd8d69cfd21a711e024",
+  "entriesReviewed": 4,
+  "occurrencesReadInFullCase": 26,
+  "exactKwicsAndSpans": 26,
+  "keep": 1,
+  "revise": 3,
+  "reviewIntegrity": {
+    "entryHashesMatchedSourceLedger": true,
+    "allStoredKwicsAndSpansVerified": true,
+    "entriesEdited": false,
+    "selfPromotion": false
+  },
+  "entries": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "730aeb9f5870d2869f5adfedade1cd8440aa0132fa69e28737a07bb9477be553",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "findings": [
+        "Occurrences 1 and 3-7 now follow their exact turns, including Nanyang Huizhong at o4 and compiler narration at o6.",
+        "o2 remains under-attributed. Its uncued poem is the same stove-spirit poem preserved at o4, where the parallel passage explicitly introduces Nanyang Huizhong with the national-teacher-lamented frame. The mandatory parallel-passage rung therefore names Nanyang; reviewed-unnamed is no longer defensible.",
+        "The one audible drum-sound sense and bounded explanation hold after that actor correction."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0006a16",
+          "toLb": "0006a21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0151a04",
+          "toLb": "0151a07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0477a09",
+          "toLb": "0477a16",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0319c13",
+          "toLb": "0319c21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0651c12",
+          "toLb": "0651c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0553b09",
+          "toLb": "0553b10",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J34/J34nB301.xml",
+          "fromLb": "0282b11",
+          "toLb": "0282b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1078,
+      "id": "t_c5ff2fdc37ca",
+      "term": "遇緣即宗",
+      "reviewedSha256": "5258e9414f81a9022edd26e36a1cb4b79bae54d94ee0f70d3b8deaea2a24edec",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "findings": [
+        "All six full cases assign the headword to the stored masters. The corrected o1 heading and uninterrupted entrance/public-address unit identify Shiwu Qinggong, not Yuezhou Qianfeng.",
+        "The formula remains one lexical thing across the six witnesses. The prose is English-first and bounded: it reports the attested pairing with acting as host without defining an external metaphysics.",
+        "Every stored KWIC and line span verifies exactly."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0170a07",
+          "toLb": "0170a13",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0013c04",
+          "toLb": "0013c10",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0109b08",
+          "toLb": "0109b14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0349b01",
+          "toLb": "0349b07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0714c26",
+          "toLb": "0715a04",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J36/J36nB362.xml",
+          "fromLb": "0744a01",
+          "toLb": "0744a07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "reviewedSha256": "8e92769e123bb8815898c441893ef9c0713d4f8637ba7ade35eb770ec543ec74",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "findings": [
+        "o1 is now correctly Zhongfeng Mingben under the self-eulogy heading; o2, o3, o5, and o6 also follow their exact direct turns.",
+        "o4 assigns Hongzhi Zhengjue backward over the raised Zhaozhou case. The headword is uttered by the unnamed monk asking why the dog entered this skin bag; Hongzhi comments only after the quoted exchange.",
+        "o7 mixes two headword-bearing voices in one stored span: Tiantong Hongzhi’s verse says to shed the stinking skin bag, then Wansong repeats and comments on that wording. A single Wansong MasterName cannot describe the whole uncropped evidence; recut/anchor the intended utterance or represent the distinct voices explicitly.",
+        "The body-as-skin-bag sense and explanation otherwise hold."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0786a04",
+          "toLb": "0786a08",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0036b11",
+          "toLb": "0036b16",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0631c05",
+          "toLb": "0631c15",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0017b11",
+          "toLb": "0017b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J27/J27nB197.xml",
+          "fromLb": "0396a21",
+          "toLb": "0396b05",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0863b01",
+          "toLb": "0863b14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0288b13",
+          "toLb": "0288b28",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "reviewedSha256": "3cd4cfbdd9f4b8ed2e4e152d934de250f375620813c3908f61a12d8d31c24e37",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "findings": [
+        "o3 and o4 correctly put MasterName null because the unnamed monks utter the headword in their questions; o5 is correctly Tiantong Pu’s uninterrupted public address.",
+        "o4’s actor label and note name the wrong respondent: the full section heading is Hangzhou Lingyin Xuanben, and the question is answered by Lingyin Xuanben, not Zhimen Guangzuo. MasterName remains null, but the reader-facing attribution must name the correct context master/respondent.",
+        "o2 is not genuinely unnamed. The full case lies in the Ciming Chuyuan record and begins with an explicit demonstration-to-the-assembly frame; Ciming Chuyuan utters the headword-bearing comparison.",
+        "The single paired Linji/Deshan formula sense and explanation otherwise hold."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0024b14",
+          "toLb": "0024b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0690c21",
+          "toLb": "0691a05",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0022c15",
+          "toLb": "0022c17",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0527b16",
+          "toLb": "0527b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0062a17",
+          "toLb": "0062a24",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0503c24",
+          "toLb": "0504a07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "f005-laneB-1302-repair-independent-rereview-v1",
+  "reviewType": "independent full-case semantic rereview",
+  "reviewer": "Codex independent reviewer; no entry edits",
+  "generatedUtc": "2026-07-15T19:07:18.673589+00:00",
+  "sourceRepairLedger": "f005-laneB-1302-repair-delta-ledger.json",
+  "sourceRepairLedgerSha256": "ce256a4b403839f2c96cb9ee1700f5c94f38b124f0dfb84a84cdf2f7314198ac",
+  "ordinal": 1302,
+  "id": "t_705aabe99572",
+  "term": "卓一下",
+  "reviewedEntrySha256": "4ca3ee6bdd4affd19b44d8f146148ebb4171f9e4ba84eac3cf14a243351ba305",
+  "occurrencesReadInFullCase": 7,
+  "exactKwicsAndSpans": 7,
+  "verdict": "KEEP",
+  "findings": [
+    "All seven headword tokens are narrated physical stage directions, not words uttered by their performers. MasterName is correctly null in every occurrence, while each named master remains visible in ContextMasters with the action-performer role.",
+    "The complete cases identify the performers as Wuzhun Shifan, Dahui Zonggao, Yuanwu Keqin, Dahui Zonggao, Hongjue Min, Zhean Jingfan, and Jinshan Tanying respectively. In o7 the section heading is Runzhou Jinshan Tanying Daguan; Yunju Shouyi is no longer carried across the boundary.",
+    "The one-action sense “to strike once” holds across all seven cases. Each action uses the staff named immediately before it, and no distinct lexical thing is fused into the sense.",
+    "The prose correctly distinguishes textual narrators from action performers and accurately anchors its named examples: Wuzhun’s staff-speech setup, Dahui’s hear-it question, Zhean’s fine-finger/fine-note sequence, and the remaining formal-address turns.",
+    "All seven stored KWICs and line spans verify exactly. The cropped evidence contains enough local action sequence to support the entry while the expanded full cases establish each performer and address boundary."
+  ],
+  "occurrenceReviews": [
+    {
+      "occurrence": 1,
+      "relPath": "X/X70/X70n1382.xml",
+      "fromLb": "0222a08",
+      "toLb": "0222a10",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Wuzhun Shifan",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 2,
+      "relPath": "T/T47/T47n1998A.xml",
+      "fromLb": "0812c01",
+      "toLb": "0812c02",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Dahui Zonggao",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 3,
+      "relPath": "T/T47/T47n1997.xml",
+      "fromLb": "0732c21",
+      "toLb": "0732c22",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Yuanwu Keqin",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 4,
+      "relPath": "X/X84/X84n1583.xml",
+      "fromLb": "0409b01",
+      "toLb": "0409b02",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Dahui Zonggao",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 5,
+      "relPath": "L/L155/L155n1643.xml",
+      "fromLb": "0088b02",
+      "toLb": "0088b04",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Hongjue Min",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 6,
+      "relPath": "J/J36/J36nB369.xml",
+      "fromLb": "0896b27",
+      "toLb": "0896b28",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Zhean Jingfan",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    },
+    {
+      "occurrence": 7,
+      "relPath": "T/T51/T51n2077.xml",
+      "fromLb": "0489a29",
+      "toLb": "0489b02",
+      "fullCaseRead": true,
+      "exactKwicAndSpan": true,
+      "masterNameNull": true,
+      "contextActionPerformer": [
+        [
+          "Jinshan Tanying",
+          [
+            "action-performer"
+          ]
+        ]
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "entryHashMatchedAssignment": true,
+    "allStoredKwicsAndSpansVerified": true,
+    "entryEdited": false,
+    "selfPromotion": false
+  }
+}
