@@ -94,3 +94,19 @@ identified non-master cases.  The second rule flags all ten C1186–1195 drafts 
 51 occurrences) before a reviewer reads them.  Those ten entries had consumed a complete independent
 review turn and all ten were rejected for exactly this family.  The final dictionary schema and the
 human full-case gate are unchanged; the cheap gate now prevents known fake resolution from reaching it.
+
+## Pass 9: render resolved attribution once, then audit the decision
+
+The drafted-entry preflight found 188 cheap failures in 46 of 96 waiting entries.  Of those failures,
+142 were reader-visible attribution notes that omitted a source title or the already-resolved actor.
+`normalize_attribution_notes.py` now renders those two prefixes from `zc.title` and the structured actor
+state, mirrors the result into the worksheet, and refuses to decide an incomplete actor.  On the first
+25-entry repair cohort it synchronized 161 occurrence notes in about six seconds while preserving every
+substantive note sentence.
+
+Running the result against real data exposed a deeper defect: 36 occurrences claimed
+`reviewed-unnamed` while their grammar said the headword occurred in the current record owner's address.
+The normalizer now refuses such states, and the attribution audit hard-fails both a speaking record owner
+left unresolved and a `reviewed-unnamed` label that does not explicitly say the actor is unnamed.  Thus
+the transform removes repetitive formatting labor but cannot launder an unresolved master into clean
+prose.  Human reading is concentrated on those 36 actual decisions instead of 161 note rewrites.

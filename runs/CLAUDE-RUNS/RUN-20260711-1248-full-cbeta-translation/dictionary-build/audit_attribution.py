@@ -259,6 +259,14 @@ def main() -> int:
                     ):
                         fail("record_owner_misclassified_non_master", entry,
                              f"{term} s{si} o{oi}: resolve the named record owner against the roster and exact turn")
+                    if re.search(
+                        r"speaking\s+record[- ]owner|current\s+record[- ]owner(?:['’]s)?\s+address",
+                        " ".join(str(actor.get(field) or "") for field in
+                                 ("Kind", "ActorLabel", "GrammarEvidence")),
+                        re.IGNORECASE,
+                    ):
+                        fail("record_owner_utterer_unresolved", entry,
+                             f"{term} s{si} o{oi}: a speaking record owner is a master; resolve the exact name")
                     if status == "identified-non-master" and re.match(
                         r"^(?:the|an?|one|some)\b", str(actor.get("ActorLabel") or "").strip(), re.IGNORECASE
                     ):
@@ -270,6 +278,11 @@ def main() -> int:
                         )
                     if status == "reviewed-unnamed" and actor.get("RungsChecked") != ATTRIBUTION_RUNGS:
                         fail("incomplete_actor_rungs", entry, f"{term} s{si} o{oi}: expected all six ordered rungs")
+                    if status == "reviewed-unnamed" and not re.search(
+                        r"\bunnamed\b|does not name", str(actor.get("ActorLabel") or ""), re.IGNORECASE
+                    ):
+                        fail("reviewed_unnamed_label_not_explicit", entry,
+                             f"{term} s{si} o{oi}: reviewed-unnamed ActorLabel must explicitly say unnamed")
                     if status in {"identified-non-master", "narrated", "impersonal"} and not actor.get("GrammarEvidence"):
                         fail("missing_grammar_evidence", entry, f"{term} s{si} o{oi}")
                 else:

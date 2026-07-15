@@ -26,6 +26,18 @@ class PlaceholderActorTest(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertIsNone(generic.match(value))
 
+    def test_speaking_record_owner_language_is_not_an_anonymous_actor(self):
+        value = "The complete unit places the token inside the current record owner's address."
+        self.assertIsNotNone(re.search(
+            r"speaking\s+record[- ]owner|current\s+record[- ]owner(?:['’]s)?\s+address", value,
+            re.IGNORECASE,
+        ))
+
+    def test_reviewed_unnamed_labels_must_be_reader_explicit(self):
+        explicit = re.compile(r"\bunnamed\b|does not name", re.IGNORECASE)
+        self.assertIsNotNone(explicit.search("the unnamed questioning monk"))
+        self.assertIsNone(explicit.search("speaking record owner resolved from the complete section"))
+
     def test_rejects_duplicated_actor_note_prefix(self):
         self.assertIsNotNone(DUPLICATED_NOTE_PREFIX_RE.search(
             "Foyan Qingyuan: Foyan Qingyuan: Record of Foyan says..."
