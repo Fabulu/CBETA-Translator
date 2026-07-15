@@ -161,7 +161,7 @@
             {
               "MasterName": "Ciming Chuyuan",
               "Roles": [
-                "utterer"
+                "action-performer"
               ]
             },
             {
@@ -177,9 +177,25 @@
               ]
             }
           ],
-          "AttributionNote": "Source record (天目中峰廣錄; B/B25/B25n0145.xml). Exact actor: Ciming Chuyuan. Full-case review separates the headword-bearing turn from surrounding narration, questions, and replies.",
+          "AttributionNote": "五燈全書(第34卷-第120卷): the lamp-record compiler narrates Ciming Chuyuan raising the Zhaozhou-tests-the-old-woman case to question Huanglong Huinan.",
           "Curated": true,
-          "MasterName": "Ciming Chuyuan"
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the lamp-record compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "明復舉趙州勘婆話詰之 is the compiler narrating Ciming Chuyuan’s action, not quoting Ciming saying the headword.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex reviewer repair 076-085",
+            "ReviewedUtc": "2026-07-15T22:55:49.397900+00:00"
+          }
         }
       ],
       "ClaimAnchors": [],

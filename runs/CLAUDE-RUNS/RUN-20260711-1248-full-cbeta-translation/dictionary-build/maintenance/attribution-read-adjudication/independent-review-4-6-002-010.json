@@ -1,0 +1,78 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "current exact entry plus every stored occurrence read against its complete local source case; existing 4-6 checkpoint used only as a post-read cross-check",
+  "rows": [
+    {
+      "id": "t_712ca8b5bf06",
+      "term": "後堂",
+      "verdict": "REVISE",
+      "reviewedSha256": "c5d778fe65cac6624683e3044149fd610fff4179322c1a4497d53dbd73fa6471",
+      "finding": "All seven occurrences read. The office/office-holder sense holds, but the attribution model remains incomplete. The signed regulations preface is identifiable authored voice (Yixian), not merely a generic compiler; the table-of-contents row is impersonal paratext rather than a narrated event; and the entries naming 法雲了心, 智後堂, 雲輝後堂, and 佛杲後堂 leave those locally named office-holders unrepresented. MasterName should remain null where the narrator labels the office-holder, with the named person carried in ContextMasters or a named non-master actor structure as appropriate. The repaired multi-office exchange with Mingjue Cong is sound.",
+      "selfReview": false
+    },
+    {
+      "id": "t_75a477117870",
+      "term": "紫芝",
+      "verdict": "KEEP",
+      "reviewedSha256": "f50722bd8b2a0a2ee3c6f95848f5c13cb3e1cb121e38d645ce51aecd29706eb3",
+      "finding": "All six occurrences and the separate family ClaimAnchor read. The plant action, Purple Fungus Song question/answers, and mountain-verse deployments are accurately distinguished without inventing a second lexical sense. The unnamed questioner/Tiantong turn is correctly assigned, every named utterer owns the headword in the quoted unit, and the Wuwen Daocan Four-Hoaryheads comparison is explicitly and honestly isolated as family evidence because 紫芝 is absent there.",
+      "selfReview": false
+    },
+    {
+      "id": "t_76ee526a2b16",
+      "term": "沙彌戒",
+      "verdict": "REVISE",
+      "reviewedSha256": "ede2b69814fd6acacd25b2df833ffc01dc5ead651318d0cabea8bd74ed6d34ab",
+      "finding": "All five occurrences read. The novice-precepts definition holds, and the Muting Pufu public-interview question is correctly assigned to the unnamed advancing monk. The other rows are not adequately modeled: the procedural ordination rules are impersonal prescriptive text rather than a human compiler narrating an event, while the three recorded-service headings narrate named record-owner masters administering or preaching the novice precepts but omit those masters from ContextMasters. Preserve MasterName=null for narrator-owned headings, but name the contextual master/action performer.",
+      "selfReview": false
+    },
+    {
+      "id": "t_77f89fd2c3b5",
+      "term": "鷺鷥立雪",
+      "verdict": "REVISE",
+      "reviewedSha256": "d9e7f3cc9dbe4813e8566bdc3dd705fe79baee75b1ed5b89545237d2badc8a9e",
+      "finding": "All six occurrences read. The visible white-on-white distinction gloss is supported, and the Danxia, Qingxian, Dahui-interlocutor, and Yungai-quoted-monk turns are substantially sound. The Zongjian Falin anthology occurrence is embedded in a composed case-and-verse unit following the Yulin case; calling the actor simply the anthology compiler is not sufficiently demonstrated from the unit and loses the verse-voice/case relationship. It needs a precise authored-voice ruling and ContextMasters for the invoked case before this occurrence can pass. The duplicated Danxia wording across independent works is acceptable as recurrence, not independent conceptual invention.",
+      "selfReview": false
+    },
+    {
+      "id": "t_7c1991e9eabb",
+      "term": "宗風",
+      "verdict": "KEEP",
+      "reviewedSha256": "738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df",
+      "finding": "All eight occurrences read. The five interview rows correctly assign the headword to unnamed questioners and retain each named respondent in ContextMasters; Linji’s answer also correctly retains Huangbo as the teacher discussed. The final three rows are direct authored speech by the named record owners. The explanation distinguishes inherited house style from mere generic custom and stays within the displayed answers and exhortations.",
+      "selfReview": false
+    },
+    {
+      "id": "t_7ee93f6b90cf",
+      "term": "三要",
+      "verdict": "REVISE",
+      "reviewedSha256": "e46973bb971ab635b8fec68076ca4be0cf99b37cb6f5328dc674ebcc03c1c673",
+      "finding": "All eight occurrences read. The Linji architecture and the refusal to invent three freestanding definitions are sound. Seven actor rulings are defensible, including Linji as the quoted utterer in Hanyue Fazang’s sermon. In the final Fenyang Shanzhao row, however, 先聖道 explicitly introduces an earlier sage’s quotation: Fenyang is the later quoter, not the utterer of the headword. MasterName must not be Fenyang there unless the quoted speaker is independently identified; use reviewed-unnamed quoted earlier master and retain Fenyang as later-quoter/context master.",
+      "selfReview": false
+    },
+    {
+      "id": "t_81d0d434f560",
+      "term": "祖師意",
+      "verdict": "REVISE",
+      "reviewedSha256": "69b2c50fe45e2dc883615f93a6fb33988561bbc02087447751ed4458caba96f4",
+      "finding": "All seven occurrences read. The public-interview-demand definition holds, but attribution is largely unfinished. Several rows label the compiler as actor even though the exact headword occurs in a quoted question, and the enclosing cases name participants such as Pang/ Lingzhao or other section subjects that are absent from ContextMasters. The Huangbo row correctly identifies an unnamed questioner with Huangbo responding; the remaining cases require turn-level reassignment and named contextual participants rather than generic compiler narration.",
+      "selfReview": false
+    },
+    {
+      "id": "t_85ee3a3007c6",
+      "term": "家賊難防",
+      "verdict": "REVISE",
+      "reviewedSha256": "2d7a4d5ce47fb98d10ca3b751db2dac409bacf4220966716f202fd1f38647fd2",
+      "finding": "All five occurrences read. The inside-the-house threat explanation is grounded and the anonymous Lengyan verse, Nanyan answer, and later critical redeployments are useful. In the Liangshan original case, however, the monk 真園頭 utters 家賊難防 in his question and Liangshan answers 識得不為冤; MasterName=Liangshan Yuanguan therefore violates the utterer-of-headword rule. Set MasterName null with the named monastic questioner represented as the actor, and retain Liangshan as respondent. Recheck later quotations so quoted original question and present commentator voice are not conflated.",
+      "selfReview": false
+    },
+    {
+      "id": "t_85fd3b19165c",
+      "term": "陞堂",
+      "verdict": "REVISE",
+      "reviewedSha256": "8ce19d04c4bf94f4877c9dfca6fcc117439bc6b0854e609d20afeedd3e519517",
+      "finding": "All seven occurrences read. The formal ascent-to-public-teaching-position sense holds. Nanyue Huairang’s instruction about waiting for Mazu to ascend is plausibly direct authored speech, but the other narrative rows systematically omit the named person who ascends: Mazu and the locally named masters/section subjects belong in ContextMasters as action performers or persons described while MasterName remains null because the narrator, not that master, utters the headword. Generic compiler labels alone make the cases unreadably actorless.",
+      "selfReview": false
+    }
+  ]
+}

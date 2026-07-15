@@ -28,16 +28,35 @@
           "ToLb": "0006b23",
           "Kwic": "曰：謝師答話。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Wanshan Shanshuang. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+          "AttributionNote": "Complete Caoshan Baoji Xiong exchange: an unnamed monk thanks Caoshan for the reply; Caoshan answers that a clear-eyed person is hard to deceive.",
           "ContextMasters": [
             {
-              "MasterName": "Wanshan Shanshuang",
+              "MasterName": "Caoshan Baoji Xiong",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner",
+                "case-teacher"
               ]
             }
           ],
-          "MasterName": "Wanshan Shanshuang"
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic interlocutor",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "respondent",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "曰：謝師答話 assigns the headword-bearing thanks to the unnamed monk after Caoshan's answer; the inherited Wanshan name came from an adjacent section.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          }
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -62,16 +81,18 @@
           "ToLb": "0004a14",
           "Kwic": "假饒答話揀辨如懸河，祇成得箇顛倒知見。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml): Nanyang Huizhong utters the headword; The complete passage is Nanyang Huizhong's continuous discourse.",
+          "AttributionNote": "Complete Tiantai Deshao hall instruction: Deshao says that even reply-discrimination flowing like a suspended river produces inverted understanding if prized in itself. The inherited Nanyang Huizhong attribution was an adjacent-section leak.",
           "ContextMasters": [
             {
-              "MasterName": "Nanyang Huizhong",
+              "MasterName": "Tiantai Deshao",
               "Roles": [
-                "utterer"
+                "utterer",
+                "record-owner",
+                "instructor"
               ]
             }
           ],
-          "MasterName": "Nanyang Huizhong"
+          "MasterName": "Tiantai Deshao"
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -96,19 +117,21 @@
           "ToLb": "0084c11",
           "Kwic": "請師答話。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈會元; X/X80/X80n1565.xml): the unnamed monastic questioning Wenzhou Fotuo is the exact headword actor; (請師答話) is the monk's marked request; all six rungs leave him unnamed.",
+          "AttributionNote": "Complete exchange: an unnamed monastic asks Mengxi Heshang to give a reply; Mengxi Heshang supplies the following marked answer.",
           "ContextMasters": [
             {
-              "MasterName": "Wenzhou Fotuo",
+              "MasterName": "Mengxi Heshang",
               "Roles": [
-                "respondent"
+                "respondent",
+                "record-owner",
+                "case-teacher"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "unnamed monastic questioner",
-            "ActorLabel": "the unnamed monastic questioning Wenzhou Fotuo",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -118,10 +141,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "請師答話 is the monk's marked request; all six rungs leave him unnamed.",
-            "ReviewedBy": "Codex f003 C24 manual full-case repair author",
-            "ReviewedUtc": "2026-07-15T06:55:28.173422+00:00"
-          }
+            "GrammarEvidence": "請師答話 occurs in the unnamed monastic's marked request; the local master's response is a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -129,19 +153,21 @@
           "ToLb": "0650c24",
           "Kwic": "不涉言詮，請師答話。",
           "Curated": true,
-          "AttributionNote": "Source record (建中靖國續燈錄; X/X78/X78n1556.xml): the unnamed monastic questioning Guanyin Xuan is the exact headword actor; (不涉言詮)，(請師答話) is the monk's marked request; all six rungs leave him unnamed.",
+          "AttributionNote": "Complete exchange: an unnamed monastic asks Shuangquan Qiong to give a reply; Shuangquan Qiong supplies the following marked answer.",
           "ContextMasters": [
             {
-              "MasterName": "Guanyin Xuan",
+              "MasterName": "Shuangquan Qiong",
               "Roles": [
-                "respondent"
+                "respondent",
+                "record-owner",
+                "case-teacher"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "unnamed monastic questioner",
-            "ActorLabel": "the unnamed monastic questioning Guanyin Xuan",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -151,10 +177,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "不涉言詮，請師答話 is the monk's marked request; all six rungs leave him unnamed.",
-            "ReviewedBy": "Codex f003 C24 manual full-case repair author",
-            "ReviewedUtc": "2026-07-15T06:55:28.173422+00:00"
-          }
+            "GrammarEvidence": "請師答話 occurs in the unnamed monastic's marked request; the local master's response is a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -188,7 +215,7 @@
         "Wanshan Shanshuang"
       ],
       "RelatedTerms": [],
-      "Explanation": "A reply is the actual answering turn requested or judged in an exchange. Records thank the presiding figure for an answer, criticize an answer as an added fetter, and deny that fluent discrimination alone settles the matter."
+      "Explanation": "A reply is an answering turn treated as an object of request, thanks, criticism, or discrimination inside an exchange. An unnamed monk thanks Caoshan Baoji Xiong for one; other monks ask Mengxi and Shuangquan to provide one. Luohan Ji cites critics who call a particular reply an added fetter, Tiantai Deshao warns that fluent discrimination among replies can still produce inverted understanding, and Dongchan Qi asks whether another reply is still required. The term names the response-turn and the corpus's scrutiny of it, not proof that the response is adequate."
     }
   ]
 }

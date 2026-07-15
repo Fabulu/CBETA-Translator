@@ -30,16 +30,35 @@
           "ToLb": "0058a04",
           "Kwic": "僧問：如何是懸崖撒手底句？師曰：明月照幽谷。曰：如何是絕後再蘇底句？師曰：白雲生太虗。",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈嚴統)(第10卷-第25卷), Source text (五燈嚴統(第10卷-第25卷)); unnamed questioning monk owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "Complete public exchange: an unnamed monk utters the cliff-release phrase in his question; Xingyang Xiyin supplies the marked answer.",
           "ContextMasters": [
             {
-              "MasterName": "unnamed questioning monk",
+              "MasterName": "Xingyang Xiyin",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner",
+                "case-teacher"
               ]
             }
           ],
-          "MasterName": "unnamed questioning monk"
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The explicit 僧問/問 frame assigns the headword-bearing question to an unnamed monk; the named master's answer is a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          }
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -64,16 +83,35 @@
           "ToLb": "0129a01",
           "Kwic": "問。萬丈懸崖撒手去。如何免得喪於身時如何。師曰。須彌繫藕絲。",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈會元), Source text (五燈會元); unnamed questioning monk owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "Complete public exchange: an unnamed monk utters the cliff-release phrase in his question; Luopu Yuan'an supplies the marked answer.",
           "ContextMasters": [
             {
-              "MasterName": "unnamed questioning monk",
+              "MasterName": "Luopu Yuan'an",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner",
+                "case-teacher"
               ]
             }
           ],
-          "MasterName": "unnamed questioning monk"
+          "MasterName": null,
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The explicit 僧問/問 frame assigns the headword-bearing question to an unnamed monk; the named master's answer is a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1997.xml",
@@ -130,27 +168,28 @@
           "RelPath": "X/X82/X82n1571.xml",
           "FromLb": "0093b15",
           "ToLb": "0093b23",
-          "Kwic": "忽有人問：如何是諸佛出身處？只向他道：薰風自南來，殿閣生微涼。師於言下，忽然前後際斷，雖然動相不生，却坐在淨躶躶處。悟謂曰：也不易，你得到這田地，可惜死了不能得活，不疑言句，是為大病。不見道：懸崖撒手，自肯承當。絕後再蘇，欺君不得。須信有這個道理。遂令居擇木堂，典不釐務。侍者日同士大夫入室。悟每舉有句無句，如藤倚樹問之。師纔開口，悟便曰：不是，不是。經半載，遂問悟曰：聞和尚當時在五祖曾問這",
+          "Kwic": "悟謂曰：不見道：懸崖撒手，自肯承當；絕後再蘇，欺君不得",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "compiler",
-            "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete passage presents 懸崖撒手 in compiler narration rather than a marked speech turn.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
-          },
-          "ContextMasters": [],
-          "AttributionNote": "In the source record (五燈全書(第34卷-第120卷)), (五燈全書(第34卷-第120卷)): the compiler-narrator of (五燈全書(第34卷-第120卷)) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X82/X82n1571.xml."
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "quoted-utterer",
+                "teacher",
+                "case-source"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "addressee",
+                "person-described",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Complete Dahui biography: Yuanwu Keqin directly tells Dahui that he remains dead and quotes the paired cliff-release and revival formula. Dahui is the addressed student, not the utterer.",
+          "MasterName": "Yuanwu Keqin"
         }
       ],
       "SourceTexts": [
@@ -173,7 +212,7 @@
         "出家"
       ],
       "ClaimAnchors": [],
-      "Explanation": "Releasing one’s grip over a sheer drop figures complete relinquishment at the point where ordinary supports fail. To release one's handhold over a sheer drop, where falling and loss of life are at stake. The phrase occurs 261 times in 120 allowlisted texts and becomes a named line in public interviews, sermons, verses, and death verses. Yuanwu Keqin preserves the paired saying, 'At the cliff let go; accept and undertake it yourself. Revive after extinction; no one can deceive you' (懸崖撒手，自肯承當；絕後再蘇，欺君不得). An unnamed monk asks Xingyang Xiyin for the line about releasing one's grip at the cliff, and Xingyang answers, 'The bright moon illuminates the secluded valley' (明月照幽谷); when the unnamed monastic asks next for the line about reviving after extinction, Xingyang answers, 'White clouds arise in the great void' (白雲生太虗). Yong'an Jingwu makes 'letting go from a ten-thousand-fathom cliff' his answer to an unnamed monk's question about the affair of leaving home. Another unnamed monk asks Luopu Yuan'an how to avoid losing his life after letting go there. In a letter, Yuanwu explicitly compares the cliff act with giving up one's life and with a dead person shortly reviving. The corpus therefore supplies the danger and the recurrent death-and-revival pairing; the entry does not turn that pairing into an unstated explanation."
+      "Explanation": "Release your grip over a sheer drop is the corpus's danger-image for abandoning the last support where loss of life is explicitly at stake. An unnamed monk asks Xingyang Xiyin for this named line; Yong'an Jingwu makes it his answer about leaving home; another monk asks Luopu how to avoid losing his life after doing it. Yuanwu Keqin repeatedly pairs the release with accepting for oneself and reviving after extinction, and in a letter compares it with giving up one's life before a dead person revives. Wanfeng Shiwei uses it in his death verse. These witnesses establish danger, relinquishment, and the recurring death-and-revival sequence without turning that sequence into an unstated doctrine."
     }
   ]
 }

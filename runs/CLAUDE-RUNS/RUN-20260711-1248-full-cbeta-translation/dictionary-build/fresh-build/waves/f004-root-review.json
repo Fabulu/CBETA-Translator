@@ -731,26 +731,19 @@
     },
     "t_47b3313788e2": {
       "term": "體露金風",
-      "verdict": "REVISE",
-      "reviewedSha256": "f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1",
-      "finding": "Current attribution ground truth records 2 hard failure(s): anonymous_monk_question_assigned_to_master.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "1410efb687ad55a2b0715fd911839c8ff47f2d6e7158684598e42daff9fe3e95",
+      "finding": "The anonymous autumn capping verse is now correctly distinguished from Yunmen's quoted answer, and the named later raisers/commentators are preserved. All seven cases agree with the prior full reads.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-repairs049055-f004-laneC.json",
       "supersedes": {
-        "term": "體露金風",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1131-1134-root-independent-final.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "7d7135cc71b9677457e575e261d638870d219420fddae7d041391ba4b8f3299f",
-          "sourceReview": "fresh-build/waves/f004-laneC-1131-1132-1134-reviewer6-final.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_47b3313788e2/f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_47b3313788e2/f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_47b3313788e2/f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_47b3313788e2/1410efb687ad55a2b0715fd911839c8ff47f2d6e7158684598e42daff9fe3e95/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_47b3313788e2/1410efb687ad55a2b0715fd911839c8ff47f2d6e7158684598e42daff9fe3e95/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_47b3313788e2/1410efb687ad55a2b0715fd911839c8ff47f2d6e7158684598e42daff9fe3e95/receipt.json"
       }
     },
     "t_4c1e5a42155d": {

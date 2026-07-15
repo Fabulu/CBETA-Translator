@@ -41,25 +41,16 @@
           "ToLb": "0426a18",
           "Kwic": "善財童子。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (宗鏡錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "宗鏡錄: Yongming Yanshou explains that among the five hundred youths transformed by Manjushri, Shancai alone reached the source of mind and travelled to ask about awakening-conduct.",
+          "MasterName": "Yongming Yanshou"
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -86,8 +77,8 @@
           "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "utterer",
-            "ActorLabel": "the named-address owner not recoverable from the stored collection heading",
+            "Kind": "unnamed record-owner",
+            "ActorLabel": "the unnamed record-owner delivering the hall address",
             "ActorRole": "utterer",
             "RungsChecked": [
               "line",
@@ -102,7 +93,7 @@
             "GrammarEvidence": "The complete uninterrupted hall address owns the words spoken after a long pause and the headword; it is not compiler narration. The collection packet does not safely normalize the address owner."
           },
           "ContextMasters": [],
-          "AttributionNote": "Source text (列祖提綱錄). The complete uninterrupted hall address owns the words spoken after a long pause and the headword; it is not compiler narration. The collection packet does not safely normalize the address owner. Exact headword actor: the named-address owner not recoverable from the stored collection heading."
+          "AttributionNote": "列祖提綱錄: the unnamed record-owner delivering the hall address says after a long pause, “Everywhere is Maitreya; no gate, no Shancai.”"
         },
         {
           "RelPath": "X/X80/X80n1565.xml",

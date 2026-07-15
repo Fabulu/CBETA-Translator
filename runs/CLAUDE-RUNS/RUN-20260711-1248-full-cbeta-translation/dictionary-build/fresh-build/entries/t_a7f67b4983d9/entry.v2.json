@@ -105,25 +105,16 @@
           "ToLb": "0790b04",
           "Kwic": "不知剎那造罪殃墮無間一失人身萬劫不復你看諸佛菩薩道眼觀眾生造罪可驚可怖眾生被日用塵勞只管輥將去只見眼前受用之具喚作樂眾生顛倒迷己逐物諸佛菩薩喚作苦然眾生顛倒",
           "Curated": true,
-          "AttributionNote": "Source record (大慧普覺禪師普說; M/M59/M59n1540.xml). Exact actor: the Miaoyuan layman. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "identified participant",
-            "ActorLabel": "the Miaoyuan layman",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete case identifies the Miaoyuan layman as the non-master who utters the headword-bearing wording.",
-            "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
-            "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
-          }
+          "AttributionNote": "大慧普覺禪師普說: 大慧普覺禪師語錄: Dahui Zonggao says that beings are rolled along by the dust and toil of daily use and later says the teaching is luminous within beings’ daily use.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Dahui Zonggao"
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -174,13 +165,21 @@
           "ToLb": "0687b08",
           "Kwic": "今臣先師明本痛禪學之弊無如今日用救其弊以身先之。",
           "Curated": true,
-          "AttributionNote": "Source record (天目中峰廣錄; B/B25/B25n0145.xml). Exact actor: the source compiler or recorder. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
-          "ContextMasters": [],
+          "AttributionNote": "天目中峰廣錄: Shandamidi petitions that Zhongfeng Mingben’s collected writings be entered into the canon and says his teacher used himself first to remedy the defects of contemporary learning.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the source compiler or recorder",
-            "ActorRole": "compiler",
+            "Status": "identified-non-master",
+            "Kind": "named petition author",
+            "ActorLabel": "Shandamidi",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "The memorial closes with 善達密的理上表, identifying its author.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -189,9 +188,8 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an event heading, or a nonverbal action clause; no person utters the headword here.",
-            "ReviewedBy": "Codex f003 B701-750 exact-actor repair author",
-            "ReviewedUtc": "2026-07-15T06:04:40.650074+00:00"
+            "ReviewedBy": "Codex personal full-read 086-095",
+            "ReviewedUtc": "2026-07-15T22:54:54.863753+00:00"
           }
         }
       ],

@@ -2103,21 +2103,19 @@
     },
     "t_7c1991e9eabb": {
       "term": "宗風",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "All eight occurrences read. The five interview rows correctly assign the headword to unnamed questioners and retain each named respondent in ContextMasters; Linji’s answer also correctly retains Huangbo as the teacher discussed. The final three rows are direct authored speech by the named record owners. The explanation distinguishes inherited house style from mere generic custom and stays within the displayed answers and exhortations.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-002010-f001-laneB.json",
       "supersedes": {
-        "term": "宗風",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df",
-        "finding": "Inheritance, public display, support, fanning, and flourishing concern the same lineage house style. No occurrence uses the headword for literal meteorological wind or a named work/person, and named houses do not make separate meanings.",
-        "sourceReview": "fresh-build/waves/f001-laneB-001-050-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_7c1991e9eabb/738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_7c1991e9eabb/738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_7c1991e9eabb/738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_7c1991e9eabb/738e15297fff78c72d4b8c4b435452aa676e90be2a370276368f698ea20f38df/receipt.json"
       }
     },
     "t_4aa0ae72820e": {

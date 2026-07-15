@@ -96,21 +96,19 @@
     },
     "t_36b1824beee5": {
       "term": "園頭",
-      "verdict": "REVISE",
-      "reviewedSha256": "4802b53f3b3ea652cd5f96351a0fbc8fdffa8193e342d27f4417c9e83338bc3a",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "d3f3c4818d33ef7d241dd62ecdfa372e737e83e3917e6fb0d76462502c9e7ac8",
+      "finding": "All seven cases read. The office sense is exact. Biographical narration, anonymous verse, impersonal contents label, Nanyuan's direct questions (including the parallel passage that resolves the abbreviated turn), Yaoshan's narrated garden scene, and Yulin's dialogue cue are correctly distinguished.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after838-f003-laneC.json",
       "supersedes": {
-        "term": "園頭",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "4802b53f3b3ea652cd5f96351a0fbc8fdffa8193e342d27f4417c9e83338bc3a",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_36b1824beee5/4802b53f3b3ea652cd5f96351a0fbc8fdffa8193e342d27f4417c9e83338bc3a/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_36b1824beee5/4802b53f3b3ea652cd5f96351a0fbc8fdffa8193e342d27f4417c9e83338bc3a/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_36b1824beee5/4802b53f3b3ea652cd5f96351a0fbc8fdffa8193e342d27f4417c9e83338bc3a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_36b1824beee5/d3f3c4818d33ef7d241dd62ecdfa372e737e83e3917e6fb0d76462502c9e7ac8/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_36b1824beee5/d3f3c4818d33ef7d241dd62ecdfa372e737e83e3917e6fb0d76462502c9e7ac8/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_36b1824beee5/d3f3c4818d33ef7d241dd62ecdfa372e737e83e3917e6fb0d76462502c9e7ac8/receipt.json"
       }
     },
     "t_e27ceae1c5ee": {
@@ -163,21 +161,19 @@
     },
     "t_4d1513a6cd98": {
       "term": "當機一句",
-      "verdict": "REVISE",
-      "reviewedSha256": "c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "e640d0cfdcaac98c5527dc4fbaf3e1f4dab32155ec07c87fd78ab73f98bc01e9",
+      "finding": "The first two unnamed questions, anonymous capping verse, and explicitly named nonmaster Rufeng question are now correctly separated, with responding masters contextualized. All four cases agree with the prior full reads.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-repairs049055-f003-laneC.json",
       "supersedes": {
-        "term": "當機一句",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_4d1513a6cd98/c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_4d1513a6cd98/c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_4d1513a6cd98/c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_4d1513a6cd98/e640d0cfdcaac98c5527dc4fbaf3e1f4dab32155ec07c87fd78ab73f98bc01e9/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_4d1513a6cd98/e640d0cfdcaac98c5527dc4fbaf3e1f4dab32155ec07c87fd78ab73f98bc01e9/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_4d1513a6cd98/e640d0cfdcaac98c5527dc4fbaf3e1f4dab32155ec07c87fd78ab73f98bc01e9/receipt.json"
       }
     },
     "t_f1532daa804c": {
@@ -502,21 +498,19 @@
     },
     "t_43425d70abab": {
       "term": "禪客",
-      "verdict": "REVISE",
-      "reviewedSha256": "d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "1adcc344e85ecbf8da3fbdecedff05ec1ef4805fe277b8dd2cab32184e37c0d7",
+      "finding": "All eight repairs match the prior full reads: Linji, Foyin Liaoyuan, Dazhu Huihai and Yanguan are direct utterers; Guanxiu and Luohan Xinglin are accurately represented as named nonmaster/unrostered; the wild-fox verse is anonymous; Nanyang's 師問 cue remains narrator-owned with Nanyang contextualized.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-repairs049055-f003-laneC.json",
       "supersedes": {
-        "term": "禪客",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_43425d70abab/d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_43425d70abab/d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_43425d70abab/d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_43425d70abab/1adcc344e85ecbf8da3fbdecedff05ec1ef4805fe277b8dd2cab32184e37c0d7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_43425d70abab/1adcc344e85ecbf8da3fbdecedff05ec1ef4805fe277b8dd2cab32184e37c0d7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_43425d70abab/1adcc344e85ecbf8da3fbdecedff05ec1ef4805fe277b8dd2cab32184e37c0d7/receipt.json"
       }
     },
     "t_00182ad50c87": {
@@ -636,21 +630,19 @@
     },
     "t_32f0847e5d1e": {
       "term": "佛向上事",
-      "verdict": "REVISE",
-      "reviewedSha256": "29eab5feca7b40e45ec289e2c41d6d14b71645cef7bb2603cf2baa7d6867365c",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous, raised_old_saying_lacks_raiser.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "16e5a5c95486e226a17f575ba72aa4f840c8c36422f54b8926edd643db6ec213",
+      "finding": "All seven cases read, including the two distinct-work recensions of Qi the chief cook's question. Dongshan, Yushan, and Dahui are correctly named only where they utter the stored phrase; the anonymous monk and named non-master Qi remain non-master actors, with Xuefeng correctly retained as respondent/action-performer. The single recurrent question-position sense is coherent.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after838-f003-laneC.json",
       "supersedes": {
-        "term": "佛向上事",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "29eab5feca7b40e45ec289e2c41d6d14b71645cef7bb2603cf2baa7d6867365c",
-        "finding": "KEEP — Exact entry hash is unchanged from the prior independent KEEP decision; rereview found no new semantic defect in the preferred target, sense boundary, headword evidence, actor state, or reader-facing explanation.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_32f0847e5d1e/29eab5feca7b40e45ec289e2c41d6d14b71645cef7bb2603cf2baa7d6867365c/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_32f0847e5d1e/29eab5feca7b40e45ec289e2c41d6d14b71645cef7bb2603cf2baa7d6867365c/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_32f0847e5d1e/29eab5feca7b40e45ec289e2c41d6d14b71645cef7bb2603cf2baa7d6867365c/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_32f0847e5d1e/16e5a5c95486e226a17f575ba72aa4f840c8c36422f54b8926edd643db6ec213/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_32f0847e5d1e/16e5a5c95486e226a17f575ba72aa4f840c8c36422f54b8926edd643db6ec213/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_32f0847e5d1e/16e5a5c95486e226a17f575ba72aa4f840c8c36422f54b8926edd643db6ec213/receipt.json"
       }
     },
     "t_67ebe5c6fbfe": {
@@ -2645,21 +2637,19 @@
     },
     "t_279cf2b97244": {
       "term": "佛祖",
-      "verdict": "REVISE",
-      "reviewedSha256": "e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "beafacdaa05e393754a0b81e506bbeb600ba58e1eb38f4ea5724c022f440e501",
+      "finding": "The valid Yulin Tongxiu witness is restored and exactly anchors the Explanation's claim about treading on the crowns of buddhas and patriarchs. The two 佛 + 祖云 boundary errors remain excluded; all seven surviving actors hold.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-repairs049055-f003-laneA.json",
       "supersedes": {
-        "term": "佛祖",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba",
-        "finding": "KEEP — The signed memorials and prefaces now name their documentary authors with closed roles, while the encounter rows retain their actual questioners or speakers. Duplicate evidence and free-role defects are resolved.",
-        "sourceReview": "fresh-build/waves/f003-laneA-651-700-revise15-round3-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_279cf2b97244/e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_279cf2b97244/e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_279cf2b97244/e3aaba8375a9d1877408b466e5f1423520415478811f5cc537d94c5e0e3adcba/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_279cf2b97244/beafacdaa05e393754a0b81e506bbeb600ba58e1eb38f4ea5724c022f440e501/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_279cf2b97244/beafacdaa05e393754a0b81e506bbeb600ba58e1eb38f4ea5724c022f440e501/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_279cf2b97244/beafacdaa05e393754a0b81e506bbeb600ba58e1eb38f4ea5724c022f440e501/receipt.json"
       }
     },
     "t_086985319a5b": {

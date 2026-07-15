@@ -1,0 +1,14 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json plus current exact fresh-build hashes; all 15 packet occurrences for entries 52-53 read in full",
+  "rows": [
+    {
+      "id":"t_36b1824beee5","term":"園頭","verdict":"KEEP","reviewedSha256":"d3f3c4818d33ef7d241dd62ecdfa372e737e83e3917e6fb0d76462502c9e7ac8",
+      "finding":"All seven cases read. The office sense is exact. Biographical narration, anonymous verse, impersonal contents label, Nanyuan's direct questions (including the parallel passage that resolves the abbreviated turn), Yaoshan's narrated garden scene, and Yulin's dialogue cue are correctly distinguished.","selfReview":false
+    },
+    {
+      "id":"t_43425d70abab","term":"禪客","verdict":"REVISE","reviewedSha256":"d1f19467a30eba5ec3ef7bf45a1d2b98658fe8ad07a5d506614d1849b7c5d1f8",
+      "finding":"All eight cases read. The current attribution is a generic template and misclassifies multiple explicit turns. Occurrence 1 is Linji Yixuan's direct speech (問取堂中二禪客), not an unnamed questioner. Occurrence 2 is the local named master Foyin Liaoyuan's direct address (適來禪客出眾禮拜), not compiler narration. Occurrence 4 is explicitly a quoted poem by Chanyue Guanxiu (禪月貫休禪師有詩曰：禪客相逢...), not generic compiler narration. Occurrence 5 is Dazhu Huihai directly addressing his visitors (師謂曰：禪客，我不會禪), not compiler narration. Occurrences 7 and 8 likewise place 諸禪客 inside the local master's marked direct speech, not narration. Occurrence 6 is genuinely a narrator-owned dialogue cue (師問禪客) but must preserve the named master as questioner/action-performer and the visitor as interlocutor. Rebuild all eight actor records from their marked turns; do not retain the questioner/compiler template.","selfReview":false
+    }
+  ]
+}

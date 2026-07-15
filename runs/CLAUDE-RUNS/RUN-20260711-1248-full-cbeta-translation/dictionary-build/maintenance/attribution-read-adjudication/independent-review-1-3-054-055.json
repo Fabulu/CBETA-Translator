@@ -1,0 +1,14 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json plus current exact fresh-build hashes; all 11 packet occurrences for entries 54-55 read in full",
+  "rows": [
+    {
+      "id":"t_47b3313788e2","term":"體露金風","verdict":"REVISE","reviewedSha256":"f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1",
+      "finding":"All seven cases read. Occurrences 1-5 and 7 correctly assign Yunmen's quoted/direct answer. Occurrence 6 is not generic compiler narration: the headword appears in an unattributed capping verse (凉夜霜飛...一時體露金風裏...). Keep MasterName null but classify the actor as reviewed-unnamed verse author/commentator, with the surrounding case figures only as context.","selfReview":false
+    },
+    {
+      "id":"t_4d1513a6cd98","term":"當機一句","verdict":"REVISE","reviewedSha256":"c25ab783c700d60112eeb439a17a529c3a2ca049a88de0e020bb42db6eb7af3d",
+      "finding":"All four cases read. Occurrence 1 is explicitly an unnamed monk's direct question (問如何是當機一句), not compiler narration. Occurrence 2 is correctly an unnamed monk. Occurrence 3 is an unattributed capping verse beginning 當機一句, so use reviewed-unnamed verse author/commentator rather than generic compiler narration. Occurrence 4 explicitly names the questioner as Rufeng (乳峰問); represent Rufeng as the named non-master monastic questioner rather than unnamed. Preserve the responding record masters in ContextMasters.","selfReview":false
+    }
+  ]
+}
