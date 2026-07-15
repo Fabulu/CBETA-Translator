@@ -93,106 +93,8 @@ public partial class ZenMasterManagerWindow : Window
         if (btnEditDates != null)
             btnEditDates.Click += (_, _) => AsyncGuard.Run(async () => await OpenEditorAsync(), "ZenMasterManagerWindow.btnEditDates.Click");
 
-        // Lineage Web tab
-        var lineageGraph = this.FindControl<LineageWebControl>("LineageGraph");
-        var txtSearch = this.FindControl<TextBox>("TxtLineageSearch");
-        var txtInfo = this.FindControl<TextBlock>("TxtLineageInfo");
-        var btnCenter = this.FindControl<Button>("BtnLineageCenter");
-
-        if (lineageGraph != null)
-        {
-            lineageGraph.NodeClicked += (_, record) =>
-            {
-                ViewModel.SelectedMaster = record;
-            };
-
-            lineageGraph.NodeDoubleClicked += (_, record) =>
-            {
-                ViewModel.SelectedMaster = record;
-                // Switch to List tab on double-click
-                var tabs = this.FindControl<TabControl>("TabMain");
-                if (tabs != null) tabs.SelectedIndex = 0;
-            };
-        }
-
-        // Search: highlight on text change, center + zoom on Enter or "Go to" click
-        void GoToFirstMatch()
-        {
-            if (_lineageGraphVm == null || lineageGraph == null) return;
-            var match = _lineageGraphVm.Nodes.FirstOrDefault(n => n.IsHighlighted);
-            if (match == null) return;
-
-            // Select + focus the match
-            foreach (var n in _lineageGraphVm.Nodes) n.IsSelected = false;
-            match.IsSelected = true;
-            _lineageGraphVm.SelectedNode = match;
-            _lineageGraphVm.FocusOn(match);
-
-            // Center + zoom so the match fills a comfortable portion of the viewport
-            lineageGraph.CenterOnNode(match);
-            lineageGraph.SetZoom(1.2); // close enough to read labels clearly
-
-            // Sync the zoom slider
-            var slider = this.FindControl<Slider>("SliderLineageZoom");
-            if (slider != null) slider.Value = 120;
-
-            lineageGraph.InvalidateVisual();
-        }
-
-        if (txtSearch != null)
-        {
-            txtSearch.TextChanged += (_, _) =>
-            {
-                _lineageGraphVm?.HighlightSearch(txtSearch.Text);
-                lineageGraph?.InvalidateVisual();
-            };
-
-            txtSearch.KeyDown += (_, e) =>
-            {
-                if (e.Key == Avalonia.Input.Key.Enter)
-                {
-                    GoToFirstMatch();
-                    e.Handled = true;
-                }
-            };
-        }
-
-        if (btnCenter != null)
-        {
-            btnCenter.Click += (_, _) => GoToFirstMatch();
-        }
-
-        // Zoom slider
-        var zoomSlider = this.FindControl<Slider>("SliderLineageZoom");
-        if (zoomSlider != null && lineageGraph != null)
-        {
-            zoomSlider.Value = lineageGraph.Zoom * 100;
-            zoomSlider.PropertyChanged += (_, args) =>
-            {
-                if (args.Property.Name == "Value")
-                    lineageGraph.SetZoom(zoomSlider.Value / 100.0);
-            };
-        }
-
-        // Sync graph selection when List tab selection changes
-        ViewModel.PropertyChanged += (_, args) =>
-        {
-            if (args.PropertyName == nameof(ViewModel.SelectedMaster) && _lineageGraphVm != null)
-            {
-                var master = ViewModel.SelectedMaster;
-                if (master != null)
-                {
-                    var graphNode = _lineageGraphVm.Nodes.Find(n => n.Record == master);
-                    if (graphNode != null)
-                    {
-                        foreach (var n in _lineageGraphVm.Nodes) n.IsSelected = false;
-                        graphNode.IsSelected = true;
-                        _lineageGraphVm.SelectedNode = graphNode;
-                        lineageGraph?.InvalidateVisual();
-                    }
-                }
-            }
-        };
+        // Lineage Web tab wiring happens in WireLineage(), once the chart VM is
+        // constructed in BuildLineageGraph() (the VM is not in DI — see D3).
 
         // Teacher link click
         var btnJumpTeacher = this.FindControl<Button>("BtnJumpTeacher");
@@ -266,7 +168,8 @@ public partial class ZenMasterManagerWindow : Window
         };
     }
 
-    private LineageGraphViewModel? _lineageGraphVm;
+    private LineageChartViewModel? _chartVm;
+    private bool _syncingSelection;
 
     public void ApplyLanding(string? name, string? user)
     {
@@ -287,19 +190,182 @@ public partial class ZenMasterManagerWindow : Window
 
     private void BuildLineageGraph()
     {
-        var catalog = ViewModel.GetCatalog();
-        if (catalog == null || catalog.Records.Count == 0) return;
+        // The NEW tidy-forest chart (plan PR-L6). Its VM is not registered in DI —
+        // construct it here, mirroring how the old code new'd up its VM. It loads the
+        // rich 609-record roster (ILineageRosterService, resolved from DI) and runs
+        // the pure build + layout in its constructor.
+        var chart = this.FindControl<LineageChartControl>("LineageGraph");
+        if (chart == null) return;
 
-        _lineageGraphVm = new LineageGraphViewModel();
-        _lineageGraphVm.BuildGraph(catalog);
-        _lineageGraphVm.RunLayeredLayout();
+        _chartVm = new LineageChartViewModel(App.Services.GetRequiredService<ILineageRosterService>());
+        if (!_chartVm.IsLoaded) return;
 
-        var lineageGraph = this.FindControl<LineageWebControl>("LineageGraph");
-        lineageGraph?.SetViewModel(_lineageGraphVm);
+        chart.SetViewModel(_chartVm);
+
+        // The detail side-panel binds directly to the chart VM (its own x:DataType).
+        var panel = this.FindControl<LineageDetailPanel>("LineagePanel");
+        if (panel != null) panel.DataContext = _chartVm;
 
         var txtInfo = this.FindControl<TextBlock>("TxtLineageInfo");
         if (txtInfo != null)
-            txtInfo.Text = $"{_lineageGraphVm.Nodes.Count} masters, {_lineageGraphVm.Edges.Count} links";
+            txtInfo.Text = $"{_chartVm.Nodes.Count} nodes, {_chartVm.Edges.Count} links";
+
+        WireLineage(chart);
+    }
+
+    /// <summary>Wire the new chart control + VM: search, zoom, list-sync, focus, activation.</summary>
+    private void WireLineage(LineageChartControl chart)
+    {
+        var vm = _chartVm;
+        if (vm == null) return;
+
+        // ── panel-driven interactions (kept off the headless VM) ──
+        vm.OpenUrlHandler = OpenExternalUrl;
+        vm.NavigateCorpusHandler = NavigateCorpusPath;
+        vm.OpenProfileHandler = node => { SyncListToNode(node); SelectTab(0); };
+        vm.OpenCorpusSearchHandler = node => { SyncListToNode(node); SelectTab(1); };
+        vm.NodeFocusRequested += node => { chart.CenterOn(node); SyncListToNode(node); };
+
+        // ── search box → highlight; Enter / "Go to" → centre on the first hit ──
+        var txtSearch = this.FindControl<TextBox>("TxtLineageSearch");
+        var btnCenter = this.FindControl<Button>("BtnLineageCenter");
+        var zoomSlider = this.FindControl<Slider>("SliderLineageZoom");
+
+        void GoToFirstMatch()
+        {
+            var match = vm.Nodes.FirstOrDefault(n => vm.SearchHitIds.Contains(n.Id));
+            if (match == null) return;
+            vm.FocusNode(match);          // selects + raises NodeFocusRequested (centres + list-sync)
+            chart.SetZoom(1.2);           // close enough to read labels
+        }
+
+        if (txtSearch != null)
+        {
+            txtSearch.TextChanged += (_, _) =>
+            {
+                vm.SearchText = txtSearch.Text ?? "";
+                chart.InvalidateVisual();
+            };
+            txtSearch.KeyDown += (_, e) =>
+            {
+                if (e.Key == Key.Enter) { GoToFirstMatch(); e.Handled = true; }
+            };
+        }
+        if (btnCenter != null)
+            btnCenter.Click += (_, _) => GoToFirstMatch();
+
+        // ── zoom slider ↔ control (guarded against feedback) ──
+        if (zoomSlider != null)
+        {
+            zoomSlider.PropertyChanged += (_, args) =>
+            {
+                if (args.Property.Name == "Value" && !_syncingZoom)
+                    chart.SetZoom(zoomSlider.Value / 100.0);
+            };
+            chart.ZoomChanged += z =>
+            {
+                _syncingZoom = true;
+                try { zoomSlider.Value = Math.Clamp(z * 100.0, zoomSlider.Minimum, zoomSlider.Maximum); }
+                finally { _syncingZoom = false; }
+            };
+        }
+
+        // ── double-click a node → open it in the List tab (parity with the old control) ──
+        chart.NodeActivated += node =>
+        {
+            SyncListToNode(node);
+            SelectTab(0);
+        };
+
+        // ── chart selection → List tab (user clicked a node) ──
+        vm.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(LineageChartViewModel.SelectedNode))
+            {
+                chart.InvalidateVisual();
+                if (!_syncingSelection) SyncListToNode(vm.SelectedNode);
+            }
+        };
+
+        // ── List tab selection → chart (user picked a master in the list) ──
+        ViewModel.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(ViewModel.SelectedMaster) && !_syncingSelection)
+                SyncChartToMaster(ViewModel.SelectedMaster);
+        };
+    }
+
+    private bool _syncingZoom;
+
+    private void SelectTab(int index)
+    {
+        var tabs = this.FindControl<TabControl>("TabMain");
+        if (tabs != null) tabs.SelectedIndex = index;
+    }
+
+    private void OpenExternalUrl(string url)
+    {
+        try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+        catch { /* a bad link must never crash the window */ }
+    }
+
+    private void NavigateCorpusPath(string teiPath)
+    {
+        if (string.IsNullOrWhiteSpace(teiPath)) return;
+        CorpusNavigationRequested?.Invoke(this, new NavigationRequest
+        {
+            RelPath = teiPath,
+            Side = SearchSide.Original,
+        });
+    }
+
+    /// <summary>Mirror a chart node onto the List-tab selection (matched by name/alias).</summary>
+    private void SyncListToNode(LineageNode? node)
+    {
+        if (node == null || node.IsSource || _syncingSelection) return;
+        var record = FindListRecord(node);
+        if (record == null || ReferenceEquals(record, ViewModel.SelectedMaster)) return;
+        _syncingSelection = true;
+        try { ViewModel.SelectedMaster = record; }
+        finally { _syncingSelection = false; }
+    }
+
+    /// <summary>Mirror the List-tab selection onto the chart (matched by name/alias).</summary>
+    private void SyncChartToMaster(ZenMasterRecord? master)
+    {
+        if (master == null || _chartVm == null || _syncingSelection) return;
+        var node = FindChartNode(master);
+        if (node == null || ReferenceEquals(node, _chartVm.SelectedNode)) return;
+        _syncingSelection = true;
+        try
+        {
+            _chartVm.FocusNode(node);   // selects + centres via NodeFocusRequested
+        }
+        finally { _syncingSelection = false; }
+    }
+
+    private ZenMasterRecord? FindListRecord(LineageNode node)
+    {
+        foreach (var name in node.Names)
+        {
+            var hit = ViewModel.Masters.FirstOrDefault(m =>
+                string.Equals(m.CanonicalName, name, StringComparison.OrdinalIgnoreCase) ||
+                m.Aliases.Any(a => string.Equals(a, name, StringComparison.OrdinalIgnoreCase)));
+            if (hit != null) return hit;
+        }
+        return null;
+    }
+
+    private LineageNode? FindChartNode(ZenMasterRecord master)
+    {
+        if (_chartVm == null) return null;
+        if (!string.IsNullOrEmpty(master.CanonicalName) &&
+            _chartVm.Graph.ByName.TryGetValue(master.CanonicalName, out var byCanon))
+            return byCanon;
+        foreach (var alias in master.Aliases)
+            if (!string.IsNullOrEmpty(alias) && _chartVm.Graph.ByName.TryGetValue(alias, out var byAlias))
+                return byAlias;
+        return null;
     }
 
     private async Task CopyLinkAsync()

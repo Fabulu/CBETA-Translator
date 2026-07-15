@@ -306,7 +306,11 @@
                   Minimum="10" Maximum="300" Value="80"
                   Width="120" VerticalAlignment="Center" Margin="0,0,8,0"/>
         </Grid>
-        <local:LineageWebControl Grid.Row="1" Name="LineageGraph"/>
+        <Grid Grid.Row="1" ColumnDefinitions="*,8,340">
+          <local:LineageChartControl Grid.Column="0" Name="LineageGraph"/>
+          <GridSplitter Grid.Column="1" Width="8" ResizeDirection="Columns" Background="Transparent"/>
+          <local:LineageDetailPanel Grid.Column="2" Name="LineagePanel"/>
+        </Grid>
       </Grid>
     </TabItem>
   </TabControl>
