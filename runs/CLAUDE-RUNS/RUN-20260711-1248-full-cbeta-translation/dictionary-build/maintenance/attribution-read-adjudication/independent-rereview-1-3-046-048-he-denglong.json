@@ -1,0 +1,22 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "prior independent full-case read of all 18 喝 and all 7 燈籠 occurrences, rereviewed at repaired exact hashes",
+  "rows": [
+    {
+      "id": "t_193632bffe7b",
+      "term": "喝",
+      "verdict": "KEEP",
+      "reviewedSha256": "b38142247fca59abf14c87ffac0e91dfaddb243302462f344abd3d5f489eefd3",
+      "finding": "The requested repair holds against the prior full-case read. The narrated Mazu, Mengxi, Zhenjing Kewen, and Linji rows keep MasterName null because the narrator owns the lexical token, while ContextMasters now correctly identifies each explicit action-performer/shouter/case-figure. The other fourteen actor decisions and the single shout sense remain supported.",
+      "selfReview": false
+    },
+    {
+      "id": "t_1f6124388d25",
+      "term": "燈籠",
+      "verdict": "REVISE",
+      "reviewedSha256": "24f98c9f8f6af96c4c02fa04cbbad092bc1bb0a9371a4fc4098289d8ae2ec3ce",
+      "finding": "The crucial utterer repair is correct: Fachang Yu now has MasterName for the quoted headword-bearing line. One requested relationship is still missing from structured attribution: Wenmu Nian, who raises Fachang's address in the local discourse, appears only in prose and not in ContextMasters as later-raiser/record-owner. Preserve Fachang as utterer and add Wenmu as the contextual later raiser (using the project's named-unrostered representation if he is not yet rostered).",
+      "selfReview": false
+    }
+  ]
+}

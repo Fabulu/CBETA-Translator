@@ -1,0 +1,18 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json plus current exact fresh-build hashes; every packet occurrence for entries 49-51 read in full",
+  "rows": [
+    {
+      "id":"t_2282e557069b","term":"卓拄杖","verdict":"KEEP","reviewedSha256":"3edcb3b0fcbef3c689e7c2a43feed60365e352ca87ab6f41365ab916f850c076",
+      "finding":"All eight cases read. Every headword is documentary stage direction rather than quoted speech, so MasterName is correctly null throughout; each named master is correctly retained as the explicit staff-striking action-performer and record owner. The action-specific sense remains supported.","selfReview":false
+    },
+    {
+      "id":"t_279cf2b97244","term":"佛祖","verdict":"REVISE","reviewedSha256":"4de2702b817b4d873eac29c555768e1ea8b1e8dbbdda31ee22f75fb750795507",
+      "finding":"All nine packet cases and the six surviving current occurrences read. The six stored actor decisions hold, and the two 佛 + 祖云 false boundary matches were rightly removed. But the Explanation still claims that Yulin Tongxiu speaks of 'treading on their crowns' after the valid Yulin occurrence was removed from the current Occurrences. This is now an unanchored prose claim. Either restore and verify the valid exact 佛祖 token in 各各蹋佛祖頂𩕋行 as a Yulin occurrence, or remove that clause from the Explanation; anchoring it is preferable.","selfReview":false
+    },
+    {
+      "id":"t_32f0847e5d1e","term":"佛向上事","verdict":"KEEP","reviewedSha256":"16e5a5c95486e226a17f575ba72aa4f840c8c36422f54b8926edd643db6ec213",
+      "finding":"All seven cases read, including the two distinct-work recensions of Qi the chief cook's question. Dongshan, Yushan, and Dahui are correctly named only where they utter the stored phrase; the anonymous monk and named non-master Qi remain non-master actors, with Xuefeng correctly retained as respondent/action-performer. The single recurrent question-position sense is coherent.","selfReview":false
+    }
+  ]
+}

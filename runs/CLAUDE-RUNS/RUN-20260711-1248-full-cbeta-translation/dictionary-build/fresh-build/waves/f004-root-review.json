@@ -823,26 +823,19 @@
     },
     "t_3ae11b4bc79f": {
       "term": "無常迅速",
-      "verdict": "REVISE",
-      "reviewedSha256": "94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "e430b1b021a711a68e03d1d10ec18d463176d06e12fcdd46f990ac4d952cb2bd",
+      "finding": "All six cases read. Five named masters utter the formula in continuous discourse; the final occurrence correctly assigns it to Wuquan, Deshen, and their fellow petitioners rather than Dufeng Benshan.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-next-f004-laneC.json",
       "supersedes": {
-        "term": "無常迅速",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1133-1140-reviewer8-recovery-independent.json",
-        "supersedes": {
-          "verdict": "KEEP",
-          "reviewedSha256": "57e6404043db9624f87b5abfe9692258d1bd7c3be7f880c848a1c7c759d52bbe",
-          "sourceReview": "fresh-build/waves/f004-laneC-1131-1150-reviewer3-postcollision-rereview.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_3ae11b4bc79f/94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_3ae11b4bc79f/94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_3ae11b4bc79f/94bda12b61e325f2340abbf7a7befa3004d7aa7eb42af7b617b86677d628433e/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_3ae11b4bc79f/e430b1b021a711a68e03d1d10ec18d463176d06e12fcdd46f990ac4d952cb2bd/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_3ae11b4bc79f/e430b1b021a711a68e03d1d10ec18d463176d06e12fcdd46f990ac4d952cb2bd/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_3ae11b4bc79f/e430b1b021a711a68e03d1d10ec18d463176d06e12fcdd46f990ac4d952cb2bd/receipt.json"
       }
     },
     "t_68729efe1fac": {
@@ -1638,26 +1631,19 @@
     },
     "t_72ed81907d68": {
       "term": "施為",
-      "verdict": "REVISE",
-      "reviewedSha256": "484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "dd7dba6d4cfa5d58176b2a7ced48ac2139c6c31ccdb9e56b7628989e39c4dda2",
+      "finding": "All seven cases read. Every occurrence lies in the named master's continuous discourse, and the single conduct/activity sense is coherent across the complete contexts.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-next-f004-laneA.json",
       "supersedes": {
-        "term": "施為",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3",
-        "finding": "All seven duplicate prefixes are removed, and the compiler, named record owner, and six named-master speech roles follow the complete cases.; The single conduct-and-activity sense covers noun-like and verbal deployments without a grammar-only split. Its explanation is observable and adequately grounded in movement and stillness, walking and sitting, dressing and eating, and activity that does not borrow another power.; No remaining semantic, prose, depth, respondent-role, or source mismatch was found.",
-        "sourceReview": "fresh-build/waves/f004-laneA-918-925-reviewer7-final.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "15e49720b28aeaf42c82f30c14a7033a78728e32818b1d2061804f0ae34ccc79",
-          "sourceReview": "fresh-build/waves/f004-laneA-918-925-reviewer6-independent.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_72ed81907d68/484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_72ed81907d68/484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_72ed81907d68/484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_72ed81907d68/dd7dba6d4cfa5d58176b2a7ced48ac2139c6c31ccdb9e56b7628989e39c4dda2/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_72ed81907d68/dd7dba6d4cfa5d58176b2a7ced48ac2139c6c31ccdb9e56b7628989e39c4dda2/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_72ed81907d68/dd7dba6d4cfa5d58176b2a7ced48ac2139c6c31ccdb9e56b7628989e39c4dda2/receipt.json"
       }
     },
     "t_c9f69715e823": {
@@ -1720,21 +1706,19 @@
     },
     "t_403540d42e98": {
       "term": "抱贓叫屈",
-      "verdict": "REVISE",
-      "reviewedSha256": "960d0bff8b5a586846b7565e07659fca78b2df19abcaeb9e3d8d8823f8233495",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "6fcf966d446838af5f4d7cee93f9145ca62be98e08a8e60607a6bbc8b9bf0712",
+      "finding": "All six cases read. The anonymous capping-verse author is honestly unnamed and the five named masters each utter the verdict in their own address/comment.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-next-f004-laneC.json",
       "supersedes": {
-        "term": "抱贓叫屈",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "960d0bff8b5a586846b7565e07659fca78b2df19abcaeb9e3d8d8823f8233495",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1156-1165-reviewer9-postrepair.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_403540d42e98/960d0bff8b5a586846b7565e07659fca78b2df19abcaeb9e3d8d8823f8233495/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_403540d42e98/960d0bff8b5a586846b7565e07659fca78b2df19abcaeb9e3d8d8823f8233495/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_403540d42e98/960d0bff8b5a586846b7565e07659fca78b2df19abcaeb9e3d8d8823f8233495/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_403540d42e98/6fcf966d446838af5f4d7cee93f9145ca62be98e08a8e60607a6bbc8b9bf0712/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_403540d42e98/6fcf966d446838af5f4d7cee93f9145ca62be98e08a8e60607a6bbc8b9bf0712/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_403540d42e98/6fcf966d446838af5f4d7cee93f9145ca62be98e08a8e60607a6bbc8b9bf0712/receipt.json"
       }
     },
     "t_346bf81c474e": {

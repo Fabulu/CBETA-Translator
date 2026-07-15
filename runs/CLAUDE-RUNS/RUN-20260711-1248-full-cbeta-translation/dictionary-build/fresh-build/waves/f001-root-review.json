@@ -3981,21 +3981,19 @@
     },
     "t_193632bffe7b": {
       "term": "喝",
-      "verdict": "REVISE",
-      "reviewedSha256": "0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "b38142247fca59abf14c87ffac0e91dfaddb243302462f344abd3d5f489eefd3",
+      "finding": "The requested repair holds against the prior full-case read. The narrated Mazu, Mengxi, Zhenjing Kewen, and Linji rows keep MasterName null because the narrator owns the lexical token, while ContextMasters now correctly identifies each explicit action-performer/shouter/case-figure. The other fourteen actor decisions and the single shout sense remain supported.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-next-f001-laneA.json",
       "supersedes": {
-        "term": "喝",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneA-081-100-independent-semantic-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_193632bffe7b/0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_193632bffe7b/0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_193632bffe7b/0272f43bfe894319bed37aa0a188aa1e0034be7f3a6ae2fc6f1eefd7d980dce7/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_193632bffe7b/b38142247fca59abf14c87ffac0e91dfaddb243302462f344abd3d5f489eefd3/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_193632bffe7b/b38142247fca59abf14c87ffac0e91dfaddb243302462f344abd3d5f489eefd3/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_193632bffe7b/b38142247fca59abf14c87ffac0e91dfaddb243302462f344abd3d5f489eefd3/receipt.json"
       }
     },
     "t_f25cebd24730": {
