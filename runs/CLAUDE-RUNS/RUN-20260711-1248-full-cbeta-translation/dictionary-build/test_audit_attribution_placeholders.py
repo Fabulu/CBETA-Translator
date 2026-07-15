@@ -6,6 +6,7 @@ import re
 
 from audit_attribution import (
     DUPLICATED_NOTE_PREFIX_RE,
+    EXPLICIT_MASTER_ACTION,
     EXPLICIT_MASTER_TURN,
     PLACEHOLDER_ACTOR_RE,
     anonymous_actor_collapse_failure,
@@ -15,9 +16,15 @@ from audit_attribution import (
 
 class PlaceholderActorTest(unittest.TestCase):
     def test_detects_explicit_master_turns_in_headword_clause(self):
-        for value in ("師云", "師曰", "師拈", "師下座", "師歸方丈"):
+        for value in ("師云", "師曰", "師乃云", "師復問"):
             with self.subTest(value=value):
                 self.assertIsNotNone(EXPLICIT_MASTER_TURN.search(value))
+
+    def test_separates_narrated_master_actions_from_speech(self):
+        for value in ("師拈", "師下座", "師歸方丈", "師乃卓"):
+            with self.subTest(value=value):
+                self.assertIsNone(EXPLICIT_MASTER_TURN.search(value))
+                self.assertIsNotNone(EXPLICIT_MASTER_ACTION.search(value))
 
     def test_identified_non_master_labels_must_name_someone(self):
         generic = re.compile(r"^(?:the|an?|one|some)\b", re.IGNORECASE)

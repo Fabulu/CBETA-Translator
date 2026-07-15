@@ -53,12 +53,13 @@ ATTRIBUTION_RUNGS = [
     "parallel-passage",
 ]
 ACTOR_STATUSES = {"identified-non-master", "reviewed-unnamed", "narrated", "impersonal"}
-EXPLICIT_MASTER_TURN = re.compile(r"師(?:云|曰|道|問|答|謂|乃|拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
+EXPLICIT_MASTER_TURN = re.compile(r"師(?:乃|遂|復)?(?:云|曰|道|問|答|謂)")
+EXPLICIT_MASTER_ACTION = re.compile(r"師(?:乃|遂|復)?(?:拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
 CLOSED_ROLES = {
     "utterer", "respondent", "questioner", "interlocutor", "addressee",
     "section-subject", "record-owner", "person-described", "person-discussed",
     "commentator", "later-raiser", "later-quoter", "teacher", "student",
-    "compiler", "verse-author", "case-figure",
+    "compiler", "verse-author", "case-figure", "action-performer",
 }
 
 
@@ -314,6 +315,19 @@ def main() -> int:
                         f"{term} s{si} o{oi}: {explicit_turns}; read the complete case and name the exact master",
                     )
 
+                explicit_actions = sorted({
+                    match.group(0)
+                    for clause in headword_clauses
+                    for match in EXPLICIT_MASTER_ACTION.finditer(clause)
+                })
+                if explicit_actions and not explicit_turns and master:
+                    fail(
+                        "action_performer_in_utterer_field",
+                        entry,
+                        f"{term} s{si} o{oi}: {explicit_actions}; MasterName is utterer-only, "
+                        "so represent the narrated performer in ContextMasters",
+                    )
+
                 context_masters = occ.get("ContextMasters") or []
                 if not isinstance(context_masters, list):
                     fail("invalid_context_masters", entry, f"{term} s{si} o{oi}: not a list")
@@ -332,6 +346,15 @@ def main() -> int:
                             counts["pending_roster_context_master"] += 1
                         elif strict_roster_here:
                             fail("noncanonical_context_master_name", entry, f"{term} s{si} o{oi} c{ci}: {context['MasterName']!r} is not roster names[0]")
+                if explicit_actions and not explicit_turns and not any(
+                    "action-performer" in (context.get("Roles") or [])
+                    for context in context_masters if isinstance(context, dict)
+                ):
+                    fail(
+                        "action_performer_context_missing",
+                        entry,
+                        f"{term} s{si} o{oi}: explicit master action requires a named action-performer ContextMaster",
+                    )
                 if master and not any(
                     context.get("MasterName") == master and "utterer" in (context.get("Roles") or [])
                     for context in context_masters if isinstance(context, dict)

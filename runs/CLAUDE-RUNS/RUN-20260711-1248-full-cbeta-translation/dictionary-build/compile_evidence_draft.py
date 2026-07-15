@@ -53,7 +53,7 @@ ALLOWED_CONTEXT_ROLES = {
     "utterer", "respondent", "questioner", "interlocutor", "addressee",
     "section-subject", "record-owner", "person-described", "person-discussed",
     "commentator", "later-raiser", "later-quoter", "teacher", "student",
-    "compiler", "verse-author", "case-figure",
+    "compiler", "verse-author", "case-figure", "action-performer",
 }
 
 

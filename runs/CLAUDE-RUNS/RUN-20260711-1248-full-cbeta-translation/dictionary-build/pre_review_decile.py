@@ -29,6 +29,17 @@ def main() -> int:
             file=sys.stderr,
         )
         return fast.returncode
+    risk_output = args.output.with_name(args.output.stem + "-authoring-risk.json")
+    risk = subprocess.run([
+        sys.executable, str(HERE / "authoring_risk_preflight.py"), *args.entries,
+        "--report", str(risk_output),
+    ], cwd=HERE)
+    if risk.returncode != 0:
+        print(
+            f"PRE-REVIEW BLOCKED by authoring-risk lint: {risk_output}",
+            file=sys.stderr,
+        )
+        return risk.returncode
     completed = subprocess.run([
         sys.executable, str(HERE / "run_cohort_gate.py"), *args.entries,
         "--skip-packets", "--output", str(args.output),

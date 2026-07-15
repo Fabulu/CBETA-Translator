@@ -241,9 +241,10 @@ depth had passed. The new check moves that finding ahead of semantic review. The
 ## 15. Explicit `師` turns cannot be serialized as anonymous narration
 
 Implementation: the attribution audit now examines the punctuation-bounded clause containing the headword. If that
-clause explicitly says `師云`, `師曰`, `師道`, `師問`, `師答`, or an explicit master action such as `師拈`, `師舉`,
-`師下座`, or `師歸方丈`, a null `MasterName` hard-fails. The complete case must be read and the exact master named;
-the detector does not guess which master.
+clause explicitly says `師云`, `師曰`, `師道`, `師問`, or `師答`, a null `MasterName` hard-fails. The complete case
+must be read and the exact uttering master named; the detector does not guess which master. Narrated actions such as
+`師拈`, `師舉`, `師下座`, and `師歸方丈` are deliberately excluded: their performer belongs in `ContextMasters` with
+role `action-performer`, while utterer-only `MasterName` remains null.
 
 Production trigger: two full repair rounds continued to serialize explicit `師云`/`師拈拂子` turns as narrator or
 unnamed actor despite green aggregate attribution counts. This guard converts the visible grammatical contradiction
@@ -259,3 +260,16 @@ ledger completeness, generic/vague openings, exact duplicate and bare-token witn
 Production trigger: the 21-entry round-three repair had only four remaining attribution/note defects after its main
 rewrite; three were raw Chinese speech-frame tokens in English notes. The fast preflight catches that class before
 `zc`, depth, packet, or Windows/Node gates. The accepted f005 canary passes the integrated two-stage command.
+
+## 17. Block attribution-risk patterns before expensive full-case review
+
+Implementation: `authoring_risk_preflight.py` checks evidence drafts or compiled entries for a named `MasterName`
+that contradicts the draft's grammatical subject, narrated action/stage-direction headwords assigned to their
+performer as though spoken, and high-risk unsupported explanatory verbs. `pre_review_decile.py` now runs it after the
+cheap structural lint and before corpus-backed gates. It is read-only: flags require full-case human adjudication and
+do not alter the final schema or automate a speaker decision.
+
+Production measurement: actor/turn attribution generated 106 durable rework findings, versus 38 unsupported-prose
+and 14 depth/sense findings. Compilation took 1.03 seconds and was semantically identical, so it is not the bottleneck.
+The risk preflight took 0.054 seconds, caught all seven known `卓一下` performer-as-utterer defects, and produced zero
+flags on accepted `語言`. This moves the dominant repeated failure to author handoff without weakening review.

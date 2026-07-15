@@ -1,0 +1,1300 @@
+{
+  "schemaVersion": "f005-speed-bottleneck-audit-v1",
+  "generatedUtc": "2026-07-15T18:58:00.850162+00:00",
+  "compositeRuns": [
+    {
+      "artifact": "f005-laneA-1203-1207-composite.json",
+      "entries": 5,
+      "elapsedSeconds": 4.332,
+      "phaseTimings": {
+        "exactKwic": 0.336,
+        "attribution": 3.861,
+        "publicFeedback": 1.092,
+        "depthSense": 2.641,
+        "countClaims": 0.888,
+        "workSourceValidation": 0.793,
+        "corpusBaseline": 0.787,
+        "frozenHistoricalTerms": 1.247,
+        "attributionPackets": 0
+      }
+    },
+    {
+      "artifact": "f005-laneA-1203-1212-composite.json",
+      "entries": 10,
+      "elapsedSeconds": 10.952,
+      "phaseTimings": {
+        "exactKwic": 0.705,
+        "attribution": 9.745,
+        "publicFeedback": 3.992,
+        "depthSense": 7.65,
+        "countClaims": 1.395,
+        "workSourceValidation": 1.955,
+        "corpusBaseline": 1.285,
+        "frozenHistoricalTerms": 2.733,
+        "attributionPackets": 0
+      }
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-composite-gate.json",
+      "entries": 2,
+      "elapsedSeconds": 19.125,
+      "phaseTimings": {
+        "exactKwic": 0.337,
+        "attribution": 6.097,
+        "publicFeedback": 3.904,
+        "depthSense": 6.358,
+        "countClaims": 1.804,
+        "workSourceValidation": 1.888,
+        "corpusBaseline": 1.8,
+        "frozenHistoricalTerms": 2.749,
+        "attributionPackets": 12.258
+      }
+    }
+  ],
+  "compositePhaseSummary": {
+    "exactKwic": {
+      "runs": 3,
+      "meanSeconds": 0.459,
+      "maxSeconds": 0.705
+    },
+    "attribution": {
+      "runs": 3,
+      "meanSeconds": 6.568,
+      "maxSeconds": 9.745
+    },
+    "publicFeedback": {
+      "runs": 3,
+      "meanSeconds": 2.996,
+      "maxSeconds": 3.992
+    },
+    "depthSense": {
+      "runs": 3,
+      "meanSeconds": 5.55,
+      "maxSeconds": 7.65
+    },
+    "countClaims": {
+      "runs": 3,
+      "meanSeconds": 1.362,
+      "maxSeconds": 1.804
+    },
+    "workSourceValidation": {
+      "runs": 3,
+      "meanSeconds": 1.545,
+      "maxSeconds": 1.955
+    },
+    "corpusBaseline": {
+      "runs": 3,
+      "meanSeconds": 1.291,
+      "maxSeconds": 1.8
+    },
+    "frozenHistoricalTerms": {
+      "runs": 3,
+      "meanSeconds": 2.243,
+      "maxSeconds": 2.749
+    },
+    "attributionPackets": {
+      "runs": 3,
+      "meanSeconds": 4.086,
+      "maxSeconds": 12.258
+    }
+  },
+  "authoringHandoffSpans": [
+    {
+      "ledger": "f005-laneB-1301-1302-author-ledger.json",
+      "entries": 2,
+      "minutes": 4.47,
+      "basis": "fast-preflight mtime to author-ledger UTC; lower-bound handoff span"
+    }
+  ],
+  "independentReviewSpans": [
+    {
+      "review": "f005-laneB-1301-1302-independent-canary-review.json",
+      "sourceLedger": "f005-laneB-1301-1302-author-ledger.json",
+      "minutes": 31.58,
+      "entries": 2
+    }
+  ],
+  "reworkFindingCategories": {
+    "actor/turn": 106,
+    "unsupported-or-unanchored-prose": 38,
+    "sense/depth": 14,
+    "other": 34
+  },
+  "reworkSamples": [
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "普茶",
+      "category": "other",
+      "finding": "o1 is an editorial occasion line in a volume explicitly compiled by the named disciple Jiyun (寂蘊編), not an unnameable compiler; o4 is likewise in a volume explicitly compiled by Longqi and others (隆琦等編). The six-rung conclusions and source notes are therefore false."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "普茶",
+      "category": "actor/turn",
+      "finding": "o5 is the compiler's occasion label 普茶，示眾 followed by the record master's direct speech, while o3 is an occasion label 一晚普茶次 before Chaozong's raising of Yunmen. The entry must distinguish the narrator-governed occasion from the subsequent master's utterance instead of assigning one voice to the whole stored span."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "普茶",
+      "category": "actor/turn",
+      "finding": "The definition 'communal tea' holds, but the explanation names Ruibai Mingxue as addressing the assembly at the retreat tea while the headword itself occurs in Jiyun's occasion line. Rewrite the claim so speaker and occasion-label evidence are unambiguous."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "啐啄",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "o6 is in the signed preface 汾陽無德禪師語錄序 by Yang Yi (楊億述), so 'the reviewed unnamed compiler' is demonstrably wrong. It is authored preface prose describing Xuefeng's responsive eye."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "啐啄",
+      "category": "actor/turn",
+      "finding": "o1 is a 頌曰 verse in a case-and-verse collection and requires recovery of the verse voice or an honest collection-level verse attribution; it is not established as compiler narrative by the generic six-rung sentence."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "啐啄",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "o4 supplies the corpus's explicit graph-level definition 子啐母啄，啄與啐不先不後，是為同時 and supports the paired-pecking sense. Preserve it, but make the prose's response/timing inference traceable to this occurrence rather than treating all six genres as equivalent."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "野狐精",
+      "category": "other",
+      "finding": "o2 sits in the section 福州雪峰大智禪師 and the exact insult is spoken by that section master; assigning it to Xuefeng Yicun conflates two different Xuefeng masters."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "野狐精",
+      "category": "actor/turn",
+      "finding": "o5 is uttered inside a later master's extended discussion ('不見古人道：這漆桶，或云野狐精...'), not by Mazu Daoyi merely because the surrounding anthology section eventually discusses Mazu. The exact-turn attribution fails."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "野狐精",
+      "category": "actor/turn",
+      "finding": "o4 and o6 are later commentary/collection voices on the Puyan-Puxian case and remain generically assigned to an unnamed compiler despite recoverable named commentators around the passage. Re-resolve the exact quoted voice and separate original saying from later appraisal where a span contains both."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "野狐精",
+      "category": "sense/depth",
+      "finding": "'Wild-fox spirit' and its use as an insult/verdict hold. 'Playing a deceptive fox-spirit rather than meeting the case cleanly' exceeds the stored wording; describe the observable rebuke and accused 見解 without assigning a psychological or evaluative theory to every occurrence."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "東坡居士",
+      "category": "actor/turn",
+      "finding": "o2 contains the headword in the paratext title 題東坡居士大悲閣記. It is an editorial/title occurrence, not an utterance by Yuanwu Keqin, and cannot carry him as MasterName under the utterer-only rule."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "東坡居士",
+      "category": "actor/turn",
+      "finding": "o1 and o4 narrate the same Dongpo-Foyin robe exchange in two compilation works. Their headword is compiler narration naming Dongpo as a case figure; the generic unnamed-compiler labels need real source-specific actor evidence and ContextMasters/case-figure roles."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "東坡居士",
+      "category": "actor/turn",
+      "finding": "o3 is narrative about a master raising Dongpo's verse, whereas o5 is This'an Shoujing directly saying and judging 東坡居士 in a formal address. Preserve that genre distinction instead of presenting all occurrences as an undifferentiated record of Dongpo's own questions and verses."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "法衣",
+      "category": "actor/turn",
+      "finding": "o6 contains 法衣 only in the compiler's occasion heading 施主獻法衣上堂; Dongshan Liangjie begins speaking after that heading and does not utter the headword. MasterName therefore violates the exact-utterer rule."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "法衣",
+      "category": "actor/turn",
+      "finding": "o3 is imperial-bestowal biographical narration (敕賜金襴法衣), while o4-o5 are transmission biographies and o1-o2 are direct masters displaying or lifting a robe. The current single gloss 'the teaching robe' and prose collapse monastic/ceremonial robe, bestowed honor, and lineage-transmission token without testing whether these are different things under sense-split rule 8."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "法衣",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Re-adjudicate the sense boundary and make each institutional claim rest on the corresponding occurrence; possession of a 法衣 is not shown in these six passages as one uniform assertion of possession of the teaching."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "伏羲",
+      "category": "other",
+      "finding": "o1 is authored discourse 尊火為宗論 in Juelang Daosheng's record, and o2 is Langting Ting's direct 小參 address; both are wrongly reduced to 'the reviewed unnamed compiler.'"
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "伏羲",
+      "category": "other",
+      "finding": "o3 is a signed 後序 by Nanqian (住堯封寶雲院嗣法門人南潛謹書), not an unnamed compiler. Its historical comparison of Fuxi and writing must name that author and keep him distinct from the masters discussed."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "伏羲",
+      "category": "sense/depth",
+      "finding": "The figure sense holds, but 'what precedes conventional patterning' is not a shared deployment across the selected evidence: the passages use Fuxi for fire/cosmology, the sixty-four hexagrams, the institution of writing, primordial beginnings, and revealed signs. Rewrite as an evidence-bounded range rather than one inferred function."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "自己",
+      "category": "actor/turn",
+      "finding": "o1 is continuous doctrinal address in the old recorded sayings, not established as compiler narration merely because the local head lookup is empty. The complete discourse/container ladder must resolve the speaking record owner or document a genuine exception."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "自己",
+      "category": "actor/turn",
+      "finding": "o4 occurs in the signed 靈谷語錄序 by the lay author Ding Libiao (弟子丁立表題), and 自己 is in that author's first-person preface. Assigning Juelang Daosheng as utterer is wrong; Juelang is the person addressed and quoted later."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "自己",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "o6 is Wuzu Jie's quoted appraisal and o7 is Tianzhu Chonghui's direct answer; these support distinct grammatical deployments. The broad reflexive gloss holds, but 'personal realization' is imported terminology and should be replaced by the observable contrasts between one's own and another person's words/things."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "活路",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The passages support a literal 'living road/open route,' but the prose's universal frame 'when a case has closed every fixed route' is not stated by the evidence. Several are formal-address declarations of an open road, not answers to a closed case."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "活路",
+      "category": "sense/depth",
+      "finding": "o5 explicitly calls Shandao's 徑路修行 'this living road' and then challenges the assembly to go beyond it. That institutional Pure-Land route is a materially different referent from o1's ninety-day search for a route and o2's gods seeking a way out; test whether the current single sense is under-split rather than silently absorbing it into one Zen-loaded gloss."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "活路",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Attribution generally holds for the direct record-owner addresses, but the explanation must distinguish direct speech, the quoted Meng'an Yue address, and Quanan Qiji's critical reuse rather than treating all six as one scenario."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "十戒",
+      "category": "actor/turn",
+      "finding": "o3 is first-person 行實 autobiography: the narrator says he received the novice ten precepts and was named Ruxi. Calling that voice an unnamed compiler leaves the source's named autobiographical subject/author unresolved."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "十戒",
+      "category": "actor/turn",
+      "finding": "o5 is procedural monastic-code prose in 沙彌受戒文, not ordinary compiler narration; its headword belongs to an instruction sequence (first five precepts, next ten) and needs an impersonal/editorial or exact compiler state supported by the source rather than the generic six-rung sentence."
+    },
+    {
+      "artifact": "f004-b1041-1050-independent-rereview.json",
+      "term": "十戒",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The five witnesses consistently refer specifically to the novice's ten precepts (沙彌十戒), not an unspecified universal set of ten. Tighten the preferred target and explanation to that corpus fact; preserve the hard-rule/precepts carve-out without importing claims not anchored in these occurrences."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "白居易",
+      "category": "actor/turn",
+      "finding": "o2 is compiler narration ('元和中白居易出守茲郡'), not an unnamed monastic questioner. The question begins only after the narrator introduces Bai Juyi, so its ActorAttribution assigns the headword to the wrong grammatical actor."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "白居易",
+      "category": "actor/turn",
+      "finding": "o3 begins with narration and later has Bai identify himself as 白居易. If retained as one span, it contains both narrator and Bai voices; the headword-bearing occurrence must be cut or explicitly anchor which token supplies the evidence."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "白居易",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The Bai Juyi figure sense holds, but three witnesses repeat the same Bird's-Nest exchange. State the recurrence honestly and distinguish Bai's own quoted name/questions from compiler introductions."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "拍禪床",
+      "category": "other",
+      "finding": "o1 explicitly introduces Baoning Yong's snow hall address ('保寧勇禪師因雪，上堂') and the same named master performs 拍禪床 before descending. It is not an unnameable compiler action."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "拍禪床",
+      "category": "actor/turn",
+      "finding": "The other five named direct actions support the teaching-seat implementation and public-response prose. Repair o1's exact actor and add the section master to ContextMasters without changing the well-supported sense."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "威音那畔",
+      "category": "actor/turn",
+      "finding": "All six exact actors are named and the passages place the phrase beyond/before current temporal and teaching frames, but none of the selected occurrences defines Awesome-Voice as 'the earliest named Buddha.' That external superlative must be anchored from this corpus or removed."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "威音那畔",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The explanation says masters use it in questions whose answers test the demand, while the stored evidence consists chiefly of formal addresses, incense wording, and declarative contrasts. Describe those attested deployments instead of an absent question-answer pattern."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "關捩",
+      "category": "actor/turn",
+      "finding": "o3 repeats Juelang Daosheng's '撥轉上頭關捩子，大千法界現全機' address from another Juelang record, but labels the voice an unnamed compiler. The exact utterer is recoverable from the uninterrupted address."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "關捩",
+      "category": "actor/turn",
+      "finding": "The J34 and J25 witnesses are not independent semantic deployments merely because they have different work IDs: they reproduce the same speaker and wording. Re-grade source independence after controlling this duplicate-record family."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "關捩",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The pivotal-catch sense is supported by the remaining direct masters, but 'makes the whole exchange turn' is broader than several occurrences; tether the explanation to turning/operating the named 關捩 and the explicit failure of the mechanism to turn."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "臨濟四喝",
+      "category": "other",
+      "finding": "o5 is inside Chaozong Tongren's direct 小參: he himself says '又僧問雪峰：臨濟四喝...' and comments on it. It is not speech by an unnameable compiler."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "臨濟四喝",
+      "category": "other",
+      "finding": "o2 introduces a named commentary voice ('起綱宗云') before the headword, while o3 is compilation exposition. Resolve the named commentator and preserve the distinction between original question, later exposition, authored verse, and Chaozong's direct raising."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "臨濟四喝",
+      "category": "actor/turn",
+      "finding": "The four-shouts lexical unit and enumeration are supported by the authored verse, but the actor repair must land before promotion."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "全機大用",
+      "category": "other",
+      "finding": "o1 is a signed 金陵語錄序 by the lay disciple Li Pan ('淮南弟子李盤拜題'), not an unnameable compiler. Its praise of Juelang must name Li Pan as exact author and Juelang as person described."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "全機大用",
+      "category": "actor/turn",
+      "finding": "o3 is direct speech in Miyun Yuanwu's record explaining Mazu's great function/use, not compiler narration. The complete address identifies the record owner as utterer."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "全機大用",
+      "category": "other",
+      "finding": "The gloss imports 'responsive capacity' and 'whole mechanism' where the sources variously praise a master's entire activity and demand great use. Tighten the inference to the observable 全/機/大用 wording and named deployments."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "睦州擔板",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The explanation's central negative claim is false: o2 explicitly glosses the image in verse as '睦州檐板漢，擔來見一邊'—the board carrier carries it and sees one side. The entry says the witnesses do not supply a one-sided-vision gloss, but its own defining occurrence does."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "睦州擔板",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Revise the interpretation from this corpus evidence, preserving the named stock phrase and explicitly anchoring the one-side inference to o2 rather than importing it from an outside dictionary."
+    },
+    {
+      "artifact": "f004-b1052-1072-independent-rereview.json",
+      "term": "睦州擔板",
+      "category": "other",
+      "finding": "o4 and o5 are later compiler/commentary uses, while o1 and o3 are direct Dahui and Liao'an deployments; keep those voice distinctions during repair."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "種草",
+      "category": "sense/depth",
+      "finding": "o1 uses 種草 literally in '綠雖千種草，香祇一株蘭'; it does not denote lineage seed-stock. The entry merges an ordinary plant occurrence with the separately attested human/lineage-stock use."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "種草",
+      "category": "sense/depth",
+      "finding": "Split or remove the literal witness, then re-test source depth for the Zen-loaded human-stock sense. The remaining passages support stock, seed, and succession language applied to people."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "擲拂子",
+      "category": "other",
+      "finding": "The six passages attest a public teaching-seat action, commonly immediately before 下座, but 'embodying the response' assigns an inward semantic job the action itself does not establish."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "擲拂子",
+      "category": "actor/turn",
+      "finding": "Describe the observable deployment: the master throws down the whisk to punctuate or terminate the address. Preserve the named actors and exact action anchors."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "土地堂",
+      "category": "actor/turn",
+      "finding": "The hall/building sense holds, but the explanation claims the witnesses locate meetings and lodging there. The selected cases instead show institutional rules, incense/rite occasions, headings, and one answer naming the hall."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "土地堂",
+      "category": "other",
+      "finding": "Rewrite the deployment account to match those observable institutional and ritual uses; do not infer lodging or meetings from the building label alone."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "出身之路",
+      "category": "actor/turn",
+      "finding": "o3 is in a signed preface ending '住金陵比丘大成題'; the exact author is Dacheng, not Zongjian Falin. The book title names the compilation, not this headword's utterer."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "出身之路",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The prose overstates a recurrent question-answer test: the evidence also includes appraisals, declarations, and compiler introduction. Retain the emergence/way-out sense but enumerate the attested deployment types."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "調達謗佛",
+      "category": "sense/depth",
+      "finding": "Several occurrences are titled verses inside named masters' records and require recovery of the verse author rather than the generic compiler label; the current attribution review stops at the anthology surface."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "調達謗佛",
+      "category": "other",
+      "finding": "The sources visibly raise, verse, or comment on the Devadatta-slanders-Buddha case. Tighten 'distinguished or implicated' to those observable deployments unless an explicit passage supplies that interpretive contrast."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "戒和尚",
+      "category": "actor/turn",
+      "finding": "o0 is direct incense-address wording by Zhufeng Min, not generic compiler narration. o2 stores overlapping evidence from the same passage and same work, so the pair is not two independent attestations."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "戒和尚",
+      "category": "actor/turn",
+      "finding": "The verse/portrait headings in o3-o4 also require author recovery from their named record contexts. Keep the distinct ordination-preceptor sense, deduplicate the Zhufeng witness, and refill depth from independent cases."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "趙州橋",
+      "category": "actor/turn",
+      "finding": "o4 occurs in an unnamed monk's direct question to Wuzu Fayan within Lingyin Xuanben's biography. Lingyin Xuanben is the section subject, not the utterer of the headword."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "趙州橋",
+      "category": "actor/turn",
+      "finding": "The bridge case and its donkey-and-horse answer are well supported. Repair the exact speaker and retain later verse/direct raisings as distinct deployment types."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "靠拄杖",
+      "category": "other",
+      "finding": "o1 belongs to 呆庵莊禪師's address, not Yuanwu Keqin. The following 愚庵及 address starts only after 靠拄杖."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "靠拄杖",
+      "category": "actor/turn",
+      "finding": "o5's exact action belongs to 鈍庵宗頴, not Shian Zhishao; the surrounding section transition makes the current actor assignment unsafe."
+    },
+    {
+      "artifact": "f004-b1073-1099-independent-rereview.json",
+      "term": "靠拄杖",
+      "category": "actor/turn",
+      "finding": "The public teaching action and authority-bearing staff inference hold after these actor repairs."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "PROSE FIXED: the opening now states the communal drum-summons and its encounter uses."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o1 is an explicitly headed master’s 上堂 and o6 contains 師云, yet both remain unnamed/narrated; o7 still labels the named record owner unresolved instead of naming the master."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "點檢",
+      "category": "actor/turn",
+      "finding": "PROSE FIXED: checking another speaker’s handling is now explicit."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "點檢",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o1/o3/o4/o5/o6 contain direct named or recoverable turns/comments but remain generic unnamed/compiler narration; the repaired Wansong/Tianru rows do not cure the rest."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "點檢",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "蕭何",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "EVIDENCE/PROSE IMPROVED: the bare token was removed and the Xiao-He-establishes-law allusion is explained; Baofu is corrected."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "蕭何",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o1-o2 are named commentator turns (北山/徑山 framing) and o4 is a formal address, but all remain generic compiler narration rather than exact voices."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "蕭何",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "十方世界",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "PROSE IMPROVED and recurrence is acknowledged."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "十方世界",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION/DEPLOYMENT STILL FAILS: o1-o2/o6 are formal-address voices stored as narration; o4-o5-o7 remain the same Buddha-birth transmission family, so seven rows do not demonstrate seven independent Chan deployments and the article still relies heavily on contained narrative."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "十方世界",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拂子頭",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "#0g PROSE FIXED: the whisk-head is now the public locus of teaching authority."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拂子頭",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o2/o4/o5 are direct formal addresses serialized as narration/unnamed, while o3/o6 use generic 'later commentator' despite complete named source units. Every master must be named."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拂子頭",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "披毛戴角",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "PROSE IMPROVED and the bare-token row was replaced."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "披毛戴角",
+      "category": "actor/turn",
+      "finding": "PRIOR CONTAINED-ONLY DEFECT REMAINS: X69n1356 doctrinal karma/rebirth exposition is still retained as a defining Chan witness; o2-o4 are also direct named/recoverable speech stored as generic unnamed/compiler narration."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "披毛戴角",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "韓愈",
+      "category": "other",
+      "finding": "EVIDENCE GREATLY IMPROVED: catalogue rows were removed and Han Yu’s Chan-record role is now described."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "韓愈",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o4 is a named master’s record/case voice left as 'reviewed unnamed record owner'; o3’s emperor is only generically identified although the case context is specific. The entry cannot pass the exact-actor gate as written."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "韓愈",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "來機",
+      "category": "other",
+      "finding": "GLOSS IMPROVED: incoming move/capacity is now intelligible."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "來機",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o2 is explicitly 戒修禪師上堂 yet remains an unnamed later commentator; o3 names 愚庵盂 and o5 is a continuous master address, but both remain compiler narration; o6 likewise retains a generic later-commentator label."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "來機",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "DEPLOYMENT PROSE IMPROVED but the Explanation begins with a malformed dangling closing quotation mark and overstates 'demand command' beyond the direct wording."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o2/o4/o6 are direct formal-address speech stored as compiler narration. The round-two repair did not resolve the named record owners."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "心要",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "RECURRENCE PROBLEM IS NOW DISCLOSED, but the article explicitly identifies phrase/content versus named textual object and still keeps one sense. Different things require separate senses and anchors."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "心要",
+      "category": "sense/depth",
+      "finding": "Five near-identical Bodhidharma-biography rows still dominate the evidence; validation/depth cannot treat that transmission family as breadth merely because work IDs differ."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "心要",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拈拂子",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "#0g PROSE FIXED: raising the whisk is correctly identified as a teaching-seat act."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拈拂子",
+      "category": "actor/turn",
+      "finding": "EXACT-TURN DEFECT REMAINS: o3 still assigns the unnamed monk although the clause explicitly says 師拈拂子; o1-o2/o4/o6 are direct master actions stored as compiler narration, and o5’s 遂拈拂子 likewise belongs to the master, not the monk."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "拈拂子",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "眼睛",
+      "category": "sense/depth",
+      "finding": "The opening now recognizes literal eyeball versus 金剛眼睛, but ends 'evidence must decide' without deciding and leaves both in one sense. That is an unresolved different-thing audit, not a finished entry."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "眼睛",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o1’s headword is explicitly in 英曰 and multiple addresses/comments remain compiler narration."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "眼睛",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "皮袋",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "PROSE/EVIDENCE IMPROVED: title/bare-token noise was replaced and bodily skin-bag deployment is stated."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "皮袋",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o2 explicitly has 師曰：汝皮袋… but remains an unnamed textual utterer; o3-o4 are direct address/comment voices serialized as compiler narration. The named master links are still absent."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "皮袋",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "解脫香",
+      "category": "other",
+      "finding": "The five-fragrances formula and poetic use are now visible and bare tokens were removed."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "解脫香",
+      "category": "actor/turn",
+      "finding": "SENSE/ACTOR STILL FAILS: formulaic enumerated 解脫香 and free poetic fragrance are acknowledged as non-conflatable but remain one undifferentiated sense; o1 is a named record owner’s incense speech stored as compiler narration."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "解脫香",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "宗匠",
+      "category": "actor/turn",
+      "finding": "GLOSS FIXED and the lay-patron utterers in o4/o6 are correctly separated from Fayan."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "宗匠",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS elsewhere: o3 is a quoted verse/comment unit and o5 an authored preface, but both remain generic compiler narration; exact verse/preface authorship must be recorded rather than erased."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "宗匠",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "登座",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "INSTITUTIONAL PROSE IMPROVED, but the article says deathbed taking-a-seat is a different event while retaining o5 in the same sense. Split the different referent/event or exclude it with a stated lexical decision."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "登座",
+      "category": "actor/turn",
+      "finding": "o1/o2/o4/o6 contain named masters’ own 登座 speech/actions but remain narrator/unnamed rather than resolving the master actor/context."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "登座",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法身向上事",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "INTERVIEW-FORMULA PROSE FIXED and the earlier Linji/Dongshan reversals were removed."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法身向上事",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION/EVIDENCE STILL FAILS: o2/o5 are duplicate transmissions of the same question-answer and remain compiler narration; o3 is still a bare-token witness; o6 is Shushan’s 示眾 but remains a generic unnamed utterer."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法身向上事",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The Linji/Deshan paired formula is now identified, but the Explanation is malformed: it begins `shout as soon as one enters,”` without an opening quotation or subject."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o4-o6 are direct master address/comment voices stored as narrator/generic unnamed. Exact named record owners remain unresolved."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "祖殿",
+      "category": "other",
+      "finding": "The three previously identified 高祖殿 rows were mostly removed and the institutional hall is explained."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "祖殿",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "LEXICAL-BOUNDARY FAILURE REMAINS: o4 contains 漢祖殿前, another larger-word/palace-hall occurrence, despite the prose claiming such boundary matches are excluded. Only o1-o3 support the intended hall, with o1/o3 duplicate Mazu-hall transmission."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "祖殿",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法鼓",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "PROSE IMPROVED, but it explicitly combines an actual/re-skinned drum with figurative public proclamation while saying both remain visible; those are different referents and require a real split or an explicit one-thing justification."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法鼓",
+      "category": "actor/turn",
+      "finding": "ATTRIBUTION STILL FAILS: o1 is a headed master’s 上堂 and o2/o3/o6 are direct address/verse voices, but remain unnamed/compiler narration."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "法鼓",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "舍利",
+      "category": "other",
+      "finding": "Shariputra/TOC/bare-token noise was reduced and the relic definition is clearer."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "舍利",
+      "category": "actor/turn",
+      "finding": "FALSE LEXICAL MATCH REINTRODUCED: o9 is again 舍利弗, not 舍利 'relic'. o1/o5/o6 are one repeated Buddha-relic narrative family, while o3 is a title-of-inscription mention; depth/deployment breadth remains inflated and direct later commentary actors require review."
+    },
+    {
+      "artifact": "f004-cohort1-round2-independent-rereview.json",
+      "term": "舍利",
+      "category": "actor/turn",
+      "finding": "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "o2 assigns Pizao Duo although the poem follows narrated stove-spirit material without a speech cue; prove a master voice or retain narration."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The prior malformed Explanation remains: it begins with a lower-case unpaired quotation and overstates “demand command”/“discloses the source” beyond direct wording."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "皮袋",
+      "category": "other",
+      "finding": "o1 assigns the preceding unnamed monastic participant across a boundary into an authored/commentarial Zhongfeng-record verse; the exact verse voice remains unresolved."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "皮袋",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "宗匠",
+      "category": "actor/turn",
+      "finding": "Byte-identical to rejected round two (SHA 8f6d83bd…): o3 verse/comment and o5 authored preface remain generic compiler narration rather than exact authorship."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "宗匠",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "法身向上事",
+      "category": "actor/turn",
+      "finding": "Exact-turn regression: o1 assigns Longya and o2 Jingqing although the headword is in unnamed monks’ questions; respondents were assigned backward."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "法身向上事",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "other",
+      "finding": "Exact-turn regression: o3 assigns Lingyin Xuanben although the headword is in the unnamed monk’s question."
+    },
+    {
+      "artifact": "f004-cohort1-round3-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "other",
+      "finding": "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "The original o2 defect is resolved: the uncued poem after the stove-spirit narrative is no longer transferred to Pizao Duo."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "Whole-entry regression o4: 國師歎曰 explicitly introduces the headword-bearing poem; the actor is Nanyang Huizhong, not compiler narration. He is already present in ContextMasters but with the wrong person-described role."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "Whole-entry regression o6: 因齋時聞鼓聲 is narrative setup before 師云, so Yunmen Wenyan does not utter the headword. MasterName must be null and the narrative actor recorded without assigning Yunmen backward."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "鼓聲",
+      "category": "actor/turn",
+      "finding": "The explanation remains supported after those actor corrections."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The malformed and overclaiming explanation is cleanly replaced by bounded English-first prose."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "actor/turn",
+      "finding": "Actor regression o1: the enclosing heading is 湖州福源石屋清珙禪師 and the passage narrates his residence at 福源 before his uninterrupted 入院，上堂. The utterer is Shiwu Qinggong, not Yuezhou Qianfeng; the current note's claim of a nearby Qianfeng speech cue is contradicted by the full case and heading."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "遇緣即宗",
+      "category": "sense/depth",
+      "finding": "Occurrences 2-6 and the one-sense formula treatment hold."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "皮袋",
+      "category": "actor/turn",
+      "finding": "o1 correctly stops transferring the preceding monk across the verse boundary, but it remains under-attributed. The work is 天目中峰廣錄 and the immediate section heading is 自讚: this is Zhongfeng Mingben's self-eulogy, so a master voice is nameable rather than an unnamed individual poem author."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "皮袋",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Occurrences 2-7, the body-as-skin-bag sense, and the revised explanation hold."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "actor/turn",
+      "finding": "Prior o3 is resolved: the unnamed monk asks the comparison and Lingyin Xuanben is not assigned backward."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "actor/turn",
+      "finding": "Whole-entry regression o4: 問 begins the anonymous interlocutor's comparison through 離此二途未審洞山如何為人; Zhimen Guangzuo's 師曰 answer follows it. The headword is therefore uttered by the unnamed questioner, not Zhimen."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "actor/turn",
+      "finding": "Whole-entry regression o5: the full unit explicitly begins 天童樸禪師，上堂, and the headword is in that uninterrupted address. It is Tiantong Pu's utterance, not compiler narration."
+    },
+    {
+      "artifact": "f004-cohort1-round4-delta-independent-rereview.json",
+      "term": "入門便喝",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The Linji/Deshan paired-formula explanation otherwise holds."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "香雲",
+      "category": "other",
+      "finding": "The repaired literal-smoke versus poetic/auspicious-cloud split is defensible and materially improves the entry."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "香雲",
+      "category": "actor/turn",
+      "finding": "Poetic-cloud o1 is misattributed. In 韓氏生日，請上堂。問：『香雲結蓋…』 the unnamed monk/questioner utters the headword; Meixi Fudu answers with 萬里青山展壽圖. MasterName must be null, the unnamed questioner must be the exact actor, and Meixi Fudu must be ContextMasters respondent/record-owner rather than utterer."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "香雲",
+      "category": "actor/turn",
+      "finding": "The second-sense prose repeats that error by saying Meixi Fudu's address makes the cloud a canopy; it must name the unnamed questioner and describe Meixi's reply separately."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "香雲",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "宗鏡錄 o4 stores only the bare two-character KWIC 香雲. It passes substring verification but is not a reader-usable evidence window and cannot independently support the prose until recut to the reviewed surrounding unit."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "頂門正眼",
+      "category": "actor/turn",
+      "finding": "The repair correctly identifies Ying'an Tanhua as the utterer of o6, resolving the original review defect."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "頂門正眼",
+      "category": "actor/turn",
+      "finding": "Occurrence 4 correctly makes the unnamed monk the headword utterer, but omits Baichi Yuanshuo from ContextMasters even though 師云 explicitly records his response in Baichi's own record. Add Baichi Yuanshuo with respondent/record-owner scope permitted by the closed role vocabulary."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "頂門正眼",
+      "category": "sense/depth",
+      "finding": "The single sense and crown-eye gloss remain distinguishable and supported. The opening's functional inference is strong but stays within the repeated corpus pattern of possessing, opening, revealing, and testing this eye."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "知事",
+      "category": "sense/depth",
+      "finding": "The repair successfully replaces the former table-of-contents witnesses o1 and o2 with substantive rulebook passages and correctly demotes Fachang Yiyu to contextual person-described in o5."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "知事",
+      "category": "actor/turn",
+      "finding": "Occurrence 4 is still an editorial occasion heading: 請東序知事提綱 / 請知事，上堂. Under ACTOR_AUDIT outcome 4 it has no human utterer and must be Status impersonal, not identified-non-master with a supposed named authored voice."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "知事",
+      "category": "actor/turn",
+      "finding": "Occurrence 7 likewise bears the headword in the occasion heading 謝新舊知事，小參. It should be impersonal editorial heading; Furong Daokai may remain the section/address master in ContextMasters."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "知事",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The office sense, translation, prose, and remaining body occurrences are supported across distinct works."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "續傳燈錄",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Juelang Daosheng o3 and Hongchu o5 are now correctly named, and the bibliographic one-sense explanation remains supported by four distinct works."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "續傳燈錄",
+      "category": "actor/turn",
+      "finding": "Occurrences 1 and 2 are titles/catalogue headings, not compiler narration. Because the headword is itself a bibliographic title they remain admissible evidence, but their ActorAttribution status must be impersonal editorial/title heading rather than narrated."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "續傳燈錄",
+      "category": "actor/turn",
+      "finding": "Occurrence 6 is signed 永樂十五年三月徑山禪寺前住持比丘文琇書. This identifies the writer as the former abbot-monk Wenxiu. Existing fresh-build evidence elsewhere canonicalizes the same master as Nanshi Wenxiu and attributes his recorded sayings accordingly. Treating him as identified-non-master is therefore untenable: use MasterName Nanshi Wenxiu, add utterer ContextMasters, and reconcile him into the strict roster scope if the batch roster snapshot lacks him."
+    },
+    {
+      "artifact": "f004-laneA-901-905-repair-independent-rereview.json",
+      "term": "續傳燈錄",
+      "category": "other",
+      "finding": "The o6 AttributionNote must use the canonical name Nanshi Wenxiu and explicitly identify the signed preface/documentary voice."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "家醜",
+      "category": "other",
+      "finding": "o1, o5, and o7 correctly name Lan'an Dingxu, Zhe'an Jingfan, and Jingshan Rong, but o2-o3 are generically asserted anthology/commentary authors without resolving the exact verse voice or using an honest reviewed-unnamed state."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "家醜",
+      "category": "actor/turn",
+      "finding": "o4 says 'the named local-gentry invitation authors' without naming any human author; that is not an identified actor. o6 preserves first-person 北山 ritual speech and must resolve which named Beishan master owns it."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "家醜",
+      "category": "actor/turn",
+      "finding": "The explanation is specific and the double-edged school-disgrace inference is supported, but actor metadata remains insufficient for four of seven witnesses."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "徐六擔板",
+      "category": "actor/turn",
+      "finding": "o1-o4 and o6 are appropriately assigned to named direct speakers/commentators, and the one-sided-board explanation is corpus-earned."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "徐六擔板",
+      "category": "actor/turn",
+      "finding": "o5 is still assigned to 'Guishan Hui'an Guang, whose canonical roster form remains unresolved'; a prose caveat is not a canonical actor decision. The surrounding 御選語錄 unit must identify whether the exact 師拈 is Guishan Hui'an Guang or a later imperial/record voice and register the canonical name accordingly."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "徐六擔板",
+      "category": "sense/depth",
+      "finding": "Because the unresolved o5 is one of only six witnesses, the entry remains REVISE despite otherwise strong semantics."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "毒藥",
+      "category": "sense/depth",
+      "finding": "Six direct/commentarial witnesses correctly name Zhihai Benyi, Huanji, Zhongfeng Mingben, Juelang Daosheng, Wuye Guoshi, and Yuanwu Keqin."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "毒藥",
+      "category": "other",
+      "finding": "o5 is authored exposition in Zongjing Lu but remains the generic 'Zongjing Lu expository compiler'; the work's named compiler Yongming Yanshou is recoverable and should own the authored comparison unless a nested quotation boundary proves otherwise."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "毒藥",
+      "category": "actor/turn",
+      "finding": "The relational cure-versus-poison explanation is well supported and should be retained after that actor repair."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "李廣",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "o1, o3, and o5 correctly name Wuzu Fayan, Daqian Heqiao Dai, and Juelang Daosheng; the Li Guang arrow-story explanation is bounded and specific."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "李廣",
+      "category": "other",
+      "finding": "o2 is only 'the Chan verse-anthology author' and must resolve the verse author or become reviewed-unnamed after the six-rung search."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "李廣",
+      "category": "actor/turn",
+      "finding": "o4 supplies the human name Gushan Gui but leaves it as a noncanonical non-master label. The named verse/comment voice must be reconciled to the roster/pending roster rather than stranded in ActorLabel."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "五燈嚴統",
+      "category": "sense/depth",
+      "finding": "All four occurrences are documentary or paratextual, but only o2 names its human author, Shuijian Huihai. o1's annalist, o3's imperial memorial author, and o4's biographer are described by roles rather than actually identified."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "五燈嚴統",
+      "category": "other",
+      "finding": "The entry should resolve the supplied bylines/names where present, or use reviewed-unnamed with the six-rung record where the source truly supplies no name; 'identified-non-master' cannot mean an unnamed job description."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "五燈嚴統",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "The book-title sense and explanation of its lineage-polemic role are sound, but the claim that it is Feiyin Tongrong's history should explicitly distinguish Tongrong's compilation, later continuation, memorial presentation, and biography."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "下禪床",
+      "category": "other",
+      "finding": "o1 and o4 are duplicate lamp-record recensions of Xiuxi descending, walking two steps, and being seized by Gushan; they are one deployment family, not independent evidence."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "下禪床",
+      "category": "actor/turn",
+      "finding": "o3 is a verse containing 跳下禪床 in commentary on Nanquan, not narration describing Nanquan's descent; its exact verse voice is misclassified. o2, o5-o7 are narrated bodily actions and require named narrator/byline or honest reviewed-unnamed states rather than generic identified actors."
+    },
+    {
+      "artifact": "f004-laneB-1032-1034-1035-1036-1038-1040-fresh-independent-rereview.json",
+      "term": "下禪床",
+      "category": "actor/turn",
+      "finding": "The explanation correctly distinguishes leaving the teaching seat from ending seated meditation, but 'another spreads both hands after the community asks' conflates separate cases: Yungai Zhi spreads his hands in response to Jiufeng, whereas Baizhang Weizheng spreads his hands after the community's request. Rewrite with those actors and boundaries explicit."
+    },
+    {
+      "artifact": "f005-laneA-1201-1202-independent-review.json",
+      "term": "眼裏著沙",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Occurrence 1 stops after Baishui Benren’s paired maxim and does not store his requested explanation or the answer 應真無比 (“a worthy one without peer”), although the prose quotes that answer. Extend and re-verify o1 or add a separate anchored occurrence; do not delete the claim merely to clear the gate."
+    },
+    {
+      "artifact": "f005-laneA-1201-1202-independent-review.json",
+      "term": "眼裏著沙",
+      "category": "actor/turn",
+      "finding": "The remaining four cases support the exclusion/inclusion contrast and Daowu Wujin Wen’s transitive deployment; their actors and one-thing sense boundary hold."
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-independent-canary-review.json",
+      "term": "卓一下",
+      "category": "actor/turn",
+      "finding": "Systemic actor defect o1-o7: 卓一下 is a narrated stage direction/action ('struck once'), not speech uttered by the performer. Under ACTOR_AUDIT, MasterName is exclusively the utterer of the headword. Each row therefore needs MasterName null plus narrated ActorAttribution for the textual narrator/compiler, while the named master belongs in ContextMasters with the performer role and remains named in reader prose."
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-independent-canary-review.json",
+      "term": "卓一下",
+      "category": "actor/turn",
+      "finding": "o7 also names the wrong performer. The full case begins 潤州金山曇頴達觀禪師 and later says 住後示眾 before the stored blow. The performer is Jinshan/Daguan Tanying, not Yunju Shouyi; the current pending-roster candidate and prose must be corrected accordingly."
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-independent-canary-review.json",
+      "term": "卓一下",
+      "category": "actor/turn",
+      "finding": "The pending-roster evidence for Hongjue Min and Zhean Jingfan matches their own record headings and formal-address frames. The Yunju Shouyi candidate is contradicted by its full case and must not be integrated."
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-independent-canary-review.json",
+      "term": "卓一下",
+      "category": "actor/turn",
+      "finding": "The one-action sense and preferred target 'to strike once' hold. The explanation's observable staff-action inference is licensed, but its final named list must replace Yunju Shouyi with Jinshan/Daguan Tanying and distinguish performers from utterers."
+    },
+    {
+      "artifact": "f005-laneB-1301-1302-independent-canary-review.json",
+      "term": "卓一下",
+      "category": "unsupported-or-unanchored-prose",
+      "finding": "Seven witnesses span seven independent works and meet the floor. No non-headword Chinese claim requires a separate ClaimAnchor; DraftEvidence maps opening claims to o1-o7."
+    }
+  ],
+  "compileBenchmark": {
+    "entryId": "t_df028fd6bd35",
+    "seconds": 1.032,
+    "exitCode": 0,
+    "schemaOutputJsonEqual": true,
+    "temporaryOnly": true
+  },
+  "authoringRiskBenchmark": {
+    "entries": 2,
+    "elapsedSeconds": 0.054,
+    "flagged": 1,
+    "flags": 7,
+    "knownCanary": "卓一下",
+    "knownCanaryDefectsCaught": 7,
+    "cleanCanary": "語言",
+    "cleanCanaryFalseFlags": 0
+  },
+  "conclusion": [
+    "Human full-case authoring and independent semantic review dominate wall time; compilation and cheap lint are sub-second per small cohort.",
+    "Attribution and depth are the largest recurring composite phases; attribution-packet extraction is expensive on a cold cache but disappears on cache hits.",
+    "Actor/turn errors dominate durable rework. The new advisory preflight catches proof-subject contradictions and stage-action performer-to-MasterName risk before composite review.",
+    "Risky interpretive verbs are surfaced for anchoring or narrowing; the tool never decides semantics or rewrites final output."
+  ]
+}
