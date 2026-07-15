@@ -28,25 +28,17 @@
           "ToLb": "0003a16",
           "Kwic": "乃彈指一下曰：但恁麼薦取。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 薦取-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 薦取 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+          "AttributionNote": "Complete Mingjue/Xuedou biography: Xuedou Chongxian directly flicks a finger and tells the official to recognize it just so.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer",
+                "instructor"
+              ]
+            }
+          ],
+          "MasterName": "Xuedou Chongxian"
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
@@ -98,25 +90,18 @@
           "ToLb": "0038b02",
           "Kwic": "更有三要語在，切須薦取，不是等閑。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 薦取-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 薦取 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+          "AttributionNote": "Complete Fenyang discourse: Fenyang Shanzhao says that beyond the three phrases there are the three essentials and directly commands the assembly to recognize them.",
+          "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "utterer",
+                "hall-speaker",
+                "instructor"
+              ]
+            }
+          ],
+          "MasterName": "Fenyang Shanzhao"
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -124,13 +109,13 @@
           "ToLb": "0018c14",
           "Kwic": "若知去，未開口已前、未舉意已前、生佛未兆已前、空劫已前好薦取。",
           "Curated": true,
-          "AttributionNote": "Source text (列祖提綱錄): the compiler preserves the exact headword-bearing narration or formula.",
+          "AttributionNote": "Direct ordination address: the unnamed speaker commands the newly shaven assembly to recognize it before speech, intention, beings, or buddhas arise; no personal name is safely recoverable in the supplied unit.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 薦取-bearing event",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "ordination-address speaker",
+            "ActorLabel": "the unnamed ordination speaker",
+            "ActorRole": "utterer",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -139,10 +124,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 薦取 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+            "GrammarEvidence": "The first-person public address directly commands listeners to recognize it before speech or intention; the extracted complete unit does not safely preserve a personal heading.",
+            "ReviewedBy": "Codex grouped 4-6 independent-review full-unit REVISE",
+            "ReviewedUtc": "2026-07-16T12:30:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J26/J26nB178.xml",
@@ -150,25 +136,17 @@
           "ToLb": "0104c02",
           "Kwic": "」乃喝一喝云：「薦取攙先一著子，發機不落諸人後。",
           "Curated": true,
-          "AttributionNote": "Source text (費隱禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 薦取-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 薦取 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+          "AttributionNote": "Complete Feiyin record: after a shout, Feiyin Tongrong directly commands the assembly to recognize the move that gets ahead.",
+          "ContextMasters": [
+            {
+              "MasterName": "Feiyin Tongrong",
+              "Roles": [
+                "utterer",
+                "hall-speaker"
+              ]
+            }
+          ],
+          "MasterName": "Feiyin Tongrong"
         },
         {
           "RelPath": "J/J39/J39nB447.xml",

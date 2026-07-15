@@ -23,13 +23,21 @@
           "ToLb": "0718b21",
           "Kwic": "是苐一機云緊帩草鞋師在嶺中時有僧問如何是法身向上事云向上與你道即不難汝喚什麼作法",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: the unnamed monk asking Longya. The headword is inside the monk’s question; Longya’s answer follows it, so the respondent is not assigned backward.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Yunmen Wenyan gives the separately marked answer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "the unnamed monk asking Longya",
-            "ActorLabel": "the unnamed monk asking Longya",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -39,10 +47,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword is inside the monk’s question; Longya’s answer follows it, so the respondent is not assigned backward.",
-            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
-            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            "GrammarEvidence": "The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
           }
         },
         {
@@ -51,13 +58,21 @@
           "ToLb": "0533c04",
           "Kwic": "是清淨法身？師曰：紅日照青山。曰：如何是法身向上事？師曰：風吹雪不寒。問僧：趙州",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第1卷-第33卷); X/X81/X81n1571.xml). Exact actor: the unnamed monk asking Jingqing. The headword is inside the monk’s follow-up question; Jingqing’s answer follows it, so the respondent is not assigned backward.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Jingqing Daofu gives the separately marked answer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Jingqing Daofu",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "the unnamed monk asking Jingqing",
-            "ActorLabel": "the unnamed monk asking Jingqing",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -67,10 +82,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword is inside the monk’s follow-up question; Jingqing’s answer follows it, so the respondent is not assigned backward.",
-            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
-            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            "GrammarEvidence": "The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
           }
         },
         {
@@ -105,7 +119,7 @@
           "RelPath": "X/X66/X66n1296.xml",
           "FromLb": "0175c06",
           "ToLb": "0175c13",
-          "Kwic": "雖然，若是白巖，待道與某甲想出一錠金得麼？便好呵呵大笑，歸方丈。撫州疎山匡仁禪師撫州疎山匡仁禪師示眾：老僧咸通年前會得法身邊事，咸通年後會得法身向上事。雲門出問：如何是法身邊事？山曰：枯樁。曰：如何是法身向上事？山曰：非枯樁。曰：還許學人說道理也無？山曰：許。曰：枯樁豈不是明法身邊事？山曰：是。曰：非枯樁豈不是明法身向上事？山曰：是。曰：未",
+          "Kwic": "疎山云：咸通年後會得法身向上事，云門云：作麼生是法身向上事",
           "Curated": true,
           "ContextMasters": [
             {
@@ -122,7 +136,7 @@
           "RelPath": "J/J25/J25nB171.xml",
           "FromLb": "0545a17",
           "ToLb": "0545a27",
-          "Kwic": "：「僧問雲門：『如何是清淨法身？』門云：『六不收。』道林和尚拈云：『只道得一半。若問道林，只對他道：「一不立。」』乃頌云：『一不立，六不收，突然那更有蹤由？無限青山留不住，落花流水太悠悠。』」師拈云：「還知二大老鼻孔落在什麼處？然雖不負來機，盡力道將來，秪道得法身邊事。且道如何是法身向上事？」豎起拂子云：「龍得水時添意氣，虎逢山勢長威獰。」舉：「僧問歸宗：『如何是玄旨？』云：『無人能會。』僧云：『向者如何？』云：『有向即乖。』僧云：『不向者如何？』云：『誰求玄旨？』又云：『去！無汝用心處。』僧云：『豈無方便門令學人得入？』云：『觀音妙智力，能救世間苦。』僧云：『如",
+          "Kwic": "師問眾云：作麼生是法身向上事？",
           "MasterName": "Tianyin Yuanxiu",
           "Curated": true,
           "ContextMasters": [

@@ -79,25 +79,24 @@
           "ToLb": "0073a03",
           "Kwic": "師問：承師有言：目前無法，意在目前。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: the unnamed questioner. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "unnamed monastic questioner",
-            "ActorLabel": "the unnamed questioner",
-            "ActorRole": "questioner",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The explicit question frame assigns the headword-bearing words to an unnamed questioner; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
-          }
+          "AttributionNote": "Complete visit: Shushan Kuangren directly quotes the 'before the eyes there is no Dharma' formula while questioning Jiashan Shanhui.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shushan Kuangren",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Jiashan Shanhui",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
+          "MasterName": "Shushan Kuangren"
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -105,12 +104,20 @@
           "ToLb": "0562c22",
           "Kwic": "明招擁爐次，僧問：目前無法，意在目前。",
           "Curated": true,
-          "AttributionNote": "Source record (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the unnamed questioner. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete exchange: an unnamed monk quotes the formula in a question to Mingzhao Deqian, who answers in the next turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mingzhao Deqian",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "unnamed monastic questioner",
-            "ActorLabel": "the unnamed questioner",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -120,10 +127,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The explicit question frame assigns the headword-bearing words to an unnamed questioner; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
-          }
+            "GrammarEvidence": "The marked monk-question contains the headword; the named master's response follows separately.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -131,25 +139,9 @@
           "ToLb": "0120c03",
           "Kwic": "目前無法。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈會元; X/X80/X80n1565.xml). Exact actor: the compiler narrating the headword-bearing event. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
+          "AttributionNote": "Complete Jiashan instruction: Jiashan Shanhui directly states 'before the eyes there is no Dharma' and develops the paired formula.",
           "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the compiler narrating the headword-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
-          }
+          "MasterName": "Jiashan Shanhui"
         },
         {
           "RelPath": "B/B25/B25n0144.xml",
@@ -157,12 +149,20 @@
           "ToLb": "0410b07",
           "Kwic": "」問：「古人有言『目前無法，意在目前』，作摩生是在目前意？",
           "Curated": true,
-          "ContextMasters": [],
+          "ContextMasters": [
+            {
+              "MasterName": "Touzi Datong",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the compiler or recorder of the source passage",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -171,11 +171,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
+            "GrammarEvidence": "The marked monk-question contains the headword; the named master's response follows separately.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
           },
-          "AttributionNote": "Source record (祖堂集; B/B25/B25n0144.xml). Exact actor: the compiler or recorder of the source passage. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership."
+          "AttributionNote": "Complete exchange: an unnamed monk quotes the formula in a question to Touzi Datong, who answers in the next turn.",
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],

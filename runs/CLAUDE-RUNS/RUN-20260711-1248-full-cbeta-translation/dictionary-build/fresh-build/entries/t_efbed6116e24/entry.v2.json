@@ -30,7 +30,28 @@
           "Kwic": "良擬對，師拂袖便出，曰：見面不如聞名。",
           "Curated": true,
           "AttributionNote": "Source record (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "ContextMasters": [
+            {
+              "MasterName": "Xitang Zhizang",
+              "Roles": [
+                "questioner",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "questioner",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler or recorder narration",
@@ -55,8 +76,24 @@
           "ToLb": "0278a16",
           "Kwic": "志拂袖而去，行至中路有省，謂弟子曰：我當回去斬首以謝世尊。",
           "Curated": true,
-          "AttributionNote": "Source record (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete long-clawed Brahmin case: the narrator reports Dirghanakha sweeping his sleeves and leaving after Shakyamuni's question; Dirghanakha performs the action but does not utter its label.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dirghanakha",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler or recorder narration",
@@ -81,8 +118,17 @@
           "ToLb": "0006a21",
           "Kwic": "明拂袖便出去。",
           "Curated": true,
-          "AttributionNote": "Source record (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete exchange: the narrator reports the named-but-unrostered Xingjiao Ming sweeping his sleeves and leaving after the master's answer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xingjiao Ming",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "questioner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler or recorder narration",
@@ -148,13 +194,22 @@
           "ToLb": "0023c21",
           "Kwic": "老翁更若如何若何，便與一喝，拂袖竟去。",
           "Curated": true,
-          "AttributionNote": "Source record (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Yunmen Cheng directly prescribes the response: shout, sweep the sleeves, and leave; he is named in the source but not yet rostered.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Cheng",
+              "Roles": [
+                "named-unrostered",
+                "utterer",
+                "instructor"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the source compiler or recorder",
-            "ActorRole": "compiler",
+            "Status": "named-unrostered",
+            "Kind": "master's hypothetical instruction",
+            "ActorLabel": "Yunmen Cheng (雲門澄)",
+            "ActorRole": "utterer",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -163,10 +218,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
-          }
+            "GrammarEvidence": "雲門澄云 introduces the complete prescription ending in a shout and sweeping the sleeves; this is direct instruction by a named but unrostered master.",
+            "ReviewedBy": "Codex grouped 4-6 independent-review full-unit REVISE",
+            "ReviewedUtc": "2026-07-16T12:30:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -174,25 +230,17 @@
           "ToLb": "0407c16",
           "Kwic": "拂袖之類，冷地看來，慚惶殺人。",
           "Curated": true,
-          "AttributionNote": "Source record (指月錄; X/X83/X83n1578.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the source compiler or recorder",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
-          }
+          "AttributionNote": "Dahui Zonggao directly criticizes contrived enactments of the woman-leaving-absorption case, including sleeve-sweeping, as shameful on cold inspection.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            }
+          ],
+          "MasterName": "Dahui Zonggao"
         },
         {
           "RelPath": "X/X79/X79n1557.xml",
@@ -200,8 +248,24 @@
           "ToLb": "0014b22",
           "Kwic": "志拂袖而去。",
           "Curated": true,
-          "AttributionNote": "Source record (聯燈會要; X/X79/X79n1557.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Parallel long-clawed Brahmin case: the narrator reports Dirghanakha sweeping his sleeves and leaving; Shakyamuni is the respondent.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dirghanakha",
+              "Roles": [
+                "named-unrostered",
+                "action-performer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "respondent",
+                "case-teacher"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler or recorder narration",

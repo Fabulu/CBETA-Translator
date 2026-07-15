@@ -23,80 +23,22 @@
           "ToLb": "0592a10",
           "Kwic": "乃撫掌作舞，大笑云：「菩薩子喫飯來！」後有僧舉問長慶：「古人撫掌大笑，意作摩生？」",
           "Curated": true,
-          "AttributionNote": "In the source record (祖堂集), Source text (祖堂集); Jinniu Heshang owns the exact evidence clause after complete-case review.",
-          "MasterName": "Jinniu Heshang",
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Jinniu Heshang",
               "Roles": [
-                "utterer"
+                "action-performer",
+                "case-figure"
               ]
             }
-          ]
-        },
-        {
-          "RelPath": "X/X79/X79n1557.xml",
-          "FromLb": "0051b11",
-          "ToLb": "0051b14",
-          "Kwic": "僧問：和尚不使沙彌童行，何得自燒？師撫掌三下。後僧舉似曹山，山云：一等是箇拍手撫掌，就中西園奇怪，俱胝一指頭禪，蓋謂承當處不諦當。",
-          "Curated": true,
-          "AttributionNote": "In the source record (聯燈會要), Source text (聯燈會要); Xiyuan Tancang owns the exact evidence clause after complete-case review.",
-          "MasterName": "Xiyuan Tancang",
-          "ContextMasters": [
-            {
-              "MasterName": "Xiyuan Tancang",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "X/X82/X82n1571.xml",
-          "FromLb": "0075c19",
-          "ToLb": "0075c21",
-          "Kwic": "主指曰：春雨霖霖。師撫掌大笑曰：不直半分錢。主便喝，師曰：者瞎漢向道不直半分錢，又惡發作什麼？主撫掌一下，師曰：且坐喫茶。",
-          "Curated": true,
-          "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); Yangqi Fanghui owns the exact evidence clause after complete-case review.",
-          "MasterName": "Yangqi Fanghui",
-          "ContextMasters": [
-            {
-              "MasterName": "Yangqi Fanghui",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "X/X79/X79n1557.xml",
-          "FromLb": "0054c18",
-          "ToLb": "0054c20",
-          "Kwic": "大師欄胷與一踏踏倒，當下大悟，起來撫掌大笑云：也大奇！也大奇！百千法門，無量妙義，只向一毫頭上識得根源去。便作禮。",
-          "Curated": true,
-          "AttributionNote": "In the source record (聯燈會要), Source text (聯燈會要); Shuilao Heshang owns the exact evidence clause after complete-case review.",
-          "MasterName": "Shuilao Heshang",
-          "ContextMasters": [
-            {
-              "MasterName": "Shuilao Heshang",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0691b05",
-          "ToLb": "0691b08",
-          "Kwic": "僧以手面前一劃師云是何言欵僧便喝師云作甚麼僧撫掌一下便打師云瞎漢乱做作麼以坐具真打出法堂",
-          "Curated": true,
-          "AttributionNote": "In the source record (古尊宿語錄), Source text (古尊宿語錄); unnamed monk owns the exact evidence clause after complete-case review.",
+          ],
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "unnamed monk",
-            "ActorRole": "interlocutor",
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -105,9 +47,139 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex hard-w2-b1",
-            "ReviewedUtc": "2026-07-14T07:15:00Z",
-            "GrammarEvidence": "The complete case assigns this turn to unnamed monk."
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0051b11",
+          "ToLb": "0051b14",
+          "Kwic": "僧問：和尚不使沙彌童行，何得自燒？師撫掌三下。後僧舉似曹山，山云：一等是箇拍手撫掌，就中西園奇怪，俱胝一指頭禪，蓋謂承當處不諦當。",
+          "Curated": true,
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Xiyuan Tancang",
+              "Roles": [
+                "action-performer",
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0075c19",
+          "ToLb": "0075c21",
+          "Kwic": "主指曰：春雨霖霖。師撫掌大笑曰：不直半分錢。主便喝，師曰：者瞎漢向道不直半分錢，又惡發作什麼？主撫掌一下，師曰：且坐喫茶。",
+          "Curated": true,
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Yangqi Fanghui",
+              "Roles": [
+                "action-performer",
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0054c18",
+          "ToLb": "0054c20",
+          "Kwic": "大師欄胷與一踏踏倒，當下大悟，起來撫掌大笑云：也大奇！也大奇！百千法門，無量妙義，只向一毫頭上識得根源去。便作禮。",
+          "Curated": true,
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Shuilao Heshang",
+              "Roles": [
+                "action-performer",
+                "case-figure"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0691b05",
+          "ToLb": "0691b08",
+          "Kwic": "僧以手面前一劃師云是何言欵僧便喝師云作甚麼僧撫掌一下便打師云瞎漢乱做作麼以坐具真打出法堂",
+          "Curated": true,
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
           },
           "ContextMasters": [
             {
@@ -117,7 +189,8 @@
                 "section-subject"
               ]
             }
-          ]
+          ],
+          "MasterName": null
         },
         {
           "RelPath": "D/D48/D48n8939.xml",
@@ -125,16 +198,34 @@
           "ToLb": "0038a09",
           "Kwic": "上堂撫掌大笑良久曰大眾笑箇什麼山僧笑古往今來一切人有瞥地有不瞥地",
           "Curated": true,
-          "AttributionNote": "In the source record (古尊宿語錄), Source text (古尊宿語錄); Foyan Qingyuan owns the exact evidence clause after complete-case review.",
-          "MasterName": "Foyan Qingyuan",
+          "AttributionNote": "Complete case read: 撫掌 occurs in the narrator's stage direction; the named master or unnamed monk performs the clap but does not say the word.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Foyan Qingyuan",
               "Roles": [
-                "utterer"
+                "action-performer",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "stage-direction narration",
+            "ActorLabel": "the case narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The text reports a person clapping as a bodily action; the action performer does not utter the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -161,9 +252,9 @@
           "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "verse-author",
-            "ActorLabel": "the unidentified verse author responsible for the headword-bearing clause at X/X66/X66n1297.xml",
-            "ActorRole": "verse-author",
+            "Kind": "verse author",
+            "ActorLabel": "the unnamed verse author",
+            "ActorRole": "quoted-author",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -172,12 +263,13 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete passage presents 撫掌 in a verse, but supplies no verse-author name.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
+            "GrammarEvidence": "The headword occurs in a verse whose author is not named in the complete source unit.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
           },
           "ContextMasters": [],
-          "AttributionNote": "In the source record (宗鑑法林), (宗鑑法林): the unidentified verse author in (宗鑑法林) owns the exact headword-bearing verse. Actor: the unidentified verse author responsible for the headword-bearing clause at X/X66/X66n1297.xml."
+          "AttributionNote": "The occurrence belongs to an explicitly presented verse; the complete source unit does not name its author.",
+          "MasterName": null
         }
       ],
       "SourceTexts": [

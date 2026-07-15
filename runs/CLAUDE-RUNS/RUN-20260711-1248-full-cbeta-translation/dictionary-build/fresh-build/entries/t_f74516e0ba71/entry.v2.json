@@ -46,13 +46,14 @@
           },
           "ContextMasters": [
             {
-              "MasterName": "普濟玉琳國師",
+              "MasterName": "Yulin Tongxiu",
               "Roles": [
-                "person-described"
+                "person-described",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source record (普濟玉琳國師語錄; B/B27/B27n0152.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "AttributionNote": "Yulin Tongxiu's biographer reports disciples keeping the name of Medicine Master Lapis-Lazuli Buddha and saying Yulin had manifested from that realm; the biographer owns the wording."
         },
         {
           "RelPath": "X/X68/X68n1319.xml",
@@ -60,8 +61,16 @@
           "ToLb": "0534c01",
           "Kwic": "執事舉楞嚴．大悲．藥師．往生等神呪，並遶誦普門大士名，懺悔，發願，回向。",
           "Curated": true,
-          "ContextMasters": [],
-          "AttributionNote": "Source record (御選語錄; X/X68/X68n1319.xml): the compiler or recorder of the source passage supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongzheng Emperor",
+              "Roles": [
+                "named-unrostered",
+                "ceremony-patron"
+              ]
+            }
+          ],
+          "AttributionNote": "Ritual narration in the Imperial Selection records officiants reciting the Medicine Master spell among the listed spells, circumambulating, repenting, vowing, and dedicating merit.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
@@ -111,9 +120,16 @@
                 "address-speaker",
                 "ceremony-master"
               ]
+            },
+            {
+              "MasterName": "Qü Tingfa",
+              "Roles": [
+                "named-unrostered",
+                "deceased-subject"
+              ]
             }
           ],
-          "AttributionNote": "Source text; exact headword actor: the anthology compiler writing the memorial-service heading. The complete case was read before attribution."
+          "AttributionNote": "Editorial ceremony heading: Zhongfeng Mingben gives a small-group address before the spirit at the Medicine Master observance for the deceased transport commissioner Qü Tingfa."
         },
         {
           "RelPath": "B/B25/B25n0145.xml",
@@ -155,8 +171,16 @@
             "GrammarEvidence": "The selected clause is continuous documentary or expository prose without a direct-speech frame assigning the headword to a different speaker.",
             "ReviewedUtc": "2026-07-15T06:16:04.319922+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (高峰三山來禪師疏語; J/J39/J39nB439.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "ContextMasters": [
+            {
+              "MasterName": "Gaofeng San Shanlai",
+              "Roles": [
+                "named-unrostered",
+                "text-author"
+              ]
+            }
+          ],
+          "AttributionNote": "Gaofeng San Shanlai's ritual-formulary heading identifies a Medicine Master memorial; the headword is a ceremony/title label rather than dialogue."
         },
         {
           "RelPath": "J/J38/J38nB424.xml",
@@ -169,11 +193,11 @@
               "MasterName": "Puming",
               "Roles": [
                 "record-owner",
-                "respondent"
+                "hall-speaker"
               ]
             }
           ],
-          "AttributionNote": "Source record (香嚴禪師語錄; J/J38/J38nB424.xml): the source recorder supplies the headword. The recorder announces the Medicine Master observance and hall event; Puming supplies the following address.",
+          "AttributionNote": "Complete Puming record: the narrator labels the opening of a Medicine Master observance and the following hall address; Puming conducts the event but does not utter the heading.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "ceremony and hall-event narration",
@@ -195,12 +219,12 @@
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
-        "J/J39/J39nB439.xml",
         "B/B27/B27n0152.xml",
         "X/X68/X68n1319.xml",
-        "C/C077/C077n1710.xml",
         "X/X64/X64n1260.xml",
-        "B/B25/B25n0145.xml"
+        "B/B25/B25n0145.xml",
+        "J/J39/J39nB439.xml",
+        "J/J38/J38nB424.xml"
       ],
       "RelatedMasters": [
         "Zhaozhou Congshen",

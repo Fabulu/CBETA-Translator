@@ -400,25 +400,43 @@
           "FromLb": "0306b20",
           "ToLb": "0306b21",
           "Kwic": "師舉臨濟三句語問塔主。祇如塔中和尚得第幾句。",
-          "MasterName": "Yunmen Wenyan",
+          "MasterName": null,
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Yunmen Wenyan",
               "Roles": [
-                "utterer",
-                "section-subject",
+                "action-performer",
+                "questioner",
                 "later-raiser"
               ]
             },
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-discussed"
+                "case-source",
+                "case-figure"
               ]
             }
           ],
-          "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Yunmen Wenyan section: Yunmen Wenyan raises Linji's three-phrase saying and asks which phrase the monk in the stupa attained."
+          "AttributionNote": "Complete Yunmen case: the narrator reports Yunmen Wenyan raising Linji's three-phrase saying and asking the stupa keeper which phrase was attained.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "case narration",
+            "ActorLabel": "the record narrator",
+            "ActorRole": "narrator",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師舉 reports Yunmen raising Linji's three-phrase saying and questioning the stupa keeper; the headword belongs to the narrator's action report.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T12:00:00Z"
+          }
         }
       ],
       "SourceTexts": [

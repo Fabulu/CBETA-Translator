@@ -28,16 +28,34 @@
           "ToLb": "0789c03",
           "Kwic": "地師云趂熟人民亂縱橫五月麥熟盡息心云不知甚麼處立身師云夏月多毒熱行人盡休歇問雪山童子捨身為求諸行此行如何師云掉臂街頭走仰面看青天云恁麼即迷人尋著向城路也師云此人",
           "Curated": true,
-          "MasterName": "Yexian Guixing",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Yexian Guixing. Source text (古尊宿語錄).",
+          "MasterName": null,
+          "AttributionNote": "Complete Yexian exchange: an unnamed monk asks about the Snow Mountain Youth's self-sacrifice; Yexian Guixing gives the separately marked answer.",
           "ContextMasters": [
             {
               "MasterName": "Yexian Guixing",
               "Roles": [
-                "utterer"
+                "respondent",
+                "case-teacher"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "問雪山童子 introduces the unnamed monk's headword-bearing question; Yexian's answer begins after 師云.",
+            "ReviewedBy": "Codex grouped 4-6 independent-review full-unit REVISE",
+            "ReviewedUtc": "2026-07-16T12:30:00Z"
+          }
         },
         {
           "RelPath": "J/J27/J27nB198.xml",

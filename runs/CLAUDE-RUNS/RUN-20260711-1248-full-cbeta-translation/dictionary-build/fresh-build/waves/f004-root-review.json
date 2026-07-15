@@ -943,26 +943,19 @@
     },
     "t_aa56c106ef82": {
       "term": "陷虎之機",
-      "verdict": "REVISE",
-      "reviewedSha256": "6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "a9aa573208b9b7a301926b47c192377db3d95d93cf481247061fc418abc5ca50",
+      "finding": "The repaired entry preserves the fully read tiger-trapping mechanism evidence, names Yilinzu where the unit explicitly identifies him, and removes the invalid Ananda link without inventing an utterer. Remaining name normalization is roster-only.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f004-laneC.json",
       "supersedes": {
-        "term": "陷虎之機",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa",
-        "finding": "The signed non-master Yilinzu comment is not promoted to MasterName; five master utterers and their discussed case figures are correctly named. The encounter-device gloss captures the observable deployment and avoids imposing a free-standing tiger symbolism.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1141-1150-reviewer8-recovery-independent.json",
-        "supersedes": {
-          "verdict": "KEEP",
-          "reviewedSha256": "00e2b63ea36b8ed93b0112106084a56796c22294613ae74721cacfc9fc117d29",
-          "sourceReview": "fresh-build/waves/f004-laneC-1131-1150-reviewer3-postcollision-rereview.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_aa56c106ef82/6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_aa56c106ef82/6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_aa56c106ef82/6f387059a14c666776b4db56f049856543eae9471fbe337326d7155b401a0ffa/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_aa56c106ef82/a9aa573208b9b7a301926b47c192377db3d95d93cf481247061fc418abc5ca50/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_aa56c106ef82/a9aa573208b9b7a301926b47c192377db3d95d93cf481247061fc418abc5ca50/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_aa56c106ef82/a9aa573208b9b7a301926b47c192377db3d95d93cf481247061fc418abc5ca50/receipt.json"
       }
     },
     "t_2281bd1c98fc": {
@@ -1185,21 +1178,19 @@
     },
     "t_da72db7aa635": {
       "term": "把斷",
-      "verdict": "REVISE",
-      "reviewedSha256": "d655a9b514e81bb45354cad8d29868f7d334254f3292954bc1b168d8cf8379a5",
-      "finding": "Current attribution ground truth records 1 hard failure(s): note_missing_source.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "aacdb41963ee54274c733fd02e7a896b2d26291e320c08a6efbea0649f71065d",
+      "finding": "The repaired headword-bearing monk turns remain correctly assigned after complete-exchange reading, and the controlling/holding-fast use is coherent. Deferred name normalization does not block the semantic/turn verdict.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f004-laneB.json",
       "supersedes": {
-        "term": "把斷",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "d655a9b514e81bb45354cad8d29868f7d334254f3292954bc1b168d8cf8379a5",
-        "finding": "The repair replaces cohort-default actor labels with complete-case exact utterers, reviewed non-master actors, narration, or impersonal paratext and supplies closed named context.; The term-specific English-first opening, translation, sense structure, body/paratext selection, actual work spread, roster spelling, and public-reader controls resolve the original rejection.; Every current KWIC and line range verifies and the entry hash is bound to the focused repair gate.",
-        "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer2-repair-rereview-corrected.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_da72db7aa635/d655a9b514e81bb45354cad8d29868f7d334254f3292954bc1b168d8cf8379a5/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_da72db7aa635/d655a9b514e81bb45354cad8d29868f7d334254f3292954bc1b168d8cf8379a5/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_da72db7aa635/d655a9b514e81bb45354cad8d29868f7d334254f3292954bc1b168d8cf8379a5/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_da72db7aa635/aacdb41963ee54274c733fd02e7a896b2d26291e320c08a6efbea0649f71065d/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_da72db7aa635/aacdb41963ee54274c733fd02e7a896b2d26291e320c08a6efbea0649f71065d/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_da72db7aa635/aacdb41963ee54274c733fd02e7a896b2d26291e320c08a6efbea0649f71065d/receipt.json"
       }
     },
     "t_b7fa9548f704": {
@@ -1542,26 +1533,19 @@
     },
     "t_dd5f8d8801d2": {
       "term": "扇子",
-      "verdict": "REVISE",
-      "reviewedSha256": "7e29f4a43eea480ac0377c20118a1acf70a2f589b28e99854ce8cc5d66682751",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "db962b226f4c53a2c050e2883a61c8069f821ebc8fe34f2795715d3b91af9899",
+      "finding": "The Yanguan case is recut to a single token and voice, while Shimen and Touzi are correctly represented as later raisers; the fan referent remains concrete and coherent.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f004-laneA.json",
       "supersedes": {
-        "term": "扇子",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "7e29f4a43eea480ac0377c20118a1acf70a2f589b28e99854ce8cc5d66682751",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneA-918-root-reviewer9-final.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "10c80bc5326702eb966d5909107c46b0cf028a11c697b927ca53de74be774f10",
-          "sourceReview": "fresh-build/waves/f004-laneA-918-925-root-reviewer8-final.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_dd5f8d8801d2/7e29f4a43eea480ac0377c20118a1acf70a2f589b28e99854ce8cc5d66682751/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_dd5f8d8801d2/7e29f4a43eea480ac0377c20118a1acf70a2f589b28e99854ce8cc5d66682751/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_dd5f8d8801d2/7e29f4a43eea480ac0377c20118a1acf70a2f589b28e99854ce8cc5d66682751/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_dd5f8d8801d2/db962b226f4c53a2c050e2883a61c8069f821ebc8fe34f2795715d3b91af9899/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_dd5f8d8801d2/db962b226f4c53a2c050e2883a61c8069f821ebc8fe34f2795715d3b91af9899/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_dd5f8d8801d2/db962b226f4c53a2c050e2883a61c8069f821ebc8fe34f2795715d3b91af9899/receipt.json"
       }
     },
     "t_09cbe12e4c36": {
@@ -2205,21 +2189,19 @@
     },
     "t_f24a55791323": {
       "term": "單傳直指",
-      "verdict": "REVISE",
-      "reviewedSha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
-      "finding": "Current attribution ground truth records 1 hard failure(s): anonymous_monk_question_assigned_to_master.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "d4ad81254dce38ba58f4d6db7c10af00893f9d474625a4bf005e9cabc8d94ee7",
+      "finding": "All six complete units read. The mixed monk/Liao'an row is correctly recut to Liao'an's own token, every remaining headword has the right direct speaker, and the synthesis accurately describes a lineage claim and direct pointing without importing outside doctrine.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-056065-f004-laneB.json",
       "supersedes": {
-        "term": "單傳直指",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneB-1031-1040-reviewer11-postrepair-keep3.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_f24a55791323/347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_f24a55791323/347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_f24a55791323/347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_f24a55791323/d4ad81254dce38ba58f4d6db7c10af00893f9d474625a4bf005e9cabc8d94ee7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_f24a55791323/d4ad81254dce38ba58f4d6db7c10af00893f9d474625a4bf005e9cabc8d94ee7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_f24a55791323/d4ad81254dce38ba58f4d6db7c10af00893f9d474625a4bf005e9cabc8d94ee7/receipt.json"
       }
     },
     "t_74c3c0e1b896": {
@@ -2414,21 +2396,19 @@
     },
     "t_d3631f4abf25": {
       "term": "紅爐片雪",
-      "verdict": "REVISE",
-      "reviewedSha256": "9ac0023d5783d52a7136a36ac756c333b6c8802b8c0f2e68fdcba7836faa0e7e",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "61b6273826d4ba0cb0661c4e532fb16e080b4ea7fc68c9c125e2a81793d15140",
+      "finding": "Unsigned verse voices, compiler biography, and signed preface author remain correctly separated after repair. The red-furnace/snowflake image is grounded in the read units; only deferred roster normalization remains.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f004-laneC.json",
       "supersedes": {
-        "term": "紅爐片雪",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "9ac0023d5783d52a7136a36ac756c333b6c8802b8c0f2e68fdcba7836faa0e7e",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1186-1195-reviewer12-postrepair.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_d3631f4abf25/9ac0023d5783d52a7136a36ac756c333b6c8802b8c0f2e68fdcba7836faa0e7e/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_d3631f4abf25/9ac0023d5783d52a7136a36ac756c333b6c8802b8c0f2e68fdcba7836faa0e7e/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_d3631f4abf25/9ac0023d5783d52a7136a36ac756c333b6c8802b8c0f2e68fdcba7836faa0e7e/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_d3631f4abf25/61b6273826d4ba0cb0661c4e532fb16e080b4ea7fc68c9c125e2a81793d15140/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_d3631f4abf25/61b6273826d4ba0cb0661c4e532fb16e080b4ea7fc68c9c125e2a81793d15140/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_d3631f4abf25/61b6273826d4ba0cb0661c4e532fb16e080b4ea7fc68c9c125e2a81793d15140/receipt.json"
       }
     },
     "t_cb09819b2297": {

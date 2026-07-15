@@ -358,20 +358,19 @@
     },
     "t_97b566635d6c": {
       "term": "宗師",
-      "verdict": "REVISE",
-      "reviewedSha256": "114411e303599654c14e28d79ff241ad5d54e01e8f89ce9ebf0bb0a2a5b8d72a",
-      "finding": "Current attribution ground truth records 9 hard failure(s): named_master_missing_structured_link.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "529c4c851ce1c5116523c00c72be885316645137c8d2f35afb9d5a0e7ceed28a",
+      "finding": "All seven complete direct and appraisal units read. The enriched context correctly identifies the people appraised while leaving the actual headword with its speaker, and the entry distinguishes the role-title from ordinary generic expertise through corpus deployment rather than outside interpretation.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-4-6-056065-f001-laneC.json",
       "supersedes": {
-        "term": "宗師",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "114411e303599654c14e28d79ff241ad5d54e01e8f89ce9ebf0bb0a2a5b8d72a",
-        "finding": "Root read all seven full contexts. The term is one role/appraisal—a lineage master—used in direct definition, requirements, praise, historical classification, and rebuke. The negative appraisal does not create a second referent; all seven exact speakers are supported and the opening interpretation states the public responsibilities evidenced in their words.",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_97b566635d6c/114411e303599654c14e28d79ff241ad5d54e01e8f89ce9ebf0bb0a2a5b8d72a/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_97b566635d6c/114411e303599654c14e28d79ff241ad5d54e01e8f89ce9ebf0bb0a2a5b8d72a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_97b566635d6c/529c4c851ce1c5116523c00c72be885316645137c8d2f35afb9d5a0e7ceed28a/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_97b566635d6c/529c4c851ce1c5116523c00c72be885316645137c8d2f35afb9d5a0e7ceed28a/receipt.json"
       }
     },
     "t_368268e023e3": {
@@ -2894,21 +2893,19 @@
     },
     "t_bbee6625a4d5": {
       "term": "赤肉團上",
-      "verdict": "REVISE",
-      "reviewedSha256": "e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710",
-      "finding": "Current attribution ground truth records 1 hard failure(s): anonymous_monk_question_assigned_to_master.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "037b821fdec291624568d419b25f4c9b53fff64920f2da69d50ceb84aba942b9",
+      "finding": "Nanyuan's declaration and the monk's repeated question are now separate headword-bearing turns; the prior full-read semantic finding still holds.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f001-laneB.json",
       "supersedes": {
-        "term": "赤肉團上",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneB-051-060-independent-semantic-rereview-round1.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_bbee6625a4d5/e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_bbee6625a4d5/e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_bbee6625a4d5/e01e999f40973b3a0a52e20d411fc098998af4d178d7d9eb99c922a6ccfc6710/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_bbee6625a4d5/037b821fdec291624568d419b25f4c9b53fff64920f2da69d50ceb84aba942b9/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_bbee6625a4d5/037b821fdec291624568d419b25f4c9b53fff64920f2da69d50ceb84aba942b9/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_bbee6625a4d5/037b821fdec291624568d419b25f4c9b53fff64920f2da69d50ceb84aba942b9/receipt.json"
       }
     },
     "t_6c20139c8cc0": {
@@ -3628,21 +3625,19 @@
     },
     "t_d1e06fd225fa": {
       "term": "入室",
-      "verdict": "REVISE",
-      "reviewedSha256": "e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff",
-      "finding": "Current attribution ground truth records 1 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "3fe543c84424f3f6da56ac15e4f943f42442d9f0eb841642107644c2c912f872",
+      "finding": "Every narrated biography now records the observable entrant, teacher, dying subject, or scripture-fetcher without falsely making that person narrator; the literal/Zen-loaded distinctions remain supported.",
+      "sourceReview": "maintenance/attribution-read-adjudication/promotion-after919-f001-laneB.json",
       "supersedes": {
-        "term": "入室",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneB-081-100-independent-semantic-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_d1e06fd225fa/e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_d1e06fd225fa/e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_d1e06fd225fa/e177d4338fbe8973a95faba0dd0b8dc2c57b7c6c4ba70a99dfe41a4bec5c5bff/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_d1e06fd225fa/3fe543c84424f3f6da56ac15e4f943f42442d9f0eb841642107644c2c912f872/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_d1e06fd225fa/3fe543c84424f3f6da56ac15e4f943f42442d9f0eb841642107644c2c912f872/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_d1e06fd225fa/3fe543c84424f3f6da56ac15e4f943f42442d9f0eb841642107644c2c912f872/receipt.json"
       }
     },
     "t_0427b79d8ba4": {
