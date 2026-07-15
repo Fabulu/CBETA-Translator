@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import datetime,hashlib,json,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parent;DB=ROOT.parent;sys.path.insert(0,str(DB));import zc
+ledger=json.loads((ROOT/'waves'/'f004-laneA-926-935-exact-author-ledger.json').read_text(encoding='utf-8'))
+F={
+926:["o4: the headword occurs inside the explicitly introduced comment 不退勇云; 'case commentator' is not an adequate non-master actor and the named commentator must be resolved.","o6-o7: verse/commentary authorship is asserted generically; widen to the named verse or case-commentary unit before retaining identified-non-master."],
+927:["o3 and o6 store only the bare headword, so neither the Foyan attribution nor the claimed documentary author can be independently read from the stored evidence.","o5 is direct dialogue (師云：寢堂月一彎); the utterer is the section master, not a non-master 'record owner'.","o7 is construction narration, but ContextMasters should name Miyun Yuanwu or the relevant institution figure rather than leaving the occurrence orphaned."],
+928:["The entry never tells the reader what Yunmen's three phrases are or how the corpus states them; #0g prose is under-informative.","o3-o4 are bare-headword KWICs and cannot support the confident Yuanmi/record-owner decisions.","o5 is inside a master's hall address (師以竹篦子…上堂); classifying the utterer as a non-master record owner is wrong."],
+929:["o2 is a recorded small assembly/direct address, not a non-master record owner.","o4 is a master's exhortation in a sayings record; 'hall-address record owner' evades the name-the-speaker rule.","Preface witnesses o3 and o5 are legitimately non-master, showing why source genre must be decided occurrence by occurrence."],
+930:["o2 and o5 put the phrase in a monk's direct question; the actor is the questioning monk, not the record owner.","The prose should state that the lion seat is the raised teaching seat, not leave the reader with an unexplained literal lion seat.","Letters/petitions o4, o6 and preface o7 may remain non-master only after naming their human authors where the source supplies them."],
+931:["o1 and o4 are bare-headword contents labels and do not provide full lexical context.","o5 is a master's direct public address asking whether the matter belongs to officers or the assembly; the utterer cannot be a non-master record owner.","Institutional list witnesses are useful, but the entry needs at least one fully contextualized rule passage rather than multiple table-of-contents labels."],
+932:["o1, o2 and o4 are direct incense/admonition/address speech in named masters' records; generic non-master record-owner labels contradict the speech frames.","o3 and o6 are genuine preface prose and should remain authorial only if those preface authors are named.","PreferredTarget 'wisdom-life' is less informative than the explanation's corpus-earned meaning, continuity of the teaching lineage."],
+933:["All seven stored KWICs are the bare token 東司. They mechanically verify but expose no rule, exchange, actor, or Zen deployment.","The confident Zhaozhou and Meng'an utterer assignments cannot be checked from the stored KWICs; re-cut the complete turns and rules.","The prose mentions Zhaozhou's exchange but anchors no visible exchange, so the entry fails the reader-facing evidence requirement."],
+934:["o1 and o3 are direct public addresses by the respective record masters, not non-master record owners.","o4 is a bare token attributed to Dahui without a visible speech frame; re-cut it.","o6 quotes a named master's incense formula (師炷香云); resolve that master rather than label an abstract 'imperial-service incense author'."],
+935:["o2 is first-person teaching-seat speech ('山僧昔預此會，法乳親甞'), so the utterer is the section master, not a non-master record owner.","o7 is an opening incense formula followed by 師云 and belongs to the named record master, not an abstract ceremony record owner.","o1 and o4 are legitimately preface/petition prose, but their human authors should be named when supplied by the source."],
+}
+out={'schemaVersion':1,'reviewer':'reviewer11 independent','generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sourceLedger':'f004-laneA-926-935-exact-author-ledger.json','sourcePreReview':'f004-laneA-926-935-exact-author-pre-review-v3.json','role':'independent-review-only','entries':[],'summary':{}}
+exact=0;hashes=0
+for row in ledger['entries']:
+ ep=ROOT/'entries'/row['id']/'entry.v2.json';raw=ep.read_bytes();e=json.loads(raw); hashes+=hashlib.sha256(raw).hexdigest()==row['entrySha256'];checks=[]
+ for s in e['Senses']:
+  for o in s['Occurrences']:
+   v=zc.verify(o['RelPath'],o['Kwic']);checks.append(bool(v.get('ok') and v.get('fromLb')==o['FromLb'] and v.get('toLb')==o['ToLb']))
+ exact+=sum(checks)
+ out['entries'].append({'ordinal':row['ordinal'],'id':row['id'],'term':row['term'],'reviewedSha256':row['entrySha256'],'occurrencesReviewed':len(checks),'exactVerified':sum(checks),'verdict':'REVISE','findings':F[row['ordinal']]})
+out['summary']={'entriesReviewed':10,'fullCasesReviewed':68,'currentHashMatches':hashes,'exactVerified':exact,'keep':0,'revise':10,'mechanics':'68/68 exact; semantic and attribution revision required','systemicFindings':["Named master speech was repeatedly collapsed into identified-non-master 'record owner' labels.","Bare-token KWICs mechanically verify but cannot prove actor, context, or #0g deployment.","Several openings repeat generic complete-case boilerplate instead of stating the headword's specific Zen bend.","Preface, rule, narration, questioner, commentator, and teaching-seat utterer must be distinguished source by source."]}
+(ROOT/'waves'/'f004-laneA-926-935-reviewer11-independent.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(out['summary'],ensure_ascii=False,indent=2))

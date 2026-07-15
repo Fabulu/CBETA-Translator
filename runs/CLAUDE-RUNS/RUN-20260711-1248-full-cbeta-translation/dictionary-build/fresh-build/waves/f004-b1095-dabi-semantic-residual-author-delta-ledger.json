@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T18:23:55.809083+00:00",
+  "role": "repair-author",
+  "scope": "大悲 residual semantic prose only",
+  "sourceReview": "f004-final-three-current-revise-independent-review.json",
+  "sourceReviewSha256": "8612d81cecb8cd5e5c2879a0f3eb258e73c5ec1cdceb34413c417b049a38445a",
+  "entry": {
+    "ordinal": 1095,
+    "id": "t_9e98cbf9596b",
+    "term": "大悲",
+    "beforeEntrySha256": "33c001737a61b6f67ddc40ce9c5723dd065d3e06a57c872bf65c7c12c346b8e2",
+    "afterEntrySha256": "a4e0c931d50552a6fb6face9a49680923e9cf8534249c895d49630fa7b34eaf7",
+    "worksheetSha256": "8f706da109ea1270a023601e055bd9b3758c4ba24bcc72b60fdc50c75d7ec714",
+    "occurrences": 8
+  },
+  "repair": "Removed the unsupported Buddha-birth/compassionate-vow claim and replaced it with the stored gratitude, Xiangyan praise, and Mahakasyapa lament deployments.",
+  "gate": {
+    "path": "f004-b1095-dabi-semantic-residual-author-pre-review.json",
+    "sha256": "191ca238a97c65325a85223cb6da1d05c8194d85b197556e53c444e428176511",
+    "hardPass": true,
+    "exactKwics": 8,
+    "exactFailures": 0
+  },
+  "otherEntriesEdited": false,
+  "semanticRereviewRequired": true,
+  "selfReview": false,
+  "promoted": false,
+  "merged": false,
+  "siteTouched": false
+}

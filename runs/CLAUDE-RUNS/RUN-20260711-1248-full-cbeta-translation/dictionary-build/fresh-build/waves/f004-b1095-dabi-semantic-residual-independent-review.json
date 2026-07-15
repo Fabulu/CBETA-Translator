@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-residual-semantic-rereview",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T22:45:00+02:00",
+  "sourceAuthorLedger": "fresh-build/waves/f004-b1095-dabi-semantic-residual-author-delta-ledger.json",
+  "sourceAuthorLedgerSha256": "d4812a4ae8ef1e895323bb666f78e04375e5cc3e2fc8126a2b79f800f3a7e740",
+  "ordinal": 1095,
+  "id": "t_9e98cbf9596b",
+  "term": "大悲",
+  "reviewedEntrySha256": "a4e0c931d50552a6fb6face9a49680923e9cf8534249c895d49630fa7b34eaf7",
+  "occurrencesReadInFullCase": 8,
+  "exactKwicsAndSpans": 8,
+  "verdict": "KEEP",
+  "findings": [
+    "The unsupported Buddha-birth/compassionate-vow sentence is gone.",
+    "The replacement prose is exactly grounded in the stored evidence: 大悲父 supports mind as the father of great compassion; two outsider sayings explicitly thank great compassion for opening their clouded view; Xiangyan Zhixian's own praise says Guishan's compassion exceeds that of parents; Mahakasyapa's own lament says the Buddha's compassion could not remain to await him.",
+    "All eight current KWICs and FromLb/ToLb spans verify exactly. The earlier actor repairs remain intact: Xiangyan owns his 贊云 line, and the two Linji challenges remain narrowly recut to Linji's exact repeated wording.",
+    "Whole-entry regression controls pass: the great-compassion quality and Great-Compassion figure remain distinct senses, and no actor, sense, or evidence depth was lost in the prose-only repair."
+  ],
+  "reviewIntegrity": {"entriesEdited":false,"promoted":false,"merged":false,"siteTouched":false,"selfReview":false}
+}

@@ -73,8 +73,21 @@
           "ToLb": "0526b08",
           "Kwic": "黃梅．曹溪密室，夜分傳衣授受，究何曾道一字耶？",
           "Curated": true,
-          "AttributionNote": "Source text (御選語錄). The Yongzheng Emperor is the identified non-master author asking what word was ever spoken in the private robe transmission.",
-          "ContextMasters": [],
+          "AttributionNote": "Imperially Selected Recorded Sayings: the Yongzheng Emperor asks what word Hongren and Huineng ever spoke during the private robe transmission.",
+          "ContextMasters": [
+            {
+              "MasterName": "Hongren",
+              "Roles": [
+                "transmission-figure"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "transmission-figure"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "identified-non-master",
             "Kind": "public figure",
@@ -126,12 +139,26 @@
           "Kwic": "昔達摩初至，人未之信，故傳衣以明得法。今信心已熟，衣乃爭端，止於汝身，不復傳也。",
           "MasterName": "Hongren",
           "Curated": true,
-          "AttributionNote": "Imperially Selected Recorded Sayings (御選語錄), Hongren section. Hongren is the exact speaker who explains that Bodhidharma transmitted the robe as evidence of receiving the teaching and tells Huineng that transmission of the robe will stop with him.",
+          "AttributionNote": "Hongren explains to Huineng that Bodhidharma transmitted the robe as evidence and that robe transmission stops with Huineng.",
           "ContextMasters": [
             {
               "MasterName": "Hongren",
               "Roles": [
-                "utterer"
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "addressee",
+                "heir"
+              ]
+            },
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "transmission-origin-discussed"
               ]
             }
           ]
@@ -144,12 +171,25 @@
           "MasterName": "Shimen Cizhao",
           "EvidenceRole": "family",
           "Curated": true,
-          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Shimen Cizhao section: Shimen Cizhao says that the Indian patriarchs and six Chinese patriarchs transmitted robe and teaching, while after Huineng the teaching but not the robe was transmitted.",
+          "AttributionNote": "Shimen Cizhao states that the robe and teaching were transmitted through Huineng, after whom only the teaching continued.",
           "ContextMasters": [
             {
               "MasterName": "Shimen Cizhao",
               "Roles": [
-                "utterer"
+                "utterer",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "first-Chinese-transmission-figure"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "robe-transmission-boundary"
               ]
             }
           ]

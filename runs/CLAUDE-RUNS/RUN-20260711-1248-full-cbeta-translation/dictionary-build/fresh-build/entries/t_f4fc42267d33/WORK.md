@@ -1,0 +1,23 @@
+# 雞寒上樹鴨寒下水 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited wording is a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, paired and opposite formulas, body-part family, repeated recensions, and contradictory predicates.
+- deployment-inventory: 2 curated exact rows across 2 independent work IDs.
+- omission-audit: each prose claim has an exact headword occurrence; repeated recensions were not used as depth padding.
+- family-retest: Compared the component clauses, 祖意教意同別, and the parallel 青山自青山白雲自白雲 answer; neither component appears independently as the same saying.
+- sense-target-distinguishability: `not-applicable — one bodily image across the stored deployments`.
+- observation: occurrence IDs `o1–o2` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The Chan deployment depends on the observable contrast within one weather condition: Baling answers a same-or-different question with two creatures doing unlike things.
+- ordinary-bridge: ordinary anatomy supplies the physical impossibility or obstruction; no outside doctrine is needed.
+- falsification-searches: literal uses; definition questions; opposite formula; body-part compounds; repeated case family; contradictory appraisal.
+- counterexamples: The records do not separately gloss which half is ancestral or scriptural, so the entry preserves the scene and question without assigning the animals to doctrinal sides.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o2` establish the bodily image and the named deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite formulas; longer compounds; repeated case families; contradictory appraisals.
+- feedback-counterexamples: The records do not separately gloss which half is ancestral or scriptural, so the entry preserves the scene and question without assigning the animals to doctrinal sides.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic or doctrinal theory`.
+- lookup-probes: chickens up trees ducks in water; cold chicken and duck saying; chickens roost ducks swim.
+- opening-interpretation-verdict: `licensed` — the opening names the ordinary scene and narrow corpus-earned deployment before quotations.

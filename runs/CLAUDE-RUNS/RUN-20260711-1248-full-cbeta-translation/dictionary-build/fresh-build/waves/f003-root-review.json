@@ -839,21 +839,19 @@
     },
     "t_0ecac939496b": {
       "term": "白椎",
-      "verdict": "REVISE",
-      "reviewedSha256": "ee253997c23aacbb44d941dd380ec05abe4f38884e319cea86678cdfa90c1766",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "c276b3edef7fe5b4e9195c0bfc2df6daa3c797848e4d7c4b5b76270ca5f195ba",
+      "finding": "Seven full contexts support the formal mallet proclamation, its hall-officer formula, and references to what follows its completion. None supports the mistaken material reading 'white mallet,' and non-master officers or documentary writers are not forced into MasterName.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f003-laneC.json",
       "supersedes": {
-        "term": "白椎",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "ee253997c23aacbb44d941dd380ec05abe4f38884e319cea86678cdfa90c1766",
-        "finding": "KEEP — The false color reading of 白 is removed; the repaired entry describes the attested proclamation made with the mallet.",
-        "sourceReview": "fresh-build/waves/f003-laneC-851-900-final-consolidated-exact-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_0ecac939496b/ee253997c23aacbb44d941dd380ec05abe4f38884e319cea86678cdfa90c1766/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_0ecac939496b/ee253997c23aacbb44d941dd380ec05abe4f38884e319cea86678cdfa90c1766/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_0ecac939496b/ee253997c23aacbb44d941dd380ec05abe4f38884e319cea86678cdfa90c1766/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_0ecac939496b/c276b3edef7fe5b4e9195c0bfc2df6daa3c797848e4d7c4b5b76270ca5f195ba/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_0ecac939496b/c276b3edef7fe5b4e9195c0bfc2df6daa3c797848e4d7c4b5b76270ca5f195ba/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_0ecac939496b/c276b3edef7fe5b4e9195c0bfc2df6daa3c797848e4d7c4b5b76270ca5f195ba/receipt.json"
       }
     },
     "t_1dc12d84b349": {
@@ -954,21 +952,19 @@
     },
     "t_088731c7824b": {
       "term": "梵王",
-      "verdict": "REVISE",
-      "reviewedSha256": "72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "3f12f25362f756d72ded731f467be0f52a49e0f1f63324f08a9be3c453afdd43",
+      "finding": "The unsupported flower-presenter claim is removed and explicitly bounded: the six previously read full contexts support requester, attendant, ceremonial comparison, and assembly-question deployments only. Sense and actors remain supported.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-rereview-1-3-036-045-fixes-f003-laneC.json",
       "supersedes": {
-        "term": "梵王",
-        "verdict": "KEEP",
-        "reviewedSha256": "72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559",
-        "finding": "KEEP — Prior independent KEEP is byte-identical at the exact reviewed hash. Fresh full-case rereading found no new exact-actor, different-referent, source-spread, or prose-hygiene defect.",
-        "sourceReview": "fresh-build/waves/f003-laneC-801-850-manual-c24-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_088731c7824b/72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_088731c7824b/72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_088731c7824b/72529b824d25650ddc4fec81e52e8f30483619a7a261e0e6b745cca2e2af5559/receipt.json"
-        }
+        "verdict": "REVISE",
+        "reviewedSha256": "07cb480f84b20f0e946fe29e38b3360bc92783c257f08935092877a529928415",
+        "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f003-laneC.json"
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_088731c7824b/3f12f25362f756d72ded731f467be0f52a49e0f1f63324f08a9be3c453afdd43/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_088731c7824b/3f12f25362f756d72ded731f467be0f52a49e0f1f63324f08a9be3c453afdd43/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_088731c7824b/3f12f25362f756d72ded731f467be0f52a49e0f1f63324f08a9be3c453afdd43/receipt.json"
       }
     },
     "t_cdb6aa3726b5": {
@@ -1921,21 +1917,19 @@
     },
     "t_1853f433aff5": {
       "term": "開山",
-      "verdict": "REVISE",
-      "reviewedSha256": "3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "5a620eca9bd5da673644c4846e56a52a07d809b70b7d013e5a9301ff7c01b515",
+      "finding": "All seven occurrences were read in full. The entry correctly separates the narrated act of founding/opening a monastery from the person-title 'founding abbot'. Narrative tokens keep MasterName null and identify the performer in ContextMasters; the two incense declarations correctly name their actual utterers and distinguish the honored founding abbot.",
+      "sourceReview": "maintenance/attribution-read-adjudication/review-046-048-f003-laneB.json",
       "supersedes": {
-        "term": "開山",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169",
-        "finding": "KEEP — Prior independent KEEP remains byte-identical at the exact reviewed SHA-256.",
-        "sourceReview": "fresh-build/waves/f003-laneB-final24-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_1853f433aff5/3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_1853f433aff5/3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_1853f433aff5/3377a59a10e6fc2bac6c761ac6ede41d3796268b02c474c9f4c2ff1296bac169/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_1853f433aff5/5a620eca9bd5da673644c4846e56a52a07d809b70b7d013e5a9301ff7c01b515/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_1853f433aff5/5a620eca9bd5da673644c4846e56a52a07d809b70b7d013e5a9301ff7c01b515/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_1853f433aff5/5a620eca9bd5da673644c4846e56a52a07d809b70b7d013e5a9301ff7c01b515/receipt.json"
       }
     },
     "t_166e179e928c": {
@@ -2105,21 +2099,19 @@
     },
     "t_1118b9dcbc72": {
       "term": "見解",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e",
-      "finding": "Current attribution ground truth records 1 hard failure(s): reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "Seven complete contexts support a person's displayed or stated understanding as something examined, rejected, struck, requested, or contrasted. Positive and negative appraisals modify one referent and do not require moralized senses.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f003-laneC.json",
       "supersedes": {
-        "term": "見解",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e",
-        "finding": "KEEP — The seven complete cases now distinguish Qin Batuo, Fachang Yiyu, Foyan Qingyuan, Huineng, biographical narration about Fayan Wenyi, an actually unidentified editorial commentator, and named envoy Xue Jian. No generic presiding-speaker label remains.",
-        "sourceReview": "fresh-build/waves/f003-laneC-801-850-manual-c24-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_1118b9dcbc72/6e1c644434a74721a268a63df6f87f272a1beaba10e7a9c1632f76c970da394e/receipt.json"
       }
     },
     "t_fe8d4efe588f": {
@@ -2923,21 +2915,19 @@
     },
     "t_168078a96bd7": {
       "term": "明眼",
-      "verdict": "REVISE",
-      "reviewedSha256": "18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "4fc315393e96d1b383fcbb42e02a06d17c8c0adb552f83cd1301e9d6a28b91c7",
+      "finding": "Nine complete cases support a clear-eyed person as one credited with tested discrimination, not literal eyesight or an infallible rank. The corrected final occurrence belongs to Pang Yun's threat to report the exchange to a clear-eyed person, not to a nearby section master.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f003-laneB.json",
       "supersedes": {
-        "term": "明眼",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a",
-        "finding": "KEEP — The structured commentary and preface owners are recovered as Daochang Ru and Jiexian.",
-        "sourceReview": "fresh-build/waves/f003-laneB-final24-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_168078a96bd7/18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_168078a96bd7/18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_168078a96bd7/18ad305abfd9b5df1d5bf7f59b4eae3a025464278cc520796ccb9fcf47d2f05a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_168078a96bd7/4fc315393e96d1b383fcbb42e02a06d17c8c0adb552f83cd1301e9d6a28b91c7/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_168078a96bd7/4fc315393e96d1b383fcbb42e02a06d17c8c0adb552f83cd1301e9d6a28b91c7/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_168078a96bd7/4fc315393e96d1b383fcbb42e02a06d17c8c0adb552f83cd1301e9d6a28b91c7/receipt.json"
       }
     },
     "t_53d86caa85c2": {
@@ -3679,21 +3669,19 @@
     },
     "t_32289452a85b": {
       "term": "燒指",
-      "verdict": "REVISE",
-      "reviewedSha256": "1fc7b5702b35b31094478e6d2f70234134726a0dab699d3191abbbe1a294409a",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "770b412f729df95f632c83a1212002a51a9dd419786f157f663f88c5317e0f41",
+      "finding": "Both rejected attribution layers are now correct. O1 assigns the first-person plural declaration solely to the named collective petitioners, with no compiler-ownership contradiction. O2 is impersonal quoted prescriptive scripture, explicitly identified as the Brahma Net document voice rather than compiler narration. Shanhui Dashi's o4 public demand remains anchored, and the explanation still states that the Gaofeng–Shiwu burn-fingers-like-incense wording is absent from the frozen corpus and is not used as evidence.",
+      "sourceReview": "maintenance/attribution-read-adjudication/shaozhi-f003-laneA.json",
       "supersedes": {
-        "term": "燒指",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "1fc7b5702b35b31094478e6d2f70234134726a0dab699d3191abbbe1a294409a",
-        "finding": "Literal finger burning is retained across plea, austerity, and discipline contexts without projecting one ceremony onto all.",
-        "sourceReview": "fresh-build/waves/f003-laneA-601-650-round4-fresh-independent-exact-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_32289452a85b/1fc7b5702b35b31094478e6d2f70234134726a0dab699d3191abbbe1a294409a/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_32289452a85b/1fc7b5702b35b31094478e6d2f70234134726a0dab699d3191abbbe1a294409a/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_32289452a85b/1fc7b5702b35b31094478e6d2f70234134726a0dab699d3191abbbe1a294409a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_32289452a85b/770b412f729df95f632c83a1212002a51a9dd419786f157f663f88c5317e0f41/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_32289452a85b/770b412f729df95f632c83a1212002a51a9dd419786f157f663f88c5317e0f41/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_32289452a85b/770b412f729df95f632c83a1212002a51a9dd419786f157f663f88c5317e0f41/receipt.json"
       }
     },
     "t_6e57aada2121": {
@@ -4107,21 +4095,19 @@
     },
     "t_0f4c2ed08d86": {
       "term": "一炷香",
-      "verdict": "REVISE",
-      "reviewedSha256": "05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "20529601b6eddbb2ae058cfb9b3ba0de362d46cc3dfb187c130fed9311bbfff4",
+      "finding": "The lowercase sentence start is corrected. The revised prose now truthfully describes an unidentified later Linji-line master dedicating incense to Linji, rather than making Linji dedicate incense to himself; all six previously read contexts support the counted offering sense.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-rereview-1-3-036-045-fixes-f003-laneA.json",
       "supersedes": {
-        "term": "一炷香",
-        "verdict": "KEEP",
-        "reviewedSha256": "05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e",
-        "finding": "Shanci Ji's Buddha-birthday address and Shiqi Tongyun's memorial address are correctly authored.",
-        "sourceReview": "fresh-build/waves/f003-laneA-601-650-round4-repair-fresh-independent-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_0f4c2ed08d86/05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_0f4c2ed08d86/05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_0f4c2ed08d86/05531c705109fe2a9a09f3f347d6d68d48f93fb974dbee8e515e8c9a699f473e/receipt.json"
-        }
+        "verdict": "REVISE",
+        "reviewedSha256": "2182d0328f4221fd60b976c493939df5191d0ec4691d736d21a99e207ffcf6a1",
+        "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f003-laneA.json"
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_0f4c2ed08d86/20529601b6eddbb2ae058cfb9b3ba0de362d46cc3dfb187c130fed9311bbfff4/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_0f4c2ed08d86/20529601b6eddbb2ae058cfb9b3ba0de362d46cc3dfb187c130fed9311bbfff4/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_0f4c2ed08d86/20529601b6eddbb2ae058cfb9b3ba0de362d46cc3dfb187c130fed9311bbfff4/receipt.json"
       }
     },
     "t_d801848213ab": {

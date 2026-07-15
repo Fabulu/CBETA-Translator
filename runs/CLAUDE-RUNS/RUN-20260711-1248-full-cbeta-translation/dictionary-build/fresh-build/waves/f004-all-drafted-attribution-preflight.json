@@ -1,0 +1,968 @@
+{
+  "counts": {
+    "entries": 91,
+    "senses": 92,
+    "occurrences": 568,
+    "actor_reviewed_unnamed": 195,
+    "attribution_notes": 568,
+    "actor_narrated": 301,
+    "unnamed_master_forbidden": 41,
+    "named_occurrences": 58,
+    "deferred_non_roster": 34,
+    "pending_roster_master": 29,
+    "context_master_links": 82,
+    "deferred_non_roster_context": 48,
+    "pending_roster_context_master": 35,
+    "note_missing_speaker": 37,
+    "actor_impersonal": 4,
+    "note_missing_source": 105,
+    "chinese_strings": 17,
+    "anchored_chinese": 17,
+    "actor_identified_non_master": 10,
+    "vague_attributor": 2,
+    "identified_actor_not_named": 3
+  },
+  "hardFailures": 188,
+  "failures": [
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_00d347279628/entry.v2.json",
+      "detail": "蕭何 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_085b87d75535/entry.v2.json",
+      "detail": "皮袋 s1 o3: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1383f942789d/entry.v2.json",
+      "detail": "殺生 s1 o6: Source text ((重雕補註)禪苑清規). The ordination formula lists “do not kill living beings” as the first of five precepts."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1b4bf4fff6bb/entry.v2.json",
+      "detail": "韓愈 s1 o5: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1fe4eac13d6e/entry.v2.json",
+      "detail": "入門便喝 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1fe4eac13d6e/entry.v2.json",
+      "detail": "入門便喝 s1 o6: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o1 expected '古尊宿語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o2 expected '五燈全書(第1卷-第33卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o3 expected '五燈嚴統(第1卷-第9卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o4 expected '列祖提綱錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o5 expected '宗鑑法林': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o6 expected '五燈會元': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2427e147f91c/entry.v2.json",
+      "detail": "典座 s1 o7 expected '指月錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_24ec9667c7fd/entry.v2.json",
+      "detail": "拈拂子 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_24ec9667c7fd/entry.v2.json",
+      "detail": "拈拂子 s1 o5: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o1 expected '撫州曹山元證禪師語錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o2 expected '五燈全書(第1卷-第33卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o3 expected '永覺元賢禪師廣錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o4 expected '宗鏡錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o5 expected '指月錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o6 expected '五燈嚴統(第10卷-第25卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2912e6e38b48/entry.v2.json",
+      "detail": "正位 s1 o7 expected '五燈會元': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2b7734c66eb6/entry.v2.json",
+      "detail": "項羽 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o4: every master must be named"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3c20438ecdda/entry.v2.json",
+      "detail": "張無盡 s1: 'the monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3c20438ecdda/entry.v2.json",
+      "detail": "張無盡 s1: 'a master'"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o1: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o1 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o2: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o2 expected '密雲悟禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o3 expected '續傳燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o4: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o4 expected '五燈全書(第34卷-第120卷)': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o5: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o5 expected '圓悟佛果禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o6 expected '費隱禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o7 expected '普濟玉琳國師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_43f57213c34e/entry.v2.json",
+      "detail": "十方世界 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4aad283d4db6/entry.v2.json",
+      "detail": "法鼓 s1 o1: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o1 expected '五燈全書(第34卷-第120卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o2 expected '續傳燈錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o3 expected '佛果克勤禪師心要': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o4 expected '嘉泰普燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o5 expected '雲溪俍亭挺禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o6 expected '象崖珽禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o7 expected '圓悟佛果禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o1 expected '古尊宿語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o2 expected '增集續傳燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o3 expected '五燈全書(第34卷-第120卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o4 expected '緇門警訓': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o5 expected '大巍禪師竹室集': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o6 expected '天聖廣燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5159aa2b0fb4/entry.v2.json",
+      "detail": "僧錄 s1 o7 expected '續燈存稿': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o5: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_61c5046b49c4/entry.v2.json",
+      "detail": "心要 s1 o7: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6d02220e4b51/entry.v2.json",
+      "detail": "一念萬年 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_71f85cf94e5d/entry.v2.json",
+      "detail": "宗匠 s1 o6: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o4: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_802b405cbb3d/entry.v2.json",
+      "detail": "舍利 s1 o3: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o1 expected '百愚禪師語錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o2 expected '五燈全書(第34卷-第120卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o3 expected '入就瑞白禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o4: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o4 expected '青城竹浪生禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o5 expected '列祖提綱錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o6 expected '宗鑑法林': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o7 expected '佛國禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o1 expected '建中靖國續燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o2 expected '宗鏡錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o3 expected '五燈全書(第1卷-第33卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o4 expected '景德傳燈錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o5 expected '五燈會元': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o6 expected '五燈嚴統(第1卷-第9卷)': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o7 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88dac6848042/entry.v2.json",
+      "detail": "戒臘 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88dac6848042/entry.v2.json",
+      "detail": "戒臘 s1 o5: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_897abeb2436c/entry.v2.json",
+      "detail": "披毛戴角 s1 o4: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9069cc8f2c62/entry.v2.json",
+      "detail": "眼睛 s1 o6: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9263ce2a5988/entry.v2.json",
+      "detail": "登座 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9263ce2a5988/entry.v2.json",
+      "detail": "登座 s1 o6: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93d4f280640a/entry.v2.json",
+      "detail": "點檢 s1 o1: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o1 expected '五燈全書(第34卷-第120卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o2 expected '無異元來禪師廣錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o3: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o3 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o4 expected '大慧普覺禪師普說': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o5: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o5 expected '百愚禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o6 expected '列祖提綱錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o7 expected '五燈嚴統(第10卷-第25卷)': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o1 expected '五燈全書(第34卷-第120卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o2 expected '宗鑑法林': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o3 expected '禪宗頌古聯珠通集': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o4: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o4 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o5: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o5 expected '無異元來禪師廣錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o6 expected '宗門拈古彙集': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o7 expected '禪林類聚': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9bed34b40eac/entry.v2.json",
+      "detail": "來機 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9bed34b40eac/entry.v2.json",
+      "detail": "來機 s1 o4: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9bed34b40eac/entry.v2.json",
+      "detail": "來機 s1 o6: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a20be219d329/entry.v2.json",
+      "detail": "解脫香 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a2967e6f3617/entry.v2.json",
+      "detail": "生死 s1 o5: every master must be named"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o1 expected '五燈全書(第34卷-第120卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o2: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o2 expected '天界覺浪盛禪師全錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o3: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o3 expected '列祖提綱錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o4: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o4 expected '續古尊宿語要': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o5 expected '古尊宿語錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o6 expected '天界覺浪盛禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o7 expected '五燈會元': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o1 expected '費隱禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o2: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o2 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o3 expected '禪宗頌古聯珠通集': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o4: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o4 expected '鎮州臨濟慧照禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o5 expected '虛堂和尚語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o6 expected '列祖提綱錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o7 expected '五家語錄（選錄）': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o1: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o1 expected '五燈全書(第34卷-第120卷)': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o2: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o2 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o3: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o3 expected '列祖提綱錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o4 expected '宗鑑法林': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o5 expected '五燈嚴統(第10卷-第25卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o6 expected '續燈正統': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o7 expected '聯燈會要': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c5dbf08e4452/entry.v2.json",
+      "detail": "拂子頭 s1 o4: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c5ff2fdc37ca/entry.v2.json",
+      "detail": "遇緣即宗 s1 o3: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o1: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o1 expected '五燈全書(第34卷-第120卷)': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o2: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o2 expected '百愚禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o3 expected '蔗菴範禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o4 expected '燮雲璣禪師國清無畏堂語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o5 expected '天岸昇禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o6 expected '永濟融禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o7 expected '大博乾禪師語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cde9fa9489a3/entry.v2.json",
+      "detail": "祖殿 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cde9fa9489a3/entry.v2.json",
+      "detail": "祖殿 s1 o3: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o1: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o1 expected '五燈全書(第34卷-第120卷)': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o2 expected '建中靖國續燈錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o3 expected '續傳燈錄': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o4 expected '五燈嚴統(第10卷-第25卷)': The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o5: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o5 expected '五燈會元': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o6: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o6 expected '續燈正統': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o7: The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o7 expected '古尊宿語錄': The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ef00d55c2d8b/entry.v2.json",
+      "detail": "鼓聲 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ef5beb628603/entry.v2.json",
+      "detail": "磨頭 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ef5beb628603/entry.v2.json",
+      "detail": "磨頭 s1 o2: every master must be named"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the monastic rule or case compiler'"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the monastic rule or case compiler'"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the lamp-record compiler'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o1 expected '宗鏡錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o2 expected '石雨禪師法檀': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o3 expected '天隱和尚語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o4 expected '百愚禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o5 expected '天隱修禪師語錄': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o6 expected '宗鑑法林': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ffa18e43d4f1/entry.v2.json",
+      "detail": "天女 s1 o7 expected '教外別傳': The complete unit uses the token in biography, case introduction, title, citation, or authored exposition rather than direct dialogue."
+    }
+  ]
+}

@@ -36,7 +36,8 @@
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "record-subject"
               ]
             }
           ],
@@ -132,6 +133,12 @@
               "MasterName": "Yantou Quanhuo",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Deshan Xuanjian",
+              "Roles": [
+                "person-appraised"
               ]
             }
           ]
@@ -344,17 +351,27 @@
           "FromLb": "0139c07",
           "ToLb": "0139c07",
           "Kwic": "一棒一痕要令證悟。",
-          "MasterName": "Zhou Chi",
           "Curated": true,
-          "AttributionNote": "The Blue Cliff Record (佛果圜悟禪師碧巖錄), in Zhou Chi's named preface, coordinates one blow with one welt and states the comparison's intended function. Zhou Chi is a lay preface author, not a Chan master, and is not on the master roster; his name is retained rather than falsely attributing his sentence to Yuanwu Keqin.",
-          "ContextMasters": [
-            {
-              "MasterName": "Zhou Chi",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
+          "AttributionNote": "Source text; identified non-master actor: Zhou Chi. Complete-case attribution read.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "documentary author",
+            "ActorLabel": "Zhou Chi",
+            "ActorRole": "preface author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Zhou Chi signs the preface as 三教老人 and uses 一棒一痕 in his analysis.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:27:56.872424+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "C/C077/C077n1710.xml",

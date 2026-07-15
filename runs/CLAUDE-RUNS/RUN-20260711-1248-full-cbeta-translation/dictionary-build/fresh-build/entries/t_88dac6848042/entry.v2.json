@@ -23,12 +23,12 @@
           "ToLb": "1112b26",
           "Kwic": "齋粥赴茶湯普請日用軌範龜鏡文病僧念誦亡僧版帳式節臘章第八夏前出草單新掛搭人點入寮茶出圖帳眾寮結解特為眾湯楞嚴會戒臘牌方丈小座湯四節土地堂念誦庫司四節特為首座大眾湯結制禮儀四節秉拂方丈四節特為首座大眾茶庫司四節特為首座大眾茶前堂四節特為後堂大眾茶旦望巡堂茶方丈點行堂",
           "Curated": true,
-          "AttributionNote": "Source text (勅修百丈清規): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (勅修百丈清規; T/T48/T48n2025.xml). Exact actor state: the unnamed quoted speaker unresolved after the attribution ladder. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
+            "Kind": "the unnamed quoted speaker unresolved after the attribution ladder",
+            "ActorLabel": "the unnamed quoted speaker unresolved after the attribution ladder",
             "ActorRole": "utterer",
             "RungsChecked": [
               "line",
@@ -38,11 +38,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed quoted speaker unresolved after the attribution ladder, not a recoverable named master.",
+            "ReviewedBy": "Codex f004 author cohort0 repair",
+            "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X63/X63n1245.xml",
@@ -50,7 +51,7 @@
           "ToLb": "0524a17",
           "Kwic": "相見各觸禮三拜。喫茶罷。起身近前云。久嚮道風。此者特來依棲左右。且望慈悲。維那云。山門多幸。特荷光臨。乃各人依戒臘次第呈祠部與維那。維那收訖。新到觸禮一拜云。此際多幸。深謝溫存。維那答一拜云。官待蕭疎。且希以道為念。不喫湯。維那送出。堂司云。請上座歸堂掛搭。新到於",
           "Curated": true,
-          "AttributionNote": "Source text ((重雕補註)禪苑清規): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text ((重雕補註)禪苑清規; X/X63/X63n1245.xml). Exact actor state: biographical or documentary narrator. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -77,13 +78,13 @@
           "ToLb": "0620c23",
           "Kwic": "戒臘",
           "Curated": true,
-          "AttributionNote": "Source text (禪林備用清規): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (禪林備用清規; X/X63/X63n1250.xml). Exact actor state: the unnamed source compiler or narrator. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "section-identified master awaiting canonical roster resolution",
-            "ActorLabel": "section-identified master awaiting canonical roster resolution",
-            "ActorRole": "utterer",
+            "Kind": "the unnamed source compiler or narrator",
+            "ActorLabel": "the unnamed source compiler or narrator",
+            "ActorRole": "compiler",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -92,11 +93,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed source compiler or narrator, not a recoverable named master.",
+            "ReviewedBy": "Codex f004 author cohort0 repair",
+            "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J28/J28nB220.xml",
@@ -104,7 +106,7 @@
           "ToLb": "0823c02",
           "Kwic": "若青山之白雲；來也，去也，似當天之杲日。本無心于出沒，豈有相於去來？一道凝然，亙古不昧。恭惟禪德生世八十一年，戒臘四十餘夏，受毘尼于傘居之室，養道緣于約翁之庵。一句彌陀，直透安養國中；雙融性相，不離今世門頭。不期世幻已盡，撒手還家。今朝吉日良辰，為伊作一期佛事。」",
           "Curated": true,
-          "AttributionNote": "Source text (法璽印禪師語錄): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (法璽印禪師語錄; J/J28/J28nB220.xml). Exact actor state: biographical or documentary narrator. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -131,26 +133,16 @@
           "ToLb": "0748c22",
           "Kwic": "露柱一下，云：「分明記取。」洪州大寧眾陳狀請第二座住持，宋令公云：「何不請第一座？」眾無對，代云：「此番不可以戒臘推。」裴相國參石霜，霜奪笏問云：「在一人手裏為圭，在公手裏為笏，在老僧手裏喚作甚麼？」國無對，代云：「放過一著。」湖南護國僧抄化次，官人問：「既是護國",
           "Curated": true,
-          "AttributionNote": "Source text (靈瑞禪師嵒華集): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "section-identified master awaiting canonical roster resolution",
-            "ActorLabel": "section-identified master awaiting canonical roster resolution",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (靈瑞禪師嵒華集; J/J35/J35nB339.xml). Exact speaker: Lingrui. The complete section confirms the headword-bearing turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Lingrui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Lingrui"
         }
       ],
       "ClaimAnchors": [],

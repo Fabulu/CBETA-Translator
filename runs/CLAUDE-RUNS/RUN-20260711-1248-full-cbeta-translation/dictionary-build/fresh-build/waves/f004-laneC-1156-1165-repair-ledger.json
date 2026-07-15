@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "range": [1156, 1165],
+  "state": "repair-complete-pre-review-green-awaiting-independent-rereview",
+  "authorMethodFinding": "The sole-roster-name/default-compilation-voice classifier is invalid and must not be reused.",
+  "reviewerArtifact": "f004-laneC-1156-1165-reviewer8-independent.json",
+  "reviewedCases": 55,
+  "reviseEntries": 10,
+  "immediateFindings": {
+    "defaultedCompilationVoice": 41,
+    "containedOnlyEvidenceToRemove": ["石女兒 occurrence 1"],
+    "recensionFamiliesToRepresent": ["石女兒 石柱 exchange", "石人點頭 雲蓋用清 exchange"],
+    "knownWrongPromotions": ["賊過張弓 occurrence 2", "泥裏洗土塊 occurrences 1 and 3", "木人舞 occurrence 2"]
+  },
+  "nextGate": "All 55 cases must receive source-specific exact utterer/non-utterance decisions, then compile and pre-review must be rerun.",
+  "reviewEligible": true,
+  "promoted": false,
+  "merged": false,
+  "published": false
+}

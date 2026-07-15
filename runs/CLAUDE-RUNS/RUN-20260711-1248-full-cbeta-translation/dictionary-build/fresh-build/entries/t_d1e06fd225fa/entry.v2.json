@@ -120,12 +120,12 @@
           "ToLb": "0837a20",
           "Kwic": "慈眀室中插劒一口以草鞋一緉水一盆置劒邊每見入室即曰看看有至劒邊擬議者師曰嶮喪身失命了也便喝出。",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集): unnamed room entrant is the exact textual actor. Connected Anthology of Verses on Old Chan Cases (禪宗頌古聯珠通集): the anthology narrates that Ciming Chuyuan placed a sword, sandals, and water in his room and challenged each unnamed visitor he saw entering for a private interview. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed room entrant.",
+          "AttributionNote": "Source text (禪宗頌古聯珠通集). Exact headword actor: the compiler narrating an unnamed visitor's entry. The complete case and its turn boundaries were read before attribution.",
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monastic visitor",
-            "ActorLabel": "unnamed room entrant",
-            "ActorRole": "person-described",
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating an unnamed visitor's entry",
+            "ActorRole": "compiler",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -134,15 +134,17 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex hard-w2-b1",
-            "ReviewedUtc": "2026-07-14T07:30:00Z",
-            "GrammarEvidence": "The full clause is narration or an impersonal textual proposition, not speech assigned to a rostered master."
+            "GrammarEvidence": "The entry into the room is narrated; Ciming Chuyuan's quoted warning starts afterward.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:34.994632+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
           "ContextMasters": [
             {
               "MasterName": "Ciming Chuyuan",
               "Roles": [
-                "person-discussed"
+                "respondent",
+                "case-figure"
               ]
             }
           ]

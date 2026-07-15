@@ -1,0 +1,23 @@
+# 鬼窟裏作活計 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 7 curated rows across 7 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 鬼窟, 黑山下, 意識思量, 無言無說, and 作活計; ordinary cave and longer compounds were separated.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o7` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The Zen bend lies in the “livelihood” verb: the cave is not merely visited but made into a settled occupation, and masters level that charge during public adjudication.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The targets of the rebuke vary, so the phrase cannot be reduced to one modern psychological state; its stable fact is sustained work inside the ghost-cave image.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o7` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The targets of the rebuke vary, so the phrase cannot be reduced to one modern psychological state; its stable fact is sustained work inside the ghost-cave image.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: doing business in a ghost cave; living by ghost-cave work; ghost cave occupation.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.

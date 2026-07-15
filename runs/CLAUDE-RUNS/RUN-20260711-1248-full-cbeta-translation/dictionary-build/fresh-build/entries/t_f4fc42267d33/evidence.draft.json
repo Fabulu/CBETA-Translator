@@ -1,0 +1,130 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_f4fc42267d33",
+    "SourceTerm": "雞寒上樹鴨寒下水",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex f005 lane A author",
+    "WrittenUtc": "2026-07-15T18:59:02.906491+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "when cold, chickens climb trees and ducks enter the water",
+        "AlternateTargets": [
+          "cold chickens climb trees; cold ducks enter water"
+        ],
+        "SearchAliases": [
+          "chickens up trees ducks in water",
+          "cold chicken and duck saying",
+          "chickens roost ducks swim"
+        ],
+        "Status": "preferred",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "When cold, chickens climb trees and ducks enter the water: two animals meet the same condition through different native movements. Baling Haojian gives the saying as his answer when asked whether the ancestral meaning and the scriptural meaning are the same or different; Zhenjing Kewen later raises it and asks the assembly for its purport.",
+          "EvidenceBody": [
+            "In Mingjue Chongxian’s old-case collection, Baling Haojian answers the same-or-different question with the complete chicken-and-duck line.",
+            "Zhenjing Kewen quotes the old saying in a hall address, asks what it means, then shouts and leaves the seat."
+          ]
+        },
+        "Validation": "multi-source",
+        "Note": "The frozen corpus has two exact hits in two independent works. Both preserve the whole saying; one gives the original answer and one its later public raising.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1996.xml",
+            "FromLb": "0690b04",
+            "ToLb": "0690b05",
+            "Kwic": "問巴陵。祖意教意同別。陵云。雞寒上樹鴨寒下水。僧問睦州祖意教意同別。州云",
+            "MasterName": "Baling Haojian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Baling Haojian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "The source record or case collection (明覺禪師語錄; T/T47/T47n1996.xml). Exact actor: Baling Haojian. The raised exchange explicitly gives the exact line as Baling Haojian’s answer.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "雞寒上樹鴨寒下水",
+              "GrammaticalSubject": "Baling Haojian",
+              "SpeechFrame": "The raised exchange explicitly gives the exact line as Baling Haojian’s answer.",
+              "FullCaseDecision": "The raised exchange explicitly gives the exact line as Baling Haojian’s answer."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0946a04",
+            "ToLb": "0946a07",
+            "Kwic": "由且道祖意是同是別只如古人云雞寒上樹鴨寒下水意旨如何喝一喝下座。上堂雲門",
+            "MasterName": "Baling Haojian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Baling Haojian",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Zhenjing Kewen",
+                "Roles": [
+                  "later-raiser",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Zhenjing Kewen raises this with an inherited-saying marker in his record; the independent old case and parallel passage identify Baling Haojian as the source utterer.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "雞寒上樹鴨寒下水",
+              "GrammaticalSubject": "Baling Haojian in the raised old saying",
+              "SpeechFrame": "古人云 marks a quotation raised by Zhenjing Kewen.",
+              "FullCaseDecision": "Parallel-case resolution assigns the saying to Baling; Zhenjing is later raiser."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T47/T47n1996.xml",
+          "C/C077/C077n1710.xml"
+        ],
+        "RelatedMasters": [
+          "Baling Haojian",
+          "Zhenjing Kewen"
+        ],
+        "RelatedTerms": [
+          "祖意",
+          "教意"
+        ],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2"
+          ],
+          "ZenBend": "The Chan deployment depends on the observable contrast within one weather condition: Baling answers a same-or-different question with two creatures doing unlike things.",
+          "CounterexampleOrLimit": "The records do not separately gloss which half is ancestral or scriptural, so the entry preserves the scene and question without assigning the animals to doctrinal sides.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the ordinary bodily image",
+              "the phrase in Chan encounters and comments"
+            ],
+            "Reason": "The stored predicates retain one concrete image; changes of speaker, grammar, or appraisal do not create another referent."
+          },
+          "AliasRationale": "The aliases cover natural English word order and the concrete image without importing a doctrinal reading.",
+          "ModifierControls": [
+            "not-applicable: no apparent construction-material claim requires a modifier split."
+          ],
+          "FamilyControls": [
+            "Compared the component clauses, 祖意教意同別, and the parallel 青山自青山白雲自白雲 answer; neither component appears independently as the same saying."
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1996",
+            "work:guzunsu-yulu"
+          ]
+        }
+      }
+    ]
+  }
+}

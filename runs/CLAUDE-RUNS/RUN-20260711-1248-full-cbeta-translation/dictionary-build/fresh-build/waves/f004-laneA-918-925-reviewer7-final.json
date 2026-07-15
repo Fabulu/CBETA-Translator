@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "reviewer7-independent-postrepair-full-case-semantic-prose-depth-actor-exact-span-review",
+  "reviewer": "reviewer7",
+  "generatedUtc": "2026-07-15T14:43:12Z",
+  "wave": "f004",
+  "lane": "A",
+  "reviewedOrdinals": [918, 920, 921, 924, 925],
+  "cohortOrdinals": [918, 925],
+  "readOnly": true,
+  "reviewedGate": "f004-a-918-925-reviewer6-author-repair-pre-review-gate.json",
+  "reviewedGateSha256": "4567fb55fdfd11ed7a183035a04953e2733a2d7b378583c764ce5a1138f3289f",
+  "hashCondition": "Verdicts apply only to the exact current entry hashes recorded below; all five match the reviewer6 author repair green gate.",
+  "cohortOccurrences": 54,
+  "entriesReviewed": 5,
+  "occurrencesReadInFullCase": 33,
+  "exactKwicsFromLbToLb": 33,
+  "exactVerificationFailures": 0,
+  "duplicateActorPrefixes": 0,
+  "keep": 1,
+  "revise": 4,
+  "entries": [
+    {
+      "ordinal": 918,
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "reviewedEntrySha256": "42ee1ff26090ac475591189dd4fa634c0d89dd371c2103950b594ba778a2a682",
+      "hashMatchedGreenGate": true,
+      "occurrencesReadInFullCase": 7,
+      "exactSpans": 7,
+      "duplicateActorPrefixes": 0,
+      "verdict": "REVISE",
+      "reasons": [
+        "The duplicated actor-prefix defect is repaired in all seven AttributionNotes, and the fan sense and prose correctly cover the literal implement, Yanguan’s rhinoceros-fan case, Yunmen’s leaping fan, and Foyan’s seasonal contrast.",
+        "Occurrence 7 remains only the bare token 扇子 and explicitly says that it identifies neither a speaker nor a deployment. Unlike the two documentary case tokens, its note supplies no recoverable case use; it adds quota without semantic evidence and should be replaced by a contextual exact witness or removed."
+      ]
+    },
+    {
+      "ordinal": 920,
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "reviewedEntrySha256": "211f215e44a96595779fc976ae445db8476ed30ebe68e4fe55e18d970379466a",
+      "hashMatchedGreenGate": true,
+      "occurrencesReadInFullCase": 5,
+      "exactSpans": 5,
+      "duplicateActorPrefixes": 0,
+      "verdict": "REVISE",
+      "reasons": [
+        "The target and opening now preserve the defining action: Zhaozhou wears or carries the straw sandals on his head after Nanquan cuts the cat. The repaired fifth case also correctly records Mengshan Deyi as respondent to Zhou’s question.",
+        "Occurrence 2 still says that an unnamed monk questions the record master and shows the master’s separate replies with 師云, but ContextMasters lists only Zhaozhou and Nanquan as case figures. Add the 佛國禪師語錄 record owner as respondent using the evidence-bound roster or pending-roster name; the current row omits an active master participant.",
+        "All five duplicated actor prefixes are gone, and the remaining stored roles and prose are otherwise supported."
+      ]
+    },
+    {
+      "ordinal": 921,
+      "id": "t_72ed81907d68",
+      "term": "施為",
+      "reviewedEntrySha256": "484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3",
+      "hashMatchedGreenGate": true,
+      "occurrencesReadInFullCase": 7,
+      "exactSpans": 7,
+      "duplicateActorPrefixes": 0,
+      "verdict": "KEEP",
+      "reasons": [
+        "All seven duplicate prefixes are removed, and the compiler, named record owner, and six named-master speech roles follow the complete cases.",
+        "The single conduct-and-activity sense covers noun-like and verbal deployments without a grammar-only split. Its explanation is observable and adequately grounded in movement and stillness, walking and sitting, dressing and eating, and activity that does not borrow another power.",
+        "No remaining semantic, prose, depth, respondent-role, or source mismatch was found."
+      ]
+    },
+    {
+      "ordinal": 924,
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "reviewedEntrySha256": "f130207364d5e03dd97f2d5f2123a8385fa5780a46c7a56a9f08ea3cf0bb5266",
+      "hashMatchedGreenGate": true,
+      "occurrencesReadInFullCase": 7,
+      "exactSpans": 7,
+      "duplicateActorPrefixes": 0,
+      "verdict": "REVISE",
+      "reasons": [
+        "The former bare token has been replaced by a contextual Ruibai Mingxue address, duplicate prefixes are gone, and the repaired ContextMasters now cover the active respondents in occurrences 2, 3, 6, and 7 plus the named utterers.",
+        "Occurrence 6 is internally inconsistent after the Mingjue Cong correction: AttributionNote and ContextMasters say the source is 明覺聰禪師語錄 and the respondent is Mingjue Cong, but ActorAttribution.GrammarEvidence still calls it 明道正覺森禪師語錄 and says Mingdao Zhengjue Sen replies. Update the stale proof to the same source and respondent as the repaired row.",
+        "The patriarchal-seal sense and reader-facing explanation are otherwise supported by transmission questions and repeated raising or presenting of the seal."
+      ]
+    },
+    {
+      "ordinal": 925,
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "reviewedEntrySha256": "002c357094e92d73943165240a71726e0012a407cdd2b02710390665b854fe00",
+      "hashMatchedGreenGate": true,
+      "occurrencesReadInFullCase": 7,
+      "exactSpans": 7,
+      "duplicateActorPrefixes": 0,
+      "verdict": "REVISE",
+      "reasons": [
+        "The duplicate prefixes are removed, and the person-versus-book split is a legitimate different-referent split supported by the six contextual witnesses.",
+        "Person-sense occurrence 1 remains only the bare token 孟子. Its AttributionNote assigns the deployment to the 居士分燈錄 collection author, while ActorAttribution.GrammarEvidence instead names 緇門崇行錄; the isolated stored span supports neither documentary claim. Replace it with a contextual exact witness or correct the source and expand the exact span from verified full context.",
+        "The remaining person citations and both book witnesses support the two explanations and require no further prose change."
+      ]
+    }
+  ],
+  "cohortFindings": [
+    "The reviewer6 repair removed all exact duplicated actor prefixes in the five scoped entries.",
+    "The sandals-on-head target and explanation are correct, but one earlier question-and-answer row still omits its record-master respondent.",
+    "Two bare-token rows remain depth defects, and one repaired patriarchal-seal row retains stale contradictory GrammarEvidence.",
+    "All 33 scoped current spans independently verify exactly within the 54-case cohort."
+  ],
+  "reviewIntegrity": {
+    "currentHashesMatchedGreenGate": true,
+    "all33ScopedCasesRead": true,
+    "all33ExactSpansIndependentlyVerified": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "siteTouched": false,
+    "sharedRosterTouched": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

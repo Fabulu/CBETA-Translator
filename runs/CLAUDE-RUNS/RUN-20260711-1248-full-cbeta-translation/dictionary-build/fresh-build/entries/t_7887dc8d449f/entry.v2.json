@@ -45,7 +45,16 @@
             "ReviewedUtc": "2026-07-13T21:45:36Z"
           },
           "Curated": true,
-          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集), Huangbo Xiyun section. An unnamed monk is the exact questioner who uses the collective title for established elders in every region; all six attribution rungs, including parallel recensions, leave him unnamed. Huangbo Xiyun gives the following answer."
+          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集), Huangbo Xiyun section. An unnamed monk is the exact questioner who uses the collective title for established elders in every region; all six attribution rungs, including parallel recensions, leave him unnamed. Huangbo Xiyun gives the following answer.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "X/X69/X69n1359.xml",
@@ -166,15 +175,23 @@
           "Kwic": "觀古之尊宿，幾十年點胸自許，直至末後為明眼人煅煉過，方始開省",
           "ContextMasters": [],
           "Curated": true,
-          "AttributionNote": "Pointing at the Moon (指月錄), signed preface prose: the preface voice observes that senior worthies tested their confidence for decades before finally awakening under an incisive person’s refinement.",
+          "AttributionNote": "Vow Verse for Printing the Record of Pointing at the Moon (刻指月錄發願偈): Yan Cheng is the signed prose author who discusses the old established seniors.",
           "ActorAttribution": {
-            "Status": "impersonal",
-            "Kind": "signed preface prose",
-            "ActorLabel": "the preface voice",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The full preface context supplies continuous editorial prose rather than a Chan dialogue turn.",
-            "ReviewedBy": "Codex root-revision repair",
-            "ReviewedUtc": "2026-07-14T23:25:00Z"
+            "Status": "identified-non-master",
+            "Kind": "identified written or spoken voice",
+            "ActorLabel": "Yan Cheng",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex manual full-case cohorts 7-9",
+            "ReviewedUtc": "2026-07-15T20:30:00Z",
+            "GrammarEvidence": "The complete document signs the passage 萬曆辛丑歲八月初三日，吳郡嚴澂和南書."
           }
         }
       ],

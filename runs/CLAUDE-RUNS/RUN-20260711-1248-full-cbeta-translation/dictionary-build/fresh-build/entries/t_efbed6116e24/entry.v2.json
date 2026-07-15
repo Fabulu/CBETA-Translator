@@ -107,13 +107,27 @@
           "ToLb": "0616c19",
           "Kwic": "一夕西堂百丈南泉隨侍翫月次師問正恁麼時如何堂曰正好供養丈曰正好修行泉拂袖便行師曰經歸藏禪歸海唯有普願獨超物外師問百丈汝以何法示人丈竪起拂子師曰秪這箇為當別有丈拋下拂子。",
           "Curated": true,
-          "AttributionNote": "Source record (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: the source compiler or recorder. Full-case review separates the headword-bearing turn from questions, replies, action narration, and documentary ownership.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text; exact headword actor: the compiler narrating Nanquan Puyuan’s sleeve-flick. The complete case was read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "action-performer"
+              ]
+            },
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "subsequent-speaker",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "compiler or recorder narration",
-            "ActorLabel": "the source compiler or recorder",
-            "ActorRole": "compiler",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating Nanquan Puyuan’s sleeve-flick",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -122,9 +136,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword occurs in narrator-governed documentary prose, an editorial heading, or a nonverbal action clause; no person utters it in this occurrence.",
-            "ReviewedBy": "Codex f003 C801-850 exact-actor repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:07:20.009102+00:00"
+            "GrammarEvidence": "泉拂袖便行 narrates Nanquan’s act; Mazu speaks only after 師曰.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:07:59.685656+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

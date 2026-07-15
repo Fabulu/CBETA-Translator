@@ -6,3 +6,13 @@
 - Work control: 6 actual source files; parallel transmissions do not inflate semantic independence.
 - Rereview finding repaired: exact actors and context roles were rewritten from the complete headword-bearing clauses.
 - Compile report: hardPass true.
+
+## Public-feedback ledger
+
+- feedback-inference-verdict: retain it as a public-testing label, not a hidden object.
+- feedback-observations: six masters deploy it, and several immediately undercut fixation on its name.
+- feedback-falsification-searches: tested whether it names a stable teaching formula or private attainment.
+- feedback-counterexamples: ordinary sounds and actions are explicitly used to display it.
+- feedback-scope: the six stored independent works.
+- lookup-probes: further mechanism; beyond mechanism; upward mechanism; public test.
+- opening-interpretation-verdict: revised English-first and grounded in recorded contrasts.

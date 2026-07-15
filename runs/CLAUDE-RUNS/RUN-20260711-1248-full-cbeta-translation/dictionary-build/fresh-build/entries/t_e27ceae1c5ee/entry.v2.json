@@ -132,13 +132,28 @@
           "ToLb": "0515a04",
           "Kwic": "四祖信大師見三祖乃云願和尚慈悲乞與解脫法門師云誰縛於汝信云無人縛師云何更求解脫乎信於言下有省。",
           "Curated": true,
-          "AttributionNote": "Source text (宗門統要正續集(第1卷-第12卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text; exact headword actor: the compiler narrating Daoxin’s response. The complete case was read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Daoxin",
+              "Roles": [
+                "person-described",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Sengcan",
+              "Roles": [
+                "preceding-speaker",
+                "teacher"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 言下有省-bearing event",
-            "ActorRole": "compiler",
+            "ActorLabel": "the compiler narrating Daoxin’s response",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -147,9 +162,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 言下有省 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:57.027055+00:00"
+            "GrammarEvidence": "信於言下有省 is narration after Sengcan’s spoken question.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:02:59.238824+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

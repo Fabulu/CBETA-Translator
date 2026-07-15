@@ -76,13 +76,21 @@
           "FromLb": "0651b23",
           "ToLb": "0651b30",
           "Kwic": "僧問：「盡大地是箇火坑，向什麼處迴避？」師曰：「向火坑裏迴避。」僧曰：「如何是無火坑處？」師曰：「盡大地是箇火坑。」師從僧堂前過，見僧曰：「作麼？」僧曰：「作麼？」師曰：「走卻主人公也。」僧敲禪板三下，師曰：「認奴作郎。」僧又敲禪板三下，師曰：「兔子何曾離舊窠？」僧乃歸堂，師撫掌大笑，歸方丈。有僧問：「和尚笑什麼？」師曰：「山僧適來法戰一上。」僧曰：「還得勝麼？」師曰：「不得勝。」僧曰",
-          "ContextMasters": [],
-          "AttributionNote": "Source text (頻吉祥禪師語錄): The monastic’s board-striking action is narrated; no one utters the headword. Exact-turn canary: the complete case and both sides of the exact headword-bearing turn were checked.",
+          "ContextMasters": [
+            {
+              "MasterName": "Pinjixiang Zhixiang",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text; exact headword actor: the record narrator describing an unnamed monk’s action. The complete case was read before attribution.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
-            "ActorLabel": "the record narrator",
-            "ActorRole": "compiler",
+            "ActorLabel": "the record narrator describing an unnamed monk’s action",
+            "ActorRole": "narrator",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -91,9 +99,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The monastic’s board-striking action is narrated; no one utters the headword.",
-            "ReviewedBy": "Codex f004 lane C repair author",
-            "ReviewedUtc": "2026-07-15T12:00:00Z",
+            "GrammarEvidence": "僧敲禪板三下 narrates the board-striking; Pinjixiang speaks only after 師曰.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:02:59.238824+00:00",
             "AuthoredVoiceRiskReviewed": true
           },
           "Curated": true

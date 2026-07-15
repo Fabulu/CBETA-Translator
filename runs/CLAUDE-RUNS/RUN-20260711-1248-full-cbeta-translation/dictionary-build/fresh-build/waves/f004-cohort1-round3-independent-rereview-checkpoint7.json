@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-round3-hash-bound-full-case-rereview",
+  "reviewer": "review_author_cohort1",
+  "generatedUtc": "2026-07-15T18:25:16.680224+00:00",
+  "sourceLedger": "f004-cohort1-round3-final-ledger.json",
+  "sourceLedgerSha256": "669d2bfe8cd823165cd1cdee12dccd1b9b237272d5febd53403dc76ac7b17a88",
+  "priorReview": "f004-cohort1-round2-independent-rereview.json",
+  "priorReviewSha256": "1d7399f87a43809302db33138fa72f4b4b734d17875528c9dfdfa16ce7f4d9b2",
+  "reviewMethod": [
+    "Read every current full stored case and retested each round-two finding against the headword-bearing turn.",
+    "Verified every entry SHA-256 against the round-three ledger.",
+    "Reran zc.verify for all 130 KWICs with exact FromLb/ToLb and headword containment.",
+    "Retested actors, turn boundaries, paratext/body, lexical boundaries, recurrence, senses, #0g, English-first prose, and regressions.",
+    "Edited, promoted, merged, and published nothing."
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  },
+  "checkpoint": 7,
+  "entriesReviewed": 7,
+  "occurrencesReadInFullCase": 42,
+  "exactKwicsAndSpans": 42,
+  "keep": 6,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "d6bf83a6a28ffb33eccfc0c9fcd7f95bacbbb11743f0c86c94045e53959aa555",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "o2 assigns Pizao Duo although the poem follows narrated stove-spirit material without a speech cue; prove a master voice or retain narration.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0006a16",
+          "toLb": "0006a21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0151a02",
+          "toLb": "0151a09",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0477a09",
+          "toLb": "0477a16",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0319c13",
+          "toLb": "0319c21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0651c12",
+          "toLb": "0651c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0553b08",
+          "toLb": "0553b12",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J34/J34nB301.xml",
+          "fromLb": "0282b11",
+          "toLb": "0282b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1068,
+      "id": "t_93d4f280640a",
+      "term": "點檢",
+      "reviewedSha256": "5c008517551b6cbf2eafb5c0f5f6eeb22c5d6743a0276d4f97d4758619075931",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All exact actors now follow their turns; inspection/checking prose is corpus-bounded.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0520a16",
+          "toLb": "0520a21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0228a07",
+          "toLb": "0228a14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0091a13",
+          "toLb": "0091a19",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0030c20",
+          "toLb": "0031a02",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0004c12",
+          "toLb": "0004c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0438b21",
+          "toLb": "0438c04",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0757c14",
+          "toLb": "0757c22",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1069,
+      "id": "t_00d347279628",
+      "term": "蕭何",
+      "reviewedSha256": "e13f010ae3e6bb49b59fdc99ac8ec9843b31751cbdb7d07cb142a1c5badcd0ba",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "findings": [
+        "Bare token removed; four exact comment voices and legal allusion now hold.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0015c08",
+          "toLb": "0015c14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0279c10",
+          "toLb": "0279c17",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "P/P154/P154n1519.xml",
+          "fromLb": "0515b08",
+          "toLb": "0516a06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0730c15",
+          "toLb": "0730c21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1070,
+      "id": "t_43f57213c34e",
+      "term": "十方世界",
+      "reviewedSha256": "c691a212b89e4a1e1c2c0f62e87ee51b73692014c4828b9ae9b0705881e67792",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "Duplicate birth-family rows replaced by distinct named master deployments.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0012a19",
+          "toLb": "0012b01",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0018c03",
+          "toLb": "0018c10",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0002c05",
+          "toLb": "0002c11",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0708a04",
+          "toLb": "0708a11",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0061c09",
+          "toLb": "0061c19",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0663b26",
+          "toLb": "0663c07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0616c12",
+          "toLb": "0617a02",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1071,
+      "id": "t_c5dbf08e4452",
+      "term": "拂子頭",
+      "reviewedSha256": "4ca4d301c1b5054a3aa3e6a9e45ec143df6a3d25b43c1a60163d20b0e1e378a8",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All voices named and #0g whisk-head deployment is explicit.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0006b07",
+          "toLb": "0006b13",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0054c02",
+          "toLb": "0054c07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0813b13",
+          "toLb": "0813b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0895b19",
+          "toLb": "0895b25",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0360c03",
+          "toLb": "0360c09",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J33/J33nB282.xml",
+          "fromLb": "0369a24",
+          "toLb": "0369a29",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J27/J27nB190.xml",
+          "fromLb": "0080b03",
+          "toLb": "0080b12",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1074,
+      "id": "t_897abeb2436c",
+      "term": "披毛戴角",
+      "reviewedSha256": "9d91b86773d19e4726df10c8557b9805d7ff20455f42823e1699eaef29c48d33",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "Contained doctrinal/bare-token rows removed; six master deployments hold.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T47/T47n1987A.xml",
+          "fromLb": "0527b07",
+          "toLb": "0527b15",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0624b21",
+          "toLb": "0624c05",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0510b08",
+          "toLb": "0510b13",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0505c01",
+          "toLb": "0505c06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0545b24",
+          "toLb": "0545c08",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J33/J33nB280.xml",
+          "fromLb": "0266c22",
+          "toLb": "0267a03",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    },
+    {
+      "ordinal": 1075,
+      "id": "t_1b4bf4fff6bb",
+      "term": "韓愈",
+      "reviewedSha256": "a8868a1899efbb83c7f1c8ef957a672cde8b20c358356f5820812a89a8f16ba6",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "KEEP",
+      "findings": [
+        "Catalogue noise excluded; current cases and actor distinctions hold.",
+        "All hashes match the round-three ledger; every KWIC independently verifies at exact stored FromLb/ToLb."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0419c10",
+          "toLb": "0419c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J40/J40nB492.xml",
+          "fromLb": "0489a25",
+          "toLb": "0489b06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J26/J26nB180.xml",
+          "fromLb": "0296c07",
+          "toLb": "0296c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J27/J27nB194.xml",
+          "fromLb": "0328a10",
+          "toLb": "0328a19",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true
+        }
+      ]
+    }
+  ]
+}

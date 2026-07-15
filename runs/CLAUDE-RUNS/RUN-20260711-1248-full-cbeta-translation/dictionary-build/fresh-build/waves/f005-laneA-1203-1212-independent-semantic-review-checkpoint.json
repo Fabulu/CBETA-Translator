@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "f005-A1203-1212-independent-semantic-review-v1",
+  "reviewScope": "Every stored occurrence read in its complete case from the generator-v5 full attribution packets; entry prose, sense boundary, Chan deployment, depth, and exact headword utterer independently adjudicated.",
+  "sourceCheckpoint": "f005-laneA-1203-1217-independent-review-start-checkpoint.json",
+  "reviewer": "Codex independent worker f005_a1203_1217_independent",
+  "entryEdits": false,
+  "entriesRead": 10,
+  "occurrencesRead": 49,
+  "verdictCounts": {
+    "KEEP": 5,
+    "REVISE": 5
+  },
+  "rows": [
+    {
+      "ordinal": 1203,
+      "id": "t_321a547de25f",
+      "term": "耳裏著水",
+      "entrySha256": "aca494008d27b1cea5f5634e7494cb4e2790b32e7d25cb90b6eb5690b11e2e72",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "findings": [
+        "Occurrence 3 (X/X82/X82n1571.xml 0307a12) is uttered in the hall discourse of the immediately preceding section owner 常州府龍池萬如通微禪師, who calls himself 如如 in the same complete case. Jueyin is not the utterer and must not remain in MasterName.",
+        "The explanation repeats the same false attribution ('Jueyin applies...') and must name Wanru Tongwei after canonical-roster resolution."
+      ]
+    },
+    {
+      "ordinal": 1204,
+      "id": "t_138ca8036367",
+      "term": "鼻孔遼天",
+      "entrySha256": "ec1d20c64f87af233ae26c06042ae20d63032c710f38c881c51b01fc3685c10c",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "Occurrence 5 (J/J26/J26nB178.xml 0128a02) puts the headword in the anonymous monk's opening question: 僧問…為復是不守本分？為復是鼻孔遼天？ Feiyin Tongrong answers afterward and is not its utterer. MasterName must be null with the questioner documented; Feiyin belongs in ContextMasters as respondent/record-owner.",
+        "The opening inference 'standing wholly unconcealed and uncontained' is stronger and more uniform than the cited uses prove. The repair should describe the observable sky-high-nostrils appraisal and its varied jobs (answer, self-image, question, challenge), without converting those jobs into one psychological state."
+      ]
+    },
+    {
+      "ordinal": 1205,
+      "id": "t_640e09aef544",
+      "term": "頂門具眼",
+      "entrySha256": "3ebf18f7ea804549cd8a7405476c2d3721bdd1543d657c60bcef9107e08bafe8",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "The explanation claims that Juelang Daosheng 'includes a crown eye three fathoms long in a portrait praise.' Occurrence 4 is instead a public address containing 頂門具眼，肘後懸符, with no three-fathom eye and no portrait praise. That wording appears to have leaked from the neighboring 腦後見腮 evidence and is unanchored here.",
+        "Replace the unsupported sentence with what occurrence 4 actually does, or add and verify an exact distinct witness if the three-fathom portrait claim is retained."
+      ]
+    },
+    {
+      "ordinal": 1206,
+      "id": "t_27a41c50f0c3",
+      "term": "腦後見腮",
+      "entrySha256": "f250c0c9455155716511d0eeaa42c3bc54f37b7411a1153e66aa488529829229",
+      "occurrencesRead": 6,
+      "verdict": "KEEP",
+      "findings": []
+    },
+    {
+      "ordinal": 1207,
+      "id": "t_9529f4444230",
+      "term": "舌頭拖地",
+      "entrySha256": "2e4a3de55096fbd0a5425b8cbb49128895f9dd32fc715bff81fb7e3e41de2e8c",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "findings": []
+    },
+    {
+      "ordinal": 1208,
+      "id": "t_fd83eaebf6ad",
+      "term": "口似血盆",
+      "entrySha256": "6b13f30b5ee13719f37565e3d947924b5d753867cea12ca96343b8bb8a13a86c",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "Occurrence 4 (M/M59/M59n1540.xml 0875a03) is uttered by the unnamed questioner in 進云：忽有箇牙如劒樹口似血盆底人…; Dahui Zonggao responds only afterward. The prose recognizes this, but MasterName incorrectly links Dahui as utterer.",
+        "Occurrence 6 (T/T47/T47n2000.xml 0999b20) is likewise in the anonymous monk's question: 僧問…衲僧家牙如劍樹，口似血盆…; Xutang Zhiyu answers afterward. MasterName must be null and Xutang contextual, not the utterer.",
+        "Both rows require reviewed-unnamed questioner ActorAttribution and exact-turn ContextMasters; the explanatory sentences may remain after being made consistent with the structured attribution."
+      ]
+    },
+    {
+      "ordinal": 1209,
+      "id": "t_ab7b478bd5bb",
+      "term": "糞掃堆頭",
+      "entrySha256": "2108359b850443c1929e374852721cfd55980a4d9262bd1d76a0f3783ab7d6b5",
+      "occurrencesRead": 7,
+      "verdict": "KEEP",
+      "findings": []
+    },
+    {
+      "ordinal": 1210,
+      "id": "t_f4fc42267d33",
+      "term": "雞寒上樹鴨寒下水",
+      "entrySha256": "8618526a2dc696985f3fe467499e712460c180b61987eaf9fcb4f91c6dc56c19",
+      "occurrencesRead": 2,
+      "verdict": "REVISE",
+      "findings": [
+        "Occurrence 2 (C/C077/C077n1710.xml 0946a04) is explicitly introduced by Zhenjing Kewen as 古人云 and is therefore a raised old saying, not Zhenjing's own utterance. The independent occurrence and parallel case identify Baling Haojian as the source speaker. MasterName must name Baling after parallel-passage proof, with Zhenjing as later-raiser/record-owner in ContextMasters.",
+        "The prose already says Zhenjing quotes the old saying; the structured attribution must be made consistent with that sentence."
+      ]
+    },
+    {
+      "ordinal": 1211,
+      "id": "t_7c53f7605da2",
+      "term": "飯籮邊餓死",
+      "entrySha256": "a660b9094360e49c2e8d5446c9d7e1ea66984db54a78e739edd27d4c7c090c9a",
+      "occurrencesRead": 3,
+      "verdict": "KEEP",
+      "findings": []
+    },
+    {
+      "ordinal": 1212,
+      "id": "t_495c83ba370b",
+      "term": "三文買草鞋",
+      "entrySha256": "aac01b73e63503179b789d534570305b6957bf930f2ea456a3305e1350b99d1e",
+      "occurrencesRead": 4,
+      "verdict": "KEEP",
+      "findings": []
+    }
+  ]
+}

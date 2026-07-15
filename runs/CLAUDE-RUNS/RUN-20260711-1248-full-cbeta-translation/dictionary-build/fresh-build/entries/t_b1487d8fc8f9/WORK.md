@@ -6,6 +6,7 @@ feedback-counterexamples: contrary or limiting deployments are stated where the 
 feedback-scope: claims are limited to the frozen allowlisted corpus and the exact headword family declared in the entry.
 lookup-probes: preferred target, alternate targets, natural English synonyms, and headword-family forms checked.
 opening-interpretation-verdict: opening gives a short corpus-earned interpretation before evidence detail; quotation-led openings were manually confirmed as explanatory rather than empty quotation dumps.
+plain-english-image-verdict: “plant and steady the heels” is retained as the literal image, while “establish firm footing” states its recurrent Chan use; the entry does not stop at the calque.
 modifier-relation-verdict: not applicable; no material modifier in the headword.
 display-modifier-verdict: not applicable; no material-looking display target.
 definition-formula-results: exact stored witnesses were checked for self-glosses, contrasts, appositions, and recurrent frames.

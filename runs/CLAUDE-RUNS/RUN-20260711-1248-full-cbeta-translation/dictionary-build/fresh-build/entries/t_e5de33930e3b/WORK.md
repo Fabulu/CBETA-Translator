@@ -1,0 +1,23 @@
+# 夢中說夢 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 7 curated rows across 2 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 開眼尿床 and explicit waking/dream predicates.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o7` establish the ordinary scene and named Chan deployments.
+- minimal-inference: Zen bends the idiom back onto the teaching seat: the master can call even his own present speech another dream told within the dream.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The line does not prove that every statement is false; it marks the recursive status assigned in the cited passages.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o7` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The line does not prove that every statement is false; it marks the recursive status assigned in the cited passages.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: speaking dreams in a dream; a dream commenting on dreams.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.

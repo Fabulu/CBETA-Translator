@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "f004-cohort1-round5-rereview-repair-delta-v1",
+  "generatedUtc": "2026-07-15T19:13:58.144501+00:00",
+  "sourceReview": "fresh-build/waves/f004-cohort1-round5-delta-independent-rereview.json",
+  "sourceReviewSha256": "e58b6ac21e1066399f6ac7232ef2d35cb81bcdc7f36cd690cc3953728d502d54",
+  "repairedEntries": 3,
+  "rows": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "occurrences": 7,
+      "entrySha256": "b57da7b50675d9f6d44c3967b4e055fd98d682fdbe5317634d0735bd38d808d8",
+      "worksheetSha256": "21df66eb9853f058d3991143cd8940250572cb6616ec2b81ee375a07be246906",
+      "compileReportSha256": "f3d0bbb598e75979c812cac494399351454e127460b7192bb84798c81a7092d3"
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "occurrences": 7,
+      "entrySha256": "283e77667e1e9ac3a0bfa00970fd9259a398be2138f5bee9392a45b2c5839342",
+      "worksheetSha256": "e13f2ebc8cbe61170ea328c126d5b4784932287a0aae1b124c7b568e75f37e3b",
+      "compileReportSha256": "fd609dbfa70c4d8090bb684ec939f3176c72dd6f1b3105dd88be7c89b0c1ef01"
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "occurrences": 6,
+      "entrySha256": "48495351684a4792096df214e14827e0ed87db1b784c362714a8c2762e0d94d5",
+      "worksheetSha256": "51fb2f5831b5254b6a312f1a8f11d2e338d800fe2b6e36850b111ebc75b7a4bb",
+      "compileReportSha256": "db8c1b394a5c86936a5901c5e1520a92968604a7495307da088f5a2905ff353d"
+    }
+  ],
+  "preservedKeeps": [
+    {
+      "ordinal": 1078,
+      "id": "t_c5ff2fdc37ca",
+      "term": "遇緣即宗",
+      "byteIdentical": true,
+      "sha256": "5258e9414f81a9022edd26e36a1cb4b79bae54d94ee0f70d3b8deaea2a24edec"
+    }
+  ],
+  "authoringRisk": {
+    "path": "fresh-build/waves/f004-cohort1-round5-rereview-repair-authoring-risk.json",
+    "sha256": "766bb55d837dc01fd25ffcd4c326d19b5a74140654acb3add7c8bf190c38855a",
+    "passing": 3,
+    "flagged": 0
+  },
+  "preReview": {
+    "path": "fresh-build/waves/f004-cohort1-round5-rereview-repair-pre-review.json",
+    "sha256": "f9f69dd94335f9626343103fd9e72d260892da9c66c747f311a60e4800a589a7",
+    "hardPass": true
+  },
+  "compositeGate": {
+    "path": "fresh-build/waves/f004-cohort1-round5-rereview-repair-composite.json",
+    "sha256": "20cee9cf0def16228da62e493931450cc29205a2630407d4581142b4cfd17965",
+    "hardPass": true,
+    "exactKwic": 20,
+    "exactFailures": 0
+  },
+  "pendingRoster": {
+    "path": "fresh-build/waves/f004-cohort1-round5-rereview-repair-roster-candidates.json",
+    "sha256": "49784b4e72cb5dba213eeefa467cb8db555879d07afbebd7ff2a5085fe43bae6",
+    "promoted": false
+  },
+  "selfReview": false,
+  "promoted": false,
+  "merged": false,
+  "published": false
+}

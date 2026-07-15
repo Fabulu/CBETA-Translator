@@ -23,12 +23,12 @@
           "ToLb": "0246a08",
           "Kwic": "。使後世稱為清白吏子孫。以此遺之。不亦厚乎。史記。許由隱於箕山。依山而食。就河而飲。堯讓帝位。由聞之臨河洗耳。巢父飲牛問曰。凡人洗面。公獨洗耳。由曰。聞堯請我為九州長。故洗是非。父曰。豫章之木生於高山。工人莫得。子欲避世。何不深藏。今游人間苟求名譽。行待下飲。恐污",
           "Curated": true,
-          "AttributionNote": "Source text (萬松老人評唱天童覺和尚頌古從容庵錄): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (萬松老人評唱天童覺和尚頌古從容庵錄). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -38,11 +38,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -50,12 +51,12 @@
           "ToLb": "0329b07",
           "Kwic": "剛地成點污。口是禍之門，舌是斬身斧，陪却三斤鐵，祇因看錮鏴。泠泠寒溜泣秋壑，纔會滄溟便泛舟見說許由曾洗耳，可憐巢父更鞭牛。一言已出駟難追，道了如何悔得來？冷地被人相訐露，牙關齩定口慵開。古德畜一童子，竝不知軌則。一行脚僧到菴，乃教示童子朝昏禮儀。其童晚見老宿外歸，",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (宗鑑法林). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -65,11 +66,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -77,26 +79,16 @@
           "ToLb": "0044c13",
           "Kwic": "曰：會麼？認著依前還不是。擊禪牀，下座。泗州龜山水陸院曉津禪師泗州龜山水陸院曉津禪師僧問：如何是賓中賓？師曰：巢父飲牛。曰：如何是賓中主？師曰：許由洗耳。曰：如何是主中賓？師便喝。曰：如何是主中主？師曰：禮拜了退。上堂：田地穩密，過犯彌天，灼然擡脚不起。神通遊戲，",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): monastic questioner bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "monastic questioner",
-            "ActorRole": "questioner",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete exchange places the headword in the monk’s question; the responding master does not utter it.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Guishan Xiaojin. The complete exchange assigns the answer “Chaofu waters the ox” to Guishan Xiaojin; the preceding monk asks the question.",
+          "ContextMasters": [
+            {
+              "MasterName": "Guishan Xiaojin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Guishan Xiaojin"
         },
         {
           "RelPath": "C/C078/C078n1720.xml",
@@ -104,39 +96,12 @@
           "ToLb": "0729c03",
           "Kwic": "鋒無價萬福承當不下看他拈尾作頭又道大王來也驥子駑駘滿道途皮毛孰敢辨精麄若無伯樂當時鑒失却追風千里駒許由臨岸洗耳巢父不飲牛水侍者親入帝鄉趙州只在草裏來也宮殿隨身去也笙歌滿路侍者白頭如新趙州傾盖如故趙州到一菴主處問有麼有麼主竪起拳頭師曰水淺不是泊船處便行又到一菴主處問",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
-        },
-        {
-          "RelPath": "D/D51/D51n8948.xml",
-          "FromLb": "0036b01",
-          "ToLb": "0036b11",
-          "Kwic": "妙語錄一住相州淨妙禪寺語錄侍者玄仁編山門大解脫門誰能入作八字打開全无肯路新長老󲟏汝通一線。佛殿佛〃休〃許由洗耳巢父牽牛囙甚踏步向前不是冤家不聚頭。㨿室商君法孫武令全提時節佛祖𠧒命莫有向這裏出氣底麼吽〃。拈帖振興佛法聳動人天把定放行全在裏許未證㨿底看〃。山門䟽相唾饒",
-          "Curated": true,
-          "AttributionNote": "Source text (佛國禪師語錄): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (禪宗頌古聯珠通集). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -146,11 +111,40 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "D/D51/D51n8948.xml",
+          "FromLb": "0036b01",
+          "ToLb": "0036b11",
+          "Kwic": "妙語錄一住相州淨妙禪寺語錄侍者玄仁編山門大解脫門誰能入作八字打開全无肯路新長老󲟏汝通一線。佛殿佛〃休〃許由洗耳巢父牽牛囙甚踏步向前不是冤家不聚頭。㨿室商君法孫武令全提時節佛祖𠧒命莫有向這裏出氣底麼吽〃。拈帖振興佛法聳動人天把定放行全在裏許未證㨿底看〃。山門䟽相唾饒",
+          "Curated": true,
+          "AttributionNote": "Source text (佛國禪師語錄). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],
@@ -163,7 +157,7 @@
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "Chaofu names the referent or formula used in the selected Zen records. Complete-case reading shows how Chaofu functions in exchanges, formal addresses, institutional records, or inherited cases; the entry follows those predicates and speakers rather than an outside interpretation."
+      "Explanation": "Chaofu, the ancient recluse invoked as a named allusive figure. Chan verses and appraisals deploy Chaofu as the recluse who refuses worldly honor; the entry describes that corpus role without importing a complete external legend."
     }
   ]
 }

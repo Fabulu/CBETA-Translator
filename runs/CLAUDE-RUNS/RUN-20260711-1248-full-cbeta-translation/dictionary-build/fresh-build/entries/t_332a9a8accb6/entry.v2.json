@@ -23,33 +23,66 @@
           "ToLb": "0311b18",
           "Kwic": "四賓主者。師家有鼻孔。名主中主。學人有鼻孔。名賓中主。師家無鼻孔。名主中賓。",
           "Curated": true,
-          "AttributionNote": "In the source record (人天眼目), Source text (人天眼目); Huiyan Zhizhao owns the exact evidence clause after complete-case review.",
-          "MasterName": "Huiyan Zhizhao",
+          "AttributionNote": "Eye of Humans and Gods (人天眼目): the compiler defines the Linji four guest-host positions; Linji Yixuan is the school founder discussed, not the utterer of this editorial clause.",
           "ContextMasters": [
             {
-              "MasterName": "Huiyan Zhizhao",
+              "MasterName": "Linji Yixuan",
               "Roles": [
-                "utterer"
+                "person-discussed",
+                "person-discussed"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the Eye of Humans and Gods compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The handbook compiler defines the four positions; this is editorial exposition, not a marked speech turn.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196371+00:00"
+          }
         },
         {
           "RelPath": "T/T48/T48n2006.xml",
           "FromLb": "0303b14",
           "ToLb": "0303b14",
           "Kwic": "如何是主中賓。穴云。回鸞兩曜新。",
-          "MasterName": "Fengxue Yanzhao",
           "Curated": true,
-          "AttributionNote": "In the source record (人天眼目), Source text (人天眼目); Fengxue Yanzhao owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "Eye of Humans and Gods (人天眼目): an unnamed monk asks “what is guest within host?”; Fengxue Yanzhao answers “the returning simurgh, the two luminaries renewed.”",
           "ContextMasters": [
             {
               "MasterName": "Fengxue Yanzhao",
               "Roles": [
-                "utterer"
+                "respondent"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about guest within host",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The headword stands in 如何是主中賓 before 穴云 introduces Fengxue Yanzhao’s answer.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196473+00:00"
+          }
         },
         {
           "RelPath": "T/T48/T48n2006.xml",
@@ -77,13 +110,30 @@
           "AttributionNote": "In the source record (二隱謐禪師語錄), Source text (二隱謐禪師語錄); Unnamed monk asking about the guest within the host owns the exact evidence clause after complete-case review.",
           "ContextMasters": [
             {
-              "MasterName": "Unnamed monk asking about the guest within the host",
+              "MasterName": "Eryin Mi",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "MasterName": "Unnamed monk asking about the guest within the host"
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about guest within host",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The headword is inside the question before 師云 introduces the response.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196492+00:00"
+          }
         },
         {
           "RelPath": "J/J28/J28nB212.xml",
@@ -94,42 +144,19 @@
           "AttributionNote": "In the source record (二隱謐禪師語錄), Source text (二隱謐禪師語錄); Unnamed monk asking about the guest within the host owns the exact evidence clause after complete-case review.",
           "ContextMasters": [
             {
-              "MasterName": "Unnamed monk asking about the guest within the host",
+              "MasterName": "Eryin Mi",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "MasterName": "Unnamed monk asking about the guest within the host"
-        },
-        {
-          "RelPath": "X/X82/X82n1571.xml",
-          "FromLb": "0044c09",
-          "ToLb": "0044c12",
-          "Kwic": "是賓中賓？師曰：巢父飲牛。曰：如何是賓中主？師曰：許由洗耳。曰：如何是主中賓？師便喝。曰：如何是主中主？師曰：禮拜了退。上堂：田地穩密，過犯彌天，",
-          "Curated": true,
-          "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); Shuangling Hua owns the exact evidence clause after complete-case review.",
-          "ContextMasters": [
-            {
-              "MasterName": "Shuangling Hua",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "MasterName": "Shuangling Hua"
-        },
-        {
-          "RelPath": "X/X80/X80n1565.xml",
-          "FromLb": "0087b10",
-          "ToLb": "0087b18",
-          "Kwic": "曰。春秋不涉。洞曰。和尚先住。此山先住。師曰。不知。洞曰。為甚麼不知。師曰。我不從人天來。洞曰。和尚得何道理。便住此山。師曰。我見兩箇泥牛鬬入海。直至于今絕消息。洞山始具威儀禮拜。便問。如何是主中賓。師曰。青山覆白雲。曰。如何是賓中主。師曰。長年不出戶。曰。賓主相去幾何。師曰。長江水上波。曰。賓主相見。有何言說。師曰。清風拂白月。洞山辭退。師乃述偈曰。三間茅屋從來住。一道神光萬境閑。莫把",
-          "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "verse-author",
-            "ActorLabel": "the unidentified verse author responsible for the headword-bearing clause at X/X80/X80n1565.xml",
-            "ActorRole": "verse-author",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about guest within host",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The headword is inside the question before 師云 introduces the response.",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -138,12 +165,67 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete passage presents 主中賓 in a verse, but supplies no verse-author name.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
-          },
-          "ContextMasters": [],
-          "AttributionNote": "In the source record (五燈會元), (五燈會元): the unidentified verse author in (五燈會元) owns the exact headword-bearing verse. Actor: the unidentified verse author responsible for the headword-bearing clause at X/X80/X80n1565.xml."
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196504+00:00"
+          }
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0044c09",
+          "ToLb": "0044c12",
+          "Kwic": "是賓中賓？師曰：巢父飲牛。曰：如何是賓中主？師曰：許由洗耳。曰：如何是主中賓？師便喝。曰：如何是主中主？師曰：禮拜了退。上堂：田地穩密，過犯彌天，",
+          "Curated": true,
+          "AttributionNote": "五燈全書(第34卷-第120卷): Complete Collection of the Five Lamps (五燈全書): an unnamed monk asks “what is guest within host?” and Shuangling Hua responds with a shout.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shuangling Hua",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk asking about guest within host",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The question marker 曰 and the following 師曰/師便喝 separate the unnamed monk’s headword-bearing question from Shuangling Hua’s answer.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196515+00:00"
+          }
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0087b10",
+          "ToLb": "0087b18",
+          "Kwic": "曰。春秋不涉。洞曰。和尚先住。此山先住。師曰。不知。洞曰。為甚麼不知。師曰。我不從人天來。洞曰。和尚得何道理。便住此山。師曰。我見兩箇泥牛鬬入海。直至于今絕消息。洞山始具威儀禮拜。便問。如何是主中賓。師曰。青山覆白雲。曰。如何是賓中主。師曰。長年不出戶。曰。賓主相去幾何。師曰。長江水上波。曰。賓主相見。有何言說。師曰。清風拂白月。洞山辭退。師乃述偈曰。三間茅屋從來住。一道神光萬境閑。莫把",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Liangjie",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
+            {
+              "MasterName": "Yinshan Heshang",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "五燈會元: Records of the Transmission of the Lamp (傳燈錄): Dongshan Liangjie asks Yinshan “what is guest within host?”; Yinshan answers “green mountains cover white clouds.”",
+          "MasterName": "Dongshan Liangjie"
         }
       ],
       "SourceTexts": [

@@ -1,0 +1,23 @@
+# 棺材裏瞠眼 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 5 curated rows across 5 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 開眼, 瞠眼, 死屍, and 鷂子過新羅; longer “coffin eyes” variants were retained as family controls.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o5` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The coffin makes timing load-bearing: open eyes and vigorous display remain possible as an image, but the actor is already enclosed and the case has passed him by.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The phrase does not prove literal death in each scene; it is a comparison used by the named masters, and its evaluative force is anchored by “what use?” and “already over Silla.”
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o5` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The phrase does not prove literal death in each scene; it is a comparison used by the named masters, and its evaluative force is anchored by “what use?” and “already over Silla.”
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: staring in a coffin; dead but glaring; coffin-eyed stare.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.

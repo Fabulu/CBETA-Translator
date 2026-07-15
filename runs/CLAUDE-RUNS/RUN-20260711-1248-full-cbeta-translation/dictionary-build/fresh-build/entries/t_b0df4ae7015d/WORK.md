@@ -1,0 +1,23 @@
+# 荊棘林 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 8 curated rows across 8 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 蒺藜園, 平地上死人無數, 過得荊棘林, and thorn-thicket action verbs; the forest and related caltrop garden were not merged.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o8` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The thicket keeps its snagging physical constraint while Chan speakers relocate it into the interview itself: the obstacle may be the road asked for, the raised whisk, or the inherited formula now being tested.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: Passing the thicket is sometimes praised, yet later comments say even a crossing can remain caught; the image therefore does not name a single stage or guaranteed result.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o8` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: Passing the thicket is sometimes praised, yet later comments say even a crossing can remain caught; the image therefore does not name a single stage or guaranteed result.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: bramble thicket; forest of thorns; tangled thornwood.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.

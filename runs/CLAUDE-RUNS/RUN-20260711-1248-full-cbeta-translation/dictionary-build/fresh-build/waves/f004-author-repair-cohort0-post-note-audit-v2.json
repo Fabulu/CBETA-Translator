@@ -1,0 +1,478 @@
+{
+  "counts": {
+    "entries": 25,
+    "senses": 25,
+    "occurrences": 170,
+    "named_occurrences": 6,
+    "deferred_non_roster": 3,
+    "pending_roster_master": 2,
+    "context_master_links": 17,
+    "deferred_non_roster_context": 11,
+    "pending_roster_context_master": 3,
+    "attribution_notes": 170,
+    "actor_reviewed_unnamed": 79,
+    "actor_narrated": 80,
+    "chinese_strings": 17,
+    "anchored_chinese": 17,
+    "unnamed_master_forbidden": 13,
+    "vague_attributor": 2,
+    "record_owner_utterer_unresolved": 36,
+    "note_missing_speaker": 36,
+    "actor_identified_non_master": 3,
+    "identified_actor_not_named": 3,
+    "actor_impersonal": 2
+  },
+  "hardFailures": 90,
+  "failures": [
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2b7734c66eb6/entry.v2.json",
+      "detail": "項羽 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35eaec93bf12/entry.v2.json",
+      "detail": "餬餅 s1 o4: every master must be named"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3c20438ecdda/entry.v2.json",
+      "detail": "張無盡 s1: 'the monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3c20438ecdda/entry.v2.json",
+      "detail": "張無盡 s1: 'a master'"
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o1: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o1: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o2: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o2: Source text (密雲悟禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o4: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o4: Source text (五燈全書(第34卷-第120卷)). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o5: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o5: Source text (圓悟佛果禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o6: Source text (費隱禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3cd725c06599/entry.v2.json",
+      "detail": "喝下 s1 o7: Source text (普濟玉琳國師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o6: Source text (象崖珽禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c5147614733/entry.v2.json",
+      "detail": "禾山打鼓 s1 o7: Source text (圓悟佛果禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o2: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5e92b1f22d27/entry.v2.json",
+      "detail": "赤肉團 s1 o5: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6d02220e4b51/entry.v2.json",
+      "detail": "一念萬年 s1 o1: every master must be named"
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o4: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_810390f20723/entry.v2.json",
+      "detail": "大雄峰 s1 o4: Source text (青城竹浪生禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_869a1b044ccb/entry.v2.json",
+      "detail": "傳法 s1 o7: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88dac6848042/entry.v2.json",
+      "detail": "戒臘 s1 o3: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_88dac6848042/entry.v2.json",
+      "detail": "戒臘 s1 o5: every master must be named"
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o3: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o3: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o5: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o5: Source text (百愚禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o6: Source text (列祖提綱錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_941749989118/entry.v2.json",
+      "detail": "祖師門下 s1 o7: Source text (五燈嚴統(第10卷-第25卷)). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o4: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o4: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o5: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_99d4babd4571/entry.v2.json",
+      "detail": "金鱗 s1 o5: Source text (無異元來禪師廣錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a2967e6f3617/entry.v2.json",
+      "detail": "生死 s1 o5: every master must be named"
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o2: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o2: Source text (天界覺浪盛禪師全錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o3: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o3: Source text (列祖提綱錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o4: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o4: Source text (續古尊宿語要). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o6: Source text (天界覺浪盛禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af3d7e718400/entry.v2.json",
+      "detail": "千聖不傳 s1 o7: Source text (五燈會元). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o2: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o2: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o4: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o4: Source text (鎮州臨濟慧照禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o6: Source text (列祖提綱錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_af96a6b4b04c/entry.v2.json",
+      "detail": "王常侍 s1 o7: Source text (五家語錄（選錄）). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o1: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o1: Source text (五燈全書(第34卷-第120卷)). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o2: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o2: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o3: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o3: Source text (列祖提綱錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b4fa3b34ec90/entry.v2.json",
+      "detail": "死人 s1 o6: Source text (續燈正統). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o1: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o1: Source text (五燈全書(第34卷-第120卷)). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o2: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o2: Source text (百愚禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c70fe8855f4b/entry.v2.json",
+      "detail": "雲門餅 s1 o7: Source text (大博乾禪師語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o1: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o1: Source text (五燈全書(第34卷-第120卷)). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o5: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o5: Source text (五燈會元). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o6: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o6: Source text (續燈正統). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "record_owner_utterer_unresolved",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o7: a speaking record owner is a master; resolve the exact name"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e31d8733e636/entry.v2.json",
+      "detail": "向上宗乘 s1 o7: Source text (古尊宿語錄). The complete unit places the token inside the current record owner’s address rather than compiler narration."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ef5beb628603/entry.v2.json",
+      "detail": "磨頭 s1 o1: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ef5beb628603/entry.v2.json",
+      "detail": "磨頭 s1 o2: every master must be named"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the monastic rule or case compiler'"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the monastic rule or case compiler'"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5e1fe96407c/entry.v2.json",
+      "detail": "知事 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the lamp-record compiler'"
+    }
+  ]
+}

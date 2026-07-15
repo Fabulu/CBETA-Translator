@@ -54,25 +54,24 @@
           "ToLb": "0561b09",
           "Kwic": "南嶽下第一世南嶽下第一世江西馬祖道一大寂禪師始匡徒日大慧遣一僧囑云你去竢他陞堂時乃出問作麼生看他道甚言句記將來僧至一如所教師云自從胡亂後三十年不曾少䀋醬僧回舉似大慧深肯之。",
           "Curated": true,
-          "AttributionNote": "Source text (宗門統要正續集(第1卷-第12卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 陞堂-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 陞堂 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+          "AttributionNote": "Source text (宗門統要正續集(第1卷-第12卷)). Exact headword actor: Nanyue Huairang. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanyue Huairang",
+              "Roles": [
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "person-discussed",
+                "student"
+              ]
+            }
+          ],
+          "MasterName": "Nanyue Huairang"
         },
         {
           "RelPath": "X/X81/X81n1568.xml",

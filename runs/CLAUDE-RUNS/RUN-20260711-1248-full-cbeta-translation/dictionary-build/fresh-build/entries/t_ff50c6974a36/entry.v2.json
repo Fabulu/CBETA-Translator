@@ -161,40 +161,76 @@
           "FromLb": "0525c01",
           "ToLb": "0525c08",
           "Kwic": "師。作五位君臣頌云。正中偏。三更初夜月明前。莫怪相逢不相識。隱隱猶懷舊日嫌。偏中正。失曉老婆逢古鏡。分明覿面別無真。休更迷頭猶認影。正中來。無中有路隔塵埃。但能不觸當今諱。也勝前朝斷舌才。兼中至。兩刃交鋒不須避。好手猶如火裏蓮。宛然自有冲天志。兼中到。不落有無誰敢和。人人盡欲出常流。折合還歸炭裏坐。",
-          "MasterName": "Dongshan Liangjie",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "The Recorded Sayings of Chan Master Dongshan Liangjie of Ruizhou (瑞州洞山良价禪師語錄) records Dongshan Liangjie composing the ruler-and-minister Five Ranks verses and naming all five positions in order.",
+          "AttributionNote": "The cited Caodong source (T47n1986B), complete composition unit: the compiler says that Dongshan Liangjie composed a Five Ranks lord-and-minister verse; Dongshan is the attributed verse author, but the headword occurs in the compiler's introduction.",
           "ContextMasters": [
             {
               "MasterName": "Dongshan Liangjie",
               "Roles": [
-                "utterer"
+                "person-described",
+                "attributed-author"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler introducing Dongshan Liangjie's verse",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師作五位君臣頌云 is the compiler's attribution formula; Dongshan's quoted verse begins with 正中偏.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1987A.xml",
           "FromLb": "0527a05",
           "ToLb": "0527a12",
           "Kwic": "因有僧問五位君臣旨訣。師曰。正位即空界。本來無物。偏位即色界。有萬象形。正中偏者背理就事。偏中正者舍事入理。兼帶者冥應眾緣。不墮諸有。非染非淨。非正非偏。故曰虛玄大道無著真宗。從上先德推此一位最妙最玄。當詳審辨明。君為正位。臣為偏位。臣向君是偏中正。君視臣是正中偏。君臣道合是兼帶語。",
-          "MasterName": "Caoshan Benji",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "The Recorded Sayings of Chan Master Caoshan Yuanzheng of Fuzhou (撫州曹山元證禪師語錄) records Caoshan Benji defining the upright and crooked positions, their combinations, and the ruler-and-minister mapping.",
+          "AttributionNote": "Recorded Sayings of Caoshan (曹山大師語錄), complete question-and-answer: an unnamed monk asks for the key to the Five Ranks of lord and minister; Caoshan Benji gives the extended answer.",
           "ContextMasters": [
             {
               "MasterName": "Caoshan Benji",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "因有僧問五位君臣旨訣 assigns the headword-bearing question to 僧; Caoshan's answer begins after 師曰.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "T/T48/T48n2006.xml",
           "FromLb": "0320c08",
           "ToLb": "0320c19",
-          "Kwic": "示以偏正五位。四賓主功勳五位。君臣五位。王子五位。內外紹等事。偏正五位者。正中偏者。體起用也。偏中正者。用歸體也。兼中至。體用並至也。兼中到。體用俱泯也。四賓主。不同臨濟。主中賓。體中用也。賓中主。用中體也。賓中賓。用中用。頭上安頭也。主中主。物我雙忘。人法俱泯。不涉正偏位也。功勳五位者。明參學功位至於非功位也。君臣五位者。明有為無為也。王子五位者。明內紹本自圓成。外紹有終有始也。大約曹洞家風。不過體用偏正賓主。以明向上一路。",
+          "Kwic": "示以偏正五位。",
           "MasterName": "Huiyan Zhizhao",
           "Curated": true,
           "AttributionNote": "The Eyes of Humans and Gods (人天眼目), compiled by Huiyan Zhizhao, explains the upright-and-crooked, merit, ruler-and-minister, and prince Five Ranks and relates the positions to substance, function, succession, and the Caodong house style.",
@@ -261,18 +297,28 @@
           "RelPath": "T/T48/T48n2006.xml",
           "FromLb": "0316b19",
           "ToLb": "0316b26",
-          "Kwic": "五位功勳圖五位功勳圖正中偏君位向黑白未變時偏中正臣位奉露⊙正中來君視臣功無句有句○兼中至臣向君共功各不相觸●兼中到君臣合功功不當頭石霜答五位王子",
-          "MasterName": "Huiyan Zhizhao",
+          "Kwic": "五位功勳圖正中偏君位向黑白未變時",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "The Eyes of Humans and Gods (人天眼目), compiled by Huiyan Zhizhao, labels its diagram the five ranks of merit, maps the five named positions, and then introduces Shishuang's answers on the five ranks of princes.",
-          "ContextMasters": [
-            {
-              "MasterName": "Huiyan Zhizhao",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
+          "AttributionNote": "The cited compiled Caodong material (T48n2006), complete diagram unit: the editor labels the Five Ranks of merit diagram before its rank descriptions. The headword is an editorial heading, not speech by Huiyan Zhizhao.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiled diagram heading",
+            "ActorLabel": "compiler of the Five Ranks of merit diagram",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "五位功勳圖 is a repeated editorial diagram heading, not direct speech by Huiyan Zhizhao.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "J/J33/J33nB294.xml",

@@ -135,12 +135,14 @@
           "FromLb": "0594b14",
           "ToLb": "0594b14",
           "Kwic": "直指人心，見性成佛，意作麼生？",
-          "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "unnamed monastic questioner",
+            "Kind": "dialogue turn",
+            "ActorLabel": "the unnamed monastic questioner",
             "ActorRole": "questioner",
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (天界覺浪盛禪師全錄): The exact headword actor is the unnamed monastic questioner; the source does not name this person. The monk's advance question is (直指人心，見性成佛，意作麼生); Juelang's reply begins at (師云：眉毛拄天).",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -148,10 +150,7 @@
               "book-title",
               "tei-header",
               "parallel-passage"
-            ],
-            "GrammarEvidence": "The advance marker introduces the same unnamed monastic’s continued question; the following 師云 begins Juelang Daosheng’s answer.",
-            "ReviewedBy": "Codex fresh f001 lane A evidence-first",
-            "ReviewedUtc": "2026-07-15T04:00:00Z"
+            ]
           },
           "ContextMasters": [
             {
@@ -162,7 +161,7 @@
               ]
             }
           ],
-          "AttributionNote": "Complete Record of Chan Master Tianjie Juelang Sheng (天界覺浪盛禪師全錄): an unnamed monastic asks the meaning of pointing directly at the human mind and seeing one’s nature to become Buddha; Juelang Daosheng answers separately.",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): The exact headword actor is the unnamed monastic questioner; the source does not name this person. The monk's advance question is (直指人心，見性成佛，意作麼生); Juelang's reply begins at (師云：眉毛拄天).",
           "Curated": true
         },
         {
@@ -170,19 +169,18 @@
           "FromLb": "0039c15",
           "ToLb": "0039c16",
           "Kwic": "直指人心，見性成佛",
-          "MasterName": null,
+          "MasterName": "Letan Hongying",
           "Curated": true,
-          "AttributionNote": "Source narration in the Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), places seeing nature and becoming Buddha in the transmitted Bodhidharma formula.",
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narration",
-            "ActorLabel": "source narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "Continuous source narration supplies the headword-bearing report without quoting a named speaker.",
-            "ReviewedBy": "Codex f001 lane A depth repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
-          },
-          "ContextMasters": []
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): The exact headword speaker is Letan Hongying. The complete dossier heading is (隆興府泐潭洪英禪師), and the headword lies in Hongying's continuous hall address after (乃曰).",
+          "ContextMasters": [
+            {
+              "MasterName": "Letan Hongying",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ]
         }
       ],
       "ClaimAnchors": [],

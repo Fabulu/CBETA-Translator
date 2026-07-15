@@ -9,3 +9,5 @@ lookup-probes: a living road
 opening-interpretation-verdict: English-first and corpus-bounded
 modifier-relation-verdict: no unresolved modifier composition claim
 display-modifier-verdict: source imagery retained without outside symbolism
+
+- sense-target-distinguishability: the retained targets denote different referents (a living road or way through; Shandao’s direct route); rhetorical variation alone is not split.

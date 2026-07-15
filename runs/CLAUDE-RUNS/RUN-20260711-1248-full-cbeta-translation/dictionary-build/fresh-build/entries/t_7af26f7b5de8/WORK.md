@@ -1,0 +1,23 @@
+# 龍門點額 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 5 curated rows across 5 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 禹門, 點額, 燒尾, 金鱗透網, and the renewed-wave verse; success and failure images remain distinct terms.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o5` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The Chan bend retains failure at a transformation gate rather than using “Dragon Gate” as generic grandeur: masters mark missed turns, late responses, and renewed attempts with the fish image.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The corpus witnesses do not supply a detailed administrative marking procedure; the minimal scene is failure at the gate, a marked forehead, and return or renewed surge.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o5` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The corpus witnesses do not supply a detailed administrative marking procedure; the minimal scene is failure at the gate, a marked forehead, and return or renewed surge.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: failed the Dragon Gate leap; dragon gate forehead mark; carp marked at the gate.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.

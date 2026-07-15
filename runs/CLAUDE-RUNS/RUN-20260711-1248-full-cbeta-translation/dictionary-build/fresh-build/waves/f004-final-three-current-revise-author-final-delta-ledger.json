@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T18:18:43.092111+00:00",
+  "role": "repair-author",
+  "scope": "exactly three current independent-review REVISE entries",
+  "entries": [
+    {
+      "ordinal": 1067,
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "sourceReview": "f004-b1052-1072-independent-rereview-delta7-review.json",
+      "sourceReviewSha256": "b7dd8874ea8a2ee590990d1d5bf159ca43fab6d4d9b4c3578552b5166e9b58ea",
+      "beforeEntrySha256": "e8c3bb9bd9803a52be84d107ed612ee2086aff644b5a04c0bec098adc5322e66",
+      "afterEntrySha256": "937282f0402f6490e3d5260213e82cfb905d3e6ec481ad4f045eabf6cffde975",
+      "worksheetSha256": "9b5bfc4c2e40a46c56b3e949847415c2ffd0d5266ea9c276d57cf7f010ffd188",
+      "occurrences": 6
+    },
+    {
+      "ordinal": 1073,
+      "id": "t_27a6c937c485",
+      "term": "種草",
+      "sourceReview": "f004-b1073-1099-independent-rereview-delta8-review.json",
+      "sourceReviewSha256": "f2078af6dcea5f55ffd97a63e858c32730caac0dcf47b46c316364afcbd942f1",
+      "beforeEntrySha256": "22763228ad339c534bb86a908bbb1af79d2eb3dc9c42e10a6d57cc23fcfc7eb3",
+      "afterEntrySha256": "267a16fd99e20afc581b2d9b70b2c7074a1529541cadbb7cb5dc6a5c2b0d2bbc",
+      "worksheetSha256": "1c95fec955e93aa6adde8e5f79dfc802aa3b101b966b634c48235af58d072c76",
+      "occurrences": 6
+    },
+    {
+      "ordinal": 1095,
+      "id": "t_9e98cbf9596b",
+      "term": "大悲",
+      "sourceReview": "f004-b1095-explicit-master-turn-guard-review.json",
+      "sourceReviewSha256": "2643c06f8f5c4aa873d6bb8057b8cbad070bc691770c276945cf6446c6f96e30",
+      "beforeEntrySha256": "f173b25f3550639624028ffbaaf765c08bc6fc6b0e1208878310e719cd14b8df",
+      "afterEntrySha256": "33c001737a61b6f67ddc40ce9c5723dd065d3e06a57c872bf65c7c12c346b8e2",
+      "worksheetSha256": "f5fdaa4c70a018f690b62a1f4334471123503a00f08b4ebf03aefb660ddeb68e",
+      "occurrences": 8
+    }
+  ],
+  "counts": {
+    "repaired": 3,
+    "occurrences": 20,
+    "exactFailures": 0
+  },
+  "artifactBindings": {
+    "f004-final-three-current-revise-author-checkpoint.json": {
+      "sha256": "a6edc860ad1304561a8c066151fc927d85ca75bb604100796d76a32dc48c7d1e"
+    },
+    "f004-final-three-current-revise-author-pre-review.json": {
+      "sha256": "9dc2940e48fd4749cea2a1caeb5d73f242d7a63e83a9a18bd7c31e7420d10c1f",
+      "hardPass": true
+    }
+  },
+  "preservation": {
+    "editedEntryIds": [
+      "t_60dcb199a5e1",
+      "t_27a6c937c485",
+      "t_9e98cbf9596b"
+    ],
+    "allOtherKeepEntriesEdited": false,
+    "scopeEnforcedByRepairScript": true
+  },
+  "compositeHardPass": true,
+  "semanticRereviewRequired": true,
+  "selfReview": false,
+  "promoted": false,
+  "merged": false,
+  "siteTouched": false
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-postrepair-full-case-review",
+  "reviewer": "reviewer11",
+  "generatedUtc": "2026-07-15T16:09:42.567211+00:00",
+  "sourceLedger": "f004-laneB-1031-1040-reviewer10-repair-author-ledger.json",
+  "sourceLedgerSha256": "a9f0bf140564be69538f2377fce778132e155fc22271b7f54d9ede7e264e04b1",
+  "entries": [
+    {
+      "ordinal": 1031,
+      "id": "t_bfef2fc85826",
+      "term": "參問",
+      "reviewedSha256": "f9c0cdcff7042803ca94b0f74274dbdf26a91db066f55ed441d6314d837e6637",
+      "hashMatches": true,
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "All six uses are narrated visit/consultation language rather than utterances of the headword; visitor, respondent, and person-described links now preserve the named figures.",
+        "The opening distinguishes public consultation from generic information-seeking, and the retained work IDs match the six witnesses."
+      ]
+    },
+    {
+      "ordinal": 1037,
+      "id": "t_40cfbcc5f859",
+      "term": "縱奪",
+      "reviewedSha256": "27f1ae07baa71048f788336456c4ccc73e66f1e0fe2a932783f5950df6a1a9fa",
+      "hashMatches": true,
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All seven headwords sit in the named masters' own comments or addresses; quoted case figures are separated in ContextMasters.",
+        "Release/seize is correctly described as observable control of encounter, with work IDs, depth, and one-sense decision supported."
+      ]
+    },
+    {
+      "ordinal": 1039,
+      "id": "t_f24a55791323",
+      "term": "單傳直指",
+      "reviewedSha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
+      "hashMatches": true,
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "All six complete units place the formula inside the named master's own address; duplicate Miyun editions are controlled by distinct canonical work IDs rather than file count.",
+        "The opening states both the single-transmission and direct-pointing claims without splitting grammar or importing outside interpretation."
+      ]
+    }
+  ],
+  "summary": {
+    "entriesReviewed": 3,
+    "keep": 3,
+    "revise": 0,
+    "scope": "exact-hash KEEP subset from immutable independent review; rejected entries excluded because subsequent author repairs made their old hashes stale"
+  },
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

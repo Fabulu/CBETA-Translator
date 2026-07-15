@@ -52,35 +52,28 @@
           "ToLb": "0070b21",
           "Kwic": "師直上󳬇。士禮拜。師歸方丈。居士隨後。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元): Mazu Daoyi is the exact speaker. Five Lamps Meeting the Source (五燈會元), Mazu Daoyi section. Mazu Daoyi is the exact grammatical actor who returns to the abbot's quarters after his exchange with Layman Pang; Pang bows and follows behind him.",
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), complete Mazu Daoyi section: the compiler narrates Mazu returning to the abbot's quarters after Layman Pang bows; Pang then follows him.",
           "ContextMasters": [
-            {
-              "MasterName": "Layman Pang",
-              "Roles": [
-                "interlocutor"
-              ]
-            },
             {
               "MasterName": "Mazu Daoyi",
               "Roles": [
-                "utterer"
+                "person-described",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Layman Pang",
+              "Roles": [
+                "case-figure"
               ]
             }
           ],
-          "MasterName": "Mazu Daoyi"
-        },
-        {
-          "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0653a24",
-          "ToLb": "0653b01",
-          "Kwic": "首座隨後上方丈云適來觸忤和尚便作禮",
-          "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): unnamed head monk is the exact textual actor. Old Recorded Sayings of Venerable Masters (古尊宿語錄), in Linji Yixuan's supplementary record. The unnamed head monk (首座) is the exact actor who follows and goes up to the abbot's quarters. The line, expanded context, section header, book title, TEI header, and parallel passage do not give his personal name.",
+          "MasterName": null,
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "head monk",
-            "ActorLabel": "unnamed head monk",
-            "ActorRole": "person-described",
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of the Five Lamps Meeting the Source",
+            "ActorRole": "compiler",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -89,24 +82,51 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex",
-            "ReviewedUtc": "2026-07-13T23:45:00Z",
-            "GrammarEvidence": "The full clause is narration or an impersonal textual proposition, not speech assigned to a rostered master."
+            "GrammarEvidence": "師歸方丈 is an unquoted narrative clause: Mazu is the subject of 歸, while the compiler supplies the words.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0653a24",
+          "ToLb": "0653b01",
+          "Kwic": "首座隨後上方丈云適來觸忤和尚便作禮",
+          "Curated": true,
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), complete encounter in Linji Yixuan's supplementary record: the compiler narrates the unnamed head monk following Linji up to the abbot's quarters and bowing.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Linji Yixuan's supplementary record",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "首座隨後上方丈 is unquoted narration. The unnamed head monk performs the movement; the compiler utters the headword.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
           },
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-discussed"
+                "person-described",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "MasterName": null
         },
         {
           "RelPath": "J/J29/J29nB238.xml",
           "FromLb": "0461c03",
           "ToLb": "0461c03",
-          "Kwic": "古人喚作方丈地，老僧喚作方丈室。",
+          "Kwic": "老僧喚作方丈室。",
           "Curated": true,
           "AttributionNote": "Source text (聚雲吹萬真禪師語錄): Chuiwan Guangzhen is the exact speaker. Recorded Sayings of Chan Master Juyun Chuiwan Zhen (聚雲吹萬真禪師語錄): Chuiwan Guangzhen is the exact speaker who says the ancients called it the abbot's ground, while he calls it the abbot's room, where buddhas and patriarchs will be smelted.",
           "MasterName": "Chuiwan Guangzhen",
@@ -141,26 +161,35 @@
           "FromLb": "0023c01",
           "ToLb": "0023c01",
           "Kwic": "一日大眾纔集，藥山便歸方丈。",
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler narrates Yaoshan Weiyan returning to the abbot’s quarters as soon as the assembly gathers.",
+          "AttributionNote": "Complete Book of the Five Lamps (五燈全書), full address under Fuzhou Xuefeng Sihui Miaozhan: Sihui Miaozhan raises the case that Yaoshan returned to the abbot's quarters as soon as the assembly gathered, then contrasts it with contemporary daily hall addresses. Sihui is named in the source but is not yet linkable through the current roster.",
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narration",
-            "ActorLabel": "compiler of the Complete Book of the Five Lamps",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "藥山 is the grammatical actor of 歸方丈, while the unmarked biographical sentence is compiler narration.",
-            "ReviewedBy": "Codex lane-B depth enrichment",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "Status": "named-unrostered",
+            "Kind": "master",
+            "ActorLabel": "Xuefeng Sihui Miaozhan",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Under the heading 福州雪峰思慧妙湛禪師, the sentence is part of Sihui Miaozhan's continuing address; he raises the earlier Yaoshan event and then comments on present assemblies.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
           },
           "ContextMasters": [
             {
               "MasterName": "Yaoshan Weiyan",
               "Roles": [
-                "person-described",
+                "person-discussed",
                 "case-figure"
               ]
             }
           ],
-          "Curated": true
+          "Curated": true,
+          "MasterName": null
         }
       ],
       "SourceTexts": [
@@ -207,20 +236,13 @@
           "ToLb": "1028b25",
           "Kwic": "今之踞方丈者。非特刮眾人鉢盂中物以恣口腹。",
           "Curated": true,
-          "AttributionNote": "Source text (禪林寶訓): the unnamed author of Nianya Manlu is the exact textual actor. Chan Grove Admonitions (禪林寶訓): the unnamed author of Nianya Manlu is the exact prose voice. The source labels the passage as Nianya Manlu but does not name its author after the six-rung review.",
-          "ContextMasters": [
-            {
-              "MasterName": "Jingshan",
-              "Roles": [
-                "person-discussed"
-              ]
-            }
-          ],
+          "AttributionNote": "Chan Grove Admonitions (禪林寶訓), full preface paragraph: the explicit marker 'Canyin Shan also said' (璨隱山亦云) introduces the admonition in which Canyin criticizes those who now occupy the abbot's seat. He is named by the text but is not yet linkable through the current roster.",
+          "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "person",
-            "ActorLabel": "the unnamed author of Nianya Manlu",
-            "ActorRole": "compiler",
+            "Status": "named-unrostered",
+            "Kind": "master",
+            "ActorLabel": "Canyin Shan (璨隱山)",
+            "ActorRole": "utterer",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -229,10 +251,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex remaining300 research A",
-            "ReviewedUtc": "2026-07-14T00:00:00Z",
-            "GrammarEvidence": "The full clause is narration or an impersonal textual proposition, not speech assigned to a rostered master."
-          }
+            "GrammarEvidence": "璨隱山亦云 explicitly introduces the ensuing admonition; 今之踞方丈者 remains within that quoted prose.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J36/J36nB359.xml",

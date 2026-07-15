@@ -23,16 +23,33 @@
           "ToLb": "0294b14",
           "Kwic": "兩段不同，試請料揀。",
           "Curated": true,
-          "AttributionNote": "In the source record (南嶽繼起和尚語錄), Source text (南嶽繼起和尚語錄); Unnamed interlocutor requesting a discrimination owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "Recorded Sayings of Nanyue Jiqi (南嶽繼起和尚語錄): an unnamed monk asks Nanyue Jiqi Hongchu to discriminate between two episodes; Nanyue answers.",
           "ContextMasters": [
             {
-              "MasterName": "Unnamed interlocutor requesting a discrimination",
+              "MasterName": "Nanyue Jiqi Hongchu",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "MasterName": "Unnamed interlocutor requesting a discrimination"
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk requesting a discrimination",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The headword is in the monk’s request before 師曰 introduces Nanyue Jiqi Hongchu’s answer.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196661+00:00"
+          }
         },
         {
           "RelPath": "X/X72/X72n1435.xml",
@@ -74,16 +91,33 @@
           "ToLb": "0311b13",
           "Kwic": "四料揀者。中下根人來。",
           "Curated": true,
-          "AttributionNote": "In the source record (人天眼目), Source text (人天眼目); Huiyan Zhizhao owns the exact evidence clause after complete-case review.",
-          "MasterName": "Huiyan Zhizhao",
+          "AttributionNote": "Eye of Humans and Gods (人天眼目): the editorial compiler voice introduces and defines the Linji Four Selections; Linji Yixuan is the school founder discussed.",
           "ContextMasters": [
             {
-              "MasterName": "Huiyan Zhizhao",
+              "MasterName": "Linji Yixuan",
               "Roles": [
-                "utterer"
+                "person-discussed",
+                "person-discussed"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the Eye of Humans and Gods compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The handbook compiler defines the Four Selections in editorial exposition, not a marked master speech turn.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196672+00:00"
+          }
         },
         {
           "RelPath": "X/X72/X72n1444.xml",
@@ -108,16 +142,33 @@
           "ToLb": "0648b01",
           "Kwic": "學人今日上來，請師料揀。」師曰：「慣釣金鰲沉巨浸，卻嗟蛙步展泥沙。」",
           "Curated": true,
-          "AttributionNote": "In the source record (頻吉祥禪師語錄), Source text (頻吉祥禪師語錄); Unnamed monk requesting Pin Jixiang's appraisal owns the exact evidence clause after complete-case review.",
-          "MasterName": "Unnamed monk requesting Pin Jixiang's appraisal",
+          "AttributionNote": "Recorded Sayings of Pin Jixiang (頻吉祥禪師語錄): an unnamed monk requests Pin Jixiang’s appraisal; Pin answers immediately afterward.",
           "ContextMasters": [
             {
-              "MasterName": "Unnamed monk requesting Pin Jixiang's appraisal",
+              "MasterName": "Pin Jixiang",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic questioner",
+            "ActorLabel": "the unnamed monk requesting Pin Jixiang’s appraisal",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "The monk says 學人今日上來，請師料揀 before 師曰 introduces Pin Jixiang’s response.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex personal full-case read 076-085",
+            "ReviewedUtc": "2026-07-15T22:30:22.196682+00:00"
+          }
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -128,7 +179,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "compiler",
-            "ActorLabel": "the unidentified compiler-narrator responsible for the headword-bearing clause at X/X83/X83n1578.xml",
+            "ActorLabel": "the unnamed compiler-narrator responsible for the headword-bearing clause",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -143,7 +194,7 @@
             "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
           },
           "ContextMasters": [],
-          "AttributionNote": "In the source record (指月錄), (指月錄): the compiler-narrator of (指月錄) owns the exact headword-bearing narrative clause. Actor: the unidentified compiler-narrator responsible for the headword-bearing clause at X/X83/X83n1578.xml."
+          "AttributionNote": "指月錄: the unnamed compiler-narrator responsible for the headword-bearing clause outlines the six selections in the chapter summary."
         }
       ],
       "SourceTexts": [

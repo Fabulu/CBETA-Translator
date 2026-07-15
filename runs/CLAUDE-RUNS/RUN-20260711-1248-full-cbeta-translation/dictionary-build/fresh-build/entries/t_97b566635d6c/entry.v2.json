@@ -65,12 +65,19 @@
           "Kwic": "此是大手宗師。不與爾論玄論妙。論機論境。一向以本分事接人。",
           "MasterName": "Yuanwu Keqin",
           "Curated": true,
-          "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄): Yuanwu Keqin appraises Zhaozhou Congshen as a great-handed lineage master and lists what Zhaozhou does and does not discuss.",
+          "AttributionNote": "Source text; exact headword utterer: Yuanwu Keqin. Complete-case evidence: Yuanwu calls Zhaozhou a 大手宗師 in his commentary.",
           "ContextMasters": [
             {
               "MasterName": "Yuanwu Keqin",
               "Roles": [
-                "utterer"
+                "utterer",
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "person-appraised"
               ]
             }
           ]
@@ -82,12 +89,44 @@
           "Kwic": "後出四哲。乃洞山初。智門寬。德山密。香林遠皆為大宗師。",
           "MasterName": "Yuanwu Keqin",
           "Curated": true,
-          "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄): Yuanwu Keqin names Dongshan Shouchu, Zhimen Guangzuo, Deshan Yuanmi, and Xianglin Chengyuan as four later teachers under Yunmen Wenyan and calls all four great lineage masters.",
+          "AttributionNote": "Source text; exact headword utterer: Yuanwu Keqin. Complete-case evidence: Yuanwu names Yunmen’s four heirs and calls all four 大宗師.",
           "ContextMasters": [
             {
               "MasterName": "Yuanwu Keqin",
               "Roles": [
-                "utterer"
+                "utterer",
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "lineage-teacher",
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Dongshan Shouchu",
+              "Roles": [
+                "person-called-great-lineage-master"
+              ]
+            },
+            {
+              "MasterName": "Zhimen Guangzuo",
+              "Roles": [
+                "person-called-great-lineage-master"
+              ]
+            },
+            {
+              "MasterName": "Deshan Yuanming",
+              "Roles": [
+                "person-called-great-lineage-master"
+              ]
+            },
+            {
+              "MasterName": "Xianglin Chengyuan",
+              "Roles": [
+                "person-called-great-lineage-master"
               ]
             }
           ]
@@ -115,13 +154,20 @@
           "ToLb": "0702b11",
           "Kwic": "若是宗師湏以本分事接人始得",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of the Ancient Worthies (古尊宿語錄), Zihu Lizong's hall address raising his visit to Guishan Lingyou: Guishan is the exact quoted speaker who asks for his stool after a question about the ancestral teacher's meaning and says that a lineage master must meet people with the fundamental matter.",
-          "MasterName": "Guishan Lingyou",
+          "AttributionNote": "Source text; exact headword utterer: Zhaozhou Congshen. Complete-case evidence: Zhaozhou quotes Guishan’s reply, then himself says 若是宗師須以本分事接人始得.",
+          "MasterName": "Zhaozhou Congshen",
           "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            },
             {
               "MasterName": "Guishan Lingyou",
               "Roles": [
-                "utterer"
+                "quoted-case-figure"
               ]
             }
           ]
@@ -133,12 +179,27 @@
           "Kwic": "宗師家為人須為教徹。見他不會。不免傷鋒犯手。只要教他明此事。",
           "MasterName": "Yuanwu Keqin",
           "Curated": true,
-          "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄): commenting on Mazu Daoyi twisting Baizhang Huaihai's nose, Yuanwu Keqin says the lineage-master household must teach a person through, even injuring hand and blade when the person does not understand.",
+          "AttributionNote": "Source text; exact headword utterer: Yuanwu Keqin. Complete-case evidence: Yuanwu comments on Mazu’s handling of Baizhang and says 宗師家 must teach a person through.",
           "ContextMasters": [
             {
               "MasterName": "Yuanwu Keqin",
               "Roles": [
-                "utterer"
+                "utterer",
+                "commentator"
+              ]
+            },
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "acting-teacher",
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "student",
+                "person-discussed"
               ]
             }
           ]

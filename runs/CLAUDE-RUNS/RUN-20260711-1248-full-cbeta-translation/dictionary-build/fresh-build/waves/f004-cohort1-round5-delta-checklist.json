@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "f004-cohort1-round5-delta-checklist-v1",
+  "sourceReview": "f004-cohort1-round4-delta-independent-rereview.json",
+  "sourceReviewSha256": "fc90a141b6562b8d28edd52e6f96b430f0cc1b2459b32ed9dfba7cbb57562b8f",
+  "repaired": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "findings": [
+        "The original o2 defect is resolved: the uncued poem after the stove-spirit narrative is no longer transferred to Pizao Duo.",
+        "Whole-entry regression o4: 國師歎曰 explicitly introduces the headword-bearing poem; the actor is Nanyang Huizhong, not compiler narration. He is already present in ContextMasters but with the wrong person-described role.",
+        "Whole-entry regression o6: 因齋時聞鼓聲 is narrative setup before 師云, so Yunmen Wenyan does not utter the headword. MasterName must be null and the narrative actor recorded without assigning Yunmen backward.",
+        "The explanation remains supported after those actor corrections."
+      ],
+      "resolved": true,
+      "entrySha256": "730aeb9f5870d2869f5adfedade1cd8440aa0132fa69e28737a07bb9477be553"
+    },
+    {
+      "ordinal": 1078,
+      "id": "t_c5ff2fdc37ca",
+      "term": "遇緣即宗",
+      "findings": [
+        "The malformed and overclaiming explanation is cleanly replaced by bounded English-first prose.",
+        "Actor regression o1: the enclosing heading is 湖州福源石屋清珙禪師 and the passage narrates his residence at 福源 before his uninterrupted 入院，上堂. The utterer is Shiwu Qinggong, not Yuezhou Qianfeng; the current note's claim of a nearby Qianfeng speech cue is contradicted by the full case and heading.",
+        "Occurrences 2-6 and the one-sense formula treatment hold."
+      ],
+      "resolved": true,
+      "entrySha256": "5258e9414f81a9022edd26e36a1cb4b79bae54d94ee0f70d3b8deaea2a24edec"
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "findings": [
+        "o1 correctly stops transferring the preceding monk across the verse boundary, but it remains under-attributed. The work is 天目中峰廣錄 and the immediate section heading is 自讚: this is Zhongfeng Mingben's self-eulogy, so a master voice is nameable rather than an unnamed individual poem author.",
+        "Occurrences 2-7, the body-as-skin-bag sense, and the revised explanation hold."
+      ],
+      "resolved": true,
+      "entrySha256": "8e92769e123bb8815898c441893ef9c0713d4f8637ba7ade35eb770ec543ec74"
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "findings": [
+        "Prior o3 is resolved: the unnamed monk asks the comparison and Lingyin Xuanben is not assigned backward.",
+        "Whole-entry regression o4: 問 begins the anonymous interlocutor's comparison through 離此二途未審洞山如何為人; Zhimen Guangzuo's 師曰 answer follows it. The headword is therefore uttered by the unnamed questioner, not Zhimen.",
+        "Whole-entry regression o5: the full unit explicitly begins 天童樸禪師，上堂, and the headword is in that uninterrupted address. It is Tiantong Pu's utterance, not compiler narration.",
+        "The Linji/Deshan paired-formula explanation otherwise holds."
+      ],
+      "resolved": true,
+      "entrySha256": "3cd4cfbdd9f4b8ed2e4e152d934de250f375620813c3908f61a12d8d31c24e37"
+    }
+  ],
+  "preservedKeepHashes": {
+    "t_71f85cf94e5d": "80f86357cfcc83ed729457285fe3e7fd83028f21bfb007d10bcbb31c4a0df9e3",
+    "t_7c5f24652dfa": "9b51add9280cc65fbcb443422b24ca63475e0f88279e56faa77929c4c40a16e5"
+  },
+  "allKeepsByteIdentical": true
+}

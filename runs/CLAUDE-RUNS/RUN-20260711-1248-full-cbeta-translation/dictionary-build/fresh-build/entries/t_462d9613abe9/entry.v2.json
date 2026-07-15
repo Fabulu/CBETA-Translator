@@ -46,17 +46,41 @@
           "FromLb": "0618b29",
           "ToLb": "0618c01",
           "Kwic": "今時向去。許伊三路學。所謂玄路鳥道展手。",
-          "MasterName": "Dongshan Liangjie",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Fenyang Wude (汾陽無德禪師語錄) reports Dongshan Liangjie's statement that one may study the Three Roads—the hidden road, bird course, and extending the hands. Fenyang Shanzhao's separate substitute answer begins immediately afterward and is not assigned this headword turn.",
+          "AttributionNote": "Blue Cliff Record: an unnamed monastic visitor utters 鳥道 while quoting Dongshan Liangjie to Jiashan Shanhui; Dongshan is quoted source and Jiashan respondent.",
           "ContextMasters": [
             {
               "MasterName": "Dongshan Liangjie",
               "Roles": [
-                "utterer"
+                "quoted-source"
+              ]
+            },
+            {
+              "MasterName": "Jiashan Shanhui",
+              "Roles": [
+                "respondent",
+                "case-master"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic visitor",
+            "ActorLabel": "an unnamed monastic visitor quoting Dongshan",
+            "ActorRole": "quoted-case reporter",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧 reports 洞山和尚上堂云 and voices 鳥道; Jiashan responds after the quotation.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:29:46.197845+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X68/X68n1318.xml",

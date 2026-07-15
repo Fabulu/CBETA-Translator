@@ -1,0 +1,99 @@
+{
+  "schemaVersion":"attribution-real-read-v2","generatedUtc":"2026-07-15T22:45:00Z","readOnly":true,
+  "provenance":{"method":"Ten individually authored adjudications after full-case and enclosing-section reading; headings and nested quotations were interpreted manually.","serialization":"Hand-authored JSON."},
+  "entryRange":[36,45],"entries":10,
+  "rows":[
+    {
+      "cohort":4,"entryId":"t_ccc39a4559bf","term":"僧正","sense":1,"occurrence":2,"RelPath":"X/X80/X80n1565.xml","FromLb":"0197b04","sourceTitle":"五燈會元",
+      "caseIdentityEvidence":"The heading 福州覆船山洪薦禪師 identifies Fuchuan Hongjian as 師.",
+      "exactHeadwordClause":"僧正白師曰：四眾已圍繞和尚法座了也。",
+      "ownershipEvidence":"僧正 is the recorder's title for the official who addresses the master; that official's quoted words begin after 曰 with 四眾. It is not in a 師曰 utterance.",
+      "specificActor":"the compiler/recorder","actorRole":"speaker-label narrator","contextMasters":[{"MasterName":"Fuchuan Hongjian","Roles":["addressee","section-subject"]}],
+      "otherActor":"an unnamed monastic rector speaks the quoted sentence",
+      "verdict":"CONFIRMED_DEFECT","reason":"The saved compiler classification is right, but it omits the section's fully nameable addressee Fuchuan Hongjian. Add him contextually; nobody utters 僧正.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The title-label use still supports 'monastic rector'; definition holds."
+    },
+    {
+      "cohort":4,"entryId":"t_cd69e0f9c10a","term":"古佛","sense":1,"occurrence":1,"RelPath":"X/X82/X82n1571.xml","FromLb":"0002c11","sourceTitle":"五燈全書(第34卷-第120卷)",
+      "caseIdentityEvidence":"Immediately before the case the text starts 鳳陽鳳棲仲卿禪師 twice; the zc head 瑞州洞山慧圓禪師 is stale across this inline section transition. Fengqi Zhongqing is 師.",
+      "exactHeadwordClause":"鳳陽鳳棲仲卿禪師。上堂，僧問：古佛出世，為一大事因緣；和尚出世，所為何事？師張口吐舌示之。",
+      "ownershipEvidence":"僧問 explicitly owns 古佛出世. The following 師 performs a nonverbal response and never utters 古佛.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Fengqi Zhongqing","Roles":["respondent","action-performer","section-subject"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current MasterName=Dongshan Huiyuan is doubly wrong: the monk utters the headword, and the local section master is Fengqi Zhongqing. MasterName must be null, with Fengqi contextual.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The 'ancient buddha' sense remains valid, but any attribution to Dongshan must be removed and the exchange named correctly."
+    },
+    {
+      "cohort":4,"entryId":"t_d1ca36839312","term":"全提正令","sense":1,"occurrence":6,"RelPath":"J/J28/J28nB203.xml","FromLb":"0171b06","sourceTitle":"雲峨喜禪師語錄",
+      "caseIdentityEvidence":"The heading 雲峨禪師住羅山縣國祥山龍池禪寺語錄 identifies Yun'e Xi as 師.",
+      "exactHeadwordClause":"斂衣就座，維那白椎竟，師云：橫按莫邪，斬釘截鐵，全提正令，電卷星馳……",
+      "ownershipEvidence":"師云 directly opens Yun'e Xi's address and 全提正令 lies uninterrupted inside it.",
+      "specificActor":"Yun'e Xi","actorRole":"master utterer","contextMasters":[{"MasterName":"Yun'e Xi","Roles":["utterer","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The saved compiler-narration classification ignores the explicit 師云 before the headword. Yun'e Xi must be MasterName.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The full-command phrase remains semantically supported; prose should name Yun'e Xi."
+    },
+    {
+      "cohort":4,"entryId":"t_d1e06fd225fa","term":"入室","sense":1,"occurrence":6,"RelPath":"C/C078/C078n1720.xml","FromLb":"0837a18","sourceTitle":"禪宗頌古聯珠通集",
+      "caseIdentityEvidence":"The case explicitly begins 慈明室中, naming Ciming Chuyuan as 師 and describing his room procedure.",
+      "exactHeadwordClause":"慈明室中插劒一口……每見入室，即曰：看看。有至劒邊擬議者，師曰：險！喪身失命了也。",
+      "ownershipEvidence":"每見入室 is compiler narration: an implicit visitor enters the room. 即曰 introduces Ciming's 看看 only after the headword.",
+      "specificActor":"the compiler/recorder","actorRole":"narrator of an unnamed visitor's action","contextMasters":[{"MasterName":"Ciming Chuyuan","Roles":["respondent","procedure-owner","person-discussed"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current row calls the actor an 'unnamed room entrant', but that entrant does not utter 入室; the compiler narrates the action. Ciming remains contextual. Actor kind/role needs correction even though MasterName stays null.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The literal entering-the-room deployment remains valid; clarify narrator versus entrant without altering the sense."
+    },
+    {
+      "cohort":4,"entryId":"t_d2c3f40d45c6","term":"大通智勝佛","sense":1,"occurrence":5,"RelPath":"C/C077/C077n1710.xml","FromLb":"0623a02","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The text explicitly restarts 百丈懷海禪師語錄二／百丈大智禪師 immediately before the case, identifying Baizhang Huaihai as 師.",
+      "exactHeadwordClause":"百丈大智禪師。僧問：大通智勝佛，十劫坐道場，佛法不現前，不得成佛道，如何？師云：劫者滯也，亦云住也。",
+      "ownershipEvidence":"僧問 owns the entire scripture-derived headword question; 師云 starts Baizhang's answer afterward.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Baizhang Huaihai","Roles":["respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The saved questioner attribution is correct but leaves the explicitly named respondent Baizhang out of ContextMasters.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The named Buddha and Baizhang's handling remain valid evidence; name Baizhang contextually."
+    },
+    {
+      "cohort":4,"entryId":"t_d35dc9e3723e","term":"無念","sense":2,"occurrence":1,"RelPath":"J/J20/J20nB098.xml","FromLb":"0504b01","sourceTitle":"黃蘗無念禪師復問",
+      "caseIdentityEvidence":"The title and opening 黃蘗無念禪師復問卷之一 identify Huangbo Wunian Shenyou as the record owner; 語溪參學比丘明聞刪訂 names the editor.",
+      "exactHeadwordClause":"黃蘗無念禪師復問卷之一，語溪參學比丘明聞刪訂。",
+      "ownershipEvidence":"無念 is embedded in the document title as the master's style name. The adjacent characters 禪師復問 are title text, not a turn marker 師復問.",
+      "specificActor":"the title editor/compiler","actorRole":"document-title editor","contextMasters":[{"MasterName":"Huangbo Wunian Shenyou","Roles":["record-owner","person-named-in-title"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The regex segmented 禪師復問 as a master-turn cue. Full title reading shows no speech event; current title-use attribution is correct.",
+      "definitionProseImpact":"HOLDS. This witness supports the title/person-name sense only, not the conceptual 'no-thought' sense."
+    },
+    {
+      "cohort":4,"entryId":"t_d4673502b2d2","term":"未審","sense":1,"occurrence":2,"RelPath":"D/D48/D48n8939.xml","FromLb":"0005b11","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The enclosing 佛眼禪師語錄 sequence identifies Foyan Qingyuan as 師; the nearby 佛眼禪師語錄序 head is part of that same record apparatus.",
+      "exactHeadwordClause":"上堂，僧問：德山入門便棒，臨濟入門便喝，未審師如何接人？師云：不虧不欠。",
+      "ownershipEvidence":"僧問 directly opens the question containing 未審; 師云 begins Foyan's answer afterward.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Foyan Qingyuan","Roles":["respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The actor is correctly an unnamed questioner, but the fully identifiable responding master Foyan Qingyuan is missing from ContextMasters.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The polite interrogative use remains valid; add Foyan as respondent."
+    },
+    {
+      "cohort":4,"entryId":"t_d801848213ab","term":"發願","sense":1,"occurrence":6,"RelPath":"L/L158/L158n1652.xml","FromLb":"0101a03","sourceTitle":"明覺聰禪師語錄",
+      "caseIdentityEvidence":"The 燕京順天府海會寺語錄 is Mingjue Cong's record; after the opening exchange, 乃云 continues his 上堂 address.",
+      "exactHeadwordClause":"師云：借人文契賣人田。乃云：湛水連天碧……畢竟以何修證？發願誠心皈佛道，菩提增長病魔消。",
+      "ownershipEvidence":"The 上堂 master answers under 師云 and then 乃云 explicitly continues his own address through the verse containing 發願.",
+      "specificActor":"Mingjue Cong","actorRole":"master utterer","contextMasters":[{"MasterName":"Mingjue Cong","Roles":["utterer","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"發願 is in Mingjue's continued address, not the monk's earlier question. The saved MasterName is correct.",
+      "definitionProseImpact":"HOLDS. The verse directly uses 'make a vow'; no change."
+    },
+    {
+      "cohort":4,"entryId":"t_dd5f8d8801d2","term":"扇子","sense":1,"occurrence":5,"RelPath":"C/C078/C078n1720.xml","FromLb":"0676a05","sourceTitle":"禪宗頌古聯珠通集",
+      "caseIdentityEvidence":"The case names 杭州塩官齊安國師, identifying Yanguan Qi'an as 師; 投子 is introduced only afterward as the later substitute speaker.",
+      "exactHeadwordClause":"杭州塩官齊安國師一日喚侍者曰：將犀牛扇子來。者曰：破也。師曰：扇子既破，還我犀牛兒來。者無對。投子代云……",
+      "ownershipEvidence":"Yanguan's first 喚侍者曰 and later 師曰 both directly introduce his two 扇子 utterances. The attendant says only 破也; Touzi's substitute contains no 扇子.",
+      "specificActor":"Yanguan Qi'an","actorRole":"master utterer and questioner","contextMasters":[{"MasterName":"Yanguan Qi'an","Roles":["utterer","case-figure"]},{"MasterName":"Touzi Datong","Roles":["later-substitute-speaker"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current row attributes the headword to the anthology compiler, but both tokens are explicitly spoken by Yanguan. He must be MasterName; the compiler merely frames the case.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The fan sense and rhinoceros-fan case remain valid; prose must name Yanguan as speaker and Touzi only as later substitute."
+    },
+    {
+      "cohort":4,"entryId":"t_df0ba3a57ecf","term":"拄杖","sense":1,"occurrence":2,"RelPath":"C/C077/C077n1710.xml","FromLb":"0618a05","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The enclosing 百丈懷海禪師語錄 identifies Baizhang Huaihai as 師; Mazu is separately named as the sender of the jars.",
+      "exactHeadwordClause":"馬祖令人馳書并醬三甕與師。師令排向法堂前，乃上堂。眾纔集，師以拄杖指醬甕，云：道得即不打破，道不得即打破。",
+      "ownershipEvidence":"師以拄杖 is compiler narration of Baizhang's action and instrument. His spoken words begin only after 云 and do not repeat 拄杖.",
+      "specificActor":"the compiler/recorder","actorRole":"narrator of a named master's action","contextMasters":[{"MasterName":"Baizhang Huaihai","Roles":["action-performer","case-figure","record-owner"]},{"MasterName":"Mazu Daoyi","Roles":["sender","person-discussed"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The nearby 師 and 云 frame a narrated action followed by speech; they do not make 拄杖 an utterance. Current narrator/MasterName-null handling is correct.",
+      "definitionProseImpact":"HOLDS. The staff is concretely used as Baizhang's teaching-seat implement; this is strong flyswatter-test evidence."
+    }
+  ],
+  "counts":{"confirmedDefects":7,"falsePositives":3,"invalidEvidenceRows":0,"definitionOrProseSemanticallyDisproved":0}
+}

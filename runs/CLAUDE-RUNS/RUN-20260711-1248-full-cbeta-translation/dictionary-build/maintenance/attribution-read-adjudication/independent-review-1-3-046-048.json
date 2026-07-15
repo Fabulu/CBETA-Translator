@@ -1,0 +1,33 @@
+{
+  "selfReview": false,
+  "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json plus current exact fresh-build entry hashes; every stored occurrence read in its full caseText",
+  "rows": [
+    {
+      "id": "t_1853f433aff5",
+      "term": "開山",
+      "verdict": "KEEP",
+      "reviewedSha256": "5a620eca9bd5da673644c4846e56a52a07d809b70b7d013e5a9301ff7c01b515",
+      "finding": "All seven occurrences were read in full. The entry correctly separates the narrated act of founding/opening a monastery from the person-title 'founding abbot'. Narrative tokens keep MasterName null and identify the performer in ContextMasters; the two incense declarations correctly name their actual utterers and distinguish the honored founding abbot.",
+      "selfReview": false,
+      "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json"
+    },
+    {
+      "id": "t_193632bffe7b",
+      "term": "喝",
+      "verdict": "REVISE",
+      "reviewedSha256": "536a45d1bf617eb6859e691d90de74bfa672483abd6b1ebcf4cfe6ff4e6827d5",
+      "finding": "All eighteen occurrences were read in full. The core one-sense treatment is defensible, including 喝水成水 as shouting at water and 喝采/棒喝 as explicitly labelled family evidence. However, several narrated-action rows identify an explicitly acting master only as 'person-described' instead of action-performer/shouter: Mazu in 祖振威一喝, Mengxi in 師便喝, Zhenjing Kewen in 喝一喝, and Linji in 師便喝. MasterName properly remains null because the narrator, not the actor, utters the lexical token, but ContextMasters and AttributionNote must state the master's exact action role. Repair these roles without inventing quoted speech or changing the sense.",
+      "selfReview": false,
+      "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json"
+    },
+    {
+      "id": "t_1f6124388d25",
+      "term": "燈籠",
+      "verdict": "REVISE",
+      "reviewedSha256": "84d8950bccb83510f31357b8f7720e0f49b0c69386f79a2a703ca5b105442ea1",
+      "finding": "All seven occurrences were read in full. The single lantern sense and first six actor decisions hold. The final occurrence is misassigned under the utterer rule: Wenmu Nian raises an explicitly attributed Fachang Yu address, but Fachang Yu is the utterer of the quoted headword in 未免燈籠勘破. Set MasterName to Fachang Yu; retain Wenmu Nian as ContextMasters later-raiser. The present null MasterName plus Wenmu-as-ActorAttribution reverses utterer and raiser.",
+      "selfReview": false,
+      "sourceCheckpoint": "cohorts-1-3-v6-packets-046-055.json"
+    }
+  ]
+}

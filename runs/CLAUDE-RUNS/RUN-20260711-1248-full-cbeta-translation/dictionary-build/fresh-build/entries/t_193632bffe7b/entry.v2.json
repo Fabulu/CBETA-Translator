@@ -28,27 +28,20 @@
           "RelPath": "T/T47/T47n1985.xml",
           "FromLb": "0504a26",
           "ToLb": "0504a29",
-          "Kwic": "師問僧：「有時一喝如金剛王寶劍、有時一喝如踞地金毛師子、有時一喝如探竿影草、有時一喝不作一喝用，汝作麼生會？」僧擬議，師便喝。",
-          "MasterName": null,
+          "Kwic": "師問僧：「有時一喝如金剛王寶劍",
+          "MasterName": "Linji Yixuan",
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (鎮州臨濟慧照禪師語錄) reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Record of Linji, complete examination: Linji Yixuan asks how the monk understands a shout as sword, lion, probing pole or shadowing grass. The recut stores one exact headword token from Linji's speech; his later performed shout remains in the full case.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-described"
+                "utterer",
+                "questioner",
+                "record-owner"
               ]
             }
-          ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
-          }
+          ]
         },
         {
           "RelPath": "T/T47/T47n1985.xml",
@@ -88,7 +81,7 @@
           "RelPath": "T/T48/T48n2006.xml",
           "FromLb": "0311b24",
           "ToLb": "0311b26",
-          "Kwic": "一喝分賓主者。一喝中。自有賓有主也。照用一時行者。一喝中。自有照有用。",
+          "Kwic": "一喝分賓主者。",
           "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
@@ -130,12 +123,14 @@
             {
               "MasterName": "Mazu Daoyi",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "shouter",
+                "case-figure"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Mazu Daoyi is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Complete case: the record narrator owns the headword token while explicitly reporting Mazu Daoyi as the master who performs the shout.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "narrated action or interval",
@@ -153,12 +148,14 @@
           "Kwic": "有僧從外來。師便喝。僧曰。好箇來由。師曰。猶要棒在。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Mengxi Heshang is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Complete case: the record narrator owns the headword token while explicitly reporting Mengxi Heshang as the master who performs the shout.",
           "ContextMasters": [
             {
               "MasterName": "Mengxi Heshang",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "shouter",
+                "case-figure"
               ]
             }
           ],
@@ -179,31 +176,41 @@
           "Kwic": "僧便喝。師便打。",
           "MasterName": null,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic interlocutor",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "shouter",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧便喝 assigns the shout to the unnamed monk; 師便打 assigns only the following strike to the master.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T09:00:00Z"
           },
           "ContextMasters": [],
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (續傳燈錄) reports the exact headword-bearing action or interval."
+          "AttributionNote": "Complete Sanjiao exchange: the unnamed monk gives the shout and the master strikes afterward. The prior generic narrator label obscured the explicit performer."
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
           "FromLb": "0009a19",
           "ToLb": "0009a19",
-          "Kwic": "喝一喝，下座。",
+          "Kwic": "喝一",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (列祖提綱錄) reports the exact headword-bearing action or interval. Zhenjing Kewen is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Complete case: the record narrator owns the headword token while explicitly reporting Zhenjing Kewen as the master who performs the shout.",
           "ContextMasters": [
             {
               "MasterName": "Zhenjing Kewen",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "shouter",
+                "case-figure"
               ]
             }
           ],
@@ -282,15 +289,17 @@
           "RelPath": "T/T47/T47n1985.xml",
           "FromLb": "0496c16",
           "ToLb": "0496c18",
-          "Kwic": "又有僧問：「如何是佛法大意？」師便喝，僧禮拜，師云：「爾道好喝也無？」僧云：「草賊大敗。」",
+          "Kwic": "師便喝，僧禮拜",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (鎮州臨濟慧照禪師語錄) reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Complete case: the record narrator owns the headword token while explicitly reporting Linji Yixuan as the master who performs the shout.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "shouter",
+                "case-figure"
               ]
             }
           ],
@@ -308,7 +317,7 @@
           "RelPath": "C/C077/C077n1710.xml",
           "FromLb": "0667b17",
           "ToLb": "0667b17",
-          "Kwic": "諸上座不得盲喝亂喝",
+          "Kwic": "諸上座不得盲喝",
           "MasterName": "Shoushan Xingnian",
           "Curated": true,
           "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Shoushan Xingnian's recorded sayings. After an unnamed participant shouts twice, Shoushan Xingnian explicitly warns the assembly not to shout blindly or at random. Shoushan is the exact speaker of the stored warning.",
@@ -342,7 +351,7 @@
           "RelPath": "J/J29/J29nB224.xml",
           "FromLb": "0114b22",
           "ToLb": "0114b23",
-          "Kwic": "棒喝若是禪，則十字街頭、三家村裏，擔來負去、掄拳喝罵者，亦應是禪邪？",
+          "Kwic": "棒喝若是禪",
           "MasterName": "Songshan Yezhu",
           "Curated": true,
           "EvidenceRole": "family",
@@ -378,7 +387,7 @@
           "RelPath": "J/J10/J10nA158.xml",
           "FromLb": "0017a28",
           "ToLb": "0017a29",
-          "Kwic": "師云：「三喝四喝後作麼生？」僧佇思，師連打",
+          "Kwic": "三喝",
           "MasterName": "Miyun Yuanwu",
           "Curated": true,
           "EvidenceRole": "family",
@@ -452,7 +461,7 @@
         "喝罵"
       ],
       "ClaimAnchors": [],
-      "Explanation": "A shout is an interview action whose placement can expose guest and host or illumination and function; the same records warn that blind or imitative shouting does not reproduce its use. The selected exact turns and their attributed speakers or narrators bound this account; the entry does not add a resolution beyond those deployments."
+      "Explanation": "A shout is a voiced public-interview action whose placement can expose guest and host or illumination and function. Linji classifies and performs shouts; other records describe monks and masters exchanging them. The corpus also distinguishes this use from blind imitation: Shoushan forbids random shouting, while Songshan Yezhu asks whether ordinary street brawling would count if stick-and-shout itself were Chan. These opposed deployments define the entry without making every loud cry a Zen device."
     }
   ]
 }

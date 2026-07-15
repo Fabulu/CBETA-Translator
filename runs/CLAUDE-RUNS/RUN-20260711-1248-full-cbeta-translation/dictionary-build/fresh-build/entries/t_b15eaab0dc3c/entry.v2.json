@@ -50,12 +50,20 @@
           "ToLb": "0191a09",
           "Kwic": "五更鍾問久輔不逢時如何師云闍梨有問老僧有荅僧云如何得逢師云闍梨不問老僧不荅問維摩方丈不以日月為明未審和尚方丈以何為明師云穿破天下人髑髏問久負無絃琴請師彈一曲師云無言顯大道僧云還許學人和也無師云更莫遅疑問十方薄伽梵一路涅槃門如何是一路師云龍󷮳鳳舞子時前日出崑崙照大千問塵塵見佛剎剎聞經如何是塵塵見佛師云好个燈籠僧云學人不會意𣅀如何師云還我話頭來問無",
           "Curated": true,
-          "ContextMasters": [],
-          "AttributionNote": "Source text (古尊宿語錄): the unnamed interlocutor asking for the stringless lute to be played or identified owns the exact headword-bearing question after full-case review.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "explicit speech turn",
-            "ActorLabel": "the unnamed interlocutor asking for the stringless lute to be played or identified",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -65,9 +73,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A repair author",
-            "ReviewedUtc": "2026-07-15T07:10:00Z",
-            "GrammarEvidence": "The headword occurs in the question or advance marked by 問/進云; the complete case does not give that interlocutor a personal name."
+            "GrammarEvidence": "問 owns 久負無絃琴; Shoushan Xingnian answers after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

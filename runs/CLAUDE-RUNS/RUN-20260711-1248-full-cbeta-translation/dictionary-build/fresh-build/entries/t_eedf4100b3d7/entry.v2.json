@@ -74,12 +74,20 @@
           "ToLb": "0667b15",
           "Kwic": "忽遇師子吼時如何師云一任野干鳴僧便喝",
           "Curated": true,
-          "AttributionNote": "In the source record (古尊宿語錄), (古尊宿語錄): the unnamed monk who asks what happens on meeting a lion’s roar utters the exact headword-bearing question; the named respondent speaks only after it.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text; an unnamed monastic questioner utters the headword. The complete case was read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "the unnamed monk who asks what happens on meeting a lion’s roar",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -89,9 +97,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete exchange places the headword before 師曰/師云 in the interlocutor’s marked question; the named master owns only the reply.",
-            "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-            "ReviewedUtc": "2026-07-15T03:46:51.512972+00:00"
+            "GrammarEvidence": "僧云 owns 師子吼; Shoushan’s answer begins after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:02:59.238824+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

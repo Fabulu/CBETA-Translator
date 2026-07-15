@@ -55,6 +55,13 @@
               "Roles": [
                 "utterer"
               ]
+            },
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "person-discussed",
+                "case-figure"
+              ]
             }
           ]
         },
@@ -64,24 +71,17 @@
           "ToLb": "0322a17",
           "Kwic": "師資辨難。互換機鋒。",
           "Curated": true,
-          "AttributionNote": "(人天眼目): compiler Huiyan Zhizhao narrates that teacher and student debate and exchange encounter edges; the line is expository narration rather than participant speech.",
+          "AttributionNote": "Source text (人天眼目): The exact headword speaker is Huiyan Zhizhao. Huiyan Zhizhao's manual explains the circle exchanges as (師資辨難，互換機鋒); this is authorial prose, not anonymous event narration.",
           "ContextMasters": [
             {
               "MasterName": "Huiyan Zhizhao",
               "Roles": [
+                "utterer",
                 "compiler"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler Huiyan Zhizhao",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The sentence is expository compiler narration describing teacher and student exchanging encounter edges, not a quoted utterance by either participant.",
-            "ReviewedBy": "Codex fresh lane-C complete-case review",
-            "ReviewedUtc": "2026-07-14T17:20:00Z"
-          }
+          "MasterName": "Huiyan Zhizhao"
         },
         {
           "RelPath": "X/X80/X80n1565.xml",

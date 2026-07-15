@@ -57,20 +57,37 @@
             {
               "MasterName": "Weilin Daopei",
               "Roles": [
-                "compiler"
+                "signer",
+                "lineage-heir"
+              ]
+            },
+            {
+              "MasterName": "Yongjue Yuanxian",
+              "Roles": [
+                "lineage-teacher",
+                "record-subject"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Document heading/signature metadata. In the Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), Weilin Daopei signs the preface as “lineage-inheriting disciple Daopei,” identifying himself as Yongjue Yuanxian's successor.",
+          "AttributionNote": "Source text; exact identified documentary actor: Weilin Daopei. Complete-case and title-page attribution read.",
           "ActorAttribution": {
-            "Status": "impersonal",
-            "Kind": "preface signature",
-            "ActorLabel": "the signed preface credit",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword occurs in Daopei’s signed successor-disciple credit at the end of a preface.",
-            "ReviewedBy": "Codex fresh lane-C complete-case review",
-            "ReviewedUtc": "2026-07-14T20:45:00Z"
+            "Status": "identified-non-master",
+            "Kind": "documentary author",
+            "ActorLabel": "Weilin Daopei",
+            "ActorRole": "signed preface author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The signature reads 嗣法弟子道霈.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:16:45.868376+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {
@@ -104,23 +121,39 @@
           "ToLb": "0757c13",
           "Kwic": "，又何堪挂齒乎？」眾各慶喜，禮謝而退。塔銘塔銘五峰禪師，嗣法於天童密雲悟和尚，溯南嶽、繇臨濟，當傳燈世嗣為第三十五世之嫡子也。師族姓",
           "Curated": true,
-          "AttributionNote": "Compiler narration. In Tao Runai's pagoda inscription within the Recorded Sayings of Chan Master Dawei Wufeng Xue (大溈五峰學禪師語錄), Tao names Wufeng Ruxue as the actor who inherits Tiantong Miyun Yuanwu's lineage. The short title ‘Wufeng’ names a different Tang master in the current roster and cannot replace the source's late-Ming Wufeng Ruxue.",
+          "AttributionNote": "Source text; exact identified documentary actor: Tao Runai. Complete-case and title-page attribution read.",
           "ContextMasters": [
             {
               "MasterName": "Wufeng Ruxue",
               "Roles": [
-                "person-described"
+                "person-described",
+                "lineage-heir"
+              ]
+            },
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "lineage-teacher"
               ]
             }
           ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "stele biography",
-            "ActorLabel": "the inscription author",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The inscription author narrates Wufeng Ruxue’s succession to Miyun Yuanwu.",
-            "ReviewedBy": "Codex fresh lane-C complete-case review",
-            "ReviewedUtc": "2026-07-14T20:45:00Z"
+            "Status": "identified-non-master",
+            "Kind": "documentary author",
+            "ActorLabel": "Tao Runai",
+            "ActorRole": "pagoda-inscription author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The inscription says 五峰禪師嗣法於天童密雲悟和尚.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:16:45.868376+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {
@@ -172,24 +205,54 @@
           "ToLb": "0267a02",
           "Kwic": "投子面承圓鑒。嗣法於大陽。",
           "Curated": true,
-          "AttributionNote": "Compiler narration. In Wansong Xingxiu's Book of Serenity (萬松老人評唱天童覺和尚頌古從容庵錄), Wansong states that Touzi Yiqing personally received Yuanjian's recognition and inherited Dayang Jingxuan's lineage.",
+          "AttributionNote": "Wansong’s 示眾 voice compares Yunmen and Touzi lineage reception.",
           "ContextMasters": [
+            {
+              "MasterName": "Wansong Xingxiu",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            },
             {
               "MasterName": "Touzi Yiqing",
               "Roles": [
-                "person-described"
+                "person-discussed",
+                "lineage-heir"
+              ]
+            },
+            {
+              "MasterName": "Dayang Jingxuan",
+              "Roles": [
+                "lineage-teacher"
+              ]
+            },
+            {
+              "MasterName": "Fushan Fayuan",
+              "Roles": [
+                "recognition-source"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "teacher-met"
+              ]
+            },
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "incense-lineage-source"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "case commentary",
-            "ActorLabel": "the case-record compiler",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The compiler narrates Touzi Yiqing’s succession to Dayang Jingxuan.",
-            "ReviewedBy": "Codex fresh lane-C complete-case review",
-            "ReviewedUtc": "2026-07-14T20:45:00Z"
-          }
+          "MasterName": "Wansong Xingxiu"
         }
       ],
       "SourceTexts": [

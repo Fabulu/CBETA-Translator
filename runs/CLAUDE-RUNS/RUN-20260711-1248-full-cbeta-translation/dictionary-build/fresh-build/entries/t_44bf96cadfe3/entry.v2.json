@@ -115,14 +115,13 @@
           "ToLb": "0567b06",
           "Kwic": "五家宗旨請王宣示。王云：圓明但知曹溪旨，不解五家宗。士云：一旨五宗，是同是別？王云：遇正則同，遇邪則別。",
           "Curated": true,
-          "AttributionNote": "In the Imperially Selected Recorded Sayings (御選語錄), the Yongzheng Emperor answers a scholar's question about the purport of the five houses and whether one purport and five lineages are the same or different.",
+          "AttributionNote": "Imperially Selected Recorded Sayings (御選語錄): an unnamed-by-personal-name Confucian scholar asks the five-house question; the Yongzheng Emperor is the respondent.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "imperial discourse",
-            "ActorLabel": "the Yongzheng Emperor",
-            "ActorRole": "utterer",
-            "GrammarEvidence": "The Yongzheng Emperor is the named non-master who utters the headword.",
+            "Status": "reviewed-unnamed",
+            "Kind": "Confucian questioner",
+            "ActorLabel": "a Confucian scholar whose personal name is not given",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -131,8 +130,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex lane-C independent semantic repair",
-            "ReviewedUtc": "2026-07-14T23:30:00Z"
+            "GrammarEvidence": "有儒士問 directly owns 五家; the Yongzheng Emperor answers only after 王云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:29:46.197845+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         }
       ],

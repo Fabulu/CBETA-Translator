@@ -13,7 +13,7 @@
         "direct mind"
       ],
       "Status": "preferred",
-      "Explanation": "The records define straight mind against bends, twists, crookedness, and falseness: ‘straight mind means without bends or twists.’ Literally, a straight or straightforward mind. The term occurs 163 times in 89 allowed texts. The corpus supplies two compact definitions: 'straight mind means without bends or twists' (直心者，無委曲故), and 'straight mind is the site of the Way because it has no falseness' (直心是道場，無虛假故). The Platform Record repeats 'straight mind is the site; straight mind is the clean land' (直心是道場，straight mind is the clean land, ‘straight mind is the site; straight mind is the clean land’), then contrasts inwardly acting crookedly while verbally speaking straight with actually carrying out straight mind. Its positive clause is 'only carry out straight mind; regarding all things, have no grasping' (但行直心，於一切法上，無有執著). Another address expands the pattern into four coordinated expressions: 'straight mind is the site; straight speech is the subtle teaching; straight conduct is subtle conduct; straight verification is the subtle result' (直心是道場，直說是妙法，直行是妙行，直證是妙果). The common collocation 'straight mind and straight conduct' (直心直行) occurs 22 times in 16 texts. One record describes it by the absence of self-versus-other, right-versus-wrong, falseness, and crookedness; another uses 'straight mind, straight conduct, original color, original share' (直心直行，本色本分) to characterize a named Chan figure's meetings with people.",
+      "Explanation": "The records define straight mind against bends, twists, crookedness, and falseness: ‘straight mind means without bends or twists.’ Literally, a straight or straightforward mind. The term occurs 163 times in 89 allowed texts. The corpus supplies two compact definitions: 'straight mind means without bends or twists' (直心者，無委曲故), and 'straight mind is the site of the Way because it has no falseness' (直心是道場，無虛假故). The Platform Record repeats 'straight mind is the site; straight mind is the clean land' (直心是道場，直心是淨土), then contrasts inwardly acting crookedly while verbally speaking straight with actually carrying out straight mind. Its positive clause is 'only carry out straight mind; regarding all things, have no grasping' (但行直心，於一切法上，無有執著). Another address expands the pattern into four coordinated expressions: 'straight mind is the site; straight speech is the subtle teaching; straight conduct is subtle conduct; straight verification is the subtle result' (直心是道場，直說是妙法，直行是妙行，直證是妙果). The common collocation 'straight mind and straight conduct' (直心直行) occurs 24 times in 17 texts. One record describes it by the absence of self-versus-other, right-versus-wrong, falseness, and crookedness; another uses 'straight mind, straight conduct, original color, original share' (直心直行，本色本分) to characterize a named Chan figure's meetings with people.",
       "Validation": "multi-source",
       "Note": "The English follows the graph meaning 'straight' (直) and the texts' own oppositions: straight versus crooked (直／曲), genuine versus false (genuine / false), and straight conduct versus flattering crookedness (諂曲). The direct definition 'without bends or twists' occurs once, while the site-of-the-Way formula occurs across multiple independent records. No master-specific sense is warranted.",
       "Occurrences": [
@@ -24,16 +24,24 @@
           "Kwic": "起信論云：直心。直心者，無委曲故。",
           "ActorAttribution": {
             "Status": "impersonal",
-            "Kind": "scripture quotation",
-            "ActorLabel": "the quoted treatise voice",
+            "Kind": "explicit textual citation",
+            "ActorLabel": "the Awakening of Faith Treatise",
             "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The headword and definition occur inside an explicit quotation introduced by 起信論云 (“the Awakening of Faith Treatise says”); the quoted treatise voice, not the current record owner, defines straight mind as having no bends or twists."
+            "ReviewedBy": "Codex v6 full-case manual audit 036-045",
+            "ReviewedUtc": "2026-07-16T15:20:00Z",
+            "GrammarEvidence": "Source text (無異元來禪師廣錄): The exact headword actor is the Awakening of Faith Treatise. The headword clause is explicitly introduced as a statement from the Awakening of Faith Treatise; Wuyi Yuanlai quotes it rather than originating the wording."
           },
-          "ContextMasters": [],
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "later-quoter",
+                "record-owner"
+              ]
+            }
+          ],
           "Curated": true,
-          "AttributionNote": "Source text (無異元來禪師廣錄). An explicit quotation from the Awakening of Faith Treatise supplies the headword, not a human questioner. Exact source voice: the quoted treatise voice."
+          "AttributionNote": "Source text (無異元來禪師廣錄): The exact headword actor is the Awakening of Faith Treatise. The headword clause is explicitly introduced as a statement from the Awakening of Faith Treatise; Wuyi Yuanlai quotes it rather than originating the wording."
         },
         {
           "RelPath": "T/T48/T48n2007.xml",
@@ -75,16 +83,25 @@
           "ToLb": "0533b11",
           "Kwic": "所云直心是道場，無虛假故。",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Yingning Jing (攖寧靜禪師語錄), in Yingning Jing's continued reply. The formula introduced by '(所云)' quotes Vimalakirti's answer to the youth Light Adornment: Vimalakirti is the exact quoted speaker who says that straight mind is the site of awakening because it has no falseness. An independent corpus witness preserves the full named dialogue; Yunmen Wenyan is neither the source nor the section's Yunmen addressee.",
-          "MasterName": "Vimalakirti",
+          "AttributionNote": "Source text (攖寧靜禪師語錄): The exact headword actor is Vimalakirti. The full passage identifies Vimalakirti as the source of the claim that the straight mind is the site of awakening because it has no falsity; Yingning Jing is the present quoter.",
           "ContextMasters": [
             {
-              "MasterName": "Vimalakirti",
+              "MasterName": "Yingning Jing",
               "Roles": [
-                "utterer"
+                "later-quoter",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "explicit scriptural quotation",
+            "ActorLabel": "Vimalakirti",
+            "ActorRole": "utterer",
+            "ReviewedBy": "Codex v6 full-case manual audit 036-045",
+            "ReviewedUtc": "2026-07-16T15:20:00Z",
+            "GrammarEvidence": "Source text (攖寧靜禪師語錄): The exact headword actor is Vimalakirti. The full passage identifies Vimalakirti as the source of the claim that the straight mind is the site of awakening because it has no falsity; Yingning Jing is the present quoter."
+          }
         },
         {
           "RelPath": "J/J28/J28nB202.xml",
@@ -109,16 +126,25 @@
           "ToLb": "0074c17",
           "Kwic": "與人相見惟以直心直行、本色本分",
           "Curated": true,
-          "AttributionNote": "(密雲禪師語錄). Full six-rung exact-turn review identifies Miyun Yuanwu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
-          "MasterName": "Miyun Yuanwu",
+          "AttributionNote": "Source text (密雲禪師語錄): The exact headword actor is the biographical compiler. The compiler says Miyun Yuanwu met people only with straight mind and straight conduct; this describes him rather than quoting him.",
           "ContextMasters": [
             {
               "MasterName": "Miyun Yuanwu",
               "Roles": [
-                "utterer"
+                "person-described",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "the biographical compiler",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex v6 full-case manual audit 036-045",
+            "ReviewedUtc": "2026-07-16T15:20:00Z",
+            "GrammarEvidence": "Source text (密雲禪師語錄): The exact headword actor is the biographical compiler. The compiler says Miyun Yuanwu met people only with straight mind and straight conduct; this describes him rather than quoting him."
+          }
         }
       ],
       "SourceTexts": [

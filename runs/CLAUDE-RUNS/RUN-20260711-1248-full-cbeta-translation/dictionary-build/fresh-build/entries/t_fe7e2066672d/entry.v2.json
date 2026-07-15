@@ -176,25 +176,17 @@
           "ToLb": "0377a10",
           "Kwic": "」師云：「教內薦取。",
           "Curated": true,
-          "AttributionNote": "Source text (東山梅溪度禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 薦取-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 薦取 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-          }
+          "AttributionNote": "Source text; exact headword utterer: Meixi Fudu. Complete-case evidence: 師云 directly introduces 教內薦取.",
+          "ContextMasters": [
+            {
+              "MasterName": "Meixi Fudu",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "MasterName": "Meixi Fudu"
         }
       ],
       "ClaimAnchors": [],

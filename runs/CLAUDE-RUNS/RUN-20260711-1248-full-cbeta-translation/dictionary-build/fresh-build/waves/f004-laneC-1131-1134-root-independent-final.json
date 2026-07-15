@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-rereview",
+  "reviewer": "root-coordinator",
+  "generatedUtc": "2026-07-15T14:48:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1131, 1134],
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 14,
+  "exactKwics": "14/14",
+  "exactFullSpans": "14/14",
+  "keep": 1,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 1131,
+      "id": "t_edfd0b2afa11",
+      "term": "接物利生",
+      "reviewedEntrySha256": "d29ae9badffac926a6b666103a0003e29ab9c4b9e087986b650b7292b2f8fbf8",
+      "verdict": "REVISE",
+      "occurrencesReadInFullCase": 7,
+      "reason": "The corrected named utterers are sound and all spans are exact, but occurrence 4 is compiler narration about the named Guishan Lingyou case figure and leaves ContextMasters empty. Resolve that master as person-described. Also remove the reader-facing repeated-name constructions in notes such as 'Xuansha Shibei: Xuansha Shibei addresses' while preserving exact source and speaker."
+    },
+    {
+      "ordinal": 1134,
+      "id": "t_47b3313788e2",
+      "term": "體露金風",
+      "reviewedEntrySha256": "f397ac0e2872295eaf1982fecd97266131a5dd2f938e1256aff1df2c795e8ce1",
+      "verdict": "KEEP",
+      "occurrencesReadInFullCase": 7,
+      "reason": "Six witnesses explicitly preserve Yunmen Wenyan's answer and one is an honestly anonymous compiled verse. The autumn image and later quotation/commentary deployments support the explanation, actor/source notes are exact, and all seven complete spans verify."
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promotionPerformed": false,
+    "mergePerformed": false,
+    "siteTouched": false,
+    "authorReviewerSeparated": true
+  }
+}

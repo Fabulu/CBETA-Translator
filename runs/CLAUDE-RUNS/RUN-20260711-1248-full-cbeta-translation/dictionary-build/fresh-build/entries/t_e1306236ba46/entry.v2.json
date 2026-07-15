@@ -54,25 +54,17 @@
           "ToLb": "0639a22",
           "Kwic": "不離道場道場者無所得也我向你道秖無所得名為坐道場云無眀者為眀為暗師云非眀非暗眀暗是代謝之法無眀且不眀亦不暗不眀秖是本眀不眀不暗秖者一句子亂却天下人眼所以道假使滿世間皆如舍利弗盡思共度量不能測佛智其無碍惠出過虗空無你語論處釋迦量等三千大千世界忽有一菩薩出來一跨跨却三千大千世界不出普賢一毛孔你如今把什麼本領擬",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 一句子-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 一句子 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "Source text; exact headword utterer: Huangbo Xiyun. Complete-case reading: 師云 opens Huangbo’s answer and 一句子 occurs before the next interlocutor turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "MasterName": "Huangbo Xiyun"
         },
         {
           "RelPath": "J/J38/J38nB406.xml",
@@ -154,11 +146,11 @@
         },
         {
           "RelPath": "T/T48/T48n2001.xml",
-          "FromLb": "0009c11",
-          "ToLb": "0009c11",
-          "Kwic": "一句子。",
+          "FromLb": "0009c10",
+          "ToLb": "0009c13",
+          "Kwic": "所以古人道。一句子。當明不當照。一句子。當照不當明。一句子。當明當照。一句子。不當明不當照。",
           "Curated": true,
-          "AttributionNote": "Source text (宏智禪師廣錄): whole-address review assigns the exact headword-bearing wording to Hongzhi Zhengjue.",
+          "AttributionNote": "Source text; exact headword utterer: Hongzhi Zhengjue. Complete-case reading: Hongzhi’s 上堂 address introduces the four-part formula with 所以古人道 and voices all four 一句子 clauses; the expanded KWIC uniquely binds the stored witness.",
           "ContextMasters": [
             {
               "MasterName": "Hongzhi Zhengjue",

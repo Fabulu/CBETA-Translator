@@ -4,20 +4,25 @@
     "Id": "t_b336769aabdf",
     "SourceTerm": "家醜",
     "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
-    "CreatedBy": "Codex f004 lane B bulk evidence-first author",
-    "WrittenUtc": "2026-07-15T10:28:15.689574+00:00",
+    "CreatedBy": "Codex f004 B1031-1040 full-case repair author",
+    "WrittenUtc": "2026-07-15T15:42:24.584850+00:00",
     "Senses": [
       {
         "SenseKey": null,
         "MasterName": null,
         "PreferredTarget": "family disgrace",
-        "AlternateTargets": [],
+        "AlternateTargets": [
+          "family shame",
+          "to air the family's disgrace"
+        ],
         "SearchAliases": [
-          "family disgrace"
+          "family disgrace",
+          "family shame",
+          "to air the family's disgrace"
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "7 distinct work IDs selected after complete-context review.",
+        "Note": "7 curated occurrences retained after removing punctuation collisions and bare paratext; sources are counted by canonical work ID at validation.",
         "Occurrences": [
           {
             "RelPath": "X/X82/X82n1571.xml",
@@ -25,30 +30,21 @@
             "ToLb": "0115a21",
             "Kwic": "乎狂矢。任待牙如劒樹，口似血盆，徒逞詞鋒，虗張意氣。所以淨名杜口，早涉繁詞。摩竭掩關，已揚家醜。自餘瓦棺老漢、巖頭大師，向羗峰頂上拏風鼓浪，翫弄神變，脚跟下好與三十。且道過在甚麼處？良久曰：機關不是韓光作，莫把胸襟",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Lan'an Dingxu. The complete source unit assigns the exact headword-bearing speech or authored wording to Lan'an Dingxu.",
+            "ContextMasters": [
+              {
+                "MasterName": "Lan'an Dingxu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Lan'an Dingxu",
             "DraftActorProof": {
               "ExactHeadwordClause": "乎狂矢。任待牙如劒樹，口似血盆，徒逞詞鋒，虗張意氣。所以淨名杜口，早涉繁詞。摩竭掩關，已揚家醜。自餘瓦棺老漢、巖頭大師，向羗峰頂上拏風鼓浪，翫弄神變，脚跟下好與三十。且道過在甚麼處？良久曰：機關不是韓光作，莫把胸襟",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Lan'an Dingxu",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Lan'an Dingxu.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Lan'an Dingxu."
             }
           },
           {
@@ -57,13 +53,13 @@
             "ToLb": "0623b07",
             "Kwic": "能奇恠末上輸他弄一塲七步周行手指天衲僧棒下命難全母胎出後成何事爭似閻浮未降前周行七步便󰅻尊家醜那堪放出門只向母胎度人畢也須一棒一條痕纔生能步便英靈天上人間我獨尊可咲瞻前不顧後那知身後有雲門一火鑄成金彈子團圞都不費鉗",
             "Curated": true,
-            "AttributionNote": "Source text (禪宗頌古聯珠通集): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
+            "AttributionNote": "Source text (禪宗頌古聯珠通集; C/C078/C078n1720.xml). Exact actor: the unnamed Buddha-birth verse author preserved by the Chan anthology. The complete source and byline search assigns the wording to the unnamed Buddha-birth verse author preserved by the Chan anthology; no named master is manufactured for this verse-author voice.",
             "ContextMasters": [],
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
+              "Status": "reviewed-unnamed",
+              "Kind": "the unnamed Buddha-birth verse author preserved by the Chan anthology",
+              "ActorLabel": "the unnamed Buddha-birth verse author preserved by the Chan anthology",
+              "ActorRole": "verse-author",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -72,15 +68,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+              "GrammarEvidence": "The complete source and byline search assigns the wording to the unnamed Buddha-birth verse author preserved by the Chan anthology; no named master is manufactured for this verse-author voice.",
+              "ReviewedBy": "Codex f004 B fresh-rereview repair author",
+              "ReviewedUtc": "2026-07-15T16:45:27.345072+00:00",
               "AuthoredVoiceRiskReviewed": true
             },
+            "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "能奇恠末上輸他弄一塲七步周行手指天衲僧棒下命難全母胎出後成何事爭似閻浮未降前周行七步便󰅻尊家醜那堪放出門只向母胎度人畢也須一棒一條痕纔生能步便英靈天上人間我獨尊可咲瞻前不顧後那知身後有雲門一火鑄成金彈子團圞都不費鉗",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "the unnamed Buddha-birth verse author preserved by the Chan anthology",
+              "SpeechFrame": "The complete source and byline search assigns the wording to the unnamed Buddha-birth verse author preserved by the Chan anthology; no named master is manufactured for this verse-author voice.",
+              "FullCaseDecision": "The complete source and byline search assigns the wording to the unnamed Buddha-birth verse author preserved by the Chan anthology; no named master is manufactured for this verse-author voice."
             }
           },
           {
@@ -89,13 +87,20 @@
             "ToLb": "0336c08",
             "Kwic": "彩。國清才子貴，家富小兒嬌大家出隻手，彼此不相饒。古渡無風直下鉤，絲綸意在得鯨鰲馬師言下揚家醜，千古兒孫草裏遊。諸子營家各自肥，就中一箇正堪悲，滿籃盛墨無人買，半夜持歸染皁衣。諸子生涯各有成，從來孝順兩邊生貪歡一夜",
             "Curated": true,
-            "AttributionNote": "Source text (宗鑑法林): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
+            "AttributionNote": "Source text (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the unnamed Mazu verse commentator preserved by Zongjian Falin. The complete source and byline search assigns the wording to the unnamed Mazu verse commentator preserved by Zongjian Falin; no named master is manufactured for this verse-author voice.",
+            "ContextMasters": [
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "section-subject"
+                ]
+              }
+            ],
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
+              "Status": "reviewed-unnamed",
+              "Kind": "the unnamed Mazu verse commentator preserved by Zongjian Falin",
+              "ActorLabel": "the unnamed Mazu verse commentator preserved by Zongjian Falin",
+              "ActorRole": "verse-author",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -104,15 +109,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+              "GrammarEvidence": "The complete source and byline search assigns the wording to the unnamed Mazu verse commentator preserved by Zongjian Falin; no named master is manufactured for this verse-author voice.",
+              "ReviewedBy": "Codex f004 B fresh-rereview repair author",
+              "ReviewedUtc": "2026-07-15T16:45:27.345072+00:00",
               "AuthoredVoiceRiskReviewed": true
             },
+            "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "彩。國清才子貴，家富小兒嬌大家出隻手，彼此不相饒。古渡無風直下鉤，絲綸意在得鯨鰲馬師言下揚家醜，千古兒孫草裏遊。諸子營家各自肥，就中一箇正堪悲，滿籃盛墨無人買，半夜持歸染皁衣。諸子生涯各有成，從來孝順兩邊生貪歡一夜",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "the unnamed Mazu verse commentator preserved by Zongjian Falin",
+              "SpeechFrame": "The complete source and byline search assigns the wording to the unnamed Mazu verse commentator preserved by Zongjian Falin; no named master is manufactured for this verse-author voice.",
+              "FullCaseDecision": "The complete source and byline search assigns the wording to the unnamed Mazu verse commentator preserved by Zongjian Falin; no named master is manufactured for this verse-author voice."
             }
           },
           {
@@ -121,12 +128,12 @@
             "ToLb": "0324a13",
             "Kwic": "鍛聖凡。全機施設，英靈漢匍匐歸降；赤體提持，門外人皈依乞命。唱出無生，雷音普聞於海內；備揚家醜，道眼卓絕乎諸方。斯真末世之津梁，法門之柱石也。默等向沾法味，素飫玄譚，固宜金明作略，遐邇皆知，猶恐威德韜藏，趨蹌或後。",
             "Curated": true,
-            "AttributionNote": "Source text (介菴進禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
+            "AttributionNote": "Source text (介菴進禪師語錄; J/J29/J29nB233.xml). Exact actor: Tan Zhenmo and twenty named local-gentry coauthors. The complete source and byline search assigns the wording to Tan Zhenmo and twenty named local-gentry coauthors; no named master is manufactured for this compiler voice.",
             "ContextMasters": [],
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
+              "Status": "identified-non-master",
+              "Kind": "Tan Zhenmo and twenty named local-gentry coauthors",
+              "ActorLabel": "Tan Zhenmo and twenty named local-gentry coauthors",
               "ActorRole": "compiler",
               "RungsChecked": [
                 "line",
@@ -136,15 +143,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+              "GrammarEvidence": "The complete source and byline search assigns the wording to Tan Zhenmo and twenty named local-gentry coauthors; no named master is manufactured for this compiler voice.",
+              "ReviewedBy": "Codex f004 B fresh-rereview repair author",
+              "ReviewedUtc": "2026-07-15T16:45:27.345072+00:00",
               "AuthoredVoiceRiskReviewed": true
             },
+            "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "鍛聖凡。全機施設，英靈漢匍匐歸降；赤體提持，門外人皈依乞命。唱出無生，雷音普聞於海內；備揚家醜，道眼卓絕乎諸方。斯真末世之津梁，法門之柱石也。默等向沾法味，素飫玄譚，固宜金明作略，遐邇皆知，猶恐威德韜藏，趨蹌或後。",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Tan Zhenmo and twenty named local-gentry coauthors",
+              "SpeechFrame": "The complete source and byline search assigns the wording to Tan Zhenmo and twenty named local-gentry coauthors; no named master is manufactured for this compiler voice.",
+              "FullCaseDecision": "The complete source and byline search assigns the wording to Tan Zhenmo and twenty named local-gentry coauthors; no named master is manufactured for this compiler voice."
             }
           },
           {
@@ -153,30 +162,21 @@
             "ToLb": "0899c27",
             "Kwic": "三奠。」結制，小參。「欲將虛空雕繪，諸方大有不甘；攙掇石女生兒，我亦無此途轍。嵩少分皮髓，家醜外揚；洞山立偏正，陷坑自掘。有賓主可分，無非野狐唾涎；有秘密可傳，總是鬼神家活資。聖者裏不施掣電之機、不走奔雷之舌，水雲",
             "Curated": true,
-            "AttributionNote": "Source text (蔗菴範禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (蔗菴範禪師語錄; J/J36/J36nB369.xml). Exact actor: Zhe'an Jingfan. The complete source unit assigns the exact headword-bearing speech or authored wording to Zhe'an Jingfan.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhe'an Jingfan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Zhe'an Jingfan",
             "DraftActorProof": {
               "ExactHeadwordClause": "三奠。」結制，小參。「欲將虛空雕繪，諸方大有不甘；攙掇石女生兒，我亦無此途轍。嵩少分皮髓，家醜外揚；洞山立偏正，陷坑自掘。有賓主可分，無非野狐唾涎；有秘密可傳，總是鬼神家活資。聖者裏不施掣電之機、不走奔雷之舌，水雲",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Zhe'an Jingfan",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Zhe'an Jingfan.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Zhe'an Jingfan."
             }
           },
           {
@@ -185,13 +185,13 @@
             "ToLb": "0035c16",
             "Kwic": "箇，方始能破天荒，從此惡毒滋長，喚作五葉聯芳。北山忝為末裔，不知滿面慙惶，一甌山茗一爐香，家醜重重又外揚。祖忌，拈香。達大道兮過量，通佛心兮出度。不與凡聖同纏，超然名之曰祖。只如大光和尚具甚麼見，却道不是祖？甜瓜徹",
             "Curated": true,
-            "AttributionNote": "Source text (列祖提綱錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
+            "AttributionNote": "Source text (列祖提綱錄; X/X64/X64n1260.xml). Exact actor: the unnamed Beishan ancestral-rite speaker. The complete source and byline search assigns the wording to the unnamed Beishan ancestral-rite speaker; no named master is manufactured for this utterer voice.",
             "ContextMasters": [],
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
+              "Status": "reviewed-unnamed",
+              "Kind": "the unnamed Beishan ancestral-rite speaker",
+              "ActorLabel": "the unnamed Beishan ancestral-rite speaker",
+              "ActorRole": "utterer",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -200,15 +200,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+              "GrammarEvidence": "The complete source and byline search assigns the wording to the unnamed Beishan ancestral-rite speaker; no named master is manufactured for this utterer voice.",
+              "ReviewedBy": "Codex f004 B fresh-rereview repair author",
+              "ReviewedUtc": "2026-07-15T16:45:27.345072+00:00",
               "AuthoredVoiceRiskReviewed": true
             },
+            "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "箇，方始能破天荒，從此惡毒滋長，喚作五葉聯芳。北山忝為末裔，不知滿面慙惶，一甌山茗一爐香，家醜重重又外揚。祖忌，拈香。達大道兮過量，通佛心兮出度。不與凡聖同纏，超然名之曰祖。只如大光和尚具甚麼見，却道不是祖？甜瓜徹",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "the unnamed Beishan ancestral-rite speaker",
+              "SpeechFrame": "The complete source and byline search assigns the wording to the unnamed Beishan ancestral-rite speaker; no named master is manufactured for this utterer voice.",
+              "FullCaseDecision": "The complete source and byline search assigns the wording to the unnamed Beishan ancestral-rite speaker; no named master is manufactured for this utterer voice."
             }
           },
           {
@@ -217,30 +219,21 @@
             "ToLb": "0036b18",
             "Kwic": "？諸人還辨得麼？苟或未然，猶握金鞭問歸客，夜深誰共御街行？徑山榮云：國師幸自高眠，侍者播揚家醜，不因多口丹霞，怎見國師哮吼？敢問大眾：國師既在，為什麼不見客？向者裏看得破，非唯知躭源落節，亦見自己有出身之路。雖然如",
             "Curated": true,
-            "AttributionNote": "Source text (宗門拈古彙集): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: Jingshan Rong. The complete source unit assigns the exact headword-bearing speech or authored wording to Jingshan Rong.",
+            "ContextMasters": [
+              {
+                "MasterName": "Jingshan Rong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Jingshan Rong",
             "DraftActorProof": {
               "ExactHeadwordClause": "？諸人還辨得麼？苟或未然，猶握金鞭問歸客，夜深誰共御街行？徑山榮云：國師幸自高眠，侍者播揚家醜，不因多口丹霞，怎見國師哮吼？敢問大眾：國師既在，為什麼不見客？向者裏看得破，非唯知躭源落節，亦見自己有出身之路。雖然如",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Jingshan Rong",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Jingshan Rong.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Jingshan Rong."
             }
           }
         ],
@@ -256,10 +249,11 @@
         ],
         "RelatedMasters": [],
         "RelatedTerms": [],
+        "Explanation": "Family disgrace is the school’s own embarrassing business made public. Named masters and verse writers call inherited sayings, lineage devices, and even ancestral memorials an airing of the house’s disgrace. The phrase is deliberately double-edged: what discredits the house is also what descendants keep exposing in sermons, comments, invitations, and rites.",
         "ExplanationParts": {
-          "CorpusEarnedOpening": "Family disgrace is the plain-English referent tested by the selected Chan records.",
+          "CorpusEarnedOpening": "Family disgrace is the school’s own embarrassing business made public.",
           "EvidenceBody": [
-            "The selected cases place family disgrace inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition."
+            "Named masters and verse writers call inherited sayings, lineage devices, and even ancestral memorials an airing of the house’s disgrace. The phrase is deliberately double-edged: what discredits the house is also what descendants keep exposing in sermons, comments, invitations, and rites."
           ]
         },
         "DraftEvidence": {
@@ -272,27 +266,27 @@
             "o6",
             "o7"
           ],
-          "ZenBend": "The selected cases place family disgrace inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition.",
-          "CounterexampleOrLimit": "Catalogue-only, longer-compound, title-boundary, and incompatible literal matches were controlled during selection; different readings of one referent were not split.",
+          "ZenBend": "Family disgrace is the school’s own embarrassing business made public. Named masters and verse writers call inherited sayings, lineage devices, and even ancestral memorials an airing of the house’s disgrace. The phrase is deliberately double-edged: what discredits the house is also what descendants keep exposing in sermons, comments, invitations, and rites.",
+          "CounterexampleOrLimit": "Literal, title, institutional, punctuation-collision, and grammatical uses were checked; collisions and bare paratext were not counted as deployment evidence.",
           "DifferentThingTest": {
             "Decision": "one-thing",
             "ComparedThings": [
               "family disgrace",
-              "selected deployments"
+              "nearby literal, title, and grammatical candidates"
             ],
-            "Reason": "Catalogue-only, longer-compound, title-boundary, and incompatible literal matches were controlled during selection; different readings of one referent were not split."
+            "Reason": "The retained witnesses denote the same corpus object or operation; no split was made merely for noun/verb grammar or a different reading."
           },
-          "AliasRationale": "English lookup form names the same referent.",
+          "AliasRationale": "Each alias is an English lookup phrasing for the same retained corpus sense.",
           "ModifierControls": [
             {
               "finding": "checked",
-              "reason": "Exact headword separated from longer compounds."
+              "reason": "Exact headword occurrences were distinguished from longer compounds and punctuation joins."
             }
           ],
           "FamilyControls": [
             {
               "finding": "checked",
-              "reason": "Titles, persons, offices, and formulas controlled separately."
+              "reason": "Related titles, persons, formulas, and literal uses were tested before retaining one sense."
             }
           ],
           "IndependentWorkIds": [

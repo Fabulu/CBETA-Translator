@@ -30,12 +30,12 @@
           "ToLb": "0052b14",
           "Kwic": "盧見師奔至。即擲衣鉢於磐石曰。此衣表信。可力爭邪。任君將去。師遂舉之。如山不動。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Compiler narration reports Huineng throwing the robe and bowl onto a rock.",
+          "AttributionNote": "Compendium of the Five Lamps (五燈會元): Huineng is the narrated action-performer who throws the robe and bowl onto the rock; his speech begins afterward with (此衣表信).",
           "ContextMasters": [
             {
               "MasterName": "Huineng",
               "Roles": [
-                "person-described"
+                "action-performer"
               ]
             },
             {
@@ -47,12 +47,12 @@
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "procedural narration",
-            "ActorLabel": "the record or rule compiler",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The compiler narrates Huineng throwing the robe and bowl onto a rock and Huiming trying to lift them; 衣鉢 is the object of the narrated actions, not quoted speech."
+            "Kind": "narrated physical action",
+            "ActorLabel": "Huineng",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex manual full-case cohorts 7-9",
+            "ReviewedUtc": "2026-07-15T20:30:00Z",
+            "GrammarEvidence": "盧見師奔至 carries 盧 into 即擲衣鉢於磐石曰: Huineng performs 擲; 曰 introduces his following words."
           }
         },
         {
@@ -120,7 +120,7 @@
         "proof of succession"
       ],
       "Status": "preferred",
-      "Explanation": "The same physical robe and bowl treated as passed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 texts), and one exact occurrence of ‘robe and bowl transmitted in succession’ (衣鉢相傳). The Dayu Ridge account explicitly calls the robe ‘a token of trust.’ Yuansou Xingduan says that Huangmei's robe and bowl were entrusted to Lu, while Qining Wenyi asks which robe and bowl Lu actually transmitted. The question is recorded as a question rather than resolved here into an object different from the material robe and bowl.",
+      "Explanation": "The same physical robe and bowl treated as passed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 33 hits in 28 texts), ‘entrust the robe and bowl’ (付衣鉢, 12 hits in 10 texts), and one exact occurrence of ‘robe and bowl transmitted in succession’ (衣鉢相傳). The Dayu Ridge account explicitly calls the robe ‘a token of trust.’ Yuansou Xingduan says that Huangmei's robe and bowl were entrusted to Lu, while Qining Wenyi asks which robe and bowl Lu actually transmitted. The question is recorded as a question rather than resolved here into an object different from the material robe and bowl.",
       "Validation": "multi-source",
       "Note": "Historical succession does not make this sense specific to a named individual. The selected passages show the physical token, later transmission language, and a later challenge about what was transmitted. The seven required definition formulas were searched; no additional lexical self-definition was found.",
       "Occurrences": [
@@ -137,6 +137,12 @@
               "MasterName": "Qining Wenyi",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "case-figure"
               ]
             }
           ]
@@ -164,22 +170,15 @@
           "ToLb": "0042c08",
           "Kwic": "曹溪守衣鉢侍者，因僧到，乃提起衣曰：者是大庾嶺頭提不起底。僧曰：為什麼却在上座手裏？",
           "Curated": true,
-          "AttributionNote": "Collected Remarks on Old Cases of the Chan Lineage (宗門拈古彙集), Caoqi robe account. An unnamed robe-and-bowl attendant is the exact event actor who raises the robe and identifies it as the one that could not be lifted at Dayu Ridge. The line, expanded contexts through ±10,000 characters, section header, book title, TEI header, and parallel-passage search do not name the attendant.",
+          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集): in compiler narration, no human speaker utters the headword; an unnamed Caoqi robe-and-bowl attendant performs (提起), and the record does not name him in any of the six attribution rungs.",
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "attendant",
-            "ActorLabel": "unnamed robe-and-bowl attendant",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex semantic-r002-owner3",
-            "ReviewedUtc": "2026-07-14T14:05:00Z"
+            "Status": "narrated",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the unnamed Caoqi robe-and-bowl attendant",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex manual full-case cohorts 7-9",
+            "ReviewedUtc": "2026-07-15T20:30:00Z",
+            "GrammarEvidence": "曹溪守衣鉢侍者…乃提起衣曰 assigns 提起 to the unnamed attendant; his quoted words begin 者是大庾嶺頭."
           },
           "ContextMasters": [
             {
@@ -196,24 +195,16 @@
           "ToLb": "0323c14",
           "Kwic": "衣鉢僅為師弟古卓老宿所藏。卓翁又終，其衣鉢相傳於南明之手十有餘年。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統解惑編). Prose narration reports the possession and transmission of Feiyin Tongrong’s robe and bowl.",
+          "AttributionNote": "Five Lamps Strict Lineage: Resolving Doubts (五燈嚴統解惑編), letter to the Hangzhou gentry: Feiyin Tongrong is the written speaker who reports the custody and transmission of the robe and bowl; (先師) and (予) identify his first-person letter voice.",
           "ContextMasters": [
             {
               "MasterName": "Feiyin Tongrong",
               "Roles": [
-                "person-discussed"
+                "utterer"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "prose narration",
-            "ActorLabel": "the prose narrator",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The prose narrator reports that Feiyin Tongrong’s robe and bowl were kept by disciples and transmitted to Nanming for more than ten years; the named people are possessions’ holders, not utterers."
-          }
+          "MasterName": "Feiyin Tongrong"
         },
         {
           "RelPath": "T/T47/T47n1997.xml",

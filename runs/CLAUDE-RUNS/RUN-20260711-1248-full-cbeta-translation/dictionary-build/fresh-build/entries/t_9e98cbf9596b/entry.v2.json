@@ -79,27 +79,16 @@
           "ToLb": "0217a07",
           "Kwic": "和尚大悲恩逾父母",
           "Curated": true,
-          "AttributionNote": "Source text (傳燈玉英集（殘卷）; B/B14/B14n0082.xml). Exact actor: the source narrator quoting Xiangyan Zhixian. The complete source assigns the exact wording to the source narrator quoting Xiangyan Zhixian.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "the source narrator quoting Xiangyan Zhixian",
-            "ActorLabel": "the source narrator quoting Xiangyan Zhixian",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete source assigns the exact wording to the source narrator quoting Xiangyan Zhixian.",
-            "ReviewedBy": "Codex f004 checkpoint3 repair",
-            "ReviewedUtc": "2026-07-15T17:18:22.923788+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          },
-          "MasterName": null
+          "AttributionNote": "Source text (傳燈玉英集（殘卷）; B/B14/B14n0082.xml). Exact actor: Xiangyan Zhixian. The phrase occurs in Xiangyan Zhixian’s own praise introduced by “praise says.”",
+          "ContextMasters": [
+            {
+              "MasterName": "Xiangyan Zhixian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Xiangyan Zhixian"
         },
         {
           "RelPath": "B/B25/B25n0144.xml",
@@ -155,7 +144,7 @@
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "Great compassion is compassion described as expansive or responsive. The sources call mind the father of great compassion, call a buddha’s birth an appearance through compassionate vows, and praise compassion that opens a questioner’s clouded view."
+      "Explanation": "Great compassion is compassion described as expansive or responsive. The sources call mind the father of great compassion, record outsiders thanking compassion for opening their clouded view, preserve Xiangyan Zhixian’s praise of Guishan’s compassion as exceeding parental kindness, and voice Mahakasyapa’s lament that the Buddha’s compassion could not remain for him."
     },
     {
       "SenseKey": null,
@@ -203,66 +192,37 @@
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
-          "FromLb": "0026c22",
-          "ToLb": "0027a04",
-          "Kwic": "僧禮拜，師便打。又有僧來，師亦舉拂子。僧不顧，師亦打。又有僧來參，師舉拂子。僧曰：謝和尚指示。師亦打。麻谷問：大悲千手眼，那箇是正眼？師搊住曰：大悲千手眼，作麼生是正眼？速道！速道！谷拽師下禪牀却坐。師問訊曰：不審。谷擬議，師便喝。拽谷下禪牀却坐，谷便出。上堂，僧",
+          "FromLb": "0027a02",
+          "ToLb": "0027a02",
+          "Kwic": "師搊住曰：大悲千手眼",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: Linji Yixuan. Linji Yixuan seizes Magu and directly repeats the headword-bearing challenge.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "record-owner"
+                "utterer"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "the reviewed unnamed compiler",
-            "ActorLabel": "the reviewed unnamed compiler",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
-            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
-            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          },
-          "MasterName": null
+          "MasterName": "Linji Yixuan"
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0640a24",
-          "ToLb": "0640b08",
-          "Kwic": "藤恐滯常侍與諸官員昧佗佛𪫬不如且退喝一喝云少信根人終無了日久立珍重。師因一日到河北府主王常侍請師升座時麻谷出問大悲千手眼那箇是正眼師云大悲千手眼那箇是正眼速道速道麻谷拽師下座麻谷却坐師近前云不審麻谷擬議師亦拽麻谷下座師却坐麻谷便出去師便下座。上堂云赤肉團上有一無位",
+          "FromLb": "0640b04",
+          "ToLb": "0640b05",
+          "Kwic": "師云大悲千手眼",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "the reviewed unnamed compiler",
-            "ActorLabel": "the reviewed unnamed compiler",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
-            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
-            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          },
-          "MasterName": null
+          "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: Linji Yixuan. Linji Yixuan directly repeats the headword-bearing challenge after Magu’s question.",
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Linji Yixuan"
         }
       ],
       "ClaimAnchors": [],

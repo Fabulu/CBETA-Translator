@@ -1,0 +1,25 @@
+# 泥牛吼月 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 5 curated rows across 5 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 木馬嘶風, 泥牛, 金鎖玄關, and impossible-animal sayings.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o5` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The Chan use keeps the impossible material-action mismatch active: mud bellows, wood neighs, and the pair enters questions and obstacle-breaking lines without being decoded into doctrine.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: Different poems attach different consequences to the bellow; the headword itself does not prove one symbolic referent for ox, mud, or moon.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o5` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: Different poems attach different consequences to the bellow; the headword itself does not prove one symbolic referent for ox, mud, or moon.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: clay ox howls at moon; mud cow moon bellow; impossible ox and moon.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.
+- modifier-relation-verdict: `headword-internal` — 泥 specifies the ox's material in the impossible image; it is not detached as a separate symbolic referent.
+- display-modifier-verdict: `displayed` — “mud ox” is retained in the PreferredTarget and opening.

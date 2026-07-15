@@ -1,0 +1,919 @@
+{
+  "schemaVersion": "attribution-read-adjudication-v1",
+  "generatedUtc": "2026-07-15T20:03:44.801133+00:00",
+  "readOnly": true,
+  "entryRange": [
+    26,
+    50
+  ],
+  "entries": 25,
+  "findings": 25,
+  "rows": [
+    {
+      "cohort": 4,
+      "entryId": "t_adef287521cf",
+      "term": "平地起骨堆",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "平地起骨堆 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Fushan Fayuan",
+      "MasterNameAsWritten": "Fushan Fayuan",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Fushan Fayuan",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0839b05",
+      "Kwic": "舒州浮山法遠圓鑑禪師僧問如何是祖師西來意師曰平地起骨堆。",
+      "fullCaseContextSha256": "87ae6596db9a81c98b8bd84adcfc73d12ef86bd9500ed568685d07aa1abb6cb0",
+      "fullCaseContextChars": 20028,
+      "sectionHead": "通集序",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_af92172da506",
+      "term": "只如",
+      "sense": 1,
+      "occurrence": 7,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "只如 s1 o7: ['師道']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "an unnamed questioning monk",
+      "actorRole": "questioner",
+      "contextMaster": "Dahui Zonggao",
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Dahui Zonggao",
+          "Roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "RelPath": "M/M59/M59n1540.xml",
+      "FromLb": "0789b11",
+      "Kwic": "進云只如祖師道父母非我親誰是最親者諸佛非我道誰是最道者意旨如何",
+      "fullCaseContextSha256": "b70379146fc8f84d8ae602c8c110e5ad4a9350f1fcc888455bf8e6829f56f5fa",
+      "fullCaseContextChars": 10235,
+      "sectionHead": "妙圓居士張檢點祖燈請普說",
+      "sourceTitle": "大慧普覺禪師普說",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "Full-case grammar assigns the headword to the unnamed interlocutor; a nearby 師 marker belongs to another turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_b15eaab0dc3c",
+      "term": "無絃琴",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "無絃琴 s1 o2: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the unnamed interlocutor asking for the stringless lute to be played or identified",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0191a01",
+      "Kwic": "五更鍾問久輔不逢時如何師云闍梨有問老僧有荅僧云如何得逢師云闍梨不問老僧不荅問維摩方丈不以日月為明未審和尚方丈以何為明師云穿破天下人髑髏問久負無絃琴請師彈一曲師云無言顯大道僧云還許學人和也無師云更莫遅疑問十方薄伽梵一路涅槃門如何是一路師云龍󷮳鳳舞子時前日出崑崙照大千問塵塵見佛剎剎聞經如何是塵塵見佛師云好个燈籠僧云學人不會意𣅀如何師云還我話頭來問無",
+      "fullCaseContextSha256": "2045101f069b76cef00a88a5f3772fd179e660f8b02f331b4c2bb8e1f930851f",
+      "fullCaseContextChars": 20173,
+      "sectionHead": "次住廣教語錄",
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "師云/師曰 belongs to the answer after the headword-bearing unnamed question.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_b4c37e2f25c3",
+      "term": "東司",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "東司 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Zhaozhou Congshen",
+      "MasterNameAsWritten": "Zhaozhou Congshen",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Zhaozhou Congshen",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0714c22",
+      "Kwic": "師云你還從潼関過麼云不歷師云今日捉得者販私塩漢因送亡僧師云只是一箇死人得無量人送又云許多死漢送一箇生漢時有僧問是心生是身生師云身心俱不生云者箇作麼生師云死漢有僧見猫兒問云某甲喚作猫兒未審和尚喚作什麼師云是你喚作猫兒因鎮州大王來訪師侍者來報師云大王來師云大王万福侍者云未在方到三門下師云又道大王來也因上東司召文遠文遠應喏師云東司上不可󲟏你說佛法也因在殿上過乃喚侍者侍者應喏師云好一殿功德侍者無對師因到臨濟方始洗脚臨濟便問如何是祖師西來意師云正值洗󷗿臨濟乃近前側聆師云若會便會若不會更莫㗖啄作麼臨濟拂袖去師二三十年行脚今日為人錯下注󷗿師因到天台國清寺見寒山拾得師云久響寒山拾得到來只見兩頭水牯牛寒山拾得便作牛",
+      "fullCaseContextSha256": "2cb8abedc18602ec8363e21e12a15f1887782fe600ae150436eecf0e0f0c83f0",
+      "fullCaseContextChars": 20302,
+      "sectionHead": "趙州諗禪師語錄",
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_b751a85ba963",
+      "term": "啐啄",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "啐啄 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Lianyue Daozheng",
+      "MasterNameAsWritten": "Lianyue Daozheng",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Lianyue Daozheng",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J29/J29nB236.xml",
+      "FromLb": "0437a08",
+      "Kwic": "溼觜，免教乾爆爆地。大眾！還知玉泉荅話意麼？今宵舉盞非常禮，佛祖相將一口吞。」喝一喝。小參。師云：「師資緣契，啐啄同時，子啐母啄，啄與啐不先不後，是為同時。南院上堂示眾云：『諸方只具啐啄同時眼，不具啐啄同時用。』時有僧問：『如何是啐啄同時用？』院云：『作家不啐啄，",
+      "fullCaseContextSha256": "44cd63fff6a42f5209e2f7528ae5fa84964fadfe7972b073dab1ca9b5268196a",
+      "fullCaseContextChars": 17198,
+      "sectionHead": "小參一",
+      "sourceTitle": "玉泉蓮月正禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_b8d2633b12ef",
+      "term": "敗闕",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "敗闕 s1 o1: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "unnamed monk",
+      "actorRole": "questioner",
+      "contextMaster": "Shoushan Xingnian",
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Shoushan Xingnian",
+          "Roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0673b02",
+      "Kwic": "一日因僧入室師喚僧名僧應諾師云錯僧云某甲有什麼敗闕處師云錯",
+      "fullCaseContextSha256": "667c35ed91ea17e5ef13edcbb66f3d04935d7bbbff62ccc65e899852893b4229",
+      "fullCaseContextChars": 20029,
+      "sectionHead": "勘辯語",
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "Full-case grammar assigns the headword to the unnamed interlocutor; a nearby 師 marker belongs to another turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_bbee6625a4d5",
+      "term": "赤肉團上",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "赤肉團上 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Nanyuan Huiyong",
+      "MasterNameAsWritten": "Nanyuan Huiyong",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Nanyuan Huiyong",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X64/X64n1260.xml",
+      "FromLb": "0049c06",
+      "Kwic": "南院顒禪師。上堂：赤肉團上，壁立千仞。僧問：赤肉團上，壁立千仞，豈不是和尚道？",
+      "fullCaseContextSha256": "6752cedeac847906838435ffae06eac67b2feba7bcec1f6f5fb2c7251c3334b2",
+      "fullCaseContextChars": 20039,
+      "sectionHead": "五參提綱住持。○五參提綱，僅集禪燈諸錄，餘者浩繁，不及具載。",
+      "sourceTitle": "列祖提綱錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_c051d6f277af",
+      "term": "佛誕",
+      "sense": 1,
+      "occurrence": 7,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "佛誕 s1 o7: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the editorial 佛誕 occasion label",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0489b04",
+      "Kwic": "行又有人問龍池幻有師翁云如何是諸佛出身處翁云西河火裡坐師云某上座則不然今日若有問如何是諸佛出身處但向道我是蓉城楊四郎佛誕度僧上堂師云報恩新長老今年纔廿四黃而老瞿曇是吾最小子古往今來多少居曲彔牀的大善知識凡於四月八日播弄瞿曇小老的矢臭氣則有分還曾夢見瞿曇的師麼若向者裡緇素得則不",
+      "fullCaseContextSha256": "00a1d5c2f6783d2696a7cd38d0b18990ea0c363075fd51cee646e05601104d18",
+      "fullCaseContextChars": 15991,
+      "sectionHead": "上堂",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_c8f127c46d44",
+      "term": "無對",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "無對 s1 o1: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler narrating the headword-bearing clause",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617a02",
+      "Kwic": "本師曰莫是師子兒否主曰不敢師作噓噓聲主曰此是法師曰是甚麼法主曰師子出窟法師乃默然王曰此亦是法師曰是甚麼法主曰師子在窟法師曰不出不入是甚麼法主無對遂辤出門師召曰座主主回首師曰是甚麼主亦無對師曰這鈍根阿師洪州廉使問曰喫酒肉即是不喫即是師曰若喫是中丞祿不喫是中丞福師入室弟子一百三十九人各為一方宗主轉化無窮師於貞元四年正月中登建昌石門山於林中經行見洞",
+      "fullCaseContextSha256": "871b09a22c7e3f60dc41a8b696b506529d12d0f91ff84d9a6cf528042c3133df",
+      "fullCaseContextChars": 12547,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_cb44465faa59",
+      "term": "侍者",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "侍者 s1 o2: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler narrating the headword-bearing clause",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617a09",
+      "Kwic": "喫酒肉即是不喫即是師曰若喫是中丞祿不喫是中丞福師入室弟子一百三十九人各為一方宗主轉化無窮師於貞元四年正月中登建昌石門山於林中經行見洞壑平坦謂侍者曰吾之朽質當於來月歸茲地矣言訖而回既而示疾院主問和尚近日尊候如何師曰日面佛月面佛二月一日沐浴跏趺入滅元和中諡大寂禪師塔名大莊嚴。百丈懷海禪師語錄一百丈懷海禪師福州長樂人也師叅馬大師為侍者檀越每送齋飯來",
+      "fullCaseContextSha256": "91e88d2882df641fd4760a00f0703c8ccba9cb08f9ecd025421b1c40bd6bcecc",
+      "fullCaseContextChars": 12653,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_ccc39a4559bf",
+      "term": "僧正",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "僧正 s1 o2: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler or recorder of the source passage",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0197b04",
+      "Kwic": "僧正白師曰。四眾已圍繞和尚法座了也。",
+      "fullCaseContextSha256": "d7f847953790746d9e1c3f45b2140dda830cbb093af1ff410bdd3daf8bcab5a6",
+      "fullCaseContextChars": 20018,
+      "sectionHead": "福州覆船山洪薦禪師",
+      "sourceTitle": "五燈會元",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_cd69e0f9c10a",
+      "term": "古佛",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "古佛 s1 o1: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Dongshan Huiyuan",
+      "MasterNameAsWritten": "Dongshan Huiyuan",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Dongshan Huiyuan",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0002c11",
+      "Kwic": "登樓望，焉知滄海深？鳳陽鳳棲仲卿禪師鳳陽鳳棲仲卿禪師上堂，僧問：古佛出世，為一大事因緣。和尚出世，所為何事？師張口吐舌示之，曰：祇者",
+      "fullCaseContextSha256": "eb1596fc2ade119fd814b9099bdd2f898fab8db7243cefb8d5c16eff23356c5c",
+      "fullCaseContextChars": 12975,
+      "sectionHead": "瑞州洞山慧圓禪師",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d1ca36839312",
+      "term": "全提正令",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "全提正令 s1 o6: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler narrating the 全提正令-bearing event",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "J/J28/J28nB203.xml",
+      "FromLb": "0171b06",
+      "Kwic": "」斂衣就座，維那白椎竟，師云：「橫按莫邪，斬釘截銕，全提正令，電卷星馳，低頭瞥爾沉思，早是白雲萬里，如有不顧危亡者，何妨赤身挨拶？",
+      "fullCaseContextSha256": "0fa970b0a2158a0899ec40ce913014867a96300ed1149a7642268af8f7c66317",
+      "fullCaseContextChars": 20065,
+      "sectionHead": "雲峨禪師住羅山縣國祥山龍池禪寺語錄",
+      "sourceTitle": "雲峨喜禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The full saved unit does not place the headword inside the nearby marked master turn; title proximity is insufficient.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d1e06fd225fa",
+      "term": "入室",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "入室 s1 o6: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "unnamed room entrant",
+      "actorRole": "person-described",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Ciming Chuyuan",
+          "Roles": [
+            "person-discussed"
+          ]
+        }
+      ],
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0837a18",
+      "Kwic": "慈眀室中插劒一口以草鞋一緉水一盆置劒邊每見入室即曰看看有至劒邊擬議者師曰嶮喪身失命了也便喝出。",
+      "fullCaseContextSha256": "ed314b425ff050210d40d25267993a4ec2d9a3b133973541e59dbb918082a200",
+      "fullCaseContextChars": 20047,
+      "sectionHead": "通集序",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The full saved unit does not place the headword inside the nearby marked master turn; title proximity is insufficient.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d2c3f40d45c6",
+      "term": "大通智勝佛",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "大通智勝佛 s1 o5: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the unnamed questioner asking with 大通智勝佛",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0623a02",
+      "Kwic": "佛階梯無情有佛性若未踏佛階梯有情無佛性。古尊宿語錄卷第二密二古尊宿語錄卷第三密三百丈禪師黃檗禪師百丈懷海禪師語錄二百丈大智禪師僧問大通智勝佛十刼坐道場佛法不現前不得成佛道如何師云刦者滯也亦云住也住一善滯於十善西國云佛此土云覺自己鑒覺滯著於善善根人無佛性故云佛法不現前不得成佛道觸𢙣住𢙣名眾生覺觸善住善名聲聞覺不",
+      "fullCaseContextSha256": "80ce97097da9007d2612a8da55d265f2ba1232a3ceedf3e8875222165d7a2901",
+      "fullCaseContextChars": 19854,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "師云/師曰 belongs to the answer after the headword-bearing unnamed question.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d35dc9e3723e",
+      "term": "無念",
+      "sense": 2,
+      "occurrence": 1,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "無念 s2 o1: ['師復問']; read the complete case and name the exact master",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Huangbo Wunian Shenyou",
+      "actorRole": "master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Huangbo Wunian Shenyou",
+          "Roles": [
+            "record-owner"
+          ]
+        }
+      ],
+      "RelPath": "J/J20/J20nB098.xml",
+      "FromLb": "0504b01",
+      "Kwic": "復問一黃蘗無念禪師復問卷之一語溪參學比丘明聞刪訂",
+      "fullCaseContextSha256": "09a3f552c3acbdaebecb042e5af500a18d9d7279ba5acf24453b0f42d0db123a",
+      "fullCaseContextChars": 11156,
+      "sectionHead": "黃蘗無念禪師醒昏錄并附錄總目",
+      "sourceTitle": "黃蘗無念禪師復問",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword falls inside the marked master turn and the structured context already identifies its owner.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d4673502b2d2",
+      "term": "未審",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "未審 s1 o2: ['師云', '師復云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the unnamed interlocutor asking the recorded question",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0005b11",
+      "Kwic": "上堂僧問德山入門便棒臨濟入門便喝未審師如何接人師云不虧不欠進云便恁麼去時如何師云第一不得垛根師復云光隂倐忽變化密移始見望朝又已念日諸人還知光隂不變化日月不遷流麼快須究取昔日六祖大師作居士時隱於廣州法性寺印宗法師席下遇夜廊廡間有二僧風幡競",
+      "fullCaseContextSha256": "62369aaeb5bf2ebcf840f43b9cdbdf9392172b38dfc28eaccb1856446469919d",
+      "fullCaseContextChars": 11504,
+      "sectionHead": "佛眼禪師語錄序",
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "師云/師曰 belongs to the answer after the headword-bearing unnamed question.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_d801848213ab",
+      "term": "發願",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "anonymous_monk_question_assigned_to_master",
+      "finding": "發願 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMaster": "Mingjue Cong",
+      "MasterNameAsWritten": "Mingjue Cong",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Mingjue Cong",
+          "Roles": [
+            "utterer",
+            "record-owner"
+          ]
+        }
+      ],
+      "RelPath": "L/L158/L158n1652.xml",
+      "FromLb": "0101a03",
+      "Kwic": "御莊頭劉隆庵保安請上堂僧問白雲陞滿座爽氣擁禪堂少室真消息請師為舉揚師云夜半枕上罵彌陀進云謝師指示師云借人文契賣人田乃云湛水連天碧玉露滴芙蓉𧉨吟催夜織桂發噴秋風法法普賢榻頭頭寶藏珍根境須會合佛法無兩般諸人若信得及有情無情皆等如來之妙體是相非相悉是遮那之真身劉居士既從今日懺悔之後了脫幻相空花剷斷病根妄蒂慧果發茂頓契無生畢竟以何修證發願誠心皈佛道菩提增長病魔消。",
+      "fullCaseContextSha256": "b6ff70bfa38b31bd5507b64d7e2127207b61c169455c01b4800996a898a1c554",
+      "fullCaseContextChars": 20179,
+      "sectionHead": "燕京順天府海會寺語錄",
+      "sourceTitle": "明覺聰禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword lies in the 僧問/問 turn; the currently named master is the respondent.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "扇子 s1 o5: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the Chan verse-collection compiler",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yanguan Qi'an",
+          "Roles": [
+            "case-figure"
+          ]
+        },
+        {
+          "MasterName": "Touzi Datong",
+          "Roles": [
+            "later-raiser"
+          ]
+        }
+      ],
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0676a05",
+      "Kwic": "杭州塩官齊安國師一日喚侍者曰將犀牛扇子來者曰破也師曰扇子既破還我犀牛兒來者無對投子代云不辭將出𢙢頭角不全",
+      "fullCaseContextSha256": "54c268e5da157dbb2fb7dbc14586d420b39fba13618d3494531b006b6dad4fd2",
+      "fullCaseContextChars": 20052,
+      "sectionHead": "通集序",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_df0ba3a57ecf",
+      "term": "拄杖",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "拄杖 s1 o2: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the case narrator",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Baizhang Huaihai",
+          "Roles": [
+            "case-figure"
+          ]
+        }
+      ],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0618a05",
+      "Kwic": "問依經觧義三世佛冤離經一字如同魔說時如何師云固守𨔝靜三世佛冤此外別求如同魔說馬祖令人馳書并醬三瓮與師師令排向法堂前乃上堂眾纔集師以拄杖指醬瓮云道得即不打破道不得即打破眾無語師便打破歸方丈。",
+      "fullCaseContextSha256": "33fe822d5a7d0d4b9917193fd893d038574dfbe58f14b26fac8c855db049fab9",
+      "fullCaseContextChars": 13729,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The full saved unit does not place the headword inside the nearby marked master turn; title proximity is insufficient.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_dfd1dbffe9f2",
+      "term": "即心即佛",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "即心即佛 s1 o2: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "unnamed monk",
+      "actorRole": "questioner",
+      "contextMaster": "Mazu Daoyi",
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Mazu Daoyi",
+          "Roles": [
+            "respondent",
+            "record-owner"
+          ]
+        }
+      ],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0616c02",
+      "Kwic": "圓相徑山纔開見索筆於中著一點後有僧舉似忠國師國師云欽師猶被馬師惑。問和尚為甚麼說即心即佛師曰為止小兒啼曰啼止時如何師曰非心非佛曰除此二種人來如何指示師曰向伊道不",
+      "fullCaseContextSha256": "2e1c7ae475f1d8f703e12dca367bc54c978ea369c84b4c2f6a0bcefc54b3a04e",
+      "fullCaseContextChars": 12075,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "師云/師曰 belongs to the answer after the headword-bearing unnamed question.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_e1306236ba46",
+      "term": "一句子",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "一句子 s1 o2: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler narrating the 一句子-bearing event",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0639a13",
+      "Kwic": "不離道場道場者無所得也我向你道秖無所得名為坐道場云無眀者為眀為暗師云非眀非暗眀暗是代謝之法無眀且不眀亦不暗不眀秖是本眀不眀不暗秖者一句子亂却天下人眼所以道假使滿世間皆如舍利弗盡思共度量不能測佛智其無碍惠出過虗空無你語論處釋迦量等三千大千世界忽有一菩薩出來一跨跨却三千大千世界不出普賢一毛孔你如今把什麼本領擬",
+      "fullCaseContextSha256": "d593f018efbd910202a2a75d2e738516de8465677a8d4e39aec3f636073e25eb",
+      "fullCaseContextChars": 20153,
+      "sectionHead": "黃檗斷際禪師宛陵錄",
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The full saved unit does not place the headword inside the nearby marked master turn; title proximity is insufficient.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_e27ceae1c5ee",
+      "term": "言下有省",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "言下有省 s1 o5: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the compiler narrating the 言下有省-bearing event",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "P/P154/P154n1519.xml",
+      "FromLb": "0515a02",
+      "Kwic": "四祖信大師見三祖乃云願和尚慈悲乞與解脫法門師云誰縛於汝信云無人縛師云何更求解脫乎信於言下有省。",
+      "fullCaseContextSha256": "2b94a38a9fe80fb289f50d28777c30f787bc535df482d85640fb4d530c1c3779",
+      "fullCaseContextChars": 20047,
+      "sectionHead": "東震六代祖師",
+      "sourceTitle": "宗門統要正續集(第1卷-第12卷)",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The full saved unit does not place the headword inside the nearby marked master turn; title proximity is insufficient.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_e4d6ebff1bb2",
+      "term": "如何是佛",
+      "sense": 1,
+      "occurrence": 3,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "如何是佛 s1 o3: ['師云']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "unnamed monk",
+      "actorRole": "questioner",
+      "contextMaster": "Baizhang Huaihai",
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Baizhang Huaihai",
+          "Roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0618c08",
+      "Kwic": "問如何是佛師云汝是阿誰云某甲師云汝識某甲否",
+      "fullCaseContextSha256": "440e1c9ecd44fee03a4eeca42354132ea52691b27b43ae9c4aa0eba3f81a0948",
+      "fullCaseContextChars": 14527,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "師云/師曰 belongs to the answer after the headword-bearing unnamed question.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_e4dba349ae51",
+      "term": "禪板",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "explicit_master_turn_left_anonymous",
+      "finding": "禪板 s1 o4: ['師曰']; read the complete case and name the exact master",
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "exactHeadwordActor": "the record narrator",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0651b23",
+      "Kwic": "僧問：「盡大地是箇火坑，向什麼處迴避？」師曰：「向火坑裏迴避。」僧曰：「如何是無火坑處？」師曰：「盡大地是箇火坑。」師從僧堂前過，見僧曰：「作麼？」僧曰：「作麼？」師曰：「走卻主人公也。」僧敲禪板三下，師曰：「認奴作郎。」僧又敲禪板三下，師曰：「兔子何曾離舊窠？」僧乃歸堂，師撫掌大笑，歸方丈。有僧問：「和尚笑什麼？」師曰：「山僧適來法戰一上。」僧曰：「還得勝麼？」師曰：「不得勝。」僧曰",
+      "fullCaseContextSha256": "ef069a6dba1323b0bfdffdc1abce3fd5e4d3d73a8b8871602a4901a345760787",
+      "fullCaseContextChars": 20194,
+      "sectionHead": "機緣",
+      "sourceTitle": "頻吉祥禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword occurs in narration before the later marked master turn.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    }
+  ]
+}

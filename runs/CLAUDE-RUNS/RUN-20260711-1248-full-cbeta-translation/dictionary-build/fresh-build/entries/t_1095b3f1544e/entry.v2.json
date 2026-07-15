@@ -29,7 +29,7 @@
           "ToLb": "0007c22",
           "Kwic": "曰：且向這裏會取。上堂：從無入有易，從有入無難。有無俱盡處，且莫自顢頇。舉來看，寒山拾得禮豐干。安州大安興教慧憲禪師安州大安興教慧憲禪師上堂：我有一條拄杖，尋常將何比況？采來不在南山，亦非崑崙西嶂。拈起滿目光生，放",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書): Guizong Huitong raises the scene of Hanshan and Shide bowing to Fenggan in an上堂 address.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): Guizong Huitong raises the scene of Hanshan and Shide bowing to Fenggan in a public hall address.",
           "ContextMasters": [
             {
               "MasterName": "Guizong Huitong",
@@ -46,8 +46,14 @@
           "ToLb": "0683a20",
           "Kwic": "邊森羅及萬象揔在鏡中圓第二玄釋尊問阿難多聞隨事荅應噐量方圓第三玄直出古皇前四句百非外閭氏問豐干乃曰這箇是三玄底頌作麼生是三玄底旨趣直教决擇分眀莫只與麼妄道我曾親近和尚來與我說了脫空謾語誑嚇他人喫鐵棒有日莫言不道又因",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): the compiler narrates Lüqiu Yin's question to Fenggan while introducing a verse on the three mysteries.",
+          "AttributionNote": "Source text (古尊宿語錄): The exact headword speaker is Fenyang Shanzhao. Fenyang calls the phrase about Lü asking Fenggan his verse on the three mysteries, then demands that the assembly decide its purport.",
           "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "utterer"
+              ]
+            },
             {
               "MasterName": "Fenggan",
               "Roles": [
@@ -55,24 +61,7 @@
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "case compiler",
-            "ActorLabel": "the case compiler",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "Source text (古尊宿語錄): the compiler narrates Lüqiu Yin's question to Fenggan while introducing a verse on the three mysteries.",
-            "ReviewedBy": "Codex f004 lane B 1001-1100 repair author",
-            "ReviewedUtc": "2026-07-15T12:45:00Z",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "MasterName": "Fenyang Shanzhao"
         },
         {
           "RelPath": "J/J37/J37nB394.xml",

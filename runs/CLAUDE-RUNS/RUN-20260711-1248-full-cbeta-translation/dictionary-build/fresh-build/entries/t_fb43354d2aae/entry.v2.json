@@ -23,26 +23,16 @@
           "ToLb": "0619a19",
           "Kwic": "取亦不作不依住知觧是後善是滿字教免墮無色界免墮禪那病免墮菩薩乘免墮魔王位為智鄣地障行鄣故見自己佛性如夜見色如云佛地斷二愚一微細所知愚二極微細所知愚故云有大智人破塵出經卷若透得三句過不被三叚管教家舉喻如鹿三跳出繩喚作",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: Baizhang Huaihai. The continuous discourse belongs to Baizhang Huaihai’s old-sayings record; there is no embedded speaker takeover at the clause about seeing one’s own buddha-nature.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Baizhang Huaihai"
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -50,13 +40,13 @@
           "ToLb": "0025a06",
           "Kwic": "師曰：千年古墓蛇，今日頭生角。曰：莫便是和尚家風也無？師曰：卜度則喪身失命。問：如何是學人自己？師曰：無人識者。曰：如何得脫灑去？師曰：你問我答。臨安府上天竺從諫慈辯講師臨安府上天竺從諫慈辯講師處州松陽人。具大知見",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: the unnamed questioning monk. The complete case assigns the exact headword-bearing wording to the unnamed questioning monk; all six identity rungs leave that non-master participant unnamed.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "the unnamed questioning monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -65,11 +55,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete case assigns the exact headword-bearing wording to the unnamed questioning monk; all six identity rungs leave that non-master participant unnamed.",
+            "ReviewedBy": "Codex f004 B checkpoint1 repair",
+            "ReviewedUtc": "2026-07-15T17:09:51.611466+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -77,26 +68,16 @@
           "ToLb": "0410a03",
           "Kwic": "法。外道曰：昨日說定法，今日何說不定法？世尊曰：昨日定，今日不定。五祖戒云：何得將別人物作自己用？溈山喆云：世尊大似看樓打樓。大溈即不然，待問：昨日說定，今日何說不定？但云：非汝境界。薦福懷云：黃面老被外道拶著，出",
           "Curated": true,
-          "AttributionNote": "Source text (指月錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (指月錄; X/X83/X83n1578.xml). Exact actor: Wuzu Jie. The complete case assigns the exact headword-bearing turn or action to Wuzu Jie.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Jie",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Wuzu Jie"
         },
         {
           "RelPath": "J/J34/J34nB311.xml",
@@ -104,25 +85,24 @@
           "ToLb": "0590a08",
           "Kwic": "」轉覺痛切。親不知親之去處，我不知我之始終，此真亙古今所共之生死大疑情也，安得不疑？又惡容自己？偶故人羅君邀過靈谷，訪圓通浪大師。予初以宗門多拒絕人，及見師接塵笑談，高閒雄快，因從容問曰：「學人參道，可以開諭乎？」",
           "Curated": true,
-          "AttributionNote": "Source text (天界覺浪盛禪師全錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): The exact headword actor is Wang Xigun. Wang Xigun's first-person preface asks how he could permit himself while confronting uncertainty about life and death; Juelang Daosheng enters only in the ensuing visit.",
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "interlocutor",
+                "person-discussed"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Status": "identified-non-master",
+            "Kind": "signed preface",
+            "ActorLabel": "Wang Xigun",
             "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            "GrammarEvidence": "Source text (天界覺浪盛禪師全錄): The exact headword actor is Wang Xigun. Wang Xigun's first-person preface asks how he could permit himself while confronting uncertainty about life and death; Juelang Daosheng enters only in the ensuing visit.",
+            "ReviewedBy": "Codex v6 full-case manual audit 046-055",
+            "ReviewedUtc": "2026-07-16T17:20:00Z"
           }
         },
         {
@@ -131,26 +111,16 @@
           "ToLb": "0001a20",
           "Kwic": "脚事？師曰：不知。藏曰：不知最親切。又同三人舉肇論，至天地與我同根處，藏曰：山河大地與上座自己是同是別？師曰：別。藏竪起兩指，師曰：同。藏又竪起兩指，便起去。雪霽辭去，藏門送之，問曰：上座尋常說三界唯心，萬法唯識。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: Dizang Guichen. The complete case assigns the exact headword-bearing turn or action to Dizang Guichen.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dizang Guichen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Dizang Guichen"
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -158,26 +128,16 @@
           "ToLb": "0277c08",
           "Kwic": "說不定法。曰：因甚昨日定，今日不定？世尊曰：昨日定，今日不定。五祖戒云：世尊何得將別人物作自己用？溈山󳭷云：大小世尊，看樓打樓。大溈即不然，待問：昨日說定法，今日何說不定法？但云：非汝境界。薦福懷云：世尊被外道拶著",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (宗鑑法林; X/X66/X66n1297.xml). Exact actor: Wuzu Jie. The complete case assigns the exact headword-bearing turn or action to Wuzu Jie.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Jie",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Wuzu Jie"
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -185,26 +145,16 @@
           "ToLb": "0050b13",
           "Kwic": "。某甲不會。乞師指示。師曰。萬古長空。一朝風月。僧無語。師復曰。闍梨會麼。曰。不會。師曰。自己分上作麼生。干他達磨來與未來作麼。他家來。大似賣卜漢。見汝不會。為汝錐破卦文。纔生吉㐫。盡在汝分上。一切自看。僧曰。如何",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (五燈會元; X/X80/X80n1565.xml). Exact actor: Tianzhu Chonghui. The Tianzhu Chonghui section assigns the direct answer about one’s own share to Tianzhu Chonghui.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianzhu Chonghui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Tianzhu Chonghui"
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -212,12 +162,12 @@
           "ToLb": "0007b11",
           "Kwic": "如如。春風影裏乾坤大，無限江山開畵圖。乾會節提綱。健行不息之謂乾，萬法歸一之謂會。會萬法歸自己者，其惟聖人乎。運乾德以位天者，其惟至理乎。理之至也，本乎無作。人之聖也，體乎無為。堯風蕩蕩兮，舜日熈熈。中峰本禪師聖節",
           "Curated": true,
-          "AttributionNote": "Source text (列祖提綱錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
+          "AttributionNote": "Source text (列祖提綱錄). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Kind": "the reviewed unnamed compiler",
+            "ActorLabel": "the reviewed unnamed compiler",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -227,11 +177,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
+            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
+            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],
@@ -247,7 +198,7 @@
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "Oneself is the plain-English referent tested by the selected Chan records. The selected cases place oneself inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition."
+      "Explanation": "Oneself—one’s own person or what belongs to one rather than another. The sources ask what is one’s own self, speak of seeing one’s own buddha-nature, contrast using another person’s material as one’s own, and oppose one’s own share or things to what belongs to someone else. The gloss stays with those observable contrasts."
     }
   ]
 }

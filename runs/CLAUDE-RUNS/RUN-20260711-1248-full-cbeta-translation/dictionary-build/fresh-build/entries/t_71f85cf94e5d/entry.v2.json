@@ -15,7 +15,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "6 distinct work IDs selected after complete-case actor review.",
+      "Note": "6 retained full-case witnesses after lexical-boundary and deployment review.",
       "Occurrences": [
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -23,12 +23,19 @@
           "ToLb": "0649c13",
           "Kwic": "法嗣隨州智門光祚禪師隨州智門光祚禪師久參香林，大悟心印。出為師表，緇素咸宗。啐󲣅迅機，應詶飛辨。門下嗣法，悉世宗匠。都尉李矦，奏賜章服。坐滅雖遠，道風益揚。法子法孫，愈久愈盛。上堂，良久，云：莫有作家禪客出來？雖然如是，風不來，樹不動。時有僧問：如何是佛？師云：抱",
           "Curated": true,
-          "AttributionNote": "Source text (建中靖國續燈錄): biographical or documentary narrator bears the exact headword after complete-case review.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (建中靖國續燈錄; X/X78/X78n1556.xml). Exact actor: the source compiler narrating the headword-bearing clause. The exact clause is documentary, biographical, or case narration rather than speech; the complete unit was read.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhimen Guangzuo",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Kind": "the source compiler narrating the headword-bearing clause",
+            "ActorLabel": "the source compiler narrating the headword-bearing clause",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -38,11 +45,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The exact clause is documentary, biographical, or case narration rather than speech; the complete unit was read.",
+            "ReviewedBy": "Codex f004 cohort1 source repair",
+            "ReviewedUtc": "2026-07-15T17:01:22.712460+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -50,12 +58,12 @@
           "ToLb": "0005a24",
           "Kwic": "角，博覧典墳。卷不再舒，洞明今古。才思俊邁，風韻飄然。志慕空宗，出家圓具。感悟夙習，即徧參尋。投機於開先，出為宗匠。九坐道場，四眾傾向，名動朝野。宋神宗賜高麗磨衲金鉢，以旌師德。上堂，僧問：如何是佛？師曰：木頭雕不就。曰：恁麼則皆是虗妄也。師曰：梵音深遠，令人樂聞",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: the source compiler narrating the headword-bearing clause. The exact clause is documentary, biographical, or case narration rather than speech; the complete unit was read.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Kind": "the source compiler narrating the headword-bearing clause",
+            "ActorLabel": "the source compiler narrating the headword-bearing clause",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -65,11 +73,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The exact clause is documentary, biographical, or case narration rather than speech; the complete unit was read.",
+            "ReviewedBy": "Codex f004 cohort1 source repair",
+            "ReviewedUtc": "2026-07-15T17:01:22.712460+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -77,13 +86,13 @@
           "ToLb": "0317b16",
           "Kwic": "額頭汗出。林云：秦宮草木秋。牛頭峰頂鎖重雲，獨坐寥寥寄此身百鳥不來春又去，不知誰是到菴人。紫氣氤氳透白雲，因逢宗匠指迷津，銜花百鳥空惆悵，不見菴中舊主人。花落花開百鳥悲，菴前物是主人非，桃源咫尺無尋處，一棹漁蓑寂寞歸。一榻蕭然傍翠陰，晝扃松戶冷沉沉懶融得到平常地，",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the unnamed individual poem author. The headword occurs in one poem among an uncued sequence of verses; the compilation frame does not identify this individual author.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "the unnamed individual poem author",
+            "ActorLabel": "the unnamed individual poem author",
+            "ActorRole": "verse-author",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -92,11 +101,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The headword occurs in one poem among an uncued sequence of verses; the compilation frame does not identify this individual author.",
+            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
+            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -104,13 +114,14 @@
           "ToLb": "0039c23",
           "Kwic": "。有湘陰豪貴來遊福嚴，即師之室，見其氣貌閑靜，一鉢挂壁，飯無長物，傾愛之。遂拜跪請曰：神鼎乃我家植福之地，久乏宗匠，願師俱往，何如？師笑而諾之。即以己馬負師至，十年始成叢席。一朽牀為說法座，其甘枯淡無比。又以德臘俱高，諸方尊之如古趙州。僧問：諸法未聞時如何？師曰：",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷); X/X81/X81n1568.xml). Exact actor: the unnamed lay patron. The full exchange assigns the headword to the unnamed questioner; the named master is the respondent or person addressed.",
           "ContextMasters": [],
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-            "ActorRole": "utterer",
+            "Kind": "the unnamed lay patron",
+            "ActorLabel": "the unnamed lay patron",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -119,9 +130,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The full exchange assigns the headword to the unnamed questioner; the named master is the respondent or person addressed.",
+            "ReviewedBy": "Codex f004 cohort1 round2 final repair",
+            "ReviewedUtc": "2026-07-15T17:44:26.101565+00:00",
             "AuthoredVoiceRiskReviewed": true
           }
         },
@@ -131,12 +142,12 @@
           "ToLb": "0001b05",
           "Kwic": "鄉。然則是書即為吾宗之一大成，固已足稱之，況又從而彚集之乎？符不敏，墾掘餘念，建谿古林之用心，廼間取宋元迄今諸宗匠，凡一拈一代，一別一徵，足以開鑿人天眼目者，皆採而續之，計四十有五卷，題曰宗門拈古彚集。葢從瑪瑙階上，更布赤砂，猶之乎自江河而海，海而滙於阿耨達池，其",
           "Curated": true,
-          "AttributionNote": "Source text (宗門拈古彙集): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: Jingfu, the named preface writer. The dated signature names the writer as the monk Jingfu; this first-person preface is his authored prose, not anonymous compiler narration.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
+            "Status": "identified-non-master",
+            "Kind": "Jingfu, the named preface writer",
+            "ActorLabel": "Jingfu, the named preface writer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -146,11 +157,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The dated signature names the writer as the monk Jingfu; this first-person preface is his authored prose, not anonymous compiler narration.",
+            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
+            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
@@ -158,13 +170,14 @@
           "ToLb": "0795a22",
           "Kwic": "長沙隱于衡嶽三生藏有湘陰豪貴來遊福嚴即師之室見其氣貌閑靜一鉢挂壁餘無長物傾受之遂拜跪請曰神鼎乃我家植福之地久乏宗匠願師俱徃何如師笑而諾之即以己馬負師至十年始成叢席一朽牀為說法座。開堂日指法座云未登此座化緣已畢諸人還委悉麼若委悉散去得也若不散去不免登於此座入方便品第",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor: the unnamed lay patron. The full exchange assigns the headword to the unnamed questioner; the named master is the respondent or person addressed.",
           "ContextMasters": [],
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "section-identified master awaiting canonical roster resolution",
-            "ActorLabel": "section-identified master awaiting canonical roster resolution",
-            "ActorRole": "utterer",
+            "Kind": "the unnamed lay patron",
+            "ActorLabel": "the unnamed lay patron",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -173,9 +186,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "The full exchange assigns the headword to the unnamed questioner; the named master is the respondent or person addressed.",
+            "ReviewedBy": "Codex f004 cohort1 round2 final repair",
+            "ReviewedUtc": "2026-07-15T17:44:26.101565+00:00",
             "AuthoredVoiceRiskReviewed": true
           }
         }
@@ -191,7 +204,15 @@
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "A lineage craftsman names the referent or formula used in the selected Zen records. Complete-case reading shows how a lineage craftsman functions in exchanges, formal addresses, institutional records, or inherited cases; the entry follows those predicates and speakers rather than an outside interpretation."
+      "OpeningClaimEvidenceKeys": [
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "o5",
+        "o6"
+      ],
+      "Explanation": "An accomplished leading master or craftsman of the lineage. Prefaces, patrons, and records use this title to mark recognized mastery and capacity to shape the lineage; it names standing in the house, not an ordinary artisan."
     }
   ]
 }

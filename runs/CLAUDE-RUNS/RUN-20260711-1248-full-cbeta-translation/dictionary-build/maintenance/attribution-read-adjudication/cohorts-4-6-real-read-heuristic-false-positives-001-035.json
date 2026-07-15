@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "attribution-heuristic-adjudication-v1",
+  "generatedUtc": "2026-07-15T22:55:00Z",
+  "basis": "Each row is backed by the exact-clause and ownership-evidence fields in the accepted hand-read checkpoints 001-035. These rows suppress no data and authorize no automatic repair.",
+  "rows": [
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"法堂 s1 o2: ['師云']; read the complete case and name the exact master","entryId":"t_708834b4cb89","sense":1,"occurrence":2,
+      "whyDisproved":"法堂 lies in 有一僧哭入法堂, third-person narration. The adjacent 師云 begins Baizhang Huaihai's later response; Baizhang is therefore ContextMasters respondent, not MasterName."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"後堂 s1 o6: ['師問']; read the complete case and name the exact master","entryId":"t_712ca8b5bf06","sense":1,"occurrence":6,
+      "whyDisproved":"後堂 is the recorder's office label in 首座云／西堂云／後堂云／堂主云. Mingjue Cong's 師問 precedes the answer round and names him only as contextual questioner."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"祖師意 s1 o5: ['師云']; read the complete case and name the exact master","entryId":"t_81d0d434f560","sense":1,"occurrence":5,
+      "whyDisproved":"問：見法頓了者見祖師意否 is the anonymous questioner's turn. Huangbo's 師云 answer starts afterward with 祖師心."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"鐵饅頭 s1 o5: ['師云']; read the complete case and name the exact master","entryId":"t_8aa9485f0650","sense":1,"occurrence":5,
+      "whyDisproved":"僧問：如何是鐵饅頭 owns the headword. Mingjue's separate 師云 response is 塞斷汝咽喉."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"唯嫌揀擇 s1 o3: ['師云']; read the complete case and name the exact master","entryId":"t_8eeed0b7412a","sense":1,"occurrence":3,
+      "whyDisproved":"The initial 問 contains the quoted phrase; Zihu's 師云 response begins only after the complete headword-bearing question."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"殺佛殺祖 s1 o1: ['師云']; read the complete case and name the exact master","entryId":"t_aced87de5b30","sense":1,"occurrence":1,
+      "whyDisproved":"The monk's question contains 殺佛殺祖; Shoushan's 師云 response contains only 水深一丈."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"無絃琴 s1 o2: ['師云']; read the complete case and name the exact master","entryId":"t_b15eaab0dc3c","sense":1,"occurrence":2,
+      "whyDisproved":"問：久負無絃琴請師彈一曲 is the anonymous question. Shoushan's 師云 answer begins with 無言顯大道."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"佛誕 s1 o7: ['師云']; read the complete case and name the exact master","entryId":"t_c051d6f277af","sense":1,"occurrence":7,
+      "whyDisproved":"佛誕 is in the editorial occasion heading 佛誕度僧上堂. Yulin Tongxiu's sermon begins only after 師云."
+    },
+    {
+      "failureKind":"explicit_master_turn_left_anonymous","failureDetail":"無對 s1 o1: ['師曰']; read the complete case and name the exact master","entryId":"t_c8f127c46d44","sense":1,"occurrence":1,
+      "whyDisproved":"主無對 and 主亦無對 are compiler narration of the lecture master's nonresponses. Mazu's 師曰 turns are the questions surrounding those narrated clauses."
+    }
+  ],
+  "additionalHandDisprovedHeuristics": [
+    {
+      "failureKind":"anonymous_monk_question_assigned_to_master","failureDetail":"定盤星 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters","entryId":"t_a6754d726742","sense":1,"occurrence":4,
+      "whyDisproved":"The exact headword occurs in 師云：莫錯認定盤星, Shoushan Xingnian's answer to Liu Situ; no monk utters it."
+    },
+    {
+      "failureKind":"anonymous_monk_question_assigned_to_master","failureDetail":"十方世界是全身 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters","entryId":"t_aa9e5467d247","sense":1,"occurrence":3,
+      "whyDisproved":"師示偈曰 directly assigns the complete verse containing 十方世界是全身 to Changsha Jingcen; the later monk question begins after the verse."
+    }
+  ]
+}

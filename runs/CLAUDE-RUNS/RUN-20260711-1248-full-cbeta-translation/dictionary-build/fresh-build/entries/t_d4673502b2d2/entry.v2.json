@@ -53,7 +53,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed interlocutor asking the recorded question",
+            "ActorLabel": "an unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -63,12 +63,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:51:27.765004+00:00",
-            "GrammarEvidence": "The headword lies in the question before the separately marked response."
+            "GrammarEvidence": "The monk's question contains the polite interrogative; Foyan Qingyuan answers afterward.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:34.994632+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (古尊宿語錄): the unnamed interlocutor asking the recorded question owns the exact headword turn."
+          "ContextMasters": [
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",

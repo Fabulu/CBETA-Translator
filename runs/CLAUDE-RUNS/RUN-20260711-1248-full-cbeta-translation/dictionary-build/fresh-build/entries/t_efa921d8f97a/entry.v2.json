@@ -27,7 +27,7 @@
           "RelPath": "X/X82/X82n1571.xml",
           "FromLb": "0035b19",
           "ToLb": "0035b20",
-          "Kwic": "古德道，從門入者，不是家珍。又作麼生是家珍？驀拈拄杖，召大眾曰：還見麼？",
+          "Kwic": "古德道，從門入者，不是家珍。",
           "Curated": true,
           "ContextMasters": [
             {
@@ -129,35 +129,20 @@
           "RelPath": "X/X81/X81n1568.xml",
           "FromLb": "0079b20",
           "ToLb": "0079b22",
-          "Kwic": "問：抱璞投師時如何？師曰：不是自家珍。曰：如何是自家珍？師曰：不琢不成器。",
+          "Kwic": "師曰：不是自家珍。",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Caoshan Qianghui Zhiju",
               "Roles": [
-                "respondent"
+                "utterer",
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "unnamed participant",
-            "ActorLabel": "an unnamed monk",
-            "ActorRole": "questioner",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "Source text (五燈嚴統): an unnamed monk utters both headword-bearing questions; Caoshan Qianghui Zhiju answers them.",
-            "ReviewedBy": "Codex f004 lane B 1001-1100 repair author",
-            "ReviewedUtc": "2026-07-15T12:45:00Z",
-            "AuthoredVoiceRiskReviewed": true
-          },
-          "AttributionNote": "Source text (五燈嚴統): an unnamed monk utters both headword-bearing questions; Caoshan Qianghui Zhiju answers them."
+          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統), complete Caoshan Qianghui Zhiju encounter: Caoshan answers the unnamed monk's jewel question, ‘It is not one's own household treasure.’ The KWIC is recut to Caoshan's single actor-pure turn.",
+          "MasterName": "Caoshan Qianghui Zhiju"
         },
         {
           "RelPath": "B/B25/B25n0145.xml",

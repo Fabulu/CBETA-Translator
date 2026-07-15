@@ -1,0 +1,23 @@
+# 口似血盆 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited wording is a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, paired and opposite formulas, body-part family, repeated recensions, and contradictory predicates.
+- deployment-inventory: 7 curated exact rows across 7 independent work IDs.
+- omission-audit: each prose claim has an exact headword occurrence; repeated recensions were not used as depth padding.
+- family-retest: Compared 牙如劍樹, 利口, 舌頭, and the fixed teeth-and-mouth pair; the pair is family evidence while each saved row contains the exact headword.
+- sense-target-distinguishability: `not-applicable — one bodily image across the stored deployments`.
+- observation: occurrence IDs `o1–o7` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The blood-basin mouth is not simply praise: the record makes it an image for immense verbal force and then tests whether that force does any work in the case at hand.
+- ordinary-bridge: ordinary anatomy supplies the physical impossibility or obstruction; no outside doctrine is needed.
+- falsification-searches: literal uses; definition questions; opposite formula; body-part compounds; repeated case family; contradictory appraisal.
+- counterexamples: Different favorable and hostile appraisals do not make separate mouths, and the wording does not license a general theory of violence or character.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o7` establish the bodily image and the named deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite formulas; longer compounds; repeated case families; contradictory appraisals.
+- feedback-counterexamples: Different favorable and hostile appraisals do not make separate mouths, and the wording does not license a general theory of violence or character.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic or doctrinal theory`.
+- lookup-probes: mouth like a blood basin; blood-filled mouth; gaping bloody mouth.
+- opening-interpretation-verdict: `licensed` — the opening names the ordinary scene and narrow corpus-earned deployment before quotations.

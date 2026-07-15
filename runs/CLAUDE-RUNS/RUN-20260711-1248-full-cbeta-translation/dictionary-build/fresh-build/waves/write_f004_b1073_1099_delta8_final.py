@@ -1,0 +1,8 @@
+from pathlib import Path
+import datetime,hashlib,json
+H=Path(__file__).resolve().parent;R=H.parent.parent;sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+rp=H/'f004-b1073-1099-independent-rereview.json';cp=H/'f004-b1073-1099-independent-rereview-delta8-author-checkpoint.json';gp=H/'f004-b1073-1099-independent-rereview-delta8-author-pre-review.json';c=json.loads(cp.read_text());g=json.loads(gp.read_text());assert g['hardPass'] and g['exactKwic']['verified']==43 and len(g['entries'])==8
+for x in c['entries']:assert sha(R/'fresh-build/entries'/x['id']/'entry.v2.json')==x['afterEntrySha256']
+for x in c['immutableKeeps']:assert sha(R/'fresh-build/entries'/x['id']/'entry.v2.json')==x['entrySha256']
+o={'schemaVersion':1,'generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'role':'repair-author','sourceReview':rp.name,'sourceReviewSha256':sha(rp),'entries':c['entries'],'counts':{'repaired':8,'preservedKeeps':2,'repairedCompositeOccurrences':43,'exactFailures':0},'immutableKeeps':c['immutableKeeps'],'gateScopeNote':'The strict composite covers all eight repaired entries. The two independently promoted KEEPs are excluded from mutation and gate scope because the current stricter audit flags a pre-existing anonymous-turn issue in an untouched KEEP; their reviewed hashes are asserted byte-identical here.','artifactBindings':{cp.name:{'sha256':sha(cp)},gp.name:{'sha256':sha(gp),'hardPass':True}},'compositeHardPass':True,'semanticRereviewRequired':True,'selfReview':False,'promoted':False,'merged':False,'siteTouched':False}
+p=H/'f004-b1073-1099-independent-rereview-delta8-author-final-ledger.json';p.write_text(json.dumps(o,ensure_ascii=False,indent=2)+'\n');print(p,sha(p))

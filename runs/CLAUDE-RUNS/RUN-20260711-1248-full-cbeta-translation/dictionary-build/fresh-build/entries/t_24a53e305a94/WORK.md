@@ -1,0 +1,25 @@
+# 石牛欄古路 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 3 curated rows across 3 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 古路, 石牛, 一馬生三寅, and 一馬勿雙駒; the fixed headword remains independently anchored.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o3` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The ancient road is not merely scenery: the stone ox physically bars it, and masters set that blockage where an answer or encounter must proceed without the ordinary route.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The horse-and-cubs continuations vary; they are paired impossibilities, not definitions of the stone ox or grounds for a second sense.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o3` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The horse-and-cubs continuations vary; they are paired impossibilities, not definitions of the stone ox or grounds for a second sense.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: stone cow blocks ancient path; old road barred by stone ox; stone ox roadblock.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.
+- modifier-relation-verdict: `headword-internal` — 石 specifies the ox's material in the immovable road-blocking image; it is not detached as a separate symbolic referent.
+- display-modifier-verdict: `displayed` — “stone ox” is retained in the PreferredTarget and opening.

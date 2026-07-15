@@ -1,0 +1,24 @@
+{
+  "audit": "cohorts-7-9-strict-audit-001-005-post-resolution.json",
+  "auditSha256": "2e07a50a53319fd0d6e6d5f788ab08910707eea3438bd8839a96749096cc4915",
+  "resolvedCanonicalityRepairs": [
+    "Removed Xu Fu, Lin Zhifan, Xiong Kaiyuan, and Yang Yi from RelatedMasters/ContextMasters because the read evidence identifies them as non-master written actors represented by ActorAttribution.",
+    "Changed Sanfeng Hanyue Fazang to roster-canonical Hanyue Fazang in MasterName, ContextMasters, and RelatedMasters."
+  ],
+  "remainingHardFailures": 13,
+  "remainingFailureKinds": {
+    "noncanonical_context_master_name": 8,
+    "noncanonical_master_name": 4,
+    "noncanonical_related_master": 1
+  },
+  "disposition": "PENDING_ROSTER_INTEGRATION_REQUIRED; none is waived and none may be renamed to a different person merely to pass validation.",
+  "truthfulSourceProvenCandidates": [
+    {"name": "Huiming", "reason": "named master/student in the Dayu Ridge case"},
+    {"name": "Qining Wenyi", "reason": "named section owner and exact hall speaker"},
+    {"name": "Jie'an Wujin", "reason": "named record owner and exact preface voice; not the roster's Wujin Zang"},
+    {"name": "Ananda", "reason": "named lineage figure in compiler narration and claim anchor"},
+    {"name": "Parshva", "reason": "named patriarch in compiler narration"},
+    {"name": "Xiaoyao Cong", "reason": "named biographical section subject"},
+    {"name": "Biefeng Baoyin", "reason": "named record owner and later raiser"}
+  ]
+}

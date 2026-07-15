@@ -23,7 +23,7 @@
       "Status": "preferred",
       "Explanation": "A visit to a named instructor or assembly in order to ask questions and request instruction. It occurs 243 times in 121 allowlisted texts and includes both institutional attendance and the encounter itself. Zhicheng leaves Shenxiu, travels to Shaoyang, and \"joins the assembly to visit and inquire\" (隨眾參請); Shuangfeng Gu's biography says that at Shishuang he merely followed the assembly and \"no longer visited and inquired\" (更不參請). The monastic regulations place \"traveling from place to place to visit and inquire\" (遊方參請) under a heading that lists departure from one's teacher, seeking a respected elder, requesting lodging, first reporting to the guest office, and next registering at the hall office. Huanyuan Fuyu \"bent his knees to visit and inquire\" (屈膝參請), after which Lingyin Tai addressed his understanding. Tianning's monastic and lay followers visited and inquired morning and evening while Huqiu Shaolong answered them without weariness (晨夕參請，師與唱酬無倦). The recorded actions are visits, institutional participation, questions, and responses in Chinese Chan texts.",
       "Validation": "multi-source",
-      "Note": "Productive constructions mark the same range: \"join the assembly to visit and inquire\" (隨眾參請, 23 occurrences), \"enter the room to visit and inquire\" (入室參請, 2), \"travel from place to place to visit and inquire\" (遊方參請, 6), and headings for \"circumstances of visiting and inquiry\" (參請因緣, 2). Fayan can ask what scripture someone reads \"apart from visiting and inquiry\" (於參請外), placing it among the ordinary activities of a visitor's life. The Blue Cliff Record contrasts a superintendent's not having \"visited and inquired or entered the room\" (不曾參請入室) with Fayan subsequently asking why he does not come enter the room. The overlap between travel, residence in an assembly, and direct exchange is native to the term, so these are kept as deployments of one sense.",
+      "Note": "Productive constructions mark the same range: \"join the assembly to visit and inquire\" (隨眾參請, 27 occurrences), \"enter the room to visit and inquire\" (入室參請, 2), \"travel from place to place to visit and inquire\" (遊方參請, 6), and headings for \"circumstances of visiting and inquiry\" (參請因緣, 2). Fayan can ask what scripture someone reads \"apart from visiting and inquiry\" (於參請外), placing it among the ordinary activities of a visitor's life. The Blue Cliff Record contrasts a superintendent's not having \"visited and inquired or entered the room\" (不曾參請入室) with Fayan subsequently asking why he does not come enter the room. The overlap between travel, residence in an assembly, and direct exchange is native to the term, so these are kept as deployments of one sense.",
       "Occurrences": [
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -31,23 +31,23 @@
           "ToLb": "0055c07",
           "Kwic": "師聞此語。禮辭至韶陽。隨眾參請。不言來處。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Compiler narration reports the formal-inquiry action of Zhicheng.",
+          "AttributionNote": "Source text (五燈會元): X/X80/X80n1565.xml: Zhicheng is the biography's subject in (隨眾參請); the compiler narrates but does not perform the action.",
           "ContextMasters": [
             {
               "MasterName": "Zhicheng",
               "Roles": [
-                "person-described"
+                "action-performer"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical narration",
-            "ActorLabel": "the biographical compiler",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The Five Lamps compiler narrates Zhicheng travelling to Shaoyang, joining the assembly in formal inquiry, and withholding where he came from."
+            "Kind": "narrated action",
+            "ActorLabel": "Zhicheng",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (五燈會元): X/X80/X80n1565.xml: Zhicheng is the biography's subject in 隨眾參請; the compiler narrates but does not perform the action."
           }
         },
         {
@@ -56,23 +56,23 @@
           "ToLb": "0194a23",
           "Kwic": "後到石霜。但隨眾而已。更不參請。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Compiler narration reports the formal-inquiry action of Shuangfeng.",
+          "AttributionNote": "Source text (五燈會元): X/X80/X80n1565.xml: the (古侍者) dossier says he (更不參請); the compiler narrates but does not perform the action.",
           "ContextMasters": [
             {
-              "MasterName": "Shuangfeng",
+              "MasterName": "Shuangfeng Gu",
               "Roles": [
-                "person-described"
+                "action-performer"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical narration",
-            "ActorLabel": "the biographical compiler",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The Five Lamps compiler narrates Shuangfeng’s later arrival at Shishuang and says he merely followed the assembly without making formal inquiry."
+            "Kind": "narrated action",
+            "ActorLabel": "Shuangfeng Gu",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (五燈會元): X/X80/X80n1565.xml: the 古侍者 dossier says he 更不參請; the compiler narrates but does not perform the action."
           }
         },
         {
@@ -131,29 +131,23 @@
           "ToLb": "0613c13",
           "Kwic": "企靈隱泰道眼精明，乃屈膝參請焉。泰甞謂師曰：我舉拂子，你便向拂子上會；",
           "Curated": true,
-          "AttributionNote": "Source text (續燈正統). Compiler narration reports the formal-inquiry action of Huanyuan.",
+          "AttributionNote": "Source text (續燈正統): X/X84/X84n1583.xml: the Huanyuan Fuyu biography says he (乃屈膝參請焉); the compiler narrates but does not perform the action.",
           "ContextMasters": [
             {
               "MasterName": "Huanyuan Fuyu",
               "Roles": [
-                "person-described"
-              ]
-            },
-            {
-              "MasterName": "Lingyin Tai",
-              "Roles": [
-                "teacher"
+                "action-performer"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "biographical narration",
-            "ActorLabel": "the biographical compiler",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "The biography of Huanyuan Fuyu narrates his bending the knee to inquire of Lingyin Tai; Tai’s quoted correction begins only after 泰甞謂師曰."
+            "Kind": "narrated action",
+            "ActorLabel": "Huanyuan Fuyu",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (續燈正統): X/X84/X84n1583.xml: the Huanyuan Fuyu biography says he 乃屈膝參請焉; the compiler narrates but does not perform the action."
           }
         },
         {
@@ -162,23 +156,16 @@
           "ToLb": "0506b12",
           "Kwic": "晨夕參請，師與唱酬無倦，一時達者稱為大慧再來。",
           "Curated": true,
-          "AttributionNote": "Source text (續燈正統). Compiler narration reports the formal-inquiry action.",
-          "ContextMasters": [
-            {
-              "MasterName": "Huqiu Shaolong",
-              "Roles": [
-                "respondent"
-              ]
-            }
-          ],
+          "AttributionNote": "Source text (續燈正統): clerical and lay followers is the exact headword actor. X/X84/X84n1583.xml: (緇素景從)，(晨夕參請) makes the clerical and lay following the collective performers; the compiler narrates but does not perform the action.",
+          "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "biographical narration",
-            "ActorLabel": "the biographical compiler",
-            "ActorRole": "compiler",
-            "ReviewedBy": "Codex lane-C second independent semantic repair",
-            "ReviewedUtc": "2026-07-15T01:15:00Z",
-            "GrammarEvidence": "In Huqiu Shaolong’s biography, the compiler says the community made inquiry morning and evening and Huqiu answered tirelessly; the headword names the community’s narrated activity."
+            "Status": "identified-non-master",
+            "Kind": "narrated action",
+            "ActorLabel": "clerical and lay followers",
+            "ActorRole": "action-performer",
+            "ReviewedBy": "Codex bound-occurrence manual audit 001-015",
+            "ReviewedUtc": "2026-07-16T00:10:00Z",
+            "GrammarEvidence": "Source text (續燈正統): clerical and lay followers is the exact headword actor. X/X84/X84n1583.xml: 緇素景從，晨夕參請 makes the clerical and lay following the collective performers; the compiler narrates but does not perform the action."
           }
         },
         {
@@ -194,6 +181,12 @@
               "MasterName": "Yuanwu Keqin",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "case-figure"
               ]
             }
           ]

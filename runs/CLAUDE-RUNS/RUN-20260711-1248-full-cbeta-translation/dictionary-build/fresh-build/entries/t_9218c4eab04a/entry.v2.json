@@ -1,0 +1,130 @@
+{
+  "Id": "t_9218c4eab04a",
+  "SourceTerm": "金鱗透網",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f005 lane A author",
+  "WrittenUtc": "2026-07-15T19:20:19.434804+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a golden-scaled fish breaking through the net",
+      "AlternateTargets": [
+        "golden fish through the net"
+      ],
+      "SearchAliases": [
+        "golden carp escaping the net",
+        "fish breaking the net",
+        "gold-scaled fish free"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Twenty-three exact hits occur in twenty-two frozen works. Four independent records preserve question, comparison, adjudication, and tested claim.",
+      "Occurrences": [
+        {
+          "RelPath": "J/J38/J38nB425.xml",
+          "FromLb": "0637a19",
+          "ToLb": "0637a21",
+          "Kwic": "請上堂。僧問：「結解則不問，金鱗透網時如何？」師云：「試𨁝跳看。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Jifei Ruyi",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Complete exchange in Jifei Ruyi's Full Record (即非禪師全錄; J/J38/J38nB425.xml): an unnamed monk utters the headword in his question; Jifei Ruyi responds ‘try leaping.’",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk questioning Jifei Ruyi",
+            "ActorRole": "questioner",
+            "GrammarEvidence": "僧問 introduces the headword-bearing question; 師云 introduces Jifei Ruyi's response afterward.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f005 lane A full-case author review",
+            "ReviewedUtc": "2026-07-15T19:25:00Z"
+          }
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0018a16",
+          "ToLb": "0018a17",
+          "Kwic": "，滅三毒、破魔網，如鳥出籠，金鱗透網。且無依無倚、善始善終一句作",
+          "MasterName": "Miyun Yuanwu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "The source record or case collection (密雲禪師語錄; J/J10/J10nA158.xml). Exact actor: Miyun Yuanwu. Miyun Yuanwu utters the bird-and-fish pairing in his own address."
+        },
+        {
+          "RelPath": "J/J28/J28nB206.xml",
+          "FromLb": "0283c10",
+          "ToLb": "0283c13",
+          "Kwic": "馬無千里慢追風。」深明二上座金鱗透網「深上座恁麼答話，可謂俊哉，",
+          "MasterName": "Guxue Zhe",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "The source record or case collection (笑堂和尚語錄; J/J28/J28nB206.xml). Exact actor: Guxue Zhe. Guxue Zhe gives the net-and-hook adjudication in his own old-case comment."
+        },
+        {
+          "RelPath": "J/J29/J29nB223.xml",
+          "FromLb": "0050b14",
+          "ToLb": "0050b15",
+          "Kwic": "師云：「如犬吠景。」進云：「金鱗透網去，四海任優游。」便行，師便",
+          "MasterName": "Shan Hui",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shan Hui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "The source record or case collection (山暉禪師語錄; J/J29/J29nB223.xml). Exact actor: Shan Hui. The full exchange records Shan Hui hearing the claim and answering it with a blow."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "J/J38/J38nB425.xml",
+        "J/J10/J10nA158.xml",
+        "J/J28/J28nB206.xml",
+        "J/J29/J29nB223.xml"
+      ],
+      "RelatedMasters": [
+        "Jifei Ruyi",
+        "Miyun Yuanwu",
+        "Guxue Zhe",
+        "Shan Hui"
+      ],
+      "RelatedTerms": [
+        "龍門點額"
+      ],
+      "Explanation": "A golden-scaled fish breaking through the net escapes the enclosing mesh. Chan masters ask what happens at the moment of escape, compare freedom from a net with still being caught by a hook, and test boasts of roaming the four seas after breaking through. Jifei Ruyi answers the question with “try leaping.” Miyun Yuanwu pairs the escaping fish with a bird leaving its cage. Guxue Zhe says one respondent escaped the net but was immediately hooked by another. Shan Hui’s interlocutor claims that after the escape the four seas are open; Shan responds with a blow."
+    }
+  ]
+}

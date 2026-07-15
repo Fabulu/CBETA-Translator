@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "f005-A1203-1217-independent-semantic-review-v1",
+  "reviewer": "Codex independent worker f005_a1203_1217_independent",
+  "sourceCheckpoint": "f005-laneA-1203-1217-independent-review-start-checkpoint.json",
+  "firstTenCheckpoint": "f005-laneA-1203-1212-independent-semantic-review-checkpoint.json",
+  "method": "Read every occurrence in the complete generator-v5 case, independently determined the exact headword utterer, and reviewed lexical boundary, #0g Chan deployment, sense split, inference, prose, depth, claim anchoring, KWIC and span. Exact-byte verification is bound to the same hashes by the two full-composite reports (81 verified, zero failures).",
+  "entryEdits": false,
+  "entriesRead": 15,
+  "occurrencesRead": 81,
+  "exactKwicsVerified": 81,
+  "exactKwicFailures": 0,
+  "verdictCounts": {
+    "KEEP": 6,
+    "REVISE": 9
+  },
+  "rows": [
+    {"ordinal":1203,"id":"t_321a547de25f","term":"耳裏著水","entrySha256":"aca494008d27b1cea5f5634e7494cb4e2790b32e7d25cb90b6eb5690b11e2e72","occurrencesRead":4,"verdict":"REVISE","findingsRef":"f005-laneA-1203-1212-independent-semantic-review-checkpoint.json#ordinal-1203"},
+    {"ordinal":1204,"id":"t_138ca8036367","term":"鼻孔遼天","entrySha256":"ec1d20c64f87af233ae26c06042ae20d63032c710f38c881c51b01fc3685c10c","occurrencesRead":6,"verdict":"REVISE","findingsRef":"f005-laneA-1203-1212-independent-semantic-review-checkpoint.json#ordinal-1204"},
+    {"ordinal":1205,"id":"t_640e09aef544","term":"頂門具眼","entrySha256":"3ebf18f7ea804549cd8a7405476c2d3721bdd1543d657c60bcef9107e08bafe8","occurrencesRead":6,"verdict":"REVISE","findingsRef":"f005-laneA-1203-1212-independent-semantic-review-checkpoint.json#ordinal-1205"},
+    {"ordinal":1206,"id":"t_27a41c50f0c3","term":"腦後見腮","entrySha256":"f250c0c9455155716511d0eeaa42c3bc54f37b7411a1153e66aa488529829229","occurrencesRead":6,"verdict":"KEEP","findings":[]},
+    {"ordinal":1207,"id":"t_9529f4444230","term":"舌頭拖地","entrySha256":"2e4a3de55096fbd0a5425b8cbb49128895f9dd32fc715bff81fb7e3e41de2e8c","occurrencesRead":4,"verdict":"KEEP","findings":[]},
+    {"ordinal":1208,"id":"t_fd83eaebf6ad","term":"口似血盆","entrySha256":"6b13f30b5ee13719f37565e3d947924b5d753867cea12ca96343b8bb8a13a86c","occurrencesRead":7,"verdict":"REVISE","findingsRef":"f005-laneA-1203-1212-independent-semantic-review-checkpoint.json#ordinal-1208"},
+    {"ordinal":1209,"id":"t_ab7b478bd5bb","term":"糞掃堆頭","entrySha256":"2108359b850443c1929e374852721cfd55980a4d9262bd1d76a0f3783ab7d6b5","occurrencesRead":7,"verdict":"KEEP","findings":[]},
+    {"ordinal":1210,"id":"t_f4fc42267d33","term":"雞寒上樹鴨寒下水","entrySha256":"8618526a2dc696985f3fe467499e712460c180b61987eaf9fcb4f91c6dc56c19","occurrencesRead":2,"verdict":"REVISE","findingsRef":"f005-laneA-1203-1212-independent-semantic-review-checkpoint.json#ordinal-1210"},
+    {"ordinal":1211,"id":"t_7c53f7605da2","term":"飯籮邊餓死","entrySha256":"a660b9094360e49c2e8d5446c9d7e1ea66984db54a78e739edd27d4c7c090c9a","occurrencesRead":3,"verdict":"KEEP","findings":[]},
+    {"ordinal":1212,"id":"t_495c83ba370b","term":"三文買草鞋","entrySha256":"aac01b73e63503179b789d534570305b6957bf930f2ea456a3305e1350b99d1e","occurrencesRead":4,"verdict":"KEEP","findings":[]},
+    {
+      "ordinal":1213,"id":"t_114ad0f001c1","term":"腰纏十萬貫","entrySha256":"e716fcfb3853267c532cc55b4a778082a67f3a529d84fc001e139c924f157916","occurrencesRead":5,"verdict":"REVISE",
+      "findings":[
+        "Occurrence 4 (J/J34/J34nB311.xml 0613c12) places the headword inside the quoted ruling of the allegorical 沒蓋載大王 (斷曰…我若休，與你腰纏十萬貫…). Juelang Daosheng frames and later quotes the speech but is not its grammatical utterer. Use a named allegorical/non-master ActorAttribution with Juelang as later-quoter/record-owner, and revise the prose that currently assigns the conditional promise directly to Juelang.",
+        "Occurrence 5 (J/J38/J38nB406.xml 0181b02) is in 復英文學目青 within 廬山天然禪師語錄 and is authored by Tianran Hanshi. The pending roster already resolves 廬山天然禪師 to Tianran Hanshi. Baochi Jizong has no source alias here and is a false identity; remove that pending-roster invention and correct MasterName, ContextMasters, AttributionNote, and prose."
+      ]
+    },
+    {
+      "ordinal":1214,"id":"t_38586eed0d08","term":"針劄不入","entrySha256":"9fd3d9ab446ec75c7eb4b92043ff2dae38065d926c4ee1c31812a74845f416c9","occurrencesRead":7,"verdict":"REVISE",
+      "findings":[
+        "Occurrence 6 (J/J39/J39nB452.xml 0532b09) explicitly quotes 楚石和尚道：若有一人發真歸源，十方虛空針劄不入. Chushi Fanqi is the headword utterer; Lüyan He is the later raiser/commentator and speaks only after the closing quote. The explanation already recognizes this quotation, but MasterName does not."
+      ]
+    },
+    {"ordinal":1215,"id":"t_6efa9006e436","term":"水灑不著","entrySha256":"a5213003fda6f3959bd923ac35a19be7d29a9af8daab771f8f4dcc20a310723a","occurrencesRead":5,"verdict":"KEEP","findings":[]},
+    {
+      "ordinal":1216,"id":"t_a14bd52beff8","term":"風吹不入","entrySha256":"e09b2bd604db6fe837d74195299795b2ca9954955ef5e422e97111150611db50","occurrencesRead":7,"verdict":"REVISE",
+      "findings":[
+        "Occurrence 6 (X/X66/X66n1297.xml 0382a03) occurs in compiler/commentarial adjudication after 溈山拈云. The headword-bearing sentence begins 大慈若下得者兩掌，可謂生鐵鑄就，風吹不入; it is not uttered by Weishan Lingyou. MasterName must be null unless the commentary author is source-proven, with Weishan and Daci in contextual roles; the vague 'later adjudication' prose should identify the text and actor status.",
+        "Occurrence 7 (X/X69/X69n1359.xml 0524b13) is an unquoted Buddha-birthday hall address in 應菴曇華禪師語錄. Yingan Tanhua is the speaker. Dahui Zonggao is neither the exact-turn speaker nor the section owner here. Correct structured attribution and name Yingan in the explanatory evidence sentence."
+      ]
+    },
+    {
+      "ordinal":1217,"id":"t_b0df4ae7015d","term":"荊棘林","entrySha256":"939b2c5db04d854a4fbc4b3c18ad8475f216f62cd014d3be619b8c3d702cec6a","occurrencesRead":8,"verdict":"REVISE",
+      "findings":[
+        "Occurrence 2 (X/X64/X64n1260.xml 0036c07) explicitly opens 了庵欲禪師開山忌，上堂 and the headword is in that address. The utterer is Liao’an Qingyu, not Yunmen Wenyan.",
+        "Occurrence 3 (X/X68/X68n1318.xml 0363a08) contains two headword tokens owned by different speakers: Yunmen in 舉：雲門大師道…過得荊棘林者是好手, then Foyan Qingyuan in 師云：只這拂子是荊棘林. A single MasterName cannot truthfully govern the present overlapping KWIC. Recut to the intended exact turn or store two separately verified occurrences.",
+        "Occurrence 4 (X/X81/X81n1568.xml 0019c21) places the headword in the anonymous monk's question 問：荊棘林中無出路…. Yunju Daoqi answers afterward and must not remain MasterName.",
+        "Occurrence 8 (J/J37/J37nB388.xml 0452a23) is raised by Shending Yikui with 不見道：平地上死人無數，出得荊棘林是好手. Parallel cases identify the old formula with Yunmen. Shending is the later raiser, not the source utterer; record the parallel-passage resolution and contextual role."
+      ]
+    }
+  ]
+}

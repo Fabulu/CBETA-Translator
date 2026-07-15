@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-f005-laneB-two-entry-canary-full-case-review",
+  "reviewer": "review_cohort1_round4_six",
+  "generatedUtc": "2026-07-15T19:15:00Z",
+  "sourceLedger": "f005-laneB-1301-1302-author-ledger.json",
+  "sourceLedgerSha256": "3b350d305469c07c89ab6032a2b656a11ba5794bda89ac08849fa49d53747c52",
+  "reviewMethod": [
+    "Read all fourteen complete current cases and mapped the exact headword-bearing grammatical voice or narrated action.",
+    "Checked current entry hashes, exact stored spans, actor decisions, prose claims, quote/claim anchoring, different-thing sense tests, depth, independent work IDs, and pending-roster evidence.",
+    "Read each evidence.draft.json as well as production entry.v2.json so compilation-only removal of DraftEvidence was not misclassified as missing research.",
+    "Edited, promoted, merged, and published nothing."
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  },
+  "entriesReviewed": 2,
+  "occurrencesReadInFullCase": 14,
+  "exactKwicsAndSpans": 14,
+  "keep": 1,
+  "revise": 1,
+  "summaryFinding": "語言 is a strong canary entry. 卓一下 has a cohort-wide actor-model error: the headword is a narrator's stage direction describing a master's physical action, not words uttered by that master; all seven MasterName fields therefore violate the utterer-only rule, and the seventh row additionally names the wrong performer.",
+  "entries": [
+    {
+      "ordinal": 1301,
+      "id": "t_df028fd6bd35",
+      "term": "語言",
+      "reviewedSha256": "525987c476729e770717f41d5bf51d85884790666025262fe375dc2d1b414de8",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All seven exact actors follow the headword-bearing turns: Dahui, Yuanwu, Zhaozhou, Baizhang, Mazu, the unnamed monastic questioner, and Zhongfeng respectively.",
+        "The ordinary speech-and-language referent remains one thing across quotation, question, restriction, and formal-address predicates; the corpus does not establish a second lexical thing.",
+        "The opening and evidence prose are English-first, bounded, and expose Zen's use of language itself as an interview/commentarial object without declaring a universal doctrine for or against language.",
+        "No prose Chinese outside the stored headword occurrences requires a ClaimAnchor. DraftEvidence.OpeningClaimEvidenceKeys maps o1-o7 before compilation, and every named paraphrase is reconstructible from its stored occurrence.",
+        "Seven witnesses meet the frequency-scaled floor and cover six independent work IDs. The two Blue Cliff rows are correctly one work and do not inflate the multi-work verdict.",
+        "No pending-roster dependency exists for this entry."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:T47n1998A"},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:T47n1997"},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:T48n2003"},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:T48n2003"},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:X68n1318"},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:X72n1437"},
+        {"occurrence": 7, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true, "workId": "work:X70n1402"}
+      ]
+    },
+    {
+      "ordinal": 1302,
+      "id": "t_705aabe99572",
+      "term": "卓一下",
+      "reviewedSha256": "b0784b8f85c6038fb7853b73c876b3a445c6adf72d0282c69b4b578f1ba9c1bc",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "Systemic actor defect o1-o7: 卓一下 is a narrated stage direction/action ('struck once'), not speech uttered by the performer. Under ACTOR_AUDIT, MasterName is exclusively the utterer of the headword. Each row therefore needs MasterName null plus narrated ActorAttribution for the textual narrator/compiler, while the named master belongs in ContextMasters with the performer role and remains named in reader prose.",
+        "o7 also names the wrong performer. The full case begins 潤州金山曇頴達觀禪師 and later says 住後示眾 before the stored blow. The performer is Jinshan/Daguan Tanying, not Yunju Shouyi; the current pending-roster candidate and prose must be corrected accordingly.",
+        "The pending-roster evidence for Hongjue Min and Zhean Jingfan matches their own record headings and formal-address frames. The Yunju Shouyi candidate is contradicted by its full case and must not be integrated.",
+        "The one-action sense and preferred target 'to strike once' hold. The explanation's observable staff-action inference is licensed, but its final named list must replace Yunju Shouyi with Jinshan/Daguan Tanying and distinguish performers from utterers.",
+        "Seven witnesses span seven independent works and meet the floor. No non-headword Chinese claim requires a separate ClaimAnchor; DraftEvidence maps opening claims to o1-o7."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Wuzhun Shifan"},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Dahui Zonggao"},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Yuanwu Keqin"},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Dahui Zonggao"},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Hongjue Min"},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": true, "expectedNarrativeClass": "narrated", "contextPerformer": "Zhean Jingfan"},
+        {"occurrence": 7, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false, "performerHolds": false, "expectedNarrativeClass": "narrated", "contextPerformer": "Jinshan/Daguan Tanying"}
+      ]
+    }
+  ]
+}

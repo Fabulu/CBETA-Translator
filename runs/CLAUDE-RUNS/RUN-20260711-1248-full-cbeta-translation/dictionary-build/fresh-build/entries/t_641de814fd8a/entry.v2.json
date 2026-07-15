@@ -2,20 +2,25 @@
   "Id": "t_641de814fd8a",
   "SourceTerm": "毒藥",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
-  "CreatedBy": "Codex f004 lane B bulk evidence-first author",
-  "WrittenUtc": "2026-07-15T10:28:15.689574+00:00",
+  "CreatedBy": "Codex f004 B1031-1040 full-case repair author",
+  "WrittenUtc": "2026-07-15T15:42:24.584850+00:00",
   "Senses": [
     {
       "SenseKey": null,
       "MasterName": null,
       "PreferredTarget": "poison",
-      "AlternateTargets": [],
+      "AlternateTargets": [
+        "a poisonous dose",
+        "to turn into poison"
+      ],
       "SearchAliases": [
-        "poison"
+        "poison",
+        "a poisonous dose",
+        "to turn into poison"
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "7 distinct work IDs selected after complete-context review.",
+      "Note": "7 curated occurrences retained after removing punctuation collisions and bare paratext; sources are counted by canonical work ID at validation.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -23,26 +28,16 @@
           "ToLb": "0006a13",
           "Kwic": "，三十年後莫道不被人瞞好。上堂：我有這一著，人人口裏嚼。嚼得破者，速須吐却。嚼不破者，翻成毒藥。乃召諸禪德：作甚麼滋味？試請道看。良久曰：醫王不是無方義，千里蘇香象不回。道士問：如何是道？師曰：龍吟金鼎，虎嘯丹田。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Zhihai Benyi. The complete source unit assigns the exact headword-bearing speech or authored wording to Zhihai Benyi.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhihai Benyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Zhihai Benyi"
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -50,53 +45,16 @@
           "ToLb": "0425c24",
           "Kwic": "佛意，今遇歡喜尊，而可依了之。彼師弟子竦敬，尋得二果。幻寄曰：阿難果老昏，這僧不著，便受伊毒藥。若向水潦鶴上打發，便可踏毗盧頂𩕳上行，何有二果？却受聖宿、小聖處分，一生埋沒。尊者將入涅槃，於恒河中流跏趺而坐。阿闍世",
           "Curated": true,
-          "AttributionNote": "Source text (指月錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
-        },
-        {
-          "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0622c01",
-          "ToLb": "0622c01",
-          "Kwic": "毒藥",
-          "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (指月錄; X/X83/X83n1578.xml). Exact actor: Huanji. The complete source unit assigns the exact headword-bearing speech or authored wording to Huanji.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huanji",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Huanji"
         },
         {
           "RelPath": "B/B25/B25n0145.xml",
@@ -104,26 +62,16 @@
           "ToLb": "0698b10",
           "Kwic": "脫。若見地不脫。則動是情意識輥作一團。在處依草附木承虛接響。致使上味醍醐蘊在伊不淨器中變成毒藥。一切時中如箇不解脫鬼相似。見人說心說性。便乃扶籬摸壁湊泊將去。纔見有人舉起沒巴鼻捩轉面皮突出牙爪處。未免意識不行便乃渾",
           "Curated": true,
-          "AttributionNote": "Source text (天目中峰廣錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (天目中峰廣錄; B/B25/B25n0145.xml). Exact actor: Zhongfeng Mingben. The complete source unit assigns the exact headword-bearing speech or authored wording to Zhongfeng Mingben.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Zhongfeng Mingben"
         },
         {
           "RelPath": "J/J34/J34nB311.xml",
@@ -131,26 +79,16 @@
           "ToLb": "0598c06",
           "Kwic": "。無端陷殺平民，不妨笑倒作者。雖然如是，汝等諸子於三個月中特地喫了福山底金蚕蠱毒，他時後日毒藥發作，卻大有事在。」便下座。終天界覺浪盛禪師全錄卷之二門人大存弘智大璸大奇較上堂二上堂藻林庵上堂藻林庵上堂師云：「城中多",
           "Curated": true,
-          "AttributionNote": "Source text (天界覺浪盛禪師全錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄; J/J34/J34nB311.xml). Exact actor: Juelang Daosheng. The complete source unit assigns the exact headword-bearing speech or authored wording to Juelang Daosheng.",
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Juelang Daosheng"
         },
         {
           "RelPath": "T/T48/T48n2016.xml",
@@ -158,68 +96,65 @@
           "ToLb": "0465c15",
           "Kwic": "提心者。猶如鉤餌。出有淵中所居者故。菩提心者。如阿伽陀藥。能令無病永安隱故。菩提心者。如除毒藥。悉能消歇含愛毒故。菩提心者。如善持呪。能除一切顛倒毒故。菩提心者。猶如疾風。能卷一切諸障霧故。菩提心者。如大寶洲。出生",
           "Curated": true,
-          "AttributionNote": "Source text (宗鏡錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (宗鏡錄; T/T48/T48n2016.xml). Exact actor: Yongming Yanshou. The complete source unit assigns the exact headword-bearing speech or authored wording to Yongming Yanshou.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Yongming Yanshou"
         },
         {
-          "RelPath": "X/X66/X66n1297.xml",
-          "FromLb": "0290a04",
-          "ToLb": "0290a04",
-          "Kwic": "毒藥",
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0046b12",
+          "ToLb": "0046b20",
+          "Kwic": "斯之類，尚不能自識業果，妄言自利利他，自謂上流並他先德，但言觸目無非佛事，舉足皆是道場。原其所習，不如一箇五戒十善凡夫；觀其發言，嫌他二乘十地菩薩。且醍醐上味為世所珍，遇斯等人飜成毒藥。南山尚自不許，呼為大乘學語之流，爭鋒唇舌之間，鼓論不形之事並他先德，誠實苦哉！只如野逸高士，尚解枕石漱流，棄其利祿，亦有安國理民之謀，徵而不赴，況我禪宗途路。且別看佗古德道人，得",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "MasterName": "Wuye Guoshi",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuye Guoshi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (聯燈會要; X/X79/X79n1557.xml). Exact actor: Wuye Guoshi. The complete source unit assigns the exact headword-bearing speech or authored wording to Wuye Guoshi."
+        },
+        {
+          "RelPath": "X/X69/X69n1357.xml",
+          "FromLb": "0453c13",
+          "ToLb": "0453c20",
+          "Kwic": "此箇公案，叢林解會極多，然少有的確透得者，有以謂真有此句，有以謂父子唱和實無此句，有以謂此句須密傳授，不免只是話會，增長機路，去本分甚遠。所以道：醍醐上味，為世所珍，遇此等人，飜成毒藥。他參活句，不參死句。活句下薦得，永劫不忘；死句下薦得，自救不了。若要與祖佛為師，須明取活句。韶陽出一句，如利刀剪却，臨際亦云：吹毛用了急還磨。此豈陰界中事？亦非世智辯聰所及，直是",
+          "Curated": true,
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (佛果克勤禪師心要; X/X69/X69n1357.xml). Exact actor: Yuanwu Keqin. The complete source unit assigns the exact headword-bearing speech or authored wording to Yuanwu Keqin."
         }
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
         "X/X82/X82n1571.xml",
         "X/X83/X83n1578.xml",
-        "C/C077/C077n1710.xml",
         "B/B25/B25n0145.xml",
         "J/J34/J34nB311.xml",
         "T/T48/T48n2016.xml",
-        "X/X66/X66n1297.xml"
+        "X/X79/X79n1557.xml",
+        "X/X69/X69n1357.xml"
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "Poison is the plain-English referent tested by the selected Chan records. The selected cases place poison inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition."
+      "Explanation": "Poison is what a saying or medicine becomes when its reception harms rather than frees. Zhihai Benyi offers a phrase to chew and warns that failure to break it turns poisonous; Yongming Yanshou and other speakers say the finest clarified butter becomes poison in an unclean vessel. The bend is relational: offered material can cure or poison according to the encounter."
     }
   ]
 }

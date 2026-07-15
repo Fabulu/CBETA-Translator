@@ -1,0 +1,1236 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-actor-postrepair-review",
+  "reviewer": "reviewer10",
+  "generatedUtc": "2026-07-15T15:54:58.314830+00:00",
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": [
+    1031,
+    1040
+  ],
+  "sourceRepairLedger": "f004-laneB-1031-1040-repair-author-ledger.json",
+  "sourceRepairLedgerSha256": "46b7f74e0883bd9d6587ecb8e6038ce91683b1fe3ec33e255c3a60a9b4d249ef",
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 59,
+  "exactKwics": 59,
+  "exactFullSpans": 59,
+  "exactSpanFailures": 0,
+  "gate0gPassed": 59,
+  "keep": 1,
+  "revise": 9,
+  "cohortFinding": "Mechanical attribution is green, but eight entries retain generic cross-source actor labels or omit identifiable visitors, quoted voices, document authors, section subjects, or acting masters from ContextMasters. Nine entries also have stale/noncanonical IndependentWorkIds. Only C1033 is independently acceptable.",
+  "reviewMethod": [
+    "Read every occurrence in a 10,000-character complete-case context.",
+    "Reran zc.verify and required exact stored FromLb and ToLb and a headword-bearing KWIC.",
+    "Retested exact utterer, document voice, narrator, performer, visitor, quoted speaker, and context figures independently of the mechanical attribution gate.",
+    "Retested #0g, prose, senses, depth controls, recurrence, and exact work IDs.",
+    "Bound every verdict to the current repair-ledger entry hash and recorded the current worksheet hash."
+  ],
+  "entries": [
+    {
+      "ordinal": 1031,
+      "id": "t_bfef2fc85826",
+      "term": "參問",
+      "entrySha256": "8627aaab7a8770813bcc0029bbf9d0c1328ea4ab9bed0c615595bab349f4da87",
+      "worksheetSha256": "bbd55a24f9b1e494cb144cd9dd779391992df317013dcfc6e90e32a1e3a70f10",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "REVISE",
+      "actorContextFinding": "Narrated visit language is legitimate, but occurrences 2 and 6 retain no visitor, visited master, or section subject in ContextMasters; the full cases must supply those named figures.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:wudeng-quanshu",
+          "chan:wudeng-yantong",
+          "work:X83n1578"
+        ],
+        "missing": [
+          "chan:zhiyue-lu",
+          "work:wudeng-quanshu",
+          "work:wudeng-yantong"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0027b13",
+          "toLb": "0027b19",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [
+            {
+              "MasterName": "Tianyi Ruzhe",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0052a14",
+          "toLb": "0052a19",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0003b09",
+          "toLb": "0003b13",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [
+            {
+              "MasterName": "Tiantai Deshao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0543c08",
+          "toLb": "0543c13",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [
+            {
+              "MasterName": "Juzhi",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0301a24",
+          "toLb": "0301b04",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [
+            {
+              "MasterName": "Touzi Yiqing",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0484b10",
+          "toLb": "0484b21",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1032,
+      "id": "t_b336769aabdf",
+      "term": "家醜",
+      "entrySha256": "2db6f66fdebf8fca808a185efe445bf7b5659a8c762bad90570a17541560e272",
+      "worksheetSha256": "8d7d819b576eb0e6b5d4feeb0bf91549d5742788885aced9e71057a4c3d40fba",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctStorageWorkIds": 7,
+      "verdict": "REVISE",
+      "actorContextFinding": "Occurrences 6 and 7 retain the generic label “the named section speaker or quoted case voice”; occurrences 2–4 also need source-specific author/quoted-voice decisions rather than undifferentiated narration.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:wudeng-quanshu",
+          "work:X66n1297"
+        ],
+        "missing": [
+          "chan:zongjian-falin",
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0115a17",
+          "toLb": "0115a21",
+          "actor": "Lan'an Dingxu",
+          "contextMasters": [
+            {
+              "MasterName": "Lan'an Dingxu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0623a24",
+          "toLb": "0623b07",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0336c01",
+          "toLb": "0336c08",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J29/J29nB233.xml",
+          "fromLb": "0324a08",
+          "toLb": "0324a13",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0899c22",
+          "toLb": "0899c27",
+          "actor": "Zhean Jingfan",
+          "contextMasters": [
+            {
+              "MasterName": "Zhean Jingfan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0035c11",
+          "toLb": "0035c16",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0036b12",
+          "toLb": "0036b18",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1033,
+      "id": "t_d7725cb0c8c0",
+      "term": "水頭",
+      "entrySha256": "56061afb34dbff5367cc2f430b39e98c4a151871b202498af8f3b0463e807850",
+      "worksheetSha256": "2f9b465cda8592c0aad0f715842fb0f014b882b19d1cd6e4ccb3a1af5c69c173",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "distinctStorageWorkIds": 4,
+      "verdict": "KEEP",
+      "actorContextFinding": "All four witnesses are institutional rule, contents, or office descriptions in monastic codes; the code voice is correct and no spoken master is manufactured.",
+      "gate0gProseSenseDepthWorkFinding": "PASS: retained cases are Chan/institutional deployments; public prose, sense structure, depth controls, different-thing limit, and work IDs are supported independently of the actor verdict.",
+      "staleIndependentWorkIds": {
+        "extra": [],
+        "missing": []
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X63/X63n1245.xml",
+          "fromLb": "0522b15",
+          "toLb": "0522c08",
+          "actor": "the monastic code's institutional voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X63/X63n1250.xml",
+          "fromLb": "0642a04",
+          "toLb": "0642a10",
+          "actor": "the monastic code's institutional voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2023.xml",
+          "fromLb": "1069a26",
+          "toLb": "1069b03",
+          "actor": "the monastic code's institutional voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1133a20",
+          "toLb": "1133b02",
+          "actor": "the monastic code's institutional voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1034,
+      "id": "t_e21288d0fefb",
+      "term": "徐六擔板",
+      "entrySha256": "06308dbf68cec334c5f1f8c819768e76d357429ead2d96caa4a3d1058c551efb",
+      "worksheetSha256": "41625f52e9582a6b87be9a8e045fa20ad4ba33e9f7b8808d0977b06608211124",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "REVISE",
+      "actorContextFinding": "Occurrences 3 and 5 retain the generic “named section speaker or quoted case voice” label instead of resolving the exact quoted or record-owned voice.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:wudeng-quanshu"
+        ],
+        "missing": [
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0117b07",
+          "toLb": "0117b13",
+          "actor": "Dunan Zongyan",
+          "contextMasters": [
+            {
+              "MasterName": "Dunan Zongyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0317b10",
+          "toLb": "0317b15",
+          "actor": "Lianfeng",
+          "contextMasters": [
+            {
+              "MasterName": "Lianfeng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0008b02",
+          "toLb": "0008b08",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J33/J33nB287.xml",
+          "fromLb": "0547a05",
+          "toLb": "0547a09",
+          "actor": "Zixian Jue",
+          "contextMasters": [
+            {
+              "MasterName": "Zixian Jue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0464a23",
+          "toLb": "0464b04",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0116c03",
+          "toLb": "0116c08",
+          "actor": "Feiyin Tongrong",
+          "contextMasters": [
+            {
+              "MasterName": "Feiyin Tongrong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1035,
+      "id": "t_641de814fd8a",
+      "term": "毒藥",
+      "entrySha256": "56e0e8fc30dcd8a7ccaf8101c012b278c9d3848dcbc29502e9ea198ecc1d713b",
+      "worksheetSha256": "32a6f572621c12e72f39a881c3491a4530b4020ad19398f5805907ebbc6791f8",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctStorageWorkIds": 7,
+      "verdict": "REVISE",
+      "actorContextFinding": "Occurrence 2 retains the generic quoted-voice label, and the narrated sources require source-specific quotation/comment attribution before exact actor acceptance.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:wudeng-quanshu",
+          "work:X83n1578"
+        ],
+        "missing": [
+          "chan:zhiyue-lu",
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0006a08",
+          "toLb": "0006a13",
+          "actor": "Zhihai Benyi",
+          "contextMasters": [
+            {
+              "MasterName": "Zhihai Benyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0425c19",
+          "toLb": "0425c24",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0698b05",
+          "toLb": "0698b10",
+          "actor": "Zhongfeng Mingben",
+          "contextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0598b18",
+          "toLb": "0598c06",
+          "actor": "Juelang Daosheng",
+          "contextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0465c10",
+          "toLb": "0465c15",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0046b12",
+          "toLb": "0046b20",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0453c13",
+          "toLb": "0453c20",
+          "actor": "Yuanwu Keqin",
+          "contextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1036,
+      "id": "t_10b63ac74f61",
+      "term": "李廣",
+      "entrySha256": "864585676db76d361bb6e6bd1f55c39a03ca8d696b07d67448ad6aa8398f06d7",
+      "worksheetSha256": "25ce85106a2508c3cb96461f33b6cefd5b755e83e43408eba1c7933866cdd507",
+      "occurrencesRead": 5,
+      "exactKwicsAndSpans": 5,
+      "distinctStorageWorkIds": 5,
+      "verdict": "REVISE",
+      "actorContextFinding": "All five distinct verse/address witnesses were assigned one repeated label, “the verse or address invoking Li Guang”; full units have distinct authored voices that remain unresolved.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:guzunsu-yulu",
+          "chan:wudeng-quanshu",
+          "work:X66n1297"
+        ],
+        "missing": [
+          "chan:zongjian-falin",
+          "work:guzunsu-yulu",
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0768c20",
+          "toLb": "0769a03",
+          "actor": "the verse or address invoking Li Guang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0669b05",
+          "toLb": "0669b12",
+          "actor": "the verse or address invoking Li Guang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0378c24",
+          "toLb": "0379a05",
+          "actor": "the verse or address invoking Li Guang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0342b04",
+          "toLb": "0342b10",
+          "actor": "the verse or address invoking Li Guang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0606a04",
+          "toLb": "0606a09",
+          "actor": "the verse or address invoking Li Guang",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1037,
+      "id": "t_40cfbcc5f859",
+      "term": "縱奪",
+      "entrySha256": "9d984069632777491e472d044875356592ea51e9b7862e0086f4e9dc7950653c",
+      "worksheetSha256": "3b55e1aaf0797175a1c85634934fbb3277e07e9ada168c0c6c1525d3b67fde67",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctStorageWorkIds": 7,
+      "verdict": "REVISE",
+      "actorContextFinding": "Occurrences 1 and 2 retain the generic section/quotation label, while occurrence 3 lacks the named subject of the narrated deployment.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:wudeng-quanshu",
+          "work:L158n1652",
+          "work:X66n1297"
+        ],
+        "missing": [
+          "chan:mingjue-cong-yulu",
+          "chan:zongjian-falin",
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0276b13",
+          "toLb": "0276b18",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0026a24",
+          "toLb": "0026b06",
+          "actor": "the named section speaker or quoted case voice",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0054a12",
+          "toLb": "0054a16",
+          "actor": "the record compiler narrating the occurrence",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0046a01",
+          "toLb": "0046a08",
+          "actor": "Mingjue Cong",
+          "contextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0751c25",
+          "toLb": "0751c30",
+          "actor": "Ruibai Mingxue",
+          "contextMasters": [
+            {
+              "MasterName": "Ruibai Mingxue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J40/J40nB483.xml",
+          "fromLb": "0228b18",
+          "toLb": "0228b23",
+          "actor": "Zhufeng Huanmin",
+          "contextMasters": [
+            {
+              "MasterName": "Zhufeng Huanmin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J28/J28nB212.xml",
+          "fromLb": "0475c11",
+          "toLb": "0475c15",
+          "actor": "Eryin Mi",
+          "contextMasters": [
+            {
+              "MasterName": "Eryin Mi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1038,
+      "id": "t_b016f513be3d",
+      "term": "五燈嚴統",
+      "entrySha256": "28747c774b56dba1ed97c0f041122149aa9cca42bb9894fb96d9176cd4b93574",
+      "worksheetSha256": "b5dc4139b7d1ad46fcda5b70157b4ff7cbd2aeae05e2d3fdaf4477ee23ce6adf",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "distinctStorageWorkIds": 4,
+      "verdict": "REVISE",
+      "actorContextFinding": "Four distinct hall speech, letter, imperial memorial, and biography witnesses were flattened to one “record’s named-book discussion” label; their exact document authors/voices remain unresolved.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "work:J29nB230",
+          "work:L158n1652"
+        ],
+        "missing": [
+          "chan:mingjue-cong-yulu",
+          "chan:shuijian-hai-hui-lu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0135c12",
+          "toLb": "0135c18",
+          "actor": "the record's named-book discussion",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J29/J29nB230.xml",
+          "fromLb": "0275a24",
+          "toLb": "0275a29",
+          "actor": "the record's named-book discussion",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0005a06",
+          "toLb": "0005a13",
+          "actor": "the record's named-book discussion",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J29/J29nB232.xml",
+          "fromLb": "0315b03",
+          "toLb": "0315b10",
+          "actor": "the record's named-book discussion",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1039,
+      "id": "t_f24a55791323",
+      "term": "單傳直指",
+      "entrySha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
+      "worksheetSha256": "cb8eeba794e7a31694e51970d8ea52d2faebb5037c58b092b94e31287c7a770a",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctStorageWorkIds": 6,
+      "verdict": "REVISE",
+      "actorContextFinding": "All six complete units identify the stored named master as exact utterer of the compound; its actor and context decisions agree.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "work:L154n1640"
+        ],
+        "missing": [
+          "chan:miyun-wu-yulu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0695a17",
+          "toLb": "0695b01",
+          "actor": "Zhongfeng Mingben",
+          "contextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0024c18",
+          "toLb": "0024c23",
+          "actor": "Baichi Yuanshuo",
+          "contextMasters": [
+            {
+              "MasterName": "Baichi Yuanshuo",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0009c01",
+          "toLb": "0009c05",
+          "actor": "Miyun Yuanwu",
+          "contextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "L/L154/L154n1640.xml",
+          "fromLb": "0431a13",
+          "toLb": "0431b04",
+          "actor": "Miyun Yuanwu",
+          "contextMasters": [
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X71/X71n1414.xml",
+          "fromLb": "0301b17",
+          "toLb": "0301c01",
+          "actor": "Liao'an Qingyu",
+          "contextMasters": [
+            {
+              "MasterName": "Liao'an Qingyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X71/X71n1417.xml",
+          "fromLb": "0451c08",
+          "toLb": "0451c17",
+          "actor": "Liaotang Weiyi",
+          "contextMasters": [
+            {
+              "MasterName": "Liaotang Weiyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    },
+    {
+      "ordinal": 1040,
+      "id": "t_74c3c0e1b896",
+      "term": "下禪床",
+      "entrySha256": "919c98d7f7998a98144846383a3270bb45aa7b87279fd2bedb3c22bd981a0906",
+      "worksheetSha256": "35d09c1e097b4beee8987f522f553337784abafb81c49a03beceb3f7a463edcc",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctStorageWorkIds": 7,
+      "verdict": "REVISE",
+      "actorContextFinding": "The repeated movement-narrator label is grammatically appropriate, but five of seven occurrences omit the named performer from ContextMasters, so the exact acting figure is not preserved.",
+      "gate0gProseSenseDepthWorkFinding": "REVISE: IndependentWorkIds do not match retained occurrences.",
+      "staleIndependentWorkIds": {
+        "extra": [
+          "chan:guzunsu-yulu",
+          "chan:wudeng-quanshu",
+          "work:X79n1563"
+        ],
+        "missing": [
+          "chan:daguangming-zang",
+          "work:guzunsu-yulu",
+          "work:wudeng-quanshu"
+        ]
+      },
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0462b10",
+          "toLb": "0462b15",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0710c16",
+          "toLb": "0710c23",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0675c09",
+          "toLb": "0675c15",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0261c07",
+          "toLb": "0261c13",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0006c03",
+          "toLb": "0006c08",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0332c24",
+          "toLb": "0333a05",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X79/X79n1563.xml",
+          "fromLb": "0681a06",
+          "toLb": "0681a10",
+          "actor": "the case narrator describing the master's movement",
+          "contextMasters": [
+            {
+              "MasterName": "Baizhang Weizheng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "fullCaseRead": true,
+          "exactKwic": true,
+          "exactFromLb": true,
+          "exactToLb": true,
+          "chanDeploymentGate0g": "PASS"
+        }
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

@@ -1,0 +1,23 @@
+# 耳裏著水 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited wording is a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, paired and opposite formulas, body-part family, repeated recensions, and contradictory predicates.
+- deployment-inventory: 4 curated exact rows across 4 independent work IDs.
+- omission-audit: each prose claim has an exact headword occurrence; repeated recensions were not used as depth padding.
+- family-retest: Compared 眼裏著沙, 耳裏著得大海水, and the Baishui case family; parallel recensions were not used to pad depth.
+- sense-target-distinguishability: `not-applicable — one bodily image across the stored deployments`.
+- observation: occurrence IDs `o1–o4` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The record turns the familiar irritation into a portable interview formula, questions it clause by clause, and places beside it the contrary image of an ear holding an ocean.
+- ordinary-bridge: ordinary anatomy supplies the physical impossibility or obstruction; no outside doctrine is needed.
+- falsification-searches: literal uses; definition questions; opposite formula; body-part compounds; repeated case family; contradictory appraisal.
+- counterexamples: The contrary ocean formula prevents treating the image as a universal doctrine of exclusion; it is an attested saying used in particular contrasts.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o4` establish the bodily image and the named deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite formulas; longer compounds; repeated case families; contradictory appraisals.
+- feedback-counterexamples: The contrary ocean formula prevents treating the image as a universal doctrine of exclusion; it is an attested saying used in particular contrasts.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic or doctrinal theory`.
+- lookup-probes: water in one’s ear; an ear that admits no water; ear filled with water.
+- opening-interpretation-verdict: `licensed` — the opening names the ordinary scene and narrow corpus-earned deployment before quotations.

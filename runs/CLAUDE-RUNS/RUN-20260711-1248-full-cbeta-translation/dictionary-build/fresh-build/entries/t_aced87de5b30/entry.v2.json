@@ -23,12 +23,20 @@
           "ToLb": "0667c08",
           "Kwic": "無事󳏃重。上堂僧問蓮花未出水時如何師云徧天徧地問出水後如何師云特地一場愁問殺父殺母佛前懺悔殺佛殺祖向什麼處懺悔師云水深一丈問離凡離聖請師一句師云不可錯怪老僧也僧云謝師指示師便打問魚鼓未鳴時如何師云望天不見天僧云鳴後如何",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). Exact actor: the unnamed monastic questioner. The explicit question/answer grammar assigns the headword to the unnamed questioner; the response begins afterward.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "the unnamed monastic questioner",
-            "ActorLabel": "the unnamed monastic questioner",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -38,12 +46,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The explicit question/answer grammar assigns the headword to the unnamed questioner; the response begins afterward.",
-            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
-            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
+            "GrammarEvidence": "The question contains 殺佛殺祖; Shoushan Xingnian answers only after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
             "AuthoredVoiceRiskReviewed": true
-          },
-          "MasterName": null
+          }
         },
         {
           "RelPath": "X/X79/X79n1559.xml",

@@ -23,12 +23,12 @@
           "ToLb": "0693a13",
           "Kwic": "如何是佛師云汝是慧超禮拜進前叉手思量十万迢迢因僧請益雲門超佛越祖之談因僧請益雲門超佛越祖之談超佛越祖若何宣充齋餬餅恣情飡湖南展鉢新羅咬大石波斯索渡舩因僧請益乃述三訣頌因僧請益乃述三訣頌苐一訣大地山河泄維摩纔默然文殊便饒舌苐二訣展拓看時莭語默豈相干夜半秋天月苐三訣遠",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): monastic questioner bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor state: the unnamed monastic questioner. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "monastic questioner",
+            "Kind": "the unnamed monastic questioner",
+            "ActorLabel": "the unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -38,11 +38,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete exchange places the headword in the monk’s question; the responding master does not utter it.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed monastic questioner, not a recoverable named master.",
+            "ReviewedBy": "Codex f004 author cohort0 repair",
+            "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J23/J23nB134.xml",
@@ -50,26 +51,16 @@
           "ToLb": "0521a28",
           "Kwic": "送一送，德山便歸方丈。洛浦回，舉似師，師云：「我從來疑著這漢。雖然如是，汝還見德山麼？」洛浦擬議，師便打。師拈餬餅示洛浦云：「萬種千般不離這箇，其理不二。」洛浦云：「如何是不二之理？」師再拈起餅示之。洛浦云：「與麼則萬種千般也。」師云：「屙屎見解。」洛浦云：「羅公",
           "Curated": true,
-          "AttributionNote": "Source text (五家語錄（選錄）): section-identified master performing the recorded action bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "section-identified master performing the recorded action",
-            "ActorLabel": "section-identified master performing the recorded action",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword occurs in the action clause whose grammatical subject is 師; the section identity is retained as a roster lead rather than guessed.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (五家語錄（選錄）; J/J23/J23nB134.xml). Exact speaker: Jiashan Shanhui. The complete section confirms the headword-bearing turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Jiashan Shanhui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Jiashan Shanhui"
         },
         {
           "RelPath": "T/T47/T47n1988.xml",
@@ -77,26 +68,16 @@
           "ToLb": "0548b10",
           "Kwic": "衲僧合作麼生。若將祖意佛意這裏商量。曹溪一路平沈。還有人道得麼。道得底出來。時有僧問。如何是超佛越祖之談。師云餬餅。進云。這箇有什麼交涉。師云酌然有什麼交涉。師乃云。爾勿可作了。見人道著祖師意。便問超佛越祖之談。道理爾且喚什麼作佛。喚什麼作祖。即說超佛越祖之談。便",
           "Curated": true,
-          "AttributionNote": "Source text (雲門匡真禪師廣錄): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "section-identified master awaiting canonical roster resolution",
-            "ActorLabel": "section-identified master awaiting canonical roster resolution",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (雲門匡真禪師廣錄; T/T47/T47n1988.xml). Exact speaker: Yunmen Wenyan. The complete section confirms the headword-bearing turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Yunmen Wenyan"
         },
         {
           "RelPath": "C/C078/C078n1720.xml",
@@ -104,26 +85,16 @@
           "ToLb": "0805c10",
           "Kwic": "上春條綠日日是好日佛法世法盡周畢不湏特地覔幽玄只管鉢盂兩度濕雲門上堂聞聲悟道見色明心遂舉起手曰觀世音菩薩將錢買餬餅放下手曰元來秪是饅頭。頌曰。買得欣欣急走歸不知放手却成非直饒超過毗盧頂也落韶陽苐二機小院春風特地寒佳人寂寞倚闌干斷腸曲調無人聽更把琵琶月下彈見色心光現",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "section-identified master awaiting canonical roster resolution",
-            "ActorLabel": "section-identified master awaiting canonical roster resolution",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (禪宗頌古聯珠通集; C/C078/C078n1720.xml). Exact speaker: Yunmen Wenyan. The complete section confirms the headword-bearing turn.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Yunmen Wenyan"
         },
         {
           "RelPath": "L/L158/L158n1652.xml",
@@ -131,12 +102,12 @@
           "ToLb": "0049b14",
           "Kwic": "正當慶讚一句作麼生道以拂子作獻勢云將此身心奉塵剎是則名為報佛恩復舉雲門云聞聲悟道見色明心遂擡手云觀音菩薩將錢買餬餅放下手却是饅頭師云雲門恁麼說話大似好肉剜瘡自討受屈一生不得快活錦山即不然教伊不得動著動著三十棒。端午上堂僧問超宗異目即不問第一義諦是如何師云萬里望崖州",
           "Curated": true,
-          "AttributionNote": "Source text (明覺聰禪師語錄): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (明覺聰禪師語錄; L/L158/L158n1652.xml). Exact actor state: the unnamed quoted speaker unresolved after the attribution ladder. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
+            "Kind": "the unnamed quoted speaker unresolved after the attribution ladder",
+            "ActorLabel": "the unnamed quoted speaker unresolved after the attribution ladder",
             "ActorRole": "utterer",
             "RungsChecked": [
               "line",
@@ -146,11 +117,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+            "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed quoted speaker unresolved after the attribution ladder, not a recoverable named master.",
+            "ReviewedBy": "Codex f004 author cohort0 repair",
+            "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "T/T48/T48n2003.xml",
@@ -158,7 +130,7 @@
           "ToLb": "0153a12",
           "Kwic": "。見道即忘言。若到這裏。還我第一機來始得。只這麻三斤。一似長安大路一條相似。舉足下足。無有不是。這箇話。與雲門餬餅話。是一般。不妨難會。五祖先師頌云。賤賣擔板漢。貼秤麻三斤。千百年滯貨。無處著渾身。爾但打疊得情塵意想。計較得失是非。一時淨盡自然會去。金烏急玉兔速善",
           "Curated": true,
-          "AttributionNote": "Source text (佛果圜悟禪師碧巖錄): biographical or documentary narrator bears the exact headword after complete-case review.",
+          "AttributionNote": "Source text (佛果圜悟禪師碧巖錄; T/T48/T48n2003.xml). Exact actor state: biographical or documentary narrator. The complete section confirms this attribution state.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",

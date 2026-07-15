@@ -2,20 +2,25 @@
   "Id": "t_bfef2fc85826",
   "SourceTerm": "參問",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
-  "CreatedBy": "Codex f004 lane B bulk evidence-first author",
-  "WrittenUtc": "2026-07-15T10:28:15.689574+00:00",
+  "CreatedBy": "Codex f004 B1031-1040 full-case repair author",
+  "WrittenUtc": "2026-07-15T15:42:24.584850+00:00",
   "Senses": [
     {
       "SenseKey": null,
       "MasterName": null,
-      "PreferredTarget": "to present a question",
-      "AlternateTargets": [],
+      "PreferredTarget": "to visit and question a teacher",
+      "AlternateTargets": [
+        "to consult a teacher",
+        "to present oneself for questioning"
+      ],
       "SearchAliases": [
-        "to present a question"
+        "to visit and question a teacher",
+        "to consult a teacher",
+        "to present oneself for questioning"
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "6 distinct work IDs selected after complete-context review.",
+      "Note": "6 curated occurrences retained after removing punctuation collisions and bare paratext; sources are counted by canonical work ID at validation.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -23,12 +28,19 @@
           "ToLb": "0027b19",
           "Kwic": "行矣。令拂拭所乘笋輿，乃書偈告眾曰：道在用處，用在死處。時人祇管貪歡樂，不肯學無為。敘平昔參問，勉眾進修已，忽豎起拳曰：諸人且道，這個落在甚麼處？眾無對。師揮案一下曰：一齊分付與秋風。遂入輿端坐而逝。婺州智者法銓禪",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the record compiler narrating the occurrence is the exact headword actor after reading the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianyi Ruzhe",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Kind": "biographical or case narration",
+            "ActorLabel": "the record compiler narrating the occurrence",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -38,11 +50,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete case was read for who utters 參問. This stored token is assigned to the record compiler narrating the occurrence; no record owner is substituted merely because the passage occurs in that owner's record.",
+            "ReviewedBy": "Codex f004 B1031-1040 source actor repair",
+            "ReviewedUtc": "2026-07-15T15:48:54.231393+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -50,12 +63,31 @@
           "ToLb": "0052a19",
           "Kwic": "甞召。師不奉詔。於是徧歷名迹。至嵩少。云。是吾終焉之地也。自爾禪者輻湊。有坦然．懷讓二僧來參問曰。如何是祖師西來意。師曰。何不問自己意。曰。如何是自己意。師曰。當觀密作用。曰。如何是密作用。師以目開合示之。然於言下",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (五燈會元; X/X80/X80n1565.xml). Exact actor: the lamp-record biographer describing Hui’an’s visitors. Complete-case grammar assigns this exact occurrence to the lamp-record biographer describing Hui’an’s visitors and preserves surrounding named figures separately.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tanan",
+              "Roles": [
+                "interlocutor"
+              ]
+            },
+            {
+              "MasterName": "Nanyue Huairang",
+              "Roles": [
+                "interlocutor"
+              ]
+            },
+            {
+              "MasterName": "Hui’an",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Status": "identified-non-master",
+            "Kind": "the lamp-record biographer describing Hui’an’s visitors",
+            "ActorLabel": "the lamp-record biographer describing Hui’an’s visitors",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -65,11 +97,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete source unit assigns the exact headword material to the lamp-record biographer describing Hui’an’s visitors.",
+            "ReviewedBy": "Codex reviewer10 repair author",
+            "ReviewedUtc": "2026-07-15T16:01:43.248201+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -77,12 +110,19 @@
           "ToLb": "0003b13",
           "Kwic": "。如是歷參五十四員善知識，皆法緣未契。最後至臨川謁法眼，眼一見深器之。師以徧涉叢林，亦倦於參問，但隨眾而已。一日，法眼上堂，僧問：如何是曹源一滴水？眼曰：是曹源一滴水。僧惘然而退。師於坐側豁然開悟，平生凝滯，渙若冰",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the record compiler narrating the occurrence is the exact headword actor after reading the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tiantai Deshao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Kind": "biographical or case narration",
+            "ActorLabel": "the record compiler narrating the occurrence",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -92,11 +132,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete case was read for who utters 參問. This stored token is assigned to the record compiler narrating the occurrence; no record owner is substituted merely because the passage occurs in that owner's record.",
+            "ReviewedBy": "Codex f004 B1031-1040 source actor repair",
+            "ReviewedUtc": "2026-07-15T15:48:54.231393+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -104,12 +145,19 @@
           "ToLb": "0543c13",
           "Kwic": "尚說法也。逾旬，果天龍和尚到菴。師乃迎禮，具陳前事。龍竪一指示之，師當下大悟。自此凡有學者參問，師惟舉一指，無別提唱。有一供過童子，每見人問事，亦竪指祇對。人謂師曰：和尚，童子亦會佛法。凡有問，皆如和尚竪指。師一日",
           "Curated": true,
-          "AttributionNote": "Source text (指月錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (指月錄): the record compiler narrating the occurrence is the exact headword actor after reading the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Juzhi",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Kind": "biographical or case narration",
+            "ActorLabel": "the record compiler narrating the occurrence",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -119,38 +167,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete case was read for who utters 參問. This stored token is assigned to the record compiler narrating the occurrence; no record owner is substituted merely because the passage occurs in that owner's record.",
+            "ReviewedBy": "Codex f004 B1031-1040 source actor repair",
+            "ReviewedUtc": "2026-07-15T15:48:54.231393+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
-        },
-        {
-          "RelPath": "L/L155/L155n1643.xml",
-          "FromLb": "0091b02",
-          "ToLb": "0091b08",
-          "Kwic": "云大眾既不迷惑因甚諸人進不得天童門見不得其中人且道利害抂甚麼處喝一喝云參罷各各歸堂󱘓茶。晚參問古鏡未磨時如何師云玲瓏嵒寺舊傳燈磨後如何師云法堂佛殿長相對此去漢陽不遠聻師云罕逢穿耳客多見刻舟人黃鶴樓歬鸚鵡洲又作麼生師",
-          "Curated": true,
-          "AttributionNote": "Source text (弘覺忞禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X79/X79n1559.xml",
@@ -158,12 +180,19 @@
           "ToLb": "0301b04",
           "Kwic": "雲方改變。少林風起叢，曹溪洞簾卷。金鳳宿龍巢，宸苔豈車碾。復指依圓通秀禪師。師至棲賢，無所參問，唯嗜睡而已。執事白秀云：堂中有僧日睡，當行規法。秀曰：是誰？云：義青上座。曰：未可，待與按過。秀即曳杖入堂，見師正睡，",
           "Curated": true,
-          "AttributionNote": "Source text (嘉泰普燈錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (嘉泰普燈錄): the record compiler narrating the occurrence is the exact headword actor after reading the complete case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Touzi Yiqing",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "documentary or narrator voice",
-            "ActorLabel": "documentary or narrator voice after complete-unit review",
+            "Kind": "biographical or case narration",
+            "ActorLabel": "the record compiler narrating the occurrence",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -173,11 +202,47 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-            "ReviewedBy": "Codex f004 lane B bulk full-context author",
-            "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
+            "GrammarEvidence": "The complete case was read for who utters 參問. This stored token is assigned to the record compiler narrating the occurrence; no record owner is substituted merely because the passage occurs in that owner's record.",
+            "ReviewedBy": "Codex f004 B1031-1040 source actor repair",
+            "ReviewedUtc": "2026-07-15T15:48:54.231393+00:00",
             "AuthoredVoiceRiskReviewed": true
-          }
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0484b10",
+          "ToLb": "0484b21",
+          "Kwic": "後年正月五日示寂。壽五十四。臈三十二。銘行實於興化。塔全身於石霜。琅邪慧覺禪師滁州琅邪山慧覺廣照禪師西洛人也。父為衡陽太守。因疾傾喪。師扶櫬歸洛過澧陽藥山古剎宛若夙居。緣此出家遊方參問。得法汾陽應緣滁水。與雪竇明覺同時唱道。四方皆謂二甘露門。逮今淮南遺化如在。僧問。如何是佛。師曰。銅頭鐵額。曰意旨如何。師曰。鳥嘴魚腮。上堂。奇哉十方佛元是眼中花。欲識眼中花元是十",
+          "Curated": true,
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Langya Huijue",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "the lamp-record biographer describing Langya Huijue",
+            "ActorLabel": "the lamp-record biographer describing Langya Huijue",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The complete source unit assigns the exact headword material to the lamp-record biographer describing Langya Huijue.",
+            "ReviewedBy": "Codex reviewer10 repair author",
+            "ReviewedUtc": "2026-07-15T16:01:43.248201+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "AttributionNote": "Source text (續傳燈錄; T/T51/T51n2077.xml). Exact actor: the lamp-record biographer describing Langya Huijue. Complete-case grammar assigns this exact occurrence to the lamp-record biographer describing Langya Huijue and preserves surrounding named figures separately."
         }
       ],
       "ClaimAnchors": [],
@@ -186,12 +251,12 @@
         "X/X80/X80n1565.xml",
         "X/X81/X81n1568.xml",
         "X/X83/X83n1578.xml",
-        "L/L155/L155n1643.xml",
-        "X/X79/X79n1559.xml"
+        "X/X79/X79n1559.xml",
+        "T/T51/T51n2077.xml"
       ],
       "RelatedMasters": [],
       "RelatedTerms": [],
-      "Explanation": "To present a question is the plain-English referent tested by the selected Chan records. The selected cases place to present a question inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition."
+      "Explanation": "To visit and question a lineage figure is not merely to ask for information. In these records the headword names the student's entry into a face-to-face encounter: Tanran and Huairang arrive and immediately ask the meaning of the ancestor's coming from the west, while Juzhi answers every visiting student's inquiry by raising one finger. Biographical uses also measure a student's career by whom he consulted, or pointedly say that he asked nobody. The word therefore marks public, answerable contact in which a student exposes his question."
     }
   ]
 }

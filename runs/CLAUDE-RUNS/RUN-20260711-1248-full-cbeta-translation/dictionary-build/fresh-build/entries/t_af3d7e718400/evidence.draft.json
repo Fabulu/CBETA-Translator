@@ -25,9 +25,13 @@
             "ToLb": "0049b18",
             "Kwic": "去此二途，請師一決。師曰：大黃、甘草。曰：此猶是學人疑處。師曰：放待冷來看。問：向上一路，千聖不傳。未審如何是向上一路？師曰：行到山窮處，坐看雲起時。曰：為甚不傳？師曰：家家有路透長安。曰：祇如衲僧門下，畢竟作麼生？師",
             "Curated": true,
-            "AttributionNote": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response.",
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor state: the unnamed questioner in the complete case. The complete section confirms this attribution state.",
             "ContextMasters": [],
             "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "the unnamed questioner in the complete case",
+              "ActorLabel": "the unnamed questioner in the complete case",
+              "ActorRole": "questioner",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -36,21 +40,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "unnamed questioner turn",
-              "ActorLabel": "the unnamed questioner in the complete case",
-              "ActorRole": "questioner",
-              "GrammarEvidence": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+              "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master.",
+              "ReviewedBy": "Codex f004 author cohort0 repair",
+              "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
+              "AuthoredVoiceRiskReviewed": true
             },
             "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "去此二途，請師一決。師曰：大黃、甘草。曰：此猶是學人疑處。師曰：放待冷來看。問：向上一路，千聖不傳。未審如何是向上一路？師曰：行到山窮處，坐看雲起時。曰：為甚不傳？師曰：家家有路透長安。曰：祇如衲僧門下，畢竟作麼生？師",
               "GrammaticalSubject": "the unnamed questioner in the complete case",
-              "SpeechFrame": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response.",
-              "FullCaseDecision": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+              "SpeechFrame": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master.",
+              "FullCaseDecision": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master."
             }
           },
           {
@@ -59,32 +59,21 @@
             "ToLb": "0594a11",
             "Kwic": "唱太平歌去。」下座。邑宰劉公同李太宰諸公請上堂邑宰劉公同李太宰諸公請上堂師云：「向上一路，千聖不傳，本分風光，須自領悟。山僧便恁麼下座，還有親切為人處也無？大眾便恁麼禮拜而退，還有不相孤負處也無？雖然，官不容針，正好添",
             "Curated": true,
-            "AttributionNote": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "section-resolved public address",
-              "ActorLabel": "the speaking record owner resolved from the complete section",
-              "ActorRole": "utterer",
-              "GrammarEvidence": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
-            },
-            "MasterName": null,
+            "AttributionNote": "Source text (天界覺浪盛禪師全錄; J/J34/J34nB311.xml). Exact speaker: Juelang Daosheng. The complete section confirms the headword-bearing turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Juelang Daosheng",
             "DraftActorProof": {
               "ExactHeadwordClause": "唱太平歌去。」下座。邑宰劉公同李太宰諸公請上堂邑宰劉公同李太宰諸公請上堂師云：「向上一路，千聖不傳，本分風光，須自領悟。山僧便恁麼下座，還有親切為人處也無？大眾便恁麼禮拜而退，還有不相孤負處也無？雖然，官不容針，正好添",
-              "GrammaticalSubject": "the speaking record owner resolved from the complete section",
-              "SpeechFrame": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-              "FullCaseDecision": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "The complete section assigns the exact headword-bearing turn to Juelang Daosheng.",
+              "FullCaseDecision": "The complete section assigns the exact headword-bearing turn to Juelang Daosheng."
             }
           },
           {
@@ -93,32 +82,21 @@
             "ToLb": "0008a16",
             "Kwic": "當流虹之瑞旦，慶萬世之昌期。然則蕢桴土鼓，共樂昇平；堯舜之君，猶有化在。所以道：向上一路，千聖不傳；萬仞崖頭，縱橫得妙。卓拄杖，云：將此身心奉塵剎，是則名為報國恩。天壽節，上堂。萬法是心光，諸緣惟性曉，本無迷悟人，只要",
             "Curated": true,
-            "AttributionNote": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "section-resolved public address",
-              "ActorLabel": "the speaking record owner resolved from the complete section",
-              "ActorRole": "utterer",
-              "GrammarEvidence": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
-            },
-            "MasterName": null,
+            "AttributionNote": "Source text (列祖提綱錄; X/X64/X64n1260.xml). Exact speaker: Lia'an Qingyu. The complete section confirms the headword-bearing turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Lia'an Qingyu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Lia'an Qingyu",
             "DraftActorProof": {
               "ExactHeadwordClause": "當流虹之瑞旦，慶萬世之昌期。然則蕢桴土鼓，共樂昇平；堯舜之君，猶有化在。所以道：向上一路，千聖不傳；萬仞崖頭，縱橫得妙。卓拄杖，云：將此身心奉塵剎，是則名為報國恩。天壽節，上堂。萬法是心光，諸緣惟性曉，本無迷悟人，只要",
-              "GrammaticalSubject": "the speaking record owner resolved from the complete section",
-              "SpeechFrame": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-              "FullCaseDecision": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
+              "GrammaticalSubject": "Lia'an Qingyu",
+              "SpeechFrame": "The complete section assigns the exact headword-bearing turn to Lia'an Qingyu.",
+              "FullCaseDecision": "The complete section assigns the exact headword-bearing turn to Lia'an Qingyu."
             }
           },
           {
@@ -127,32 +105,21 @@
             "ToLb": "0352c20",
             "Kwic": "不合掌者麼？有即尼乾歡喜，無即瞿曇惡發。心若無事，萬法不生。意絕玄微，纖塵何立？向上一路，千聖不傳。學者勞形，如猿捉影。山僧即不然，向下一路，千聖不然。學者勞形，如猿捉影。喝一喝。佛以一音演說法，眾生隨類各得解。且道晝",
             "Curated": true,
-            "AttributionNote": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "section-resolved public address",
-              "ActorLabel": "the speaking record owner resolved from the complete section",
-              "ActorRole": "utterer",
-              "GrammarEvidence": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
-            },
-            "MasterName": null,
+            "AttributionNote": "Source text (續古尊宿語要; X/X68/X68n1318.xml). Exact speaker: Ciming Chuyuan. The complete section confirms the headword-bearing turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Ciming Chuyuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Ciming Chuyuan",
             "DraftActorProof": {
               "ExactHeadwordClause": "不合掌者麼？有即尼乾歡喜，無即瞿曇惡發。心若無事，萬法不生。意絕玄微，纖塵何立？向上一路，千聖不傳。學者勞形，如猿捉影。山僧即不然，向下一路，千聖不然。學者勞形，如猿捉影。喝一喝。佛以一音演說法，眾生隨類各得解。且道晝",
-              "GrammaticalSubject": "the speaking record owner resolved from the complete section",
-              "SpeechFrame": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-              "FullCaseDecision": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
+              "GrammaticalSubject": "Ciming Chuyuan",
+              "SpeechFrame": "The complete section assigns the exact headword-bearing turn to Ciming Chuyuan.",
+              "FullCaseDecision": "The complete section assigns the exact headword-bearing turn to Ciming Chuyuan."
             }
           },
           {
@@ -161,9 +128,13 @@
             "ToLb": "0701a01",
             "Kwic": "養聖胎只待道果成熟汝今何不効他行取仁者可煞分明並無叅雜治生產業與諸實相不相違背。僧問如何是千聖不傳底事師云阿誰向你說進云與麼則信受奉行去也師云信得及者即行之信不及恰莫強為不是口頭說信便信得去如人說食終不得飽縱然口頭說飽",
             "Curated": true,
-            "AttributionNote": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response.",
+            "AttributionNote": "Source text (古尊宿語錄; C/C077/C077n1710.xml). Exact actor state: the unnamed questioner in the complete case. The complete section confirms this attribution state.",
             "ContextMasters": [],
             "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "the unnamed questioner in the complete case",
+              "ActorLabel": "the unnamed questioner in the complete case",
+              "ActorRole": "questioner",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -172,21 +143,17 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "unnamed questioner turn",
-              "ActorLabel": "the unnamed questioner in the complete case",
-              "ActorRole": "questioner",
-              "GrammarEvidence": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+              "GrammarEvidence": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master.",
+              "ReviewedBy": "Codex f004 author cohort0 repair",
+              "ReviewedUtc": "2026-07-15T16:41:19.006168+00:00",
+              "AuthoredVoiceRiskReviewed": true
             },
             "MasterName": null,
             "DraftActorProof": {
               "ExactHeadwordClause": "養聖胎只待道果成熟汝今何不効他行取仁者可煞分明並無叅雜治生產業與諸實相不相違背。僧問如何是千聖不傳底事師云阿誰向你說進云與麼則信受奉行去也師云信得及者即行之信不及恰莫強為不是口頭說信便信得去如人說食終不得飽縱然口頭說飽",
               "GrammaticalSubject": "the unnamed questioner in the complete case",
-              "SpeechFrame": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response.",
-              "FullCaseDecision": "The question frame assigns the exact headword token to the unnamed questioner before the recorded response."
+              "SpeechFrame": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master.",
+              "FullCaseDecision": "All six attribution rungs were checked; the source supplies only the unnamed questioner in the complete case, not a recoverable named master."
             }
           },
           {
@@ -195,32 +162,21 @@
             "ToLb": "0686c09",
             "Kwic": "酬唱，庶不負本分風光。有麼，有麼？人人頂上有金輪，萬古威靈光聖代。」邑宰請上堂：「向上一路千聖不傳，本分風光須自領悟。山僧恁麼下座，還有親切為人處也無？大眾便恁麼禮拜而退，還有不相孤負處也無？雖然官不容針、私通車馬，正",
             "Curated": true,
-            "AttributionNote": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "section-resolved public address",
-              "ActorLabel": "the speaking record owner resolved from the complete section",
-              "ActorRole": "utterer",
-              "GrammarEvidence": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
-            },
-            "MasterName": null,
+            "AttributionNote": "Source text (天界覺浪盛禪師語錄; J/J25/J25nB174.xml). Exact speaker: Juelang Daosheng. The complete section confirms the headword-bearing turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Juelang Daosheng",
             "DraftActorProof": {
               "ExactHeadwordClause": "酬唱，庶不負本分風光。有麼，有麼？人人頂上有金輪，萬古威靈光聖代。」邑宰請上堂：「向上一路千聖不傳，本分風光須自領悟。山僧恁麼下座，還有親切為人處也無？大眾便恁麼禮拜而退，還有不相孤負處也無？雖然官不容針、私通車馬，正",
-              "GrammaticalSubject": "the speaking record owner resolved from the complete section",
-              "SpeechFrame": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-              "FullCaseDecision": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "The complete section assigns the exact headword-bearing turn to Juelang Daosheng.",
+              "FullCaseDecision": "The complete section assigns the exact headword-bearing turn to Juelang Daosheng."
             }
           },
           {
@@ -229,32 +185,21 @@
             "ToLb": "0077b11",
             "Kwic": "。道本無名。因名而得號。若言即心即佛。今時未入玄微。若言非心非佛。猶是指蹤極則。向上一路。千聖不傳。學者勞形。如猿捉影。上堂。夫大道無中。復誰先後。長空絕際。何用稱量。空既如斯。道復何說。上堂。夫心月孤圓。光吞萬象。光",
             "Curated": true,
-            "AttributionNote": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "ReviewedBy": "Codex f004 lane A 926-950 full-case repair author",
-              "ReviewedUtc": "2026-07-15T16:45:00Z",
-              "AuthoredVoiceRiskReviewed": true,
-              "Status": "reviewed-unnamed",
-              "Kind": "section-resolved public address",
-              "ActorLabel": "the speaking record owner resolved from the complete section",
-              "ActorRole": "utterer",
-              "GrammarEvidence": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
-            },
-            "MasterName": null,
+            "AttributionNote": "Source text (五燈會元; X/X80/X80n1565.xml). Exact speaker: Qin Batuo. The complete section confirms the headword-bearing turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Qin Batuo",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Qin Batuo",
             "DraftActorProof": {
               "ExactHeadwordClause": "。道本無名。因名而得號。若言即心即佛。今時未入玄微。若言非心非佛。猶是指蹤極則。向上一路。千聖不傳。學者勞形。如猿捉影。上堂。夫大道無中。復誰先後。長空絕際。何用稱量。空既如斯。道復何說。上堂。夫心月孤圓。光吞萬象。光",
-              "GrammaticalSubject": "the speaking record owner resolved from the complete section",
-              "SpeechFrame": "The complete unit places the token inside the current record owner’s address rather than compiler narration.",
-              "FullCaseDecision": "The complete unit places the token inside the current record owner’s address rather than compiler narration."
+              "GrammaticalSubject": "Qin Batuo",
+              "SpeechFrame": "The complete section assigns the exact headword-bearing turn to Qin Batuo.",
+              "FullCaseDecision": "The complete section assigns the exact headword-bearing turn to Qin Batuo."
             }
           }
         ],
@@ -270,9 +215,9 @@
         ],
         "RelatedMasters": [],
         "RelatedTerms": [],
-        "Explanation": "千聖不傳 is “not transmitted by a thousand sages.” Records use the phrase in declarations and questions about what even the sages do not hand down; later quotations preserve the wording but belong to their immediate speakers.",
+        "Explanation": "not transmitted by a thousand sages is “not transmitted by a thousand sages.” Records use the phrase in declarations and questions about what even the sages do not hand down; later quotations preserve the wording but belong to their immediate speakers.",
         "ExplanationParts": {
-          "CorpusEarnedOpening": "千聖不傳 is “not transmitted by a thousand sages.” Records use the phrase in declarations and questions about what even the sages do not hand down; later quotations preserve the wording but belong to their immediate speakers.",
+          "CorpusEarnedOpening": "not transmitted by a thousand sages is “not transmitted by a thousand sages.” Records use the phrase in declarations and questions about what even the sages do not hand down; later quotations preserve the wording but belong to their immediate speakers.",
           "EvidenceBody": [
             "The exact stored witnesses delimit this use across the selected works."
           ]

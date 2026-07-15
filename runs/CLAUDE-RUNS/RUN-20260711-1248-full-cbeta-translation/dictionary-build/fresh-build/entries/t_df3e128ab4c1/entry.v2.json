@@ -31,56 +31,107 @@
           "FromLb": "0294b03",
           "ToLb": "0294b04",
           "Kwic": "曰如何是文殊師。師竪拂子示之。僧曰。莫遮箇是麼。",
-          "MasterName": "Nanta Guangyong",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Nanta Guangyong",
               "Roles": [
-                "utterer",
-                "respondent",
-                "section-subject"
+                "person-described",
+                "record-owner",
+                "respondent"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): Nanta Guangyong raises the whisk when the unnamed monk asks who Manjusri's teacher is."
+          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄), complete Nanta Guangyong encounter: the compiler narrates Nanta raising the whisk to show it after the monk asks about Manjusri's teacher.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Nanta Guangyong's lamp-record section",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師竪拂子示之 is a recorder-supplied action clause between the monk's question and response.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1997.xml",
           "FromLb": "0761b12",
           "ToLb": "0761b14",
-          "Kwic": "乃竪起拂子云。只這是要知示現受生麼。竪拂子云。只這是。",
-          "MasterName": "Yuanwu Keqin",
+          "Kwic": "竪拂子云。只這是。",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Yuanwu Keqin",
               "Roles": [
-                "utterer",
+                "person-described",
                 "record-owner"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "The cited recorded-sayings collection (圓悟佛果禪師語錄): Yuanwu Keqin raises the whisk, says \"just this is it,\" asks about manifestation and receiving birth, then raises it and repeats the answer."
+          "AttributionNote": "Recorded Sayings of Yuanwu Foguo (圓悟佛果禪師語錄), complete Vesak informal address: the compiler records Yuanwu raising the whisk, after which Yuanwu says, ‘Just this is it.’",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Yuanwu Keqin's recorded sayings",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "竪拂子云 is the action-and-speech marker; the headword is in the recorder's stage direction, while Yuanwu's quoted words begin with 只這是.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0129a07",
           "ToLb": "0129a07",
           "Kwic": "師竪拂子。僧曰。恁麼則得遇明君去也。",
-          "MasterName": "Zhaozhou Congshen",
+          "MasterName": null,
           "ContextMasters": [
             {
-              "MasterName": "Zhaozhou Congshen",
+              "MasterName": "Luopu Yuanan",
               "Roles": [
-                "utterer",
-                "respondent",
-                "section-subject"
+                "person-described",
+                "record-owner",
+                "respondent"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "The Compendium of the Five Lamps (五燈會元): Zhaozhou Congshen raises the whisk after the monk asks whether he will receive the person who sets the realm in order."
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), complete Luopu Yuanan section: the compiler narrates Luopu raising the whisk in response to the monk's question about receiving one who sets the realm in order. The prior attribution to Zhaozhou was a section-identification error.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Luopu Yuanan's lamp-record section",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師竪拂子 is unquoted action narration. The surrounding section heading is 澧州洛浦山元安禪師, not Zhaozhou.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1988.xml",
@@ -147,18 +198,35 @@
           "Kwic": "豎拂子，云：「大眾見麼？凍雞啼處家園曉，隱隱行人過雪山。」",
           "VariantForm": "豎拂",
           "EvidenceRole": "variant",
-          "MasterName": "Baiyu Jingsi",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Baiyu Jingsi",
               "Roles": [
-                "utterer",
+                "person-described",
                 "record-owner"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "The cited recorded-sayings collection (百愚禪師語錄): using the dominant written variant, Baiyu Jingsi raises the whisk, asks whether the assembly sees, and continues with his verse."
+          "AttributionNote": "Recorded Sayings of Chan Master Baiyu (百愚禪師語錄), complete hall address: the compiler narrates Baiyu raising the whisk; Baiyu then asks whether the assembly sees and gives a verse.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Baiyu Jingsi's recorded sayings",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "豎拂子，云 is the recorder's action-and-speech marker; Baiyu's quoted question begins after 云.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "J/J27/J27nB193.xml",
@@ -167,55 +235,106 @@
           "Kwic": "師豎拂子云：「會麼？」僧喝，師云：「再喝看。」僧又喝，師便打。",
           "VariantForm": "豎拂",
           "EvidenceRole": "variant",
-          "MasterName": "Yinyuan Longqi",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Yinyuan Longqi",
               "Roles": [
-                "utterer",
-                "respondent",
-                "record-owner"
+                "person-described",
+                "record-owner",
+                "respondent"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "The cited recorded-sayings collection (隱元禪師語錄): using the dominant written variant, Yinyuan Longqi raises the whisk as his answer to the new-command question, asks whether the monk understands, then tests the monk's repeated shouts."
+          "AttributionNote": "Recorded Sayings of Yinyuan (隱元禪師語錄), complete opening encounter: the compiler narrates Yinyuan raising the whisk in response to the new-command question; Yinyuan then asks whether the monk understands.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Yinyuan Longqi's recorded sayings",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "師豎拂子云 is a stage direction. Yinyuan performs the action, but his quoted token begins with 會麼.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "X/X70/X70n1397.xml",
           "FromLb": "0601a08",
           "ToLb": "0601a08",
           "Kwic": "竪拂子云：情塵未脫，有眼如盲。",
-          "MasterName": "Xueyan Zuqin",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Xueyan Zuqin",
               "Roles": [
-                "utterer",
+                "person-described",
                 "record-owner"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Xueyan Zuqin (雪巖祖欽禪師語錄): Xueyan Zuqin raises the whisk and says that while affective dust remains unfreed, having eyes is like blindness."
+          "AttributionNote": "Recorded Sayings of Xueyan Zuqin (雪巖祖欽禪師語錄), complete hall address: the compiler narrates Xueyan raising the whisk before Xueyan says that eyes are like blindness while affective dust remains unfreed.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Xueyan Zuqin's recorded sayings",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "竪拂子云 is a recorder-supplied stage direction; Xueyan's quoted verdict follows 云.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "X/X70/X70n1397.xml",
           "FromLb": "0601a18",
           "ToLb": "0601a19",
           "Kwic": "竪拂子，云：團團離海嶠，漸漸出雲衢。",
-          "MasterName": "Xueyan Zuqin",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Xueyan Zuqin",
               "Roles": [
-                "utterer",
+                "person-described",
                 "record-owner"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Xueyan Zuqin (雪巖祖欽禪師語錄): Xueyan Zuqin raises the whisk during a mid-autumn hall address and gives the verse line about the round moon leaving the sea peaks and emerging from the cloud road."
+          "AttributionNote": "Recorded Sayings of Xueyan Zuqin (雪巖祖欽禪師語錄), complete mid-autumn address: the compiler narrates Xueyan raising the whisk before Xueyan gives the line about the round moon emerging from the clouds.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "compiler of Xueyan Zuqin's recorded sayings",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "竪拂子，云 is a recorder-supplied stage direction; Xueyan's moon verse follows 云.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         }
       ],
       "SourceTexts": [

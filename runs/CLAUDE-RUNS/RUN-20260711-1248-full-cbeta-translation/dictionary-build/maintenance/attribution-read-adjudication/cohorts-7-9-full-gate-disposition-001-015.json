@@ -1,0 +1,36 @@
+{
+  "actionableCurrentFailures": 0,
+  "phases": {
+    "occurrenceIdentity": "115/115 v6-bound after the 梁武帝 title recut",
+    "exactKwic": "all occurrences verify with exact FromLb/ToLb after updating 梁武帝 ToLb to 0405c06",
+    "attributionNonRoster": "0 hard failures",
+    "publicFeedback": "15/15 pass after evidence-specific WORK.md ledgers for 四料揀, 便打, and 思量",
+    "depthSense": "0 hard failures; nine broad-concordance flags remain review notices, not hard failures",
+    "countClaims": "0 mismatches after frozen-corpus refreshes for 傳衣鉢, 付衣鉢, and 隨眾參請",
+    "workSourceValidation": "0 hard failures",
+    "corpusBaseline": "0 hard failures"
+  },
+  "strictRosterComparison": {
+    "priorHeadSnapshot": {
+      "report": "cohorts-7-9-strict-audit-001-015-prior-head.json",
+      "hardFailures": 78,
+      "kinds": {
+        "noncanonical_context_master_name": 32,
+        "noncanonical_master_name": 18,
+        "named_master_missing_structured_link": 14,
+        "noncanonical_related_master": 13,
+        "action_performer_context_missing": 1
+      }
+    },
+    "current": {
+      "report": "cohorts-7-9-strict-audit-001-015-bound.json",
+      "hardFailures": 52,
+      "kinds": {
+        "noncanonical_context_master_name": 27,
+        "noncanonical_master_name": 17,
+        "noncanonical_related_master": 8
+      }
+    },
+    "disposition": "Every remaining strict-roster failure was already present in the preserved HEAD snapshot. The read repair removed all 15 actor/link failures and five stale non-master RelatedMasters; it introduced no new strict-roster failure. The remaining truthful names require the separately active roster integration and are not waived, renamed, or treated as independently reviewable roster links here."
+  }
+}

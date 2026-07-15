@@ -1,0 +1,11 @@
+from pathlib import Path
+import datetime,hashlib,json,subprocess,sys
+R=Path(__file__).resolve().parents[2];H=R/'fresh-build/waves';sys.path.insert(0,str(R));import zc
+NOW=datetime.datetime.now(datetime.timezone.utc).isoformat();RUNGS=['line','expanded-context','section-header','book-title','tei-header','parallel-passage'];eid='t_7a77e6c1d8d8';b=R/'fresh-build/entries'/eid;wp=b/'evidence.draft.json';w=json.loads(wp.read_text());e=w['Entry'];o=e['Senses'][0]['Occurrences'][2];name='Guishan Xiaojin'
+o['MasterName']=name;o.pop('ActorAttribution',None);o['ContextMasters']=[{'MasterName':name,'Roles':['utterer']}];proof=f'The complete exchange assigns the answer “Chaofu waters the ox” to {name}; the preceding monk asks the question.';o['AttributionNote']=f'Source text ({zc.title(o["RelPath"])}; {o["RelPath"]}). Exact actor: {name}. {proof}';o['DraftActorProof']={'ExactHeadwordClause':o['Kwic'],'GrammaticalSubject':name,'SpeechFrame':proof,'FullCaseDecision':proof}
+w['Entry']=e;wp.write_text(json.dumps(w,ensure_ascii=False,indent=2)+'\n');ep=b/'entry.v2.json';rp=b/'b1100-repair-compile.json';q=subprocess.run([sys.executable,str(R/'compile_evidence_draft.py'),str(wp),'--output',str(ep),'--report',str(rp)],text=True,capture_output=True)
+if q.returncode:raise SystemExit(q.stdout+q.stderr)
+pp=R/'fresh-build/pending-roster.json';pd=json.loads(pp.read_text());have={x['canonicalName'] for x in pd['candidates']}
+if name not in have:pd['candidates'].append({'canonicalName':name,'aliases':[name],'evidence':[{k:o[k] for k in ('RelPath','FromLb','ToLb','Kwic')}],'reviewedBy':'Codex f004 final remainder repair','reviewReport':'fresh-build/waves/f004-b1041-1100-independent-rereview-f004.json','status':'awaiting-roster-integration'});pp.write_text(json.dumps(pd,ensure_ascii=False,indent=2)+'\n')
+row={'ordinal':1100,'id':eid,'term':'巢父','occurrences':5,'entrySha256':hashlib.sha256(ep.read_bytes()).hexdigest(),'worksheetSha256':hashlib.sha256(wp.read_bytes()).hexdigest(),'compileHardPass':True}
+(H/'f004-b1100-independent-rereview-author-repair-remainder.json').write_text(json.dumps({'schemaVersion':1,'generatedUtc':NOW,'sourceReview':'f004-b1041-1100-independent-rereview-f004.json','entries':[row],'selfReview':False,'promoted':False},ensure_ascii=False,indent=2)+'\n');print(json.dumps(row,ensure_ascii=False))

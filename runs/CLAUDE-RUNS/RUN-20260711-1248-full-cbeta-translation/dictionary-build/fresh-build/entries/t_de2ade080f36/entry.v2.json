@@ -28,7 +28,7 @@
           "ToLb": "0261c26",
           "Kwic": "。僧參方展坐具。師曰緩緩。僧曰。和尚見什麼。師曰。可惜許磕破鐘樓。其僧從此悟入。一日觀察使裴休訪之問曰。師還有侍者否。師曰。有一兩箇。裴曰。在什麼處。師乃喚大空小空。時二虎自庵後而出。裴覩之驚悸。師語二虎曰。有客且",
           "Curated": true,
-          "AttributionNote": "The compiler narrates 觀察使裴休訪之問曰; Pei’s name is the narrated subject, while his later question follows after 問曰.",
+          "AttributionNote": "Source text (景德傳燈錄): The compiler introduces the visit by naming Surveillance Commissioner Pei Xiu; Pei is the narrated subject, and his direct question begins afterward.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -56,7 +56,7 @@
           "ToLb": "0445c22",
           "Kwic": "千八部之眾。禪偈撮略，就此方一類之機。羅眾則莽蕩難依，就機則指的易用。今之纂集，意在斯焉。裴休為之序曰：諸宗門下，皆有達人。然各安所習，通少局多。故數十年來，師法益壞。以承稟為戶牖，各自開張。以經論為干戈，互相攻擊",
           "Curated": true,
-          "AttributionNote": "The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token.",
+          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): The compiler introduces Pei Xiu as the writer of the preface; Pei owns the quoted preface that follows, but the selected name token belongs to the compiler's introduction.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -84,7 +84,7 @@
           "ToLb": "0063c07",
           "Kwic": "千八部之眾。禪偈撮略。就此方一類之機。羅眾則莾蕩難依。就機則指的易用。今之纂集。意在斯焉。裴休為之序曰。諸宗門下。皆有達人。然各安所習。通少局多。故數十年來。師法益壞。以承稟為戶牖。各自開張。以經論為干戈。互相攻擊",
           "Curated": true,
-          "AttributionNote": "The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token.",
+          "AttributionNote": "Source text (五燈會元): The compiler introduces Pei Xiu as the writer of the preface; Pei owns the quoted preface that follows, but the selected name token belongs to the compiler's introduction.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -112,7 +112,7 @@
           "ToLb": "0616c07",
           "Kwic": "千八部之眾。禪偈撮略，就此方一類之機。羅眾則莾蕩難依，就機則指的易用。今之纂集，意在斯焉。裴休為之序曰：諸宗門下，皆有達人。然各安所習，通少局多。故數十年來，師法益壞。以承稟為戶牖，各自開張。以經論為干戈，互相攻擊",
           "Curated": true,
-          "AttributionNote": "The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token.",
+          "AttributionNote": "Source text (五燈嚴統(第1卷-第9卷)): The compiler introduces Pei Xiu as the writer of the preface; Pei owns the quoted preface that follows, but the selected name token belongs to the compiler's introduction.",
           "ContextMasters": [],
           "ActorAttribution": {
             "Status": "narrated",
@@ -133,6 +133,56 @@
             "AuthoredVoiceRiskReviewed": true
           },
           "MasterName": null
+        },
+        {
+          "RelPath": "X/X84/X84n1580.xml",
+          "FromLb": "0223b04",
+          "ToLb": "0223b05",
+          "Kwic": "黃檗朗聲曰：裴休！公應諾。黃檗曰：在甚麼處？",
+          "MasterName": "Huangbo Xiyun",
+          "Curated": true,
+          "AttributionNote": "Source text (教外別傳): The exact headword speaker is Huangbo Xiyun. Huangbo loudly calls Pei Xiu by name; Pei answers, and Huangbo asks where he is.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Pei Xiu",
+              "Roles": [
+                "interlocutor",
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X87/X87n1620.xml",
+          "FromLb": "0187b13",
+          "ToLb": "0187b15",
+          "Kwic": "公一日拓一尊佛於黃檗前，跪曰：請師安名。黃檗召曰：裴休。公應諾，黃檗曰：與汝安名竟。公禮拜。",
+          "MasterName": "Huangbo Xiyun",
+          "Curated": true,
+          "AttributionNote": "Source text (先覺宗乘): The exact headword speaker is Huangbo Xiyun. When Pei asks him to name a painted Buddha, Huangbo calls Pei's own name and declares the naming complete.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huangbo Xiyun",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Pei Xiu",
+              "Roles": [
+                "interlocutor",
+                "person-discussed"
+              ]
+            }
+          ]
         }
       ],
       "ClaimAnchors": [],
@@ -142,9 +192,11 @@
         "X/X80/X80n1565.xml",
         "X/X80/X80n1568.xml"
       ],
-      "RelatedMasters": [],
+      "RelatedMasters": [
+        "Huangbo Xiyun"
+      ],
       "RelatedTerms": [],
-      "Explanation": "裴休 is Pei Xiu, the Tang official recorded as a lay questioner and preface writer. In the Chuandeng lu he visits a hermitage, asks whether the resident has attendants, and recoils when two tigers appear. Three later lamp compilations transmit the notice 裴休為之序曰 and the same signed preface, where Pei describes separate inherited teachings as doorways and scriptures and treatises as weapons in mutual attack. Those three are parallel witnesses to one preface, not three independent events."
+      "Explanation": "Pei Xiu (裴休) is the Tang official whom Chan records deploy as a lay questioner, patron, student of Huangbo Xiyun, and preface writer. He visits Hualin Shanjue and questions him after two tigers answer the master's call. Other records show Huangbo loudly calling 'Pei Xiu!' and questioning where he is, and later using the same name as the answer when Pei asks him to name a painted Buddha. Three lamp compilations also transmit Pei's preface on the damage caused when inherited teachings become competing doorways and weapons. Those parallel prefaces are one event, while the two added Huangbo exchanges supply distinct public uses of his name."
     }
   ]
 }

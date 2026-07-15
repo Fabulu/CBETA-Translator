@@ -44,12 +44,13 @@
           "ToLb": "0008c19",
           "Kwic": "，請師不答。師曰：好箇師僧子。曰：恁麼則禮拜去也。師曰：不要三拜，盡汝一生去。眾參次，師指香爐曰：汝諸人還見麼？若見，一時禮拜，各自歸堂。僧問：至道無言，借言顯道。如何是顯道之言？師曰：切忌揀擇。曰：如何是不揀擇？",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統): the compiler narrates Daoxian pointing to an incense burner and asking whether the assembly sees it.",
+          "AttributionNote": "Five Lamps Strictly Unified (五燈嚴統): the compiler narrates Yongming Daoqian pointing to the incense burner; Daoqian’s spoken question begins after 曰.",
           "ContextMasters": [
             {
               "MasterName": "Yongming Daoqian",
               "Roles": [
-                "case-figure"
+                "action-performer",
+                "record-subject"
               ]
             }
           ],
@@ -112,8 +113,16 @@
           "ToLb": "0397c06",
           "Kwic": "鐘送黃昏鷄報曉，趙州何用閒煩惱？裂破虗空作兩邊，古廟香爐出芝艸。",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): the compiler preserves a verse in which fungus grows from an old-temple incense burner.",
-          "ContextMasters": [],
+          "AttributionNote": "Mirror of the Lineage (宗鑑法林): an unattributed verse in the Zhaozhou section names Zhaozhou and says fungus grows from an old-temple incense burner.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "verse-subject",
+                "section-master"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiled verse",

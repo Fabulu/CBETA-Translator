@@ -108,16 +108,34 @@
           "ToLb": "0067a21",
           "Kwic": "吞。教覺苑如何即得？會麼？不免與麼去。遂以兩手按空，下座。僧問：如何是奪人不奪境？師曰：惺惺寂寂。曰：如何是奪境不奪人？師曰：寂寂惺惺。曰：如何是人境",
           "Curated": true,
-          "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); Jiuxian Faqing Zujian owns the exact evidence clause after complete-case review.",
+          "AttributionNote": "Source text; an unnamed monastic questioner utters the headword. The complete case was read before attribution.",
           "ContextMasters": [
             {
               "MasterName": "Jiuxian Faqing Zujian",
               "Roles": [
-                "utterer"
+                "respondent",
+                "section-subject"
               ]
             }
           ],
-          "MasterName": "Jiuxian Faqing Zujian"
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問 owns 奪人不奪境; Jiuxian’s reply starts after 師曰.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:02:59.238824+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "C/C077/C077n1710.xml",

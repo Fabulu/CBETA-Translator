@@ -11,3 +11,5 @@ lookup-probes: ceremonial scepter, ruyi, teaching scepter, wish fulfilling objec
 opening-interpretation-verdict: licensed from the stored exact predicates and deployment frames; scope is the stored corpus-wide sense; the limit is recorded in DraftEvidence.
 family-comparison: keep — longer compounds were checked and excluded from standalone depth.
 searchability-probes: ceremonial scepter, ruyi, teaching scepter, wish fulfilling object
+sense-target-distinguishability: three different referents survive full-case review — a handled teaching scepter, a wish-fulfilling jewel in 如意寶, and the proper place-name Ruyi Cloister; none is merely a grammatical or paraphrastic variant of another.
+family-definition-retest: the earlier one-sense draft was rejected because it stored jewel and monastery evidence under the implement sense; all seven verified occurrences are now assigned to the thing they actually denote.

@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T17:46:44.979376+00:00",
+  "role": "repair-author",
+  "scope": "checkpoint2-and-checkpoint3 newer independent rereview REVISE staging",
+  "sourceReviewBindings": {
+    "f004-b1052-1072-independent-rereview.json": {
+      "sha256": "ad8529f1bbbd5d066991f869b5ecb102784dd9c11e6776b0d3ab405a6c328e1b",
+      "keep": 3,
+      "revise": 7
+    },
+    "f004-b1073-1099-independent-rereview.json": {
+      "sha256": "6277a86a2bd17d52823e84c77aa35385a0e034dc10ef35ff41fb7c1066499531",
+      "keep": 2,
+      "revise": 8
+    }
+  },
+  "counts": {
+    "entries": 15,
+    "checkpoint2": 7,
+    "checkpoint3": 8
+  },
+  "repairOrder": [
+    1052,
+    1057,
+    1059,
+    1060,
+    1066,
+    1067,
+    1072,
+    1073,
+    1079,
+    1083,
+    1087,
+    1088,
+    1091,
+    1097,
+    1099
+  ],
+  "entries": [
+    {
+      "ordinal": 1052,
+      "id": "t_4db0d950f314",
+      "term": "白居易",
+      "reviewedEntrySha256": "6a759706d6239ad9d6deceb83f52bc6be8bf8126b227ce6baf3b2c50afa9c399",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense",
+        "recurrence-or-depth"
+      ],
+      "findings": [
+        "o2 is compiler narration ('元和中白居易出守茲郡'), not an unnamed monastic questioner. The question begins only after the narrator introduces Bai Juyi, so its ActorAttribution assigns the headword to the wrong grammatical actor.",
+        "o3 begins with narration and later has Bai identify himself as 白居易. If retained as one span, it contains both narrator and Bai voices; the headword-bearing occurrence must be cut or explicitly anchor which token supplies the evidence.",
+        "The Bai Juyi figure sense holds, but three witnesses repeat the same Bird's-Nest exchange. State the recurrence honestly and distinguish Bai's own quoted name/questions from compiler introductions."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1057,
+      "id": "t_4c1448553bb6",
+      "term": "拍禪床",
+      "reviewedEntrySha256": "f8c295d9833cbbfd43e2eb39eb98259865a2d640c5664d7f3af94f31e45351eb",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "o1 explicitly introduces Baoning Yong's snow hall address ('保寧勇禪師因雪，上堂') and the same named master performs 拍禪床 before descending. It is not an unnameable compiler action.",
+        "The other five named direct actions support the teaching-seat implementation and public-response prose. Repair o1's exact actor and add the section master to ContextMasters without changing the well-supported sense."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1059,
+      "id": "t_afade752976d",
+      "term": "威音那畔",
+      "reviewedEntrySha256": "a4d983fc9740a7ab4df2ca70156b73697bcf82783ca05b9c033d4ceed013e781",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "All six exact actors are named and the passages place the phrase beyond/before current temporal and teaching frames, but none of the selected occurrences defines Awesome-Voice as 'the earliest named Buddha.' That external superlative must be anchored from this corpus or removed.",
+        "The explanation says masters use it in questions whose answers test the demand, while the stored evidence consists chiefly of formal addresses, incense wording, and declarative contrasts. Describe those attested deployments instead of an absent question-answer pattern."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1060,
+      "id": "t_d01493daf491",
+      "term": "關捩",
+      "reviewedEntrySha256": "679e001c76ba74bb908ac8fcd20bae1bd515bac4d37c13e4bb4c4c4d264090a9",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense",
+        "recurrence-or-depth"
+      ],
+      "findings": [
+        "o3 repeats Juelang Daosheng's '撥轉上頭關捩子，大千法界現全機' address from another Juelang record, but labels the voice an unnamed compiler. The exact utterer is recoverable from the uninterrupted address.",
+        "The J34 and J25 witnesses are not independent semantic deployments merely because they have different work IDs: they reproduce the same speaker and wording. Re-grade source independence after controlling this duplicate-record family.",
+        "The pivotal-catch sense is supported by the remaining direct masters, but 'makes the whole exchange turn' is broader than several occurrences; tether the explanation to turning/operating the named 關捩 and the explicit failure of the mechanism to turn."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1066,
+      "id": "t_0051fc72360c",
+      "term": "臨濟四喝",
+      "reviewedEntrySha256": "b13b929dedebdbee3c4b0f93b0e41be0e6afe9a317a282ffff7e7c2932980418",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice"
+      ],
+      "findings": [
+        "o5 is inside Chaozong Tongren's direct 小參: he himself says '又僧問雪峰：臨濟四喝...' and comments on it. It is not speech by an unnameable compiler.",
+        "o2 introduces a named commentary voice ('起綱宗云') before the headword, while o3 is compilation exposition. Resolve the named commentator and preserve the distinction between original question, later exposition, authored verse, and Chaozong's direct raising.",
+        "The four-shouts lexical unit and enumeration are supported by the authored verse, but the actor repair must land before promotion."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1067,
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "reviewedEntrySha256": "9fd4d040b55ae48e962ef57e5e52be63b48391037e1ad7873dd55bd8abce0ee9",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "o1 is a signed 金陵語錄序 by the lay disciple Li Pan ('淮南弟子李盤拜題'), not an unnameable compiler. Its praise of Juelang must name Li Pan as exact author and Juelang as person described.",
+        "o3 is direct speech in Miyun Yuanwu's record explaining Mazu's great function/use, not compiler narration. The complete address identifies the record owner as utterer.",
+        "The gloss imports 'responsive capacity' and 'whole mechanism' where the sources variously praise a master's entire activity and demand great use. Tighten the inference to the observable 全/機/大用 wording and named deployments."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1072,
+      "id": "t_c49116ead4fc",
+      "term": "睦州擔板",
+      "reviewedEntrySha256": "efaeb311f9133a02c21564145f88332e43c1da0effb3080bb6fa27996ce5ca47",
+      "sourceReview": "f004-b1052-1072-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "The explanation's central negative claim is false: o2 explicitly glosses the image in verse as '睦州檐板漢，擔來見一邊'—the board carrier carries it and sees one side. The entry says the witnesses do not supply a one-sided-vision gloss, but its own defining occurrence does.",
+        "Revise the interpretation from this corpus evidence, preserving the named stock phrase and explicitly anchoring the one-side inference to o2 rather than importing it from an outside dictionary.",
+        "o4 and o5 are later compiler/commentary uses, while o1 and o3 are direct Dahui and Liao'an deployments; keep those voice distinctions during repair."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1073,
+      "id": "t_27a6c937c485",
+      "term": "種草",
+      "reviewedEntrySha256": "5fc18d3b5a011c5e875bb7ad6c04539d39bb9f4409a14dece173d577bf626414",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "semantic-prose-or-sense",
+        "recurrence-or-depth"
+      ],
+      "findings": [
+        "o1 uses 種草 literally in '綠雖千種草，香祇一株蘭'; it does not denote lineage seed-stock. The entry merges an ordinary plant occurrence with the separately attested human/lineage-stock use.",
+        "Split or remove the literal witness, then re-test source depth for the Zen-loaded human-stock sense. The remaining passages support stock, seed, and succession language applied to people."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1079,
+      "id": "t_564a5efaf79e",
+      "term": "擲拂子",
+      "reviewedEntrySha256": "1900e19633a17b7d31e175a5d9400d79663ba0432a51053c98b3789a97e11dcc",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice"
+      ],
+      "findings": [
+        "The six passages attest a public teaching-seat action, commonly immediately before 下座, but 'embodying the response' assigns an inward semantic job the action itself does not establish.",
+        "Describe the observable deployment: the master throws down the whisk to punctuate or terminate the address. Preserve the named actors and exact action anchors."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1083,
+      "id": "t_5342014cb2ee",
+      "term": "土地堂",
+      "reviewedEntrySha256": "dcafde67b8182b453aea467793eaae0a62c2ffe2251a09bd12d9e2571e3b4519",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "The hall/building sense holds, but the explanation claims the witnesses locate meetings and lodging there. The selected cases instead show institutional rules, incense/rite occasions, headings, and one answer naming the hall.",
+        "Rewrite the deployment account to match those observable institutional and ritual uses; do not infer lodging or meetings from the building label alone."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1087,
+      "id": "t_3f62599f5960",
+      "term": "出身之路",
+      "reviewedEntrySha256": "86a203280a04d27fda503d23cb6e9aa4d83018b5c4e365e6634003c9e8a7b9b1",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "o3 is in a signed preface ending '住金陵比丘大成題'; the exact author is Dacheng, not Zongjian Falin. The book title names the compilation, not this headword's utterer.",
+        "The prose overstates a recurrent question-answer test: the evidence also includes appraisals, declarations, and compiler introduction. Retain the emergence/way-out sense but enumerate the attested deployment types."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1088,
+      "id": "t_c5e3106c0483",
+      "term": "調達謗佛",
+      "reviewedEntrySha256": "5c538e8bd29faa618b0177723d302beaa637f9f296e17431d755574930cce5d7",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense"
+      ],
+      "findings": [
+        "Several occurrences are titled verses inside named masters' records and require recovery of the verse author rather than the generic compiler label; the current attribution review stops at the anthology surface.",
+        "The sources visibly raise, verse, or comment on the Devadatta-slanders-Buddha case. Tighten 'distinguished or implicated' to those observable deployments unless an explicit passage supplies that interpretive contrast."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1091,
+      "id": "t_020169e22fdb",
+      "term": "戒和尚",
+      "reviewedEntrySha256": "0abbf4eac9e9623133cbe8753e39cce5531e2e1c7ab8974ce5f00d5176197ba0",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice",
+        "semantic-prose-or-sense",
+        "recurrence-or-depth"
+      ],
+      "findings": [
+        "o0 is direct incense-address wording by Zhufeng Min, not generic compiler narration. o2 stores overlapping evidence from the same passage and same work, so the pair is not two independent attestations.",
+        "The verse/portrait headings in o3-o4 also require author recovery from their named record contexts. Keep the distinct ordination-preceptor sense, deduplicate the Zhufeng witness, and refill depth from independent cases."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1097,
+      "id": "t_4f3cd3b1c155",
+      "term": "趙州橋",
+      "reviewedEntrySha256": "8415411dd29ebc13116f0b5323dd63348835bb7b7674ef0792b266853ecff58e",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice"
+      ],
+      "findings": [
+        "o4 occurs in an unnamed monk's direct question to Wuzu Fayan within Lingyin Xuanben's biography. Lingyin Xuanben is the section subject, not the utterer of the headword.",
+        "The bridge case and its donkey-and-horse answer are well supported. Repair the exact speaker and retain later verse/direct raisings as distinct deployment types."
+      ],
+      "status": "staged-unedited"
+    },
+    {
+      "ordinal": 1099,
+      "id": "t_1b3edad858f5",
+      "term": "靠拄杖",
+      "reviewedEntrySha256": "f641bf8b54aafcc45359c96a0135857bb56707039b714c5e715d35f788b7d025",
+      "sourceReview": "f004-b1073-1099-independent-rereview.json",
+      "repairKinds": [
+        "exact-actor-or-voice"
+      ],
+      "findings": [
+        "o1 belongs to 呆庵莊禪師's address, not Yuanwu Keqin. The following 愚庵及 address starts only after 靠拄杖.",
+        "o5's exact action belongs to 鈍庵宗頴, not Shian Zhishao; the surrounding section transition makes the current actor assignment unsafe.",
+        "The public teaching action and authority-bearing staff inference hold after these actor repairs."
+      ],
+      "status": "staged-unedited"
+    }
+  ],
+  "entryEditsMade": false,
+  "readyForNextRepair": true,
+  "selfReview": false,
+  "promoted": false,
+  "merged": false,
+  "siteTouched": false
+}

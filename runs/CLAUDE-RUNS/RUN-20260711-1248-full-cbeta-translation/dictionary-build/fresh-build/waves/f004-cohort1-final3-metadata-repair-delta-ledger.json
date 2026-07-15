@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "f004-cohort1-final3-metadata-repair-delta-v1",
+  "sourceReview": "fresh-build/waves/f004-cohort1-round5-residual-repair-independent-rereview-f004_final3.json",
+  "sourceReviewSha256": "393558e5c49ad7c8b56c00e45b28c8f334fcc59b5ab05c2dd6b0d1b3f22a283e",
+  "repairAuthor": "Codex worker f004_final3_rereview in subsequent repair-author role",
+  "selfReview": false,
+  "selfPromotion": false,
+  "repairScript": "fresh-build/waves/repair_f004_final3_context_metadata.py",
+  "repairedEntries": 3,
+  "rows": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "rejectedSha256": "2ffc40f56bdeb0bf5ab83d0b978eea2c29245a3166103e997ec4202307d7da5f",
+      "repairedSha256": "c01c01bd259285f2aa75657e7481dac1cf8f9b1e1462fe5dff5dcdaf67d14fd5",
+      "worksheetSha256": "cadbf48b260b9feba71d45a351773c554f3aa9141f7f2e598e5e12ce98d03f73",
+      "compileReportSha256": "d8ec61c2b4229c7437b2f9a4343cc6743a4dfc1624fa1024a759b8bffda810fb",
+      "occurrences": 7,
+      "repairs": [
+        "Occurrence 3 now identifies the unnamed monk as respondent to Baizhang's question, with specific exact-turn proof rather than the incorrect questioner role.",
+        "Occurrence 3 now preserves Jingqing Daofu, Gushan Shenyan, and Yuanwu Keqin as later quoters/commentators alongside the already retained Baizhang and Guishan context.",
+        "Occurrences 2 and 4 now preserve source-proven Pizao Duo as case figure/person discussed while retaining Nanyang Huizhong as exact poem utterer.",
+        "RelatedMasters was recomputed from all exact utterers and ContextMasters."
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "rejectedSha256": "4e372f951a97f1c9489ff94e60ffcb7c098a85d78cb6a9b0528bf6bae32edd3c",
+      "repairedSha256": "938569daac50c4e6dc467d60ea937969d7f102d2d4cb08323329f88ca4bebf6e",
+      "worksheetSha256": "00567b9c06b497a623e7b9b3ca17798532c8c91276176009f455b420e738437b",
+      "compileReportSha256": "abcd86caf77ef9094b08a1225b6bbee25b61227f35072922c9f44cbea9db9ef2",
+      "occurrences": 7,
+      "repairs": [
+        "RelatedMasters now includes Zhongfeng Mingben, matching occurrence 1's exact self-eulogy utterer.",
+        "All seven occurrence bytes, exact actors, sense prose, and prior residual repairs were otherwise preserved through evidence-first recompilation."
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "rejectedSha256": "2ae08f1b78c33be02ddafcaaf704b4dcb0d01619413593a8709c3a68616d4c85",
+      "repairedSha256": "8faa8864a6a624761b39e0da540dac8bb6e7dff50e11b319e9c34fb9590befd5",
+      "worksheetSha256": "df98d73c006a0e735916af0721204292211c0879d5a3558e7027cd34c81d5938",
+      "compileReportSha256": "37d38468dd1af2bf466c9ff31f5e4af8201503397fd748882dbc5d4ec94c799a",
+      "occurrences": 6,
+      "repairs": [
+        "Each of the six comparison witnesses now preserves Linji Yixuan and Deshan Xuanjian as case figures without assigning either backward as the current utterer.",
+        "RelatedMasters now includes the two case figures and Tiantong Pu, matching all structured occurrence identities.",
+        "All six exact utterer decisions, spans, paired-formula sense, and prior residual repairs were otherwise preserved."
+      ]
+    }
+  ],
+  "authoringRisk": {
+    "path": "fresh-build/waves/f004-cohort1-final3-metadata-repair-authoring-risk.json",
+    "sha256": "70c7f1eaf3d65cf9d0442680b3bf74644ef7d221c62c936d9ba06687a68385bc",
+    "passing": 3,
+    "flagged": 0
+  },
+  "preReview": {
+    "path": "fresh-build/waves/f004-cohort1-final3-metadata-repair-pre-review.json",
+    "sha256": "f41f4b824d0df7385d6942197b9a5a73bf0dd5d70190cef45ea97c361a16c299",
+    "hardPass": true,
+    "exactKwic": 20,
+    "exactFailures": 0
+  },
+  "compositeGate": {
+    "path": "fresh-build/waves/f004-cohort1-final3-metadata-repair-composite.json",
+    "sha256": "84eea034b5f80efdcbdec3315320dfdcad419749ba8132e502f3c1ecc00495b3",
+    "hardPass": true,
+    "exactKwic": 20,
+    "exactFailures": 0,
+    "strictRoster": true,
+    "attributionPacketGeneratorVersion": 5
+  },
+  "independentRereviewRequired": true,
+  "promoted": false,
+  "merged": false,
+  "published": false
+}

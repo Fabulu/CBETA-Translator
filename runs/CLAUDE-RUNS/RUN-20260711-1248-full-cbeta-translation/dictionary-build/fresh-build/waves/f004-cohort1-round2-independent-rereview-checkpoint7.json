@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-round2-hash-bound-full-case-rereview",
+  "reviewer": "review_author_cohort1",
+  "generatedUtc": "2026-07-15T17:55:47.209728+00:00",
+  "sourceLedger": "f004-cohort1-round2-final-ledger.json",
+  "sourceLedgerSha256": "7b624cc7a94daa92856a5282774b1a80ef553b952c0d2c59f587842ce3ab1192",
+  "priorReview": "f004-author-cohort1-independent-review.json",
+  "priorReviewSha256": "492286532c7f3d5359898a0d25ba6ab458e5617e5368ec9162df0ac6ece7c630",
+  "reviewMethod": [
+    "Re-read all current stored full cases and compared every entry against its prior REVISE findings.",
+    "Verified current entry SHA-256 against the round-two ledger.",
+    "Reran zc.verify for every KWIC and required exact FromLb/ToLb plus headword containment.",
+    "Retested exact actor, paratext/body, lexical boundary, recurrence/work independence, different-thing senses, #0g, English-first prose, and claim support.",
+    "Edited, promoted, merged, and published nothing."
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  },
+  "checkpoint": 7,
+  "entriesReviewed": 7,
+  "occurrencesReadInFullCase": 42,
+  "exactKwicsAndSpans": 42,
+  "keep": 0,
+  "revise": 7,
+  "entries": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "9321b809e15942d2978695f89843aeb3eb7eea67e79c033904a41bc1d6f1b045",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "PROSE FIXED: the opening now states the communal drum-summons and its encounter uses.",
+        "ATTRIBUTION STILL FAILS: o1 is an explicitly headed master’s 上堂 and o6 contains 師云, yet both remain unnamed/narrated; o7 still labels the named record owner unresolved instead of naming the master.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0006a16",
+          "toLb": "0006a21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0151a02",
+          "toLb": "0151a09",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0477a09",
+          "toLb": "0477a16",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0319c13",
+          "toLb": "0319c21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0651c12",
+          "toLb": "0651c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0553b08",
+          "toLb": "0553b12",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J34/J34nB301.xml",
+          "fromLb": "0282b11",
+          "toLb": "0282b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1068,
+      "id": "t_93d4f280640a",
+      "term": "點檢",
+      "reviewedSha256": "58137f3820e12d0e24d2efe3a951b50ca1e0365af4fa653c47b25b3756a3fbd3",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "PROSE FIXED: checking another speaker’s handling is now explicit.",
+        "ATTRIBUTION STILL FAILS: o1/o3/o4/o5/o6 contain direct named or recoverable turns/comments but remain generic unnamed/compiler narration; the repaired Wansong/Tianru rows do not cure the rest.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0520a16",
+          "toLb": "0520a21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0228a07",
+          "toLb": "0228a14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0091a13",
+          "toLb": "0091a19",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0030c20",
+          "toLb": "0031a02",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0004c12",
+          "toLb": "0004c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0438b21",
+          "toLb": "0438c04",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0757c14",
+          "toLb": "0757c22",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1069,
+      "id": "t_00d347279628",
+      "term": "蕭何",
+      "reviewedSha256": "04bc808ac6e6e51a5740155043a5eb2513bc3859a2ecd1a99a4ec923be3411cf",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "REVISE",
+      "findings": [
+        "EVIDENCE/PROSE IMPROVED: the bare token was removed and the Xiao-He-establishes-law allusion is explained; Baofu is corrected.",
+        "ATTRIBUTION STILL FAILS: o1-o2 are named commentator turns (北山/徑山 framing) and o4 is a formal address, but all remain generic compiler narration rather than exact voices.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0015c08",
+          "toLb": "0015c14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0279c10",
+          "toLb": "0279c17",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "P/P154/P154n1519.xml",
+          "fromLb": "0515b08",
+          "toLb": "0516a06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0730c15",
+          "toLb": "0730c21",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1070,
+      "id": "t_43f57213c34e",
+      "term": "十方世界",
+      "reviewedSha256": "40312d704a1c04f026f497071bd275d3fc8715d35b85307b44a8a7b0c3db1251",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "PROSE IMPROVED and recurrence is acknowledged.",
+        "ATTRIBUTION/DEPLOYMENT STILL FAILS: o1-o2/o6 are formal-address voices stored as narration; o4-o5-o7 remain the same Buddha-birth transmission family, so seven rows do not demonstrate seven independent Chan deployments and the article still relies heavily on contained narrative.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0012a19",
+          "toLb": "0012b01",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0018c03",
+          "toLb": "0018c10",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0002c05",
+          "toLb": "0002c11",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0028b24",
+          "toLb": "0028c06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0405b08",
+          "toLb": "0405b14",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0708a04",
+          "toLb": "0708a11",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0205b05",
+          "toLb": "0205b12",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1071,
+      "id": "t_c5dbf08e4452",
+      "term": "拂子頭",
+      "reviewedSha256": "c34c022032ca2baf3ca555b330caa2e51624a81e5b631f33eb0e577ac7667a04",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "#0g PROSE FIXED: the whisk-head is now the public locus of teaching authority.",
+        "ATTRIBUTION STILL FAILS: o2/o4/o5 are direct formal addresses serialized as narration/unnamed, while o3/o6 use generic 'later commentator' despite complete named source units. Every master must be named.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0006b07",
+          "toLb": "0006b13",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0054c02",
+          "toLb": "0054c07",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0813b13",
+          "toLb": "0813b20",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0895b19",
+          "toLb": "0895b25",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0360c03",
+          "toLb": "0360c09",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J33/J33nB282.xml",
+          "fromLb": "0369a24",
+          "toLb": "0369a29",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J27/J27nB190.xml",
+          "fromLb": "0080b03",
+          "toLb": "0080b12",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1074,
+      "id": "t_897abeb2436c",
+      "term": "披毛戴角",
+      "reviewedSha256": "86268221a3ebd4293ae650ed369d725103abda33e20b499654d394a7f35f6395",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "PROSE IMPROVED and the bare-token row was replaced.",
+        "PRIOR CONTAINED-ONLY DEFECT REMAINS: X69n1356 doctrinal karma/rebirth exposition is still retained as a defining Chan witness; o2-o4 are also direct named/recoverable speech stored as generic unnamed/compiler narration.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T47/T47n1987A.xml",
+          "fromLb": "0527b07",
+          "toLb": "0527b15",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0624b21",
+          "toLb": "0624c05",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0510b08",
+          "toLb": "0510b13",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0505c01",
+          "toLb": "0505c06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0374a08",
+          "toLb": "0374a15",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0545b24",
+          "toLb": "0545c08",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    },
+    {
+      "ordinal": 1075,
+      "id": "t_1b4bf4fff6bb",
+      "term": "韓愈",
+      "reviewedSha256": "c2118ca4b2acf8d1bd522bceec61a21340796e3ed0ddb575f0e74f80e1911907",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "REVISE",
+      "findings": [
+        "EVIDENCE GREATLY IMPROVED: catalogue rows were removed and Han Yu’s Chan-record role is now described.",
+        "ATTRIBUTION STILL FAILS: o4 is a named master’s record/case voice left as 'reviewed unnamed record owner'; o3’s emperor is only generically identified although the case context is specific. The entry cannot pass the exact-actor gate as written.",
+        "All current hashes matched the round-two author ledger and every stored KWIC/span verifies exactly; no mechanical defect substitutes for the unresolved semantic/actor defect."
+      ],
+      "occurrenceReviews": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0419c10",
+          "toLb": "0419c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J40/J40nB492.xml",
+          "fromLb": "0489a25",
+          "toLb": "0489b06",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J26/J26nB180.xml",
+          "fromLb": "0296c07",
+          "toLb": "0296c18",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J27/J27nB194.xml",
+          "fromLb": "0328a10",
+          "toLb": "0328a19",
+          "fullCaseRead": true,
+          "exactKwicAndSpan": true,
+          "round2Disposition": "REVISE_WITH_ENTRY"
+        }
+      ]
+    }
+  ]
+}

@@ -157,13 +157,21 @@
           "ToLb": "0218a14",
           "Kwic": "一日班首進方丈師問如何是空刦已前事諸子下語看首座云炎炎六月一片雪西堂云無毛鷂子潑空飛後堂云烏󱷐向火碓嘴生花堂主云沒底鐵船水上浮師下兩語無影草裏飛蜻蜓又云千年雪裏埋死屍。",
           "Curated": true,
-          "AttributionNote": "Source text (明覺聰禪師語錄): an unnamed interlocutor owns the exact headword-bearing question.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (明覺聰禪師語錄). Exact headword actor: the compiler using a monastic-office speaker label. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Mingjue Cong",
+              "Roles": [
+                "questioner",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed questioner asking with headword",
-            "ActorRole": "questioner",
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler using a monastic-office speaker label",
+            "ActorRole": "compiler",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -172,9 +180,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The 問 frame assigns the exact headword-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
+            "GrammarEvidence": "後堂 is the recorder's label in 首座云／西堂云／後堂云／堂主云; Mingjue Cong asks the exercise.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

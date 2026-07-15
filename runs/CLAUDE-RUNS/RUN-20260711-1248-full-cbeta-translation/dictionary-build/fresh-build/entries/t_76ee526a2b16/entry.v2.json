@@ -102,18 +102,26 @@
           "MasterName": null
         },
         {
-          "RelPath": "T/T48/T48n2025.xml",
-          "FromLb": "1137a22",
-          "ToLb": "1137b01",
-          "Kwic": "阿闍梨我依大德故得剃頭受戒慈愍故剃頭人禮一拜。再稱慈愍故禮二拜。三稱慈愍故禮三拜。就胡跪合掌。戒師云。善男子。沙彌戒師云。心源湛寂法海淵深。迷之者永劫沈淪。悟之者當處解脫。欲傳妙道無越出家。放曠喻如虛空。清淨同於皎月。修行緣具道果非遙。始從剋念之功。畢證無為之地。所",
+          "RelPath": "J/J40/J40nB493.xml",
+          "FromLb": "0503a06",
+          "ToLb": "0503a08",
+          "Kwic": "進云：「如何是沙彌戒？」「殺。」「如何是比邱戒？」「盜。」「如何是菩薩戒？」「淫。」",
           "Curated": true,
-          "AttributionNote": "Source text (勅修百丈清規). Exact actor: the reviewed unnamed compiler. The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (磬山牧亭樸夫拙禪師語錄). Exact headword actor: the unnamed advancing monastic questioner. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Muting Pufu",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "the reviewed unnamed compiler",
-            "ActorLabel": "the reviewed unnamed compiler",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed advancing monastic questioner",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -122,12 +130,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The complete 10,000-character unit and all six rungs do not safely supply a canonical personal name; no nearby record owner is substituted.",
-            "ReviewedBy": "Codex f004 B1041-1100 exact-actor repair",
-            "ReviewedUtc": "2026-07-15T16:52:13.586522+00:00",
+            "GrammarEvidence": "進云 introduces the genuine contiguous 沙彌戒 question; Muting Pufu's answer follows after the question.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
             "AuthoredVoiceRiskReviewed": true
-          },
-          "MasterName": null
+          }
         },
         {
           "RelPath": "J/J39/J39nB447.xml",

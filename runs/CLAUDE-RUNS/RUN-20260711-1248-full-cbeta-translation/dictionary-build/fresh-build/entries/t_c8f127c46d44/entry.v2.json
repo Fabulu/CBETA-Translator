@@ -27,7 +27,7 @@
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorLabel": "the compiler narrating the lecture master's failure to answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -37,12 +37,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:53:36.766800+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "主無對 and 主亦無對 narrate the unnamed lecture master's nonresponses to Mazu Daoyi.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (古尊宿語錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "questioner",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: the compiler narrating the lecture master's failure to answer. The complete case and its turn boundaries were read before attribution."
         },
         {
           "RelPath": "X/X81/X81n1571.xml",

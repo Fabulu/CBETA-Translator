@@ -22,26 +22,19 @@
     },
     "t_09909bd0c29e": {
       "term": "草賊",
-      "verdict": "REVISE",
-      "reviewedSha256": "9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous, reviewed_unnamed_label_not_explicit.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "b51e3cabdc2a5c014370b0343459b95e63c374ec623c9851eb2c427c8176acba",
+      "finding": "Six complete exchanges support petty bandit as a person-directed encounter verdict and 'the bandit is badly defeated' as an appraisal of a move. Linji, Zhaozhou, later speakers, and unnamed participants remain separately attributed.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f004-laneC.json",
       "supersedes": {
-        "term": "草賊",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8",
-        "finding": "The specific defect in the rejecting independent review is repaired in current actor/context or prose metadata.; Every stored occurrence verifies exactly and the current entry is bound to both repair ledger and fresh14 v2 formal-gate hashes.; Full-case actor, paratext/body, sense, English-first prose, translation, work-ID spread, roster, and public controls pass rereview.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1101-1130-fresh14-independent-rereview.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "62e40f213ac12b6689a93b0d98d359222a4da229af0b90e641872de9a6fb7dcb",
-          "sourceReview": "fresh-build/waves/f004-laneC-1101-1130-repair-independent-rereview.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_09909bd0c29e/9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_09909bd0c29e/9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_09909bd0c29e/9400107a1c0a0632f291ff694a4b159cb6d32218d9b3161db530427001be5ff8/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_09909bd0c29e/b51e3cabdc2a5c014370b0343459b95e63c374ec623c9851eb2c427c8176acba/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_09909bd0c29e/b51e3cabdc2a5c014370b0343459b95e63c374ec623c9851eb2c427c8176acba/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_09909bd0c29e/b51e3cabdc2a5c014370b0343459b95e63c374ec623c9851eb2c427c8176acba/receipt.json"
       }
     },
     "t_1bde390a5df1": {
@@ -517,26 +510,19 @@
     },
     "t_22a3963b99da": {
       "term": "向上機",
-      "verdict": "REVISE",
-      "reviewedSha256": "1eb4ee90cfd2a78e19cb5799701e14f9ed32c41d9464c5973670bc469a6d8cd8",
-      "finding": "Current attribution ground truth records 1 hard failure(s): note_missing_source.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "4e7b0285987559cb6cf8481b3a44787e6bad99a67f8c4c934b69e22f9f0ef535",
+      "finding": "Six full contexts support a further mechanism deployed to prevent settlement on an initial answer, achieved position, or the label 'beyond' itself. Direct undercuttings such as 'raising a sound to stop an echo' and 'rotten hemp rope' keep the interpretation corpus-bound.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f004-laneA.json",
       "supersedes": {
-        "term": "向上機",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "1eb4ee90cfd2a78e19cb5799701e14f9ed32c41d9464c5973670bc469a6d8cd8",
-        "finding": "Current focused gate hash matches the independently read file; every exact KWIC and line range verifies.; The repaired exact actors distinguish named utterers, reviewed unnamed non-master participants, narration, and impersonal paratext with closed ContextMasters roles.; The term-specific English-first opening, sense structure, translations, work spread, and public-reader controls survive full-case rereview.",
-        "sourceReview": "fresh-build/waves/f004-laneA-906-915-current-gate-independent-rereview.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "b56c8031f3bec56aa40ad26cf7d9a696994eb2134887be1efd00e8f827041ec5",
-          "sourceReview": "fresh-build/waves/f004-laneA-906-915-repaired-fresh-independent-rereview.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_22a3963b99da/1eb4ee90cfd2a78e19cb5799701e14f9ed32c41d9464c5973670bc469a6d8cd8/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_22a3963b99da/1eb4ee90cfd2a78e19cb5799701e14f9ed32c41d9464c5973670bc469a6d8cd8/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_22a3963b99da/1eb4ee90cfd2a78e19cb5799701e14f9ed32c41d9464c5973670bc469a6d8cd8/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_22a3963b99da/4e7b0285987559cb6cf8481b3a44787e6bad99a67f8c4c934b69e22f9f0ef535/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_22a3963b99da/4e7b0285987559cb6cf8481b3a44787e6bad99a67f8c4c934b69e22f9f0ef535/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_22a3963b99da/4e7b0285987559cb6cf8481b3a44787e6bad99a67f8c4c934b69e22f9f0ef535/receipt.json"
       }
     },
     "t_d0e5e6e5d1ee": {
@@ -1119,26 +1105,19 @@
     },
     "t_df2096b961c1": {
       "term": "鐵牛之機",
-      "verdict": "REVISE",
-      "reviewedSha256": "4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581",
-      "finding": "Current attribution ground truth records 3 hard failure(s): explicit_master_turn_left_anonymous, note_missing_source.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "e9d66bded443af24120740fcc7d1fca6b9d6d4530d155313ca8b26b0b8305d39",
+      "finding": "Six full contexts support Fengxue's iron-ox mechanism as the ancestral seal tested beyond going and staying. Later quotation and redeployment are clearly distinguished from Fengxue's source case.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f004-laneB.json",
       "supersedes": {
-        "term": "鐵牛之機",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer3-spanfix-rereview.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "5312b8309dc4eda22182677b7b6bb93daa319a3a3c1c485675adbc473b160712",
-          "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer2-repair-rereview-corrected.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_df2096b961c1/4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_df2096b961c1/4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_df2096b961c1/4df235b0905d77cad3d284efc7f5d185ff15c2978232b1c56e60b52eb626b581/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_df2096b961c1/e9d66bded443af24120740fcc7d1fca6b9d6d4530d155313ca8b26b0b8305d39/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_df2096b961c1/e9d66bded443af24120740fcc7d1fca6b9d6d4530d155313ca8b26b0b8305d39/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_df2096b961c1/e9d66bded443af24120740fcc7d1fca6b9d6d4530d155313ca8b26b0b8305d39/receipt.json"
       }
     },
     "t_486aaf7fbce8": {
@@ -1213,26 +1192,19 @@
     },
     "t_f54129a637ae": {
       "term": "寮元",
-      "verdict": "REVISE",
-      "reviewedSha256": "81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47",
-      "finding": "Current attribution ground truth records 2 hard failure(s): note_missing_speaker.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "5d63abe81f2e7aebc7852aaca1cedaf8ea21ddb0649e94ab13812eaef41a5ecc",
+      "finding": "Five complete contexts support the common-quarters supervisor as an administrative office: two rulebooks define duties, while later texts thank or perform rites for officeholders. The recut funeral utterance is correctly assigned to Hefeng Wucheng rather than the deceased supervisor.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f004-laneB.json",
       "supersedes": {
-        "term": "寮元",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer3-spanfix-rereview.json",
-        "supersedes": {
-          "verdict": "REVISE",
-          "reviewedSha256": "d15a327949388a38f6e1384a2f6bdc455f8687e4ec57b4878af72cba1f21ac44",
-          "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer2-repair-rereview-corrected.json"
-        },
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_f54129a637ae/81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_f54129a637ae/81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_f54129a637ae/81fdc0a21caca80fe93eca0d3dd70c18833d4595da2bd3b4349887223d3d7f47/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_f54129a637ae/5d63abe81f2e7aebc7852aaca1cedaf8ea21ddb0649e94ab13812eaef41a5ecc/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_f54129a637ae/5d63abe81f2e7aebc7852aaca1cedaf8ea21ddb0649e94ab13812eaef41a5ecc/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_f54129a637ae/5d63abe81f2e7aebc7852aaca1cedaf8ea21ddb0649e94ab13812eaef41a5ecc/receipt.json"
       }
     },
     "t_420d43d8c61c": {
@@ -1302,21 +1274,19 @@
     },
     "t_f50f469aa43b": {
       "term": "聯燈會要",
-      "verdict": "REVISE",
-      "reviewedSha256": "78e0441a5089cfa8532b26f7da7097971a655a8bb4053f9ec09700114be98945",
-      "finding": "Current attribution ground truth records 2 hard failure(s): note_missing_speaker, vague_attributor.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "de6c78b0d99a26727de9cdd56a0029e5d5e0ff9c47700d084d1b6245b089d04f",
+      "finding": "Five full contexts establish a book title: its own contents heading and four later biographical notices that Huiweng Wuming compiled it. The title recut no longer mistakes the work's enormous contents list for authored speech, and parallel notices are not promoted into extra senses.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f004-laneB.json",
       "supersedes": {
-        "term": "聯燈會要",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "78e0441a5089cfa8532b26f7da7097971a655a8bb4053f9ec09700114be98945",
-        "finding": "The repair replaces cohort-default actor labels with complete-case exact utterers, reviewed non-master actors, narration, or impersonal paratext and supplies closed named context.; The term-specific English-first opening, translation, sense structure, body/paratext selection, actual work spread, roster spelling, and public-reader controls resolve the original rejection.; Every current KWIC and line range verifies and the entry hash is bound to the focused repair gate.",
-        "sourceReview": "fresh-build/waves/f004-laneB-1001-1020-reviewer2-repair-rereview-corrected.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_f50f469aa43b/78e0441a5089cfa8532b26f7da7097971a655a8bb4053f9ec09700114be98945/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_f50f469aa43b/78e0441a5089cfa8532b26f7da7097971a655a8bb4053f9ec09700114be98945/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_f50f469aa43b/78e0441a5089cfa8532b26f7da7097971a655a8bb4053f9ec09700114be98945/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_f50f469aa43b/de6c78b0d99a26727de9cdd56a0029e5d5e0ff9c47700d084d1b6245b089d04f/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_f50f469aa43b/de6c78b0d99a26727de9cdd56a0029e5d5e0ff9c47700d084d1b6245b089d04f/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_f50f469aa43b/de6c78b0d99a26727de9cdd56a0029e5d5e0ff9c47700d084d1b6245b089d04f/receipt.json"
       }
     },
     "t_d468479c7729": {
@@ -1793,21 +1763,19 @@
     },
     "t_1e2ad50d18fe": {
       "term": "鐵樹花開",
-      "verdict": "REVISE",
-      "reviewedSha256": "618211d279d390bb03fba391cbaa93240837507f56cc00ae7189b8fe6e24321a",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "618f4a8f31b159cc9c7289bf734c33d33bedeb9f95be0e45958765a8f234b313",
+      "finding": "The opening is now grammatical (`The iron tree blossoming pictures...`). All six previously read full contexts still support the impossible flowering image in verse and teaching-seat deployments; no evidence or attribution changed.",
+      "sourceReview": "maintenance/attribution-read-adjudication/current-rereview-t_1e2ad50d18fe-f004-laneC.json",
       "supersedes": {
-        "term": "鐵樹花開",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "618211d279d390bb03fba391cbaa93240837507f56cc00ae7189b8fe6e24321a",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f004-laneC-1156-1165-reviewer9-postrepair.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618211d279d390bb03fba391cbaa93240837507f56cc00ae7189b8fe6e24321a/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618211d279d390bb03fba391cbaa93240837507f56cc00ae7189b8fe6e24321a/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618211d279d390bb03fba391cbaa93240837507f56cc00ae7189b8fe6e24321a/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618f4a8f31b159cc9c7289bf734c33d33bedeb9f95be0e45958765a8f234b313/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618f4a8f31b159cc9c7289bf734c33d33bedeb9f95be0e45958765a8f234b313/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_1e2ad50d18fe/618f4a8f31b159cc9c7289bf734c33d33bedeb9f95be0e45958765a8f234b313/receipt.json"
       }
     },
     "t_2ec9304d8b61": {

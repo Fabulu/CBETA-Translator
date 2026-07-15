@@ -1,0 +1,419 @@
+{
+  "counts": {
+    "entries": 15,
+    "senses": 17,
+    "occurrences": 115,
+    "actor_narrated": 35,
+    "context_master_links": 110,
+    "deferred_non_roster_context": 49,
+    "noncanonical_context_master_name": 32,
+    "attribution_notes": 116,
+    "chinese_strings": 32,
+    "anchored_chinese": 32,
+    "noncanonical_related_master": 13,
+    "named_occurrences": 65,
+    "deferred_non_roster": 29,
+    "noncanonical_master_name": 18,
+    "named_master_missing_structured_link": 14,
+    "actor_reviewed_unnamed": 8,
+    "actor_identified_non_master": 4,
+    "actor_impersonal": 4,
+    "pending_roster_master": 11,
+    "pending_roster_context_master": 17,
+    "claim_anchors": 1,
+    "action_performer_context_missing": 1
+  },
+  "hardFailures": 78,
+  "failures": [
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6bc71cc88c2f/entry.v2.json",
+      "detail": "衣鉢 s1 o1 c2: 'Huiming' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6bc71cc88c2f/entry.v2.json",
+      "detail": "衣鉢 s2: RelatedMasters value 'Qining Wenyi' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6bc71cc88c2f/entry.v2.json",
+      "detail": "衣鉢 s2 o1: 'Qining Wenyi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6bc71cc88c2f/entry.v2.json",
+      "detail": "衣鉢 s2 o1 c1: 'Qining Wenyi' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_6bc71cc88c2f/entry.v2.json",
+      "detail": "衣鉢 s2 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1: RelatedMasters value 'Xu Fu' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1: RelatedMasters value 'Lin Zhifan' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1: RelatedMasters value 'Xiong Kaiyuan' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1: RelatedMasters value 'Yang Yi' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1: RelatedMasters value 'Sanfeng Hanyue Fazang' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o1 c1: 'Xu Fu' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o2 c1: 'Lin Zhifan' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o2: Yongjue Yuanxian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o3 c1: 'Xiong Kaiyuan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o5 c1: 'Yang Yi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o8: 'Sanfeng Hanyue Fazang' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_6f47a97d45b0/entry.v2.json",
+      "detail": "序 s1 o8 c1: 'Sanfeng Hanyue Fazang' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o1: 'Shi Zhicheng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o1 c1: 'Shi Zhicheng' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o1: Guifeng Zongmi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o2: \"Jie'an Wujin\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o2 c1: \"Jie'an Wujin\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o3 c1: 'Ananda' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o4 c1: 'Parshva' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 a8: 'Ananda' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_77774b8724f1/entry.v2.json",
+      "detail": "付法 s1 o8 c1: 'Ananda' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_7887dc8d449f/entry.v2.json",
+      "detail": "尊宿 s1 o1: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_7887dc8d449f/entry.v2.json",
+      "detail": "尊宿 s1 o7 c1: 'Xiaoyao Cong' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_78d931324d99/entry.v2.json",
+      "detail": "張商英 s1 o3: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_78d931324d99/entry.v2.json",
+      "detail": "張商英 s1 o4: 'Biefeng Baoyin' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_78d931324d99/entry.v2.json",
+      "detail": "張商英 s1 o4 c1: 'Biefeng Baoyin' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_7bd745af24d7/entry.v2.json",
+      "detail": "格外 s1 o3: 'Qingxu Xiujing' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_7bd745af24d7/entry.v2.json",
+      "detail": "格外 s1 o3 c1: 'Qingxu Xiujing' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_7bd745af24d7/entry.v2.json",
+      "detail": "格外 s1 o4: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_7bd745af24d7/entry.v2.json",
+      "detail": "格外 s1 o5: \"Mengtang Tan'e\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_7bd745af24d7/entry.v2.json",
+      "detail": "格外 s1 o5 c1: \"Mengtang Tan'e\" is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_7f696f177766/entry.v2.json",
+      "detail": "梁武帝 s1 o3: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1: RelatedMasters value 'Qiran Chaozhi' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1: RelatedMasters value 'Huiyan Zhizhao' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1: RelatedMasters value 'Changshou Faqi' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o1: 'Huiyan Zhizhao' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o1 c1: 'Huiyan Zhizhao' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o2: 'Huiyan Zhizhao' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o2 c1: 'Huiyan Zhizhao' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o3: Fengxue Yanzhao appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o6: 'Qiran Chaozhi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s1 o6 c1: 'Qiran Chaozhi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s2: RelatedMasters value 'Hengshan Dengbing' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s2 o1: 'Hengshan Dengbing' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_81147ad4e8bf/entry.v2.json",
+      "detail": "四料揀 s2 o1 c1: 'Hengshan Dengbing' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1: RelatedMasters value 'Zhaozhou' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o2: 'Tianzhu' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o2 c1: 'Dounan Wei' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o2 c2: 'Tianzhu' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o3: 'Zhuyuan Yuan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o3 c1: 'Zhuyuan Yuan' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_8184622cecd7/entry.v2.json",
+      "detail": "大徹大悟 s1 o3: Dahui Zonggao appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_8879b278cd83/entry.v2.json",
+      "detail": "便打 s1: RelatedMasters value 'Zhuyuan Heshang' is not roster-canonical"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/tmp/cohort-head-001-015/t_8879b278cd83/entry.v2.json",
+      "detail": "便打 s1 o11: explicit master action requires a named action-performer ContextMaster"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_88de22b8a40e/entry.v2.json",
+      "detail": "本來人 s1 o5: Pang Yun appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_898279a78ecf/entry.v2.json",
+      "detail": "漏逗 s1 o3: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_898279a78ecf/entry.v2.json",
+      "detail": "漏逗 s1 o5: 'Tianzhang Yu' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_898279a78ecf/entry.v2.json",
+      "detail": "漏逗 s1 o5 c1: 'Tianzhang Yu' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o10: 'Baoen Kuangyi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o10 c1: 'Baoen Kuangyi' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o11: 'Jinshan Tanying' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o11 c1: 'Jinshan Tanying' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o11 c2: 'Li Duanyuan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o12: 'Kaiyuan Zongyou' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o12 c1: 'Kaiyuan Zongyou' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_8a016f49e5b8/entry.v2.json",
+      "detail": "思量 s1 o14: Yongming Yanshou appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: RelatedMasters value 'Lingyin Tai' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o1 c1: 'Zhicheng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o2 c1: 'Shuangfeng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o4 c1: 'Dehui' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o5 c2: 'Lingyin Tai' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o7: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/tmp/cohort-head-001-015/t_98c97bba590b/entry.v2.json",
+      "detail": "別云 s1 o7: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+    }
+  ]
+}

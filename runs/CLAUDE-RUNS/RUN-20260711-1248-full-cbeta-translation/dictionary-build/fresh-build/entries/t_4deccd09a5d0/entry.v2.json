@@ -28,25 +28,16 @@
           "ToLb": "0607c01",
           "Kwic": "師拈拄杖曰：棒下無生忍，臨機不讓師。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 棒下無生忍-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 棒下無生忍 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "Complete exchange in the Complete Lamp Collection (五燈全書), Nanyuan Huiyong section: Nanyuan lifts his staff and directly says, ‘Acceptance of the unborn under the staff; at the encounter do not yield to the teacher.’",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanyuan Huiyong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Nanyuan Huiyong"
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -54,38 +45,54 @@
           "ToLb": "0281b22",
           "Kwic": "不見道：棒下無生忍，臨機不見師。",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 棒下無生忍-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 棒下無生忍 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "Complete chain of comments in the Chan Grove of Ancestral Mirrors (宗鑑法林): Tianning Qi directly introduces and quotes the staff formula while commenting on Mahakasyapa's proposed expulsion of Manjusri.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianning Qi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Tianning Qi"
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0663c13",
-          "ToLb": "0663c22",
-          "Kwic": "師云還着子也無僧云昨日遭霜了也師云大眾喫个什麼僧擬議師便打問風󲈺南方一棒作麼商量󲈺云作奇特商量󲈺却問和尚此間一棒作麼商量師拈拄杖云棒下無生忍臨機不見師問僧近離什麼處僧云龍興師云發足莫離葉縣否喝師云好好問你又𢙣發作什麼云喚作𢙣發即不得師便喝云你既𢙣發我也𢙣發近前來僧近前師云我也沒量大罪過瞎漢叅堂去師有時把住一僧",
+          "FromLb": "0663c16",
+          "ToLb": "0663c17",
+          "Kwic": "師拈拄杖云棒下無生忍臨機不見師",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): an unnamed interlocutor owns the exact headword-bearing question.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete exchange in the Recorded Sayings of the Ancient Worthies (古尊宿語錄), Nanyuan Huiyong section: Nanyuan lifts his staff and directly gives the formula in answer to Fengxue Yanzhao's question about the local staff.",
+          "ContextMasters": [
+            {
+              "MasterName": "Nanyuan Huiyong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Nanyuan Huiyong"
+        },
+        {
+          "RelPath": "B/B27/B27n0152.xml",
+          "FromLb": "0506a16",
+          "ToLb": "0506a17",
+          "Kwic": "行咨問棒下無生忍行咨知恩報恩",
+          "Curated": true,
+          "AttributionNote": "Complete twelfth-month address in Yulin Tongxiu's Recorded Sayings (普濟玉琳國師語錄): the named monk Xingzi (行咨) begins his question with the staff formula; Yulin responds by striking him.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed questioner asking with 棒下無生忍",
+            "Status": "reviewed-nonmaster",
+            "Kind": "named monastic questioner",
+            "ActorLabel": "the monk Xingzi (行咨)",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -95,50 +102,25 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The 問 frame assigns the exact 棒下無生忍-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
-        },
-        {
-          "RelPath": "B/B27/B27n0152.xml",
-          "FromLb": "0506a13",
-          "ToLb": "0506b01",
-          "Kwic": "子召大眾云一種是聲誰會得有堪聽有不堪聽再白椎下座臘月旦上堂僧問今朝臘月一某甲得箇消息欲向和尚吐露和尚還許否師云許僧擬議師打退行咨問棒下無生忍行咨知恩報恩作麼生是臨機不見師師便打咨掀香案師連棒打退行與問昔日臨濟大師一日謂普化克符云我欲於此建立黃檗宗旨汝且承褫我二人珍重下去意旨如何師云兩眼對兩眼進云明眼人難瞞師云",
-          "Curated": true,
-          "AttributionNote": "Source text (普濟玉琳國師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 棒下無生忍-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 棒下無生忍 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+            "GrammarEvidence": "行咨問 explicitly names Xingzi as the monk who begins the headword-bearing question; Yulin Tongxiu answers only at the following 師便打 action.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T00:05:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "C/C078/C078n1720.xml",
           "FromLb": "0792a16",
-          "ToLb": "0792b02",
-          "Kwic": "色自色𠔃聲自聲新鶯啼處柳𤇆輕門門有路通京國三島斜橫海月明聲出虛色生無聲前色後轉塗糊間不容髮安可名模堂堂圓應沒錙銖巧張爐鞴費分踈爭如棒下無生忍聞見馨香滿道途明州天童咸啟禪師簡大德問學人卓卓上來請師的的師曰我這裏一屙便了有甚麼卓卓的的曰和尚恁麼荅話更買草鞋行脚好師曰近前來簡近前師曰秪如老僧恁麼荅過在甚處簡無對師便打。",
+          "ToLb": "0792a21",
+          "Kwic": "頌曰。色自色𠔃聲自聲新鶯啼處柳𤇆輕門門有路通京國三島斜橫海月明聲出虛色生無聲前色後轉塗糊間不容髮安可名模堂堂圓應沒錙銖巧張爐鞴費分踈爭如棒下無生忍聞見馨香滿道途",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集): the compiler preserves the exact headword-bearing narration or formula.",
+          "AttributionNote": "Complete Baishui Benren case and appended verse in the Linked Pearls Collection of Verse Comments (禪宗頌古聯珠通集): an unattributed verse voice compares elaborate verbal work with ‘acceptance of the unborn under the staff’; the source does not name the verse author.",
           "ContextMasters": [],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 棒下無生忍-bearing event",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "unattributed capping verse",
+            "ActorLabel": "the unattributed verse voice",
+            "ActorRole": "verse-author",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -147,24 +129,33 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 棒下無生忍 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+            "GrammarEvidence": "頌曰 introduces a verse appended to the Baishui Benren case, but none of the six source rungs supplies a personal author for this verse.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T00:05:00Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J28/J28nB208.xml",
           "FromLb": "0318b15",
           "ToLb": "0318b16",
-          "Kwic": "」進云：「恁麼則棒下無生忍，臨機不見師。",
+          "Kwic": "進云：「恁麼則棒下無生忍，臨機不見師。」",
           "Curated": true,
-          "AttributionNote": "Source text (古雪哲禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
+          "AttributionNote": "Complete birthday address in Guxue Zhe's Recorded Sayings (古雪哲禪師語錄): an unnamed monk offers the staff formula as an inference; Guxue answers that the shout is present but the phrase of the unborn is not yet there.",
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 棒下無生忍-bearing event",
-            "ActorRole": "compiler",
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk questioning Guxue Zhe",
+            "ActorRole": "questioner",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -173,10 +164,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The selected span presents 棒下無生忍 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+            "GrammarEvidence": "進云 continues the unnamed monk's marked turn; Guxue Zhe answers only at 師云 after the quoted formula.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T00:05:00Z"
+          },
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],

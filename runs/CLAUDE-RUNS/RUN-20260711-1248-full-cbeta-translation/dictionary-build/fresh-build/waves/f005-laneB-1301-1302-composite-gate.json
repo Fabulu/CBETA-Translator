@@ -1,0 +1,180 @@
+{
+  "generatedUtc": "2026-07-15T18:42:51.743914+00:00",
+  "elapsedSeconds": 19.125,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_df028fd6bd35",
+      "term": "語言",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df028fd6bd35/entry.v2.json",
+      "sha256": "525987c476729e770717f41d5bf51d85884790666025262fe375dc2d1b414de8"
+    },
+    {
+      "id": "t_705aabe99572",
+      "term": "卓一下",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_705aabe99572/entry.v2.json",
+      "sha256": "b0784b8f85c6038fb7853b73c876b3a445c6adf72d0282c69b4b578f1ba9c1bc"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 14,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df028fd6bd35/entry.v2.json",
+        "id": "t_df028fd6bd35",
+        "term": "語言",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_705aabe99572/entry.v2.json",
+        "id": "t_705aabe99572",
+        "term": "卓一下",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.337,
+    "attribution": 6.097,
+    "publicFeedback": 3.904,
+    "depthSense": 6.358,
+    "countClaims": 1.804,
+    "workSourceValidation": 1.888,
+    "corpusBaseline": 1.8,
+    "frozenHistoricalTerms": 2.749,
+    "attributionPackets": 12.258
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 6.097,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 14,
+        "named_occurrences": 13,
+        "context_master_links": 14,
+        "attribution_notes": 14,
+        "deferred_non_roster": 3,
+        "pending_roster_master": 3,
+        "deferred_non_roster_context": 3,
+        "pending_roster_context_master": 3,
+        "actor_reviewed_unnamed": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 14,\n    \"named_occurrences\": 13,\n    \"context_master_links\": 14,\n    \"attribution_notes\": 14,\n    \"deferred_non_roster\": 3,\n    \"pending_roster_master\": 3,\n    \"deferred_non_roster_context\": 3,\n    \"pending_roster_context_master\": 3,\n    \"actor_reviewed_unnamed\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.904,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp2v7etrbi.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 6.358,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 2,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_705aabe99572",
+        "t_df028fd6bd35"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_705aabe99572\",\n    \"t_df028fd6bd35\"\n  ]\n}\nreport: /tmp/tmpl2pz2zkh-depth.json\n",
+    "report": "/tmp/tmpl2pz2zkh-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.804,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.888,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.8,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.749,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 12.258,
+    "payload": {
+      "entries": 2,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 2,
+        "rebuiltOccurrences": 14
+      }
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 2,\n    \"rebuiltOccurrences\": 14\n  }\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f005-laneB-1301-1302-composite-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/waves/f005-laneB-1301-1302-composite-gate-attribution-packets.json",
+    "generatorVersion": 5,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_df028fd6bd35",
+    "t_705aabe99572"
+  ],
+  "strictRosterScopeIds": [
+    "t_df028fd6bd35",
+    "t_705aabe99572"
+  ]
+}

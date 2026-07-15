@@ -1,0 +1,23 @@
+# 飯籮邊餓死 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited wording is a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, paired and opposite formulas, body-part family, repeated recensions, and contradictory predicates.
+- deployment-inventory: 3 curated exact rows across 3 independent work IDs.
+- omission-audit: each prose claim has an exact headword occurrence; repeated recensions were not used as depth padding.
+- family-retest: Compared 海水裏渴死, 缽裡飯, 桶裡水, and the snowball encounter; the paired thirst phrase remains a related image, not another sense.
+- sense-target-distinguishability: `not-applicable — one bodily image across the stored deployments`.
+- observation: occurrence IDs `o1–o3` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The corpus keeps the physical contradiction intact and uses it at the point where food, water, or the offered object is already immediately available.
+- ordinary-bridge: ordinary anatomy supplies the physical impossibility or obstruction; no outside doctrine is needed.
+- falsification-searches: literal uses; definition questions; opposite formula; body-part compounds; repeated case family; contradictory appraisal.
+- counterexamples: Immediate availability is licensed by the basket, sea, bowl, bucket, and offered snowball; the evidence does not authorize naming a hidden spiritual commodity.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o3` establish the bodily image and the named deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite formulas; longer compounds; repeated case families; contradictory appraisals.
+- feedback-counterexamples: Immediate availability is licensed by the basket, sea, bowl, bucket, and offered snowball; the evidence does not authorize naming a hidden spiritual commodity.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic or doctrinal theory`.
+- lookup-probes: hungry next to food; starving by the food basket; rice-basket starvation.
+- opening-interpretation-verdict: `licensed` — the opening names the ordinary scene and narrow corpus-earned deployment before quotations.

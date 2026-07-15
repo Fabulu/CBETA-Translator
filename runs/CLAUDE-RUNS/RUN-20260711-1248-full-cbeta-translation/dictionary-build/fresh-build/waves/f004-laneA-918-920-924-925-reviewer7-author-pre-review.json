@@ -1,0 +1,174 @@
+{
+  "generatedUtc": "2026-07-15T14:48:29.126078+00:00",
+  "elapsedSeconds": 3.063,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dd5f8d8801d2/entry.v2.json",
+      "sha256": "10c80bc5326702eb966d5909107c46b0cf028a11c697b927ca53de74be774f10"
+    },
+    {
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bdc0cdca39d0/entry.v2.json",
+      "sha256": "3ba2ceabb99089954d3a31a99931281c5d1ea7fc53374b4de8219333077d1833"
+    },
+    {
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c02887fbd979/entry.v2.json",
+      "sha256": "0b91ebc33f5d1bfd9393c47b2b48dc3d49492ad34023d6419600a17a27012cfa"
+    },
+    {
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_94f424853f5b/entry.v2.json",
+      "sha256": "f3e72ffe735ea99ef58530cea7c4dc43f0fb52ee0eec25adcc44411d7712f1e1"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 26,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dd5f8d8801d2/entry.v2.json",
+        "id": "t_dd5f8d8801d2",
+        "term": "扇子",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bdc0cdca39d0/entry.v2.json",
+        "id": "t_bdc0cdca39d0",
+        "term": "趙州戴草鞋",
+        "verified": 5,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c02887fbd979/entry.v2.json",
+        "id": "t_c02887fbd979",
+        "term": "祖印",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_94f424853f5b/entry.v2.json",
+        "id": "t_94f424853f5b",
+        "term": "孟子",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.239,
+    "attribution": 0.973,
+    "publicFeedback": 0.19,
+    "depthSense": 0.657,
+    "countClaims": 0.154,
+    "workSourceValidation": 0.159,
+    "corpusBaseline": 0.145,
+    "frozenHistoricalTerms": 0.467,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.973,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 5,
+        "occurrences": 26,
+        "named_occurrences": 16,
+        "context_master_links": 38,
+        "attribution_notes": 26,
+        "deferred_non_roster": 8,
+        "pending_roster_master": 8,
+        "deferred_non_roster_context": 14,
+        "pending_roster_context_master": 13,
+        "actor_narrated": 3,
+        "actor_reviewed_unnamed": 6,
+        "actor_identified_non_master": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 5,\n    \"occurrences\": 26,\n    \"named_occurrences\": 16,\n    \"context_master_links\": 38,\n    \"attribution_notes\": 26,\n    \"deferred_non_roster\": 8,\n    \"pending_roster_master\": 8,\n    \"deferred_non_roster_context\": 14,\n    \"pending_roster_context_master\": 13,\n    \"actor_narrated\": 3,\n    \"actor_reviewed_unnamed\": 6,\n    \"actor_identified_non_master\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.19,
+    "payload": {
+      "entries": 4,
+      "passing": 4,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 4,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpnalavbd3.json\n"
+  },
+  "depthSense": {
+    "exitCode": 1,
+    "elapsedSeconds": 0.657,
+    "payload": null,
+    "output": "cluster IDs absent from audited paths: t_dd5f8d8801d2,t_bdc0cdca39d0,t_c02887fbd979,t_94f424853f5b\n",
+    "report": "/tmp/tmpegarpxm5-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.154,
+    "payload": {
+      "entryCount": 4,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 4,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.159,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 5,
+        "multiSourceSenses": 5
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 5,\n    \"multiSourceSenses\": 5\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.145,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.467,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_dd5f8d8801d2,t_bdc0cdca39d0,t_c02887fbd979,t_94f424853f5b"
+  ],
+  "strictRosterScopeIds": [
+    "t_dd5f8d8801d2,t_bdc0cdca39d0,t_c02887fbd979,t_94f424853f5b"
+  ]
+}

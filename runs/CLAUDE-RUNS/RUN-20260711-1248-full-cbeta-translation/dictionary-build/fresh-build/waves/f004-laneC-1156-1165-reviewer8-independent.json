@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-semantic-review",
+  "reviewer": "reviewer8",
+  "generatedUtc": "2026-07-15T15:18:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1156, 1165],
+  "entriesReviewed": 10,
+  "occurrencesReadInFullCase": 55,
+  "exactKwics": 55,
+  "exactFullSpans": 55,
+  "exactSpanFailures": 0,
+  "keep": 0,
+  "revise": 10,
+  "reviewMethod": [
+    "Read every occurrence in a 10,000-character complete-case window and checked the local speech, verse, address, commentary, heading, and embedded-quotation frames.",
+    "Reran zc.verify on all 55 KWICs and required returned FromLb and ToLb to equal the stored span and each KWIC to contain its own headword.",
+    "Required MasterName to be the exact headword utterer; named surrounding, quoted, acting, and case figures belong in ContextMasters with roles.",
+    "Retested the #0g Chan-deployment gate, corpus-earned opening, sense split, depth, and distinct-work validation independently of the author’s mechanical green gate.",
+    "Compared SHA-256 before and after review; no entry was edited during this review."
+  ],
+  "cohortFinding": "The author’s assign_actor routine promoted a sole roster name found in heading+title and otherwise defaulted to 'the reviewed compilation voice.' Full-case reading shows this is not a safe actor method: 41/55 occurrences were defaulted to narration despite explicit named addresses, comments, verses, and master turns, while several of the ten promoted names are nearby case figures rather than exact utterers.",
+  "entries": [
+    {
+      "ordinal": 1156,
+      "id": "t_403540d42e98",
+      "term": "抱贓叫屈",
+      "reviewedEntrySha256": "358cfda63da37614c6d97be33b4320dbdf71b0e4457eed87889eb2dd9cb4cd81",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is not an unnamed monastic question: the exact phrase is a capping verse immediately before the 大梅 exchange. Its current questioner label is grammatically impossible.",
+        "Occurrences 2–6 are not anonymous compilation prose. Their full units include named record-owner speech: 神鼎洪諲 says 者老漢抱贓叫屈, the 天華 record owner says 大小趙州大似抱贓叫屈, 智海’s 上堂 says 古人恁麼說話大似抱贓叫屈, 復原福報 says 正是抱贓叫屈, and 覺浪道盛 says 者漢大似抱贓叫屈.",
+        "The opening and one-sense verdict fit the evidence, but actor/context attribution must be rebuilt source by source."
+      ]
+    },
+    {
+      "ordinal": 1157,
+      "id": "t_346bf81c474e",
+      "term": "賊過張弓",
+      "reviewedEntrySha256": "c015dee4f15b357f51f60fd6a1f95747d87256e2a6796a8067b0874c736ff356",
+      "occurrencesRead": 5,
+      "distinctWorkIds": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 2 is wrongly assigned to Mazu Daoyi. The exact clause is introduced by 溈山行云 and comments on Wuxie’s departure; Mazu is only a lineage/case figure in the heading.",
+        "Occurrences 1, 3, 4, and 5 contain explicit named speakers or record-owner 師云/師曰 turns, not a generic compilation voice: 龍華體, the named 金陵 master, the 示眾 record owner, and 白雲象林真 respectively.",
+        "The lateness gloss is well supported, but all five actor records require exact reconstruction."
+      ]
+    },
+    {
+      "ordinal": 1158,
+      "id": "t_393fa137a46b",
+      "term": "泥裏洗土塊",
+      "reviewedEntrySha256": "07f132bc15900531fbe7b35dea46c4cc5b47b238ae6b6d951ba505e879c45243",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 1 and 3 are wrongly attributed to Mazu: the exact verdict follows 黃檗琦云 and is Huangbo Qi’s later comment on the embedded Mazu exchange.",
+        "Occurrence 6 is not the unnamed monk’s turn. 師或問僧 introduces the master’s own question containing the headword; the monk is the addressee.",
+        "Occurrence 5 reproduces Tianyi Yihuai’s hall address and needs him as quoted/context utterer rather than an empty generic compiler label. The local-criticism prose and single sense otherwise remain supportable."
+      ]
+    },
+    {
+      "ordinal": 1159,
+      "id": "t_1e2ad50d18fe",
+      "term": "鐵樹花開",
+      "reviewedEntrySha256": "b9e8adfd839f02a6b02e14e2b9d1539babfbc995452072d13f37aa7bcd2b9db7",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "Only Weilin Daopei is currently named, but the other witnesses are also attributable authored units: 竺峰敏’s farewell verse, 圓悟克勤’s line in the 禪定 sequence, 雪巖祖欽’s New Year 上堂, an authored 通集 verse, and the 不會禪師 hall address.",
+        "The prose says Chan addresses make the impossible flowering occur and is corpus-earned, but the empty ContextMasters and generic narrator labels prevent the evidence from showing who actually makes those deployments."
+      ]
+    },
+    {
+      "ordinal": 1160,
+      "id": "t_2ec9304d8b61",
+      "term": "石女兒",
+      "reviewedEntrySha256": "3264f662224dd18645f0a6d2f957fe11f7224fe9bef31645ebc38ed0a75cf451",
+      "occurrencesRead": 5,
+      "distinctWorkIds": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is contained-only doctrinal exposition in the 宗鏡錄 標宗章: 如人生石女兒 is an ordinary logical impossibility analogy, not an observable Chan answer, verdict, capping phrase, test, or raised case. It fails #0g as stored evidence.",
+        "Occurrences 2–4 are recensions of the same 石柱 exchange and the exact phrase belongs to the responding master introduced by 師出眾曰, not three independent anonymous compilation voices. Distinct work files do not make three independent deployments.",
+        "Occurrence 5 contains both an unnamed monk’s quoted question and the master’s answer; the exact clause is in the question and needs the respondent in ContextMasters. The source/work and deployment mix must be rebuilt before the sense can be accepted."
+      ]
+    },
+    {
+      "ordinal": 1161,
+      "id": "t_7114caf4b0ec",
+      "term": "木人舞",
+      "reviewedEntrySha256": "dca5cac1b5e6834270b340e2e9322b0289e7f3211b4788d61323ebba4430e3ed",
+      "occurrencesRead": 5,
+      "distinctWorkIds": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 1 is misclassified as the unnamed monk. The monk asks the sequence of 功 positions, but 師云木人舞袖歸來晚 is the record owner’s answer containing the headword.",
+        "Occurrence 2 is wrongly assigned to Xuefeng Yicun: the exact line is in the later 頌/師云 commentary on the Xuefeng case, so Xuefeng is a case figure rather than the utterer.",
+        "Occurrences 3–5 are identifiable verse or address voices, including the 晚參 and 龍牙示眾 record owners, not generic compilation narration. The impossible-action opening can stand after actor repair."
+      ]
+    },
+    {
+      "ordinal": 1162,
+      "id": "t_ca501ea3b013",
+      "term": "石人點頭",
+      "reviewedEntrySha256": "d32d04939b45550f3acc15a76ba9f0b3cdf5ae376bc865d61a705b6a6d597859",
+      "occurrencesRead": 4,
+      "distinctWorkIds": 4,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 1, 3, and 4 are recensions of one 雲蓋 exchange. The exact phrase is the unnamed monk’s inference after the master answers 徧天徧地, not anonymous compiler narration; the responding master must be contextualized.",
+        "Occurrence 2 is correctly attributable to Wuyi Yuanlai, but the entry’s four-file count masks only two principal deployments. Its prose acknowledges this, yet Validation=multi-source and the current actor records do not express the recurrence structure clearly enough for the source-work gate."
+      ]
+    },
+    {
+      "ordinal": 1163,
+      "id": "t_7ac77d7c6f06",
+      "term": "空裏釘橛",
+      "reviewedEntrySha256": "0bf4b076c73c23abb7606b081bb49781d963795bfcbcc3b36a9cb1eae3c973b7",
+      "occurrencesRead": 6,
+      "distinctWorkIds": 6,
+      "verdict": "REVISE",
+      "reasons": [
+        "None of the six exact voices is safely represented by the blanket compilation label. Occurrences 1 and 5 embed Zhuyu’s 上堂 warning, 2 and 4 explicitly introduce 高峰妙云, 3 is 月江印’s named opening address, and 6 is Linji Yixuan’s own 師云 warning after a shout and blow.",
+        "The prose itself names Zhuyu and Linji, but their names are absent from every occurrence and ContextMasters. This directly violates the rule that prose claims and evidence attribution must agree."
+      ]
+    },
+    {
+      "ordinal": 1164,
+      "id": "t_2a4b0fb8318b",
+      "term": "石火電光",
+      "reviewedEntrySha256": "986a8d885371d428f9f80ba90c4841c569651b15c290c4d3327af330dd434eaa",
+      "occurrencesRead": 7,
+      "distinctWorkIds": 7,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrence 4 correctly names Linji, while occurrence 2 is the same Linji discourse in another work but is incorrectly anonymous. That alone demonstrates file-sensitive rather than case-sensitive actor assignment.",
+        "The remaining witnesses also expose named voices: 黃龍祖心’s 上堂, later verse commentary on the 歸宗 case, an authored 通集 verse, the named 五參 address, and the 僧請益 verse sequence. Generic narration and empty context lose those speakers and case figures.",
+        "The speed-based sense and seven-work depth are plausible, but attribution must be rebuilt before acceptance."
+      ]
+    },
+    {
+      "ordinal": 1165,
+      "id": "t_183033130cb7",
+      "term": "盲龜值木",
+      "reviewedEntrySha256": "cd90745fab8a593f8790d9c3732edb271259766a2817aea0b78d601c06f19dc1",
+      "occurrencesRead": 5,
+      "distinctWorkIds": 5,
+      "verdict": "REVISE",
+      "reasons": [
+        "Occurrences 1, 3, and 5 are attributable authored speech: the letter writer addressing Shen Hengchuan, the 智異山 master’s 師云 answer, and the 慈雲 record owner’s public explanation. They are not compilation narration.",
+        "Occurrence 4 is misclassified as the unnamed monk. The phrase follows 師曰 and is the master’s exact answer to 正當恁麼時如何.",
+        "Chushi Fanqi’s verse attribution is plausible. The rarity sense is coherent across the works, but four of five actor states must be corrected."
+      ]
+    }
+  ],
+  "reviewIntegrity": {
+    "allReviewedEntryHashesStable": true,
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

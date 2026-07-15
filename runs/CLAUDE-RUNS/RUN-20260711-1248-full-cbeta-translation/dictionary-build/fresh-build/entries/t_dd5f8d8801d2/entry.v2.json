@@ -121,11 +121,13 @@
           "ToLb": "0676a08",
           "Kwic": "杭州塩官齊安國師一日喚侍者曰將犀牛扇子來者曰破也師曰扇子既破還我犀牛兒來者無對投子代云不辭將出𢙢頭角不全",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集). Exact source voice: the Chan verse-collection compiler. It preserves the bounded Yanguan rhinoceros-fan case and Touzi’s later substitute response.",
+          "AttributionNote": "Source text (禪宗頌古聯珠通集). Exact headword actor: Yanguan Qi'an. The complete case and its turn boundaries were read before attribution.",
           "ContextMasters": [
             {
               "MasterName": "Yanguan Qi'an",
               "Roles": [
+                "utterer",
+                "questioner",
                 "case-figure"
               ]
             },
@@ -136,30 +138,13 @@
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "case-and-verse compilation",
-            "ActorLabel": "the Chan verse-collection compiler",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The anthology narrates the bounded exchange, which contains turns by Yanguan and his unnamed attendant before Touzi’s substitute response.",
-            "ReviewedBy": "Codex f004 lane A reviewer7 focused repair author",
-            "ReviewedUtc": "2026-07-15T15:04:00Z",
-            "AuthoredVoiceRiskReviewed": true
-          },
           "DraftActorProof": {
             "ExactHeadwordClause": "杭州塩官齊安國師一日喚侍者曰將犀牛扇子來",
             "GrammaticalSubject": "the Chan verse-collection compiler",
             "SpeechFrame": "The bounded anthology case includes multiple embedded turns rather than one unframed token.",
             "FullCaseDecision": "Compiler narration governs the stored case unit; Yanguan and Touzi are retained as embedded figures."
-          }
+          },
+          "MasterName": "Yanguan Qi'an"
         },
         {
           "RelPath": "X/X85/X85n1592.xml",

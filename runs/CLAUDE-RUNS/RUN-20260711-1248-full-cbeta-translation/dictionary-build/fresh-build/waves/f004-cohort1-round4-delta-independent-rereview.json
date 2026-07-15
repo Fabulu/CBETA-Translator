@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-round4-delta-hash-bound-full-case-rereview",
+  "reviewer": "review_cohort1_round4_six",
+  "generatedUtc": "2026-07-15T18:55:00Z",
+  "sourceLedger": "f004-cohort1-round4-delta-final-ledger.json",
+  "sourceLedgerSha256": "f34c09490425f671253bb6bd4a18db0241d3bc7b874202f8239d5eda46eefd92",
+  "priorReview": "f004-cohort1-round3-independent-rereview.json",
+  "priorReviewSha256": "753aeda91dda3288324f059a12ee743fc15b98d2079742dffafaf044a7b31d59",
+  "reviewMethod": [
+    "Read all 38 current full-case packets and mapped the exact headword-bearing turn rather than trusting the record owner.",
+    "Retested every prior REVISE finding and performed a whole-entry actor, prose, lexical-boundary, sense, and #0g regression review.",
+    "Checked all six current entry hashes against the source ledger; the source composite independently reports 38/38 exact zc verification.",
+    "Edited, promoted, merged, and published nothing."
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  },
+  "entriesReviewed": 6,
+  "occurrencesReadInFullCase": 38,
+  "exactKwicsAndSpans": 38,
+  "keep": 2,
+  "revise": 4,
+  "summaryFinding": "Two repairs are clean. Four entries still contain exact-actor regressions revealed by full-case reading: a section owner replaced by an unrelated master, explicit named verse/formal-address voices left anonymous or called compiler narration, and monk questions assigned to the responding record owner.",
+  "entries": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "71c2071cfa386c80c10dbb14b6a79653515303043fde221fa46452cf8a9a3186",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "The original o2 defect is resolved: the uncued poem after the stove-spirit narrative is no longer transferred to Pizao Duo.",
+        "Whole-entry regression o4: 國師歎曰 explicitly introduces the headword-bearing poem; the actor is Nanyang Huizhong, not compiler narration. He is already present in ContextMasters but with the wrong person-described role.",
+        "Whole-entry regression o6: 因齋時聞鼓聲 is narrative setup before 師云, so Yunmen Wenyan does not utter the headword. MasterName must be null and the narrative actor recorded without assigning Yunmen backward.",
+        "The explanation remains supported after those actor corrections."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 7, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    },
+    {
+      "ordinal": 1078,
+      "id": "t_c5ff2fdc37ca",
+      "term": "遇緣即宗",
+      "reviewedSha256": "37b7269ca7f7fbf28f85f11d67c95eab99234984a309a6c1bdd5ba87f4bfdf15",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "The malformed and overclaiming explanation is cleanly replaced by bounded English-first prose.",
+        "Actor regression o1: the enclosing heading is 湖州福源石屋清珙禪師 and the passage narrates his residence at 福源 before his uninterrupted 入院，上堂. The utterer is Shiwu Qinggong, not Yuezhou Qianfeng; the current note's claim of a nearby Qianfeng speech cue is contradicted by the full case and heading.",
+        "Occurrences 2-6 and the one-sense formula treatment hold."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "reviewedSha256": "4210a36256ff82c1a8b04464c72b3b8a4d9bc106582a85babdbcb6f51f8036d0",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "o1 correctly stops transferring the preceding monk across the verse boundary, but it remains under-attributed. The work is 天目中峰廣錄 and the immediate section heading is 自讚: this is Zhongfeng Mingben's self-eulogy, so a master voice is nameable rather than an unnamed individual poem author.",
+        "Occurrences 2-7, the body-as-skin-bag sense, and the revised explanation hold."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 7, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    },
+    {
+      "ordinal": 1089,
+      "id": "t_71f85cf94e5d",
+      "term": "宗匠",
+      "reviewedSha256": "80f86357cfcc83ed729457285fe3e7fd83028f21bfb007d10bcbb31c4a0df9e3",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "Prior o3 is now correctly an unnamed individual verse author rather than a generic compiler; the verse has no cue identifying its individual author.",
+        "Prior o5 is now correctly assigned to Jingfu, whose first-person preface and dated signature name him.",
+        "Narrated, lay-patron, and lexical-title uses all hold; the explanation distinguishes lineage standing from an ordinary artisan without outside interpretation."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    },
+    {
+      "ordinal": 1092,
+      "id": "t_7c5f24652dfa",
+      "term": "法身向上事",
+      "reviewedSha256": "9b51add9280cc65fbcb443422b24ca63475e0f88279e56faa77929c4c40a16e5",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "Prior o1 and o2 respondent reversals are resolved: both headwords occur in unnamed monks' questions.",
+        "o4 and o6 correctly retain Shushan Kuangren because each stored cut begins with Shushan's own stated formula before Yunmen's later questions; they are not backward respondent assignments.",
+        "All six cases support the interview-question field described by the explanation."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "reviewedSha256": "43e229f8d96423557816fdbb66b2e2b1ba320a1f4f13f3020e672ed1eca3a883",
+      "priorVerdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "Prior o3 is resolved: the unnamed monk asks the comparison and Lingyin Xuanben is not assigned backward.",
+        "Whole-entry regression o4: 問 begins the anonymous interlocutor's comparison through 離此二途未審洞山如何為人; Zhimen Guangzuo's 師曰 answer follows it. The headword is therefore uttered by the unnamed questioner, not Zhimen.",
+        "Whole-entry regression o5: the full unit explicitly begins 天童樸禪師，上堂, and the headword is in that uninterrupted address. It is Tiantong Pu's utterance, not compiler narration.",
+        "The Linji/Deshan paired-formula explanation otherwise holds."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 2, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 3, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true},
+        {"occurrence": 4, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 5, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": false},
+        {"occurrence": 6, "fullCaseRead": true, "exactKwicAndSpan": true, "actorHolds": true}
+      ]
+    }
+  ]
+}

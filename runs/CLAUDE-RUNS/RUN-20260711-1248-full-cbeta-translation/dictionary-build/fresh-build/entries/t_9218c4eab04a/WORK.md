@@ -1,0 +1,26 @@
+# 金鱗透網 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited analysis remained a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, predicates, contrasts, family forms, recensions, and contradictory deployments.
+- deployment-inventory: 4 curated rows across 4 independent works.
+- omission-audit: every public prose claim has exact evidence; parallel recensions were not used as padding.
+- family-retest: Compared 金鱗, 透網, 吞舟, 釣, and 龍門點額; net and hook predicates were kept distinct.
+- sense-target-distinguishability: `not-applicable — one referent across the stored deployments`.
+- observation: occurrence IDs `o1–o4` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The net escape is not a static emblem: the public record immediately asks for a leap, introduces the fisherman’s hook, or strikes the person claiming free roaming.
+- ordinary-bridge: ordinary physical and institutional relations connect the exact predicates; no outside doctrine is needed.
+- falsification-searches: literal use; definition question; opposite predicate; longer compounds; repeated family; contrary appraisal.
+- counterexamples: The favorable gold modifier belongs to the fish image; it does not prove that gold symbolizes attainment, and escape from one net does not guarantee escape from the next hook.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o4` establish the image and deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite predicates; family forms; repeated cases; contradictory appraisals.
+- feedback-counterexamples: The favorable gold modifier belongs to the fish image; it does not prove that gold symbolizes attainment, and escape from one net does not guarantee escape from the next hook.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic theory`.
+- lookup-probes: golden carp escaping the net; fish breaking the net; gold-scaled fish free.
+- opening-interpretation-verdict: `licensed` — the opening states the ordinary scene and narrow corpus deployment before evidence details.
+- modifier-relation-verdict: `headword-internal` — 金 modifies 鱗, yielding the visible golden-scaled fish; the stored predicates do not make gold a separate referent.
+- display-modifier-verdict: `displayed` — “golden-scaled” is retained in the PreferredTarget and opening.
+- symbolism-verdict: `not-claimed` — no symbolic equation between gold and attainment is asserted.

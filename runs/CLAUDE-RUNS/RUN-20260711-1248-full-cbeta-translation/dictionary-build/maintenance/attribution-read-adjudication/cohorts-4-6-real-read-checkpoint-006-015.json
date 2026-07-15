@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "attribution-real-read-v2",
+  "generatedUtc": "2026-07-15T22:00:00Z",
+  "readOnly": true,
+  "provenance": {
+    "method": "Ten individually authored adjudications after reading each complete local case and its enclosing named record or section; no verdict or reason was generated from current attribution fields or finding kinds.",
+    "serialization": "Hand-authored JSON; no decision generator used."
+  },
+  "entryRange": [6, 15],
+  "entries": 10,
+  "rows": [
+    {
+      "cohort": 4, "entryId": "t_7c1991e9eabb", "term": "宗風", "sense": 1, "occurrence": 1,
+      "RelPath": "C/C077/C077n1710.xml", "FromLb": "0640a15", "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The enclosing heading 臨濟禪師大鑑下四世嗣黃檗 identifies Linji Yixuan as 師 and Huangbo Xiyun as his named teacher.",
+      "exactHeadwordClause": "問：師唱誰家曲，宗風嗣阿誰？師云：我在黃檗處三度發問，三度被打。",
+      "ownershipEvidence": "The initial 問 contains 宗風; 師云 begins Linji's answer only afterward.",
+      "specificActor": "an unnamed questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Linji Yixuan","Roles":["respondent","record-owner"]},{"MasterName":"Huangbo Xiyun","Roles":["teacher","person-discussed"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The headword is spoken by the unnamed questioner, not by the nearby 師云 turn. The saved null MasterName and contextual Linji/Huangbo distinctions are correct.",
+      "definitionProseImpact": "HOLDS. The question explicitly uses 宗風 for the inherited house style or lineage current; no semantic revision follows."
+    },
+    {
+      "cohort": 4, "entryId": "t_7ee93f6b90cf", "term": "三要", "sense": 1, "occurrence": 5,
+      "RelPath": "C/C077/C077n1710.xml", "FromLb": "0640c12", "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The enclosing heading 臨濟禪師大鑑下四世嗣黃檗 identifies the responding 師 as Linji Yixuan.",
+      "exactHeadwordClause": "上堂，僧問：如何是第一句？師云：三要印開朱點窄，未容擬議主賓分。",
+      "ownershipEvidence": "僧問 owns 如何是第一句; 師云 explicitly opens Linji's answer, and 三要 occurs inside that answer.",
+      "specificActor": "Linji Yixuan", "actorRole": "master utterer",
+      "contextMasters": [{"MasterName":"Linji Yixuan","Roles":["utterer","respondent","record-owner"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "Contrary to the queued anonymous-questioner flag, the monk never says 三要. Linji says it in the first answer; the saved MasterName is correct.",
+      "definitionProseImpact": "HOLDS. Linji's own answer directly deploys the three essentials; no definition or prose change is indicated."
+    },
+    {
+      "cohort": 4, "entryId": "t_81d0d434f560", "term": "祖師意", "sense": 1, "occurrence": 5,
+      "RelPath": "C/C077/C077n1710.xml", "FromLb": "0638c08", "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The heading 黃檗斷際禪師宛陵錄 identifies Huangbo Xiyun as 師 in the sustained exchange.",
+      "exactHeadwordClause": "問：見法頓了者，見祖師意否？師云：祖師心出虛空外。",
+      "ownershipEvidence": "The headword occurs before the turn boundary 師云, inside the initial 問; Huangbo's answer begins with 祖師心, not 祖師意.",
+      "specificActor": "an unnamed questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Huangbo Xiyun","Roles":["respondent","record-owner"]}],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The null MasterName is correct, but the current row omits the fully identified respondent Huangbo Xiyun from ContextMasters. The nearby 師云 must not be mistaken for ownership of the headword.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The question still directly attests 'the patriarch's intent'; add Huangbo as respondent without changing the gloss."
+    },
+    {
+      "cohort": 4, "entryId": "t_85ee3a3007c6", "term": "家賊難防", "sense": 1, "occurrence": 4,
+      "RelPath": "J/J36/J36nB369.xml", "FromLb": "0906c22", "sourceTitle": "蔗菴範禪師語錄",
+      "caseIdentityEvidence": "The enclosing 住越州雲門顯聖寺語錄 is Zhe'an Jingfan's record; 上堂 and the closing 曰 frame the whole passage as his address.",
+      "exactHeadwordClause": "上堂。舉梁山因僧問家賊難防因緣畢，曰：梁山老漢小題大做……或有問雲門：家賊難防時如何？但曰：賊在甚處？",
+      "ownershipEvidence": "舉…畢，曰 marks Zhe'an as the master raising and commenting on the old Liangshan case. He then himself voices the hypothetical 或有問雲門 quotation containing the second 家賊難防; no actual anonymous monk speaks in this present event.",
+      "specificActor": "Zhe'an Jingfan", "actorRole": "master utterer and old-case raiser",
+      "contextMasters": [{"MasterName":"Zhe'an Jingfan","Roles":["utterer","record-owner","quoted-case-raiser"]},{"MasterName":"Liangshan Yuanguan","Roles":["person-discussed","quoted-source"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The regex mistook a quotation nested inside Zhe'an's address for a live monk's question. Zhe'an actually utters the headword while raising and recasting Liangshan's case, so his saved MasterName is justified.",
+      "definitionProseImpact": "HOLDS. The address actively deploys 'a household thief is hard to guard against'; only the raised-case role may merit richer context metadata."
+    },
+    {
+      "cohort": 4, "entryId": "t_85fd3b19165c", "term": "陞堂", "sense": 1, "occurrence": 2,
+      "RelPath": "P/P154/P154n1519.xml", "FromLb": "0561b04", "sourceTitle": "宗門統要正續集(第1卷-第12卷)",
+      "caseIdentityEvidence": "The preceding heading 南嶽大慧懷讓禪師 identifies 大慧 as Nanyue Huairang; the next heading 江西馬祖道一大寂禪師 identifies the observed teacher as Mazu Daoyi.",
+      "exactHeadwordClause": "江西馬祖道一大寂禪師始匡徒日，大慧遣一僧囑云：汝去，俟他陞堂時，乃出問作麼生；看他道甚言句，記將來。",
+      "ownershipEvidence": "大慧遣一僧囑云 explicitly opens Nanyue Huairang's instruction. 陞堂 lies inside his quoted command; 他 refers to Mazu. Later 僧至一如所教 and 僧回舉似大慧 close the mission.",
+      "specificActor": "Nanyue Huairang", "actorRole": "master utterer and instructor",
+      "contextMasters": [{"MasterName":"Nanyue Huairang","Roles":["utterer","instructor"]},{"MasterName":"Mazu Daoyi","Roles":["person-discussed","observed-master"]}],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The current row calls this compiler narration, but the headword is inside Huairang's direct instruction. Huairang must be MasterName; Mazu is the master whose ascending the hall is discussed.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The instruction still supports 'ascend the hall for formal teaching'; the gloss holds, but prose should name Huairang and Mazu rather than a bare compiler."
+    },
+    {
+      "cohort": 4, "entryId": "t_8650004bb9d7", "term": "兼中至", "sense": 1, "occurrence": 5,
+      "RelPath": "C/C077/C077n1710.xml", "FromLb": "0685a03", "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The enclosing 汾陽 record's 三句 section identifies Fenyang Shanzhao as 師.",
+      "exactHeadwordClause": "問：如何是兼中至？師云：意氣不從天地得，英雄豈藉四時推。",
+      "ownershipEvidence": "兼中至 is wholly inside the initial 問; 師云 begins Fenyang's poetic answer after it.",
+      "specificActor": "an unnamed monastic questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Fenyang Shanzhao","Roles":["respondent","record-owner"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The nearby 師云 is Fenyang's response, not ownership evidence for the headword. The saved questioner attribution and contextual Fenyang are correct.",
+      "definitionProseImpact": "HOLDS. The exchange directly treats 兼中至 as the name being requested; no semantic change is warranted."
+    },
+    {
+      "cohort": 4, "entryId": "t_8aa9485f0650", "term": "鐵饅頭", "sense": 1, "occurrence": 5,
+      "RelPath": "L/L158/L158n1652.xml", "FromLb": "0069b03", "sourceTitle": "明覺聰禪師語錄",
+      "caseIdentityEvidence": "The enclosing 杭州府餘杭縣法喜禪寺語錄 belongs to Mingjue Cong, who is 師 throughout the address.",
+      "exactHeadwordClause": "上堂，僧問：向上宗乘即不問，如何是鐵饅頭？師云：塞斷汝咽喉。",
+      "ownershipEvidence": "僧問 explicitly assigns 如何是鐵饅頭 to the monk. 師云 starts Mingjue Cong's answer only after the question.",
+      "specificActor": "an unnamed monastic questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Mingjue Cong","Roles":["respondent","record-owner"]}],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The current MasterName=Mingjue Cong reverses the turns. The monk utters 鐵饅頭; Mingjue answers and belongs only in ContextMasters.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The riddle and answer still support the existing iron-bun deployment; move the speaker attribution without altering the sense."
+    },
+    {
+      "cohort": 4, "entryId": "t_8eeed0b7412a", "term": "唯嫌揀擇", "sense": 1, "occurrence": 3,
+      "RelPath": "C/C077/C077n1710.xml", "FromLb": "0702c24", "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The heading 子湖山第一代神力禪師語錄 identifies Zihu Lizong as 師 in this sequence.",
+      "exactHeadwordClause": "問：至道無難，唯嫌揀擇，是時人窠窟？師云：曾有問我，直得五年分疏不得。",
+      "ownershipEvidence": "問 opens and contains the entire quoted formula and challenge. 師云 begins Zihu's reply afterward.",
+      "specificActor": "an unnamed questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Zihu Lizong","Roles":["respondent","record-owner"]}],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The headword actor is correctly not a master, but the current row leaves the fully nameable responding master out of ContextMasters. Zihu must be contextual, not MasterName.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The formula remains explicitly quoted and challenged; its definition and explanatory prose hold."
+    },
+    {
+      "cohort": 4, "entryId": "t_90cca5eb04c7", "term": "賊是家親", "sense": 1, "occurrence": 1,
+      "RelPath": "C/C078/C078n1720.xml", "FromLb": "0786c19", "sourceTitle": "禪宗頌古聯珠通集",
+      "caseIdentityEvidence": "The case explicitly begins 曹山因僧問, naming Caoshan Benji as 師.",
+      "exactHeadwordClause": "曹山因僧問：家貧遭劫時如何？師曰：不能盡底去。曰：為什麼不能盡底去？師曰：賊是家親。",
+      "ownershipEvidence": "The second 師曰 directly introduces 賊是家親. The monk's preceding question contains no headword.",
+      "specificActor": "Caoshan Benji", "actorRole": "master utterer and respondent",
+      "contextMasters": [{"MasterName":"Caoshan Benji","Roles":["utterer","respondent"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The queued monk-question flag is contradicted by the turn grammar: Caoshan alone says 賊是家親. The current MasterName is correct.",
+      "definitionProseImpact": "HOLDS. Caoshan's answer is the direct, named deployment supporting the entry."
+    },
+    {
+      "cohort": 4, "entryId": "t_91d84c849fc7", "term": "保任", "sense": 1, "occurrence": 3,
+      "RelPath": "T/T51/T51n2076.xml", "FromLb": "0299a17", "sourceTitle": "景德傳燈錄",
+      "caseIdentityEvidence": "The enclosing 前三聖慧然禪師法嗣 section identifies the respondent as Zizhou Shuilu Heshang.",
+      "exactHeadwordClause": "問：此事如何保任？師曰：切忌。",
+      "ownershipEvidence": "The unlabelled 問 contains 保任. 師曰 marks the section master Zizhou Shuilu's one-word answer after the headword-bearing question.",
+      "specificActor": "an unnamed monastic questioner", "actorRole": "questioner",
+      "contextMasters": [{"MasterName":"Zizhou Shuilu Heshang","Roles":["respondent","section-subject"]}],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The nearby 師曰 belongs to the answer 切忌 and does not own 保任. The saved unnamed-questioner attribution and contextual respondent are correct.",
+      "definitionProseImpact": "HOLDS. The question directly asks how to preserve or maintain the matter; attribution repair is unnecessary."
+    }
+  ],
+  "counts": {"confirmedDefects": 4, "falsePositives": 6, "invalidEvidenceRows": 0, "definitionOrProseSemanticallyDisproved": 0}
+}

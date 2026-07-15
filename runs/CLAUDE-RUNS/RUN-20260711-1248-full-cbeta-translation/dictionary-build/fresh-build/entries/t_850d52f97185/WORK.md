@@ -9,3 +9,5 @@ lookup-probes: the teaching robe
 opening-interpretation-verdict: English-first and corpus-bounded
 modifier-relation-verdict: no unresolved modifier composition claim
 display-modifier-verdict: source imagery retained without outside symbolism
+
+- sense-target-distinguishability: the retained targets denote different referents (the lineage or teaching robe; a robe bestowed or donated for a formal occasion); rhetorical variation alone is not split.

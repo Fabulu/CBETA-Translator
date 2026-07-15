@@ -1,0 +1,31 @@
+{
+  "generatedUtc": "2026-07-15T15:58:34.169290+00:00",
+  "entries": 1,
+  "passing": 0,
+  "flagged": 1,
+  "flagsByKind": {
+    "public-feedback-ledger-missing": 1
+  },
+  "results": [
+    {
+      "entryId": "t_7f17cf4947f8",
+      "sourceTerm": "好肉剜瘡",
+      "path": "fresh-build/entries/t_7f17cf4947f8/entry.v2.json",
+      "flags": [
+        {
+          "kind": "public-feedback-ledger-missing",
+          "keys": [
+            "feedback-inference-verdict:",
+            "feedback-observations:",
+            "feedback-falsification-searches:",
+            "feedback-counterexamples:",
+            "feedback-scope:",
+            "lookup-probes:",
+            "opening-interpretation-verdict:"
+          ]
+        }
+      ],
+      "passes": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# 腦後見腮 — f005 lane A construction
+
+- discovery-provenance: `fresh-build/waves/f005-laneA-1201-1300-preflight.json`; inherited wording is a research lead only.
+- indexed-path: frozen-corpus preflight; every saved row reverified with `zc.verify`.
+- definition-searches: direct questions, answer frames, paired and opposite formulas, body-part family, repeated recensions, and contradictory predicates.
+- deployment-inventory: 6 curated exact rows across 6 independent work IDs.
+- omission-audit: each prose claim has an exact headword occurrence; repeated recensions were not used as depth padding.
+- family-retest: Compared 頂門具眼, 莫與往來, 見腮, and praise-verses that enlarge the same bodily image.
+- sense-target-distinguishability: `not-applicable — one bodily image across the stored deployments`.
+- observation: occurrence IDs `o1–o6` establish the ordinary scene and named Chan deployments.
+- minimal-inference: The Chan bend lies in making impossible rearward visibility into a compact public appraisal that can answer a question or mark someone to avoid.
+- ordinary-bridge: ordinary anatomy supplies the physical impossibility or obstruction; no outside doctrine is needed.
+- falsification-searches: literal uses; definition questions; opposite formula; body-part compounds; repeated case family; contradictory appraisal.
+- counterexamples: The phrase does not state why the person is objectionable, and this entry does not turn that unstated reason into psychology or doctrine.
+- scope: `corpus-wide phrase within the cited Chan deployments`.
+- verdict: `licensed`.
+- feedback-inference-verdict: `supported` — the opening is the narrowest inference shared by the stored predicates.
+- feedback-observations: occurrence IDs `o1–o6` establish the bodily image and the named deployments stated in the article.
+- feedback-falsification-searches: literal uses; definition questions; opposite formulas; longer compounds; repeated case families; contradictory appraisals.
+- feedback-counterexamples: The phrase does not state why the person is objectionable, and this entry does not turn that unstated reason into psychology or doctrine.
+- feedback-scope: `corpus-wide phrase within the cited Chan deployments; no outside symbolic or doctrinal theory`.
+- lookup-probes: see cheeks behind the head; cheeks showing at the back of the head; behind-the-head cheeks.
+- opening-interpretation-verdict: `licensed` — the opening names the ordinary scene and narrow corpus-earned deployment before quotations.

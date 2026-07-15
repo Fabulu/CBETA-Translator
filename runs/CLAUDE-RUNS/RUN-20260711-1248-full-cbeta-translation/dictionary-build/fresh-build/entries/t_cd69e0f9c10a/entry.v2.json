@@ -28,16 +28,35 @@
           "ToLb": "0002c13",
           "Kwic": "登樓望，焉知滄海深？鳳陽鳳棲仲卿禪師鳳陽鳳棲仲卿禪師上堂，僧問：古佛出世，為一大事因緣。和尚出世，所為何事？師張口吐舌示之，曰：祇者",
           "Curated": true,
-          "MasterName": "Dongshan Huiyuan",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Dongshan Huiyuan. Source text (五燈全書(第34卷-第120卷)).",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution.",
           "ContextMasters": [
             {
-              "MasterName": "Dongshan Huiyuan",
+              "MasterName": "Fengqi Zhongqing",
               "Roles": [
-                "utterer"
+                "respondent",
+                "action-performer",
+                "section-subject"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The monk's question contains the headword; Fengqi Zhongqing responds afterward by opening his mouth and showing his tongue.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:34.994632+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "D/D48/D48n8939.xml",

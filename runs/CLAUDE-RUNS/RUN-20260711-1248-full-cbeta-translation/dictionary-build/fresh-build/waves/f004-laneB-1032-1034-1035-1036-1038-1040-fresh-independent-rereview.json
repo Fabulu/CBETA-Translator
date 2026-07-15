@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Codex fresh independent rereviewer",
+  "generatedUtc": "2026-07-15T18:48:00+02:00",
+  "role": "independent-review-only",
+  "sourceLedger": "f004-laneB-1031-1040-reviewer11-repair-author-ledger.json",
+  "mechanicalSupport": {"path":"/tmp/f004-b1032-1040-independent-rereview-gate.json","hardPass":true,"exactKwic":36,"exactFailures":0},
+  "entries": [
+    {
+      "ordinal":1032,"id":"t_b336769aabdf","term":"家醜","reviewedSha256":"838504006300cc54aa92275913f708f0142ff8aa6405b0575538edd39476d0c1","occurrencesReviewed":7,"exactVerified":7,"verdict":"REVISE",
+      "findings":[
+        "o1, o5, and o7 correctly name Lan'an Dingxu, Zhe'an Jingfan, and Jingshan Rong, but o2-o3 are generically asserted anthology/commentary authors without resolving the exact verse voice or using an honest reviewed-unnamed state.",
+        "o4 says 'the named local-gentry invitation authors' without naming any human author; that is not an identified actor. o6 preserves first-person 北山 ritual speech and must resolve which named Beishan master owns it.",
+        "The explanation is specific and the double-edged school-disgrace inference is supported, but actor metadata remains insufficient for four of seven witnesses."
+      ]
+    },
+    {
+      "ordinal":1034,"id":"t_e21288d0fefb","term":"徐六擔板","reviewedSha256":"ee362549f4787ce456cbc0e8ba886c1c1023e13c8933cddd4cbc72af69290b44","occurrencesReviewed":6,"exactVerified":6,"verdict":"REVISE",
+      "findings":[
+        "o1-o4 and o6 are appropriately assigned to named direct speakers/commentators, and the one-sided-board explanation is corpus-earned.",
+        "o5 is still assigned to 'Guishan Hui'an Guang, whose canonical roster form remains unresolved'; a prose caveat is not a canonical actor decision. The surrounding 御選語錄 unit must identify whether the exact 師拈 is Guishan Hui'an Guang or a later imperial/record voice and register the canonical name accordingly.",
+        "Because the unresolved o5 is one of only six witnesses, the entry remains REVISE despite otherwise strong semantics."
+      ]
+    },
+    {
+      "ordinal":1035,"id":"t_641de814fd8a","term":"毒藥","reviewedSha256":"0403f9c54cebb764710ddd46b4e29384c4bce4683ea9d4bc111a9ce343c4a56d","occurrencesReviewed":7,"exactVerified":7,"verdict":"REVISE",
+      "findings":[
+        "Six direct/commentarial witnesses correctly name Zhihai Benyi, Huanji, Zhongfeng Mingben, Juelang Daosheng, Wuye Guoshi, and Yuanwu Keqin.",
+        "o5 is authored exposition in Zongjing Lu but remains the generic 'Zongjing Lu expository compiler'; the work's named compiler Yongming Yanshou is recoverable and should own the authored comparison unless a nested quotation boundary proves otherwise.",
+        "The relational cure-versus-poison explanation is well supported and should be retained after that actor repair."
+      ]
+    },
+    {
+      "ordinal":1036,"id":"t_10b63ac74f61","term":"李廣","reviewedSha256":"025cc06c2947551149031274fc7c729b0150b18f6a8df01563af942aac39a1c2","occurrencesReviewed":5,"exactVerified":5,"verdict":"REVISE",
+      "findings":[
+        "o1, o3, and o5 correctly name Wuzu Fayan, Daqian Heqiao Dai, and Juelang Daosheng; the Li Guang arrow-story explanation is bounded and specific.",
+        "o2 is only 'the Chan verse-anthology author' and must resolve the verse author or become reviewed-unnamed after the six-rung search.",
+        "o4 supplies the human name Gushan Gui but leaves it as a noncanonical non-master label. The named verse/comment voice must be reconciled to the roster/pending roster rather than stranded in ActorLabel."
+      ]
+    },
+    {
+      "ordinal":1038,"id":"t_b016f513be3d","term":"五燈嚴統","reviewedSha256":"afbc1d30c68a26b0b71951853c0f3f83d9b15183891b5cc80ed2025ab99d0663","occurrencesReviewed":4,"exactVerified":4,"verdict":"REVISE",
+      "findings":[
+        "All four occurrences are documentary or paratextual, but only o2 names its human author, Shuijian Huihai. o1's annalist, o3's imperial memorial author, and o4's biographer are described by roles rather than actually identified.",
+        "The entry should resolve the supplied bylines/names where present, or use reviewed-unnamed with the six-rung record where the source truly supplies no name; 'identified-non-master' cannot mean an unnamed job description.",
+        "The book-title sense and explanation of its lineage-polemic role are sound, but the claim that it is Feiyin Tongrong's history should explicitly distinguish Tongrong's compilation, later continuation, memorial presentation, and biography."
+      ]
+    },
+    {
+      "ordinal":1040,"id":"t_74c3c0e1b896","term":"下禪床","reviewedSha256":"94300e4534adb6a67161657a737dc49059995265c8cb0c88b9e25acda34be476","occurrencesReviewed":7,"exactVerified":7,"verdict":"REVISE",
+      "findings":[
+        "o1 and o4 are duplicate lamp-record recensions of Xiuxi descending, walking two steps, and being seized by Gushan; they are one deployment family, not independent evidence.",
+        "o3 is a verse containing 跳下禪床 in commentary on Nanquan, not narration describing Nanquan's descent; its exact verse voice is misclassified. o2, o5-o7 are narrated bodily actions and require named narrator/byline or honest reviewed-unnamed states rather than generic identified actors.",
+        "The explanation correctly distinguishes leaving the teaching seat from ending seated meditation, but 'another spreads both hands after the community asks' conflates separate cases: Yungai Zhi spreads his hands in response to Jiufeng, whereas Baizhang Weizheng spreads his hands after the community's request. Rewrite with those actors and boundaries explicit."
+      ]
+    }
+  ],
+  "summary": {
+    "entriesReviewed":6,"fullCasesReviewed":36,"exactVerified":36,"keep":0,"revise":6,
+    "mechanics":"36/36 exact and supporting gate green; semantic actor and recension repairs remain",
+    "systemicFindings":[
+      "Role descriptions are repeatedly stored as identified humans without actual names.",
+      "Named but noncanonical actors remain stranded outside roster/pending-roster handling.",
+      "下禪床 contains a duplicate recension and a verse/narration category error."
+    ],
+    "selfReview":false,"promoted":false
+  }
+}

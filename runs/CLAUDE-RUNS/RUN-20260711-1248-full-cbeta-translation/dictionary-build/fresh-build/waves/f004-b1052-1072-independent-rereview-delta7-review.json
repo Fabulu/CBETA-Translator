@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-delta-rereview",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T22:05:00+02:00",
+  "sourceAuthorLedger": "fresh-build/waves/f004-b1052-1072-independent-rereview-delta7-author-final-ledger.json",
+  "sourceAuthorLedgerSha256": "965d21b222c355fe975c887086ebe19a66c14e68e6f22b403a4f1d135210742e",
+  "entriesReviewed": 7,
+  "occurrencesReadInFullCase": 39,
+  "exactKwicsAndSpans": 39,
+  "keep": 6,
+  "revise": 1,
+  "entries": [
+    {"ordinal":1052,"id":"t_4db0d950f314","term":"白居易","reviewedEntrySha256":"5f95baf1d76c46954b5b32089825da0b3a904b244d4d30788b19b2ec8393ddc8","occurrencesReadInFullCase":5,"verdict":"KEEP","defectRetest":"Compiler introductions are separated from Bai Juyi's quoted self-identification, and the prose explicitly treats the three Bird's-Nest witnesses as parallel recensions rather than independent events."},
+    {"ordinal":1057,"id":"t_4c1448553bb6","term":"拍禪床","reviewedEntrySha256":"912fe221a6a93b23a854cf66c01a004805dd4af81bf2ad1c42554122089826cc","occurrencesReadInFullCase":6,"verdict":"KEEP","defectRetest":"Baoning Yong now owns o1's exact seat-striking action and the remaining named public actions support the teaching-seat gloss and prose."},
+    {"ordinal":1059,"id":"t_afade752976d","term":"威音那畔","reviewedEntrySha256":"2a0b7e1579d60b88e7e35f2c62e1861852c1abaad09b0a94d8be1cef5c06deb4","occurrencesReadInFullCase":6,"verdict":"KEEP","defectRetest":"The unsupported earliest-Buddha superlative and question-answer generalization are removed; formal addresses, incense wording, and declarative contrasts now bound the explanation."},
+    {"ordinal":1060,"id":"t_d01493daf491","term":"關捩","reviewedEntrySha256":"de7a203fdf3f99a5bf6a5550eeab6f2868a31bf9abff6b3d1726d8691c09fb16","occurrencesReadInFullCase":6,"verdict":"KEEP","defectRetest":"Both repeated Juelang witnesses name Juelang and are explicitly identified as one recurrence family; prose is tethered to turning, operating, or failing to turn the catch."},
+    {"ordinal":1066,"id":"t_0051fc72360c","term":"臨濟四喝","reviewedEntrySha256":"82af8748a70fe3f3c25b890342669124957a39398575fc2ca0aa44fa22311824","occurrencesReadInFullCase":5,"verdict":"KEEP","defectRetest":"Qigang Zong is recovered as named commentator and Chaozong Tongren as direct later raiser; question, compilation exposition, commentary, authored verse, and inherited raising remain distinct."},
+    {"ordinal":1067,"id":"t_60dcb199a5e1","term":"全機大用","reviewedEntrySha256":"e8c3bb9bd9803a52be84d107ed612ee2086aff644b5a04c0bec098adc5322e66","occurrencesReadInFullCase":6,"verdict":"REVISE","findings":["Li Pan and the J10 Miyun Yuanwu witness were repaired and the gloss no longer imports responsive-capacity theory.","However o4 (L/L154/L154n1640.xml 0431a07) is the same uninterrupted Miyun Yuanwu hall address as o3, preserved in another record/edition. It still labels the headword a reviewed unnamed compiler utterance. The explicit '師...復陞座云' frame assigns 全機大用 to Miyun Yuanwu, so the exact-master defect remains and the duplicate recurrence must be declared."]},
+    {"ordinal":1072,"id":"t_c49116ead4fc","term":"睦州擔板","reviewedEntrySha256":"d4586dee52d6a419e189cebfef186d722633c80d8375bc18a5855d814ee7885e","occurrencesReadInFullCase":5,"verdict":"KEEP","defectRetest":"The retained verse now explicitly anchors the board-carrier's one-sided view, while Dahui/Liao'an direct uses and later compiled/commentarial uses are kept distinct."}
+  ],
+  "reviewIntegrity": {"entriesEdited":false,"promoted":false,"merged":false,"siteTouched":false,"selfReview":false}
+}

@@ -1,0 +1,42 @@
+{
+  "counts": {
+    "entries": 21,
+    "senses": 26,
+    "occurrences": 129,
+    "named_occurrences": 84,
+    "deferred_non_roster": 44,
+    "pending_roster_master": 44,
+    "context_master_links": 92,
+    "deferred_non_roster_context": 44,
+    "pending_roster_context_master": 44,
+    "attribution_notes": 129,
+    "actor_reviewed_unnamed": 17,
+    "actor_narrated": 25,
+    "unnamed_master_forbidden": 3,
+    "actor_identified_non_master": 3,
+    "explicit_master_turn_left_anonymous": 1
+  },
+  "hardFailures": 4,
+  "failures": [
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_43f57213c34e/entry.v2.json",
+      "detail": "十方世界 s1 o7: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o6: every master must be named"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_897abeb2436c/entry.v2.json",
+      "detail": "披毛戴角 s1 o6: every master must be named"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_897abeb2436c/entry.v2.json",
+      "detail": "披毛戴角 s1 o6: ['師云']; read the complete case and name the exact master"
+    }
+  ]
+}

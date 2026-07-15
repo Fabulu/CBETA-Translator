@@ -54,14 +54,14 @@
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0617a09",
-          "ToLb": "0617a18",
-          "Kwic": "喫酒肉即是不喫即是師曰若喫是中丞祿不喫是中丞福師入室弟子一百三十九人各為一方宗主轉化無窮師於貞元四年正月中登建昌石門山於林中經行見洞壑平坦謂侍者曰吾之朽質當於來月歸茲地矣言訖而回既而示疾院主問和尚近日尊候如何師曰日面佛月面佛二月一日沐浴跏趺入滅元和中諡大寂禪師塔名大莊嚴。百丈懷海禪師語錄一百丈懷海禪師福州長樂人也師叅馬大師為侍者檀越每送齋飯來",
+          "FromLb": "0617a11",
+          "ToLb": "0617a14",
+          "Kwic": "師於貞元四年正月中登建昌石門山於林中經行見洞壑平坦謂侍者曰吾之朽質當於來月歸茲地矣",
           "Curated": true,
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorLabel": "the compiler identifying the attendant addressed by Mazu Daoyi",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -71,12 +71,20 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:49:07.954968+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "The recut witness stays within Mazu Daoyi's death account; 侍者 is the narrator's role label before Mazu's quoted words.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (古尊宿語錄; C/C077/C077n1710.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "ContextMasters": [
+            {
+              "MasterName": "Mazu Daoyi",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: the compiler identifying the attendant addressed by Mazu Daoyi. The complete case and its turn boundaries were read before attribution."
         },
         {
           "RelPath": "X/X66/X66n1296.xml",

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T18:43:25.167269+00:00",
+  "role": "f005-laneB-two-entry-canary-author",
+  "wave": "f005",
+  "lane": "B",
+  "ordinals": [
+    1301,
+    1302
+  ],
+  "entries": [
+    {
+      "ordinal": 1301,
+      "id": "t_df028fd6bd35",
+      "term": "語言",
+      "occurrences": 7,
+      "entrySha256": "525987c476729e770717f41d5bf51d85884790666025262fe375dc2d1b414de8",
+      "worksheetSha256": "327f7d71d0e8c4e010766aa8ef7917fb333e08dd269f172f6477a4d8aabe9bdb",
+      "compileReportSha256": "e783c572a6417fb7aaa5b9d1dcc8fb5b5011ebcd8a609a8156f12773975cebd9",
+      "state": "drafted-awaiting-independent-canary-review"
+    },
+    {
+      "ordinal": 1302,
+      "id": "t_705aabe99572",
+      "term": "卓一下",
+      "occurrences": 7,
+      "entrySha256": "b0784b8f85c6038fb7853b73c876b3a445c6adf72d0282c69b4b578f1ba9c1bc",
+      "worksheetSha256": "5ca588a14190859efb5c0d69d52592e687ce6bea021c531fdb87ac1e90e919ad",
+      "compileReportSha256": "7d0e01d5f7304f7f8ccadff9b1f31237fd0c508847fd2708de1a026fadcee28b",
+      "state": "drafted-awaiting-independent-canary-review"
+    }
+  ],
+  "occurrences": 14,
+  "exactKwicsAndSpans": 14,
+  "fastPreflight": {
+    "path": "f005-laneB-1301-1302-fast-preflight.json",
+    "sha256": "ec84aea6cf10ddac10c059ce9a34237b1eda61f23f1392eaeaaf4530d7b78348",
+    "passing": 2,
+    "flagged": 0
+  },
+  "compositeGate": {
+    "path": "f005-laneB-1301-1302-composite-gate.json",
+    "sha256": "351144f1d53ffa0154d099daa3798016d1369ffb8cb9f57e6d8330f3052f1f1c",
+    "hardPass": true
+  },
+  "attributionPacket": {
+    "path": "f005-laneB-1301-1302-composite-gate-attribution-packets.json",
+    "sha256": "69aaa334b798fcbf2743dd428bdc736e5377e4e393b5e1dd5de42b85bafd8abd",
+    "generatorVersion": 5,
+    "turnProofMissing": 0
+  },
+  "pendingRoster": {
+    "path": "f005-laneB-1301-1302-pending-roster.json",
+    "sha256": "dd1e27c7fbe1b407f71c8e8edf1cc85a6c0cc5e4ce440fe23f3a16e86f06fb8c",
+    "candidates": 3
+  },
+  "semanticReviewRequired": true,
+  "selfReview": false,
+  "promoted": false,
+  "merged": false,
+  "published": false,
+  "scaledBeyondCanary": false
+}

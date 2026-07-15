@@ -16,118 +16,75 @@
           "Han Yu"
         ],
         "Status": "preferred",
-        "Validation": "multi-source",
-        "Note": "5 distinct work IDs selected after complete-case actor review.",
+        "Validation": "provisional",
+        "Note": "4 genuine full-case witnesses retained after semantic re-adjudication.",
         "Occurrences": [
           {
-            "RelPath": "X/X66/X66n1297.xml",
-            "FromLb": "0272c06",
-            "ToLb": "0273a04",
-            "Kwic": "鑒下四世雲巖曇晟道吾宗智卷五十八船子德誠󳬰樹慧省百顏明哲高沙彌翠微無學孝義性空長沙僊天三平義忠馬頰本空本生文公韓愈石室善道卷五十九大鑒下五世洞山良价卷六十洞山良价神山僧密幽溪石霜慶諸漸源仲興淥清夾山善會卷六十一夾山善會清平令遵投子大同道場如訥白雲約卷六十二大鑒下六",
-            "Curated": true,
-            "AttributionNote": "Source text (宗鑑法林): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "reviewed-unnamed",
-              "Kind": "quoted speaker unresolved after the attribution ladder",
-              "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-              "ActorRole": "utterer",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-              "ReviewedBy": "Codex f004 lane B full-case author",
-              "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
-            "DraftActorProof": {
-              "ExactHeadwordClause": "鑒下四世雲巖曇晟道吾宗智卷五十八船子德誠󳬰樹慧省百顏明哲高沙彌翠微無學孝義性空長沙僊天三平義忠馬頰本空本生文公韓愈石室善道卷五十九大鑒下五世洞山良价卷六十洞山良价神山僧密幽溪石霜慶諸漸源仲興淥清夾山善會卷六十一夾山善會清平令遵投子大同道場如訥白雲約卷六十二大鑒下六",
-              "GrammaticalSubject": "quoted speaker unresolved after the attribution ladder",
-              "FullCaseDecision": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted."
-            }
-          },
-          {
             "RelPath": "X/X72/X72n1437.xml",
-            "FromLb": "0419c11",
-            "ToLb": "0419c17",
-            "Kwic": "殘羮餿飯，即今大道巖頭一句作麼生道？只把一根無孔笛，夜深吹出碧巖頭。除夕茶話。且喜歲華今結局，那堪葉落又抽枝。韓愈有文徒送鬼，賈島無餚可祭詩。至於衲僧分上事，又作麼生？北禪分歲。大家知，大家知，喫了莫言滋味惡，木人夜半捉烏鷄。上海居士請茶話。三春已去，九夏方臨，黃",
+            "FromLb": "0419c10",
+            "ToLb": "0419c18",
+            "Kwic": "後架，德山棒拋向前坑。不用從前殘羮餿飯，即今大道巖頭一句作麼生道？只把一根無孔笛，夜深吹出碧巖頭。除夕茶話。且喜歲華今結局，那堪葉落又抽枝。韓愈有文徒送鬼，賈島無餚可祭詩。至於衲僧分上事，又作麼生？北禪分歲。大家知，大家知，喫了莫言滋味惡，木人夜半捉烏鷄。上海居士請茶話。三春已去，九夏方臨，黃鶯聲漸老，紫燕語方嬌，岸柳垂煙重，園竹長新",
             "Curated": true,
-            "AttributionNote": "Source text (永覺元賢禪師廣錄): biographical or documentary narrator bears the exact headword after complete-case review.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "biographical or documentary narrator",
-              "ActorLabel": "biographical or documentary narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-              "ReviewedBy": "Codex f004 lane B full-case author",
-              "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yongjue Yuanxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source text (永覺元賢禪師廣錄; X/X72/X72n1437.xml). Exact actor: Yongjue Yuanxian. The complete the New Year’s Eve tea address frame assigns this comparison to Yongjue Yuanxian.",
             "DraftActorProof": {
-              "ExactHeadwordClause": "殘羮餿飯，即今大道巖頭一句作麼生道？只把一根無孔笛，夜深吹出碧巖頭。除夕茶話。且喜歲華今結局，那堪葉落又抽枝。韓愈有文徒送鬼，賈島無餚可祭詩。至於衲僧分上事，又作麼生？北禪分歲。大家知，大家知，喫了莫言滋味惡，木人夜半捉烏鷄。上海居士請茶話。三春已去，九夏方臨，黃",
-              "GrammaticalSubject": "biographical or documentary narrator",
-              "FullCaseDecision": "The complete unit uses the headword in narration rather than assigning it to a human speaker."
+              "ExactHeadwordClause": "後架，德山棒拋向前坑。不用從前殘羮餿飯，即今大道巖頭一句作麼生道？只把一根無孔笛，夜深吹出碧巖頭。除夕茶話。且喜歲華今結局，那堪葉落又抽枝。韓愈有文徒送鬼，賈島無餚可祭詩。至於衲僧分上事，又作麼生？北禪分歲。大家知，大家知，喫了莫言滋味惡，木人夜半捉烏鷄。上海居士請茶話。三春已去，九夏方臨，黃鶯聲漸老，紫燕語方嬌，岸柳垂煙重，園竹長新",
+              "GrammaticalSubject": "Yongjue Yuanxian",
+              "SpeechFrame": "The complete 除夕茶話 frame assigns this comparison to Yongjue Yuanxian.",
+              "FullCaseDecision": "The complete 除夕茶話 frame assigns this comparison to Yongjue Yuanxian."
+            },
+            "MasterName": "Yongjue Yuanxian"
+          },
+          {
+            "RelPath": "J/J40/J40nB492.xml",
+            "FromLb": "0489a25",
+            "ToLb": "0489b06",
+            "Kwic": "道行。」五祖演禪師示眾云：「釋迦、彌勒猶是他奴，且道他是阿誰？」師拈云：「你還識他麼？不離這箇即這箇，我是阿誰誰是我？不審！不審！蹉過！蹉過！」「三箇奴郎總一家，幾多卜度路頭差。虛空撲落呵呵笑，識得他兮莫問他。」唐憲宗迎佛，舍利現五色光，百僚皆賀，惟韓愈端立。帝問曰：「百僚皆賀，卿為甚不賀？」愈曰：「臣曾看佛書來，佛光非青黃赤白等光，此是龍神荷助之光。」帝曰：「如何是佛光？」愈無對。古宿代云：「陛下問處便是。」師拈云：「帝迎佛舍利，現五色光，眉毛罅裏，耀古騰今。愈曰：『佛光非青黃赤白黑』，見即成邪。",
+            "Curated": true,
+            "MasterName": "Wanfeng Shiwei",
+            "ContextMasters": [
+              {
+                "MasterName": "Wanfeng Shiwei",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source text (萬峰和尚語錄; J/J40/J40nB492.xml). Exact actor: Wanfeng Shiwei. The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "道行。」五祖演禪師示眾云：「釋迦、彌勒猶是他奴，且道他是阿誰？」師拈云：「你還識他麼？不離這箇即這箇，我是阿誰誰是我？不審！不審！蹉過！蹉過！」「三箇奴郎總一家，幾多卜度路頭差。虛空撲落呵呵笑，識得他兮莫問他。」唐憲宗迎佛，舍利現五色光，百僚皆賀，惟韓愈端立。帝問曰：「百僚皆賀，卿為甚不賀？」愈曰：「臣曾看佛書來，佛光非青黃赤白等光，此是龍神荷助之光。」帝曰：「如何是佛光？」愈無對。古宿代云：「陛下問處便是。」師拈云：「帝迎佛舍利，現五色光，眉毛罅裏，耀古騰今。愈曰：『佛光非青黃赤白黑』，見即成邪。",
+              "SpeechFrame": "The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+              "FullCaseDecision": "The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+              "GrammaticalSubject": "Wanfeng Shiwei"
             }
           },
           {
-            "RelPath": "X/X79/X79n1557.xml",
-            "FromLb": "0006c14",
-            "ToLb": "0007a03",
-            "Kwic": "大川和尚法嗣一人僊天和尚卷第二十青原下第四世潮州大顛和尚法嗣四人漳州三平義忠禪師馬頰山本空和尚本生和尚侍郎文公韓愈青原下第五世澧州龍潭崇信禪師法嗣二人鼎州德山宣鑑禪師洪州寶峰和尚潭州道吾宗智禪師法嗣三人潭州石霜慶諸禪師潭州漸源仲興禪師祿青和尚潭州雲巖曇晟禪師法嗣四",
+            "RelPath": "J/J26/J26nB180.xml",
+            "FromLb": "0296c07",
+            "ToLb": "0296c18",
+            "Kwic": "也得。」師曰：「此皇上佛菩薩度盡眾生心也，然性命關頭，須當人信得己躬下有恁般大事方可留心，若只向文字上理會，任他千般思、萬般索，只打向得名場流轉。今皇上但縣一格，有人悟得祖師禪定，與他今科狀元，自然箇箇留心。」上曰：「老和尚說得極是。」上一日語師：「韓愈是唐朝最不信有佛法底人，故其《原道》一篇語多支離，卻有李翱一箇好門生，于性命之學反極通透。」師曰：「他曾經藥山點化過來，故贈藥山有『鍊得身形似鶴形，千株松下兩函經，我來問道無餘事，雲在青天水在缾』之偈。」上曰：「李翱有《復性》四篇，老和尚曾看過麼？」",
             "Curated": true,
-            "AttributionNote": "Source text (聯燈會要): biographical or documentary narrator bears the exact headword after complete-case review.",
+            "MasterName": null,
             "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "biographical or documentary narrator",
-              "ActorLabel": "biographical or documentary narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-              "ReviewedBy": "Codex f004 lane B full-case author",
-              "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (天童弘覺忞禪師北遊集; J/J26/J26nB180.xml). Exact actor: the reviewed unnamed emperor speaking to Muchen Daomin. The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
             "DraftActorProof": {
-              "ExactHeadwordClause": "大川和尚法嗣一人僊天和尚卷第二十青原下第四世潮州大顛和尚法嗣四人漳州三平義忠禪師馬頰山本空和尚本生和尚侍郎文公韓愈青原下第五世澧州龍潭崇信禪師法嗣二人鼎州德山宣鑑禪師洪州寶峰和尚潭州道吾宗智禪師法嗣三人潭州石霜慶諸禪師潭州漸源仲興禪師祿青和尚潭州雲巖曇晟禪師法嗣四",
-              "GrammaticalSubject": "biographical or documentary narrator",
-              "FullCaseDecision": "The complete unit uses the headword in narration rather than assigning it to a human speaker."
-            }
-          },
-          {
-            "RelPath": "X/X87/X87n1620.xml",
-            "FromLb": "0180a14",
-            "ToLb": "0180b09",
-            "Kwic": "三道人卷四太守楊衒之使者宋雲向居士崔趙公中使楊光庭相國杜鴻漸鄴侯李泌張濆行者魚軍容刺史李渤相國崔羣相國于頔文公韓愈燕王趙王王鎔馬大夫周員外劉相公竺尚書李軍容劉侍御朱行軍尚書溫造史山人相國宋齊丘閩王王審知王延鈞陳尚書韋監軍陳尚書節度使成汭劉禹端張覇遷劉翁鍾司徒給事陶",
-            "Curated": true,
-            "AttributionNote": "Source text (先覺宗乘): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
-            "ContextMasters": [],
+              "ExactHeadwordClause": "也得。」師曰：「此皇上佛菩薩度盡眾生心也，然性命關頭，須當人信得己躬下有恁般大事方可留心，若只向文字上理會，任他千般思、萬般索，只打向得名場流轉。今皇上但縣一格，有人悟得祖師禪定，與他今科狀元，自然箇箇留心。」上曰：「老和尚說得極是。」上一日語師：「韓愈是唐朝最不信有佛法底人，故其《原道》一篇語多支離，卻有李翱一箇好門生，于性命之學反極通透。」師曰：「他曾經藥山點化過來，故贈藥山有『鍊得身形似鶴形，千株松下兩函經，我來問道無餘事，雲在青天水在缾』之偈。」上曰：「李翱有《復性》四篇，老和尚曾看過麼？」",
+              "SpeechFrame": "The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+              "FullCaseDecision": "The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+              "GrammaticalSubject": "the emperor speaking to Muchen Daomin"
+            },
             "ActorAttribution": {
               "Status": "reviewed-unnamed",
-              "Kind": "quoted speaker unresolved after the attribution ladder",
-              "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-              "ActorRole": "utterer",
+              "Kind": "the reviewed unnamed emperor speaking to Muchen Daomin",
+              "ActorLabel": "the reviewed unnamed emperor speaking to Muchen Daomin",
+              "ActorRole": "questioner",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -136,64 +93,53 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-              "ReviewedBy": "Codex f004 lane B full-case author",
-              "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
+              "GrammarEvidence": "The complete address or exchange was read; this actor utters the exact headword-bearing clause without substitution of a contextual case figure.",
+              "ReviewedBy": "Codex f004 cohort1 round2 final repair",
+              "ReviewedUtc": "2026-07-15T17:45:22.265997+00:00",
               "AuthoredVoiceRiskReviewed": true
-            },
-            "DraftActorProof": {
-              "ExactHeadwordClause": "三道人卷四太守楊衒之使者宋雲向居士崔趙公中使楊光庭相國杜鴻漸鄴侯李泌張濆行者魚軍容刺史李渤相國崔羣相國于頔文公韓愈燕王趙王王鎔馬大夫周員外劉相公竺尚書李軍容劉侍御朱行軍尚書溫造史山人相國宋齊丘閩王王審知王延鈞陳尚書韋監軍陳尚書節度使成汭劉禹端張覇遷劉翁鍾司徒給事陶",
-              "GrammaticalSubject": "quoted speaker unresolved after the attribution ladder",
-              "FullCaseDecision": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted."
             }
           },
           {
             "RelPath": "J/J27/J27nB194.xml",
-            "FromLb": "0328a15",
-            "ToLb": "0328a15",
-            "Kwic": "韓愈",
+            "FromLb": "0328a10",
+            "ToLb": "0328a19",
+            "Kwic": "衣漢。」僧云：「和尚作何方便？」師以袖掩卻，僧云：「和尚慈悲，救某甲出虎口。」師云：「汝活得即救。」僧作虎聲，師云：「者畜生猶帶腥氣在。」師舉大顛擯首座話次，一僧云：「請師再舉。」師云：「鷂子過新羅。」僧一掌，師噓兩聲，僧禮拜，師云：「老僧兩噓，是肯韓愈不肯韓愈？」僧擬議，師亂棒打出。師問僧：「那裏來？」僧云：「高麗。」師指月，云：「高麗有者箇麼？」僧云：「有。」師云：「既有，何得拋離鄉井？」僧罔措，師云：「惜子遠來，收取去。」僧禮拜，師當頭一踏，云：「還在者裏。」師病起，觀水影，曰：「老僧秖得半箇",
             "Curated": true,
-            "AttributionNote": "Source text (昭覺丈雪醉禪師語錄): section-identified master awaiting canonical roster resolution bears the exact headword after complete-case review.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "reviewed-unnamed",
-              "Kind": "section-identified master awaiting canonical roster resolution",
-              "ActorLabel": "section-identified master awaiting canonical roster resolution",
-              "ActorRole": "utterer",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity.",
-              "ReviewedBy": "Codex f004 lane B full-case author",
-              "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "MasterName": "Zhangxue Zui",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhangxue Zui",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source text (昭覺丈雪醉禪師語錄; J/J27/J27nB194.xml). Exact actor: Zhangxue Zui. The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
             "DraftActorProof": {
-              "ExactHeadwordClause": "韓愈",
-              "GrammaticalSubject": "section-identified master awaiting canonical roster resolution",
-              "FullCaseDecision": "The complete case assigns the headword-bearing clause to 師 or a formal master address; no romanized name is guessed from title proximity."
+              "ExactHeadwordClause": "衣漢。」僧云：「和尚作何方便？」師以袖掩卻，僧云：「和尚慈悲，救某甲出虎口。」師云：「汝活得即救。」僧作虎聲，師云：「者畜生猶帶腥氣在。」師舉大顛擯首座話次，一僧云：「請師再舉。」師云：「鷂子過新羅。」僧一掌，師噓兩聲，僧禮拜，師云：「老僧兩噓，是肯韓愈不肯韓愈？」僧擬議，師亂棒打出。師問僧：「那裏來？」僧云：「高麗。」師指月，云：「高麗有者箇麼？」僧云：「有。」師云：「既有，何得拋離鄉井？」僧罔措，師云：「惜子遠來，收取去。」僧禮拜，師當頭一踏，云：「還在者裏。」師病起，觀水影，曰：「老僧秖得半箇",
+              "GrammaticalSubject": "Zhangxue Zui",
+              "SpeechFrame": "The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
+              "FullCaseDecision": "The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice."
             }
           }
         ],
         "ClaimAnchors": [],
         "SourceTexts": [
-          "X/X66/X66n1297.xml",
           "X/X72/X72n1437.xml",
-          "X/X79/X79n1557.xml",
-          "X/X87/X87n1620.xml",
+          "J/J40/J40nB492.xml",
+          "J/J26/J26nB180.xml",
           "J/J27/J27nB194.xml"
         ],
-        "RelatedMasters": [],
+        "RelatedMasters": [
+          "Wanfeng Shiwei",
+          "Yongjue Yuanxian",
+          "Zhangxue Zui"
+        ],
         "RelatedTerms": [],
         "ExplanationParts": {
-          "CorpusEarnedOpening": "Han yu names the referent or formula used in the selected Zen records.",
+          "CorpusEarnedOpening": "Han Yu, the official raised through his recorded encounters and allusions.",
           "EvidenceBody": [
-            "Complete-case reading shows how Han Yu functions in exchanges, formal addresses, institutional records, or inherited cases; the entry follows those predicates and speakers rather than an outside interpretation."
+            "Chan records deploy Han Yu as the named official who questions masters and is later quoted or appraised; catalogue mentions and bare name lists do not establish this role."
           ]
         },
         "DraftEvidence": {
@@ -201,10 +147,9 @@
             "o1",
             "o2",
             "o3",
-            "o4",
-            "o5"
+            "o4"
           ],
-          "ZenBend": "Complete-case reading shows how Han Yu functions in exchanges, formal addresses, institutional records, or inherited cases; the entry follows those predicates and speakers rather than an outside interpretation.",
+          "ZenBend": "Chan records deploy Han Yu as the named official who questions masters and is later quoted or appraised; catalogue mentions and bare name lists do not establish this role.",
           "CounterexampleOrLimit": "Longer compounds, catalogue boundaries, parallel transmissions, and grammatical variants were checked separately; no second sense was created merely for a different reading or part of speech.",
           "DifferentThingTest": {
             "Decision": "one-thing",
@@ -228,13 +173,19 @@
             }
           ],
           "IndependentWorkIds": [
-            "chan:zongjian-falin",
             "work:X72n1437",
-            "work:X79n1557",
-            "chan:xianjue-zongcheng",
+            "work:J40nB492",
+            "work:J26nB180",
             "work:J27nB194"
           ]
-        }
+        },
+        "OpeningClaimEvidenceKeys": [
+          "o1",
+          "o2",
+          "o3",
+          "o4"
+        ],
+        "Explanation": ""
       }
     ]
   }

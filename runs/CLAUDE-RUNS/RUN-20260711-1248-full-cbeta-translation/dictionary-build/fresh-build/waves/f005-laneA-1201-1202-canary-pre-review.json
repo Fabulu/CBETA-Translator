@@ -1,0 +1,174 @@
+{
+  "generatedUtc": "2026-07-15T17:28:36.142886+00:00",
+  "elapsedSeconds": 6.673,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_9808ec580b69",
+      "term": "金屑落眼",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9808ec580b69/entry.v2.json",
+      "sha256": "c668a1199def9456cca1446f424ab90efc4d874601b55f391b4a313c809248d7"
+    },
+    {
+      "id": "t_130d20fb3834",
+      "term": "眼裏著沙",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_130d20fb3834/entry.v2.json",
+      "sha256": "3b72c51d780379e4ff7d9936804b169c688fafe53349b195fc68e6a331eae6ed"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 9,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9808ec580b69/entry.v2.json",
+        "id": "t_9808ec580b69",
+        "term": "金屑落眼",
+        "verified": 4,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_130d20fb3834/entry.v2.json",
+        "id": "t_130d20fb3834",
+        "term": "眼裏著沙",
+        "verified": 5,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.131,
+    "attribution": 2.598,
+    "publicFeedback": 0.858,
+    "depthSense": 1.653,
+    "countClaims": 0.766,
+    "workSourceValidation": 0.705,
+    "corpusBaseline": 0.707,
+    "frozenHistoricalTerms": 1.136,
+    "attributionPackets": 3.849
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.598,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 9,
+        "named_occurrences": 8,
+        "deferred_non_roster": 6,
+        "pending_roster_master": 6,
+        "context_master_links": 9,
+        "deferred_non_roster_context": 6,
+        "pending_roster_context_master": 6,
+        "attribution_notes": 9,
+        "actor_identified_non_master": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 9,\n    \"named_occurrences\": 8,\n    \"deferred_non_roster\": 6,\n    \"pending_roster_master\": 6,\n    \"context_master_links\": 9,\n    \"deferred_non_roster_context\": 6,\n    \"pending_roster_context_master\": 6,\n    \"attribution_notes\": 9,\n    \"actor_identified_non_master\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.858,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp45ae8m5r.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.653,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_130d20fb3834",
+        "t_9808ec580b69"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_130d20fb3834\",\n    \"t_9808ec580b69\"\n  ]\n}\nreport: /tmp/tmpuq1_a3oy-depth.json\n",
+    "report": "/tmp/tmpuq1_a3oy-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.766,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.705,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.707,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.136,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.849,
+    "payload": {
+      "entries": 2,
+      "occurrences": 9,
+      "tierACandidates": 0,
+      "reviewRequired": 9
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 9,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 9\n}\nreport: fresh-build/waves/f005-laneA-1201-1202-canary-pre-review-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f005-laneA-1201-1202-canary-pre-review-attribution-packets.json",
+    "generatorVersion": 4,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_9808ec580b69",
+    "t_130d20fb3834"
+  ],
+  "strictRosterScopeIds": [
+    "t_9808ec580b69",
+    "t_130d20fb3834"
+  ]
+}

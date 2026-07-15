@@ -15,7 +15,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "5 distinct work IDs selected after complete-case actor review.",
+      "Note": "4 retained full-case witnesses after lexical-boundary and deployment review.",
       "Occurrences": [
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -23,26 +23,16 @@
           "ToLb": "0015c14",
           "Kwic": "三界大師，尚墮在識情數量，合喫二十棒。梵志雖然悟去，亦未出得識情數量，合喫二十棒。北山恁麼批判，且道有過無過？蕭何制律。棲霞成云：三界大師不合將閨閣中物搬出，返被梵志看破。若是壽昌待道：我今兩手皆空，更教放下個甚麼？便與痛棒打出。何故？不見道：殺人須用殺人刀，活人",
           "Curated": true,
-          "AttributionNote": "Source text (宗門拈古彙集): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: Beishan. The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
+          "ContextMasters": [
+            {
+              "MasterName": "Beishan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Beishan"
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -50,53 +40,16 @@
           "ToLb": "0279c17",
           "Kwic": "大悟。徑山琇云：大小世尊尚墮在識情數量，合喫二十棒。梵志雖然悟去，亦未出得情識數量，合喫二十棒。徑山恁麼批判，蕭何制律。棲霞成云：三界大師不合將閨閣中物般出，翻被梵志勘破。兩手擎來教放下，空身立地更疑猜，根塵識界無尋處，多謝春風爛熳開。截斷千崖路，風前活計新誰如蓆",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林): biographical or documentary narrator bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
-        },
-        {
-          "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0968b19",
-          "ToLb": "0968b19",
-          "Kwic": "蕭何",
-          "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): section-identified master performing the recorded action bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "section-identified master performing the recorded action",
-            "ActorLabel": "section-identified master performing the recorded action",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword occurs in the action clause whose grammatical subject is 師; the section identity is retained as a roster lead rather than guessed.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (宗鑑法林; X/X66/X66n1297.xml). Exact actor: Jingshan Xiu. The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
+          "ContextMasters": [
+            {
+              "MasterName": "Jingshan Xiu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Jingshan Xiu"
         },
         {
           "RelPath": "P/P154/P154n1519.xml",
@@ -104,26 +57,16 @@
           "ToLb": "0516a06",
           "Kwic": "心動二僧竦然。雪峯存云大小祖師龍頭蛇尾好與二十棒孚上座侍次咬齒峯云我與麼道也好與二十棒。保福展云作賊人心虛也是蕭何置律。五祖戒云著甚來由。巴陵鑑云祖師道不是風動不是旛動既不是風旛向甚處著有人與祖師作主出來與巴陵相見。雪竇顯云風動旛動既是風旛向甚處著有人與巴陵作主出",
           "Curated": true,
-          "AttributionNote": "Source text (宗門統要正續集(第1卷-第12卷)): quoted speaker unresolved after the attribution ladder bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "quoted speaker unresolved after the attribution ladder",
-            "ActorLabel": "quoted speaker unresolved after the attribution ladder",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The headword is inside direct speech, but the stored turn does not safely resolve a canonical master name; nearby figures are not substituted.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (宗門統要正續集(第1卷-第12卷); P/P154/P154n1519.xml). Exact actor: Baofu Congzhan. the explicit Baofu speech cue explicitly introduces Baofu's comment containing the headword-bearing comparison.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baofu Congzhan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Baofu Congzhan"
         },
         {
           "RelPath": "J/J33/J33nB294.xml",
@@ -131,39 +74,39 @@
           "ToLb": "0730c21",
           "Kwic": "言道：『吉凶未卜，我已先知。』休聽他古人說謊。」小參。「孔夫子不識字，孫武子不用兵，神農不嘗藥草，周公不制禮，蕭何不造律，李斯不作書，好端端的被這一班人弄得七顛八倒，說甚德山、臨濟、曹洞、雲門，一總趕出去。」小參。「作家不啐啄，啐啄同時失，正法眼藏，向這瞎驢邊滅卻",
           "Curated": true,
-          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄): biographical or documentary narrator bears the exact headword after complete-case review.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "biographical or documentary narrator",
-            "ActorLabel": "biographical or documentary narrator",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete unit uses the headword in narration rather than assigning it to a human speaker.",
-            "ReviewedBy": "Codex f004 lane B full-case author",
-            "ReviewedUtc": "2026-07-15T10:38:49.311314+00:00",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄; J/J33/J33nB294.xml). Exact actor: Langting Jingting. The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
+          "ContextMasters": [
+            {
+              "MasterName": "Langting Jingting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "MasterName": "Langting Jingting"
         }
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
         "X/X66/X66n1296.xml",
         "X/X66/X66n1297.xml",
-        "C/C077/C077n1710.xml",
         "P/P154/P154n1519.xml",
         "J/J33/J33nB294.xml"
       ],
-      "RelatedMasters": [],
+      "RelatedMasters": [
+        "Baofu Congzhan",
+        "Beishan",
+        "Jingshan Xiu",
+        "Langting Jingting"
+      ],
       "RelatedTerms": [],
-      "Explanation": "Xiao he names the referent or formula used in the selected Zen records. Complete-case reading shows how Xiao He functions in exchanges, formal addresses, institutional records, or inherited cases; the entry follows those predicates and speakers rather than an outside interpretation."
+      "OpeningClaimEvidenceKeys": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "Explanation": "Xiao He, invoked through the allusion that he established the laws. Commentators raise “Xiao He established the laws” when a response creates rules, complications, or precedent; the statesman’s Chan deployment is this recurrent legal allusion."
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-explicit-master-turn-guard-rereview",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T22:05:00+02:00",
+  "ordinal": 1095,
+  "id": "t_9e98cbf9596b",
+  "term": "大悲",
+  "reviewedEntrySha256": "f173b25f3550639624028ffbaaf765c08bc6fc6b0e1208878310e719cd14b8df",
+  "occurrencesReadInFullCase": 8,
+  "exactKwicsAndSpans": 8,
+  "verdict": "REVISE",
+  "findings": [
+    "Sense 1 o3 is Xiangyan Zhixian's own praise introduced by '贊云'; the exact phrase 和尚大悲恩逾父母 is his direct authored wording, not compiler narration quoting him.",
+    "Sense 2 o2 contains Magu's question and Linji Yixuan's immediate repetition of 大悲千手眼 in one stored KWIC, yet assigns the whole span to an unnamed compiler despite the explicit 問/師 frame and stores Linji only as record-owner.",
+    "Sense 2 o3 likewise contains Magu's question and Linji's repeated challenge in a single span and labels both compiler narration. Recut each witness to one exact headword-bearing turn or represent the distinct questioner and Linji turns separately; MasterName may name Linji only on his exact repeated wording.",
+    "The two-sense split and general semantic prose remain supportable, but the newly enforced explicit-master-turn guard correctly blocks this untouched prior KEEP."
+  ],
+  "reviewIntegrity": {"entriesEdited":false,"promoted":false,"merged":false,"siteTouched":false,"selfReview":false}
+}

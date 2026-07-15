@@ -29,12 +29,20 @@
           "ToLb": "0348c10",
           "Kwic": "汝作此偈，未見本性，只到門外，未入門內。",
           "Curated": true,
-          "AttributionNote": "The Platform Scripture of the Sixth Patriarch (六祖大師法寶壇經). Hongren is the exact actor: the surrounding narration introduces his statement that Shenxiu's verse has not seen original nature.",
+          "AttributionNote": "Platform Scripture of the Sixth Patriarch (六祖大師法寶壇經): Hongren utters the headword while directly evaluating and instructing Shenxiu.",
           "ContextMasters": [
             {
               "MasterName": "Hongren",
               "Roles": [
-                "utterer"
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Shenxiu",
+              "Roles": [
+                "addressee",
+                "person-evaluated"
               ]
             }
           ],
@@ -46,12 +54,20 @@
           "ToLb": "0348c12",
           "Kwic": "須得言下識自本心，見自本性不生不滅",
           "Curated": true,
-          "AttributionNote": "The Platform Scripture of the Sixth Patriarch (六祖大師法寶壇經). Hongren is the exact actor: he continues telling Shenxiu that one must recognize one's own original mind and see one's own original nature.",
+          "AttributionNote": "Platform Scripture of the Sixth Patriarch (六祖大師法寶壇經): Hongren utters the headword while directly evaluating and instructing Shenxiu.",
           "ContextMasters": [
             {
               "MasterName": "Hongren",
               "Roles": [
-                "utterer"
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Shenxiu",
+              "Roles": [
+                "addressee",
+                "person-evaluated"
               ]
             }
           ],
@@ -63,12 +79,20 @@
           "ToLb": "0349a23",
           "Kwic": "若識自本心，見自本性，即名丈夫、天人師、佛。",
           "Curated": true,
-          "AttributionNote": "The Platform Scripture of the Sixth Patriarch (六祖大師法寶壇經). Hongren is the exact actor: the narration introduces his statement to Huineng about recognizing one's own original mind and seeing one's own original nature.",
+          "AttributionNote": "Platform Scripture: Hongren directly tells Huineng that seeing one’s original nature makes one a true person, teacher of humans and devas, and buddha.",
           "ContextMasters": [
             {
               "MasterName": "Hongren",
               "Roles": [
-                "utterer"
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Huineng",
+              "Roles": [
+                "addressee",
+                "student"
               ]
             }
           ],
@@ -148,16 +172,24 @@
           "ToLb": "0193a06",
           "Kwic": "舉：拘留孫佛云：見身無實是佛身，了心如幻是佛幻，了得身心本性空，斯人與佛何殊別？師云：佛身無實亦無虗，佛幻非幻。",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Hengchuan Xinggong (橫川行珙禪師語錄). Hengchuan Xinggong explicitly raises a verse with 'Krakucchanda Buddha said'; Krakucchanda Buddha is therefore the exact quoted speaker of the headword-bearing line about realizing the original nature of body and mind as empty. Hengchuan follows with his own comment.",
+          "AttributionNote": "Hengchuan Xinggong raises and voices the Krakucchanda verse, then comments on it; Krakucchanda is the attributed quoted source.",
           "ContextMasters": [
+            {
+              "MasterName": "Hengchuan Xinggong",
+              "Roles": [
+                "utterer",
+                "raiser",
+                "record-owner"
+              ]
+            },
             {
               "MasterName": "Krakucchanda Buddha",
               "Roles": [
-                "utterer"
+                "attributed-quoted-source"
               ]
             }
           ],
-          "MasterName": "Krakucchanda Buddha"
+          "MasterName": "Hengchuan Xinggong"
         }
       ],
       "SourceTexts": [

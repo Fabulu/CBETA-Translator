@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-stale-hash-recovery-full-case-review",
+  "reviewer": "reviewer7",
+  "generatedUtc": "2026-07-15T14:50:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1133, 1135, 1150],
+  "entriesReviewed": 17,
+  "occurrencesReadInFullCase": 92,
+  "exactKwics": 92,
+  "exactFullSpans": 92,
+  "exactSpanFailures": 0,
+  "keep": 0,
+  "revise": 17,
+  "staleHashCause": "All 17 entries were rewritten together at 2026-07-15T14:06:41.045212+00:00 by 'Codex f004 lane C checkpoint author' after the prior independent KEEP review. The rewrite retained the same evidence spans but replaced case-specific actor attribution and context-master links with a repeated generic narrator/compiler template.",
+  "reviewMethod": [
+    "Read every current stored occurrence in a 5,000-character corpus context covering the complete encounter, address, verse, title, or narrative unit.",
+    "Reran zc.verify on all 92 current KWICs and required returned FromLb and ToLb to equal the stored span and the KWIC to contain its own headword.",
+    "Retested MasterName as the utterer of the exact headword, with quoted, discussed, acting, and case figures kept in ContextMasters rather than promoted to utterer.",
+    "Compared current authorship metadata, actor states, context links, prose, depth, and sense structure with the prior post-collision review and exact-case repair record.",
+    "No entry was edited, promoted, merged, or published."
+  ],
+  "entries": [
+    {
+      "ordinal": 1133,
+      "id": "t_68fbf8a2329c",
+      "term": "雲巖掃地",
+      "priorKeepSha256": "5b8b4334607fa7a0e052da80fb165d7211be10924880106d48dbab62bb9dea02",
+      "reviewedEntrySha256": "5fffee96eab9c7993e94f93d0f816a0776edccc24bdde7ef7484da6a16eb8932",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["The checkpoint overwrite classifies all four exact case labels as compiler narration and deletes all context masters. Full cases distinguish later public raisers/commentators from the editorial heading and require Yunyan Tansheng and Daowu Yuanzhi as case figures; the current uniform treatment is false."]
+    },
+    {
+      "ordinal": 1135,
+      "id": "t_4c1e5a42155d",
+      "term": "不放過",
+      "priorKeepSha256": "479461287acad354581252148baef59b46071f3c1173bba0d807f49ccd455d93",
+      "reviewedEntrySha256": "70ac250a7a31ef5a72a3a30cb98e8da4acd0aec60c80e8a08ee1f5fb7219da57",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": ["All seven previously resolved direct or embedded utterances were flattened to generic narrated labels and their named context was removed. The current actor analysis contradicts explicit speech frames in the complete cases."]
+    },
+    {
+      "ordinal": 1136,
+      "id": "t_b6da6fc1c9bf",
+      "term": "安單",
+      "priorKeepSha256": "02c3f261aa66bd60d1fb9a9fa603575cf28b6deb18857ff0831f34aa50f9845a",
+      "reviewedEntrySha256": "5ff54fd26b8b22fa4f8629549f0e7c349addb2633fc851afb244e3ea57fd1e2e",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["Only the first unnamed questioner survives. The overwrite misclassifies explicit master speech and authored address as compiler narration and drops the responding/acting masters from ContextMasters."]
+    },
+    {
+      "ordinal": 1137,
+      "id": "t_bdabbe0d39fa",
+      "term": "主人翁",
+      "priorKeepSha256": "1f80e0793816136bad1e38df06b9221a6bbf86fa28ca3a2c31f5e1db396500e4",
+      "reviewedEntrySha256": "85deac0a320298d3122dac9ece36d4bec29678c18d863becbc89c37aeeccc444",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["Six named address, verse, self-call, and public-instruction voices were replaced with six generic narrators. The complete cases name the utterers and, in the embedded Ruiyan self-call, require speaker and later commentator to remain distinct."]
+    },
+    {
+      "ordinal": 1138,
+      "id": "t_b495de9e2b11",
+      "term": "神農",
+      "priorKeepSha256": "011549bbb598ba8753ca29c7a466a6747d09b9b76b89d27d4e91913c377d5163",
+      "reviewedEntrySha256": "c13c43038abadfd96a657ee339d3aa234fb75ebc7ffbaa05210eef8e53dcaca6",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["The current file erases four named authors of preface, farewell address, and portrait verse. Shennong is the invoked figure, not the utterer; the prior figure-versus-voice distinction must be restored."]
+    },
+    {
+      "ordinal": 1139,
+      "id": "t_3ae11b4bc79f",
+      "term": "無常迅速",
+      "priorKeepSha256": "57e6404043db9624f87b5abfe9692258d1bd7c3be7f880c848a1c7c759d52bbe",
+      "reviewedEntrySha256": "732c0cc89b6821bb85531043ede71c2fe6255d534f1affe0d67a8cf246e50d52",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["Five named master utterances and one named disciples' request were all recast as compiler narration. The speech and request frames in the complete cases make that mass classification untenable."]
+    },
+    {
+      "ordinal": 1140,
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "priorKeepSha256": "7914eef6d6817eb3b1ad1e52d44b99ebf090b875722c39744e8bb7fc85f647c2",
+      "reviewedEntrySha256": "05593fd8c0e657d886fb9daf7d4e4b2609901e1ff35fd2f288845fe858b8dc4c",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["The overwrite leaves two occurrences as unnamed questioners and calls the rest narration, but the complete exchanges contain explicit utterers. In particular the elder, not Muzhou, says 何不領話, while Jingzun Tonghui and Changqing Huileng bear other exact turns."]
+    },
+    {
+      "ordinal": 1141,
+      "id": "t_652dbd8f5c83",
+      "term": "西序",
+      "priorKeepSha256": "3989d5d90ac946011913507e409ef509e6ac9d6dd1658b393a1a1a55662f1a9c",
+      "reviewedEntrySha256": "060de6a4afdcdd7300785e32b5829b1fb9d1e50336e774affaf51b9e2131a8f9",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["Institutional contents and rule narration must remain distinct from Chaoding Yuxuan's spoken deployment. The current template labels every witness narration and deletes the named speaker/context distinction."]
+    },
+    {
+      "ordinal": 1142,
+      "id": "t_4a5ef260448f",
+      "term": "心地法門",
+      "priorKeepSha256": "5c570121ae0cfba3cb67d6f3c599bce16405cf9be095e414e9427f1eb905a374",
+      "reviewedEntrySha256": "6283932961b009ae0312f68d115194a77482743db174abea8aea6657e57e5ad3",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": ["The current file retains only two unnamed questioners and turns the remaining direct masters and embedded Buddha quotation into narration. Full-case review requires those actor classes and quoted/context figures to be separated."]
+    },
+    {
+      "ordinal": 1143,
+      "id": "t_9b760056ea15",
+      "term": "驀口",
+      "priorKeepSha256": "b43a947e07e328b56d0459fc3e89f8bd9c32145169b2e0d01945938845be06e5",
+      "reviewedEntrySha256": "4bddced08688977ff63ac3a5f3a77f9149bc1f2ae39abb01c9540ad281b9c77e",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": ["The checkpoint template loses Zhaozhou's spoken occurrence and the named masters whose actions are narrated in the other cases. Those are different actor states; empty ContextMasters across all seven is not acceptable."]
+    },
+    {
+      "ordinal": 1144,
+      "id": "t_4625f09d4acc",
+      "term": "黃檗棒",
+      "priorKeepSha256": "ef99199ed5d4fab0412221aaf76cc680c9087bac984db55559d2f6e328ea67a0",
+      "reviewedEntrySha256": "59a8c0122d9705b6b7ae46c8c5a090e214f305f306afe9f8568a349dffb1c533",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["Four later commenting masters are the actual utterers of the stored wording, while Huangbo is the case figure. The current all-narrator attribution erases precisely that required distinction."]
+    },
+    {
+      "ordinal": 1145,
+      "id": "t_38014001726f",
+      "term": "知有底人",
+      "priorKeepSha256": "00d9ca1a2c625304d8cd8611bba17e3be84c2b38f336a603e1a39c3db514f74b",
+      "reviewedEntrySha256": "d2ef08a78d03ce6c1782a3db59824481258466f25e5dcd8aa8bc93bc65166579",
+      "occurrencesRead": 7,
+      "verdict": "REVISE",
+      "reasons": ["Zhaozhou's question, named masters' discourses, true narrative uses, and the final unnamed monk were correctly heterogeneous before the overwrite. The current one-size narrator treatment preserves only the final unnamed status and is semantically false."]
+    },
+    {
+      "ordinal": 1146,
+      "id": "t_aa56c106ef82",
+      "term": "陷虎之機",
+      "priorKeepSha256": "00e2b63ea36b8ed93b0112106084a56796c22294613ae74721cacfc9fc117d29",
+      "reviewedEntrySha256": "677339fcd122cdbd167b8150b63682df1dd2d64fb635e1f522d3172e52241c7f",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["Five master utterers and one named non-master commentator were all reduced to narrator labels. The non-master must not enter MasterName, but neither may the named master utterers be erased."]
+    },
+    {
+      "ordinal": 1147,
+      "id": "t_2281bd1c98fc",
+      "term": "過去七佛",
+      "priorKeepSha256": "182d5b1a40b48984030f21fd3cd977b70a5f359e18826b60058ac3b5e2aa7fb7",
+      "reviewedEntrySha256": "755c6e54fbd901f2cee0504a0d7a5cc8f7386309633cc7f2c392a744870fbdd7",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["Two embedded Buddha turns and two later master deployments require quoted-utterer versus current-raiser distinctions. The checkpoint overwrite calls all four narration and removes all figures."]
+    },
+    {
+      "ordinal": 1148,
+      "id": "t_3eb1fd8df203",
+      "term": "趙州勘婆",
+      "priorKeepSha256": "03726ab01adb78e7e5670f539f8100f006081fee26e5910fecc08633730d89be",
+      "reviewedEntrySha256": "c83670c4eca9f3fc1442dc89c999d4c0d8b966b22e5a87dc6ca761350595ef60",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["The lay official's question is a named non-master turn and five later masters raise the case. The current all-narrator classification erases both the non-master and master roles as well as Zhaozhou and the old woman as case figures."]
+    },
+    {
+      "ordinal": 1149,
+      "id": "t_16c61f8e00b4",
+      "term": "物物頭頭",
+      "priorKeepSha256": "05325fdda70456f3ffe413be7a1c8930a91f6e03723f2591f1ab1d61640472d3",
+      "reviewedEntrySha256": "93f042b2d418f40f44027486efd8a537860321c0692cc849e00b46a5ca0092f1",
+      "occurrencesRead": 6,
+      "verdict": "REVISE",
+      "reasons": ["Five named master utterances and one anonymous feast address were replaced by six arbitrary narrator subtypes. Explicit address and discourse frames in the complete passages require restoration of the actual voices."]
+    },
+    {
+      "ordinal": 1150,
+      "id": "t_594dfb5d367f",
+      "term": "香篆",
+      "priorKeepSha256": "1de828c1da56ecc29e8e109771f230a3668f52540e1ece24831f4f15895459c7",
+      "reviewedEntrySha256": "e43657fda5c70380df54b72d5ff0eaaca4888b861baa05d901361f3e3d608766",
+      "occurrencesRead": 4,
+      "verdict": "REVISE",
+      "reasons": ["Three named voices and one unnamed monk's turn were all recast as narration. The complete cases identify the speech frames; the current actor labels and empty ContextMasters are regressions."]
+    }
+  ],
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false,
+    "artifactWasAbsentBeforeWrite": true
+  }
+}

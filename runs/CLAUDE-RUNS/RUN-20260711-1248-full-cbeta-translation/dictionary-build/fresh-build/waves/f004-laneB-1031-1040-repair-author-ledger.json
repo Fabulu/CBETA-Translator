@@ -1,0 +1,135 @@
+{
+  "wave": "f004",
+  "lane": "B",
+  "ordinals": "1031-1040",
+  "role": "author-only",
+  "writtenUtc": "2026-07-15T15:42:24.584850+00:00",
+  "entries": [
+    {
+      "ordinal": 1031,
+      "id": "t_bfef2fc85826",
+      "term": "參問",
+      "occurrences": 6,
+      "exactVerified": 6,
+      "entrySha256": "8627aaab7a8770813bcc0029bbf9d0c1328ea4ab9bed0c615595bab349f4da87",
+      "compileHardPass": true,
+      "namedUtterers": 0,
+      "narratedOrOther": 6
+    },
+    {
+      "ordinal": 1032,
+      "id": "t_b336769aabdf",
+      "term": "家醜",
+      "occurrences": 7,
+      "exactVerified": 7,
+      "entrySha256": "2db6f66fdebf8fca808a185efe445bf7b5659a8c762bad90570a17541560e272",
+      "compileHardPass": true,
+      "namedUtterers": 2,
+      "narratedOrOther": 5
+    },
+    {
+      "ordinal": 1033,
+      "id": "t_d7725cb0c8c0",
+      "term": "水頭",
+      "occurrences": 4,
+      "exactVerified": 4,
+      "entrySha256": "56061afb34dbff5367cc2f430b39e98c4a151871b202498af8f3b0463e807850",
+      "compileHardPass": true,
+      "namedUtterers": 0,
+      "narratedOrOther": 4
+    },
+    {
+      "ordinal": 1034,
+      "id": "t_e21288d0fefb",
+      "term": "徐六擔板",
+      "occurrences": 6,
+      "exactVerified": 6,
+      "entrySha256": "06308dbf68cec334c5f1f8c819768e76d357429ead2d96caa4a3d1058c551efb",
+      "compileHardPass": true,
+      "namedUtterers": 4,
+      "narratedOrOther": 2
+    },
+    {
+      "ordinal": 1035,
+      "id": "t_641de814fd8a",
+      "term": "毒藥",
+      "occurrences": 7,
+      "exactVerified": 7,
+      "entrySha256": "56e0e8fc30dcd8a7ccaf8101c012b278c9d3848dcbc29502e9ea198ecc1d713b",
+      "compileHardPass": true,
+      "namedUtterers": 4,
+      "narratedOrOther": 3
+    },
+    {
+      "ordinal": 1036,
+      "id": "t_10b63ac74f61",
+      "term": "李廣",
+      "occurrences": 5,
+      "exactVerified": 5,
+      "entrySha256": "864585676db76d361bb6e6bd1f55c39a03ca8d696b07d67448ad6aa8398f06d7",
+      "compileHardPass": true,
+      "namedUtterers": 0,
+      "narratedOrOther": 5
+    },
+    {
+      "ordinal": 1037,
+      "id": "t_40cfbcc5f859",
+      "term": "縱奪",
+      "occurrences": 7,
+      "exactVerified": 7,
+      "entrySha256": "9d984069632777491e472d044875356592ea51e9b7862e0086f4e9dc7950653c",
+      "compileHardPass": true,
+      "namedUtterers": 4,
+      "narratedOrOther": 3
+    },
+    {
+      "ordinal": 1038,
+      "id": "t_b016f513be3d",
+      "term": "五燈嚴統",
+      "occurrences": 4,
+      "exactVerified": 4,
+      "entrySha256": "28747c774b56dba1ed97c0f041122149aa9cca42bb9894fb96d9176cd4b93574",
+      "compileHardPass": true,
+      "namedUtterers": 0,
+      "narratedOrOther": 4
+    },
+    {
+      "ordinal": 1039,
+      "id": "t_f24a55791323",
+      "term": "單傳直指",
+      "occurrences": 6,
+      "exactVerified": 6,
+      "entrySha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
+      "compileHardPass": true,
+      "namedUtterers": 6,
+      "narratedOrOther": 0
+    },
+    {
+      "ordinal": 1040,
+      "id": "t_74c3c0e1b896",
+      "term": "下禪床",
+      "occurrences": 7,
+      "exactVerified": 7,
+      "entrySha256": "919c98d7f7998a98144846383a3270bb45aa7b87279fd2bedb3c22bd981a0906",
+      "compileHardPass": true,
+      "namedUtterers": 0,
+      "narratedOrOther": 7
+    }
+  ],
+  "speedPass": {
+    "lateDefect": "Evidence selection and generic prose/actor templating were coupled, so semantic defects surfaced only after expensive final audits.",
+    "implemented": [
+      "compile each evidence worksheet before cohort validation",
+      "remove punctuation collisions and bare paratext before depth counting",
+      "derive canonical work IDs while drafting",
+      "generate source-title attribution notes from zc.title",
+      "add frequency-floor witnesses before prose review"
+    ],
+    "nextPass": [
+      "precompute a sourceGroup packet with zc.title, full case, work_id, and exact-headword clause once per ordinal",
+      "require a closed occurrence decision before prose: direct utterance, narrated action, institutional rule, title discussion, or reject",
+      "run English-first and forbidden-framing lint on ExplanationParts before compiling",
+      "validate each entry immediately; reserve cohort audit for cross-entry collapse detection"
+    ]
+  }
+}

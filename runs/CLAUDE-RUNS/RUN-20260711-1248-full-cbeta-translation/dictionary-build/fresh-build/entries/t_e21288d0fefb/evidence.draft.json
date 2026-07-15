@@ -4,20 +4,25 @@
     "Id": "t_e21288d0fefb",
     "SourceTerm": "徐六擔板",
     "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
-    "CreatedBy": "Codex f004 lane B bulk evidence-first author",
-    "WrittenUtc": "2026-07-15T10:28:15.689574+00:00",
+    "CreatedBy": "Codex f004 B1031-1040 full-case repair author",
+    "WrittenUtc": "2026-07-15T15:42:24.584850+00:00",
     "Senses": [
       {
         "SenseKey": null,
         "MasterName": null,
         "PreferredTarget": "Xu Six carrying a board",
-        "AlternateTargets": [],
+        "AlternateTargets": [
+          "Xu Six with a board",
+          "the board-carrying Xu Six"
+        ],
         "SearchAliases": [
-          "Xu Six carrying a board"
+          "Xu Six carrying a board",
+          "Xu Six with a board",
+          "the board-carrying Xu Six"
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "6 distinct work IDs selected after complete-context review.",
+        "Note": "6 curated occurrences retained after removing punctuation collisions and bare paratext; sources are counted by canonical work ID at validation.",
         "Occurrences": [
           {
             "RelPath": "X/X82/X82n1571.xml",
@@ -25,30 +30,21 @@
             "ToLb": "0117b13",
             "Kwic": "。上堂，舉：南泉道：我十八上便解作活計。趙州道：我十八上便解破家散宅。師曰：南泉、趙州也是徐六擔板，祇見一邊。華藏也無活計可作，亦無家宅可破。逢人突出老拳，要伊直下便到。且道到後如何？三十六峰觀不足，却來平地倒騎驢。慶",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷); X/X82/X82n1571.xml). Exact actor: Dunan Zongyan. The complete source unit assigns the exact headword-bearing speech or authored wording to Dunan Zongyan.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dunan Zongyan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Dunan Zongyan",
             "DraftActorProof": {
               "ExactHeadwordClause": "。上堂，舉：南泉道：我十八上便解作活計。趙州道：我十八上便解破家散宅。師曰：南泉、趙州也是徐六擔板，祇見一邊。華藏也無活計可作，亦無家宅可破。逢人突出老拳，要伊直下便到。且道到後如何？三十六峰觀不足，却來平地倒騎驢。慶",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Dunan Zongyan",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Dunan Zongyan.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Dunan Zongyan."
             }
           },
           {
@@ -57,30 +53,21 @@
             "ToLb": "0317b15",
             "Kwic": "然透徹門庭。已徹者，不在斯限，未徹者，切須徹去，若不徹去，不被聲色所埋，必被清淨所困，似個徐六擔板。更有一事須善護持，直待孤山微笑，即向汝道。」維那結椎，云：「諦觀法王法，法王法如是。」師便下座。林明悌祝壽，請上堂。問",
             "Curated": true,
-            "AttributionNote": "Source text (蓮峰禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (蓮峰禪師語錄; J/J38/J38nB410.xml). Exact actor: Lianfeng. The complete source unit assigns the exact headword-bearing speech or authored wording to Lianfeng.",
+            "ContextMasters": [
+              {
+                "MasterName": "Lianfeng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Lianfeng",
             "DraftActorProof": {
               "ExactHeadwordClause": "然透徹門庭。已徹者，不在斯限，未徹者，切須徹去，若不徹去，不被聲色所埋，必被清淨所困，似個徐六擔板。更有一事須善護持，直待孤山微笑，即向汝道。」維那結椎，云：「諦觀法王法，法王法如是。」師便下座。林明悌祝壽，請上堂。問",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Lianfeng",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Lianfeng.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Lianfeng."
             }
           },
           {
@@ -89,30 +76,21 @@
             "ToLb": "0008b08",
             "Kwic": "迦老子出氣，只是將自己鼻孔摸索得着也好。靠拄杖。雲門澄云：瞿曇話作兩橛，雲居菽麥不分，真個徐六擔板只見一邊。徑山今日要各與他二十烏滕，還有不甘者麼？出來為二老雪屈。博山來云：根本無明即是諸佛不動智，不動智即是根本無明，",
             "Curated": true,
-            "AttributionNote": "Source text (宗門拈古彙集): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: Yunmen Cheng. The complete source unit assigns the exact headword-bearing speech or authored wording to Yunmen Cheng.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Cheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Yunmen Cheng",
             "DraftActorProof": {
               "ExactHeadwordClause": "迦老子出氣，只是將自己鼻孔摸索得着也好。靠拄杖。雲門澄云：瞿曇話作兩橛，雲居菽麥不分，真個徐六擔板只見一邊。徑山今日要各與他二十烏滕，還有不甘者麼？出來為二老雪屈。博山來云：根本無明即是諸佛不動智，不動智即是根本無明，",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Yunmen Cheng",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Yunmen Cheng.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Yunmen Cheng."
             }
           },
           {
@@ -121,30 +99,21 @@
             "ToLb": "0547a09",
             "Kwic": "云：『我有一隻箭，未嘗經磨煉，射不遍十方，要且無人見。』」師云：「二大老雖善潛蹤遯跡，未免徐六擔板。龍淵即不然：『我有一隻箭，何須經磨煉？早已遍十方，鋒鋩許誰見？』」病目示眾。舉：「如意尊者常好打睡，世尊呵云：『咄咄何",
             "Curated": true,
-            "AttributionNote": "Source text (自閒覺禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (自閒覺禪師語錄; J/J33/J33nB287.xml). Exact actor: Zixian Jue. The complete source unit assigns the exact headword-bearing speech or authored wording to Zixian Jue.",
+            "ContextMasters": [
+              {
+                "MasterName": "Zixian Jue",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Zixian Jue",
             "DraftActorProof": {
               "ExactHeadwordClause": "云：『我有一隻箭，未嘗經磨煉，射不遍十方，要且無人見。』」師云：「二大老雖善潛蹤遯跡，未免徐六擔板。龍淵即不然：『我有一隻箭，何須經磨煉？早已遍十方，鋒鋩許誰見？』」病目示眾。舉：「如意尊者常好打睡，世尊呵云：『咄咄何",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Zixian Jue",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Zixian Jue.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Zixian Jue."
             }
           },
           {
@@ -153,30 +122,21 @@
             "ToLb": "0464b04",
             "Kwic": "不肯。當時這僧若具些眼目，但云：真善知識！出言有準，教這老和尚暗裏喫拳。師拈云：這老宿大似徐六擔板，只見一邊，殊不知正敕既行，諸侯避道。舉：乾峯示眾云：舉一不得舉二，放過一著，落在第二。時有僧出云：昨日有人從天台來，却",
             "Curated": true,
-            "AttributionNote": "Source text (續古尊宿語要): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (續古尊宿語要; X/X68/X68n1318.xml). Exact actor: Guishan Hui'an Guang. The complete source unit assigns the exact headword-bearing speech or authored wording to Guishan Hui'an Guang.",
+            "ContextMasters": [
+              {
+                "MasterName": "Guishan Hui'an Guang",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Guishan Hui'an Guang",
             "DraftActorProof": {
               "ExactHeadwordClause": "不肯。當時這僧若具些眼目，但云：真善知識！出言有準，教這老和尚暗裏喫拳。師拈云：這老宿大似徐六擔板，只見一邊，殊不知正敕既行，諸侯避道。舉：乾峯示眾云：舉一不得舉二，放過一著，落在第二。時有僧出云：昨日有人從天台來，却",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Guishan Hui'an Guang",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Guishan Hui'an Guang.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Guishan Hui'an Guang."
             }
           },
           {
@@ -185,30 +145,21 @@
             "ToLb": "0116c08",
             "Kwic": "』僧云：『老老大大，龍頭蛇尾。』教云：『山僧今日失利。』據二大老，一人說有，一人說無，大似徐六擔板，各見一邊。今日如有人問金粟：『新年頭還有佛法也無？』但向他道：數縷彩霞環寶座，森羅萬象盡光輝。」遂下座。解制上堂，「金",
             "Curated": true,
-            "AttributionNote": "Source text (費隱禪師語錄): the exact single-token headword is retained under the documentary or narrator voice after complete-context review; no record owner is guessed as utterer.",
-            "ContextMasters": [],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "documentary or narrator voice",
-              "ActorLabel": "documentary or narrator voice after complete-unit review",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The ±10,000-character context and section head were inspected; absent a safely canonical exact-turn owner, the occurrence remains documentary rather than receiving a guessed master.",
-              "ReviewedBy": "Codex f004 lane B bulk full-context author",
-              "ReviewedUtc": "2026-07-15T10:28:15.689574+00:00",
-              "AuthoredVoiceRiskReviewed": true
-            },
+            "AttributionNote": "Source text (費隱禪師語錄; J/J26/J26nB178.xml). Exact actor: Feiyin Tongrong. The complete source unit assigns the exact headword-bearing speech or authored wording to Feiyin Tongrong.",
+            "ContextMasters": [
+              {
+                "MasterName": "Feiyin Tongrong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "MasterName": "Feiyin Tongrong",
             "DraftActorProof": {
               "ExactHeadwordClause": "』僧云：『老老大大，龍頭蛇尾。』教云：『山僧今日失利。』據二大老，一人說有，一人說無，大似徐六擔板，各見一邊。今日如有人問金粟：『新年頭還有佛法也無？』但向他道：數縷彩霞環寶座，森羅萬象盡光輝。」遂下座。解制上堂，「金",
-              "GrammaticalSubject": "documentary or narrator voice after complete-unit review",
-              "FullCaseDecision": "Complete context stored and read; no master assigned from title proximity."
+              "GrammaticalSubject": "Feiyin Tongrong",
+              "SpeechFrame": "The complete source unit assigns the exact headword-bearing speech or authored wording to Feiyin Tongrong.",
+              "FullCaseDecision": "The complete source unit assigns the exact headword-bearing speech or authored wording to Feiyin Tongrong."
             }
           }
         ],
@@ -223,10 +174,11 @@
         ],
         "RelatedMasters": [],
         "RelatedTerms": [],
+        "Explanation": "Xu Six carrying a board is the stock picture of one-sided vision: the board blocks one side while its bearer sees only the other. Named commentators apply the verdict to paired answers, lineage figures, and students trapped by either sound-and-form or purity. It is a criticism of partial seeing, not a biography of Xu Six.",
         "ExplanationParts": {
-          "CorpusEarnedOpening": "Xu six carrying a board is the plain-English referent tested by the selected Chan records.",
+          "CorpusEarnedOpening": "Xu Six carrying a board is the stock picture of one-sided vision: the board blocks one side while its bearer sees only the other.",
           "EvidenceBody": [
-            "The selected cases place Xu Six carrying a board inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition."
+            "Named commentators apply the verdict to paired answers, lineage figures, and students trapped by either sound-and-form or purity. It is a criticism of partial seeing, not a biography of Xu Six."
           ]
         },
         "DraftEvidence": {
@@ -238,27 +190,27 @@
             "o5",
             "o6"
           ],
-          "ZenBend": "The selected cases place Xu Six carrying a board inside lineage records, public addresses, institutional narration, or inherited cases; the exact surrounding predicates delimit how the records use it rather than importing an external definition.",
-          "CounterexampleOrLimit": "Catalogue-only, longer-compound, title-boundary, and incompatible literal matches were controlled during selection; different readings of one referent were not split.",
+          "ZenBend": "Xu Six carrying a board is the stock picture of one-sided vision: the board blocks one side while its bearer sees only the other. Named commentators apply the verdict to paired answers, lineage figures, and students trapped by either sound-and-form or purity. It is a criticism of partial seeing, not a biography of Xu Six.",
+          "CounterexampleOrLimit": "Literal, title, institutional, punctuation-collision, and grammatical uses were checked; collisions and bare paratext were not counted as deployment evidence.",
           "DifferentThingTest": {
             "Decision": "one-thing",
             "ComparedThings": [
               "Xu Six carrying a board",
-              "selected deployments"
+              "nearby literal, title, and grammatical candidates"
             ],
-            "Reason": "Catalogue-only, longer-compound, title-boundary, and incompatible literal matches were controlled during selection; different readings of one referent were not split."
+            "Reason": "The retained witnesses denote the same corpus object or operation; no split was made merely for noun/verb grammar or a different reading."
           },
-          "AliasRationale": "English lookup form names the same referent.",
+          "AliasRationale": "Each alias is an English lookup phrasing for the same retained corpus sense.",
           "ModifierControls": [
             {
               "finding": "checked",
-              "reason": "Exact headword separated from longer compounds."
+              "reason": "Exact headword occurrences were distinguished from longer compounds and punctuation joins."
             }
           ],
           "FamilyControls": [
             {
               "finding": "checked",
-              "reason": "Titles, persons, offices, and formulas controlled separately."
+              "reason": "Related titles, persons, formulas, and literal uses were tested before retaining one sense."
             }
           ],
           "IndependentWorkIds": [

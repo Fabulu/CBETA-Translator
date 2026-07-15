@@ -1,0 +1,322 @@
+{
+  "generatedUtc": "2026-07-15T20:30:22.502289+00:00",
+  "elapsedSeconds": 50.01,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_6bc71cc88c2f",
+      "term": "衣鉢",
+      "path": "fresh-build/entries/t_6bc71cc88c2f/entry.v2.json",
+      "sha256": "83a9aebd5b24352f25bdbd3c630844f8af8df89c7c39d5088b74555a2fd4dfa5"
+    },
+    {
+      "id": "t_6f47a97d45b0",
+      "term": "序",
+      "path": "fresh-build/entries/t_6f47a97d45b0/entry.v2.json",
+      "sha256": "2f64bec10253d095ef596c848495df5dfe3dac8e4554f4aa81b52f1ad951e844"
+    },
+    {
+      "id": "t_77774b8724f1",
+      "term": "付法",
+      "path": "fresh-build/entries/t_77774b8724f1/entry.v2.json",
+      "sha256": "9a30d15179113859119cd462ccf3895ae7500dceeb0f4c3a5609f22f46e18df3"
+    },
+    {
+      "id": "t_7887dc8d449f",
+      "term": "尊宿",
+      "path": "fresh-build/entries/t_7887dc8d449f/entry.v2.json",
+      "sha256": "07ea49925301cb018b852903d650ad3474416714a7e166c9b1fe371986f6f08f"
+    },
+    {
+      "id": "t_78d931324d99",
+      "term": "張商英",
+      "path": "fresh-build/entries/t_78d931324d99/entry.v2.json",
+      "sha256": "3f1ee33e51980ced59ea2f5e18884daac8ea9f4da6307df87c2247eb1677fb00"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 36,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_6bc71cc88c2f/entry.v2.json",
+        "id": "t_6bc71cc88c2f",
+        "term": "衣鉢",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_6f47a97d45b0/entry.v2.json",
+        "id": "t_6f47a97d45b0",
+        "term": "序",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_77774b8724f1/entry.v2.json",
+        "id": "t_77774b8724f1",
+        "term": "付法",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_7887dc8d449f/entry.v2.json",
+        "id": "t_7887dc8d449f",
+        "term": "尊宿",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_78d931324d99/entry.v2.json",
+        "id": "t_78d931324d99",
+        "term": "張商英",
+        "verified": 4,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 5.195,
+    "attribution": 42.107,
+    "publicFeedback": 13.633,
+    "depthSense": 37.035,
+    "countClaims": 20.081,
+    "workSourceValidation": 8.886,
+    "corpusBaseline": 8.78,
+    "frozenHistoricalTerms": 28.922,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 42.107,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 6,
+        "occurrences": 35,
+        "actor_narrated": 10,
+        "context_master_links": 32,
+        "deferred_non_roster_context": 17,
+        "attribution_notes": 36,
+        "chinese_strings": 14,
+        "anchored_chinese": 14,
+        "named_occurrences": 19,
+        "deferred_non_roster": 8,
+        "named_master_missing_structured_link": 3,
+        "note_missing_speaker": 1,
+        "actor_identified_non_master": 6,
+        "note_missing_source": 3,
+        "pending_roster_master": 3,
+        "pending_roster_context_master": 5,
+        "claim_anchors": 1,
+        "vague_attributor": 1,
+        "actor_reviewed_unnamed": 1
+      },
+      "hardFailures": 8,
+      "failures": [
+        {
+          "kind": "named_master_missing_structured_link",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6bc71cc88c2f/entry.v2.json",
+          "detail": "衣鉢 s2 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6bc71cc88c2f/entry.v2.json",
+          "detail": "衣鉢 s2 o3: Collected Old Cases Raised in the Lineage (宗門拈古彙集): an unnamed Caoqi robe-and-bowl attendant performs 提起; the record does not name him in any of the six attribution rungs."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json",
+          "detail": "序 s1 o2 expected '永覺元賢禪師廣錄': Preface to the Extensive Record of Heshang Yongjue (永覺和尚廣錄序): Lin Zhifan is the named preface writer; 命之蕃序, 蕃自顧, and 謹序曰 identify his written voice."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json",
+          "detail": "序 s1 o6 expected '林泉老人評唱投子青和尚頌古空谷集': General Preface to Linquan's Commentary (林泉老人評唱投子丹霞頌古總序): Linquan Conglun is the written speaker; the prose says 竊窺 and closes 林泉老衲…說."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json",
+          "detail": "序 s1 o7 expected '永覺元賢禪師廣錄': Preface to the Late Gushan Record (鼓山晚錄序): Weilin Daopei is the exact written speaker, identified by 小子霈 and the signature 嗣法弟子道霈焚香稽首題."
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77774b8724f1/entry.v2.json",
+          "detail": "付法 s1: 'a teacher'"
+        },
+        {
+          "kind": "named_master_missing_structured_link",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7887dc8d449f/entry.v2.json",
+          "detail": "尊宿 s1 o1: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters"
+        },
+        {
+          "kind": "named_master_missing_structured_link",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_78d931324d99/entry.v2.json",
+          "detail": "張商英 s1 o3: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 6,\n    \"occurrences\": 35,\n    \"actor_narrated\": 10,\n    \"context_master_links\": 32,\n    \"deferred_non_roster_context\": 17,\n    \"attribution_notes\": 36,\n    \"chinese_strings\": 14,\n    \"anchored_chinese\": 14,\n    \"named_occurrences\": 19,\n    \"deferred_non_roster\": 8,\n    \"named_master_missing_structured_link\": 3,\n    \"note_missing_speaker\": 1,\n    \"actor_identified_non_master\": 6,\n    \"note_missing_source\": 3,\n    \"pending_roster_master\": 3,\n    \"pending_roster_context_master\": 5,\n    \"claim_anchors\": 1,\n    \"vague_attributor\": 1,\n    \"actor_reviewed_unnamed\": 1\n  },\n  \"hardFailures\": 8,\n  \"failures\": [\n    {\n      \"kind\": \"named_master_missing_structured_link\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6bc71cc88c2f/entry.v2.json\",\n      \"detail\": \"衣鉢 s2 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters\"\n    },\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6bc71cc88c2f/entry.v2.json\",\n      \"detail\": \"衣鉢 s2 o3: Collected Old Cases Raised in the Lineage (宗門拈古彙集): an unnamed Caoqi robe-and-bowl attendant performs 提起; the record does not name him in any of the six attribution rungs.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json\",\n      \"detail\": \"序 s1 o2 expected '永覺元賢禪師廣錄': Preface to the Extensive Record of Heshang Yongjue (永覺和尚廣錄序): Lin Zhifan is the named preface writer; 命之蕃序, 蕃自顧, and 謹序曰 identify his written voice.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json\",\n      \"detail\": \"序 s1 o6 expected '林泉老人評唱投子青和尚頌古空谷集': General Preface to Linquan's Commentary (林泉老人評唱投子丹霞頌古總序): Linquan Conglun is the written speaker; the prose says 竊窺 and closes 林泉老衲…說.\"\n    },\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6f47a97d45b0/entry.v2.json\",\n      \"detail\": \"序 s1 o7 expected '永覺元賢禪師廣錄': Preface to the Late Gushan Record (鼓山晚錄序): Weilin Daopei is the exact written speaker, identified by 小子霈 and the signature 嗣法弟子道霈焚香稽首題.\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_77774b8724f1/entry.v2.json\",\n      \"detail\": \"付法 s1: 'a teacher'\"\n    },\n    {\n      \"kind\": \"named_master_missing_structured_link\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7887dc8d449f/entry.v2.json\",\n      \"detail\": \"尊宿 s1 o1: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters\"\n    },\n    {\n      \"kind\": \"named_master_missing_structured_link\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_78d931324d99/entry.v2.json\",\n      \"detail\": \"張商英 s1 o3: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 13.633,
+    "payload": {
+      "entries": 5,
+      "passing": 5,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 5,\n  \"passing\": 5,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpl10nbfju.json\n"
+  },
+  "depthSense": {
+    "exitCode": 1,
+    "elapsedSeconds": 37.035,
+    "payload": null,
+    "output": "cluster IDs absent from audited paths: attr-read-001-005\n",
+    "report": "/tmp/tmpckx4xjpo-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 1,
+    "elapsedSeconds": 20.081,
+    "payload": {
+      "entryCount": 5,
+      "claimCount": 10,
+      "candidatePhraseCount": 5,
+      "mismatchCount": 4,
+      "noNearCandidateCount": 2,
+      "mismatches": [
+        {
+          "entryId": "t_6bc71cc88c2f",
+          "sourceTerm": "衣鉢",
+          "senseIndex": 1,
+          "field": "Explanation",
+          "claimed": 31,
+          "unit": "hits",
+          "candidatePhrase": "傳衣鉢",
+          "candidateDistance": 2,
+          "candidatePhrases": [
+            "傳衣鉢",
+            "衣鉢"
+          ],
+          "genericHeadwordClaim": false,
+          "context": "ted as passed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 1",
+          "currentHits": 33,
+          "currentFiles": 28,
+          "currentWorks": 26,
+          "expectedForUnit": 33,
+          "audit": "mismatch-or-wrong-candidate"
+        },
+        {
+          "entryId": "t_6bc71cc88c2f",
+          "sourceTerm": "衣鉢",
+          "senseIndex": 1,
+          "field": "Explanation",
+          "claimed": 26,
+          "unit": "texts",
+          "candidatePhrase": "傳衣鉢",
+          "candidateDistance": 13,
+          "candidatePhrases": [
+            "傳衣鉢",
+            "衣鉢"
+          ],
+          "genericHeadwordClaim": false,
+          "context": "ed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 ",
+          "currentHits": 33,
+          "currentFiles": 28,
+          "currentWorks": 26,
+          "expectedForUnit": 28,
+          "audit": "mismatch-or-wrong-candidate"
+        },
+        {
+          "entryId": "t_6bc71cc88c2f",
+          "sourceTerm": "衣鉢",
+          "senseIndex": 1,
+          "field": "Explanation",
+          "claimed": 10,
+          "unit": "hits",
+          "candidatePhrase": "付衣鉢",
+          "candidateDistance": 2,
+          "candidatePhrases": [
+            "傳衣鉢",
+            "付衣鉢",
+            "衣鉢"
+          ],
+          "genericHeadwordClaim": false,
+          "context": " records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 texts), and one exact occurrence of ‘robe an",
+          "currentHits": 12,
+          "currentFiles": 10,
+          "currentWorks": 10,
+          "expectedForUnit": 12,
+          "audit": "mismatch-or-wrong-candidate"
+        },
+        {
+          "entryId": "t_6bc71cc88c2f",
+          "sourceTerm": "衣鉢",
+          "senseIndex": 1,
+          "field": "Explanation",
+          "claimed": 8,
+          "unit": "texts",
+          "candidatePhrase": "付衣鉢",
+          "candidateDistance": 13,
+          "candidatePhrases": [
+            "傳衣鉢",
+            "付衣鉢",
+            "衣鉢"
+          ],
+          "genericHeadwordClaim": false,
+          "context": "ransmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 texts), and one exact occurrence of ‘robe and bowl tran",
+          "currentHits": 12,
+          "currentFiles": 10,
+          "currentWorks": 10,
+          "expectedForUnit": 10,
+          "audit": "mismatch-or-wrong-candidate"
+        }
+      ]
+    },
+    "output": "{\n  \"entryCount\": 5,\n  \"claimCount\": 10,\n  \"candidatePhraseCount\": 5,\n  \"mismatchCount\": 4,\n  \"noNearCandidateCount\": 2,\n  \"mismatches\": [\n    {\n      \"entryId\": \"t_6bc71cc88c2f\",\n      \"sourceTerm\": \"衣鉢\",\n      \"senseIndex\": 1,\n      \"field\": \"Explanation\",\n      \"claimed\": 31,\n      \"unit\": \"hits\",\n      \"candidatePhrase\": \"傳衣鉢\",\n      \"candidateDistance\": 2,\n      \"candidatePhrases\": [\n        \"傳衣鉢\",\n        \"衣鉢\"\n      ],\n      \"genericHeadwordClaim\": false,\n      \"context\": \"ted as passed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 1\",\n      \"currentHits\": 33,\n      \"currentFiles\": 28,\n      \"currentWorks\": 26,\n      \"expectedForUnit\": 33,\n      \"audit\": \"mismatch-or-wrong-candidate\"\n    },\n    {\n      \"entryId\": \"t_6bc71cc88c2f\",\n      \"sourceTerm\": \"衣鉢\",\n      \"senseIndex\": 1,\n      \"field\": \"Explanation\",\n      \"claimed\": 26,\n      \"unit\": \"texts\",\n      \"candidatePhrase\": \"傳衣鉢\",\n      \"candidateDistance\": 13,\n      \"candidatePhrases\": [\n        \"傳衣鉢\",\n        \"衣鉢\"\n      ],\n      \"genericHeadwordClaim\": false,\n      \"context\": \"ed evidence of lineage succession. The corpus records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 \",\n      \"currentHits\": 33,\n      \"currentFiles\": 28,\n      \"currentWorks\": 26,\n      \"expectedForUnit\": 28,\n      \"audit\": \"mismatch-or-wrong-candidate\"\n    },\n    {\n      \"entryId\": \"t_6bc71cc88c2f\",\n      \"sourceTerm\": \"衣鉢\",\n      \"senseIndex\": 1,\n      \"field\": \"Explanation\",\n      \"claimed\": 10,\n      \"unit\": \"hits\",\n      \"candidatePhrase\": \"付衣鉢\",\n      \"candidateDistance\": 2,\n      \"candidatePhrases\": [\n        \"傳衣鉢\",\n        \"付衣鉢\",\n        \"衣鉢\"\n      ],\n      \"genericHeadwordClaim\": false,\n      \"context\": \" records ‘transmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 texts), and one exact occurrence of ‘robe an\",\n      \"currentHits\": 12,\n      \"currentFiles\": 10,\n      \"currentWorks\": 10,\n      \"expectedForUnit\": 12,\n      \"audit\": \"mismatch-or-wrong-candidate\"\n    },\n    {\n      \"entryId\": \"t_6bc71cc88c2f\",\n      \"sourceTerm\": \"衣鉢\",\n      \"senseIndex\": 1,\n      \"field\": \"Explanation\",\n      \"claimed\": 8,\n      \"unit\": \"texts\",\n      \"candidatePhrase\": \"付衣鉢\",\n      \"candidateDistance\": 13,\n      \"candidatePhrases\": [\n        \"傳衣鉢\",\n        \"付衣鉢\",\n        \"衣鉢\"\n      ],\n      \"genericHeadwordClaim\": false,\n      \"context\": \"ransmit the robe and bowl’ (傳衣鉢, 31 hits in 26 texts), ‘entrust the robe and bowl’ (付衣鉢, 10 hits in 8 texts), and one exact occurrence of ‘robe and bowl tran\",\n      \"currentHits\": 12,\n      \"currentFiles\": 10,\n      \"currentWorks\": 10,\n      \"expectedForUnit\": 10,\n      \"audit\": \"mismatch-or-wrong-candidate\"\n    }\n  ]\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 8.886,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 6,
+        "multiSourceSenses": 6
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 6,\n    \"multiSourceSenses\": 6\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 8.78,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 28.922,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "attr-read-001-005"
+  ],
+  "strictRosterScopeIds": [
+    "attr-read-001-005"
+  ]
+}

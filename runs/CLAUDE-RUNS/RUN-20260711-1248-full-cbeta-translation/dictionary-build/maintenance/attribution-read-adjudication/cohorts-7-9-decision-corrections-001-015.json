@@ -1,0 +1,54 @@
+{
+  "status": "supersedes quarantined v5 ledgers",
+  "identityRule": "Each ruling is bound to storedKwic + FromLb and a v6 boundTurnProofCandidate; the first headword elsewhere in the case is irrelevant.",
+  "v6Packets": [
+    "cohorts-7-9-v6-packets-001-005.json",
+    "cohorts-7-9-v6-packets-006-015.json"
+  ],
+  "majorCorrections": [
+    {
+      "entry": "序",
+      "old": "Several title occurrences were assigned to the named preface writers.",
+      "corrected": "Occurrences 1, 2, 3, 5, 6, and 7 are stored title/headings and therefore impersonal editorial headings; only occurrences 4 and 8 contain the headword in Yunqi Zhuhong's and Hanyue Fazang's own prose."
+    },
+    {
+      "entry": "付法",
+      "occurrence": 2,
+      "old": "Jie'an Wujin was treated as exact speaker.",
+      "corrected": "The stored headword lies inside 今諸子云; Jie'an's unnamed disciples are the questioners, and Jie'an's response begins at 咄."
+    },
+    {
+      "entry": "四料揀",
+      "occurrence": 5,
+      "old": "The earlier 妙喜云 clause was mistakenly selected and the occurrence was assigned to Dahui.",
+      "corrected": "The stored KWIC is the later 師云 clause; Chushi Fanqi is the exact speaker, so the original attribution stands."
+    },
+    {
+      "entry": "思量",
+      "occurrences": "1–8",
+      "old": "The two four-turn recensions were mistakenly collapsed as duplicate occurrences and several turns were assigned backward.",
+      "corrected": "Each compact stored KWIC is a separate bound turn: anonymous monk question, Yaoshan answer, anonymous monk follow-up, Yaoshan answer, repeated in a second work. Existing exact attributions stand; no replacement is warranted."
+    },
+    {
+      "entry": "便打",
+      "occurrence": 2,
+      "old": "The first 師便打 elsewhere in the full case caused attribution to Yangqi.",
+      "corrected": "The stored KWIC is 僧便打; the unnamed monk is the exact action-performer."
+    },
+    {
+      "entry": "本來人",
+      "occurrence": 2,
+      "old": "One KWIC mixed compiler narration and Yuelin Jing's verse.",
+      "corrected": "Re-cut to the complete 述偈曰 verse and attribute it to Yuelin Jing; zc.verify anchors the recut at the same FromLb."
+    }
+  ],
+  "mechanicalResult": {
+    "v6Occurrences001to005": 35,
+    "v6Occurrences006to015": 80,
+    "unboundSiblingOccurrences": 0,
+    "zcVerified": 115,
+    "zcFailures": 0,
+    "attributionHardFailuresNonStrictRoster": 0
+  },
+  "remainingNonAttributionGateFailures": "Public-feedback/count/depth and roster integration are separately reported; none is silently waived."
+}

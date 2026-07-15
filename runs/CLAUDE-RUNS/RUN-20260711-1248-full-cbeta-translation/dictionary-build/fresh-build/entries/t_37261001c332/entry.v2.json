@@ -30,13 +30,22 @@
           "ToLb": "0227a09",
           "Kwic": "祖問曰。在此作什麼。師曰觀心。祖曰。觀是何人心是何物。師無對便起作禮。",
           "Curated": true,
-          "AttributionNote": "Jingde Record of the Transmission of the Lamp (景德傳燈錄): inside Niutou Farong's encounter with Daoxin, Niutou Farong answers that he is inspecting mind; Daoxin asks who inspects and what mind is, and Farong gives no answer.",
+          "AttributionNote": "Source text; exact headword utterer: Niutou Farong. Complete-case evidence: 師曰觀心 is Farong’s reply to Daoxin’s question; Daoxin immediately challenges it.",
           "MasterName": "Niutou Farong",
           "ContextMasters": [
             {
               "MasterName": "Niutou Farong",
               "Roles": [
-                "utterer"
+                "utterer",
+                "respondent"
+              ]
+            },
+            {
+              "MasterName": "Daoxin",
+              "Roles": [
+                "questioner",
+                "teacher",
+                "case-figure"
               ]
             }
           ]

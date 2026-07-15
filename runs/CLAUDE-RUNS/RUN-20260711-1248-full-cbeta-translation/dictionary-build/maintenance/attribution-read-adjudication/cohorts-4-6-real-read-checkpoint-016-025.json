@@ -1,0 +1,98 @@
+{
+  "schemaVersion":"attribution-real-read-v2","generatedUtc":"2026-07-15T22:15:00Z","readOnly":true,
+  "provenance":{"method":"Ten individually authored adjudications after complete-case and enclosing-record reading; no generated verdict defaults.","serialization":"Hand-authored JSON."},
+  "entryRange":[16,25],"entries":10,
+  "rows":[
+    {
+      "cohort":4,"entryId":"t_935452e7a2c6","term":"觀音","sense":1,"occurrence":4,"RelPath":"C/C077/C077n1710.xml","FromLb":"0618b24","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The enclosing 百丈懷海禪師語錄 identifies Baizhang Huaihai as 師; the passage continues the same record through his work exchange and questioning of the monk.",
+      "exactHeadwordClause":"因普請鋤地次，有僧聞鼓聲，舉起鋤頭大笑歸去。師云：俊哉！此是觀音入理之門。後喚其僧問：汝今日見甚道理？",
+      "ownershipEvidence":"師云 directly opens the sentence containing 觀音; the subsequent 後喚其僧問 continues Baizhang's action and confirms that 師 is the record owner, not an impersonal narrator.",
+      "specificActor":"Baizhang Huaihai","actorRole":"master utterer and respondent","contextMasters":[{"MasterName":"Baizhang Huaihai","Roles":["utterer","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current row calls the headword-bearing clause compiler narration, but Baizhang explicitly says it after observing the monk. Baizhang must be MasterName.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The Guanyin deployment remains valid, but any explanation saying merely 'the text/master says' should name Baizhang. The lexical sense itself holds."
+    },
+    {
+      "cohort":4,"entryId":"t_937f63a4fb51","term":"目前","sense":1,"occurrence":7,"RelPath":"C/C077/C077n1710.xml","FromLb":"0629c08","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The complete enclosing record is 黃檗斷際禪師語錄; before the exchange it names 黃檗斷際禪師諱希運, and 師 remains Huangbo through the sustained question-and-answer sequence.",
+      "exactHeadwordClause":"云：既不許覓，何故又言莫斷它？師云：若不覓即便休，誰教你斷？你見目前虛空作麼生斷他？",
+      "ownershipEvidence":"師云 begins Huangbo's answer before 若不覓 and remains in force through 你見目前虛空; the next 云：此法可得便同虛空否 begins the interlocutor's reply.",
+      "specificActor":"Huangbo Xiyun","actorRole":"master utterer and respondent","contextMasters":[{"MasterName":"Huangbo Xiyun","Roles":["utterer","respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The saved 'source narrator' attribution ignores the uninterrupted 師云 answer. Huangbo himself utters 目前 and must be MasterName.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The proximal 'before one's eyes' sense is unchanged; prose should identify Huangbo as the speaker."
+    },
+    {
+      "cohort":4,"entryId":"t_9a7a00ea0cd1","term":"一歸何處","sense":1,"occurrence":6,"RelPath":"X/X84/X84n1585.xml","FromLb":"0706c09","sourceTitle":"續燈存稿",
+      "caseIdentityEvidence":"The heading 杭州靈隱竹泉了幻法林禪師 identifies Zhuquan Liaohuan Falin as the speaking section master.",
+      "exactHeadwordClause":"忽有僧問：萬法歸一，一歸何處？只向他道：今日熱如昨日。",
+      "ownershipEvidence":"Within the master's ongoing address, 忽有僧問 introduces a hypothetical quoted question, and 只向他道 supplies his proposed answer. He actually voices the complete formula while setting the hypothetical exchange; no live monk turn occurs in this event.",
+      "specificActor":"Zhuquan Liaohuan Falin","actorRole":"master utterer posing a hypothetical question","contextMasters":[{"MasterName":"Zhuquan Liaohuan Falin","Roles":["utterer","section-subject","hypothetical-case-raiser"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"A surface 僧問 pattern does not make this a live anonymous monk utterance. Zhuquan voices the hypothetical question inside his own address, so the saved MasterName is justified.",
+      "definitionProseImpact":"HOLDS. The master actively deploys the canonical question and answers it; no semantic revision is needed."
+    },
+    {
+      "cohort":4,"entryId":"t_9cfec92c6982","term":"鐵蛇鑽不入","sense":1,"occurrence":1,"RelPath":"M/M59/M59n1540.xml","FromLb":"0789b09","sourceTitle":"大慧普覺禪師普說",
+      "caseIdentityEvidence":"The heading 妙圓居士張檢點祖燈請普說 identifies Dahui Zonggao as 師 and the advancing participant as the requesting interlocutor.",
+      "exactHeadwordClause":"進云：只如祖師道……意旨如何？師云：出頭天外看。進云：直得鐵蛇鑽不入。師云：㘞。僧禮拜。",
+      "ownershipEvidence":"The second 進云 directly introduces 直得鐵蛇鑽不入. Dahui's following 師云：㘞 is a separate response.",
+      "specificActor":"the advancing monastic interlocutor","actorRole":"interlocutor","contextMasters":[{"MasterName":"Dahui Zonggao","Roles":["respondent","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The nearby 師云 belongs to Dahui's response after the headword-bearing 進云 turn. Current null MasterName and contextual Dahui are correct.",
+      "definitionProseImpact":"HOLDS. The interlocutor directly uses the iron-snake saying as an appraisal; no definition change follows."
+    },
+    {
+      "cohort":4,"entryId":"t_a2ccc2d35ae3","term":"如何是禪","sense":1,"occurrence":2,"RelPath":"C/C077/C077n1710.xml","FromLb":"0656b09","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The heading 睦州禪師大鑑下四世嗣黃檗 identifies Muzhou Daoming as 師.",
+      "exactHeadwordClause":"問：如何是禪？師云：猛火著油煎。",
+      "ownershipEvidence":"The initial 問 contains the entire headword; 師云 opens Muzhou's answer afterward.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Muzhou Daoming","Roles":["respondent","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"Muzhou does not utter 如何是禪; he answers it. The saved unnamed-questioner attribution and contextual respondent are correct.",
+      "definitionProseImpact":"HOLDS. The exact question is directly attested and the answer remains its Chan deployment."
+    },
+    {
+      "cohort":4,"entryId":"t_a326343ab7c3","term":"日日是好日","sense":1,"occurrence":4,"RelPath":"C/C078/C078n1720.xml","FromLb":"0803a08","sourceTitle":"禪宗頌古聯珠通集",
+      "caseIdentityEvidence":"The case itself names 眀教寬, identifying Mingjiao Kuan as 師.",
+      "exactHeadwordClause":"又僧問明教寬：新年頭還有佛法也無？師曰：無。曰：日日是好日，年年是好年，為甚却無？師曰：張公喫酒李公醉。",
+      "ownershipEvidence":"After 師曰：無, the unlabelled 曰 resumes the monk's objection and contains 日日是好日; the next 師曰 marks Mingjiao Kuan's answer.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Mingjiao Kuan","Roles":["respondent"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The headword is in the monk's follow-up, not Mingjiao's 師曰 answer. The current role distinction is correct.",
+      "definitionProseImpact":"HOLDS. The saying is explicitly invoked by the questioner and worked by Mingjiao's reply."
+    },
+    {
+      "cohort":4,"entryId":"t_a6754d726742","term":"定盤星","sense":1,"occurrence":4,"RelPath":"C/C077/C077n1710.xml","FromLb":"0670a12","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The full record is 首山禪師語錄. The parallel edition marks the local subsection 次住寶應語錄, so 師 remains Shoushan Shengnian after moving to Baoying; 寶應 is a residence, not a master name.",
+      "exactHeadwordClause":"劉司徒問：龍墀金口問，如何對玉機？師云：一輪逈脫三界外，當軒照破萬家門。司徒云：臨行一句，請師指示。師云：莫錯認定盤星。",
+      "ownershipEvidence":"The second 師云 explicitly introduces 莫錯認定盤星. The named lay official's prior request contains no 定盤星.",
+      "specificActor":"Shoushan Shengnian","actorRole":"master utterer and respondent","contextMasters":[{"MasterName":"Shoushan Shengnian","Roles":["utterer","respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"MasterName is required, but the saved Baoen Xuanze is a place-derived misidentification. The complete 首山 record and 次住寶應 heading identify Shoushan Shengnian as the speaker.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The warning against mistaking the fixed indicator remains semantically sound; replace the speaker name everywhere this witness is discussed."
+    },
+    {
+      "cohort":4,"entryId":"t_aa9e5467d247","term":"十方世界是全身","sense":1,"occurrence":3,"RelPath":"C/C078/C078n1720.xml","FromLb":"0705a04","sourceTitle":"禪宗頌古聯珠通集",
+      "caseIdentityEvidence":"The complete case is the named Changsha episode: 長沙一日遣僧問同參會和尚, followed by 僧回舉似師 and 師示偈曰. The well-delimited 師 is Changsha Jingcen.",
+      "exactHeadwordClause":"僧回舉似師，師示偈曰：百尺竿頭不動人，雖然得入未為真；百尺竿頭須進步，十方世界是全身。",
+      "ownershipEvidence":"師示偈曰 directly assigns the complete verse, including the headword, to Changsha Jingcen. The later 僧便問 starts a new question only after the verse.",
+      "specificActor":"Changsha Jingcen","actorRole":"master utterer and verse author","contextMasters":[{"MasterName":"Changsha Jingcen","Roles":["utterer","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current Shishuang Qingzhu attribution is wrong. The full case explicitly frames this as Changsha Jingcen's verse; the anonymous-monk heuristic is also wrong because the headword precedes 僧便問.",
+      "definitionProseImpact":"ATTRIBUTION_AND_PROSE_NAMING. The saying's deployment remains valid, but every explanation and link for this occurrence must credit Changsha Jingcen."
+    },
+    {
+      "cohort":4,"entryId":"t_acccac1051a4","term":"衲僧","sense":1,"occurrence":6,"RelPath":"C/C077/C077n1710.xml","FromLb":"0657c20","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The heading 睦州禪師大鑑下四世嗣黃檗 identifies Muzhou Daoming as 師.",
+      "exactHeadwordClause":"問：如何是衲僧眼？師云：朝看東南，暮看西北。",
+      "ownershipEvidence":"問 introduces 如何是衲僧眼; 師云 begins Muzhou's answer after the headword.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Muzhou Daoming","Roles":["respondent","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The master marker owns only the answer, not the headword-bearing question. Current null MasterName and contextual Muzhou are correct.",
+      "definitionProseImpact":"HOLDS. The question's compound 衲僧眼 remains valid evidence for the patch-robed monk sense."
+    },
+    {
+      "cohort":4,"entryId":"t_aced87de5b30","term":"殺佛殺祖","sense":1,"occurrence":1,"RelPath":"C/C077/C077n1710.xml","FromLb":"0667c01","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The enclosing 首山禪師語錄 identifies Shoushan Shengnian as 師 throughout this 上堂 sequence.",
+      "exactHeadwordClause":"上堂，僧問……問：殺父殺母，佛前懺悔；殺佛殺祖，向什麼處懺悔？師云：水深一丈。",
+      "ownershipEvidence":"The question marker before 殺父殺母 governs the full paired question containing 殺佛殺祖. 師云 begins Shoushan's answer only at 水深一丈.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Shoushan Shengnian","Roles":["respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"MasterName correctly remains null, but the saved row omits the fully identified responding master. Shoushan must be added to ContextMasters, never promoted to utterer.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The provocative formula remains directly attested; definition and prose hold after naming Shoushan as respondent."
+    }
+  ],
+  "counts":{"confirmedDefects":5,"falsePositives":5,"invalidEvidenceRows":0,"definitionOrProseSemanticallyDisproved":0}
+}

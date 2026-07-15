@@ -87,10 +87,10 @@
           "Kwic": "為亡者對靈提綱為亡者對靈提綱中峰本禪師為瞿運使霆發卒哭藥師道場對靈小參：大道只在目前，要且目前難覩，欲識大道真體，不離聲色言語。",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
+            "Status": "editorial",
+            "Kind": "editorial heading",
+            "ActorLabel": "the anthology compiler writing the memorial-service heading",
+            "ActorRole": "heading editor",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -99,12 +99,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:50:30.422923+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "藥師 occurs in the occasion heading before Zhongfeng’s address.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:07:59.685656+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (列祖提綱錄; X/X64/X64n1260.xml): the compiler narrating the headword-bearing clause supplies the exact headword-bearing wording; the complete case distinguishes that actor from every contextual master."
+          "ContextMasters": [
+            {
+              "MasterName": "Zhongfeng Mingben",
+              "Roles": [
+                "address-speaker",
+                "ceremony-master"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text; exact headword actor: the anthology compiler writing the memorial-service heading. The complete case was read before attribution."
         },
         {
           "RelPath": "B/B25/B25n0145.xml",

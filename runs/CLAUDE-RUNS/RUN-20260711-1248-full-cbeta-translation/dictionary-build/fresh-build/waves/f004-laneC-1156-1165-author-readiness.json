@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T15:00:00Z",
+  "wave": "f004",
+  "lane": "C",
+  "ordinals": [1156, 1165],
+  "entries": 10,
+  "occurrences": 55,
+  "authorLedger": {
+    "path": "fresh-build/waves/f004-laneC-1156-1165-author-ledger.json",
+    "sha256": "b0cb96f2ad1e3f68b66c8bfac75c58ea5997b7f98b09536b9d6b016dc915ae20"
+  },
+  "fullCasePacket": {
+    "path": "fresh-build/waves/f004-laneC-1156-1165-full-case-packet.json",
+    "sha256": "849796affd6a74581c5fec803638fd0c0de9745b278e308fea555fcd1e5bc060",
+    "cases": 55,
+    "contextChars": 10000,
+    "spanChanges": 0
+  },
+  "preReviewGate": {
+    "path": "fresh-build/waves/f004-laneC-1156-1165-pre-review-gate.json",
+    "sha256": "9cf0fbfbf687d5dd31f613540a67d9e679cc98c4232e953f9c9f1f205a6f7794",
+    "hardPass": true,
+    "exactKwicVerified": 55,
+    "exactKwicFailures": 0,
+    "attributionHardFailures": 0,
+    "depthHardFailures": 0,
+    "publicFeedbackPassing": "10/10"
+  },
+  "depths": [6, 5, 6, 6, 5, 5, 4, 6, 7, 5],
+  "state": "reviewer8-repair-pre-review-green-awaiting-independent-rereview",
+  "selfReviewRun": false,
+  "promotionRun": false,
+  "mergeRun": false,
+  "publicationRun": false,
+  "siteTouched": false
+}

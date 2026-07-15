@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-postrepair-full-case-review",
+  "reviewer": "reviewer11",
+  "generatedUtc": "2026-07-15T16:09:42.567211+00:00",
+  "sourceLedger": "f004-laneB-1031-1040-reviewer10-repair-author-ledger.json",
+  "sourceLedgerSha256": "a9f0bf140564be69538f2377fce778132e155fc22271b7f54d9ede7e264e04b1",
+  "entries": [
+    {
+      "ordinal": 1031,
+      "id": "t_bfef2fc85826",
+      "term": "參問",
+      "reviewedSha256": "f9c0cdcff7042803ca94b0f74274dbdf26a91db066f55ed441d6314d837e6637",
+      "hashMatches": true,
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "All six uses are narrated visit/consultation language rather than utterances of the headword; visitor, respondent, and person-described links now preserve the named figures.",
+        "The opening distinguishes public consultation from generic information-seeking, and the retained work IDs match the six witnesses."
+      ]
+    },
+    {
+      "ordinal": 1032,
+      "id": "t_b336769aabdf",
+      "term": "家醜",
+      "reviewedSha256": "ac4ec385d605ad135e869b7fdb9680b3972d3ee2f5db86f81cbe5b89b70312d0",
+      "hashMatches": true,
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "o2-o3 still use generic anthology/commentator labels where the full verse unit must be checked for a named verse author.",
+        "o4 says 'named local-gentry invitation authors' but supplies no names; this is a placeholder description, not exact attribution.",
+        "o6 is first-person ancestral-rite address language (北山忝為末裔…家醜…外揚); resolve the master delivering the address instead of calling him a non-master author."
+      ]
+    },
+    {
+      "ordinal": 1034,
+      "id": "t_e21288d0fefb",
+      "term": "徐六擔板",
+      "reviewedSha256": "2de4503a11ace892745760ed4d21d757dee46c06645af8efd75aad08af1c600c",
+      "hashMatches": true,
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "REVISE",
+      "findings": [
+        "o5 contains 師拈云：這老宿大似徐六擔板, a direct master's comment; 'the Fayuyi Niangu record owner' cannot be retained as an identified non-master actor.",
+        "The other five named utterers and the one-sided-vision explanation are sound, but one wrong direct actor blocks the entry."
+      ]
+    },
+    {
+      "ordinal": 1035,
+      "id": "t_641de814fd8a",
+      "term": "毒藥",
+      "reviewedSha256": "84ce7a4846622a1e6f67ea9294bb1aab4025d92fbfcef25b5facc4665437d586",
+      "hashMatches": true,
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "o5 is an expository quotation in Zongjing Lu (菩提心者…如除毒藥), not securely the compiler's own utterance; exact quoted/document voice remains unresolved.",
+        "That witness is also ordinary poison/antidote comparison rather than a saying or answer becoming poison. Re-test the different-thing/deployment decision: remove it as contained-only or split a genuinely attested literal substance sense rather than blur it into the relational Zen sense."
+      ]
+    },
+    {
+      "ordinal": 1036,
+      "id": "t_10b63ac74f61",
+      "term": "李廣",
+      "reviewedSha256": "b414cec0ada165805010ded5203311e56c0bca0142a9081d31bf6ffab4cd296b",
+      "hashMatches": true,
+      "occurrencesRead": 5,
+      "exactKwicsAndSpans": 5,
+      "verdict": "REVISE",
+      "findings": [
+        "o1 is a direct Taiping hall address (上堂云…李廣神箭); the master must be named, not labeled a non-master hall-address author.",
+        "o2 and o4 still collapse distinct verse/commentary units into generic anthology/commentator labels; inspect and name their authors where the units provide them.",
+        "The Li Guang stone-piercing-arrow explanation itself passes #0g."
+      ]
+    },
+    {
+      "ordinal": 1037,
+      "id": "t_40cfbcc5f859",
+      "term": "縱奪",
+      "reviewedSha256": "27f1ae07baa71048f788336456c4ccc73e66f1e0fe2a932783f5950df6a1a9fa",
+      "hashMatches": true,
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "KEEP",
+      "findings": [
+        "All seven headwords sit in the named masters' own comments or addresses; quoted case figures are separated in ContextMasters.",
+        "Release/seize is correctly described as observable control of encounter, with work IDs, depth, and one-sense decision supported."
+      ]
+    },
+    {
+      "ordinal": 1038,
+      "id": "t_b016f513be3d",
+      "term": "五燈嚴統",
+      "reviewedSha256": "687b8029ab276c1a9cc8b7f4d8c7e3bfd09ff0998c77467d128316fd283826b4",
+      "hashMatches": true,
+      "occurrencesRead": 4,
+      "exactKwicsAndSpans": 4,
+      "verdict": "REVISE",
+      "findings": [
+        "o1 is biographical narration that Feiyin completed the continuation; Mingjue Cong did not utter the stored headword in this case.",
+        "o2 is the letter author's statement '吾徑山容和尚…遂著《五燈嚴統》'; Feiyin Tongrong is the book's discussed author, not the utterer of that sentence.",
+        "The title definition is useful, but two of four exact actors are reversed, so the entry cannot pass attribution."
+      ]
+    },
+    {
+      "ordinal": 1039,
+      "id": "t_f24a55791323",
+      "term": "單傳直指",
+      "reviewedSha256": "347316bf626d5fbdbadabeec98b2f1aa94affe5161498f572bd1006cd3235850",
+      "hashMatches": true,
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "All six complete units place the formula inside the named master's own address; duplicate Miyun editions are controlled by distinct canonical work IDs rather than file count.",
+        "The opening states both the single-transmission and direct-pointing claims without splitting grammar or importing outside interpretation."
+      ]
+    },
+    {
+      "ordinal": 1040,
+      "id": "t_74c3c0e1b896",
+      "term": "下禪床",
+      "reviewedSha256": "7ef6e7544acf44322b119c4d046123607ca84022562a5414a5ee4e2d09f46510",
+      "hashMatches": true,
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verdict": "REVISE",
+      "findings": [
+        "o5 retains the fabricated placeholder ContextMasters value 'Tianning Address Record Owner'. Resolve the named master who descends and dances, or mark the performer genuinely unresolved after the ladder.",
+        "The other movement cases correctly keep the narrator as actor and the descending master as person-described; the teaching-seat #0g explanation is strong."
+      ]
+    }
+  ],
+  "summary": {
+    "entriesReviewed": 9,
+    "fullCasesRead": 55,
+    "currentHashMatches": 9,
+    "exactKwicsAndSpans": 55,
+    "keep": 3,
+    "revise": 6,
+    "genericActorLabelsAbsent": false,
+    "systemicFinding": "The repair removed most generic labels and corrected work IDs, but six entries retain at least one source-type label, reversed utterer/subject assignment, or fabricated ContextMasters value. Mechanical green does not cure those source-level defects."
+  },
+  "reviewIntegrity": {
+    "entriesEdited": false,
+    "promoted": false,
+    "merged": false,
+    "published": false
+  }
+}

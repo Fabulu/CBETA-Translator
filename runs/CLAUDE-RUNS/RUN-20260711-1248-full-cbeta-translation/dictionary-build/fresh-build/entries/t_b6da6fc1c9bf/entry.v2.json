@@ -29,16 +29,20 @@
             {
               "MasterName": "Linye Tongqi",
               "Roles": [
-                "respondent"
+                "respondent",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source record (林野奇禪師語錄; J/J26/J26nB186.xml). Exact actor: the unnamed monastic questioner. Full-case recovery identifies the non-master or narrative actor bearing the exact headword and separates surrounding narration, questions, replies, and case figures.",
+          "AttributionNote": "Source text (林野奇禪師語錄): The exact headword actor is the unnamed monastic questioner; the source does not name this person. The turn begins (問：今日安單，意旨如何); Linye Tongqi's answer begins at (師云).",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "human interlocutor",
+            "Kind": "dialogue turn",
             "ActorLabel": "the unnamed monastic questioner",
             "ActorRole": "questioner",
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (林野奇禪師語錄): The exact headword actor is the unnamed monastic questioner; the source does not name this person. The turn begins (問：今日安單，意旨如何); Linye Tongqi's answer begins at (師云).",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -46,14 +50,9 @@
               "book-title",
               "tei-header",
               "parallel-passage"
-            ],
-            "GrammarEvidence": "今日安單 is inside the monk’s quoted question; Linye Tongqi answers only after 師云.",
-            "ReviewedBy": "Codex f004 lane C stale-hash recovery author",
-            "ReviewedUtc": "2026-07-15T15:03:50.947927+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            ]
           },
-          "Curated": true,
-          "MasterName": null
+          "Curated": true
         },
         {
           "RelPath": "J/J38/J38nB412.xml",
@@ -64,48 +63,40 @@
             {
               "MasterName": "Zhufeng Fa",
               "Roles": [
-                "utterer"
+                "utterer",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source record (三塔主峰禪師語錄; J/J38/J38nB412.xml). Exact actor: Zhufeng Fa. Full-case recovery identifies the named utterer bearing the exact headword and separates surrounding narration, questions, replies, and case figures.",
+          "AttributionNote": "Source text (三塔主峰禪師語錄): The exact headword speaker is Zhufeng Fa. Zhufeng tells the monk (不信道，且安單去); the headword is in the master's own command.",
           "Curated": true,
           "MasterName": "Zhufeng Fa"
         },
         {
           "RelPath": "J/J38/J38nB428.xml",
-          "FromLb": "0909a06",
-          "ToLb": "0909a15",
-          "Kwic": "看者裏阿那個是佛法？」士擬議，師叱退。問：「十方俱擊鼓，十處一時聞時如何？」師云：「你即今還聞麼？」僧罔措，師震威一喝，僧禮拜云：「望和尚慈悲指示。」師云：「霹靂過頭猶瞌睡。」知客送行者入方丈安單，師指行者問知客云：「昔日船子還有者一個也無？」知客云：「如麻似粟。」師云：「因甚獨自撐舟？」知客云：「徹困為人。」師云：「拋鉤釣鯨鯢，釣得個蝦蟆。」問僧：「你在開峰多少時也？」僧云：「兩個月",
+          "FromLb": "0909a11",
+          "ToLb": "0909a11",
+          "Kwic": "知客送行者入方丈安單",
           "ContextMasters": [
             {
               "MasterName": "Mixing Jiren",
               "Roles": [
-                "record-owner"
+                "record-owner",
+                "questioner"
               ]
             }
           ],
-          "AttributionNote": "Source record (密行忍禪師語錄; J/J38/J38nB428.xml). Exact actor: the record narrator. Full-case recovery identifies the non-master or narrative actor bearing the exact headword and separates surrounding narration, questions, replies, and case figures.",
+          "AttributionNote": "Source text (密行忍禪師語錄): The exact headword actor is the record compiler, in narration or editorial text. The prose says (知客送行者入方丈安單); the guest prefect and practitioner perform the placement, while Mixing Jiren's next question follows.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the record narrator",
+            "Kind": "narrated institutional action",
+            "ActorLabel": "the record compiler",
             "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "知客送行者入方丈安單 narrates the guest prefect placing an attendant; Mixing Ren’s question follows.",
-            "ReviewedBy": "Codex f004 lane C stale-hash recovery author",
-            "ReviewedUtc": "2026-07-15T15:03:50.947927+00:00",
-            "AuthoredVoiceRiskReviewed": true
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (密行忍禪師語錄): The exact headword actor is the record compiler, in narration or editorial text. The prose says (知客送行者入方丈安單); the guest prefect and practitioner perform the placement, while Mixing Jiren's next question follows."
           },
-          "Curated": true,
-          "MasterName": null
+          "Curated": true
         },
         {
           "RelPath": "L/L158/L158n1652.xml",

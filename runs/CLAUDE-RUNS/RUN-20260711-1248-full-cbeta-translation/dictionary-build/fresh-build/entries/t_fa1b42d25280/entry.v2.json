@@ -62,16 +62,34 @@
           "ToLb": "0238a30",
           "Kwic": "」僧問葉縣省：「雪山童子捨身為求諸行，此行如何？",
           "Curated": true,
-          "MasterName": "Yexian Guixing",
-          "AttributionNote": "The complete headword-bearing turn was assigned after full context review. Speaker or record owner: Yexian Guixing. Source text (介為舟禪師語錄).",
+          "AttributionNote": "Source text; exact headword actor: an unnamed monastic questioner. The complete case was read before attribution.",
           "ContextMasters": [
             {
-              "MasterName": "Yexian Guixing",
+              "MasterName": "Shexian Guisheng",
               "Roles": [
-                "utterer"
+                "respondent",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
+            "ActorRole": "questioner in a raised case",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問葉縣省 owns 雪山童子; Shexian answers only after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:07:59.685656+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         }
       ],
       "ClaimAnchors": [],

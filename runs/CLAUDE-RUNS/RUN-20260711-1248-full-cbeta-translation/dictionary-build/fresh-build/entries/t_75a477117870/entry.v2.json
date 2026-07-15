@@ -45,17 +45,36 @@
           "FromLb": "0556c05",
           "ToLb": "0556c06",
           "Kwic": "上堂，僧問：可來白雲裏，教儞紫芝謌。如何是紫芝歌？師撫掌對之。",
-          "MasterName": "Tiantong Shanxin",
           "Curated": true,
-          "AttributionNote": "The Extended Lamp Record of the Tiansheng Era (天聖廣燈錄), section on Tiantong Shanxin, records Tiantong answering the question about the Purple Fungus Song (紫芝歌) by clapping.",
+          "AttributionNote": "Source text (天聖廣燈錄). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution.",
           "ContextMasters": [
             {
               "MasterName": "Tiantong Shanxin",
               "Roles": [
-                "utterer"
+                "respondent",
+                "action-performer",
+                "section-subject"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monastic questioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問 owns both 紫芝 tokens; Tiantong Shanxin responds afterward by clapping.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
         },
         {
           "RelPath": "X/X72/X72n1437.xml",

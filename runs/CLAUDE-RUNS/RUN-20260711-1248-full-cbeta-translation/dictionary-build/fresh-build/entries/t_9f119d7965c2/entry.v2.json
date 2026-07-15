@@ -31,25 +31,25 @@
           "FromLb": "0182a09",
           "ToLb": "0182a09",
           "Kwic": "百丈豎起拂子",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (傳燈玉英集（殘卷）) reports the exact headword-bearing action or interval. Baizhang Huaihai is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (傳燈玉英集（殘卷）): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (百丈豎起拂子); Baizhang raises the whisk but does not utter its name.",
           "ContextMasters": [
             {
               "MasterName": "Baizhang Huaihai",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "case-figure"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the lamp-record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (傳燈玉英集（殘卷）): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (百丈豎起拂子); Baizhang raises the whisk but does not utter its name."
           }
         },
         {
@@ -57,26 +57,26 @@
           "FromLb": "0757b23",
           "ToLb": "0757b24",
           "Kwic": "握拂子云：『喚作拂子則觸，不喚作拂子則背，不得拈起、不得放下、不得下語、不得無語",
-          "MasterName": null,
+          "MasterName": "Miyun Yuanwu",
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (大溈五峰學禪師語錄) reports the exact headword-bearing action or interval. Miyun Yuanwu is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (大溈五峰學禪師語錄): The exact headword speaker is Miyun Yuanwu. Wufeng recounts his teacher's departure address; (本師自撾鼓上堂，握拂子云) makes Miyun Yuanwu the speaker who twice utters (拂子).",
           "ContextMasters": [
             {
               "MasterName": "Miyun Yuanwu",
               "Roles": [
-                "person-described"
+                "utterer",
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Wufeng",
+              "Roles": [
+                "student",
+                "later-quoter",
+                "record-owner"
               ]
             }
-          ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
-          }
+          ]
         },
         {
           "RelPath": "B/B25/B25n0144.xml",
@@ -101,25 +101,25 @@
           "FromLb": "0813b15",
           "ToLb": "0813b16",
           "Kwic": "遂舉拂子云大眾從上許多賢聖如今緫在山僧拂子頭上各各坐大蓮華",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (古尊宿語錄) reports the exact headword-bearing action or interval. Foyan Qingyuan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (古尊宿語錄): The exact headword actor is the record compiler, in narration or editorial text. The prose says (遂舉拂子云); Foyan performs the action and then speaks, but the headword itself is in the compiler's narration.",
           "ContextMasters": [
             {
               "MasterName": "Foyan Qingyuan",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "record-owner"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (古尊宿語錄): The exact headword actor is the record compiler, in narration or editorial text. The prose says (遂舉拂子云); Foyan performs the action and then speaks, but the headword itself is in the compiler's narration."
           }
         },
         {
@@ -127,25 +127,25 @@
           "FromLb": "0759c22",
           "ToLb": "0759c23",
           "Kwic": "以拂子擊禪床云當機覿面提覿面當機疾",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (古尊宿語錄) reports the exact headword-bearing action or interval. Beijian Jujian is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (古尊宿語錄): The exact headword actor is the record compiler, in narration or editorial text. The clause (以拂子擊禪床云) narrates Beijian striking the seat; his quoted words begin after (云).",
           "ContextMasters": [
             {
               "MasterName": "Beijian Jujian",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "record-owner"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (古尊宿語錄): The exact headword actor is the record compiler, in narration or editorial text. The clause (以拂子擊禪床云) narrates Beijian striking the seat; his quoted words begin after (云)."
           }
         },
         {
@@ -153,26 +153,18 @@
           "FromLb": "0467a20",
           "ToLb": "0467a21",
           "Kwic": "老僧勘驗有在，特付拂子一枝，以續大慧之裔云。",
-          "MasterName": null,
+          "MasterName": "Chuiwan Guangzhen",
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (聚雲吹萬真禪師語錄) reports the exact headword-bearing action or interval. Chuiwan Guangzhen is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (聚雲吹萬真禪師語錄): The exact headword speaker is Chuiwan Guangzhen. In his formal entrustment Chuiwan says (特付拂子一枝); the headword is in his own first-person declaration.",
           "ContextMasters": [
             {
               "MasterName": "Chuiwan Guangzhen",
               "Roles": [
-                "person-described"
+                "utterer",
+                "record-owner"
               ]
             }
-          ],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
-          }
+          ]
         },
         {
           "RelPath": "J/J38/J38nB425.xml",
@@ -181,7 +173,7 @@
           "Kwic": "雲接拂子曰：「直向佛祖斫額不及處提時，當報不報之恩。」",
           "MasterName": "Fayun",
           "Curated": true,
-          "AttributionNote": "The Complete Record of Chan Master Jifei (即非禪師全錄) records Jifei Ruyi transmitting a whisk to his disciple Fayun; Fayun then accepts it and states how he will raise it. MasterName identifies Fayun's exact turn, not the record owner. The source supplies only the name Fayun for this recipient.",
+          "AttributionNote": "Source text (即非禪師全錄): The exact headword speaker is Fayun. After receiving the whisk, Fayun says (雲接拂子曰); this is Fayun's own reply.",
           "ContextMasters": [
             {
               "MasterName": "Fayun",
@@ -196,25 +188,25 @@
           "FromLb": "0139a02",
           "ToLb": "0139a03",
           "Kwic": "以拂子畫一畫，曰：前來葛藤，一時劃斷。",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (五燈全書(第34卷-第120卷)) reports the exact headword-bearing action or interval. Xingkong Guan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): The exact headword actor is the anthology compiler, in narration or editorial text. The compiler narrates (以拂子畫一畫); Xingkong Guan performs the action and his words start at (曰).",
           "ContextMasters": [
             {
               "MasterName": "Xingkong Guan",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "record-owner"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the anthology compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (五燈全書(第34卷-第120卷)): The exact headword actor is the anthology compiler, in narration or editorial text. The compiler narrates (以拂子畫一畫); Xingkong Guan performs the action and his words start at (曰)."
           }
         },
         {
@@ -222,25 +214,25 @@
           "FromLb": "0279a17",
           "ToLb": "0279a18",
           "Kwic": "僧問。三乘十二分教則不問。如何是祖師西來的的意。師舉拂子示之。",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (景德傳燈錄) reports the exact headword-bearing action or interval. Xishan Heshang is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (景德傳燈錄): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (師舉拂子示之); the unnamed Xishan master raises the whisk without uttering its name.",
           "ContextMasters": [
             {
               "MasterName": "Xishan Heshang",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "case-figure"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the lamp-record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (景德傳燈錄): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (師舉拂子示之); the unnamed Xishan master raises the whisk without uttering its name."
           }
         },
         {
@@ -265,25 +257,32 @@
           "FromLb": "0364a06",
           "ToLb": "0364a06",
           "Kwic": "覺以拂子驀口打。",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Donglin Changzong is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (五燈會元): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (覺以拂子驀口打); Zhaojue is the action performer, while Donglin Changzong is the struck student.",
           "ContextMasters": [
+            {
+              "MasterName": "Zhaojue",
+              "Roles": [
+                "action-performer",
+                "teacher"
+              ]
+            },
             {
               "MasterName": "Donglin Changzong",
               "Roles": [
-                "person-described"
+                "student",
+                "case-figure"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the lamp-record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (五燈會元): The exact headword actor is the lamp-record compiler, in narration or editorial text. The compiler writes (覺以拂子驀口打); Zhaojue is the action performer, while Donglin Changzong is the struck student."
           }
         },
         {
@@ -291,25 +290,31 @@
           "FromLb": "0364a06",
           "ToLb": "0364a07",
           "Kwic": "遂奪拂子。便禮拜。",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Wanshan Shaoci is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source text (五燈會元): The exact headword actor is the lamp-record compiler, in narration or editorial text. The separate bound clause (遂奪拂子) narrates Donglin Changzong seizing the whisk; no participant utters the headword.",
           "ContextMasters": [
             {
-              "MasterName": "Wanshan Shaoci",
+              "MasterName": "Donglin Changzong",
               "Roles": [
-                "person-described"
+                "action-performer",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Zhaojue",
+              "Roles": [
+                "teacher"
               ]
             }
           ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "narrated action or interval",
-            "ActorLabel": "source narrator",
+            "Kind": "narrated physical action",
+            "ActorLabel": "the lamp-record compiler",
             "ActorRole": "compiler",
-            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
-            "ReviewedBy": "Codex f001 lane A independent-review repair",
-            "ReviewedUtc": "2026-07-15T00:00:00Z"
+            "ReviewedBy": "Codex v6-bound full-case manual audit 016-025",
+            "ReviewedUtc": "2026-07-16T12:00:00Z",
+            "GrammarEvidence": "Source text (五燈會元): The exact headword actor is the lamp-record compiler, in narration or editorial text. The separate bound clause (遂奪拂子) narrates Donglin Changzong seizing the whisk; no participant utters the headword."
           }
         },
         {

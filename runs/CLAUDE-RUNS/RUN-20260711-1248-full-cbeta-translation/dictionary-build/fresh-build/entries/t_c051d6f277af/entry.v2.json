@@ -184,12 +184,19 @@
           "ToLb": "0489b11",
           "Kwic": "行又有人問龍池幻有師翁云如何是諸佛出身處翁云西河火裡坐師云某上座則不然今日若有問如何是諸佛出身處但向道我是蓉城楊四郎佛誕度僧上堂師云報恩新長老今年纔廿四黃而老瞿曇是吾最小子古往今來多少居曲彔牀的大善知識凡於四月八日播弄瞿曇小老的矢臭氣則有分還曾夢見瞿曇的師麼若向者裡緇素得則不",
           "Curated": true,
-          "AttributionNote": "Source text (普濟玉琳國師語錄): the editorial the cited wording occasion label. the cited wording labels a Buddha-birthday sermon or assembly in editorial metadata; it is not itself uttered by the following speaker. This is an editorial heading.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (普濟玉琳國師語錄). Exact headword actor: the editor supplying the Buddha-birthday sermon heading. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yulin Tongxiu",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "impersonal",
             "Kind": "editorial heading",
-            "ActorLabel": "the editorial 佛誕 occasion label",
+            "ActorLabel": "the editor supplying the Buddha-birthday sermon heading",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -199,9 +206,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 B751-800 repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:44:35.513681+00:00",
-            "GrammarEvidence": "佛誕 labels a Buddha-birthday sermon or assembly in editorial metadata; it is not itself uttered by the following speaker."
+            "GrammarEvidence": "佛誕 occurs in the occasion heading 佛誕度僧上堂; Yulin Tongxiu's sermon begins after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

@@ -54,11 +54,19 @@
           "ToLb": "0197b05",
           "Kwic": "僧正白師曰。四眾已圍繞和尚法座了也。",
           "Curated": true,
-          "ContextMasters": [],
+          "ContextMasters": [
+            {
+              "MasterName": "Fuchuan Hongjian",
+              "Roles": [
+                "addressee",
+                "section-subject"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "compiler narration",
-            "ActorLabel": "the compiler or recorder of the source passage",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler supplying the monastic-rector speaker label",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -68,11 +76,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The full clause is documentary narration or a quoted record rather than a safely isolated master turn.",
-            "ReviewedBy": "Codex f003 C851-900 independent-review repair",
-            "ReviewedUtc": "2026-07-15T04:57:22.882035+00:00"
+            "GrammarEvidence": "The monastic-rector title is a recorder-supplied speaker label; the official's quoted words begin after the speech marker.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:34.994632+00:00",
+            "AuthoredVoiceRiskReviewed": true
           },
-          "AttributionNote": "In the source record (五燈會元), documentary narration by the compiler or recorder of the source passage preserves the exact headword-bearing clause."
+          "AttributionNote": "Source text (五燈會元). Exact headword actor: the compiler supplying the monastic-rector speaker label. The complete case and its turn boundaries were read before attribution."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",

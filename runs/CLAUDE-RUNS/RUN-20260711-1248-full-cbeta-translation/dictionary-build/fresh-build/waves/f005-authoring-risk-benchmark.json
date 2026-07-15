@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "authoring-risk-preflight-v1",
+  "elapsedSeconds": 0.054,
+  "entries": 2,
+  "passing": 1,
+  "flagged": 1,
+  "flags": 7,
+  "results": [
+    {
+      "id": "t_df028fd6bd35",
+      "term": "語言",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df028fd6bd35/evidence.draft.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "id": "t_705aabe99572",
+      "term": "卓一下",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_705aabe99572/evidence.draft.json",
+      "flags": [
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 1,
+          "masterName": "Wuzhun Shifan",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 2,
+          "masterName": "Dahui Zonggao",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 3,
+          "masterName": "Yuanwu Keqin",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 4,
+          "masterName": "Dahui Zonggao",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 5,
+          "masterName": "Hongjue Min",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 6,
+          "masterName": "Zhean Jingfan",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        },
+        {
+          "kind": "action-performer-mastername-risk",
+          "sense": 1,
+          "occurrence": 7,
+          "masterName": "Yunju Shouyi",
+          "action": "decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters"
+        }
+      ],
+      "passes": false
+    }
+  ]
+}

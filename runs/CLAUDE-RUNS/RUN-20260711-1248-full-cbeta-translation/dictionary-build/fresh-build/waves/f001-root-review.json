@@ -74,20 +74,19 @@
     },
     "t_0f97bfab265c": {
       "term": "棒喝",
-      "verdict": "REVISE",
-      "reviewedSha256": "1feab91c0af140d0acad48c6f765283b64610b39e528dae265f89806ab0590ef",
-      "finding": "Current attribution ground truth records 2 hard failure(s): action_performer_context_missing, action_performer_in_utterer_field.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "89a5dfb26d54df5f4dddf4e4db5eb5012cfbcbb970839ea7f9c6858b8a179d67",
+      "finding": "Ten complete contexts support the paired encounter actions and their later use as a style label, instruction, criticism, and object of refusal. The current recuts correctly distinguish anonymous questioners and compilers from respondents while preserving critical deployments rather than equating every blow or shout with mastery.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f001-laneC.json",
       "supersedes": {
-        "term": "棒喝",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "1feab91c0af140d0acad48c6f765283b64610b39e528dae265f89806ab0590ef",
-        "finding": "Re-review diff confirmed the sole prose change replaced the forbidden generic word 'method' with 'way'; evidence and exact actors are unchanged. Prior full-case KEEP stands.",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_0f97bfab265c/1feab91c0af140d0acad48c6f765283b64610b39e528dae265f89806ab0590ef/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_0f97bfab265c/1feab91c0af140d0acad48c6f765283b64610b39e528dae265f89806ab0590ef/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_0f97bfab265c/89a5dfb26d54df5f4dddf4e4db5eb5012cfbcbb970839ea7f9c6858b8a179d67/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_0f97bfab265c/89a5dfb26d54df5f4dddf4e4db5eb5012cfbcbb970839ea7f9c6858b8a179d67/receipt.json"
       }
     },
     "t_ff50c6974a36": {
@@ -1776,21 +1775,19 @@
     },
     "t_04994645e07a": {
       "term": "不與萬法為侶",
-      "verdict": "REVISE",
+      "verdict": "KEEP",
       "reviewedSha256": "85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0",
-      "finding": "Current attribution ground truth records 1 hard failure(s): identified_actor_not_named.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "finding": "Nine full contexts establish Layman Pang's fixed question and its later independent raising, naming, answers, and criticism as a public case. The entry preserves unlike answers without treating any one as the phrase's universal decoding.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-review-7-9-066-075-f001-laneC.json",
       "supersedes": {
-        "term": "不與萬法為侶",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneC-final-independent-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_04994645e07a/85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_04994645e07a/85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_04994645e07a/85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_04994645e07a/85eaf7331ce9479b90136d2f20354d10fcc0c1d4d9f44f7d405d4e993847dfa0/receipt.json"
       }
     },
     "t_9dfa307c0458": {
@@ -2211,21 +2208,19 @@
     },
     "t_e84753568cda": {
       "term": "向上事",
-      "verdict": "REVISE",
-      "reviewedSha256": "d0accc76e3adbe94db976cb0dbf893faf4d02c935c50e8a4a7e42a52e6bd6179",
-      "finding": "Current attribution ground truth records 3 hard failure(s): action_performer_context_missing, explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "9ba724791c3494ecafadd15d7e005d440e1b0187fb79a3dbf462acf93353bfff",
+      "finding": "Ten complete contexts support the relational 'further matter' beyond a just-named attainment or limit. The recurring question sequence and dismissive reversals justify one corpus-wide sense without converting unlike answers into definitions.",
+      "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f001-laneB.json",
       "supersedes": {
-        "term": "向上事",
-        "verdict": "KEEP",
+        "verdict": "REVISE",
         "reviewedSha256": "d0accc76e3adbe94db976cb0dbf893faf4d02c935c50e8a4a7e42a52e6bd6179",
-        "finding": "The relative limit can be what was reached, buddha, or Vairocana, but each occurrence names a further matter beyond the stated limit. Answers, negations, and qualified family compounds do not create another headword thing.",
-        "sourceReview": "fresh-build/waves/f001-laneB-001-050-independent-semantic-review.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_e84753568cda/d0accc76e3adbe94db976cb0dbf893faf4d02c935c50e8a4a7e42a52e6bd6179/entry.v2.json",
-          "worksheet": null,
-          "receipt": "fresh-build/approved-snapshots/t_e84753568cda/d0accc76e3adbe94db976cb0dbf893faf4d02c935c50e8a4a7e42a52e6bd6179/receipt.json"
-        }
+        "sourceReview": null
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_e84753568cda/9ba724791c3494ecafadd15d7e005d440e1b0187fb79a3dbf462acf93353bfff/entry.v2.json",
+        "worksheet": null,
+        "receipt": "fresh-build/approved-snapshots/t_e84753568cda/9ba724791c3494ecafadd15d7e005d440e1b0187fb79a3dbf462acf93353bfff/receipt.json"
       }
     },
     "t_26d1f4bf3890": {
@@ -3808,21 +3803,19 @@
     },
     "t_15026800437e": {
       "term": "分別",
-      "verdict": "REVISE",
-      "reviewedSha256": "5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9",
-      "finding": "Current attribution ground truth records 2 hard failure(s): explicit_master_turn_left_anonymous.",
-      "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+      "verdict": "KEEP",
+      "reviewedSha256": "72a50b355e016ac948a12ca49261b3da821a9f3bae8aba66066b8e313acf111e",
+      "finding": "All nine complete contexts support one act of distinguishing under opposed appraisals. The materially repaired rows now hold: o5 is Huangbo Xiyun's marked reply; o6 is impersonal quoted-scripture narration before the later awakening; o7 is a continuous opening-fire address by a genuinely unnamed record-owner; o8 is named-but-unrostered Faming's death verse; and o9 is Yongjia Xuanjue's direct reply to Huineng. None inherits a nearby subject or respondent as utterer, and the sense prose remains valid.",
+      "sourceReview": "maintenance/attribution-read-adjudication/fenbie-f001-laneA.json",
       "supersedes": {
-        "term": "分別",
         "verdict": "KEEP",
         "reviewedSha256": "5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9",
-        "finding": "Independent semantic review passed at the recorded hash.",
-        "sourceReview": "fresh-build/waves/f001-laneA-101-110-independent-semantic-rereview.json",
-        "approvedSnapshot": {
-          "entry": "fresh-build/approved-snapshots/t_15026800437e/5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9/entry.v2.json",
-          "worksheet": "fresh-build/approved-snapshots/t_15026800437e/5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9/evidence.draft.json",
-          "receipt": "fresh-build/approved-snapshots/t_15026800437e/5dff89e4c89c0a7254569f4fd8bd0111429a5e8bcac8b0f25ab42e8be68683d9/receipt.json"
-        }
+        "sourceReview": "maintenance/attribution-read-adjudication/independent-wave10-f001-laneA.json"
+      },
+      "approvedSnapshot": {
+        "entry": "fresh-build/approved-snapshots/t_15026800437e/72a50b355e016ac948a12ca49261b3da821a9f3bae8aba66066b8e313acf111e/entry.v2.json",
+        "worksheet": "fresh-build/approved-snapshots/t_15026800437e/72a50b355e016ac948a12ca49261b3da821a9f3bae8aba66066b8e313acf111e/evidence.draft.json",
+        "receipt": "fresh-build/approved-snapshots/t_15026800437e/72a50b355e016ac948a12ca49261b3da821a9f3bae8aba66066b8e313acf111e/receipt.json"
       }
     },
     "t_8f41e0da5a71": {

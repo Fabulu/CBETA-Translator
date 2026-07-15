@@ -1,0 +1,99 @@
+{
+  "schemaVersion":"attribution-real-read-v2","generatedUtc":"2026-07-15T22:30:00Z","readOnly":true,
+  "provenance":{"method":"Ten individually authored adjudications after complete-case and record-boundary reading; repeated-headword KWICs were checked for mixed ownership.","serialization":"Hand-authored JSON."},
+  "entryRange":[26,35],"entries":10,
+  "rows":[
+    {
+      "cohort":4,"entryId":"t_adef287521cf","term":"平地起骨堆","sense":1,"occurrence":2,"RelPath":"C/C078/C078n1720.xml","FromLb":"0839b05","sourceTitle":"禪宗頌古聯珠通集",
+      "caseIdentityEvidence":"The case opens 舒州浮山法遠圓鑑禪師, naming Fushan Fayuan as 師.",
+      "exactHeadwordClause":"舒州浮山法遠圓鑑禪師。僧問：如何是祖師西來意？師曰：平地起骨堆。",
+      "ownershipEvidence":"師曰 explicitly introduces 平地起骨堆 after the monk's different question.",
+      "specificActor":"Fushan Fayuan","actorRole":"master utterer and respondent","contextMasters":[{"MasterName":"Fushan Fayuan","Roles":["utterer","respondent"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The monk asks about the patriarch's intent; Fushan alone utters the headword in his answer. Current MasterName is correct.",
+      "definitionProseImpact":"HOLDS. This is direct named-master evidence for the saying."
+    },
+    {
+      "cohort":4,"entryId":"t_af92172da506","term":"只如","sense":1,"occurrence":7,"RelPath":"M/M59/M59n1540.xml","FromLb":"0789b11","sourceTitle":"大慧普覺禪師普說",
+      "caseIdentityEvidence":"The heading 妙圓居士張檢點祖燈請普說 identifies Dahui Zonggao as 師 and the advancing participant as his interlocutor.",
+      "exactHeadwordClause":"進云：只如祖師道，父母非我親，誰是最親者；諸佛非我道，誰是最道者，意旨如何？師云：出頭天外看。",
+      "ownershipEvidence":"進云 directly opens the headword-bearing question; 師云 begins Dahui's answer afterward.",
+      "specificActor":"the advancing monastic interlocutor","actorRole":"questioner","contextMasters":[{"MasterName":"Dahui Zonggao","Roles":["respondent","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"只如 belongs to the 進云 question, not the later 師云 response. Current actor distinction is correct.",
+      "definitionProseImpact":"HOLDS. The discourse-framing use 'just as / as for' is directly attested."
+    },
+    {
+      "cohort":4,"entryId":"t_b15eaab0dc3c","term":"無絃琴","sense":1,"occurrence":2,"RelPath":"D/D48/D48n8939.xml","FromLb":"0191a01","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The parallel edition heading 次住廣教語錄 remains within Shoushan Shengnian's record; he is 師 in the surrounding sequence.",
+      "exactHeadwordClause":"問：久負無絃琴，請師彈一曲。師云：無言顯大道。僧云：還許學人和也無？師云：更莫遲疑。",
+      "ownershipEvidence":"The initial 問 owns 無絃琴; 師云 starts Shoushan's answer only afterward.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Shoushan Shengnian","Roles":["respondent","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current unnamed-questioner attribution is right, but the row omits the fully nameable respondent Shoushan Shengnian from ContextMasters.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The stringless-lute request remains valid evidence; name Shoushan contextually without changing the sense."
+    },
+    {
+      "cohort":4,"entryId":"t_b4c37e2f25c3","term":"東司","sense":1,"occurrence":2,"RelPath":"C/C077/C077n1710.xml","FromLb":"0714c22","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The heading 趙州諗禪師語錄 identifies Zhaozhou Congshen as 師, and 文遠 is the named attendant he summons.",
+      "exactHeadwordClause":"因上東司，召文遠。文遠應喏。師云：東司上不可與汝說佛法也。",
+      "ownershipEvidence":"The first 東司 is in compiler narration 因上東司; the second is inside Zhaozhou's 師云 speech. The stored KWIC therefore combines two headword tokens with different ownership.",
+      "specificActor":"mixed: compiler/recorder for the first token; Zhaozhou Congshen for the second","actorRole":"mixed narrator and master utterer","contextMasters":[{"MasterName":"Zhaozhou Congshen","Roles":["utterer","action-performer","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"MasterName=Zhaozhou is true only of the second token, while the same witness begins with a narrated token. A single utterer field cannot truthfully cover both; re-cut to one deployment or split into two separately attributed witnesses.",
+      "definitionProseImpact":"EVIDENCE_RECUT_REQUIRED; DEFINITION HOLDS. Both uses mean the latrine, but prose must not present the narrated first token as Zhaozhou's speech."
+    },
+    {
+      "cohort":4,"entryId":"t_b751a85ba963","term":"啐啄","sense":1,"occurrence":4,"RelPath":"J/J29/J29nB236.xml","FromLb":"0437a08","sourceTitle":"玉泉蓮月正禪師語錄",
+      "caseIdentityEvidence":"The 小參 section belongs to Lianyue Daozheng, introduced by 師云; he then explicitly raises 南院's older saying.",
+      "exactHeadwordClause":"小參。師云：師資緣契，啐啄同時，子啐母啄，啄與啐不先不後，是為同時。南院上堂示眾云：諸方只具啐啄同時眼……時有僧問：如何是啐啄同時用？",
+      "ownershipEvidence":"師云 places the whole address in Lianyue's voice. He personally says the first several 啐啄 tokens, then quotes Nanyuan and an old monk inside the same raised case; the present-event utterer remains Lianyue.",
+      "specificActor":"Lianyue Daozheng","actorRole":"master utterer and quoted-case raiser","contextMasters":[{"MasterName":"Lianyue Daozheng","Roles":["utterer","record-owner","quoted-case-raiser"]},{"MasterName":"Nanyuan Huiyong","Roles":["quoted-source","person-discussed"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The nested 時有僧問 is part of Lianyue's quotation, not a live actor replacing him. His saved MasterName correctly identifies who utters the headword-bearing address, though Nanyuan should remain visible as quoted source.",
+      "definitionProseImpact":"HOLDS. The address explicitly defines and deploys simultaneous pecking; no semantic revision is needed."
+    },
+    {
+      "cohort":4,"entryId":"t_b8d2633b12ef","term":"敗闕","sense":1,"occurrence":1,"RelPath":"C/C077/C077n1710.xml","FromLb":"0673b02","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The 勘辯語 remains within Shoushan's record; 師 is Shoushan Shengnian (also normalized elsewhere as Shoushan Xingnian).",
+      "exactHeadwordClause":"一日因僧入室，師喚僧名，僧應諾。師云：錯。僧云：某甲有什麼敗闕處？師云：錯。",
+      "ownershipEvidence":"僧云 directly introduces the headword-bearing question; both surrounding 師云 turns contain only 錯.",
+      "specificActor":"an unnamed monastic questioner","actorRole":"questioner","contextMasters":[{"MasterName":"Shoushan Xingnian","Roles":["respondent","record-owner"]}],
+      "verdict":"VALID_AS_WRITTEN/FALSE_POSITIVE","reason":"The monk, not the master, says 敗闕. The current questioner attribution and contextual Shoushan are correct.",
+      "definitionProseImpact":"HOLDS. The monk asks where his exposed fault lies, directly supporting the sense."
+    },
+    {
+      "cohort":4,"entryId":"t_bbee6625a4d5","term":"赤肉團上","sense":1,"occurrence":4,"RelPath":"X/X64/X64n1260.xml","FromLb":"0049c06","sourceTitle":"列祖提綱錄",
+      "caseIdentityEvidence":"The case names 南院顒禪師 and opens 上堂, identifying Nanyuan Huiyong as the address's master.",
+      "exactHeadwordClause":"南院顒禪師。上堂：赤肉團上，壁立千仞。僧問：赤肉團上，壁立千仞，豈不是和尚道？",
+      "ownershipEvidence":"Nanyuan first utters the formula in his 上堂 address. The monk then repeats the same words in a challenge, so this KWIC contains two tokens with two speakers.",
+      "specificActor":"mixed: Nanyuan Huiyong for the first formula; an unnamed monk for the repetition","actorRole":"mixed master utterer and quoting questioner","contextMasters":[{"MasterName":"Nanyuan Huiyong","Roles":["utterer","respondent"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"MasterName=Nanyuan cannot cover the monk's repeated token in the same stored witness. Re-cut the evidence to the master's first declaration or split the two deployments with separate actor records.",
+      "definitionProseImpact":"EVIDENCE_RECUT_REQUIRED; DEFINITION HOLDS. Both turns concern the same naked-flesh expression, but prose must distinguish original assertion from the monk's quotation."
+    },
+    {
+      "cohort":4,"entryId":"t_c051d6f277af","term":"佛誕","sense":1,"occurrence":7,"RelPath":"B/B27/B27n0152.xml","FromLb":"0489b04","sourceTitle":"普濟玉琳國師語錄",
+      "caseIdentityEvidence":"The editorial unit 佛誕度僧上堂 belongs to Yulin Tongxiu's record; the following 師云 begins his birthday/ordination sermon.",
+      "exactHeadwordClause":"佛誕度僧上堂。師云：報恩新長老，今年纔廿四；黃而老瞿曇，是吾最小子。",
+      "ownershipEvidence":"佛誕 occurs in the editorial occasion heading before 師云. Yulin's spoken sermon starts at 報恩新長老 and does not utter the headword here.",
+      "specificActor":"the compiler/editor","actorRole":"occasion-heading editor","contextMasters":[{"MasterName":"Yulin Tongxiu","Roles":["sermon-speaker","record-owner"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"The current compiler classification is correct, but it leaves the fully nameable sermon master out of ContextMasters. Yulin is context, never MasterName for this heading token.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The heading still attests the Buddha-birthday occasion; name Yulin as the associated sermon speaker."
+    },
+    {
+      "cohort":4,"entryId":"t_c8f127c46d44","term":"無對","sense":1,"occurrence":1,"RelPath":"C/C077/C077n1710.xml","FromLb":"0617a02","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The complete enclosing 馬祖道一 record identifies Mazu Daoyi as 師; 主 is the visiting lecture master whom Mazu questions.",
+      "exactHeadwordClause":"師曰：不出不入，是甚麼法？主無對，遂辭出門。師召曰：座主。主回首。師曰：是甚麼？主亦無對。",
+      "ownershipEvidence":"主無對 and 主亦無對 are compiler narration of the lecture master's failure to answer; the preceding 師曰 turns are Mazu's questions, not utterances of 無對.",
+      "specificActor":"the compiler/recorder","actorRole":"narrator","contextMasters":[{"MasterName":"Mazu Daoyi","Roles":["questioner","record-owner"]}],
+      "otherActor":"an unnamed visiting lecture master is the person described as giving no answer",
+      "verdict":"CONFIRMED_DEFECT","reason":"MasterName correctly remains null, but the row omits Mazu, whose named questioning creates both narrated nonresponses. Add him contextually; do not turn 無對 into his speech.",
+      "definitionProseImpact":"ATTRIBUTION_ONLY. The narrative directly supports 'had no answer'; definition holds while prose should name Mazu as questioner."
+    },
+    {
+      "cohort":4,"entryId":"t_cb44465faa59","term":"侍者","sense":1,"occurrence":2,"RelPath":"C/C077/C077n1710.xml","FromLb":"0617a09","sourceTitle":"古尊宿語錄",
+      "caseIdentityEvidence":"The span crosses a hard record boundary: it ends Mazu Daoyi's death account, then begins 百丈懷海禪師語錄.",
+      "exactHeadwordClause":"師於貞元四年……謂侍者曰：吾之朽質當於來月歸茲地矣……諡大寂禪師……。百丈懷海禪師語錄……師參馬大師為侍者。",
+      "ownershipEvidence":"The first 侍者 is a compiler-supplied object in Mazu's biography (Mazu speaks only after 曰). The second is compiler narration identifying Baizhang's former role. They belong to different masters and different records.",
+      "specificActor":"mixed compiler narration across two records","actorRole":"invalid cross-record witness","contextMasters":[{"MasterName":"Mazu Daoyi","Roles":["action-performer","first-record subject"]},{"MasterName":"Baizhang Huaihai","Roles":["second-record subject"]}],
+      "verdict":"CONFIRMED_DEFECT","reason":"Although both tokens are narrated, one stored occurrence improperly spans Mazu's record ending and Baizhang's record beginning. It must be re-cut into a single record/deployment before attribution can be represented truthfully.",
+      "definitionProseImpact":"EVIDENCE_RECUT_REQUIRED; DEFINITION HOLDS. Both uses genuinely mean attendant, but no prose claim should treat this cross-record span as one scene."
+    }
+  ],
+  "counts":{"confirmedDefects":7,"falsePositives":3,"invalidEvidenceRows":0,"evidenceRecutsRequired":3,"definitionOrProseSemanticallyDisproved":0}
+}

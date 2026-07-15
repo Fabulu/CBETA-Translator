@@ -16,3 +16,13 @@
 - Linji guest-within-host configuration and Caodong host-within-guest position are different school-specific classified things, not paraphrases or grammatical variants. The sources explicitly distinguish the two named systems and give different defining relations; the split is retained under the different-thing rule.
 
 - sense-target-distinguishability: the retained sense targets denote different things under the worksheet DifferentThingTest; this formal repair adds depth only and does not merge them.
+
+## Public-feedback ledger
+
+- feedback-inference-verdict: retain the split because the corpus explicitly distinguishes Linji and Caodong guest-host systems.
+- feedback-observations: the two systems supply different four-position relations and different formulas.
+- feedback-falsification-searches: tested whether the identical graphs merely varied in wording within one system.
+- feedback-counterexamples: variant answers inside one named system remain deployments of one position.
+- feedback-scope: corpus-attested Linji and Caodong uses only.
+- lookup-probes: host within guest; guest-host; Linji guest-host; Caodong guest-host.
+- opening-interpretation-verdict: retained with the school distinction stated before examples.

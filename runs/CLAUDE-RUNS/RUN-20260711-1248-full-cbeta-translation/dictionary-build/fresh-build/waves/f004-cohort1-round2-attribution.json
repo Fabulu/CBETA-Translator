@@ -1,0 +1,42 @@
+{
+  "counts": {
+    "entries": 21,
+    "senses": 21,
+    "occurrences": 127,
+    "actor_narrated": 81,
+    "attribution_notes": 127,
+    "named_occurrences": 19,
+    "context_master_links": 33,
+    "actor_reviewed_unnamed": 26,
+    "actor_identified_non_master": 1,
+    "vague_attributor": 3,
+    "deferred_non_roster": 2,
+    "pending_roster_master": 2,
+    "deferred_non_roster_context": 2,
+    "pending_roster_context_master": 2,
+    "batch_anonymous_actor_collapse": 1
+  },
+  "hardFailures": 4,
+  "failures": [
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9263ce2a5988/entry.v2.json",
+      "detail": "登座 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93d4f280640a/entry.v2.json",
+      "detail": "點檢 s1: 'another speaker'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9bed34b40eac/entry.v2.json",
+      "detail": "來機 s1: 'A master'"
+    },
+    {
+      "kind": "batch-anonymous-actor-collapse",
+      "entry": "<cohort>",
+      "detail": "21 entries / 127 occurrences contain only 19 named utterers (15.0%); status labels cannot substitute for full-case name resolution (81 narrated, 27 other anonymous)"
+    }
+  ]
+}

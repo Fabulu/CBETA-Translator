@@ -132,16 +132,34 @@
           "ToLb": "0078a16",
           "Kwic": "某甲擬請和尚開堂得否。",
           "Curated": true,
-          "MasterName": "Dongsi Ruhui",
-          "AttributionNote": "Source record (五燈會元; X/X80/X80n1565.xml). Exact actor: Dongsi Ruhui. The complete case distinguishes the headword-bearing turn from surrounding narration and replies.",
+          "MasterName": null,
+          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), complete Dongsi Ruhui section: an unnamed petitioner asks whether he may invite Dongsi to open the hall. Dongsi is the respondent, not the headword utterer.",
           "ContextMasters": [
             {
               "MasterName": "Dongsi Ruhui",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "petitioner",
+            "ActorLabel": "the unnamed petitioner",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "某甲擬請和尚開堂得否 is the petitioner's direct question; Dongsi Ruhui answers after 師曰.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T02:10:00Z"
+          }
         },
         {
           "RelPath": "X/X78/X78n1553.xml",

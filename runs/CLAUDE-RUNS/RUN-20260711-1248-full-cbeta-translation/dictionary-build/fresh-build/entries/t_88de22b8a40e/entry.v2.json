@@ -43,14 +43,15 @@
           "RelPath": "X/X82/X82n1571.xml",
           "FromLb": "0178c24",
           "ToLb": "0179a01",
-          "Kwic": "因參本來人有省，述偈曰：本來人，本來人，無腦無頭作麼尋？驀然揪著個鼻孔",
+          "Kwic": "述偈曰：本來人，本來人，無腦無頭作麼尋？驀然揪著個鼻孔，試看元來是白丁。",
           "Curated": true,
-          "AttributionNote": "Complete Collection of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)). Exact speaker and verse author: Yuelin Jing; the biography explicitly introduces his awakening verse.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): (述偈曰) begins Yuelin Jing's verse; the recut excludes preceding compiler narration (因參本來人有省).",
           "ContextMasters": [
             {
               "MasterName": "Yuelin Jing",
               "Roles": [
-                "utterer"
+                "utterer",
+                "verse-author"
               ]
             }
           ],
@@ -123,33 +124,17 @@
           "ToLb": "0070b19",
           "Kwic": "龐居士問。不昧本來人。請師高著眼。師直下󳬇。",
           "Curated": true,
-          "AttributionNote": "Five Lamps Compendium (五燈會元). Exact speaker: the named layman Pang Yun asks the headword-bearing request; Mazu Daoyi responds by looking down.",
+          "AttributionNote": "Source text (五燈會元): (龐居士問) marks Pang Yun as the exact questioner who utters (不昧本來人).",
           "ContextMasters": [
             {
-              "MasterName": "Mazu Daoyi",
+              "MasterName": "Pang Yun",
               "Roles": [
-                "respondent"
+                "utterer",
+                "questioner"
               ]
             }
           ],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "named lay participant",
-            "ActorLabel": "Pang Yun",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "Five Lamps Compendium (五燈會元): the named layman Pang Yun utters the headword-bearing request; Mazu Daoyi responds by looking down.",
-            "ReviewedBy": "Codex f004 lane B reviewer-3 finding repair",
-            "ReviewedUtc": "2026-07-15T13:40:00Z",
-            "AuthoredVoiceRiskReviewed": true
-          }
+          "MasterName": "Pang Yun"
         },
         {
           "RelPath": "L/L158/L158n1652.xml",

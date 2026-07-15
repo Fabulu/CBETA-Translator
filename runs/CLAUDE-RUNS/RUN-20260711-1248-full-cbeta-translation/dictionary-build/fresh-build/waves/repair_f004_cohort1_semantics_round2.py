@@ -1,0 +1,38 @@
+import json,sys,subprocess,hashlib,os,tempfile
+from pathlib import Path
+R=Path(__file__).resolve().parents[2];W=R/'fresh-build'/'waves';E=R/'fresh-build'/'entries';sys.path.insert(0,str(R));import zc
+M={
+'鼓聲':('the sound of a drum announcing or interrupting communal activity','Masters hear, name, or answer the drum in formal addresses and encounters: its audible summons becomes the occasion for a question, a return to the meal, or a warning that the “person of no rank” is active within the sound.'),
+'點檢':('to inspect and call another speaker’s handling to account','Later masters and commentators “inspect” an inherited answer, warning that a saying remains exposed to checking even when it appears complete.'),
+'蕭何':('Xiao He, invoked through the allusion that he established the laws','Commentators raise “Xiao He established the laws” when a response creates rules, complications, or precedent; the statesman’s Chan deployment is this recurrent legal allusion.'),
+'十方世界':('the worlds in all ten directions—the whole spatial field','Formal addresses use the phrase to make a total claim: all directions are clear, become one eye, or participate in a Buddha-birth scene; duplicate transmissions of one scene count once as a deployment family.'),
+'拂子頭':('the head of the teaching-seat whisk, treated as a locus for what is displayed','Masters place people, buddhas, distinctions, or the whole assembly “on the whisk-head”; the tip of the authority-bearing implement becomes the public site of the challenge.'),
+'披毛戴角':('to wear fur and horns—to take animal embodiment','Masters use the phrase for becoming an animal, often in warnings about liability, repayment, or crossing into another species; it is not merely putting on a costume.'),
+'韓愈':('Han Yu, the official raised through his recorded encounters and allusions','Chan records deploy Han Yu as the named official who questions masters and is later quoted or appraised; catalogue mentions and bare name lists do not establish this role.'),
+'來機':('the incoming person’s move or capacity as it presents itself','A master answers or tests the incoming move—the approach arriving from the interlocutor—and commentators judge whether the response meets what comes.'),
+'遇緣即宗':('“meeting conditions is itself the source,” paired with “act as host wherever you are”','Formal addresses quote the paired formula to demand command of each encountered situation: wherever one stands, one acts as host; whatever conditions arrive, that encounter itself discloses the source.'),
+'心要':('the essential point of mind, also used as the title or contents of a text','The corpus uses the phrase both for claimed essential content and for a named textual object; repeated copies of one Bodhidharma biography are one transmission family, not independent deployments.'),
+'拈拂子':('to raise or take up the whisk as a public teaching-seat act','Masters take up the whisk to show, strike, cast, fish, or stage the answer before the assembly; the action carries the implement’s teaching authority.'),
+'眼睛':('the eyeball, including the intensified “diamond eyeball” of discernment','The literal organ appears in actions and insults, while “diamond eyeball” names an unbreakable or penetrating capacity; evidence must decide whether these are different referents rather than merge them by spelling.'),
+'皮袋':('the skin-bag: the living body figured as a leather sack','Masters apply the skin-bag to a human body and, in Zhaozhou’s case, the dog’s body; title lists and isolated tokens do not establish the image.'),
+'解脫香':('the fragrance of liberation within the formula of five fragrances','Records enumerate liberation-fragrance with discipline, concentration, discernment, and liberated knowing, while poetic uses make fragrance spread from awakening; the formula and free image must not be conflated without evidence.'),
+'宗匠':('an accomplished leading master or craftsman of the lineage','Prefaces, patrons, and records use this title to mark recognized mastery and capacity to shape the lineage; it names standing in the house, not an ordinary artisan.'),
+'登座':('to mount the teaching seat for a formal address','In assembly records a master mounts the seat to speak; procedural descriptions record that institutional act, while deathbed “taking a seat” belongs to a different event and must be distinguished.'),
+'法身向上事':('the matter beyond the teaching-body, repeatedly posed as an interview question','Monks ask “what is the matter beyond the teaching-body?” and masters answer differently; the phrase is the named question-field, not a freestanding abstract answer.'),
+'入門便喝':('“shout as soon as one enters,” Linji’s formula paired with Deshan’s entry-blow','Masters repeatedly raise the comparison—Deshan strikes upon entry, Linji shouts upon entry—and test what these immediate responses accomplish.'),
+'祖殿':('the patriarch hall in a monastery','Records locate rites, rebuilding, or encounters in the patriarch hall; strings inside “Gaozu’s palace hall” are a different word boundary and are excluded.'),
+'法鼓':('the teaching drum, literal or figurative, sounded in an address','Masters speak of sounding the teaching drum as public proclamation, while records may also describe an actual or newly re-skinned drum; the two uses remain visible.'),
+'舍利':('relics left from a cremated body','Chan biographies and memorial accounts handle, divide, enshrine, or dispute relics; Shariputra’s name and table-of-contents rows are different lexical objects.')}
+DROP={'蕭何':{3},'披毛戴角':{2,3},'韓愈':{2,3,4,5},'皮袋':{2,4,5},'解脫香':{3,5},'法身向上事':{4},'祖殿':{2,3,5},'法鼓':{3},'舍利':{1,2,3,6,8}}
+review=json.loads((W/'f004-author-cohort1-independent-review.json').read_text());rows=[]
+for idx,x in enumerate(review['entries'],1):
+ p=E/x['id'];d=json.loads((p/'evidence.draft.json').read_text());e=d['Entry'];op,body=M[e['SourceTerm']]
+ for s in e['Senses']:
+  if e['SourceTerm'] in DROP:s['Occurrences']=[o for j,o in enumerate(s['Occurrences'],1) if j not in DROP[e['SourceTerm']]]
+  s['SourceTexts']=list(dict.fromkeys(o['RelPath'] for o in s['Occurrences']));s['ExplanationParts']={'CorpusEarnedOpening':op[0].upper()+op[1:]+'.','EvidenceBody':[body]};s['DraftEvidence']['ZenBend']=body;s['DraftEvidence']['OpeningClaimEvidenceKeys']=[f'o{i}' for i in range(1,len(s['Occurrences'])+1)];s['DraftEvidence']['IndependentWorkIds']=list(dict.fromkeys(zc.work_id(o['RelPath']) for o in s['Occurrences']));s['Validation']='multi-source' if len(set(s['DraftEvidence']['IndependentWorkIds']))>1 else 'provisional';s['Note']=f'{len(s["Occurrences"])} retained full-case witnesses after lexical-boundary and deployment review.'
+ (p/'evidence.draft.json').write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');subprocess.run([sys.executable,str(R/'compile_evidence_draft.py'),str(p/'evidence.draft.json'),'--output',str(p/'entry.v2.json'),'--report',str(p/'round2-semantic-compile-report.json')],check=True,stdout=subprocess.DEVNULL);rows.append({'ordinal':x['ordinal'],'id':x['id'],'term':x['term'],'occurrences':sum(len(s['Occurrences']) for s in e['Senses']),'entrySha256':hashlib.sha256((p/'entry.v2.json').read_bytes()).hexdigest()})
+ if idx in (7,14,21):
+  out={'schemaVersion':1,'reviewSource':'f004-author-cohort1-independent-review.json','entries':rows.copy(),'selfReview':False,'promoted':False};target=W/f'f004-cohort1-round2-checkpoint-{idx:02d}.json';fd,tmp=tempfile.mkstemp(prefix=target.name+'.',suffix='.tmp',dir=W)
+  with os.fdopen(fd,'w') as f:json.dump(out,f,ensure_ascii=False,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+  os.replace(tmp,target)
+print(len(rows))

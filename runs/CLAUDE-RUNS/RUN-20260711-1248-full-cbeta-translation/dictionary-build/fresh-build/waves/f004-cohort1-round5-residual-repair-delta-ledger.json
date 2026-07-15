@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "f004-cohort1-round5-residual-repair-delta-v1",
+  "sourceReview": "fresh-build/waves/f004-cohort1-round5-rereview-repair-independent.json",
+  "sourceReviewSha256": "27be2c3d1914847b59be202e6c0023fc742a0092f82c2584a89e2d0436f77484",
+  "repairAuthor": "Codex worker f005_a1203_1217_independent",
+  "selfReview": false,
+  "selfPromotion": false,
+  "repairedEntries": 3,
+  "rows": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "rejectedSha256": "b57da7b50675d9f6d44c3967b4e055fd98d682fdbe5317634d0735bd38d808d8",
+      "repairedSha256": "2ffc40f56bdeb0bf5ab83d0b978eea2c29245a3166103e997ec4202307d7da5f",
+      "occurrences": 7,
+      "repairs": [
+        "Occurrence 3 now preserves Baizhang Huaihai as section-subject and Guishan Lingyou as the competing case-figure/person discussed while leaving the anonymous monk as exact utterer.",
+        "Occurrence 5 now links source-proven Shouning Shanyi as respondent/record-owner; a verified pending-roster candidate was registered.",
+        "Occurrence 6 now links Yunmen Wenyan as record-owner/commentator while retaining compiler narration as the headword actor.",
+        "RelatedMasters was synchronized with the new contextual links.",
+        "Occurrence 1 was losslessly recut to its exact headword-bearing hall-address turn and re-anchored at X 0006a18–0006a19, removing an irrelevant preceding questioner-frame lint trigger."
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "rejectedSha256": "283e77667e1e9ac3a0bfa00970fd9259a398be2138f5bee9392a45b2c5839342",
+      "repairedSha256": "4e372f951a97f1c9489ff94e60ffcb7c098a85d78cb6a9b0528bf6bae32edd3c",
+      "occurrences": 7,
+      "repairs": [
+        "The stale sense Note now reports seven retained full-case witnesses, matching Occurrences, SourceTexts, and OpeningClaimEvidenceKeys.",
+        "The duplicate noncanonical RelatedMasters label Tiantong Hongzhi Zhengjue was removed; Hongzhi Zhengjue remains the sole canonical identity.",
+        "Occurrence 2 was losslessly recut to Yunju Yuanyou's exact reply and re-anchored at X 0036b13, removing an irrelevant preceding questioner-frame lint trigger."
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "rejectedSha256": "48495351684a4792096df214e14827e0ed87db1b784c362714a8c2762e0d94d5",
+      "repairedSha256": "2ae08f1b78c33be02ddafcaaf704b4dcb0d01619413593a8709c3a68616d4c85",
+      "occurrences": 6,
+      "repairs": [
+        "Occurrence 1 now links Yunfeng Zuyue as respondent/record-owner and its AttributionNote names the exact 五燈全書(第34卷-第120卷) source title.",
+        "Occurrence 3 now links Lingyin Xuanben as respondent/record-owner, matching both its prose attribution and the independently preserved occurrence 4.",
+        "RelatedMasters now includes Yunfeng Zuyue.",
+        "The three independently read authored comparisons carry explicit action-performer-risk review proofs; occurrence 6 was losslessly recut to Xingjiao Shouzhi's exact comparison and re-anchored at X 0504a03–0504a05."
+      ]
+    }
+  ],
+  "pendingRosterAddition": {
+    "canonicalName": "Shouning Shanyi",
+    "sharedPacket": "fresh-build/pending-roster.json",
+    "sharedPacketSha256AtGate": "f66c79a3271d1c12e5ea6163172cc8bb08ae7f274936ea1335c4e16735c1087c",
+    "evidenceVerified": true,
+    "status": "awaiting-roster-integration"
+  },
+  "authoringRisk": {
+    "path": "fresh-build/waves/f004-cohort1-round5-residual-repair-authoring-risk.json",
+    "sha256": "5f1244771db0de39a8008e8a24990074ccb0b183744b0998e1017064c0a94e87",
+    "passing": 3,
+    "flagged": 0
+  },
+  "preReview": {
+    "path": "fresh-build/waves/f004-cohort1-round5-residual-repair-pre-review.json",
+    "sha256": "04af77fba89228259df16b1650701c4d2bf655c9fa2cbb80cec630f2a62fb2e0",
+    "hardPass": true,
+    "exactKwic": 20,
+    "exactFailures": 0
+  },
+  "compositeGate": {
+    "path": "fresh-build/waves/f004-cohort1-round5-residual-repair-composite.json",
+    "sha256": "aadc9a55a484e41312e9ef20618c8a27c915916dbb33931a7132864de7c892e2",
+    "hardPass": true,
+    "exactKwic": 20,
+    "exactFailures": 0
+  },
+  "independentRereviewRequired": true,
+  "promoted": false,
+  "merged": false,
+  "published": false
+}

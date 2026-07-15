@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T18:18:00Z",
+  "wave": "f004",
+  "lane": "A",
+  "role": "focused repair author",
+  "sourceIndependentReview": "fresh-build/waves/f004-laneA-918-925-reviewer6-independent.json",
+  "repairScope": [918, 920, 921, 924, 925],
+  "repairs": [
+    "Removed every duplicated reader-facing AttributionNote actor prefix in the five rejected entries.",
+    "Added a compiler hard failure for exact repeated actor prefixes before semantic review.",
+    "Corrected 趙州戴草鞋 to Zhaozhou wearing straw sandals on his head and added Mengshan Deyi as respondent.",
+    "Replaced 祖印's bare token with an exact Ruibai Mingxue address and named all participating master respondents.",
+    "Resolved the L158 source respondent from the source title and complete case as Mingjue Cong, not Mingdao Zhengjue Sen.",
+    "Registered evidence-bound pending roster candidates for Mengshan Deyi, Furong Wenxi, and Baoen Shaoan."
+  ],
+  "hardGateChange": {
+    "path": "compile_evidence_draft.py",
+    "sha256": "25881ddbbbb570450ace9473ca976cf166ed3b119f9ed0283331acb3332e1a35",
+    "rule": "AttributionNote duplicated actor prefix is forbidden"
+  },
+  "pendingRosterSha256": "d2917a2a81f85fbf35189b7be0e1583aaffbf09ed0ac88ddfe594d0cc4b0f286",
+  "entries": [
+    {
+      "ordinal": 918,
+      "id": "t_dd5f8d8801d2",
+      "term": "扇子",
+      "occurrences": 7,
+      "worksheetSha256": "c21e29be2a515e8a39b17cf2eb2c05653913cd009b364ab6330a0bbf0ada9cfd",
+      "entrySha256": "42ee1ff26090ac475591189dd4fa634c0d89dd371c2103950b594ba778a2a682",
+      "compileReportSha256": "825f71c6216cd3b0e321307d53b769f55f486f2688692fdcee2609f5a13105e4"
+    },
+    {
+      "ordinal": 920,
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "occurrences": 5,
+      "worksheetSha256": "b189265c591bc1dd3984da4a69e6a8a5378fb568053fcd4bd9e7a362d5620d3d",
+      "entrySha256": "211f215e44a96595779fc976ae445db8476ed30ebe68e4fe55e18d970379466a",
+      "compileReportSha256": "293174ee19ab5163b33c16e1dabaea76bb3d4f246e544fc34415c3df4135da86"
+    },
+    {
+      "ordinal": 921,
+      "id": "t_72ed81907d68",
+      "term": "施為",
+      "occurrences": 7,
+      "worksheetSha256": "7c90b58798f9faa7f3be7250d3a44eb646f90a4f78ce2c81d8949ca9f6290eac",
+      "entrySha256": "484fce41feb96b997aa66192246db9ed76602cb9f982dc09592333db0999c5b3",
+      "compileReportSha256": "37eb8ddf6e7aca54a7a6066f623a90600ad8aa991e87386183b332d08fad0ce9"
+    },
+    {
+      "ordinal": 924,
+      "id": "t_c02887fbd979",
+      "term": "祖印",
+      "occurrences": 7,
+      "worksheetSha256": "a266b517ac1977c19420d8ca0d9c0eacab85322757aaa6e01c37384735cbeae3",
+      "entrySha256": "f130207364d5e03dd97f2d5f2123a8385fa5780a46c7a56a9f08ea3cf0bb5266",
+      "compileReportSha256": "3185c24155ddb53f0a18bc0de2ef5a2f48ad6924eb97352c27468d7049730384"
+    },
+    {
+      "ordinal": 925,
+      "id": "t_94f424853f5b",
+      "term": "孟子",
+      "occurrences": 7,
+      "worksheetSha256": "3e81c00f911ab01b90c76dd72c581c6a1dcaa6730923349f45705d5fa40e72a1",
+      "entrySha256": "002c357094e92d73943165240a71726e0012a407cdd2b02710390665b854fe00",
+      "compileReportSha256": "3a522a3d0271740dc70235042a25fac1d6587a9a4438b31e65940949c33575eb"
+    }
+  ],
+  "formalPreReviewGate": {
+    "path": "fresh-build/waves/f004-a-918-925-reviewer6-author-repair-pre-review-gate.json",
+    "sha256": "4567fb55fdfd11ed7a183035a04953e2733a2d7b378583c764ce5a1138f3289f",
+    "hardPass": true,
+    "cohortEntries": 8,
+    "exactKwicVerified": 54,
+    "exactKwicFailures": 0
+  },
+  "selfReviewRun": false,
+  "promotionRun": false,
+  "mergeRun": false,
+  "publicationRun": false,
+  "siteTouched": false,
+  "state": "author-repaired-pre-review-green"
+}

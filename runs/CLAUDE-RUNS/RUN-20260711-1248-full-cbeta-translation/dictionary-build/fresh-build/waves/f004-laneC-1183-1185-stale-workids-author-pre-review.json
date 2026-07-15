@@ -1,0 +1,191 @@
+{
+  "generatedUtc": "2026-07-15T15:36:38.493399+00:00",
+  "elapsedSeconds": 32.13,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_dcb8d664b64f",
+      "term": "第二月",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dcb8d664b64f/entry.v2.json",
+      "sha256": "df34a1ab23b6ac58f1e2251583a9f436695df71257b9b21f0e7ac1c8821b58aa"
+    },
+    {
+      "id": "t_b7fd3f3a1395",
+      "term": "蛇入竹筒",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b7fd3f3a1395/entry.v2.json",
+      "sha256": "b030ec0435c483d9bf76238e4fbb844d10e39d0ef2cf38f45a752d85853318f1"
+    },
+    {
+      "id": "t_ce08a150ae0a",
+      "term": "舟行岸移",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ce08a150ae0a/entry.v2.json",
+      "sha256": "5af7d7a3233d575bb39838092e1baa94282c43a641faca958b8aa305089eb769"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 17,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dcb8d664b64f/entry.v2.json",
+        "id": "t_dcb8d664b64f",
+        "term": "第二月",
+        "verified": 9,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b7fd3f3a1395/entry.v2.json",
+        "id": "t_b7fd3f3a1395",
+        "term": "蛇入竹筒",
+        "verified": 4,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ce08a150ae0a/entry.v2.json",
+        "id": "t_ce08a150ae0a",
+        "term": "舟行岸移",
+        "verified": 4,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.142,
+    "attribution": 1.631,
+    "publicFeedback": 0.329,
+    "depthSense": 1.006,
+    "countClaims": 0.442,
+    "workSourceValidation": 0.524,
+    "corpusBaseline": 0.393,
+    "frozenHistoricalTerms": 1.016,
+    "attributionPackets": 26.572
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.631,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 17,
+        "actor_reviewed_unnamed": 4,
+        "context_master_links": 15,
+        "attribution_notes": 17,
+        "named_occurrences": 11,
+        "deferred_non_roster": 8,
+        "pending_roster_master": 8,
+        "deferred_non_roster_context": 9,
+        "pending_roster_context_master": 9,
+        "actor_identified_non_master": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 17,\n    \"actor_reviewed_unnamed\": 4,\n    \"context_master_links\": 15,\n    \"attribution_notes\": 17,\n    \"named_occurrences\": 11,\n    \"deferred_non_roster\": 8,\n    \"pending_roster_master\": 8,\n    \"deferred_non_roster_context\": 9,\n    \"pending_roster_context_master\": 9,\n    \"actor_identified_non_master\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.329,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp2aq117ey.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.006,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_b7fd3f3a1395",
+        "t_ce08a150ae0a",
+        "t_dcb8d664b64f"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_b7fd3f3a1395\",\n    \"t_ce08a150ae0a\",\n    \"t_dcb8d664b64f\"\n  ]\n}\nreport: /tmp/tmpitv3yt20-depth.json\n",
+    "report": "/tmp/tmpitv3yt20-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.442,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.524,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.393,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.016,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 26.572,
+    "payload": {
+      "entries": 3,
+      "occurrences": 17,
+      "tierACandidates": 0,
+      "reviewRequired": 17
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 17,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 17\n}\nreport: fresh-build/waves/f004-laneC-1183-1185-stale-workids-author-pre-review-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f004-laneC-1183-1185-stale-workids-author-pre-review-attribution-packets.json",
+    "generatorVersion": 3,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_dcb8d664b64f",
+    "t_b7fd3f3a1395",
+    "t_ce08a150ae0a"
+  ],
+  "strictRosterScopeIds": [
+    "t_dcb8d664b64f",
+    "t_b7fd3f3a1395",
+    "t_ce08a150ae0a"
+  ]
+}

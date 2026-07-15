@@ -1,0 +1,977 @@
+{
+  "schemaVersion": "attribution-read-adjudication-v1",
+  "generatedUtc": "2026-07-15T20:03:44.801133+00:00",
+  "readOnly": true,
+  "entryRange": [
+    126,
+    150
+  ],
+  "entries": 25,
+  "findings": 25,
+  "rows": [
+    {
+      "cohort": 6,
+      "entryId": "t_1b4bf4fff6bb",
+      "term": "韓愈",
+      "sense": 1,
+      "occurrence": 3,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "韓愈 s1 o3: Muchen Daomin appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the reviewed unnamed emperor speaking to Muchen Daomin",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "J/J26/J26nB180.xml",
+      "FromLb": "0296c07",
+      "Kwic": "也得。」師曰：「此皇上佛菩薩度盡眾生心也，然性命關頭，須當人信得己躬下有恁般大事方可留心，若只向文字上理會，任他千般思、萬般索，只打向得名場流轉。今皇上但縣一格，有人悟得祖師禪定，與他今科狀元，自然箇箇留心。」上曰：「老和尚說得極是。」上一日語師：「韓愈是唐朝最不信有佛法底人，故其《原道》一篇語多支離，卻有李翱一箇好門生，于性命之學反極通透。」師曰：「他曾經藥山點化過來，故贈藥山有『鍊得身形似鶴形，千株松下兩函經，我來問道無餘事，雲在青天水在缾』之偈。」上曰：「李翱有《復性》四篇，老和尚曾看過麼？」",
+      "fullCaseContextSha256": "72cb8ab4575d1c568f64a97e78e92f35c41178a402b18020baf2654f57de04d9",
+      "fullCaseContextChars": 20252,
+      "sectionHead": "奏對別記上",
+      "sourceTitle": "天童弘覺忞禪師北遊集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "一大事因緣 s1 o1: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Yuanwu Keqin",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Yuanwu Keqin",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yuanwu Keqin",
+          "Roles": [
+            "utterer",
+            "record-owner"
+          ]
+        }
+      ],
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0717a18",
+      "Kwic": "是故諸佛出世為一大事因緣。祖師西來亦不出見性成佛。",
+      "fullCaseContextSha256": "2462ff0d5b182d2695540994c41bd68cb1b0ba2a6cb78b47d026035f96577432",
+      "fullCaseContextChars": 15693,
+      "sectionHead": "上堂一",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_26d1f4bf3890",
+      "term": "殺活",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "殺活 s1 o2: Damei Fachang appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Baiyan Jingfu",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Baiyan Jingfu",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Baiyan Jingfu",
+          "Roles": [
+            "utterer",
+            "commentator"
+          ]
+        }
+      ],
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0061b23",
+      "Kwic": "殺活縱奪、權實照用，一點也不曾欠缺",
+      "fullCaseContextSha256": "a0fe3d35f69be646cd3c30abf8dd7797f683a217d652b4f4b86e5ed368604738",
+      "fullCaseContextChars": 20017,
+      "sectionHead": "明州大梅法常禪師南二馬祖一嗣",
+      "sourceTitle": "宗門拈古彙集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_27a41c50f0c3",
+      "term": "腦後見腮",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "腦後見腮 s1 o5: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Minshu",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Minshu",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Minshu",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J39/J39nB450.xml",
+      "FromLb": "0474a17",
+      "Kwic": "：「梁武帝雖然頂門具眼，不識腦後見腮；達磨大師縱使言中有響，那覺",
+      "fullCaseContextSha256": "1e7b76082935bdd021c0592cfaa543d3c09f38c526e9eb889013947ba580910b",
+      "fullCaseContextChars": 12727,
+      "sectionHead": "住四川墊江縣百丈禪院語錄",
+      "sourceTitle": "敏樹禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_2d92f15fa0ab",
+      "term": "雲水",
+      "sense": 2,
+      "occurrence": 1,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "雲水 s2 o1: Chuanzi Decheng appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Fomin Jine",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Fomin Jine",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Fomin Jine",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J37/J37nB372.xml",
+      "FromLb": "0076b02",
+      "Kwic": "笑傲乾坤雲水間，回頭處處是青山。花兩岸，柳一灣，時人不識謂偷閒。",
+      "fullCaseContextSha256": "b195d120a6a8ae5aadbbca4f492309a5322a086687b6d03879fa6471c2419fae",
+      "fullCaseContextChars": 12437,
+      "sectionHead": "和船子和尚撥棹歌",
+      "sourceTitle": "印心佛敏訥禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_2ddd493fc9b0",
+      "term": "續燈錄",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "續燈錄 s1 o4: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Shuijian Huihai",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Shuijian Huihai",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Shuijian Huihai",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J29/J29nB230.xml",
+      "FromLb": "0282b14",
+      "Kwic": "雪竇顯塔銘，敘顯為大寂九世孫，顯望雲門為四世，雲門望師為三世，師望馬祖為二世，是則顯為南嶽下法裔明矣。佛國白《續燈錄》亦載顯為馬祖九世孫，祖源通要所載亦如之。至如張無盡、達觀穎、洪覺範、大川濟，之辯清定祖圖、聯芳碑之確載，天童《直說》之詳明，徑山《嚴統》之覈定，此雖",
+      "fullCaseContextSha256": "c27ad834973eaabc339f44669d69c1cb213ce2f5ad7cc848b2c144ea77cab6e4",
+      "fullCaseContextChars": 15038,
+      "sectionHead": "告龍潭崇信禪師文",
+      "sourceTitle": "天王水鑑海和尚六會錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_30a53ee93752",
+      "term": "爐鞴",
+      "sense": 1,
+      "occurrence": 7,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "爐鞴 s1 o7: Miyun Yuanwu appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Chaozong Tongren",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Chaozong Tongren",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Chaozong Tongren",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J34/J34nB300.xml",
+      "FromLb": "0222a10",
+      "Kwic": "獲無生忍。」次拈香云：「此一瓣香，千生埋沒，七載辛勤，劈頭遇著辣鉗錘，三翻四覆，末後重遭惡爐鞴，七穴八穿，爇向爐中，供養現住浙江明州天童堂上密雲悟老和尚，用酬法乳之恩。」乃就座。參頭白椎云：「法筵龍象眾，當觀第一義",
+      "fullCaseContextSha256": "038bf26e86705506ca3af5d882ad9d1f8f83f151e4015b41cab9bb5f4299e24a",
+      "fullCaseContextChars": 11691,
+      "sectionHead": "住金陵祇陀林",
+      "sourceTitle": "朝宗禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_34143e43daf4",
+      "term": "放下著",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "放下著 s1 o1: Wuming Huijing appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Zhaozhou Congshen",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Zhaozhou Congshen",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Zhaozhou Congshen",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X72/X72n1432.xml",
+      "FromLb": "0186c07",
+      "Kwic": "豈不聞昔有僧問趙州：一物不將來時如何？州曰：放下著。僧曰：一物不將來，放下箇甚麼？州曰：放不下，擔取去。",
+      "fullCaseContextSha256": "9f04555e3947e061ca7131eace78d69b150d415c297608bed63ab029e8d90cdb",
+      "fullCaseContextChars": 17554,
+      "sectionHead": "上堂",
+      "sourceTitle": "無明慧經禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_37771a869b4f",
+      "term": "如何是祖師西來意",
+      "sense": 1,
+      "occurrence": 9,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "如何是祖師西來意 s1 o9: Zhitong appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed monk in the Zhaozhou cypress case",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Zhaozhou Congshen",
+          "Roles": [
+            "respondent",
+            "case-figure"
+          ]
+        },
+        {
+          "MasterName": "Dahui Zonggao",
+          "Roles": [
+            "later-raiser",
+            "record-owner"
+          ]
+        },
+        {
+          "MasterName": "Bodhidharma",
+          "Roles": [
+            "person-discussed"
+          ]
+        }
+      ],
+      "RelPath": "M/M59/M59n1540.xml",
+      "FromLb": "0901a18",
+      "Kwic": "僧問趙州如何是祖師西來意",
+      "fullCaseContextSha256": "7693f61e4194318984450c2be84aec7de45ac2d9b0ff4fd61ca66533f0f50f86",
+      "fullCaseContextChars": 20012,
+      "sectionHead": "智通居士請普說",
+      "sourceTitle": "大慧普覺禪師普說",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_395ae8fd7f32",
+      "term": "無住",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "無住 s1 o4: Wansong Xingxiu appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Vimalakirti",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Vimalakirti",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Vimalakirti",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "T/T48/T48n2004.xml",
+      "FromLb": "0273c15",
+      "Kwic": "答無住則無本。",
+      "fullCaseContextSha256": "2f47fb1a83aeff2f996b2eedd942900f736493c80283275f6f396bc41b5bbda2",
+      "fullCaseContextChars": 20007,
+      "sectionHead": "第七十四則法眼質名",
+      "sourceTitle": "萬松老人評唱天童覺和尚頌古從容庵錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_39fb2a2c1c9b",
+      "term": "祖意",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "action_performer_context_missing",
+      "finding": "祖意 s1 o6: explicit master action requires a named action-performer ContextMaster",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the source compiler or recorder",
+      "actorRole": "narrator",
+      "contextMaster": "the named performer identified by the section",
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yandang Wenji",
+          "Roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "RelPath": "T/T51/T51n2077.xml",
+      "FromLb": "0478c07",
+      "Kwic": "祖意已蒙師指示。",
+      "fullCaseContextSha256": "8b8fd0985e00a0266077f195f84f5c2b66e8f82e40f5c8b58bd8b6cd52f02ab0",
+      "fullCaseContextChars": 20008,
+      "sectionHead": "五祖戒禪師法嗣",
+      "sourceTitle": "續傳燈錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The headword is in narrated action grammar; the named master is performer/context, not utterer.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_408abe2e38ca",
+      "term": "現成公案",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "現成公案 s1 o6: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Shiqi Tongyun",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Shiqi Tongyun",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Shiqi Tongyun",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J26/J26nB183.xml",
+      "FromLb": "0484c28",
+      "Kwic": "現成公案不須參，也要諸人自委悉。",
+      "fullCaseContextSha256": "6915adae16c345f10d297091e1ea52ac5c609e0e4adf5efd4ed61c9619c13cdf",
+      "fullCaseContextChars": 12764,
+      "sectionHead": "住台州靈鷲禪寺語錄",
+      "sourceTitle": "雪竇石奇禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_447ad9648add",
+      "term": "出身處",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "出身處 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Lingyun Baoyin",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Lingyun Baoyin",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Lingyun Baoyin",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0095a09",
+      "Kwic": "須有出身處始得。若無出身處，也似黑牛臥死水。出身一句作麼生道？",
+      "fullCaseContextSha256": "2b53b4364647be35521cc893ad7095ae68cff34d6af9ae587301e1b169f2e0cd",
+      "fullCaseContextChars": 20031,
+      "sectionHead": "越州雲門山靈運寶印禪師",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_495c83ba370b",
+      "term": "三文買草鞋",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "三文買草鞋 s1 o4: Dongshan Shouchu appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Yuejiang Zhengyin",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Yuejiang Zhengyin",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yuejiang Zhengyin",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X71/X71n1409.xml",
+      "FromLb": "0111a15",
+      "Kwic": "趕村齋。只知隨例飡䭔子，也得三文買草鞋。上堂，舉拂子云：百千法門、",
+      "fullCaseContextSha256": "409aecab7cf1e62ab39093ab32fc2191b3b4beffbc6f6c4a476c696989a8f447",
+      "fullCaseContextChars": 11777,
+      "sectionHead": "月江和尚初住常州路碧雲禪寺語錄",
+      "sourceTitle": "月江正印禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_4c9320095ba1",
+      "term": "見聞覺知",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "見聞覺知 s1 o5: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Dazhu Huihai",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Dazhu Huihai",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Dazhu Huihai",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0250a23",
+      "Kwic": "不被見聞覺知所縛。不被諸境所惑。",
+      "fullCaseContextSha256": "d25ddabd7a5f31fd1ad7a690fad3c125e1a5bfb4efc9dba5a7e7570903e8b261",
+      "fullCaseContextChars": 20016,
+      "sectionHead": "懷讓禪師第二世馬祖法嗣",
+      "sourceTitle": "景德傳燈錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_4dd50050b279",
+      "term": "拾得",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "拾得 s1 o4: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Baiyu Si",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Baiyu Si",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Baiyu Si",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "J/J36/J36nB359.xml",
+      "FromLb": "0700c22",
+      "Kwic": "寒山拾得者對髼頭，似甚模樣。攜帚搭肩，縱情放蕩。",
+      "fullCaseContextSha256": "ad6f47536bb84d3cf897fadc80206103708c34b106b36eedd438a0024138ba61",
+      "fullCaseContextChars": 20024,
+      "sectionHead": "達磨",
+      "sourceTitle": "百愚禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_4f3cd3b1c155",
+      "term": "趙州橋",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "趙州橋 s1 o5: Wuzu Fayan appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the unnamed questioning monk",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0382b10",
+      "Kwic": "起拂子曰。這箇又作麼生。師一笑而出。服勤七祀。南遊至京師。歷淮淛。晚見五祖演和尚於海會。出問。未知關棙子。難過趙州橋。趙州橋即不問。如何是關棙子。祖曰。汝且在門外立。師進步。一踏而退。祖曰。許多時茶飯。元來也有人知滋味。明日入室。祖云。你便是昨日問話底僧否。我固知你",
+      "fullCaseContextSha256": "dc7930abc481db454ce1734a184fddff75e364f7adf75553ee927b00bccc4603",
+      "fullCaseContextChars": 20133,
+      "sectionHead": "杭州靈隱玄本禪師",
+      "sourceTitle": "五燈會元",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_52fdda90e9ab",
+      "term": "行腳",
+      "sense": 1,
+      "occurrence": 2,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "行腳 s1 o2: Nanquan Puyuan appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Dongshan Liangjie",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Dongshan Liangjie",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Dongshan Liangjie",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0415b10",
+      "Kwic": "某甲欲得行腳，乞和尚處分。",
+      "fullCaseContextSha256": "e8b9339c17a70a9d2d377bcd7b2d0ba6db4fb9b3cc01d6164a12b389656e1bd5",
+      "fullCaseContextChars": 20013,
+      "sectionHead": "祖堂集序",
+      "sourceTitle": "祖堂集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_560356022866",
+      "term": "孤明",
+      "sense": 1,
+      "occurrence": 3,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "孤明 s1 o3: Yangshan Huiji appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Xueyan Zuqin",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Xueyan Zuqin",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Xueyan Zuqin",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "X/X70/X70n1397.xml",
+      "FromLb": "0603b24",
+      "Kwic": "湛湛澄澄，孤明歷歷，未是到家消息。",
+      "fullCaseContextSha256": "66b1266fabdf105d260a338c67b584679b39f001be341585849a6635efc94e33",
+      "fullCaseContextChars": 20017,
+      "sectionHead": "袁州仰山禪寺語錄",
+      "sourceTitle": "雪巖祖欽禪師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_61c5046b49c4",
+      "term": "心要",
+      "sense": 2,
+      "occurrence": 2,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "心要 s2 o2: Foyan Qingyuan appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Xu Fu",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0001b01",
+      "Kwic": "舒州龍門佛眼和尚語錄序佛眼禪師語錄序豫章徐俯撰佛眼禪師之語侍者道昕所錄上堂小叅普󵘸垂示垂代心要偈頌頌古凡八種蓋數十萬言其義則一也所謂佛語心為宗無門為法門也單傳直指者也今圎頂方袍者孰非求此道柄拂高座者孰非傳此法然謂之直焉而反迃明焉而反昧直而不迃其",
+      "fullCaseContextSha256": "025db3cdc507fc1170143f30c836ab2857abec9cb9134850065ee462e46b3432",
+      "fullCaseContextChars": 10122,
+      "sectionHead": null,
+      "sourceTitle": "古尊宿語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_62044e7bbb87",
+      "term": "本分事",
+      "sense": 1,
+      "occurrence": 6,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "本分事 s1 o6: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Bai Juyi",
+      "actorRole": "questioner",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0352b03",
+      "Kwic": "出家自有本分事。作摩生是和尚本分事？",
+      "fullCaseContextSha256": "a2ff2a244878af29c95ddacc569dad5c67a9154c7d43be57d8ef243459be9a2b",
+      "fullCaseContextChars": 20018,
+      "sectionHead": "祖堂集序",
+      "sourceTitle": "祖堂集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_627549d4c466",
+      "term": "大蟲",
+      "sense": 1,
+      "occurrence": 5,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "大蟲 s1 o5: Changsha Jingcen appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Yangshan Huiji",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Yangshan Huiji",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yangshan Huiji",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0706a02",
+      "Kwic": "山曰㘞直下似箇大蟲自此諸方稱為岑大蟲",
+      "fullCaseContextSha256": "b71c950e3c07c0e581668f6094226c3d6c4225a285d9ad322a7a86df4b4f2c0c",
+      "fullCaseContextChars": 20018,
+      "sectionHead": "通集序",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_6293dead3bb2",
+      "term": "轉身",
+      "sense": 1,
+      "occurrence": 7,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "轉身 s1 o7: Hanyue Fazang appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "compiler of Hanyue Fazang’s record",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Sanfeng Hanyue Fazang",
+          "Roles": [
+            "person-described",
+            "case-figure"
+          ]
+        }
+      ],
+      "RelPath": "J/J34/J34nB299.xml",
+      "FromLb": "0139b05",
+      "Kwic": "師轉身便行。上堂。",
+      "fullCaseContextSha256": "f8182631125a0d3b0627a2a0a580379fbf4e1c2cc1492a47c1898cea996e0f5f",
+      "fullCaseContextChars": 20009,
+      "sectionHead": "住蘇州鄧尉山聖恩禪寺語",
+      "sourceTitle": "三峰藏和尚語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_62bc43101d57",
+      "term": "無相",
+      "sense": 1,
+      "occurrence": 4,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "無相 s1 o4: Wuxiang appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "Huineng",
+      "actorRole": "named master utterer",
+      "contextMaster": null,
+      "MasterNameAsWritten": "Huineng",
+      "ContextMastersAsWritten": [
+        {
+          "MasterName": "Yulin Tongxiu",
+          "Roles": [
+            "later-raiser",
+            "record-owner"
+          ]
+        },
+        {
+          "MasterName": "Huineng",
+          "Roles": [
+            "utterer"
+          ]
+        }
+      ],
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0557b03",
+      "Kwic": "早叅舉六祖大師無相為體無念為本無住為宗師云既云無相為體何不即以無相為宗既云無念為本何不即以無念為宗",
+      "fullCaseContextSha256": "0e33dfde01475c49a7b121fffe5f103ddfcf5a79954a0cd30055bd5c62a14735",
+      "fullCaseContextChars": 20049,
+      "sectionHead": "小叅",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    },
+    {
+      "cohort": 6,
+      "entryId": "t_652dbd8f5c83",
+      "term": "西序",
+      "sense": 1,
+      "occurrence": 1,
+      "findingKind": "named_master_missing_structured_link",
+      "finding": "西序 s1 o1: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters",
+      "verdict": "CONFIRMED_DEFECT",
+      "exactHeadwordActor": "the Baizhang Rules table-of-contents compiler",
+      "actorRole": "compiler",
+      "contextMaster": null,
+      "MasterNameAsWritten": null,
+      "ContextMastersAsWritten": [],
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1111b10",
+      "Kwic": "齋日祝讚旦望藏殿祝讚每日祝讚千秋節善月報恩章第二國忌祈禱報本章第三佛降誕佛成道涅槃帝師涅槃尊祖章第四達磨忌百丈忌開山歷代祖忌嗣法師忌住持章第五住持日用請新住持入院退院遷化議舉住持卷下兩序章第六西序頭首東序知事列職雜務請立僧首座請名德首座兩序進退掛鉢時請知事侍者進退寮舍交割什物方丈特為新舊兩序湯堂司特為新舊侍者湯茶庫司特為新舊兩序湯𮁚堂司送舊首座都寺鉢位方丈管待新舊兩序方丈特為新首座茶新",
+      "fullCaseContextSha256": "e3dfe9b9844cf718464f1d9d045e2b8e959083dd135ce1bdaaf99efe5c3ab363",
+      "fullCaseContextChars": 12375,
+      "sectionHead": "祝釐章第一",
+      "sourceTitle": "勅修百丈清規",
+      "sixRungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "reason": "The finding is a structural attribution defect visible in the saved row after full-case reading.",
+      "definitionProseVerdict": "HOLDS — this finding concerns actor/link structure; the headword deployment still supports the existing lexical definition and explanatory prose."
+    }
+  ]
+}

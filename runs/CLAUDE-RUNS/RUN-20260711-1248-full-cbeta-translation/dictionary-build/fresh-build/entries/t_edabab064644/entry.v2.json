@@ -82,93 +82,59 @@
           "FromLb": "1101a05",
           "ToLb": "1101a05",
           "Kwic": "一歸何處。自此疑情頓發。直得東西",
-          "MasterName": null,
+          "MasterName": "Gaofeng Yuanmiao",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Gaofeng Yuanmiao",
               "Roles": [
-                "utterer",
-                "case-figure"
-              ]
-            },
-            {
-              "MasterName": "Yunqi Zhuhong",
-              "Roles": [
-                "later-quoter",
-                "compiler"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Exhortations for Advancing through the Chan Barrier (禪關策進): Yunqi Zhuhong quotes Gaofeng Yuanmiao recounting how the doubt suddenly erupted from the question where the one returns. The exact headword-bearing actor is the compiler; the named figure is contextual. This is compiler narration.",
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narration",
-            "ActorLabel": "the compiler",
-            "ActorRole": "compiler",
-            "GrammarEvidence": "The headword belongs to narrator or editorial grammar; the named figure is described or supplies the surrounding discourse, not this lexical item.",
-            "ReviewedBy": "Codex fresh f001 lane A root review",
-            "ReviewedUtc": "2026-07-15T02:00:00Z"
-          }
+          "AttributionNote": "Source text (禪關策進): The exact headword speaker is Gaofeng Yuanmiao. In his own public instruction, Gaofeng recounts how the doubt-mass suddenly arose and broke."
         },
         {
           "RelPath": "T/T48/T48n2024.xml",
           "FromLb": "1100b02",
           "ToLb": "1100b02",
           "Kwic": "參禪須是起疑情。小疑小悟。",
-          "MasterName": "Chuzhou Librarian Lai",
+          "MasterName": "Xueyan Zuqin",
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Chuzhou Librarian Lai",
+              "MasterName": "Xueyan Zuqin",
               "Roles": [
-                "utterer",
-                "teacher"
-              ]
-            },
-            {
-              "MasterName": "Yunqi Zhuhong",
-              "Roles": [
-                "later-quoter",
-                "compiler"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Exhortations for Advancing through the Chan Barrier (禪關策進): Yunqi Zhuhong preserves Chuzhou Librarian Lai's instruction that Chan inquiry requires raising the doubt and that small doubt brings small awakening."
+          "AttributionNote": "Source text (禪關策進): The exact headword speaker is Xueyan Zuqin. In the complete general address, Xueyan recounts his own work with the headword; the prior attribution confused an embedded interlocutor with the address's speaker."
         },
         {
           "RelPath": "J/J34/J34nB311.xml",
           "FromLb": "0590a05",
           "ToLb": "0590a05",
           "Kwic": "此真亙古今所共之生死大疑情也，安得不疑？",
-          "MasterName": null,
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Ding Libiao",
+              "MasterName": "Juelang Daosheng",
               "Roles": [
-                "utterer",
-                "compiler"
+                "interlocutor",
+                "person-discussed"
               ]
             }
           ],
-          "AttributionNote": "Complete Record of Chan Master Juelang Daosheng (天界覺浪盛禪師全錄): preface author Ding Libiao calls uncertainty about origin and destination the great doubt of life and death shared across time. The exact headword-bearing actor is the identified non-master Ding Libiao.",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄): The exact headword actor is Wang Xigun. The signature names Wang Xigun, whose first-person preface calls his uncertainty about life and death a great feeling of doubt before recounting his dialogue with Juelang Daosheng.",
           "ActorAttribution": {
             "Status": "identified-non-master",
-            "Kind": "lay author",
-            "ActorLabel": "Ding Libiao",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The surrounding source identifies this named non-master as the author or speaker of the exact headword-bearing clause.",
-            "ReviewedBy": "Codex fresh f001 lane A root review",
-            "ReviewedUtc": "2026-07-15T02:00:00Z"
+            "Kind": "signed first-person preface narrative",
+            "ActorLabel": "Wang Xigun",
+            "ActorRole": "compiler",
+            "ReviewedBy": "Codex v6 full-case manual audit 036-045",
+            "ReviewedUtc": "2026-07-16T15:20:00Z",
+            "GrammarEvidence": "Source text (天界覺浪盛禪師全錄): The exact headword actor is Wang Xigun. The signature names Wang Xigun, whose first-person preface calls his uncertainty about life and death a great feeling of doubt before recounting his dialogue with Juelang Daosheng."
           }
         },
         {
@@ -182,12 +148,11 @@
             {
               "MasterName": "Zhongfeng Mingben",
               "Roles": [
-                "utterer",
-                "record-owner"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Miscellaneous Records of Tianmu Mingben (天目明本禪師雜錄): Zhongfeng Mingben warns that uninterrupted conjunction of the saying and doubt can itself be a stealing mind."
+          "AttributionNote": "Source text (天目明本禪師雜錄): The exact headword speaker is Zhongfeng Mingben. Zhongfeng writes the complete instruction to the summer assembly and describes the raised saying and the feeling of doubt remaining continuously bound together."
         }
       ],
       "ClaimAnchors": [],
@@ -202,8 +167,6 @@
         "Wuyi Yuanlai",
         "Dahui Zonggao",
         "Gaofeng Yuanmiao",
-        "Chuzhou Librarian Lai",
-        "Ding Libiao",
         "Zhongfeng Mingben"
       ],
       "RelatedTerms": [

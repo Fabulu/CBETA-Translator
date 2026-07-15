@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "attribution-real-read-v2",
+  "generatedUtc": "2026-07-15T21:40:00Z",
+  "readOnly": true,
+  "provenance": {
+    "method": "Five individually authored adjudications after reading each complete local case and its enclosing named record or section; no verdict or reason was generated from regexes, ActorAttribution, AttributionNote, or finding kind.",
+    "serialization": "Hand-authored JSON; no generator script used.",
+    "rejectedPriorLedgerUsedForDecisions": false
+  },
+  "entryRange": [1, 5],
+  "entries": 5,
+  "rows": [
+    {
+      "cohort": 4,
+      "entryId": "t_708834b4cb89",
+      "term": "法堂",
+      "sense": 1,
+      "occurrence": 2,
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617c18",
+      "sourceTitle": "古尊宿語錄",
+      "caseIdentityEvidence": "The enclosing record begins 百丈懷海禪師語錄 and continues with 百丈's exchanges; the immediately preceding episode also addresses him as 和尚 and marks his turns 師云.",
+      "exactHeadwordClause": "有一僧哭入法堂，師云：作什麼？僧云：父母俱喪，請師揀日。師云：明日一時埋却。",
+      "ownershipEvidence": "有一僧哭入法堂 is third-person event narration. The following 師云：作什麼 begins Baizhang Huaihai's reply only after 法堂 has occurred.",
+      "specificActor": "the compiler/recorder",
+      "actorRole": "narrator",
+      "contextMasters": [
+        {"MasterName": "Baizhang Huaihai", "Roles": ["respondent", "record-owner"]}
+      ],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "MasterName correctly remains null because nobody utters 法堂, but the saved row omits the fully nameable responding and record-owning master, Baizhang Huaihai, from ContextMasters. The nearby 師云 is not a reason to put him in MasterName.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The narrated entry into the teaching hall still supports 'the teaching hall'; the definition and explanatory prose hold. Add Baizhang Huaihai only as contextual respondent/record-owner."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_712ca8b5bf06",
+      "term": "後堂",
+      "sense": 1,
+      "occurrence": 6,
+      "RelPath": "L/L158/L158n1652.xml",
+      "FromLb": "0218a09",
+      "sourceTitle": "明覺聰禪師語錄",
+      "caseIdentityEvidence": "The section is 問答機緣 in 明覺聰禪師語錄; within the complete exercise the record owner is the 師 who asks the assembled officers for 下語.",
+      "exactHeadwordClause": "一日班首進方丈，師問：如何是空刦已前事？諸子下語看。首座云：炎炎六月一片雪。西堂云：無毛鷂子潑空飛。後堂云：烏󱷐向火碓嘴生花。堂主云：沒底鐵船水上浮。",
+      "ownershipEvidence": "The parallel labels 首座云／西堂云／後堂云／堂主云 identify successive office-holders. 後堂 is the recorder's label for the third respondent; that respondent's utterance begins only after 云, with 烏󱷐向火碓嘴生花. 師問 identifies Mingjue Cong as the questioner who set the exercise.",
+      "specificActor": "the compiler/recorder",
+      "actorRole": "speaker-label narrator",
+      "contextMasters": [
+        {"MasterName": "Mingjue Cong", "Roles": ["questioner", "record-owner"]}
+      ],
+      "otherActor": "an unnamed monk holding the rear-hall office answers after the label 後堂云",
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The saved row calls the actor an unnamed questioner, but 後堂 is not in a question and is not spoken by the rear-hall officer. It is the recorder's role label. Mingjue Cong is nameable as the master who asks the question, but is contextual rather than the utterer of 後堂.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The office-label use directly supports 'rear-hall officer'; the lexical definition holds. Rewrite actor metadata and name Mingjue Cong in context."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_75a477117870",
+      "term": "紫芝",
+      "sense": 1,
+      "occurrence": 2,
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0556c05",
+      "sourceTitle": "天聖廣燈錄",
+      "caseIdentityEvidence": "The enclosing section heading is 明州天童山新禪師, identifying Tiantong Shanxin as 師.",
+      "exactHeadwordClause": "上堂，僧問：可來白雲裏，教儞紫芝謌。如何是紫芝歌？師撫掌對之。",
+      "ownershipEvidence": "僧問 opens the headword-bearing turn and both 紫芝 occurrences precede its closing question mark. 師撫掌對之 then marks Tiantong Shanxin's nonverbal response as a separate turn.",
+      "specificActor": "an unnamed monastic questioner",
+      "actorRole": "questioner",
+      "contextMasters": [
+        {"MasterName": "Tiantong Shanxin", "Roles": ["respondent", "action-performer", "section-subject"]}
+      ],
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "The current row assigns MasterName=Tiantong Shanxin, but he does not utter 紫芝; the monk does. Tiantong responds by clapping and belongs only in ContextMasters.",
+      "definitionProseImpact": "ATTRIBUTION_ONLY. The monk's repeated question still attests the song/name deployment represented by the entry; the definition and prose hold after moving Tiantong Shanxin out of MasterName."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_76ee526a2b16",
+      "term": "沙彌戒",
+      "sense": 1,
+      "occurrence": 4,
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1137a22",
+      "sourceTitle": "勅修百丈清規",
+      "caseIdentityEvidence": "The complete 沙彌得度 ritual is prescriptive compilation, with role cues 引請／戒師云 and the novice's responses embedded as notes; it is not a named master's personal record.",
+      "exactHeadwordClause": "There is no genuine 沙彌戒 clause at this location. The XML reads: 戒師云。善男子。沙彌<note place=\"inline\">應喏</note>　戒師云。心源湛寂法海淵深。",
+      "ownershipEvidence": "沙彌 is the precept master's vocative to the novice; the intervening inline note 應喏 records the novice's response. A new role cue 戒師云 then starts the next speech. Apparatus-stripping and whitespace removal falsely join 沙彌 + 戒 into 沙彌戒 across that boundary.",
+      "specificActor": "none for the purported headword; the match is a normalization-boundary artifact",
+      "actorRole": "invalid witness",
+      "contextMasters": [],
+      "otherActor": "an unnamed precept master speaks on both sides of the novice's noted response",
+      "verdict": "CONFIRMED_DEFECT",
+      "reason": "This is not merely an attribution problem: the selected corpus span does not deploy 沙彌戒 as a lexical unit at all. It must not be repaired by naming the 戒師; the occurrence must be replaced with a real contiguous attestation.",
+      "definitionProseImpact": "EVIDENCE_ROW_INVALID; DEFINITION NOT DISPROVED. Other genuine occurrences can still support 'novice precepts', but this witness contributes nothing and any prose claim tied specifically to it must be re-anchored."
+    },
+    {
+      "cohort": 4,
+      "entryId": "t_77f89fd2c3b5",
+      "term": "鷺鷥立雪",
+      "sense": 1,
+      "occurrence": 4,
+      "RelPath": "M/M59/M59n1540.xml",
+      "FromLb": "0898a11",
+      "sourceTitle": "大慧普覺禪師普說",
+      "caseIdentityEvidence": "The section heading 照起二大師請普說 names the two requesting interlocutors collectively; the repeated 師云 belongs to Dahui Zonggao, whose 普說 record this is.",
+      "exactHeadwordClause": "進云：雖然因語識人，爭奈摸索他不著。師云：他是阿誰摸索不著？進云：鷺鷥立雪非同色，明月蘆花不似他。師云：你却做得天童侍者。",
+      "ownershipEvidence": "進云 marks the interlocutor's continued turn containing 鷺鷥立雪; the following 師云：你却做得天童侍者 marks Dahui's response. The section identifies the interlocutor only as one of 照起二大師, not which of the two at this turn.",
+      "specificActor": "one of the two requesting masters abbreviated collectively as 照起二大師, not individually distinguishable in this turn",
+      "actorRole": "interlocutor",
+      "contextMasters": [
+        {"MasterName": "Dahui Zonggao", "Roles": ["respondent", "record-owner"]}
+      ],
+      "verdict": "VALID_AS_WRITTEN/FALSE_POSITIVE",
+      "reason": "The nearby 師云 belongs to Dahui's answer after the headword-bearing 進云 turn. Leaving MasterName null and naming Dahui only as contextual respondent is correct; the full case does not justify choosing one of the two abbreviated requesting masters as exact speaker.",
+      "definitionProseImpact": "HOLDS. The interlocutor explicitly deploys the complete paired saying and Dahui answers it; neither the definition nor prose needs semantic revision."
+    }
+  ],
+  "counts": {
+    "confirmedDefects": 4,
+    "falsePositives": 1,
+    "invalidEvidenceRows": 1,
+    "definitionOrProseSemanticallyDisproved": 0
+  }
+}

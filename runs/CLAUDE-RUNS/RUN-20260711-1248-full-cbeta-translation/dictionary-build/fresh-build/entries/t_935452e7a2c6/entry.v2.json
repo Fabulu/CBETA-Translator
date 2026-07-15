@@ -84,25 +84,17 @@
           "ToLb": "0618c08",
           "Kwic": "黃檗問從上古人以何法施人師良久黃檗云後代兒孫將何傳授師云將謂你者漢是箇人便歸方丈師與溈山作務次師問有火也無溈山云有師云在什麼處溈山把一莖柴吹過與師師接云如䖝蝕木因普請鋤地次有僧聞鼓聲舉起鋤頭大咲歸去師云俊哉此是觀音入理之門後喚其僧問你今日見甚道理云某甲早辰未喫粥聞鼓聲歸喫飯師呵呵大笑。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:51:27.765004+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (古尊宿語錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: Baizhang Huaihai. The complete case and its turn boundaries were read before attribution.",
+          "MasterName": "Baizhang Huaihai"
         },
         {
           "RelPath": "J/J28/J28nB219.xml",

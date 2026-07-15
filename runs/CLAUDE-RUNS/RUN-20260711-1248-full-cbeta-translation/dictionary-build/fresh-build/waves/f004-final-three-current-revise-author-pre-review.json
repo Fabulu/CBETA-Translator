@@ -1,0 +1,198 @@
+{
+  "generatedUtc": "2026-07-15T18:18:19.294074+00:00",
+  "elapsedSeconds": 11.483,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_60dcb199a5e1/entry.v2.json",
+      "sha256": "937282f0402f6490e3d5260213e82cfb905d3e6ec481ad4f045eabf6cffde975"
+    },
+    {
+      "id": "t_27a6c937c485",
+      "term": "種草",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_27a6c937c485/entry.v2.json",
+      "sha256": "267a16fd99e20afc581b2d9b70b2c7074a1529541cadbb7cb5dc6a5c2b0d2bbc"
+    },
+    {
+      "id": "t_9e98cbf9596b",
+      "term": "大悲",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9e98cbf9596b/entry.v2.json",
+      "sha256": "33c001737a61b6f67ddc40ce9c5723dd065d3e06a57c872bf65c7c12c346b8e2"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 20,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_60dcb199a5e1/entry.v2.json",
+        "id": "t_60dcb199a5e1",
+        "term": "全機大用",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_27a6c937c485/entry.v2.json",
+        "id": "t_27a6c937c485",
+        "term": "種草",
+        "verified": 6,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9e98cbf9596b/entry.v2.json",
+        "id": "t_9e98cbf9596b",
+        "term": "大悲",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.165,
+    "attribution": 2.099,
+    "publicFeedback": 0.667,
+    "depthSense": 1.305,
+    "countClaims": 0.504,
+    "workSourceValidation": 0.481,
+    "corpusBaseline": 0.451,
+    "frozenHistoricalTerms": 0.897,
+    "attributionPackets": 9.141
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.099,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 5,
+        "occurrences": 20,
+        "named_occurrences": 14,
+        "context_master_links": 15,
+        "attribution_notes": 20,
+        "actor_narrated": 2,
+        "deferred_non_roster": 2,
+        "pending_roster_master": 2,
+        "deferred_non_roster_context": 2,
+        "pending_roster_context_master": 2,
+        "actor_identified_non_master": 1,
+        "actor_reviewed_unnamed": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 5,\n    \"occurrences\": 20,\n    \"named_occurrences\": 14,\n    \"context_master_links\": 15,\n    \"attribution_notes\": 20,\n    \"actor_narrated\": 2,\n    \"deferred_non_roster\": 2,\n    \"pending_roster_master\": 2,\n    \"deferred_non_roster_context\": 2,\n    \"pending_roster_context_master\": 2,\n    \"actor_identified_non_master\": 1,\n    \"actor_reviewed_unnamed\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.667,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpc08i85hv.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.305,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_27a6c937c485",
+        "t_60dcb199a5e1",
+        "t_9e98cbf9596b"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_27a6c937c485\",\n    \"t_60dcb199a5e1\",\n    \"t_9e98cbf9596b\"\n  ]\n}\nreport: /tmp/tmp23wafdw4-depth.json\n",
+    "report": "/tmp/tmp23wafdw4-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.504,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.481,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 5,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 5,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.451,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.897,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 9.141,
+    "payload": {
+      "entries": 3,
+      "occurrences": 20,
+      "tierACandidates": 0,
+      "reviewRequired": 20,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 3,
+        "rebuiltOccurrences": 20
+      }
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 20,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 20,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 3,\n    \"rebuiltOccurrences\": 20\n  }\n}\nreport: fresh-build/waves/f004-final-three-current-revise-author-pre-review-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "fresh-build/waves/f004-final-three-current-revise-author-pre-review-attribution-packets.json",
+    "generatorVersion": 5,
+    "turnProofMissing": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_60dcb199a5e1",
+    "t_27a6c937c485",
+    "t_9e98cbf9596b"
+  ],
+  "strictRosterScopeIds": [
+    "t_60dcb199a5e1",
+    "t_27a6c937c485",
+    "t_9e98cbf9596b"
+  ]
+}

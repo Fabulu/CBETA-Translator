@@ -132,12 +132,20 @@
           "ToLb": "0624a10",
           "Kwic": "佛階梯無情有佛性若未踏佛階梯有情無佛性。古尊宿語錄卷第二密二古尊宿語錄卷第三密三百丈禪師黃檗禪師百丈懷海禪師語錄二百丈大智禪師僧問大通智勝佛十刼坐道場佛法不現前不得成佛道如何師云刦者滯也亦云住也住一善滯於十善西國云佛此土云覺自己鑒覺滯著於善善根人無佛性故云佛法不現前不得成佛道觸𢙣住𢙣名眾生覺觸善住善名聲聞覺不",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): an unnamed interlocutor owns the exact headword-bearing question.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: an unnamed monastic questioner. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed questioner asking with 大通智勝佛",
+            "ActorLabel": "an unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -147,9 +155,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The 問 frame assigns the exact 大通智勝佛-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:32:50.316120+00:00"
+            "GrammarEvidence": "The question contains the named Buddha; Baizhang Huaihai's explanation begins in the following master turn.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:34.994632+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

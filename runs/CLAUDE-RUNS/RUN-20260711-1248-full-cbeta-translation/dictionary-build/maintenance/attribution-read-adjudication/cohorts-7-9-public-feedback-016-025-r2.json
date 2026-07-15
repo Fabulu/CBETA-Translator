@@ -1,0 +1,94 @@
+{
+  "generatedUtc": "2026-07-15T21:24:45.006527+00:00",
+  "entries": 10,
+  "passing": 9,
+  "flagged": 1,
+  "flagsByKind": {
+    "public-feedback-ledger-missing": 1
+  },
+  "results": [
+    {
+      "entryId": "t_9a5dc768cbc5",
+      "sourceTerm": "平常心是道",
+      "path": "fresh-build/entries/t_9a5dc768cbc5/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_9f119d7965c2",
+      "sourceTerm": "拂子",
+      "path": "fresh-build/entries/t_9f119d7965c2/entry.v2.json",
+      "flags": [
+        {
+          "kind": "public-feedback-ledger-missing",
+          "keys": [
+            "feedback-inference-verdict:",
+            "feedback-observations:",
+            "feedback-falsification-searches:",
+            "feedback-counterexamples:",
+            "feedback-scope:",
+            "lookup-probes:",
+            "opening-interpretation-verdict:"
+          ]
+        }
+      ],
+      "passes": false
+    },
+    {
+      "entryId": "t_9fc1a9256ee4",
+      "sourceTerm": "平常",
+      "path": "fresh-build/entries/t_9fc1a9256ee4/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_a9a874976d5b",
+      "sourceTerm": "提綱",
+      "path": "fresh-build/entries/t_a9a874976d5b/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_ac2e2908084d",
+      "sourceTerm": "見性成佛",
+      "path": "fresh-build/entries/t_ac2e2908084d/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_b1487d8fc8f9",
+      "sourceTerm": "立定腳跟",
+      "path": "fresh-build/entries/t_b1487d8fc8f9/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_b191c4fa2e9f",
+      "sourceTerm": "請益",
+      "path": "fresh-build/entries/t_b191c4fa2e9f/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_b33fddd5d4f1",
+      "sourceTerm": "深深海底行",
+      "path": "fresh-build/entries/t_b33fddd5d4f1/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_b48fa1daa7d4",
+      "sourceTerm": "虛空",
+      "path": "fresh-build/entries/t_b48fa1daa7d4/entry.v2.json",
+      "flags": [],
+      "passes": true
+    },
+    {
+      "entryId": "t_b6da6fc1c9bf",
+      "sourceTerm": "安單",
+      "path": "fresh-build/entries/t_b6da6fc1c9bf/entry.v2.json",
+      "flags": [],
+      "passes": true
+    }
+  ]
+}

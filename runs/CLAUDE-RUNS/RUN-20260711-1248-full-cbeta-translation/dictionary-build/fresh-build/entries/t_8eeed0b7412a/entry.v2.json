@@ -80,12 +80,20 @@
           "ToLb": "0703a09",
           "Kwic": "桶漢學人應喏師云如法篐桶看問如何是學人本分事師云𣗳搖鳥散魚驚水渾問如何是少神底人師云老僧不如你學云不占勝師云你因什麼少神問至道無難唯嫌揀擇是時人窠窟師云曾有問我直得五年分踈不得有官人問丹霞燒木佛院主為什麼眉鬚墮落師云官人宅中變生作熟是什麼人云所使師云却是他好手問毘目仙人執善財手見微塵佛時如何師遂執僧手云你見",
           "Curated": true,
-          "AttributionNote": "Full-case review assigns the exact headword-bearing turn to the unnamed questioner in the recorded exchange. Source: the source record (古尊宿語錄).",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: an unnamed questioner. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zihu Lizong",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "questioner",
-            "ActorLabel": "the unnamed questioner in the recorded exchange",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -95,9 +103,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The full turn marks the headword-bearing wording as the questioner's speech, but the six-rung source review does not safely normalize a roster name.",
-            "ReviewedBy": "Codex f003 C801-850 independent-review repair",
-            "ReviewedUtc": "2026-07-15T04:51:46.033848+00:00"
+            "GrammarEvidence": "問 owns the 唯嫌揀擇 quotation; Zihu Lizong's reply begins after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

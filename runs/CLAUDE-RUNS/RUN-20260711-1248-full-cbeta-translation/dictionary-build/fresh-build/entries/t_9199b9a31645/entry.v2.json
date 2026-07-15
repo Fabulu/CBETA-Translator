@@ -23,16 +23,24 @@
           "ToLb": "0144c29",
           "Kwic": "然。虎口裏橫身。不免喪身失命。試舉看。【五】舉雪峯示眾云盡大地撮來如粟米粒大拋向面前漆桶不會打鼓普請看。長慶問雲門。雪峯與麼道。還有",
           "Curated": true,
-          "AttributionNote": "(佛果圜悟禪師碧巖錄). Xuefeng Yicun is the exact actor: case 5 explicitly says (舉雪峯示眾云) before (盡大地).",
+          "AttributionNote": "Blue Cliff Record, complete commentary: Yuanwu Keqin raises and explains Xuefeng Yicun's saying that the whole earth is gathered into a grain. Yuanwu utters the stored wording; Xuefeng is its quoted source.",
           "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            },
             {
               "MasterName": "Xuefeng Yicun",
               "Roles": [
-                "utterer"
+                "quoted-source",
+                "case-figure"
               ]
             }
           ],
-          "MasterName": "Xuefeng Yicun"
+          "MasterName": "Yuanwu Keqin"
         },
         {
           "RelPath": "X/X79/X79n1557.xml",
@@ -40,16 +48,39 @@
           "ToLb": "0058c21",
           "Kwic": "師問僧：發足甚處？云：雪峰。師云：有何言句？云：尋常道：盡大地是沙門一隻眼。儞等諸人向甚麼處屙？師云：上座若回，寄箇鍬子去。雪竇云",
           "Curated": true,
-          "AttributionNote": "The Combined Essentials of the Lamps (聯燈會要), in Zhaozhou Congshen's record. An unnamed monk quotes Xuefeng Yicun's habitual saying that the whole earth is a patch-robed monk's single eye; Xuedou Chongxian's comment begins only after this exchange.",
-          "MasterName": "Xuefeng Yicun",
+          "AttributionNote": "Linked-Lamp Compendium, complete Zhaozhou exchange: an unnamed monk quotes Xuefeng's saying that the whole earth is a monk's single eye; Zhaozhou answers.",
+          "MasterName": null,
           "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "respondent"
+              ]
+            },
             {
               "MasterName": "Xuefeng Yicun",
               "Roles": [
-                "utterer"
+                "quoted-source"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword occurs in the monk's direct quotation-question; the named master answers after 師云/師曰.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T04:20:00Z"
+          }
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -57,16 +88,40 @@
           "ToLb": "0092c17",
           "Kwic": "家不離途中事，常在途中不出門。喝一喝。僧問：雪峰示眾道：盡大地是個解脫門，把手牽不入。未審在門外者是什麼人？師曰：胡張三，黑李四",
           "Curated": true,
-          "AttributionNote": "Complete Collection of the Five Lamps (五燈全書(第34卷-第120卷)), Chushan Shaoqi section: an unnamed monk quotes Xuefeng Yicun's saying that the whole earth is a gate of liberation and asks who remains outside it; Chushan answers 'Hu Zhangsan, black Li Si.'",
-          "MasterName": "Xuefeng Yicun",
+          "AttributionNote": "Complete Book of the Five Lamps, complete Huqiu exchange: an unnamed monk quotes Xuefeng's saying that the whole earth is a gate of release; Huqiu answers.",
+          "MasterName": null,
           "ContextMasters": [
+            {
+              "MasterName": "Huqiu Shaolong",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            },
             {
               "MasterName": "Xuefeng Yicun",
               "Roles": [
-                "utterer"
+                "quoted-source"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword occurs in the monk's direct quotation-question; the named master answers after 師云/師曰.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-case hand read",
+            "ReviewedUtc": "2026-07-16T04:20:00Z"
+          }
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -89,7 +144,7 @@
           "RelPath": "J/J27/J27nB193.xml",
           "FromLb": "0246b13",
           "ToLb": "0246b16",
-          "Kwic": "悟之者，東去西去，各各自繇；迷之者，撞頭磕額，還不知羞。所謂盡大地是清涼解脫之場，盡大地無非無明障礙之所，句中有出身之路，",
+          "Kwic": "所謂盡大地是清涼解脫之場",
           "Curated": true,
           "AttributionNote": "(隱元禪師語錄), end-of-retreat hall address. Yinyuan Longqi is the exact speaker: he says the whole earth is a cool field of liberation and also wholly a place of ignorance and obstruction, contrasting those who awaken and those who are confused.",
           "MasterName": "Yinyuan Longqi",
@@ -123,7 +178,7 @@
           "RelPath": "B/B27/B27n0152.xml",
           "FromLb": "0496b06",
           "ToLb": "0496b07",
-          "Kwic": "盡大地是解脫門把手牽不入盡大地是涅槃路倩人得不得入",
+          "Kwic": "盡大地是解脫門把手牽不入",
           "MasterName": "Yulin Tongxiu",
           "ContextMasters": [
             {

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-full-case-exact-hash-focused-final-three-rereview",
+  "reviewer": "Codex independent reviewer",
+  "generatedUtc": "2026-07-15T22:30:00+02:00",
+  "sourceAuthorLedger": "fresh-build/waves/f004-final-three-current-revise-author-final-delta-ledger.json",
+  "sourceAuthorLedgerSha256": "b0e78f0b9e0c025c258ab2e15cda748188373d1d84a17d4e264196e604260971",
+  "entriesReviewed": 3,
+  "occurrencesReadInFullCase": 20,
+  "exactKwicsAndSpans": 20,
+  "keep": 2,
+  "revise": 1,
+  "entries": [
+    {
+      "ordinal": 1067,
+      "id": "t_60dcb199a5e1",
+      "term": "全機大用",
+      "reviewedEntrySha256": "937282f0402f6490e3d5260213e82cfb905d3e6ec481ad4f045eabf6cffde975",
+      "occurrencesReadInFullCase": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "The L154 witness now correctly names Miyun Yuanwu as the exact utterer under the explicit resumed hall-address frame.",
+        "The explanation explicitly declares J10 and L154 one recurrence family, so the duplicate record no longer masquerades as independent semantic deployment.",
+        "Whole-entry regression controls pass: Li Pan remains the preface author with Juelang as person described, the other named commentators remain distinct, and the corpus-bounded complete-activity/great-use gloss is unchanged."
+      ]
+    },
+    {
+      "ordinal": 1073,
+      "id": "t_27a6c937c485",
+      "term": "種草",
+      "reviewedEntrySha256": "267a16fd99e20afc581b2d9b70b2c7074a1529541cadbb7cb5dc6a5c2b0d2bbc",
+      "occurrencesReadInFullCase": 6,
+      "verdict": "KEEP",
+      "findings": [
+        "The literal grass verse now correctly names Chongque Zhengjue as the exact utterer in his explicitly headed hall address.",
+        "Whole-entry regression controls pass: the literal botanical sense remains separate from human/lineage seed-stock, all five lineage-stock witnesses retain their prior exact actors, and the repair did not collapse the two different referents."
+      ]
+    },
+    {
+      "ordinal": 1095,
+      "id": "t_9e98cbf9596b",
+      "term": "大悲",
+      "reviewedEntrySha256": "33c001737a61b6f67ddc40ce9c5723dd065d3e06a57c872bf65c7c12c346b8e2",
+      "occurrencesReadInFullCase": 8,
+      "verdict": "REVISE",
+      "findings": [
+        "All three exact-turn defects are repaired: Xiangyan Zhixian now owns his 贊云 wording, and the two Linji witnesses are recut to Linji's exact repeated challenge rather than spans combining Magu's question with Linji's answer.",
+        "The whole-entry prose regression control fails independently of those actor repairs. Sense 1 says the selected sources 'call a buddha’s birth an appearance through compassionate vows,' but none of its five stored occurrences or any ClaimAnchor contains or supports a buddha-birth/compassionate-vow claim. The witnesses instead show mind called the father of great compassion, outsiders praising compassion, Xiangyan praising Guishan's compassion, and Mahakasyapa lamenting the Buddha's compassion.",
+        "Remove or replace that unsupported middle claim with the actually stored gratitude/lament deployments. The two-sense split and repaired exact actors otherwise hold."
+      ]
+    }
+  ],
+  "reviewIntegrity": {"entriesEdited":false,"promoted":false,"merged":false,"siteTouched":false,"selfReview":false}
+}

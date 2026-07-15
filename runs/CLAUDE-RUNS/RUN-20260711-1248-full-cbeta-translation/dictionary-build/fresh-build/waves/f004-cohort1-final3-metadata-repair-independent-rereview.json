@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "f004-cohort1-final3-metadata-repair-independent-rereview-v1",
+  "reviewer": "Codex worker f004_final3_last_review",
+  "reviewedUtc": "2026-07-15T20:01:22Z",
+  "independent": true,
+  "entriesEdited": false,
+  "sourceLedger": "fresh-build/waves/f004-cohort1-final3-metadata-repair-delta-ledger.json",
+  "sourceLedgerSha256": "3cf29c4ceb6fcef13e5c136616402232c0045dfcd7a19699fc7ab9476bae3002",
+  "reviewScope": {
+    "entries": 3,
+    "occurrencesReadInCompleteCase": 20,
+    "exactKwicsAndSpans": 20,
+    "exactFailures": 0,
+    "distinctWorksChecked": 20,
+    "priorFindingsRetested": true,
+    "actorsContextRolesRelatedMastersProseAndSensesRetested": true,
+    "strictAttributionAuditHardFailures": 0
+  },
+  "summary": {
+    "KEEP": 3,
+    "REVISE": 0,
+    "promotionSafeAtReviewedHashes": true,
+    "reason": "All three hash-bound repairs reached the entries. Full-case rereading confirms every exact actor and contextual role, the repaired RelatedMasters sets reconcile with the structured people, all prior residual findings are closed, and zc.verify returns the exact stored line span for all 20 witnesses."
+  },
+  "rows": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "c01c01bd259285f2aa75657e7481dac1cf8f9b1e1462fe5dff5dcdaf67d14fd5",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctWorkIds": 7,
+      "findings": [
+        "Occurrence 3 now correctly classifies the unnamed monk as respondent to Baizhang Huaihai's question; the stored KWIC ends before Yuanwu Keqin's later separate use, so it remains one exact headword turn rather than a fused multi-actor witness.",
+        "The Baizhang/Guishan transmission issue and the later Jingqing Daofu, Gushan Shenyan, and Yuanwu Keqin comments are all preserved with canonical contextual roles.",
+        "Occurrences 2 and 4 correctly resolve Nanyang Huizhong as utterer of the stove-spirit poem through the explicit parallel, while Pizao Duo remains the case figure and person discussed.",
+        "The seven witnesses support one literal drum-sound sense and the explanation accurately distinguishes communal summons, question/answer deployment, meal-time response, verse, and formal address without importing a doctrinal reading."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "RelPath": "X/X82/X82n1571.xml", "FromLb": "0006a18", "ToLb": "0006a19", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 2, "RelPath": "D/D48/D48n8939.xml", "FromLb": "0151a04", "ToLb": "0151a07", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 3, "RelPath": "X/X83/X83n1578.xml", "FromLb": "0477a09", "ToLb": "0477a16", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 4, "RelPath": "X/X66/X66n1297.xml", "FromLb": "0319c13", "ToLb": "0319c21", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 5, "RelPath": "X/X78/X78n1556.xml", "FromLb": "0651c12", "ToLb": "0651c18", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 6, "RelPath": "J/J23/J23nB134.xml", "FromLb": "0553b08", "ToLb": "0553b10", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 7, "RelPath": "J/J34/J34nB301.xml", "FromLb": "0282b11", "ToLb": "0282b20", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true}
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "reviewedSha256": "938569daac50c4e6dc467d60ea937969d7f102d2d4cb08323329f88ca4bebf6e",
+      "verdict": "KEEP",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "distinctWorkIds": 7,
+      "findings": [
+        "Zhongfeng Mingben is now present in RelatedMasters, closing the sole residual metadata defect without altering his exact self-eulogy evidence.",
+        "All seven complete cases sustain the single bodily skin-bag referent: a person's body, the dog's body in the raised Zhaozhou case, a receptacle for memorized words, and the body shed in Hongzhi Zhengjue's verse are deployments of the same thing rather than separate readings.",
+        "The anonymous monk, Yunju Yuanyou, Foyan Qingyuan, Wuyi Yuanlai, Dahui Zonggao, Zhongfeng Mingben, Hongzhi Zhengjue, and Wansong Xingxiu are separated correctly by exact utterer and contextual role."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "RelPath": "B/B25/B25n0145.xml", "FromLb": "0786a04", "ToLb": "0786a08", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 2, "RelPath": "X/X82/X82n1571.xml", "FromLb": "0036b13", "ToLb": "0036b13", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 3, "RelPath": "C/C077/C077n1710.xml", "FromLb": "0631c05", "ToLb": "0631c15", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 4, "RelPath": "T/T48/T48n2001.xml", "FromLb": "0017b11", "ToLb": "0017b20", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 5, "RelPath": "J/J27/J27nB197.xml", "FromLb": "0396a21", "ToLb": "0396b05", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 6, "RelPath": "T/T47/T47n1998A.xml", "FromLb": "0863b01", "ToLb": "0863b14", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 7, "RelPath": "T/T48/T48n2004.xml", "FromLb": "0288b14", "ToLb": "0288b16", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true}
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "reviewedSha256": "8faa8864a6a624761b39e0da540dac8bb6e7dff50e11b319e9c34fb9590befd5",
+      "verdict": "KEEP",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "distinctWorkIds": 6,
+      "findings": [
+        "Every witness now preserves Linji Yixuan and Deshan Xuanjian as case figures while correctly assigning the current headword utterance to the anonymous questioner, Ciming Chuyuan, Tiantong Pu, or Xingjiao Shouzhi as each complete case requires.",
+        "Tiantong Pu, Linji Yixuan, and Deshan Xuanjian are now synchronized into RelatedMasters, closing every prior residual metadata finding.",
+        "The preferred target and explanation distinguish the lexical formula from its raised comparisons: Linji's entry-shout is repeatedly paired with Deshan's entry-blow in questions, public address, appraisal, and comparison, with no false backward attribution to either case figure."
+      ],
+      "occurrenceReviews": [
+        {"occurrence": 1, "RelPath": "X/X82/X82n1571.xml", "FromLb": "0024b14", "ToLb": "0024b20", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 2, "RelPath": "C/C077/C077n1710.xml", "FromLb": "0690c21", "ToLb": "0691a05", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 3, "RelPath": "X/X81/X81n1568.xml", "FromLb": "0022c15", "ToLb": "0022c17", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 4, "RelPath": "T/T51/T51n2077.xml", "FromLb": "0527b16", "ToLb": "0527b20", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 5, "RelPath": "X/X64/X64n1260.xml", "FromLb": "0062a17", "ToLb": "0062a24", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true},
+        {"occurrence": 6, "RelPath": "X/X78/X78n1553.xml", "FromLb": "0504a03", "ToLb": "0504a05", "fullCaseRead": true, "zcVerifyExact": true, "actorAndContextHold": true}
+      ]
+    }
+  ]
+}

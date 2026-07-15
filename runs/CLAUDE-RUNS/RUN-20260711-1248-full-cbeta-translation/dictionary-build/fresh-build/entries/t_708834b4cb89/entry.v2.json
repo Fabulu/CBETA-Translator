@@ -54,12 +54,20 @@
           "ToLb": "0618a02",
           "Kwic": "袖便出師云百丈今日輸却一半至晚侍者問和尚被這僧不肯了便休師便打者云蒼天蒼天師云罕遇知音者作禮師云一狀領過。有一僧哭入法堂師云作什麼僧云父母俱喪請師揀日師云明日一時埋却。問如何是奇特事師云獨坐大雄峯僧禮拜師便打西堂問師你向後作麼生開示於人師以手卷舒兩𨓉堂云更作麼生師以手點頭三下",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄): the institutional or biographical narrator. The exact headword locates or describes the teaching hall in narrative; the nearby master does not utter it. This is documentary narration.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (古尊宿語錄). Exact headword actor: the compiler narrating the monk's entry into the teaching hall. The complete case and its turn boundaries were read before attribution.",
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
-            "ActorLabel": "the institutional or biographical narrator",
+            "ActorLabel": "the compiler narrating the monk's entry into the teaching hall",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -69,9 +77,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 B751-800 repair author round 2",
-            "ReviewedUtc": "2026-07-15T06:44:25.936107+00:00",
-            "GrammarEvidence": "The exact headword locates or describes the teaching hall in narrative; the nearby master does not utter it."
+            "GrammarEvidence": "有一僧哭入法堂 is narration; Baizhang Huaihai's separate response begins after 師云.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T20:43:30.519301+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {

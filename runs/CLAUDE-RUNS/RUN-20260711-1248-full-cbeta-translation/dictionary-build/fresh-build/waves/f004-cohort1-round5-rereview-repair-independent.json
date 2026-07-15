@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "f004-cohort1-round5-rereview-repair-independent-v1",
+  "reviewType": "independent full-case semantic rereview",
+  "reviewer": "Codex independent worker f005_a1203_1217_independent; no entry edits",
+  "sourceLedger": "f004-cohort1-round5-rereview-repair-delta-ledger.json",
+  "entriesReviewed": 3,
+  "occurrencesReadInFullCase": 20,
+  "exactKwicsAndSpans": 20,
+  "exactFailures": 0,
+  "keep": 0,
+  "revise": 3,
+  "reviewIntegrity": {
+    "entryHashesMatchedSourceLedger": true,
+    "allStoredKwicsAndSpansVerified": true,
+    "allPriorRejectingFindingsRetested": true,
+    "entriesEdited": false,
+    "selfPromotion": false
+  },
+  "entries": [
+    {
+      "ordinal": 1065,
+      "id": "t_ef00d55c2d8b",
+      "term": "鼓聲",
+      "reviewedSha256": "b57da7b50675d9f6d44c3967b4e055fd98d682fdbe5317634d0735bd38d808d8",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verifiedRepairs": [
+        "Occurrence 2 now correctly resolves the uncued stove-spirit poem to Nanyang Huizhong through the explicit parallel witness at occurrence 4.",
+        "Occurrences 4 and 6 retain the previously corrected Nanyang utterance and compiler-narrated mealtime event. The one audible-drum sense and bounded explanation hold."
+      ],
+      "residualFindings": [
+        "Occurrence 3 correctly leaves MasterName null for the unnamed monk who says he heard the drum and returned to eat, but ContextMasters is empty. The complete case is transmitted under the Baizhang Huaihai section while explicitly noting the competing Weishan attribution and later commentators. The attribution standard requires these named contextual masters and their precise roles rather than dropping all context because the utterer is anonymous.",
+        "Occurrence 5 correctly assigns the headword to an unnamed questioning monk, but omits the section respondent 桂州壽寧善義禪師 from ContextMasters. Add the roster-canonical Shouning Shanyi as respondent/record-owner after canonical resolution.",
+        "Occurrence 6 correctly classifies 因齋時聞鼓聲 as compiler narration, but omits Yunmen Wenyan, whose record contains the narrated event and whose quoted response begins immediately afterward, from ContextMasters. Every named contextual master must remain linkable even when no master utters the headword."
+      ]
+    },
+    {
+      "ordinal": 1085,
+      "id": "t_085b87d75535",
+      "term": "皮袋",
+      "reviewedSha256": "283e77667e1e9ac3a0bfa00970fd9259a398be2138f5bee9392a45b2c5839342",
+      "verdict": "REVISE",
+      "occurrencesRead": 7,
+      "exactKwicsAndSpans": 7,
+      "verifiedRepairs": [
+        "Occurrence 4 now correctly assigns the headword to the unnamed monk in the raised Zhaozhou case and records Zhaozhou Congshen as respondent/case-figure and Hongzhi Zhengjue as commentator/later-raiser.",
+        "Occurrence 7 is now cleanly recut to Tiantong Hongzhi Zhengjue's verse alone; its MasterName is Hongzhi Zhengjue and Wansong Xingxiu is correctly contextualized as commentator/later-quoter.",
+        "The single body-as-skin-bag sense and English-first explanation hold across the seven complete cases."
+      ],
+      "residualFindings": [
+        "The sense Note says '6 genuine full-case witnesses retained' although seven occurrences and seven SourceTexts are stored and all seven are invoked in OpeningClaimEvidenceKeys. This reader-facing depth claim is stale and must say seven (or identify and remove a genuinely rejected witness).",
+        "RelatedMasters contains both the canonical Hongzhi Zhengjue and the duplicate noncanonical label 'Tiantong Hongzhi Zhengjue' for the same person. Structured master links must use one roster-canonical identity; remove the duplicate alias while preserving the exact Chinese source wording in evidence."
+      ]
+    },
+    {
+      "ordinal": 1093,
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "reviewedSha256": "48495351684a4792096df214e14827e0ed87db1b784c362714a8c2762e0d94d5",
+      "verdict": "REVISE",
+      "occurrencesRead": 6,
+      "exactKwicsAndSpans": 6,
+      "verifiedRepairs": [
+        "Occurrence 2 now correctly names Ciming Chuyuan as the utterer in his explicit 示眾 discourse.",
+        "Occurrence 4 now correctly names Lingyin Xuanben—not Zhimen Guangzuo—as the anonymous monk's respondent and record owner.",
+        "Occurrence 5 remains correctly assigned to Tiantong Pu's uninterrupted public address. The one paired Linji/Deshan formula sense holds."
+      ],
+      "residualFindings": [
+        "Occurrence 1 correctly leaves MasterName null because the headword is in the monk's question, but ContextMasters is empty even though the complete section names the responding master and the stored KWIC contains his answers. Resolve the section master canonically and add respondent/record-owner roles.",
+        "Occurrence 3 is the same Lingyin Xuanben exchange independently preserved in 五燈嚴統. Its ActorAttribution explicitly says 'the unnamed monk asking Lingyin Xuanben,' yet ContextMasters is empty. Add Lingyin Xuanben as respondent/record-owner, matching the correctly repaired parallel occurrence 4."
+      ]
+    }
+  ]
+}
