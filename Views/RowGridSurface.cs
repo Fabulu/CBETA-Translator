@@ -108,11 +108,18 @@ public sealed class RowGridSurface : ListBox
         id.Bind(SelectableTextBlock.FontSizeProperty, this.GetObservable(ReaderFontSizeProperty));
         Grid.SetColumn(id, 0);
 
-        var zh = MakeCell(nameof(RowVm.ZhText), new Thickness(0, 0, 12, 4));
+        // Primary content cell (column 1). For two-column rows this is the ZH text; for
+        // single-column rows (Interleaved) it carries the row's own text and spans column 2 so
+        // there is no empty right-hand gutter (PrimaryText/PrimaryColumnSpan on RowVm).
+        var zh = MakeCell(nameof(RowVm.PrimaryText), new Thickness(0, 0, 12, 4));
         Grid.SetColumn(zh, 1);
+        zh.Bind(Grid.ColumnSpanProperty, new Binding(nameof(RowVm.PrimaryColumnSpan)));
 
+        // EN column (column 2) — shown only for two-column rows; hidden for single-column so
+        // the primary cell's span fills its slot.
         var en = MakeCell(nameof(RowVm.EnText), new Thickness(0, 0, 0, 4));
         Grid.SetColumn(en, 2);
+        en.Bind(Visual.IsVisibleProperty, new Binding(nameof(RowVm.ShowEnColumn)));
 
         grid.Children.Add(id);
         grid.Children.Add(zh);

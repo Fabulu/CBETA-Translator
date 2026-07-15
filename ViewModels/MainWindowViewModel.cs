@@ -336,7 +336,11 @@ public partial class MainWindowViewModel : ViewModelBase
     // ===========================================================
 
     // ReadableTabView bridges
-    public Action<RenderedDocument, RenderedDocument>? SetReadableRendered { get; set; }
+    // 3rd arg = the nav-resolved translated-XML absolute path (null for genuinely
+    // untranslated works), handed to the reader so a layout-mode re-render reuses the
+    // SAME translation the navigation resolved instead of re-guessing by convention
+    // (PR-2 sym1 fix; widened per D6 — no new delegate/messenger yet, logged as debt).
+    public Action<RenderedDocument, RenderedDocument, string?>? SetReadableRendered { get; set; }
     public Action<Dictionary<string, LociEntry>>? SetReadableLociMap { get; set; }
     public Action? ClearReadable { get; set; }
     // SetReadableHoverDict folded into ReadableTabView's SettingsAppliedMessage handler (ratchet).
@@ -1633,10 +1637,10 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private Task<(RenderedDocument ro, RenderedDocument rt)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
+    private Task<(RenderedDocument ro, RenderedDocument rt, string? tranAbs)> RenderReadablePairDiskOnlyAsync(string relPath, CancellationToken ct)
     {
         if (_originalDir == null)
-            return Task.FromResult((RenderedDocument.Empty, RenderedDocument.Empty));
+            return Task.FromResult((RenderedDocument.Empty, RenderedDocument.Empty, (string?)null));
 
         var origAbs = Path.Combine(_originalDir, relPath);
         // Prefer the active translation source so the reader shows what the user just saved
@@ -1674,8 +1678,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (tranAbs == null || !File.Exists(tranAbs))
         {
+            // Genuinely untranslated: render original into the translation pane and
+            // report NO resolved translation path so the reader's layout re-render
+            // stays consistent with this navigation (mirrors the `?? orig` above).
             var rtFallback = TeiRenderer.Render(SafeReadAllTextUtf8(origAbs));
-            return Task.FromResult((ro, rtFallback));
+            return Task.FromResult((ro, rtFallback, (string?)null));
         }
 
         var stampTran = FileStamp.FromFile(tranAbs);
@@ -1687,7 +1694,7 @@ public partial class MainWindowViewModel : ViewModelBase
             _renderCache.Put(stampTran, rt);
         }
 
-        return Task.FromResult((ro, rt));
+        return Task.FromResult((ro, rt, (string?)tranAbs));
     }
 
     /// <summary>Reloads the current file from disk (used when returning from historical view).</summary>
@@ -1755,7 +1762,7 @@ public partial class MainWindowViewModel : ViewModelBase
         RenderedDocument readableTran = RenderedDocument.Empty;
         try
         {
-            var (ro, rt) = await readableTask;
+            var (ro, rt, tranAbs) = await readableTask;
             swRender.Stop();
             if (ct.IsCancellationRequested) return;
 
@@ -1764,7 +1771,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
-                SetReadableRendered?.Invoke(ro, rt);
+                SetReadableRendered?.Invoke(ro, rt, tranAbs);
             });
 
             try
@@ -2753,7 +2760,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             await EnsureTranslatedXmlExistsForCurrentAsync();
 
-            var (ro, rt) = await Task.Run(async () =>
+            var (ro, rt, tranAbs) = await Task.Run(async () =>
             {
                 ct.ThrowIfCancellationRequested();
                 return await RenderReadablePairDiskOnlyAsync(_currentRelPath, ct);
@@ -2761,7 +2768,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (ct.IsCancellationRequested) return;
 
-            await Dispatcher.UIThread.InvokeAsync(() => SetReadableRendered?.Invoke(ro, rt));
+            await Dispatcher.UIThread.InvokeAsync(() => SetReadableRendered?.Invoke(ro, rt, tranAbs));
             SetStatus("Readable refreshed (disk XML).");
         }
         catch (OperationCanceledException) { }
