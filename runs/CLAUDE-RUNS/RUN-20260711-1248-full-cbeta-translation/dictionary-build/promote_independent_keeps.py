@@ -122,10 +122,16 @@ def main() -> int:
         review_path = HERE / review_path
     review = load(review_path)
     raw_rows = review.get("entries")
-    if not isinstance(raw_rows, (list, dict)):
-        raw_rows = review.get("findings")
-    if not isinstance(raw_rows, (list, dict)):
+    if not (
+        isinstance(raw_rows, dict)
+        or isinstance(raw_rows, list) and all(isinstance(row, dict) for row in raw_rows)
+    ):
         raw_rows = review.get("rows")
+    if not (
+        isinstance(raw_rows, dict)
+        or isinstance(raw_rows, list) and all(isinstance(row, dict) for row in raw_rows)
+    ):
+        raw_rows = None
     if raw_rows is None and review.get("id"):
         # Small final rereviews are naturally written as one hash-bound row.
         # Treat that shape exactly like a one-element entries list instead of
