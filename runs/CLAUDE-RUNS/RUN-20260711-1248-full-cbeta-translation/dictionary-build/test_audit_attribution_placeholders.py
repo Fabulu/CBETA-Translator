@@ -8,11 +8,15 @@ from audit_attribution import (
     ANONYMOUS_MONK_QUESTION,
     CLOSED_ROLES,
     DUPLICATED_NOTE_PREFIX_RE,
+    DUPLICATED_SOURCE_PREFIX_RE,
     EXPLICIT_MASTER_ACTION,
     EXPLICIT_MASTER_TURN,
     PLACEHOLDER_ACTOR_RE,
     RAISED_OLD_SAYING,
     anonymous_actor_collapse_failure,
+    explicit_master_turns_before_headword,
+    has_evidence_bound_later_quoter,
+    has_exact_actor_context,
     uniform_actor_placeholder_failure,
 )
 
@@ -34,6 +38,44 @@ class PlaceholderActorTest(unittest.TestCase):
         for value in ("師云", "師曰", "師乃云", "師復問"):
             with self.subTest(value=value):
                 self.assertIsNotNone(EXPLICIT_MASTER_TURN.search(value))
+
+    def test_accepts_named_verse_author_as_exact_headword_actor(self):
+        contexts = [{"MasterName": "Tianyin Yuanxiu", "Roles": ["verse-author"]}]
+        self.assertTrue(has_exact_actor_context("Tianyin Yuanxiu", contexts))
+        self.assertFalse(has_exact_actor_context("Tianyin Yuanxiu", [
+            {"MasterName": "Tianyin Yuanxiu", "Roles": ["later-quoter"]}
+        ]))
+
+    def test_following_master_said_is_not_assigned_backward_to_question(self):
+        self.assertEqual([], explicit_master_turns_before_headword(
+            "喝下", "問德山棒臨濟喝如何是一喝下事師云我不作這活計"
+        ))
+
+    def test_cue_shaped_headword_does_not_trigger_master_turn(self):
+        self.assertEqual([], explicit_master_turns_before_headword(
+            "答話", "謝師答話畢僧便禮拜"
+        ))
+        self.assertEqual([], explicit_master_turns_before_headword(
+            "師答", "僧問如何是道師答話畢"
+        ))
+
+    def test_old_saying_requires_evidence_bound_quoter_not_role_string(self):
+        bare = {"ActorRole": "later-quoter"}
+        self.assertFalse(has_evidence_bound_later_quoter(bare))
+        complete = {
+            "Status": "identified-non-master",
+            "Kind": "monastic officer",
+            "ActorLabel": "Qi, the chief cook (栖典座)",
+            "ActorRole": "later-quoter",
+            "RungsChecked": [
+                "line", "expanded-context", "section-header", "book-title",
+                "tei-header", "parallel-passage",
+            ],
+            "GrammarEvidence": "栖典座問 assigns the quoted headword wording to Qi's turn.",
+        }
+        self.assertTrue(has_evidence_bound_later_quoter(complete))
+        incomplete = dict(complete, GrammarEvidence="quoted precedent")
+        self.assertFalse(has_evidence_bound_later_quoter(incomplete))
 
     def test_separates_narrated_master_actions_from_speech(self):
         for value in ("師拈", "師下座", "師歸方丈", "師乃卓"):
@@ -76,6 +118,12 @@ class PlaceholderActorTest(unittest.TestCase):
         self.assertIsNone(DUPLICATED_NOTE_PREFIX_RE.search(
             "Foyan Qingyuan: Record of Foyan says..."
         ))
+        self.assertIsNotNone(DUPLICATED_SOURCE_PREFIX_RE.search(
+            "Source record (X/X80/X80n1565.xml). Source record (五燈會元). Exact actor: Zhaozhou Congshen."
+        ))
+        self.assertIsNone(DUPLICATED_SOURCE_PREFIX_RE.search(
+            "Source record (X/X80/X80n1565.xml). Exact actor: Zhaozhou Congshen."
+        ))
 
     def test_rejects_generated_actor_placeholders(self):
         for value in (
@@ -86,6 +134,8 @@ class PlaceholderActorTest(unittest.TestCase):
             "the verse or address invoking Li Guang",
             "the record’s named-book discussion",
             "the cited voice",
+            "the cited participant",
+            "the identified master",
             "a cited figure",
             "the presiding speaker",
             "verse voice",
