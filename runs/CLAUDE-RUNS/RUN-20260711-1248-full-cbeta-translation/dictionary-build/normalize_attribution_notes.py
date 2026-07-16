@@ -93,6 +93,18 @@ def normalize(row: dict) -> tuple[str | None, list[str]]:
         r"\bSource\s+(?:record|text)\s*(?:\([^)]*\)|[A-Z]/[^\s:.;]+)\s*[:.]?\s*",
         "", body, flags=re.IGNORECASE,
     ).strip()
+    actor_data = row.get("ActorAttribution") or {}
+    if actor_data.get("Status") == "reviewed-unnamed":
+        # Remove legacy machine scaffolding now represented by the structured,
+        # grammatical actor prefix. Keep the substantive sentence that follows.
+        body = re.sub(
+            r"\bThe source does not name\s+(?:an?\s+)?unnamed\s+[^:.;]{1,160}\s*[:.]\s*",
+            "", body, flags=re.IGNORECASE,
+        ).strip()
+        body = re.sub(
+            r"\bExact actor:\s*(?:the\s+)?unnamed\s+[^.;]{1,160}[.:]\s*",
+            "", body, flags=re.IGNORECASE,
+        ).strip()
     # Legacy reader prose also used ``Source record English Title (中文):``
     # without parentheses around the whole source identity.
     body = re.sub(
@@ -101,7 +113,7 @@ def normalize(row: dict) -> tuple[str | None, list[str]]:
     ).strip()
     # Removing a legacy mid-note source label can expose its separator.  Do
     # not publish ``Source record (...). : prose``.
-    body = re.sub(r"^[\s:;,.]+", "", body).strip()
+    body = re.sub(r"^[\s:;,.\)]+", "", body).strip()
     source_prefix = f"Source record ({rel})."
     changes = []
     if actor.lower() not in body.lower():

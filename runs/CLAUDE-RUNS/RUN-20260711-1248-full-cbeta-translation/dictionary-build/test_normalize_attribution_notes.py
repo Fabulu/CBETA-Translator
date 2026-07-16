@@ -61,6 +61,26 @@ class ActorPrefixTest(unittest.TestCase):
             note,
         )
 
+    def test_replaces_legacy_unnamed_scaffolding_with_structured_grammar(self):
+        row = {
+            "RelPath": "B/B25/B25n0145.xml",
+            "ActorAttribution": {
+                "Status": "reviewed-unnamed",
+                "ActorLabel": "the unnamed monk",
+            },
+            "AttributionNote": (
+                "Source record (B/B25/B25n0145.xml). The source does not name unnamed monk: "
+                "Exact actor: the unnamed monk. The monk asks about the four shouts."
+            ),
+        }
+        note, _ = normalize(row)
+        self.assertEqual(
+            "Source record (B/B25/B25n0145.xml). The monk is unnamed: The monk asks about the four shouts.",
+            note,
+        )
+        row["AttributionNote"] = note
+        self.assertEqual((note, []), normalize(row))
+
 
 if __name__ == "__main__":
     unittest.main()
