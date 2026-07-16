@@ -484,6 +484,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        characters; the linked source and review packet carry the wider context.
        An oversized copied passage is not a substitute for deciding the exact
        headword-bearing turn, and the public-prose gate rejects it.
+       For a headword of two or more graphs, the persisted KWIC must contain
+       exactly one exact headword span. If it contains none, it is not an
+       occurrence; if it contains several across different turns, actor binding
+       is ambiguous. Re-cut and re-verify the one intended turn. Single-graph
+       entries are exempt from this count rule because natural clauses often
+       repeat the graph, but still require full-turn reading.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that

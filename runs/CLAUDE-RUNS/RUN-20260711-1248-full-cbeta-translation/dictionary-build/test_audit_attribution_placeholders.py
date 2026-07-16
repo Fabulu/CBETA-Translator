@@ -14,6 +14,7 @@ from audit_attribution import (
     PLACEHOLDER_ACTOR_RE,
     RAISED_OLD_SAYING,
     anonymous_actor_collapse_failure,
+    ambiguous_headword_span,
     explicit_master_turns_before_headword,
     has_evidence_bound_later_quoter,
     has_exact_actor_context,
@@ -23,6 +24,13 @@ from audit_attribution import (
 
 
 class PlaceholderActorTest(unittest.TestCase):
+    def test_multigraph_kwic_has_one_unambiguous_target_span(self):
+        self.assertFalse(ambiguous_headword_span("家風", "僧問如何是家風"))
+        self.assertTrue(ambiguous_headword_span("家風", "問家風。師云家風。"))
+        self.assertTrue(ambiguous_headword_span("家風", "僧問如何是門風"))
+        # Single graphs often repeat naturally; full-turn reading still binds them.
+        self.assertFalse(ambiguous_headword_span("佛", "佛問如何是佛"))
+
     def test_rejects_reader_visible_attribution_scaffolding(self):
         rel = "X/X80/X80n1565.xml"
         self.assertEqual([], attribution_note_hygiene_failures(

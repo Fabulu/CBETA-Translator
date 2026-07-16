@@ -154,6 +154,11 @@ def has_exact_actor_context(master: str | None, context_masters: object) -> bool
     ))
 
 
+def ambiguous_headword_span(term: str, kwic: str) -> bool:
+    """Multi-graph terms need one exact target span for actor binding."""
+    return len(term) >= 2 and kwic.count(term) != 1
+
+
 def roster_names() -> set[str]:
     data = json.loads(ROSTER_PATH.read_text(encoding="utf-8"))
     return {m["names"][0] for m in data["masters"]}
@@ -416,6 +421,12 @@ def main() -> int:
                     fail("unresolved_actor", entry, f"{term} s{si} o{oi} {occ.get('RelPath')}:{occ.get('FromLb')}")
 
                 kwic_text = str(occ.get("Kwic") or "")
+                if evidence_kind == "o" and ambiguous_headword_span(term, kwic_text):
+                    fail(
+                        "ambiguous_headword_span_in_kwic", entry,
+                        f"{term} s{si} o{oi}: expected exactly one headword span in the reader KWIC, "
+                        f"found {kwic_text.count(term)}; re-cut the exact turn before assigning its actor",
+                    )
                 headword_clauses = [
                     clause for clause in re.split(r"[。！？；\n]", kwic_text)
                     if term and term in clause
