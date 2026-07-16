@@ -467,6 +467,17 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        may be repeated to satisfy depth or count ledgers, and phrases such as “the
        identified master” or “the cited participant” are unresolved placeholders, not
        reader prose. The hard gates reject all three families.
+       **Reader-visible attribution prose is a hard publication surface, not migration
+       scaffolding.** It must begin exactly `Source record (<exact RelPath>).`, contain
+       exactly one source label, and continue as a grammatical English sentence naming
+       the exact actor or actor class. Do not publish `Compiler narration: Source
+       record ...`, `The source does not name an unnamed ...`, dangling `). :`, or
+       mechanical labels such as `Exact actor:` without natural prose. Translation or
+       normalization scripts must be idempotent: running one twice must produce
+       byte-identical notes. Repeated nested expansions such as `the question says (the
+       question says (...` are corruption and hard-fail the cohort. After any automatic
+       rewrite, run it a second time in check mode and require zero changes before the
+       human reader reviews the note.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that
