@@ -21,11 +21,15 @@ public class LineageRosterServiceTests
     }
 
     [Fact]
-    public void GetAll_LoadsExactly609Records()
+    public void GetAll_LoadsExpandedEvidenceRoster()
     {
         var svc = new LineageRosterService();
         var all = svc.GetAll();
-        Assert.Equal(609, all.Count);
+        // 2026-07-17 fold (RUN-20260711-1248): the old ">=1009" bound guarded the
+        // CORRUPT 1012-record file (609 real + 403 auto-harvested hollow records).
+        // That file was restored to the clean 609 baseline and had ~356
+        // individually-researched masters folded back in; 965 is the correct floor.
+        Assert.True(all.Count >= 965, $"Expected the expanded evidence roster (>=965), got {all.Count}.");
     }
 
     [Fact]
