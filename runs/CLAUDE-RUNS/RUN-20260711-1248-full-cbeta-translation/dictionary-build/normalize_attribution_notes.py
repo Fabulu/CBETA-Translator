@@ -17,9 +17,6 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-import zc
-
-
 LEADING_SOURCE_PREFIXES = re.compile(
     r"^\s*(?:(?:Source\s+(?:record|text))\s*\([^)]*\)\.?\s*)+",
     re.IGNORECASE,
@@ -70,14 +67,22 @@ def actor_prefix(row: dict) -> str | None:
 def normalize(row: dict) -> tuple[str | None, list[str]]:
     old = str(row.get("AttributionNote") or "").strip()
     rel = str(row.get("RelPath") or "").strip().replace("\\", "/")
-    title = zc.title(rel)
     actor = actor_prefix(row)
-    if not old or not rel or not title or not actor:
-        return None, [x for x, ok in (("note", old), ("relpath", rel), ("title", title), ("actor", actor)) if not ok]
+    if not old or not rel or not actor:
+        return None, [x for x, ok in (("note", old), ("relpath", rel), ("actor", actor)) if not ok]
     # Canonicalize, rather than stack, source prefixes. Earlier migrations
     # prepended the exact RelPath to a legacy Chinese-title prefix and produced
     # hundreds of reader-visible "Source record … Source record …" notes.
     body = LEADING_SOURCE_PREFIXES.sub("", old).strip()
+    # Some repair lanes used the equally unambiguous but noncanonical
+    # ``Source record RELPATH:`` form.  Strip it before rendering the single
+    # canonical parenthesized prefix, otherwise normalization itself stacks a
+    # second source label.
+    body = re.sub(
+        rf"^\s*Source\s+record\s+{re.escape(rel)}\s*[:.]\s*",
+        "", body, flags=re.IGNORECASE,
+    ).strip()
+    body = LEADING_SOURCE_PREFIXES.sub("", body).strip()
     source_prefix = f"Source record ({rel})."
     note = f"{source_prefix} {body}" if body else source_prefix
     changes = []

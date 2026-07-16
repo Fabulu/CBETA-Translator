@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import unittest
-from unittest.mock import patch
 
 from normalize_attribution_notes import actor_prefix, normalize
 
@@ -30,8 +29,7 @@ class ActorPrefixTest(unittest.TestCase):
             "Status": "reviewed-unnamed", "ActorLabel": "speaking record owner resolved from the complete section"
         }}))
 
-    @patch("normalize_attribution_notes.zc.title", return_value="Five Lamps")
-    def test_source_prefix_is_canonical_and_idempotent(self, _title):
+    def test_source_prefix_is_canonical_and_idempotent(self):
         row = {
             "RelPath": "X/X80/X80n1565.xml",
             "MasterName": "Zhaozhou Congshen",
