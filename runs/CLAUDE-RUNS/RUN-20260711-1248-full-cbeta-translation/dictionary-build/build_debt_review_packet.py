@@ -30,6 +30,8 @@ def digest(path: Path) -> str:
 
 parser = argparse.ArgumentParser()
 parser.add_argument("ledger", type=Path)
+parser.add_argument("--lane", choices=("A", "B", "C"), help="select a lane from the whole-tree source ledger")
+parser.add_argument("--provisional", action="store_true", help="prepare retrieval from current bytes even when source-ledger hashes predate author repair; never use this packet for verdicts")
 parser.add_argument("--start", type=int, default=0)
 parser.add_argument("--limit", type=int, default=10)
 parser.add_argument("--chars", type=int, default=500)
@@ -38,13 +40,21 @@ args = parser.parse_args()
 
 ledger_path = args.ledger if args.ledger.is_absolute() else HERE / args.ledger
 ledger = load(ledger_path)
-rows = (ledger.get("entries") or [])[args.start:args.start + args.limit]
+if args.lane and isinstance(ledger.get("lanes"), list):
+    ledger = next((item for item in ledger["lanes"] if item.get("lane") == args.lane), {})
+ledger_rows = ledger.get("entries")
+if ledger_rows is None:
+    ledger_rows = ledger.get("rows")
+if not isinstance(ledger_rows, list):
+    raise SystemExit("author ledger must contain an entries or rows array")
+rows = ledger_rows[args.start:args.start + args.limit]
 packet = {
     "schemaVersion": 1,
     "sourceLedger": str(ledger_path.relative_to(HERE)),
     "start": args.start,
     "limit": args.limit,
     "reviewRule": "Read every sense and complete case; packet fields are evidence, never an automatic verdict.",
+    "provisional": args.provisional,
     "entries": [],
 }
 
@@ -52,7 +62,7 @@ for row in rows:
     entry_path = ENTRIES / row["id"] / "entry.v2.json"
     current_hash = digest(entry_path)
     expected_hash = row.get("afterSha256") or row.get("newSha256") or row.get("entrySha256")
-    if expected_hash and expected_hash != current_hash:
+    if expected_hash and expected_hash != current_hash and not args.provisional:
         raise SystemExit(f"stale author ledger for {row['id']}: {expected_hash} != {current_hash}")
     entry = load(entry_path)
     item = {
@@ -60,6 +70,8 @@ for row in rows:
         "id": row["id"],
         "term": entry["SourceTerm"],
         "entrySha256": current_hash,
+        "sourceLedgerSha256": expected_hash,
+        "hashSealed": bool(expected_hash and expected_hash == current_hash and not args.provisional),
         "senses": [],
     }
     for si, sense in enumerate(entry.get("Senses") or []):
