@@ -67,6 +67,14 @@ def repeated_sentence(text: str) -> str | None:
     return None
 
 
+def oversized_kwics(sense: dict, max_chars: int = 800) -> list[dict]:
+    return [
+        {"occurrence": oi, "length": len(str(row.get("Kwic") or ""))}
+        for oi, row in enumerate(sense.get("Occurrences") or [])
+        if len(str(row.get("Kwic") or "")) > max_chars
+    ]
+
+
 def load_entry(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -149,6 +157,13 @@ def audit(path: Path) -> dict:
             flags.append({"kind": "search-alias-review", "sense": index})
         elif not isinstance(sense.get("SearchAliases"), list):
             flags.append({"kind": "invalid-search-alias-shape", "sense": index})
+        oversized = oversized_kwics(sense)
+        if oversized:
+            flags.append({
+                "kind": "oversized-kwic-needs-recut",
+                "sense": index,
+                "occurrences": oversized,
+            })
 
     missing = [key for key in LEDGER_KEYS if key not in work]
     if missing:

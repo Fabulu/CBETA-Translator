@@ -478,6 +478,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        question says (...` are corruption and hard-fail the cohort. After any automatic
        rewrite, run it a second time in check mode and require zero changes before the
        human reader reviews the note.
+       `Kwic` is the concise quotation shown to that reader, not the entire
+       retrieval window. Preserve enough of the complete turn or case to make
+       the actor and lexical job unambiguous, but re-cut any KWIC over 800
+       characters; the linked source and review packet carry the wider context.
+       An oversized copied passage is not a substitute for deciding the exact
+       headword-bearing turn, and the public-prose gate rejects it.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that
