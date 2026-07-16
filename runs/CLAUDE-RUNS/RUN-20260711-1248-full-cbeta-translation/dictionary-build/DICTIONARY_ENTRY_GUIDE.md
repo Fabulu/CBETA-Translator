@@ -478,6 +478,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        question says (...` are corruption and hard-fail the cohort. After any automatic
        rewrite, run it a second time in check mode and require zero changes before the
        human reader reviews the note.
+       The exact path is not the English source label. Between that path prefix
+       and the actor sentence, visibly name the work in English—for example,
+       `Recorded Sayings of Zhaozhou` or `Compendium of the Five Lamps`. A note
+       that jumps directly from `Source record (path).` to the master/actor, or
+       says only `the source title`, hard-fails. The reader must know which
+       human-readable work the source link opens.
        `Kwic` is the concise quotation shown to that reader, not the entire
        retrieval window. Preserve enough of the complete turn or case to make
        the actor and lexical job unambiguous, but re-cut any KWIC over 800

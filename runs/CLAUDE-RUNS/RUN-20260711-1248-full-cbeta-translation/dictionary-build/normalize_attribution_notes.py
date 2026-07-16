@@ -105,6 +105,12 @@ def normalize(row: dict) -> tuple[str | None, list[str]]:
             r"\bExact actor:\s*(?:the\s+)?unnamed\s+[^.;]{1,160}[.:]\s*",
             "", body, flags=re.IGNORECASE,
         ).strip()
+    # Remove two deterministic punctuation scars left by the retired repair
+    # template. This is safe only at the end of the note / actor separator; it
+    # does not rewrite punctuation inside quoted evidence.
+    body = re.sub(r"\.\s*\)\s*\.\s*$", ".", body)
+    body = re.sub(r"\)\s*\.\s*$", ".", body)
+    body = re.sub(r":\s*,\s*", ": ", body)
     # Legacy reader prose also used ``Source record English Title (中文):``
     # without parentheses around the whole source identity.
     body = re.sub(

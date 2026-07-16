@@ -17,6 +17,7 @@ from audit_attribution import (
     ambiguous_headword_span,
     explicit_master_turns_before_headword,
     has_evidence_bound_later_quoter,
+    has_english_source_label,
     has_exact_actor_context,
     uniform_actor_placeholder_failure,
     attribution_note_hygiene_failures,
@@ -24,6 +25,20 @@ from audit_attribution import (
 
 
 class PlaceholderActorTest(unittest.TestCase):
+    def test_requires_visible_english_source_label_before_actor(self):
+        rel = "J/J24/J24nB137.xml"
+        self.assertTrue(has_english_source_label(
+            f"Source record ({rel}). Recorded Sayings of Zhaozhou: Zhaozhou Congshen answers.",
+            rel, ["Zhaozhou Congshen"],
+        ))
+        self.assertFalse(has_english_source_label(
+            f"Source record ({rel}). Zhaozhou Congshen answers.", rel, ["Zhaozhou Congshen"]
+        ))
+        self.assertFalse(has_english_source_label(
+            f"Source record ({rel}). The source title: Zhaozhou Congshen answers.",
+            rel, ["Zhaozhou Congshen"],
+        ))
+
     def test_multigraph_kwic_has_one_unambiguous_target_span(self):
         self.assertFalse(ambiguous_headword_span("家風", "僧問如何是家風"))
         self.assertTrue(ambiguous_headword_span("家風", "問家風。師云家風。"))

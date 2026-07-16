@@ -48,7 +48,7 @@ DUPLICATED_SOURCE_PREFIX_RE = re.compile(
     re.IGNORECASE,
 )
 MALFORMED_UNNAMED_RE = re.compile(r"\bdoes not name\s+(?:an?\s+)?unnamed\b", re.IGNORECASE)
-MALFORMED_NOTE_PUNCTUATION_RE = re.compile(r"(?:\.\s*[:;)]+|\)\s*\)\s*\)|\(\s*\))")
+MALFORMED_NOTE_PUNCTUATION_RE = re.compile(r"(?:\.\s*[:;)]+|:\s*,|\)\s*\)\s*\)|\(\s*\))")
 
 
 def attribution_note_hygiene_failures(note: str, rel: str) -> list[str]:
@@ -75,6 +75,21 @@ def attribution_note_hygiene_failures(note: str, rel: str) -> list[str]:
     if re.search(r"([a-z][a-z /'-]{3,60}?)\s*\(\s*\1\s*\(\s*\1\s*\(", lowered):
         failures.append("recursive-translation-expansion")
     return failures
+
+
+def has_english_source_label(note: str, rel: str, actor_markers: list[str]) -> bool:
+    """Require visible source identification between the path and actor prose."""
+    canonical = f"Source record ({rel})."
+    if not note.startswith(canonical):
+        return False
+    tail = note[len(canonical):].strip()
+    positions = [
+        tail.casefold().find(marker.casefold())
+        for marker in actor_markers if marker and tail.casefold().find(marker.casefold()) >= 0
+    ]
+    lead = tail[:min(positions)].strip(" :;,.()") if positions else tail.split(":", 1)[0].strip()
+    words = re.findall(r"[A-Za-z][A-Za-z'-]{2,}", lead)
+    return len(words) >= 2 and not re.match(r"^(?:the )?(?:source|cited) (?:record|text|title)\b$", lead, re.I)
 sys.path.insert(0, str(HERE))
 import zc  # noqa: E402
 
@@ -534,6 +549,24 @@ def main() -> int:
                     for hygiene_failure in attribution_note_hygiene_failures(note, str(occ.get("RelPath") or "")):
                         fail("attribution_note_prose_hygiene", entry,
                              f"{term} s{si} {evidence_label} {hygiene_failure}: {note!r}")
+                    actor_marker = ""
+                    if isinstance(actor, dict):
+                        status = actor.get("Status")
+                        label = str(actor.get("ActorLabel") or "").strip()
+                        if status == "reviewed-unnamed" and label:
+                            subject = re.sub(r"^(?:the\s+)?unnamed\s+", "", label, flags=re.I).strip()
+                            actor_marker = f"The {subject} is unnamed" if subject != label else "The actor is unnamed"
+                        elif status == "narrated":
+                            actor_marker = "Compiler narration"
+                        elif status == "impersonal":
+                            actor_marker = "Editorial or procedural text"
+                        else:
+                            actor_marker = label
+                    if not has_english_source_label(
+                        note, str(occ.get("RelPath") or ""), [str(master or ""), actor_marker, "Exact actor"]
+                    ):
+                        fail("note_missing_english_source_label", entry,
+                             f"{term} s{si} {evidence_label}: name the source in English between RelPath and actor: {note!r}")
                     if DUPLICATED_NOTE_PREFIX_RE.search(note) or DUPLICATED_SOURCE_PREFIX_RE.search(note):
                         fail("duplicated_attribution_note_prefix", entry,
                              f"{term} s{si} {evidence_label} AttributionNote: {note!r}")

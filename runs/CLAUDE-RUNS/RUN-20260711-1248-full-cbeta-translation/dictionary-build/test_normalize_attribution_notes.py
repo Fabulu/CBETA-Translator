@@ -81,6 +81,19 @@ class ActorPrefixTest(unittest.TestCase):
         row["AttributionNote"] = note
         self.assertEqual((note, []), normalize(row))
 
+    def test_removes_retired_template_punctuation_scars(self):
+        row = {
+            "RelPath": "T/T48/T48n2008.xml",
+            "MasterName": "Huineng",
+            "AttributionNote": (
+                "Source record (T/T48/T48n2008.xml). Huineng: , states the relation.)."
+            ),
+        }
+        note, _ = normalize(row)
+        self.assertEqual(
+            "Source record (T/T48/T48n2008.xml). Huineng: states the relation.", note
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
