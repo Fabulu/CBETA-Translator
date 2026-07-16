@@ -29,12 +29,11 @@
             {
               "MasterName": "Jiangshan Faquan",
               "Roles": [
-                "utterer",
-                "section-subject"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Jiangshan Faquan owns the exact headword-bearing verse line in the complete case."
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Exact actor: Jiangshan Faquan. Source text (五燈全書(第34卷-第120卷)). Exact actor: Jiangshan Faquan. Source text (五燈全書(第34卷-第120卷)). Exact actor: Jiangshan Faquan. Complete Compendium of the Five Lamps (五燈全書): Jiangshan Faquan directly contrasts Manjushri laughing and Samantabhadra frowning."
         },
         {
           "RelPath": "T/T48/T48n2016.xml",
@@ -50,7 +49,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yongming Yanshou writes the exact phrase in his continuous exposition.",
+          "AttributionNote": "Source text (宗鏡錄). Exact actor: Yongming Yanshou. Record of the Mirror of the Teaching (宗鏡錄): Yongming Yanshou writes of entering Samantabhadra’s dharma-realm body.",
           "MasterName": "Yongming Yanshou"
         },
         {
@@ -68,7 +67,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Huangbo Xiyun as the exact headword utterer."
+          "AttributionNote": "Source text (古尊宿語錄). Exact actor: Huangbo Xiyun. Source text (古尊宿語錄): The source's full turn identifies Huangbo Xiyun as the exact headword utterer."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -76,16 +75,16 @@
           "ToLb": "0008b07",
           "Kwic": "業惑塵勞，乃普賢之境界。",
           "Curated": true,
-          "MasterName": "Baizhang Huaihai",
+          "MasterName": "Baizhang Daoheng",
           "ContextMasters": [
             {
-              "MasterName": "Baizhang Huaihai",
+              "MasterName": "Baizhang Daoheng",
               "Roles": [
                 "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Baizhang Huaihai as the exact headword utterer."
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Exact actor: Baizhang Daoheng. Source text (五燈嚴統(第10卷-第25卷)). Exact actor: Baizhang Daoheng. Source text (五燈嚴統(第10卷-第25卷)). Exact actor: Baizhang Daoheng. Strict Lineage of the Five Lamps (五燈嚴統): Baizhang Daoheng says that karmic delusion and dusty toil are Samantabhadra’s sphere."
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -94,9 +93,9 @@
           "Kwic": "世尊因普眼菩薩欲見普賢。",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "Status": "reviewed-unnamed",
+            "Kind": "compiled case narration",
+            "ActorLabel": "the unnamed case narrator",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -106,12 +105,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:51:27.765004+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "世尊因普眼菩薩欲見普賢 is third-person case narration; no character utters the headword in this clause.",
+            "ReviewedBy": "Codex cohorts 1-3 106-115 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-15T23:53:49.210962+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni",
+              "Roles": [
+                "case-figure",
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈會元). Exact actor: the unnamed case narrator. Compendium of the Five Lamps: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds.",
+          "MasterName": null
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -119,26 +127,16 @@
           "ToLb": "0006c24",
           "Kwic": "文殊普賢，咸揚正化。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "hall speaker",
-            "ActorLabel": "the unnamed Sacred Birthday hall speaker",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex Lane-A current-hash repair",
-            "ReviewedUtc": "2026-07-16T20:00:00Z",
-            "GrammarEvidence": "The headword is in a complete Sacred Birthday hall address whose local sequence supplies no speaker byline."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): After all six attribution rungs, the Sacred Birthday hall speaker remains unnamed; that speaker utters the headword in the address.",
-          "MasterName": null
+          "ContextMasters": [
+            {
+              "MasterName": "Yingan Tanhua",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (列祖提綱錄). Exact actor: Yingan Tanhua. Source text (列祖提綱錄). Exact speaker: Yingan Tanhua; the same address is preserved in Yingan Tanhua’s own record (應菴曇華禪師語錄).",
+          "MasterName": "Yingan Tanhua"
         },
         {
           "RelPath": "B/B25/B25n0144.xml",
@@ -150,37 +148,23 @@
             {
               "MasterName": "Nanyang Huizhong",
               "Roles": [
-                "utterer",
-                "respondent",
-                "section-subject"
-              ]
-            },
-            {
-              "MasterName": "Samantabhadra",
-              "Roles": [
-                "person-discussed"
-              ]
-            },
-            {
-              "MasterName": "Manjushri",
-              "Roles": [
-                "person-discussed"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source record (B/B25/B25n0144.xml). Zutang Ji (Anthology from the Patriarchs’ Hall) (祖堂集): Nanyang Huizhong tells his questioner that this is the sphere of the great persons Samantabhadra and Manjusri.",
+          "AttributionNote": "Source text (祖堂集). Exact actor: Nanyang Huizhong. Patriarchal Hall Collection (祖堂集): Nanyang Huizhong says that this is the sphere of the great persons Samantabhadra and Manjushri.",
           "MasterName": "Nanyang Huizhong"
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
           "FromLb": "0406b14",
-          "ToLb": "0406b15",
-          "Kwic": "世尊因普眼菩薩欲見普賢不可得見",
+          "ToLb": "0406b16",
+          "Kwic": "世尊因普眼菩薩欲見普賢不可得見，乃至三度入定，徧觀三千大千世界，覓普賢不可得見，而來白佛。",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "Status": "reviewed-unnamed",
+            "Kind": "compiled case narration",
+            "ActorLabel": "the unnamed case narrator",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -190,12 +174,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:51:27.765004+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "世尊因普眼菩薩欲見普賢 is third-person case narration; no character utters the headword in this clause.",
+            "ReviewedBy": "Codex cohorts 1-3 106-115 full-case READ-AND-FIX",
+            "ReviewedUtc": "2026-07-15T23:53:49.210962+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source record (X/X83/X83n1578.xml). Record Pointing at the Moon (指月錄): Compiler narration: the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni",
+              "Roles": [
+                "case-figure",
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (指月錄). Exact actor: the unnamed case narrator. Record Pointing at the Moon: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds.",
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],
@@ -212,15 +205,10 @@
       "RelatedMasters": [
         "Baizhang Huaihai",
         "Huangbo Xiyun",
-        "金陵蔣山法泉佛慧禪師",
-        "Jiangshan Faquan",
-        "Yongming Yanshou",
-        "Nanyang Huizhong",
-        "Samantabhadra",
-        "Manjushri"
+        "金陵蔣山法泉佛慧禪師"
       ],
       "RelatedTerms": [],
-      "Explanation": "Samantabhadra is the elephant-riding and activity-associated figure paired with Manjusri in Chan questions and comparisons. Masters invoke that paired figure to test where the named figures are encountered, rather than retelling an outside sacred biography."
+      "Explanation": "Samantabhadra is a named figure whom Chan records deploy in several connected ways, not merely as an elephant-riding image from an outside biography. Masters pair him with Manjusri and contrast their functions: Huangbo Xiyun calls Manjusri real discernment and Samantabhadra adaptive discernment, while Nanyang Huizhong invokes both to frame the disputed claim that green bamboo is the body of reality. Other records speak of entering Samantabhadra’s reality-realm body, call delusive activity and dusty toil his sphere, or raise the case in which Puyan cannot find him even after searching the whole world. The figure therefore does work in Chan as a paired term, a named sphere of responsive activity, and the absent object of a public case."
     }
   ]
 }

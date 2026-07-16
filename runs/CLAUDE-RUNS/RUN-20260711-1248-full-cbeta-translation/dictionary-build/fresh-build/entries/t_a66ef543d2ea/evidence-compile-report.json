@@ -1,8 +1,10 @@
 {
-  "hardPass": true,
-  "worksheet": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a66ef543d2ea/evidence.draft.json",
-  "worksheetSha256": "3c51101c7a17b0acaef6ede89e7c973fa22283cde48052c782ffc8a076eb67e4",
-  "output": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a66ef543d2ea/entry.v2.json",
-  "outputSha256": "017593adf446f0f812c804503f6b3365625baee763a0fb8cceec85f96b5529ea",
-  "errors": []
+  "hardPass": false,
+  "worksheet": "fresh-build/entries/t_a66ef543d2ea/evidence.draft.json",
+  "worksheetSha256": "bc275611590f7a64c3bb495e4b88ee1d1f19cb1470465b89013d688c7122656c",
+  "output": "fresh-build/entries/t_a66ef543d2ea/entry.v2.json",
+  "outputSha256": null,
+  "errors": [
+    "sense 1.occurrence 6.DraftActorProof: required for named exact utterer"
+  ]
 }

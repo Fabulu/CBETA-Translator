@@ -31,12 +31,13 @@
           "Kwic": "師拈棒與僧，其僧擬接，師便打。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (X/X78/X78n1553.xml). Tiansheng Expanded Lamp Record (天聖廣燈錄): Compiler narration: Source narration in reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source narration in Source Record (天聖廣燈錄) reports the exact headword-bearing action or interval. Linji Yixuan is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "person-described"
+                "person-described",
+                "case-figure"
               ]
             }
           ],
@@ -57,7 +58,7 @@
           "Kwic": "臨濟喝。德山棒。天皇餅。趙州茶。",
           "MasterName": "Zhongfeng Mingben",
           "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Zhongfeng Mingben's house-device list placing Deshan's staff beside Linji's shout, Tianhuang's cake, and Zhaozhou's tea.",
+          "AttributionNote": "The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄) records Zhongfeng Mingben's house-device list placing Deshan's staff beside Linji's shout, Tianhuang's cake, and Zhaozhou's tea.",
           "ContextMasters": [
             {
               "MasterName": "Zhongfeng Mingben",
@@ -74,7 +75,7 @@
           "Kwic": "南院拈棒云棒下無生忍臨機不讓師",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Compiler narration: Source narration in reports the exact headword-bearing action or interval. Nanyuan Huiyong is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source narration in Source Record (古尊宿語錄) reports the exact headword-bearing action or interval. Nanyuan Huiyong is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Nanyuan Huiyong",
@@ -100,7 +101,7 @@
           "Kwic": "州捉住棒曰。已後莫錯打人去。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: Source narration in reports the exact headword-bearing action or interval. Zhaozhou Congshen is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Zhaozhou Congshen is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Zhaozhou Congshen",
@@ -126,7 +127,7 @@
           "Kwic": "德山老漢只憑目前一個白棒",
           "MasterName": "Yantou Quanhuo",
           "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0144.xml). Zutang Ji (Anthology from the Patriarchs’ Hall) (祖堂集): Yantou Quanhuo's section, records Yantou saying that Deshan Xuanjian relies on the single white staff before him. Yantou is the exact speaker; Deshan is the person discussed.",
+          "AttributionNote": "The Patriarchs' Hall Collection (祖堂集), in Yantou Quanhuo's section, records Yantou saying that Deshan Xuanjian relies on the single white staff before him. Yantou is the exact speaker; Deshan is the person discussed.",
           "ContextMasters": [
             {
               "MasterName": "Yantou Quanhuo",
@@ -137,8 +138,7 @@
             {
               "MasterName": "Deshan Xuanjian",
               "Roles": [
-                "person-discussed",
-                "case-figure"
+                "person-discussed"
               ]
             }
           ]
@@ -150,7 +150,7 @@
           "Kwic": "師以棒趁下。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Compiler narration: Source narration in reports the exact headword-bearing action or interval. Guizong Zhichang is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source narration in Source Record (景德傳燈錄) reports the exact headword-bearing action or interval. Guizong Zhichang is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Guizong Zhichang",
@@ -174,18 +174,27 @@
           "FromLb": "0596b29",
           "ToLb": "0596b30",
           "Kwic": "至于祖師門下，棒喝交馳，龍象蹴踏，拈鎚豎拂，擎叉輥毬",
-          "MasterName": "Juelang Daosheng",
+          "MasterName": null,
           "Curated": true,
           "EvidenceRole": "family",
-          "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie (天界覺浪盛禪師全錄): Juelang Daosheng says that staff and shout cross in succession at the patriarchs' gate.",
+          "AttributionNote": "Source narration in Source Record (天界覺浪盛禪師全錄) reports the exact headword-bearing action or interval. Juelang Daosheng is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Juelang Daosheng",
               "Roles": [
-                "utterer"
+                "person-described"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "narrated action or interval",
+            "ActorLabel": "source narrator",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+            "ReviewedBy": "Codex f001 lane A independent-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          }
         }
       ],
       "SourceTexts": [
@@ -202,10 +211,7 @@
         "Linji Yixuan",
         "Nanyuan Huiyong",
         "Zhaozhou Congshen",
-        "Yantou Quanhuo",
-        "Zhongfeng Mingben",
-        "Guizong Zhichang",
-        "Juelang Daosheng"
+        "Yantou Quanhuo"
       ],
       "RelatedTerms": [
         "喝",
@@ -244,7 +250,7 @@
           "Kwic": "德山示眾曰道得也三十棒道不得也三十棒",
           "MasterName": "Deshan Xuanjian",
           "Curated": true,
-          "AttributionNote": "Source record (C/C078/C078n1720.xml). Chan School: Comprehensive Linked-Pearls Collection of Verse Commentaries on Old Cases (禪宗頌古聯珠通集): Deshan Xuanjian's formula assigning thirty blows whether one can speak or cannot.",
+          "AttributionNote": "The Linked Collection of Chan Lineage Verse Comments on Old Cases (禪宗頌古聯珠通集) explicitly raises Deshan Xuanjian's formula assigning thirty blows whether one can speak or cannot.",
           "ContextMasters": [
             {
               "MasterName": "Deshan Xuanjian",
@@ -261,7 +267,7 @@
           "Kwic": "合喫棒，不合喫棒？",
           "MasterName": "Baoci Guangyun",
           "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0144.xml). Zutang Ji (Anthology from the Patriarchs’ Hall) (祖堂集): Baoci Guangyun, records Baoci asking whether someone deserves to receive a blow, using ‘eat a blow’ for undergoing the stroke. Baoci Guangyun is not yet on the roster.",
+          "AttributionNote": "The Patriarchs' Hall Collection (祖堂集), section on Baoci Guangyun, records Baoci asking whether someone deserves to receive a blow, using ‘eat a blow’ for undergoing the stroke. Baoci Guangyun is not yet on the roster.",
           "ContextMasters": [
             {
               "MasterName": "Baoci Guangyun",
@@ -276,17 +282,26 @@
           "FromLb": "0145a16",
           "ToLb": "0145a16",
           "Kwic": "我當時在德山棒下。如桶底脫相似。",
-          "MasterName": "Xuefeng Yicun",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): Xuefeng Yicun says that he was then under Deshan's staff.",
+          "AttributionNote": "Source narration in Source Record (佛果圜悟禪師碧巖錄) reports the exact headword-bearing action or interval. Xuefeng Yicun is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Xuefeng Yicun",
               "Roles": [
-                "utterer"
+                "person-described"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "narrated action or interval",
+            "ActorLabel": "source narrator",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "Narrative syntax reports the headword-bearing action or interval rather than quoting the participant saying the headword.",
+            "ReviewedBy": "Codex f001 lane A independent-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          }
         },
         {
           "RelPath": "X/X69/X69n1359.xml",
@@ -295,7 +310,7 @@
           "Kwic": "臨濟三遭痛棒，高安灘上知歸",
           "MasterName": "Ying'an Tanhua",
           "Curated": true,
-          "AttributionNote": "Source record (X/X69/X69n1359.xml). Recorded Sayings of Chan Master Ying’an Tanhua (應菴曇華禪師語錄): Ying'an Tanhua (應菴曇華禪師語錄) records Ying'an Tanhua's hall address counting and qualifying Linji's three encounters as painful blows.",
+          "AttributionNote": "The Recorded Sayings of Ying'an Tanhua (應菴曇華禪師語錄) records Ying'an Tanhua's hall address counting and qualifying Linji's three encounters as painful blows.",
           "ContextMasters": [
             {
               "MasterName": "Ying'an Tanhua",
@@ -312,7 +327,7 @@
           "Kwic": "文殊．普賢昨夜三更相打。每人與二十棒。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: Source narration in reports the exact headword-bearing action or interval. Nanquan Puyuan is the participant described, not a quoted headword speaker.",
+          "AttributionNote": "Source narration in Source Record (五燈會元) reports the exact headword-bearing action or interval. Nanquan Puyuan is the participant described, not a quoted headword speaker.",
           "ContextMasters": [
             {
               "MasterName": "Nanquan Puyuan",
@@ -336,23 +351,14 @@
           "FromLb": "0139c07",
           "ToLb": "0139c07",
           "Kwic": "一棒一痕要令證悟。",
-          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): Zhou Chi's named preface, coordinates one blow with one welt and states the comparison's intended function. Zhou Chi is a lay preface author, not a Chan master, and is not on the master roster; his name is retained rather than falsely attributing his sentence to Yuanwu Keqin.",
-          "ContextMasters": [
-            {
-              "MasterName": "Yuanwu Keqin",
-              "Roles": [
-                "record-owner",
-                "commentator"
-              ]
-            }
-          ],
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄), signed preface: the identified non-master author Zhou Chi writes the exact headword-bearing line.",
+          "ContextMasters": [],
           "ActorAttribution": {
             "Status": "identified-non-master",
-            "Kind": "direct speech",
+            "Kind": "documentary author",
             "ActorLabel": "Zhou Chi",
-            "ActorRole": "interlocutor",
+            "ActorRole": "compiler",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -361,9 +367,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The stored attribution identifies Zhou Chi as the lay preface author, not a Chan master.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+            "GrammarEvidence": "Zhou Chi signs the preface as 三教老人 and uses 一棒一痕 in his analysis.",
+            "ReviewedBy": "Codex real-read cohorts 4-6",
+            "ReviewedUtc": "2026-07-15T21:27:56.872424+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {
@@ -373,7 +380,7 @@
           "Kwic": "如今更思得一頓棒喫誰人為我行得",
           "MasterName": "Linji Yixuan",
           "Curated": true,
-          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Linji Yixuan, records Linji wanting to receive one bout of blows and asking who can carry it out.",
+          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), section on Linji Yixuan, records Linji wanting to receive one bout of blows and asking who can carry it out.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
@@ -395,11 +402,7 @@
       "RelatedMasters": [
         "Deshan Xuanjian",
         "Linji Yixuan",
-        "Xuefeng Yicun",
-        "Baoci Guangyun",
-        "Ying'an Tanhua",
-        "Nanquan Puyuan",
-        "Yuanwu Keqin"
+        "Xuefeng Yicun"
       ],
       "RelatedTerms": [
         "三十棒",

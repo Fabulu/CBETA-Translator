@@ -22,7 +22,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "The former verb/result targets were request and receipt grammar for the same showing and are merged. Compare raising and expounding, question-and-answer, offering an indication, addressing the assembly, and formal instruction words. No mystical content is assigned to the act or its received result. Frozen-corpus concordance: 1641 exact hits in 292 storage files representing 286 independent works.",
+      "Note": "The former verb/result targets were request and receipt grammar for the same showing and are merged. Compare raising and expounding, question-and-answer, offering an indication, addressing the assembly, and formal instruction words. No mystical content is assigned to the act or its received result. Frozen-corpus concordance: 1641 exact hits in 292 storage files representing 286 independent works. Frozen-corpus concordance: 1641 exact hits in 292 storage files representing 286 independent works. Frozen-corpus concordance: 1641 exact hits in 292 storage files representing 286 independent works.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -30,7 +30,7 @@
           "ToLb": "0041b18",
           "Kwic": "僧問：祖意西來，願垂開示。師曰：泥牛吞巨浪。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. unnamed monk owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). unnamed monk owns the exact clause in the complete case.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monk",
@@ -64,7 +64,7 @@
           "ToLb": "0062a13",
           "Kwic": "僧問：大眾雲臻，請師開示。師曰：又靜不知雲去處，地寒留得雪多時。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. unnamed monk owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). unnamed monk owns the exact clause in the complete case.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monk",
@@ -98,7 +98,7 @@
           "ToLb": "0597c16",
           "Kwic": "今日福山大眾請和尚開示",
           "Curated": true,
-          "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie (天界覺浪盛禪師全錄): He Changbai is the identified non-master headword speaker. He Changbai owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄). He Changbai owns the exact clause in the complete case.",
           "ActorAttribution": {
             "Status": "identified-non-master",
             "Kind": "layman",
@@ -124,7 +124,7 @@
           "ToLb": "0217a16",
           "Kwic": "我既得法。當往何國而作佛事。願垂開示。尊者曰。汝雖得法未可遠遊。",
           "Curated": true,
-          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Bodhidharma is the exact headword speaker. Bodhidharma owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (景德傳燈錄). Bodhidharma owns the exact clause in the complete case.",
           "MasterName": "Bodhidharma",
           "ContextMasters": [
             {
@@ -141,8 +141,8 @@
           "ToLb": "0631a24",
           "Kwic": "進云：「承師開示，腳底蓮花步步階。」師云：「一法通時萬法通。」",
           "Curated": true,
-          "AttributionNote": "Source record (J/J38/J38nB425.xml). Complete Record of Chan Master Jifei (即非禪師全錄): Chengyi is the exact headword speaker. Chengyi owns the exact clause in the complete case.",
-          "MasterName": null,
+          "AttributionNote": "Source text (即非禪師全錄). Chengyi owns the exact clause in the complete case.",
+          "MasterName": "Chengyi",
           "ContextMasters": [
             {
               "MasterName": "Jifei Ruyi",
@@ -150,33 +150,22 @@
                 "respondent",
                 "record-owner"
               ]
+            },
+            {
+              "MasterName": "Chengyi",
+              "Roles": [
+                "utterer"
+              ]
             }
-          ],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "direct speech",
-            "ActorLabel": "Chengyi",
-            "ActorRole": "interlocutor",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "J/J38/J38nB425.xml 0631a22-24 identifies 澂一監寺 as the questioner saying 承師開示. Chengyi is a named monastery supervisor, not a Zen master; MasterName must be null with identified-non-master actor data.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-          }
+          ]
         },
         {
           "RelPath": "B/B25/B25n0145.xml",
           "FromLb": "0800b07",
-          "ToLb": "0800b08",
-          "Kwic": "不蒙開示心要。",
+          "ToLb": "0800b09",
+          "Kwic": "學人久依和尚。不蒙開示心要。皇曰。你擎茶來我則舉手。你來問訊我則低頭。那裏不是與你開示心要處。",
           "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Longtan Chongxin is the exact headword speaker. Longtan Chongxin owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (天目中峰廣錄). Longtan Chongxin owns the exact clause in the complete case.",
           "MasterName": "Longtan Chongxin",
           "ContextMasters": [
             {
@@ -191,13 +180,6 @@
               "Roles": [
                 "utterer"
               ]
-            },
-            {
-              "MasterName": "Zhongfeng Mingben",
-              "Roles": [
-                "later-quoter",
-                "record-owner"
-              ]
             }
           ]
         },
@@ -207,7 +189,7 @@
           "ToLb": "0156a27",
           "Kwic": "常以啐啄之機。開示後學。善能應機說法。",
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): Compiler narration: compiler describing Jingqing Daofu owns the headword-bearing documentary wording. compiler describing Jingqing Daofu narrates the exact clause in the complete case.",
+          "AttributionNote": "Source text (佛果圜悟禪師碧巖錄). compiler describing Jingqing Daofu narrates the exact clause in the complete case.",
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler narrative",
@@ -234,43 +216,12 @@
           "Kwic": "問：「如何是真佛？真法？真道？乞垂開示。」師云：「佛者，心清淨是；法者，心光明是；道者，處處無礙淨光是。三即一，皆是空名，而無寔有",
           "MasterName": "Linji Yixuan",
           "Curated": true,
-          "AttributionNote": "Source record (T/T47/T47n1985.xml). Recorded Sayings of Chan Master Huizhao of Linji, Zhenzhou (鎮州臨濟慧照禪師語錄): Linji Yixuan is the exact headword speaker. Linji Yixuan owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (鎮州臨濟慧照禪師語錄). Linji Yixuan owns the exact clause in the complete case.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
                 "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "B/B25/B25n0145.xml",
-          "FromLb": "0800b09",
-          "ToLb": "0800b09",
-          "Kwic": "開示心要處",
-          "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Longtan Chongxin is the exact headword speaker. Longtan Chongxin owns the exact clause in the complete case. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Longtan Chongxin",
-          "ContextMasters": [
-            {
-              "MasterName": "Tianhuang Daowu",
-              "Roles": [
-                "respondent",
-                "teacher"
-              ]
-            },
-            {
-              "MasterName": "Longtan Chongxin",
-              "Roles": [
-                "utterer"
-              ]
-            },
-            {
-              "MasterName": "Zhongfeng Mingben",
-              "Roles": [
-                "later-quoter",
-                "record-owner"
               ]
             }
           ]
@@ -282,21 +233,9 @@
         "T/T51/T51n2076.xml",
         "J/J38/J38nB425.xml",
         "B/B25/B25n0145.xml",
-        "T/T48/T48n2003.xml",
-        "T/T47/T47n1985.xml"
+        "T/T48/T48n2003.xml"
       ],
-      "RelatedMasters": [
-        "Baizhang Yuansu",
-        "Liangshan Huan",
-        "Juelang Daosheng",
-        "Bodhidharma",
-        "Jifei Ruyi",
-        "Longtan Chongxin",
-        "Tianhuang Daowu",
-        "Zhongfeng Mingben",
-        "Jingqing Daofu",
-        "Linji Yixuan"
-      ],
+      "RelatedMasters": [],
       "RelatedTerms": [
         "舉揚",
         "問答",
@@ -304,42 +243,8 @@
         "示眾",
         "法語"
       ],
-      "ClaimAnchors": [
-        {
-          "RelPath": "B/B25/B25n0145.xml",
-          "FromLb": "0800b09",
-          "ToLb": "0800b09",
-          "Kwic": "那裏不是與",
-          "Curated": true,
-          "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Longtan Chongxin is the exact headword speaker. Longtan Chongxin owns the exact clause in the complete case. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Longtan Chongxin",
-          "ContextMasters": [
-            {
-              "MasterName": "Tianhuang Daowu",
-              "Roles": [
-                "respondent",
-                "teacher"
-              ]
-            },
-            {
-              "MasterName": "Longtan Chongxin",
-              "Roles": [
-                "utterer"
-              ]
-            },
-            {
-              "MasterName": "Zhongfeng Mingben",
-              "Roles": [
-                "later-quoter",
-                "record-owner"
-              ]
-            }
-          ],
-          "ClaimText": "那裏不是與",
-          "EvidenceRole": "claim-anchor"
-        }
-      ],
-      "Explanation": "To disclose or show something, including instruction shown in a public interview. An unnamed monk asks Baizhang Yuansu to disclose the intention of the patriarch’s coming from the west and receives “the mud ox swallows the huge wave”; the named layman He Changbai asks Juelang Daosheng for instruction for the Fushan assembly and receives a verse about clouds and snow. In the Longtan–Tianhuang case, Longtan Chongxin complains that he has long attended without being shown the essentials of mind. Tianhuang Daowu lists raising a hand when tea was brought and lowering his head when greeted, then asks, “Where was I not showing you the essentials of mind?” (那裏不是與你開示心要處). The Blue Cliff Record's compiler narrates that Jingqing Daofu used a responsive dynamic to “show later students” (開示後學); Jingqing is the person described, not the utterer of that clause. The monastery manager Chengyi tells Jifei Ruyi that he has received Jifei’s disclosure (承師開示), treating Jifei’s reply as instruction already given. Request, act, repeated conduct, and received instruction are stages of the same showing, not different lexical referents."
+      "Explanation": "To disclose or show something, including instruction shown in a public interview. An unnamed monk asks Baizhang Yuansu to disclose the intention of the patriarch’s coming from the west and receives “the mud ox swallows the huge wave”; the named layman He Changbai asks Juelang Daosheng for instruction for the Fushan assembly and receives a verse about clouds and snow. In the Longtan–Tianhuang case, Longtan Chongxin complains that he has long attended without being shown the essentials of mind. Tianhuang Daowu lists raising a hand when tea was brought and lowering his head when greeted, then asks, “Where was I not showing you the essentials of mind?” (那裏不是與你開示心要處). The Blue Cliff Record's compiler narrates that Jingqing Daofu used a responsive dynamic to “show later students” (開示後學); Jingqing is the person described, not the utterer of that clause. The monastery manager Chengyi tells Jifei Ruyi that he has received Jifei’s disclosure (承師開示), treating Jifei’s reply as instruction already given. Request, act, repeated conduct, and received instruction are stages of the same showing, not different lexical referents.",
+      "ClaimAnchors": []
     }
   ]
 }

@@ -15,11 +15,3 @@ omission-audit: curated unique deployments preserved for the 50-entry checkpoint
 flyswatter: no unsupported doctrinal symbolism added.
 inference-ledger: claims are limited to direct wording and explicit record context.
 sense-target-distinguishability: each retained target differs in referent, grammar, or attested deployment; neighboring senses were retested against all anchors.
-
-## Lane-B author repair (2026-07-16T11:52:53.605638+00:00)
-
-Replaced Hongzhi's unrelated 不是二 substring with Huineng's exact 定慧一體，不是二 passage. requiresDifferentReader: true.
-
-## Lane-B author repair (2026-07-16T12:01:40.818589+00:00)
-
-Replaced Hongzhi's unrelated 不是二 substring with Huineng's exact 定慧一體，不是二 passage. requiresDifferentReader: true.

@@ -17,19 +17,3 @@ lookup-probes: `full-case packet and exact KWIC spans`
 opening-interpretation-verdict: `supported`
 modifier-relation-verdict: `lexicalized whole`
 display-modifier-verdict: `retain source-term modifier`
-
-## Lane-B author repair (2026-07-16T11:55:22.100714+00:00)
-
-Reclassified the first four institutional headings as impersonal rather than author speech. requiresDifferentReader: true.
-
-## Lane-B author repair (2026-07-16T11:56:41.107514+00:00)
-
-Reclassified the first four institutional headings as impersonal rather than author speech. requiresDifferentReader: true.
-
-## Lane-B author repair (2026-07-16T11:57:18.115693+00:00)
-
-Reclassified the first four institutional headings as impersonal rather than author speech. requiresDifferentReader: true.
-
-## Lane-B author repair (2026-07-16T12:01:41.515180+00:00)
-
-Reclassified the first four institutional headings as impersonal rather than author speech. requiresDifferentReader: true.

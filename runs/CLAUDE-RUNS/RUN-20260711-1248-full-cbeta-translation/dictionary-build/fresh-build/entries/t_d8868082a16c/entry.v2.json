@@ -29,23 +29,22 @@
             {
               "MasterName": "Foyan Qingyuan",
               "Roles": [
-                "later-quoter",
-                "record-owner"
+                "later-raiser",
+                "section-subject"
               ]
             },
             {
               "MasterName": "Yunmen Wenyan",
               "Roles": [
-                "person-discussed",
                 "case-figure"
               ]
             }
           ],
-          "AttributionNote": "Source record (D/D48/D48n8939.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
+          "AttributionNote": "古尊宿語錄. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -55,9 +54,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647121Z"
           }
         },
         {
@@ -66,12 +65,20 @@
           "ToLb": "0547b05",
           "Kwic": "」師代云：「莫壓良為賤。",
           "Curated": true,
-          "ContextMasters": [],
-          "AttributionNote": "Source record (J/J23/J23nB134.xml). Recorded Sayings of the Five Houses (Selections) (五家語錄（選錄）): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "五家語錄（選錄）. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -81,11 +88,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
-          },
-          "MasterName": null
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647170Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1988.xml",
@@ -93,10 +99,20 @@
           "ToLb": "0556b07",
           "Kwic": "師代云。",
           "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "雲門匡真禪師廣錄. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -106,20 +122,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
-          },
-          "ContextMasters": [
-            {
-              "MasterName": "Yunmen Wenyan",
-              "Roles": [
-                "person-described"
-              ]
-            }
-          ],
-          "AttributionNote": "Source record (T/T47/T47n1988.xml). Extensive Record of Chan Master Kuangzhen of Yunmen (雲門匡真禪師廣錄): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
-          "MasterName": null
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647182Z"
+          }
         },
         {
           "RelPath": "J/J24/J24nB138.xml",
@@ -132,15 +138,15 @@
             {
               "MasterName": "Yunmen Wenyan",
               "Roles": [
-                "respondent"
+                "case-figure"
               ]
             }
           ],
-          "AttributionNote": "Source record (J/J24/J24nB138.xml). Recorded Sayings of Chan Master Yunmen Kuangzhen (雲門匡真禪師語錄): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
+          "AttributionNote": "雲門匡真禪師語錄. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -150,9 +156,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647193Z"
           }
         },
         {
@@ -161,12 +167,20 @@
           "ToLb": "0741c12",
           "Kwic": "自代云：「敢為流通。",
           "Curated": true,
-          "ContextMasters": [],
-          "AttributionNote": "Source record (J/J35/J35nB339.xml). Cliff-Flower Collection of Chan Master Lingrui (靈瑞禪師嵒華集): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
+          "ContextMasters": [
+            {
+              "MasterName": "Lingrui",
+              "Roles": [
+                "case-figure",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "靈瑞禪師嵒華集. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -176,9 +190,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647201Z"
           },
           "MasterName": null
         },
@@ -188,10 +202,21 @@
           "ToLb": "0613c16",
           "Kwic": "代云。",
           "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "case-figure",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "汾陽無德禪師語錄. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -201,20 +226,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
-          },
-          "ContextMasters": [
-            {
-              "MasterName": "Fenyang Shanzhao",
-              "Roles": [
-                "person-described"
-              ]
-            }
-          ],
-          "AttributionNote": "Source record (T/T47/T47n1992.xml). Recorded Sayings of Chan Master Wude of Fenyang (汾陽無德禪師語錄): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
-          "MasterName": null
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647209Z"
+          }
         },
         {
           "RelPath": "X/X71/X71n1420.xml",
@@ -227,15 +242,22 @@
             {
               "MasterName": "Chushi Fanqi",
               "Roles": [
-                "respondent"
+                "respondent",
+                "section-subject"
+              ]
+            },
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "case-figure"
               ]
             }
           ],
-          "AttributionNote": "Source record (X/X71/X71n1420.xml). Recorded Sayings of Chan Master Chushi Fanqi (楚石梵琦禪師語錄): The monk asking about Xuedou’s substitute answer is unnamed and owns the exact headword-bearing questioner turn.",
+          "AttributionNote": "楚石梵琦禪師語錄. Exact headword actor: the unnamed monk. 進云 assigns 'Later Xuedou supplied...' to the unnamed monk; Chushi's evaluation follows after 師云.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk question",
-            "ActorLabel": "unnamed monk asking about Xuedou’s substitute answer",
+            "Kind": "monastic interlocutor",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -245,9 +267,9 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "進云 introduces the monk’s headword-bearing question; Xuedou is discussed inside it.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
+            "GrammarEvidence": "進云 assigns 'Later Xuedou supplied...' to the unnamed monk; Chushi's evaluation follows after 師云.",
+            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+            "ReviewedUtc": "2026-07-16T14:00:00Z"
           }
         },
         {
@@ -256,10 +278,20 @@
           "ToLb": "0278c09",
           "Kwic": "法眼益代云：正是習氣。",
           "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "宗鑑法林. Exact headword actor: the recorder of the substitute answer. 代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "narrated",
-            "Kind": "substitute-answer reporting frame",
-            "ActorLabel": "case narrator",
+            "Kind": "reporting narration",
+            "ActorLabel": "the recorder of the substitute answer",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -269,20 +301,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "代云 is the recorder-governed reporting verb; the answer after 云 is a separate speech turn.",
-            "ReviewedBy": "Codex lane-C independent-review repair",
-            "ReviewedUtc": "2026-07-16T09:00:00Z"
-          },
-          "ContextMasters": [
-            {
-              "MasterName": "Fayan Wenyi",
-              "Roles": [
-                "person-discussed"
-              ]
-            }
-          ],
-          "AttributionNote": "Source record (X/X66/X66n1297.xml). Dharma Grove of the Tradition’s Mirror (宗鑑法林): Compiler narration owns the exact headword-bearing substitute answer reporting frame.",
-          "MasterName": null
+            "GrammarEvidence": "代云/自代云 is the recorder’s reporting verb introducing a substitute answer; the named master supplies the answer but does not utter the reporting label itself.",
+            "ReviewedBy": "Codex literal full-case replacement repair",
+            "ReviewedUtc": "2026-07-15T23:54:15.647218Z"
+          }
         }
       ],
       "ClaimAnchors": [],
@@ -299,9 +321,7 @@
       "RelatedMasters": [
         "Chushi Fanqi",
         "Yunmen Wenyan",
-        "Foyan Qingyuan",
-        "Fenyang Shanzhao",
-        "Fayan Wenyi"
+        "佛眼禪師"
       ],
       "RelatedTerms": [],
       "Explanation": "To answer on another's behalf is to supply the reply an earlier participant did not give. The marked substitute belongs to the later master or compiler who says it, never retroactively to the silent participant in the old case."

@@ -9,5 +9,3 @@ lookup-probes: I am now not it
 opening-interpretation-verdict: English-first and corpus-bounded
 modifier-relation-verdict: no unresolved modifier composition claim
 display-modifier-verdict: source imagery retained without outside symbolism
-
-quality-debt-lane-a-decile2: full entry, stored evidence, definition, sense split, aliases, counts, and listed flags reread and repaired.

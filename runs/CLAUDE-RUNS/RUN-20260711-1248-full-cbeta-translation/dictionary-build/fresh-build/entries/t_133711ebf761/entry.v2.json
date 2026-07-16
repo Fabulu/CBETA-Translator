@@ -15,7 +15,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "The personal name Xuanji, borne by a nun in lamp biography, is a homonym and is excluded: lineage figures belong on the roster of named lineage figures, not in this lexical sense.",
+      "Note": "The personal name Xuanji, borne by a nun in lamp biography, is a homonym and is excluded: lineage figures belong on the identified master roster, not in this lexical sense. Frozen-corpus concordance: 556 exact hits in 204 storage files representing 201 independent works.",
       "Occurrences": [
         {
           "RelPath": "J/J26/J26nB178.xml",
@@ -23,7 +23,7 @@
           "ToLb": "0113c29",
           "Kwic": "格外玄機為尋知己",
           "Curated": true,
-          "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): Feiyin Tongrong owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (費隱禪師語錄). Feiyin Tongrong owns the exact clause in the complete case.",
           "MasterName": "Feiyin Tongrong",
           "ContextMasters": [
             {
@@ -40,7 +40,7 @@
           "ToLb": "0144a20",
           "Kwic": "玄機妙用縱多般，七縱八橫任抵對",
           "Curated": true,
-          "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): Feiyin Tongrong owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (費隱禪師語錄). Feiyin Tongrong owns the exact clause in the complete case.",
           "MasterName": "Feiyin Tongrong",
           "ContextMasters": [
             {
@@ -57,26 +57,16 @@
           "ToLb": "0107c02",
           "Kwic": "禪者有玄機。機玄是復非。欲了機前旨。咸於句下違",
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Chen Cao owns the exact headword-bearing wording in the complete source unit.",
-          "MasterName": null,
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "direct speech",
-            "ActorLabel": "Chen Cao",
-            "ActorRole": "interlocutor",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "X/X80/X80n1565.xml 0107c01 explicitly heads 睦州刺史陳操尚書. Chen Cao is a named official/lay interlocutor, not a master; represent him in ActorAttribution, not MasterName/ContextMasters/RelatedMasters.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-          }
+          "AttributionNote": "Source text (五燈會元). Chen Cao owns the exact clause in the complete case.",
+          "MasterName": "Chen Cao",
+          "ContextMasters": [
+            {
+              "MasterName": "Chen Cao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -84,7 +74,7 @@
           "ToLb": "0077b06",
           "Kwic": "心若無事。萬法不生。意絕玄機。纖塵何立",
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Panshan Baoji owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (五燈會元). Panshan Baoji owns the exact clause in the complete case.",
           "MasterName": "Panshan Baoji",
           "ContextMasters": [
             {
@@ -110,7 +100,7 @@
             }
           ],
           "MasterName": "Panshan Baoji",
-          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Panshan Baoji owns the exact headword-bearing wording in the complete source unit."
+          "AttributionNote": "Source text (景德傳燈錄). Panshan Baoji owns the exact clause in the complete case."
         },
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -128,7 +118,7 @@
             "ReviewedBy": "Codex f002 B481-490 full-case review",
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           },
-          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Compiler narration owns the exact headword-bearing compiler narration."
+          "AttributionNote": "Source text (建中靖國續燈錄). the continuation-lamp compiler narrates the exact clause in the complete case."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -154,7 +144,7 @@
             "ReviewedBy": "Codex f002 B481-490 full-case review",
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           },
-          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Compiler narration owns the exact headword-bearing compiler narration."
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). the lamp-record compiler narrates the exact clause in the complete case."
         },
         {
           "RelPath": "L/L158/L158n1652.xml",
@@ -163,7 +153,7 @@
           "Kwic": "實相了最上乘玅性發光亘古圓明不昧法身無相寂滅所以不動道塲遊化諸國應剎塵於瞬息洞海嶽於毫端能使難思教海指掌而念念湛然無盡真宗目覩而心心契合弘張教網撈摝五性三乘頓赴玄機撥開千聖五眼所以隨處作主遇緣即宗全機收放又作麼生縱奪靈符佛祖印撲碎哪吒第一機。浙江杭州府臨安縣觀音禪寺語錄浙江杭州府臨安縣觀音禪寺語錄入院上堂云當軒按劍善舞者稀",
           "Curated": true,
           "MasterName": "Mingjue Cong",
-          "AttributionNote": "Source record (L/L158/L158n1652.xml). Recorded Sayings of Chan Master Mingjue Cong (明覺聰禪師語錄): Mingjue Cong owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (明覺聰禪師語錄): Mingjue Cong is the exact headword utterer; complete-turn review: own-record address says the teaching net suddenly reaches the dark pivot.",
           "ContextMasters": [
             {
               "MasterName": "Mingjue Cong",
@@ -180,7 +170,7 @@
           "Kwic": "「如何是人境兩不奪？」師云：「涇渭分清濁。」進云：「捏拳豎脊金剛漢，咬破鐵饅是丈夫。」師云：「雲自山起，風向洞出，不費些力，諸事具足。」乃云：「燕北江南景物充，玄機妙用聖凡同，不明的肯起壅滯，若了目前轉變通。綠水注江江有月，白雲歸洞洞無風，十方佛剎恒沙界，盡在山僧掌握中。」舉拂示眾，云：「會麼？若向者裏會得，百千三昧、無量",
           "Curated": true,
           "MasterName": "Konggu Daocheng",
-          "AttributionNote": "Source record (J/J39/J39nB471.xml). Recorded Sayings of Chan Master Daodeng of Konggu (空谷道澄禪師語錄): Konggu Daocheng owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (空谷道澄禪師語錄): Konggu Daocheng is the exact headword utterer; complete-turn review: own-record verse pairs the dark pivot and responsive functioning across sage and ordinary.",
           "ContextMasters": [
             {
               "MasterName": "Konggu Daocheng",
@@ -197,7 +187,7 @@
           "Kwic": "未達十聖難知。如何是此宗。師云。無孔鐵鎚當面擲。進云。嚇殺人。師云。嚇得一箇。進云。也知和尚慣恁麼。師云。儞又作麼生。僧云。鷂子過新羅。師云。自知較一半。乃云。玄機獨唱截斷眾流。擺撥不拘更無回互。直饒釋迦彌勒。不敢當頭著眼。倚天長劍凜凜神威。杲日當空澄澄光彩。無物不為妙用。無法不是真乘。控佛祖大機。廓人天正眼。當陽曉示。只",
           "Curated": true,
           "MasterName": "Yuanwu Keqin",
-          "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Yuanwu Keqin owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (圓悟佛果禪師語錄): Yuanwu Keqin is the exact headword utterer; complete-turn review: own-record line says the dark pivot is sung alone and cuts off the many streams.",
           "ContextMasters": [
             {
               "MasterName": "Yuanwu Keqin",
@@ -211,21 +201,11 @@
       "SourceTexts": [
         "J/J26/J26nB178.xml",
         "X/X80/X80n1565.xml",
-        "T/T51/T51n2076.xml",
-        "X/X78/X78n1556.xml",
-        "X/X81/X81n1568.xml",
         "L/L158/L158n1652.xml",
         "J/J39/J39nB471.xml",
         "T/T47/T47n1997.xml"
       ],
-      "RelatedMasters": [
-        "Feiyin Tongrong",
-        "Panshan Baoji",
-        "Fayan Wenyi",
-        "Mingjue Cong",
-        "Konggu Daocheng",
-        "Yuanwu Keqin"
-      ],
+      "RelatedMasters": [],
       "RelatedTerms": [
         "格外",
         "機",

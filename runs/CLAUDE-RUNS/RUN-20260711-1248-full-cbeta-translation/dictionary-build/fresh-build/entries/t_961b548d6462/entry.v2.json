@@ -15,7 +15,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "Primary temporal sense. Frozen-corpus concordance: 376 exact hits in 170 files representing 167 independent works; the distinct anaphoric compound meaning 'the preceding matter' is separated below.",
+      "Note": "One relational sense. Nominal 'the matter before words,' adverbial 'discern before words,' and contrast with 'after the phrase' do not denote different things. The entry reports the corpus's paired verdicts without deciding what lies before speech. Frozen-corpus concordance: 376 exact hits in 170 storage files representing 167 independent works.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -23,11 +23,11 @@
           "ToLb": "0003b20",
           "Kwic": "言前薦得，孤負平生。句後投機，全乖道體。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Xinghua Cunjiang owns the exact clause in the complete case.",
-          "MasterName": "Xinghua Cunjiang",
+          "AttributionNote": "五燈全書(第34卷-第120卷). Exact headword actor: Huiyin Yining. The complete case assigns the headword-bearing wording to Huiyin Yining.",
+          "MasterName": "Huiyin Yining",
           "ContextMasters": [
             {
-              "MasterName": "Xinghua Cunjiang",
+              "MasterName": "Huiyin Yining",
               "Roles": [
                 "utterer"
               ]
@@ -40,11 +40,21 @@
           "ToLb": "0670b17",
           "Kwic": "言前薦得辜負平生句後投機殊乖道體離此二途請師方便",
           "Curated": true,
-          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): The monk is unnamed: an unnamed monk states the contrast and asks Shoushan Xingnian for a device.",
+          "AttributionNote": "古尊宿語錄. Exact headword actor: the unnamed monk. The complete exchange assigns the headword-bearing request to the monk; Shoushan raises the whisk only in response.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "unnamed monk",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -54,18 +64,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex hard-w2-b1",
-            "ReviewedUtc": "2026-07-14T07:15:00Z",
-            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed monk."
-          },
-          "ContextMasters": [
-            {
-              "MasterName": "Shoushan Xingnian",
-              "Roles": [
-                "respondent"
-              ]
-            }
-          ]
+            "GrammarEvidence": "The complete exchange assigns the headword-bearing request to the monk; Shoushan raises the whisk only in response.",
+            "ReviewedBy": "Codex live backlog literal full-case repair",
+            "ReviewedUtc": "2026-07-16T00:27:06.526296Z"
+          }
         },
         {
           "RelPath": "T/T47/T47n1998A.xml",
@@ -73,7 +75,7 @@
           "ToLb": "0848c19",
           "Kwic": "設使言前薦得。猶是滯殼迷封。縱饒句下精通。未免觸塗狂見。",
           "Curated": true,
-          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Fengxue Yanzhao owns the exact clause in the complete case.",
+          "AttributionNote": "大慧普覺禪師語錄. Exact headword actor: Fengxue Yanzhao. The complete case assigns the headword-bearing wording to Fengxue Yanzhao.",
           "MasterName": "Fengxue Yanzhao",
           "ContextMasters": [
             {
@@ -92,137 +94,12 @@
           ]
         },
         {
-          "RelPath": "X/X78/X78n1556.xml",
-          "FromLb": "0641a15",
-          "ToLb": "0641a16",
-          "Kwic": "直指性宗，單傳心印，可得於眉睫，可薦於言前，",
-          "Curated": true,
-          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Song Huizong owns the exact clause in the complete case.",
-          "MasterName": null,
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "direct speech",
-            "ActorLabel": "Song Huizong",
-            "ActorRole": "interlocutor",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "X/X78/X78n1556.xml 0641a15 is an imperial preface by Song Huizong, not a Chan-master utterance.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-          }
-        },
-        {
-          "RelPath": "X/X79/X79n1557.xml",
-          "FromLb": "0102a14",
-          "ToLb": "0102a16",
-          "CharOffset": null,
-          "Kwic": "示眾云：大凡參學眼目，直須臨機大用現前，勿自拘於小節。設使言前薦得，猶是滯殻迷封；句下精通，未免觸途狂見。",
-          "MasterName": "Fengxue Yanzhao",
-          "ContextMasters": [
-            {
-              "MasterName": "Fengxue Yanzhao",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "ApproxDate": null,
-          "Curated": true,
-          "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp (聯燈會要): Fengxue Yanzhao owns the exact clause in the complete case."
-        },
-        {
-          "RelPath": "X/X69/X69n1359.xml",
-          "FromLb": "0522c05",
-          "ToLb": "0522c07",
-          "Kwic": "：如何是殺人刀？僧云：已在言前。師云：何曾道著？師乃云：古來為法老尊宿，荷眾曾無有倦時，況是年來衰落甚，動為多與行相違？應須痛",
-          "Curated": true,
-          "AttributionNote": "Source record (X/X69/X69n1359.xml). Recorded Sayings of Chan Master Ying’an Tanhua (應菴曇華禪師語錄): The monk is unnamed: an unnamed monk replies ‘already before the words’; Ying’an Tanhua then challenges that reply.",
-          "ContextMasters": [
-            {
-              "MasterName": "Ying'an Tanhua",
-              "Roles": [
-                "respondent",
-                "record-owner"
-              ]
-            }
-          ],
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "unnamed monk",
-            "ActorRole": "respondent",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "In the complete exchange, 僧云 introduces the headword-bearing reply 已在言前; 師云 introduces Ying'an Tanhua's following challenge.",
-            "ReviewedBy": "Codex Lane-A current52 fresh repair",
-            "ReviewedUtc": "2026-07-16T13:03:14.793479+00:00"
-          }
-        }
-      ],
-      "SourceTexts": [
-        "X/X82/X82n1571.xml",
-        "C/C077/C077n1710.xml",
-        "T/T47/T47n1998A.xml",
-        "X/X78/X78n1556.xml",
-        "X/X79/X79n1557.xml",
-        "X/X69/X69n1359.xml"
-      ],
-      "RelatedMasters": [
-        "Xinghua Cunjiang",
-        "Shoushan Xingnian",
-        "Fengxue Yanzhao",
-        "Dahui Zonggao",
-        "Ying'an Tanhua"
-      ],
-      "RelatedTerms": [
-        "句後",
-        "句下",
-        "薦得",
-        "投機",
-        "拂子"
-      ],
-      "SearchAliases": [
-        "before the words",
-        "ahead of speech",
-        "before speech"
-      ],
-      "Explanation": "The temporal phrase places discernment before words, or ahead of speech, in a recurrent Chan contrast with responding after a phrase. Its visible deployment is the paired formula 'discern before the words' and 'accord after the phrase.' Multiple records immediately refuse both positions: discerning before the words fails one's whole life, while according after the phrase departs from the body of the Way; Yuanwu similarly quotes discernment before words as still confined by a shell. A preface also says the mind seal may be discerned before words. These passages establish a stock temporal axis for examining an answer's relation to spoken words, not a named realm.",
-      "ClaimAnchors": []
-    },
-    {
-      "SenseKey": null,
-      "MasterName": null,
-      "PreferredTarget": "the preceding matter",
-      "AlternateTargets": [
-        "the matter just mentioned"
-      ],
-      "SearchAliases": [
-        "aforementioned matter"
-      ],
-      "Status": "allowed",
-      "Validation": "provisional",
-      "Note": "A distinct referent attested in the complete Fengxue narrative; kept provisional because the selected exact evidence supplies one independent work.",
-      "Occurrences": [
-        {
           "RelPath": "X/X78/X78n1553.xml",
           "FromLb": "0488a03",
-          "ToLb": "0488a04",
-          "Kwic": "風穴下來言前事，舉似師，師云：維那！著什麼來由勸者漢？",
+          "ToLb": "0488a03",
+          "Kwic": "風穴下來言前事",
           "Curated": true,
-          "AttributionNote": "Source record (X/X78/X78n1553.xml). Tiansheng Expanded Lamp Record (天聖廣燈錄): Editorial or procedural text: lamp compiler's narrative narrates the exact clause in the complete case.",
+          "AttributionNote": "天聖廣燈錄. Exact headword actor: lamp compiler's narrative. The headword occurs in third-person transmission narrative rather than a quoted turn.",
           "ActorAttribution": {
             "Status": "impersonal",
             "Kind": "compiler narrative",
@@ -246,18 +123,83 @@
               ]
             }
           ]
+        },
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0641a15",
+          "ToLb": "0641a16",
+          "Kwic": "直指性宗，單傳心印，可得於眉睫，可薦於言前，",
+          "Curated": true,
+          "AttributionNote": "建中靖國續燈錄. Exact headword actor: Song Huizong. The complete case assigns the headword-bearing wording to Song Huizong.",
+          "MasterName": "Song Huizong",
+          "ContextMasters": [
+            {
+              "MasterName": "Song Huizong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0102a14",
+          "ToLb": "0102a16",
+          "CharOffset": null,
+          "Kwic": "示眾云：大凡參學眼目，直須臨機大用現前，勿自拘於小節。設使言前薦得，猶是滯殻迷封；句下精通，未免觸途狂見。",
+          "MasterName": "Fengxue Yanzhao",
+          "ContextMasters": [
+            {
+              "MasterName": "Fengxue Yanzhao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "ApproxDate": null,
+          "Curated": true,
+          "AttributionNote": "聯燈會要. Exact headword actor: Fengxue Yanzhao. The complete case assigns the headword-bearing wording to Fengxue Yanzhao."
+        },
+        {
+          "RelPath": "X/X69/X69n1359.xml",
+          "FromLb": "0522c05",
+          "ToLb": "0522c07",
+          "Kwic": "：如何是殺人刀？僧云：已在言前。師云：何曾道著？師乃云：古來為法老尊宿，荷眾曾無有倦時，況是年來衰落甚，動為多與行相違？應須痛",
+          "Curated": true,
+          "AttributionNote": "應菴曇華禪師語錄. Exact headword actor: Ying'an Tanhua. The complete case assigns the headword-bearing wording to Ying'an Tanhua.",
+          "MasterName": "Ying'an Tanhua",
+          "ContextMasters": [
+            {
+              "MasterName": "Ying'an Tanhua",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         }
       ],
-      "ClaimAnchors": [],
       "SourceTexts": [
-        "X/X78/X78n1553.xml"
+        "X/X82/X82n1571.xml",
+        "C/C077/C077n1710.xml",
+        "T/T47/T47n1998A.xml",
+        "X/X78/X78n1553.xml",
+        "X/X78/X78n1556.xml"
       ],
-      "RelatedMasters": [
-        "Fengxue Yanzhao",
-        "Shoukuo Shangzuo"
+      "RelatedMasters": [],
+      "RelatedTerms": [
+        "句後",
+        "句下",
+        "薦得",
+        "投機",
+        "拂子"
       ],
-      "RelatedTerms": [],
-      "Explanation": "In the compound 'the preceding matter' (言前事), the phrase points back to the affair just related. Fengxue comes down and reports it to the unnamed compiler's section subject. This anaphoric referent is not the temporal 'before words' of the primary formula."
+      "SearchAliases": [
+        "before the words",
+        "ahead of speech",
+        "before speech"
+      ],
+      "Explanation": "before words or ahead of speech. Its most visible Chan deployment is the paired formula 'discern before the words' and 'accord after the phrase.' Multiple records immediately refuse both positions: discerning before the words fails one's whole life, while according after the phrase departs from the body of the Way; Yuanwu similarly quotes discernment before words as still confined by a shell. The corpus also uses the phrase nominally for 'the matter before the words' and in a preface says the mind seal may be discerned before words. These are grammatical forms of the same temporal-relational phrase. They show a stock Chan axis for examining an answer's relation to spoken words, not a named realm or separate object.",
+      "ClaimAnchors": []
     }
   ]
 }

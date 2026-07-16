@@ -3,7 +3,6 @@
   "SourceTerm": "芥子",
   "CreatedBy": "Codex fresh-build lane C",
   "WrittenUtc": null,
-  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "Senses": [
     {
       "SenseKey": null,
@@ -14,16 +13,17 @@
         "a mustard seed’s measure"
       ],
       "Status": "preferred",
+      "Explanation": "The tiny mustard seed is the records’ scale-comparison object, repeatedly paired with reversals in which Mount Sumeru is contained within it. The graphs name a mustard seed. The allowlisted corpus has 442 hits in 146 texts. Its small size supplies the comparison ‘mustard-seed-sized’ (芥子許, 67 hits in 50 texts), as when a named record subject speaks of a doubt as small as a mustard seed. The corpus also repeatedly pairs the seed with Mount Sumeru in both directions: ‘Sumeru contains a mustard seed’ (須彌納芥子, 46 hits in 30 texts) and ‘a mustard seed contains Sumeru’ (芥子納須彌, 59 hits in 44 texts). In the Guizong encounter, Li Bo accepts the first statement but asks whether the second is false; Guizong asks where Li Bo’s ten thousand books are held in a body the size of a coconut. In another exchange, the two directions receive the one-word answers ‘easy’ and ‘difficult.’ A later address records mountains, earth, trees, monastics, laypeople, sages, and ordinary people placed inside a mustard seed without the seed becoming narrow. These are the corpus’s recorded scale constructions; the entry does not turn them into a symbolic meaning for the seed.",
       "Validation": "multi-source",
       "Note": "All required definition formulas were searched. One ‘What is the mustard seed?’ question is included because its answer, ‘It blocks your eye,’ is an attested direct response, not adopted here as a universal lexical equation. Deployment inventory includes the small-measure construction, both Sumeru constructions, question-and-answer use, and a later expanded list of what is placed inside the seed.",
       "Occurrences": [
         {
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0076a21",
-          "ToLb": "0076a23",
-          "Kwic": "教中所言。須彌納芥子。㴾即不疑。芥子納須彌。莫是妄譚否。師曰。人傳使君讀萬卷書籍。還是否。曰。然。師曰。摩頂至踵如椰子大。萬卷書向何處著。",
+          "ToLb": "0076a22",
+          "Kwic": "教中所言。須彌納芥子。㴾即不疑。芥子納須彌。莫是妄譚否。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Li Bo owns both exact mustard-seed tokens in his question; Guizong Zhichang then asks whether Li Bo has read ten thousand books and where they fit in his coconut-sized body.",
+          "AttributionNote": "Source text (五燈會元). The official Li Bo is the exact identified non-master questioner discussing a mustard seed containing Mount Sumeru.",
           "ContextMasters": [
             {
               "MasterName": "Guizong Zhichang",
@@ -40,11 +40,6 @@
             "ReviewedBy": "Codex lane-C second independent semantic repair",
             "ReviewedUtc": "2026-07-15T01:15:00Z",
             "GrammarEvidence": "The line is Li Bo’s direct question: he accepts Sumeru containing a mustard seed and asks whether a mustard seed containing Sumeru is false; Guizong Zhichang answers immediately afterward."
-          },
-          "HeadwordSpanReview": {
-            "Count": 2,
-            "Disposition": "single-actor-single-turn-repetition",
-            "GrammarEvidence": "Li Bo repeats 芥子 in the paired Sumeru/mustard-seed inversion within his single question."
           }
         },
         {
@@ -53,7 +48,7 @@
           "ToLb": "0181b01",
           "Kwic": "曰。如何是芥子。師曰。塞將汝眼。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): The actor is unnamed: an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (the Compendium of the Five Lamps), Longji Shaoxiu section. The exact headword-bearing speaker is an unnamed monk who asks, 'What is the mustard seed?'; Longji answers that it blocks the monk's eye. All six rungs leave the monk unnamed.",
+          "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Longji Shaoxiu section. The exact headword-bearing speaker is an unnamed monk who asks, 'What is the mustard seed?'; Longji answers that it blocks the monk's eye. All six rungs leave the monk unnamed.",
           "ContextMasters": [
             {
               "MasterName": "Longji Shaoxiu",
@@ -76,8 +71,7 @@
               "parallel-passage"
             ],
             "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
-            "ReviewedUtc": "2026-07-14T00:00:00Z",
-            "GrammarEvidence": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Longji Shaoxiu section. The exact headword-bearing speaker is an unnamed monk who asks, 'What is the mustard seed?'; Longji answers that it blocks the monk's eye. All six rungs leave the monk unnamed."
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
           }
         },
         {
@@ -86,7 +80,7 @@
           "ToLb": "0063b06",
           "Kwic": "若有一疑如芥子許，是汝真善知識。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Yuantong Daomin section. Yuantong Daomin is the exact hall speaker who says that a doubt as small as a mustard seed is the listener's true good knowing adviser.",
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). (五燈全書)(第34卷-第120卷). Complete Book of the Five Lamps (五燈全書), Yuantong Daomin section. Yuantong Daomin is the exact hall speaker who says that a doubt as small as a mustard seed is the listener's true good knowing adviser.",
           "MasterName": "Yuantong Daomin",
           "ContextMasters": [
             {
@@ -103,7 +97,7 @@
           "ToLb": "0706a15",
           "Kwic": "將山河大地、艸木叢林、若僧若俗、若聖若凡納入芥子，而芥子不見其窄。",
           "Curated": true,
-          "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng (天岸昇禪師語錄): Tian'an Sheng is the exact speaker: he says that the previous year he put mountains, rivers, the whole earth, plants, monastics and laypeople, sages and ordinary people into a mustard seed without narrowing it.",
+          "AttributionNote": "(天岸昇禪師語錄), end-of-winter informal address. Tian'an Sheng is the exact speaker: he says that the previous year he put mountains, rivers, the whole earth, plants, monastics and laypeople, sages and ordinary people into a mustard seed without narrowing it.",
           "MasterName": "Tian'an Sheng",
           "ContextMasters": [
             {
@@ -112,12 +106,7 @@
                 "utterer"
               ]
             }
-          ],
-          "HeadwordSpanReview": {
-            "Count": 2,
-            "Disposition": "single-actor-single-turn-repetition",
-            "GrammarEvidence": "Tian'an Sheng repeats 芥子 as container and then as the unchanged subject within one uninterrupted sentence."
-          }
+          ]
         },
         {
           "RelPath": "X/X68/X68n1319.xml",
@@ -125,8 +114,15 @@
           "ToLb": "0562b20",
           "Kwic": "問：如何是芥子納須彌？王云：易。問：如何是須彌納芥子？王云：難。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): The questioner addressing the emperor is unnamed: An unnamed questioner utters both mustard-seed questions; the Yongzheng Emperor supplies the paired answers.",
-          "ContextMasters": [],
+          "AttributionNote": "Source text (御選語錄). An unnamed questioner utters both mustard-seed questions; the Yongzheng Emperor supplies the paired answers.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongzheng Emperor",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "court interlocutor",
@@ -141,13 +137,7 @@
               "book-title",
               "tei-header",
               "parallel-passage"
-            ],
-            "GrammarEvidence": "Source text (御選語錄). An unnamed questioner utters both mustard-seed questions; the Yongzheng Emperor supplies the paired answers."
-          },
-          "HeadwordSpanReview": {
-            "Count": 2,
-            "Disposition": "single-actor-single-turn-repetition",
-            "GrammarEvidence": "The unnamed questioner asks two paired mustard-seed/Sumeru questions in one continuous exchange turn; both headword tokens are theirs."
+            ]
           }
         },
         {
@@ -156,28 +146,16 @@
           "ToLb": "0747c25",
           "Kwic": "須彌芥子父。芥子須彌爺。山水坦然平。敲氷來煮茶。",
           "Curated": true,
-          "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Fu Dashi is the exact actor: the quoted Fu Dashi verse says (須彌芥子父)，(芥子須彌爺).",
+          "AttributionNote": "(圓悟佛果禪師語錄). Fu Dashi is the exact actor: the quoted Fu Dashi verse says (須彌芥子父)，(芥子須彌爺).",
           "ContextMasters": [
             {
               "MasterName": "Fu Dashi",
               "Roles": [
                 "utterer"
               ]
-            },
-            {
-              "MasterName": "Yuanwu Keqin",
-              "Roles": [
-                "later-quoter",
-                "record-owner"
-              ]
             }
           ],
-          "MasterName": "Fu Dashi",
-          "HeadwordSpanReview": {
-            "Count": 2,
-            "Disposition": "single-actor-single-turn-repetition",
-            "GrammarEvidence": "Fu Dashi repeats 芥子 in the two balanced halves of one verse line."
-          }
+          "MasterName": "Fu Dashi"
         },
         {
           "RelPath": "T/T48/T48n2016.xml",
@@ -193,7 +171,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yongming Yanshou’s continuous exposition: Yongming uses the mustard seed as the scale term in a comparison.",
+          "AttributionNote": "Source-Mirror Record (宗鏡錄), in Yongming Yanshou’s continuous exposition: Yongming uses the mustard seed as the scale term in a comparison.",
           "MasterName": "Yongming Yanshou"
         }
       ],
@@ -205,15 +183,7 @@
         "T/T47/T47n1997.xml",
         "T/T48/T48n2016.xml"
       ],
-      "RelatedMasters": [
-        "Guizong Zhichang",
-        "Longji Shaoxiu",
-        "Yuantong Daomin",
-        "Tian'an Sheng",
-        "Fu Dashi",
-        "Yongming Yanshou",
-        "Yuanwu Keqin"
-      ],
+      "RelatedMasters": [],
       "RelatedTerms": [
         "須彌",
         "芥子許",
@@ -224,9 +194,8 @@
         "tiny mustard seed",
         "Sumeru in a mustard seed",
         "mustard-seed comparison"
-      ],
-      "ClaimAnchors": [],
-      "Explanation": "The tiny mustard seed is the records’ scale-comparison object, repeatedly paired with reversals in which Mount Sumeru is contained within it. The graphs name a mustard seed. The allowlisted corpus has 507 hits in 163 files representing 160 independent works. Its small size supplies the comparison ‘mustard-seed-sized’ (芥子許, 76 hits in 54 files representing 54 independent works), as when a named record subject speaks of a doubt as small as a mustard seed. The corpus also repeatedly pairs the seed with Mount Sumeru in both directions: ‘Sumeru contains a mustard seed’ (須彌納芥子, 57 hits in 40 files representing 38 works) and ‘a mustard seed contains Sumeru’ (芥子納須彌, 71 hits in 56 files representing 54 works). In the Guizong encounter, Li Bo accepts the first statement but asks whether the second is false; Guizong asks where Li Bo’s ten thousand books are held in a body the size of a coconut. In another exchange, the two directions receive the one-word answers ‘easy’ and ‘difficult.’ A later address records mountains, earth, trees, monastics, laypeople, sages, and ordinary people placed inside a mustard seed without the seed becoming narrow. These are the corpus’s recorded scale constructions; the entry does not turn them into a symbolic meaning for the seed."
+      ]
     }
-  ]
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
 }

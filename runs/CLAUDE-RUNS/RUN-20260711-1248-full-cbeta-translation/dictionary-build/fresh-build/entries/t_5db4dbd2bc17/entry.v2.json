@@ -2,8 +2,7 @@
   "Id": "t_5db4dbd2bc17",
   "SourceTerm": "寶鏡三昧",
   "CreatedBy": "Codex fresh-build lane C",
-  "WrittenUtc": "2026-07-16T12:23:20.487102+00:00",
-  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "WrittenUtc": null,
   "Senses": [
     {
       "SenseKey": null,
@@ -14,8 +13,9 @@
         "Song of the Complete Command of the Precious Mirror"
       ],
       "Status": "preferred",
+      "Explanation": "In the records this is a transmitted Caodong verse and named textual object, described as a complete command and passed from teacher to successor. In the Chan record this is not a generic state: it is the title and transmitted Caodong text associated with Dongshan Liangjie. Dongshan tells Caoshan that he personally received the Complete Command of the Precious Mirror from his former teacher Yunyan, that its matter exhausts the essential point, and that he now entrusts it to Caoshan (吾在雲巖先師處親印寶鏡三昧，事窮的要，今付于汝). A later commentary consequently calls it a book transmitted privately by Dongshan to Caoshan (寶鏡三昧一書，洞山室中密授曹山者也). The text itself opens, “This such thing was secretly entrusted by buddhas and ancestors; you have now obtained it, so guard it well” (如是之法，佛祖密付；汝今得之，宜善保護), then gives the paired images “a silver bowl filled with snow; the bright moon hiding a heron” (銀盌盛雪，明月藏鷺) and says that although their kinds are not the same, mixed together their places are known (類之弗齊，混則知處). Across later Caodong records its title is joined to the Five Ranks, upright and crooked, ruler and minister, and the paired wording “he is not me; I am precisely he” (‘he is not me; I am precisely he’). A direct question, “What is the Complete Command of the Precious Mirror?” receives, “Do not reflect idle light and shadows; return his old face” (不照閒光影，還他舊面皮). These are the transmitted title, contents, relations, and recorded answer; the corpus supplies no single prose substitution for the whole text.",
       "Validation": "multi-source",
-      "Note": "#0g deviation: the phrase is deployed as the proper name of a Caodong transmission text and house inheritance, not merely as the ordinary image of a valuable mirror or the standalone word for complete command. Attribution of authorship is not fully uniform: Dongshan's record says he received it from Yunyan and entrusted it to Caoshan; later records also call it Dongshan's text or report older attributions. The entry therefore reports the transmission claims without deciding authorship. Allowlisted count: 117 hits in 49 texts; the title form “Song of the Complete Command of the Precious Mirror” one text.",
+      "Note": "#0g deviation: the phrase is deployed as the proper name of a Caodong transmission text and house inheritance, not merely as the ordinary image of a valuable mirror or the standalone word for complete command. Attribution of authorship is not fully uniform: Dongshan's record says he received it from Yunyan and entrusted it to Caoshan; later records also call it Dongshan's text or report older attributions. The entry therefore reports the transmission claims without deciding authorship. Allowlisted count: 117 hits in 49 texts; the title form “Song of the Complete Command of the Precious Mirror” occurs 3 times in one text.",
       "Occurrences": [
         {
           "RelPath": "T/T47/T47n1986A.xml",
@@ -24,7 +24,7 @@
           "Kwic": "吾在雲巖先師處親印寶鏡三昧。事窮的要。今付于汝。",
           "MasterName": "Dongshan Liangjie",
           "Curated": true,
-          "AttributionNote": "Source record (T/T47/T47n1986A.xml). Recorded Sayings of Chan Master Wuben of Dongshan, Yunzhou (筠州洞山悟本禪師語錄): Dongshan Liangjie owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (筠州洞山悟本禪師語錄). Dongshan tells Caoshan: “I personally received the Complete Command of the Precious Mirror from my former teacher Yunyan. Its matter exhausts the essential point. I now entrust it to you.” The exact headword-bearing actor is Dongshan Liangjie.",
           "ContextMasters": [
             {
               "MasterName": "Dongshan Liangjie",
@@ -61,7 +61,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source record (X/X72/X72n1437.xml). Expanded Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄): Yongjue Yuanxian owns the exact headword-bearing wording in the complete source unit."
+          "AttributionNote": "Extensive Record of Chan Master Yongjue Yuanxian (永覺元賢禪師廣錄), Yongjue Yuanxian's commentary on the Precious Mirror Complete Command (寶鏡三昧註). Yongjue Yuanxian identifies it as the book privately transmitted by Dongshan Liangjie to Caoshan Benji; Dongshan and Caoshan are persons discussed, not the expository speaker."
         },
         {
           "RelPath": "X/X72/X72n1442.xml",
@@ -69,7 +69,7 @@
           "ToLb": "0727c17",
           "Kwic": "洞山价禪師寶鏡三昧如是之法，佛祖密付。汝今得之，宜善保護。銀盌盛雪，明月藏鷺。類之弗齊，混則知處。",
           "Curated": true,
-          "AttributionNote": "Source record (X/X72/X72n1442.xml). Drafts from Chan Master Weilin’s Traveling Hermitage (為霖禪師旅泊菴稿): Editorial or procedural text contains the headword; no human actor utters it.",
+          "AttributionNote": "Source text (為霖禪師旅泊菴稿). The occurrence is title-and-text metadata; Dongshan Liangjie is retained only as the section subject and verse author. Exact source voice: the document heading and verse text.",
           "ContextMasters": [
             {
               "MasterName": "Dongshan Liangjie",
@@ -95,7 +95,7 @@
           "ToLb": "0464b18",
           "Kwic": "僧：「如何是寶鏡三昧？」師：「不照閒光影，還他舊面皮。」",
           "Curated": true,
-          "AttributionNote": "Source record (J/J27/J27nB198.xml). Recorded Sayings of Chan Master Xueguan (雪關禪師語錄): an unnamed questioning monk owns the exact headword-bearing turn; source and actor are stated once.",
+          "AttributionNote": "(雪關禪師語錄), concise public exchange. The exact headword-bearing speaker is an unnamed questioning monk: he asks what the precious-mirror concentration is, and Xueguan Zhiyin answers that it does not reflect idle lights and shadows but returns the old face. The six-rung review found no personal name for this monk.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "person",
@@ -110,12 +110,11 @@
               "parallel-passage"
             ],
             "ReviewedBy": "Codex hard-w1-b1",
-            "ReviewedUtc": "2026-07-14T00:00:00Z",
-            "GrammarEvidence": "(雪關禪師語錄), concise public exchange. The exact headword-bearing speaker is an unnamed questioning monk: he asks what the precious-mirror concentration is, and Xueguan Zhiyin answers that it does not reflect idle lights and shadows but returns the old face. The six-rung review found no personal name for this monk."
+            "ReviewedUtc": "2026-07-14T00:00:00Z"
           },
           "ContextMasters": [
             {
-              "MasterName": "Yingshan Zhiyin",
+              "MasterName": "Xueguan Zhiyin",
               "Roles": [
                 "respondent"
               ]
@@ -136,7 +135,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source record (J/J33/J33nB294.xml). Recorded Sayings of Chan Master Liangting Ting of Yunxi (雲溪俍亭挺禪師語錄): Yunxi Langting owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). The continuous direct discourse in Yunxi Langting’s own record makes him the speaker.",
           "MasterName": "Yunxi Langting"
         },
         {
@@ -153,7 +152,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie (天界覺浪盛禪師全錄): Juelang Daosheng owns the exact headword-bearing wording in the complete source unit.",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄). The continuous hall discourse in Juelang Daosheng’s collected record makes him the speaker.",
           "MasterName": "Juelang Daosheng"
         }
       ],
@@ -162,16 +161,13 @@
         "X/X72/X72n1437.xml",
         "X/X72/X72n1442.xml",
         "J/J27/J27nB198.xml",
+        "J/J25/J25nB173.xml",
         "J/J33/J33nB294.xml",
         "J/J34/J34nB311.xml"
       ],
       "RelatedMasters": [
         "Dongshan Liangjie",
-        "Caoshan Benji",
-        "Yongjue Yuanxian",
-        "Yingshan Zhiyin",
-        "Yunxi Langting",
-        "Juelang Daosheng"
+        "Caoshan Benji"
       ],
       "RelatedTerms": [
         "五位",
@@ -185,9 +181,8 @@
         "Precious-Mirror Complete Command",
         "precious mirror verse",
         "precious mirror song"
-      ],
-      "Explanation": "In the records this is a transmitted Caodong verse and named textual object, described as a complete command and passed from teacher to successor. In the Chan record this is not a generic state: it is the title and transmitted Caodong text associated with Dongshan Liangjie. Dongshan tells Caoshan that he personally received the Complete Command of the Precious Mirror from his former teacher Yunyan, that its matter exhausts the essential point, and that he now entrusts it to Caoshan (吾在雲巖先師處親印寶鏡三昧，事窮的要，今付于汝). A later commentary consequently calls it a book transmitted privately by Dongshan to Caoshan (寶鏡三昧一書，洞山室中密授曹山者也). The text itself opens, “This such thing was secretly entrusted by buddhas and ancestors; you have now obtained it, so guard it well” (如是之法，佛祖密付；汝今得之，宜善保護), then gives the paired images “a silver bowl filled with snow; the bright moon hiding a heron” (銀盌盛雪，明月藏鷺) and says that although their kinds are not the same, mixed together their places are known (類之弗齊，混則知處). Across later Caodong records its title is joined to the Five Ranks, upright and crooked, ruler and minister, and the paired wording “he is not me; I am precisely he” (‘he is not me; I am precisely he’). A direct question, “What is the Complete Command of the Precious Mirror?” receives, “Do not reflect idle light and shadows; return his old face” (不照閒光影，還他舊面皮). These are the transmitted title, contents, relations, and recorded answer; the corpus supplies no single prose substitution for the whole text.",
-      "ClaimAnchors": []
+      ]
     }
-  ]
+  ],
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
 }

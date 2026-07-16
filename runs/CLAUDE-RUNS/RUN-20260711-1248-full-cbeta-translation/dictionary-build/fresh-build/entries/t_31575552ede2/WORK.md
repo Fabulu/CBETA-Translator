@@ -38,14 +38,3 @@
 
 ## Independent semantic REVISE repair
 Replaced systemic process prose with the term-specific historical deployment account, removed stale numeric and unanchored Chinese prose, and applied the verdict file’s exact-ID instructions worksheet-first.
-
-
-## Whole-tree public/depth repair — 2026-07-16
-
-feedback-inference-verdict: licensed — the retained target(s), stubborn emptiness, state the smallest common conclusion supported by the exact cases below.
-feedback-observations: s1-o1 (Caoshan Benji) preserves “學者先須識自宗。莫將真際雜頑空。”; s1-o2 (Hongzhi Zhengjue) preserves “莫認頑空便為自己，洞山五位曲為今時，不究根源妄生階塹。”; s1-o3 (Cuiyan Kezhen) preserves “聲聞人見拄杖，認得箇頑空，撥無拄杖”.
-feedback-falsification-searches: exact headword, longer compounds, ordinary/literal collisions, titles and catalogue strings, contradictory predicates, alternate actors, and different-referent uses were compared in the frozen corpus.
-feedback-counterexamples: #0g deviation: the compound is a Chan roster-word for an explicitly rejected blank, inert, object-denying identification. It is not defined here by meanings outside these recorded commands and contrasts; its sense comes from the record's commands, predicates, and contrasts. Headword count: in . Related rejection terms include “cut-off emptiness” and “one-sided emptiness” , but the corpus does not make them automatic 
-feedback-scope: the frozen 494-file / 487-work Chan corpus; claims are limited to the senses and exact lexical uses stored in this entry.
-lookup-probes: stubborn emptiness; insensible emptiness; blank emptiness.
-opening-interpretation-verdict: licensed — the first sentence identifies stubborn emptiness before evidence history, and the stored cases make that statement falsifiable.

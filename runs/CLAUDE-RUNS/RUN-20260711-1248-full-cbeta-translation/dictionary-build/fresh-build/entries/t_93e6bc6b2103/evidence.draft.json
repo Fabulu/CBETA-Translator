@@ -23,7 +23,7 @@
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "The stated direction or object is translated in context: “the assembly” (大眾), “left and right” (左右), or “east and west” (東西).",
+        "Note": "The stated direction or object is translated in context: “the assembly” (大眾), “left and right” (左右), or “east and west” (東西). Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works. Frozen-corpus concordance: 1266 exact hits in 263 storage files representing 259 independent works.",
         "Occurrences": [
           {
             "RelPath": "X/X80/X80n1565.xml",
@@ -31,26 +31,105 @@
             "ToLb": "0061b14",
             "Kwic": "帝又問。師都不視之。曰。朕是大唐天子。師何以殊不顧視。師曰。還見虗空麼。",
             "Curated": true,
-            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Emperor Suzong owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
+            "AttributionNote": "Source text (五燈會元). Emperor Suzong owns the exact clause in the complete case.",
+            "MasterName": "Emperor Suzong",
             "ContextMasters": [
               {
                 "MasterName": "Nanyang Huizhong",
                 "Roles": [
                   "respondent"
                 ]
+              },
+              {
+                "MasterName": "Emperor Suzong",
+                "Roles": [
+                  "utterer"
+                ]
               }
             ],
             "DraftActorProof": {
               "ExactHeadwordClause": "帝又問。師都不視之。曰。朕是大唐天子。師何以殊不顧視。師曰。還見虗空麼。",
               "SpeechFrame": "The Compendium of the Five Lamps (五燈會元), Nanyang Huizhong section. Emperor Suzong is the exact speaker who complains that Nanyang Huizhong does not look at him; Nanyang answers by asking whether empty space blinks at the emperor.",
-              "FullCaseDecision": "The Compendium of the Five Lamps (五燈會元), Nanyang Huizhong section. Emperor Suzong is the exact speaker who complains that Nanyang Huizhong does not look at him; Nanyang answers by asking whether empty space blinks at the emperor.",
-              "GrammaticalSubject": "Emperor Suzong"
+              "FullCaseDecision": "The Compendium of the Five Lamps (五燈會元), Nanyang Huizhong section. Emperor Suzong is the exact speaker who complains that Nanyang Huizhong does not look at him; Nanyang answers by asking whether empty space blinks at the emperor."
+            }
+          },
+          {
+            "RelPath": "X/X78/X78n1556.xml",
+            "FromLb": "0653a19",
+            "ToLb": "0653a20",
+            "Kwic": "開堂日，於法座前顧視大眾，乃云：若論本分相見，不必高陞法座。",
+            "Curated": true,
+            "AttributionNote": "Source text (建中靖國續燈錄). Xuedou Chongxian owns the exact clause in the complete case.",
+            "MasterName": "Xuedou Chongxian",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "開堂日，於法座前顧視大眾，乃云：若論本分相見，不必高陞法座。",
+              "SpeechFrame": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Xuedou Chongxian section. Xuedou Chongxian is the exact actor who looks over the assembly before speaking at the opening of the hall.",
+              "FullCaseDecision": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Xuedou Chongxian section. Xuedou Chongxian is the exact actor who looks over the assembly before speaking at the opening of the hall."
             },
+            "ContextMasters": [
+              {
+                "MasterName": "Xuedou Chongxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X78/X78n1556.xml",
+            "FromLb": "0655c15",
+            "ToLb": "0655c16",
+            "Kwic": "師顧視大眾，喝一喝，云：諸禪德！莫是賓主歷然麼？",
+            "Curated": true,
+            "AttributionNote": "Source text (建中靖國續燈錄). Yungai Zhiyong owns the exact clause in the complete case.",
+            "MasterName": "Yungai Zhiyong",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師顧視大眾，喝一喝，云：諸禪德！莫是賓主歷然麼？",
+              "SpeechFrame": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Yungai Zhiyong section. Yungai Zhiyong is the exact actor who looks over the assembly, shouts, and asks whether host and guest are distinct.",
+              "FullCaseDecision": "The Jianzhong Jingguo Continuation of the Lamp Record (建中靖國續燈錄), Yungai Zhiyong section. Yungai Zhiyong is the exact actor who looks over the assembly, shouts, and asks whether host and guest are distinct."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yungai Zhiyong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0086a09",
+            "ToLb": "0086a10",
+            "Kwic": "師乃顧視。仰曰。若恁麼。與哭何異。師便休。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈會元). Mazu Daoyi owns the exact clause in the complete case.",
+            "MasterName": "Mazu Daoyi",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師乃顧視。仰曰。若恁麼。與哭何異。師便休。",
+              "SpeechFrame": "The Compendium of the Five Lamps (五燈會元), Mazu Daoyi section. Mazu Daoyi is the exact actor who looks; Yangshan Huiji comments that such a response is no different from crying, and Mazu stops.",
+              "FullCaseDecision": "The Compendium of the Five Lamps (五燈會元), Mazu Daoyi section. Mazu Daoyi is the exact actor who looks; Yangshan Huiji comments that such a response is no different from crying, and Mazu stops."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0089b22",
+            "ToLb": "0089b23",
+            "Kwic": "有僧上法堂。顧視東西。不見師。乃曰。好箇法堂。祇是無人。",
+            "Curated": true,
+            "AttributionNote": "Source text (五燈會元). unnamed monk owns the exact clause in the complete case.",
             "ActorAttribution": {
-              "Status": "identified-non-master",
-              "Kind": "direct speech",
-              "ActorLabel": "Emperor Suzong",
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "unnamed monk",
               "ActorRole": "interlocutor",
               "RungsChecked": [
                 "line",
@@ -60,157 +139,9 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "X/X80/X80n1565.xml 0061b13 assigns the question to 唐肅宗; an emperor is a named lay interlocutor, not MasterName.",
-              "ReviewedBy": "Codex strict-roster adjudication",
-              "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-            }
-          },
-          {
-            "RelPath": "X/X78/X78n1556.xml",
-            "FromLb": "0653a19",
-            "ToLb": "0653a20",
-            "Kwic": "開堂日，於法座前顧視大眾，乃云：若論本分相見，不必高陞法座。",
-            "Curated": true,
-            "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Compiler narration: Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Xuedou Chongxian owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
-            "DraftActorProof": {
-              "ExactHeadwordClause": "開堂日，於法座前顧視大眾，乃云：若論本分相見，不必高陞法座。",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
-            },
-            "ContextMasters": [
-              {
-                "MasterName": "Xuedou Chongxian",
-                "Roles": [
-                  "person-described",
-                  "case-figure"
-                ]
-              }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
-          },
-          {
-            "RelPath": "X/X78/X78n1556.xml",
-            "FromLb": "0655c15",
-            "ToLb": "0655c16",
-            "Kwic": "師顧視大眾，喝一喝，云：諸禪德！莫是賓主歷然麼？",
-            "Curated": true,
-            "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Compiler narration: Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Yungai Zhiyong owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
-            "DraftActorProof": {
-              "ExactHeadwordClause": "師顧視大眾，喝一喝，云：諸禪德！莫是賓主歷然麼？",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
-            },
-            "ContextMasters": [
-              {
-                "MasterName": "Yungai Zhiyong",
-                "Roles": [
-                  "person-described",
-                  "case-figure"
-                ]
-              }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
-          },
-          {
-            "RelPath": "X/X80/X80n1565.xml",
-            "FromLb": "0086a09",
-            "ToLb": "0086a10",
-            "Kwic": "師乃顧視。仰曰。若恁麼。與哭何異。師便休。",
-            "Curated": true,
-            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: Five Lamps Compendium (五燈會元): Mazu Daoyi owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
-            "DraftActorProof": {
-              "ExactHeadwordClause": "師乃顧視。仰曰。若恁麼。與哭何異。師便休。",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
-            },
-            "ContextMasters": [
-              {
-                "MasterName": "Mazu Daoyi",
-                "Roles": [
-                  "person-described",
-                  "case-figure"
-                ]
-              }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
-          },
-          {
-            "RelPath": "X/X80/X80n1565.xml",
-            "FromLb": "0089b22",
-            "ToLb": "0089b23",
-            "Kwic": "有僧上法堂。顧視東西。不見師。乃曰。好箇法堂。祇是無人。",
-            "Curated": true,
-            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: Five Lamps Compendium (五燈會元): The monk is unnamed and owns the exact headword-bearing interlocutor turn.",
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
+              "ReviewedBy": "Codex /root/repair_bird_path",
+              "ReviewedUtc": "2026-07-14T06:07:59Z",
+              "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed monk."
             },
             "ContextMasters": [
               {
@@ -221,12 +152,10 @@
               }
             ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "有僧上法堂。顧視東西。不見師。乃曰。好箇法堂。祇是無人。",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
-            },
-            "MasterName": null
+              "GrammaticalSubject": "unnamed monk",
+              "FullCaseDecision": "The Compendium of the Five Lamps (五燈會元), Changqing Da'an section. An unnamed monk is the exact actor who enters the hall, looks east and west for the absent master, and comments that the hall has no one in it. The six-rung ladder does not name him.",
+              "ExactHeadwordClause": "有僧上法堂。顧視東西。不見師。乃曰。好箇法堂。祇是無人。"
+            }
           },
           {
             "RelPath": "T/T51/T51n2077.xml",
@@ -234,40 +163,21 @@
             "ToLb": "0536c09",
             "Kwic": "乃顧視大眾曰休。",
             "Curated": true,
-            "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp (續傳燈錄): Compiler narration: Continued Record of the Transmission of the Lamp (續傳燈錄): Ciji Cong owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
+            "AttributionNote": "Source text (續傳燈錄). Ciji Cong owns the exact clause in the complete case.",
+            "MasterName": "Ciji Cong",
             "DraftActorProof": {
               "ExactHeadwordClause": "乃顧視大眾曰休。",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
+              "SpeechFrame": "The Continued Record of the Transmission of the Lamp (續傳燈錄), Ciji Cong section. Ciji Cong is the exact actor who looks around at the assembly and says, 'stop.'",
+              "FullCaseDecision": "The Continued Record of the Transmission of the Lamp (續傳燈錄), Ciji Cong section. Ciji Cong is the exact actor who looks around at the assembly and says, 'stop.'"
             },
             "ContextMasters": [
               {
                 "MasterName": "Ciji Cong",
                 "Roles": [
-                  "person-described",
-                  "case-figure"
+                  "utterer"
                 ]
               }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
+            ]
           },
           {
             "RelPath": "X/X82/X82n1571.xml",
@@ -275,40 +185,21 @@
             "ToLb": "0019c22",
             "Kwic": "顧視眾曰：夫為宗匠，隨處提綱。應機問答，殺活臨時。",
             "Curated": true,
-            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Compiler narration: Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Xiangji Yongmin owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
+            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Xiangji Yongmin owns the exact clause in the complete case.",
+            "MasterName": "Xiangji Yongmin",
             "DraftActorProof": {
               "ExactHeadwordClause": "顧視眾曰：夫為宗匠，隨處提綱。應機問答，殺活臨時。",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
+              "SpeechFrame": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), Xiangji Yongmin section. Xiangji Yongmin is the exact actor who looks over the assembly and then defines the responsive public work of a lineage teacher.",
+              "FullCaseDecision": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)), Xiangji Yongmin section. Xiangji Yongmin is the exact actor who looks over the assembly and then defines the responsive public work of a lineage teacher."
             },
             "ContextMasters": [
               {
                 "MasterName": "Xiangji Yongmin",
                 "Roles": [
-                  "person-described",
-                  "case-figure"
+                  "utterer"
                 ]
               }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
+            ]
           },
           {
             "RelPath": "B/B27/B27n0152.xml",
@@ -316,40 +207,21 @@
             "ToLb": "0492b03",
             "Kwic": "顧視左右卓拄杖下座",
             "Curated": true,
-            "AttributionNote": "Source record (B/B27/B27n0152.xml). Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): Compiler narration: Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): Yulin Tongxiu owns the exact headword-bearing wording in the complete source unit.",
-            "MasterName": null,
+            "AttributionNote": "Source text (普濟玉琳國師語錄). Yulin Tongxiu owns the exact clause in the complete case.",
+            "MasterName": "Yulin Tongxiu",
             "DraftActorProof": {
               "ExactHeadwordClause": "顧視左右卓拄杖下座",
-              "GrammaticalSubject": "case narrator",
-              "SpeechFrame": "Narrator-governed reporting or action prose.",
-              "FullCaseDecision": "The narrator supplies the headword; the represented master does not utter it."
+              "SpeechFrame": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's own hall address. Yulin Tongxiu is the exact actor who looks left and right, strikes the staff, and leaves the seat.",
+              "FullCaseDecision": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's own hall address. Yulin Tongxiu is the exact actor who looks left and right, strikes the staff, and leaves the seat."
             },
             "ContextMasters": [
               {
                 "MasterName": "Yulin Tongxiu",
                 "Roles": [
-                  "person-described",
-                  "case-figure"
+                  "utterer"
                 ]
               }
-            ],
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "reported looking-around action",
-              "ActorLabel": "case narrator",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
-              "ReviewedBy": "Codex lane-C targeted repair",
-              "ReviewedUtc": "2026-07-16T09:35:00Z"
-            }
+            ]
           }
         ],
         "SourceTexts": [

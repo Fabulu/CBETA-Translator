@@ -37,12 +37,3 @@
 
 ## Independent semantic REVISE repair
 Replaced systemic process prose with the term-specific historical deployment account, removed stale numeric and unanchored Chinese prose, and applied the verdict file’s exact-ID instructions worksheet-first.
-
-## Public-feedback gate
-- feedback-inference-verdict: the opening identifies torpor as the dull, sinking obstruction that speakers diagnose and work against in the stored cases.
-- feedback-observations: direct contrasts with distraction and repeated headword-bearing instructions were read in their complete turns.
-- feedback-falsification-searches: ordinary sleepiness, disease vocabulary, quoted reuse, and a distinct technical referent were checked.
-- feedback-counterexamples: passages that pair torpor with distraction remain visible and prevent treating either condition as the whole meaning.
-- feedback-scope: claims remain bounded by the frozen corpus and stored verified occurrences.
-- lookup-probes: torpor; dullness; sinking mental fog; drowsy obstruction.
-- opening-interpretation-verdict: corpus-earned and English-first.

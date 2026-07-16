@@ -22,16 +22,17 @@
         "wakeful"
       ],
       "Status": "preferred",
+      "Explanation": "Alert or wide-awake. The headword occurs 1,323 times in 275 allowlisted texts. One major deployment is the command “stay awake” or “stay alert” (惺惺著, 142 occurrences). Ruiyan Shiyan's case has him call “Master!” to himself, answer “Yes!”, then say, “Stay awake; after this do not be fooled by anyone” (主人公……諾……惺惺著，以後莫被人瞞). The same word describes an alert person: Tianyin Yuanxiu contrasts an alert person, for whom moving, not moving, or both are acceptable, with a person who is not alert, for whom none is acceptable (惺惺底人……未惺惺底人). A second major deployment is the fixed pair “still and alert” or “alert and still” (寂寂惺惺 / 惺惺寂寂, 47 / 35 occurrences). Yongjia Xuanjue's Verse on Stopping defines alert as not producing the signs of dull abiding or blank indeterminacy (惺惺謂不生昏住無記等相), then ranks alert-and-still as right, blank-and-still as wrong, still-and-alert as right, and scattered-and-alert as wrong (惺惺寂寂是，無記寂寂非，寂寂惺惺是，亂想惺惺非). Later records also criticize these deployments. Zhanran Yuancheng reports that all quarters called Ruiyan's self-address “playing with spirit-ghosts” (諸方謂其弄精魂). Fangrong Tongxi reverses the case by saying Ruiyan's house-master called Ruiyan rather than the reverse. Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering (被寂寂惺惺、昏沉散亂縛). The entry therefore keeps the attested gloss “alert” while preserving both the formulas and the named criticisms.",
       "Validation": "multi-source",
       "Note": "One corpus-wide sense, used of an alert condition and, by ordinary grammatical extension, of an alert person. The still-and-alert pairing is attributed to Yongjia Xuanjue's Verse on Stopping, while the Chan record also preserves criticism of Ruiyan Shiyan's command and names the pair itself as a fetter. The target remains the attested “alert” or “awake.” Compare “still” (寂寂), “master-in-charge” (主人公), and “playing with spirit-ghosts” (弄精魂).",
       "Occurrences": [
         {
           "RelPath": "T/T48/T48n2013.xml",
           "FromLb": "0390b14",
-          "ToLb": "0390b15",
-          "Kwic": "二惺惺。",
+          "ToLb": "0390b16",
+          "Kwic": "一寂寂。二惺惺。寂寂謂不念外境善惡等事。惺惺謂不生昏住無記等相",
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue defines alert as not producing the signs of dull abiding or blank indeterminacy.",
+          "AttributionNote": "Yongjia Collection of the Chan School (禪宗永嘉集), Verse on Stopping: Yongjia Xuanjue defines alert as not producing the signs of dull abiding or blank indeterminacy.",
           "MasterName": "Yongjia Xuanjue",
           "ContextMasters": [
             {
@@ -44,11 +45,11 @@
         },
         {
           "RelPath": "T/T48/T48n2013.xml",
-          "FromLb": "0389c01",
+          "FromLb": "0389b29",
           "ToLb": "0389c01",
-          "Kwic": "亂想惺惺非",
+          "Kwic": "惺惺寂寂是。無記寂寂非。寂寂惺惺是。亂想惺惺非",
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue ranks alert-and-still and still-and-alert as right, while rejecting blank-and-still and scattered-and-alert.",
+          "AttributionNote": "Yongjia Collection of the Chan School (禪宗永嘉集), Verse on Stopping: Yongjia Xuanjue ranks alert-and-still and still-and-alert as right, while rejecting blank-and-still and scattered-and-alert.",
           "MasterName": "Yongjia Xuanjue",
           "ContextMasters": [
             {
@@ -63,35 +64,24 @@
           "RelPath": "X/X68/X68n1319.xml",
           "FromLb": "0594a10",
           "ToLb": "0594a11",
-          "Kwic": "唯永嘉既為惺惺寂寂、寂寂",
+          "Kwic": "唯永嘉既為惺惺寂寂、寂寂惺惺之說，以明均等",
           "Curated": true,
-          "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Yongzheng Emperor is the exact headword speaker. the Yongzheng Emperor attributes the alert-and-still and still-and-alert formulation to Yongjia Xuanjue.",
-          "MasterName": null,
+          "AttributionNote": "Imperially Selected Recorded Sayings (御選語錄): the Yongzheng Emperor attributes the alert-and-still and still-and-alert formulation to Yongjia Xuanjue.",
+          "MasterName": "Yongzheng Emperor",
           "ContextMasters": [
+            {
+              "MasterName": "Yongzheng Emperor",
+              "Roles": [
+                "utterer"
+              ]
+            },
             {
               "MasterName": "Yongjia Xuanjue",
               "Roles": [
                 "person-discussed"
               ]
             }
-          ],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "direct speech",
-            "ActorLabel": "Yongzheng Emperor",
-            "ActorRole": "interlocutor",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The complete cases identify the Qing emperor as speaker or case participant; imperial authorship does not make him a Chan master.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-          }
+          ]
         },
         {
           "RelPath": "X/X72/X72n1444.xml",
@@ -99,7 +89,7 @@
           "ToLb": "0791c05",
           "Kwic": "主人公，噯！惺惺著，以後莫被人瞞。諾！諸方謂其弄精魂",
           "Curated": true,
-          "AttributionNote": "Source record (X/X72/X72n1444.xml). Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄): Ruiyan Shiyan is the exact headword speaker. in Zhanran Yuancheng's later raising of the Ruiyan case. Ruiyan Shiyan is the exact quoted speaker who calls to himself, answers, and says, ‘Stay alert; from now on do not be fooled by anyone.’ Zhanran Yuancheng then comments on the case; neither the record owner nor Yongjue Yuanxian speaks the stored quoted line.",
+          "AttributionNote": "The Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), in Zhanran Yuancheng's later raising of the Ruiyan case. Ruiyan Shiyan is the exact quoted speaker who calls to himself, answers, and says, ‘Stay alert; from now on do not be fooled by anyone.’ Zhanran Yuancheng then comments on the case; neither the record owner nor Yongjue Yuanxian speaks the stored quoted line.",
           "MasterName": "Ruiyan Shiyan",
           "ContextMasters": [
             {
@@ -129,11 +119,11 @@
           "ToLb": "0822c24",
           "Kwic": "昔瑞巖喚主人公惺惺著，今後莫被人瞞，良有以焉。諸方盡道瑞巖喚主人",
           "Curated": true,
-          "AttributionNote": "Source record (J/J29/J29nB249.xml). Recorded Sayings of Chan Master Fangrongxi (方融璽禪師語錄): Ruiyan Shiyan is the exact headword speaker. Recorded Sayings of Chan Master Fangrong Tongxi (方融璽禪師語錄) explicitly recalls Ruiyan Shiyan's self-address; Ruiyan is the exact earlier speaker of 'one in charge, stay alert,' and Fangrong comments on it.",
+          "AttributionNote": "Recorded Sayings of Chan Master Fangrong Tongxi (方融璽禪師語錄) explicitly recalls Ruiyan Shiyan's self-address; Ruiyan is the exact earlier speaker of 'one in charge, stay alert,' and Fangrong comments on it.",
           "MasterName": "Ruiyan Shiyan",
           "ContextMasters": [
             {
-              "MasterName": "Fangrong Xi",
+              "MasterName": "Fangrong Tongxi",
               "Roles": [
                 "later-quoter",
                 "commentator"
@@ -150,10 +140,10 @@
         {
           "RelPath": "X/X70/X70n1398.xml",
           "FromLb": "0647a10",
-          "ToLb": "0647a10",
-          "Kwic": "寂寂惺惺、昏沉散亂，被寂寂",
+          "ToLb": "0647a11",
+          "Kwic": "寂寂惺惺、昏沉散亂，被寂寂惺惺、昏沉散亂縛",
           "Curated": true,
-          "AttributionNote": "Source record (X/X70/X70n1398.xml). Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru is the exact headword speaker. Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering.",
+          "AttributionNote": "Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering.",
           "MasterName": "Haiyin Zhaoru",
           "ContextMasters": [
             {
@@ -167,99 +157,14 @@
         {
           "RelPath": "J/J25/J25nB171.xml",
           "FromLb": "0542b13",
-          "ToLb": "0542b14",
-          "Kwic": "惺惺底人，動著亦得、不動著亦得、動著不動著亦得。",
+          "ToLb": "0542b15",
+          "Kwic": "惺惺底人，動著亦得、不動著亦得、動著不動著亦得。未惺惺底人，動著不得、不動著不得、動著不動著總不得。",
           "Curated": true,
           "MasterName": "Tianyin Yuanxiu",
-          "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu is the exact headword speaker. Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu contrasts an alert person, for whom moving, not moving, or both are acceptable, with a person who is not alert, for whom none is acceptable.",
+          "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu contrasts an alert person, for whom moving, not moving, or both are acceptable, with a person who is not alert, for whom none is acceptable.",
           "ContextMasters": [
             {
               "MasterName": "Tianyin Yuanxiu",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "T/T48/T48n2013.xml",
-          "FromLb": "0389c01",
-          "ToLb": "0389c01",
-          "Kwic": "寂寂惺惺是",
-          "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue ranks alert-and-still and still-and-alert as right, while rejecting blank-and-still and scattered-and-alert. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Yongjia Xuanjue",
-          "ContextMasters": [
-            {
-              "MasterName": "Yongjia Xuanjue",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "T/T48/T48n2013.xml",
-          "FromLb": "0389b29",
-          "ToLb": "0389b29",
-          "Kwic": "惺惺寂寂是",
-          "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue defines alert as not producing the signs of dull abiding or blank indeterminacy. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Yongjia Xuanjue",
-          "ContextMasters": [
-            {
-              "MasterName": "Yongjia Xuanjue",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "T/T48/T48n2013.xml",
-          "FromLb": "0390b15",
-          "ToLb": "0390b16",
-          "Kwic": "惺惺謂不生昏住無記等相",
-          "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue defines alert as not producing the signs of dull abiding or blank indeterminacy. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Yongjia Xuanjue",
-          "ContextMasters": [
-            {
-              "MasterName": "Yongjia Xuanjue",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "J/J25/J25nB171.xml",
-          "FromLb": "0542b14",
-          "ToLb": "0542b14",
-          "Kwic": "未惺惺底人",
-          "Curated": true,
-          "MasterName": "Tianyin Yuanxiu",
-          "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu is the exact headword speaker. Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu contrasts an alert person, for whom moving, not moving, or both are acceptable, with a person who is not alert, for whom none is acceptable. This exact quoted claim is anchored in the reviewed source unit.",
-          "ContextMasters": [
-            {
-              "MasterName": "Tianyin Yuanxiu",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
-        },
-        {
-          "RelPath": "X/X70/X70n1398.xml",
-          "FromLb": "0647a10",
-          "ToLb": "0647a10",
-          "Kwic": "被寂寂惺惺",
-          "Curated": true,
-          "AttributionNote": "Source record (X/X70/X70n1398.xml). Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru is the exact headword speaker. Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Haiyin Zhaoru",
-          "ContextMasters": [
-            {
-              "MasterName": "Haiyin Zhaoru",
               "Roles": [
                 "utterer"
               ]
@@ -273,64 +178,25 @@
         "X/X72/X72n1444.xml",
         "J/J29/J29nB249.xml",
         "X/X70/X70n1398.xml",
+        "J/J28/J28nB202.xml",
+        "J/J37/J37nB388.xml",
         "J/J25/J25nB171.xml"
       ],
       "RelatedMasters": [
         "Yongjia Xuanjue",
+        "Yongzheng Emperor",
         "Ruiyan Shiyan",
         "Zhanran Yuancheng",
-        "Fangrong Xi",
+        "Fangrong Tongxi",
         "Haiyin Zhaoru",
-        "Tianyin Yuanxiu",
-        "Yongjue Yuanxian"
+        "Tianyin Yuanxiu"
       ],
       "RelatedTerms": [
         "寂寂",
         "主人公",
         "弄精魂",
         "昏沉"
-      ],
-      "ClaimAnchors": [
-        {
-          "RelPath": "X/X70/X70n1398.xml",
-          "FromLb": "0647a10",
-          "ToLb": "0647a11",
-          "Kwic": "昏沉散亂縛",
-          "Curated": true,
-          "AttributionNote": "Source record (X/X70/X70n1398.xml). Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru is the exact headword speaker. Recorded Sayings of Chan Master Haiyin Zhaoru (海印昭如禪師語錄): Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Haiyin Zhaoru",
-          "ContextMasters": [
-            {
-              "MasterName": "Haiyin Zhaoru",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "ClaimText": "昏沉散亂縛",
-          "EvidenceRole": "claim-anchor"
-        },
-        {
-          "RelPath": "T/T48/T48n2013.xml",
-          "FromLb": "0389c01",
-          "ToLb": "0389c01",
-          "Kwic": "無記寂寂非",
-          "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School (禪宗永嘉集): Yongjia Xuanjue is the exact headword speaker. Verse on Stopping: Yongjia Xuanjue ranks alert-and-still and still-and-alert as right, while rejecting blank-and-still and scattered-and-alert. This exact quoted claim is anchored in the reviewed source unit.",
-          "MasterName": "Yongjia Xuanjue",
-          "ContextMasters": [
-            {
-              "MasterName": "Yongjia Xuanjue",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "ClaimText": "無記寂寂非",
-          "EvidenceRole": "claim-anchor"
-        }
-      ],
-      "Explanation": "Alert or wide-awake. The headword occurs 1,323 times in 275 allowlisted texts. One major deployment is the command “stay awake” or “stay alert” (惺惺著, 169 occurrences). Ruiyan Shiyan's case has him call “Master!” to himself, answer “Yes!”, then say, “Stay awake; after this do not be fooled by anyone” (主人公……諾……惺惺著，以後莫被人瞞). The same word describes an alert person: Tianyin Yuanxiu contrasts an alert person, for whom moving, not moving, or both are acceptable, with a person who is not alert, for whom none is acceptable (惺惺底人……未惺惺底人). A second major deployment is the fixed pair “still and alert” or “alert and still” (寂寂惺惺 / 惺惺寂寂, 47 / 36 occurrences). Yongjia Xuanjue's Verse on Stopping defines alert as not producing the signs of dull abiding or blank indeterminacy (惺惺謂不生昏住無記等相), then ranks alert-and-still as right, blank-and-still as wrong, still-and-alert as right, and scattered-and-alert as wrong (惺惺寂寂是，無記寂寂非，寂寂惺惺是，亂想惺惺非). Later records also criticize these deployments. Zhanran Yuancheng reports that all quarters called Ruiyan's self-address “playing with spirit-ghosts” (諸方謂其弄精魂). Fangrong Tongxi reverses the case by saying Ruiyan's house-master called Ruiyan rather than the reverse. Haiyin Zhaoru names still-and-alert among fetters, paired with torpor and scattering (被寂寂惺惺、昏沉散亂縛). The entry therefore keeps the attested gloss “alert” while preserving both the formulas and the named criticisms."
+      ]
     }
   ]
 }

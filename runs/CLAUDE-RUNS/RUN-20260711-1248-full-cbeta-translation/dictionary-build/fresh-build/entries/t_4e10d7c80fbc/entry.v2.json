@@ -3,7 +3,7 @@
   "SourceTerm": "四照用",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "CreatedBy": "Codex fresh f001 lane A evidence-first",
-  "WrittenUtc": "2026-07-16T12:01:40.818589+00:00",
+  "WrittenUtc": "2026-07-15T00:00:00Z",
   "Senses": [
     {
       "SenseKey": null,
@@ -23,7 +23,7 @@
           "Kwic": "四照用師一日示眾云。我有時先照後用。有時先用後照。有時照用同時。有時照用不同時。",
           "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source record (T/T48/T48n2006.xml). Eyes of Humans and Devas (人天眼目): the source compiler supplies the editorial heading Four Modes of Illumination and Function. The following formal address gives the fourfold definition separately; Linji Yixuan is the contextual section master.",
+          "AttributionNote": "Compiler narration by Huiyan Zhizhao in Eyes of Humans and Devas (人天眼目) supplies the Four Illumination-and-Function heading and definition in the Linji-house section; Linji Yixuan is the contextual master, not a quoted speaker of this clause.",
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
@@ -36,9 +36,9 @@
           "ActorAttribution": {
             "Status": "narrated",
             "Kind": "compiler heading and exposition",
-            "ActorLabel": "the source compiler",
+            "ActorLabel": "Huiyan Zhizhao",
             "ActorRole": "compiler",
-            "GrammarEvidence": "四照用 is an editorial heading. The following 師一日示眾 introduces the section master’s separate fourfold statement; Huiyan Zhizhao compiles the work but is not the headword actor.",
+            "GrammarEvidence": "The headword and definition occur in compiler exposition under the Linji-house heading, without a live speech marker assigning the clause to a participant.",
             "ReviewedBy": "Codex f001 lane A semantic rereview repair",
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           }
@@ -50,7 +50,7 @@
           "Kwic": "三玄、三要、四料揀、四賓主、四照用，已是臨濟老人吐下底殘羹餿飯。",
           "MasterName": "Wanru Tongwei",
           "Curated": true,
-          "AttributionNote": "Source record (J/J26/J26nB182.xml). Recorded Sayings of Chan Master Wanru (萬如禪師語錄): Wanru Tongwei is the exact headword speaker. Wanru Tongwei: lists the Four Modes of Illumination and Function among Linji's numbered devices and calls them leftover food.",
+          "AttributionNote": "Wanru Tongwei, in the Recorded Sayings of Chan Master Wanru (萬如禪師語錄), lists the Four Modes of Illumination and Function among Linji's numbered devices and calls them leftover food.",
           "ContextMasters": [
             {
               "MasterName": "Wanru Tongwei",
@@ -65,27 +65,17 @@
           "FromLb": "0509b11",
           "ToLb": "0509b12",
           "Kwic": "頌四照用曰：有時先照後用，舉似諸方傳誦，拋出無孔鐵鎚，莫怪山僧手重。",
-          "MasterName": null,
+          "MasterName": "Cheng Zhengkui",
           "Curated": true,
-          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Cheng Zhengkui is the exact headword speaker. gives a verse explicitly headed on the Four Modes of Illumination and Function; the governing source heading identifies him as the Grand Minister Cheng Zhengkui, style Duanbo.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "identified-non-master",
-            "Kind": "direct speech",
-            "ActorLabel": "Cheng Zhengkui",
-            "ActorRole": "interlocutor",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "X/X82/X82n1571.xml 0509b07 explicitly heads 大司空程正揆端伯居士. His verse is an utterance by a named layman, not a master link.",
-            "ReviewedBy": "Codex strict-roster adjudication",
-            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
-          }
+          "AttributionNote": "Layman Cheng Zhengkui, style Duanbo, in the Complete Collection of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), gives a verse explicitly headed on the Four Modes of Illumination and Function; the governing source heading identifies him as the Grand Minister Cheng Zhengkui, style Duanbo.",
+          "ContextMasters": [
+            {
+              "MasterName": "Cheng Zhengkui",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "J/J38/J38nB414.xml",
@@ -94,7 +84,7 @@
           "Kwic": "四照用。照時劈箭，好醜俱現。纖芥不藏，日面月面。手握金輪，用處無情。三頭六臂，落膽喪魂。",
           "MasterName": "Shanduo Zhenzai",
           "Curated": true,
-          "AttributionNote": "Source record (J/J38/J38nB414.xml). Recorded Sayings of Chan Master Zhenzai of Shanduo (山鐸真在禪師語錄): Shanduo Zhenzai is the exact headword speaker. Shanduo Zhenzai: gives a new verse under the exact Four Modes label.",
+          "AttributionNote": "Shanduo Zhenzai, in the Recorded Sayings of Chan Master Shanduo Zhenzai (山鐸真在禪師語錄), gives a new verse under the exact Four Modes label.",
           "ContextMasters": [
             {
               "MasterName": "Shanduo Zhenzai",
@@ -119,6 +109,7 @@
         "Qingxu Xiujing",
         "Fojian Huiqin",
         "Wanru Tongwei",
+        "Cheng Zhengkui",
         "Shanduo Zhenzai"
       ],
       "RelatedTerms": [
