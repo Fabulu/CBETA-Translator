@@ -93,6 +93,15 @@ def normalize(row: dict) -> tuple[str | None, list[str]]:
         r"\bSource\s+(?:record|text)\s*(?:\([^)]*\)|[A-Z]/[^\s:.;]+)\s*[:.]?\s*",
         "", body, flags=re.IGNORECASE,
     ).strip()
+    # Legacy reader prose also used ``Source record English Title (中文):``
+    # without parentheses around the whole source identity.
+    body = re.sub(
+        r"\bSource\s+(?:record|text)\s+[^:]{1,240}:\s*",
+        "", body, flags=re.IGNORECASE,
+    ).strip()
+    # Removing a legacy mid-note source label can expose its separator.  Do
+    # not publish ``Source record (...). : prose``.
+    body = re.sub(r"^[\s:;,.]+", "", body).strip()
     source_prefix = f"Source record ({rel})."
     changes = []
     if actor.lower() not in body.lower():
@@ -111,7 +120,8 @@ def main() -> int:
     ap.add_argument("--ledger", type=Path)
     ns = ap.parse_args()
     report = {"generatedUtc": datetime.now(timezone.utc).isoformat(), "write": ns.write,
-              "entries": [], "changedRows": 0, "unresolvedRows": 0}
+              "entries": [], "changedRows": 0, "unresolvedRows": 0,
+              "idempotenceFailures": 0}
     for raw in ns.entries:
         ep = raw / "entry.v2.json" if raw.is_dir() else raw
         wp = ep.parent / "evidence.draft.json"
@@ -129,20 +139,29 @@ def main() -> int:
                 row["AttributionNote"] = note
                 ws_senses[si][key][oi]["AttributionNote"] = note
                 changed.append({"sense": si + 1, "kind": key, "index": oi + 1, "added": reasons})
+        idempotence = []
+        for si, key, oi, row in rows(entry):
+            second, _ = normalize(row)
+            if second is not None and second != row.get("AttributionNote"):
+                idempotence.append({"sense": si + 1, "kind": key, "index": oi + 1})
         if ns.write and changed:
             atomic(ep, entry)
             atomic(wp, worksheet)
         report["changedRows"] += len(changed)
         report["unresolvedRows"] += len(unresolved)
+        report["idempotenceFailures"] += len(idempotence)
         report["entries"].append({"id": entry.get("Id"), "term": entry.get("SourceTerm"),
                                   "entry": str(ep), "beforeSha256": before,
                                   "afterSha256": sha(ep) if ns.write else before,
-                                  "changed": changed, "unresolved": unresolved})
+                                  "changed": changed, "unresolved": unresolved,
+                                  "idempotence": idempotence})
     if ns.ledger:
         ns.ledger.parent.mkdir(parents=True, exist_ok=True)
         atomic(ns.ledger, report)
-    print(json.dumps({k: report[k] for k in ("write", "changedRows", "unresolvedRows")}, ensure_ascii=False))
-    return 0 if report["unresolvedRows"] == 0 else 2
+    print(json.dumps({k: report[k] for k in (
+        "write", "changedRows", "unresolvedRows", "idempotenceFailures"
+    )}, ensure_ascii=False))
+    return 0 if report["unresolvedRows"] == 0 and report["idempotenceFailures"] == 0 else 2
 
 
 if __name__ == "__main__":
