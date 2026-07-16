@@ -1,0 +1,168 @@
+{
+  "packetVersion": 1,
+  "status": "research-complete-entry-not-built",
+  "headword": "問答",
+  "queueBinding": {
+    "id": "t_47a8c4d45a14",
+    "ordinal": 3967,
+    "source": "LATE_REQUESTED_TERMS.md",
+    "sourceRank": 1,
+    "phase": "late-requested",
+    "queueStateObserved": "pending",
+    "schedulingInstruction": "first unassigned wave after the active frozen wave; do not renumber or promote during preparation"
+  },
+  "corpusBaseline": {
+    "tool": "zc.py frozen allowlist concordance",
+    "hits": 1417,
+    "files": 272,
+    "distinctWorks": 269,
+    "depthImplication": "Frequency requires at least seven occurrences in a future entry, but seven is not a cap; preserve distinct deployments and counterexamples. Count works, not files."
+  },
+  "provisionalLexicalAnalysis": {
+    "preferredTarget": "question and answer; a question-and-answer exchange",
+    "aliases": [
+      "question and answer",
+      "questions and answers",
+      "question-and-answer exchange",
+      "Q&A",
+      "public interview"
+    ],
+    "senseDecision": "One core lexical sense is presently supported: an exchange made up of questioning and answering. Do not split live exchange, recorded exchange, section label, noun use, or verbal syntax merely because their grammar or editorial setting differs. Re-test at build time for a genuinely distinct referent.",
+    "openingInference": "A question put and an answer returned. In Chan records this is not merely a container for doctrine: it is a public mode in which a person is tested, answers are judged, host and guest are exposed, and the exchange itself can be praised, limited, withheld from the record, or contrasted with the matter it is meant to reveal.",
+    "flyswatterBend": "Chan bends the ordinary phrase by making the exchange an arena of encounter and judgement. The corpus can call fluent answering insufficient, describe host-and-guest question-and-answer as fitting together like milk and water, insist that question-and-answer requires the right person, and simultaneously say that even the exchange remains conventional circulation rather than the source itself.",
+    "publicInterviewGate": "PASS. Multiple independent works explicitly deploy 問答 as responsive encounter, host/guest relation, evaluative fluency, and an event attached to ascending the teaching seat."
+  },
+  "verifiedEvidence": [
+    {
+      "relPath": "X/X64/X64n1260.xml",
+      "workId": "work:X64n1260",
+      "title": "列祖提綱錄",
+      "fromLb": "0002c11",
+      "toLb": "0002c12",
+      "kwic": "是編問答機緣，一槩不錄，主於提綱故也。如就當機問答提唱者，間載一二。",
+      "actorProof": "Compiler's preface; no quoted human utters the headword. It distinguishes question-and-answer encounter material from formal teaching outlines and admits only occasional responsive examples.",
+      "deployment": "genre boundary and responsive encounter",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X68/X68n1318.xml",
+      "workId": "work:X68n1318",
+      "title": "續古尊宿語要",
+      "fromLb": "0362c08",
+      "toLb": "0362c09",
+      "kwic": "問答罷，乃云：佛祖心宗，本無迷悟，一問一答，世諦流布。",
+      "actorProof": "The first 問答 is compiler narration marking the end of the exchanges. Caotang Shanqing then explicitly says 一問一答 is conventional circulation; do not put his name on the narrated headword occurrence, but retain him as context master.",
+      "deployment": "public-seat event plus explicit limit",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X68/X68n1318.xml",
+      "workId": "work:X68n1318",
+      "title": "續古尊宿語要",
+      "fromLb": "0366b22",
+      "toLb": "0366b23",
+      "kwic": "開堂問答罷，乃云：有問有答，須是其人。若是其人，喚作遊戲三昧，逢場施設，無可不可。",
+      "actorProof": "The exact headword in 開堂問答罷 is compiler narration. Changling Shouzhuo speaks the following criterion: questioning and answering requires the right person, for whom it is responsive play.",
+      "deployment": "public-seat event and qualification by the person",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X83/X83n1578.xml",
+      "workId": "chan:zhiyue-lu",
+      "title": "指月錄",
+      "fromLb": "0533b09",
+      "toLb": "0533b09",
+      "kwic": "師云：凡有問答，出子此語不得。仰禮謝。",
+      "actorProof": "The section is headed 潭州溈山靈祐禪師; Guishan Lingyou utters 問答 while correcting Yangshan's handling of the exchange.",
+      "deployment": "master evaluates what an answer may do in any exchange",
+      "zcVerify": true
+    },
+    {
+      "relPath": "J/J27/J27nB198.xml",
+      "workId": "work:J27nB198",
+      "title": "雪關禪師語錄",
+      "fromLb": "0446c24",
+      "toLb": "0446c25",
+      "kwic": "若也評量得出，許汝問答如流；其或未然，若無把定乾坤眼，縱遇金鋀辯不真。",
+      "actorProof": "In Xueguan Zhiyin's own recorded sermon, he addresses the assembly and utters 問答 after presenting and asking them to assess his four turning words.",
+      "deployment": "fluency granted only after judgement",
+      "zcVerify": true
+    },
+    {
+      "relPath": "J/J27/J27nB198.xml",
+      "workId": "work:J27nB198",
+      "title": "雪關禪師語錄",
+      "fromLb": "0458c14",
+      "toLb": "0458c15",
+      "kwic": "看他雲門深明曹山意旨，恰象屋裏人，所以賓主問答如水乳合。",
+      "actorProof": "Xueguan Zhiyin utters the headword while commenting on Yunmen's exchange with Caoshan; Yunmen and Caoshan are context masters, not utterers of this occurrence.",
+      "deployment": "host-and-guest exchange assessed as mutually fitting",
+      "zcVerify": true
+    },
+    {
+      "relPath": "T/T48/T48n2006.xml",
+      "workId": "work:T48n2006",
+      "title": "人天眼目",
+      "fromLb": "0300c09",
+      "toLb": "0300c10",
+      "kwic": "主賓言不異。問答理俱全。踏破澄潭月。穿開碧落天。",
+      "actorProof": "This is Kefu's verse under the Four Selections material; Kefu utters the headword in verse, describing question and answer as complete when host and guest do not differ in expression.",
+      "deployment": "host/guest relational structure",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X68/X68n1319.xml",
+      "workId": "work:X68n1319",
+      "title": "御選語錄",
+      "fromLb": "0531a13",
+      "toLb": "0531a14",
+      "kwic": "誇我問答敏急，却元不識主人。盡是尋枝摘葉，不解窮究本根。",
+      "actorProof": "The speaker of the 無心頌 utters 問答; final canonical naming must follow the complete section attribution, not the anthology title alone.",
+      "deployment": "counterexample: quick responsive skill without recognizing the host/source",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X68/X68n1318.xml",
+      "workId": "work:X68n1318",
+      "title": "續古尊宿語要",
+      "fromLb": "0362a08",
+      "toLb": "0362a09",
+      "kwic": "問答不錄。師云：蓮花座上藕絲綸，舉釣何曾得錦鱗。",
+      "actorProof": "問答不錄 is editorial narration in the section headed 兜率悅禪師語嗣真淨; Doushuai Congyue is the context master and speaker only after 師云.",
+      "deployment": "record acknowledges a public exchange while deliberately omitting its words",
+      "zcVerify": true
+    },
+    {
+      "relPath": "X/X80/X80n1565.xml",
+      "workId": "work:X80n1565",
+      "title": "五燈會元",
+      "fromLb": "0065b21",
+      "toLb": "0065b23",
+      "kwic": "文殊曰。我於一切法。無言無說。無示無識。離諸問答。是為菩薩入不二法門。",
+      "actorProof": "Manjusri explicitly utters the headword in a raised Vimalakirti case; he is the utterer, while Vimalakirti's silence is the response under discussion.",
+      "deployment": "counterexample and limit: the case stages departure from question-and-answer, then immediately asks Vimalakirti",
+      "zcVerify": true
+    }
+  ],
+  "counterexamplesAndLimits": [
+    "Do not equate every 問答 token with a live Chan public interview. 宗鏡錄 explicitly organizes doctrinal exposition as a question-and-answer chapter for resolving doubts.",
+    "問答不錄 and 問答罷 are editorial event markers; the context master did not utter those exact headword tokens.",
+    "The corpus itself denies that responsive speed is sufficient and can call one question and one answer conventional circulation.",
+    "離諸問答 is not evidence that the lexical item is outside Chan. The Vimalakirti case deploys departure from verbal exchange as part of a further public test and response."
+  ],
+  "buildRequirements": [
+    "At build time reread every selected complete case, not just these verified anchor spans.",
+    "Use at least seven occurrences and at least five distinct work_ids; keep both spoken and narrated/event-marker evidence.",
+    "MasterName must be the utterer of the exact headword. Put masters who participate in or are discussed by an editorial occurrence in ContextMasters.",
+    "Retain the explicit negative evidence: fluency may miss the source; one-question/one-answer may remain conventional; some texts leave question-and-answer unrecorded.",
+    "Re-test whether any title/section usage denotes a genuinely different thing. Do not split merely for noun/verb, live/recorded, or heading/prose differences.",
+    "All final quote anchors must independently pass zc.verify and all source claims must name both text and actor."
+  ],
+  "mutationGuard": {
+    "entryCreated": false,
+    "queueChanged": false,
+    "statusChanged": false,
+    "manifestChanged": false,
+    "merged": false
+  }
+}

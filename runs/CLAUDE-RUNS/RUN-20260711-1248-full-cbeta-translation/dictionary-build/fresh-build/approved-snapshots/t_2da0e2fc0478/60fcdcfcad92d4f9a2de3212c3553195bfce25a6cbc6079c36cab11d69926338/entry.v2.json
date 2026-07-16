@@ -1,0 +1,253 @@
+{
+  "Id": "t_2da0e2fc0478",
+  "SourceTerm": "三門",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex f003 laneB final2 repair author",
+  "WrittenUtc": "2026-07-15T18:30:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the monastery gate",
+      "AlternateTargets": [
+        "main monastery gate",
+        "temple gate"
+      ],
+      "SearchAliases": [
+        "monastery gate",
+        "temple gate",
+        "main gate",
+        "three gates"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Six independent works use the word for the monastery entrance.",
+      "Occurrences": [
+        {
+          "RelPath": "D/D48/D48n8939.xml",
+          "FromLb": "0011a11",
+          "ToLb": "0011b01",
+          "Kwic": "進云厨庫三門鍾樓佛殿",
+          "Curated": true,
+          "AttributionNote": "Source text (古尊宿語錄). Exact actor: the unnamed monk. An unnamed monk includes the kitchen-storehouse, monastery gate, bell tower, and buddha hall in his question.",
+          "ContextMasters": [
+            {
+              "MasterName": "Foyan Qingyuan",
+              "Roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "進云 marks the unnamed monk’s list of monastery buildings; Foyan Qingyuan answers afterward.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint1 full read",
+            "ReviewedUtc": "2026-07-16T00:13:38.535165+00:00"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X81/X81n1571.xml",
+          "FromLb": "0420a20",
+          "ToLb": "0420a21",
+          "Kwic": "又於筦城縣匡救寺三門下談無上道，聽者林集。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈全書(第1卷-第33卷)). Exact actor: the unnamed compiler. The compiler narrates Huike teaching beneath the gate of Kuangji Monastery.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "compiled biography",
+            "ActorLabel": "the unnamed compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The clause narrates Huike teaching beneath the monastery gate; the gate is a location, not speech by Huike.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint1 full read",
+            "ReviewedUtc": "2026-07-16T00:13:38.535165+00:00"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0021b12",
+          "ToLb": "0021b14",
+          "Kwic": "雲門大師忍俊不禁，向佛殿裏燒香，三門頭合掌，禱祝呪願：願黃梅石女生兒，子母團圓；",
+          "Curated": true,
+          "MasterName": "Zhantang Wenzhun",
+          "AttributionNote": "Source text (列祖提綱錄). Exact actor: Zhantang Wenzhun. Zhantang Wenzhun says that Yunmen worships at the monastery gate in his rain-prayer address.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhantang Wenzhun",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "person-discussed",
+                "case-figure"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X80/X80n1565.xml",
+          "FromLb": "0044b06",
+          "ToLb": "0044b06",
+          "Kwic": "又於筦城縣匡救寺三門下。",
+          "Curated": true,
+          "AttributionNote": "Source text (五燈會元). Exact actor: the unnamed compiler. The compiler narrates Huike teaching beneath the gate of Kuangji Monastery.",
+          "ContextMasters": [
+            {
+              "MasterName": "Huike",
+              "Roles": [
+                "person-described",
+                "section-subject"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "compiled biography",
+            "ActorLabel": "the unnamed compiler",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The clause narrates Huike teaching beneath the monastery gate; the gate is a location, not speech by Huike.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint1 full read",
+            "ReviewedUtc": "2026-07-16T00:13:38.535165+00:00"
+          },
+          "MasterName": null
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0011a02",
+          "ToLb": "0011a03",
+          "Kwic": "諸上座欲得省要，僧堂裏、三門下、寮舍裏參取好。",
+          "Curated": true,
+          "MasterName": "Daoqin",
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Exact actor: Daoqin. Daoqin tells the assembly to investigate in the monks’ hall, beneath the monastery gate, and in the quarters.",
+          "ContextMasters": [
+            {
+              "MasterName": "Daoqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0353c09",
+          "ToLb": "0353c10",
+          "Kwic": "師云：你看這瞎漢本是打出三門外，念你是新到，且坐喫茶。",
+          "Curated": true,
+          "MasterName": "Xuedou Zhijian",
+          "AttributionNote": "Source text (續古尊宿語要). Exact actor: Xuedou Zhijian. Xuedou Zhijian says the monk originally deserved to be beaten out beyond the monastery gate.",
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Zhijian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "D/D48/D48n8939.xml",
+        "X/X81/X81n1571.xml",
+        "X/X64/X64n1260.xml",
+        "X/X80/X80n1565.xml",
+        "X/X81/X81n1568.xml",
+        "X/X68/X68n1318.xml"
+      ],
+      "RelatedMasters": [
+        "Daoqin",
+        "Fayan Qingyuan",
+        "Zhantang Wenzhun",
+        "Xuedou Zhijian"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "The monastery gate is the principal entrance and a named public location in monastery life. Records place Huike teaching beneath it; Daoqin lists it beside the monks’ hall and quarters; Xuedou Zhijian threatens to drive an unnamed newcomer beyond it. Zhantang Wenzhun also makes it the place where Yunmen worships in a rain-prayer address. This concrete architectural sense is distinct from Yongming Yanshou’s numbered analytical “three gates.”"
+    },
+    {
+      "SenseKey": "three-approaches",
+      "MasterName": null,
+      "PreferredTarget": "three approaches",
+      "AlternateTargets": [
+        "three categories"
+      ],
+      "SearchAliases": [
+        "three approaches",
+        "three categories",
+        "three methods"
+      ],
+      "Status": "preferred",
+      "Validation": "single-source",
+      "Note": "A distinct technical enumeration in the Mirror Record uses the same graph sequence for three approaches, not for a building.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0493a06",
+          "ToLb": "0493a07",
+          "Kwic": "前之三門。",
+          "Curated": true,
+          "MasterName": "Yongming Yanshou",
+          "AttributionNote": "Source text (宗鏡錄). Exact actor: Yongming Yanshou. Yongming Yanshou refers to the preceding three analytical gates before introducing a fourth.",
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2016.xml"
+      ],
+      "RelatedMasters": [
+        "Yongming Yanshou"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Here 三門 means three analytical approaches already enumerated in Yongming Yanshou’s doctrinal exposition. He says “the preceding three gates” and then introduces a fourth gate concerning the interpenetration of nature and characteristics. These are conceptual divisions, not a monastery entrance."
+    }
+  ]
+}

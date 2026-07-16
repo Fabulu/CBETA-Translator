@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "packet2-three-residuals-independent-final-v1",
+  "authoritativeTree": "fresh-build/entries",
+  "entryCount": 3,
+  "fullDefinitionsRead": 3,
+  "completeEvidenceUnitsRead": 14,
+  "audit0": {
+    "hardFailures": 0
+  },
+  "exactVerification": {
+    "checks": 14,
+    "passed": 14,
+    "failed": 0,
+    "headwordOrClaimTextFailures": 0
+  },
+  "promotion": "not performed",
+  "merge": "not performed",
+  "rows": [
+    {
+      "id": "t_121b66b78c9e",
+      "term": "逢佛殺佛",
+      "currentFreshBuildSha256": "7719a399f4364dec44c8fd981616518081ca03c3503204665107779e8ffbf06d",
+      "verdict": "KEEP",
+      "evidenceUnitsRead": 4,
+      "authoritativePath": "fresh-build/entries/t_121b66b78c9e/entry.v2.json"
+    },
+    {
+      "id": "t_4f3cd3b1c155",
+      "term": "趙州橋",
+      "currentFreshBuildSha256": "53c11d7a9cc53106841d10f37602ecb3c35bf8f5aff20121d9ae2e163b9c31b4",
+      "verdict": "KEEP",
+      "evidenceUnitsRead": 5,
+      "authoritativePath": "fresh-build/entries/t_4f3cd3b1c155/entry.v2.json"
+    },
+    {
+      "id": "t_efc6a42814ee",
+      "term": "東坡居士",
+      "reviewedInputSha256": "2656037545364b6ec2d0c3f6d6a2fdd6f7e10b849b81d8b8137876e1c6adf365",
+      "currentFreshBuildSha256": "7f2ad0d430d0f7c9c87df6acaec3f2cbce5db2b5e119f33c88b7ea957abd30d3",
+      "verdict": "REVISED_REQUIRES_DIFFERENT_REVIEWER",
+      "evidenceUnitsRead": 5,
+      "finding": "The Tianmu Zhongfeng Guanglu paratext-title note incorrectly ended by denying a Yuanwu utterance. Yuanwu is unrelated to this source. The note now identifies the named text and states only the supported distinction: the title is not spoken dialogue.",
+      "authoritativePath": "fresh-build/entries/t_efc6a42814ee/entry.v2.json"
+    }
+  ]
+}

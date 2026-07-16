@@ -31,15 +31,22 @@ def main() -> int:
     placement = {row["id"]: row for row in quarantine["rows"]}
     groups: dict[tuple[str, str], list[dict]] = {}
     for row in rows:
+        if isinstance(row, list):
+            if len(row) < 3:
+                raise SystemExit(f"review row is too short: {row!r}")
+            if len(row) >= 4:
+                row = {"id": row[0], "term": row[1], "sha256": row[2], "verdict": row[3]}
+            else:
+                row = {"id": row[0], "verdict": row[1], "sha256": row[2]}
         disposition = row.get("verdict") or row.get("disposition") or "KEEP"
         if disposition != "KEEP" or row.get("promotionReady") is False:
             continue
         slot = placement[row["id"]]
         groups.setdefault((slot["wave"], slot["lane"]), []).append({
             "id": row["id"],
-            "term": row.get("term") or row.get("headword"),
+            "term": row.get("term") or row.get("headword") or slot["term"],
             "verdict": "KEEP",
-            "reviewedSha256": row.get("reviewedSha256") or row.get("sha256"),
+            "reviewedSha256": row.get("reviewedSha256") or row.get("currentFreshBuildSha256") or row.get("entrySha256") or row.get("sha256"),
             "finding": row.get("finding") or row.get("reason") or "Independent full-case review passed at the recorded current hash.",
             "selfReview": False,
         })

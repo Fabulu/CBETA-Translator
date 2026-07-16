@@ -1,0 +1,367 @@
+{
+  "counts": {
+    "entries": 30,
+    "senses": 33,
+    "occurrences": 211,
+    "named_occurrences": 158,
+    "deferred_non_roster": 59,
+    "pending_roster_master": 26,
+    "context_master_links": 229,
+    "deferred_non_roster_context": 84,
+    "pending_roster_context_master": 36,
+    "attribution_notes": 211,
+    "named_master_missing_structured_link": 33,
+    "actor_reviewed_unnamed": 22,
+    "chinese_strings": 136,
+    "anchored_chinese": 136,
+    "actor_impersonal": 8,
+    "actor_narrated": 19,
+    "placeholder_actor_forbidden": 2,
+    "reviewed_unnamed_label_not_explicit": 1,
+    "invalid_context_roles": 22,
+    "note_missing_speaker": 2,
+    "actor_identified_non_master": 4,
+    "invalid_actor_role": 2,
+    "note_missing_source": 3,
+    "missing_utterer_context": 1,
+    "identified_actor_not_named": 1
+  },
+  "hardFailures": 67,
+  "failures": [
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0427b79d8ba4/entry.v2.json",
+      "detail": "衲子 s1 o5: Fengxue Yanzhao appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_057cc9ea8755/entry.v2.json",
+      "detail": "攝心 s1 o6: Guifeng Zongmi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_121b66b78c9e/entry.v2.json",
+      "detail": "逢佛殺佛 s1 o3: Linji Yixuan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_12fe3700913c/entry.v2.json",
+      "detail": "金翅鳥 s1 o2: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "placeholder_actor_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6 Kind: 'verse voice'"
+    },
+    {
+      "kind": "placeholder_actor_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6 ActorLabel: 'the unattributed verse voice'"
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6 c1: ['returned-child', 'verse-subject']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6 c2: ['transmission-figure']"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+      "detail": "劫外 s1 o6: Mirror of the Lineage (宗鑑法林): an unattributed verse author calls the returned Hongren a spiritual sprout outside the kalpa; Daoxin is the old teacher who arranged the return and transmission."
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1b4bf4fff6bb/entry.v2.json",
+      "detail": "韓愈 s1 o3: Muchen Daomin appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d1a833551a9/entry.v2.json",
+      "detail": "活鱍鱍 s1 o2 c2: ['case-master']"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d1a833551a9/entry.v2.json",
+      "detail": "活鱍鱍 s1 o2: Danxia Zichun appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d1a833551a9/entry.v2.json",
+      "detail": "活鱍鱍 s1 o2: Dongshan Liangjie appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_34143e43daf4/entry.v2.json",
+      "detail": "放下著 s1 o1: Wuming Huijing appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_447ad9648add/entry.v2.json",
+      "detail": "出身處 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_495c83ba370b/entry.v2.json",
+      "detail": "三文買草鞋 s1 o4: Dongshan Shouchu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4c9320095ba1/entry.v2.json",
+      "detail": "見聞覺知 s1 o5: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4cc95950b59a/entry.v2.json",
+      "detail": "一句 s1 o4: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4cc95950b59a/entry.v2.json",
+      "detail": "一句 s1 o9: Daowu Yuanzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4dd50050b279/entry.v2.json",
+      "detail": "拾得 s1 o4: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_4f3cd3b1c155/entry.v2.json",
+      "detail": "趙州橋 s1 o5: Wuzu Fayan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_560356022866/entry.v2.json",
+      "detail": "孤明 s1 o3: Yangshan Huiji appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5db4dbd2bc17/entry.v2.json",
+      "detail": "寶鏡三昧 s1 o2: Caoshan Benji appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5db4dbd2bc17/entry.v2.json",
+      "detail": "寶鏡三昧 s1 o2: Dongshan Liangjie appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_6293dead3bb2/entry.v2.json",
+      "detail": "轉身 s1 o7: Hanyue Fazang appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74390b40f658/entry.v2.json",
+      "detail": "坐斷天下人舌頭 s1 o1: Feiyin Tongrong appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74390b40f658/entry.v2.json",
+      "detail": "坐斷天下人舌頭 s1 o6: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "invalid_actor_role",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o2: 'signed preface author'"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o2 c1: ['lineage-heir', 'signer']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o2 c2: ['lineage-teacher', 'record-subject']"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o2 expected '永覺元賢禪師廣錄': Source text; exact identified documentary actor: Weilin Daopei. Complete-case and title-page attribution read."
+    },
+    {
+      "kind": "invalid_actor_role",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o4: 'pagoda-inscription author'"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o4 c1: ['lineage-heir']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o4 c2: ['lineage-teacher']"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o4 expected '大溈五峰學禪師語錄': Source text; exact identified documentary actor: Tao Runai. Complete-case and title-page attribution read."
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o5: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 c2: ['lineage-heir']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 c3: ['lineage-teacher']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 c4: ['recognition-source']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 c6: ['teacher-met']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 c7: ['incense-lineage-source']"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7: Wansong’s 示眾 voice compares Yunmen and Touzi lineage reception."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7ccccfa5fe9a/entry.v2.json",
+      "detail": "嗣法 s1 o7 expected '萬松老人評唱天童覺和尚頌古從容庵錄': Wansong’s 示眾 voice compares Yunmen and Touzi lineage reception."
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93ab42fecdca/entry.v2.json",
+      "detail": "本來無一物 s1 o2 c2: ['contrasted-verse-author']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93ab42fecdca/entry.v2.json",
+      "detail": "本來無一物 s1 o2 c3: ['transmission-figure']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93ab42fecdca/entry.v2.json",
+      "detail": "本來無一物 s1 o4 c2: ['formula-source']"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_93ab42fecdca/entry.v2.json",
+      "detail": "本來無一物 s1 o4: Shenxiu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_94ee610a30f7/entry.v2.json",
+      "detail": "一物 s1 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_94ee610a30f7/entry.v2.json",
+      "detail": "一物 s1 o3: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a5408be46291/entry.v2.json",
+      "detail": "認奴作郎 s1 o4: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a5408be46291/entry.v2.json",
+      "detail": "認奴作郎 s1 o4: Longtan Chongxin appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b23e58454acd/entry.v2.json",
+      "detail": "老婆心切 s1 o1 c2: ['person-appraised']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b23e58454acd/entry.v2.json",
+      "detail": "老婆心切 s1 o3 c2: ['later-teacher']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o1 c2: ['heir']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o1 c3: ['transmission-origin-discussed']"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o3: Zhitong appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o6 c1: ['quoted-utterer']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o6 c2: ['recipient']"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o6 c3: ['cited-textual-transmitter']"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d11d5f0c78a5/entry.v2.json",
+      "detail": "以心傳心 s1 o6: Bodhidharma"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df9aad1ce22d/entry.v2.json",
+      "detail": "芥子 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Li Bo'"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_df9aad1ce22d/entry.v2.json",
+      "detail": "芥子 s1 o5: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_eba970114dd2/entry.v2.json",
+      "detail": "邯鄲 s1 o1: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_eba970114dd2/entry.v2.json",
+      "detail": "邯鄲 s1 o1: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f0cb4dcfc70c/entry.v2.json",
+      "detail": "掛搭 s1 o5: Fushan Fayuan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f0cb4dcfc70c/entry.v2.json",
+      "detail": "掛搭 s1 o5: Tianyi Yihuai appears in attribution prose but not in MasterName or ContextMasters"
+    }
+  ]
+}

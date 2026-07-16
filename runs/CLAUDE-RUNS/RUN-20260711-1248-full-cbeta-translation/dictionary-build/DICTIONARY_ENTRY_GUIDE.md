@@ -709,6 +709,11 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
   20. **⛔ EVIDENCE FIRST, THEN PROGRAMMATIC COMPILATION — NEVER DRAFT FROM PROSE FILLER (user,
       2026-07-14).** Beginning with fresh wave `f002`, author `fresh-build/entries/<id>/evidence.draft.json`
       from `fresh-build/EVIDENCE_DRAFT_TEMPLATE.json`; do not hand-author production `entry.v2.json`.
+      **Authoritative-path gate (2026-07-16):** throughout the fresh rebuild, current entry bytes live only
+      at `fresh-build/entries/<id>/entry.v2.json`. The historical `terms/<id>` tree is reference-only and may
+      be absent or stale. Never use it for current-hash binding, collision detection, repair, independent
+      review, promotion, or completion counts. A collision exists only if the SHA of the same fresh-build
+      path changes after binding. Every repair/review ledger must name the fresh-build path explicitly.
       Fill the concrete evidence decisions first: stored evidence keys licensing the opening, Zen bend,
       counterexample/limit, different-thing sense test, alias rationale, modifier controls, family controls,
       distinct work IDs, and an exact full-case actor proof for every occurrence and claim anchor. Empty

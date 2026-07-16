@@ -1,0 +1,51 @@
+{
+  "reviewer": "Codex independent full-read reviewer",
+  "reviewedUtc": "2026-07-16T00:00:00Z",
+  "authorLedgerConfirmed": "cohorts-1-3-146-150-full-read-repair-ledger.json",
+  "authorPacketsConfirmed": "cohorts-1-3-v6-packets-146-150.json",
+  "authoritativeRoot": "fresh-build/entries",
+  "completeOccurrenceCasesRead": 37,
+  "claimAnchorsRead": 4,
+  "zcChecks": 41,
+  "zcFailures": 0,
+  "rows": [
+    {
+      "id": "t_5d8f2f79dc60",
+      "term": "竿頭進步",
+      "disposition": "REPAIRED_REQUIRES_DIFFERENT_REREVIEW",
+      "beforeSha256": "30fe517f4e7ced0132a7cb2b3f23d9d724cf54440eb3021aa41c66a9517ee67c",
+      "afterSha256": "9ba5cbc60c23cdf772405dd202b7656550ebe3c427e289426bd2e7e9f6b54d0d",
+      "completeCasesRead": 7,
+      "claimAnchorsRead": 4,
+      "repair": "Occurrence 1's exact headword is Wumen Huikai's impersonal editorial case title. Shishuang Qingzhu utters 百尺竿頭如何進步, not the contiguous headword 竿頭進步; MasterName was cleared and Shishuang was retained as case-figure/questioner context."
+    },
+    {
+      "id": "t_5da65e2989a0",
+      "term": "夏末",
+      "disposition": "KEEP",
+      "sha256": "13ca620d8a3c7c483232e35979be16e7e442cf78fe451b94ea6fb30af19528fa",
+      "completeCasesRead": 7
+    },
+    {
+      "id": "t_5ed1c64c6559",
+      "term": "鎮州蘿蔔",
+      "disposition": "KEEP",
+      "sha256": "4e0ef63f30445625a3f039a347c2931ee8655cd22d995d2ff92f56294c42ec3b",
+      "completeCasesRead": 6
+    },
+    {
+      "id": "t_68729efe1fac",
+      "term": "領話",
+      "disposition": "KEEP",
+      "sha256": "a425e158971696cc3a8321655ecdef017ff3330d409e579dd7bc1a3f1f588332",
+      "completeCasesRead": 6
+    },
+    {
+      "id": "t_6abcff898d95",
+      "term": "良久",
+      "disposition": "KEEP",
+      "sha256": "5175686fe6670e6682232e9f5072c57af845003599b3fe5ef910aabeee5af717",
+      "completeCasesRead": 11
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "packet": 3,
+  "review": "independent-rereview",
+  "status": "complete-needs-review-for-revised-bytes",
+  "authoritativeRoot": "fresh-build/entries",
+  "entriesReadInFull": 27,
+  "occurrencesReadInCompleteCase": 217,
+  "claimAnchorsRead": 1,
+  "verdicts": {"KEEP": 22, "REVISED": 5},
+  "revisedIds": ["t_85eef19d3d3a", "t_fb23e0284d73", "t_19784084ccb4", "t_b90a5f36ec86", "t_10d93a67ea99"],
+  "findings": [
+    "淨瓶: the quoted clean-bottle instruction is Daowu Yuanzhi's turn; Wansong Xingxiu is the later raiser/commentator.",
+    "印可: removed false unnamed-teacher placeholders and named Tianyi Yihuai, Nanyue Huairang, Fenyang Shanzhao, and Yexian Guixing where the stored evidence names them.",
+    "誌公: corrected four name-bearing reporting/quotation-introduction occurrences; Baozhi does not utter his own name. The headword owners are an unnamed case recorder, Yuanwu Keqin, Changqing Da'an, and Foxing Fatai respectively.",
+    "弄精魂: Yuanwu Keqin utters the commentary's headword; Xianglin Chengyuan is the person described.",
+    "言句: an unnamed monk, not Tiantai Deshao, utters the headword-bearing reply; all six attribution rungs were recorded."
+  ],
+  "validation": {
+    "attributionAuditHardFailures": 0,
+    "occurrenceZcHeadwordAndLb": "217/217",
+    "claimAnchorZcAndLb": "1/1",
+    "claimAnchorHeadword": "not applicable: the legitimate 華林云 answer anchor supports the clean-bottle case but intentionally does not repeat 淨瓶"
+  },
+  "promotedOrMerged": false,
+  "checkpoint10": "quarantine-packet-3-independent-checkpoint-10.json",
+  "checkpoint20": "quarantine-packet-3-independent-checkpoint-20.json",
+  "rows21To27": [
+    ["t_627549d4c466", "大蟲", "b79cd95b3bf021cec9ebeb5875ce4ef6b26525c9eae02de5c095b5c32f60d8ee", "KEEP"],
+    ["t_b90a5f36ec86", "弄精魂", "27ab5d8f37922902510be3d446faa7f7cc4850de45b3bf1ba9d01b3613da7ec5", "REVISED"],
+    ["t_10d93a67ea99", "言句", "1c7993326ab3156458cbccf1751b735ca3075845bb2375307d08cf90012ccb80", "REVISED"],
+    ["t_39fb2a2c1c9b", "祖意", "bb496ef169843cdfc01a1d72e2feba469a0769598ff70fef539512f9e320b997", "KEEP"],
+    ["t_2ddd493fc9b0", "續燈錄", "6182db995d2f27a3b8735434ec64b08cb41c2b4c58719c96b0759f05878c6e99", "KEEP"],
+    ["t_61c5046b49c4", "心要", "b8808e9027ded99788adee271d54513e2ffa77a3bc2ae9ad9f775d7958b39ec2", "KEEP"],
+    ["t_652dbd8f5c83", "西序", "3be99f4ecb8a17232d91fb3f3ce3a4511b513dccfa26e45def557c8ef5292093", "KEEP"]
+  ]
+}

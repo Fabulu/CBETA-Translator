@@ -59,13 +59,20 @@
           "ToLb": "0157b01",
           "Kwic": "香林當時。也下語呈見解弄精魂。終不相契。",
           "Curated": true,
-          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). Yuanwu Keqin names Xianglin Chengyuan as the exact actor who offered words, displayed his understanding, and fooled with the spirit, but did not accord with Yunmen Wenyan.",
-          "MasterName": "Xianglin Chengyuan",
+          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Yuanwu Keqin says that Xianglin Chengyuan offered words, displayed his understanding, and fooled with the spirit, but did not accord with his teacher. Yuanwu, not the person described, utters the headword.",
+          "MasterName": "Yuanwu Keqin",
           "ContextMasters": [
             {
               "MasterName": "Xianglin Chengyuan",
               "Roles": [
-                "utterer"
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer",
+                "commentator"
               ]
             }
           ]
@@ -133,16 +140,35 @@
           "ToLb": "0791c05",
           "Kwic": "主人公，噯！惺惺著，以後莫被人瞞。諾！諸方謂其弄精魂",
           "Curated": true,
-          "AttributionNote": "Source text (湛然圓澄禪師語錄): X/X72/X72n1444.xml: exact retained passage identifies Ruiyan Shiyan as the headword utterer.",
-          "MasterName": "Ruiyan Shiyan",
+          "AttributionNote": "Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄): the record narrator says that masters elsewhere called Ruiyan Shiyan’s self-calling exchange ‘playing with the vital spirit.’ Ruiyan supplies the quoted exchange, but not the headword-bearing narrative judgment.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Ruiyan Shiyan",
               "Roles": [
-                "utterer"
+                "person-discussed",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "record narration",
+            "ActorLabel": "the record narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The quotation ends with Ruiyan’s self-answer 諾. The following clause 諸方謂其弄精魂 is third-person narration: masters elsewhere are reported as applying the headword-bearing judgment to him.",
+            "ReviewedBy": "Codex packet3 five-correction independent rereview",
+            "ReviewedUtc": "2026-07-16T00:00:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
         }
       ],
       "SourceTexts": [

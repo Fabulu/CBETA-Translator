@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "packet1-two-residuals-inline-fix-ledger-v1",
+  "instruction": "read-fix-verify",
+  "authoritativeTree": "fresh-build/entries",
+  "promotion": "not performed",
+  "merge": "not performed",
+  "reviewState": "changed-by-reviewer-awaiting-different-independent-reviewer",
+  "summary": {
+    "entriesChanged": 2,
+    "occurrencesReread": 14,
+    "zcHeadwordLbChecks": 14,
+    "zcHeadwordLbPassed": 14,
+    "attributionAuditHardFailures": 0,
+    "proseChineseClaims": 8,
+    "proseChineseClaimsAnchored": 8
+  },
+  "rows": [
+    {
+      "id": "t_b986851dcdd8",
+      "term": "父母未生已前",
+      "path": "fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "oldSha256": "1bd0ebd8920fb60addd0255205f0973ee4a835ea5399cb642894c32284000c41",
+      "newSha256": "8001bf96c7aad711d97c1c1c68c64117307010456ef689f4be69f75d8262808f",
+      "changes": [
+        "Corrected both six-witness statements to seven.",
+        "Expanded the deployment inventory to include Konggu Daocheng's face-before-birth formulation.",
+        "Added the exact occurrence-anchored phrase 父母未生已前面目 and adjusted the closing bend to cover both interview boundary and face-formulation."
+      ],
+      "finalValidation": "7/7 exact zc.verify + headword + FromLb/ToLb; final prose reread; all eight Chinese prose strings occurrence-anchored."
+    },
+    {
+      "id": "t_aa45c307e9f1",
+      "term": "頭首",
+      "path": "fresh-build/entries/t_aa45c307e9f1/entry.v2.json",
+      "oldSha256": "04db329a7bfbd400887e952d14946d49b13d876ca8bdd2fadcf1bf4251a1f6d9",
+      "newSha256": "0b4288e8406aafe1f2323ceb7b7c21e520cfe9141e8c7e0a64890c959c18c6be",
+      "changes": [
+        "Changed the X/X70/X70n1382.xml exact headword utterer from Fojian Huiqin to roster-canonical Wuzhun Shifan in MasterName and ContextMasters.",
+        "Rewrote the reader-facing AttributionNote to name the record, section, speaker, audience, and the source-internal evidence distinguishing Wuzhun's Fojian title."
+      ],
+      "finalValidation": "7/7 exact zc.verify + headword + FromLb/ToLb; final occurrence and prose reread; Wuzhun Shifan is roster-canonical."
+    }
+  ],
+  "mutationGuard": {
+    "statusChanged": false,
+    "queueChanged": false,
+    "promoted": false,
+    "merged": false
+  },
+  "nextGate": "A different independent reviewer must reread both new hashes before either entry is promotion-ready."
+}

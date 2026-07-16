@@ -263,6 +263,15 @@ shards in `C:\temp\NewTranslationrepos\CbetaZenTranslations`. It also normalises
 the three legal states, `Curated: true`). **Do not hand-edit those artifacts — edit
 `terms/<id>/entry.v2.json` and re-merge.** Do not commit or push; the user publishes.
 
+> **FRESH-REBUILD OVERRIDE (2026-07-16; hard gate).** The preceding historical publishing paragraph
+> describes the retired pre-rebuild tree. During the current fresh rebuild, the only authoritative mutable
+> entry is `fresh-build/entries/<id>/entry.v2.json`. The historical `terms/<id>` tree is reference-only: it
+> may be absent, stale, or intentionally differ, and it must never be used for current-hash binding,
+> collision detection, repair, review, promotion, or completion counts. A reported collision is valid only
+> when the SHA of the same `fresh-build/entries/<id>/entry.v2.json` changes after the reader bound it.
+> Review packets and ledgers must record this authoritative path explicitly. Publish through
+> `publish_fresh_checkpoint.py`; do not run the historical merger against `terms/` during this phase.
+
 ---
 
 ## Definition of done

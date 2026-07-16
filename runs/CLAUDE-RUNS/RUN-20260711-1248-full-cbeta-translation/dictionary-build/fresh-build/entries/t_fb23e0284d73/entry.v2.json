@@ -13,9 +13,9 @@
         "give approval"
       ],
       "Status": "preferred",
-      "Explanation": "The term names the named teacher in each cited record’s recorded act of approving or certifying a person’s understanding; the entries keep that act distinct from assigning succession. Literally, \"seal\" (印) and \"approve or permit\" (可): \"approve and certify,\" attested 761 times in 173 allowlisted texts. Lamp and lineage records use the verb for recorded acts of approval. After a student opens to understanding at Tianyi's assembly, Tianyi \"approves him, saying: this is my house's thousand-mile colt\" (印可曰，此吾家千里駒也). Another account says an unnamed interlocutor approved six people individually and told them, \"you six people together verify my body; each accords with one part\" (汝等六人，同證吾身，各契其一). Narrative forms include \"all received approval\" (皆蒙印可), \"deeply received approval\" (profoundly receiving the seal of approval), and \"received the named record subject's approval\" (receiving an unnamed interlocutor’s seal of approval). These passages record approval, the named record subject's words at approval, and who received it; they do not make every occurrence a single theory of what was certified.",
+      "Explanation": "The term names the recorded act by Tianyi Yihuai, Nanyue Huairang, and other identified teachers of approving or certifying a person's understanding; the entries keep that act distinct from assigning succession. Literally, \"seal\" (印) and \"approve or permit\" (可): \"approve and certify,\" attested 761 times in 173 allowlisted texts. Lamp and lineage records use the verb for recorded acts of approval. After a student opens to understanding at Tianyi Yihuai's assembly, Tianyi \"approves him, saying: this is my house's thousand-mile colt\" (印可曰，此吾家千里駒也). Another account says Nanyue Huairang approved six room-entering disciples individually and told them, \"you six people together verify my body; each accords with one part\" (汝等六人，同證吾身，各契其一). Narrative forms include \"all received approval\" (皆蒙印可) and \"received approval\" (蒙印可). These passages record approval, the approving teacher's words where preserved, and who received it; they do not make every occurrence a single theory of what was certified.",
       "Validation": "multi-source",
-      "Note": "Approval is not always the end of examination. In the Zhang Shangying case, after Donglin has approved the commissioner, Doushuai asks whether he still has any doubt about the words and teachings of buddhas and ancestral teachers. Historical notices also distinguish a person's approving teacher from the lineage teacher ultimately named in succession: one person can receive approval from more than one unnamed interlocutor while a later record names a particular succession relation. The headword records the approval event; lineage assignment remains a separate structural claim.",
+      "Note": "Approval is not always the end of examination. In the Zhang Shangying case, after Donglin has approved the commissioner, Doushuai asks whether he still has any doubt about the words and teachings of buddhas and ancestral teachers. Historical notices also distinguish a person's approving teacher from the lineage teacher ultimately named in succession: Fushan Fayuan is reported to receive approval from both Fenyang Shanzhao and Yexian Guixing, while a later record may name a particular succession relation. The headword records the approval event; lineage assignment remains a separate structural claim.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -40,7 +40,7 @@
           "ToLb": "0122c18",
           "Kwic": "師各印可曰：汝等六人，同證吾身，各契其一。",
           "Curated": true,
-          "AttributionNote": "Jinjiang Chan Lamp (錦江禪燈); Continuation of the Lamp record, biography of Nanyue Huairang: after the Mazu dialogue, Huairang says that he approved each of six room-entering disciples. Nanyue Huairang is the exact utterer of the headword.",
+          "AttributionNote": "Jinjiang Chan Lamp (錦江禪燈), biography of Nanyue Huairang: after the Mazu dialogue, Huairang says that he approved each of six room-entering disciples. Nanyue Huairang is the exact utterer of the headword.",
           "MasterName": "Nanyue Huairang",
           "ContextMasters": [
             {
@@ -95,11 +95,13 @@
           "Kwic": "東林既印可運使，運使于佛祖言教有少疑否？",
           "Curated": true,
           "AttributionNote": "Source text (錦江禪燈). Zhang Shangying asks about Donglin having approved the transport commissioner. The exact actor is the official Zhang Shangying.",
-          "ContextMasters": [],
+          "ContextMasters": [
+            {"MasterName": "Zhang Shangying", "Roles": ["questioner"]}
+          ],
           "ActorAttribution": {
             "Status": "identified-non-master",
             "Kind": "named public figure author or interlocutor",
-            "ActorLabel": "the official Zhang Shangying",
+            "ActorLabel": "Zhang Shangying",
             "ActorRole": "questioner",
             "GrammarEvidence": "Expanded context explicitly names this non-master and assigns the headword-bearing clause or question to that person.",
             "ReviewedBy": "Codex root-revision repair",
@@ -153,6 +155,18 @@
               "MasterName": "Fushan Fayuan",
               "Roles": [
                 "person-described"
+              ]
+            },
+            {
+              "MasterName": "Fenyang Shanzhao",
+              "Roles": [
+                "teacher"
+              ]
+            },
+            {
+              "MasterName": "Yexian Guixing",
+              "Roles": [
+                "teacher"
               ]
             }
           ],

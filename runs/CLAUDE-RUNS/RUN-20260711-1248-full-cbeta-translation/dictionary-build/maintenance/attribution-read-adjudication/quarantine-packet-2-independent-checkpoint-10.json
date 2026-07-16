@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"quarantine-independent-rereview-checkpoint-v1","packet":2,"completed":10,
+  "source":"quarantine-packet-2-final-review.json","authoritativeTree":"fresh-build/entries",
+  "results":[
+    {"id":"t_121b66b78c9e","verdict":"REVISED","oldSha256":"4400d635361a23f2bb19aa0ea640488a3d917c009b938f44ef65fcd9159656c5","newSha256":"7719a399f4364dec44c8fd981616518081ca03c3503204665107779e8ffbf06d","finding":"In the Dahui section, Linji Yixuan is the named quoted utterer of 逢佛殺佛; Dahui Zonggao is the later raiser/commentator, not MasterName."},
+    {"id":"t_4cc95950b59a","verdict":"KEEP","sha256":"95dee15a8995593240c1f658f496340af12afd2e98e4eaa9fd188acf791c8961"},
+    {"id":"t_93ab42fecdca","verdict":"KEEP","sha256":"21eeb03b15a3bbb93a38e3b2f4fabcafaf165cda8fb3fbf8b495f4686daef1aa"},
+    {"id":"t_d11d5f0c78a5","verdict":"KEEP","sha256":"d45870f626151c5ffea49d038f5ad058b7735d87e848fac6e9c88a260751088b"},
+    {"id":"t_0427b79d8ba4","verdict":"KEEP","sha256":"32ba16c6322ada053c7687d0f7839aec0f50a2450b7543f401d4b3b0b1415c54"},
+    {"id":"t_6293dead3bb2","verdict":"KEEP","sha256":"250f750c2bf911e06cf4cfb61069c9792d4be948742807048151d514b70a3458"},
+    {"id":"t_94ee610a30f7","verdict":"KEEP","sha256":"7ce9db9014f9cb5a6cc0e7e207b47566a3dea78ea62d8f43e3b7632a97de2cee"},
+    {"id":"t_057cc9ea8755","verdict":"KEEP","sha256":"17cdf5464d40b92c6868ec247f6c54c660ac978285b0744a3a2fe4967483cd00"},
+    {"id":"t_1d1a833551a9","verdict":"KEEP","sha256":"0e26b73b272a6744f93e7a97805883f5107a7ed7bff5b3ea2be47dbf81418538"},
+    {"id":"t_34143e43daf4","verdict":"KEEP","sha256":"729484b18cb3f75e4df9acdff3db1f5a9c81f4d77ab06ed7006c0c702d59b8d2"}
+  ],
+  "validation":{"auditHardFailures":0,"exactZc":78,"zcFailures":0,"headwordFailures":0},
+  "changedBytesRequireAnotherReviewer":true,"promoted":false,"merged":false
+}

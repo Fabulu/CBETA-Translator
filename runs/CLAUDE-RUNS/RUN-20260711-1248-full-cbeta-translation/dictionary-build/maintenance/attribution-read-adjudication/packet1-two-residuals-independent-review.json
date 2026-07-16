@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "packet1-two-residuals-independent-review-v1",
+  "authoritativeTree": "fresh-build/entries",
+  "reviewMode": "full-definition-and-complete-case-independent-reread",
+  "promotion": "not performed",
+  "merge": "not performed",
+  "entriesEdited": false,
+  "summary": {
+    "entries": 2,
+    "KEEP": 0,
+    "REVISE": 2,
+    "occurrencesRead": 14,
+    "zcHeadwordLbChecks": 14,
+    "zcHeadwordLbPassed": 14,
+    "defaultAttributionAuditHardFailures": 0,
+    "proseChineseClaims": 7,
+    "proseChineseClaimsAnchored": 7
+  },
+  "rows": [
+    {
+      "id": "t_b986851dcdd8",
+      "term": "父母未生已前",
+      "path": "fresh-build/entries/t_b986851dcdd8/entry.v2.json",
+      "sha256Reviewed": "1bd0ebd8920fb60addd0255205f0973ee4a835ea5399cb642894c32284000c41",
+      "verdict": "REVISE",
+      "promotionReady": false,
+      "correctionUnderReview": {
+        "result": "PASS",
+        "detail": "The 18 stale/orphaned ClaimAnchors are gone. ClaimAnchors is empty, and all seven Chinese strings remaining in the English explanation are supported by stored occurrence text. All seven occurrences contain the exact headword and pass exact zc.verify with matching FromLb/ToLb."
+      },
+      "blockingFindings": [
+        {
+          "kind": "internal-depth-count-contradiction",
+          "detail": "The sense now stores seven exact occurrences, but Note says it was rebuilt from 'the six exact stored witnesses' and Explanation again says 'the six exact witnesses'. These are false numerical claims in the current bytes. Change both to seven, or explicitly identify which six form the narrower evidentiary set and why the seventh is excluded from that statement."
+        },
+        {
+          "kind": "stored-witness-omitted-from-prose-account",
+          "detail": "The seventh occurrence, Konggu Daocheng at J/J39/J39nB471.xml 0972a26–0972b03, is not represented in the witness-by-witness explanation even though the prose claims to characterize the exact witness set. Either add its distinct face/面目 deployment or stop presenting the paragraph as an exhaustive numbered inventory."
+        }
+      ],
+      "semanticReread": "The one-sense decision and preferred target hold. The cases deploy the temporal clause as contrast, interview question, already-complete condition, and 面目 formulation without establishing a second referent.",
+      "requiredNextStep": "Author corrects the count/prose scope; a different reviewer rereads the resulting hash before promotion."
+    },
+    {
+      "id": "t_aa45c307e9f1",
+      "term": "頭首",
+      "path": "fresh-build/entries/t_aa45c307e9f1/entry.v2.json",
+      "sha256Reviewed": "04db329a7bfbd400887e952d14946d49b13d876ca8bdd2fadcf1bf4251a1f6d9",
+      "verdict": "REVISE",
+      "promotionReady": false,
+      "correctionUnderReview": {
+        "result": "PASS",
+        "detail": "The 列祖提綱錄 contents occurrence now has the exact verified span X/X64/X64n1260.xml 0004a10–0004a14. All seven occurrences contain 頭首 and pass exact zc.verify with matching FromLb/ToLb."
+      },
+      "blockingFindings": [
+        {
+          "kind": "wrong-headword-utterer",
+          "occurrence": "X/X70/X70n1382.xml 0221c16–0221c22",
+          "currentMasterName": "Fojian Huiqin",
+          "requiredMasterName": "Wuzhun Shifan",
+          "detail": "The occurrence is in 無準師範禪師語錄, under 佛鑑禪師初住慶元府清凉禪寺語錄. The same source explicitly self-identifies the record owner as 臣僧師範 and closes with 故徑山佛鑑範公無準圓照大禪師之塔. Here 佛鑑 is Wuzhun Shifan's title; it does not identify Fojian Huiqin. The complete turn has 師/山僧 uttering the greeting that contains 頭首. Replace MasterName and the utterer ContextMasters link with Wuzhun Shifan, and rewrite the AttributionNote accordingly."
+        }
+      ],
+      "semanticReread": "The institutional sense 'senior monastic officers' holds. Contents, rules, and direct addresses consistently distinguish the west-rank 頭首 from east-rank 知事 and from the assembly; no second referent is attested in the selected cases.",
+      "requiredNextStep": "Author fixes the X70 utterer fields and note; a different reviewer rereads the resulting hash before promotion."
+    }
+  ],
+  "verificationNotes": {
+    "audit": "audit_attribution.py on both exact current fresh-build files returned zero default hard failures. Strict-roster mode additionally reports Taiyuan Fu and Cijue Puyin as noncanonical; both are already represented in the validated pending-roster workflow and are not the defects adjudicated here.",
+    "mechanicalGate": "14/14 zc.verify ok; 14/14 exact FromLb/ToLb matches; 14/14 stored Kwics contain their own headword.",
+    "mutationGuard": "No entry, status, queue, promotion, or merged artifact was changed by this review."
+  }
+}

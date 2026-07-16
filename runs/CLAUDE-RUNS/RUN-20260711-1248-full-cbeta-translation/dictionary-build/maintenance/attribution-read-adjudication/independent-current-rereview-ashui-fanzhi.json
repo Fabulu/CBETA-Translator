@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "independent-current-hash-rereview-v1",
+  "reviewer": "Codex attr_read_4_6_real",
+  "method": "Read each complete definition, every complete packet case, every retained occurrence, and every claim anchor; then ran the attribution audit and exact zc gate.",
+  "results": [
+    {
+      "id": "t_43ecdacadde0",
+      "headword": "阿誰",
+      "reviewedSha256": "9d09e8783ca5b98dc03297ff9cc1a1b84d66d6ea248fb8535ba1f2c8d2357d2c",
+      "disposition": "KEEP",
+      "occurrencesRead": 8,
+      "claimAnchorsRead": 3,
+      "reason": "All eight cases deploy 阿誰 as the direct who-question described by the definition; the named and unnamed turn owners match the complete exchanges. All three variant-form anchors are distinct and correctly attributed."
+    },
+    {
+      "id": "t_45e1950bfe3e",
+      "headword": "梵志",
+      "reviewedSha256": "da14eaa0e6ec155cf87475f86819971ed4e27ce5be0d347b0713bb7f31da758e",
+      "disposition": "REVISE",
+      "occurrencesRead": 7,
+      "claimAnchorsRead": 0,
+      "reason": "Six occurrences are genuine complete cases or a master's raised verse, but occurrence 3 was only a table-of-contents name list. It was not a Chan deployment and supported none of the definition's claims."
+    }
+  ],
+  "repairAfterReview": {
+    "id": "t_45e1950bfe3e",
+    "newSha256": "5eb99967cfd4041a583aff1bf143dbb4522db6b8a4bf53ff0e71b5110c04a4df",
+    "change": "Removed only the table-of-contents noise witness; retained all six genuine cases.",
+    "requiresIndependentRereview": true,
+    "auditHardFailures": 0,
+    "combinedExactZc": "17/17"
+  },
+  "summary": {"KEEP": 1, "REVISE": 1}
+}

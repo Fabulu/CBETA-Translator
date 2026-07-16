@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "independent-current-hash-rereview-v1",
+  "reviewer": "Codex attr_read_4_6_real",
+  "method": "Read both full definitions and all sixteen complete occurrence cases at the requested corrected hashes; compared every actor, note, and prose claim with the complete cases; ran attribution and exact zc gates.",
+  "results": [
+    {
+      "id": "t_84e490b1773f",
+      "headword": "撫掌",
+      "reviewedSha256": "a0415032d4a3c47f63badb9a99a8b9eac2c2f8dfcb8d313f5225d3dbe48d8d8e",
+      "disposition": "REVISE",
+      "casesRead": 8,
+      "reason": "Occurrence 8 structured the actor correctly as the unnamed verse author, but its reader-facing AttributionNote contradicted that structure by calling the exact actor the case narrator."
+    },
+    {
+      "id": "t_d0d82a2681a0",
+      "headword": "第一句",
+      "reviewedSha256": "cc17fb26468bff40f8cdaf556313ea1568d1fe216c127e0a52845da4ce956276",
+      "disposition": "REVISE",
+      "casesRead": 8,
+      "reason": "The definition named Muchen Conglang although no retained occurrence supports that claim, and described Yuanwu Keqin's attested statement as a question."
+    }
+  ],
+  "repairAfterReview": [
+    {
+      "id": "t_84e490b1773f",
+      "newSha256": "7697de5c6577e1c5d47cd6871d31eb4147688af3dc921879c3ebaa0ced6d90a5",
+      "change": "Made the AttributionNote name the unnamed verse author, agreeing with the complete case and structured actor."
+    },
+    {
+      "id": "t_d0d82a2681a0",
+      "newSha256": "50614781a0379eabe2875c75b51f8d35119c6d60f1137dbf453d2fc6e4bb8f36",
+      "change": "Replaced unsupported Muchen Conglang with attested Yuanwu Keqin and changed asks to states."
+    }
+  ],
+  "postRepair": {"requiresIndependentRereview": true, "auditHardFailures": 0, "exactZc": "16/16"},
+  "summary": {"KEEP": 0, "REVISE": 2}
+}

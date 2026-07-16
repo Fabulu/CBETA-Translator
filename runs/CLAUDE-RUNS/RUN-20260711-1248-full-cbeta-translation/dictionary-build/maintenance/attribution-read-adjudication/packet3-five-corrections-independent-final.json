@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "packet3-five-corrections-independent-final-v1",
+  "authoritativeTree": "fresh-build/entries",
+  "entryCount": 5,
+  "fullDefinitionsRead": 5,
+  "completeEvidenceUnitsRead": 38,
+  "audit0": {
+    "hardFailures": 0
+  },
+  "exactVerification": {
+    "checks": 38,
+    "passed": 38,
+    "failed": 0,
+    "occurrences": 37,
+    "claimAnchors": 1,
+    "headwordOrClaimTextFailures": 0
+  },
+  "promotion": "not performed",
+  "merge": "not performed",
+  "rows": [
+    {
+      "id": "t_85eef19d3d3a",
+      "term": "淨瓶",
+      "currentFreshBuildSha256": "896b023d786dd0149f73d9709214312c190db6d1527937f1c6d00eb46860223d",
+      "verdict": "KEEP",
+      "evidenceUnitsRead": 9,
+      "authoritativePath": "fresh-build/entries/t_85eef19d3d3a/entry.v2.json"
+    },
+    {
+      "id": "t_fb23e0284d73",
+      "term": "印可",
+      "reviewedInputSha256": "0d204867b7061ce986f313cf179d19d173f30a6882f21190fef4b031e0e8343b",
+      "currentFreshBuildSha256": "9cbea9ba740aac3b82f18924c3300995ce751b1d5c5e23479acef274975d965f",
+      "verdict": "REVISED_REQUIRES_DIFFERENT_REVIEWER",
+      "evidenceUnitsRead": 7,
+      "findings": [
+        "Removed the contradictory label ‘Continuation of the Lamp record’ from an occurrence actually sourced to Jinjiang Chan Lamp.",
+        "Added Fenyang Shanzhao and Yexian Guixing as the named approving teachers in the Continued Transmission of the Lamp occurrence."
+      ],
+      "authoritativePath": "fresh-build/entries/t_fb23e0284d73/entry.v2.json"
+    },
+    {
+      "id": "t_19784084ccb4",
+      "term": "誌公",
+      "currentFreshBuildSha256": "ec7c1aef8f248ab3a0d25a787bc81c16193b9cfe63b5bb8227b35233185bd59e",
+      "verdict": "KEEP",
+      "evidenceUnitsRead": 7,
+      "authoritativePath": "fresh-build/entries/t_19784084ccb4/entry.v2.json"
+    },
+    {
+      "id": "t_b90a5f36ec86",
+      "term": "弄精魂",
+      "reviewedInputSha256": "27ab5d8f37922902510be3d446faa7f7cc4850de45b3bf1ba9d01b3613da7ec5",
+      "currentFreshBuildSha256": "12022fec23fba3206301f88618aa683a02224e50fa4332aba243d4661b8f12c3",
+      "verdict": "REVISED_REQUIRES_DIFFERENT_REVIEWER",
+      "evidenceUnitsRead": 7,
+      "finding": "In 諸方謂其弄精魂, Ruiyan Shiyan supplies the preceding self-calling exchange but does not utter the headword. The record narrator reports that masters elsewhere applied the judgment to him; MasterName is now null and Ruiyan is retained as case-figure/person-discussed.",
+      "authoritativePath": "fresh-build/entries/t_b90a5f36ec86/entry.v2.json"
+    },
+    {
+      "id": "t_10d93a67ea99",
+      "term": "言句",
+      "currentFreshBuildSha256": "1c7993326ab3156458cbccf1751b735ca3075845bb2375307d08cf90012ccb80",
+      "verdict": "KEEP",
+      "evidenceUnitsRead": 8,
+      "authoritativePath": "fresh-build/entries/t_10d93a67ea99/entry.v2.json"
+    }
+  ]
+}
