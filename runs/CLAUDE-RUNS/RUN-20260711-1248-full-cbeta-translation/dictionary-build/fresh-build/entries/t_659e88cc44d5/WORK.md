@@ -37,3 +37,13 @@
 
 ## Independent semantic REVISE repair
 Replaced systemic process prose with the term-specific historical deployment account, removed stale numeric and unanchored Chinese prose, and applied the verdict file’s exact-ID instructions worksheet-first.
+
+## Retrospective public-feedback adjudication — lane C
+reviewed-utc: `2026-07-16T07:15:03.914778+00:00`
+feedback-inference-verdict: `licensed` — the opening is limited to the referent and deployment established by the stored exact-headword cases; it does not import intent, doctrine, or symbolism.
+feedback-observations: sense 0: Knowing hot and cold for oneself is the recurrent predicate of the drinking-water comparison: the person concerned, not another reporter, knows the temperature. | sense 0 deployment: Knowing hot and cold for oneself is the recurrent predicate of the drinking-water comparison: the person concerned, not another reporter, knows the temperature.
+feedback-falsification-searches: re-read every stored full-case actor proof; tested literal/ordinary use, longer-compound contamination, alternate referents, incompatible verb frames, and contradictory family evidence recorded in DraftEvidence.
+feedback-counterexamples: sense 0: The corpus has 68 exact occurrences in 54 allowlisted files. The full water comparison occurs widely; variants reverse the order or substitute a fish drinking water. Distinct deployments include Huiming's report, Huangbo's instruction, a self-versus-other contrast, Daodu's paired formula, and Foyan's corrective question.
+feedback-scope: `corpus-wide across distinct works`; distinct stored work IDs: work:B25n0144, work:X72n1443, work:X78n1556, work:guzunsu-yulu
+lookup-probes: knowing hot and cold for oneself | know hot and cold for oneself
+opening-interpretation-verdict: `keep` — sense 0: knowing hot and cold for oneself

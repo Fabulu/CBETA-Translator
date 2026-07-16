@@ -37,3 +37,13 @@
 
 ## Independent semantic REVISE repair
 Replaced systemic process prose with the term-specific historical deployment account, removed stale numeric and unanchored Chinese prose, and applied the verdict file’s exact-ID instructions worksheet-first.
+
+## Retrospective public-feedback adjudication — lane C
+reviewed-utc: `2026-07-16T07:15:49.751146+00:00`
+feedback-inference-verdict: `licensed` — the opening is limited to the referent and deployment established by the stored exact-headword cases; it does not import intent, doctrine, or symbolism.
+feedback-observations: sense 0: Dahui names agitation as deliberate, successive mental activity and pairs it with dull sinking; later records repeat, criticize, or reverse that pair. | sense 0 deployment: Dahui names agitation as deliberate, successive mental activity and pairs it with dull sinking; later records repeat, criticize, or reverse that pair.
+feedback-falsification-searches: re-read every stored full-case actor proof; tested literal/ordinary use, longer-compound contamination, alternate referents, incompatible verb frames, and contradictory family evidence recorded in DraftEvidence.
+feedback-counterexamples: sense 0: The corpus has 50 exact occurrences in 28 allowlisted files. Direct definition and contrast evidence is multi-source. It commonly occurs in the fixed pair “dull sinking and agitation” (昏沈掉舉); spelling of the first member varies, while the written form for “agitation” (掉舉) is stable.
+feedback-scope: `corpus-wide across distinct works`; distinct stored work IDs: work:J38nB431, work:T47n1998A, work:X70n1401, work:X72n1443
+lookup-probes: agitation
+opening-interpretation-verdict: `keep` — sense 0: agitation

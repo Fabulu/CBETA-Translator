@@ -15,3 +15,11 @@
 - display-modifier-verdict: checked — the displayed English does not infer physical composition or symbolism from a graph alone.
 - state: drafted, never self-promoted.
 - sense-target-distinguishability: Sense 1 is the borrowed lexical label translated here as complete command; sense 2 is the proper name Sanmei identifying a person. The named person and the condition/mode are different referents.
+
+## Lane-B author repair (2026-07-16T11:52:53.605638+00:00)
+
+Replaced the circular placeholder with an English-first corpus-bounded gloss, without importing the forbidden meditation label or collapsing Master Sanmei. requiresDifferentReader: true.
+
+## Lane-B author repair (2026-07-16T12:01:40.818589+00:00)
+
+Replaced the circular placeholder with an English-first corpus-bounded gloss, without importing the forbidden meditation label or collapsing Master Sanmei. requiresDifferentReader: true.

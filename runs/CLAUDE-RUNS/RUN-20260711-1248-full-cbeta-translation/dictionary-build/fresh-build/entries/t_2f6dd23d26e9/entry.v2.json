@@ -24,16 +24,25 @@
           "ToLb": "0018c01",
           "Kwic": "祖師有末後一句，吞栗棘蓬，跳金剛圈。",
           "Curated": true,
-          "ContextMasters": [
-            {
-              "MasterName": "Yuanwu Keqin",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "AttributionNote": "Source text (列祖提綱錄). Exact actor: Yuanwu Keqin. The anthology’s paragraph explicitly begins 圓悟勤禪師; Yuanwu says the patriarchs have a final phrase: swallow the thorny chestnut burr and leap the diamond ring.",
-          "MasterName": "Yuanwu Keqin"
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Compiler narration owns the exact headword-bearing compiler narrative."
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -43,18 +52,17 @@
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Zhengtang Mingbian",
+              "MasterName": "Zhengfang Mingbian",
               "Roles": [
-                "respondent",
-                "section-subject"
+                "respondent"
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Exact actor: the unnamed monk. An unnamed monk asks Zhengtang Mingbian what the master’s thorny chestnut burr is.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monastic questioner is unnamed and owns the exact headword-bearing questioner turn.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed monk",
+            "Kind": "questioner",
+            "ActorLabel": "the unnamed monastic questioner",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -64,22 +72,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "僧問/曰 assigns the question about “the master’s thorny chestnut burr” to an unnamed monk; Zhengtang Mingbian answers afterward.",
-            "ReviewedBy": "Codex author 1-3 126-135 checkpoint2 full read",
-            "ReviewedUtc": "2026-07-16T00:20:09.330834+00:00"
-          },
-          "MasterName": null
+            "ReviewedBy": "Codex f003 A601-650 round4 repair author",
+            "ReviewedUtc": "2026-07-15T16:30:00Z",
+            "GrammarEvidence": "The explicit question-then-master-answer frame assigns the headword-bearing question to the unnamed monk; Zhengfang Mingbian responds."
+          }
         },
         {
           "RelPath": "M/M59/M59n1540.xml",
           "FromLb": "0826b18",
-          "ToLb": "0826b19",
-          "Kwic": "僧問跳出金剛圈吞却栗棘蓬如何是和尚為人底一句",
+          "ToLb": "0827a05",
+          "Kwic": "僧問跳出金剛圈吞却栗棘蓬如何是和尚為人底一句師云一雨普潤周沙界進云雨過浮雲散明月又依然師云千峯勢到岳邊止万派聲歸海上消進云正是陽和無偏黨曇花再發一枝春師云相隨來也進云只如薌林居士昔日與和尚相見未審最初一句作麼生道師云便是你口裏道底進云恁麼則眾生普聞盡皆成佛去也師云錯下注脚進云自從一見桃花後剎剎塵塵總是渠師云速禮三拜。",
           "Curated": true,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed monk",
+            "ActorLabel": "the unnamed interlocutor asking the recorded question",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -89,21 +96,12 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "僧問 introduces the headword-bearing question; Dahui Zonggao’s response begins at 師云.",
-            "ReviewedBy": "Codex author 1-3 126-135 checkpoint2 full read",
-            "ReviewedUtc": "2026-07-16T00:20:09.330834+00:00"
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
+            "GrammarEvidence": "The headword lies in the question before the separately marked response."
           },
-          "ContextMasters": [
-            {
-              "MasterName": "Dahui Zonggao",
-              "Roles": [
-                "respondent",
-                "record-owner"
-              ]
-            }
-          ],
-          "AttributionNote": "Source text (大慧普覺禪師普說). Exact actor: the unnamed monk. An unnamed monk asks Dahui Zonggao for the master’s phrase after leaping the diamond ring and swallowing the thorny burr.",
-          "MasterName": null
+          "ContextMasters": [],
+          "AttributionNote": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue (大慧普覺禪師普說): The interlocutor asking the recorded question is unnamed and owns the exact headword-bearing questioner turn."
         },
         {
           "RelPath": "T/T47/T47n1997.xml",
@@ -120,7 +118,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (圓悟佛果禪師語錄). Exact actor: Yuanwu Keqin. Yuanwu says he found a basket of thorny chestnut burrs at Wuzu Baiyun."
+          "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Yuanwu Keqin owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "T/T47/T47n1998A.xml",
@@ -137,7 +135,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (大慧普覺禪師語錄). Exact actor: Dahui Zonggao. Dahui tells the assembly to leap the diamond ring and swallow the thorny burr."
+          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "J/J26/J26nB178.xml",
@@ -154,7 +152,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (費隱禪師語錄). Exact actor: Feiyin Tongrong. Feiyin answers the request for a transcendent phrase by saying he casts out a thorny burr."
+          "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): Feiyin Tongrong owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "X/X85/X85n1587.xml",
@@ -171,28 +169,30 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (正源略集). Exact actor: Huangbo Yi'an Yue. Huangbo Yi'an Yue tells hearers to swallow the burr or leap the ring as they can."
+          "AttributionNote": "Source record (X/X85/X85n1587.xml). Abridged Collection of the True Source (正源略集): Huangbo Yi'an Yue owns the exact headword-bearing wording in the complete source unit."
         }
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
-        "J/J26/J26nB178.xml",
+        "X/X64/X64n1260.xml",
+        "X/X82/X82n1571.xml",
         "M/M59/M59n1540.xml",
         "T/T47/T47n1997.xml",
         "T/T47/T47n1998A.xml",
-        "X/X64/X64n1260.xml",
-        "X/X82/X82n1571.xml",
+        "J/J26/J26nB178.xml",
         "X/X85/X85n1587.xml"
       ],
       "RelatedMasters": [
-        "圓悟佛果禪師",
-        "大慧普覺禪師",
+        "Yuanwu Keqin",
+        "Dahui Zonggao",
         "安吉州道場正堂明辯禪師",
         "瑞州黃檗一菴月禪師",
-        "費隱禪師"
+        "Feiyin Tongrong",
+        "Zhengfang Mingbian",
+        "Huangbo Yi'an Yue"
       ],
       "RelatedTerms": [],
-      "Explanation": "The thorny chestnut burr is a deliberately hard-to-swallow phrase or challenge paired with the diamond ring that must be leapt. Yuanwu Keqin says he obtained a basket of such burrs at Wuzu Baiyun and offers them for the summer assembly’s cutting and polishing. Dahui Zonggao orders hearers to swallow one; Feiyin Tongrong says he casts one out when asked for a transcendent phrase. An unnamed monk also calls Zhengtang Mingbian’s personal testing phrase his “thorny burr.” The corpus presents an abrasive verbal obstacle issued publicly, not botanical trivia."
+      "Explanation": "A chestnut burr is a hard husk covered on every side with sharp spines. Chan speakers tell people to bite, chew, or swallow a chestnut burr, making the lack of a comfortable biting place part of the demand. Different records pair it with an iron sour ball or use it for a difficult saying."
     }
   ]
 }

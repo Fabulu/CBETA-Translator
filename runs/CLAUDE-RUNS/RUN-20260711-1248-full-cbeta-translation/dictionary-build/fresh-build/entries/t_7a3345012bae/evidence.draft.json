@@ -16,15 +16,15 @@
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "Frozen-corpus concordance: 36 exact hits in 20 storage files representing 20 independent works. The title/series is primary and all curated occurrences concern that same work. Ordinary mentions of ten literal cattle, if encountered, would be a different thing, but the harvested allowlisted evidence did not establish such a second sense for this entry. Frozen-corpus concordance: 36 exact hits in 20 storage files representing 20 independent works. Frozen-corpus concordance: 36 exact hits in 20 storage files representing 20 independent works. Frozen-corpus concordance: 36 exact hits in 20 storage files representing 20 independent works.",
+        "Note": "Frozen-corpus concordance: 36 exact hits in 20 storage files representing 20 independent works. The curated witnesses concern one titled series; an ordinary count of literal cattle would be a different thing but was not established here.",
         "Occurrences": [
           {
             "RelPath": "X/X66/X66n1298.xml",
-            "FromLb": "0754b19",
+            "FromLb": "0754b18",
             "ToLb": "0754b19",
-            "Kwic": "梁山廓庵則和尚十牛頌",
+            "Kwic": "上登佛果。如某不然，幽譴有在，切宜體悉。梁山廓庵則和尚十牛頌",
             "Curated": true,
-            "AttributionNote": "Source text (禪門諸祖師偈頌). the heading of Kuoan Ze's Ten Ox Verses narrates the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X66/X66n1298.xml). Gāthās and Verses of the Chan Gate’s Patriarchs (禪門諸祖師偈頌): Editorial or procedural text: the heading of Kuoan Ze's Ten Ox Verses narrates the exact clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Kuoan Ze",
@@ -53,6 +53,8 @@
             },
             "DraftActorProof": {
               "GrammaticalSubject": "the heading of Kuoan Ze's Ten Ox Verses",
+              "ExactHeadwordClause": "梁山廓庵則和尚十牛頌",
+              "SpeechFrame": "The unique preceding-prose/title boundary binds one occurrence of the editorial title; no person utters it.",
               "FullCaseDecision": "禪門諸祖師偈頌. the heading of Kuoan Ze's Ten Ox Verses is the exact impersonal actor: 梁山廓庵則和尚十牛頌 titles the following work rather than recording a spoken turn."
             }
           },
@@ -62,8 +64,8 @@
             "ToLb": "0131c13",
             "Kwic": "故我宗門有牧牛之說，梁山有十牛之頌",
             "Curated": true,
-            "AttributionNote": "Source text (百癡禪師語錄). Baichi Yuan owns the exact quoted clause in the complete case.",
-            "MasterName": "Baichi Yuan",
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuan owns the exact quoted clause in the complete case.",
+            "MasterName": "Baichi Yuanshuo",
             "DraftActorProof": {
               "ExactHeadwordClause": "故我宗門有牧牛之說，梁山有十牛之頌",
               "SpeechFrame": "百癡禪師語錄, 自牧說. Baichi Yuan is the exact essay author: in his own explanation of self-herding he says that the Chan school has an account of herding the ox and Liangshan has verses on the Ten Oxen.",
@@ -71,7 +73,7 @@
             },
             "ContextMasters": [
               {
-                "MasterName": "Baichi Yuan",
+                "MasterName": "Baichi Yuanshuo",
                 "Roles": [
                   "utterer"
                 ]
@@ -84,8 +86,8 @@
             "ToLb": "0135b30",
             "Kwic": "梁山老漢做箇十牛頌子，可謂慈悲之故，落草之談",
             "Curated": true,
-            "AttributionNote": "Source text (百癡禪師語錄). Baichi Yuan owns the exact quoted clause in the complete case.",
-            "MasterName": "Baichi Yuan",
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuan owns the exact quoted clause in the complete case.",
+            "MasterName": "Baichi Yuanshuo",
             "DraftActorProof": {
               "ExactHeadwordClause": "梁山老漢做箇十牛頌子，可謂慈悲之故，落草之談",
               "SpeechFrame": "百癡禪師語錄, 題十牛圖. Baichi Yuan is the exact author of the inscription: he calls Liangshan's Ten-Ox verses compassionate talk descending into the weeds.",
@@ -93,7 +95,7 @@
             },
             "ContextMasters": [
               {
-                "MasterName": "Baichi Yuan",
+                "MasterName": "Baichi Yuanshuo",
                 "Roles": [
                   "utterer"
                 ]
@@ -106,8 +108,8 @@
             "ToLb": "0135c01",
             "Kwic": "後來人錯下手腳，更畫此十牛樣子",
             "Curated": true,
-            "AttributionNote": "Source text (百癡禪師語錄). Baichi Yuan owns the exact quoted clause in the complete case.",
-            "MasterName": "Baichi Yuan",
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuan owns the exact quoted clause in the complete case.",
+            "MasterName": "Baichi Yuanshuo",
             "DraftActorProof": {
               "ExactHeadwordClause": "後來人錯下手腳，更畫此十牛樣子",
               "SpeechFrame": "百癡禪師語錄, 題十牛圖. Baichi Yuan is the exact author of the inscription: he says that later people made a wrong move and painted these Ten-Ox forms.",
@@ -115,7 +117,7 @@
             },
             "ContextMasters": [
               {
-                "MasterName": "Baichi Yuan",
+                "MasterName": "Baichi Yuanshuo",
                 "Roles": [
                   "utterer"
                 ]
@@ -128,7 +130,7 @@
             "ToLb": "0217c18",
             "Kwic": "聞汝和梁山十牛頌，試舉看。師擬對，德遽掩其口曰：牛在甚麼處？",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Gufeng Dewang owns the exact quoted clause in the complete case.",
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Gufeng Dewang owns the exact quoted clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Wuwen Benjiong",
@@ -170,13 +172,13 @@
           "見跡"
         ],
         "ExplanationParts": {
-          "CorpusEarnedOpening": "The expression denotes the Ten Oxen in these Chan records. Its wording is \"ten oxen.\" As a Chan title and label, it denotes Liangshan Kuoan's ordered set of ox-herding verses and the pictures made from them.",
+          "CorpusEarnedOpening": "The expression denotes the Ten Oxen in these Chan records. Its wording is \"ten oxen.\" As a Chan title and label, it denotes Liangshan Kuoan's ordered set of ox-herding verses and its associated pictures.",
           "EvidenceBody": [
             "A collection titles the work \"Liangshan Kuoan Ze's Ten-Ox Verses\" (梁山廓庵則和尚十牛頌); another record says, \"our school has the account of herding the ox, and Liangshan has the verses on the Ten Oxen\" (我宗門有牧牛之說，梁山有十牛之頌). The sequence begins with named sections including \"seeking the ox\" (尋牛) and \"seeing the tracks\" (見跡). The corpus also records direct criticism of its later handling: Baichi calls Liangshan's verses \"compassionate, talk that descends into the weeds\" (慈悲之故，落草之談), says later people \"made a wrong move and then painted these Ten-Ox forms\" (錯下手腳，更畫此十牛樣子), and urges burning them. In an encounter, the identified teacher interrupts the recorded questioner asked to recite the verses and asks, \"Where is the ox?\" (牛在甚麼處). The deviation from an ordinary count of cattle is documentary: \"the Ten Oxen\" (十牛) functions as the proper name of a Chan verse-and-picture series, circulated, recited, questioned, and criticized inside the record."
           ]
         },
         "DraftEvidence": {
-          "ZenBend": "For 十牛, the stored cases establish this term-specific deployment: Literally, \"ten oxen.\" As a Chan title and label, it denotes Liangshan Kuoan's ordered set of ox-herding verses and the pictures made from them.",
+          "ZenBend": "For 十牛, the stored cases establish this term-specific deployment: Literally, \"ten oxen.\" As a Chan title and label, it denotes Liangshan Kuoan's ordered set of ox-herding verses and its associated pictures.",
           "CounterexampleOrLimit": "The title/series is primary and all curated occurrences concern that same work. Ordinary mentions of ten literal cattle, if encountered, would be a different thing, but the harvested allowlisted evidence did not establish such a second sense for this entry.",
           "AliasRationale": "Aliases retrieve the same attested referent as the Ten Oxen in ordinary English.",
           "DifferentThingTest": {
@@ -229,7 +231,7 @@
               "SpeechFrame": "The complete case was read around this exact quotation.",
               "FullCaseDecision": "Zhuhong owns the exact quoted clause."
             },
-            "AttributionNote": "Source text (牧牛圖頌). Zhuhong owns the exact quoted clause in the complete case."
+            "AttributionNote": "Source record (J/J23/J23nB129.xml). Verses on the Oxherding Pictures (牧牛圖頌): Zhuhong owns the exact quoted clause in the complete case."
           },
           {
             "RelPath": "J/J23/J23nB129.xml",
@@ -252,7 +254,7 @@
               "GrammaticalSubject": "the work compiler",
               "FullCaseDecision": "The work heading names the second picture and verse; it is not a dialogue turn."
             },
-            "AttributionNote": "Source text (牧牛圖頌). the work compiler narrates the exact clause in the complete case."
+            "AttributionNote": "Source record (J/J23/J23nB129.xml). Verses on the Oxherding Pictures (牧牛圖頌): Editorial or procedural text: the work compiler narrates the exact clause in the complete case."
           }
         ]
       }

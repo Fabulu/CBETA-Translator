@@ -22,7 +22,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "The unstated object is supplied by the immediately preceding saying, action, or case. The graph for “understand” (會) supplies the verb. Frozen-corpus concordance: 1931 exact hits in 273 storage files representing 268 independent works. Frozen-corpus concordance: 1931 exact hits in 273 storage files representing 268 independent works. Frozen-corpus concordance: 1931 exact hits in 273 storage files representing 268 independent works.",
+      "Note": "The unstated object is supplied by the immediately preceding saying, action, or case. The graph for “understand” (會) supplies the verb. Frozen-corpus concordance: 1931 exact hits in 273 storage files representing 268 independent works.",
       "Occurrences": [
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -30,22 +30,33 @@
           "ToLb": "0098a05",
           "Kwic": "曾有僧問溈山。如何是西來意。溈山舉起拂子。上座作麼生會溈山意。曰。借事明心。附物顯理。甘曰。且歸溈山去好。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Ganzi Xingzhe owns the exact clause in the complete case.",
-          "MasterName": "Ganzi Xingzhe",
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Ganzi Xingzhe owns the exact clause in the complete case.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Guishan Lingyou",
               "Roles": [
                 "respondent"
               ]
-            },
-            {
-              "MasterName": "Ganzi Xingzhe",
-              "Roles": [
-                "utterer"
-              ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "direct speech",
+            "ActorLabel": "Ganzi Xingzhe",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "X/X80/X80n1565.xml 0098a03 explicitly identifies 池州甘贄行者, a lay practitioner/case interlocutor. His utterance belongs in ActorAttribution, not MasterName.",
+            "ReviewedBy": "Codex strict-roster adjudication",
+            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+          }
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -53,7 +64,7 @@
           "ToLb": "0024c23",
           "Kwic": "師曰：你作麼生會？僧便喝，師曰：未在。僧又喝，師曰：一喝兩喝後作麼生？",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Wufeng Ziqi owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Wufeng Ziqi owns the exact clause in the complete case.",
           "MasterName": "Wufeng Ziqi",
           "ContextMasters": [
             {
@@ -71,7 +82,7 @@
           "Kwic": "翠巖芝云：國師與侍者總欠會在，如今作麼生會？",
           "MasterName": "Cuiyan Shouzhi",
           "Curated": true,
-          "AttributionNote": "Source text (宗門拈古彙集). Cuiyan Shouzhi owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases” (宗門拈古彙集): Cuiyan Shouzhi owns the exact clause in the complete case.",
           "ContextMasters": [
             {
               "MasterName": "Cuiyan Shouzhi",
@@ -87,7 +98,7 @@
           "ToLb": "0152a20",
           "Kwic": "盡十方世界是一顆明珠。汝作麼生會。曰。盡十方世界是一顆明珠。用會作麼。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Xuansha Shibei owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Xuansha Shibei owns the exact clause in the complete case.",
           "MasterName": "Xuansha Shibei",
           "ContextMasters": [
             {
@@ -104,7 +115,7 @@
           "ToLb": "0029a01",
           "Kwic": "諸人作麼生會？向這裏辨得，羅紋十字，一任橫行。苟或未然，切忌亂走。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Xuedou Faning owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Xuedou Faning owns the exact clause in the complete case.",
           "MasterName": "Xuedou Faning",
           "ContextMasters": [
             {
@@ -121,7 +132,7 @@
           "ToLb": "0044a05",
           "Kwic": "一日，龍問：風幡話子作麼生會？師曰：逈無入處，乞師方便。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Huanglong Sixin Wuxin owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Huanglong Sixin Wuxin owns the exact clause in the complete case.",
           "MasterName": "Huanglong Sixin Wuxin",
           "ContextMasters": [
             {
@@ -145,7 +156,7 @@
           "ToLb": "0014a03",
           "Kwic": "雲居舜云：作麼生會？雲居道：普眼推倒世尊，世尊推倒普眼。儞道普賢在甚麼處？",
           "Curated": true,
-          "AttributionNote": "Source text (聯燈會要). Yunju Shun owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp (聯燈會要): Yunju Shun owns the exact clause in the complete case.",
           "MasterName": "Yunju Shun",
           "ContextMasters": [
             {
@@ -180,7 +191,7 @@
           "ToLb": "0504a29",
           "Kwic": "師問僧：「有時一喝如金剛王寶劍、有時一喝如踞地金毛師子、有時一喝如探竿影草、有時一喝不作一喝用，汝作麼生會？」僧擬議，師便喝。",
           "Curated": true,
-          "AttributionNote": "Source text (鎮州臨濟慧照禪師語錄). Linji Yixuan owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (T/T47/T47n1985.xml). Recorded Sayings of Chan Master Huizhao of Linji, Zhenzhou (鎮州臨濟慧照禪師語錄): Linji Yixuan owns the exact clause in the complete case.",
           "MasterName": "Linji Yixuan",
           "ContextMasters": [
             {
@@ -200,7 +211,18 @@
         "T/T47/T47n1985.xml"
       ],
       "RelatedMasters": [
-        "Linji Yixuan"
+        "Linji Yixuan",
+        "Guishan Lingyou",
+        "Wufeng Ziqi",
+        "Cuiyan Shouzhi",
+        "Xuansha Shibei",
+        "Xuedou Faning",
+        "Huanglong Sixin Wuxin",
+        "Caotang Shanqing",
+        "Yunju Shun",
+        "Puyan",
+        "Shakyamuni Buddha",
+        "Samantabhadra"
       ],
       "RelatedTerms": [
         "作麼生",
@@ -209,8 +231,8 @@
         "不會",
         "問答"
       ],
-      "Explanation": "How do you understand it? A recurrent public-interview question put to an individual or the whole assembly after a saying, action, quotation, or case has been raised. Linji Yixuan asks how an unnamed participant understands the four stated uses of a shout and answers the participant’s hesitation with a shout. Wufeng Ziqi asks, ‘How do you understand it?’ (你作麼生會); the unnamed respondent shouts, and Wufeng says ‘not yet’ (未在) before asking what comes after one shout or two. In a whisk case, Ganzi Xingzhe asks how a visitor understands Guishan Lingyou’s intention in raising the whisk; the offered account is rejected with ‘You had better return to Guishan’ (且歸溈山去好). Cuiyan Shouzhi says that National Teacher Huizhong and his attendant both still lacked understanding and asks, ‘How do you understand it now?’ (如今作麼生會). Yunju Shun similarly reopens the Puyan–Samantabhadra case for the assembly. The phrase demands an answer that can itself be answered, rejected, or tested in public; the texts do not define it as silent inward comprehension.",
-      "ClaimAnchors": []
+      "ClaimAnchors": [],
+      "Explanation": "How do you understand it? A recurrent public-interview question put to an individual or the whole assembly after a saying, action, quotation, or case has been raised. Linji Yixuan asks how an unnamed participant understands the four stated uses of a shout and answers the participant’s hesitation with a shout. Wufeng Ziqi asks, ‘How do you understand it?’ (你作麼生會); the unnamed respondent shouts, and Wufeng says ‘not yet’ (未在) before asking what comes after one shout or two. In a whisk case, Ganzi Xingzhe asks how a visitor understands Guishan Lingyou’s intention in raising the whisk; the offered account is rejected with ‘You had better return to Guishan’ (且歸溈山去好). Cuiyan Shouzhi says that National Teacher Huizhong and his attendant both still lacked understanding and asks, ‘How do you understand it now?’ (如今作麼生會). Yunju Shun similarly reopens the Puyan–Samantabhadra case for the assembly. The phrase demands an answer that can itself be answered, rejected, or tested in public; the texts do not define it as silent inward comprehension."
     }
   ]
 }

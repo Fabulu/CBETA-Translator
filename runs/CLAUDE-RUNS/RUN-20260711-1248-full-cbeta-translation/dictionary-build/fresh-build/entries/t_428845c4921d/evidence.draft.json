@@ -5,6 +5,7 @@
     "SourceTerm": "剎那",
     "CreatedBy": "Codex f002 Lane B evidence-first refresh",
     "WrittenUtc": "2026-07-13T08:00:00Z",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
     "Senses": [
       {
         "SenseKey": null,
@@ -23,7 +24,7 @@
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "One time-unit sense covers an instant used as a duration, comparison, subdivision, and pole against years or ages. Chijue Daochong's unresolved written count per finger-snap and Lingao Benyu's ninety-per-thought frame start from different larger units and do not license conversion to a universal number of seconds. Longer compounds for instant-by-instant arising and cessation or an instant-named concentration remain family constructions, not different headword referents. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works.",
+        "Note": "One time-unit sense covers an instant used as a duration, comparison, subdivision, and pole against years or ages. Chijue Daochong's unresolved written count per finger-snap and Lingao Benyu's ninety-per-thought frame start from different larger units and do not license conversion to a universal number of seconds. Longer compounds for instant-by-instant arising and cessation or an instant-named concentration remain family constructions, not different headword referents. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works.",
         "Occurrences": [
           {
             "RelPath": "T/T48/T48n2016.xml",
@@ -33,37 +34,43 @@
             "Kwic": "匪用剎那之力。頓獲玄珠",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (宗鏡錄). Yang Jie owns the exact clause in the complete case.",
-            "MasterName": "Yang Jie",
+            "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yang Jie is the exact headword speaker. Yang Jie owns the exact clause in the complete case.",
+            "MasterName": null,
+            "ContextMasters": [],
             "DraftActorProof": {
-              "ExactHeadwordClause": "匪用剎那之力。頓獲玄珠",
-              "SpeechFrame": "Record of the Source-Mirror (宗鏡錄), in Yang Jie's authored preface. Yang says that the hidden pearl is suddenly gained without the effort of even an instant.",
-              "FullCaseDecision": "Record of the Source-Mirror (宗鏡錄), in Yang Jie's authored preface. Yang says that the hidden pearl is suddenly gained without the effort of even an instant."
+              "ExactHeadwordClause": "匪用剎那之力。",
+              "SpeechFrame": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yang Jie is the exact headword speaker. Yang Jie owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yang Jie is the exact headword speaker. Yang Jie owns the exact clause in the complete case.",
+              "GrammaticalSubject": "Yang Jie"
             },
-            "ContextMasters": [
-              {
-                "MasterName": "Yang Jie",
-                "Roles": [
-                  "utterer"
-                ]
-              }
-            ]
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "direct speech",
+              "ActorLabel": "Yang Jie",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Yang Jie is the named lay author of the headword-bearing clause, not a Chan master.",
+              "ReviewedBy": "Codex strict-roster adjudication",
+              "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+            }
           },
           {
             "RelPath": "T/T48/T48n2016.xml",
-            "FromLb": "0451a11",
+            "FromLb": "0451a12",
             "ToLb": "0451a12",
             "CharOffset": null,
-            "Kwic": "此流水。剎那生滅。前剎那滅。後剎那生",
+            "Kwic": "後剎那生",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (宗鏡錄). Yongming Yanshou owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yongming Yanshou is the exact headword speaker. Yongming Yanshou owns the exact clause in the complete case.",
             "MasterName": "Yongming Yanshou",
-            "DraftActorProof": {
-              "ExactHeadwordClause": "此流水。剎那生滅。前剎那滅。後剎那生",
-              "SpeechFrame": "Record of the Source-Mirror (宗鏡錄), compiled by Yongming Yanshou, in his flowing-water exposition. Yongming says that the previous instant ceases and the next instant arises.",
-              "FullCaseDecision": "Record of the Source-Mirror (宗鏡錄), compiled by Yongming Yanshou, in his flowing-water exposition. Yongming says that the previous instant ceases and the next instant arises."
-            },
             "ContextMasters": [
               {
                 "MasterName": "Yongming Yanshou",
@@ -71,7 +78,12 @@
                   "utterer"
                 ]
               }
-            ]
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "後剎那生",
+              "SpeechFrame": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yongming Yanshou is the exact headword speaker. Yongming Yanshou owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Yongming Yanshou is the exact headword speaker. Yongming Yanshou owns the exact clause in the complete case."
+            }
           },
           {
             "RelPath": "X/X72/X72n1435.xml",
@@ -82,12 +94,7 @@
             "MasterName": "Wuyi Yuanlai",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (無異元來禪師廣錄). Wuyi Yuanlai owns the exact clause in the complete case.",
-            "DraftActorProof": {
-              "ExactHeadwordClause": "倐忽三載，若剎那際",
-              "SpeechFrame": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), hall address requested by the laymen Wu and Sheng: Wuyi Yuanlai retrospectively compares three years since his return home to the interval of an instant.",
-              "FullCaseDecision": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), hall address requested by the laymen Wu and Sheng: Wuyi Yuanlai retrospectively compares three years since his return home to the interval of an instant."
-            },
+            "AttributionNote": "Source record (X/X72/X72n1435.xml). Expanded Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄): Wuyi Yuanlai is the exact headword speaker. Wuyi Yuanlai owns the exact clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Wuyi Yuanlai",
@@ -95,23 +102,23 @@
                   "utterer"
                 ]
               }
-            ]
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "倐忽三載，若剎那際",
+              "SpeechFrame": "Source record (X/X72/X72n1435.xml). Expanded Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄): Wuyi Yuanlai is the exact headword speaker. Wuyi Yuanlai owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (X/X72/X72n1435.xml). Expanded Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄): Wuyi Yuanlai is the exact headword speaker. Wuyi Yuanlai owns the exact clause in the complete case."
+            }
           },
           {
             "RelPath": "B/B25/B25n0145.xml",
-            "FromLb": "0703a20",
+            "FromLb": "0703a21",
             "ToLb": "0703a21",
             "CharOffset": null,
-            "Kwic": "無一剎那而不受生。無一剎那而不變滅",
+            "Kwic": "無一剎那而不變滅",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (天目中峰廣錄). Zhongfeng Mingben owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Zhongfeng Mingben is the exact headword speaker. Zhongfeng Mingben owns the exact clause in the complete case.",
             "MasterName": "Zhongfeng Mingben",
-            "DraftActorProof": {
-              "ExactHeadwordClause": "無一剎那而不受生。無一剎那而不變滅",
-              "SpeechFrame": "Extended Record of Tianmu Zhongfeng (天目中峰廣錄), in Zhongfeng Mingben's address to the assembly. Zhongfeng says there is no instant without taking birth and no instant without changing and ceasing.",
-              "FullCaseDecision": "Extended Record of Tianmu Zhongfeng (天目中峰廣錄), in Zhongfeng Mingben's address to the assembly. Zhongfeng says there is no instant without taking birth and no instant without changing and ceasing."
-            },
             "ContextMasters": [
               {
                 "MasterName": "Zhongfeng Mingben",
@@ -119,7 +126,12 @@
                   "utterer"
                 ]
               }
-            ]
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "無一剎那而不變滅",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Zhongfeng Mingben is the exact headword speaker. Zhongfeng Mingben owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Zhongfeng Mingben is the exact headword speaker. Zhongfeng Mingben owns the exact clause in the complete case."
+            }
           },
           {
             "RelPath": "X/X68/X68n1319.xml",
@@ -129,21 +141,32 @@
             "Kwic": "悟即剎那成佛，迷而萬劫輪流",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (御選語錄). Ziyang Zhenren owns the exact clause in the complete case.",
-            "MasterName": "Ziyang Zhenren",
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Ziyang Zhenren is the exact headword speaker. Ziyang Zhenren owns the exact clause in the complete case.",
+            "MasterName": null,
+            "ContextMasters": [],
             "DraftActorProof": {
               "ExactHeadwordClause": "悟即剎那成佛，迷而萬劫輪流",
-              "SpeechFrame": "Imperially Selected Recorded Sayings (御選語錄), in the explicitly headed verses of Ziyang Zhenren. Ziyang contrasts becoming buddha in an instant with wandering for myriad ages.",
-              "FullCaseDecision": "Imperially Selected Recorded Sayings (御選語錄), in the explicitly headed verses of Ziyang Zhenren. Ziyang contrasts becoming buddha in an instant with wandering for myriad ages."
+              "SpeechFrame": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Ziyang Zhenren is the exact headword speaker. Ziyang Zhenren owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Ziyang Zhenren is the exact headword speaker. Ziyang Zhenren owns the exact clause in the complete case.",
+              "GrammaticalSubject": "Ziyang Zhenren"
             },
-            "ContextMasters": [
-              {
-                "MasterName": "Ziyang Zhenren",
-                "Roles": [
-                  "utterer"
-                ]
-              }
-            ]
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "direct speech",
+              "ActorLabel": "Ziyang Zhenren",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The source identifies Ziyang Zhenren by a Daoist honorific; he is a named non-master author.",
+              "ReviewedBy": "Codex strict-roster adjudication",
+              "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+            }
           },
           {
             "RelPath": "X/X68/X68n1319.xml",
@@ -153,35 +176,41 @@
             "Kwic": "剎那疾如彈指",
             "ApproxDate": null,
             "Curated": true,
-            "AttributionNote": "Source text (御選語錄). Yongzheng Emperor owns the exact clause in the complete case.",
-            "MasterName": "Yongzheng Emperor",
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Yongzheng Emperor is the exact headword speaker. Yongzheng Emperor owns the exact clause in the complete case.",
+            "MasterName": null,
+            "ContextMasters": [],
             "DraftActorProof": {
               "ExactHeadwordClause": "剎那疾如彈指",
-              "SpeechFrame": "Imperially Selected Recorded Sayings (御選語錄), in Yongzheng Emperor's explicitly numbered verse. Yongzheng says that the instant is swift as a finger-snap.",
-              "FullCaseDecision": "Imperially Selected Recorded Sayings (御選語錄), in Yongzheng Emperor's explicitly numbered verse. Yongzheng says that the instant is swift as a finger-snap."
+              "SpeechFrame": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Yongzheng Emperor is the exact headword speaker. Yongzheng Emperor owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Yongzheng Emperor is the exact headword speaker. Yongzheng Emperor owns the exact clause in the complete case.",
+              "GrammaticalSubject": "Yongzheng Emperor"
             },
-            "ContextMasters": [
-              {
-                "MasterName": "Yongzheng Emperor",
-                "Roles": [
-                  "utterer"
-                ]
-              }
-            ]
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "direct speech",
+              "ActorLabel": "Yongzheng Emperor",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete cases identify the Qing emperor as speaker or case participant; imperial authorship does not make him a Chan master.",
+              "ReviewedBy": "Codex strict-roster adjudication",
+              "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+            }
           },
           {
             "RelPath": "X/X70/X70n1376.xml",
             "FromLb": "0058c20",
-            "ToLb": "0058c22",
-            "Kwic": "一彈指頃，有六千五箇剎那，一剎那有九百箇生滅，互相推遷，如汲井輪，無有窮已。",
+            "ToLb": "0058c21",
+            "Kwic": "一彈指頃，有六千五箇剎那，一",
             "MasterName": "Chijue Daochong",
             "Curated": true,
-            "AttributionNote": "Source text (痴絕道冲禪師語錄). Chijue Daochong owns the exact clause in the complete case.",
-            "DraftActorProof": {
-              "ExactHeadwordClause": "一彈指頃，有六千五箇剎那，一剎那有九百箇生滅，互相推遷，如汲井輪，無有窮已。",
-              "SpeechFrame": "Recorded Sayings of Chan Master Chijue Daochong (痴絕道冲禪師語錄), in Chijue Daochong's general address at Jingshan. Chijue's source writes a count literally rendered ‘six-thousand-five’ instants in a finger-snap, then gives 900 arisings and cessations in one instant, all moving on without end like a well wheel. The exact primary text, secondary line alignment, and allowlisted parallels supply no missing ‘hundred’ or resolving variant.",
-              "FullCaseDecision": "Recorded Sayings of Chan Master Chijue Daochong (痴絕道冲禪師語錄), in Chijue Daochong's general address at Jingshan. Chijue's source writes a count literally rendered ‘six-thousand-five’ instants in a finger-snap, then gives 900 arisings and cessations in one instant, all moving on without end like a well wheel. The exact primary text, secondary line alignment, and allowlisted parallels supply no missing ‘hundred’ or resolving variant."
-            },
+            "AttributionNote": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong (痴絕道冲禪師語錄): Chijue Daochong is the exact headword speaker. Chijue Daochong owns the exact clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Chijue Daochong",
@@ -189,21 +218,21 @@
                   "utterer"
                 ]
               }
-            ]
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "一彈指頃，有六千五箇剎那，一",
+              "SpeechFrame": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong (痴絕道冲禪師語錄): Chijue Daochong is the exact headword speaker. Chijue Daochong owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong (痴絕道冲禪師語錄): Chijue Daochong is the exact headword speaker. Chijue Daochong owns the exact clause in the complete case."
+            }
           },
           {
             "RelPath": "X/X82/X82n1571.xml",
             "FromLb": "0424a15",
-            "ToLb": "0424a17",
-            "Kwic": "據吾教中，一念具九十剎那，一剎那具九百生滅。人心如猿猴驛馬，居士心作麼生正？意作麼生誠？",
+            "ToLb": "0424a16",
+            "Kwic": "據吾教中，一念具九十剎那，一",
             "MasterName": "Lingao Benyu",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Lingao Benyu owns the exact clause in the complete case.",
-            "DraftActorProof": {
-              "ExactHeadwordClause": "據吾教中，一念具九十剎那，一剎那具九百生滅。人心如猿猴驛馬，居士心作麼生正？意作麼生誠？",
-              "SpeechFrame": "Complete Book of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), in the named section for Lingao Benyu (林皋本豫). Lingao tells the scholar Li that one thought contains ninety instants and one instant contains 900 arisings and cessations, then asks how Li will make the mind upright and intention sincere. Lingao is source-attested but not yet rostered.",
-              "FullCaseDecision": "Complete Book of the Five Lamps, fascicles 34–120 (五燈全書(第34卷-第120卷)), in the named section for Lingao Benyu (林皋本豫). Lingao tells the scholar Li that one thought contains ninety instants and one instant contains 900 arisings and cessations, then asks how Li will make the mind upright and intention sincere. Lingao is source-attested but not yet rostered."
-            },
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Lingao Benyu is the exact headword speaker. Lingao Benyu owns the exact clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Lingao Benyu",
@@ -211,7 +240,12 @@
                   "utterer"
                 ]
               }
-            ]
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "據吾教中，一念具九十剎那，一",
+              "SpeechFrame": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Lingao Benyu is the exact headword speaker. Lingao Benyu owns the exact clause in the complete case.",
+              "FullCaseDecision": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Lingao Benyu is the exact headword speaker. Lingao Benyu owns the exact clause in the complete case."
+            }
           }
         ],
         "SourceTexts": [
@@ -225,7 +259,9 @@
         "RelatedMasters": [
           "Yongming Yanshou",
           "Zhongfeng Mingben",
-          "Chijue Daochong"
+          "Chijue Daochong",
+          "Wuyi Yuanlai",
+          "Lingao Benyu"
         ],
         "RelatedTerms": [
           "一念",
@@ -235,6 +271,7 @@
           "剎那生滅",
           "剎那三昧"
         ],
+        "ClaimAnchors": [],
         "ExplanationParts": {
           "CorpusEarnedOpening": "An instant is a very short interval.",
           "EvidenceBody": [
@@ -242,40 +279,43 @@
           ]
         },
         "DraftEvidence": {
-          "ZenBend": "The stored cases establish the corpus-specific deployment of 剎那 stated in the opening.",
-          "CounterexampleOrLimit": "One time-unit sense covers an instant used as a duration, comparison, subdivision, and pole against years or ages. Chijue Daochong's unresolved written count per finger-snap and Lingao Benyu's ninety-per-thought frame start from different larger units and do not license conversion to a universal number of seconds. Longer compounds for instant-by-instant arising and cessation or an instant-named concentration remain family constructions, not different headword referents.",
-          "AliasRationale": "Aliases retrieve the same attested referent as an instant.",
-          "DifferentThingTest": {
-            "Decision": "one-thing",
-            "Reason": "The complete cases were retested for incompatible referents; this sense denotes an instant, not a grammatical paraphrase."
-          },
-          "ModifierControls": [
-            "No modifier claim is added beyond the attested form 剎那."
-          ],
-          "FamilyControls": [
-            "Family forms remain controls and do not donate meaning to 剎那."
-          ],
-          "IndependentWorkIds": [
-            "work:B25n0145",
-            "work:T48n2016",
-            "work:X68n1319",
-            "work:X70n1376",
-            "work:X72n1435",
-            "work:wudeng-quanshu"
-          ],
           "OpeningClaimEvidenceKeys": [
             "o1",
             "o2",
-            "o3",
-            "o4",
-            "o5",
-            "o6",
-            "o7",
-            "o8"
+            "o3"
+          ],
+          "ZenBend": "An instant is a very short interval.",
+          "CounterexampleOrLimit": "One time-unit sense covers an instant used as a duration, comparison, subdivision, and pole against years or ages. Chijue Daochong's unresolved written count per finger-snap and Lingao Benyu's ninety-per-thought frame start from different larger units and do not license conversion to a universal number of seconds. Longer compounds for instant-by-instant arising and cessation or an instant-named concentration remain family constructions, not different headword referents. Frozen-corpus concordance: 1165 exact hits in 229 storage files representing 225 independent works.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "an instant"
+            ],
+            "Reason": "This preserves the current reviewed sense inventory; no new split or merge is introduced by worksheet recovery."
+          },
+          "AliasRationale": "This preserves the current controlled search aliases without adding a sense.",
+          "ModifierControls": [
+            {
+              "finding": "preserved",
+              "reason": "No modifier claim is added during lossless worksheet recovery."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "preserved",
+              "reason": "No family-term claim is added during lossless worksheet recovery."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T48n2016",
+            "work:X72n1435",
+            "work:B25n0145",
+            "work:X68n1319",
+            "work:X70n1376",
+            "work:wudeng-quanshu"
           ]
         }
       }
-    ],
-    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+    ]
   }
 }

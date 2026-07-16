@@ -15,47 +15,77 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "Cross-checked \"realize the way\" (悟道) and related realization vocabulary. The graph \"to tally\" (契) contributes the literal idea of tallying, but the corpus uses the compound as one realization event verb; no independent \"contract\" referent was found. Triggers vary without creating senses. Frozen-corpus concordance: 699 exact hits in 173 storage files representing 170 independent works.",
+      "Note": "Cross-checked \"realize the way\" (悟道) and related realization vocabulary. The graph \"to tally\" (契) contributes the literal idea of tallying, but the corpus uses the compound as one realization event verb; no independent \"contract\" referent was found. Triggers vary without creating senses.",
       "Occurrences": [
         {
           "RelPath": "X/X79/X79n1559.xml",
           "FromLb": "0289b17",
           "ToLb": "0289b17",
           "Kwic": "曰：與汝安心竟。光即大契悟。",
-          "MasterName": "Dazu Huike",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source text (嘉泰普燈錄). Dazu Huike owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X79/X79n1559.xml). Jiatai Universal Lamp Record (嘉泰普燈錄): Compiler narration: Jiatai Universal Lamp Record (嘉泰普燈錄): Dazu Huike owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
-              "MasterName": "Dazu Huike",
+              "MasterName": "Huike",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "reported realization event",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
           "FromLb": "0076a20",
           "ToLb": "0076a21",
           "Kwic": "山曰：闍黎足下煙生。師當下契悟，更不他遊。",
-          "MasterName": "Dongshan Daoquan",
+          "MasterName": null,
           "ContextMasters": [
-            {
-              "MasterName": "Dongshan Liangjie",
-              "Roles": [
-                "teacher"
-              ]
-            },
             {
               "MasterName": "Dongshan Daoquan",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Dongshan Daoquan owns the exact clause in the complete case."
+          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Compiler narration: Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Dongshan Daoquan owns the exact headword-bearing wording in the complete source unit.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "reported realization event",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "T/T51/T51n2077.xml",
@@ -63,16 +93,34 @@
           "ToLb": "0548c14",
           "Kwic": "騎蹇驢過溪橋。驢踏橋穿陷足。師墜驢不覺口中曰噁。忽然契悟。",
           "Curated": true,
-          "AttributionNote": "Source text (續傳燈錄). Chaling Yushan Zhu owns the exact clause in the complete case.",
-          "MasterName": "Chaling Yushan Zhu",
+          "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp (續傳燈錄): Compiler narration: Continued Record of the Transmission of the Lamp (續傳燈錄): Chaling Yushan Zhu owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Chaling Yushan Zhu",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "reported realization event",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -80,39 +128,69 @@
           "ToLb": "0028a09",
           "Kwic": "參佛國。入室次，聞舉栢樹子話，豁然契悟。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Jinshan Weizhong owns the exact clause in the complete case.",
-          "MasterName": "Jinshan Weizhong",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Compiler narration: Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Jinshan Weizhong owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": null,
           "ContextMasters": [
-            {
-              "MasterName": "Foguang",
-              "Roles": [
-                "teacher"
-              ]
-            },
             {
               "MasterName": "Jinshan Weizhong",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "reported realization event",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X79/X79n1557.xml",
           "FromLb": "0022c24",
           "ToLb": "0023a01",
           "Kwic": "慧可種種說心說性，曾未契理。忽一日契悟，走告祖云：我已息諸緣耳。",
-          "MasterName": "Dazu Huike",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source text (聯燈會要). Dazu Huike owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp (聯燈會要): Compiler narration: Essential Compendium of the United Lamp (聯燈會要): Dazu Huike owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
-              "MasterName": "Dazu Huike",
+              "MasterName": "Huike",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "reported realization event",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X84/X84n1580.xml",
@@ -130,7 +208,7 @@
             "ReviewedBy": "Codex f002 B481-490 full-case review",
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           },
-          "AttributionNote": "Source text (教外別傳). the case compiler narrates the exact clause in the complete case."
+          "AttributionNote": "Source record (X/X84/X84n1580.xml). Separate Transmission Outside the Teachings (教外別傳): Compiler narration owns the exact headword-bearing compiler narration."
         },
         {
           "RelPath": "X/X84/X84n1583.xml",
@@ -148,7 +226,7 @@
             "ReviewedBy": "Codex f002 B481-490 full-case review",
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           },
-          "AttributionNote": "Source text (續燈正統). the continuation-record compiler narrates the exact clause in the complete case."
+          "AttributionNote": "Source record (X/X84/X84n1583.xml). Orthodox Continuation of the Lamp (續燈正統): Compiler narration owns the exact headword-bearing compiler narration."
         }
       ],
       "SourceTexts": [
@@ -156,10 +234,15 @@
         "X/X81/X81n1568.xml",
         "T/T51/T51n2077.xml",
         "X/X82/X82n1571.xml",
-        "X/X79/X79n1557.xml"
+        "X/X79/X79n1557.xml",
+        "X/X84/X84n1580.xml",
+        "X/X84/X84n1583.xml"
       ],
       "RelatedMasters": [
-        "Dazu Huike"
+        "Huike",
+        "Dongshan Daoquan",
+        "Chaling Yushan Zhu",
+        "Jinshan Weizhong"
       ],
       "RelatedTerms": [
         "悟道",
@@ -190,10 +273,10 @@
             "ReviewedUtc": "2026-07-15T00:00:00Z"
           },
           "ContextMasters": [],
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). the lamp-record compiler narrates the exact clause in the complete case."
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Compiler narration: ). the lamp-record compiler narrates the exact clause in the complete case."
         }
       ],
-      "Explanation": "The headword (契悟) literally means \"to tally and realize.\" In Chan transmission biographies it is an event verb marking a person's reported realization after a word, question, case, accident, or exchange. Huike is told \"I have finished settling your mind for you\" and then greatly realizes (光即大契悟). Daoquan hears \"smoke rises beneath your feet\" and realizes on the spot, after which he travels no farther (師當下契悟，更不他遊). Other records place it after hearing the cypress-tree case during an entering interview, and after a rider falls when his donkey's foot breaks through a bridge. The narrative can immediately report the person's next speech: after realizing, Huike runs to Bodhidharma and says that he has put external conditions to rest. The Chan deviation is institutional and documentary: lamp and sayings records use \"to tally and realize\" (契悟) to mark the realization event within a transmission biography and often preserve its trigger and aftermath. The word itself does not say that the realization \"matches the identified master's mind,\" and this entry does not add that claim."
+      "Explanation": "The headword (契悟) literally means \"to tally and realize.\" In Chan transmission biographies it is an event verb marking a person's reported realization after a word, question, case, accident, or exchange. Huike is told \"I have finished settling your mind for you\" and then greatly realizes (光即大契悟). Daoquan hears \"smoke rises beneath your feet\" and realizes on the spot, after which he travels no farther (師當下契悟，更不他遊). Other records place it after hearing the cypress-tree case during an entering interview, and after a rider falls when his donkey's foot breaks through a bridge. The narrative can immediately report the person's next speech: after realizing, Huike runs to Bodhidharma and says that he has put external conditions to rest. The Chan deviation is institutional and documentary: lamp and sayings records use \"to tally and realize\" (契悟) to mark the realization event within a transmission biography and often preserve its trigger and aftermath. The word itself does not say that the realization \"matches another person’s mind,\" and this entry does not add that claim."
     }
   ]
 }

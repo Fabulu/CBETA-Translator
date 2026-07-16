@@ -14,7 +14,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "216 occurrences in 104 allowlisted texts. The full formula and its later deployments are one object, not separate interpretive senses. Frozen-corpus concordance: 236 exact hits in 113 storage files representing 113 independent works. Frozen-corpus concordance: 236 exact hits in 113 storage files representing 113 independent works. Frozen-corpus concordance: 236 exact hits in 113 storage files representing 113 independent works. Frozen-corpus concordance: 236 exact hits in 113 storage files representing 113 independent works.",
+      "Note": "216 occurrences in 104 allowlisted texts. The full formula and its later deployments are one object, not separate interpretive senses.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -22,7 +22,7 @@
           "ToLb": "0130a16",
           "Kwic": "汝等諸人青州布衫成就也未？",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Yuanji Yancen owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Yuanji Yancen owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Yuanji Yancen",
           "ContextMasters": [
             {
@@ -39,11 +39,11 @@
           "ToLb": "0724c06",
           "Kwic": "秋雨且晴，汝等諸人青州布衫脫下也未？",
           "Curated": true,
-          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). Langting Jingting owns the exact quoted clause in the complete case.",
-          "MasterName": "Langting Jingting",
+          "AttributionNote": "Source record (J/J33/J33nB294.xml). Recorded Sayings of Chan Master Liangting Ting of Yunxi (雲溪俍亭挺禪師語錄): Langting Jingting owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": "Liangting Jingting",
           "ContextMasters": [
             {
-              "MasterName": "Langting Jingting",
+              "MasterName": "Liangting Jingting",
               "Roles": [
                 "utterer"
               ]
@@ -56,7 +56,7 @@
           "ToLb": "0678c11",
           "Kwic": "逢人便說青州布衫重七斤，何似現前諸人各各有箇破衲襖？",
           "Curated": true,
-          "AttributionNote": "Source text (天岸昇禪師語錄). Tian'an Sheng owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng (天岸昇禪師語錄): Tian'an Sheng owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Tian'an Sheng",
           "ContextMasters": [
             {
@@ -82,7 +82,7 @@
             }
           ],
           "MasterName": "Baoen Cheng",
-          "AttributionNote": "Source text (續燈正統). Baoen Cheng owns the exact quoted clause in the complete case."
+          "AttributionNote": "Source record (X/X84/X84n1583.xml). Orthodox Continuation of the Lamp (續燈正統): Baoen Cheng owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "X/X84/X84n1579.xml",
@@ -99,7 +99,7 @@
             }
           ],
           "MasterName": "Baoen Cheng",
-          "AttributionNote": "Source text (續指月錄). Baoen Cheng owns the exact quoted clause in the complete case."
+          "AttributionNote": "Source record (X/X84/X84n1579.xml). Continuation of the Record Pointing at the Moon (續指月錄): Baoen Cheng owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "J/J32/J32nB273.xml",
@@ -107,16 +107,17 @@
           "ToLb": "0207c08",
           "Kwic": "』舜老夫云：『鎮州蘿蔔大，青州布衫重，要會箇中意，雞向五更啼。",
           "Curated": true,
-          "ContextMasters": [
-            {
-              "MasterName": "Yunju Shun",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "AttributionNote": "千巖和尚語錄: the address explicitly quotes Yunju Shun (舜老夫云) saying “Zhenzhou’s radish is big; Qingzhou’s cloth shirt is heavy.”",
-          "MasterName": "Yunju Shun"
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "verse author",
+            "ActorLabel": "Old Man Shun",
+            "ActorRole": "verse-author",
+            "GrammarEvidence": "The question marker assigns the exact headword-bearing question to this monk.",
+            "ReviewedBy": "Codex f002 B401-450 full-case review",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          },
+          "AttributionNote": "Source record (J/J32/J32nB273.xml). Recorded Sayings of Monk Qianyan (千巖和尚語錄): Old Man Shun is the named non-master verse author who owns the exact headword-bearing wording."
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -133,16 +134,24 @@
             }
           ],
           "MasterName": "Dagui Zhengzhang",
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Dagui Zhengzhang owns the exact quoted clause in the complete case."
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Dagui Zhengzhang owns the exact headword-bearing wording in the complete source unit."
         }
       ],
       "SourceTexts": [
         "X/X82/X82n1571.xml",
         "J/J33/J33nB294.xml",
-        "J/J26/J26nB187.xml"
+        "J/J26/J26nB187.xml",
+        "X/X84/X84n1583.xml",
+        "X/X84/X84n1579.xml",
+        "J/J32/J32nB273.xml"
       ],
       "RelatedMasters": [
-        "Zhaozhou Congshen"
+        "Zhaozhou Congshen",
+        "Yuanji Yancen",
+        "Liangting Jingting",
+        "Tian'an Sheng",
+        "Baoen Cheng",
+        "Dagui Zhengzhang"
       ],
       "RelatedTerms": [
         "萬法歸一",
@@ -157,21 +166,5 @@
       "ClaimAnchors": [],
       "Explanation": "The expression denotes the Qingzhou cloth shirt in these Chan records. Its wording is a cloth shirt from Qingzhou. In the Chan record it is Zhaozhou's stock answer to the question, \"the ten thousand things return to one; where does the one return?\": \"I made a cloth shirt in Qingzhou; it weighs seven pounds.\" Later records call this the \"Qingzhou cloth-shirt case\" (青州布衫話), quote the seven-pound formula, ask whether the assembly has finished or taken off its Qingzhou shirt, and compare it with the patched robe actually worn by those present. The shirt is therefore not merely a place-name garment in this corpus: it is the named object and shorthand of Zhaozhou's recorded answer. The texts provide no additional gloss for the answer, and neither does this entry."
     }
-  ],
-  "DraftEvidence": {
-    "IndependentRosterRereview096105": {
-      "ReviewedUtc": "2026-07-15T23:16:54.544223+00:00",
-      "Decision": "semantic attribution accepted; roster-only identities deferred",
-      "DeferredNames": [
-        "Baoen Cheng",
-        "Dagui Zhengzhang",
-        "Langting Jingting",
-        "Tian'an Sheng",
-        "Yuanji Yancen",
-        "Yunju Shun"
-      ],
-      "RemovedInvalidMasterLinks": [],
-      "Rule": "Do not guess or demote a real master because roster integration is incomplete. Noncanonical RelatedMasters links are removed; exact occurrence identities remain explicit pending roster integration."
-    }
-  }
+  ]
 }

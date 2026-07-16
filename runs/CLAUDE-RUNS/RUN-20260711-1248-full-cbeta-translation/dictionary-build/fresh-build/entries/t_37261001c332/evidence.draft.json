@@ -1,0 +1,359 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_37261001c332",
+    "SourceTerm": "觀心",
+    "CreatedBy": "Codex fresh-build lane C",
+    "WrittenUtc": "2026-07-16T12:26:37.856302+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "inspect mind",
+        "AlternateTargets": [
+          "look at mind",
+          "observe mind"
+        ],
+        "SearchAliases": [
+          "inspect mind",
+          "observe mind",
+          "look at mind",
+          "contemplate mind",
+          "watch the mind"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The record supports the literal verbal target 'inspect mind,' followed by speaker-specific predicates and objections. The two dominant treatise witnesses are presented as claims made by those texts; their concentration of hits does not erase the independent Chan encounter and criticism witnesses. Title and table-of-contents hits were excluded.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T51/T51n2076.xml",
+            "FromLb": "0227a07",
+            "ToLb": "0227a09",
+            "Kwic": "祖問曰。在此作什麼。師曰觀心。祖曰。觀是何人心是何物。師無對便起作禮。",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Niutou Farong owns the exact headword-bearing wording in the complete source unit.",
+            "MasterName": "Niutou Farong",
+            "ContextMasters": [
+              {
+                "MasterName": "Niutou Farong",
+                "Roles": [
+                  "utterer",
+                  "respondent"
+                ]
+              },
+              {
+                "MasterName": "Daoxin",
+                "Roles": [
+                  "questioner",
+                  "teacher",
+                  "case-figure"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "祖問曰。在此作什麼。師曰觀心。祖曰。觀是何人心是何物。師無對便起作禮。",
+              "SpeechFrame": "景德傳燈錄. Exact headword actor: Niutou Farong. The complete case assigns the headword-bearing wording to Niutou Farong.",
+              "FullCaseDecision": "景德傳燈錄. Exact headword actor: Niutou Farong. The complete case assigns the headword-bearing wording to Niutou Farong."
+            }
+          },
+          {
+            "RelPath": "X/X63/X63n1220.xml",
+            "FromLb": "0008c09",
+            "ToLb": "0008c11",
+            "Kwic": "答曰：「唯觀心一法，總攝諸法最為省要。」問曰：「何一法能攝諸法？」",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X63/X63n1220.xml). Master Bodhidharma’s Treatise on Breaking Through Appearances (達磨大師破相論): the anonymous treatise answerer owns the exact headword-bearing turn; no personal name survives the source.",
+            "ContextMasters": [
+              {
+                "MasterName": "Bodhidharma",
+                "Roles": [
+                  "record-owner"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "treatise answer voice",
+              "ActorLabel": "the anonymous treatise answerer",
+              "ActorRole": "respondent",
+              "ReviewedBy": "Codex root-revision repair",
+              "ReviewedUtc": "2026-07-15T00:25:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The marked question-and-answer frame identifies the anonymous treatise answerer as the exact headword actor; the complete treatise unit supplies no personal name."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "答曰：「唯觀心一法，總攝諸法最為省要。」問曰：「何一法能攝諸法？」",
+              "GrammaticalSubject": "unnamed the anonymous treatise answerer",
+              "FullCaseDecision": "達磨大師破相論. Exact headword actor: unnamed the anonymous treatise answerer. The complete case was read to distinguish utterance, narration, and action."
+            }
+          },
+          {
+            "RelPath": "X/X63/X63n1220.xml",
+            "FromLb": "0008c17",
+            "ToLb": "0008c19",
+            "Kwic": "問曰：「云何觀心稱之為了？」答：「菩薩摩訶薩行深般若波羅蜜多時，了四大、五陰本空無我，了見自心起用有二種差別。云何為二？一者淨心，二者染心。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X63/X63n1220.xml). Master Bodhidharma’s Treatise on Breaking Through Appearances (達磨大師破相論): the anonymous treatise questioner owns the exact headword-bearing turn; no personal name survives the source.",
+            "ContextMasters": [
+              {
+                "MasterName": "Bodhidharma",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "questioner",
+              "ActorLabel": "the anonymous treatise questioner",
+              "ActorRole": "questioner",
+              "GrammarEvidence": "The marked question-and-answer frame identifies the anonymous treatise questioner as the exact headword actor; the complete treatise unit supplies no personal name.",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex r003-owner2 ACTOR_AUDIT repair",
+              "ReviewedUtc": "2026-07-14T14:50:57.572553Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問曰：「云何觀心稱之為了？」答：「菩薩摩訶薩行深般若波羅蜜多時，了四大、五陰本空無我，了見自心起用有二種差別。云何為二？一者淨心，二者染心。",
+              "GrammaticalSubject": "unnamed anonymous treatise questioner",
+              "FullCaseDecision": "問曰 introduces the headword-bearing question; the attributed Bodhidharma answer follows."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2016.xml",
+            "FromLb": "0550a25",
+            "ToLb": "0550a26",
+            "Kwic": "普賢觀云。觀心無心。法不住法。我心自空。罪福無主。即是無心無數。名為正觀。",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Editorial or procedural text contains the headword; no human actor utters it.",
+            "ActorAttribution": {
+              "Status": "impersonal",
+              "Kind": "quoted document voice",
+              "ActorLabel": "quoted Puxian Contemplation text",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The reporting formula 普賢觀云 names a source text rather than a human speech turn.",
+              "ReviewedBy": "Codex hard-w2-remaining300",
+              "ReviewedUtc": "2026-07-14T07:45:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Yongming Yanshou",
+                "Roles": [
+                  "later-quoter"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "普賢觀云。觀心無心。法不住法。我心自空。罪福無主。即是無心無數。名為正觀。",
+              "GrammaticalSubject": "quoted Puxian Contemplation text",
+              "FullCaseDecision": "The reporting formula 普賢觀云 names a source text rather than a human speech turn."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1319.xml",
+            "FromLb": "0559c09",
+            "ToLb": "0559c11",
+            "Kwic": "但既入矣，又不可以默為究竟，云此一事不在語句上，便務靜觀心，又所謂逃坑落塹也。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Aisin Gioro Yinzhen, the Yongzheng emperor is the named non-master utterer who owns the exact headword-bearing wording.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "public figure",
+              "ActorLabel": "Aisin Gioro Yinzhen, the Yongzheng emperor",
+              "ActorRole": "utterer",
+              "ReviewedBy": "Codex lane-C second independent semantic repair",
+              "ReviewedUtc": "2026-07-15T01:15:00Z",
+              "GrammarEvidence": "The first-person imperial discourse directly warns that making silent inspection of mind the ultimate is escaping one pit only to fall into another."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "但既入矣，又不可以默為究竟，云此一事不在語句上，便務靜觀心，又所謂逃坑落塹也。",
+              "GrammaticalSubject": "Aisin Gioro Yinzhen, the Yongzheng emperor",
+              "FullCaseDecision": "The first-person imperial discourse directly warns that making silent inspection of mind the ultimate is escaping one pit only to fall into another."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1319.xml",
+            "FromLb": "0727c13",
+            "ToLb": "0727c13",
+            "Kwic": "閉目妄求見，觀心誤覓通。可憐講解者，恰似觸窗蜂。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Layman Xuri is the named non-master utterer who owns the exact headword-bearing wording.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "public figure",
+              "ActorLabel": "Layman Xuri",
+              "ActorRole": "utterer",
+              "ReviewedBy": "Codex lane-C second independent semantic repair",
+              "ReviewedUtc": "2026-07-15T01:15:00Z",
+              "GrammarEvidence": "The source identifies Layman Xuri as author of the verse; he contrasts closing the eyes and mistakenly seeking access by observing mind."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "閉目妄求見，觀心誤覓通。可憐講解者，恰似觸窗蜂。",
+              "GrammaticalSubject": "Layman Xuri",
+              "FullCaseDecision": "The source identifies Layman Xuri as author of the verse; he contrasts closing the eyes and mistakenly seeking access by observing mind."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1319.xml",
+            "FromLb": "0735a09",
+            "ToLb": "0735a10",
+            "Kwic": "持心觀心紛主客，即心即佛添名目。非心非佛又如何，箇中妙意難容說。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Zhang Tingyu / Layman Chenghuai (張廷玉／澄懷居士) is the named non-master utterer who owns the exact headword-bearing wording.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "lay author",
+              "ActorLabel": "Zhang Tingyu / Layman Chenghuai (張廷玉／澄懷居士)",
+              "ActorRole": "utterer",
+              "GrammarEvidence": "The section heading 大學士張廷玉澄懷居士 identifies Zhang Tingyu, Layman Chenghuai, as author of the headword-bearing verse.",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex grouped 4-6 independent-review full-unit REVISE",
+              "ReviewedUtc": "2026-07-16T13:00:00Z"
+            },
+            "MasterName": null,
+            "DraftActorProof": {
+              "ExactHeadwordClause": "持心觀心紛主客，即心即佛添名目。非心非佛又如何，箇中妙意難容說。",
+              "GrammaticalSubject": "Zhang Tingyu / Layman Chenghuai (張廷玉／澄懷居士)",
+              "FullCaseDecision": "The section heading 大學士張廷玉澄懷居士 identifies Zhang Tingyu, Layman Chenghuai, as author of the headword-bearing verse."
+            }
+          },
+          {
+            "RelPath": "X/X63/X63n1220.xml",
+            "FromLb": "0009a05",
+            "ToLb": "0009a06",
+            "Kwic": "如是觀心可名為了",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X63/X63n1220.xml). Master Bodhidharma’s Treatise on Breaking Through Appearances (達磨大師破相論): the anonymous treatise answerer owns the exact headword-bearing turn; no personal name survives the source.",
+            "ContextMasters": [
+              {
+                "MasterName": "Bodhidharma",
+                "Roles": [
+                  "record-owner"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "treatise answer voice",
+              "ActorLabel": "the anonymous treatise answerer",
+              "ActorRole": "respondent",
+              "ReviewedBy": "Codex root-revision repair",
+              "ReviewedUtc": "2026-07-15T00:25:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The marked question-and-answer frame identifies the anonymous treatise answerer as the exact headword actor; the complete treatise unit supplies no personal name."
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "如是觀心可名為了",
+              "GrammaticalSubject": "unnamed the anonymous treatise answerer",
+              "FullCaseDecision": "達磨大師破相論. Exact headword actor: unnamed the anonymous treatise answerer. The complete case was read to distinguish utterance, narration, and action."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1319.xml",
+            "FromLb": "0747a17",
+            "ToLb": "0747a18",
+            "Kwic": "於此觀心若了了，混然一味自惺惺。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). Imperially Selected Recorded Sayings (御選語錄): Chaoding Yuxuan owns the exact headword-bearing wording in the complete source unit.",
+            "ContextMasters": [
+              {
+                "MasterName": "Chaoding Yuxuan",
+                "Roles": [
+                  "utterer",
+                  "verse-author"
+                ]
+              }
+            ],
+            "MasterName": "Chaoding Yuxuan",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "於此觀心若了了，混然一味自惺惺。",
+              "SpeechFrame": "御選語錄. Exact headword actor: Chaoding Yuxuan. The complete case assigns the headword-bearing wording to Chaoding Yuxuan.",
+              "FullCaseDecision": "御選語錄. Exact headword actor: Chaoding Yuxuan. The complete case assigns the headword-bearing wording to Chaoding Yuxuan."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "T/T51/T51n2076.xml",
+          "X/X63/X63n1220.xml",
+          "T/T48/T48n2016.xml",
+          "X/X68/X68n1319.xml",
+          "T/T48/T48n2008.xml"
+        ],
+        "RelatedMasters": [
+          "Daoxin",
+          "Niutou Farong",
+          "Yongming Yanshou",
+          "Huineng",
+          "Linji Yixuan"
+        ],
+        "RelatedTerms": [
+          "看心",
+          "住心觀靜",
+          "觀心無心",
+          "反觀自心"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Inspect mind or look at mind.",
+          "EvidenceBody": [
+            "The compound occurs 474 times in 84 allowed texts, but 257 hits are concentrated in the Record of the Source-Mirror, and the corpus does not give the action one uniform set of predicates. In the Daoxin–Niutou Farong encounter, Farong answers ‘inspecting mind’ when asked what he is doing; Daoxin asks, ‘Who is doing the inspecting, and what thing is mind?’ (觀是何人，心是何物), and Farong gives no answer. The Treatise on Breaking Appearances says, ‘Only inspecting mind, this one thing, gathers all things’ (唯觀心一法，總攝諸法), then asks, ‘How does inspecting mind count as understanding?’ (云何觀心稱之為了). Its reply distinguishes a clean mind and a soiled mind and later says, ‘Inspecting mind in this way may be called understanding’ (如是觀心可名為了). The Record of the Source-Mirror quotes a different direct formula: ‘Inspect mind as no mind; things do not dwell on things; my mind is itself empty; fault and fortune have no owner—this is called correct inspection’ (觀心無心，法不住法，我心自空，罪福無主，即是無心無數，名為正觀). Other Chan witnesses criticize particular deployments. The Yongzheng Emperor says that making silence final and ‘then devoting oneself to quietly inspecting mind’ is ‘escaping a pit and falling into a ditch’ (便務靜觀心，又所謂逃坑落塹). Layman Xuri says, ‘closing the eyes, vainly seek seeing; inspecting mind, mistakenly seek penetration’ (閉目妄求見，觀心誤覓通). Zhang Tingyu, Layman Chenghuai, writes that ‘holding mind and inspecting mind divide guest and host’ (持心觀心紛主客). Chaoding Yuxuan writes, ‘if inspecting mind here is clear, the undivided single flavor is itself alert’ (於此觀心若了了，混然一味自惺惺). These are text-drawn assertions and criticisms by different named voices; they do not supply a single imported category for the headword."
+          ]
+        },
+        "DraftEvidence": {
+          "ZenBend": "Inspect mind or look at mind.",
+          "CounterexampleOrLimit": "The record supports the literal verbal target 'inspect mind,' followed by speaker-specific predicates and objections. The two dominant treatise witnesses are presented as claims made by those texts; their concentration of hits does not erase the independent Chan encounter and criticism witnesses. Title and table-of-contents hits were excluded.",
+          "AliasRationale": "The controlled aliases retrieve the same referent named by the preferred and alternate targets.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "Reason": "The current sense structure was reread against all stored exact cases; each retained sense names a distinct referent, while grammatical variation remains together."
+          },
+          "ModifierControls": [
+            "not applicable unless the headword itself contains a material graph; material claims are separately adjudicated in WORK.md"
+          ],
+          "FamilyControls": [
+            "stored exact headword rows were distinguished from longer compounds and related-term claim anchors"
+          ],
+          "IndependentWorkIds": [
+            "work:T51n2076",
+            "work:X63n1220",
+            "work:T48n2016",
+            "work:X68n1319"
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  }
+}

@@ -31,7 +31,7 @@
             "ToLb": "0078a15",
             "Kwic": "我有一張口，內含三寸舌。牙齒總完全，是非無不說。",
             "Curated": true,
-            "AttributionNote": "In the source record (五燈全書)(第34卷-第120卷), Source text (五燈全書(第34卷-第120卷)); Baoning Renyong owns the exact evidence clause after complete-case review.",
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Baoning Renyong is the exact headword speaker. In the (第34卷-第120卷), ); Baoning Renyong owns the exact evidence clause after complete-case review.",
             "MasterName": "Baoning Renyong",
             "ContextMasters": [
               {
@@ -42,10 +42,9 @@
               }
             ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "我有一張口，內含三寸舌。牙齒總完全，是非無不說。",
-              "GrammaticalSubject": "Baoning Renyong",
-              "SpeechFrame": "Baoning Renyong owns the exact headword-bearing turn or action after full-case review.",
-              "FullCaseDecision": "Baoning Renyong owns the exact headword-bearing turn or action after full-case review."
+              "ExactHeadwordClause": "我有一張口，內含三寸舌。",
+              "SpeechFrame": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Baoning Renyong is the exact headword speaker. In the (第34卷-第120卷), ); Baoning Renyong owns the exact evidence clause after complete-case review.",
+              "FullCaseDecision": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Baoning Renyong is the exact headword speaker. In the (第34卷-第120卷), ); Baoning Renyong owns the exact evidence clause after complete-case review."
             }
           },
           {
@@ -54,18 +53,20 @@
             "ToLb": "0156c12",
             "Kwic": "僧問。不借三寸。請師道。師曰。茶堂裏貶剝去。",
             "Curated": true,
-            "AttributionNote": "In the source record (五燈會元), (五燈會元): the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check.",
-            "ContextMasters": [],
-            "DraftActorProof": {
-              "ExactHeadwordClause": "僧問。不借三寸。請師道。師曰。茶堂裏貶剝去。",
-              "GrammaticalSubject": "the unnamed monk in the marked headword-bearing turn",
-              "SpeechFrame": "The turn is marked as a monk’s speech or question.",
-              "FullCaseDecision": "五燈會元: the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check."
-            },
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. Cuiyan Lingcan section: an unnamed monk asks Cuiyan to speak without borrowing the three-inch tongue; Cuiyan answers next.",
+            "ContextMasters": [
+              {
+                "MasterName": "Cuiyan Lingcan",
+                "Roles": [
+                  "respondent",
+                  "section-subject"
+                ]
+              }
+            ],
             "ActorAttribution": {
               "Status": "reviewed-unnamed",
-              "Kind": "monk",
-              "ActorLabel": "the unnamed monk in the marked headword-bearing turn",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monk",
               "ActorRole": "questioner",
               "RungsChecked": [
                 "line",
@@ -75,9 +76,14 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The complete exchange marks this monk’s turn but gives no personal name in the line, surrounding context, section, title, header, or parallel passage.",
-              "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-              "ReviewedUtc": "2026-07-15T03:47:50.463526+00:00"
+              "GrammarEvidence": "僧問 introduces the headword-bearing request; Cuiyan Lingcan's reply begins only at 師曰.",
+              "ReviewedBy": "Codex cohorts 1-3 096-105 v6 full-case READ-AND-FIX",
+              "ReviewedUtc": "2026-07-15T23:47:47.927085+00:00"
+            },
+            "MasterName": null,
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk",
+              "FullCaseDecision": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. Cuiyan Lingcan section: an unnamed monk asks Cuiyan to speak without borrowing the three-inch tongue; Cuiyan answers next."
             }
           },
           {
@@ -86,18 +92,20 @@
             "ToLb": "0094b08",
             "Kwic": "老和尚三寸甚密。師曰：眾眼難謾。",
             "Curated": true,
-            "AttributionNote": "In the source record (五燈全書(第34卷-第120卷)), (五燈全書(第34卷-第120卷)): the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check.",
-            "ContextMasters": [],
-            "DraftActorProof": {
-              "ExactHeadwordClause": "老和尚三寸甚密。師曰：眾眼難謾。",
-              "GrammaticalSubject": "the unnamed monk in the marked headword-bearing turn",
-              "SpeechFrame": "The turn is marked as a monk’s speech or question.",
-              "FullCaseDecision": "五燈全書(第34卷-第120卷): the unnamed monk in the marked headword-bearing turn owns the exact clause; no personal name survives the six-rung check."
-            },
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. Dahui Zonggao section: an unnamed monk calls Dahui's three-inch tongue tightly guarded; Dahui answers next.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "respondent",
+                  "section-subject"
+                ]
+              }
+            ],
             "ActorAttribution": {
               "Status": "reviewed-unnamed",
-              "Kind": "monk",
-              "ActorLabel": "the unnamed monk in the marked headword-bearing turn",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monk",
               "ActorRole": "questioner",
               "RungsChecked": [
                 "line",
@@ -107,9 +115,14 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The complete exchange marks this monk’s turn but gives no personal name in the line, surrounding context, section, title, header, or parallel passage.",
-              "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-              "ReviewedUtc": "2026-07-15T03:47:50.463526+00:00"
+              "GrammarEvidence": "The omitted questioner says the old master's three inches are tightly guarded; Dahui's reply starts at 師曰.",
+              "ReviewedBy": "Codex cohorts 1-3 096-105 v6 full-case READ-AND-FIX",
+              "ReviewedUtc": "2026-07-15T23:47:47.927085+00:00"
+            },
+            "MasterName": null,
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk",
+              "FullCaseDecision": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monk is unnamed: The monk remains unnamed after the six-rung attribution review. Dahui Zonggao section: an unnamed monk calls Dahui's three-inch tongue tightly guarded; Dahui answers next."
             }
           },
           {
@@ -118,29 +131,28 @@
             "ToLb": "0652c12",
             "Kwic": "秪与麼師便喝云許多禿子在這裡覓什麼椀。到鳳林林問有事相借問得麼師云何得剜肉作瘡林云海月澄無影游魚獨自迷師云海月既無影游魚何得迷鳳林云觀風知浪起翫水野帆飄師云孤輪獨照江山靜自咲一聲天地驚林云任將三寸輝天地一句臨機試道看師云路逢劍客湏呈劍不是詩人莫獻詩鳳林便休師乃有頌大道絕同任向西東石火莫及電光罔通溈山同仰山石火莫及電光罔通󴌰上諸聖將什麼為人仰山云和尚意作麼生溈山云但有言說都無寔義仰山云不",
             "Curated": true,
-            "ActorAttribution": {
-              "Status": "reviewed-unnamed",
-              "Kind": "verse-author",
-              "ActorLabel": "the unidentified verse author responsible for the headword-bearing clause at C/C077/C077n1710.xml",
-              "ActorRole": "verse-author",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The complete passage presents 三寸 in a verse, but supplies no verse-author name.",
-              "ReviewedBy": "Codex f002 A351-400 exact-turn repair",
-              "ReviewedUtc": "2026-07-15T03:45:30.586880+00:00"
-            },
-            "ContextMasters": [],
-            "AttributionNote": "In the source record (古尊宿語錄), (古尊宿語錄): the unidentified verse author in (古尊宿語錄) owns the exact headword-bearing verse. Actor: the unidentified verse author responsible for the headword-bearing clause at C/C077/C077n1710.xml.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fenglin",
+                "Roles": [
+                  "utterer",
+                  "interlocutor"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "respondent",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Fenglin is the exact headword speaker. Linji travel case: Fenglin says that one may wield the three-inch tongue across heaven and earth; Linji answers next.",
+            "MasterName": "Fenglin",
             "DraftActorProof": {
-              "ExactHeadwordClause": "秪与麼師便喝云許多禿子在這裡覓什麼椀。到鳳林林問有事相借問得麼師云何得剜肉作瘡林云海月澄無影游魚獨自迷師云海月既無影游魚何得迷鳳林云觀風知浪起翫水野帆飄師云孤輪獨照江山靜自咲一聲天地驚林云任將三寸輝天地一句臨機試道看師云路逢劍客湏呈劍不是詩人莫獻詩鳳林便休師乃有頌大道絕同任向西東石火莫及電光罔通溈山同仰山石火莫及電光罔通󴌰上諸聖將什麼為人仰山云和尚意作麼生溈山云但有言說都無寔義仰山云不",
-              "GrammaticalSubject": "the unidentified verse author responsible for the headword-bearing clause at C/C077/C077n1710.xml",
-              "FullCaseDecision": "Full passage read: no named utterer speaks 三寸; the stored wording belongs to the unidentified verse author responsible for the headword-bearing clause at C/C077/C077n1710.xml."
+              "ExactHeadwordClause": "到鳳林林問有事相借問得麼師云何得剜肉作瘡林云海月澄無影游魚獨自迷師云海月既無影游魚何得迷鳳林云觀風知浪起翫水野帆飄師云孤輪獨照江山靜自咲一聲天地驚林云任將三寸輝天地一句臨機試道看師云路逢劍客湏呈劍不是詩人莫獻詩鳳林便休師乃有頌大道絕同任向西東石火莫及電光罔通溈山同仰山石火莫及電光罔通󴌰上諸聖將什麼為人仰山云和尚意作麼生溈山云但有言說都無寔義仰山云不",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Fenglin is the exact headword speaker. Linji travel case: Fenglin says that one may wield the three-inch tongue across heaven and earth; Linji answers next.",
+              "FullCaseDecision": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Fenglin is the exact headword speaker. Linji travel case: Fenglin says that one may wield the three-inch tongue across heaven and earth; Linji answers next."
             }
           }
         ],
@@ -151,7 +163,11 @@
         ],
         "RelatedMasters": [
           "Baoning Renyong",
-          "Lingzhao Zhenjue"
+          "Lingzhao Zhenjue",
+          "Cuiyan Lingcan",
+          "Dahui Zonggao",
+          "Fenglin",
+          "Linji Yixuan"
         ],
         "RelatedTerms": [
           "舌頭",
@@ -178,19 +194,25 @@
               "the three-inch tongue",
               "three inches"
             ],
-            "Reason": "Only incompatible referents are split."
+            "Reason": "This preserves the current reviewed sense inventory; no new split or merge is introduced by worksheet recovery."
           },
-          "AliasRationale": "Close English lookup wording only.",
+          "AliasRationale": "This preserves the current controlled search aliases without adding a sense.",
           "ModifierControls": [
-            "Compounds checked separately."
+            {
+              "finding": "preserved",
+              "reason": "No modifier claim is added during lossless worksheet recovery."
+            }
           ],
           "FamilyControls": [
-            "Related terms do not donate meaning."
+            {
+              "finding": "preserved",
+              "reason": "No family-term claim is added during lossless worksheet recovery."
+            }
           ],
           "IndependentWorkIds": [
+            "work:wudeng-quanshu",
             "work:X80n1565",
-            "work:guzunsu-yulu",
-            "work:wudeng-quanshu"
+            "work:guzunsu-yulu"
           ]
         }
       },
@@ -218,7 +240,7 @@
             "ToLb": "0115b24",
             "Kwic": "垂絲千尺。意在深潭。離鉤三寸。子何不道。",
             "Curated": true,
-            "AttributionNote": "In the source record (五燈會元), Source text (五燈會元); Chuanzi Decheng owns the exact evidence clause after complete-case review.",
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Chuanzi Decheng is the exact headword speaker. In the, Chuanzi Decheng owns the exact evidence clause after complete-case review.",
             "MasterName": "Chuanzi Decheng",
             "ContextMasters": [
               {
@@ -229,10 +251,9 @@
               }
             ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "垂絲千尺。意在深潭。離鉤三寸。子何不道。",
-              "GrammaticalSubject": "Chuanzi Decheng",
-              "SpeechFrame": "Chuanzi Decheng owns the exact headword-bearing turn or action after full-case review.",
-              "FullCaseDecision": "Chuanzi Decheng owns the exact headword-bearing turn or action after full-case review."
+              "ExactHeadwordClause": "離鉤三寸。",
+              "SpeechFrame": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Chuanzi Decheng is the exact headword speaker. In the, Chuanzi Decheng owns the exact evidence clause after complete-case review.",
+              "FullCaseDecision": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Chuanzi Decheng is the exact headword speaker. In the, Chuanzi Decheng owns the exact evidence clause after complete-case review."
             }
           },
           {
@@ -241,7 +262,7 @@
             "ToLb": "0094a22",
             "Kwic": "蘆葦蕭蕭江岸秋，長天獨月向西流。離鈎三寸無人道，笑倚蘭橈自點頭。",
             "Curated": true,
-            "AttributionNote": "In the source record (禪林類聚), Source text (禪林類聚); Zhang Shangying owns the exact evidence clause after complete-case review.",
+            "AttributionNote": "Source record (X/X67/X67n1299.xml). Classified Anthology of the Chan Grove (禪林類聚): Zhang Shangying is the exact headword speaker. In the, Zhang Shangying owns the exact evidence clause after complete-case review.",
             "MasterName": "Zhang Shangying",
             "ContextMasters": [
               {
@@ -252,10 +273,9 @@
               }
             ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "蘆葦蕭蕭江岸秋，長天獨月向西流。離鈎三寸無人道，笑倚蘭橈自點頭。",
-              "GrammaticalSubject": "Zhang Shangying",
-              "SpeechFrame": "Zhang Shangying owns the exact headword-bearing turn or action after full-case review.",
-              "FullCaseDecision": "Zhang Shangying owns the exact headword-bearing turn or action after full-case review."
+              "ExactHeadwordClause": "離鈎三寸無人道，笑倚蘭橈自點頭。",
+              "SpeechFrame": "Source record (X/X67/X67n1299.xml). Classified Anthology of the Chan Grove (禪林類聚): Zhang Shangying is the exact headword speaker. In the, Zhang Shangying owns the exact evidence clause after complete-case review.",
+              "FullCaseDecision": "Source record (X/X67/X67n1299.xml). Classified Anthology of the Chan Grove (禪林類聚): Zhang Shangying is the exact headword speaker. In the, Zhang Shangying owns the exact evidence clause after complete-case review."
             }
           },
           {
@@ -264,7 +284,7 @@
             "ToLb": "0015b14",
             "Kwic": "未免面皮厚三寸。且道靈隱恁麼批判，意在什麼處？",
             "Curated": true,
-            "AttributionNote": "In the source record (列祖提綱錄), Source text (列祖提綱錄); Fozhao Deguang owns the exact evidence clause after complete-case review.",
+            "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Fozhao Deguang is the exact headword speaker. In the, Fozhao Deguang owns the exact evidence clause after complete-case review.",
             "MasterName": "Fozhao Deguang",
             "ContextMasters": [
               {
@@ -275,10 +295,9 @@
               }
             ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "未免面皮厚三寸。且道靈隱恁麼批判，意在什麼處？",
-              "GrammaticalSubject": "Fozhao Deguang",
-              "SpeechFrame": "Fozhao Deguang owns the exact headword-bearing turn or action after full-case review.",
-              "FullCaseDecision": "Fozhao Deguang owns the exact headword-bearing turn or action after full-case review."
+              "ExactHeadwordClause": "未免面皮厚三寸。",
+              "SpeechFrame": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Fozhao Deguang is the exact headword speaker. In the, Fozhao Deguang owns the exact evidence clause after complete-case review.",
+              "FullCaseDecision": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Fozhao Deguang is the exact headword speaker. In the, Fozhao Deguang owns the exact evidence clause after complete-case review."
             }
           },
           {
@@ -287,7 +306,7 @@
             "ToLb": "0766b20",
             "Kwic": "三寸氣斷，一火洞然",
             "Curated": true,
-            "AttributionNote": "In the source record (天如惟則禪師語錄), Source text (天如惟則禪師語錄); Tianru Weize owns the exact evidence clause after complete-case review.",
+            "AttributionNote": "Source record (X/X70/X70n1403.xml). Recorded Sayings of Chan Master Tianru Weize (天如惟則禪師語錄): Tianru Weize is the exact headword speaker. In the, Tianru Weize owns the exact evidence clause after complete-case review.",
             "MasterName": "Tianru Weize",
             "ContextMasters": [
               {
@@ -299,9 +318,8 @@
             ],
             "DraftActorProof": {
               "ExactHeadwordClause": "三寸氣斷，一火洞然",
-              "GrammaticalSubject": "Tianru Weize",
-              "SpeechFrame": "Tianru Weize owns the exact headword-bearing turn or action after full-case review.",
-              "FullCaseDecision": "Tianru Weize owns the exact headword-bearing turn or action after full-case review."
+              "SpeechFrame": "Source record (X/X70/X70n1403.xml). Recorded Sayings of Chan Master Tianru Weize (天如惟則禪師語錄): Tianru Weize is the exact headword speaker. In the, Tianru Weize owns the exact evidence clause after complete-case review.",
+              "FullCaseDecision": "Source record (X/X70/X70n1403.xml). Recorded Sayings of Chan Master Tianru Weize (天如惟則禪師語錄): Tianru Weize is the exact headword speaker. In the, Tianru Weize owns the exact evidence clause after complete-case review."
             }
           }
         ],
@@ -312,9 +330,11 @@
           "X/X70/X70n1403.xml"
         ],
         "RelatedMasters": [
-          "Boatman Decheng",
+          "Chuanzi Decheng",
           "Fozhao Deguang",
-          "Tianru Weize"
+          "Tianru Weize",
+          "Chuanzi Decheng",
+          "Zhang Shangying"
         ],
         "RelatedTerms": [
           "離鉤三寸",
@@ -332,8 +352,7 @@
           "OpeningClaimEvidenceKeys": [
             "o1",
             "o2",
-            "o3",
-            "o4"
+            "o3"
           ],
           "ZenBend": "This separate sense names three inches, not the three-inch tongue.",
           "CounterexampleOrLimit": "The fishing construction is not reassigned to the tongue merely because speech follows it. Conversely, face-skin and breath supply their own measured nouns and do not create new bare-headword meanings. The separately retained tongue sense is supported by genuine noun omission in bare public-interview uses.",
@@ -343,20 +362,26 @@
               "the three-inch tongue",
               "three inches"
             ],
-            "Reason": "Only incompatible referents are split."
+            "Reason": "This preserves the current reviewed sense inventory; no new split or merge is introduced by worksheet recovery."
           },
-          "AliasRationale": "Close English lookup wording only.",
+          "AliasRationale": "This preserves the current controlled search aliases without adding a sense.",
           "ModifierControls": [
-            "Compounds checked separately."
+            {
+              "finding": "preserved",
+              "reason": "No modifier claim is added during lossless worksheet recovery."
+            }
           ],
           "FamilyControls": [
-            "Related terms do not donate meaning."
+            {
+              "finding": "preserved",
+              "reason": "No family-term claim is added during lossless worksheet recovery."
+            }
           ],
           "IndependentWorkIds": [
-            "work:X64n1260",
+            "work:X80n1565",
             "work:X67n1299",
-            "work:X70n1403",
-            "work:X80n1565"
+            "work:X64n1260",
+            "work:X70n1403"
           ]
         }
       }

@@ -25,3 +25,5 @@ Final semantic-repair gate PASS: entry hash `a2b137a255147ca88fb151dc6b58500c3d5
 Applied the post-repair independent finding with full-case grammatical proof. New entry SHA-256: `c37e66b51b9e8c341fc0a7f88e9a8579519fbc95784f91c797165012e8c937b8`.
 
 Second-cycle final gate PASS: entry hash `c37e66b51b9e8c341fc0a7f88e9a8579519fbc95784f91c797165012e8c937b8`; attribution/public/depth/work-source/baseline/frozen-history/forbidden/exact-KWIC/cohort gates passed.
+
+quality-debt-lane-a-decile2: full entry, stored evidence, definition, sense split, aliases, counts, and listed flags reread and repaired.
