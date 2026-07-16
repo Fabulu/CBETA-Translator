@@ -79,6 +79,21 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
     attribution_note = required_text(
         occurrence.get("AttributionNote"), f"{coordinate}.AttributionNote", errors
     )
+    span_review = occurrence.get("HeadwordSpanReview")
+    if span_review is not None:
+        if not isinstance(span_review, dict):
+            errors.append(f"{coordinate}.HeadwordSpanReview: must be an object")
+        else:
+            if not isinstance(span_review.get("Count"), int) or span_review.get("Count", 0) < 2:
+                errors.append(f"{coordinate}.HeadwordSpanReview.Count: integer >=2 required")
+            if span_review.get("Disposition") != "single-actor-single-turn-repetition":
+                errors.append(
+                    f"{coordinate}.HeadwordSpanReview.Disposition: use single-actor-single-turn-repetition"
+                )
+            required_text(
+                span_review.get("GrammarEvidence"),
+                f"{coordinate}.HeadwordSpanReview.GrammarEvidence", errors,
+            )
     # Reader-facing attribution must name the actor once. A prior formatter
     # prepended the actor to prose which already began with that actor, yielding
     # visible strings such as "Foyan Qingyuan: Foyan Qingyuan: ...". Catch the
@@ -194,7 +209,19 @@ def compile_sense(value: dict, index: int, errors: list[str]) -> dict:
     # Link inventories are derived from structured evidence, not hand-maintained
     # parallel lists. Preserve explicitly related canonical people, then append
     # every utterer and contextual master exactly once in evidence order.
-    related = list(dict.fromkeys(sense.get("RelatedMasters") or []))
+    explicit_related = sense.get("RelatedMasters") or []
+    if not isinstance(explicit_related, list):
+        errors.append(f"sense {index}.RelatedMasters: must be a list of master-name strings")
+        explicit_related = []
+    invalid_related = [name for name in explicit_related if not isinstance(name, str) or not name.strip()]
+    if invalid_related:
+        errors.append(
+            f"sense {index}.RelatedMasters: values must be nonempty master-name strings; "
+            f"got {invalid_related!r}"
+        )
+    related = list(dict.fromkeys(
+        name for name in explicit_related if isinstance(name, str) and name.strip()
+    ))
     for row in [*occurrences, *anchors]:
         names = [row.get("MasterName")]
         names.extend(

@@ -169,9 +169,18 @@ def has_exact_actor_context(master: str | None, context_masters: object) -> bool
     ))
 
 
-def ambiguous_headword_span(term: str, kwic: str) -> bool:
-    """Multi-graph terms need one exact target span for actor binding."""
-    return len(term) >= 2 and kwic.count(term) != 1
+def ambiguous_headword_span(term: str, kwic: str, review: object = None) -> bool:
+    """Multi-graph terms need one target span or a proved one-turn repetition."""
+    count = kwic.count(term)
+    if len(term) < 2 or count == 1:
+        return False
+    if count > 1 and isinstance(review, dict):
+        return not (
+            review.get("Count") == count
+            and review.get("Disposition") == "single-actor-single-turn-repetition"
+            and bool(str(review.get("GrammarEvidence") or "").strip())
+        )
+    return True
 
 
 def roster_names() -> set[str]:
@@ -436,7 +445,9 @@ def main() -> int:
                     fail("unresolved_actor", entry, f"{term} s{si} o{oi} {occ.get('RelPath')}:{occ.get('FromLb')}")
 
                 kwic_text = str(occ.get("Kwic") or "")
-                if evidence_kind == "o" and ambiguous_headword_span(term, kwic_text):
+                if evidence_kind == "o" and ambiguous_headword_span(
+                    term, kwic_text, occ.get("HeadwordSpanReview")
+                ):
                     fail(
                         "ambiguous_headword_span_in_kwic", entry,
                         f"{term} s{si} o{oi}: expected exactly one headword span in the reader KWIC, "

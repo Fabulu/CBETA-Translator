@@ -31,6 +31,7 @@ REPORT_HOME = Path(tempfile.gettempdir()) / "cbeta-depth-gate" if EPHEMERAL else
 CACHE = REPORT_HOME / "corpus-count-cache.json"
 GATE = REPORT_HOME / "depth-sense-gate.json"
 SEMANTIC_REGRESSIONS = BUILD / "fresh-build" / "semantic-regressions.json"
+SOURCE_LABEL_MANIFEST = MAINT / "quality-debt-source-label-manifest.json"
 
 # Headwords that intentionally cover a more frequent orthographic family form.
 # The guard must scale to the family actually described, not the narrower spelling.
@@ -78,6 +79,25 @@ TERM_WORK_GATES = {
 }
 
 CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+")
+
+
+def source_labels() -> dict[str, str]:
+    payload = load_json(SOURCE_LABEL_MANIFEST, {})
+    return {
+        row["relPath"]: f'{row["englishLabel"]} ({row["chineseTitle"]})'
+        for row in payload.get("rows") or []
+    }
+
+
+def without_authoritative_source_label(text: str, labels: dict[str, str] | None = None) -> str:
+    """Exclude only the exact registry title segment from prose-vocabulary bans."""
+    match = re.match(r"^Source record \(([^)]+)\)\.\s*", text)
+    if not match:
+        return text
+    labels = source_labels() if labels is None else labels
+    label = labels.get(match.group(1))
+    remainder = text[match.end():]
+    return remainder[len(label):].lstrip(" :") if label and remainder.startswith(label) else text
 
 
 def prose_fields(entry: dict):
@@ -347,8 +367,9 @@ def audit_entry(path: Path, count_info: dict) -> dict:
         outside = cjk_outside_parentheses(text)
         if outside:
             hard.append({"kind": "non-english-first-prose", "field": field, "runs": outside})
+        vocabulary_text = without_authoritative_source_label(text)
         for name, pattern in BANNED.items():
-            matches = sorted(set(match.group(0) for match in re.finditer(pattern, text, re.IGNORECASE)))
+            matches = sorted(set(match.group(0) for match in re.finditer(pattern, vocabulary_text, re.IGNORECASE)))
             if matches:
                 hard.append({"kind": f"banned-framing-{name}", "field": field, "matches": matches})
 

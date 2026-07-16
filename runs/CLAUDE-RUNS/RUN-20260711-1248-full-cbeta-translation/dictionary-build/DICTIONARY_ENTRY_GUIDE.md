@@ -496,6 +496,13 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        is ambiguous. Re-cut and re-verify the one intended turn. Single-graph
        entries are exempt from this count rule because natural clauses often
        repeat the graph, but still require full-turn reading.
+       A genuine rhetorical repetition inside one actor's one turn must not be
+       shortened or moved to a claim anchor merely to satisfy the count. Keep it
+       as an occurrence and add `HeadwordSpanReview` with the actual `Count`,
+       `Disposition: single-actor-single-turn-repetition`, and concrete
+       `GrammarEvidence` proving that every span belongs to the same actor and
+       turn. This is the only multi-span exception; it never licenses a KWIC
+       spanning a question and answer or several cases.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that

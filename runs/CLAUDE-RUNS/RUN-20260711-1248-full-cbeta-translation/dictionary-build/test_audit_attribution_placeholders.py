@@ -45,6 +45,13 @@ class PlaceholderActorTest(unittest.TestCase):
         self.assertTrue(ambiguous_headword_span("家風", "僧問如何是門風"))
         # Single graphs often repeat naturally; full-turn reading still binds them.
         self.assertFalse(ambiguous_headword_span("佛", "佛問如何是佛"))
+        repeated = "以無窠臼為窠臼"
+        self.assertTrue(ambiguous_headword_span("窠臼", repeated))
+        self.assertFalse(ambiguous_headword_span("窠臼", repeated, {
+            "Count": 2,
+            "Disposition": "single-actor-single-turn-repetition",
+            "GrammarEvidence": "Both tokens occur in one quoted clause governed by the same speaker.",
+        }))
 
     def test_rejects_reader_visible_attribution_scaffolding(self):
         rel = "X/X80/X80n1565.xml"
