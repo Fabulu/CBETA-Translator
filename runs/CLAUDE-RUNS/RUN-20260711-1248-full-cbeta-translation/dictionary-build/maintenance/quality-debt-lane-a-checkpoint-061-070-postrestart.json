@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "quality-debt-author-checkpoint-v2",
+  "lane": "A",
+  "range": "061-070",
+  "writtenUtc": "2026-07-16T12:00:00Z",
+  "completed": 70,
+  "total": 108,
+  "requiresDifferentReader": true,
+  "formalGate": "quality-debt-lane-a-061-070-postrestart-gate3.json",
+  "depthGate": "quality-debt-lane-a-061-070-depth-postenrich.json",
+  "attributionGate": "quality-debt-lane-a-061-070-attribution-postrecut.json",
+  "blockers": [
+    "35 roster-only link failures remain in the pre-enrichment attribution inventory; the separate roster project owns their integration.",
+    "Every current occurrence still requires a different reader's full-case exact-turn decision."
+  ],
+  "entries": [
+    {"id":"t_3f7a6ab74b68","term":"僧堂","entrySha256":"171c9bd6e5fa08ca2d33b00f928c91078e1a60f45d2e4e51f83a81c49acd7ffc","worksheetSha256":"633841643641bed6a670fd46b50c0499d0dd522cfff968b04e691d7ff29e2bb6"},
+    {"id":"t_438eb81f17bf","term":"心行處滅","entrySha256":"653016a1410fba9339df594d5f8d8368195afb9676e70bfde71dc8b66a465a9a","worksheetSha256":"c213dbde14b553a123b52b215ca7b57f6e9492238696f7c04a051ec2a1bff429"},
+    {"id":"t_462c3d1711b6","term":"三種病人","entrySha256":"b34affdcdf60de1c4365f9c1faa8ae47980976b0c64465c3a4b596444c282ab0","worksheetSha256":"a829540c72577cc31b0a023a8bc40e2e3a90a2f26de4b9e41fd1178c9fb50a28"},
+    {"id":"t_49829f59faac","term":"函蓋乾坤","entrySha256":"063335ee0bd66fdce76504da4ae7c911c7a3d9f49f0f31738f9a8b0dc7c5b33e","worksheetSha256":"3cad06a72b07f4c5d74a067c3bfa872ce158d3849f6f9bb57dacaf95ff81f00f"},
+    {"id":"t_4d4ce329367f","term":"說食","entrySha256":"eccf52fe6e35cf13b7abddd1f4212406f59e070f727732cec7aaa99cf3c20330","worksheetSha256":"e7ea7f06af340a43aaa9e50ca27c033b8699ccf3a796eaaf6e9404e7d30ecb00"},
+    {"id":"t_5342014cb2ee","term":"土地堂","entrySha256":"7dbfaa38be8d60a42ab08120c7ea04bb2a95376e0270bef79efeca2cf3ce3efb","worksheetSha256":"2b7d0e2edb84d72280b2a6e4626dd24ee5f38ab6c632acbd0c27cc7e406765f2"},
+    {"id":"t_560356022866","term":"孤明","entrySha256":"6f2a0475e9b8c973181001411305b9b695ff80b0c1523a178a578ee6d7c4b4ec","worksheetSha256":"d8a216b250a6698c8d61464cbaa4f450d2849793d627aad022fbbadbb21ffd8c"},
+    {"id":"t_57ef1bbc3a81","term":"山河大地","entrySha256":"ccd0efbb5b0f05038adb8232834425626fb4a0f2895b4dc7d040c2d0a66bfa7e","worksheetSha256":"a42e9c8d09c75c212054976a630769f6a35de1250f6162b087834934a62e7a6f"},
+    {"id":"t_592227b212c1","term":"死中得活","entrySha256":"54c0287e8c213fa526f7319c6b98ac8367bb50582cd5be56f6b6facdac601c96","worksheetSha256":"ce0f80a625538cf75ddc14141f329276a6d8aa4d998c7c1dfdba235b799325da"},
+    {"id":"t_60251334dc81","term":"芥子納須彌","entrySha256":"5573cca8d9bd986b2478ea5325dd4d33a57e639c3bf5e4fd91c94c1d39ca7c71","worksheetSha256":"7d5eb81685e890e876cfdfc83827615c9b3fa76d67ae384bb9f44eda066ae5e7"}
+  ]
+}

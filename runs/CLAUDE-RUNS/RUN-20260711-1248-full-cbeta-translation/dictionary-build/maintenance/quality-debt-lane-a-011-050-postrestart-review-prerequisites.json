@@ -1,0 +1,482 @@
+{
+  "schemaVersion": "quality-debt-review-prerequisite-v1",
+  "generatedUtc": "2026-07-16T11:07:24.137772+00:00",
+  "lane": "A",
+  "scope": "011-050",
+  "cohorts": [
+    {
+      "range": "011-020",
+      "entries": 10,
+      "readyForIndependentReview": false,
+      "titleIdempotence": {
+        "changedRows": 0,
+        "unmatchedRelPaths": 0
+      },
+      "notReadyEntries": 10,
+      "rows": [
+        {
+          "id": "t_dc24f92ead78",
+          "term": "問訊",
+          "entrySha256": "d38921ab60f0143cd98abfb5c3f9ecbeefe3dc221e2a8061673af59e809c7545",
+          "worksheetSha256": "05dc3609d126b2592ca37813261a9c4ac7aac0f083b6780a12245d7124b902f2",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_5ed1c64c6559",
+          "term": "鎮州蘿蔔",
+          "entrySha256": "c1b24d2eb78cee143b5c194f8aa13b0df5248651242e87ced5742e09097a9350",
+          "worksheetSha256": "e34419e1f99984812c9e0f1ee29503b38e7b010d8e0caafa4554d26d50d40190",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_a9f422b3b249",
+          "term": "生緣",
+          "entrySha256": "394c56523a1c88cea2288d3d99dbc6d8532180fa039f14eafc6a0b523b0f3174",
+          "worksheetSha256": "2e300dcb731f00c6df265565b6539e9741c8694c292621330ce8e2642449aa4b",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_df9aad1ce22d",
+          "term": "芥子",
+          "entrySha256": "81ce087f4e9ee3e2b82ff9fe6f49fcce6d1e3e67f28a963fb7c321fe34c663f0",
+          "worksheetSha256": "a8a591f9e03717733d07e6550444d12200f320d924a8fc923d0bbc0b1ecb7745",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_420d43d8c61c",
+          "term": "我今不是渠",
+          "entrySha256": "572724ead22be5959a6bd6b1c8f24e24ca663b97befc801153193e1d2b5d3781",
+          "worksheetSha256": "7f821690afd79819fd4fe57c94043dd80ab5a45f60ad848139c4e18a79fe648c",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_da72db7aa635",
+          "term": "把斷",
+          "entrySha256": "6654313f06d7493a8f7e515bc06fc98944b96a39171015c0aeaaf41afaab8502",
+          "worksheetSha256": "594e506cfcbc557a611a2581032b9064cec3d532280e210352b767cb61507f61",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_e89833bb5e63",
+          "term": "誓願",
+          "entrySha256": "35295296695ee0b8447901d3cb24bfd6b2698cc63889d8ee93db68c649c0f0a6",
+          "worksheetSha256": "98f8afa3826d736badd267ef7bf4bdf6165bad2f809a40b064172bbceea911e3",
+          "compileReportSha256": "bd8c561c6827094798792e7d0644e4cde5388374060e6de2732995d964d58040",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_1aa768c331fa",
+          "term": "泥牛入海",
+          "entrySha256": "9e45f9df714a1bcd238839ac14b2509383a70fa6eeb9445420778058a480edea",
+          "worksheetSha256": "8e581e6b69cfc9a0366429a2c2d323fc9e58873d0ce664231be943122ca296ba",
+          "compileReportSha256": "e2fd7f502a64218d6c920d0184d43b719da10cbdaa368e793596c8746a34c8e1",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_26c9a5cb0fe3",
+          "term": "和泥合水",
+          "entrySha256": "284323f1495c3b5cae63f097271678c28a9e27e7c2d9da69de8f8b22b146c4db",
+          "worksheetSha256": "bfb78c2ee46c65a0691b463983b1611e50e9d79f041c25f03babe1f71fa124a4",
+          "compileReportSha256": "d4a41508ebbce12fb007a126fb55a8452f9a22d5fdb64e162e4f56d19ebad236",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_43ecdacadde0",
+          "term": "阿誰",
+          "entrySha256": "ed9fbb47499043834aaf9fd59202ca93583a0e6d5af4e94cfcfb76c02e44057e",
+          "worksheetSha256": "31d9e9350f23802292ad61a78dde6b51b2701ab5c0db3af28a6acb4ce934d401",
+          "compileReportSha256": "05af36d75bdfaebd77f560ed07ed6b2e949481f34df752d449ebc211a17c71b3",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        }
+      ]
+    },
+    {
+      "range": "021-030",
+      "entries": 10,
+      "readyForIndependentReview": false,
+      "titleIdempotence": {
+        "changedRows": 0,
+        "unmatchedRelPaths": 0
+      },
+      "notReadyEntries": 10,
+      "rows": [
+        {
+          "id": "t_7653f61478aa",
+          "term": "石女",
+          "entrySha256": "9bb8156b92c63da95f1a496b0343a25cad22b6d1146c54fb3030c6baf66f9248",
+          "worksheetSha256": "c36a85fb955201c4645a71f5fd4f2136c2043bf5334ce1de358b988c1273c634",
+          "compileReportSha256": "64cc01cb2231098d41491c2331224c92c7a206ad05110432cd682241f7dd71d3",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_916ec389a07d",
+          "term": "香合",
+          "entrySha256": "9d78a3d4dd50a115a0eec5f7747c9cf5a92757410fe6bbf14f475725a6f27552",
+          "worksheetSha256": "704992d85145263577e832cf1f15937e5f6d7acd3feb6f76ca8da0bd63019d3f",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_b8c3ecb60618",
+          "term": "啐啄同時",
+          "entrySha256": "7b28df617724f8c166337ce5aee4f1206864bef50c242d0cb91eb874bc1788dc",
+          "worksheetSha256": "223d9cbd36833532e6a225b4528aeef1fa7d491caa58c724ba8bf3586b8e85f2",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_e3a829e28b09",
+          "term": "丈六金身",
+          "entrySha256": "a5e8458eae10821bca33f082f565b9578192b26d089dc6b8570b7d87428eb212",
+          "worksheetSha256": "11b349f0ed5b59e886d681605bf06cbbc50847d2694f093ce7ec2e0dc9e9e321",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_fb331b159983",
+          "term": "死蛇",
+          "entrySha256": "858f975d116b104fdac3f2d24f77cfcf379e5bcaf4d1c9d4db3a0d3952b71ac4",
+          "worksheetSha256": "da1c7b3e866581db6833e9c92c91f9c91b8212e6ffd9665b1c9434163b2a5188",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_094be4e93da2",
+          "term": "作麼生道",
+          "entrySha256": "20b836ccfd23b99149e83790231e8427432f6adf17eeaf7903394f1c31b0467d",
+          "worksheetSha256": "482336c4d2dac22212535d7fceefa1ba3dd2a58d928e947176868e2aee648f9d",
+          "compileReportSha256": "64c6134fa3ada607f8eaf6ba116beb87260db98016b77a6563224fd8933aa4d6",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_1459058101b7",
+          "term": "落處",
+          "entrySha256": "a0eba10f284bfb8b1fa5327d303140fc9ddc2dd29c172647cb817765a9de5755",
+          "worksheetSha256": "920ac8d09f9218e133aec589d21b74f54cfe5ea789be684d5e7c4745f2654873",
+          "compileReportSha256": "aaa0b46bdde39d3f2273230d40890f1331589352bb674b2ae8e1097a89b2310d",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_1a86ee3d406f",
+          "term": "便下座",
+          "entrySha256": "a00455f7ac8d13823b6a10fc2e79f033bf7242da69db75df7f8c62d956159a47",
+          "worksheetSha256": "4b3c0864fdd393a97c5ba2fd97e9e4a235d85eeeb1f6fcbcd0cd9c6c10d5979b",
+          "compileReportSha256": "43702a1a6ba17bc25daa38fea512898292f93f056dc3e8a189988ca1d922ad9f",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_21a3463bc0db",
+          "term": "隨處",
+          "entrySha256": "82f944027691b6186a03fc8999a67d55116022bdc6121549a5778735c6c51202",
+          "worksheetSha256": "bef226544e63430dd83034c69b9a5116b7ed9d2a19d787f305694db91d7ec165",
+          "compileReportSha256": "90ec2fe118cc1677795c948c4caee5c17e7a5f87a5c63e72396eea00ec5bcece",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_2da0e2fc0478",
+          "term": "三門",
+          "entrySha256": "89f6eb768c37b3f41dc9ad2c597977dacb2803baa50ed5ae1353624d6e4fbb34",
+          "worksheetSha256": "bae276f8cc3b3bcd17bbe42e25779b1201c0a5b1014d0556131bfb573bb0f8bd",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        }
+      ]
+    },
+    {
+      "range": "031-040",
+      "entries": 10,
+      "readyForIndependentReview": false,
+      "titleIdempotence": {
+        "changedRows": 0,
+        "unmatchedRelPaths": 0
+      },
+      "notReadyEntries": 10,
+      "rows": [
+        {
+          "id": "t_42839688f8c2",
+          "term": "君臣道合",
+          "entrySha256": "e06971d7a5f1329268247752593a3e2fe972c771b47b25cc000ad4873188f4f3",
+          "worksheetSha256": "79f1e0279f56affbe6e84910a0811ba8656e8d8453ab0dcef95a7c04b507c93d",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_561817f02529",
+          "term": "放行",
+          "entrySha256": "cf5eeb641bf1a30695f5696ff2aa2659959fbaf36c5fedb336c7e0ac5d3362a8",
+          "worksheetSha256": "41dda3167877a3034d394b5b0fbc01f0b993836724ab7cbcb0d28bcb9a6940eb",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_61c2d0e23c2b",
+          "term": "異類",
+          "entrySha256": "7096e34b34545739c4c4e80eb1262d5bd5c008c72045bf6a94ec88f39bf955ee",
+          "worksheetSha256": "a1eeb515bb9131146f4e5577e5cbc5e334790959fdb5e7fd3cca1c43d708f85a",
+          "compileReportSha256": "c312c1f3ccd59155608134dbfa475311f7cd7f2e53d87bd11d23b91c04db0e1b",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_707c9af5cb8e",
+          "term": "恁麼則",
+          "entrySha256": "ddb21dafc1a357e968b28474bfe75644d8e92fdb1b5a4fa790df07ff1fe26f9c",
+          "worksheetSha256": "6e7503bec02785117c4006747ea496c1aed510254436e80598046e58fe28a37d",
+          "compileReportSha256": "35679721acccd913fa2cccd603dc27326348d83d2125f20ca6cc5d5683e022a2",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_7a3345012bae",
+          "term": "十牛",
+          "entrySha256": "6a3603842f7dd30951e9911b6321ad9eb181e095dac441ec0322848f2b7708cb",
+          "worksheetSha256": "c5b3fccb052ad5c38a5b66164400d71e36d505a8c23159ba42e29594f2ca2001",
+          "compileReportSha256": "bcd4b26c773118fe50cc3a19d1710c9ac23938688e219035e12fc3e0aa624018",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_84e490b1773f",
+          "term": "撫掌",
+          "entrySha256": "ec204cfaa703466ada00ae6a818cd42689a0b429b3bf332a8747c04629e7f6a9",
+          "worksheetSha256": "7845e208a793f636d72a52583c3a9eca5ca982ab52f27b60a218fa39b1682cbb",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_9dfa307c0458",
+          "term": "沒蹤跡",
+          "entrySha256": "cf3f61e8d9de49ca0aad1f514ff47474b839ee0dd258aa8076f2a344b7ded74a",
+          "worksheetSha256": "3935d56d26e2b1d23d0e7bd1f5efba47000f4a77f64ab541c88ad03e3c445703",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_a7f67b4983d9",
+          "term": "日用",
+          "entrySha256": "fdca923555f6a0f796c68698bfb5781e700b3657bf63aa9cc078ac29fccb6c67",
+          "worksheetSha256": "024cee50693629b0144ad20c7615be3045baae298484b95d2643c4cf93781f5f",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_b701ed7c340b",
+          "term": "俱胝一指",
+          "entrySha256": "ee46e62ad5fc24fb74a7f03a13e0eb234f24a6e9171590d961f62b29d037a13a",
+          "worksheetSha256": "96a19c21c72500645b850306c2ce34066c0ab941b790fc7bb9cb5b77f66af3d3",
+          "compileReportSha256": "bb3794b54810c939d54afc1e3483064095c5f6a54c3a456ccae28117dac6f3dc",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_cba9cbb44845",
+          "term": "婆子燒庵",
+          "entrySha256": "ffdd792acfb82eb6130b06ea80bcfaca8eaf5605eac4cba90c46c6122b0d8b20",
+          "worksheetSha256": "d57453e66c97d1ad02b5dcc9a11d7a10cca649d09c77b654387ee8d89233e8eb",
+          "compileReportSha256": "0d74a55a8cfd9dd3e422784c79fe34d1e6e4355db4bf6804d1ec95f5a7fdc215",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        }
+      ]
+    },
+    {
+      "range": "041-050",
+      "entries": 10,
+      "readyForIndependentReview": false,
+      "titleIdempotence": {
+        "changedRows": 0,
+        "unmatchedRelPaths": 0
+      },
+      "notReadyEntries": 10,
+      "rows": [
+        {
+          "id": "t_d055e572dc64",
+          "term": "依前",
+          "entrySha256": "e0003d790cdcb1a88dda61d66c753b1708213ad8c1d1073472742e8f1775498c",
+          "worksheetSha256": "0cb261b79743b21b6cad1c01f882a8d0a397b82da5ba3b79be7eeb8567a6ae6f",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_e6b94cf3dbc3",
+          "term": "通身是眼",
+          "entrySha256": "257c0e956d199ea111e8a4eff047b3a9fb75c1edd908d7744d15a3f759da52f0",
+          "worksheetSha256": "16fc07a364e04c5e963fad2254b1515e1f8d74e1431c25c0b51a3fcf87d53cc6",
+          "compileReportSha256": "834543dacf3d335e18f05ca0484eddd96c6a5a32ca7ff2764303a9c49756eff4",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_eea2b5e58c24",
+          "term": "院主",
+          "entrySha256": "ec425e36026d7ac35d4784283e7d54d2b9edda4e8686f56789520d71b12f465b",
+          "worksheetSha256": "c7aa4224ca4c868ac712aa173c53944fb42aee025229fa17276d0e02c7a70ac8",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_f69bf9de345e",
+          "term": "漆桶",
+          "entrySha256": "99245e40e02d4c4c57d271e8e0800763d4bfcae7d57ecb3cb0306f3e9e5b7a37",
+          "worksheetSha256": "fa324ec162b394666178b26b171e312eda8a27c716b37af52d1ae26c9f58c5d7",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_fe093b3a621c",
+          "term": "一絲不掛",
+          "entrySha256": "66669500099b4382bc69a06033436e4a18836c4acc5e6e92f761a98d0e756c8e",
+          "worksheetSha256": "ef23d1d8683ef004194158dd062d2828e976c40ad22e686336d43d36ea723c9a",
+          "compileReportSha256": "cbe962978c40da243b81d9cc25f0633904c5421cea72204807bdb2b51825b996",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_04efe13911ae",
+          "term": "不識",
+          "entrySha256": "8153165c0e67c28bfe690b61ff8725e47323ff3c94e7defc508b54393019825f",
+          "worksheetSha256": "4f6c27b14c4ca66ec33aae59dc93a47445748d6e8484d45eee21da5ac05dc02a",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_07d808115439",
+          "term": "言語道斷",
+          "entrySha256": "681014989150801dd2972143c249bac7c1c8ea257ceed3612b5f9df2aec6c253",
+          "worksheetSha256": "8b4a062a2a122d81de835cb3fe5130825a6d3128ab16615892f9891c63428844",
+          "compileReportSha256": "4446514ba9d306bf72bb94967b511e5013f5b41cad134f375b5ea1c7c5032b2f",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_09ed57d56bcf",
+          "term": "普賢",
+          "entrySha256": "44bde0bb07d4a3318662474d57e2a855b54d62f80f621955f2119291fea7c990",
+          "worksheetSha256": "1ac0da7dbca8ae9fe58952f3673106c717ac975b493c525116562c15686c6ada",
+          "compileReportSha256": null,
+          "issues": [
+            "missing-compile-report"
+          ]
+        },
+        {
+          "id": "t_0e7b683790e8",
+          "term": "會麼",
+          "entrySha256": "7c404f264f7731f65b6e582e5e0d8d6307a46e867fe065a4ccca9647a44c2b03",
+          "worksheetSha256": "0e3721bb3ffdb2109e48bb90646360faf16791098c7ebcce6df55661c57ca010",
+          "compileReportSha256": "5277469078a3f9192497999e1f96117d0442751d6c182be1c0fd2880ddb6472c",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        },
+        {
+          "id": "t_121b66b78c9e",
+          "term": "逢佛殺佛",
+          "entrySha256": "d173530a078885e5095479d1a24776cdcebc17826da0d590d87248d0fef3229b",
+          "worksheetSha256": "1d8b6325c4e36c9a816ba6c7065b570a48ceaabada644724be27b997ba78e410",
+          "compileReportSha256": "f21fed980f04be0a6f2001fb230813e2b336b2300b36d90d1c997a867bbec73f",
+          "issues": [
+            "worksheet-report-drift",
+            "output-report-drift"
+          ]
+        }
+      ]
+    }
+  ],
+  "readyCohorts": [],
+  "notReadyCohorts": [
+    "011-020",
+    "021-030",
+    "031-040",
+    "041-050"
+  ]
+}

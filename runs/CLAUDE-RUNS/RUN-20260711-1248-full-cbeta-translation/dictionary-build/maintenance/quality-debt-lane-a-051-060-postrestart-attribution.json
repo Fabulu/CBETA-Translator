@@ -1,0 +1,268 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 12,
+    "noncanonical_related_master": 17,
+    "occurrences": 69,
+    "named_occurrences": 62,
+    "context_master_links": 78,
+    "attribution_notes": 75,
+    "deferred_non_roster": 20,
+    "noncanonical_master_name": 10,
+    "deferred_non_roster_context": 26,
+    "noncanonical_context_master_name": 14,
+    "claim_anchors": 6,
+    "chinese_strings": 39,
+    "anchored_chinese": 38,
+    "actor_reviewed_unnamed": 9,
+    "pending_roster_master": 10,
+    "pending_roster_context_master": 12,
+    "dangling_chinese": 1,
+    "actor_narrated": 4,
+    "note_missing_speaker": 4,
+    "named_master_missing_structured_link": 2
+  },
+  "hardFailures": 48,
+  "failures": [
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_139475f0f410/entry.v2.json",
+      "detail": "情解 s1: RelatedMasters value \"Jie'an Yongzhen Fuliang\" is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_139475f0f410/entry.v2.json",
+      "detail": "情解 s1: RelatedMasters value 'Zhuanyu Heng' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_139475f0f410/entry.v2.json",
+      "detail": "情解 s1 o5: \"Jie'an Yongzhen Fuliang\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_139475f0f410/entry.v2.json",
+      "detail": "情解 s1 o5 c1: \"Jie'an Yongzhen Fuliang\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_139475f0f410/entry.v2.json",
+      "detail": "情解 s1 o8 c1: 'Zhuanyu Heng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1: RelatedMasters value 'Shengguang' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1: RelatedMasters value 'Deng Yinfeng' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1: RelatedMasters value 'Fazhou Ji' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1 o1: 'Shengguang' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1 o1 c1: 'Shengguang' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1 o4: 'Deng Yinfeng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s1 o4 c1: 'Deng Yinfeng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s2: RelatedMasters value 'Dufeng Benshan' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s2 o4: 'Dufeng Benshan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_18b083a026ba/entry.v2.json",
+      "detail": "提起 s2 o4 c1: 'Dufeng Benshan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "detail": "打成一片 s1: RelatedMasters value 'Weian Deran' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "detail": "打成一片 s1: RelatedMasters value 'Guting Shanqin' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "detail": "打成一片 s1 o3: 'Weian Deran' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "detail": "打成一片 s1 o3 c1: 'Weian Deran' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1d3706324b0c/entry.v2.json",
+      "detail": "打成一片 s1 o5 c2: 'Guting Shanqin' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1e3e02536ca2/entry.v2.json",
+      "detail": "疑團 s1: RelatedMasters value 'Boshan Yuanlai' is not roster-canonical"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1e3e02536ca2/entry.v2.json",
+      "detail": "疑團 s1: 疑團不破"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1: RelatedMasters value \"Bao'en Tan\" is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1: RelatedMasters value 'Jingyin Jicheng' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1: RelatedMasters value 'Dengjue Puming' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o1: \"Bao'en Tan\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o1 c1: \"Bao'en Tan\" is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o2: 'Jingyin Jicheng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o2 c1: 'Jingyin Jicheng' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o3: 'Dengjue Puming' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_231c4203a06c/entry.v2.json",
+      "detail": "建化門庭 s1 o3 c1: 'Dengjue Puming' is not roster names[0]"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o5: Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Baizhao Tonghui Gui. Baizhao Tonghui Gui asks why the assembly will not take it up directly."
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o6: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o6: Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Yuanwu Keqin. Yuanwu says direct taking-up is completely cut off."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o7: Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Lingyin Qingsong. Lingyin Qingsong tells the assembly to take it up directly and suddenly open the original mind."
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o9: Zihu Lizong appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f4b60453d19/entry.v2.json",
+      "detail": "承當 s1 o9: Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Zihu Lizong. Zihu Lizong tells the seized monk that he simply refuses to own up to being the thief."
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35249f3cbae1/entry.v2.json",
+      "detail": "驢腳 s1: RelatedMasters value '黃龍慧南' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35249f3cbae1/entry.v2.json",
+      "detail": "驢腳 s1: RelatedMasters value 'Baichi Yuan' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35249f3cbae1/entry.v2.json",
+      "detail": "驢腳 s1 o3: 'Baichi Yuan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_35249f3cbae1/entry.v2.json",
+      "detail": "驢腳 s1 o3 c1: 'Baichi Yuan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1: RelatedMasters value 'Sikong Benjing' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1: RelatedMasters value 'Luohan' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1: RelatedMasters value 'Li Ao' is not roster-canonical"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1 o3 c1: 'Sikong Benjing' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1 o6 c1: 'Luohan' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1 o8: 'Li Ao' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_38695d7fdbe2/entry.v2.json",
+      "detail": "如何是道 s1 o8 c3: 'Li Ao' is not roster names[0]"
+    }
+  ]
+}

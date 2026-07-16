@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "independent-full-case-review.v1",
+  "reviewedUtc": "2026-07-16T11:15:27Z",
+  "lane": "B",
+  "range": "B001-B010",
+  "authorLedger": "maintenance/whole-tree-quality-debt-lane-b-author-ledger-postrestart.json",
+  "authorLedgerSha256": "605f1d0241059cc02b9a757bf90e25cb0d633a40564bc58b8cc26555cad31801",
+  "reviewMethod": "Independent reading of every stored occurrence in its full case or surrounding record context; mechanical evidence used only for verification. No entry edits were made.",
+  "differentReader": true,
+  "hashesCurrentAtReview": true,
+  "summary": {
+    "reviewed": 10,
+    "keep": 9,
+    "revise": 1,
+    "occurrencesRead": 75,
+    "claimAnchorsRead": 4
+  },
+  "rows": [
+    {
+      "ordinal": 1,
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "entrySha256": "496efa35c5742d3b36b61bfc5a42033b74d1e7f9b5a5225be041f47e06043c30",
+      "occurrencesReviewed": 7,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "REVISE",
+      "reason": "The X82n1571 witness is inside the record and sermon of Lingyin Tuigeng Ning (杭州靈隱退耕寧禪師; 上堂：目前無法，意在目前…), not an utterance by Xuedou Chongxian. Its MasterName and ContextMasters therefore identify the wrong utterer. The headword sense itself remains plausible, but the actor defect requires repair and resealing."
+    },
+    {
+      "ordinal": 2,
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "entrySha256": "629b5edfc0f96622f67f60a14fbebb9b33deeb44365004566340050d4407f22b",
+      "occurrencesReviewed": 10,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The witnesses support the calendrical eighth day of the twelfth month and its corpus deployment as an awakening-day occasion. Editorial occasion labels are correctly distinguished from direct speech, and the prose avoids claiming that every occurrence reenacts the awakening event."
+    },
+    {
+      "ordinal": 3,
+      "id": "t_24adbdf51a15",
+      "term": "金佛不度爐",
+      "entrySha256": "6c5438a924def42e265cec51e309d8033bdc37b8fc854b4583b6c98a84ab8e5e",
+      "occurrencesReviewed": 6,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "Zhaozhou's original utterance and later explicit raisings are attributed correctly. The explanation stays with the observable material-image formula and its later counter-use."
+    },
+    {
+      "ordinal": 4,
+      "id": "t_bf467ac18ec0",
+      "term": "佛手",
+      "entrySha256": "8250d977e11d39dce82cdedbe16445215de534c36d03bd3a9375b459df8e33c1",
+      "occurrencesReviewed": 8,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The two senses are distinct referents: Huanglong's Buddha-hand test-question and a physical Buddha hand in narrative or verse. Speaker roles and anonymous questioner/verse-author outcomes match their cases."
+    },
+    {
+      "ordinal": 5,
+      "id": "t_bb3cdb68e388",
+      "term": "茫然",
+      "entrySha256": "93096922cbaced0fcd0b789543b5190efe0565df44be837f6a87dcd241703e45",
+      "occurrencesReviewed": 7,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "All witnesses use the word in narrator/compiler descriptions of a person or assembly being at a loss. The gloss is concrete and does not import a mystical interpretation."
+    },
+    {
+      "ordinal": 6,
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "entrySha256": "2133c8de90cf47f11c3cbfc2a515e7e8da088096fc1218d68eaba736280e5ec7",
+      "occurrencesReviewed": 8,
+      "claimAnchorsReviewed": 4,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The cases support 'the first phrase' as a recurring exchange slot rather than one fixed sentence. Direct master utterances and unnamed monks' questions are distinguished correctly."
+    },
+    {
+      "ordinal": 7,
+      "id": "t_21926ca0b92e",
+      "term": "頂門眼",
+      "entrySha256": "e5a425837480616427bd4236ff4caa894c4e29442d96d616ec435a139c116a7e",
+      "occurrencesReviewed": 8,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The crown-eye image and its Chan deployment are grounded through the witnesses' questions, assertions, and observable verbs; the recorded utterers and questioners align with the full cases."
+    },
+    {
+      "ordinal": 8,
+      "id": "t_2816f418822c",
+      "term": "念佛是誰",
+      "entrySha256": "55b4f42b0425a06b8b17f036fc8aac4b02f026845233747d32997e6b91d60e5a",
+      "occurrencesReviewed": 7,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The witnesses show the literal who-question functioning as a named saying, assigned inquiry, verse line, and public exchange. Biographical narration, direct explanation, question, and answer are attributed distinctly."
+    },
+    {
+      "ordinal": 9,
+      "id": "t_5da65e2989a0",
+      "term": "夏末",
+      "entrySha256": "4b01757919e58e9410aedcd3b7beaf2b5ae6c40840aa06aef72d756689139133",
+      "occurrencesReviewed": 7,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The contexts support the end of the summer retreat and its institutional close. Original questions, later raised cases, direct sayings, and compiler narration are distinguished correctly."
+    },
+    {
+      "ordinal": 10,
+      "id": "t_97b566635d6c",
+      "term": "宗師",
+      "entrySha256": "8c4f277289db4c1d1a7e62a45dbdbd3909a7008e9fb1edf285dd01fee8dbcdf1",
+      "occurrencesReviewed": 7,
+      "claimAnchorsReviewed": 0,
+      "fullCaseRead": true,
+      "disposition": "KEEP",
+      "reason": "The cases consistently use the term for a lineage/teaching master and preserve the distinction between direct speech and statements about another master. The gloss and explanation match that deployment."
+    }
+  ]
+}
