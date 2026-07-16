@@ -15,3 +15,6 @@ searchability-probes: head monk
 modifier-relation-verdict: conventional-name; apparent material or color language was checked against whole-expression use
 display-modifier-verdict: the English display names the attested whole expression without asserting construction material
 site-touched: false
+
+quality-debt-lane-a-decile1: full entry, all stored evidence, definition, sense boundary, aliases, and listed flags reread; revised public attribution labels are English-first.
+quality-debt-compile-mode: evidence-draft.

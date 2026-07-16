@@ -16,7 +16,7 @@
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "The exact phrase occurs 10 times in 9 allowlisted texts. The witnesses are concentrated in seventeenth-century records, so the sense is multi-text but late. Searches found the clothing comparison, person-appraisal, paired predicates, and no morphological variant or independent formula that establishes another sense.",
+        "Note": "The exact phrase occurs 11 times in 10 files representing 10 independent works. The witnesses are concentrated in seventeenth-century records, so the sense is multi-text but late. Searches found the clothing comparison, person-appraisal, paired predicates, and no morphological variant or independent formula that establishes another sense.",
         "Occurrences": [
           {
             "RelPath": "J/J27/J27nB198.xml",
@@ -24,11 +24,11 @@
             "ToLb": "0450a04",
             "Kwic": "忽有箇一絲不掛的漢子出來，還教伊脫箇甚麼？",
             "Curated": true,
-            "AttributionNote": "Source text (雪關禪師語錄), file J/J27/J27nB198.xml; exact actor: Xueguan Zhiyin. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
-            "MasterName": "Xueguan Zhiyin",
+            "AttributionNote": "Source record (J/J27/J27nB198.xml). Recorded Sayings of Chan Master Xueguan (雪關禪師語錄): Xueguan Zhiyin. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "MasterName": "Yingshan Zhiyin",
             "ContextMasters": [
               {
-                "MasterName": "Xueguan Zhiyin",
+                "MasterName": "Yingshan Zhiyin",
                 "Roles": [
                   "utterer"
                 ]
@@ -47,21 +47,31 @@
             "ToLb": "0165c16",
             "Kwic": "一絲不掛來去自如？仰望洪慈，策其末路。",
             "Curated": true,
-            "AttributionNote": "Source text (費隱禪師語錄), file J/J26/J26nB178.xml; exact actor: Cao Xun. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
-            "MasterName": "Cao Xun",
-            "ContextMasters": [
-              {
-                "MasterName": "Cao Xun",
-                "Roles": [
-                  "utterer"
-                ]
-              }
-            ],
+            "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): Cao Xun. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "MasterName": null,
+            "ContextMasters": [],
             "DraftActorProof": {
               "ExactHeadwordClause": "一絲不掛來去自如？仰望洪慈，策其末路。",
               "GrammaticalSubject": "Cao Xun",
               "SpeechFrame": "Complete-case review assigns the stored headword-bearing turn to Cao Xun.",
               "FullCaseDecision": "Complete-case review assigns the stored headword-bearing turn to Cao Xun."
+            },
+            "ActorAttribution": {
+              "Status": "identified-non-master",
+              "Kind": "direct speech",
+              "ActorLabel": "Cao Xun",
+              "ActorRole": "interlocutor",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "J/J26/J26nB178.xml 0165c15 is headed 復太史曹峨雪居士（諱勳）. Cao Xun is a named lay correspondent, not a master; MasterName/ContextMasters/RelatedMasters must not link him as one.",
+              "ReviewedBy": "Codex strict-roster adjudication",
+              "ReviewedUtc": "2026-07-16T00:00:00+02:00"
             }
           },
           {
@@ -70,7 +80,7 @@
             "ToLb": "0711b10",
             "Kwic": "一絲不掛，萬象齊彰。性相融通，自它俱利。",
             "Curated": true,
-            "AttributionNote": "Source text (紫竹林顓愚衡和尚語錄), file J/J28/J28nB219.xml; exact actor: Zhuanyu Guanheng. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "AttributionNote": "Source record (J/J28/J28nB219.xml). Recorded Sayings of Monk Zhuanyuheng of Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): Zhuanyu Guanheng. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
             "MasterName": "Zhuanyu Guanheng",
             "ContextMasters": [
               {
@@ -93,11 +103,11 @@
             "ToLb": "0501a29",
             "Kwic": "不惟善能解脫塵勞一絲不掛，且爾直入無上菩提如箭射鵠、如刀破竹",
             "Curated": true,
-            "AttributionNote": "Source text (雪關禪師語錄), file J/J27/J27nB198.xml; exact actor: Xueguan Zhiyin. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
-            "MasterName": "Xueguan Zhiyin",
+            "AttributionNote": "Source record (J/J27/J27nB198.xml). Recorded Sayings of Chan Master Xueguan (雪關禪師語錄): Xueguan Zhiyin. The full-case proof distinguishes this actor from nearby respondents, questioners, and section subjects.",
+            "MasterName": "Yingshan Zhiyin",
             "ContextMasters": [
               {
-                "MasterName": "Xueguan Zhiyin",
+                "MasterName": "Yingshan Zhiyin",
                 "Roles": [
                   "utterer"
                 ]
@@ -126,7 +136,7 @@
         ],
         "ClaimAnchors": [],
         "ExplanationParts": {
-          "CorpusEarnedOpening": "“Not wearing a single thread” names complete nakedness and is extended to a person from whom nothing further can be stripped or removed.",
+          "CorpusEarnedOpening": "The phrase names complete nakedness and is extended to a person from whom nothing further can be stripped or removed.",
           "EvidenceBody": [
             "Literally, “not hanging a single thread”: not wearing even one strand of clothing. The late Chan records deploy nakedness as a description of a person after successive stripping: Xueguan compares it to taking off clothes and undoing a belt, layer after layer, then asks what could still be removed from “a fellow not wearing a single thread” . Other records pair the phrase with “coming and going freely” or with “the myriad forms all manifest” . The Zen bend is therefore directly visible in its use as an appraisal of a person rather than only a state of undress. The records do not define an inner state behind the image, and this entry does not supply one."
           ]
@@ -138,7 +148,7 @@
             "o3",
             "o4"
           ],
-          "ZenBend": "“Not wearing a single thread” names complete nakedness and is extended to a person from whom nothing further can be stripped or removed.",
+          "ZenBend": "The phrase names complete nakedness and is extended to a person from whom nothing further can be stripped or removed.",
           "CounterexampleOrLimit": "The exact phrase occurs 10 times in 9 allowlisted texts. The witnesses are concentrated in seventeenth-century records, so the sense is multi-text but late. Searches found the clothing comparison, person-appraisal, paired predicates, and no morphological variant or independent formula that establishes another sense.",
           "DifferentThingTest": {
             "Decision": "one-thing",

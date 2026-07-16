@@ -37,3 +37,14 @@
 
 ## Independent semantic REVISE repair
 Replaced systemic process prose with the term-specific historical deployment account, removed stale numeric and unanchored Chinese prose, and applied the verdict file’s exact-ID instructions worksheet-first.
+
+
+## Whole-tree public/depth repair — 2026-07-16
+
+feedback-inference-verdict: licensed — the retained target(s), answer the call, state the smallest common conclusion supported by the exact cases below.
+feedback-observations: s1-o1 (compiled Nanyang Huizhong case narrative) preserves “藏無對一日喚侍者。侍者應諾。如是三召皆應諾。師曰。將謂吾孤負汝。却是汝孤負吾南泉到參。師問。什麼處來。對…”; s1-o2 (compiled Shakyamuni-Ananda case narrative) preserves “。阿難云：過去諸佛是甚麼人弟子？世尊云：是吾弟子。難云：應當如是。世尊一日食時將至，勑阿難：汝當入城持鉢…”; s1-o3 (compiled Mahakasyapa-Ananda transmission narrative) preserves “我入城時見一攢樂人作舞，出城時亦見一攢樂人作舞。祖問迦葉云：師兄！世尊傳金襴袈裟外，別傳箇甚麼？迦葉召阿…”.
+feedback-falsification-searches: exact headword, longer compounds, ordinary/literal collisions, titles and catalogue strings, contradictory predicates, alternate actors, and different-referent uses were compared in the frozen corpus.
+feedback-counterexamples: The Zen bend lies in the records' repeated use of the simplest audible answer as the decisive next turn of a public interview or named case. The entry reports that structural deployment without asserting what the answer proves. Answering a call and assenting to an order remain the same response event, not different things.
+feedback-scope: the frozen 494-file / 487-work Chan corpus; claims are limited to the senses and exact lexical uses stored in this entry.
+lookup-probes: answer a call; answer when called; respond to one's name; acknowledge a call; answer in assent; say yes.
+opening-interpretation-verdict: licensed — the first sentence identifies answer the call before evidence history, and the stored cases make that statement falsifiable.

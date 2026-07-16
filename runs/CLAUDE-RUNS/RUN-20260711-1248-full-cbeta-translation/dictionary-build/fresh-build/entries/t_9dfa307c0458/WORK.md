@@ -25,3 +25,12 @@ Final semantic-repair gate PASS: entry hash `7b846d1817e7ef5d2e7594bd60bae866030
 Applied the post-repair independent finding with full-case grammatical proof. New entry SHA-256: `e54122d64206a799d93e3fc7751404bea4c513fe351e2739ac8077ff0f0f1aa5`.
 
 Second-cycle final gate PASS: entry hash `e54122d64206a799d93e3fc7751404bea4c513fe351e2739ac8077ff0f0f1aa5`; attribution/public/depth/work-source/baseline/frozen-history/forbidden/exact-KWIC/cohort gates passed.
+
+## Public-feedback complete gate — quality-debt lane A
+feedback-inference-verdict: direct corpus inference; outside interpretation excluded.
+feedback-observations: the full entry and every stored witness were reread.
+feedback-falsification-searches: literal, longer-formula, grammatical-frame, and different-thing alternatives were checked.
+feedback-counterexamples: limits and contrary deployments remain visible in the article.
+feedback-scope: claims are limited to attested deployment in the frozen corpus.
+lookup-probes: plain English, natural synonyms, and attested formula retrieval were checked.
+opening-interpretation-verdict: the opening is the shortest corpus-earned account supported by stored evidence.

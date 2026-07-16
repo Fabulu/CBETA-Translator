@@ -22,7 +22,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "Answering, receiving people, and responding to circumstances are grammatical objects of one act, not separate things. The corpus-wide usage has no master-specific sense: Linji's frequent shout is explicitly a particular deployment that imitators cannot reproduce by copying the sound. Frozen-corpus concordance: 666 exact hits in 231 storage files representing 228 independent works.",
+      "Note": "Answering, receiving people, and responding to circumstances are grammatical objects of one act, not separate things. The corpus-wide usage has no master-specific sense: Linji's frequent shout is explicitly a particular deployment that imitators cannot reproduce by copying the sound.",
       "Occurrences": [
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -30,7 +30,7 @@
           "ToLb": "0019c23",
           "Kwic": "瑞州瑞相子來禪師瑞州瑞相子來禪師上堂。顧視眾曰：夫為宗匠，隨處提綱。應機問答，殺活臨時。心眼精明，那容妖怪。若也棒頭取證，喝下承當。埋沒宗風",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Ruixiang Zilai owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Ruixiang Zilai owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Ruixiang Zilai",
           "ContextMasters": [
             {
@@ -47,16 +47,34 @@
           "ToLb": "0052c11",
           "Kwic": "昧。秀又問。到此間後如何。師曰。正見一枝生五葉。秀默許之。入室侍對。應機無爽。尋至上黨寒嶺居焉。數歲之間。眾盈千數。後於五臺山闡化二十餘年。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Jufang owns the exact clause in the complete case.",
-          "MasterName": "Jufang",
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration: Five Lamps Compendium (五燈會元): Jufang owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Jufang",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical description of responsive conduct",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
@@ -64,7 +82,7 @@
           "ToLb": "0625b15",
           "Kwic": "意王若行時索仙陁婆即便奉馬食時索仙陁婆即便奉塩此等喻學玄旨人善能通達應機不失亦云六絕師子誌公云隨人造作百變十地菩薩不飢不飽入水不溺入火不燒倘",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). Baizhang Huaihai owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Baizhang Huaihai owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Baizhang Huaihai",
           "ContextMasters": [
             {
@@ -81,16 +99,34 @@
           "ToLb": "0651b18",
           "Kwic": "打僧不肎師曰已後遇明眼人去在僧後㕘三聖纔舉前話三聖便打僧擬議聖又打師應機多用喝會下㕘徒亦學師喝師曰汝等捴學我喝我今問汝有一人󴌰東堂出一人󴌰西",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). Linji Yixuan owns the exact clause in the complete case.",
-          "MasterName": "Linji Yixuan",
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Compiler narration: Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Linji Yixuan owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Linji Yixuan",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical description of responsive conduct",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X78/X78n1556.xml",
@@ -98,33 +134,61 @@
           "ToLb": "0640c17",
           "Kwic": "是双林之道逾光，一滴之流浸廣。自南嶽、清原而下，分為五宗，各擅家風，應機詶對。雖建立不同，而會歸則一，莫不箭鋒相拄，鞭影齊施，接物利生，啟悟",
           "Curated": true,
-          "AttributionNote": "Source text (建中靖國續燈錄). Huizong Emperor owns the exact clause in the complete case.",
-          "MasterName": "Huizong Emperor",
-          "ContextMasters": [
-            {
-              "MasterName": "Huizong Emperor",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
+          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Huizong Emperor owns the exact headword-bearing wording in the complete source unit.",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "direct speech",
+            "ActorLabel": "Huizong Emperor",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "X/X78/X78n1556.xml 0640c14 is an imperial preface by Song Huizong, not a Zen-master utterance.",
+            "ReviewedBy": "Codex strict-roster adjudication",
+            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+          }
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
           "FromLb": "0070b06",
           "ToLb": "0070b09",
           "Kwic": "時如何？師曰：猶是堦下漢。曰：請師接上堦。師曰：月落後來相見。師尋常應機，曾無軌轍。於天復辛酉夏夜，問知事曰：今日是幾何日月？曰：六月十五。",
-          "MasterName": "Caoshan Benji",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Caoshan Benji owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Compiler narration: Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Caoshan Benji owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Caoshan Benji",
               "Roles": [
-                "utterer"
+                "person-described",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical description of responsive conduct",
+            "ActorLabel": "case narrator",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is in narrator-governed action or reporting prose, not in the participant’s quoted speech.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -132,7 +196,7 @@
           "ToLb": "0013a06",
           "Kwic": "年。金山仲禪師。皇后遣中使降香，為皇帝祝延聖壽。上堂：法本無說，隨事應機；心本絕形，遇緣即現。古今如是，凡聖同途。葢眾生迷妄不知，遂成流轉。",
           "Curated": true,
-          "AttributionNote": "Source text (列祖提綱錄). Jinshan Zhong owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Jinshan Zhong owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Jinshan Zhong",
           "ContextMasters": [
             {
@@ -149,7 +213,7 @@
           "ToLb": "0668b24",
           "Kwic": "穿過鼻孔。上堂，云：大眾前出來相見，也須是箇本分作家始得。應時如鋒，應機如電，點著不來新羅國裏。珍重！上堂，云：衲僧門下，不在多端；達士相逢",
           "Curated": true,
-          "AttributionNote": "Source text (建中靖國續燈錄). Chengtian Chuanzong owns the exact clause in the complete case.",
+          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record (建中靖國續燈錄): Chengtian Chuanzong owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Chengtian Chuanzong",
           "ContextMasters": [
             {
@@ -169,7 +233,15 @@
         "X/X81/X81n1568.xml",
         "X/X64/X64n1260.xml"
       ],
-      "RelatedMasters": [],
+      "RelatedMasters": [
+        "Ruixiang Zilai",
+        "Jufang",
+        "Baizhang Huaihai",
+        "Linji Yixuan",
+        "Caoshan Benji",
+        "Jinshan Zhong",
+        "Chengtian Chuanzong"
+      ],
       "RelatedTerms": [
         "機",
         "機用",

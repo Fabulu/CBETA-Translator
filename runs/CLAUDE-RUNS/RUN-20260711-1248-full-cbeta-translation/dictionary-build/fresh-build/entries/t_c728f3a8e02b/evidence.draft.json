@@ -1,0 +1,316 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_c728f3a8e02b",
+    "SourceTerm": "家風",
+    "CreatedBy": "Codex fresh-build lane C",
+    "WrittenUtc": null,
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "PreferredTarget": "a house's characteristic style",
+        "AlternateTargets": [
+          "house style",
+          "lineage style",
+          "family manner"
+        ],
+        "SearchAliases": [
+          "house style",
+          "lineage style",
+          "teaching style",
+          "family manner"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The frozen 494-file corpus has 4,138 exact hits in 364 files representing 359 independent works. Eight standalone anchors cover direct questions, displayed replies, inherited lineage style, appraisal, and later hall-address use across eight independent works. Parallel editions and nested-only strings were excluded from the depth count.",
+        "Occurrences": [
+          {
+            "RelPath": "B/B14/B14n0082.xml",
+            "FromLb": "0169b07",
+            "ToLb": "0169b08",
+            "Kwic": "僧問如何是天柱家風",
+            "Curated": true,
+            "AttributionNote": "Source record (B/B14/B14n0082.xml). Jade Flowers of the Transmission of the Lamp (Fragment) (傳燈玉英集（殘卷）): The monk asking about Tianzhu's house style is unnamed and owns the exact headword-bearing questioner turn.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "Unnamed monk asking about Tianzhu's house style",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+              "ReviewedUtc": "2026-07-14T06:38:09.734372Z",
+              "GrammarEvidence": "the source title (傳燈玉英集)（殘卷）. Exact headword actor: Unnamed monk asking about Tianzhu's house style. The complete case was read to distinguish utterance, narration, and action."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Tianzhu Chonghui",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "僧問如何是天柱家風",
+              "GrammaticalSubject": "Unnamed monk asking about Tianzhu's house style",
+              "FullCaseDecision": "傳燈玉英集（殘卷）. Exact headword actor: Unnamed monk asking about Tianzhu's house style. The complete case was read to distinguish utterance, narration, and action."
+            }
+          },
+          {
+            "RelPath": "J/J24/J24nB137.xml",
+            "FromLb": "0361c27",
+            "ToLb": "0361c27",
+            "Kwic": "你問我家風，我卻識你",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J24/J24nB137.xml). Recorded Sayings of Zhaozhou (趙州和尚語錄): Zhaozhou Congshen owns the exact headword-bearing wording in the complete source unit.",
+            "MasterName": "Zhaozhou Congshen",
+            "ContextMasters": [
+              {
+                "MasterName": "Zhaozhou Congshen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "你問我家風，我卻識你",
+              "SpeechFrame": "趙州和尚語錄. Exact headword actor: Zhaozhou Congshen. The complete case assigns the headword-bearing wording to Zhaozhou Congshen.",
+              "FullCaseDecision": "趙州和尚語錄. Exact headword actor: Zhaozhou Congshen. The complete case assigns the headword-bearing wording to Zhaozhou Congshen."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB156.xml",
+            "FromLb": "0059a02",
+            "ToLb": "0059a03",
+            "Kwic": "佛祖家風，衲僧活計，百姓日用，無不在內，喫粥喫飯，也要仔細。",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J25/J25nB156.xml). Recorded Sayings of Chan Master Wuhuan (無幻禪師語錄): Wuhuan owns the exact headword-bearing wording in the complete source unit.",
+            "MasterName": "Wuhuan Xingchong",
+            "ContextMasters": [
+              {
+                "MasterName": "Wuhuan Xingchong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "佛祖家風，衲僧活計，百姓日用，無不在內，喫粥喫飯，也要仔細。",
+              "SpeechFrame": "無幻禪師語錄. Exact headword actor: Wuhuan. The complete case assigns the headword-bearing wording to Wuhuan.",
+              "FullCaseDecision": "無幻禪師語錄. Exact headword actor: Wuhuan. The complete case assigns the headword-bearing wording to Wuhuan."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB178.xml",
+            "FromLb": "0111c04",
+            "ToLb": "0111c05",
+            "Kwic": "僧問：「臨濟家風則且置，曹洞宗旨是如何？」師云：「牽連斷貫索。」",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin (費隱禪師語錄): The monk is unnamed and owns the exact headword-bearing questioner turn.",
+            "MasterName": null,
+            "ContextMasters": [
+              {
+                "MasterName": "Feiyin Tongrong",
+                "Roles": [
+                  "respondent",
+                  "section-subject",
+                  "teacher"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "僧問 assigns the headword-bearing question about Linji's house style to an unnamed monk; Feiyin's answer follows after 師云.",
+              "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
+              "ReviewedUtc": "2026-07-16T14:00:00Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "僧問：「臨濟家風則且置，曹洞宗旨是如何？」師云：「牽連斷貫索。」",
+              "GrammaticalSubject": "the unnamed monk",
+              "FullCaseDecision": "僧問 assigns the headword-bearing question about Linji's house style to an unnamed monk; Feiyin's answer follows after 師云."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB191.xml",
+            "FromLb": "0167b24",
+            "ToLb": "0167b25",
+            "Kwic": "因僧問：「如何是古佛家風？」師曰：「銀蟾初出海，何處不分明？」",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J27/J27nB191.xml). Recorded Sayings of Chan Master Xiangtian Jinian (象田即念禪師語錄): The monk asking about the ancient Buddha's house style is unnamed and owns the exact headword-bearing questioner turn.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "Unnamed monk asking about the ancient Buddha's house style",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+              "ReviewedUtc": "2026-07-14T06:38:09.734372Z",
+              "GrammarEvidence": "the source title (象田即念禪師語錄). Exact headword actor: Unnamed monk asking about the ancient Buddha's house style. The complete case was read to distinguish utterance, narration, and action."
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Xiangtian Jinian",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "因僧問：「如何是古佛家風？」師曰：「銀蟾初出海，何處不分明？」",
+              "GrammaticalSubject": "Unnamed monk asking about the ancient Buddha's house style",
+              "FullCaseDecision": "象田即念禪師語錄. Exact headword actor: Unnamed monk asking about the ancient Buddha's house style. The complete case was read to distinguish utterance, narration, and action."
+            }
+          },
+          {
+            "RelPath": "J/J36/J36nB359.xml",
+            "FromLb": "0637c12",
+            "ToLb": "0637c13",
+            "Kwic": "野老家風興不孤，茅簷竹徑曉霜鋪，等閒懶話朝堂事，醉裏何妨笑語麤？",
+            "MasterName": "Baiyu Jingsi",
+            "ContextMasters": [
+              {
+                "MasterName": "Baiyu Jingsi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "Curated": true,
+            "AttributionNote": "Source record (J/J36/J36nB359.xml). Recorded Sayings of Chan Master Baiyu (百愚禪師語錄): Baiyu Jingsi owns the exact headword-bearing wording in the complete source unit.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "野老家風興不孤，茅簷竹徑曉霜鋪，等閒懶話朝堂事，醉裏何妨笑語麤？",
+              "SpeechFrame": "百愚禪師語錄. Exact headword actor: Baiyu Jingsi. The complete case assigns the headword-bearing wording to Baiyu Jingsi.",
+              "FullCaseDecision": "百愚禪師語錄. Exact headword actor: Baiyu Jingsi. The complete case assigns the headword-bearing wording to Baiyu Jingsi."
+            }
+          },
+          {
+            "RelPath": "J/J40/J40nB494.xml",
+            "FromLb": "0525c17",
+            "ToLb": "0525c18",
+            "Kwic": "釋迦未出世，鷲嶺有家風；達磨一西來，少林無妙訣。",
+            "MasterName": "Yushan Shangsi",
+            "ContextMasters": [
+              {
+                "MasterName": "Yushan Shangsi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "Curated": true,
+            "AttributionNote": "Source record (J/J40/J40nB494.xml). Recorded Sayings of Monk Yushan (雨山和尚語錄): Yushan Shangsi owns the exact headword-bearing wording in the complete source unit.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "釋迦未出世，鷲嶺有家風；達磨一西來，少林無妙訣。",
+              "SpeechFrame": "雨山和尚語錄. Exact headword actor: Yushan Shangsi. The complete case assigns the headword-bearing wording to Yushan Shangsi.",
+              "FullCaseDecision": "雨山和尚語錄. Exact headword actor: Yushan Shangsi. The complete case assigns the headword-bearing wording to Yushan Shangsi."
+            }
+          },
+          {
+            "RelPath": "J/J28/J28nB202.xml",
+            "FromLb": "0004b29",
+            "ToLb": "0004b30",
+            "Kwic": "二尊宿，一人道有、一人道無，雖則各展家風，要且未能截斷這僧舌頭在。",
+            "MasterName": "Baichi Yuanshuo",
+            "ContextMasters": [
+              {
+                "MasterName": "Baichi Yuanshuo",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "Curated": true,
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuanshuo owns the exact headword-bearing wording in the complete source unit.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "二尊宿，一人道有、一人道無，雖則各展家風，要且未能截斷這僧舌頭在。",
+              "SpeechFrame": "百癡禪師語錄. Exact headword actor: Baichi Yuanshuo. The complete case assigns the headword-bearing wording to Baichi Yuanshuo.",
+              "FullCaseDecision": "百癡禪師語錄. Exact headword actor: Baichi Yuanshuo. The complete case assigns the headword-bearing wording to Baichi Yuanshuo."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "B/B14/B14n0082.xml",
+          "J/J24/J24nB137.xml",
+          "J/J25/J25nB156.xml",
+          "J/J26/J26nB178.xml",
+          "J/J27/J27nB191.xml",
+          "J/J36/J36nB359.xml",
+          "J/J40/J40nB494.xml",
+          "J/J28/J28nB202.xml"
+        ],
+        "RelatedMasters": [
+          "Baichi Yuanshuo",
+          "Baiyu Jingsi",
+          "Feiyin Tongrong",
+          "Wuhuan Xingchong",
+          "Yushan Shangsi",
+          "Zhaozhou Congshen"
+        ],
+        "RelatedTerms": [
+          "宗旨",
+          "門風",
+          "家法"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A house's characteristic style is the recognizable manner displayed in its teaching, conduct, and encounter replies.",
+          "EvidenceBody": [
+            "Speakers ask about the style of a named teacher, monastery, inherited line, or older model; answers commonly demonstrate it rather than define it. The same expression also describes preserving, extending, or failing an inherited manner. These uses share one referent: the characteristic way associated with a teaching house."
+          ]
+        },
+        "DraftEvidence": {
+          "ZenBend": "A house's characteristic style is the recognizable manner displayed in its teaching, conduct, and encounter replies.",
+          "CounterexampleOrLimit": "The frozen 494-file corpus has 4,138 exact hits in 364 files representing 359 independent works. Eight standalone anchors cover direct questions, displayed replies, inherited lineage style, appraisal, and later hall-address use across eight independent works. Parallel editions and nested-only strings were excluded from the depth count.",
+          "AliasRationale": "The controlled aliases retrieve the same referent named by the preferred and alternate targets.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "Reason": "The current sense structure was reread against all stored exact cases; each retained sense names a distinct referent, while grammatical variation remains together."
+          },
+          "ModifierControls": [
+            "not applicable unless the headword itself contains a material graph; material claims are separately adjudicated in WORK.md"
+          ],
+          "FamilyControls": [
+            "stored exact headword rows were distinguished from longer compounds and related-term claim anchors"
+          ],
+          "IndependentWorkIds": [
+            "work:B14n0082",
+            "work:J24nB137",
+            "work:J25nB156",
+            "work:J26nB178",
+            "work:J27nB191",
+            "work:J36nB359",
+            "work:J40nB494",
+            "work:J28nB202"
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@
   "SourceTerm": "善財",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "CreatedBy": "Codex f003 Lane A full-case author",
-  "WrittenUtc": "2026-07-15T04:46:29.393398+00:00",
+  "WrittenUtc": "2026-07-16T12:26:37.856302+00:00",
   "Senses": [
     {
       "SenseKey": null,
@@ -32,7 +32,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (大慧普覺禪師普說). Dahui Zonggao utters the headword in his formal discourse.",
+          "AttributionNote": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue (大慧普覺禪師普說): Dahui Zonggao owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Dahui Zonggao"
         },
         {
@@ -41,16 +41,25 @@
           "ToLb": "0426a18",
           "Kwic": "善財童子。",
           "Curated": true,
-          "ContextMasters": [
-            {
-              "MasterName": "Yongming Yanshou",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ],
-          "AttributionNote": "宗鏡錄: Yongming Yanshou explains that among the five hundred youths transformed by Manjushri, Shancai alone reached the source of mind and travelled to ask about awakening-conduct.",
-          "MasterName": "Yongming Yanshou"
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compiler narrative",
+            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex f003 Lane A full-case author",
+            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
+            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+          },
+          "ContextMasters": [],
+          "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School (宗鏡錄): Compiler narration owns the exact headword-bearing compiler narrative."
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -67,7 +76,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): exact actor (舒州山谷三祖冲會圓智禪師) owns the headword-bearing wording. Exact headword utterer: Sanzu Chonghui."
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Sanzu Chonghui owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "X/X64/X64n1260.xml",
@@ -75,25 +84,16 @@
           "ToLb": "0052a10",
           "Kwic": "良久，云：是處是慈氏，無門無善財。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "reviewed-unnamed",
-            "Kind": "unnamed record-owner",
-            "ActorLabel": "the unnamed record-owner delivering the hall address",
-            "ActorRole": "utterer",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 A601-650 round4 repair author",
-            "ReviewedUtc": "2026-07-15T16:30:00Z",
-            "GrammarEvidence": "The complete uninterrupted hall address owns the words spoken after a long pause and the headword; it is not compiler narration. The collection packet does not safely normalize the address owner."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "列祖提綱錄: the unnamed record-owner delivering the hall address says after a long pause, “Everywhere is Maitreya; no gate, no Shancai.”"
+          "ContextMasters": [
+            {
+              "MasterName": "Shishuang Chuyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Shishuang Chuyuan owns the hall address; its first-person retrospective names his residences at Fuyan and Xinghua before he says that this place is Maitreya and no gate lacks Sudhana.",
+          "MasterName": "Shishuang Chuyuan"
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -103,7 +103,7 @@
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Manjusri",
+              "MasterName": "Manjushri",
               "Roles": [
                 "person-described"
               ]
@@ -127,7 +127,7 @@
             "GrammarEvidence": "The compiler narrates Manjusri sending Sudhana to gather medicinal plants.",
             "AuthoredVoiceRiskReviewed": true
           },
-          "AttributionNote": "Source text (五燈會元). The compiler narrates Manjusri sending Sudhana to gather medicinal plants. Exact headword actor: the lamp-record compiler."
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compiler narration owns the exact headword-bearing compiler narrative."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -144,7 +144,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Baizhang Daoheng utters the headword in his own hall address."
+          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Baizhang Daoheng owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "J/J34/J34nB311.xml",
@@ -170,22 +170,27 @@
             "ReviewedUtc": "2026-07-15T16:30:00Z",
             "GrammarEvidence": "Qian Qianyi uses the Sudhana and Meghashri meeting in his signed preface."
           },
-          "AttributionNote": "Source text (天界覺浪盛禪師全錄). Qian Qianyi uses the Sudhana and Meghashri meeting in his signed preface."
+          "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie (天界覺浪盛禪師全錄): Qian Qianyi is the named non-master commentator who owns the exact headword-bearing wording."
         }
       ],
       "ClaimAnchors": [],
       "SourceTexts": [
-        "J/J34/J34nB311.xml",
         "M/M59/M59n1540.xml",
         "T/T48/T48n2016.xml",
+        "X/X82/X82n1571.xml",
         "X/X64/X64n1260.xml",
         "X/X80/X80n1565.xml",
         "X/X81/X81n1568.xml",
-        "X/X82/X82n1571.xml"
+        "J/J34/J34nB311.xml"
       ],
       "RelatedMasters": [
-        "Baizhang Daoheng",
-        "Sanzu Chonghui"
+        "洪州百丈道恒禪師",
+        "舒州山谷三祖冲會圓智禪師",
+        "Dahui Zonggao",
+        "Sanzu Chonghui",
+        "Shishuang Chuyuan",
+        "Manjushri",
+        "Baizhang Daoheng"
       ],
       "RelatedTerms": [],
       "Explanation": "Sudhana is the repeatedly travelling visitor invoked from his meetings with many guides. Chan speakers address Sudhana, cite his sequence of meetings, compare seekers with him, and ask what he obtained. The figure is defined here by those Zen questions and comparisons, not by a complete outside biography."

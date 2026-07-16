@@ -9,3 +9,5 @@ lookup-probes: an incense burner
 opening-interpretation-verdict: English-first and corpus-bounded
 modifier-relation-verdict: no unresolved modifier composition claim
 display-modifier-verdict: source imagery retained without outside symbolism
+
+sense-target-distinguishability: keep — an incense burner | Xianglu Peak | Xianglu Temple; each target names a different office/phrase/place/object referent, not a grammatical paraphrase.

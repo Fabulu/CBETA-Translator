@@ -25,3 +25,47 @@ Final semantic-repair gate PASS: entry hash `54451c5c132a4154e650a27a09e6478e8e4
 Applied the post-repair independent finding with full-case grammatical proof. New entry SHA-256: `da39f10bd1939feea40579668e4d36970cf512a7fad08515968c53eafd8950ee`.
 
 Second-cycle final gate PASS: entry hash `da39f10bd1939feea40579668e4d36970cf512a7fad08515968c53eafd8950ee`; attribution/public/depth/work-source/baseline/frozen-history/forbidden/exact-KWIC/cohort gates passed.
+
+## Independent C author repair (2026-07-16T12:14:39.866088+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:14:56.064629+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:15:28.200146+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:15:43.763869+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:16:32.219405+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:17:05.842348+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:21:26.191334+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:23:18.667657+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:24:22.139944+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:25:35.528365+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.
+
+## Independent C author repair (2026-07-16T12:26:37.856302+00:00)
+
+Removed duplicated source/title boilerplate while preserving the full actor adjudication. requiresDifferentReader: true.

@@ -24,7 +24,7 @@
         ],
         "Status": "preferred",
         "Validation": "multi-source",
-        "Note": "The expanded interrogative form remains within this corpus-wide sense. Public questions, object demonstrations, person identification, and explicit this/that contrasts establish the deployment range without creating master-specific meanings. Frozen-corpus concordance: 3367 exact hits in 309 storage files representing 305 independent works. Frozen-corpus concordance: 3367 exact hits in 309 storage files representing 305 independent works. Frozen-corpus concordance: 3367 exact hits in 309 storage files representing 305 independent works. Frozen-corpus concordance: 3367 exact hits in 309 storage files representing 305 independent works.",
+        "Note": "The expanded interrogative form remains within this corpus-wide sense. Public questions, object demonstrations, person identification, and explicit this/that contrasts establish the deployment range without creating master-specific meanings. Frozen-corpus concordance: 3367 exact hits in 309 storage files representing 305 independent works.",
         "Occurrences": [
           {
             "RelPath": "X/X80/X80n1565.xml",
@@ -32,7 +32,7 @@
             "ToLb": "0029c19",
             "Kwic": "世尊遂問迦葉。汝擬擯那箇文殊。迦葉無對。",
             "Curated": true,
-            "AttributionNote": "Source text (五燈會元). Shakyamuni Buddha owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Shakyamuni Buddha owns the exact clause in the complete case.",
             "ContextMasters": [
               {
                 "MasterName": "Mahakasyapa",
@@ -41,7 +41,7 @@
                 ]
               },
               {
-                "MasterName": "Manjusri",
+                "MasterName": "Manjushri",
                 "Roles": [
                   "person-discussed"
                 ]
@@ -66,7 +66,7 @@
             "ToLb": "0520c14",
             "Kwic": "大悲千手眼，那箇是正眼？速道！速道！",
             "Curated": true,
-            "AttributionNote": "Source text (五家語錄（選錄）). Linji Yixuan owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (J/J23/J23nB134.xml). Recorded Sayings of the Five Houses (Selections) (五家語錄（選錄）): Linji Yixuan owns the exact clause in the complete case.",
             "MasterName": "Linji Yixuan",
             "ContextMasters": [
               {
@@ -91,10 +91,15 @@
           {
             "RelPath": "X/X71/X71n1425.xml",
             "FromLb": "0758b05",
+            "HeadwordSpanReview": {
+              "Count": 2,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "The demonstrative is repeated by one speaker inside a single continuous turn."
+            },
             "ToLb": "0758b06",
             "Kwic": "乃竪起拂子云：這箇是拂子，且道那箇是寂？那箇是照？",
             "Curated": true,
-            "AttributionNote": "Source text (丹霞子淳禪師語錄). Danxia Zichun owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X71/X71n1425.xml). Recorded Sayings of Chan Master Danxia Zichun (丹霞子淳禪師語錄): Danxia Zichun owns the exact clause in the complete case.",
             "MasterName": "Danxia Zichun",
             "DraftActorProof": {
               "ExactHeadwordClause": "乃竪起拂子云：這箇是拂子，且道那箇是寂？那箇是照？",
@@ -116,7 +121,7 @@
             "ToLb": "0650c15",
             "Kwic": "不思善、不思惡，那箇是明上座本來面目？",
             "Curated": true,
-            "AttributionNote": "Source text (西山亮禪師語錄). Huineng owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X69/X69n1363.xml). Recorded Sayings of Chan Master Xishan Liang (西山亮禪師語錄): Huineng owns the exact clause in the complete case.",
             "MasterName": "Huineng",
             "ContextMasters": [
               {
@@ -147,44 +152,49 @@
           {
             "RelPath": "T/T47/T47n1993.xml",
             "FromLb": "0630b17",
+            "HeadwordSpanReview": {
+              "Count": 2,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "The same speaker repeats the demonstrative in one continuous question-and-answer unit."
+            },
             "ToLb": "0630b18",
             "Kwic": "藥山問。汝祇浴得這箇。還浴得那箇麼。遵云。把將那箇來。藥山便休。",
             "Curated": true,
-            "AttributionNote": "Source text (黃龍慧南禪師語錄). Huanglong Huinan owns the exact clause in the complete case.",
-            "MasterName": "Huanglong Huinan",
+            "AttributionNote": "Source record (T/T47/T47n1993.xml). Recorded Sayings of Chan Master Huinan of Huanglong (黃龍慧南禪師語錄): Yaoshan Weiyan utters the quoted historical question containing the headword; Huanglong Huinan is the later raiser.",
+            "MasterName": "Yaoshan Weiyan",
             "ContextMasters": [
               {
                 "MasterName": "Yaoshan Weiyan",
                 "Roles": [
-                  "case-figure"
-                ]
-              },
-              {
-                "MasterName": "Zun Bunao",
-                "Roles": [
-                  "case-figure"
+                  "utterer"
                 ]
               },
               {
                 "MasterName": "Huanglong Huinan",
                 "Roles": [
-                  "utterer"
+                  "later-quoter"
                 ]
               }
             ],
             "DraftActorProof": {
               "ExactHeadwordClause": "藥山問。汝祇浴得這箇。還浴得那箇麼。遵云。把將那箇來。藥山便休。",
-              "SpeechFrame": "Recorded Sayings of Chan Master Huanglong Huinan (黃龍慧南禪師語錄), bathing-the-Buddha day discourse. Huanglong Huinan is the exact governing speaker who raises and adjudicates the inherited exchange. Inside it, Yaoshan Weiyan asks whether Zun Bunao can bathe 'that one,' and Zun Bunao replies by demanding that 'that one' be brought. Both embedded speakers use the headword; neither replaces Huanglong as the speaker who presents the case to this assembly.",
-              "FullCaseDecision": "Recorded Sayings of Chan Master Huanglong Huinan (黃龍慧南禪師語錄), bathing-the-Buddha day discourse. Huanglong Huinan is the exact governing speaker who raises and adjudicates the inherited exchange. Inside it, Yaoshan Weiyan asks whether Zun Bunao can bathe 'that one,' and Zun Bunao replies by demanding that 'that one' be brought. Both embedded speakers use the headword; neither replaces Huanglong as the speaker who presents the case to this assembly."
+              "GrammaticalSubject": "Yaoshan Weiyan",
+              "SpeechFrame": "The complete section header and 上堂 frame govern the exact headword-bearing turn.",
+              "FullCaseDecision": "Yaoshan Weiyan utters the headword in the continuous assembly address."
             }
           },
           {
             "RelPath": "X/X80/X80n1565.xml",
             "FromLb": "0110a18",
+            "HeadwordSpanReview": {
+              "Count": 2,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "Both tokens belong to one uninterrupted speaker turn."
+            },
             "ToLb": "0110a20",
             "Kwic": "這箇從汝浴。還浴得那箇麼。遵曰。把將那箇來。師乃休。",
             "Curated": true,
-            "AttributionNote": "Source text (五燈會元). Yaoshan Weiyan owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Yaoshan Weiyan owns the exact clause in the complete case.",
             "MasterName": "Yaoshan Weiyan",
             "DraftActorProof": {
               "ExactHeadwordClause": "這箇從汝浴。還浴得那箇麼。遵曰。把將那箇來。師乃休。",
@@ -203,10 +213,15 @@
           {
             "RelPath": "X/X82/X82n1571.xml",
             "FromLb": "0002a21",
+            "HeadwordSpanReview": {
+              "Count": 2,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "Both demonstratives occur within one continuous statement by the same speaker."
+            },
             "ToLb": "0002a22",
             "Kwic": "拄杖是緣，那箇是佛種？拄杖是一乘法，那箇是緣？",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Chengxin Shengzong owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Chengxin Shengzong owns the exact clause in the complete case.",
             "MasterName": "Chengxin Shengzong",
             "DraftActorProof": {
               "ExactHeadwordClause": "拄杖是緣，那箇是佛種？拄杖是一乘法，那箇是緣？",
@@ -228,14 +243,8 @@
             "ToLb": "0423c14",
             "Kwic": "這箇是如來涅槃，那箇是法師涅槃？",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第1卷-第33卷)). Qin Batuo owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (X/X81/X81n1571.xml). Complete Five Lamps (Vols. 1–33) (五燈全書(第1卷-第33卷)): Qin Batuo owns the exact clause in the complete case.",
             "ContextMasters": [
-              {
-                "MasterName": "Sheng",
-                "Roles": [
-                  "interlocutor"
-                ]
-              },
               {
                 "MasterName": "Qin Batuo",
                 "Roles": [
@@ -257,7 +266,7 @@
             "Kwic": "人人有箇生緣。那箇是上座生緣。便道某是某州人事。是何言歟。且莫錯會。",
             "MasterName": "Dahui Zonggao",
             "Curated": true,
-            "AttributionNote": "Source text (大慧普覺禪師宗門武庫). Dahui Zonggao owns the exact clause in the complete case.",
+            "AttributionNote": "Source record (T/T47/T47n1998B.xml). Dahui Pujue’s Armory of the Chan School (大慧普覺禪師宗門武庫): Dahui Zonggao owns the exact clause in the complete case.",
             "DraftActorProof": {
               "ExactHeadwordClause": "人人有箇生緣。那箇是上座生緣。便道某是某州人事。是何言歟。且莫錯會。",
               "SpeechFrame": "Dahui Pujue Chan Master's Arsenal of the Chan School (大慧普覺禪師宗門武庫): Dahui Zonggao gives an example answer and immediately warns not to misconstrue the question.",

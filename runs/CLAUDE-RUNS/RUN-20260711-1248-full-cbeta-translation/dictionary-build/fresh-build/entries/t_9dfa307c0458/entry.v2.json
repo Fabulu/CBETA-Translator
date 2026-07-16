@@ -3,6 +3,7 @@
   "SourceTerm": "沒蹤跡",
   "CreatedBy": "Codex fresh-build lane C",
   "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "Senses": [
     {
       "SenseKey": null,
@@ -14,15 +15,14 @@
         "no trace remains"
       ],
       "Status": "preferred",
-      "Explanation": "The Boatman’s dominant paired injunction says to hide the body where no trace remains, yet not to hide it where no trace remains. Literally, to have no tracks or traces: \"leave no trace\" or \"be without a trace.\" The phrase occurs 356 times in 119 allowlisted texts. Its dominant Chan deployment is Decheng the Boatman's injunction to Jiashan: \"where you hide the body, leave no trace; where no trace remains, do not hide the body\" (藏身處沒蹤跡，沒蹤跡處莫藏身). That two-part wording accounts for 151 occurrences of \"where no trace remains\" (沒蹤跡處) and is also turned into paired interview questions. Elsewhere the phrase stands as a short predicate: a person \"going away\" is described as \"silent and still, leaving no trace\" (寂寥寥沒蹤跡), in contrast with a person \"coming back\" who is \"bright and distinct, with news\" (明歷歷有消息). Another verse pairs \"no trace\" (沒蹤跡) with \"news cut off\" (斷消息). These are the direct contrasts recorded in the corpus.",
       "Validation": "multi-source",
-      "Note": "Productive forms confirm the ordinary track-and-trace grammar: \"absolutely no trace to seek\" (the full “absolutely no trace to seek” form; 11 occurrences), and \"leave no trace\" (沒蹤跡; 10 occurrences). The direct question \"what is the place where the hidden body leaves no trace?\" (如何是藏身處沒蹤跡) occurs in five texts. The paired answers preserved here—\"the moon sets, and the pool has no reflection\" (月落潭無影) and \"clouds arise, and the mountain has clothing\" (雲生山有衣)—show how later records continue to ask each half separately. Across these forms the headword remains a trace predicate.",
+      "Note": "Productive forms confirm the ordinary track-and-trace grammar: \"absolutely no trace to seek\" (the full “absolutely no trace to seek” form; 11 occurrences), and the bare trace predicate; the latter has 381 frozen-corpus hits and is not a ten-occurrence subformula. The direct question \"what is the place where the hidden body leaves no trace?\" (如何是藏身處沒蹤跡) occurs in five texts. The paired answers preserved here—\"the moon sets, and the pool has no reflection\" (月落潭無影) and \"clouds arise, and the mountain has clothing\" (雲生山有衣)—show how later records continue to ask each half separately. Across these forms the headword remains a trace predicate.",
       "Occurrences": [
         {
           "RelPath": "T/T48/T48n2001.xml",
           "FromLb": "0006a13",
-          "ToLb": "0006a15",
-          "Kwic": "他後直須藏身處沒蹤跡。沒蹤跡處莫藏身。吾在藥山三十年。祇明此事。",
+          "ToLb": "0006a14",
+          "Kwic": "他後直須藏身處沒蹤跡。",
           "MasterName": "Chuanzi Decheng",
           "ContextMasters": [
             {
@@ -39,7 +39,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue raises and comments on the Boatman case; Chuanzi Decheng is the exact speaker of the quoted injunction to Jiashan, ‘Where you hide the body, leave no trace; where no trace remains, do not hide the body,’ and says he understood only this matter during thirty years at Yaoshan."
+          "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue raises and comments on the Boatman case; Chuanzi Decheng is the exact speaker of the quoted injunction to Jiashan, ‘Where you hide the body, leave no trace; where no trace remains, do not hide the body,’ and says he understood only this matter during thirty years at Yaoshan."
         },
         {
           "RelPath": "T/T48/T48n2001.xml",
@@ -62,7 +62,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue raises an exchange containing Fayan Wenyi's answer and then, as the exact speaker of the headword-bearing verse, pairs ‘no trace’ with ‘news cut off.’"
+          "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue raises an exchange containing Fayan Wenyi's answer and then, as the exact speaker of the headword-bearing verse, pairs ‘no trace’ with ‘news cut off.’"
         },
         {
           "RelPath": "T/T48/T48n2001.xml",
@@ -71,7 +71,7 @@
           "Kwic": "上堂僧問。如何是向去底人。師云。寂寥寥沒蹤跡。進云。如何是却來底人。師云。明歷歷有消息。",
           "MasterName": "Hongzhi Zhengjue",
           "Curated": true,
-          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄), in Hongzhi Zhengjue's hall exchange: Hongzhi Zhengjue answers that the person going away is silent and still, leaving no trace, then contrasts the person coming back as bright and distinct, with news.",
+          "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue's hall exchange: Hongzhi Zhengjue answers that the person going away is silent and still, leaving no trace, then contrasts the person coming back as bright and distinct, with news.",
           "ContextMasters": [
             {
               "MasterName": "Hongzhi Zhengjue",
@@ -84,10 +84,10 @@
         {
           "RelPath": "J/J28/J28nB208.xml",
           "FromLb": "0362c13",
-          "ToLb": "0362c14",
-          "Kwic": "問：「如何是藏身處沒蹤跡？」師云：「月落潭無影。」「如何是沒蹤跡處莫藏身？」師云：「雲生山有衣。」",
+          "ToLb": "0362c13",
+          "Kwic": "問：「如何是藏身處沒蹤跡？」",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): an unnamed questioner asks first about hiding the body where there is no trace and then about not hiding the body where no trace remains; Guxue Zhe answers both questions. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioner.",
+          "AttributionNote": "Source record (J/J28/J28nB208.xml). Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): The questioner is unnamed: Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): an unnamed questioner asks first about hiding the body where there is no trace and then about not hiding the body where no trace remains; Guxue Zhe answers both questions. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioner.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "questioner",
@@ -102,7 +102,8 @@
               "parallel-passage"
             ],
             "ReviewedBy": "Codex hard-w2-b1",
-            "ReviewedUtc": "2026-07-14T07:30:00Z"
+            "ReviewedUtc": "2026-07-14T07:30:00Z",
+            "GrammarEvidence": "Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): an unnamed questioner asks first about hiding the body where there is no trace and then about not hiding the body where no trace remains; Guxue Zhe answers both questions. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioner."
           },
           "ContextMasters": [
             {
@@ -120,7 +121,7 @@
           "Kwic": "小參云。好兄弟。行行沒蹤跡。石馬著金鞭。住住不凝停。木人敲玉戶。",
           "MasterName": "Hongzhi Zhengjue",
           "Curated": true,
-          "AttributionNote": "Extensive Record of Chan Master Hongzhi (宏智禪師廣錄), in Hongzhi Zhengjue's small convocation: Hongzhi Zhengjue gives the paired lines, ‘Moving, moving, leave no trace—the stone horse wears a golden whip; staying, staying, do not remain fixed—the wooden person knocks on the jade door.’",
+          "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Hongzhi Zhengjue's small convocation: Hongzhi Zhengjue gives the paired lines, ‘Moving, moving, leave no trace—the stone horse wears a golden whip; staying, staying, do not remain fixed—the wooden person knocks on the jade door.’",
           "ContextMasters": [
             {
               "MasterName": "Hongzhi Zhengjue",
@@ -144,14 +145,14 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Extensive Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄), Wuyi Yuanlai's hall address: Wuyi directly recites ‘leave no trace; do not hide the body’ and continues to address the assembly.",
+          "AttributionNote": "Source record (X/X72/X72n1435.xml). Expanded Record of Chan Master Wuyi Yuanlai (無異元來禪師廣錄): Wuyi Yuanlai (無異元來禪師廣錄), Wuyi Yuanlai's hall address: Wuyi directly recites ‘leave no trace; do not hide the body’ and continues to address the assembly.",
           "MasterName": "Wuyi Yuanlai"
         },
         {
           "RelPath": "J/J28/J28nB219.xml",
           "FromLb": "0670a11",
           "ToLb": "0670a12",
-          "Kwic": "』又如船子和尚有云：『藏身處沒蹤跡，沒蹤跡處莫藏身。",
+          "Kwic": "又如船子和尚有云：『藏身處沒蹤跡，",
           "ContextMasters": [
             {
               "MasterName": "Chuanzi Decheng",
@@ -161,8 +162,31 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (紫竹林顓愚衡和尚語錄). The formula explicitly introduces Chuanzi Decheng as the quoted speaker.",
+          "AttributionNote": "Source record (J/J28/J28nB219.xml). Recorded Sayings of Monk Zhuanyuheng of Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): Chuanzi Decheng as the quoted speaker.",
           "MasterName": "Chuanzi Decheng"
+        },
+        {
+          "RelPath": "T/T48/T48n2001.xml",
+          "FromLb": "0006a14",
+          "ToLb": "0006a15",
+          "Kwic": "沒蹤跡處莫藏身。吾在藥山三十年。祇明此事。",
+          "Curated": true,
+          "MasterName": "Chuanzi Decheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Chuanzi Decheng",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "later-quoter"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi (宏智禪師廣錄): Chuanzi Decheng says, 'Where there is no trace, do not hide the body,' in the saying later raised by Hongzhi Zhengjue."
         }
       ],
       "SourceTexts": [
@@ -172,8 +196,12 @@
         "J/J28/J28nB219.xml"
       ],
       "RelatedMasters": [
-        "Decheng the Boatman",
-        "Jiashan Shanhui"
+        "Chuanzi Decheng",
+        "Jiashan Shanhui",
+        "Hongzhi Zhengjue",
+        "Fayan Wenyi",
+        "Guxue Zhe",
+        "Wuyi Yuanlai"
       ],
       "RelatedTerms": [
         "where no trace remains, do not hide the body (沒蹤跡處莫藏身)",
@@ -186,8 +214,48 @@
         "without a trace",
         "no tracks",
         "no trace remains"
-      ]
+      ],
+      "ClaimAnchors": [
+        {
+          "RelPath": "J/J28/J28nB208.xml",
+          "FromLb": "0362c13",
+          "ToLb": "0362c13",
+          "Kwic": "師云：「月落潭無影。」",
+          "ClaimText": "月落潭無影",
+          "Curated": true,
+          "MasterName": "Guxue Zhe",
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J28/J28nB208.xml). Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): Guxue Zhe answers the unnamed questioner, 'The moon sets; the pool has no reflection.'"
+        },
+        {
+          "RelPath": "J/J28/J28nB208.xml",
+          "FromLb": "0362c14",
+          "ToLb": "0362c14",
+          "Kwic": "師云：「雲生山有衣。」",
+          "ClaimText": "雲生山有衣",
+          "Curated": true,
+          "MasterName": "Guxue Zhe",
+          "ContextMasters": [
+            {
+              "MasterName": "Guxue Zhe",
+              "Roles": [
+                "utterer",
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J28/J28nB208.xml). Recorded Sayings of Chan Master Guxue Zhe (古雪哲禪師語錄): Guxue Zhe answers the second question, 'Clouds arise; the mountain has clothing.'"
+        }
+      ],
+      "Explanation": "The Boatman’s dominant paired injunction says to hide the body where no trace remains, yet not to hide it where no trace remains. Literally, to have no tracks or traces: \"leave no trace\" or \"be without a trace.\" The phrase occurs 381 times in 130 files representing 128 independent works. The shorter place-form \"where no trace remains\" (沒蹤跡處) has 165 exact hits in 101 files representing 99 works. Its dominant Chan deployment is Decheng the Boatman's injunction to Jiashan: \"where you hide the body, leave no trace; where no trace remains, do not hide the body\" (藏身處沒蹤跡，沒蹤跡處莫藏身), which is also turned into paired interview questions. Elsewhere the phrase stands as a short predicate: a person \"going away\" is described as \"silent and still, leaving no trace\" (寂寥寥沒蹤跡), in contrast with a person \"coming back\" who is \"bright and distinct, with news\" (明歷歷有消息). Another verse pairs \"no trace\" (沒蹤跡) with \"news cut off\" (斷消息). These are the direct contrasts recorded in the corpus."
     }
-  ],
-  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"
+  ]
 }

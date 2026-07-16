@@ -21,7 +21,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "Frozen-corpus concordance: 145 exact hits in 79 storage files representing 78 independent works. Item 8 finds one referent: the calendrical fire figure persists in the Qingfeng–Fayan case, furnace openings, and funeral-fire addresses. A use as a case title is a naming deployment, not a second thing. Six exact witnesses across five sources meet the depth and spread gates; the explanatory line lacking the full headword is retained only as family evidence. Frozen-corpus concordance: 145 exact hits in 79 storage files representing 78 independent works. Frozen-corpus concordance: 145 exact hits in 79 storage files representing 78 independent works. Frozen-corpus concordance: 145 exact hits in 79 storage files representing 78 independent works.",
+      "Note": "Item 8 finds one referent: the calendrical fire figure persists in the Qingfeng–Fayan case, furnace openings, and funeral-fire addresses. A use as a case title is a naming deployment, not a second thing. Six exact witnesses across five sources meet the depth and spread gates; the explanatory line lacking the full headword is retained only as family evidence.",
       "Occurrences": [
         {
           "RelPath": "C/C078/C078n1720.xml",
@@ -30,7 +30,7 @@
           "Kwic": "師問如何是學人自己眼曰丙丁童子來求火師於言下頓悟",
           "MasterName": "Fayan Wenyi",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集). Fayan Wenyi owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (C/C078/C078n1720.xml). Chan School: Comprehensive Linked-Pearls Collection of Verse Commentaries on Old Cases (禪宗頌古聯珠通集): Fayan Wenyi owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Fayan Wenyi",
@@ -47,7 +47,7 @@
           "Kwic": "法眼厲聲道。丙丁童子來求火。者僧豁然大悟",
           "MasterName": "Fayan Wenyi",
           "Curated": true,
-          "AttributionNote": "Source text (虛堂和尚語錄). Fayan Wenyi owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (T/T47/T47n2000.xml). Recorded Sayings of Monk Xutang (虛堂和尚語錄): Fayan Wenyi owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Fayan Wenyi",
@@ -62,17 +62,35 @@
           "FromLb": "0156a24",
           "ToLb": "0156b01",
           "Kwic": "開爐上堂，僧出曰：丙丁童子來求火。師曰：歸去生柴帶葉燒",
-          "MasterName": "Hengchuan Rukong",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Hengchuan Rukong owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): The monk asking the headword-bearing question is unnamed: Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Hengchuan Rukong owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
-              "MasterName": "Hengchuan Rukong",
+              "MasterName": "Hengchuan Rugong",
               "Roles": [
-                "utterer"
+                "respondent",
+                "case-figure"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk question",
+            "ActorLabel": "unnamed monk asking the headword-bearing question",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The question frame assigns the headword to the unnamed monk; the named master answers afterward.",
+            "ReviewedBy": "Codex lane-C targeted repair",
+            "ReviewedUtc": "2026-07-16T09:35:00Z"
+          }
         },
         {
           "RelPath": "B/B25/B25n0145.xml",
@@ -81,7 +99,7 @@
           "Kwic": "眼曰。儞試問將來。則乃問。如何是學人自己。眼曰。丙丁童子來求火。則於言下大悟。",
           "MasterName": "Fayan Wenyi",
           "Curated": true,
-          "AttributionNote": "Source text (天目中峰廣錄). Fayan Wenyi owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu (天目中峰廣錄): Fayan Wenyi owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Fayan Wenyi",
@@ -98,7 +116,7 @@
           "Kwic": "丙丁童子來求火，燒落虛空兩道眉。",
           "MasterName": "Muyun Tongmen",
           "Curated": true,
-          "AttributionNote": "Source text (牧雲和尚七會語錄). Muyun Tongmen owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (J/J26/J26nB184.xml). Seven-Session Recorded Sayings of Monk Muyun (牧雲和尚七會語錄): Muyun Tongmen owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Muyun Tongmen",
@@ -110,12 +128,12 @@
         },
         {
           "RelPath": "T/T47/T47n2000.xml",
-          "FromLb": "1034a23",
-          "ToLb": "1034a25",
-          "Kwic": "要知兩處收功。識取丙丁童子。丙丁童子。諾。擲下火把",
+          "FromLb": "1034a24",
+          "ToLb": "1034a24",
+          "Kwic": "識取丙丁童子。",
           "MasterName": "Xutang Zhiyu",
           "Curated": true,
-          "AttributionNote": "Source text (虛堂和尚語錄). Xutang Zhiyu owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (T/T47/T47n2000.xml). Recorded Sayings of Monk Xutang (虛堂和尚語錄): Xutang Zhiyu owns the exact headword-bearing wording in the complete source unit.",
           "ContextMasters": [
             {
               "MasterName": "Xutang Zhiyu",
@@ -137,7 +155,7 @@
         "Qingfeng Chuanhong",
         "Fayan Wenyi",
         "Xutang Zhiyu",
-        "Hengchuan Rukong",
+        "Hengchuan Rugong",
         "Muyun Tongmen"
       ],
       "RelatedTerms": [
@@ -154,7 +172,7 @@
           "MasterName": "Fayan Wenyi",
           "Curated": true,
           "EvidenceRole": "family",
-          "AttributionNote": "Source text (禪宗頌古聯珠通集). Fayan Wenyi owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (C/C078/C078n1720.xml). Chan School: Comprehensive Linked-Pearls Collection of Verse Commentaries on Old Cases (禪宗頌古聯珠通集): Fayan Wenyi owns the exact quoted clause in the complete case.",
           "ContextMasters": [
             {
               "MasterName": "Fayan Wenyi",

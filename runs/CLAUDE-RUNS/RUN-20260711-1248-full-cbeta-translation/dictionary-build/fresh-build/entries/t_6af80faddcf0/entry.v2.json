@@ -2,7 +2,7 @@
   "Id": "t_6af80faddcf0",
   "SourceTerm": "沒巴鼻",
   "CreatedBy": "Codex f002 Lane B evidence-first refresh",
-  "WrittenUtc": null,
+  "WrittenUtc": "2026-07-16T12:01:41.515180+00:00",
   "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "Senses": [
     {
@@ -15,7 +15,7 @@
       ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Note": "The varying grammatical subjects do not establish different things named by the headword; the phrase consistently predicates absence of a graspable handle. 'No flavor' is a frequent companion, not an alternate mystical sense. Frozen-corpus concordance: 197 exact hits in 93 storage files representing 91 independent works. Frozen-corpus concordance: 197 exact hits in 93 storage files representing 91 independent works. Frozen-corpus concordance: 197 exact hits in 93 storage files representing 91 independent works.",
+      "Note": "The varying grammatical subjects do not establish different things named by the headword; the phrase consistently predicates absence of a graspable handle. 'No flavor' is a frequent companion, not an alternate mystical sense. Frozen-corpus concordance: 197 exact hits in 93 storage files representing 91 independent works.",
       "Occurrences": [
         {
           "RelPath": "T/T47/T47n1998A.xml",
@@ -23,7 +23,7 @@
           "ToLb": "0931c03",
           "Kwic": "覺得昏怛沒巴鼻可把捉時。便是好消息也。",
           "Curated": true,
-          "AttributionNote": "Source text (大慧普覺禪師語錄). Dahui Zonggao owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao utters the headword-bearing wording in the stored passage.",
           "MasterName": "Dahui Zonggao",
           "ContextMasters": [
             {
@@ -40,7 +40,7 @@
           "ToLb": "0934b05",
           "Kwic": "但於話頭上看。看來看去。覺得沒巴鼻沒滋味心頭悶時。正好著力。",
           "Curated": true,
-          "AttributionNote": "Source text (大慧普覺禪師語錄). Dahui Zonggao owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao utters the headword-bearing wording in the stored passage.",
           "MasterName": "Dahui Zonggao",
           "ContextMasters": [
             {
@@ -57,16 +57,26 @@
           "ToLb": "0485c22",
           "Kwic": "參禪參到無巴鼻，沒巴鼻處正好參。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Xinzai Chelu owns the exact quoted clause in the complete case.",
-          "MasterName": "Xinzai Chelu",
-          "ContextMasters": [
-            {
-              "MasterName": "Xinzai Chelu",
-              "Roles": [
-                "utterer"
-              ]
-            }
-          ]
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Xinzai Chelu utters the headword-bearing wording in the stored passage.",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "direct speech",
+            "ActorLabel": "Xinzai Chelu",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "X/X82/X82n1571.xml 0485c21 explicitly heads 心齋徹魯道人; this lay Dao-person is an author/context figure, not a Chan master.",
+            "ReviewedBy": "Codex strict-roster adjudication",
+            "ReviewedUtc": "2026-07-16T00:00:00+02:00"
+          }
         },
         {
           "RelPath": "X/X70/X70n1382.xml",
@@ -74,7 +84,7 @@
           "ToLb": "0221a18",
           "Kwic": "祖師巴鼻，衲僧巴鼻。有些巴鼻，全沒巴鼻。因甚如此？公驗分明。",
           "Curated": true,
-          "AttributionNote": "Source text (無準師範禪師語錄). Wuzhun Shifan owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (X/X70/X70n1382.xml). Recorded Sayings of Chan Master Wuzhun Shifan (無準師範禪師語錄): Wuzhun Shifan utters the headword-bearing wording in the stored passage.",
           "MasterName": "Wuzhun Shifan",
           "ContextMasters": [
             {
@@ -92,7 +102,7 @@
           "Kwic": "喫粥了也未。趙州無忌諱。更令洗鉢盂。太殺沒巴鼻。悟去由來不丈夫",
           "MasterName": "Shiting Zuxun",
           "Curated": true,
-          "AttributionNote": "Source text (續傳燈錄). Shiting Zuxun owns the exact quoted clause in the complete case.",
+          "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp (續傳燈錄): Shiting Zuxun utters the headword-bearing wording in the stored passage.",
           "ContextMasters": [
             {
               "MasterName": "Shiting Zuxun",
@@ -117,15 +127,22 @@
             }
           ],
           "MasterName": "Juelang Daosheng",
-          "AttributionNote": "Source text (天界覺浪盛禪師全錄). Juelang Daosheng owns the exact quoted clause in the complete case."
+          "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie (天界覺浪盛禪師全錄): Juelang Daosheng utters the headword-bearing wording in the stored passage."
         }
       ],
       "SourceTexts": [
         "T/T47/T47n1998A.xml",
         "X/X82/X82n1571.xml",
-        "X/X70/X70n1382.xml"
+        "X/X70/X70n1382.xml",
+        "T/T51/T51n2077.xml",
+        "J/J34/J34nB311.xml"
       ],
-      "RelatedMasters": [],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "Wuzhun Shifan",
+        "Shiting Zuxun",
+        "Juelang Daosheng"
+      ],
       "RelatedTerms": [
         "巴鼻",
         "話頭",
@@ -138,7 +155,7 @@
         "without a handle",
         "nothing to get hold of"
       ],
-      "Explanation": "The expression denotes with no handle to grasp in these Chan records. Its wording is there is no nose-handle: no projecting part by which the thing can be seized or led. Frozen-corpus concordance: 197 exact hits in 93 storage files representing 91 independent works. Chan records apply it to sayings, circumstances, people, and what a listener confronts. Dahui pairs it with 'no flavor' and says there is nothing to grasp when considering the dry shit-stick or the raised saying. Another record reverses the phrase into a place of inquiry: 'investigate until there is no handle; precisely where there is no handle is good to investigate.' Wuzhun plays the compound against the positive form, saying there is some handle and entirely no handle. This recurring use for the point at which a word or encounter supplies no graspable lead is the corpus-specific extension of the animal-handle image.",
+      "Explanation": "Having no handle to grasp renders the image literally as having no nose-handle: no projecting part by which a thing can be seized or led. The frozen corpus has 197 exact hits in 93 files representing 91 works. Chan records apply it to sayings, circumstances, people, and what a listener confronts. Dahui pairs it with ‘no flavor’ and says there is nothing to grasp when considering the dry shit-stick or a raised saying. Another record reverses the phrase into a direction for inquiry: investigate until there is no handle, and precisely there is a good place to investigate. Wuzhun plays the positive and negative forms against each other. The repeated bend is the point at which a word or encounter supplies no graspable lead.",
       "ClaimAnchors": []
     }
   ]
