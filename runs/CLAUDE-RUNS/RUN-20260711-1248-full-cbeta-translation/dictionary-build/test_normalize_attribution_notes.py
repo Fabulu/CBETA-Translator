@@ -20,7 +20,7 @@ class ActorPrefixTest(unittest.TestCase):
         }}))
 
     def test_reviewed_unnamed_is_explicit(self):
-        self.assertEqual("The source does not name unnamed questioning monk", actor_prefix({
+        self.assertEqual("The questioning monk is unnamed", actor_prefix({
             "ActorAttribution": {"Status": "reviewed-unnamed", "ActorLabel": "the unnamed questioning monk"}
         }))
 
@@ -48,6 +48,18 @@ class ActorPrefixTest(unittest.TestCase):
         again, changes = normalize(row)
         self.assertEqual(note, again)
         self.assertEqual([], changes)
+
+    def test_source_is_always_the_reader_facing_opening(self):
+        row = {
+            "RelPath": "X/X80/X80n1565.xml",
+            "ActorAttribution": {"Status": "narrated", "ActorLabel": "the case narrator"},
+            "AttributionNote": "Compiler narration: Source record (X/X80/X80n1565.xml). The recorder reports the action.",
+        }
+        note, _ = normalize(row)
+        self.assertEqual(
+            "Source record (X/X80/X80n1565.xml). Compiler narration: The recorder reports the action.",
+            note,
+        )
 
 
 if __name__ == "__main__":

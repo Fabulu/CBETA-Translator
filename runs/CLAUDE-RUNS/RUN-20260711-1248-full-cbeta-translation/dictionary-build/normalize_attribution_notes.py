@@ -56,7 +56,10 @@ def actor_prefix(row: dict) -> str | None:
     ):
         return label
     if status == "reviewed-unnamed" and label and re.search(r"\bunnamed\b|does not name", label, re.IGNORECASE):
-        return f"The source does not name {label.removeprefix('the ')}"
+        subject = re.sub(r"^(?:the\s+)?unnamed\s+", "", label, flags=re.IGNORECASE).strip()
+        if subject and subject != label:
+            return f"The {subject} is unnamed"
+        return "The actor is unnamed"
     if status == "narrated":
         return "Compiler narration"
     if status == "impersonal":
@@ -83,14 +86,21 @@ def normalize(row: dict) -> tuple[str | None, list[str]]:
         "", body, flags=re.IGNORECASE,
     ).strip()
     body = LEADING_SOURCE_PREFIXES.sub("", body).strip()
+    # Attribution notes have exactly one structured source identity. Remove
+    # source labels left anywhere in a legacy body, not only adjacent leading
+    # labels, so a second normalization pass cannot preserve or restack them.
+    body = re.sub(
+        r"\bSource\s+(?:record|text)\s*(?:\([^)]*\)|[A-Z]/[^\s:.;]+)\s*[:.]?\s*",
+        "", body, flags=re.IGNORECASE,
+    ).strip()
     source_prefix = f"Source record ({rel})."
-    note = f"{source_prefix} {body}" if body else source_prefix
     changes = []
+    if actor.lower() not in body.lower():
+        body = f"{actor}: {body}" if body else f"{actor}."
+        changes.append("speaker")
+    note = f"{source_prefix} {body}" if body else source_prefix
     if note != old:
         changes.append("source-canonicalized")
-    if actor.lower() not in note.lower():
-        note = f"{actor}: {note}"
-        changes.append("speaker")
     return (note if changes else old), changes
 
 

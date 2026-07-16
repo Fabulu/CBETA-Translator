@@ -47,6 +47,34 @@ DUPLICATED_SOURCE_PREFIX_RE = re.compile(
     r"(?:\bSource\s+(?:record|text)\s*\([^)]*\)\.?\s*){2,}",
     re.IGNORECASE,
 )
+MALFORMED_UNNAMED_RE = re.compile(r"\bdoes not name\s+(?:an?\s+)?unnamed\b", re.IGNORECASE)
+MALFORMED_NOTE_PUNCTUATION_RE = re.compile(r"(?:\.\s*[:;)]+|\)\s*\)\s*\)|\(\s*\))")
+
+
+def attribution_note_hygiene_failures(note: str, rel: str) -> list[str]:
+    """Return deterministic reader-visible scaffolding defects.
+
+    This deliberately checks shape, not actor truth; full-case review remains
+    the authority for the latter.  The checks make normalization idempotence
+    and one-source-prefix prose enforceable before an expensive review.
+    """
+    failures = []
+    canonical = f"Source record ({rel})."
+    if not note.startswith(canonical):
+        failures.append("noncanonical-source-opening")
+    if len(re.findall(r"\bSource\s+(?:record|text)\b", note, re.IGNORECASE)) != 1:
+        failures.append("source-prefix-count")
+    if MALFORMED_UNNAMED_RE.search(note):
+        failures.append("malformed-unnamed-actor")
+    if MALFORMED_NOTE_PUNCTUATION_RE.search(note):
+        failures.append("malformed-punctuation")
+    # Translation-repair recursion leaves the same phrase immediately nested
+    # many times: ``the question says (the question says (...``. Two can occur
+    # naturally in quoted prose; three is generated scaffolding, never prose.
+    lowered = re.sub(r"\s+", " ", note.lower())
+    if re.search(r"([a-z][a-z /'-]{3,60}?)\s*\(\s*\1\s*\(\s*\1\s*\(", lowered):
+        failures.append("recursive-translation-expansion")
+    return failures
 sys.path.insert(0, str(HERE))
 import zc  # noqa: E402
 
@@ -492,6 +520,9 @@ def main() -> int:
                     fail("missing_attribution_note", entry, f"{term} s{si} o{oi}")
                 else:
                     counts["attribution_notes"] += 1
+                    for hygiene_failure in attribution_note_hygiene_failures(note, str(occ.get("RelPath") or "")):
+                        fail("attribution_note_prose_hygiene", entry,
+                             f"{term} s{si} {evidence_label} {hygiene_failure}: {note!r}")
                     if DUPLICATED_NOTE_PREFIX_RE.search(note) or DUPLICATED_SOURCE_PREFIX_RE.search(note):
                         fail("duplicated_attribution_note_prefix", entry,
                              f"{term} s{si} {evidence_label} AttributionNote: {note!r}")

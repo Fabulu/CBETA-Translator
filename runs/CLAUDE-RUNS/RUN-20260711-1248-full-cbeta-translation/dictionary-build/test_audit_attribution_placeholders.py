@@ -18,10 +18,24 @@ from audit_attribution import (
     has_evidence_bound_later_quoter,
     has_exact_actor_context,
     uniform_actor_placeholder_failure,
+    attribution_note_hygiene_failures,
 )
 
 
 class PlaceholderActorTest(unittest.TestCase):
+    def test_rejects_reader_visible_attribution_scaffolding(self):
+        rel = "X/X80/X80n1565.xml"
+        self.assertEqual([], attribution_note_hygiene_failures(
+            f"Source record ({rel}). Compiler narration: The recorder reports the action.", rel
+        ))
+        bad = attribution_note_hygiene_failures(
+            f"Compiler narration: Source record ({rel}). The source does not name an unnamed monk.", rel
+        )
+        self.assertIn("noncanonical-source-opening", bad)
+        self.assertIn("malformed-unnamed-actor", bad)
+        recursive = "Source record (%s). the question says (the question says (the question says (問曰)))" % rel
+        self.assertIn("recursive-translation-expansion", attribution_note_hygiene_failures(recursive, rel))
+
     def test_executable_role_vocabulary_matches_actor_audit_law(self):
         self.assertIn("person-described", CLOSED_ROLES)
         self.assertIn("case-figure", CLOSED_ROLES)
