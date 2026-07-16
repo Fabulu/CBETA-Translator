@@ -94,6 +94,17 @@ mystical or general-Buddhist abstraction.
    **These indexes are discovery accelerators, never final evidence:** `search.text.bin` can preserve material
    later excluded as XML apparatus. Every saved occurrence must therefore pass `zc.verify` against the source
    XML, with its returned `FromLb`/`ToLb`. Record which indexed path was used in `WORK.md`.
+   **Hard search-normalization law (2026-07-16; forward only):** for every new term, record both
+   `zc.bridged_count(term)` as the high-recall discovery/frequency figure and `zc.count(term)` as exact,
+   apparatus-clean attestation. Use `zc.bridged_find` to inspect punctuation-visible candidate windows; editorial
+   punctuation may create a visible false positive and is never itself proof of a lexical unit. Persist only exact,
+   visible occurrences that pass unchanged `zc.verify`; occurrence KWICs and line anchors remain exact. The bridged
+   dictionary mode deliberately excludes `<note>` text even though the broader desktop search includes it: notes may
+   suggest research leads but are not dictionary attestation. Do **not** recalculate, repair, or rewrite existing
+   entries because this mode was introduced. Its expected lexical delta is near zero and its punctuation bridging
+   can add false positives. At most, schedule one consolidated reassessment after all construction queues are done;
+   never perform an entry-by-entry retroactive sweep during current work. Full contract and rationale:
+   `SEARCH_NORMALIZATION_CHANGE.md`.
 3. **Distinguish senses.** Is there one sense or several? A **corpus-wide** sense (how the term is
    generally used in Chan) and/or **master-specific** senses (a master bends the word — e.g. Nanquan's
    水牯牛 = his enlightened self). One sense-bucket per meaning. Put the primary **Zen-technical** sense at

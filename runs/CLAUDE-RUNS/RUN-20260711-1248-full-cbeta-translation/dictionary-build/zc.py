@@ -7,6 +7,8 @@
 #   zc.count("乾屎橛")                      -> {"hits":N, "files":M, "per_file":[(relpath,c),...]}
 #   zc.verify("X/X80/X80n1565.xml", kwic)   -> {"ok":True, "fromLb":"0227a10", "toLb":"0227a10"}  (kwic = exact contiguous, tag/ws-normalized)
 #   zc.find("X/X80/X80n1565.xml", "乾屎橛", ctx=16) -> [{"window":..., "fromLb":...}, ...]
+#   zc.bridged_count("生老病死")             -> high-recall frequency with editorial punctuation bridged
+#   zc.bridged_find(rel, "生老病死")         -> visible exact-text windows for bridged discovery hits
 #   zc.head("X/X80/X80n1565.xml", "0227a10")-> {"head":"...", "mulu":[...]}  (attribution: nearest preceding <head>/cb:mulu)
 #   zc.title("X/X80/X80n1565.xml")          -> "五燈會元"
 #
@@ -30,6 +32,10 @@ ALLOW = os.environ.get("CBETA_ZEN_ALLOWLIST") or (_WSL_ALLOW if os.path.isfile(_
 
 _TAG = re.compile(r"<[^>]+>")
 _WS  = re.compile(r"\s+")
+_BRIDGED_PUNCTUATION = frozenset(
+    "、。！，：；？（）《》〈〉「」『』【】—…·・"
+)
+_BRIDGED_SUPERSCRIPTS = frozenset("⁰¹²³⁴⁵⁶⁷⁸⁹")
 _cache = {}
 _NORMALIZER_VERSION = "zc-apparatus-clean-v3"
 _DISK_CACHE = os.environ.get("ZC_CACHE_DIR") or "/tmp/cbeta-zc-cache-v3"
@@ -117,7 +123,8 @@ def _write_disk_cache(rel, source, norm, starts, values):
 
 def _allow():
     if "allow" not in _cache:
-        z = json.load(open(ALLOW, encoding="utf-8"))
+        with open(ALLOW, encoding="utf-8") as handle:
+            z = json.load(handle)
         _cache["allow"] = [t for t in z["texts"]]
         _cache["allowset"] = set(_cache["allow"])
     return _cache["allow"]
@@ -126,7 +133,8 @@ def _allow():
 def work_id(rel):
     """Return the manifest's independent-work identity for a corpus file."""
     if "work_ids" not in _cache:
-        z = json.load(open(ALLOW, encoding="utf-8"))
+        with open(ALLOW, encoding="utf-8") as handle:
+            z = json.load(handle)
         _cache["work_ids"] = z.get("work_ids") or {}
     try:
         return _cache["work_ids"][rel]
@@ -149,7 +157,8 @@ def _load(rel):
     if cached is not None:
         _cache.setdefault("files", {})[rel] = cached
         return cached
-    raw = open(source, encoding="utf-8").read()
+    with open(source, encoding="utf-8") as handle:
+        raw = handle.read()
     m = re.search(r"<body\b[^>]*>(.*)</body>", raw, re.S)
     body = m.group(1) if m else raw
     # Preserve raw offsets while excluding apparatus; deletion would shift every
@@ -210,6 +219,113 @@ def count(term, limit=0):
     if limit: per = per[:limit]
     works = {work_id(rel) for rel, _ in per}
     return {"hits": total, "files": nfiles, "works": len(works), "per_file": per}
+
+
+def _bridged_strip(text, with_positions=False):
+    """Apply search-v9's forward-only punctuation-bridged strip contract.
+
+    ``zc`` continues to exclude ``<note>`` and apparatus before this function is
+    reached.  That is deliberate: bridged lookup is high-recall *dictionary*
+    discovery/frequency, not parity with the desktop search index, whose broader
+    search contract includes note text.
+
+    When requested, positions map each retained character back to the exact
+    apparatus-clean text so discovery windows keep punctuation visible.
+    """
+    chars = []
+    positions = []
+    for index, char in enumerate(text):
+        codepoint = ord(char)
+        if (
+            char.isspace()
+            or char in _BRIDGED_PUNCTUATION
+            or char in _BRIDGED_SUPERSCRIPTS
+            # Python exposes Unicode scalar values, not .NET UTF-16 code
+            # units.  Remove only literal surrogate code points here; using
+            # ``<= 0xFFFF`` would also erase the valid U+F900--FAFF CJK
+            # compatibility ideographs admitted by the gram contract.
+            or 0xDB00 <= codepoint <= 0xDFFF
+        ):
+            continue
+        chars.append(char)
+        if with_positions:
+            positions.append(index)
+    normalized = "".join(chars)
+    return (normalized, positions) if with_positions else normalized
+
+
+def _is_bridged_ideograph(char):
+    codepoint = ord(char)
+    return (
+        0x3400 <= codepoint <= 0x4DBF
+        or 0x4E00 <= codepoint <= 0x9FFF
+        or 0xF900 <= codepoint <= 0xFAFF
+    )
+
+
+def bridged_grams(text):
+    """Return search-v9 CJK bigrams after the exact bridged strip operation."""
+    normalized = _bridged_strip(text)
+    return [
+        normalized[index:index + 2]
+        for index in range(len(normalized) - 1)
+        if _is_bridged_ideograph(normalized[index])
+        and _is_bridged_ideograph(normalized[index + 1])
+    ]
+
+
+def bridged_count(term, limit=0):
+    """Forward-only, punctuation-bridged discovery/frequency count.
+
+    Existing ``count`` remains exact and unchanged.  Results can exceed exact
+    attestation by joining text across editorial punctuation; callers must use
+    ``find``/``verify`` for persisted exact occurrences.
+    """
+    query = _bridged_strip(term)
+    if not query:
+        return {"hits": 0, "files": 0, "works": 0, "per_file": []}
+    per = []
+    total = 0
+    for rel in _allow():
+        try:
+            exact, _ = _load(rel)
+        except Exception:
+            continue
+        hits = _bridged_strip(exact).count(query)
+        if hits:
+            per.append((rel, hits))
+            total += hits
+    per.sort(key=lambda item: -item[1])
+    nfiles = len(per)
+    works = {work_id(rel) for rel, _ in per}
+    if limit:
+        per = per[:limit]
+    return {"hits": total, "files": nfiles, "works": len(works), "per_file": per}
+
+
+def bridged_find(rel, term, ctx=16, limit=12):
+    """Show punctuation-visible windows for high-recall bridged matches."""
+    exact, idx2lb = _load(rel)
+    normalized, positions = _bridged_strip(exact, with_positions=True)
+    query = _bridged_strip(term)
+    if not query:
+        return []
+    out = []
+    start = 0
+    while len(out) < limit:
+        found = normalized.find(query, start)
+        if found < 0:
+            break
+        exact_start = positions[found]
+        exact_end = positions[found + len(query) - 1] + 1
+        out.append({
+            "window": exact[max(0, exact_start - ctx):min(len(exact), exact_end + ctx)],
+            "fromLb": idx2lb[exact_start],
+            "toLb": idx2lb[exact_end - 1],
+            "bridged": exact[exact_start:exact_end],
+        })
+        start = found + len(query)
+    return out
 
 def verify(rel, kwic):
     """Is kwic an exact contiguous (tag/ws-normalized) substring of rel's body? Report fromLb/toLb."""
