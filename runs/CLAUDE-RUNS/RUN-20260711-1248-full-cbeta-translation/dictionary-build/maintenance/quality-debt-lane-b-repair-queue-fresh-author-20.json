@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "repair-author-queue.v1",
+  "generatedUtc": "2026-07-16T12:28:33.917889+00:00",
+  "sourceRereviewSha256": {
+    "maintenance/quality-debt-lane-b-repaired32-independent-rereview-001-010.json": "0b59459e2e346e54c9ead5f35be1534a076da61b780406a51db225c6dd0ca4ac",
+    "maintenance/quality-debt-lane-b-repaired32-independent-rereview-011-020.json": "04d6452d85dc82ba69f211838ae4493a3e2d7270cfaa1204a677efc84d90f421",
+    "maintenance/quality-debt-lane-b-repaired32-independent-rereview-021-030.json": "d1589bcc8852e62edbb8d4c307b10e27575fde0fe1787f11d962bdb3ce1625aa",
+    "maintenance/quality-debt-lane-b-repaired32-independent-rereview-031-032.json": "dadef3335907e14e36768ecab251b3c3d564ff5fa6d81ccf3b7a949c5521b000"
+  },
+  "entriesRoot": "fresh-build/entries",
+  "count": 20,
+  "rows": [
+    {
+      "ordinal": 16,
+      "id": "t_0c53a5a2243b",
+      "term": "知客",
+      "entryPath": "fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "rejectedCurrentSha256": "00afd5fedb40b164b51962a2c768e60404861829a41337cc6f4e2d0379014b25",
+      "reason": "The original Ming-attribution defect is repaired: 明知客 is now an identified named non-master utterer. But sense 2 ('to recognize the guest before the matter is raised') still copies sense 1's guest-prefect office explanation verbatim, so its reader prose neither defines nor supports the distinct phrase sense. The sense split cannot pass with one explanation duplicated across two different referents.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 18,
+      "id": "t_ec1241360056",
+      "term": "無孔鐵鎚",
+      "entryPath": "fresh-build/entries/t_ec1241360056/entry.v2.json",
+      "rejectedCurrentSha256": "b98ad4cc9fc24c6cac8229705ca1ee9bb831dd59a96ab66c1389d6ae5eb828e7",
+      "reason": "The prior prose defect remains in the current bytes. Sense 1 opens 'a solid, unusable hammer-head image' and immediately repeats it as 'An impossible solid hammer-head'; the person-label sense likewise restates its gloss in adjacent sentences. The object/person split and witnesses are sound, but the explicitly rejected duplicated opening was not closed.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 26,
+      "id": "t_0d6794766098",
+      "term": "是什麼",
+      "entryPath": "fresh-build/entries/t_0d6794766098/entry.v2.json",
+      "rejectedCurrentSha256": "0f60db9364c8a088344d4a13c30c088587bd0f45ee3cb86676fa543556cf12d2",
+      "reason": "The exact prior defect remains verbatim: 'It questions an object just indicated, a person, a place, or a phrase under discussion' occurs twice consecutively in the Explanation. Evidence and attribution remain sound, but repair closure failed.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 30,
+      "id": "t_327d40c2c9cb",
+      "term": "飢來喫飯",
+      "entryPath": "fresh-build/entries/t_327d40c2c9cb/entry.v2.json",
+      "rejectedCurrentSha256": "345bee5e3c213c87b217f6eb6f3ffd06d215e605ad803a3d67034fc7480b3445",
+      "reason": "Both graphic-variant claim-anchor notes are repaired and exact. Full prose review nevertheless finds the opening restates the gloss in adjacent sentences: 'When hungry, eat rice' followed immediately by 'When hunger comes, eat rice.' Consolidate that calque repetition while preserving Dazhu's contrast and the answer/self-description/counter-use evidence.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 32,
+      "id": "t_5ac2c5d1fc1e",
+      "term": "寸絲不掛",
+      "entryPath": "fresh-build/entries/t_5ac2c5d1fc1e/entry.v2.json",
+      "rejectedCurrentSha256": "73961f4e76e0f8057ff38f392789e880555a76612ce619f7d52d2d34541b7482",
+      "reason": "Both broken denominators remain exactly as rejected: 'occurs 97 times in ,' and 'occurs 14 times in .'. The cases and actor decisions are otherwise coherent, but incomplete count prose is still public text.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 33,
+      "id": "t_6a1ea4df00ce",
+      "term": "騰騰任運",
+      "entryPath": "fresh-build/entries/t_6a1ea4df00ce/entry.v2.json",
+      "rejectedCurrentSha256": "3e9f4a8c87d0fe6be872569249efca9cf6e7bcf5d57177dc8ab44e691ff90463",
+      "reason": "The rejected incomplete denominator remains verbatim: the reversed form 'occurs 140 times in .'. The reversible rhythmic deployment is supported, but the stated repair did not reach the current reader-facing bytes.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 39,
+      "id": "t_bcf65a900b7a",
+      "term": "煩惱即菩提",
+      "entryPath": "fresh-build/entries/t_bcf65a900b7a/entry.v2.json",
+      "rejectedCurrentSha256": "38d18ba08976f7f00d969fa33ccf2dd461049408343f038fa8c40a56674fc89e",
+      "reason": "The exact prohibited umbrella label remains in reader prose: 'inherited Buddhist vocabulary'. This is the precise previously rejected clause and violates the dictionary-wide forbidden-English/corpus-specific framing rule despite the otherwise strong equation and restriction evidence.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 42,
+      "id": "t_e931d476fd02",
+      "term": "鬱鬱黃花",
+      "entryPath": "fresh-build/entries/t_e931d476fd02/entry.v2.json",
+      "rejectedCurrentSha256": "913dfb02ed68b72c4135a09fd2cbd7d80d497754de37123874877f88ddca9d91",
+      "reason": "The prior broken count remains verbatim: 'the fuller exact yellow-flower formula occurs 18 times in ,'. The acceptance/rejection/interview evidence is valuable, but the public count sentence is still mechanically incomplete.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 46,
+      "id": "t_04bce52397dc",
+      "term": "三昧",
+      "entryPath": "fresh-build/entries/t_04bce52397dc/entry.v2.json",
+      "rejectedCurrentSha256": "6f92219849f1e1fc80c01e10a342a1ef71f5c6dfdbd1746dd1c38581250d7a34",
+      "reason": "The target was changed to 'an absorbed mode or complete command', but the Explanation still begins circularly with the superseded 'Named condition is the selected English label for a borrowed name for a condition...' and does not reconcile those English claims. Multiple AttributionNotes also repeat the exact-speaker assertion, while the biographical Master-Sanmei note is malformed ('Compiler narration... Source title: (錦江禪燈.'). The valid mode/person split cannot pass this reader prose.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 55,
+      "id": "t_200fc439a99e",
+      "term": "磨磚作鏡",
+      "entryPath": "fresh-build/entries/t_200fc439a99e/entry.v2.json",
+      "rejectedCurrentSha256": "ebfe037a1bf4a2d5c91d94a10198920f40116d6e656c8e8fbf8c9f88d4c3f9a5",
+      "reason": "The first two sentences still restate the same impossible tile-to-mirror definition, so the rejected duplicated opening remains. Several occurrence notes also retain database-facing filler ('file ... exact actor ... full-case proof distinguishes...') instead of natural reader attribution. The original Nanyue exchange and variant anchors are sound but prose closure is not.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 60,
+      "id": "t_35c3fb655630",
+      "term": "驗人",
+      "entryPath": "fresh-build/entries/t_35c3fb655630/entry.v2.json",
+      "rejectedCurrentSha256": "d233a96af9025b96043609876cee38aed50352baaea4cb4475c5be5f762d89af",
+      "reason": "The exact rejected redundancy remains: 'The expression denotes to test a person' immediately followed by 'Its wording is to test a person.' The witnesses support public examination, but the author repair did not remove the duplicated template opening.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 69,
+      "id": "t_58099932161b",
+      "term": "斷臂",
+      "entryPath": "fresh-build/entries/t_58099932161b/entry.v2.json",
+      "rejectedCurrentSha256": "99d64d0708d9c2c85639173ccc18de554f2dba7050b8fcb7ac802c2be41024a1",
+      "reason": "The replacement ClaimAnchors correctly classify the Huike episodes as compiler narration, but the corresponding Occurrences still assign Huike as MasterName for narrated 自斷左臂 and 有神光法師...立雪斷臂. A later verse likewise assigns Huike rather than its verse speaker, and several notes are malformed ('In the,', doubled unnamed-actor prose). Exact-turn attribution and reader prose remain unsafe.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 73,
+      "id": "t_6af80faddcf0",
+      "term": "沒巴鼻",
+      "entryPath": "fresh-build/entries/t_6af80faddcf0/entry.v2.json",
+      "rejectedCurrentSha256": "996e02ac97cc26112dd3117d7e5fef07d283e41a238d3ad6c89d6037a94349e8",
+      "reason": "The rejected template duplication remains: 'The expression denotes with no handle to grasp' is immediately followed by 'Its wording is there is no nose-handle'. The evidence supports the ungraspable-handle image, but the opening still restates rather than cleanly defining it once.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 74,
+      "id": "t_6c58ed7a7c6c",
+      "term": "一行三昧",
+      "entryPath": "fresh-build/entries/t_6c58ed7a7c6c/entry.v2.json",
+      "rejectedCurrentSha256": "4b6a0ffc7803e141ab3b2d134e17936876ac4188ee05334e0f70fcaddf1b8368",
+      "reason": "The first two sentences still repeat Huineng's definition almost verbatim ('carrying a straightforward mind ... through walking, standing, sitting, and lying down'). The rich direct definitions and rejection of motionless sitting remain sound, but the expressly rejected prose duplication is unchanged.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 79,
+      "id": "t_7de4a77a97bd",
+      "term": "看話",
+      "entryPath": "fresh-build/entries/t_7de4a77a97bd/entry.v2.json",
+      "rejectedCurrentSha256": "bdcf0cbda4f062989673a28677c06fd722d23c0edffc2727454cfb6880e787f0",
+      "reason": "The exact template defect remains: 'The expression denotes look at the word or saying' immediately followed by 'Its wording is look at the talk'. The corpus criticism and word/saying/question scope are strong, but the opening was not consolidated.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 83,
+      "id": "t_96255c741b17",
+      "term": "沒滋味",
+      "entryPath": "fresh-build/entries/t_96255c741b17/entry.v2.json",
+      "rejectedCurrentSha256": "ab7a5028a97cf1f38de88f286f69937c9d1ba03d795649bb9a4f0b34856f5d61",
+      "reason": "The rejected duplication remains: 'The expression denotes has no flavor' followed by 'Its wording is has no flavor or tasteless.' The positive and adverse deployments are well anchored, but the author-side repair did not alter the defective opening.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 90,
+      "id": "t_af212eccb3c0",
+      "term": "騎牛覓牛",
+      "entryPath": "fresh-build/entries/t_af212eccb3c0/entry.v2.json",
+      "rejectedCurrentSha256": "859526ffc6c091570b4c63ea99f6633761a46806d96446cfbc60c231df39b014",
+      "reason": "The opening still states the riding/searching definition and immediately repeats it under 'Literally'. The ox-sequence evidence—answer, riding home, refusing to dismount, guarding crops—is excellent, but the specific duplicated-definition rejection remains unclosed.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 95,
+      "id": "t_beab8961fb55",
+      "term": "接引",
+      "entryPath": "fresh-build/entries/t_beab8961fb55/entry.v2.json",
+      "rejectedCurrentSha256": "0a8132b3acb7a4e1b7648346a092bbffef7d166c355293a392ef432acb937a6b",
+      "reason": "The Reception Pavilion substring contaminant is gone, but two full-turn actor defects remain. In '問...和尚以那一門接引後學？師云...', the unnamed questioner—not Konggu Daocheng—utters 接引. In '進云：某甲亦望接引。師云...', the questioner is again the headword utterer, yet the entry uses narrated/mixed public exchange and malformed compiler prose instead of reviewed-unnamed. The reception sense is supported but exact-turn attribution is not.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 98,
+      "id": "t_c95d0abb6577",
+      "term": "撥無因果",
+      "entryPath": "fresh-build/entries/t_c95d0abb6577/entry.v2.json",
+      "rejectedCurrentSha256": "0ec2d398d06587d15d0abce2bb93f8c17eff5ddc51a8433b1eefa07a8399dde0",
+      "reason": "Both control ClaimAnchors now have grammatical documentary-source notes, so the original narrow defect is closed. However the first headword occurrence still publishes duplicated malformed narration ('Compiler narration: the compiler narrating... owns... the compiler narrating... owns...'). Several named notes likewise repeat the same actor assertion. The condemned-error sense and negation controls are strong, but full reader-facing attribution hygiene fails.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    },
+    {
+      "ordinal": 106,
+      "id": "t_f59209907f3d",
+      "term": "單提",
+      "entryPath": "fresh-build/entries/t_f59209907f3d/entry.v2.json",
+      "rejectedCurrentSha256": "e57302fd353d033e05b831b46b88616c73aba81ba96d50623b4fd175e038e49f",
+      "reason": "The three formerly unrelated ClaimAnchors are now exact 單提-bearing spans with named actors, so evidence replacement succeeded. But the occurrence AttributionNotes repeatedly contain malformed public prose ('In the,;' and 'In the (第34卷-第120卷), );'). The productive teaching-seat verb is well supported; the entry cannot KEEP while every cited row exposes broken source prose.",
+      "requiredOutput": {
+        "closures": "one coordinate-level closure per defect, with before/after hashes, evidence keys, and fullCaseProof for actor defects",
+        "requiresDifferentReader": true
+      }
+    }
+  ]
+}

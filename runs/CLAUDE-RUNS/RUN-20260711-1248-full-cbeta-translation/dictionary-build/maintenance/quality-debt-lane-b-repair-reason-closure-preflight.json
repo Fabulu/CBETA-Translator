@@ -1,0 +1,667 @@
+{
+  "schemaVersion": "repair-reason-closure-audit.v1",
+  "generatedUtc": "2026-07-16T12:27:45.632077+00:00",
+  "rejectingReview": "maintenance/quality-debt-lane-b-independent-review-summary-001-109-postrestart.json",
+  "rejectingReviewSha256": "440f34f007b1a2fa19ce364e9f78bf5951f0aa26a542cc8e757bdea66980c691",
+  "repairLedger": "maintenance/whole-tree-quality-debt-lane-b-author-repair-ledger-current.json",
+  "repairLedgerSha256": "73112497db9907f28a7a178afb74ca7f1749101fa37ed88c51f67fb9af75cddb",
+  "entriesRoot": "fresh-build/entries",
+  "summary": {
+    "reviewed": 32,
+    "hardPass": 0,
+    "hardFail": 32
+  },
+  "hardPass": false,
+  "rows": [
+    {
+      "ordinal": 1,
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "rejectedSha256": "496efa35c5742d3b36b61bfc5a42033b74d1e7f9b5a5225be041f47e06043c30",
+      "currentSha256": "be40a7c8ac9dec689f1f5c6c7eda5a5206f4437bf50ee905e1d222a37488de4e",
+      "reason": "The X82n1571 witness is inside the record and sermon of Lingyin Tuigeng Ning (杭州靈隱退耕寧禪師; 上堂：目前無法，意在目前…), not an utterance by Xuedou Chongxian. Its MasterName and ContextMasters therefore identify the wrong utterer. The headword sense itself remains plausible, but the actor defect requires repair and resealing.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "id": "t_efbed6116e24",
+      "term": "拂袖",
+      "rejectedSha256": "b44601ffc5aa03beb18e40353cbd8ddb09402950f31b69f7a88c75c35964d310",
+      "currentSha256": "2add1f9d3c8a2a4b96d9bd62cae0c69bc95a2e508d77c27f5fc85ea83262ca1d",
+      "reason": "The X82n1571 case is the exchange of Mituo Zhengyan Anzhu and Xuedou Liang, but its ContextMasters instead lists Xitang, Baizhang, and Nanquan from unrelated material. The sense is supported, but that context contamination must be removed and the actual case figures recorded.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "id": "t_486aaf7fbce8",
+      "term": "監寺",
+      "rejectedSha256": "ba474d8b1fa5fdeda2160113c2776c24c950ff1b380c6b52d0aa0e4fd339b4ec",
+      "currentSha256": "1b59511dda784578b5af5ec71ffc2e67d14f14f63cdbb13e0c7cafa436e804c4",
+      "reason": "Two headword witnesses are editorial/person headings rather than speech: 和監寺四旬 and 雨樹愚監寺. They currently assign Baichi Yuanshuo and Zhangxue Tongzui as MasterName utterers. MasterName must be null and the headings classified as editorial/impersonal while retaining the relevant master only as author/context where warranted.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 16,
+      "id": "t_0c53a5a2243b",
+      "term": "知客",
+      "rejectedSha256": "917ca42af05d35b7df989dab64517fb3354ecad678e397b5b9d7ca91cf03dd6c",
+      "currentSha256": "00afd5fedb40b164b51962a2c768e60404861829a41337cc6f4e2d0379014b25",
+      "reason": "In J26nB185, 明知客云：龍蛇易辨… is direct speech by the person identified as Ming, the guest prefect. MasterName correctly remains null because he is not rostered as a master, but ActorAttribution incorrectly calls this narrator speech. It must identify the named non-master officeholder as the utterer. The office/phrase sense split itself is supported.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "copied-sense-explanation",
+          "coordinate": "Senses[1].Explanation",
+          "matches": "Senses[0].Explanation"
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "id": "t_ec1241360056",
+      "term": "無孔鐵鎚",
+      "rejectedSha256": "481f96c1276357d7103f749e60290c36293ac3a79fd446e824612d63f899cc08",
+      "currentSha256": "b98ad4cc9fc24c6cac8229705ca1ee9bb831dd59a96ab66c1389d6ae5eb828e7",
+      "reason": "The object-image/person-label split is corpus-supported, but sense 1's Explanation repeats its definition and corpus claim almost verbatim in successive opening sentences ('solid, unusable hammer-head image' / 'An impossible solid hammer-head…'). Consolidate the duplicated prose while preserving the anchored no-entry inference and both senses.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[0].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[1].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[2].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[3].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[1].Occurrences[0].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[1].Occurrences[1].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[1].Occurrences[2].AttributionNote"
+        }
+      ]
+    },
+    {
+      "ordinal": 25,
+      "id": "t_fe8d4efe588f",
+      "term": "見處",
+      "rejectedSha256": "f15f41289082ee5b913df50ecef7ec6d802854fd74599da142b998debe9eb342",
+      "currentSha256": "5db6e132aa59758fb0177405b8e9b75bc65006f8188cee7fe9eeed84ec7e7b56",
+      "reason": "The X66n1297 verse witness has 相見處, 'the place of meeting/encounter,' not 見處 as 'point of seeing.' It is substring contamination from a different lexical unit and cannot support this sense; replace it with an exact lexical witness rather than deleting depth.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 26,
+      "id": "t_0d6794766098",
+      "term": "是什麼",
+      "rejectedSha256": "34fe677e4837f3f6f02d0a1d2843ec6918c774352762661286c4f4a360957764",
+      "currentSha256": "0f60db9364c8a088344d4a13c30c088587bd0f45ee3cb86676fa543556cf12d2",
+      "reason": "Evidence and attribution are sound, but the Explanation opens with the exact same sentence twice ('It questions an object just indicated…'). Remove the duplicate without changing the meaning or witnesses.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[0].MasterName",
+          "detail": "headword precedes the master's marked response"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[3].MasterName",
+          "detail": "headword precedes the master's marked response"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[5].MasterName",
+          "detail": "headword precedes the master's marked response"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[6].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 30,
+      "id": "t_327d40c2c9cb",
+      "term": "飢來喫飯",
+      "rejectedSha256": "f8bdcde5697137e5697f4bd20a7c8285a171de7c702e736070385fd5c41e7bcb",
+      "currentSha256": "345bee5e3c213c87b217f6eb6f3ffd06d215e605ad803a3d67034fc7480b3445",
+      "reason": "The sense and cases are strong, but both claim-anchor AttributionNotes duplicate 'X is the exact headword speaker' and then repeat the same assertion a third time in template form. Consolidate each note to one reader-facing attribution while retaining its exact speaker and source title.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 32,
+      "id": "t_5ac2c5d1fc1e",
+      "term": "寸絲不掛",
+      "rejectedSha256": "2a30bc051fb0110439a427b11d9e29ca7ae86f90cbcaf7624f5f11b6ac3de3a1",
+      "currentSha256": "73961f4e76e0f8057ff38f392789e880555a76612ce619f7d52d2d34541b7482",
+      "reason": "The case analysis is strong, but the Explanation contains mechanically incomplete count prose: the 掛 variant 'occurs 97 times in ,' and the reversal '14 times in .' Restore the verified work/file denominators or remove those incomplete clauses.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "occurs 97 times in ,"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "14 times in ."
+        }
+      ]
+    },
+    {
+      "ordinal": 33,
+      "id": "t_6a1ea4df00ce",
+      "term": "騰騰任運",
+      "rejectedSha256": "58c6db876e389a0014fa65db7c2bee8e330a15c30d69b004ce433b3bb77e1f95",
+      "currentSha256": "3e9f4a8c87d0fe6be872569249efca9cf6e7bcf5d57177dc8ab44e691ff90463",
+      "reason": "The reversible rhythmic deployment is supported, but the Explanation leaves the reversed form count mechanically incomplete ('occurs 140 times in .'). Repair or remove the broken denominator.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "occurs 140 times in ."
+        }
+      ]
+    },
+    {
+      "ordinal": 35,
+      "id": "t_811316de4c5f",
+      "term": "解會",
+      "rejectedSha256": "3edf1715f182c9f8b4030cff5604825683441e370bcd2445011bfbc03aa51274",
+      "currentSha256": "20fb7da60defba48a0302198241d30b269017b231a599528756d83cfb367e151",
+      "reason": "The sense is supported, but the claim anchor is the variant 話會 rather than 解會 and its reader-facing AttributionNote is malformed ('Compiler narration: );'). Explicitly mark/prove the variant relation and rewrite the note with the actual utterer or reviewed narrator.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[0].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[1].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[2].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[3].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[4].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[5].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[6].AttributionNote"
+        }
+      ]
+    },
+    {
+      "ordinal": 39,
+      "id": "t_bcf65a900b7a",
+      "term": "煩惱即菩提",
+      "rejectedSha256": "fa1e7155336db5e426e54f0730ccb526663f0b64f11376454157d987f0498535",
+      "currentSha256": "38d18ba08976f7f00d969fa33ccf2dd461049408343f038fa8c40a56674fc89e",
+      "reason": "The corpus-grounded equation and masters' restrictions are excellent, but the Explanation imports the prohibited umbrella label in 'inherited Buddhist vocabulary.' Replace it with corpus-specific wording such as 'inherited vocabulary' without changing the evidence.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "forbidden-reader-term",
+          "coordinate": "Senses[0].Explanation"
+        }
+      ]
+    },
+    {
+      "ordinal": 42,
+      "id": "t_e931d476fd02",
+      "term": "鬱鬱黃花",
+      "rejectedSha256": "62aaf3fe40e921c9079cba67791440b2306cb98c469ac5aee663e7c4ba8b24be",
+      "currentSha256": "913dfb02ed68b72c4135a09fd2cbd7d80d497754de37123874877f88ddca9d91",
+      "reason": "The disputed yellow-flower formula is handled well, but its Explanation contains another broken count denominator: 'the fuller exact yellow-flower formula occurs 18 times in ,'. Repair or remove that incomplete mechanical claim.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[3].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 46,
+      "id": "t_04bce52397dc",
+      "term": "三昧",
+      "rejectedSha256": "92f52015d9a23869401608f540ecf1d3f85eda8d3a11da9048a69207ed3fb9ad",
+      "currentSha256": "6f92219849f1e1fc80c01e10a342a1ef71f5c6dfdbd1746dd1c38581250d7a34",
+      "reason": "The person/title split is valid and the compound evidence is rich, but PreferredTarget 'a named condition' and the circular opening ('selected English label for a borrowed name for a condition') do not tell an English reader what the lexical headword denotes. Supply a corpus-bounded English-first gloss that covers entering/possessing named modes without importing the prohibited meditation label; retain Master Sanmei separately.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "selected English label for a borrowed name for a condition"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[1].Occurrences[2].AttributionNote"
+        }
+      ]
+    },
+    {
+      "ordinal": 47,
+      "id": "t_0661e03e65e3",
+      "term": "勘辨",
+      "rejectedSha256": "81e2b43f4f45dab1b28f0349474018264044ecc79ad9f374928970006d160b23",
+      "currentSha256": "301a470a569e60081d4d88880f703dd9fbb11fb1680758a20760bca49e988665",
+      "reason": "The old audit defect remains: sense 2's 勘辨黃檗因入厨 is a section heading, yet MasterName is Linji as though he uttered it; the later table-of-contents heading similarly assigns Zhean Jingfan. Set MasterName null and classify both as editorial headings. The verb/section split itself is valid.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 50,
+      "id": "t_0f8c3a2073e3",
+      "term": "定慧",
+      "rejectedSha256": "d30ebe644214444a5270d1c80b9947297befdb27d1b4b16839325db25227d104",
+      "currentSha256": "d597e86b431f810d5a9fffe2126293bc8d1573ef5aface1a1e183814702ac24e",
+      "reason": "The entry's definitions are strong, but the first claim anchor is false/misattributed: Kwic 不是二 in T48n2001 belongs to Hongzhi's unrelated line 一不是二不成, not Huineng's 定慧一體，不是二. Replace it with the actual Huineng span in T48n2008 and verify; do not delete the quote.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 55,
+      "id": "t_200fc439a99e",
+      "term": "磨磚作鏡",
+      "rejectedSha256": "74352e5b4fd50cbf4b62ca70b224e1f20178b0e6b02cf1e6aab85b9cd0123ad5",
+      "currentSha256": "ebfe037a1bf4a2d5c91d94a10198920f40116d6e656c8e8fbf8c9f88d4c3f9a5",
+      "reason": "Evidence is strong, but the Explanation repeats its opening definition and two claim-anchor notes duplicate the exact-speaker assertion. Consolidate prose without removing anchors.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 60,
+      "id": "t_35c3fb655630",
+      "term": "驗人",
+      "rejectedSha256": "4378119b37d3d4b62fd6a5ee24699c6c167e99fd986c230a7fdf3965702d7485",
+      "currentSha256": "d233a96af9025b96043609876cee38aed50352baaea4cb4475c5be5f762d89af",
+      "reason": "Evidence is sound, but the Explanation opens with two template-equivalent sentences ('denotes to test a person' / 'Its wording is to test a person'). Remove the duplicate.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "denotes to test a person"
+        }
+      ]
+    },
+    {
+      "ordinal": 66,
+      "id": "t_4e10d7c80fbc",
+      "term": "四照用",
+      "rejectedSha256": "31e2459dab07982965010985cb9c16cd1c9a3437e1a62bfdc6c83bd8cb30428a",
+      "currentSha256": "319f13ad0318860f7daed07d0f920ab2398289250ee9d1d1d66c6c89a096753d",
+      "reason": "The defining witness begins with the editorial heading 四照用 before 師一日示眾, yet ActorAttribution assigns Huiyan Zhizhao as actor. Classify the headword as a heading and separately attribute the following fourfold utterance to its actual section master.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 69,
+      "id": "t_58099932161b",
+      "term": "斷臂",
+      "rejectedSha256": "4176e364c99df77254fc123084f3cde97700615e1f58a9718c1c1f36d665fc72",
+      "currentSha256": "99d64d0708d9c2c85639173ccc18de554f2dba7050b8fcb7ac802c2be41024a1",
+      "reason": "The core entry is strong, but both claim anchors fail to contain 斷臂: one is an unrelated long doctrinal paragraph and the other has 雪湧臂, not the headword. Re-anchor the intended claims to exact headword-bearing Huike passages; do not delete quoted claims.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[6].AttributionNote"
+        }
+      ]
+    },
+    {
+      "ordinal": 70,
+      "id": "t_5bc32131e0a8",
+      "term": "德山托鉢",
+      "rejectedSha256": "a7b594ec96f0ac44942afda110d5d7113dfe01265cfcd3f35aadf53149fcbdd1",
+      "currentSha256": "b66a21a86704930c99faddf938472ab1557a0d94e684f6111790a2b6c9599ce4",
+      "reason": "The first witness is a case heading/title followed by narration, but MasterName is Deshan as though he uttered the compound. Set MasterName null for the heading and retain Deshan, Xuefeng, and Yantou as context figures.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[1].MasterName",
+          "detail": "headword precedes the master's marked response"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[2].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 73,
+      "id": "t_6af80faddcf0",
+      "term": "沒巴鼻",
+      "rejectedSha256": "f2e4c6fd0981f6e90d6d816d42b9558b6d028f28c1ef218f0b186bb24f743a1f",
+      "currentSha256": "996e02ac97cc26112dd3117d7e5fef07d283e41a238d3ad6c89d6037a94349e8",
+      "reason": "Evidence supports 'no handle to grasp,' but the Explanation opens with redundant template lines ('denotes...' / 'Its wording is...'). Consolidate them.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 74,
+      "id": "t_6c58ed7a7c6c",
+      "term": "一行三昧",
+      "rejectedSha256": "8283ed66551fd777b5f84c2bf2b45ff8839e92f79e1aa00de157f492930040ce",
+      "currentSha256": "4b6a0ffc7803e141ab3b2d134e17936876ac4188ee05334e0f70fcaddf1b8368",
+      "reason": "The corpus-derived definition and rejection of motionless sitting are excellent, but the first two sentences repeat the same Huineng definition almost verbatim. Remove the duplicate.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 78,
+      "id": "t_78bd967fdcd6",
+      "term": "大疑",
+      "rejectedSha256": "872cd9f46898c58c6dc1e47514dc29d00656907a29039e51e1279c6d1202cb46",
+      "currentSha256": "7c2ebb9a9115ffc95626d7c64518bcff2de92b63b5770f3d5da8eabea9a6f22c",
+      "reason": "One occurrence puts the literal string 'unnamed questioning monk' in MasterName instead of null plus ActorAttribution. Correct the schema/actor field; the sense itself is supported.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "unnamed questioning monk"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[3].AttributionNote"
+        }
+      ]
+    },
+    {
+      "ordinal": 79,
+      "id": "t_7de4a77a97bd",
+      "term": "看話",
+      "rejectedSha256": "16f8f388cb770f16dafd1dd4b6cdce1912f7994b304eb79aa0643f31828491c8",
+      "currentSha256": "bdcf0cbda4f062989673a28677c06fd722d23c0edffc2727454cfb6880e787f0",
+      "reason": "The ordinary look-at-the-saying account and corpus criticism are strong, but the Explanation starts with two redundant template glosses. Consolidate them without replacing the corpus-specific translation with an imported technical label.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 83,
+      "id": "t_96255c741b17",
+      "term": "沒滋味",
+      "rejectedSha256": "7f7e147a01f4bd11261a0a018bb23d52142f21f3faa3622863d55924e9819f2b",
+      "currentSha256": "ab7a5028a97cf1f38de88f286f69937c9d1ba03d795649bb9a4f0b34856f5d61",
+      "reason": "Rich evidence, but the Explanation opens with redundant template sentences ('denotes has no flavor' / 'Its wording is...'). Consolidate.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "rejected-prose-substantially-unchanged",
+          "fragment": "denotes has no flavor"
+        }
+      ]
+    },
+    {
+      "ordinal": 88,
+      "id": "t_aa45c307e9f1",
+      "term": "頭首",
+      "rejectedSha256": "9f544cf31d094fd77f8ae42b2ae1d8cb0932451921ae4ddba4038cc9d5611ea6",
+      "currentSha256": "bcc1a3103860febdecb96354dda60275ddfa77a3aee69d29f920aa5bc6f63424",
+      "reason": "The first four witnesses are institutional contents/occasion headings but ActorAttribution assigns named authors (Yixian, Dehui and Dasu, Changlu Zongze, Daiweng Yue) as though they uttered the headword. Reclassify the headings as editorial/impersonal while retaining source authorship separately.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 90,
+      "id": "t_af212eccb3c0",
+      "term": "騎牛覓牛",
+      "rejectedSha256": "84c2045e742c497225c1bac49ff2882d593b7357a1ff5df4cb90939c7be21c7f",
+      "currentSha256": "859526ffc6c091570b4c63ea99f6633761a46806d96446cfbc60c231df39b014",
+      "reason": "The case analysis is strong, but the Explanation repeats the literal definition in its first two sentences. Consolidate without losing the ox-sequence evidence.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[0].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 93,
+      "id": "t_b887bf089b98",
+      "term": "當處",
+      "rejectedSha256": "0beb5928a9935daed91ae2adbf63f5d1e4323ba715071d3182c20d81382ebfb9",
+      "currentSha256": "dbd55ad24adbb772e85e64c7d540a31770e22e34a6840d91821e7058ec41ecde",
+      "reason": "Two witnesses are substring contamination: 承當處 means the place/point of taking responsibility and is not lexical 當處 'right where it is.' Replace both with exact standalone/grammatically matching 當處 witnesses.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        }
+      ]
+    },
+    {
+      "ordinal": 95,
+      "id": "t_beab8961fb55",
+      "term": "接引",
+      "rejectedSha256": "1f55454cfb9168e6de535ce7bc6fc525a441f45e6ad8f87c9991d90a7c5135a5",
+      "currentSha256": "0a8132b3acb7a4e1b7648346a092bbffef7d166c355293a392ef432acb937a6b",
+      "reason": "The witness 牛首融悟、接引閣體玄、淨業堂見樸 uses 接引閣 as a Reception Pavilion/place-title attached to Tixuan, not the verb 'receive and lead.' Split the institutional place/title referent if sufficiently attested or replace this contaminant.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[7].AttributionNote"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[1].MasterName",
+          "detail": "headword precedes the master's marked response"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[7].ActorAttribution.Status",
+          "detail": "marked question turn is classified as narration"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[10].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 98,
+      "id": "t_c95d0abb6577",
+      "term": "撥無因果",
+      "rejectedSha256": "203012abcbea4ceccb97e1b73134786b8504ea8baae0beb6ab1859dd316b1db9",
+      "currentSha256": "0ec2d398d06587d15d0abce2bb93f8c17eff5ddc51a8433b1eefa07a8399dde0",
+      "reason": "The condemned-error entry and negation controls are substantively strong, but both control-anchor AttributionNotes contain malformed reader prose ('the is the documentary actor;'). Name the text/documentary voice grammatically while retaining both controls.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[0].AttributionNote"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[1].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    },
+    {
+      "ordinal": 106,
+      "id": "t_f59209907f3d",
+      "term": "單提",
+      "rejectedSha256": "646014ba4dbe522a4959fa8b224264fe1dbe982bf9e8f184ae6177c07bb37ec0",
+      "currentSha256": "e57302fd353d033e05b831b46b88616c73aba81ba96d50623b4fd175e038e49f",
+      "reason": "All three ClaimAnchors are unrelated spans that do not contain 單提 and each has malformed 'Compiler narration: );' attribution prose. Re-anchor the intended claims to exact 單提-bearing passages and name the actual utterer/documentary voice; do not delete claims.",
+      "hardPass": false,
+      "findings": [
+        {
+          "code": "missing-explicit-reason-closure"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[0].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[1].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[2].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[3].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[4].AttributionNote"
+        },
+        {
+          "code": "malformed-attribution-note",
+          "coordinate": "Senses[0].Occurrences[5].AttributionNote"
+        },
+        {
+          "code": "unresolved-question-turn",
+          "coordinate": "Senses[0].Occurrences[6].MasterName",
+          "detail": "headword precedes the master's marked response"
+        }
+      ]
+    }
+  ]
+}

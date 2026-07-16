@@ -1146,6 +1146,23 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     unadjudicated. A checked `DEFER` or `REJECT` never becomes construction
     eligible, and frequency cannot override lexical-boundary or Zen-deployment
     failure.
+15. **⛔ REPAIR-REASON CLOSURE PREcedes rereview.** A changed hash and a green
+    mechanical cohort gate do not prove that the defect an independent reader
+    rejected was repaired. Before dispatching any repaired `REVISE` entry,
+    `audit_repair_reason_closure.py` must bind the rejecting review hash, repair
+    ledger hash, and current authoritative entry hash. Every rejection reason
+    must map to the exact changed coordinate or evidence row and carry an
+    explicit closure with before/after value hashes, the evidence keys that
+    license the new value, and complete-case proof for actor/turn defects. The
+    gate fails closed on a missing mapping, unchanged or substantially unchanged
+    rejected prose, copied sense explanations, forbidden reader terms, malformed
+    attribution notes, or a marked question turn still assigned to the following
+    master/narrator. Passing proves delivery only; a different reader still
+    rereads every complete case and alone may issue KEEP. Calibration: the first
+    Lane-B repair claimed 32 sealed repairs, yet independent rereview found 20
+    still requiring revision, including eleven whose rejected prose survived
+    substantially or verbatim. Never spend reviewer time rediscovering a defect
+    that coordinate-level closure could have caught before dispatch.
 
 ## 9. Working durably at scale (don't lose work)
 Follow **`LEDGER_SYSTEM.md`**: orchestrator persists on every worker return; small slices (≈1 term);
