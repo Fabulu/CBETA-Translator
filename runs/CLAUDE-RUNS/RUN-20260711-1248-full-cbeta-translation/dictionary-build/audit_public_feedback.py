@@ -54,6 +54,19 @@ def duplicated_opening(text: str) -> str | None:
     return first if remainder.startswith(first) else None
 
 
+def repeated_sentence(text: str) -> str | None:
+    """Return a substantive sentence repeated anywhere in one prose field."""
+    seen = set()
+    for sentence in re.split(r"(?<=[.!?])\s+", text.strip()):
+        normalized = re.sub(r"\s+", " ", sentence).strip()
+        if len(normalized) < 24:
+            continue
+        if normalized in seen:
+            return normalized
+        seen.add(normalized)
+    return None
+
+
 def load_entry(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -115,6 +128,15 @@ def audit(path: Path) -> dict:
                 "sense": index,
                 "opening": duplicate[:160],
             })
+        for field in ("Explanation", "Note"):
+            repeated = repeated_sentence(str(sense.get(field) or ""))
+            if repeated:
+                flags.append({
+                    "kind": "repeated-prose-sentence",
+                    "sense": index,
+                    "field": field,
+                    "sentence": repeated[:240],
+                })
         if not explanation.strip():
             flags.append({"kind": "opening-interpretation-missing", "sense": index})
         elif WEAK_OPENING.search(explanation):

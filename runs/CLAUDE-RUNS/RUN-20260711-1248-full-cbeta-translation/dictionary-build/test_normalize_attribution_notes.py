@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import unittest
+from unittest.mock import patch
 
-from normalize_attribution_notes import actor_prefix
+from normalize_attribution_notes import actor_prefix, normalize
 
 
 class ActorPrefixTest(unittest.TestCase):
@@ -28,6 +29,27 @@ class ActorPrefixTest(unittest.TestCase):
         self.assertIsNone(actor_prefix({"ActorAttribution": {
             "Status": "reviewed-unnamed", "ActorLabel": "speaking record owner resolved from the complete section"
         }}))
+
+    @patch("normalize_attribution_notes.zc.title", return_value="Five Lamps")
+    def test_source_prefix_is_canonical_and_idempotent(self, _title):
+        row = {
+            "RelPath": "X/X80/X80n1565.xml",
+            "MasterName": "Zhaozhou Congshen",
+            "AttributionNote": (
+                "Source record (X/X80/X80n1565.xml). Source record (五燈會元). "
+                "Exact actor: Zhaozhou Congshen."
+            ),
+        }
+        note, changes = normalize(row)
+        self.assertEqual(
+            "Source record (X/X80/X80n1565.xml). Exact actor: Zhaozhou Congshen.",
+            note,
+        )
+        self.assertIn("source-canonicalized", changes)
+        row["AttributionNote"] = note
+        again, changes = normalize(row)
+        self.assertEqual(note, again)
+        self.assertEqual([], changes)
 
 
 if __name__ == "__main__":

@@ -20,6 +20,12 @@ from pathlib import Path
 import zc
 
 
+LEADING_SOURCE_PREFIXES = re.compile(
+    r"^\s*(?:(?:Source\s+(?:record|text))\s*\([^)]*\)\.?\s*)+",
+    re.IGNORECASE,
+)
+
+
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -63,15 +69,20 @@ def actor_prefix(row: dict) -> str | None:
 
 def normalize(row: dict) -> tuple[str | None, list[str]]:
     old = str(row.get("AttributionNote") or "").strip()
-    title = zc.title(str(row.get("RelPath") or ""))
+    rel = str(row.get("RelPath") or "").strip().replace("\\", "/")
+    title = zc.title(rel)
     actor = actor_prefix(row)
-    if not old or not title or not actor:
-        return None, [x for x, ok in (("note", old), ("title", title), ("actor", actor)) if not ok]
-    note = old
+    if not old or not rel or not title or not actor:
+        return None, [x for x, ok in (("note", old), ("relpath", rel), ("title", title), ("actor", actor)) if not ok]
+    # Canonicalize, rather than stack, source prefixes. Earlier migrations
+    # prepended the exact RelPath to a legacy Chinese-title prefix and produced
+    # hundreds of reader-visible "Source record … Source record …" notes.
+    body = LEADING_SOURCE_PREFIXES.sub("", old).strip()
+    source_prefix = f"Source record ({rel})."
+    note = f"{source_prefix} {body}" if body else source_prefix
     changes = []
-    if title not in note:
-        note = f"Source text ({title}). {note}"
-        changes.append("source")
+    if note != old:
+        changes.append("source-canonicalized")
     if actor.lower() not in note.lower():
         note = f"{actor}: {note}"
         changes.append("speaker")

@@ -461,6 +461,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        an unparenthesized Chinese title-run in English prose. The attribution audit
        accepts exact `RelPath` as the preferred source proof and parenthesized Chinese
        titles only as a migration fallback.
+       **Exactly one source prefix:** never stack a new path prefix in front of a
+       legacy title prefix (`Source record (path). Source record (title).`). Canonicalize
+       the note to one `Source record (<exact RelPath>).` prefix. Likewise, no sentence
+       may be repeated to satisfy depth or count ledgers, and phrases such as “the
+       identified master” or “the cited participant” are unresolved placeholders, not
+       reader prose. The hard gates reject all three families.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that

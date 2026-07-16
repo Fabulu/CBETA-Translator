@@ -33,7 +33,8 @@ PLACEHOLDER_ACTOR_RE = re.compile(
     r"|\b(?:the\s+)?named\s+section\s+speaker\s+or\s+quoted\s+case\s+voice\b"
     r"|\b(?:the\s+)?verse\s+or\s+address\s+invoking\b"
     r"|\b(?:the\s+)?record[’']s\s+named-book\s+discussion\b"
-    r"|\b(?:the\s+)?cited\s+(?:voice|figure)\b"
+    r"|\b(?:the\s+)?cited\s+(?:voice|figure|participant)\b"
+    r"|\b(?:the\s+)?identified\s+master\b"
     r"|\b(?:the\s+)?presiding\s+speaker\b"
     r"|\b(?:the\s+)?verse\s+voice\b"
     r"|\b(?:the\s+)?case\s+or\s+verse\s+narrator\b"
@@ -42,6 +43,10 @@ PLACEHOLDER_ACTOR_RE = re.compile(
     re.IGNORECASE,
 )
 DUPLICATED_NOTE_PREFIX_RE = re.compile(r"(?:^|[.!?]\s+)([^:.\n]{1,100}):\s*\1:")
+DUPLICATED_SOURCE_PREFIX_RE = re.compile(
+    r"(?:\bSource\s+(?:record|text)\s*\([^)]*\)\.?\s*){2,}",
+    re.IGNORECASE,
+)
 sys.path.insert(0, str(HERE))
 import zc  # noqa: E402
 
@@ -487,7 +492,7 @@ def main() -> int:
                     fail("missing_attribution_note", entry, f"{term} s{si} o{oi}")
                 else:
                     counts["attribution_notes"] += 1
-                    if DUPLICATED_NOTE_PREFIX_RE.search(note):
+                    if DUPLICATED_NOTE_PREFIX_RE.search(note) or DUPLICATED_SOURCE_PREFIX_RE.search(note):
                         fail("duplicated_attribution_note_prefix", entry,
                              f"{term} s{si} {evidence_label} AttributionNote: {note!r}")
                     if PLACEHOLDER_ACTOR_RE.search(note):
