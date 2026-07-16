@@ -38,7 +38,14 @@ def lint(path):
             # speech-frame tokens here instead of paying for the full depth gate.
             note=str(o.get("AttributionNote") or "")
             if RAW_FRAME.search(note): out.append({"kind":"non-english-attribution-note","sense":si,"occurrence":oi,"run":RAW_FRAME.search(note).group(0)})
-        stored=list(dict.fromkeys(o.get("RelPath") for o in occ))
+        # SourceTexts is compiler-derived from every structured evidence row,
+        # including claim anchors.  Comparing only lexical occurrences makes
+        # any anchor from a new work look falsely stale immediately after a
+        # successful compile.
+        stored=list(dict.fromkeys(
+            o.get("RelPath") for o in [*occ, *(s.get("ClaimAnchors") or [])]
+            if o.get("RelPath")
+        ))
         if stored != list(s.get("SourceTexts") or []): out.append({"kind":"stale-source-texts","sense":si})
     return {"id":d.get("Id"),"term":term,"path":str(path),"flags":out,"passes":not out}
 

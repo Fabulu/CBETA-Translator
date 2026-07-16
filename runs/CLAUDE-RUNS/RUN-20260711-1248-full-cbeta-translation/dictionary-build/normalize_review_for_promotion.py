@@ -18,7 +18,7 @@ def load(path: Path):
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("review")
-    parser.add_argument("--field", required=True)
+    parser.add_argument("--field", default=".", help="dot path to review rows; '.' accepts a top-level one-row review")
     parser.add_argument("--prefix", required=True)
     args = parser.parse_args()
 
@@ -26,9 +26,23 @@ def main() -> int:
     if not source.is_absolute():
         source = HERE / source
     review = load(source)
-    rows = review[args.field]
+    rows = review
+    if args.field != ".":
+        for key in args.field.split("."):
+            rows = rows[key]
+    if isinstance(rows, dict) and rows.get("id"):
+        rows = [rows]
     quarantine = load(HERE / "maintenance" / "fresh-attribution-regression-quarantine.json")
     placement = {row["id"]: row for row in quarantine["rows"]}
+    for manifest_path in sorted((HERE / "fresh-build" / "waves").glob("f[0-9][0-9][0-9].json")):
+        wave = manifest_path.stem
+        for manifest_row in load(manifest_path).get("entries", []):
+            placement[manifest_row["id"]] = {
+                "id": manifest_row["id"],
+                "term": manifest_row["term"],
+                "wave": wave,
+                "lane": manifest_row["lane"],
+            }
     groups: dict[tuple[str, str], list[dict]] = {}
     for row in rows:
         if isinstance(row, list):
@@ -46,7 +60,7 @@ def main() -> int:
             "id": row["id"],
             "term": row.get("term") or row.get("headword") or slot["term"],
             "verdict": "KEEP",
-            "reviewedSha256": row.get("reviewedSha256") or row.get("currentFreshBuildSha256") or row.get("entrySha256") or row.get("sha256"),
+            "reviewedSha256": row.get("reviewedSha256") or row.get("reviewedEntrySha256") or row.get("currentFreshBuildSha256") or row.get("currentSha256") or row.get("entrySha256") or row.get("sha256") or (row.get("reviewedInput") or {}).get("entrySha256"),
             "finding": row.get("finding") or row.get("reason") or "Independent full-case review passed at the recorded current hash.",
             "selfReview": False,
         })

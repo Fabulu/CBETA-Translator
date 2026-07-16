@@ -87,7 +87,10 @@ mystical or general-Buddhist abstraction.
    phrase confirmation is useful. Use `indexed_kwic.py` as the desktop-artifact cross-check: it verifies and
    intersects the v4 `search.inverted.bin` postings, then confirms the contiguous phrase and returns context from
    `search.text.bin`. That desktop inverted index is bigram-only, so a one-character headword such as `金` or `銀`
-   uses its explicit KWIC-text fallback (or `fastkwic.py`). Keep only allowlist hits.
+   uses its explicit KWIC-text fallback (or `fastkwic.py`). Its positive results are useful, but **a desktop-
+   postings miss is not evidence of absence**: a measured audit found CBETA line tags splitting bigrams in seven
+   exact source witnesses. Use the website engine for complete-recall candidate discovery and `zc` for the final
+   apparatus-clean decision. Keep only allowlist hits.
    **These indexes are discovery accelerators, never final evidence:** `search.text.bin` can preserve material
    later excluded as XML apparatus. Every saved occurrence must therefore pass `zc.verify` against the source
    XML, with its returned `FromLb`/`ToLb`. Record which indexed path was used in `WORK.md`.
@@ -451,6 +454,13 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        evidence to interpret, not people. The draft compiler hard-rejects unmistakable examples even while
        legitimate newly discovered Chinese master names await roster reconciliation.
      - Name him in the prose: not "a master answers", but "**Dongshan Shouchu** answers".
+     - Name the source without breaking the English-first rule: every public
+       `AttributionNote` must include the occurrence's exact `RelPath` (the stable,
+       linkable source identity) and an intelligible English source label. Keep the
+       Chinese canonical title in source metadata and the source card; do not require
+       an unparenthesized Chinese title-run in English prose. The attribution audit
+       accepts exact `RelPath` as the preferred source proof and parenthesized Chinese
+       titles only as a migration fallback.
      - ⚠ In the TEI header, `編` / `集` means COMPILER, not speaker (`宋 蘊聞編` on 大慧普覺禪師語錄 is the
        compiler; the master is Dahui, from the title). `說 / 撰 / 述 / 語 / 著` is the master himself.
      - ⚠ **The TEI `<author>` field is EMPTY for the entire X (卍續藏 / Manji) canon.** A pipeline that

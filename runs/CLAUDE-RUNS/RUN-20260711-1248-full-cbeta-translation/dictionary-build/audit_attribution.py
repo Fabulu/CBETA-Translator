@@ -55,7 +55,10 @@ ATTRIBUTION_RUNGS = [
 ]
 ACTOR_STATUSES = {"identified-non-master", "reviewed-unnamed", "narrated", "impersonal"}
 EXPLICIT_MASTER_TURN = re.compile(r"師(?:乃|遂|復)?(?:云|曰|道|問|答|謂)")
-EXPLICIT_MASTER_ACTION = re.compile(r"師(?:乃|遂|復)?(?:拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
+# A singular 師 in a case frame identifies a performer who must be resolved.
+# Generic plurals such as 諸師拈提語 and 眾師舉揚 do not identify one nameable
+# performer and must instead be adjudicated through ActorAttribution.
+EXPLICIT_MASTER_ACTION = re.compile(r"(?<![諸眾])師(?:乃|遂|復)?(?:拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
 ANONYMOUS_MONK_QUESTION = re.compile(r"僧(?:進)?問")
 RAISED_OLD_SAYING = re.compile(r"(?:古人|古德|先德)(?:有言|云|曰)")
 CLOSED_ROLES = {
@@ -64,6 +67,58 @@ CLOSED_ROLES = {
     "commentator", "later-raiser", "later-quoter", "teacher", "student",
     "compiler", "verse-author", "case-figure",
 }
+
+
+def has_evidence_bound_later_quoter(actor: dict | None) -> bool:
+    """Do not let a bare ``ActorRole=later-quoter`` launder an old saying.
+
+    A non-master quoter can be the exact surface utterer, but that conclusion
+    must carry the same actor identity, six-rung investigation, and grammatical
+    turn evidence required elsewhere.  The role string by itself is not proof.
+    """
+    if not isinstance(actor, dict) or actor.get("ActorRole") != "later-quoter":
+        return False
+    if actor.get("Status") not in {"reviewed-unnamed", "identified-non-master"}:
+        return False
+    if not str(actor.get("Kind") or "").strip() or not str(actor.get("ActorLabel") or "").strip():
+        return False
+    rungs = actor.get("RungsChecked") or []
+    if list(rungs) != ATTRIBUTION_RUNGS:
+        return False
+    grammar = str(actor.get("GrammarEvidence") or "")
+    return bool(re.search(
+        r"(?:(?:僧|典座|栖|其人|居士|公|士|者)[^，。；]{0,12}(?:問|云|曰|道)"
+        r"|assigns|voices|utters|speaks)",
+        grammar,
+        re.I,
+    ))
+
+
+def explicit_master_turns_before_headword(term: str, kwic_text: str) -> list[str]:
+    """Return only master speech cues that govern text before the headword.
+
+    A cue in the lexical item itself (for example 答話) is not syntax, and a
+    following 師云 belongs to the response rather than backward to a question.
+    """
+    clauses = [
+        clause for clause in re.split(r"[。！？；\n]", kwic_text)
+        if term and term in clause
+    ]
+    return sorted({
+        match.group(0)
+        for clause in clauses
+        for match in EXPLICIT_MASTER_TURN.finditer(clause[:clause.find(term)].replace(term, ""))
+    })
+
+
+def has_exact_actor_context(master: str | None, context_masters: object) -> bool:
+    """Accept a named headword actor only when linked as utterer/verse-author."""
+    return bool(master and isinstance(context_masters, list) and any(
+        isinstance(context, dict)
+        and context.get("MasterName") == master
+        and set(context.get("Roles") or []) & {"utterer", "verse-author"}
+        for context in context_masters
+    ))
 
 
 def roster_names() -> set[str]:
@@ -230,6 +285,13 @@ def main() -> int:
         for si, sense in enumerate(data.get("Senses", []), 1):
             counts["senses"] += 1
             for related in sense.get("RelatedMasters") or []:
+                if not isinstance(related, str) or not related.strip():
+                    fail(
+                        "invalid_related_master",
+                        entry,
+                        f"{term} s{si}: RelatedMasters values must be nonempty master-name strings, got {related!r}",
+                    )
+                    continue
                 if strict_roster_here and related not in roster and related not in pending_roster:
                     fail(
                         "noncanonical_related_master",
@@ -325,11 +387,7 @@ def main() -> int:
                     clause for clause in re.split(r"[。！？；\n]", kwic_text)
                     if term and term in clause
                 ]
-                explicit_turns = sorted({
-                    match.group(0)
-                    for clause in headword_clauses
-                    for match in EXPLICIT_MASTER_TURN.finditer(clause)
-                })
+                explicit_turns = explicit_master_turns_before_headword(term, kwic_text)
                 if explicit_turns and not master:
                     fail(
                         "explicit_master_turn_left_anonymous",
@@ -385,7 +443,7 @@ def main() -> int:
                             counts["pending_roster_context_master"] += 1
                         elif strict_roster_here:
                             fail("noncanonical_context_master_name", entry, f"{term} s{si} o{oi} c{ci}: {context['MasterName']!r} is not roster names[0]")
-                if raised_old_saying and not any(
+                if raised_old_saying and not has_evidence_bound_later_quoter(actor) and not any(
                     "later-raiser" in (context.get("Roles") or [])
                     for context in context_masters if isinstance(context, dict)
                 ):
@@ -405,10 +463,7 @@ def main() -> int:
                         f"{term} s{si} o{oi}: explicit master action requires the named performer as "
                         "person-described or case-figure; finer action detail belongs in GrammarEvidence",
                     )
-                if master and not any(
-                    context.get("MasterName") == master and "utterer" in (context.get("Roles") or [])
-                    for context in context_masters if isinstance(context, dict)
-                ):
+                if master and not has_exact_actor_context(master, context_masters):
                     fail("missing_utterer_context", entry, f"{term} s{si} o{oi}: {master}")
 
                 if evidence_kind == "o" and term not in str(occ.get("Kwic") or ""):
@@ -443,9 +498,21 @@ def main() -> int:
                         for context in context_masters if isinstance(context, dict) and context.get("MasterName")
                     )
                     actor_text = json.dumps(actor, ensure_ascii=False) if isinstance(actor, dict) else ""
+                    actor_label = str((actor or {}).get("ActorLabel") or "").strip()
                     named_in_prose = set(roster_name_pattern.findall(note + " " + actor_text)) if roster_name_pattern else set()
                     missing_named_context = sorted(
                         name for name in (named_in_prose - represented)
+                        # A named lay/official/non-master must be printed in
+                        # ActorLabel and the reader note, but must never be
+                        # smuggled into MasterName/ContextMasters merely
+                        # because a broad roster alias table also contains the
+                        # string.  The XOR branch itself is the structured
+                        # representation for this actor class.
+                        if not (
+                            isinstance(actor, dict)
+                            and actor.get("Status") == "identified-non-master"
+                            and name in actor_label
+                        )
                         if not any(
                             len(linked) > len(name) and name in linked
                             and (linked in note or linked in actor_text)
@@ -470,8 +537,13 @@ def main() -> int:
                     if rel not in title_cache:
                         title_cache[rel] = zc.title(rel)
                     title = title_cache[rel]
-                    source_named = bool(title and title in note)
-                    actor_label = str((actor or {}).get("ActorLabel") or "").strip()
+                    # Attribution notes are public English prose. Requiring the
+                    # exact Chinese manifest title here contradicted the
+                    # English-first/CJK prose gate. An exact RelPath is an
+                    # unambiguous, linkable source identity and is therefore the
+                    # preferred proof; legacy parenthesized Chinese titles remain
+                    # accepted during migration.
+                    source_named = bool((title and title in note) or (rel and rel in note))
                     # The reviewed non-master branch also covers a personally
                     # named lay/questioning actor whom MasterName cannot link as
                     # a roster master. In that outcome the reader note must name
@@ -495,7 +567,12 @@ def main() -> int:
                     if not speaker_named and not exception_named:
                         fail("note_missing_speaker", entry, f"{term} s{si} o{oi}: {note}")
                     if not source_named:
-                        fail("note_missing_source", entry, f"{term} s{si} o{oi} expected {title!r}: {note}")
+                        fail(
+                            "note_missing_source",
+                            entry,
+                            f"{term} s{si} o{oi} expected exact RelPath {rel!r} "
+                            f"(preferred) or legacy title {title!r}: {note}",
+                        )
 
             prose = "\n".join(str(sense.get(k) or "") for k in ("Explanation", "Note"))
             for match in PLACEHOLDER_ACTOR_RE.finditer(prose):

@@ -376,6 +376,7 @@ def packet_input_sha256(entry: dict) -> str:
                 "RelPath": occurrence.get("RelPath"),
                 "FromLb": occurrence.get("FromLb"),
                 "Kwic": occurrence.get("Kwic"),
+                "VariantForm": occurrence.get("VariantForm"),
                 "MasterName": occurrence.get("MasterName"),
             }
             for sense_index, sense in enumerate(entry.get("Senses") or [], 1)
@@ -408,6 +409,16 @@ def main() -> int:
                     "Kwic": occurrence["Kwic"],
                     "entryId": entry.get("Id"),
                     "sourceTerm": entry.get("SourceTerm"),
+                    # Exact governed variants (豎拂 for headword 竪拂, etc.)
+                    # are the lexical item actually present in this witness.
+                    # Turn binding must search that stored form, not demand the
+                    # canonical headword graphs that the KWIC does not contain.
+                    "turnProofTerm": (
+                        occurrence.get("VariantForm")
+                        if occurrence.get("VariantForm")
+                        and occurrence.get("VariantForm") in (occurrence.get("Kwic") or "")
+                        else entry.get("SourceTerm")
+                    ),
                     "sense": sense_index,
                     "occurrence": occurrence_index,
                     "currentMasterName": occurrence.get("MasterName"),
@@ -424,9 +435,9 @@ def main() -> int:
         try:
             prior = json.loads(args.output.read_text(encoding="utf-8-sig"))
             # Packet schema changes can alter occurrence identity without any
-            # entry field changing.  Never reuse a pre-v6 packet: versions 5
-            # and earlier did not bind turn candidates to the stored KWIC.
-            if prior.get("generatorVersion") == 6:
+            # entry field changing.  v7 additionally binds governed variant
+            # forms, so older packets cannot be reused.
+            if prior.get("generatorVersion") == 7:
                 cached_hashes = prior.get("inputPacketSha256") or {}
                 for row in prior.get("packets") or []:
                     cached_by_entry.setdefault(row.get("entryId"), []).append(row)
@@ -458,7 +469,7 @@ def main() -> int:
         row.update({key: value for key, value in item.items() if not key.startswith("_") and key not in {"RelPath", "FromLb", "Kwic"}})
         row["turnProofCandidates"] = turn_proof_candidates(
             row.get("caseText") or "",
-            item.get("sourceTerm") or "",
+            item.get("turnProofTerm") or item.get("sourceTerm") or "",
             row.get("storedKwicStart"),
             row.get("storedKwicEnd"),
         )
@@ -472,7 +483,7 @@ def main() -> int:
         completed.append((item["_order"], row))
     rows = [row for _, row in sorted(completed)]
     payload = {
-        "generatorVersion": 6,
+        "generatorVersion": 7,
         "inputPacketSha256": input_hashes,
         "entries": len({row["entryId"] for row in rows}),
         "occurrences": len(rows),

@@ -19,10 +19,12 @@ const queries = [];
 let siteRoot = defaultSite;
 let repoRoot = defaultRepo;
 let exact = false;
+let listFiles = false;
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--site') siteRoot = args[++i];
     else if (args[i] === '--repo') repoRoot = args[++i];
     else if (args[i] === '--exact') exact = true;
+    else if (args[i] === '--files') listFiles = true;
     else queries.push(args[i]);
 }
 if (!queries.length) {
@@ -98,6 +100,9 @@ for (const query of queries) {
         exactTextShardFiles: exactCounts ? exactCounts.filter(value => value > 0).length : null,
         exactTextShardHits: exactCounts ? exactCounts.reduce((sum, value) => sum + (value ?? 0), 0) : null,
         failedTextShardChecks: exactCounts ? exactCounts.filter(value => value === null).length : null,
+        exactTextShardFileIds: exactCounts && listFiles
+            ? kept.filter((item, index) => exactCounts[index] > 0).map(item => item.meta.fileId)
+            : undefined,
         top: kept.slice(0, 5).map(item => ({ fileId: item.meta.fileId, indexTf: item.row.hitCount })),
     });
 }

@@ -125,3 +125,22 @@ also found `audit_public_feedback.py` crashed when a cohort supplied repository-
 normalizes paths at entry and has a regression test. The composite cheap gate takes tens of seconds for
 dozens of entries, versus a full independent turn reading 202 cases. This prevents that entire class of
 wasted review round.
+
+## Pass 11: indexed discovery, source-backed truth
+
+The website's actual v3 sharded engine is now the mandatory first pass for corpus
+discovery (`web_index_kwic.mjs`, batching many terms per invocation). A measured
+`乾屎橛` check returned 806 sidecar hits in 232 allowlisted files in seconds. The
+apparatus-clean `zc.count` authority returned 798 hits in 230 files: importantly,
+every one of the 230 source-backed files was present in the website result, while
+the two extra website files were apparatus-only matches. This is exactly the safe
+shape for a discovery accelerator: complete candidate recall followed by stricter
+source rejection.
+
+The desktop v4 bigram postings alone are not a safe negative filter for dictionary
+evidence. They omitted seven files where a CBETA tag/line boundary split a query
+bigram. Therefore the hard pipeline is: website inverted/KWIC index for batched
+candidate retrieval; read the complete case; `zc.count` for apparatus-clean frozen-
+corpus totals; and `zc.verify` for every persisted KWIC and line bound. Index results
+may add candidates but may never suppress an exact source witness or become evidence
+without verification. `WORK.md` records the indexed path used.

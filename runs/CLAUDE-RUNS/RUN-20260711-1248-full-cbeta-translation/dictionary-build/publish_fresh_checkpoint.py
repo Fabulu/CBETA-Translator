@@ -9,6 +9,7 @@ the stable Cloudflare URL reports that same count.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
@@ -22,6 +23,12 @@ FRESH = HERE / "fresh-build"
 MERGED = FRESH / "merged"
 DEFAULT_DASHBOARD = Path("/mnt/c/programmieren/readzendictprogress")
 STABLE_DATA = "https://readzen-dict-progress.pages.dev/data/progress.json"
+QUALITY_GATE_SOURCES = (
+    "run_cohort_gate.py", "zc_batch.py", "attribution_packet.py",
+    "audit_attribution.py", "audit_public_feedback.py", "audit_depth_sense.py",
+    "audit_count_claims.py", "audit_work_source_validation.py",
+    "audit_corpus_baseline.py", "audit_frozen_historical_terms.py",
+)
 
 
 def run(command: list[str], cwd: Path, *, capture: bool = False, timeout: int | None = None) -> str:
@@ -40,6 +47,17 @@ def run(command: list[str], cwd: Path, *, capture: bool = False, timeout: int | 
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def quality_gate_fingerprint() -> str:
+    digest = hashlib.sha256()
+    for name in QUALITY_GATE_SOURCES:
+        path = HERE / name
+        digest.update(name.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
 
 
 def root_review_paths() -> list[Path]:
@@ -128,17 +146,32 @@ def main() -> int:
     # every other cohort rule is fail-closed here over the complete live set.
     live_paths = [FRESH / "entries" / entry_id / "entry.v2.json" for entry_id in sorted(expected)]
     quality_report = HERE / "maintenance" / "fresh-publication-quality-current.json"
-    run(
-        [sys.executable, str(HERE / "run_cohort_gate.py"), *map(str, live_paths),
-         "--defer-roster", "--skip-packets", "--output", str(quality_report)],
-        HERE,
-    )
-    quality = load(quality_report)
-    quality_hashes = {row["id"]: row["sha256"] for row in quality.get("entries", [])}
     current_hashes = {
-        entry_id: __import__("hashlib").sha256((FRESH / "entries" / entry_id / "entry.v2.json").read_bytes()).hexdigest()
+        entry_id: hashlib.sha256((FRESH / "entries" / entry_id / "entry.v2.json").read_bytes()).hexdigest()
         for entry_id in expected
     }
+    gate_fingerprint = quality_gate_fingerprint()
+    quality = load(quality_report) if quality_report.exists() else {}
+    quality_hashes = {row["id"]: row["sha256"] for row in quality.get("entries", [])}
+    reusable = bool(
+        quality.get("hardPass")
+        and quality_hashes == current_hashes
+        and quality.get("publicationGateFingerprint") == gate_fingerprint
+    )
+    if reusable:
+        print(f"[checkpoint] reused whole-tree quality receipt for {len(current_hashes)} unchanged hashes", flush=True)
+    else:
+        run(
+            [sys.executable, str(HERE / "run_cohort_gate.py"), *map(str, live_paths),
+             "--defer-roster", "--skip-packets", "--output", str(quality_report)],
+            HERE,
+        )
+        quality = load(quality_report)
+        quality["publicationGateFingerprint"] = gate_fingerprint
+        temporary = quality_report.with_suffix(quality_report.suffix + ".tmp")
+        temporary.write_text(json.dumps(quality, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        temporary.replace(quality_report)
+        quality_hashes = {row["id"]: row["sha256"] for row in quality.get("entries", [])}
     if not quality.get("hardPass") or quality_hashes != current_hashes:
         raise SystemExit("whole-tree publication quality gate did not hard-pass at current hashes")
     run(

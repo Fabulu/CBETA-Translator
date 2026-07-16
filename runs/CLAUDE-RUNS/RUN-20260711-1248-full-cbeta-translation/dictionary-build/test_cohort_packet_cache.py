@@ -47,6 +47,20 @@ class CohortPacketCacheTests(unittest.TestCase):
             path.write_text("not json", encoding="utf-8")
             self.assertIsNone(load_cached_packet(path, {"t_a": "abc"}))
 
+    def test_governed_variant_change_invalidates_turn_packet(self):
+        entry = {
+            "Id": "t_variant", "SourceTerm": "竪拂", "Senses": [{
+                "Occurrences": [{
+                    "RelPath": "J/J36/J36nB359.xml", "FromLb": "0620c06",
+                    "Kwic": "豎拂子，云：大眾見麼", "VariantForm": "豎拂",
+                    "MasterName": None,
+                }],
+            }],
+        }
+        before = packet_input_sha256(entry)
+        entry["Senses"][0]["Occurrences"][0]["VariantForm"] = "竪拂"
+        self.assertNotEqual(before, packet_input_sha256(entry))
+
 
 if __name__ == "__main__":
     unittest.main()

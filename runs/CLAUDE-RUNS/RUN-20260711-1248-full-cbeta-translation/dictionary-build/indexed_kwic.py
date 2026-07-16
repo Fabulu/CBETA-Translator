@@ -5,6 +5,10 @@ Multi-character CJK queries use ``search.inverted.bin`` to obtain candidate docu
 then ``search.text.bin`` to confirm the contiguous phrase and return KWICs. One-character
 queries cannot use a bigram index and explicitly fall back to the text sidecar. Saved
 dictionary evidence must still pass ``zc.verify`` against source XML.
+
+Do not use a desktop-postings miss as corpus absence: CBETA tags can split a
+query bigram in the desktop searchable representation. The website engine is the
+preferred complete-recall discovery path; this tool is a fast positive/cross-check.
 """
 
 from __future__ import annotations
@@ -192,7 +196,7 @@ class IndexedKwic:
                 "sharedIndexLoadAndDictionaryScan": round(self.load_seconds, 3),
                 "queryAndKwicConfirmation": round(time.perf_counter() - started, 3),
             },
-            "evidenceRule": "discovery only; save only after zc.verify against XML",
+            "evidenceRule": "positive discovery/cross-check only; a miss is not absence; save only after zc.verify against XML",
         }
 
 
