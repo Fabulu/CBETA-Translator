@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB424.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_4cf045deab37:0623a09:2:4",
+      "entryId": "t_4cf045deab37",
+      "sourceTerm": "粥飯僧",
+      "RelPath": "J/J38/J38nB424.xml",
+      "FromLb": "0623a09",
+      "Kwic": "長為粥飯僧，不復學識；做個癡獃漢，必要明心。",
+      "caseClusterId": "J/J38/J38nB424.xml:122920:124465",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "香嚴禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Puming",
+        "AttributionNote": "Recorded Sayings of Xiangyan (香嚴禪師語錄): in Puming's biographical record, Puming's verse says to remain a gruel-and-rice monk, stop pursuing learned knowledge, and insist on clarifying mind."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

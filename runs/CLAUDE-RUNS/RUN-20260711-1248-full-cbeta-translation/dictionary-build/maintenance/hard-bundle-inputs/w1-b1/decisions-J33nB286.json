@@ -1,0 +1,37 @@
+{
+  "source": "J/J33/J33nB286.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_35249f3cbae1:0495b20:1:1",
+      "entryId": "t_35249f3cbae1",
+      "sourceTerm": "驢腳",
+      "RelPath": "J/J33/J33nB286.xml",
+      "FromLb": "0495b20",
+      "Kwic": "黃龍禪師每以三句驗人：一云：『我手何似佛手？』二云：『我腳何似驢腳？』三云：『人人有箇生緣。』",
+      "caseClusterId": "J/J33/J33nB286.xml:54207:55677",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "攖寧靜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huanglong Huinan",
+        "ActorAttribution": null,
+        "AttributionNote": "攖寧靜禪師語錄, Yingning Jing's hall address raising Huanglong's three barriers. Huanglong Huinan is the exact quoted speaker of the stored second barrier, 'How does my foot resemble a donkey's leg?'",
+        "ContextMasters": [
+          {
+            "MasterName": "Yingning Jing",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

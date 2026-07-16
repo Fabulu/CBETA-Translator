@@ -70,7 +70,7 @@
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (無門關). Shishuang Qingzhu owns the exact quoted clause in the complete case."
+          "AttributionNote": "無門關. Exact headword actor: Shishuang Qingzhu. The complete source unit assigns the headword-bearing wording to Shishuang Qingzhu."
         },
         {
           "RelPath": "C/C078/C078n1720.xml",
@@ -79,7 +79,7 @@
           "Kwic": "百尺竿頭進步時築着磕著自家底老長沙",
           "MasterName": "Fojian Huiqin",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集). Fojian Huiqin owns the exact quoted clause in the complete case.",
+          "AttributionNote": "禪宗頌古聯珠通集. Exact headword actor: Fojian Huiqin. The complete source unit assigns the headword-bearing wording to Fojian Huiqin.",
           "ContextMasters": [
             {
               "MasterName": "Fojian Huiqin",
@@ -93,12 +93,12 @@
           "RelPath": "C/C077/C077n1710.xml",
           "FromLb": "0790b16",
           "ToLb": "0790b17",
-          "Kwic": "問如何是百尺竿頭進步底句師云南贍部洲北欝單越",
+          "Kwic": "問如何是百尺竿頭進步底句",
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "an unnamed questioning monk",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -108,32 +108,32 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex semantic-r002-owner1",
-            "ReviewedUtc": "2026-07-14T00:00:00Z",
-            "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to an unnamed questioning monk, rather than to a section owner or respondent."
+            "GrammarEvidence": "The marked question contains the headword; Yexian Guixing answers after 師云.",
+            "ReviewedBy": "Codex cohorts 1-3 146-150 literal full-case read",
+            "ReviewedUtc": "2026-07-16T00:39:19.333806Z"
           },
           "ContextMasters": [
             {
               "MasterName": "Yexian Guixing",
               "Roles": [
                 "respondent",
-                "record-owner"
+                "section-subject"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). an unnamed questioning monk owns the exact clause in the complete case."
+          "AttributionNote": "古尊宿語錄. Exact headword actor: the unnamed monk. The marked question contains the headword; Yexian Guixing answers after 師云."
         },
         {
           "RelPath": "J/J26/J26nB186.xml",
           "FromLb": "0651a10",
           "ToLb": "0651a10",
-          "Kwic": "僧參，問：「百尺竿頭進步時如何？」師云：「退後即得。",
+          "Kwic": "僧參，問：「百尺竿頭進步時如何？」",
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "an unnamed questioning monk",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -143,45 +143,46 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex semantic-r002-owner1",
-            "ReviewedUtc": "2026-07-14T00:00:00Z",
-            "GrammarEvidence": "The complete-case markers assign the headword-bearing clause to an unnamed questioning monk, rather than to a section owner or respondent."
+            "GrammarEvidence": "The direct question contains the headword; Linye Qi’s answer begins after 師云.",
+            "ReviewedBy": "Codex cohorts 1-3 146-150 literal full-case read",
+            "ReviewedUtc": "2026-07-16T00:39:19.333910Z"
           },
           "ContextMasters": [
             {
               "MasterName": "Linye Qi",
               "Roles": [
                 "respondent",
-                "record-owner"
+                "section-subject"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (林野奇禪師語錄). an unnamed questioning monk owns the exact clause in the complete case."
+          "AttributionNote": "林野奇禪師語錄. Exact headword actor: the unnamed monk. The direct question contains the headword; Linye Qi’s answer begins after 師云."
         },
         {
           "RelPath": "J/J38/J38nB414.xml",
           "FromLb": "0420c06",
           "ToLb": "0420c06",
-          "Kwic": "猷蒙指示，竿頭進步事如何？」師曰：「斷頭船子下揚州。",
+          "Kwic": "竿頭進步事如何",
           "MasterName": "Gulun",
           "ContextMasters": [
+            {
+              "MasterName": "Gulun",
+              "Roles": [
+                "utterer",
+                "questioner"
+              ]
+            },
             {
               "MasterName": "Shanduo Zhenzai",
               "Roles": [
                 "respondent",
-                "record-owner"
-              ]
-            },
-            {
-              "MasterName": "Gulun",
-              "Roles": [
-                "utterer"
+                "section-subject"
               ]
             }
           ],
           "Curated": true,
-          "AttributionNote": "Source text (山鐸真在禪師語錄). Gulun owns the exact quoted clause in the complete case."
+          "AttributionNote": "山鐸真在禪師語錄. Exact headword actor: Gulun. The complete source unit assigns the headword-bearing wording to Gulun."
         },
         {
           "RelPath": "X/X79/X79n1557.xml",
@@ -190,7 +191,7 @@
           "Kwic": "若能如是，方解百尺竿頭進步，句中無意，意中無句。既然如是，且作麼生吐氣？",
           "MasterName": "Langye Huijue",
           "Curated": true,
-          "AttributionNote": "Source text (聯燈會要). Langye Huijue owns the exact quoted clause in the complete case.",
+          "AttributionNote": "聯燈會要. Exact headword actor: Langye Huijue. The complete source unit assigns the headword-bearing wording to Langye Huijue.",
           "ContextMasters": [
             {
               "MasterName": "Langye Huijue",
@@ -207,7 +208,7 @@
           "Kwic": "古人把定處放得行竿頭進步。放行時把得定壁立千仞。",
           "MasterName": "Wansong Xingxiu",
           "Curated": true,
-          "AttributionNote": "Source text (萬松老人評唱天童覺和尚頌古從容庵錄). Wansong Xingxiu owns the exact quoted clause in the complete case.",
+          "AttributionNote": "萬松老人評唱天童覺和尚頌古從容庵錄. Exact headword actor: Wansong Xingxiu. The complete source unit assigns the headword-bearing wording to Wansong Xingxiu.",
           "ContextMasters": [
             {
               "MasterName": "Wansong Xingxiu",
@@ -220,23 +221,87 @@
       ],
       "ClaimAnchors": [
         {
+          "ClaimText": "南贍部洲北欝單越",
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0790b17",
+          "ToLb": "0790b18",
+          "Kwic": "師云南贍部洲北欝單越問如何是西來意",
+          "MasterName": "Yexian Guixing",
+          "ContextMasters": [
+            {
+              "MasterName": "Yexian Guixing",
+              "Roles": [
+                "utterer",
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "古尊宿語錄. Exact headword actor: Yexian Guixing. The complete source unit assigns the headword-bearing wording to Yexian Guixing."
+        },
+        {
+          "ClaimText": "退後即得",
+          "RelPath": "J/J26/J26nB186.xml",
+          "FromLb": "0651a10",
+          "ToLb": "0651a10",
+          "Kwic": "師云：「退後即得。」",
+          "MasterName": "Linye Qi",
+          "ContextMasters": [
+            {
+              "MasterName": "Linye Qi",
+              "Roles": [
+                "utterer",
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "林野奇禪師語錄. Exact headword actor: Linye Qi. The complete source unit assigns the headword-bearing wording to Linye Qi."
+        },
+        {
+          "ClaimText": "斷頭船子下揚州",
+          "RelPath": "J/J38/J38nB414.xml",
+          "FromLb": "0420c06",
+          "ToLb": "0420c06",
+          "Kwic": "師曰：「斷頭船子下揚州。」",
+          "MasterName": "Shanduo Zhenzai",
+          "ContextMasters": [
+            {
+              "MasterName": "Shanduo Zhenzai",
+              "Roles": [
+                "utterer",
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "山鐸真在禪師語錄. Exact headword actor: Shanduo Zhenzai. The complete source unit assigns the headword-bearing wording to Shanduo Zhenzai."
+        },
+        {
+          "ClaimText": "百尺竿頭坐底人。雖然得入。未為真。百尺竿頭須進步十方世界現全身。",
           "RelPath": "T/T48/T48n2005.xml",
           "FromLb": "0298c13",
           "ToLb": "0298c14",
           "Kwic": "百尺竿頭坐底人。雖然得入。未為真。百尺竿頭須進步十方世界現全身。",
           "MasterName": "Changsha Jingcen",
-          "EvidenceRole": "family",
-          "Curated": true,
-          "AttributionNote": "Source text (無門關). Changsha Jingcen owns the exact quoted clause in the complete case.",
           "ContextMasters": [
             {
               "MasterName": "Changsha Jingcen",
               "Roles": [
-                "utterer"
+                "utterer",
+                "verse-author",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "later-raiser",
+                "compiler"
               ]
             }
           ],
-          "ClaimText": "百尺竿頭坐底人。雖然得入。未為真。百尺竿頭須進步十方世界現全身。"
+          "AttributionNote": "無門關. Exact headword actor: Changsha Jingcen. The complete source unit assigns the headword-bearing wording to Changsha Jingcen."
         }
       ],
       "Explanation": "The step beyond the top of a hundred-foot pole, where the image leaves no footing for another step. The fixed phrase and case title are drawn from Changsha Jingcen's verse: the person sitting atop a hundred-foot pole, although having gained entry, is not yet real; the verse then requires a step forward and says that the worlds in the ten directions are the whole body (百尺竿頭坐底人，雖然得入，未為真；百尺竿頭須進步，十方世界現全身). Wumen Huikai's Case 46 titles the case Stepping Forward from the Pole-top and attributes the question “atop a hundred-foot pole, how does one step forward?” to Shishuang Qingzhu (石霜和尚云，百尺竿頭如何進步). Fojian Huiqin's later verse explicitly names Old Changsha at the time of the pole-top step (百尺竿頭進步時……老長沙). The phrase then circulates as a public question: Yexian Guixing answers “the southern continent, the northern continent” (南贍部洲，北欝單越), Linye Qi answers “then retreat” (退後即得), and Shanduo Zhenzai answers “a beheaded boatman goes down to Yangzhou” (斷頭船子下揚州). Langye Huijue places the pole-top step beside a saying with no intent in the phrase and no phrase in the intent, then asks how to breathe out. Zen bends the impossible ordinary action into a named case, a quoted verse-line, and a repeatedly answered public question; the records give different answers without changing the action denoted."

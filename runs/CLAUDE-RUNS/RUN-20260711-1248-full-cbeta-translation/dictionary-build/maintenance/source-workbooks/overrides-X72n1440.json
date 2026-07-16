@@ -1,0 +1,31 @@
+{
+  "source": "X/X72/X72n1440.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_d190cf45c531:0653a16:1:7",
+      "entryId": "t_d190cf45c531",
+      "sourceTerm": "話頭",
+      "RelPath": "X/X72/X72n1440.xml",
+      "FromLb": "0653a16",
+      "Kwic": "直至宋朝，始有看話頭、作工夫之說。當時只教人提起箇話頭，看是什麼道理？",
+      "caseClusterId": "X/X72/X72n1440.xml:69051:71568",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "為霖道霈禪師還山錄",
+      "defaultMasterName": "Weilin Daopei",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Weilin Daopei",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Dahui Zonggao", "Roles": ["person-discussed"]}
+        ],
+        "AttributionNote": "The Record of Chan Master Weilin Daopei's Return to the Mountain (為霖道霈禪師還山錄), in Weilin Daopei's winter-restriction general address to the assembly. Weilin Daopei is the exact speaker who says that only in the Song did talk of ‘looking at the saying’ and ‘doing the work’ arise, then describes people being told to raise a saying and look at its principle; Dahui Zonggao is discussed immediately afterward, not the speaker of this retrospective."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

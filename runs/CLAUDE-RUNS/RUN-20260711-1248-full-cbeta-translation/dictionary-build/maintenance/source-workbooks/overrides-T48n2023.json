@@ -1,0 +1,29 @@
+{
+  "source": "T/T48/T48n2023.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_57fd70bfc9ec:1048b16:1:5",
+      "entryId": "t_57fd70bfc9ec",
+      "sourceTerm": "客塵",
+      "RelPath": "T/T48/T48n2023.xml",
+      "FromLb": "1048b16",
+      "Kwic": "身心客塵透漏無門。迷悟且說逆順休論。",
+      "caseClusterId": "T/T48/T48n2023.xml:46855:47525",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "緇門警訓",
+      "defaultMasterName": "Foyan Qingyuan",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "ContextMasters": [],
+        "AttributionNote": "Admonitions for the Monastic Gate (緇門警訓), in the explicitly headed Inscription on Sitting Chan by Chan Master Foyan Yuan of Longmen (龍門佛眼遠禪師坐禪銘). Foyan Qingyuan is the exact author of the inscription line that says body-and-mind guest-dust has no gate through which to leak."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

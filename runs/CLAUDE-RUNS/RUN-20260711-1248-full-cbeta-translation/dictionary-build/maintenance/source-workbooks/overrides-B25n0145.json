@@ -1,0 +1,45 @@
+{
+  "source": "B/B25/B25n0145.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T04:38:03Z",
+  "rows": [
+    {
+      "key": "t_643fab6ecc1b:0695a18:1:1",
+      "entryId": "t_643fab6ecc1b",
+      "sourceTerm": "單傳",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0695a18",
+      "Kwic": "所以達磨西來謂之單傳直指。初無委曲。",
+      "caseClusterId": "B/B25/B25n0145.xml:72005:80193",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "AttributionNote": "The Extensive Record of Tianmu Zhongfeng (天目中峰廣錄), in Zhongfeng Mingben's own address to the assembly at Huanzhu Chan Cloister. Zhongfeng Mingben is the exact speaker saying that Bodhidharma's coming west is called single transmission and direct pointing, without circumlocution. Bodhidharma is the person discussed, not the speaker of this sentence.",
+        "ContextMasters": [
+          {"MasterName": "Bodhidharma", "Roles": ["person-discussed"]}
+        ]
+      }
+    },
+    {
+      "key": "t_1bbc921aed44:0738a03:1:5",
+      "entryId": "t_1bbc921aed44",
+      "sourceTerm": "逢祖殺祖",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0738a03",
+      "Kwic": "單提一把吹毛利劒。逢佛殺佛逢祖殺祖。直教一物不得當其前。一法莫能隨其後。",
+      "caseClusterId": "B/B25/B25n0145.xml:218247:218788",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": "Zhongfeng Mingben",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

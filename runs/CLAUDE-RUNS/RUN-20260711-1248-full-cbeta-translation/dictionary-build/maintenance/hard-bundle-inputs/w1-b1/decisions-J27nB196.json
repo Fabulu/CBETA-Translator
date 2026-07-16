@@ -1,0 +1,28 @@
+{
+  "source": "J/J27/J27nB196.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_368268e023e3:0382c25:1:4",
+      "entryId": "t_368268e023e3",
+      "sourceTerm": "塵勞",
+      "RelPath": "J/J27/J27nB196.xml",
+      "FromLb": "0382c25",
+      "Kwic": "貧道所見，此正是最初下手喫緊工夫，即于勞攘處著得一隻眼，誰是塵勞者？誰是厭棄者？驀然覷破，朝夕間自得主持，不作塵勞想，不作",
+      "caseClusterId": "J/J27/J27nB196.xml:50486:50769",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "鴛湖用禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuanhu Miaoyong",
+        "ActorAttribution": null,
+        "AttributionNote": "鴛湖用禪師語錄, reply to a correspondent asking for instruction. Yuanhu Miaoyong is the exact author: calling himself the poor wayfarer, he asks who the dusty-toil person and the rejecting person are, and says that seeing through them removes both conceptions."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,27 @@
+{
+  "source": "J/J37/J37nB394.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_eba970114dd2:0699b18:2:1",
+      "entryId": "t_eba970114dd2",
+      "sourceTerm": "邯鄲",
+      "RelPath": "J/J37/J37nB394.xml",
+      "FromLb": "0699b18",
+      "Kwic": "妾家邯鄲住，歌聲亦抑揚",
+      "caseClusterId": "J/J37/J37nB394.xml:182654:182758",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "翼菴禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hanshan",
+        "AttributionNote": "Recorded Sayings of Yi'an (翼菴禪師語錄): in the collected Hanshan poem, Hanshan's poetic voice says that his home is in Handan and his singing rises and falls."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J28/J28nB205.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_2d92f15fa0ab:0249c03:1:5",
+      "entryId": "t_2d92f15fa0ab",
+      "sourceTerm": "雲水",
+      "RelPath": "J/J28/J28nB205.xml",
+      "FromLb": "0249c03",
+      "Kwic": "自此某領院事，次年告饑，雲水倍集，數數絕糧，炊藜藿以延日月，惟以堅固自持。",
+      "caseClusterId": "J/J28/J28nB205.xml:171699:172606",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "介為舟禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jie Weizhou",
+        "ActorAttribution": null,
+        "AttributionNote": "介為舟禪師語錄, Jie Weizhou's letter recounting the early years at Ru'an. Jie Weizhou is the exact author: he says that after he assumed the monastery's affairs famine came, cloud-and-water monks gathered in doubled numbers, provisions repeatedly ran out, and he sustained them on wild greens."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

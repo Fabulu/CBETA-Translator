@@ -5,16 +5,31 @@ from collections import Counter
 import re
 
 from audit_attribution import (
+    ANONYMOUS_MONK_QUESTION,
+    CLOSED_ROLES,
     DUPLICATED_NOTE_PREFIX_RE,
     EXPLICIT_MASTER_ACTION,
     EXPLICIT_MASTER_TURN,
     PLACEHOLDER_ACTOR_RE,
+    RAISED_OLD_SAYING,
     anonymous_actor_collapse_failure,
     uniform_actor_placeholder_failure,
 )
 
 
 class PlaceholderActorTest(unittest.TestCase):
+    def test_executable_role_vocabulary_matches_actor_audit_law(self):
+        self.assertIn("person-described", CLOSED_ROLES)
+        self.assertIn("case-figure", CLOSED_ROLES)
+        for forbidden in ("action-performer", "case-teacher", "named-unrostered"):
+            self.assertNotIn(forbidden, CLOSED_ROLES)
+
+    def test_detects_anonymous_monk_questions_and_raised_precedents(self):
+        self.assertIsNotNone(ANONYMOUS_MONK_QUESTION.search("僧問如何是和尚家風"))
+        self.assertIsNotNone(ANONYMOUS_MONK_QUESTION.search("僧進問鼻孔遼天"))
+        for value in ("古人云", "古德曰", "先德有言"):
+            self.assertIsNotNone(RAISED_OLD_SAYING.search(value))
+
     def test_detects_explicit_master_turns_in_headword_clause(self):
         for value in ("師云", "師曰", "師乃云", "師復問"):
             with self.subTest(value=value):

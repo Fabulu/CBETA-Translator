@@ -9,6 +9,7 @@ it never edits entries or generated termbase artifacts.
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import re
 import sys
@@ -55,11 +56,13 @@ ATTRIBUTION_RUNGS = [
 ACTOR_STATUSES = {"identified-non-master", "reviewed-unnamed", "narrated", "impersonal"}
 EXPLICIT_MASTER_TURN = re.compile(r"師(?:乃|遂|復)?(?:云|曰|道|問|答|謂)")
 EXPLICIT_MASTER_ACTION = re.compile(r"師(?:乃|遂|復)?(?:拈|舉|喝|打|指|示|竪|豎|卓|下座|歸方丈)")
+ANONYMOUS_MONK_QUESTION = re.compile(r"僧(?:進)?問")
+RAISED_OLD_SAYING = re.compile(r"(?:古人|古德|先德)(?:有言|云|曰)")
 CLOSED_ROLES = {
     "utterer", "respondent", "questioner", "interlocutor", "addressee",
     "section-subject", "record-owner", "person-described", "person-discussed",
     "commentator", "later-raiser", "later-quoter", "teacher", "student",
-    "compiler", "verse-author", "case-figure", "action-performer",
+    "compiler", "verse-author", "case-figure",
 }
 
 
@@ -110,7 +113,15 @@ def resolve_files(args: list[str]) -> list[Path]:
     for raw in args:
         path = Path(raw)
         if path.is_dir():
-            path = path / "entry.v2.json"
+            direct = path / "entry.v2.json"
+            if direct.exists():
+                out.append(direct.resolve())
+                continue
+            for entry in path.glob("*/entry.v2.json"):
+                status = entry.parent / "STATUS"
+                if status.exists() and status.read_text(encoding="utf-8-sig").strip() == "done":
+                    out.append(entry.resolve())
+            continue
         out.append(path.resolve())
     return sorted(set(out))
 
@@ -184,6 +195,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("paths", nargs="*", help="entry.v2.json files or term dirs")
     parser.add_argument("--json", action="store_true", dest="as_json")
+    parser.add_argument("--output", type=Path, help="also write the complete JSON result atomically")
     parser.add_argument("--exclude-id", action="append", default=[], help="omit an entry Id (repeatable)")
     parser.add_argument("--strict-roster", action="store_true", help="fail every MasterName/ContextMasters value not equal to roster names[0]")
     parser.add_argument("--strict-roster-id", action="append", default=[], help="apply strict roster linking only to these repaired entry IDs")
@@ -196,6 +208,9 @@ def main() -> int:
         excluded = set(ns.exclude_id)
         files = [p for p in files if p.parent.name not in excluded]
     roster = roster_names()
+    roster_name_pattern = re.compile(
+        "|".join(re.escape(name) for name in sorted(roster, key=len, reverse=True))
+    ) if roster else None
     pending_roster = pending_roster_names(ns.pending_roster)
     strict_ids = set(ns.strict_roster_id)
     title_cache: dict[str, str | None] = {}
@@ -214,6 +229,13 @@ def main() -> int:
         term = data.get("SourceTerm", entry.parent.name)
         for si, sense in enumerate(data.get("Senses", []), 1):
             counts["senses"] += 1
+            for related in sense.get("RelatedMasters") or []:
+                if strict_roster_here and related not in roster and related not in pending_roster:
+                    fail(
+                        "noncanonical_related_master",
+                        entry,
+                        f"{term} s{si}: RelatedMasters value {related!r} is not roster-canonical",
+                    )
             occs = sense.get("Occurrences") or []
             anchors = sense.get("ClaimAnchors") or []
             evidence_rows = [("o", o) for o in occs] + [("a", o) for o in anchors]
@@ -328,6 +350,23 @@ def main() -> int:
                         "so represent the narrated performer in ContextMasters",
                     )
 
+                anonymous_question = any(
+                    (match := ANONYMOUS_MONK_QUESTION.search(clause)) is not None
+                    and match.start() < clause.find(term)
+                    for clause in headword_clauses
+                )
+                if anonymous_question and master:
+                    fail(
+                        "anonymous_monk_question_assigned_to_master",
+                        entry,
+                        f"{term} s{si} o{oi}: 僧問 owns the headword-bearing question; "
+                        "the responding master belongs in ContextMasters",
+                    )
+
+                raised_old_saying = any(
+                    RAISED_OLD_SAYING.search(clause) for clause in headword_clauses
+                )
+
                 context_masters = occ.get("ContextMasters") or []
                 if not isinstance(context_masters, list):
                     fail("invalid_context_masters", entry, f"{term} s{si} o{oi}: not a list")
@@ -346,14 +385,25 @@ def main() -> int:
                             counts["pending_roster_context_master"] += 1
                         elif strict_roster_here:
                             fail("noncanonical_context_master_name", entry, f"{term} s{si} o{oi} c{ci}: {context['MasterName']!r} is not roster names[0]")
+                if raised_old_saying and not any(
+                    "later-raiser" in (context.get("Roles") or [])
+                    for context in context_masters if isinstance(context, dict)
+                ):
+                    fail(
+                        "raised_old_saying_lacks_raiser",
+                        entry,
+                        f"{term} s{si} o{oi}: 古人/古德/先德云 marks quoted precedent; "
+                        "name the present speaker as later-raiser and resolve the quoted utterer separately",
+                    )
                 if explicit_actions and not explicit_turns and not any(
-                    "action-performer" in (context.get("Roles") or [])
+                    set(context.get("Roles") or []) & {"person-described", "case-figure"}
                     for context in context_masters if isinstance(context, dict)
                 ):
                     fail(
                         "action_performer_context_missing",
                         entry,
-                        f"{term} s{si} o{oi}: explicit master action requires a named action-performer ContextMaster",
+                        f"{term} s{si} o{oi}: explicit master action requires the named performer as "
+                        "person-described or case-figure; finer action detail belongs in GrammarEvidence",
                     )
                 if master and not any(
                     context.get("MasterName") == master and "utterer" in (context.get("Roles") or [])
@@ -387,6 +437,28 @@ def main() -> int:
                              f"{term} s{si} {evidence_label} AttributionNote: {note!r}")
                     if PLACEHOLDER_ACTOR_RE.search(note):
                         fail("placeholder_actor_forbidden", entry, f"{term} s{si} {evidence_label} AttributionNote: {note!r}")
+                    represented = {str(master)} if master else set()
+                    represented.update(
+                        str(context.get("MasterName"))
+                        for context in context_masters if isinstance(context, dict) and context.get("MasterName")
+                    )
+                    actor_text = json.dumps(actor, ensure_ascii=False) if isinstance(actor, dict) else ""
+                    named_in_prose = set(roster_name_pattern.findall(note + " " + actor_text)) if roster_name_pattern else set()
+                    missing_named_context = sorted(
+                        name for name in (named_in_prose - represented)
+                        if not any(
+                            len(linked) > len(name) and name in linked
+                            and (linked in note or linked in actor_text)
+                            for linked in represented
+                        )
+                    )
+                    for missing_name in missing_named_context:
+                        fail(
+                            "named_master_missing_structured_link",
+                            entry,
+                            f"{term} s{si} {evidence_label}: {missing_name} appears in attribution prose "
+                            "but not in MasterName or ContextMasters",
+                        )
                     # Unicode ``\b`` has no useful boundary between Han graphs;
                     # source-attested Chinese roster candidates therefore looked
                     # absent even when the exact full name was printed in the note.
@@ -465,6 +537,11 @@ def main() -> int:
         "hardFailures": len(failures),
         "failures": failures,
     }
+    if ns.output:
+        ns.output.parent.mkdir(parents=True, exist_ok=True)
+        temporary = ns.output.with_suffix(ns.output.suffix + ".tmp")
+        temporary.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        os.replace(temporary, ns.output)
     if ns.as_json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:

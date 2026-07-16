@@ -1,0 +1,27 @@
+{
+  "source": "X/X63/X63n1259.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_e156057131dc:0776c11:1:2",
+      "entryId": "t_e156057131dc",
+      "sourceTerm": "本參",
+      "RelPath": "X/X63/X63n1259.xml",
+      "FromLb": "0776c11",
+      "Kwic": "欲至堂中，先須識禪眾之號與貌，與各各本參話頭，然後可以垂手鍛鍊。",
+      "caseClusterId": "X/X63/X63n1259.xml:23838:28621",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪門鍛鍊說",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiexian",
+        "AttributionNote": "Discourse on Forging Chan Practitioners (禪門鍛鍊說): in his hall-management instruction, Jiexian says one must know each member's fundamental-investigation phrase before applying the forge."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

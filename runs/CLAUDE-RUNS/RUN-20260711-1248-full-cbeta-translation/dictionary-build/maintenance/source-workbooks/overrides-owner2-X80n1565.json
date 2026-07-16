@@ -1,0 +1,830 @@
+{
+  "source": "X/X80/X80n1565.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/repair_bird_path",
+  "reviewedUtc": "2026-07-14T06:07:59Z",
+  "rows": [
+    {
+      "key": "t_1a86ee3d406f:0029a12:1:1",
+      "entryId": "t_1a86ee3d406f",
+      "sourceTerm": "便下座",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0029a12",
+      "Kwic": "世尊一日陞座。大眾集定。文殊白椎曰。諦觀法王法。法王法如是。世尊便下座。",
+      "caseClusterId": "X/X80/X80n1565.xml:77361:90910",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Shakyamuni Buddha",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_1a86ee3d406f:0029a18:1:2",
+      "entryId": "t_1a86ee3d406f",
+      "sourceTerm": "便下座",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0029a18",
+      "Kwic": "世尊一日陞座。大眾集定。迦葉白椎曰。世尊說法竟。世尊便下座。",
+      "caseClusterId": "X/X80/X80n1565.xml:77361:90910",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Shakyamuni Buddha",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_ba6668ef3e6e:0029a18:1:3",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0029a18",
+      "Kwic": "世尊一日陞座。大眾集定。迦葉白椎曰。世尊說法竟。世尊便下座。",
+      "caseClusterId": "X/X80/X80n1565.xml:77361:90910",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Shakyamuni Buddha",
+      "candidateBasis": "co-located-reviewed",
+      "Override": {
+        "MasterName": "Mahakasyapa",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Shakyamuni Buddha section. Mahakasyapa is the exact speaker who strikes the sounding block and announces that the World-Honored One has finished speaking; Shakyamuni Buddha then leaves the seat.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "assembly-teacher",
+              "actor-who-leaves-seat"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ba6668ef3e6e:0031c15:1:4",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0031c15",
+      "Kwic": "一日問迦葉曰。師兄。世尊傳金襴袈裟外。別傳箇甚麼。迦葉召阿難。阿難應諾。迦葉曰。倒却門前剎竿著。",
+      "caseClusterId": "X/X80/X80n1565.xml:94663:97855",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Ananda",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_694f447dbd89:0042c14:1:1",
+      "entryId": "t_694f447dbd89",
+      "sourceTerm": "面壁",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0042c14",
+      "Kwic": "寓止于嵩山少林寺。面壁而坐。終日默然。人莫之測。謂之壁觀婆羅門。",
+      "caseClusterId": "X/X80/X80n1565.xml:171374:179946",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_d2892b1eaae0:0042c21:1:1",
+      "entryId": "t_d2892b1eaae0",
+      "sourceTerm": "立雪",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0042c21",
+      "Kwic": "其年十二月九日夜。天大雨雪。光堅立不動。遲明積雪過膝。祖憫而問曰。汝久立雪中。當求何事。",
+      "caseClusterId": "X/X80/X80n1565.xml:171374:179946",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Huike",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Bodhidharma biography. Huike, still called Shenguang in this part of the account, is the exact actor who stands unmoving in the snow until it reaches above his knees; Bodhidharma then questions him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_93e6bc6b2103:0061b13:1:1",
+      "entryId": "t_93e6bc6b2103",
+      "sourceTerm": "顧視",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0061b13",
+      "Kwic": "帝又問。師都不視之。曰。朕是大唐天子。師何以殊不顧視。師曰。還見虗空麼。",
+      "caseClusterId": "X/X80/X80n1565.xml:297601:300667",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanyang Huizhong",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_38695d7fdbe2:0064a16:1:3",
+      "entryId": "t_38695d7fdbe2",
+      "sourceTerm": "如何是道",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0064a16",
+      "Kwic": "一問。如何是道。何以修之。為復必須修成。為復不假功用。答。無礙是道。覺妄是修。",
+      "caseClusterId": "X/X80/X80n1565.xml:315320:324656",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Guifeng Zongmi",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "questioner",
+          "ActorLabel": "unnamed questioner",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Sikong Benjing",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Sikong Benjing's written question-and-answer sequence. An unnamed questioner asks what the Way is and how it is cultivated; Sikong Benjing supplies the answer. The six-rung ladder does not identify the questioner."
+      }
+    },
+    {
+      "key": "t_9ec945311be0:0067a03:1:1",
+      "entryId": "t_9ec945311be0",
+      "sourceTerm": "還會麼",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0067a03",
+      "Kwic": "陛下還會麼。帝曰。不會。聖師曰。大士講經竟",
+      "caseClusterId": "X/X80/X80n1565.xml:337190:340723",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Shanhui Dashi",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_33d49f4710be:0070b03:1:4",
+      "entryId": "t_33d49f4710be",
+      "sourceTerm": "開悟",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0070b03",
+      "Kwic": "傳上乘一心之法。令汝等開悟。",
+      "caseClusterId": "X/X80/X80n1565.xml:360702:365475",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Mazu Daoyi",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Mazu Daoyi's address to his assembly. Mazu is the exact speaker who says that Bodhidharma transmitted the highest-vehicle one-mind teaching to open the listeners into awakening.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "named-subject",
+              "transmitter"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_5d84cccab8df:0073a05:1:1",
+      "entryId": "t_5d84cccab8df",
+      "sourceTerm": "須彌",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0073a05",
+      "Kwic": "破須彌為微塵。攝四大海水入一毛孔。",
+      "caseClusterId": "X/X80/X80n1565.xml:377934:379193",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_9b71e523fe10:0073a16:1:8",
+      "entryId": "t_9b71e523fe10",
+      "sourceTerm": "具足",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0073a16",
+      "Kwic": "詣嵩嶽受具足戒。初習相部舊章。究毗尼篇聚。",
+      "caseClusterId": "X/X80/X80n1565.xml:379344:392969",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_38695d7fdbe2:0077b05:1:4",
+      "entryId": "t_38695d7fdbe2",
+      "sourceTerm": "如何是道",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0077b05",
+      "Kwic": "問。如何是道。師便咄。僧曰。學人未領旨。師曰。去。",
+      "caseClusterId": "X/X80/X80n1565.xml:406571:408701",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Panshan Baoji",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Panshan Baoji",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Panshan Baoji section. An unnamed monk asks, 'What is the Way?'; Panshan responds first with a rebuff and then with 'go.' The six-rung ladder and parallel forms do not name the monk."
+      }
+    },
+    {
+      "key": "t_72e01bbb3474:0077b05:1:3",
+      "entryId": "t_72e01bbb3474",
+      "sourceTerm": "咄",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0077b05",
+      "Kwic": "僧問。如何是道。師便咄。僧曰。學人未領旨。師曰。去。",
+      "caseClusterId": "X/X80/X80n1565.xml:406571:408701",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Panshan Baoji",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_37771a869b4f:0080b16:1:6",
+      "entryId": "t_37771a869b4f",
+      "sourceTerm": "如何是祖師西來意",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0080b16",
+      "Kwic": "洪州泐潭法會禪師問馬祖。如何是祖師西來意。祖曰。低聲。近前來。向汝道。",
+      "caseClusterId": "X/X80/X80n1565.xml:428238:428756",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Letan Fahui",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元). Letan Fahui is explicitly named as the exact questioner who asks Mazu Daoyi, 'What is the ancestral teacher's meaning in coming from the west?' Mazu tells him to lower his voice and come closer, then strikes him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8dc9df82b364:0087c03:1:1",
+      "entryId": "t_8dc9df82b364",
+      "sourceTerm": "一口吸盡西江水",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0087c03",
+      "Kwic": "後參馬祖。問曰。不與萬法為侶者是甚麼人。祖曰。待汝一口吸盡西江水。即向汝道。",
+      "caseClusterId": "X/X80/X80n1565.xml:482490:485368",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Pang Yun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Mazu Daoyi",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Layman Pang biography. Mazu Daoyi is the exact speaker of the headword-bearing answer, 'When you drink up all the West River's water in one mouthful, I will tell you.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Pang Yun",
+            "Roles": [
+              "questioner",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_19784084ccb4:0089b14:1:5",
+      "entryId": "t_19784084ccb4",
+      "sourceTerm": "誌公",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0089b14",
+      "Kwic": "誌公和尚云。內外追尋覔總無。境上施為渾大有。",
+      "caseClusterId": "X/X80/X80n1565.xml:492715:495450",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Changqing Da'an",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Baozhi",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Changqing Da'an section. Baozhi (Zhigong) is explicitly introduced as the quoted speaker of the contrast between finding nothing through inner and outer search and abundant activity on objects.",
+        "ContextMasters": [
+          {
+            "MasterName": "Changqing Da'an",
+            "Roles": [
+              "later-quoter",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_93e6bc6b2103:0089b22:1:5",
+      "entryId": "t_93e6bc6b2103",
+      "sourceTerm": "顧視",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0089b22",
+      "Kwic": "有僧上法堂。顧視東西。不見師。乃曰。好箇法堂。祇是無人。",
+      "caseClusterId": "X/X80/X80n1565.xml:492715:495450",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Changqing Da'an",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "actor-and-speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Changqing Da'an",
+            "Roles": [
+              "absent-master",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Changqing Da'an section. An unnamed monk is the exact actor who enters the hall, looks east and west for the absent master, and comments that the hall has no one in it. The six-rung ladder does not name him."
+      }
+    },
+    {
+      "key": "t_38695d7fdbe2:0093a04:1:5",
+      "entryId": "t_38695d7fdbe2",
+      "sourceTerm": "如何是道",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0093a04",
+      "Kwic": "問。如何是道。師曰。墻外底。曰。不問這箇。師曰。你問那箇。曰。大道。師曰。大道透長安。",
+      "caseClusterId": "X/X80/X80n1565.xml:517870:527411",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Zhaozhou Congshen",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Zhaozhou Congshen section. An unnamed monk asks 'What is the Way?' and then distinguishes the great Way from the road outside the wall; Zhaozhou answers. The six-rung ladder does not name the monk."
+      }
+    },
+    {
+      "key": "t_694f447dbd89:0113a23:1:2",
+      "entryId": "t_694f447dbd89",
+      "sourceTerm": "面壁",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0113a23",
+      "Kwic": "米胡領眾來。纔欲相見。師便拽轉禪牀。面壁而坐。米於背後立。少時却回客位。",
+      "caseClusterId": "X/X80/X80n1565.xml:657895:659647",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Datong Ji",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Datong Ji section. Datong Ji is the exact actor who turns the Chan seat and faces the wall when Mihu arrives; Mihu stands behind him and later returns to the guest place.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mihu",
+            "Roles": [
+              "visitor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_bf67613e4573:0114c21:1:2",
+      "entryId": "t_bf67613e4573",
+      "sourceTerm": "千手眼",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0114c21",
+      "Kwic": "大悲千手眼。那箇是正眼。師曰。如人夜間背手摸枕子。",
+      "caseClusterId": "X/X80/X80n1565.xml:666521:670648",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yunyan Tansheng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Daowu Yuanzhi",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Yunyan Tansheng section. Daowu Yuanzhi is the exact questioner who asks which of Great Compassion's thousand hands and eyes is the true eye; Yunyan answers with the nighttime pillow image.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunyan Tansheng",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e5259ce8bbf5:0116b21:2:2",
+      "entryId": "t_e5259ce8bbf5",
+      "sourceTerm": "垂示",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0116b21",
+      "Kwic": "子曰。乞師垂示。師曰。更要第二杓惡水那。",
+      "caseClusterId": "X/X80/X80n1565.xml:679259:680211",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Cuiwei Wuxue",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Touzi Datong",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Cuiwei Wuxue section. Touzi Datong is the exact speaker who asks the teacher to offer an indication; Cuiwei answers that he would then be asking for a second ladleful of foul water.",
+        "ContextMasters": [
+          {
+            "MasterName": "Cuiwei Wuxue",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e84753568cda:0132a13:1:2",
+      "entryId": "t_e84753568cda",
+      "sourceTerm": "向上事",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0132a13",
+      "Kwic": "此人還知有向上事也無。師曰。不知。",
+      "caseClusterId": "X/X80/X80n1565.xml:786110:786581",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Zhaozhou Congshen",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "questioner",
+          "ActorLabel": "unnamed questioner",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Zhaozhou Congshen section. An unnamed questioner asks whether this person knows there is an upward matter; Zhaozhou answers, 'does not know.' The six-rung ladder does not name the questioner."
+      }
+    },
+    {
+      "key": "t_77821881a767:0143b02:1:1",
+      "entryId": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0143b02",
+      "Kwic": "達磨是老臊胡。釋迦老子是乾屎橛。文殊普賢是擔屎漢。",
+      "caseClusterId": "X/X80/X80n1565.xml:868555:870144",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Deshan Xuanjian",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Puhua",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Puhua biography. Puhua is the exact speaker of the recorded address that calls Bodhidharma an old foreigner, old man Shakyamuni a dry shit-stick, and Manjusri and Samantabhadra shit-carrying fellows.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "named-target"
+            ]
+          },
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "named-target"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ab6276be6e08:0143c24:1:3",
+      "entryId": "t_ab6276be6e08",
+      "sourceTerm": "末後句",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0143c24",
+      "Kwic": "小德山未會末後句在。山聞。令侍者喚師去。",
+      "caseClusterId": "X/X80/X80n1565.xml:871673:879473",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yantou Quanhuo",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_757827b8d4cb:0146b08:1:3",
+      "entryId": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0146b08",
+      "Kwic": "南山有一條鼈鼻蛇。汝等諸人切須好看。長慶出曰。今日堂中大有人喪身失命。",
+      "caseClusterId": "X/X80/X80n1565.xml:887722:896141",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Changqing Huileng",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Xuefeng Yicun section. After Xuefeng raises the turtle-nosed snake warning, Changqing Huileng is the exact speaker who says that many people in the hall will lose body and life.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuefeng Yicun",
+            "Roles": [
+              "case-raiser",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ff560195f161:0152a18:1:4",
+      "entryId": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0152a18",
+      "Kwic": "盡十方世界是一顆明珠。汝作麼生會。曰。盡十方世界是一顆明珠。用會作麼。",
+      "caseClusterId": "X/X80/X80n1565.xml:924737:930566",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Xuansha Shibei",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_e9adcb470950:0204b23:1:1",
+      "entryId": "t_e9adcb470950",
+      "sourceTerm": "菩薩戒",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0204b23",
+      "Kwic": "忠懿王命入府受菩薩戒。署慈化定慧禪師。建大伽藍。號慧日永明。請居之。",
+      "caseClusterId": "X/X80/X80n1565.xml:1289900:1292566",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yongming Yanshou",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Yongming Daoqian",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Yongming Daoqian biography. Daoqian is the exact grammatical subject whom King Zhongyi summons to the palace to receive the bodhisattva precepts and then appoints to the new Yongming monastery.",
+        "ContextMasters": [
+          {
+            "MasterName": "King Zhongyi",
+            "Roles": [
+              "patron",
+              "summoning-actor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e9adcb470950:0211b05:1:2",
+      "entryId": "t_e9adcb470950",
+      "sourceTerm": "菩薩戒",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0211b05",
+      "Kwic": "常與七眾授菩薩戒。夜施鬼神食。朝放諸生類。不可稱算。",
+      "caseClusterId": "X/X80/X80n1565.xml:1337463:1338405",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yongming Yanshou",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_bf67613e4573:0222c24:1:3",
+      "entryId": "t_bf67613e4573",
+      "sourceTerm": "千手眼",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0222c24",
+      "Kwic": "麻谷問。大悲千手眼。那箇是正眼。師搊住曰。",
+      "caseClusterId": "X/X80/X80n1565.xml:1421396:1423933",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Linji Yixuan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Magu Baoche",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Linji Yixuan section. Magu Baoche is the exact questioner who asks which of Great Compassion's thousand hands and eyes is the true eye; Linji grabs him and returns the question.",
+        "ContextMasters": [
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_c968268a64d1:0230b06:1:3",
+      "entryId": "t_c968268a64d1",
+      "sourceTerm": "心印",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0230b06",
+      "Kwic": "祖師心印。狀似鐵牛之機。去即印住。住即印破。",
+      "caseClusterId": "X/X80/X80n1565.xml:1473276:1483548",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Fengxue Yanzhao",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_acccac1051a4:0230c19:1:8",
+      "entryId": "t_acccac1051a4",
+      "sourceTerm": "衲僧",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0230c19",
+      "Kwic": "問。如何是衲僧行履處。師曰。頭上喫棒。口裏喃喃。",
+      "caseClusterId": "X/X80/X80n1565.xml:1475401:1483548",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Fengxue Yanzhao",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:07:59Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Fengxue Yanzhao",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Fengxue Yanzhao section. An unnamed monk asks, 'What is the patch-robed monk's place of conduct?'; Fengxue answers with taking a staff-blow on the head and muttering. The six-rung ladder does not name the monk."
+      }
+    },
+    {
+      "key": "t_cc6b4c4e9ba8:0340a14:1:3",
+      "entryId": "t_cc6b4c4e9ba8",
+      "sourceTerm": "拈花",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0340a14",
+      "Kwic": "故世尊拈花而妙心傳於迦葉。達磨面壁而宗旨付於神光。",
+      "caseClusterId": "X/X80/X80n1565.xml:2237418:2240534",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Liu Jingchen",
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Liu Jingchen's Warning to Confucians on Clarifying the Way (明道諭儒篇). Liu Jingchen is the exact prose author who states that Shakyamuni held up the flower and transmitted the wondrous mind to Mahakasyapa, pairing it with Bodhidharma's wall-gazing and transmission to Huike.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "named-case-actor"
+            ]
+          },
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "transmission-recipient"
+            ]
+          },
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "parallel-case-actor"
+            ]
+          },
+          {
+            "MasterName": "Huike",
+            "Roles": [
+              "parallel-transmission-recipient"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_37771a869b4f:0080b16:1:6"
+  ]
+}

@@ -1,0 +1,25 @@
+# Clean-regeneration research ledger: 和尚
+
+- corpus-count: 61053 hits (allowlist v2)
+- index-path: indexed_kwic.py discovery followed by apparatus-clean zc.find/context/heads and zc.verify
+- definition-formula-results: searched direct equations, question/answer definitions, title uses, compounds, and later comments; retained only exact headword rows.
+- deployment-inventory: direct utterance; quoted/re-raised utterance; compiler narration where lexically relevant; title/address or object/event frames as applicable.
+- omission-audit: sampled the highest-frequency works plus independent later works; duplicate canon witnesses did not substitute for independent work spread.
+- family-adjudication: nested and compound forms were tested explicitly; for 正法眼 every 正法眼藏 row was excluded from depth.
+- search-probes: preferred target plus the stored SearchAliases were checked as retrieval phrases; aliases are lookup aids, not an interpretation menu.
+- observation: the stored occurrence rows supply the literal predicates, contrasts, responses, and repeated collocations used in the explanation.
+- minimal-inference: the opening states only the least English conclusion reproducible from those rows.
+- ordinary-bridge: ordinary graph/object/action relations only; no doctrine, symbolism, intent, psychology, or outside history imported.
+- falsification-searches: ordinary use, contradictory answers, nested compounds, alternate formulae, narration versus speech, and duplicate-work witnesses.
+- counterexamples: divergent answers and formulae narrow the claim; they are retained in the prose or note rather than harmonized.
+- scope: corpus-wide lexical article, limited by the curated evidence and work-level independence stated in JSON.
+- verdict: licensed
+- opening-interpretation-verdict: informative without quotations; falsifiable by the stored exact Chinese; no claim exceeds the observed deployment.
+- feedback-inference-verdict: licensed from the exact stored observations.
+- feedback-observations: stored occurrence rows and their explicit predicates/turn frames.
+- feedback-falsification-searches: ordinary, contradictory, compound, variant, duplicate-work, and actor-boundary searches completed.
+- feedback-counterexamples: divergent answers and duplicate retellings narrowed the article and did not buy independent depth.
+- feedback-scope: corpus-wide lexical claim no broader than the represented work/deployment spread.
+- lookup-probes: preferred target and all SearchAliases checked as reader retrieval phrases.
+- exact-turn-review: each retained row was read in its complete case; MasterName is the headword utterer only, with context people separated.
+- source-spread-verdict: at least four independent works represented for the frequency-scaled sample.

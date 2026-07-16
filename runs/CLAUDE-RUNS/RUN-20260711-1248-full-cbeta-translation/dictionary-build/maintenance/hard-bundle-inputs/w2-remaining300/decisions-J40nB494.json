@@ -1,0 +1,27 @@
+{
+  "source": "J/J40/J40nB494.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_8bced2c0bc2f:0555c17:1:3",
+      "entryId": "t_8bced2c0bc2f",
+      "sourceTerm": "逐塊",
+      "RelPath": "J/J40/J40nB494.xml",
+      "FromLb": "0555c17",
+      "Kwic": "師云：「獅子咬人，韓盧逐塊。」",
+      "caseClusterId": "J/J40/J40nB494.xml:172063:173096",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雨山和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yushan Shangsi",
+        "AttributionNote": "Recorded Sayings of Yushan (雨山和尚語錄): in public exchange, Yushan Shangsi appraises the monk with 'the lion bites the person; the Han hound chases the clod.'"
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

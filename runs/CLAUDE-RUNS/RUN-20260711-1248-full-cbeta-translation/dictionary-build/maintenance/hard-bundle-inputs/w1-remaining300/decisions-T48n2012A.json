@@ -1,0 +1,36 @@
+{
+  "source": "T/T48/T48n2012A.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e7f672904614:0381b10:1:1",
+      "entryId": "t_e7f672904614",
+      "sourceTerm": "心地",
+      "RelPath": "T/T48/T48n2012A.xml",
+      "FromLb": "0381b10",
+      "Kwic": "所謂心地法門。萬法皆依此心建立。遇境即有無境即無。",
+      "caseClusterId": "T/T48/T48n2012A.xml:14109:15209",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "黃檗山斷際禪師傳心法要",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Huangbo Xiyun",
+        "ActorAttribution": null,
+        "AttributionNote": "黃檗山斷際禪師傳心法要. Huangbo Xiyun is the exact actor: his continuous discourse defines 心地法門.",
+        "ContextMasters": [
+          {
+            "MasterName": "Pei Xiu",
+            "Roles": [
+              "recorder"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

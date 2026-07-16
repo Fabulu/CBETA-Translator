@@ -1,0 +1,28 @@
+{
+  "source": "J/J28/J28nB219.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_fe093b3a621c:0711b09:1:3",
+      "entryId": "t_fe093b3a621c",
+      "sourceTerm": "一絲不掛",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0711b09",
+      "Kwic": "一絲不掛，萬象齊彰。性相融通，自它俱利。",
+      "caseClusterId": "J/J28/J28nB219.xml:279935:280750",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhuanyu Guanheng",
+        "ActorAttribution": null,
+        "AttributionNote": "紫竹林顓愚衡和尚語錄, instruction on the monastic robe. Zhuanyu Guanheng is the exact author: after describing the robe's transmission and dimensions, he says that with not one thread attached the myriad forms all manifest and nature and marks interpenetrate."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

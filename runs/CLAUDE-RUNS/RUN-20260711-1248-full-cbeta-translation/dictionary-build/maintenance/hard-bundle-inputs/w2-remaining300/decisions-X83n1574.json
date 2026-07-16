@@ -1,0 +1,27 @@
+{
+  "source": "X/X83/X83n1574.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_4cf045deab37:0351c20:1:3",
+      "entryId": "t_4cf045deab37",
+      "sourceTerm": "粥飯僧",
+      "RelPath": "X/X83/X83n1574.xml",
+      "FromLb": "0351c20",
+      "Kwic": "師曰：我長作粥飯僧，誓不願出人間世矣。",
+      "caseClusterId": "X/X83/X83n1574.xml:681667:682600",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "增集續傳燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huaiyu Xuan Shouzuo",
+        "AttributionNote": "Expanded Continuation of the Lamp Record (增集續傳燈錄): when invited to lead Nanyuan, Huaiyu Xuan Shouzuo says he has long been a gruel-and-rice monk and vows not to emerge into the world."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,27 @@
+{
+  "source": "X/X69/X69n1321.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_ad2c9d24126f:0002c10:1:2",
+      "entryId": "t_ad2c9d24126f",
+      "sourceTerm": "入定",
+      "RelPath": "X/X69/X69n1321.xml",
+      "FromLb": "0002c10",
+      "Kwic": "取善捨惡，觀空入定，即屬造作。更若向外馳求，轉疎轉遠。",
+      "caseClusterId": "X/X69/X69n1321.xml:7980:10793",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "馬祖道一禪師廣錄（四家語錄卷一）",
+      "defaultMasterName": "Mazu Daoyi",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Mazu Daoyi",
+        "AttributionNote": "Extensive Record of Mazu Daoyi (馬祖道一禪師廣錄（四家語錄卷一）): in his extensive record, Mazu Daoyi says choosing good and rejecting evil, observing emptiness and entering concentration, are contrivance."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

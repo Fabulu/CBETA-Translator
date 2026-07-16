@@ -1,0 +1,58 @@
+{
+  "source": "X/X85/X85n1590.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:40:00Z",
+  "rows": [
+    {
+      "key": "t_fb23e0284d73:0122c17:1:2",
+      "entryId": "t_fb23e0284d73",
+      "sourceTerm": "印可",
+      "RelPath": "X/X85/X85n1590.xml",
+      "FromLb": "0122c17",
+      "Kwic": "師各印可曰：汝等六人，同證吾身，各契其一。",
+      "caseClusterId": "X/X85/X85n1590.xml:55482:57287",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "錦江禪燈",
+      "defaultMasterName": "Nanyue Huairang",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Doushuai Congyue",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Zhang Shangying",
+            "Roles": [
+              "commissioner",
+              "addressee",
+              "biography subject"
+            ]
+          },
+          {
+            "MasterName": "Donglin Changzong",
+            "Roles": [
+              "approving master named in the question"
+            ]
+          }
+        ],
+        "AttributionNote": "Jinjiang Chan Lamp (錦江禪燈), Zhang Shangying biography. Doushuai Congyue is the exact speaker denoted by 悅 who asks whether, since Donglin Changzong approved the commissioner, Zhang Shangying still has any doubt about the words and teachings of buddhas and patriarchs. Zhang is the commissioner and addressee; Donglin is the named approving master."
+      }
+    },
+    {
+      "key": "t_fb23e0284d73:0143c05:1:4",
+      "entryId": "t_fb23e0284d73",
+      "sourceTerm": "印可",
+      "RelPath": "X/X85/X85n1590.xml",
+      "FromLb": "0143c05",
+      "Kwic": "東林既印可運使，運使于佛祖言教有少疑否？",
+      "caseClusterId": "X/X85/X85n1590.xml:204833:206800",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "錦江禪燈",
+      "defaultMasterName": "Zhang Shangying",
+      "candidateBasis": "header",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

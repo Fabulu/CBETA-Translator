@@ -1,0 +1,93 @@
+{
+  "generatedUtc": "2026-07-15T21:20:11.805345+00:00",
+  "entryCount": 10,
+  "claimCount": 4,
+  "candidatePhraseCount": 5,
+  "mismatchCount": 1,
+  "noNearCandidateCount": 1,
+  "claims": [
+    {
+      "entryId": "t_b191c4fa2e9f",
+      "sourceTerm": "請益",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 314,
+      "unit": "files",
+      "candidatePhrase": "請益",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "請益"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The frozen corpus has 1,949 exact hits in 314 files representing 310 works. Eight anchors cover direc",
+      "currentHits": 1949,
+      "currentFiles": 314,
+      "currentWorks": 310,
+      "expectedForUnit": 314,
+      "audit": "match"
+    },
+    {
+      "entryId": "t_b191c4fa2e9f",
+      "sourceTerm": "請益",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 310,
+      "unit": "works",
+      "candidatePhrase": "請益",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "請益"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The frozen corpus has 1,949 exact hits in 314 files representing 310 works. Eight anchors cover direct requests, narrated te",
+      "currentHits": 1949,
+      "currentFiles": 314,
+      "currentWorks": 310,
+      "expectedForUnit": 310,
+      "audit": "match"
+    },
+    {
+      "entryId": "t_b48fa1daa7d4",
+      "sourceTerm": "虛空",
+      "senseIndex": 0,
+      "field": "Explanation",
+      "claimed": 90,
+      "unit": "occurrences",
+      "candidatePhrase": "虛空中",
+      "candidateDistance": 2,
+      "candidatePhrases": [
+        "虛空中",
+        "虛空"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "e measurable, containable, breakable, and fillable. Productive forms include \"in empty space\" (虛空中, 90 occurrences), \"inside empty space\" (虛空裏, 136), and \"like empt",
+      "currentHits": 91,
+      "currentFiles": 49,
+      "currentWorks": 49,
+      "expectedForUnit": 91,
+      "audit": "mismatch-or-wrong-candidate"
+    },
+    {
+      "entryId": "t_b48fa1daa7d4",
+      "sourceTerm": "虛空",
+      "senseIndex": 0,
+      "field": "Explanation",
+      "claimed": 5943,
+      "unit": "occurrences",
+      "candidatePhrase": "無處回避",
+      "candidateDistance": 100,
+      "candidatePhrases": [
+        "充塞虛空",
+        "無處回避",
+        "虛空"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "). These are literal comparisons and recorded predicates; no single further sense is imposed on all 5,943 occurrences.",
+      "currentHits": 26,
+      "currentFiles": 22,
+      "currentWorks": 22,
+      "expectedForUnit": 26,
+      "audit": "no-near-candidate"
+    }
+  ]
+}

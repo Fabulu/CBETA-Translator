@@ -1,0 +1,37 @@
+{
+  "source": "J/J32/J32nB276.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_5d6035b1e800:0347b26:1:5",
+      "entryId": "t_5d6035b1e800",
+      "sourceTerm": "露地白牛",
+      "RelPath": "J/J32/J32nB276.xml",
+      "FromLb": "0347b26",
+      "Kwic": "北禪賢大師除夕示眾：『年窮歲盡，無可與諸人分歲，老僧烹一頭露地白牛，炊黍米飯，煮野菜根，燒榾柮火，大家喫了",
+      "caseClusterId": "J/J32/J32nB276.xml:97192:97926",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "不會禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Beichan Xian",
+        "ActorAttribution": null,
+        "AttributionNote": "不會禪師語錄, year-end informal address raising Beichan Xian's year-end address. Beichan Xian is the exact speaker of the stored quotation: the text introduces 北禪賢大師除夕示眾 and quotes him saying that he will cook one open-ground white ox, rice, and wild-vegetable roots for everyone to eat.",
+        "ContextMasters": [
+          {
+            "MasterName": "Buhui Tongfa",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

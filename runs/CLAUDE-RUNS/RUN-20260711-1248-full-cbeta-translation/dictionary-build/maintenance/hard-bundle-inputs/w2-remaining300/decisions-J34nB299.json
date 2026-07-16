@@ -1,0 +1,86 @@
+{
+  "source": "J/J34/J34nB299.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_fac9b9afebf6:0132a05:1:4",
+      "entryId": "t_fac9b9afebf6",
+      "sourceTerm": "探竿影草",
+      "RelPath": "J/J34/J34nB299.xml",
+      "FromLb": "0132a05",
+      "Kwic": "有時一喝如探竿影草』」，師云：「烽煙未動，砲已先行。",
+      "caseClusterId": "J/J34/J34nB299.xml:48936:49570",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三峰藏和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Sanfeng Hanyue Fazang",
+        "AttributionNote": "Recorded Sayings of Monk Sanfeng Cang (三峰藏和尚語錄): in his Shengen Monastery address, Sanfeng Hanyue Fazang comments on Linji's classification of a shout as probing pole and shadowing grass by saying that before beacon smoke moves, the cannon has already fired.",
+        "ContextMasters": [
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "earlier-classification-source"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_19705602b956:0135b07:1:4",
+      "entryId": "t_19705602b956",
+      "sourceTerm": "凡情聖見",
+      "RelPath": "J/J34/J34nB299.xml",
+      "FromLb": "0135b07",
+      "Kwic": "人不會。聖人若會，即同凡夫；凡夫若知，即同聖人。不消拈卻凡情聖見，寒則普天匝地寒，熱則普天匝地熱，是法住法位，世間相嘗住",
+      "caseClusterId": "J/J34/J34nB299.xml:68207:68746",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三峰藏和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Sanfeng Hanyue Fazang",
+        "AttributionNote": "Recorded Sayings of Monk Sanfeng Cang (三峰藏和尚語錄): in his Shengen Monastery address, Sanfeng Hanyue Fazang says there is no need to remove ordinary feelings and holy views, followed by cold everywhere as cold and heat everywhere as heat."
+      }
+    },
+    {
+      "key": "t_6293dead3bb2:0139b05:1:7",
+      "entryId": "t_6293dead3bb2",
+      "sourceTerm": "轉身",
+      "RelPath": "J/J34/J34nB299.xml",
+      "FromLb": "0139b05",
+      "Kwic": "師轉身便行。上堂。",
+      "caseClusterId": "J/J34/J34nB299.xml:90239:90831",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三峰藏和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Sanfeng Hanyue Fazang",
+        "AttributionNote": "Recorded Sayings of Monk Sanfeng Cang (三峰藏和尚語錄): inside his Shengen Monastery exchange, Sanfeng Hanyue Fazang turns around and immediately walks away when pressed for another statement; the text then begins a new hall address."
+      }
+    },
+    {
+      "key": "t_57ef1bbc3a81:0146c04:1:3",
+      "entryId": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "RelPath": "J/J34/J34nB299.xml",
+      "FromLb": "0146c04",
+      "Kwic": "一念昏沉便是無明，無明生起一分有知，謂之眾生；一分無知，謂之山河大地。明暗色空，山河影現，搖動知覺謂之塵，知覺吸攬前塵謂之念",
+      "caseClusterId": "J/J34/J34nB299.xml:127542:128183",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三峰藏和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Sanfeng Hanyue Fazang",
+        "AttributionNote": "Recorded Sayings of Monk Sanfeng Cang (三峰藏和尚語錄): in the extended Shengen Monastery record, Sanfeng Hanyue Fazang says that one part of ignorance called lack of knowledge is named mountains, rivers, and great earth."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

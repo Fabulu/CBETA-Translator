@@ -1,0 +1,452 @@
+{
+  "schemaVersion": 1,
+  "wave": "semantic-r003",
+  "reviewerOwner": 2,
+  "subjectOwner": 3,
+  "status": "in_progress",
+  "instructions": "Do not edit the subject owner's entry. Falsify the current draft against exact corpus evidence, literal controls, alternate senses and verb frames, depth, family dependencies, search probes, opening inference, quote anchors, and forbidden English. Record keep/revise/reject with evidence. A revise/reject verdict returns the row to its evidence owner; it never silently edits across ownership.",
+  "entries": [
+    {
+      "id": "t_04ec52b69afa",
+      "sourceTerm": "解制",
+      "path": "terms/t_04ec52b69afa/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "753c019a419073bc472447be25abe741c3eb1d24218454c91e335242ef88c461",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-jiezhi-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 11/11 exact KWICs, zero attribution hard failures, and zero depth/sense hard failures.",
+        "Independent countercounts confirm 153/43 release-hall headings, 2/2 `謂之解制`, 3/3 `名為解制`, and 1/1 negative `不得名為解制` boundary.",
+        "The dated communal release and explicitly self-defined personal obstruction-breaking event are different things; calendar/dispersal and mind/net/dissolution predicates support the split.",
+        "Owner's repaired WORK now carries all six exact public-feedback keys; the current gate hardPass=true with publicFeedbackAudit passing 1/1, while the entry hash and accepted semantics remain unchanged.",
+        "The returned prose removes both generic source claims. Sense 1 now distinguishes an impersonal Zhengfa Ximing heading, Jie Weizhou and Miyun Yuanwu's dated statements, and three reviewed unnamed questioners with Feiyin Tongrong, Huayan Shengke, and Chaozong Tongren as respondents; sense 2 directly names Lianyue Guangsi, Huayan Huanchu, Konggu Daocheng, and Shiyu Mingfang. Current gate hardPass=true at 11/11 with all 14/14 prose Chinese strings anchored."
+      ],
+      "reason": "Keep after closed-role replacement re-review. All eleven KWICs verify, all actor roles now use the 17-role vocabulary, and the institutional-end versus personal-obstruction-release split remains a true different-event split with distinct targets."
+    },
+    {
+      "id": "t_6ec308f7766e",
+      "sourceTerm": "迷頭認影",
+      "path": "terms/t_6ec308f7766e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "725231e1a3ec30565b636e75524109c0d654e1ebc87a47815de4e35b0ffbe357",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-mitourenying-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 8/8 exact KWICs, zero attribution hard failures, and zero depth/sense hard failures.",
+        "Independent countercounts confirm exact headword 136/76, reversed family 64/40, forgotten-head variant 1/1, carried-head family 5/5, and person-type 1/1.",
+        "Xiangshan's not-lost/not-newly-gained head and Yuanming's light-cast head/shadow co-presence license the inference-bearing target; question, appraisal, person-type, and chamber test retain one error.",
+        "Owner's repaired WORK now carries all six exact public-feedback keys; the current gate hardPass=true with publicFeedbackAudit passing 1/1, while the entry hash and accepted semantics remain unchanged.",
+        "The returned opening removes the generic source claim and assigns the deployments directly to a reviewed unnamed monk with Tongan Pi, Yulin Tongxiu, Luohan Shenming Che, Qingzhou Puzhao Yibian, Linquan Conglun, and Jifei Ruyi; following prose establishes full identities before shortened surnames. Current gate hardPass=true at 8/8 with 2/2 Chinese prose strings anchored."
+      ],
+      "reason": "Keep. The still-present head and light-cast shadow inference is corpus-constrained, all deployments retain one error, and reader prose now names every exact actor or reviewed unnamed role without generic source attribution."
+    },
+    {
+      "id": "t_250794fa9636",
+      "sourceTerm": "野狐",
+      "path": "terms/t_250794fa9636/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "dfba796d4673759ac5428af8ab2d9b315db1f1292252d3149ce24d886fdcddc1",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-yehu-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 11/11 exact KWICs, zero attribution failures, zero depth hard failures, and a complete public-feedback ledger.",
+        "The three different things are real: a named textual case, the animal/incarnation in that narrative, and a human/group epithet. Corpse/cremation and fall/escape frames distinguish the animal from case-heading/raising frames and human predication.",
+        "Bare-case activation is found only in Zhenjing Kewen's `野狐` verse heading; the other case witnesses are explicitly family-only longer compounds (`百丈野狐話`). Nested compounds corroborate but cannot make the bare case sense multi-source.",
+        "The third sense's bare exact witnesses predicate `野狐` of people or groups (`天下野狐`, `精魅野狐`). The returned entry replaces the contradictory `wild fox view` alias with the human-epithet lookup `wild fox accusation`; current gate hardPass=true with 11/11 exact witnesses.",
+        "The returned prose replaces all generic records/masters claims with exact actors: Zhenjing Kewen, Huiji Yuanxi, and Shita Xuanmi for the case; Baizhang Huaihai, the explicitly unnamed former abbot, Fachang Yu, Hongfu Ziwen, and Dahui Zonggao for the animal; Zhongan Huikong, Deshan Xuanjian, Nanyang Huizhong, and Dahui for the epithet family. Current gate hardPass=true at 11/11 with the sole Chinese prose string anchored."
+      ],
+      "reason": "Keep. The provisional case, literal animal/incarnation, and people/groups-only epithet remain distinct; nested compounds stay family-scoped, and every reader-facing quoted or paraphrased deployment now names the exact actor or explicit unnamed former abbot."
+    },
+    {
+      "id": "t_2852a9ae231c",
+      "sourceTerm": "隨波逐浪",
+      "path": "terms/t_2852a9ae231c/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "c958ab189ecb518cdcf891332abcc6e9e18e6fb5edf30ced41fa0e7bd8e1b4d3",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-suibozhulang-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs, zero attribution/depth failures, and a complete public-feedback ledger.",
+        "Set membership, recurring `如何是隨波逐浪句` question grammar, and the paired `截斷眾流` appraisals support a named textual-phrase sense distinct from the independently predicated wave-following action.",
+        "Yuantong Faxiu's sail line is correctly assigned to the technical pair because its continuation immediately takes up cutting off the streams; three other sources independently predicate the ordinary action.",
+        "The returned entry removes the duplicate SourceTexts element; the current gate hardPass=true with all 7 exact witnesses and the accepted named-phrase/action split unchanged.",
+        "The returned sense-1 prose directly assigns the question, appraisal, and sail equation to a reviewed unnamed monk with Ruiyan Zhicai, Guyun Quan, and Yuantong Faxiu; sense 2 directly names Qingshan Neng, Songxi Ziding, and Shiyu Mingfang. Current gate hardPass=true at 7/7 with no prose-attribution ambiguity."
+      ],
+      "reason": "Keep. Semantic, inference, exact-turn attribution, and the different-thing split between Deshan Yuanming's named phrase and the ordinary action pass; both reader-facing deployment summaries are now actor-led."
+    },
+    {
+      "id": "t_658aa535f10b",
+      "sourceTerm": "香嚴上樹",
+      "path": "terms/t_658aa535f10b/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "a084a86df4ffd0622b0adafd74064865bb29b9f36ddf5dd06f1ef5a284203d4c",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-xiangyanshangshu-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs, zero mechanical attribution failures, complete public-feedback keys, and no depth/sense flag.",
+        "The one-sense named-case decision passes: mouth as sole support, no handhold or foothold, the answer-or-fall constraint, fixed titles, public-case raising, entering-interview testing, and before-ascent counter-question all retain one case.",
+        "The J/J38/J38nB415.xml witness at 0465a26 is misattributed to Miaoyun. The wider 行略 explicitly says Miaoyun (`余`) went to Lingyin and received precepts from Jude, then repeatedly distinguishes `德` as examiner and `余` as respondent: `德命看竹篦子話...德乃舉香嚴上樹話...余曰...德曰...余便喝，德打一竹篦`.",
+        "The returned occurrence now names source-attested Lingyin Jude Li as exact speaker, explicitly identifies Miaoyun as first-person respondent/narrator/record-owner context, and rewrites the note around those roles; the current gate hardPass=true with 7/7 exact witnesses.",
+        "The returned T48 family witness now assigns Xiangyan Zhixian's explicitly introduced setup to Xiangyan and keeps Wumen Huikai as editor/commentator context.",
+        "The returned X72 witness now assigns the exact question to a six-rung reviewed unnamed monk and keeps Zongbao Daodu as respondent/record-owner context.",
+        "The returned X67 witness now records the exact title as an impersonal numbered-case heading and separates Wansong Xingxiu as commentator/record owner from Xiangyan as quoted setup speaker. Current gate hardPass=true at 7/7 with 5 named, 1 reviewed-unnamed, and 1 impersonal occurrence."
+      ],
+      "reason": "Keep after closed-role replacement re-review. The re-cut T48 witness now contains and verifies the exact title plus full setup; all seven witnesses and all roles pass, and the one named-case sense remains coherent across setup, title, raising, interview testing, and before-ascent counter-question."
+    },
+    {
+      "id": "t_74a27239e6c7",
+      "sourceTerm": "一刀兩段",
+      "path": "terms/t_74a27239e6c7/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "e80cde9734a99d61ac57a5a8c58ea4307ea9fb9588f81366c0ed51da483ec1b4",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-yidaoliangduan-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 6/6 exact KWICs, zero attribution failures, complete public-feedback keys, and no depth/sense flag.",
+        "Independent source-heading checks confirm Ying'an Tanhua's own record, Dahui's own record, Fenyang Shanzhao's headed section, Changqing Huileng's headed section, Longtan Zhiyuan's headed section, and Xingkong Miaopu's headed bandit narrative.",
+        "Answer, imperative, person-label, and critical appraisal establish one reusable formula without licensing a universal object that is cut; the entry explicitly refuses the unsupported `cutting thought` reading.",
+        "Xingkong Miaopu's request followed by `斬！斬！` independently denotes an actual bodily execution, so the provisional literal event is a different thing rather than a different reading of the formula.",
+        "The returned formula explanation directly names Ying'an Tanhua and Longtan Zhiyuan's answers, Dahui Zonggao's command, Fenyang Shanzhao's person-label, and Changqing Huileng's criticism; the unnamed Ying'an questioner is explicit, and the literal sense directly names Xingkong Miaopu. Current gate hardPass=true at 6/6."
+      ],
+      "reason": "Keep. Exact evidence, speaker ownership, actor-led reader prose, and the different-thing split between a circulating formula and Xingkong Miaopu's actual requested execution all pass."
+    },
+    {
+      "id": "t_9a7a00ea0cd1",
+      "sourceTerm": "一歸何處",
+      "path": "terms/t_9a7a00ea0cd1/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "4e72c38680461c71f197378c43434b894bd1a0073d57cf3a66626839aa650fd6",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-yiguihechu-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs, zero mechanical attribution failures, complete public-feedback keys, and one non-hard depth review flag.",
+        "The opening inference is direct: the recurring full construction `萬法歸一，一歸何處` supplies the antecedent of `一`; Zhaozhou's shirt, Wenshu's river bends, Baizhang An's reply, Gaofeng's whole address, Lanan's chamber test, and Zhongfeng's assigned-saying use preserve one stable question with divergent answers.",
+        "Exact-turn handling is reader-honest: genuinely unnamed historical questioners use reviewed-unnamed actor records after all six rungs; named masters are retained as respondents, raisers, record owners, or exact speakers according to each turn.",
+        "The returned WORK now truthfully records all 7 saved KWICs and explicitly distinguishes the six inherited witnesses from the added Zhongfeng Mingben assigned-saying witness; the current gate remains hardPass=true at 7/7."
+      ],
+      "reason": "Keep after second replacement re-review. Occurrence 2 now explicitly carries roster-exact Manjusri as respondent and case figure beside Zhaozhou and Hongzhi; all seven witnesses verify, all roles are closed, and the stable stock question remains distinct from its divergent public answers."
+    },
+    {
+      "id": "t_ba841f6e11c8",
+      "sourceTerm": "乾屎橛",
+      "path": "terms/t_ba841f6e11c8/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "3698cc2e4f14782bf5d245221a3bb928e8634d328795d574f8cbbac6cbbee470",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-ganshijue-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 10/10 exact KWICs across 7 files, zero mechanical attribution failures, complete public-feedback keys, and ten-or-more depth coverage.",
+        "The definition-formula audit finds no corpus equation to a narrower material object. The separate latrine wiping-stick term occurs 11/11 but is never equated with 乾屎橛, while Wanpu Zhao's exact direct question receives Miyun Yuanwu's field-ridge answer rather than a material gloss.",
+        "The materially narrow graph-level target is therefore honest: it keeps a dry excrement-associated peg/stick visible while explicitly refusing to choose between an ordinary wiping tool, a dried-dung construction, or an imported symbolic intention.",
+        "One sense is required by the guide's reading-versus-thing rule: Linji Yixuan's person-of-no-rank question, Deshan Xuanjian's Shakyamuni predicate, Yunmen Wenyan's answers and rebuke, and later named-case compounds are deployments/readings of one expression, not separately attested bare-word referents.",
+        "The post-remediation prose gate passes: Linji Yixuan, Deshan Xuanjian, Yunmen Wenyan, Wumen Huikai, Dahui Zonggao, Zhongfeng Mingben, Wanpu Zhao, and Miyun Yuanwu are named in their exact roles; unnamed historical questioners are explicitly described as unnamed, and context roles remain separate."
+      ],
+      "reason": "Keep. The entry surfaces the concrete minimum and the Chan deployments without importing the disputed physical identity or doctrinal intention; sense structure, exact-turn attribution, reader prose, depth, family controls, and all anchors pass."
+    },
+    {
+      "id": "t_bfc44617ac23",
+      "sourceTerm": "人境俱奪",
+      "path": "terms/t_bfc44617ac23/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "9d2f0b6b0a6baa66d562c21488099684267cd8638a103649ee7ce8c2b8d4ec87",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-renjingjuduo-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across 6 files, zero attribution failures, complete public-feedback keys, and no depth/sense flag.",
+        "Linji Yixuan's direct four-member declaration establishes a named roster member; 60/43 `如何是人境俱奪` questions with divergent replies establish later public deployment but block treating any one answer as a hidden lexical definition.",
+        "The direct declaration, Linji's Bing/Fen answer, Yuanwu Keqin's gather-in/let-out pair, Feiyin Tongrong's body question, Jie'an Wujin's appraisal and beating command, and Tianyin Yuanxiu's shout test all retain one selection rather than different things.",
+        "Exact-turn repair passes: five headword questions belong to six-rung reviewed unnamed monks with Linji, Yuanwu, Feiyin, and Jie'an as respondents; Tianyin's stored token is an explicit Linji quotation, so Linji is exact speaker and Tianyin later-quoter/tester context.",
+        "Reader prose is fully actor-led and the preferred target is independently distinguishable as a textual selection, while the explanation refuses to decode person or scene into an unrecorded doctrine or physical disappearance."
+      ],
+      "reason": "Keep after closed-role replacement re-review. All seven witnesses verify; questioners, Linji self-utterance, respondents, and Tianyin later quotation now use closed roles, while the entry preserves one named Linji selection with divergent public answers rather than decoding a hidden doctrine."
+    },
+    {
+      "id": "t_d055e572dc64",
+      "sourceTerm": "依前",
+      "path": "terms/t_d055e572dc64/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "fdddc20279ef6dffac3ceb35f276c9d457b931fa24944c87a7123243fa4584bf",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-yiqian-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 8/8 exact KWICs across 6 files, zero attribution failures, complete public-feedback keys, and depth beyond the seven-witness frequency floor.",
+        "Repeated questioning, repeated wording, unchanged incapacity, failed recognition and calculation, the mountains-and-waters sequence, opposed relabeling, and the fly-whisk naming test all preserve the ordinary relation `as before` across recurrence and continuing-state grammar.",
+        "The negative interview verdict is an attested Zen deployment, not another thing: Fenyang Shanzhao, Zhenxie Qingliao, Dahui Zonggao, and Deshan Jingzhao'an Zongshi say that recognition, calculation, relabeling, or naming leaves the result unchanged, while neutral examples prevent narrowing the word to that verdict.",
+        "Exact-turn attribution and prose pass: Deng Yinfeng, Fenyang, Datian Baotong, Zhenxie, Qingyuan Weixin, Dahui, and source-named non-roster Zongshi own their tokens; one Zhaozhou-instructed monk is explicitly reviewed unnamed, with Zhaozhou and Xuefeng kept as context roles.",
+        "The attributable Fenyang parallel replaces the old anonymous `an ancient said` evidence, and Zongshi's fly-whisk test surfaces where Zen bends the ordinary adverb without inventing an intended doctrine."
+      ],
+      "reason": "Keep after closed-role replacement re-review. All eight witnesses verify; the unnamed monk is correctly a respondent and every named speaker has self utterer context. Repeated action, continuing state, and negative interview verdict remain deployments of the one ordinary `still as before` adverb."
+    },
+    {
+      "id": "t_ad2c9d24126f",
+      "sourceTerm": "入定",
+      "path": "terms/t_ad2c9d24126f/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "1b810b6fcb7d1c67d05c0b66a1fbc83ca325c93bf1060afc983eb55b47039f64",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-ruding-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 10/10 exact KWICs across 7 files, zero mechanical attribution failures, complete public-feedback keys, and ten-or-more depth coverage.",
+        "The item-8 split is real: Sanghanandi's twenty-one-day sitting and the woman-in-concentration case establish a reversible state with emergence grammar, whereas three dated Ancestor Hall succession notices close a patriarch's biography and immediately open the successor's, establishing a different terminal event.",
+        "The terminal target is appropriately provisional because four measured notices repeat in one source; the entry preserves the visible `enter concentration` wording while making the inferred death function searchable and does not import Yongming Yanshou's quoted outside-treatise framework.",
+        "Exact-turn/action roles otherwise pass: named state/action actors, reviewed unnamed monk and woman, named respondents/raiser/case figures as context, and impersonal narrator-governed dated succession states are separated.",
+        "The returned prose now names Yongming Yanshou as the exact outside-treatise quoter and the impersonal Ancestor Hall Collection narrator as the actor preserving each terminal event's `enter concentration` wording. Current gate remains hardPass=true at 10/10."
+      ],
+      "reason": "Keep after second replacement re-review. The Sanghanandi witness is now correctly narrated by the lineage-biography compiler with Sanghanandi person-described and Rahulatabhadra contextualized; all ten exact witnesses and closed roles pass, and temporary concentration versus terminal lineage event remains a true split."
+    },
+    {
+      "id": "t_428845c4921d",
+      "sourceTerm": "剎那",
+      "path": "terms/t_428845c4921d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "74f71260ffdb0fbc9f1939932271c62ab8ecb263671c081e9f0c07c801ad99e9",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-chana-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 8/8 exact KWICs across 6 files, zero attribution failures, complete public-feedback keys, and frequency-scaled calibration depth.",
+        "One time-unit sense passes: duration, sequence, comparison, numerical subdivision, three-years/instant, and myriad-ages/instant contrasts all retain one interval rather than a person, title, concentration, or awakening referent.",
+        "Exact actors and reader prose pass across Yang Jie, Yongming Yanshou, Wuyi Yuanlai, Zhongfeng Mingben, Ziyang Zhenren, Yongzheng Emperor, Chijue Daochong, and source-attested non-roster Lingao Benyu.",
+        "The returned entry preserves the source-visible `六千五箇` as literal `six-thousand-five`, reports that no 百, apparatus variant, or allowlisted parallel resolves whether this means 6,005, colloquial 6,500, or a textual error, and no longer silently supplies 6,500.",
+        "The returned target/aliases replace unsupported `briefest`/`shortest` superlatives with `a tiny interval` and `fleeting moment`; current gate hardPass=true at 8/8."
+      ],
+      "reason": "Keep. One time-unit sense, actor-led prose, depth, and family controls pass; the anomalous numeral is now reported without emendation and the English targets state extreme brevity without an unsupported universal minimum or seconds conversion."
+    },
+    {
+      "id": "t_cbabe9217935",
+      "sourceTerm": "呂洞賓",
+      "path": "terms/t_cbabe9217935/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "ecae0b6376bc600d74ae0ed6cb3bc97743b9fcdf2275a9789dd21287ea35182f",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-lvdongbin-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 6/6 exact full-name KWICs across 6 files, zero attribution failures, complete public-feedback keys, and all distinct figure deployments covered.",
+        "One person sense passes: Lü Dongbin, Lü Chunyang, and True Person Pure Yang converge; criticism of longevity/alchemy, positive sword portraiture, changed conduct, cauldron smashing, and conventional Daoist clothing are stances and scenes, not separate people.",
+        "The Zen deployment is corpus-licensed while Huanglong identity remains honest: Minshu, Xisou Shaotan, and Wuwen Daocan explicitly connect Lü to Huanglong, but the witnesses do not spell Huanglong's personal name or connect Lü to Huanglong Huinan's Three Barriers; roster linkage is correctly deferred.",
+        "Exact later speakers/authors and expanded quote anchors pass across Xisou, Minshu, Wumen Huikai, Wuwen, Yunshan Yanju Shen, and Qiaoyin Wuyi.",
+        "The returned opening directly assigns the flying-sword/awakening account to Minshu, the meeting title/decay/covering verse to Xisou Shaotan, and the post-Huanglong gait to Wuwen Daocan before stating the dictionary's figure-level inference. Current gate hardPass=true at 6/6."
+      ],
+      "reason": "Keep. One named person, mixed recorded stances, source-visible Huanglong uncertainty, exact later speakers/authors, expanded quote anchors, and fully actor-led reader prose all pass."
+    },
+    {
+      "id": "t_936118ea496c",
+      "sourceTerm": "喫粥",
+      "path": "terms/t_936118ea496c/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "e6532fd52c1eebbad637396ce229ecb91c73c106fcffb9f79327c88bf613a2ba",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-chizhou-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 8/8 exact KWICs across 7 files, zero mechanical attribution failures, complete public-feedback keys, and frequency-scaled depth.",
+        "One concrete action sense passes: communal eating, morning nourishment, public answers, an assembly instruction during breakfast, encounter location, and fundamental-matter enumeration all retain eating gruel; rhetorical deployment does not create another food or act.",
+        "The ordinary hunger consequence and meal sequence block symbolic abstraction, while Shimen Yuncong, Zhaozhou Congshen, Zhean Jingfan, and Baichi Yuan surface the public-answer/instruction/enumeration Zen bend without inventing doctrine.",
+        "The returned owner gate hardPass=true at 8/8, and complete-passage actor audits retain a named exact utterer for every occurrence with mandatory self ContextMasters role `utterer`.",
+        "The T51 unit is corrected: Huanglong Sixin Wuxin is the exact utterer, Fachang Yu is the questioner, and Huitang Zuxin is the teacher; all ContextMasters roles use the closed ACTOR_AUDIT vocabulary.",
+        "All eight KWICs contain 喫粥 and verify at their stored bounds. Reader-facing prose and attribution notes name their actors, and the physical-meal controls plus public answer, instruction, encounter, and enumeration deployments still support one concrete eating sense with an explicit Zen bend."
+      ],
+      "reason": "Keep. The returned repair preserves the sound single-sense analysis, verifies all eight exact KWICs, names the exact utterer throughout, supplies closed-role actor context, and corrects the T51 Fachang Yu/Huanglong Sixin Wuxin/Huitang Zuxin relationship."
+    },
+    {
+      "id": "t_f6532de212f3",
+      "sourceTerm": "圓陀陀",
+      "path": "terms/t_f6532de212f3/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "1db23509d3f5b3e60a21f80d8528ba5f559b1cf56910b9e7f01fa857786fb1c6",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-yuantuotuo-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across five texts; all seven stored KWICs contain 圓陀陀 and verify at their stored bounds.",
+        "The single rounded-form sense is well constrained by Hongzhi Zhengjue's explicit `無稜角`, Shuzhong Wuyun's begging-bowl control, Yinyuan Longqi's moving pearl/tray comparison, and Chunan Furong Baining Yi's warning against treating the description as a fixed ultimate body.",
+        "The returned repair adds mandatory `utterer` alongside `respondent` for Yinyuan Longqi's exact 0229b19 answer; every named occurrence now carries the exact actor with a supported role.",
+        "The semantic and reader-facing prose pass: named actors are explicit, the physical shape and Zen public-answer deployments remain distinguishable, and no second sense is licensed."
+      ],
+      "reason": "Keep. The narrow actor repair is complete at 7/7: Yinyuan's answer now records both respondent and utterer, all KWICs verify, and the sound single rounded-form sense is preserved."
+    },
+    {
+      "id": "t_2b6fde4fdf58",
+      "sourceTerm": "壁立千仞",
+      "path": "terms/t_2b6fde4fdf58/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "fbc4ace7fccdf769f026843458f95cb2d3772116a0c2f707df596c7591222720",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-biliqianren-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across five texts; every stored KWIC contains 壁立千仞 and verifies at its stored bounds.",
+        "One sheer-wall image passes: Nanyuan Huiyong's red-flesh-lump line, Dongshan Shouchu's mud-and-water contrast, Yuanwu Keqin's reciprocal deployment, Cuiyan Kezhen's classification, and Langya Huijue's dangerous appraisal are distinct uses of the same visible precipitous comparison, not different things.",
+        "Complete-passage actor assignments pass. The reviewed unnamed monk, not Nanyuan, utters occurrence 2's repeated question; Nanyuan is respondent and section subject. In occurrence 7 Nanyuan is the explicitly quoted utterer and Langya the later raiser/commentator.",
+        "All named occurrences include the exact headword utterer with closed ContextMasters roles, and reader-facing prose names each responsible actor or explicitly states that the monk remains unnamed after all six rungs."
+      ],
+      "reason": "Keep after closed-role replacement re-review. All seven exact witnesses verify; the unnamed actor is now a questioner, named self-utterance and later commentary are correctly contextualized, and the sheer thousand-fathom-wall image remains one coherent appraisal."
+    },
+    {
+      "id": "t_0b8912312b92",
+      "sourceTerm": "大用現前",
+      "path": "terms/t_0b8912312b92/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "902951bfdc58afd9da9ca7fb5dcca44342d485a92794f35167e2b81fc4236b79",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-dayongxianqian-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across four texts; every stored KWIC contains 大用現前 and verifies at its stored bounds.",
+        "The revised target `full capacity for action comes into view` states the phrase's compositional content while the witnesses retain its Zen public-question, assembly-demand, case-commentary, and stock-formula deployments without identifying it with any single action.",
+        "Complete-passage attribution passes: the X79 0069c21 question is uttered by a reviewed unnamed monk and Changqing Da'an is only respondent/section subject; the Yunmen material is correctly split into Yunmen's own stock statement and a separate reviewed unnamed monk's question.",
+        "All named occurrences carry self ContextMasters role utterer, contextual actors use the closed vocabulary, and Dahui Zonggao's explicit rejection of applying the formula to the snake- and cat-killing cases remains clearly attributed and anchored."
+      ],
+      "reason": "Keep after closed-role replacement re-review. All seven exact witnesses verify; both unnamed actors are now questioners and named/context roles pass. The phrase consistently names full capacity coming into view while divergent answers and Dahui's rejection prevent one action becoming a hidden definition."
+    },
+    {
+      "id": "t_2229af16905a",
+      "sourceTerm": "威音王",
+      "path": "terms/t_2229af16905a/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "78740748de6d4576ccadfc78f71d27d3914b84cac19be06a46129620b6b3bdb0",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-weiyinwang-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across seven stored source witnesses; every KWIC contains 威音王 and verifies.",
+        "The entry identifies Mighty-Sound King Buddha and defines his Zen deployment as an extreme before/after/far-side boundary without turning those constructions into separate figures or a universal hidden doctrine.",
+        "Complete-passage attribution passes: Huangbo Xiyun, Xuance, Dahui Zonggao, Xuedou Chongxian, Hanyue Fazang, and Tianyi Yihuai are the exact speakers/authors; Nanquan Puyuan and Yongjia Xuanjue remain respondents rather than displaced speakers.",
+        "All named occurrences include self ContextMasters role utterer, contextual roles are closed, Hanyue's seven-buddha and before-writing account is explicitly source-specific, and Dahui's criticism remains anchored rather than silently adopted."
+      ],
+      "reason": "Keep. The entry supplies the figure identity and specifically Zen boundary deployment, preserves source-specific inference and criticism, verifies all seven witnesses, and satisfies ACTOR_AUDIT throughout."
+    },
+    {
+      "id": "t_3972185a2e25",
+      "sourceTerm": "宗門",
+      "path": "terms/t_3972185a2e25/entry.v2.json",
+      "state": "awaiting-context-repair",
+      "verdict": "revise",
+      "subjectEntrySha256": "71356db3eb23e6ef60bdaadf7e8a5d25c57d13a0b2d2dcf5aeb1ca4609dea5f0",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-zongmen-gate.json",
+      "evidence": [
+        "Current owner gate hardPass=true with 7/7 exact KWICs across six texts; every witness contains 宗門 and verifies.",
+        "The target `the Zen lineage` is reader-first and the alternate lineage/school/gate forms cover ordinary English lookup while preserving the gate image where locally relevant.",
+        "One institutional lineage sense passes across internal lineage matters, Yuanwu Keqin's explicitly source-specific mind/source derivation, and the impersonal collection title; title metadata modifies the same lineage rather than naming a second thing.",
+        "Exact actors pass: two speakers remain explicitly reviewed unnamed, Fachang Yiyu and Wuyi Yuanlai are their own utterers/questioners, Yuanwu is the source-specific speaker, and the title witness is impersonal metadata. All ContextMasters roles are closed."
+      ],
+      "reason": "Still revise after closed-role replacement re-review. Occurrence 7's impersonal title has a valid compiler ActorRole but omits the mandatory ContextMasters field; add the evidence-supported empty array and rerun the gate."
+    },
+    {
+      "id": "t_e316c767f5f9",
+      "sourceTerm": "廣額",
+      "path": "terms/t_e316c767f5f9/entry.v2.json",
+      "state": "awaiting-role-normalization",
+      "verdict": "revise",
+      "subjectEntrySha256": "8c9632fb00408ec71796bd4cbee9c32e84342593d9e68be001af2f2bc7455976",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-guange-gate.json",
+      "evidence": [
+        "All six exact KWICs verify and quoted claims are anchored.",
+        "The proper-name butcher and anatomical broad-forehead uses are genuinely different things with distinguishable targets; Dongshan's rejected readings remain readings rather than senses.",
+        "Fahua and Bao'en deployments are preserved without forced harmonization, while Dongshan is the exact utterer and Yanxi/Tiemei are correctly person-described under named compiler narratives."
+      ],
+      "reason": "Reopened under corrected ACTOR_AUDIT closure: one or more ActorAttribution.ActorRole values fall outside the 17-role vocabulary. Normalize the role and retain detail in GrammarEvidence, rerun gates, then independently re-review the current hash."
+    },
+    {
+      "id": "t_a784d81e277b",
+      "sourceTerm": "應諾",
+      "path": "terms/t_a784d81e277b/entry.v2.json",
+      "state": "awaiting-role-normalization",
+      "verdict": "revise",
+      "subjectEntrySha256": "8069c5a9bc92c0790f7df0d1e3242558cc45d68297a275c277967dfe26e0308d",
+      "evidence": [
+        "All seven KWICs verify and the audible answer/acknowledgment remains one response event rather than a false sense split.",
+        "Impersonal written narrative voice is distinguished from the attendant, Ananda, Pei Xiu, lecture master, and seer as described respondents; Ananda and Pei are correctly demoted from MasterName.",
+        "Dahui is correctly the later raiser of the Luoshan-Zhaoqing case, closed contextual roles pass, and reader prose locates the Zen bend in the ordinary answer becoming the public hinge."
+      ],
+      "reason": "Reopened under corrected ACTOR_AUDIT closure: one or more ActorAttribution.ActorRole values fall outside the 17-role vocabulary. Normalize the role and retain detail in GrammarEvidence, rerun gates, then independently re-review the current hash."
+    },
+    {
+      "id": "t_f7bdd2def0ec",
+      "sourceTerm": "截斷眾流",
+      "path": "terms/t_f7bdd2def0ec/entry.v2.json",
+      "state": "awaiting-role-normalization",
+      "verdict": "revise",
+      "subjectEntrySha256": "bff2fc82638476bfac1aa378791c11108a34abdb13b16d8dcb0a0ae564979ada",
+      "evidence": [
+        "All six KWICs verify and the phrase-constituent versus freely predicated action split names genuinely different lexical things with distinguishable targets.",
+        "Deshan's first-person presentation is separated from impersonal editorial origin history; Jiuding is the exact later raiser of the conventional Yunmen attribution, and the compiled answer table remains impersonal with Guizong respondent.",
+        "Yuanwu and Hongzhi independently control the action sense; aliases, closed contextual roles, quotes, and prose pass."
+      ],
+      "reason": "Reopened under corrected ACTOR_AUDIT closure: one or more ActorAttribution.ActorRole values fall outside the 17-role vocabulary. Normalize the role and retain detail in GrammarEvidence, rerun gates, then independently re-review the current hash."
+    },
+    {
+      "id": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "path": "terms/t_66792ea088de/entry.v2.json",
+      "state": "awaiting-role-normalization",
+      "verdict": "revise",
+      "subjectEntrySha256": "b7ac737c91a7077811ebbb59732c51934fe4de9d45210f55448a85efa780d52d",
+      "evidence": [
+        "All seven KWICs verify and the act, resulting comment, and section label are grammatical views of one old-case-comment operation, not different lexical things.",
+        "Wansong's genre enumeration and Tiyin's heading-case-comment sequence anchor the operation; Zhang Shangying is correctly identified-non-master, while Yulin is exact utterer and Huiji Zhou person-described.",
+        "Tables of contents and headings remain impersonal, contextual roles are closed, aliases are reader-searchable, and quoted claims are anchored."
+      ],
+      "reason": "Reopened under corrected ACTOR_AUDIT closure: one or more ActorAttribution.ActorRole values fall outside the 17-role vocabulary. Normalize the role and retain detail in GrammarEvidence, rerun gates, then independently re-review the current hash."
+    },
+    {
+      "id": "t_f0cb4dcfc70c",
+      "sourceTerm": "掛搭",
+      "path": "terms/t_f0cb4dcfc70c/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "9f34a06962f60ac3bed6841b5cafad82aa7b0446ec368edff5765d58195b2dcf",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r003-owner3-guada-gate.json",
+      "evidence": ["All seven current KWICs contain 掛搭 and verify; the enriched gate passes depth and spread.", "The target identifies formal monastic registration and assigned residence rather than generic lodging, with regulations anchoring hall office, ordination document, luggage, bed register, and common quarters.", "Institutional clauses and the biography are correctly compiler/narrative voice; Yexian Guixing and Fayun Faxiu are exact utterers, and every ActorRole and ContextMasters role is inside the corrected 17-role closure."],
+      "reason": "Keep. Concrete institutional sense, depth, actor normalization, aliases, anchors, and reader prose pass independent review."
+    },
+    {
+      "id": "t_84e490b1773f",
+      "sourceTerm": "撫掌",
+      "path": "terms/t_84e490b1773f/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    },
+    {
+      "id": "t_34143e43daf4",
+      "sourceTerm": "放下著",
+      "path": "terms/t_34143e43daf4/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    },
+    {
+      "id": "t_58099932161b",
+      "sourceTerm": "斷臂",
+      "path": "terms/t_58099932161b/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    },
+    {
+      "id": "t_08ffd55c812e",
+      "sourceTerm": "杜撰",
+      "path": "terms/t_08ffd55c812e/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    },
+    {
+      "id": "t_ccd48e1c9145",
+      "sourceTerm": "正中來",
+      "path": "terms/t_ccd48e1c9145/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    },
+    {
+      "id": "t_15eac1a3b037",
+      "sourceTerm": "歸方丈",
+      "path": "terms/t_15eac1a3b037/entry.v2.json",
+      "state": "waiting",
+      "verdict": "",
+      "evidence": [],
+      "reason": ""
+    }
+  ]
+}

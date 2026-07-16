@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB410.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_d4df8bc75ad7:0336b24:1:4",
+      "entryId": "t_d4df8bc75ad7",
+      "sourceTerm": "銅頭鐵額",
+      "RelPath": "J/J38/J38nB410.xml",
+      "FromLb": "0336b24",
+      "Kwic": "銅頭鐵額漢，盡在此山中",
+      "caseClusterId": "J/J38/J38nB410.xml:127332:128336",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蓮峰禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lianfeng",
+        "AttributionNote": "Recorded Sayings of Lianfeng (蓮峰禪師語錄): in his Xinghua Ximing Monastery verse, Lianfeng says bronze-headed, iron-browed fellows are all within this mountain."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

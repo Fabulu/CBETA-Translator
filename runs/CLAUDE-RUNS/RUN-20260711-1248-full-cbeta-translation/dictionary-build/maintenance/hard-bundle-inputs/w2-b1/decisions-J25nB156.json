@@ -1,0 +1,29 @@
+{
+  "source": "J/J25/J25nB156.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_ff50c6974a36:0062c07:1:5",
+      "entryId": "t_ff50c6974a36",
+      "sourceTerm": "五位",
+      "RelPath": "J/J25/J25nB156.xml",
+      "FromLb": "0062c07",
+      "Kwic": "洞山五位悟非悟，臨濟三玄然未然",
+      "caseClusterId": "J/J25/J25nB156.xml:61388:96182",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "無幻禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuhuan Xingchong",
+        "AttributionNote": "Recorded Sayings of Chan Master Wuhuan (無幻禪師語錄): in the first of his six occasional verses beyond things, Wuhuan Xingchong sets Dongshan's five positions beside Linji's three mysteries and questions both as awakening and as so-yet-not-so."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_ff50c6974a36:0062c07:1:5"
+  ]
+}

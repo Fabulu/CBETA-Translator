@@ -1,0 +1,179 @@
+{
+  "bundleId": "quick-bundle-C",
+  "worker": "/root/source_x66_batch",
+  "updatedUtc": "2026-07-14T05:47:37Z",
+  "completedUnits": [
+    "T48n2016",
+    "X63n1220",
+    "X68n1319",
+    "X70n1384",
+    "X72n1432",
+    "X73n1451"
+  ],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": null,
+  "units": {
+    "T48n2016": {
+      "source": "T/T48/T48n2016.xml",
+      "occurrenceKeys": [
+        "t_643e9062503e:0626b28:問。如何是頓漸四句。答。一漸修頓悟。二頓悟漸修。三漸修漸悟。四頓悟頓修。"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_643e9062503e",
+          "sourceTerm": "漸修",
+          "actor": "Yongming Yanshou",
+          "usedDefault": true,
+          "override": false,
+          "contextFigures": []
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "2e48906d9f1183da6d22fadd2c2da9fd4a1d03238580c717c1d2918055445ab8",
+      "decisionSha256": "7b90ae28b761d243d7bdc58393031111b392094f2a68b54746b07a9c92acde8e"
+    },
+    "X63n1220": {
+      "source": "X/X63/X63n1220.xml",
+      "occurrenceKeys": [
+        "t_37261001c332:0008c09:答曰：「唯觀心一法，總攝諸法最為省要。」問曰：「何一法能攝諸法？」"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_37261001c332",
+          "sourceTerm": "觀心",
+          "actor": "Bodhidharma",
+          "usedDefault": true,
+          "override": false,
+          "contextFigures": []
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "26cbe105c370ba4cfe8beed89d45f14c599e6c73a5b74e7448a9dee7ab7e8d73",
+      "decisionSha256": "e67964866c566cd4e1dcb72f059921f623701e0309ae844284cf0b409c93ecbc"
+    },
+    "X68n1319": {
+      "source": "X/X68/X68n1319.xml",
+      "occurrenceKeys": [
+        "t_aa25afedf184:0530a23:夫戒定慧者，乃法中之妙用也。佛祖雖嘗有言，而未達者有所執。"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_aa25afedf184",
+          "sourceTerm": "戒定慧",
+          "actor": "Yongzheng Emperor",
+          "usedDefault": true,
+          "override": false,
+          "contextFigures": []
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "584e253480e5574e1b7edfe849b9bc53222885618dc419c389c230001756e27b",
+      "decisionSha256": "c9f13fa4c3e52fb9c7a4e05397847d688fe7e45acbf4dabbe5b6707a0ee43e01"
+    },
+    "X70n1384": {
+      "source": "X/X70/X70n1384.xml",
+      "occurrenceKeys": [
+        "t_966bc615eb6e:0289a17:舉：玄沙問雪峰：大用現前時如何？雪峰以三毬一齊輥動。玄沙作斫牌勢，"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_966bc615eb6e",
+          "sourceTerm": "大用",
+          "actor": "Xuansha Shibei",
+          "usedDefault": false,
+          "override": true,
+          "contextFigures": [
+            "Xuefeng Yicun: respondent",
+            "Jue'an Kexiang: later-raiser, record-owner"
+          ]
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "44e735f686e78a085bfbf398e05d50bf45b015055a8045742a81c4e10c162169",
+      "decisionSha256": "afe1a0b1cefd97e7834b726c2ed56daeac1245e9720070e71f9f725bf4246a65"
+    },
+    "X72n1432": {
+      "source": "X/X72/X72n1432.xml",
+      "occurrenceKeys": [
+        "t_34143e43daf4:0186c07:豈不聞昔有僧問趙州：一物不將來時如何？州曰：放下著。僧曰：一物不將來，放下箇甚麼？州曰：放不下，擔取去。"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_34143e43daf4",
+          "sourceTerm": "放下著",
+          "actor": "Zhaozhou Congshen",
+          "usedDefault": false,
+          "override": true,
+          "contextFigures": [
+            "Wuming Huijing: later-raiser, record-owner"
+          ]
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "a5cb9c89dfbcd218148787d2409bdbd91ab3c05af1f3fc01064a830953b6cee2",
+      "decisionSha256": "22650c31399d77f27f211f086f277edeb21fee1d0677240e8aeb52716bbc37ad"
+    },
+    "X73n1451": {
+      "source": "X/X73/X73n1451.xml",
+      "occurrenceKeys": [
+        "t_19f9e99d5304:0121b10:昔日莊周妻死，惠子吊之，周乃鼓盆而歌"
+      ],
+      "decisions": [
+        {
+          "entryId": "t_19f9e99d5304",
+          "sourceTerm": "莊周",
+          "actor": "Cishou Huaishen",
+          "usedDefault": true,
+          "override": false,
+          "contextFigures": []
+        }
+      ],
+      "verification": {
+        "compiled": "1/1",
+        "dryRunPrepared": "1/1",
+        "applied": "1/1",
+        "focusedGate": "1/1",
+        "zcVerify": "1/1",
+        "jsonParse": "5/5"
+      },
+      "entrySha256": "bab24f50b06360eb9e18eeb1c533efe984a40b8424804713b01d961db4f104b5",
+      "decisionSha256": "14836f27ca8602c7e479a74b12920b4f2ca14a64503e7a12f6b3f2788e2088ac"
+    }
+  }
+}

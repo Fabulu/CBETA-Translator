@@ -1,0 +1,44 @@
+{
+  "source": "J/J39/J39nB471.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_e156057131dc:0959a10:1:5",
+      "entryId": "t_e156057131dc",
+      "sourceTerm": "本參",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0959a10",
+      "Kwic": "提起本參，晝夜切磋，琢磨千生業障，一刻冰消瓦解",
+      "caseClusterId": "J/J39/J39nB471.xml:138675:139499",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Konggu Daocheng",
+        "AttributionNote": "Recorded Sayings of Chan Master Konggu Daocheng (空谷道澄禪師語錄): in his end-of-retreat hall address, Konggu Daocheng says to raise one's fundamental investigation and work at it day and night until the karmic obstruction of a thousand lives melts away in a moment."
+      }
+    },
+    {
+      "key": "t_96255c741b17:0962b22:1:5",
+      "entryId": "t_96255c741b17",
+      "sourceTerm": "沒滋味",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0962b22",
+      "Kwic": "宗門茶飯如同鐵釘飯、木楂羹，嚼來嚼去沒滋味。若到者沒滋味處，正是好境界，不生退志，終成大器。",
+      "caseClusterId": "J/J39/J39nB471.xml:155047:156453",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Konggu Daocheng",
+        "AttributionNote": "Recorded Sayings of Chan Master Konggu Daocheng (空谷道澄禪師語錄): in his hall address to laypeople, Konggu Daocheng compares the lineage's tea and rice to iron-nail rice and wood-splinter soup, and says that persisting at the tasteless point makes a great vessel."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

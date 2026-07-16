@@ -1,0 +1,523 @@
+{
+  "bundleId": "hard-w2-remaining300",
+  "worker": "/root/repair_bird_path",
+  "updatedUtc": "2026-07-14T15:02:00Z",
+  "totalRows": 300,
+  "totalSources": 89,
+  "reviewedRows": 300,
+  "appliedRows": 300,
+  "signedSources": 89,
+  "appliedSources": 89,
+  "completedUnits": ["X/X82/X82n1571.xml", "X/X80/X80n1565.xml", "X/X64/X64n1260.xml", "T/T51/T51n2077.xml", "T/T51/T51n2076.xml", "X/X68/X68n1319.xml", "X/X78/X78n1556.xml", "X/X68/X68n1318.xml", "X/X79/X79n1557.xml", "X/X84/X84n1583.xml", "T/T47/T47n1997.xml", "J/J33/J33nB294.xml", "T/T48/T48n2016.xml", "X/X79/X79n1559.xml", "X/X66/X66n1296.xml", "J/J34/J34nB311.xml", "X/X81/X81n1568.xml", "J/J36/J36nB359.xml", "J/J39/J39nB471.xml", "X/X72/X72n1444.xml", "T/T48/T48n2006.xml", "T/T48/T48n2025.xml", "J/J34/J34nB299.xml", "T/T48/T48n2003.xml", "J/J36/J36nB369.xml", "J/J37/J37nB386.xml", "J/J39/J39nB466.xml", "X/X78/X78n1553.xml", "J/J34/J34nB300.xml", "J/J39/J39nB454.xml", "X/X69/X69n1359.xml", "X/X72/X72n1443.xml", "J/J37/J37nB392.xml", "T/T47/T47n2000.xml", "T/T48/T48n2004.xml", "X/X67/X67n1299.xml", "X/X69/X69n1333.xml", "J/J37/J37nB388.xml", "J/J37/J37nB394.xml", "J/J38/J38nB424.xml", "J/J38/J38nB425.xml", "J/J39/J39nB447.xml", "J/J40/J40nB494.xml", "T/T47/T47n1992.xml", "T/T48/T48n2005.xml", "X/X63/X63n1245.xml", "X/X63/X63n1250.xml", "X/X63/X63n1259.xml", "X/X67/X67n1303.xml", "X/X67/X67n1304.xml", "X/X69/X69n1362.xml", "X/X70/X70n1402.xml", "X/X81/X81n1571.xml", "J/J35/J35nB336.xml", "J/J37/J37nB396.xml", "J/J38/J38nB410.xml", "J/J38/J38nB418.xml", "J/J38/J38nB423.xml", "J/J38/J38nB431.xml", "T/T47/T47n1996.xml", "T/T47/T47n1999.xml", "T/T48/T48n2012A.xml", "X/X63/X63n1257.xml", "X/X69/X69n1345.xml", "X/X70/X70n1390.xml", "X/X71/X71n1412.xml", "X/X73/X73n1457.xml", "X/X80/X80n1568.xml", "X/X83/X83n1574.xml", "X/X84/X84n1585.xml", "J/J34/J34nB309.xml", "J/J34/J34nB312.xml", "J/J36/J36nB363.xml", "J/J37/J37nB383.xml", "J/J38/J38nB421.xml", "J/J38/J38nB427.xml", "J/J38/J38nB433.xml", "J/J39/J39nB453.xml", "T/T48/T48n2019B.xml", "X/X63/X63n1220.xml", "X/X69/X69n1321.xml", "X/X69/X69n1323.xml", "X/X69/X69n1335.xml", "X/X69/X69n1347.xml", "X/X69/X69n1368.xml", "X/X70/X70n1388.xml", "X/X70/X70n1392.xml", "X/X71/X71n1405.xml", "X/X85/X85n1591.xml"],
+  "failedOrDeferredUnits": [],
+  "remainingRows": 0,
+  "nextUnit": null,
+  "reviewCheckpoints": [
+    {
+      "reviewedRows": 0,
+      "remainingRows": 300,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 1,
+      "stage": "initial-reconciliation",
+      "utc": "2026-07-14T07:35:00Z"
+    },
+    {
+      "reviewedRows": 10,
+      "remainingRows": 290,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T07:45:00Z"
+    },
+    {
+      "reviewedRows": 20,
+      "remainingRows": 280,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 21,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T07:55:00Z"
+    },
+    {
+      "reviewedRows": 30,
+      "remainingRows": 270,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 31,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T08:05:00Z"
+    },
+    {
+      "reviewedRows": 40,
+      "remainingRows": 260,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 41,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T08:13:00Z"
+    },
+    {
+      "reviewedRows": 43,
+      "remainingRows": 257,
+      "nextSource": "X/X82/X82n1571.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T08:15:00Z"
+    },
+    {
+      "reviewedRows": 53,
+      "remainingRows": 247,
+      "nextSource": "X/X80/X80n1565.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T08:25:00Z"
+    },
+    {
+      "reviewedRows": 63,
+      "remainingRows": 237,
+      "nextSource": "X/X80/X80n1565.xml",
+      "nextRow": 21,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T08:35:00Z"
+    },
+    {
+      "reviewedRows": 73,
+      "remainingRows": 227,
+      "nextSource": "X/X80/X80n1565.xml",
+      "nextRow": 31,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T08:45:00Z"
+    },
+    {
+      "reviewedRows": 75,
+      "remainingRows": 225,
+      "nextSource": "X/X80/X80n1565.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T08:48:00Z"
+    },
+    {
+      "reviewedRows": 85,
+      "remainingRows": 215,
+      "nextSource": "X/X64/X64n1260.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T09:00:00Z"
+    },
+    {
+      "reviewedRows": 95,
+      "remainingRows": 205,
+      "nextSource": "X/X64/X64n1260.xml",
+      "nextRow": 21,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T09:10:00Z"
+    },
+    {
+      "reviewedRows": 97,
+      "remainingRows": 203,
+      "nextSource": "X/X64/X64n1260.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T09:12:00Z"
+    },
+    {
+      "reviewedRows": 107,
+      "remainingRows": 193,
+      "nextSource": "T/T51/T51n2077.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T09:26:00Z"
+    },
+    {
+      "reviewedRows": 114,
+      "remainingRows": 186,
+      "nextSource": "T/T51/T51n2077.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T09:28:00Z"
+    },
+    {
+      "reviewedRows": 124,
+      "remainingRows": 176,
+      "nextSource": "T/T51/T51n2076.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T09:40:00Z"
+    },
+    {
+      "reviewedRows": 125,
+      "remainingRows": 175,
+      "nextSource": "T/T51/T51n2076.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T09:41:00Z"
+    },
+    {
+      "reviewedRows": 135,
+      "remainingRows": 165,
+      "nextSource": "X/X68/X68n1319.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T09:55:00Z"
+    },
+    {
+      "reviewedRows": 145,
+      "remainingRows": 155,
+      "nextSource": "X/X78/X78n1556.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T10:09:00Z"
+    },
+    {
+      "reviewedRows": 146,
+      "remainingRows": 154,
+      "nextSource": "X/X78/X78n1556.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T10:10:00Z"
+    },
+    {
+      "reviewedRows": 151,
+      "remainingRows": 149,
+      "nextSource": "X/X68/X68n1318.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T10:20:00Z"
+    },
+    {
+      "reviewedRows": 161,
+      "remainingRows": 139,
+      "nextSource": "X/X79/X79n1557.xml",
+      "nextRow": 11,
+      "stage": "full-six-rung-review",
+      "utc": "2026-07-14T10:32:00Z"
+    },
+    {
+      "reviewedRows": 164,
+      "remainingRows": 136,
+      "nextSource": "X/X79/X79n1557.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T10:34:00Z"
+    },
+    {
+      "reviewedRows": 172,
+      "remainingRows": 128,
+      "nextSource": "X/X84/X84n1583.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T10:46:00Z"
+    },
+    {
+      "reviewedRows": 177,
+      "remainingRows": 123,
+      "nextSource": "T/T47/T47n1997.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T10:56:00Z"
+    },
+    {
+      "reviewedRows": 178,
+      "remainingRows": 122,
+      "nextSource": "J/J33/J33nB294.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:08:00Z"
+    },
+    {
+      "reviewedRows": 180,
+      "remainingRows": 120,
+      "nextSource": "T/T48/T48n2016.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:18:00Z"
+    },
+    {
+      "reviewedRows": 182,
+      "remainingRows": 118,
+      "nextSource": "X/X79/X79n1559.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:26:00Z"
+    },
+    {
+      "reviewedRows": 185,
+      "remainingRows": 115,
+      "nextSource": "X/X66/X66n1296.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:38:00Z"
+    },
+    {
+      "reviewedRows": 187,
+      "remainingRows": 113,
+      "nextSource": "J/J34/J34nB311.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:46:00Z"
+    },
+    {
+      "reviewedRows": 192,
+      "remainingRows": 108,
+      "nextSource": "X/X81/X81n1568.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T11:55:00Z"
+    },
+    {
+      "reviewedRows": 195,
+      "remainingRows": 105,
+      "nextSource": "J/J36/J36nB359.xml",
+      "nextRow": 1,
+      "stage": "review-complete; sign-compile pending",
+      "utc": "2026-07-14T12:13:00Z"
+    },
+    {"reviewedRows": 197, "remainingRows": 103, "nextSource": "J/J39/J39nB471.xml", "nextRow": 1, "stage": "review-complete; sign-compile pending", "utc": "2026-07-14T12:18:00Z"},
+    {"reviewedRows": 201, "remainingRows": 99, "nextSource": "X/X72/X72n1444.xml", "nextRow": 1, "stage": "review-complete; sign-compile pending", "utc": "2026-07-14T12:22:00Z"},
+    {"reviewedRows": 206, "remainingRows": 94, "nextSource": "T/T48/T48n2006.xml", "nextRow": 1, "stage": "review-complete; sign-compile pending", "utc": "2026-07-14T12:26:00Z"},
+    {"reviewedRows": 210, "remainingRows": 90, "nextSource": "T/T48/T48n2025.xml", "nextRow": 1, "stage": "review-complete; sign-compile pending", "utc": "2026-07-14T12:30:00Z"},
+    {"reviewedRows": 214, "remainingRows": 86, "nextSource": "J/J34/J34nB299.xml", "nextRow": 1, "stage": "review-complete; sign-compile pending", "utc": "2026-07-14T12:43:00Z"},
+    {"reviewedRows": 215, "remainingRows": 85, "nextSource": "T/T48/T48n2003.xml", "nextRow": 1, "stage": "source-complete", "utc": "2026-07-14T12:52:00Z"},
+    {"reviewedRows": 216, "remainingRows": 84, "nextSource": "J/J36/J36nB369.xml", "nextRow": 1, "stage": "source-complete", "utc": "2026-07-14T12:54:00Z"},
+    {"reviewedRows": 218, "remainingRows": 82, "nextSource": "J/J37/J37nB386.xml", "nextRow": 1, "stage": "source-complete", "utc": "2026-07-14T12:56:00Z"},
+    {"reviewedRows": 220, "remainingRows": 80, "nextSource": "J/J39/J39nB466.xml", "nextRow": 1, "stage": "source-complete", "utc": "2026-07-14T12:58:00Z"},
+    {"reviewedRows": 225, "remainingRows": 75, "nextSource": "X/X72/X72n1443.xml", "nextRow": 1, "stage": "four-source applied checkpoint", "utc": "2026-07-14T14:05:00Z"},
+    {"reviewedRows": 247, "remainingRows": 53, "nextSource": "T/T47/T47n1992.xml", "nextRow": 1, "stage": "twelve-source applied checkpoint", "utc": "2026-07-14T14:18:00Z"},
+    {"reviewedRows": 260, "remainingRows": 40, "nextSource": "X/X81/X81n1571.xml", "nextRow": 1, "stage": "nine-source applied checkpoint", "utc": "2026-07-14T14:33:00Z"},
+    {"reviewedRows": 272, "remainingRows": 28, "nextSource": "X/X63/X63n1257.xml", "nextRow": 1, "stage": "ten-source applied checkpoint", "utc": "2026-07-14T14:43:00Z"},
+    {"reviewedRows": 283, "remainingRows": 17, "nextSource": "J/J36/J36nB363.xml", "nextRow": 1, "stage": "ten-source applied checkpoint", "utc": "2026-07-14T14:51:00Z"},
+    {"reviewedRows": 300, "remainingRows": 0, "nextSource": null, "nextRow": null, "stage": "bundle-complete; all source gates and replays passed", "utc": "2026-07-14T15:02:00Z"}
+  ],
+  "completedSourceDetails": [
+    {
+      "source": "X/X82/X82n1571.xml",
+      "reviewed": 43,
+      "applied": 43,
+      "entries": 36,
+      "focusedGate": "43/43 pass",
+      "wholeEntryVerification": "209/209 pass",
+      "completedUtc": "2026-07-14T08:16:00Z"
+    },
+    {
+      "source": "X/X80/X80n1565.xml",
+      "reviewed": 32,
+      "applied": 32,
+      "entries": 27,
+      "focusedGate": "32/32 pass",
+      "wholeEntryVerification": "151/151 pass",
+      "completedUtc": "2026-07-14T08:49:00Z"
+    },
+    {
+      "source": "X/X64/X64n1260.xml",
+      "reviewed": 22,
+      "applied": 22,
+      "entries": 19,
+      "focusedGate": "22/22 pass",
+      "wholeEntryVerification": "106/106 pass",
+      "completedUtc": "2026-07-14T09:14:00Z"
+    },
+    {
+      "source": "T/T51/T51n2077.xml",
+      "reviewed": 17,
+      "applied": 17,
+      "entries": 15,
+      "focusedGate": "17/17 pass",
+      "wholeEntryVerification": "91/91 pass",
+      "completedUtc": "2026-07-14T09:30:00Z"
+    },
+    {
+      "source": "T/T51/T51n2076.xml",
+      "reviewed": 11,
+      "applied": 11,
+      "entries": 11,
+      "focusedGate": "11/11 pass",
+      "wholeEntryVerification": "65/65 pass",
+      "completedUtc": "2026-07-14T09:43:00Z"
+    },
+    {
+      "source": "X/X68/X68n1319.xml",
+      "reviewed": 10,
+      "applied": 10,
+      "entries": 7,
+      "focusedGate": "10/10 pass",
+      "wholeEntryVerification": "43/43 pass",
+      "completedUtc": "2026-07-14T09:57:00Z"
+    },
+    {
+      "source": "X/X78/X78n1556.xml",
+      "reviewed": 11,
+      "applied": 11,
+      "entries": 10,
+      "focusedGate": "11/11 pass",
+      "wholeEntryVerification": "56/56 pass",
+      "completedUtc": "2026-07-14T10:12:00Z"
+    },
+    {
+      "source": "X/X68/X68n1318.xml",
+      "reviewed": 5,
+      "applied": 5,
+      "entries": 5,
+      "focusedGate": "5/5 pass",
+      "wholeEntryVerification": "31/31 pass",
+      "completedUtc": "2026-07-14T10:22:00Z"
+    },
+    {
+      "source": "X/X79/X79n1557.xml",
+      "reviewed": 13,
+      "applied": 13,
+      "entries": 10,
+      "focusedGate": "13/13 pass",
+      "wholeEntryVerification": "58/58 pass",
+      "completedUtc": "2026-07-14T10:35:00Z"
+    },
+    {
+      "source": "X/X84/X84n1583.xml",
+      "reviewed": 8,
+      "applied": 8,
+      "entries": 7,
+      "focusedGate": "8/8 pass",
+      "wholeEntryVerification": "43/43 pass",
+      "completedUtc": "2026-07-14T10:47:00Z"
+    },
+    {
+      "source": "T/T47/T47n1997.xml",
+      "reviewed": 5,
+      "applied": 5,
+      "entries": 4,
+      "focusedGate": "5/5 pass",
+      "wholeEntryVerification": "24/24 pass",
+      "completedUtc": "2026-07-14T10:57:00Z"
+    },
+    {
+      "source": "J/J33/J33nB294.xml",
+      "reviewed": 1,
+      "applied": 1,
+      "entries": 1,
+      "focusedGate": "1/1 pass",
+      "wholeEntryVerification": "5/5 pass",
+      "completedUtc": "2026-07-14T11:09:00Z"
+    },
+    {
+      "source": "T/T48/T48n2016.xml",
+      "reviewed": 2,
+      "applied": 2,
+      "entries": 2,
+      "focusedGate": "2/2 pass",
+      "wholeEntryVerification": "13/13 pass",
+      "completedUtc": "2026-07-14T11:19:00Z"
+    },
+    {
+      "source": "X/X79/X79n1559.xml",
+      "reviewed": 2,
+      "applied": 2,
+      "entries": 2,
+      "focusedGate": "2/2 pass",
+      "wholeEntryVerification": "13/13 pass",
+      "completedUtc": "2026-07-14T11:27:00Z"
+    },
+    {
+      "source": "X/X66/X66n1296.xml",
+      "reviewed": 3,
+      "applied": 3,
+      "entries": 3,
+      "focusedGate": "3/3 pass",
+      "wholeEntryVerification": "15/15 pass",
+      "completedUtc": "2026-07-14T11:39:00Z"
+    },
+    {
+      "source": "J/J34/J34nB311.xml",
+      "reviewed": 2,
+      "applied": 2,
+      "entries": 2,
+      "focusedGate": "2/2 pass",
+      "wholeEntryVerification": "10/10 pass",
+      "completedUtc": "2026-07-14T11:47:00Z"
+    },
+    {
+      "source": "X/X81/X81n1568.xml",
+      "reviewed": 5,
+      "applied": 5,
+      "entries": 5,
+      "focusedGate": "5/5 pass",
+      "wholeEntryVerification": "28/28 pass",
+      "completedUtc": "2026-07-14T11:56:00Z"
+    },
+    {
+      "source": "J/J36/J36nB359.xml",
+      "reviewed": 3,
+      "applied": 3,
+      "entries": 3,
+      "focusedGate": "3/3 pass",
+      "wholeEntryVerification": "15/15 pass",
+      "completedUtc": "2026-07-14T12:14:00Z"
+    },
+    {"source": "J/J39/J39nB471.xml", "reviewed": 2, "applied": 2, "entries": 2, "focusedGate": "2/2 pass", "wholeEntryVerification": "13/13 pass", "completedUtc": "2026-07-14T12:19:00Z"},
+    {"source": "X/X72/X72n1444.xml", "reviewed": 4, "applied": 4, "entries": 4, "focusedGate": "4/4 pass", "wholeEntryVerification": "24/24 pass", "completedUtc": "2026-07-14T12:23:00Z"},
+    {"source": "T/T48/T48n2006.xml", "reviewed": 5, "applied": 5, "entries": 4, "focusedGate": "5/5 pass", "wholeEntryVerification": "22/22 pass", "completedUtc": "2026-07-14T12:27:00Z"},
+    {"source": "T/T48/T48n2025.xml", "reviewed": 4, "applied": 4, "entries": 2, "focusedGate": "4/4 pass", "wholeEntryVerification": "12/12 pass", "completedUtc": "2026-07-14T12:31:00Z"},
+    {"source": "J/J34/J34nB299.xml", "reviewed": 4, "applied": 4, "entries": 4, "focusedGate": "4/4 pass", "wholeEntryVerification": "24/24 pass", "completedUtc": "2026-07-14T12:44:00Z"},
+    {"source": "T/T48/T48n2003.xml", "reviewed": 1, "applied": 1, "entries": 1, "focusedGate": "1/1 pass", "wholeEntryVerification": "4/4 pass", "completedUtc": "2026-07-14T12:52:00Z"},
+    {"source": "J/J36/J36nB369.xml", "reviewed": 1, "applied": 1, "entries": 1, "focusedGate": "1/1 pass", "wholeEntryVerification": "9/9 pass", "completedUtc": "2026-07-14T12:54:00Z"},
+    {"source": "J/J37/J37nB386.xml", "reviewed": 2, "applied": 2, "entries": 2, "focusedGate": "2/2 pass", "wholeEntryVerification": "9/9 pass", "completedUtc": "2026-07-14T12:56:00Z"},
+    {"source": "J/J39/J39nB466.xml", "reviewed": 2, "applied": 2, "entries": 2, "focusedGate": "2/2 pass", "wholeEntryVerification": "11/11 pass", "completedUtc": "2026-07-14T12:58:00Z"},
+    {"source":"X/X78/X78n1553.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:01:00Z"},
+    {"source":"J/J34/J34nB300.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:02:00Z"},
+    {"source":"J/J39/J39nB454.xml","reviewed":2,"applied":2,"entries":2,"focusedGate":"2/2 pass","wholeEntryVerification":"12/12 pass","completedUtc":"2026-07-14T14:03:00Z"},
+    {"source":"X/X69/X69n1359.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:04:00Z"},
+    {"source":"X/X72/X72n1443.xml","reviewed":3,"applied":3,"entries":3,"focusedGate":"3/3 pass","wholeEntryVerification":"15/15 pass","completedUtc":"2026-07-14T14:07:00Z"},
+    {"source":"J/J37/J37nB392.xml","reviewed":2,"applied":2,"entries":2,"focusedGate":"2/2 pass","wholeEntryVerification":"13/13 pass","completedUtc":"2026-07-14T14:08:00Z"},
+    {"source":"T/T47/T47n2000.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:09:00Z"},
+    {"source":"T/T48/T48n2004.xml","reviewed":3,"applied":3,"entries":2,"focusedGate":"3/3 pass","wholeEntryVerification":"10/10 pass","completedUtc":"2026-07-14T14:10:00Z"},
+    {"source":"X/X67/X67n1299.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:11:00Z"},
+    {"source":"X/X69/X69n1333.xml","reviewed":3,"applied":3,"entries":1,"focusedGate":"3/3 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:12:00Z"},
+    {"source":"J/J37/J37nB388.xml","reviewed":3,"applied":3,"entries":2,"focusedGate":"3/3 pass","wholeEntryVerification":"10/10 pass","completedUtc":"2026-07-14T14:13:00Z"},
+    {"source":"J/J37/J37nB394.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:14:00Z"},
+    {"source":"J/J38/J38nB424.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:15:00Z"},
+    {"source":"J/J38/J38nB425.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:16:00Z"},
+    {"source":"J/J39/J39nB447.xml","reviewed":2,"applied":2,"entries":1,"focusedGate":"2/2 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:17:00Z"},
+    {"source":"J/J40/J40nB494.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:18:00Z"},
+    {"source":"T/T47/T47n1992.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:25:00Z"},
+    {"source":"T/T48/T48n2005.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:26:00Z"},
+    {"source":"X/X63/X63n1245.xml","reviewed":2,"applied":2,"entries":1,"focusedGate":"2/2 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:27:00Z"},
+    {"source":"X/X63/X63n1250.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:28:00Z"},
+    {"source":"X/X63/X63n1259.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:29:00Z"},
+    {"source":"X/X67/X67n1303.xml","reviewed":2,"applied":2,"entries":2,"focusedGate":"2/2 pass","wholeEntryVerification":"10/10 pass","completedUtc":"2026-07-14T14:30:00Z"},
+    {"source":"X/X67/X67n1304.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:31:00Z"},
+    {"source":"X/X69/X69n1362.xml","reviewed":3,"applied":3,"entries":2,"focusedGate":"3/3 pass","wholeEntryVerification":"13/13 pass","completedUtc":"2026-07-14T14:32:00Z"},
+    {"source":"X/X70/X70n1402.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"4/4 pass","completedUtc":"2026-07-14T14:33:00Z"},
+    {"source":"X/X81/X81n1571.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:34:00Z"},
+    {"source":"J/J35/J35nB336.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"9/9 pass","completedUtc":"2026-07-14T14:35:00Z"},
+    {"source":"J/J37/J37nB396.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T14:36:00Z"},
+    {"source":"J/J38/J38nB410.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:37:00Z"},
+    {"source":"J/J38/J38nB418.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:38:00Z"},
+    {"source":"J/J38/J38nB423.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:39:00Z"},
+    {"source":"J/J38/J38nB431.xml","reviewed":2,"applied":2,"entries":1,"focusedGate":"2/2 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T14:40:00Z"},
+    {"source":"T/T47/T47n1996.xml","reviewed":2,"applied":2,"entries":2,"focusedGate":"2/2 pass","wholeEntryVerification":"11/11 pass","completedUtc":"2026-07-14T14:41:00Z"},
+    {"source":"T/T47/T47n1999.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"3/3 pass","completedUtc":"2026-07-14T14:42:00Z"},
+    {"source":"T/T48/T48n2012A.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T14:43:00Z"},
+    {"source":"X/X63/X63n1257.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1345.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X70/X70n1390.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X71/X71n1412.xml","reviewed":2,"applied":2,"entries":2,"focusedGate":"2/2 pass","wholeEntryVerification":"14/14 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X73/X73n1457.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X80/X80n1568.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X83/X83n1574.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X84/X84n1585.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J34/J34nB309.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"9/9 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J34/J34nB312.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J36/J36nB363.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J37/J37nB383.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J38/J38nB421.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"10/10 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J38/J38nB427.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J38/J38nB433.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"J/J39/J39nB453.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"4/4 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"T/T48/T48n2019B.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X63/X63n1220.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1321.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1323.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1335.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1347.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X69/X69n1368.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"6/6 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X70/X70n1388.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X70/X70n1392.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"7/7 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X71/X71n1405.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"8/8 pass","completedUtc":"2026-07-14T15:02:00Z"},
+    {"source":"X/X85/X85n1591.xml","reviewed":1,"applied":1,"entries":1,"focusedGate":"1/1 pass","wholeEntryVerification":"5/5 pass","completedUtc":"2026-07-14T15:02:00Z"}
+  ]
+}

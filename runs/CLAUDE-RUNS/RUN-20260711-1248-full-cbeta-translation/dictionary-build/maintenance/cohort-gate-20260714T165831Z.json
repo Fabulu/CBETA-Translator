@@ -1,0 +1,122 @@
+{
+  "generatedUtc": "2026-07-14T16:58:31.572151+00:00",
+  "elapsedSeconds": 422.13,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_c728f3a8e02b",
+      "term": "家風",
+      "path": "fresh-build/entries/t_c728f3a8e02b/entry.v2.json",
+      "sha256": "9e76fdb2855b992ad732340ac2b7327577ca2b743d5924a10ea6ee3db0a424dc"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 8,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_c728f3a8e02b/entry.v2.json",
+        "id": "t_c728f3a8e02b",
+        "term": "家風",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 4.054,
+    "attribution": 18.467,
+    "publicFeedback": 112.181,
+    "depthSense": 251.867,
+    "workSourceValidation": 4.254,
+    "corpusBaseline": 5.45,
+    "attributionPackets": 23.028
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 18.467,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 8,
+        "actor_reviewed_unnamed": 2,
+        "context_master_links": 8,
+        "deferred_non_roster_context": 6,
+        "attribution_notes": 8,
+        "named_occurrences": 6,
+        "deferred_non_roster": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 8,\n    \"actor_reviewed_unnamed\": 2,\n    \"context_master_links\": 8,\n    \"deferred_non_roster_context\": 6,\n    \"attribution_notes\": 8,\n    \"named_occurrences\": 6,\n    \"deferred_non_roster\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 112.181,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "opening-interpretation-needs-review": 1,
+        "plain-english-image-review": 1,
+        "public-feedback-ledger-missing": 1,
+        "search-alias-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"opening-interpretation-needs-review\": 1,\n    \"plain-english-image-review\": 1,\n    \"public-feedback-ledger-missing\": 1,\n    \"search-alias-review\": 1\n  }\n}\nreport: /tmp/tmp6u9qgl2l.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 251.867,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 1,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 1,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 4.254,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 5.45,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 23.028,
+    "payload": {
+      "entries": 1,
+      "occurrences": 8,
+      "tierACandidates": 0,
+      "reviewRequired": 8
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 8,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 8\n}\nreport: /tmp/tmps_jbre2u-packets.json\n",
+    "report": "/tmp/tmps_jbre2u-packets.json"
+  },
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,385 @@
+{
+  "source": "X/X82/X82n1571.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_d1e06fd225fa:0001a24:1:3",
+      "entryId": "t_d1e06fd225fa",
+      "sourceTerm": "入室",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0001a24",
+      "Kwic": "入室次，覺曰：恁麼也不得，不恁麼也不得",
+      "caseClusterId": "X/X82/X82n1571.xml:123510:129841",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Tianyi Yihuai",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_e4d6ebff1bb2:0001b04:1:1",
+      "entryId": "t_e4d6ebff1bb2",
+      "sourceTerm": "如何是佛",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0001b04",
+      "Kwic": "詰。覺聞，拊几稱善。後七坐道場，化行海內，嗣法者甚眾。住後，僧問：如何是佛？師曰：布髮掩泥，橫身臥地。曰：意旨如何？師曰：任是波旬也皺",
+      "caseClusterId": "X/X82/X82n1571.xml:124416:129841",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Tianyi Yihuai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk questioning Tianyi Yihuai",
+          "ActorRole": "questioner",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T07:10:00Z"
+        },
+        "ContextMasters": [
+          {"MasterName": "Tianyi Yihuai", "Roles": ["respondent", "section-subject"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), Tianyi Yihuai section. An unnamed monk questioning Tianyi Yihuai is the exact speaker who asks, ‘what is Buddha?’ Tianyi answers by invoking spreading hair over mud and laying one's body across the ground. All six attribution rungs leave the monk personally unnamed."
+      }
+    },
+    {
+      "key": "t_d926adb80feb:0001b15:1:4",
+      "entryId": "t_d926adb80feb",
+      "sourceTerm": "良久曰",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0001b15",
+      "Kwic": "且作麼生即是？良久曰：還會麼？珍重！",
+      "caseClusterId": "X/X82/X82n1571.xml:124416:129841",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Tianyi Yihuai",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_cb3571346f22:0006b22:1:9",
+      "entryId": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0006b22",
+      "Kwic": "問：一塵一佛國，一葉一釋迦。學人如何下足？師曰：大地草漫漫。",
+      "caseClusterId": "X/X82/X82n1571.xml:160107:161198",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Caoshan Benji",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk questioning Caoshan Baoji Xiong",
+          "ActorRole": "questioner",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T07:10:00Z"
+        },
+        "ContextMasters": [
+          {"MasterName": "Caoshan Baoji Xiong", "Roles": ["respondent", "section-subject"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), Caoshan Baoji Xiong section. An unnamed monk questioning Caoshan Baoji Xiong is the exact speaker who says, ‘in each dust mote a buddha-land, on each leaf a Shakyamuni,’ and asks where to set foot. Caoshan Baoji Xiong answers that grass covers the earth. All six attribution rungs leave the monk personally unnamed; this is not Caoshan Benji's section."
+      }
+    },
+    {
+      "key": "t_751d6ddba1e9:0006c07:1:1",
+      "entryId": "t_751d6ddba1e9",
+      "sourceTerm": "明暗",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0006c07",
+      "Kwic": "山河大地，明暗自殊。",
+      "caseClusterId": "X/X82/X82n1571.xml:160401:161198",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Caoshan Benji",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Caoshan Baoji Xiong",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈全書(第34卷-第120卷), Caoshan Baoji Xiong section. Caoshan Baoji Xiong is the exact speaker of the teaching-seat address in which mountains and rivers and the great earth have light and dark distinct of themselves. This is not Caoshan Benji."
+      }
+    },
+    {
+      "key": "t_57ef1bbc3a81:0009b17:1:1",
+      "entryId": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0009b17",
+      "Kwic": "塚上草離離。問：上是天，下是地，未審中間是甚麼物？師曰：山河大地。曰：恁麼則謝師答話。師曰：大地山河。曰：和尚何得瞞人？",
+      "caseClusterId": "X/X82/X82n1571.xml:179573:182430",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Huilin Zongben",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_cf0513be4012:0015c02:1:2",
+      "entryId": "t_cf0513be4012",
+      "sourceTerm": "宗旨",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0015c02",
+      "Kwic": "達磨面壁而宗旨付於神光。",
+      "caseClusterId": "X/X82/X82n1571.xml:224335:226096",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Huike",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Liu Jingchen",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Bodhidharma", "Roles": ["person-discussed", "transmitter"]},
+          {"MasterName": "Huike", "Roles": ["person-discussed", "recipient"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), layman Liu Jingchen section. Liu Jingchen is the exact prose speaker who says that Bodhidharma faced the wall and entrusted the lineage's essential purport to Shenguang (Huike). Huike is the recipient discussed, not the speaker."
+      }
+    },
+    {
+      "key": "t_15eac1a3b037:0023b23:1:4",
+      "entryId": "t_15eac1a3b037",
+      "sourceTerm": "歸方丈",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0023b23",
+      "Kwic": "聖不似老胡拖泥帶水，祇是見兔放鷹，遇獐發箭。乃高聲召眾曰：中。上堂：昔日藥山早晚不參，動經旬月。一日大眾纔集，藥山便歸方丈。諸禪德，彼時佛法早自淡薄，論來猶較些子。如今每日鳴鼓陞堂，忉忉怛怛地，問者口似紡車，答者舌如霹靂。總似今日，",
+      "caseClusterId": "X/X82/X82n1571.xml:282309:284941",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Yaoshan Weiyan",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Xuefeng Sihui", "Roles": ["later-raiser", "section-subject"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), Xuefeng Sihui section. Yaoshan Weiyan is the exact actor inside the old case: when the assembly gathers after a long interval without attendance, Yaoshan immediately returns to the abbot's quarters. Xuefeng Sihui raises and comments on the case; Xuefeng Yicun is not the actor."
+      }
+    },
+    {
+      "key": "t_bf467ac18ec0:0033a08:1:1",
+      "entryId": "t_bf467ac18ec0",
+      "sourceTerm": "佛手",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0033a08",
+      "Kwic": "師室中常問僧曰：人人盡有生緣，上座生緣在何處？正當問答交鋒，却復伸手曰：我手何似佛手？又問諸方參請宗師所得，却復垂脚曰：我脚何似驢脚？",
+      "caseClusterId": "X/X82/X82n1571.xml:351776:353952",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Huanglong Huinan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_57ef1bbc3a81:0040b22:1:2",
+      "entryId": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0040b22",
+      "Kwic": "子閑。蘄州四祖山法演禪師蘄州四祖山法演禪師桂州人。僧問：如何是心相？師曰：山河大地。曰：如何是心體？師曰：汝喚甚麼作山河大",
+      "caseClusterId": "X/X82/X82n1571.xml:399223:401055",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Sizushan Fayan",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈全書(第34卷-第120卷), Sizushan Fayan section. Sizushan Fayan is the exact respondent who answers the monk's question about the appearance of mind with ‘mountains and rivers and the great earth.’ The preceding section belongs to Xuefeng Daoyuan, not Xuefeng Yicun, and ends before this occurrence."
+      }
+    },
+    {
+      "key": "t_751d6ddba1e9:0041b08:1:2",
+      "entryId": "t_751d6ddba1e9",
+      "sourceTerm": "明暗",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0041b08",
+      "Kwic": "明暗相參殺活機",
+      "caseClusterId": "X/X82/X82n1571.xml:405256:406012",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Jicui Yong Anzhu",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Huanglong Huinan", "Roles": ["person-consulted", "laughing-responder"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), Huangbo Jicui Yong Anzhu section. Jicui Yong Anzhu is the exact speaker who composes the verse beginning ‘light and dark interpenetrate, the pivot of killing and giving life’ after Shenqi consults him, Weizang, and Huanglong Huinan. Huangbo Xiyun is not the actor."
+      }
+    },
+    {
+      "key": "t_acbbe22bdc76:0079b05:1:5",
+      "entryId": "t_acbbe22bdc76",
+      "sourceTerm": "打坐",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0079b05",
+      "Kwic": "贏得雙泉，閙中打坐。打坐即不無，且道下水船一曲作麼生唱？",
+      "caseClusterId": "X/X82/X82n1571.xml:669220:681230",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Wuzu Fayan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_e6b94cf3dbc3:0088b22:1:3",
+      "entryId": "t_e6b94cf3dbc3",
+      "sourceTerm": "通身是眼",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0088b22",
+      "Kwic": "曰：如何是意句俱到？師曰：大悲不展手，通身是眼睛。",
+      "caseClusterId": "X/X82/X82n1571.xml:726333:729226",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Kaifu Daoning",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_937f63a4fb51:0092b05:1:4",
+      "entryId": "t_937f63a4fb51",
+      "sourceTerm": "目前",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0092b05",
+      "Kwic": "大道只在目前，要且目前難覩。",
+      "caseClusterId": "X/X82/X82n1571.xml:752472:758262",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Huqiu Shaolong",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_9199b9a31645:0092c14:1:3",
+      "entryId": "t_9199b9a31645",
+      "sourceTerm": "盡大地",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0092c14",
+      "Kwic": "家不離途中事，常在途中不出門。喝一喝。僧問：雪峰示眾道：盡大地是個解脫門，把手牽不入。未審在門外者是什麼人？師曰：胡張三，黑李四",
+      "caseClusterId": "X/X82/X82n1571.xml:754346:758262",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "inline",
+      "Override": null
+    },
+    {
+      "key": "t_fb331b159983:0117a12:1:4",
+      "entryId": "t_fb331b159983",
+      "sourceTerm": "死蛇",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0117a12",
+      "Kwic": "路逢死蛇莫打殺，無底藍子盛將歸。",
+      "caseClusterId": "X/X82/X82n1571.xml:912753:914648",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Fozhao Deguang",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_b0f2ccf6d140:0161b18:1:1",
+      "entryId": "t_b0f2ccf6d140",
+      "sourceTerm": "結制",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0161b18",
+      "Kwic": "師只與你做得箇洗脚奴子；若也不識，二時粥飯將甚麼喫？參！結制，上堂：大限九旬，小限七日，麤中有細，細中有密，密密無間，纖塵不立。正恁",
+      "caseClusterId": "X/X82/X82n1571.xml:1213796:1217461",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Gaofeng Yuanmiao",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_6bc71cc88c2f:0189c04:2:2",
+      "entryId": "t_6bc71cc88c2f",
+      "sourceTerm": "衣鉢",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0189c04",
+      "Kwic": "黃梅衣鉢，付與盧公。",
+      "caseClusterId": "X/X82/X82n1571.xml:1397385:1401973",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Yuansou Xingduan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_b75753d89a8f:0197a24:1:4",
+      "entryId": "t_b75753d89a8f",
+      "sourceTerm": "金毛師子",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0197a24",
+      "Kwic": "將謂是金毛師子，元來是野犴眷屬",
+      "caseClusterId": "X/X82/X82n1571.xml:1446588:1455587",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Chushi Fanqi",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_2816f418822c:0248c17:1:1",
+      "entryId": "t_2816f418822c",
+      "sourceTerm": "念佛是誰",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0248c17",
+      "Kwic": "法舟掩室於天寧，師往參叩，示以念佛是誰話。一日齋次，食器墜地，豁然有省。",
+      "caseClusterId": "X/X82/X82n1571.xml:1786059:1787071",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Yungu Fahui",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Fazhou Daoji",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Yungu Fahui", "Roles": ["recipient", "student", "section-subject"]}
+        ],
+        "AttributionNote": "五燈全書(第34卷-第120卷), Yungu Fahui section. Fazhou Daoji is the exact instructor who shows Yungu Fahui the saying ‘who is it who recollects Buddha?’ while Fazhou is in seclusion at Tianning. Yungu is the recipient who later awakens when a food vessel falls; he is not the speaker introducing the saying."
+      }
+    },
+    {
+      "key": "t_79e00cdbc129:0265a20:1:6",
+      "entryId": "t_79e00cdbc129",
+      "sourceTerm": "安心",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0265a20",
+      "Kwic": "後來二祖却似癡猿捉月，來問安心。這老漢也是憐兒不覺醜，向他道：將心來，與汝安。",
+      "caseClusterId": "X/X82/X82n1571.xml:1897230:1899308",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Ningran Liaogai",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_ba8066477571:0303b06:1:9",
+      "entryId": "t_ba8066477571",
+      "sourceTerm": "喝一喝",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0303b06",
+      "Kwic": "喝一喝，便歸方丈。",
+      "caseClusterId": "X/X82/X82n1571.xml:2132932:2136435",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": "Feiyin Tongrong",
+      "candidateBasis": "header",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

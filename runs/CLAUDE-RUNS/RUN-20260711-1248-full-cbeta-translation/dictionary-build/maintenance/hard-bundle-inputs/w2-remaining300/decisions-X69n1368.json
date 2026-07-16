@@ -1,0 +1,27 @@
+{
+  "source": "X/X69/X69n1368.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_372fb5a2b7ce:0744a02:1:2",
+      "entryId": "t_372fb5a2b7ce",
+      "sourceTerm": "活句",
+      "RelPath": "X/X69/X69n1368.xml",
+      "FromLb": "0744a02",
+      "Kwic": "語中有語，謂之死句；語中無語，謂之活句。",
+      "caseClusterId": "X/X69/X69n1368.xml:139741:140292",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "偃溪廣聞禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yanxi Guangwen",
+        "AttributionNote": "Recorded Sayings of Yanxi Guangwen (偃溪廣聞禪師語錄): in his general address, Yanxi Guangwen defines speech containing speech as a dead phrase and speech without speech as a living phrase."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

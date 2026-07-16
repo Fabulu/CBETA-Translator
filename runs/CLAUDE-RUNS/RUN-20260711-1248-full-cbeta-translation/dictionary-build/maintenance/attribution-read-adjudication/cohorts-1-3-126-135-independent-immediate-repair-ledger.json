@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "immediate-read-repair-ledger-v1",
+  "scope": "cohorts 1-3 entries 126-135",
+  "repairs": [
+    {"id":"t_43ecdacadde0","headword":"阿誰","oldSha256":"16afaf290635c38512c8ab26e364eae351a1265d8a07bc55b9cddaa76122a288","newSha256":"07621b64764fddee19a04a0893398a0037c40cde39f7b5401b7d026b19a6734d","change":"Corrected two claim anchors from Mengshan Daoming to Huineng as exact utterer; retained Mengshan Daoming as respondent and section subject.","requiresIndependentRereview":true}
+  ],
+  "validation": {"jsonParse":true,"occurrences":70,"claimAnchors":3,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

@@ -1,0 +1,52 @@
+{
+  "source": "X/X67/X67n1303.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_27e66043b271:0307a16:1:3",
+      "entryId": "t_27e66043b271",
+      "sourceTerm": "聲前一句",
+      "RelPath": "X/X67/X67n1303.xml",
+      "FromLb": "0307a16",
+      "Kwic": "僧問黃連和尚：如何是聲前一句？連云：聲前無句，聲後問將來。",
+      "caseClusterId": "X/X67/X67n1303.xml:312266:312468",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "林泉老人評唱投子青和尚頌古空谷集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "林泉老人評唱投子青和尚頌古空谷集, case 74, Huanglian's phrase before sound. The exact headword-bearing speaker is an unnamed questioning monk: he asks Huanglian what a phrase before sound is, and Huanglian answers that before sound there is no phrase. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huanglian Heshang",
+            "Roles": [
+              "respondent",
+              "case-subject"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

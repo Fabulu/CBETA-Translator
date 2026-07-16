@@ -1,0 +1,117 @@
+{
+  "generatedUtc": "2026-07-14T17:32:01.709964+00:00",
+  "elapsedSeconds": 102.148,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_3f7a6ab74b68",
+      "term": "僧堂",
+      "path": "fresh-build/entries/t_3f7a6ab74b68/entry.v2.json",
+      "sha256": "9a2ba44fb32d72fb57e4079c410adc12fc081a7378e19d103860ec806aa676db"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_3f7a6ab74b68/entry.v2.json",
+        "id": "t_3f7a6ab74b68",
+        "term": "僧堂",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.16,
+    "attribution": 2.365,
+    "publicFeedback": 28.228,
+    "depthSense": 52.654,
+    "workSourceValidation": 1.286,
+    "corpusBaseline": 1.599,
+    "attributionPackets": 14.753
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.365,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "actor_impersonal": 3,
+        "context_master_links": 6,
+        "deferred_non_roster_context": 3,
+        "attribution_notes": 7,
+        "actor_narrated": 3,
+        "named_occurrences": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"actor_impersonal\": 3,\n    \"context_master_links\": 6,\n    \"deferred_non_roster_context\": 3,\n    \"attribution_notes\": 7,\n    \"actor_narrated\": 3,\n    \"named_occurrences\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 28.228,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp3fw7ame8.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 52.654,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 1,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 1,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.286,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.599,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 14.753,
+    "payload": {
+      "entries": 1,
+      "occurrences": 7,
+      "tierACandidates": 0,
+      "reviewRequired": 7
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 7,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 7\n}\nreport: /tmp/tmpw4mguttc-packets.json\n",
+    "report": "/tmp/tmpw4mguttc-packets.json"
+  },
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,180 @@
+{
+  "source": "B/B27/B27n0152.xml",
+  "compiledFrom": "maintenance/source-workbooks/overrides-B27n0152-next.json",
+  "decisions": [
+    {
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0526b02",
+      "Kwic": "余閱雪竇拈古至百丈再叅馬祖因",
+      "caseClusterId": "B/B27/B27n0152.xml:146182:147343",
+      "Decision": {
+        "MasterName": "Zhang Shangying",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's later raising. Zhang Shangying, called Zhang Wujin (張無盡), is the exact speaker of 余閱雪竇拈古: he says that he was reading Xuedou Chongxian's comments on old cases. Xuedou is the author discussed, not the speaker of this quoted first-person line.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "author-discussed"
+            ]
+          },
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_d065698c14a8",
+      "sourceTerm": "一念不生",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0554b04",
+      "Kwic": "僧問雲門一念不生還有過也無門云須彌山",
+      "caseClusterId": "B/B27/B27n0152.xml:205716:205935",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex",
+          "ReviewedUtc": "2026-07-14T01:20:00Z"
+        },
+        "AttributionNote": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's evening address. An unnamed monk is the exact speaker asking Yunmen Wenyan whether not producing a single thought still has fault; Yunmen answers Mount Sumeru. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the monk. The graph 門 abbreviates Yunmen here and does not name Wumen Huikai.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_d065698c14a8",
+      "sourceTerm": "一念不生",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0554b05",
+      "Kwic": "雪竇顯禪師問智門云一念不生為甚麼有過門召近前竇近前門便打",
+      "caseClusterId": "B/B27/B27n0152.xml:205716:205935",
+      "Decision": {
+        "MasterName": "Xuedou Chongxian",
+        "ActorAttribution": null,
+        "AttributionNote": "普濟玉琳國師語錄: complete-case exact-turn review identifies Xuedou Chongxian as the actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": true
+      }
+    },
+    {
+      "entryId": "t_62bc43101d57",
+      "sourceTerm": "無相",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0557b03",
+      "Kwic": "早叅舉六祖大師無相為體無念為本無住為宗師云既云無相為體何不即以無相為宗既云無念為本何不即以無念為宗",
+      "caseClusterId": "B/B27/B27n0152.xml:211727:212030",
+      "Decision": {
+        "MasterName": "Huineng",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of State Preceptor Puji Yulin (普濟玉琳國師語錄), in Yulin Tongxiu's morning address. Yulin explicitly raises Huineng's formulation 無相為體，無念為本，無住為宗; Huineng is the exact quoted speaker. 無相 is the headword inside the saying, not a reference to Master Wuxiang.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_93ab42fecdca",
+      "sourceTerm": "本來無一物",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0563b02",
+      "Kwic": "舉六祖云本來無一物長慶云萬象之中獨露身",
+      "caseClusterId": "B/B27/B27n0152.xml:225224:225318",
+      "Decision": {
+        "MasterName": "Huineng",
+        "ActorAttribution": null,
+        "AttributionNote": "普濟玉琳國師語錄: complete-case exact-turn review identifies Huineng as the actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": true
+      }
+    },
+    {
+      "entryId": "t_a2612eb1f803",
+      "sourceTerm": "本自具足",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0636a12",
+      "Kwic": "何期自性本自清淨何期自性本不生滅何期自性本自具足何期自性本無動搖何期自性能生萬法",
+      "caseClusterId": "B/B27/B27n0152.xml:414511:414733",
+      "Decision": {
+        "MasterName": "Huineng",
+        "ActorAttribution": null,
+        "AttributionNote": "普濟玉琳國師語錄: complete-case exact-turn review identifies Huineng as the actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "普濟玉琳國師語錄",
+      "Review": {
+        "reviewer": "Codex /root/feedback_lexicography",
+        "reviewedUtc": "2026-07-14T01:20:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": true
+      }
+    }
+  ]
+}

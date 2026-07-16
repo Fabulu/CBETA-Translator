@@ -1,0 +1,84 @@
+{
+  "generatedUtc": "2026-07-14T10:14:35.300933+00:00",
+  "elapsedSeconds": 2.961,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_358f56dbf990",
+      "term": "善知識",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_358f56dbf990/entry.v2.json",
+      "sha256": "c0a3cef97bf8d38a6c174abacb690e03878fea751ed817ce85b7eb765aaa9a72"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 8,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_358f56dbf990/entry.v2.json",
+        "id": "t_358f56dbf990",
+        "term": "善知識",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 8,
+        "named_occurrences": 8,
+        "attribution_notes": 8,
+        "deferred_non_roster": 3,
+        "context_master_links": 1,
+        "chinese_strings": 10,
+        "anchored_chinese": 10
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 8,\n    \"named_occurrences\": 8,\n    \"attribution_notes\": 8,\n    \"deferred_non_roster\": 3,\n    \"context_master_links\": 1,\n    \"chinese_strings\": 10,\n    \"anchored_chinese\": 10\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "opening-interpretation-needs-review": 1,
+        "plain-english-image-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"opening-interpretation-needs-review\": 1,\n    \"plain-english-image-review\": 1\n  }\n}\nreport: /tmp/tmp65rkdlxy.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 8,
+      "tierACandidates": 0,
+      "reviewRequired": 8
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 8,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 8\n}\nreport: maintenance/semantic-cohorts/semantic-r001-owner1-shanzhishi-gate-attribution-packets.json\n",
+    "report": "maintenance/semantic-cohorts/semantic-r001-owner1-shanzhishi-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

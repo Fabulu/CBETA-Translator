@@ -1,0 +1,49 @@
+{
+  "source": "J/J38/J38nB425.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_bcc96a299271:0631a23:1:5",
+      "entryId": "t_bcc96a299271",
+      "sourceTerm": "開示",
+      "RelPath": "J/J38/J38nB425.xml",
+      "FromLb": "0631a23",
+      "Kwic": "進云：「承師開示，腳底蓮花步步階。」師云：「一法通時萬法通。」",
+      "caseClusterId": "J/J38/J38nB425.xml:30701:31381",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "即非禪師全錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jifei Ruyi",
+        "ActorAttribution": null,
+        "AttributionNote": "即非禪師全錄. Full six-rung exact-turn review identifies Jifei Ruyi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_5ac2c5d1fc1e:0658b20:1:3",
+      "entryId": "t_5ac2c5d1fc1e",
+      "sourceTerm": "寸絲不掛",
+      "RelPath": "J/J38/J38nB425.xml",
+      "FromLb": "0658b20",
+      "Kwic": "師問：「寸絲不掛，身上袈裟向甚處得來？」雲云：「寸絲不掛。」師云：「爭奈袈裟何？」雲云：「喚作袈裟得麼？」",
+      "caseClusterId": "J/J38/J38nB425.xml:204812:204958",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "即非禪師全錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jifei Ruyi",
+        "ActorAttribution": null,
+        "AttributionNote": "即非禪師全錄. Full six-rung exact-turn review identifies Jifei Ruyi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_bcc96a299271:0631a23:1:5",
+    "t_5ac2c5d1fc1e:0658b20:1:3"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "source": "B/B27/B27n0152.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_df4e71aa0bc5:0521b16:1:3",
+      "entryId": "t_df4e71aa0bc5",
+      "sourceTerm": "徹悟",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0521b16",
+      "Kwic": "如世尊覩明星徹悟昔年張無盡雖然是俗人他一見便知其立地處",
+      "caseClusterId": "B/B27/B27n0152.xml:135597:140577",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "AttributionNote": "Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): within Yulin Tongxiu's extended argument, Shakyamuni Buddha is the grammatical actor who sees the morning star and completely awakens; Yulin then compares layman Zhang Wujin's immediate recognition.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "framing-speaker",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8bd6933e6de3:0540b15:1:5",
+      "entryId": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0540b15",
+      "Kwic": "師一夕至東堂顧視左右震威一喝而出",
+      "caseClusterId": "B/B27/B27n0152.xml:177658:178239",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yulin Tongxiu",
+        "AttributionNote": "Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): Yulin Tongxiu enters the east hall during an evening instruction, looks left and right, and issues a commanding shout before leaving."
+      }
+    },
+    {
+      "key": "t_d9c587fad710:0555a20:1:6",
+      "entryId": "t_d9c587fad710",
+      "sourceTerm": "泥佛",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0555a20",
+      "Kwic": "又有云金佛度爐木佛度火泥佛度水真佛聻土上加泥又一重",
+      "caseClusterId": "B/B27/B27n0152.xml:207311:207756",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "quoted source speaker",
+          "ActorLabel": "unnamed quoted source speaker",
+          "ActorRole": "speaker of an anonymously transmitted counter-saying",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): after attributing the preceding non-crossing formula only to an old worthy, Yulin Tongxiu introduces this opposite crossing formula with 又有云, without naming its source speaker; the headword-bearing clay-Buddha clause belongs to that anonymously transmitted counter-saying. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed quoted source speaker.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "raiser",
+              "commentator",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_eba970114dd2:0565a02:1:3",
+      "entryId": "t_eba970114dd2",
+      "sourceTerm": "邯鄲",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0565a02",
+      "Kwic": "不可在語脈裡轉嫫母效顰邯鄲學步見笑大方取譏識者",
+      "caseClusterId": "B/B27/B27n0152.xml:228478:228928",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yulin Tongxiu",
+        "AttributionNote": "Recorded Sayings of National Master Puji Yulin (普濟玉琳國師語錄): Yulin Tongxiu warns that examining public cases by turning inside their verbal thread is like the ugly woman imitating a frown or learning the Handan walk, inviting ridicule from knowledgeable people."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_df4e71aa0bc5:0521b16:1:3",
+    "t_8bd6933e6de3:0540b15:1:5",
+    "t_d9c587fad710:0555a20:1:6",
+    "t_eba970114dd2:0565a02:1:3"
+  ]
+}

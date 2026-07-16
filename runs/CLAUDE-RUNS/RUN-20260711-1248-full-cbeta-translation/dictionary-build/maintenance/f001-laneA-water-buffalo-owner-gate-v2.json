@@ -1,0 +1,112 @@
+{
+  "generatedUtc": "2026-07-14T17:14:35.117929+00:00",
+  "elapsedSeconds": 58.059,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_36aa29eb1287",
+      "term": "水牯牛",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36aa29eb1287/entry.v2.json",
+      "sha256": "0172a96ea9acbe7214405e3a3071d73a9c6e88f2b9ec23fb66e29f458954eae4"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36aa29eb1287/entry.v2.json",
+        "id": "t_36aa29eb1287",
+        "term": "水牯牛",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.277,
+    "attribution": 5.771,
+    "publicFeedback": 37.222,
+    "depthSense": 9.05,
+    "workSourceValidation": 2.166,
+    "corpusBaseline": 2.222,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 5.771,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "named_occurrences": 7,
+        "context_master_links": 8,
+        "attribution_notes": 7,
+        "vague_attributor": 1,
+        "chinese_strings": 4,
+        "anchored_chinese": 4
+      },
+      "hardFailures": 1,
+      "failures": [
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36aa29eb1287/entry.v2.json",
+          "detail": "水牯牛 s1: 'a master'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"named_occurrences\": 7,\n    \"context_master_links\": 8,\n    \"attribution_notes\": 7,\n    \"vague_attributor\": 1,\n    \"chinese_strings\": 4,\n    \"anchored_chinese\": 4\n  },\n  \"hardFailures\": 1,\n  \"failures\": [\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36aa29eb1287/entry.v2.json\",\n      \"detail\": \"水牯牛 s1: 'a master'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 37.222,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpnnk74ru3.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 9.05,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.166,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.222,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

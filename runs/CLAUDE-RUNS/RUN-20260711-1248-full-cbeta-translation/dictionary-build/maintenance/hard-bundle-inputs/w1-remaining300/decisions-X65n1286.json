@@ -1,0 +1,44 @@
+{
+  "source": "X/X65/X65n1286.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_b23e58454acd:0375c13:1:1",
+      "entryId": "t_b23e58454acd",
+      "sourceTerm": "老婆心切",
+      "RelPath": "X/X65/X65n1286.xml",
+      "FromLb": "0375c13",
+      "Kwic": "愚曰：黃檗與麼老婆心切，為汝得徹困，更來這裡問有過無過？",
+      "caseClusterId": "X/X65/X65n1286.xml:12261:14338",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖庭鉗鎚錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Gao'an Dayu",
+        "ActorAttribution": null,
+        "AttributionNote": "祖庭鉗鎚錄, the Linji Yixuan encounter with Gao'an Dayu. Gao'an Dayu is the exact speaker: after Linji reports Huangbo Xiyun's three beatings and asks whether he was at fault, Dayu says Huangbo was so earnestly grandmotherly for him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "questioner",
+              "student"
+            ]
+          },
+          {
+            "MasterName": "Huangbo Xiyun",
+            "Roles": [
+              "referent",
+              "teacher"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

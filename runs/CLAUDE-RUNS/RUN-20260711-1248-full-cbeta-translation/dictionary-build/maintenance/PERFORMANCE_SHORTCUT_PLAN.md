@@ -273,3 +273,19 @@ Production measurement: actor/turn attribution generated 106 durable rework find
 and 14 depth/sense findings. Compilation took 1.03 seconds and was semantically identical, so it is not the bottleneck.
 The risk preflight took 0.054 seconds, caught all seven known `卓一下` performer-as-utterer defects, and produced zero
 flags on accepted `語言`. This moves the dominant repeated failure to author handoff without weakening review.
+
+## 18. Precompute research leads and reject question/quotation actor inversions
+
+Implementation: `prepare_lane_research_packets.py` performs the frozen 494-file discovery scan once per assigned
+range and stores work-distinct, title/head/KWIC and ±10,000-character context leads. Authors still read the complete
+case, run targeted searches, recut evidence, and pass `zc.verify`; the packet replaces repeated discovery, not human
+semantics. The f005 B1303–1350 packet supplies ten independent-work leads for each of 48 terms (480 source leads).
+
+The attribution gate now hard-fails a named master on a headword-bearing `僧問` question and requires a
+`later-raiser` whenever `古人/古德/先德云` raises precedent. The authoring-risk preflight additionally flags named
+masters after `進云`, which requires full-case adjudication because it usually continues the interlocutor but can
+depend on an earlier named turn.
+
+Production trigger: full-case review of A1203–1217 found anonymous questioners linked to Feiyin Tongrong, Dahui
+Zonggao, and Xutang Zhiyu, plus Zhenjing Kewen linked as utterer of a saying he explicitly introduced with `古人云`.
+These visible frames now block or flag before the expensive independent review.

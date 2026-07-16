@@ -1,0 +1,28 @@
+{
+  "source": "J/J34/J34nB300.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_ea138c7335d3:0254b07:1:2",
+      "entryId": "t_ea138c7335d3",
+      "sourceTerm": "鼻孔",
+      "RelPath": "J/J34/J34nB300.xml",
+      "FromLb": "0254b07",
+      "Kwic": "已被拂子穿卻鼻孔",
+      "caseClusterId": "J/J34/J34nB300.xml:171146:171766",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "朝宗禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chaozong Tongren",
+        "ActorAttribution": null,
+        "AttributionNote": "朝宗禪師語錄, hall address. Chaozong Tongren is the exact speaker: while holding up the fly-whisk he says that assertions of freedom in mind, freedom in dharmas, and several alternatives all have their nostrils pierced by the whisk."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

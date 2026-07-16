@@ -1,0 +1,100 @@
+{
+  "generatedUtc": "2026-07-13T21:07:32.521823+00:00",
+  "elapsedSeconds": 1.732,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_ff59d753a7b1",
+      "term": "逍遙",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ff59d753a7b1/entry.v2.json",
+      "sha256": "9aebc0f43f33d61ce5df41efb2adf61ab6835f7dba3e015d05b2c7daa8881e2b"
+    },
+    {
+      "id": "t_26ea593a58e2",
+      "term": "下座",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26ea593a58e2/entry.v2.json",
+      "sha256": "9c55853edbe9eac123604c7c4314f8b36e09e53949034d4f34f6f7cf63e51daf"
+    },
+    {
+      "id": "t_8879b278cd83",
+      "term": "便打",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8879b278cd83/entry.v2.json",
+      "sha256": "5c41c9c4517aaa3b18e96fcae5d3e6096947cb73e3758f5ca8a15a06fa4a6be9"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 37,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ff59d753a7b1/entry.v2.json",
+        "id": "t_ff59d753a7b1",
+        "term": "逍遙",
+        "verified": 12,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26ea593a58e2/entry.v2.json",
+        "id": "t_26ea593a58e2",
+        "term": "下座",
+        "verified": 14,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8879b278cd83/entry.v2.json",
+        "id": "t_8879b278cd83",
+        "term": "便打",
+        "verified": 11,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 6,
+        "occurrences": 37,
+        "named_occurrences": 29,
+        "deferred_non_roster": 7,
+        "context_master_links": 19,
+        "deferred_non_roster_context": 6,
+        "attribution_notes": 37,
+        "actor_reviewed_unnamed": 5,
+        "chinese_strings": 24,
+        "anchored_chinese": 24,
+        "actor_impersonal": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 6,\n    \"occurrences\": 37,\n    \"named_occurrences\": 29,\n    \"deferred_non_roster\": 7,\n    \"context_master_links\": 19,\n    \"deferred_non_roster_context\": 6,\n    \"attribution_notes\": 37,\n    \"actor_reviewed_unnamed\": 5,\n    \"chinese_strings\": 24,\n    \"anchored_chinese\": 24,\n    \"actor_impersonal\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpvqflb6lb.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 3,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 3,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

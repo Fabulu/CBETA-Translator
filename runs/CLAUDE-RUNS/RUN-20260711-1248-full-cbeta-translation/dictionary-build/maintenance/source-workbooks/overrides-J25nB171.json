@@ -1,0 +1,58 @@
+{
+  "source": "J/J25/J25nB171.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:03:00Z",
+  "rows": [
+    {
+      "key": "t_2069b9c33315:0518a06:1:4",
+      "entryId": "t_2069b9c33315",
+      "sourceTerm": "君臣",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0518a06",
+      "Kwic": "如何是曹洞宗？」師云：「君臣道合。」",
+      "caseClusterId": "J/J25/J25nB171.xml:46168:47193",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": "Tianyin Yuanxiu",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Yinqian",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Tianyin Yuanxiu",
+            "Roles": [
+              "examiner",
+              "respondent",
+              "record subject"
+            ]
+          },
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "source of the echoed phrase 'originally not a single thing'"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Master Tianyin (天隱和尚語錄), chamber encounter. Yinqian (印乾) is the exact named speaker who, after an awakening, enters the room and presents the verse beginning 'before father and mother were born, originally not a single thing'; Tianyin Yuanxiu questions him and later responds with a shout and verse. Huineng is echoed by the second clause but is not the speaker here."
+      }
+    },
+    {
+      "key": "t_7efdfe4296c6:0568c27:1:3",
+      "entryId": "t_7efdfe4296c6",
+      "sourceTerm": "父母未生前",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0568c27",
+      "Kwic": "呈偈云：「父母未生前，本來無一物。",
+      "caseClusterId": "J/J25/J25nB171.xml:373175:373539",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "existing-note",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

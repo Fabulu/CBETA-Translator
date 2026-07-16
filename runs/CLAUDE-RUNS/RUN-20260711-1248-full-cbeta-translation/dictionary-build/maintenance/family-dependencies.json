@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "description": "Explicit component-to-dependent edges. Changing this file invalidates acceptance bundles.",
+  "edges": [
+    {"parentTerm": "金", "dependentTerms": ["金鎖", "金彈子", "金毬"]},
+    {"parentTerm": "銀", "dependentTerms": ["銀彈子"]},
+    {"parentTerm": "金鎖", "dependentTerms": ["金鎖玄路"]},
+    {"parentTerm": "玄路", "dependentTerms": ["金鎖玄路", "三路", "玄關"]},
+    {"parentTerm": "鳥道", "dependentTerms": ["玄路", "三路", "本來面目"]},
+    {"parentTerm": "粥", "dependentTerms": ["喫粥", "粥飯", "粥飯僧", "喫粥了也未"]},
+    {"parentTerm": "戒", "dependentTerms": ["受戒", "持戒", "犯戒", "破戒", "戒律", "五戒", "菩薩戒", "戒定慧", "戒法", "戒體", "無相戒", "心戒"]}
+  ]
+}

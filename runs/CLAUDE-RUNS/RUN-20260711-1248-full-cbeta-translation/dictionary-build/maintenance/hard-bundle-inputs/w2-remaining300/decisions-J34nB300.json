@@ -1,0 +1,27 @@
+{
+  "source": "J/J34/J34nB300.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_4d4ce329367f:0243a06:1:3",
+      "entryId": "t_4d4ce329367f",
+      "sourceTerm": "說食",
+      "RelPath": "J/J34/J34nB300.xml",
+      "FromLb": "0243a06",
+      "Kwic": "身上著衣方免寒；若徒弄舌弄脣，口裏說食終不飽。",
+      "caseClusterId": "J/J34/J34nB300.xml:116389:116732",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "朝宗禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chaozong Tongren",
+        "AttributionNote": "Recorded Sayings of Chaozong (朝宗禪師語錄): in his small address, Chaozong Tongren says that talking food with the lips never fills the belly."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

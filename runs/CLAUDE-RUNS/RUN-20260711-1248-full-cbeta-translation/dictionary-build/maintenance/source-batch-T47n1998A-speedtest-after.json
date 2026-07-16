@@ -1,0 +1,33 @@
+{
+  "source": "T/T47/T47n1998A.xml",
+  "casesReviewed": 16,
+  "rows": 17,
+  "entries": 15,
+  "defaultsAccepted": 13,
+  "overrides": 4,
+  "focusedGate": {
+    "namedActors": 17,
+    "exactDecisionMatch": 17,
+    "sourceTitleInNote": 17,
+    "kwicVerified": 17,
+    "exactAnchorPairsMatch": 17
+  },
+  "modifiedFileAudit": {
+    "entriesParseOk": 15,
+    "occurrences": 82,
+    "kwicVerified": 82,
+    "exactAnchorPairsMatch": 82
+  },
+  "attributionAudit": {
+    "before": {"unresolvedActor":72,"namedOccurrences":10,"noteMissingSpeaker":73,"noteMissingSource":68,"hardFailures":250},
+    "after": {"unresolvedActor":55,"namedOccurrences":27,"noteMissingSpeaker":56,"noteMissingSource":52,"hardFailures":200}
+  },
+  "timingSeconds": {
+    "compile": 0.37,
+    "dryRun": 0.83,
+    "apply": 1.25,
+    "focusedAndTouchedKwicGate": 1.15,
+    "mechanicalPipelineTotal": 3.60,
+    "manualReview": "not instrumented; no estimate substituted"
+  }
+}

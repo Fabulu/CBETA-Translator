@@ -1,0 +1,30 @@
+{
+  "source": "J/J33/J33nB286.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_19f9e99d5304:0493b23:1:1",
+      "entryId": "t_19f9e99d5304",
+      "sourceTerm": "莊周",
+      "RelPath": "J/J33/J33nB286.xml",
+      "FromLb": "0493b23",
+      "Kwic": "莊周夢蝶，渠不是我；蝶夢莊周，我不是渠。",
+      "caseClusterId": "J/J33/J33nB286.xml:44011:44647",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "攖寧靜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yingning Jing",
+        "ActorAttribution": null,
+        "AttributionNote": "攖寧靜禪師語錄. Full six-rung exact-turn review identifies Yingning Jing as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_19f9e99d5304:0493b23:1:1"
+  ]
+}

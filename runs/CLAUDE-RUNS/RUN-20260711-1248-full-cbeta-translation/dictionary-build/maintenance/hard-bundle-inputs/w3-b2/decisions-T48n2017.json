@@ -1,0 +1,30 @@
+{
+  "source": "T/T48/T48n2017.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_e9adcb470950:0969c15:1:3",
+      "entryId": "t_e9adcb470950",
+      "sourceTerm": "菩薩戒",
+      "RelPath": "T/T48/T48n2017.xml",
+      "FromLb": "0969c15",
+      "Kwic": "聲聞戒急，菩薩戒緩；聲聞戒塞，菩薩戒開。』又經云：『聲聞持戒，是菩薩破戒。",
+      "caseClusterId": "T/T48/T48n2017.xml:74846:76282",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "萬善同歸集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongming Yanshou",
+        "ActorAttribution": null,
+        "AttributionNote": "萬善同歸集. Full six-rung exact-turn review identifies Yongming Yanshou as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_e9adcb470950:0969c15:1:3"
+  ]
+}

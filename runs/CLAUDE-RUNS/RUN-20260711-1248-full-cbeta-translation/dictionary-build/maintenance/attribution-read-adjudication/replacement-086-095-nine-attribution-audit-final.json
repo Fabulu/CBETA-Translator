@@ -1,0 +1,323 @@
+{
+  "counts": {
+    "entries": 9,
+    "senses": 9,
+    "occurrences": 68,
+    "actor_identified_non_master": 1,
+    "context_master_links": 73,
+    "attribution_notes": 68,
+    "named_master_missing_structured_link": 2,
+    "actor_narrated": 31,
+    "note_missing_source": 38,
+    "deferred_non_roster_context": 25,
+    "actor_reviewed_unnamed": 12,
+    "explicit_master_turn_left_anonymous": 7,
+    "note_missing_speaker": 9,
+    "pending_roster_context_master": 19,
+    "named_occurrences": 23,
+    "deferred_non_roster": 10,
+    "pending_roster_master": 9,
+    "actor_impersonal": 1,
+    "reviewed_unnamed_label_not_explicit": 1,
+    "unnamed_master_forbidden": 1,
+    "action_performer_in_utterer_field": 1
+  },
+  "hardFailures": 59,
+  "failures": [
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o1: Su Shi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o2 expected '古尊宿語錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o3 expected '列祖提綱錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o4 expected '續傳燈錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o5 expected '嘉泰普燈錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o6 expected '景德傳燈錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o7: ['師問', '師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o7: Source text (禪宗頌古聯珠通集): the verse narrator describes circling the Chan couch in a verse attached to the Nanyang Huizhong case; the following prose case names Huizhong separately."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o8 expected '大慧普覺禪師語錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o9 expected '古尊宿語錄': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o10 expected '五燈全書(第1卷-第33卷)': Complete unit read: the narrator owns the seat/action wording; the named participant performs or frames the action but does not utter the headword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c4a694970a12/entry.v2.json",
+      "detail": "洗鉢盂 s1 o1 expected '嘉泰普燈錄': The biography reports a master's recurring room question about the wash-your-bowl case."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c4a694970a12/entry.v2.json",
+      "detail": "洗鉢盂 s1 o2 expected '五燈全書(第34卷-第120卷)': The biographer reports Wuzu Fayan assigning Zhaozhou's wash-your-bowl case and later testing it."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c4a694970a12/entry.v2.json",
+      "detail": "洗鉢盂 s1 o4 expected '大慧普覺禪師普說': The quoted case directly assigns 'wash your bowl' to Zhaozhou Congshen; the surrounding work transmits or comments on that turn."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c4a694970a12/entry.v2.json",
+      "detail": "洗鉢盂 s1 o5 expected '禪宗頌古聯珠通集': The quoted case directly assigns 'wash your bowl' to Zhaozhou Congshen; the surrounding work transmits or comments on that turn."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c4a694970a12/entry.v2.json",
+      "detail": "洗鉢盂 s1 o6 expected '五燈嚴統(第10卷-第25卷)': Qingshan Shoulong directly asks the assembly how to understand the wash-your-bowl phrase; roster normalization remains pending."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c728f3a8e02b/entry.v2.json",
+      "detail": "家風 s1 o1: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c728f3a8e02b/entry.v2.json",
+      "detail": "家風 s1 o4 expected '費隱禪師語錄': An unnamed monk contrasts Linji's house style with the Caodong purport; Feiyin Tongrong answers next."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o3 expected '五燈嚴統(第10卷-第25卷)': The narrator reports Fayan Wenyi ascending the teaching seat; Fayan Wenyi performs the event but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o4 expected '五燈會元': The narrator reports Shakyamuni Buddha ascending the teaching seat; Shakyamuni Buddha performs the event but does not utter its label."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o5: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o5 expected '古尊宿語錄': The narrator reports Huangbo Xiyun ascending the teaching seat; Huangbo Xiyun performs the event but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o6 expected '續燈正統': The narrator reports Huqiu Shaolong ascending the teaching seat; Huqiu Shaolong performs the event but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o7 expected '雨山和尚語錄': The narrator reports Yushan Shangsi ascending the teaching seat; Yushan Shangsi performs the event but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o8 expected '正源略集': The narrator reports Yulin Tongxiu ascending the teaching seat; Yulin Tongxiu performs the event but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0a4a5271135/entry.v2.json",
+      "detail": "石人 s1 o2 expected '五燈嚴統(第10卷-第25卷)': An unnamed monk quotes the line about stone and wooden people answering together; Yongming Yanshou answers next."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0a4a5271135/entry.v2.json",
+      "detail": "石人 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0a4a5271135/entry.v2.json",
+      "detail": "石人 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o4 expected '五燈會元': An unnamed monk asks Jingqing Daofu for the first phrase; Jingqing answers next."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: every master must be named"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: ['師問']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5 expected '聯燈會要': An unnamed master asks the layman for Bodhidharma's first phrase; the layman's reply is separate."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o8 expected '景德傳燈錄': An unnamed monk asks for the first phrase; Linji Yixuan gives the separately marked answer."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o1: Source text (古尊宿語錄): exact actor (佛眼禪師) owns the headword-bearing wording."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o2: In the Yunmen record, 師代云 marks Yunmen Wenyan directly supplying the substitute response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o2 expected '五家語錄（選錄）': In the Yunmen record, 師代云 marks Yunmen Wenyan directly supplying the substitute response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o3: In the Yunmen record, 師代云 marks Yunmen Wenyan directly supplying the substitute response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o3 expected '雲門匡真禪師廣錄': In the Yunmen record, 師代云 marks Yunmen Wenyan directly supplying the substitute response."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o4: Source text (雲門匡真禪師語錄): The source's full turn identifies Yunmen Wenyan as the exact headword utterer."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o5: Lingrui directly supplies the substitute answer; roster normalization is pending."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o5 expected '靈瑞禪師嵒華集': Lingrui directly supplies the substitute answer; roster normalization is pending."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o6: In Fenyang's record, 代云 introduces Fenyang Shanzhao's direct substitute response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o6 expected '汾陽無德禪師語錄': In Fenyang's record, 代云 introduces Fenyang Shanzhao's direct substitute response."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o7 expected '楚石梵琦禪師語錄': An unnamed monk reports Xuedou's later substitute response and asks whether it accords; Chushi Fanqi answers."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o8: The source explicitly says Fayan Wenyi supplied the substitute response 'Precisely habit-energy.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d8868082a16c/entry.v2.json",
+      "detail": "代云 s1 o8 expected '宗鑑法林': The source explicitly says Fayan Wenyi supplied the substitute response 'Precisely habit-energy.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc24f92ead78/entry.v2.json",
+      "detail": "問訊 s1 o5 expected '古尊宿語錄': The narrator reports Puhua making formal inquiry before asking Linji about the earlier statement."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc24f92ead78/entry.v2.json",
+      "detail": "問訊 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc24f92ead78/entry.v2.json",
+      "detail": "問訊 s1 o6 expected '五燈嚴統(第10卷-第25卷)': The narrator reports an unnamed monk making formal inquiry while Fayan Wenyi was ill; Fayan then speaks."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o1 expected '五燈全書(第1卷-第33卷)': Shushan Kuangren directly asks Guishan Lingyou about what remains merely a matter at the side of the Dharma-body."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o2 expected '古尊宿語錄': Yunmen Wenyan directly repeats Shushan's formula and asks for the Dharma-body-side matter."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o3 expected '天隱修禪師語錄': Tianyin Yuanxiu raises the old case; the stored headword token is Shushan Kuangren's explicitly quoted declaration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o4 expected '楚石梵琦禪師語錄': Chushi Fanqi directly asks his audience to distinguish the Dharma-body-side matter from the matter beyond it."
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o5: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o5 expected '聯燈會要': The section names Langye Huijue, who directly says that ruler and minister according is still a Dharma-body-side matter."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o6: An unnamed master directly contrasts merit-side and Dharma-body-side matters in a hall address."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o6 expected '五燈會元': An unnamed master directly contrasts merit-side and Dharma-body-side matters in a hall address."
+    }
+  ]
+}

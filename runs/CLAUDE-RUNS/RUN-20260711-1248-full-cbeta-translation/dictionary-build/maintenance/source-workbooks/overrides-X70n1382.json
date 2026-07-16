@@ -1,0 +1,38 @@
+{
+  "source": "X/X70/X70n1382.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:57:15Z",
+  "rows": [
+    {
+      "key": "t_6af80faddcf0:0221a17:1:4",
+      "entryId": "t_6af80faddcf0",
+      "sourceTerm": "沒巴鼻",
+      "RelPath": "X/X70/X70n1382.xml",
+      "FromLb": "0221a17",
+      "Kwic": "祖師巴鼻，衲僧巴鼻。有些巴鼻，全沒巴鼻。因甚如此？公驗分明。",
+      "caseClusterId": "X/X70/X70n1382.xml:33949:34066",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "無準師範禪師語錄",
+      "defaultMasterName": "Wuzhun Shifan",
+      "candidateBasis": "title",
+      "Override": null
+    },
+    {
+      "key": "t_2745ffff5972:0223a11:1:3",
+      "entryId": "t_2745ffff5972",
+      "sourceTerm": "開口即錯",
+      "RelPath": "X/X70/X70n1382.xml",
+      "FromLb": "0223a11",
+      "Kwic": "開口即錯，閉口即喪。不開不合，十萬八千。到這裏如何通信？",
+      "caseClusterId": "X/X70/X70n1382.xml:46327:46594",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "無準師範禪師語錄",
+      "defaultMasterName": "Wuzhun Shifan",
+      "candidateBasis": "title",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

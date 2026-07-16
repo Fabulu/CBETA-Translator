@@ -1,0 +1,44 @@
+{
+  "source": "J/J29/J29nB244.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J29nB244.json",
+  "decisions": [
+    {
+      "entryId": "t_b191c4fa2e9f",
+      "sourceTerm": "請益",
+      "RelPath": "J/J29/J29nB244.xml",
+      "FromLb": "0709b10",
+      "Kwic": "打云：「蒼天蒼天！」一僧進方丈，纔展具，師便喝，僧云：「特來請益和尚！」師驀面一掌，僧云：「痛快痛快！」師復打，僧擬進語，師",
+      "caseClusterId": "J/J29/J29nB244.xml:104942:105221",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk requesting instruction",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "三山來禪師語錄. Full six-rung exact-turn review identifies Unnamed monk requesting instruction as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Sanshan Denglai"
+        ]
+      },
+      "ExpectedSourceTitle": "三山來禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

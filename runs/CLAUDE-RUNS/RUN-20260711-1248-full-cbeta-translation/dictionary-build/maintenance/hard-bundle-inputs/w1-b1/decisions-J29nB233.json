@@ -1,0 +1,28 @@
+{
+  "source": "J/J29/J29nB233.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_77774b8724f1:0323a10:1:2",
+      "entryId": "t_77774b8724f1",
+      "sourceTerm": "付法",
+      "RelPath": "J/J29/J29nB233.xml",
+      "FromLb": "0323a10",
+      "Kwic": "從上佛祖皆見有付法偈",
+      "caseClusterId": "J/J29/J29nB233.xml:7133:8381",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "介菴進禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jie'an Wujin",
+        "ActorAttribution": null,
+        "AttributionNote": "介菴進禪師語錄, preface to Jie'an Wujin's verses on transmission sources. Jie'an Wujin is the exact speaker: responding to disciples' request, he says that former buddhas and patriarchs are all seen to have Dharma-transmission verses and then explains why he records their transmission phrases."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "independent-full-case-review-with-immediate-repair-v1",
+  "reviewer": "Codex independent reviewer replacement",
+  "selfReview": false,
+  "scope": "cohorts 1-3 entries 116-125",
+  "sourcePacket": "cohorts-1-3-v6-packets-116-125.json",
+  "packetUnitsRead": 69,
+  "additionalLiveOccurrencesRead": 2,
+  "claimAnchorsRead": 1,
+  "countReconciliation": "The live cohort contained 72 stored occurrences, not the assigned 70. Two were byte-identical duplicate records of 命參念佛是誰. Removing one exact duplicate leaves 71 unique stored occurrences plus one claim anchor; all were read and verified.",
+  "rows": [
+    {"id":"t_171059a90935","headword":"西來意","occurrencesRead":8,"entrySha256":"011ab46703bfade4616879d929f4178f8dc0c9f14b7c9e7cd301ec68bcecfbbb","verdict":"KEEP","finding":"All eight complete interviews correctly assign the abbreviated question to its utterer and the answer or action to the contextual respondent."},
+    {"id":"t_1e41b014d80e","headword":"向上一路","occurrencesRead":7,"entrySha256":"bc151c4ee7b5fc5b7a3cdcc269a46d6286b6d19c0bcac3093944a1e37b9ede45","verdict":"KEEP","finding":"The seven full units support the direct speakers and unnamed questioners, and the definition preserves the deliberately divergent replies."},
+    {"id":"t_21926ca0b92e","headword":"頂門眼","occurrencesRead":7,"claimAnchorsRead":1,"entrySha256":"49d91a44c199457eec29d93d2560caaaa738647bb354349da99ea008b9cafe1b","verdict":"KEEP","finding":"All seven headword turns and the separately anchored 'knocked blind' reply have correct exact actors."},
+    {"id":"t_22865f34533e","headword":"兒孫","occurrencesRead":8,"entrySha256":"c62fedb1879f56edfc6a184dd2755876d0431ff0338a828f3494f8d652aa1a15","verdict":"KEEP","finding":"Direct sayings, quoted Prajnatara prophecy, signed preface, named verse, unnamed verses, and record subject are correctly distinguished."},
+    {"id":"t_23d23141b4c6","headword":"棒頭","occurrencesRead":7,"entrySha256":"f82eda003b3069dbdf86b30ab2dc4004f40632add25de2f07cc7abce948ab05c","verdict":"KEEP","finding":"The full units support the two direct masters, two unnamed verse authors, signed lay preface, named lay questioner, and Miyun discourse assignments."},
+    {"id":"t_24adbdf51a15","headword":"金佛不度爐","occurrencesRead":6,"reviewedSha256":"4f4d4b81d219d26f93c8d9a4e79406ed91ab135df7895e1cfdc393834e137971","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"Attribution held, but the definition began with a redundant sentence and an unclosed quotation. It was rewritten for grammatical, distinguishable prose without changing its corpus-grounded material-image analysis.","repairedSha256":"866c7e302a74fbfc556199beb3b7a1f472c23a1fe52c0905d172704324ab8538"},
+    {"id":"t_27c71a091873","headword":"首座","occurrencesRead":8,"entrySha256":"6ae0110712bac993c9228294098f355b4c0969ea645e14ea648e741b026845b5","verdict":"KEEP","finding":"The biography, preface, question, tables of contents, and personnel lists are correctly treated as narration or an unnamed question rather than master speech."},
+    {"id":"t_2816f418822c","headword":"念佛是誰","occurrencesRead":8,"uniqueOccurrencesRetained":7,"reviewedSha256":"2b99eac19efeadb9a9bcd86715f9f46f60bbb7ea6ff1e44124ac873cfe492e38","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"The live entry contained the identical J39 命參念佛是誰 occurrence twice, introduced by rerunning an append-based repair. One duplicate was removed. A malformed opening sentence with mixed quotation marks was also repaired; actor assignments remain unchanged.","repairedSha256":"2e7d5148f65e0474b115cd53c1a15bb04be2fe59fcb47d479922f53c9738c349"},
+    {"id":"t_2b6fde4fdf58","headword":"壁立千仞","occurrencesRead":7,"entrySha256":"36a8c379ba98f67c516d9403c51d539e93849f97897edf495b64d152bb2ee33a","verdict":"KEEP","finding":"All seven complete units support their direct speaker, unnamed questioner, quotation, and later-commentator roles."},
+    {"id":"t_2b9a5ab567cc","headword":"虛空粉碎","occurrencesRead":6,"entrySha256":"5068fb487ce3b9796bee10f95d514e7074ef5f889b9fc58434fb8a5dfb6acc2e","verdict":"KEEP","finding":"The six full discourses correctly assign direct utterers and the unnamed question turn; the definition distinguishes reported event from public formula."}
+  ],
+  "summary": {"KEEP_UNCHANGED":8,"REPAIRED_AWAITING_INDEPENDENT_REREVIEW":2},
+  "mechanicalGate": {"occurrencesChecked":71,"claimAnchorsChecked":1,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

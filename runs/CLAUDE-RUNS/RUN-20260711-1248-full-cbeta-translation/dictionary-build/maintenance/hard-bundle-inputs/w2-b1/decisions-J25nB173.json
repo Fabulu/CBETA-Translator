@@ -1,0 +1,29 @@
+{
+  "source": "J/J25/J25nB173.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_c3a7862b9971:0671b07:1:7",
+      "entryId": "t_c3a7862b9971",
+      "sourceTerm": "自在",
+      "RelPath": "J/J25/J25nB173.xml",
+      "FromLb": "0671b07",
+      "Kwic": "透得一句生死自在；透得二句來去自由；三句透得，可以為人天師；四句總透得，可以為佛祖師。",
+      "caseClusterId": "J/J25/J25nB173.xml:27586:27829",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "壽昌無明和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuming Huijing",
+        "AttributionNote": "Recorded Sayings of Wuming of Shouchang (壽昌無明和尚語錄): Wuming Huijing says that penetrating one of four phrases gives freedom in birth and death, two gives freedom in coming and going, and all four allows one to be teacher of buddhas and patriarchs."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_c3a7862b9971:0671b07:1:7"
+  ]
+}

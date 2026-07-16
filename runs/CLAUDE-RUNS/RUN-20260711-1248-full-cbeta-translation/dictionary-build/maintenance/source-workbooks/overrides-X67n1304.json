@@ -1,0 +1,72 @@
+{
+  "source": "X/X67/X67n1304.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:48:55Z",
+  "rows": [
+    {
+      "key": "t_17c1d8b4f105:0326c08:1:1",
+      "entryId": "t_17c1d8b4f105",
+      "sourceTerm": "劫外",
+      "RelPath": "X/X67/X67n1304.xml",
+      "FromLb": "0326c08",
+      "Kwic": "儻肯於劫外承當，更何必而今相見？",
+      "caseClusterId": "X/X67/X67n1304.xml:61071:61728",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "林泉老人評唱丹霞淳禪師頌古虗堂集",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Linquan Conglun",
+        "AttributionNote": "Elder Linquan's Appraisals and Comments on Chan Master Danxia Zichun's Verses on Old Cases, the Empty Hall Collection (林泉老人評唱丹霞淳禪師頌古虗堂集), case five. Linquan Conglun is the exact commentator marked by 師云 who asks whether, if one can undertake it beyond the eon, there is any need to meet now. Dongshan Liangjie belongs to the case heading and is discussed in the comment; he is not the speaker of this sentence.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dongshan Liangjie",
+            "Roles": [
+              "case-subject"
+            ]
+          },
+          {
+            "MasterName": "Danxia Zichun",
+            "Roles": [
+              "verse-author"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_1d1a833551a9:0333b18:1:2",
+      "entryId": "t_1d1a833551a9",
+      "sourceTerm": "活鱍鱍",
+      "RelPath": "X/X67/X67n1304.xml",
+      "FromLb": "0333b18",
+      "Kwic": "其實此事轉轆轆、活鱍鱍，如盤走珠，了無滯跡，方為可也。",
+      "caseClusterId": "X/X67/X67n1304.xml:108724:110445",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "林泉老人評唱丹霞淳禪師頌古虗堂集",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Linquan Conglun",
+        "AttributionNote": "Elder Linquan's Appraisals and Comments on Chan Master Danxia Zichun's Verses on Old Cases, the Empty Hall Collection (林泉老人評唱丹霞淳禪師頌古虗堂集), case seventeen. In the continuous commentary introduced by 師云, Linquan Conglun says that this matter turns freely and is alive and darting, like a pearl running on a tray without any stagnant trace. Dongshan Liangjie is the case subject invoked earlier in the comment, not the speaker of this sentence.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dongshan Liangjie",
+            "Roles": [
+              "case-subject"
+            ]
+          },
+          {
+            "MasterName": "Danxia Zichun",
+            "Roles": [
+              "verse-author"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

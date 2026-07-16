@@ -1,0 +1,46 @@
+{
+  "source": "J/J28/J28nB218.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_caf826491397:0640b18:1:3",
+      "entryId": "t_caf826491397",
+      "sourceTerm": "高高峰頂立",
+      "RelPath": "J/J28/J28nB218.xml",
+      "FromLb": "0640b18",
+      "Kwic": "師云：「高高峰頂立，深深海底行。」",
+      "caseClusterId": "J/J28/J28nB218.xml:23557:24961",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "懶石聆禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lanshi Ling",
+        "ActorAttribution": null,
+        "AttributionNote": "懶石聆禪師語錄, Buddha-birthday public exchange. Lanshi Ling is the exact speaker of the stored answer: after the monk's advance, he says, 'stand on the highest peak; walk in the deepest ocean.'"
+      }
+    },
+    {
+      "key": "t_caf826491397:0643c01:1:4",
+      "entryId": "t_caf826491397",
+      "sourceTerm": "高高峰頂立",
+      "RelPath": "J/J28/J28nB218.xml",
+      "FromLb": "0643c01",
+      "Kwic": "二十五日已前，虛空包不住，深深海底行；二十五日已後，大地載不起，高高峰頂立；正當二十五日，十方俱坐斷，縱橫得自由。",
+      "caseClusterId": "J/J28/J28nB218.xml:39480:39958",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "懶石聆禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lanshi Ling",
+        "ActorAttribution": null,
+        "AttributionNote": "懶石聆禪師語錄, twenty-fifth-day hall address. Lanshi Ling is the exact speaker: he places walking in the deepest sea before the day, standing on the highest peak after it, and sitting cut off in all ten directions on the day itself."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

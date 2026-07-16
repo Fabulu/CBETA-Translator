@@ -1,0 +1,35 @@
+{
+  "source": "T/T48/T48n2003.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_35c3fb655630:0150b15:1:1",
+      "entryId": "t_35c3fb655630",
+      "sourceTerm": "驗人",
+      "RelPath": "T/T48/T48n2003.xml",
+      "FromLb": "0150b15",
+      "Kwic": "驗人端的處。下口便知音。",
+      "caseClusterId": "T/T48/T48n2003.xml:74189:75130",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "佛果圜悟禪師碧巖錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "AttributionNote": "Blue Cliff Record (佛果圜悟禪師碧巖錄): in his commentary on Muzhou's exchange, Yuanwu Keqin says that at the exact point of testing a person one knows the tone as soon as the person opens his mouth.",
+        "ContextMasters": [
+          {
+            "MasterName": "Muzhou Daoming",
+            "Roles": [
+              "earlier-case-master"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

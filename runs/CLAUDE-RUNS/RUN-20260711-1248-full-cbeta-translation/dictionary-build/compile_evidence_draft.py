@@ -191,6 +191,24 @@ def compile_sense(value: dict, index: int, errors: list[str]) -> dict:
         errors.append(f"sense {index}.OpeningClaimEvidenceKeys: unknown keys {sorted(unknown)}")
     sense["Occurrences"] = occurrences
     sense["ClaimAnchors"] = anchors
+    # Link inventories are derived from structured evidence, not hand-maintained
+    # parallel lists. Preserve explicitly related canonical people, then append
+    # every utterer and contextual master exactly once in evidence order.
+    related = list(dict.fromkeys(sense.get("RelatedMasters") or []))
+    for row in [*occurrences, *anchors]:
+        names = [row.get("MasterName")]
+        names.extend(
+            context.get("MasterName")
+            for context in row.get("ContextMasters") or []
+            if isinstance(context, dict)
+        )
+        for name in names:
+            if name and name not in related:
+                related.append(name)
+    sense["RelatedMasters"] = related
+    sense["SourceTexts"] = list(dict.fromkeys(
+        row.get("RelPath") for row in [*occurrences, *anchors] if row.get("RelPath")
+    ))
     return sense
 
 

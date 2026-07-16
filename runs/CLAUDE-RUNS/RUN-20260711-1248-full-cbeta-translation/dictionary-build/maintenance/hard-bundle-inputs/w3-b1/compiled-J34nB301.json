@@ -1,0 +1,44 @@
+{
+  "source": "J/J34/J34nB301.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J34nB301.json",
+  "decisions": [
+    {
+      "entryId": "t_6dadcc69c361",
+      "sourceTerm": "料揀",
+      "RelPath": "J/J34/J34nB301.xml",
+      "FromLb": "0294b13",
+      "Kwic": "兩段不同，試請料揀。",
+      "caseClusterId": "J/J34/J34nB301.xml:77876:78774",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "interlocutor",
+          "ActorLabel": "Unnamed interlocutor requesting a discrimination",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "南嶽繼起和尚語錄. Full six-rung exact-turn review identifies Unnamed interlocutor requesting a discrimination as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Nanyue Jiqi Hongchu"
+        ]
+      },
+      "ExpectedSourceTitle": "南嶽繼起和尚語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

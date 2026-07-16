@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "owner": 1,
+  "status": "active",
+  "totalEntries": 199,
+  "continuousNoStop": true,
+  "waves": [
+    {
+      "wave": "semantic-r001",
+      "ledger": "maintenance/semantic-cohorts/semantic-r001-owner1.json",
+      "entries": 30
+    },
+    {
+      "wave": "semantic-r002",
+      "ledger": "maintenance/semantic-cohorts/semantic-r002-owner1.json",
+      "entries": 30
+    },
+    {
+      "wave": "semantic-r003",
+      "ledger": "maintenance/semantic-cohorts/semantic-r003-owner1.json",
+      "entries": 30
+    },
+    {
+      "wave": "semantic-r004",
+      "ledger": "maintenance/semantic-cohorts/semantic-r004-owner1.json",
+      "entries": 30
+    },
+    {
+      "wave": "semantic-r005",
+      "ledger": "maintenance/semantic-cohorts/semantic-r005-owner1.json",
+      "entries": 79
+    }
+  ],
+  "instruction": "Process these ledgers continuously in order. A wave boundary is a merge/checkpoint boundary, not a reason to stop or await a new task."
+}

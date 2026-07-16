@@ -1,0 +1,30 @@
+{
+  "source": "J/J37/J37nB384.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_25fb43689d5e:0289b04:1:4",
+      "entryId": "t_25fb43689d5e",
+      "sourceTerm": "折腳鐺",
+      "RelPath": "J/J37/J37nB384.xml",
+      "FromLb": "0289b04",
+      "Kwic": "折腳鐺煨瓔珞粥，任他窮漢肚皮寬。",
+      "caseClusterId": "J/J37/J37nB384.xml:294108:338397",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "憨休禪師敲空遺響",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hanxiu Rugan",
+        "ActorAttribution": null,
+        "AttributionNote": "憨休禪師敲空遺響. Full six-rung exact-turn review identifies Hanxiu Rugan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_25fb43689d5e:0289b04:1:4"
+  ]
+}

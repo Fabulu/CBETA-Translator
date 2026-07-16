@@ -1,0 +1,29 @@
+{
+  "source": "J/J39/J39nB463.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_2069b9c33315:0800c13:2:2",
+      "entryId": "t_2069b9c33315",
+      "sourceTerm": "君臣",
+      "RelPath": "J/J39/J39nB463.xml",
+      "FromLb": "0800c13",
+      "Kwic": "父子有親，君臣有義，長幼有序，朋友有信",
+      "caseClusterId": "J/J39/J39nB463.xml:100543:100802",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "溈山古梅冽禪師語錄",
+      "defaultMasterName": "Guishan Lingyou",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Gumei Dinglie",
+        "ActorAttribution": null,
+        "ContextMasters": [],
+        "AttributionNote": "The Recorded Sayings of Chan Master Gumei Dinglie of Guishan (溈山古梅冽禪師語錄), in Gumei Dinglie's New Year's Day whisk address at Miyin Chan Monastery on Mount Dawei. Gumei is the exact speaker who places ‘lord and minister have duty’ among the ordinary social relations of parent and child, elder and younger, and friends. ‘Guishan’ names his monastery here; it does not make Guishan Lingyou the speaker."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

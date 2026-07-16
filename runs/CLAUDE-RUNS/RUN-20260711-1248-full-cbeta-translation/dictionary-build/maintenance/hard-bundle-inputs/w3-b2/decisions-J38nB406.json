@@ -1,0 +1,71 @@
+{
+  "source": "J/J38/J38nB406.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_dc854763849c:0127b26:1:5",
+      "entryId": "t_dc854763849c",
+      "sourceTerm": "聲色",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0127b26",
+      "Kwic": "體絕見聞而不離見聞之緣，用同聲色而不是聲色之事",
+      "caseClusterId": "J/J38/J38nB406.xml:22340:23338",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianran Hanshi",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Full six-rung exact-turn review identifies Tianran Hanshi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_9bddb36dfcaf:0130a23:1:7",
+      "entryId": "t_9bddb36dfcaf",
+      "sourceTerm": "歸宗斬蛇",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0130a23",
+      "Kwic": "流處也風流，面毛長三尺。大眾！批判便批判了也，若是芥菴又作麼生？」良久，云：「四卷楞伽遮老眼，一聲彌勒到新秋。」上堂。「南泉斬貓，歸宗斬蛇，喚作斬貓斬蛇，入地獄如箭射；不喚作斬貓斬蛇，入地獄如箭射。畢竟合作麼生？」豎竹篦子，云：「竹篦子還入地獄也無？險。」師誕日，上堂",
+      "caseClusterId": "J/J38/J38nB406.xml:36517:37148",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianran Hanshi",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Full six-rung exact-turn review identifies Tianran Hanshi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+        "ContextMasters": [
+          "Tianran Hanshi"
+        ]
+      }
+    },
+    {
+      "key": "t_a7c8b47ff1a3:0202c07:2:2",
+      "entryId": "t_a7c8b47ff1a3",
+      "sourceTerm": "寒山",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0202c07",
+      "Kwic": "葉盡花自發，正當寒山中，山寒人見少，花發年年同。",
+      "caseClusterId": "J/J38/J38nB406.xml:457814:478013",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hanshan",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Full six-rung exact-turn review identifies Hanshan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_dc854763849c:0127b26:1:5",
+    "t_9bddb36dfcaf:0130a23:1:7",
+    "t_a7c8b47ff1a3:0202c07:2:2"
+  ]
+}

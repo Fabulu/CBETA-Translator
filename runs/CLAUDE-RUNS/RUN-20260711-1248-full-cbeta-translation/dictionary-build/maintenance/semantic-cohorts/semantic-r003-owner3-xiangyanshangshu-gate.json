@@ -1,0 +1,72 @@
+{
+  "generatedUtc": "2026-07-14T15:40:26.461572+00:00",
+  "elapsedSeconds": 4.507,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_658aa535f10b",
+      "term": "香嚴上樹",
+      "path": "terms/t_658aa535f10b/entry.v2.json",
+      "sha256": "a084a86df4ffd0622b0adafd74064865bb29b9f36ddf5dd06f1ef5a284203d4c"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_658aa535f10b/entry.v2.json",
+        "id": "t_658aa535f10b",
+        "term": "香嚴上樹",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "actor_impersonal": 2,
+        "context_master_links": 10,
+        "attribution_notes": 7,
+        "named_occurrences": 4,
+        "actor_reviewed_unnamed": 1,
+        "deferred_non_roster_context": 4,
+        "deferred_non_roster": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"actor_impersonal\": 2,\n    \"context_master_links\": 10,\n    \"attribution_notes\": 7,\n    \"named_occurrences\": 4,\n    \"actor_reviewed_unnamed\": 1,\n    \"deferred_non_roster_context\": 4,\n    \"deferred_non_roster\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp29662x3a.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB460.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_e016fb20e6da:0735b03:1:4",
+      "entryId": "t_e016fb20e6da",
+      "sourceTerm": "認賊為子",
+      "RelPath": "J/J39/J39nB460.xml",
+      "FromLb": "0735b03",
+      "Kwic": "舉起拄杖，云：「若喚這箇作主人公，也是認賊為子、喚奴作郎；若喚這箇不是主人公，猶是捨父逃逝、向外馳求。",
+      "caseClusterId": "J/J39/J39nB460.xml:48207:48542",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "灤州萬善暉州昊禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huizhou Hao",
+        "ActorAttribution": null,
+        "AttributionNote": "灤州萬善暉州昊禪師語錄. Full six-rung exact-turn review identifies Huizhou Hao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_e016fb20e6da:0735b03:1:4"
+  ]
+}

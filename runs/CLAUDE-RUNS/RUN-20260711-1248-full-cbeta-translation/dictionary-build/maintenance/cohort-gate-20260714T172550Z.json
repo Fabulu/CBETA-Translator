@@ -1,0 +1,131 @@
+{
+  "generatedUtc": "2026-07-14T17:25:49.372293+00:00",
+  "elapsedSeconds": 172.811,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_7887dc8d449f",
+      "term": "尊宿",
+      "path": "fresh-build/entries/t_7887dc8d449f/entry.v2.json",
+      "sha256": "cdf64e174e8dd8bbc013e8ed3818d5b8f9468362ac27feccd8ce689bb3e793ce"
+    },
+    {
+      "id": "t_3972185a2e25",
+      "term": "宗門",
+      "path": "fresh-build/entries/t_3972185a2e25/entry.v2.json",
+      "sha256": "ade7eef9976b8b378b74a22211c84ab627371f7781e5dd6b0181c458bb30bc36"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 16,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_7887dc8d449f/entry.v2.json",
+        "id": "t_7887dc8d449f",
+        "term": "尊宿",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_3972185a2e25/entry.v2.json",
+        "id": "t_3972185a2e25",
+        "term": "宗門",
+        "verified": 8,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 1.496,
+    "attribution": 5.82,
+    "publicFeedback": 37.992,
+    "depthSense": 41.773,
+    "workSourceValidation": 2.168,
+    "corpusBaseline": 2.334,
+    "attributionPackets": 80.89
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 5.82,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "occurrences": 16,
+        "named_occurrences": 12,
+        "context_master_links": 15,
+        "attribution_notes": 16,
+        "actor_reviewed_unnamed": 3,
+        "deferred_non_roster_context": 4,
+        "deferred_non_roster": 2,
+        "actor_narrated": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"occurrences\": 16,\n    \"named_occurrences\": 12,\n    \"context_master_links\": 15,\n    \"attribution_notes\": 16,\n    \"actor_reviewed_unnamed\": 3,\n    \"deferred_non_roster_context\": 4,\n    \"deferred_non_roster\": 2,\n    \"actor_narrated\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 37.992,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpm7hg24q5.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 41.773,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 2,
+      "reviewFlagged": 2,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 2,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.168,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 2,
+        "multiSourceSenses": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 2,\n    \"multiSourceSenses\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.334,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 80.89,
+    "payload": {
+      "entries": 2,
+      "occurrences": 16,
+      "tierACandidates": 0,
+      "reviewRequired": 16
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 16,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 16\n}\nreport: /tmp/tmp_22rcp2z-packets.json\n",
+    "report": "/tmp/tmp_22rcp2z-packets.json"
+  },
+  "semanticReviewRequired": true
+}

@@ -20,24 +20,24 @@
       "Occurrences": [
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0704a21",
+          "FromLb": "0704b01",
           "ToLb": "0704b02",
-          "Kwic": "師示眾云擬心即差僧便問不擬心時如何師打三下云莫是老僧辜負闍梨麼問凡有問荅落在意根不落意根師如何對師云問學云便請師道師云莫向者裏是非問龍女親獻佛未審將什麼獻師以兩手作獻勢。",
+          "Kwic": "問龍女親獻佛未審將什麼獻",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Zihu Lizong",
               "Roles": [
                 "respondent",
-                "section-subject"
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Source text (古尊宿語錄): the unnamed monk asking what the dragon girl presented owns the exact headword-bearing turn.",
+          "AttributionNote": "Source text (古尊宿語錄). Exact actor: the unnamed monk. An unnamed monk asks Zihu Lizong what the dragon girl personally offered Shakyamuni.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "explicit speech turn",
-            "ActorLabel": "the unnamed monk asking what the dragon girl presented",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -47,10 +47,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A repair author",
-            "ReviewedUtc": "2026-07-15T07:20:00Z",
-            "GrammarEvidence": "The complete exchange assigns the headword-bearing question to this unnamed non-master participant."
-          }
+            "GrammarEvidence": "問 introduces the question about what the dragon girl offered; Zihu Lizong answers with a gesture.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint4 full read",
+            "ReviewedUtc": "2026-07-16T00:25:51.129038+00:00"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J34/J34nB311.xml",
@@ -62,12 +63,11 @@
             {
               "MasterName": "Juelang Daosheng",
               "Roles": [
-                "verse-author",
                 "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source text (天界覺浪盛禪師全錄). Juelang Daosheng’s authored verse sequence: Juelang utters the line about the dragon girl presenting the jewel and transforming her whole body.",
+          "AttributionNote": "Source text (天界覺浪盛禪師全錄). Exact actor: Juelang Daosheng. Juelang’s verse says the jewel-presenting dragon girl transforms her whole body.",
           "MasterName": "Juelang Daosheng"
         },
         {
@@ -76,25 +76,16 @@
           "ToLb": "0416b16",
           "Kwic": "龍女獻之為珠。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (宗鏡錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (宗鏡錄). Exact actor: Yongming Yanshou. Yongming writes that the dragon girl presents the one mind as a jewel.",
+          "MasterName": "Yongming Yanshou"
         },
         {
           "RelPath": "M/M59/M59n1540.xml",
@@ -110,7 +101,7 @@
               ]
             }
           ],
-          "AttributionNote": "Dahui Pujue’s formal discourse (大慧普覺禪師普說): Dahui Zonggao invokes the dragon girl among scriptural figures awakened in one lifetime.",
+          "AttributionNote": "Source text (大慧普覺禪師普說). Exact actor: Dahui Zonggao. Dahui names the dragon girl as the one person brought to buddhahood in the Lotus scripture.",
           "MasterName": "Dahui Zonggao"
         },
         {
@@ -120,12 +111,12 @@
           "Kwic": "尼云：龍女八歲，南方無垢世界成等正覺，又作麼生？",
           "Curated": true,
           "ContextMasters": [],
-          "AttributionNote": "Source text (天聖廣燈錄): the unnamed nun raising the dragon girl’s age and awakening owns the exact headword-bearing turn.",
+          "AttributionNote": "Source text (天聖廣燈錄). Exact actor: the unnamed nun. An unnamed nun cites the eight-year-old dragon girl becoming fully awakened in the southern stainless world.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "explicit speech turn",
-            "ActorLabel": "the unnamed nun raising the dragon girl’s age and awakening",
-            "ActorRole": "questioner",
+            "Kind": "nun interlocutor",
+            "ActorLabel": "the unnamed nun",
+            "ActorRole": "respondent",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -134,10 +125,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A repair author",
-            "ReviewedUtc": "2026-07-15T07:20:00Z",
-            "GrammarEvidence": "The complete exchange assigns the headword-bearing question to this unnamed non-master participant."
-          }
+            "GrammarEvidence": "尼云 explicitly assigns the dragon-girl precedent to an unnamed nun answering the master’s challenge.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint4 full read",
+            "ReviewedUtc": "2026-07-16T00:25:51.129038+00:00"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "J/J33/J33nB294.xml",
@@ -149,12 +141,11 @@
             {
               "MasterName": "Langting Jingting",
               "Roles": [
-                "utterer",
-                "record-owner"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). Langting Jingting’s own record: Langting utters the headword-bearing sentence and invokes the dragon girl’s immediate buddhahood.",
+          "AttributionNote": "Source text (雲溪俍亭挺禪師語錄). Exact actor: Langting Jingting. Langting says that if the address is understood, the dragon girl becomes a buddha on the spot.",
           "MasterName": "Langting Jingting"
         }
       ],
@@ -172,7 +163,7 @@
         "幽州談空禪師"
       ],
       "RelatedTerms": [],
-      "Explanation": "The dragon girl is the young figure whom Chan records invoke for presenting a jewel and becoming buddha immediately. Zihu’s exchange asks what she personally presented and answers with a two-handed offering gesture. Dahui lists her beside Sudhana and Guang’e as someone awakened in a named scripture; later verses and questions repeat her jewel presentation, age, transformation, and immediate buddhahood."
+      "Explanation": "The dragon girl is the young female figure who presents a jewel and becomes a buddha immediately in the southern stainless world. Zihu Lizong is asked what she offered; Juelang Daosheng’s verse joins presentation of the jewel to transformation of her whole body. Dahui Zonggao cites her as the Lotus scripture’s single person brought to buddhahood, while an unnamed nun invokes her against a challenge based on the female body. Masters deploy the figure as a named precedent in public argument and verse, not as a generic dragon maiden."
     }
   ]
 }

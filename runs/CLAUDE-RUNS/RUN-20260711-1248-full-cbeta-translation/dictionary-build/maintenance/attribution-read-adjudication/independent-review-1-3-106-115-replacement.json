@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "independent-full-case-review-with-immediate-repair-v1",
+  "reviewer": "Codex independent reviewer replacement",
+  "selfReview": false,
+  "scope": "cohorts 1-3 entries 106-115",
+  "sourcePacket": "cohorts-1-3-v6-packets-106-115.json",
+  "completeCasesRead": 73,
+  "rows": [
+    {"id":"t_ff3b9302050a","headword":"逢場作戲","occurrencesRead":7,"entrySha256":"6d4082759ac8488449ecf987e6f6bfefd491d95257e47378ace3e1ea7f02eba5","verdict":"KEEP","finding":"All seven headword-bearing turns have the correct utterer or narrator ownership in their complete cases."},
+    {"id":"t_0051fc72360c","headword":"臨濟四喝","occurrencesRead":5,"entrySha256":"c6c48ac69e29b3c712d8609746ee99de2719c64c9f9dcb2811dcc275c173cde4","verdict":"KEEP","finding":"All five cases preserve the exact headword utterer and relevant contextual masters."},
+    {"id":"t_041f65670cd4","headword":"無心","occurrencesRead":11,"reviewedSha256":"2123e88837921cce69d94e6ce77610703db2a31c21dcdfa6cef6e5ea209e854b","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"The imperial first-person occurrence was internally inconsistent: its explanation named Yongzheng while ActorLabel and AttributionNote named Kangxi. The source is Yongzheng's Imperially Selected Recorded Sayings; both actor fields were corrected.","repairedSha256":"70552621c2b8645b27ed62a4b94ae4e9cff313cb11be2f7f709e0553a529a42f"},
+    {"id":"t_04efe13911ae","headword":"不識","occurrencesRead":8,"entrySha256":"2fbdd1babe00f70be1bff1c25fec27c1cb4c7dc787456b33885860dd0a4ba713","verdict":"KEEP","finding":"All eight complete cases support the stored speaker, non-master actor, or narrator assignment."},
+    {"id":"t_073dcbf657a3","headword":"如何是無寒暑處","occurrencesRead":4,"entrySha256":"11ae785a436efdbf054666d563576de8b2c2e6091d154acf90176d8bc41cc9bb","verdict":"KEEP","finding":"The four question turns and contextual respondents are correctly distinguished."},
+    {"id":"t_09ed57d56bcf","headword":"普賢","occurrencesRead":8,"reviewedSha256":"5b2b539fc85837075fabc1b5e53559e0af7e6d324b706d9c66fb4331df94a8df","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"Attribution held, but the definition reduced Samantabhadra to an elephant-associated partner of Manjusri. It was rewritten to cover the attested Chan deployments: adaptive discernment, reality-realm body, dusty activity as his sphere, paired invocation, and the case in which Puyan cannot find him.","repairedSha256":"733cf3ee1ad22d3aecba44507853ab0311b8d2af01430aa3cb6324d9ef6bec6e"},
+    {"id":"t_0a686fa27769","headword":"著語","occurrencesRead":7,"entrySha256":"75da672b9d5a94a78ed04a1756977a72a2b11af95a34615014dc9adf286ab1f9","verdict":"KEEP","finding":"Narratorial stage directions and the one direct compositional use are correctly separated and attributed."},
+    {"id":"t_0c53a5a2243b","headword":"知客","occurrencesRead":7,"reviewedSha256":"a22ed0712efbc1a7044caff67ad048960bfb91b14d5a2f1ace4a7a5371ff7ccf","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"The office versus verb-object split and all actor assignments hold, but the office explanation contained a duplicated, broken phrase. The sentence was repaired without changing the senses or evidence.","repairedSha256":"d4dfe8bc6af3e822689358efc2ecc83c98017b57ca9a209cb78d5bcbd1657722"},
+    {"id":"t_11a4ff234f5a","headword":"不會","occurrencesRead":10,"entrySha256":"d829e725408d03d21149d8e0b3c3ad1776adeff0c1a036d18718b29ec1035b62","verdict":"KEEP","finding":"All ten cases distinguish direct master utterance, unnamed or royal interlocutor, and imperial verse authorship correctly."},
+    {"id":"t_135a001a5b0e","headword":"青青翠竹","occurrencesRead":6,"entrySha256":"feeac5cf11db52e38e87abc41c180e6e464cc00aea667d0a105bf6baf2fa21e6","verdict":"KEEP","finding":"The six complete cases support the stored direct speakers, unnamed monk, and named-by-office senior monastic assignments; the definition preserves the corpus's explicit dispute."}
+  ],
+  "summary": {"KEEP_UNCHANGED":7,"REPAIRED_AWAITING_INDEPENDENT_REREVIEW":3},
+  "mechanicalGate": {"zcVerifyChecked":73,"zcVerifyFailures":0,"ownHeadwordFailures":0,"report":"cohorts-1-3-106-115-zc-verify-final.json"},
+  "promotionOrMergePerformed": false
+}

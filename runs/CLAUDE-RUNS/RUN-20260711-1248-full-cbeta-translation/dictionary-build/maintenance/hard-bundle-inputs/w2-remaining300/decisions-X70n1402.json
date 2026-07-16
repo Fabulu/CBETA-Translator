@@ -1,0 +1,27 @@
+{
+  "source": "X/X70/X70n1402.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_78bd967fdcd6:0736c10:1:1",
+      "entryId": "t_78bd967fdcd6",
+      "sourceTerm": "大疑",
+      "RelPath": "X/X70/X70n1402.xml",
+      "FromLb": "0736c10",
+      "Kwic": "但疑之重，是謂大疑；疑之輕，是謂小疑",
+      "caseClusterId": "X/X70/X70n1402.xml:175937:177840",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目明本禪師雜錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "AttributionNote": "Miscellaneous Records of Tianmu Mingben (天目明本禪師雜錄): in his instruction to Chan student Yi, Zhongfeng Mingben defines heavy doubt as great doubt and light doubt as small doubt."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

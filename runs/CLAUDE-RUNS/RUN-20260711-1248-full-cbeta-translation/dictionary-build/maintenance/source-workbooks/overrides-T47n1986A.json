@@ -1,0 +1,39 @@
+{
+  "source": "T/T47/T47n1986A.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_ff25afe69d14:0511c14:1:1",
+      "entryId": "t_ff25afe69d14",
+      "sourceTerm": "空劫",
+      "RelPath": "T/T47/T47n1986A.xml",
+      "FromLb": "0511c14",
+      "Kwic": "僧問。如何是空劫已前自己。師曰。白馬入蘆華。官人問。有人修行否。",
+      "caseClusterId": "T/T47/T47n1986A.xml:36893:37018",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "筠州洞山悟本禪師語錄",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T05:41:38Z"
+        },
+        "ContextMasters": [
+          {"MasterName": "Dongshan Liangjie", "Roles": ["respondent", "record-owner"]}
+        ],
+        "AttributionNote": "The Recorded Sayings of Chan Master Dongshan Wuben of Junzhou (筠州洞山悟本禪師語錄), in Dongshan Liangjie's question-and-answer record. An unnamed monk is the exact questioner who asks, ‘what is oneself before the empty eon?’; Dongshan Liangjie answers, ‘a white horse enters the reed flowers.’ The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give the monk a personal name."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

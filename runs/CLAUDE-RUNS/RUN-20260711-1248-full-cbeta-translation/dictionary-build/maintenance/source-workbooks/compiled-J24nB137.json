@@ -1,0 +1,99 @@
+{
+  "source": "J/J24/J24nB137.xml",
+  "compiledFrom": "maintenance/source-workbooks/overrides-J24nB137.json",
+  "decisions": [
+    {
+      "entryId": "t_42162fbd382d",
+      "sourceTerm": "貓兒",
+      "RelPath": "J/J24/J24nB137.xml",
+      "FromLb": "0358a23",
+      "Kwic": "南泉東西兩堂爭貓兒，泉來堂內，提起貓兒云：「道得即不斬，道不得即斬卻。」",
+      "caseClusterId": "J/J24/J24nB137.xml:11125:11371",
+      "Decision": {
+        "MasterName": "Nanquan Puyuan",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "later respondent",
+              "record subject"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Master Zhaozhou (趙州和尚語錄), Nanquan cat case. Nanquan Puyuan is the exact actor who enters the two halls, raises the cat, and says he will cut it unless the assembly can speak; Zhaozhou Congshen returns only later and responds to Nanquan's retelling."
+      },
+      "ExpectedSourceTitle": "趙州和尚語錄",
+      "Review": {
+        "reviewer": "Codex source-batched exact-turn review",
+        "reviewedUtc": "2026-07-14T04:49:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_c728f3a8e02b",
+      "sourceTerm": "家風",
+      "RelPath": "J/J24/J24nB137.xml",
+      "FromLb": "0361c26",
+      "Kwic": "問：「如何是和尚家風？」師云：「老僧耳背，高聲問。」僧再問，師云：「你問我家風，我卻識你家風。」",
+      "caseClusterId": "J/J24/J24nB137.xml:33730:33834",
+      "Decision": {
+        "MasterName": "Zhaozhou Congshen",
+        "ActorAttribution": null,
+        "AttributionNote": "趙州和尚語錄: complete-case exact-turn review identifies Zhaozhou Congshen as the actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "趙州和尚語錄",
+      "Review": {
+        "reviewer": "Codex source-batched exact-turn review",
+        "reviewedUtc": "2026-07-14T04:49:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": true
+      }
+    },
+    {
+      "entryId": "t_bc7bbb4299f1",
+      "sourceTerm": "如何是佛法大意",
+      "RelPath": "J/J24/J24nB137.xml",
+      "FromLb": "0365c18",
+      "Kwic": "：「不是偶然事。」問：「久居巖谷時如何？」師云：「何不隱去。」問：「如何是佛法大意？」師云：「禮拜著。」僧擬進話次，師喚沙彌文遠，文遠到，師叱云：「適",
+      "caseClusterId": "J/J24/J24nB137.xml:58299:58566",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex",
+          "ReviewedUtc": "2026-07-14T04:49:00Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "respondent",
+              "record subject"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Master Zhaozhou (趙州和尚語錄). An unnamed monk is the exact questioner who asks, 'what is the great meaning of the Buddha Dharma?'; Zhaozhou Congshen answers, 'pay your respects,' then calls the novice Wenyuan when the monk tries to continue. The line, expanded context, section header, book title, TEI header, and the parallel passage in 禪林類聚 do not name the monk."
+      },
+      "ExpectedSourceTitle": "趙州和尚語錄",
+      "Review": {
+        "reviewer": "Codex source-batched exact-turn review",
+        "reviewedUtc": "2026-07-14T04:49:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

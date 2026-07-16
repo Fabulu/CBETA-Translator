@@ -1,0 +1,43 @@
+{
+  "source": "X/X63/X63n1250.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_bb19ed0e0fab:0628d02:1:2",
+      "entryId": "t_bb19ed0e0fab",
+      "sourceTerm": "普說",
+      "RelPath": "X/X63/X63n1250.xml",
+      "FromLb": "0628d02",
+      "Kwic": "凡普說時，侍者令方丈客頭挂普說牌於僧堂眾寮前，并諸寮鋪設寢堂或法堂。",
+      "caseClusterId": "X/X63/X63n1250.xml:77291:77561",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪林備用清規",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "Chan Grove Auxiliary Code procedural voice",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The clause is institutional procedure without a speech turn.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Chan Grove Auxiliary Code (禪林備用清規): the Chan Grove Auxiliary Code procedural voice directs placard posting and hall preparation for a general address.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yixian",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,32 @@
+{
+  "source": "X/X81/X81n1568.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_d2892b1eaae0:0054c12:1:4",
+      "entryId": "t_d2892b1eaae0",
+      "sourceTerm": "立雪",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0054c12",
+      "Kwic": "達磨九年面壁，鬼魅之由。二祖立雪求心，飜成不肖。",
+      "caseClusterId": "X/X81/X81n1568.xml:430323:431390",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Bailu Xianduan",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Bodhidharma", "Roles": ["person-discussed"]},
+          {"MasterName": "Huike", "Roles": ["person-discussed"]}
+        ],
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)), in the explicitly headed section for Chan Master Xianduan of Mount Bailu in Fuzhou (福州白鹿山顯端禪師). Bailu Xianduan is the exact speaker in the hall address who calls Huike's standing in the snow to seek mind an act that ‘turned into unworthiness.’ Bodhidharma and Huike are the named people discussed, not the speaker."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

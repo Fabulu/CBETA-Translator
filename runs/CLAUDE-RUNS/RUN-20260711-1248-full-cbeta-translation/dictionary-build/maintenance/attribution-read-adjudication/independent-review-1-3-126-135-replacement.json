@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "independent-full-case-review-with-immediate-repair-v1",
+  "reviewer": "Codex independent reviewer replacement",
+  "selfReview": false,
+  "scope": "cohorts 1-3 entries 126-135",
+  "sourcePacket": "cohorts-1-3-v6-packets-126-135.json",
+  "completeCasesRead": 70,
+  "claimAnchorsRead": 3,
+  "rows": [
+    {"id":"t_2da0e2fc0478","headword":"三門","occurrencesRead":7,"entrySha256":"60fcdcfcad92d4f9a2de3212c3553195bfce25a6cbc6079c36cab11d69926338","verdict":"KEEP","finding":"The six architectural uses and Yongming's distinct analytical-gates use are correctly split and attributed."},
+    {"id":"t_2f4b60453d19","headword":"承當","occurrencesRead":9,"entrySha256":"1cfd080e6d5fb27f5553ca789257596c296ad58243960ec1fc0eeb03e25548a3","verdict":"KEEP","finding":"All nine full addresses and the Zihu staged encounter assign the headword to the exact direct speaker."},
+    {"id":"t_2f6dd23d26e9","headword":"栗棘蓬","occurrencesRead":7,"entrySha256":"c8702f7763f37ec20cd1b60eb6d959739edcada4d509cc08b0d7750be4cf25ee","verdict":"KEEP","finding":"Named issuers and unnamed questioners are correctly separated across all seven complete cases."},
+    {"id":"t_32a92c635f49","headword":"宗乘","occurrencesRead":8,"entrySha256":"ca3377242ad32e3e4733e50b60b73d02db1d5f91405696cf60e274ca63602d4a","verdict":"KEEP","finding":"The seven question or quoted-question turns and Chengtian's comment have correct ownership."},
+    {"id":"t_35cd0cccddc7","headword":"摩尼珠","occurrencesRead":6,"entrySha256":"3f202c5c3e1cc50e0d1a09018ed9bb06e969376c1b8a70a47019035e6685bf67","verdict":"KEEP","finding":"Unnamed questions, compilation narration, and named discourses are correctly distinguished; the responsive-jewel definition holds."},
+    {"id":"t_3600c4babcdf","headword":"秤錘","occurrencesRead":6,"entrySha256":"7e33477f3303cfeba9be32b7f06f79062bc5bdd4bcb7f0072fc1f1b949a5d717","verdict":"KEEP","finding":"All six exact speakers or verse authors are supported by their complete source units."},
+    {"id":"t_38014001726f","headword":"知有底人","occurrencesRead":7,"entrySha256":"7b554f95090be02529e9469a4738e6363b65740fa058cf50638458f7f17408b1","verdict":"KEEP","finding":"Direct speakers, two biographical parallels, and the unnamed questioner are correctly assigned."},
+    {"id":"t_3efd163c8697","headword":"龍女","occurrencesRead":6,"entrySha256":"d28616d810761b270a496f8266a2070591e5028afacb542614b99206ed9bee1b","verdict":"KEEP","finding":"The unnamed monk and nun, named verse and discourse authors, compilation author, and funeral address are correctly distinguished."},
+    {"id":"t_42839688f8c2","headword":"君臣道合","occurrencesRead":6,"entrySha256":"cf09744eb6668e698329eebcf1070caab95b182da509bf108fee2cd8f36d0d88","verdict":"KEEP","finding":"Both unnamed questions and four named hall speakers own the exact headword-bearing turns."},
+    {"id":"t_43ecdacadde0","headword":"阿誰","occurrencesRead":8,"claimAnchorsRead":3,"reviewedSha256":"16afaf290635c38512c8ab26e364eae351a1265d8a07bc55b9cddaa76122a288","verdict":"REVISE_REPAIRED_AWAITING_INDEPENDENT_REREVIEW","finding":"The eight occurrences hold, as does Dahui's claim anchor. Two duplicate-KWIC claim anchors for 那箇 and 阿那箇 wrongly made Mengshan Daoming the speaker of 'which is Ming's original face?' The complete Huineng–Ming case assigns that question to Huineng; both anchors now link Huineng as utterer and Mengshan Daoming as respondent and section subject.","repairedSha256":"07621b64764fddee19a04a0893398a0037c40cde39f7b5401b7d026b19a6734d"}
+  ],
+  "summary": {"KEEP_UNCHANGED":9,"REPAIRED_AWAITING_INDEPENDENT_REREVIEW":1},
+  "mechanicalGate": {"occurrencesChecked":70,"claimAnchorsChecked":3,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

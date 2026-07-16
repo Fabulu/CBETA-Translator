@@ -1,0 +1,71 @@
+{
+  "source": "J/J33/J33nB286.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_6ac3f9f0a2d2:0489c10:1:3",
+      "entryId": "t_6ac3f9f0a2d2",
+      "sourceTerm": "渠今正是我",
+      "RelPath": "J/J33/J33nB286.xml",
+      "FromLb": "0489c10",
+      "Kwic": "問：「明暗雙機，學人不易。如何是渠今正是我？」師云：「蠱毒之鄉水莫嘗。」",
+      "caseClusterId": "J/J33/J33nB286.xml:24247:25452",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "攖寧靜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Yingning Jing (攖寧靜禪師語錄): an unnamed monk asks Yingning Jing what 'he is now precisely me' is; Yingning answers that water in a land of poison must not be tasted. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yingning Jing",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_19705602b956:0495a04:1:3",
+      "entryId": "t_19705602b956",
+      "sourceTerm": "凡情聖見",
+      "RelPath": "J/J33/J33nB286.xml",
+      "FromLb": "0495a04",
+      "Kwic": "秘密藏金剛心，不妨以螢星腐草復作大光明藏，始知本來成現，凡情聖見所作俱息。」以如意畫此󳱞相，云：「當途截斷荊棘林，鐵壁銀",
+      "caseClusterId": "J/J33/J33nB286.xml:52216:52620",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "攖寧靜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yingning Jing",
+        "AttributionNote": "Recorded Sayings of Chan Master Yingning Jing (攖寧靜禪師語錄): in his own hall address, Yingning Jing says that original presence appears once all constructions of ordinary feelings and holy views have ceased, then draws a figure with the ceremonial scepter."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_6ac3f9f0a2d2:0489c10:1:3",
+    "t_19705602b956:0495a04:1:3"
+  ]
+}

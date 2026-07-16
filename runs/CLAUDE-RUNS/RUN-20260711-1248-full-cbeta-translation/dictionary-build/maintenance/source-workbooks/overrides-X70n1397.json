@@ -1,0 +1,43 @@
+{
+  "source": "X/X70/X70n1397.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T04:59:29Z",
+  "rows": [
+    {
+      "key": "t_560356022866:0603b24:1:3",
+      "entryId": "t_560356022866",
+      "sourceTerm": "孤明",
+      "RelPath": "X/X70/X70n1397.xml",
+      "FromLb": "0603b24",
+      "Kwic": "湛湛澄澄，孤明歷歷，未是到家消息。",
+      "caseClusterId": "X/X70/X70n1397.xml:91257:91506",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "雪巖祖欽禪師語錄",
+      "defaultMasterName": "Yangshan Huiji",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Xueyan Zuqin",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Xueyan Zuqin (雪巖祖欽禪師語錄), in Xueyan Zuqin's own hall address at Yuanzhou Yangshan Chan Monastery. Xueyan Zuqin says that profound clarity and distinct solitary brightness are not yet news of arriving home. The `袁州仰山禪寺語錄` heading names the monastery, not Yangshan Huiji as speaker.",
+        "ContextMasters": []
+      }
+    },
+    {
+      "key": "t_ea138c7335d3:0633c05:1:5",
+      "entryId": "t_ea138c7335d3",
+      "sourceTerm": "鼻孔",
+      "RelPath": "X/X70/X70n1397.xml",
+      "FromLb": "0633c05",
+      "Kwic": "摸著舊時鼻孔，依前只在面皮上便見。",
+      "caseClusterId": "X/X70/X70n1397.xml:288065:289029",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "雪巖祖欽禪師語錄",
+      "defaultMasterName": "Xueyan Zuqin",
+      "candidateBasis": "title",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

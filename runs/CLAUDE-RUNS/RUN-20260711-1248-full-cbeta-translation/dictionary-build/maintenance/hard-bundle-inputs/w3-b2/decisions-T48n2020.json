@@ -1,0 +1,30 @@
+{
+  "source": "T/T48/T48n2020.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_643e9062503e:1006c16:1:5",
+      "entryId": "t_643e9062503e",
+      "sourceTerm": "漸修",
+      "RelPath": "T/T48/T48n2020.xml",
+      "FromLb": "1006c16",
+      "Kwic": "漸修者，頓悟本性，與佛無殊；無始習氣，難卒頓除。故依悟而修，漸熏功成，長養聖胎，久久成聖，故云漸修也。",
+      "caseClusterId": "T/T48/T48n2020.xml:7624:8206",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "高麗國普照禪師修心訣",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Bojo Jinul",
+        "ActorAttribution": null,
+        "AttributionNote": "高麗國普照禪師修心訣. Full six-rung exact-turn review identifies Bojo Jinul as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_643e9062503e:1006c16:1:5"
+  ]
+}

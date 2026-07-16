@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB466.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_2745ffff5972:0852b01:1:4",
+      "entryId": "t_2745ffff5972",
+      "sourceTerm": "開口即錯",
+      "RelPath": "J/J39/J39nB466.xml",
+      "FromLb": "0852b01",
+      "Kwic": "師曰：「開口即錯，動念即乖。去此二途，速道！速道！」曰：「錯。」",
+      "caseClusterId": "J/J39/J39nB466.xml:101446:101599",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "山西柏山楷禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baishan Dekai",
+        "ActorAttribution": null,
+        "AttributionNote": "山西柏山楷禪師語錄. Full six-rung exact-turn review identifies Baishan Dekai as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_2745ffff5972:0852b01:1:4"
+  ]
+}

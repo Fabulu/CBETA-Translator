@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "independent-live-pointer-full-case-rereview-with-immediate-repair-v1",
+  "reviewer": "Codex independent reviewer replacement",
+  "selfReview": false,
+  "sourceGate": "live-backlog-25-gate-final-v3.json",
+  "sourceRepairLedger": "live-backlog-25-repair-ledger.json",
+  "entriesRead": 25,
+  "occurrencesRead": 185,
+  "unchangedKeep": [
+    {"id":"t_7182bedf65d1","term":"下語","sha256":"732abe24e950d52eadb8850206fe32fd857e858527cb1db615023846a4caad54"},
+    {"id":"t_74c3c0e1b896","term":"下禪床","sha256":"a1a492c10a5b4a45131bd011f813fed40ad13d7a477efef690ef5724de06061c"},
+    {"id":"t_8060f979f21b","term":"目前無法","sha256":"0e372b3f53abe6e306d0ffd1db16aef3e53afb7cff10b1f3582ad6dbfb44789f"},
+    {"id":"t_830700de49fb","term":"三句","sha256":"94c2919c0f58238048e191041323d2265d1cd94069a5b0658029524d1fc36c41"},
+    {"id":"t_efbed6116e24","term":"拂袖","sha256":"0805fd83a700f89bac3594e43fb33ecbf18606bb65e0162a1aa2cfb81fddcaf1"},
+    {"id":"t_f74516e0ba71","term":"藥師","sha256":"9ed47c6fd1076477319bd4323cf8e21c2639f3fe6d05debb334d355cc6193cb5"},
+    {"id":"t_fa1b42d25280","term":"雪山童子","sha256":"3d94c449d8e1c8c05fcfe2437cb98bcf7d6315722e05edecf3649a94179b3c49"},
+    {"id":"t_97b566635d6c","term":"宗師","sha256":"7ca068eeddd3358250309159b7c407e321ce7eaac79a7cc4e008d6b03e3f4a8c"},
+    {"id":"t_37261001c332","term":"觀心","sha256":"db519a58a2ac183765bbfff038767ccd34b885dc7c456fa9acbfb132d35cb3c2"},
+    {"id":"t_961b548d6462","term":"言前","sha256":"486b01db0a43b770da81c2872637c920f455a8731ee156e93c2c0b3909efa255"},
+    {"id":"t_a2c5b2af7b10","term":"臘八","sha256":"d9e8a578dc4cd83ba71804688ec6f8645dcd94e9950d1beb69c782af70571f5d"},
+    {"id":"t_bb3cdb68e388","term":"茫然","sha256":"a0c4feadb9abd44391660e27802a02821424ffafe7239a6ff028b726b53ad32f"},
+    {"id":"t_bf467ac18ec0","term":"佛手","sha256":"c0a9e9c32137bb694b039e97102b7d3315e758bc4bce82c2a4d740ffc4d32460"},
+    {"id":"t_c212062774f9","term":"禪床","sha256":"e4e2a3d7c6ef072589f34de4504d87352b9fcd9457ce30ff9a67c5e4365e4e57"},
+    {"id":"t_c4a694970a12","term":"洗鉢盂","sha256":"b553a52113d5cd6103d0396b74277f50f54cc17230c03d7ffebcc7deba9e9cf7"},
+    {"id":"t_c728f3a8e02b","term":"家風","sha256":"e002100abbca8a8ec63d89ab06237b8b68d6ec0724ad51dd7c8fbd7b177ebd8d"},
+    {"id":"t_cbf868f557e2","term":"陞座","sha256":"268d1c90c3fdaa9cb0cafb4d1a112efc0b8967bea47d9091b48d6568171e809c"},
+    {"id":"t_d0a4a5271135","term":"石人","sha256":"9f144105f6b3c940c2d5e338376f27e3f09cf6f8a45e737607c46090a9b0b3ac"},
+    {"id":"t_d8868082a16c","term":"代云","sha256":"8dc4830e35ab7683b5250961f459b430d8ad9dda44b6bbf318e14e94d40c3a48"},
+    {"id":"t_dc24f92ead78","term":"問訊","sha256":"b76ff5ec7f7756b72d971b12884db9f1409568531983c173fc2ffcb8cb8ca03d"}
+  ],
+  "repairedAwaitingIndependentRereview": [
+    {"id":"t_79e00cdbc129","term":"安心","oldSha256":"17cc1ae83afba19da84d0fc5bcae42628e79fc434ed48d5fb863a604a6ca1020","newSha256":"a85facb15fa80000a90bb89937442df710d04d85a235d708974aa6a03bdc9499","finding":"One KWIC contained separate 安心 utterances by Huike and Bodhidharma while naming only Bodhidharma. Recut to Bodhidharma's reply and added Huike as interlocutor."},
+    {"id":"t_7c5f24652dfa","term":"法身向上事","oldSha256":"39463091bfff709324d761ff2487a0104f32e325cc085864c3931825248c7dc1","newSha256":"e6c1700d8b9ad9052d378a3e607f0595cf7b06567f0eeb83abab67619fefe422","finding":"A single KWIC mixed Shushan's formulation with Yunmen's later repetitions. Recut to Shushan's exact quoted formulation."},
+    {"id":"t_84e490b1773f","term":"撫掌","oldSha256":"bb7f29ebfd3e61931f923be8b5b25bac2c67e0e5bb8c720fba0a8f3e6c1e1015","newSha256":"0bbc77bb2578665d07bb4515d36051bd231eb0cf7e10fbd6eda8f645fdef11c5","finding":"Two narrated gesture KWICs also contained later speakers repeating 撫掌. Recut both to the single narrated action."},
+    {"id":"t_d0d82a2681a0","term":"第一句","oldSha256":"1771807d26da16759625e0b0ed12f880af3c478bb3777e433c1c0e4bbe988ce7","newSha256":"9d645e6bc928030f7b15926c41d2c2350b2a15c5f37d35d3a91186c14bcc8f32","finding":"The unnamed monk's question KWIC also included the master's answer repeating 第一句 twice. Recut to the monk's exact question."},
+    {"id":"t_e17068150613","term":"法身邊事","oldSha256":"1bb865408546e178fc13c48cd9a801b50cc0267aae081a92fffa5d8af8e9d5b5","newSha256":"b7f820acc9e623e20ffed8112f3bb20b3616d710777010a9ccfe8cdeca922780","finding":"A KWIC mixed Shushan's preceding statement with Yunmen's repeated question while naming Yunmen. Recut to Yunmen's question alone."}
+  ],
+  "summary": {"KEEP_UNCHANGED":20,"REPAIRED_AWAITING_INDEPENDENT_REREVIEW":5},
+  "mechanicalGate": {"occurrencesChecked":185,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

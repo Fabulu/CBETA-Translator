@@ -1,0 +1,28 @@
+{
+  "source": "J/J35/J35nB342.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_dc5f4386a0ed:0799c06:1:5",
+      "entryId": "t_dc5f4386a0ed",
+      "sourceTerm": "明心見性",
+      "RelPath": "J/J35/J35nB342.xml",
+      "FromLb": "0799c06",
+      "Kwic": "僧問趙州：「如何是不錯底路？」州云：「明心見性是不錯底路。」",
+      "caseClusterId": "J/J35/J35nB342.xml:93252:93450",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "華嚴聖可禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhaozhou Congshen",
+        "ActorAttribution": null,
+        "AttributionNote": "華嚴聖可禪師語錄, raised exchange followed by Mi'an's comment. Zhaozhou Congshen is the exact quoted speaker of the stored answer: asked for the road without error, he says that clarifying mind and seeing nature is the road without error."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

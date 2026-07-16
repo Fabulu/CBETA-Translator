@@ -1,0 +1,30 @@
+{
+  "source": "J/J40/J40nB472.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_22885135d39e:0013a18:1:6",
+      "entryId": "t_22885135d39e",
+      "sourceTerm": "一塵",
+      "RelPath": "J/J40/J40nB472.xml",
+      "FromLb": "0013a18",
+      "Kwic": "放行，群芳耀彩。明呼暗應，盡在當人；地轉天旋，全憑自己。所謂一塵含法界，一念遍十方，盡大地是一真乘，總剎海皆一解脫。既在",
+      "caseClusterId": "J/J40/J40nB472.xml:68213:69420",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大博乾禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dabo Qian",
+        "ActorAttribution": null,
+        "AttributionNote": "大博乾禪師語錄. Full six-rung exact-turn review identifies Dabo Qian as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_22885135d39e:0013a18:1:6"
+  ]
+}

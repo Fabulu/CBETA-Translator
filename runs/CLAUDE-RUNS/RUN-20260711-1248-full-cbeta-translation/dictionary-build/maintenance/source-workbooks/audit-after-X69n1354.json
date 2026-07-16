@@ -1,0 +1,33 @@
+{
+  "counts": {
+    "entries": 1,
+    "senses": 1,
+    "occurrences": 5,
+    "actor_reviewed_unnamed": 1,
+    "context_master_links": 2,
+    "attribution_notes": 5,
+    "named_occurrences": 3,
+    "deferred_non_roster_context": 1,
+    "unresolved_actor": 1,
+    "note_missing_speaker": 1,
+    "note_missing_source": 1
+  },
+  "hardFailures": 3,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ff25afe69d14/entry.v2.json",
+      "detail": "空劫 s1 o3 X/X67/X67n1299.xml:0095c17"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ff25afe69d14/entry.v2.json",
+      "detail": "空劫 s1 o3: A later collection preserves the question 'what is the affair before the empty eon?'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ff25afe69d14/entry.v2.json",
+      "detail": "空劫 s1 o3 expected '禪林類聚': A later collection preserves the question 'what is the affair before the empty eon?'"
+    }
+  ]
+}

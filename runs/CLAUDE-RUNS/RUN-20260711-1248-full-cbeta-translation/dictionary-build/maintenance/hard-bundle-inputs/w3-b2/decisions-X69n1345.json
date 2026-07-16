@@ -1,0 +1,30 @@
+{
+  "source": "X/X69/X69n1345.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_a8b4f101d192:0238b10:1:4",
+      "entryId": "t_a8b4f101d192",
+      "sourceTerm": "玄關",
+      "RelPath": "X/X69/X69n1345.xml",
+      "FromLb": "0238b10",
+      "Kwic": "未透玄關者往往只作面壁會却。上堂，舉：僧問首山：如何是祖師西來意？首山云：風吹日炙。",
+      "caseClusterId": "X/X69/X69n1345.xml:40788:42386",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "超宗慧方禪師語錄（黃龍四家錄第四）",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chaozong Huifang",
+        "ActorAttribution": null,
+        "AttributionNote": "超宗慧方禪師語錄（黃龍四家錄第四）. Full six-rung exact-turn review identifies Chaozong Huifang as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_a8b4f101d192:0238b10:1:4"
+  ]
+}

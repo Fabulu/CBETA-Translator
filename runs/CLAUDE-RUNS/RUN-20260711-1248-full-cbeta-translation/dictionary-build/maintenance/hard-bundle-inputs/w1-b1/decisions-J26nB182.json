@@ -1,0 +1,36 @@
+{
+  "source": "J/J26/J26nB182.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_a60b47e59680:0481a23:1:1",
+      "entryId": "t_a60b47e59680",
+      "sourceTerm": "斬葛藤",
+      "RelPath": "J/J26/J26nB182.xml",
+      "FromLb": "0481a23",
+      "Kwic": "更泯色相，而斬葛藤，於劫火中，振此迦陵。",
+      "caseClusterId": "J/J26/J26nB182.xml:233839:235029",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "萬如禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Gao Shitai",
+        "ActorAttribution": null,
+        "AttributionNote": "萬如禪師語錄, tower inscription for Wanru Tongwei. Gao Shitai is the exact author: the inscription closes with his full signature 高世泰敬讔并書, and the stored verse says Wanru effaced forms and cut entangling vines while raising the kalavinka amid the eon-fire.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wanru Tongwei",
+            "Roles": [
+              "inscription-subject"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

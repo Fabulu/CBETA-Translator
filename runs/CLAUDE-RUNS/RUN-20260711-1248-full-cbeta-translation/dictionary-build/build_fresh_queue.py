@@ -82,6 +82,15 @@ for match in iriya.finditer(body):
     add("IRIYA_FINAL_BUILD_PLAN.md", "iriya", term, match.group("id"),
         {"rank": int(match.group("rank")), "iriyaForm": match.group("form").strip(), "query": query})
 
+# Explicit terms discovered after the authoritative queue was frozen are
+# appended so every existing ordinal remains stable and resumable.
+late_path = SOURCE / "LATE_REQUESTED_TERMS.md"
+if late_path.exists():
+    body = late_path.read_text(encoding="utf-8-sig")
+    for match in re.finditer(r"(?m)^- `(?P<id>t_[0-9a-f]{12})` (?P<term>[^\s(]+)", body):
+        add("LATE_REQUESTED_TERMS.md", "late-requested", match.group("term"), match.group("id"),
+            {"priority": "first unassigned wave after the active frozen wave"})
+
 # Recompute ordinals and losslessly mark duplicate relationships. Exact ID is
 # primary; exact normalized headword is a secondary safeguard.
 first_by_id = {}

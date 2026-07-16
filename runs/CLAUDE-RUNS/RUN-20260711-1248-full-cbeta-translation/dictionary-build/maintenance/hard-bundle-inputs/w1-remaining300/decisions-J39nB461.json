@@ -1,0 +1,28 @@
+{
+  "source": "J/J39/J39nB461.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_ea138c7335d3:0762c25:1:8",
+      "entryId": "t_ea138c7335d3",
+      "sourceTerm": "鼻孔",
+      "RelPath": "J/J39/J39nB461.xml",
+      "FromLb": "0762c25",
+      "Kwic": "山僧如此批判，要與古人同一鼻孔出氣。且道諸人還甘麼？",
+      "caseClusterId": "J/J39/J39nB461.xml:87843:88325",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "性空臻禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xingkong Xingzhen",
+        "ActorAttribution": null,
+        "AttributionNote": "性空臻禪師語錄. Xingkong Xingzhen is the exact actor: 山僧 says 同一鼻孔出氣."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

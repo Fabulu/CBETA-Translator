@@ -1,0 +1,32 @@
+{
+  "source": "T/T48/T48n2005.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_38695d7fdbe2:0295b14:1:1",
+      "entryId": "t_38695d7fdbe2",
+      "sourceTerm": "如何是道",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0295b14",
+      "Kwic": "南泉因趙州問。如何是道。泉云。平常心是道。州云。還可趣向否。泉云。擬向即乖。",
+      "caseClusterId": "T/T48/T48n2005.xml:24269:24503",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Wumen Huikai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Zhaozhou Congshen",
+        "ActorAttribution": null,
+        "AttributionNote": "無門關. Full six-rung exact-turn review identifies Zhaozhou Congshen as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+        "ContextMasters": [
+          "Nanquan Puyuan",
+          "Wumen Huikai"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

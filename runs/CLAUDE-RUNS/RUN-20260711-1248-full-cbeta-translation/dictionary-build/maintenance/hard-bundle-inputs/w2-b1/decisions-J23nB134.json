@@ -1,0 +1,37 @@
+{
+  "source": "J/J23/J23nB134.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_bc7bbb4299f1:0520c26:1:5",
+      "entryId": "t_bc7bbb4299f1",
+      "sourceTerm": "如何是佛法大意",
+      "RelPath": "J/J23/J23nB134.xml",
+      "FromLb": "0520c26",
+      "Kwic": "大眾道！汝未參長老。」大覺云：「不審。」便自歸眾。定上座到參，問：「如何是佛法大意？」師下繩床擒住，與一掌便拓開。定佇立，傍僧云：「定上座！何不禮拜？",
+      "caseClusterId": "J/J23/J23nB134.xml:22439:22808",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五家語錄（選錄）",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Ding Shangzuo",
+        "AttributionNote": "Selected Records of the Five Houses (五家語錄（選錄）): in the Linji Yixuan section, the named Ding Shangzuo (Elder Ding) arrives for an interview and asks what the great meaning of the Buddha's teaching is; Linji descends from the rope-seat, seizes and strikes him, and a nearby monk prompts Ding's awakening.",
+        "ContextMasters": [
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_bc7bbb4299f1:0520c26:1:5"
+  ]
+}

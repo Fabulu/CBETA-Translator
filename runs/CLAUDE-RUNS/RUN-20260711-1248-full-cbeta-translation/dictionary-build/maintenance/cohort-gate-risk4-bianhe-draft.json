@@ -1,0 +1,91 @@
+{
+  "generatedUtc": "2026-07-13T21:30:28.335840+00:00",
+  "elapsedSeconds": 4.865,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_4e30d47a452c",
+      "term": "便喝",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4e30d47a452c/entry.v2.json",
+      "sha256": "2fba52dbfe6ff4fc27243d8ab4e2e1519f94a13e974edf07ebb29b96a08cf1dc"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 10,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4e30d47a452c/entry.v2.json",
+        "id": "t_4e30d47a452c",
+        "term": "便喝",
+        "verified": 10,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 1,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 10,
+        "named_occurrences": 7,
+        "context_master_links": 6,
+        "attribution_notes": 10,
+        "actor_reviewed_unnamed": 3,
+        "deferred_non_roster_context": 3,
+        "deferred_non_roster": 4,
+        "vague_attributor": 1,
+        "reviewed_unnamed_prose": 1
+      },
+      "hardFailures": 1,
+      "failures": [
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4e30d47a452c/entry.v2.json",
+          "detail": "便喝 s1: 'The master'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 10,\n    \"named_occurrences\": 7,\n    \"context_master_links\": 6,\n    \"attribution_notes\": 10,\n    \"actor_reviewed_unnamed\": 3,\n    \"deferred_non_roster_context\": 3,\n    \"deferred_non_roster\": 4,\n    \"vague_attributor\": 1,\n    \"reviewed_unnamed_prose\": 1\n  },\n  \"hardFailures\": 1,\n  \"failures\": [\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4e30d47a452c/entry.v2.json\",\n      \"detail\": \"便喝 s1: 'The master'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmp66vcgs5b.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 10,
+      "tierACandidates": 0,
+      "reviewRequired": 10
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 10,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 10\n}\nreport: maintenance/cohort-gate-risk4-bianhe-draft-attribution-packets.json\n",
+    "report": "maintenance/cohort-gate-risk4-bianhe-draft-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

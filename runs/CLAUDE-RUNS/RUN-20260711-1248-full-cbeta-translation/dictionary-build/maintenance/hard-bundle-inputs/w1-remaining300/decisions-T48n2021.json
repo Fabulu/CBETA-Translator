@@ -1,0 +1,37 @@
+{
+  "source": "T/T48/T48n2021.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_62230eb0d866:1014a16:1:1",
+      "entryId": "t_62230eb0d866",
+      "sourceTerm": "波羅提木叉",
+      "RelPath": "T/T48/T48n2021.xml",
+      "FromLb": "1014a16",
+      "Kwic": "吾滅度後汝等當依波羅提木叉。是汝等大師。波羅提木叉者即是此戒。",
+      "caseClusterId": "T/T48/T48n2021.xml:24700:26075",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗決疑集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "The Buddha",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗決疑集. The Buddha is the exact actor: 昔日世尊…告眾 introduces 吾滅度後汝等當依波羅提木叉.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhiche",
+            "Roles": [
+              "author",
+              "compiler"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

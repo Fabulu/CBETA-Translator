@@ -1,0 +1,44 @@
+{
+  "source": "J/J37/J37nB386.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_2dd4fec35455:0379b03:1:4",
+      "entryId": "t_2dd4fec35455",
+      "sourceTerm": "死灰",
+      "RelPath": "J/J37/J37nB386.xml",
+      "FromLb": "0379b03",
+      "Kwic": "撥發死灰騰烈燄，春風不動雪霜融。所以道：須知衲僧閫奧之中有轉地回天之用。",
+      "caseClusterId": "J/J37/J37nB386.xml:253783:254445",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "遠菴僼禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuan'an Feng",
+        "AttributionNote": "Recorded Sayings of Chan Master Yuan'an Feng (遠菴僼禪師語錄): in his formal taking-up-the-whisk address, Yuan'an Feng says that stirring dead ashes sends fierce flames soaring and that spring wind melts frost and snow without moving."
+      }
+    },
+    {
+      "key": "t_2facdfa49dd9:0382c05:1:1",
+      "entryId": "t_2facdfa49dd9",
+      "sourceTerm": "末後牢關",
+      "RelPath": "J/J37/J37nB386.xml",
+      "FromLb": "0382c05",
+      "Kwic": "者一落索，謂之末後牢關",
+      "caseClusterId": "J/J37/J37nB386.xml:271841:283467",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "遠菴僼禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuan'an Feng",
+        "AttributionNote": "Recorded Sayings of Chan Master Yuan'an Feng (遠菴僼禪師語錄): in his general address, Yuan'an Feng says that the whole tangle of named old cases is called the final solid checkpoint."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

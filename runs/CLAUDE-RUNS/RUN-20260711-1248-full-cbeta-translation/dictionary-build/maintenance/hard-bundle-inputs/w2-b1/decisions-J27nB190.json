@@ -1,0 +1,29 @@
+{
+  "source": "J/J27/J27nB190.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_6edb551acb53:0096a15:1:3",
+      "entryId": "t_6edb551acb53",
+      "sourceTerm": "知解",
+      "RelPath": "J/J27/J27nB190.xml",
+      "FromLb": "0096a15",
+      "Kwic": "此等見解盡屬知解宗徒",
+      "caseClusterId": "J/J27/J27nB190.xml:113002:113630",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "石雨禪師法檀",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shiyu Mingfang",
+        "AttributionNote": "Teaching Altar of Chan Master Shiyu (石雨禪師法檀): in the hall address for sending Yunmen Zhan's wooden image to the Jingshan patriarch hall, Shiyu Mingfang lists several attempted interpretations of an old case and says that such views all belong to followers of conceptual understanding."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_6edb551acb53:0096a15:1:3"
+  ]
+}

@@ -1,0 +1,438 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 12,
+    "occurrences": 73,
+    "actor_reviewed_unnamed": 30,
+    "context_master_links": 75,
+    "attribution_notes": 73,
+    "named_occurrences": 34,
+    "deferred_non_roster": 18,
+    "pending_roster_master": 8,
+    "deferred_non_roster_context": 39,
+    "pending_roster_context_master": 21,
+    "actor_impersonal": 4,
+    "explicit_master_turn_left_anonymous": 5,
+    "note_missing_source": 38,
+    "actor_identified_non_master": 5,
+    "invalid_actor_role": 1,
+    "identified_actor_not_named": 2,
+    "note_missing_speaker": 19,
+    "reviewed_unnamed_label_not_explicit": 10,
+    "unnamed_master_forbidden": 2,
+    "named_master_missing_structured_link": 1,
+    "chinese_strings": 16,
+    "anchored_chinese": 15,
+    "dangling_chinese": 1,
+    "action_performer_in_utterer_field": 1,
+    "action_performer_context_missing": 1
+  },
+  "hardFailures": 81,
+  "failures": [
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_041f65670cd4/entry.v2.json",
+      "detail": "無心 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_041f65670cd4/entry.v2.json",
+      "detail": "無心 s1 o7 expected '法瀾澂禪師語錄': Recorded Sayings of Falan Cheng (玉泉蓮月正禪師語錄): an unnamed monk asks Falan Cheng what a no-mind wayfarer is."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_041f65670cd4/entry.v2.json",
+      "detail": "無心 s2 o1 expected '東山梅溪度禪師語錄': Recorded Sayings of Dongshan Meixi Du (洞山梅溪度禪師語錄): Dongshan raises a case in which two unnamed monks say they acted without intending to."
+    },
+    {
+      "kind": "invalid_actor_role",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_041f65670cd4/entry.v2.json",
+      "detail": "無心 s2 o3: 'author'"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_041f65670cd4/entry.v2.json",
+      "detail": "無心 s2 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Kangxi Emperor'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o1 expected '五燈全書(第34卷-第120卷)': Complete Compendium of the Five Lamps (五燈全書): Li Linzong tells Yunfeng Yuanyi that he does not recognize him face to face."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o3 expected '宗鑑法林': Mirror of the Lineage Dharma Grove: an unnamed pig-carrier tells Shakyamuni that although he has all-knowledge, he does not recognize the pig."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o4: Strict Lineage of the Five Lamps (五燈嚴統): Bao’en Huiming answers that he does not recognize the incense platform."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o4 expected '五燈嚴統(第10卷-第25卷)': Strict Lineage of the Five Lamps (五燈嚴統): Bao’en Huiming answers that he does not recognize the incense platform."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o5 expected '指月錄': Record Pointing at the Moon: an unnamed pig-carrier tells Shakyamuni that although he has all-knowledge, he does not recognize the pig."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o6 expected '五燈會元': Compendium of the Five Lamps: an unnamed pig-carrier tells Shakyamuni that although he has all-knowledge, he does not recognize the pig."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o7 expected '聯燈會要': Linked Lamps Essential Record: an unnamed pig-carrier tells Shakyamuni that although he has all-knowledge, he does not recognize the pig."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_04efe13911ae/entry.v2.json",
+      "detail": "不識 s1 o8 expected '禪宗頌古聯珠通集': Linked Collection of Chan Verses: an unnamed pig-carrier tells Shakyamuni that although he has all-knowledge, he does not recognize the pig."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_073dcbf657a3/entry.v2.json",
+      "detail": "如何是無寒暑處 s1 o1 expected '宗門拈古彙集': Mirror of the Lineage Dharma Grove: an unnamed monk asks Dongshan Liangjie where the place without heat or cold is."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_073dcbf657a3/entry.v2.json",
+      "detail": "如何是無寒暑處 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_073dcbf657a3/entry.v2.json",
+      "detail": "如何是無寒暑處 s1 o2 expected '宗門統要正續集(第1卷-第12卷)': Essentials of the Chan Lineage: an unnamed monk asks Dongshan Liangjie where the place without heat or cold is."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_073dcbf657a3/entry.v2.json",
+      "detail": "如何是無寒暑處 s1 o3 expected '佛果圜悟禪師碧巖錄': Blue Cliff Record: an unnamed monk asks Dongshan Liangjie where the place without heat or cold is."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_073dcbf657a3/entry.v2.json",
+      "detail": "如何是無寒暑處 s1 o4 expected '禪林類聚': Compendium of Verse Comments: an unnamed monk asks Dongshan Liangjie where the place without heat or cold is."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o1 expected '五燈全書(第34卷-第120卷)': Complete Compendium of the Five Lamps (五燈全書): Jiangshan Faquan directly contrasts Manjushri laughing and Samantabhadra frowning."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o4 expected '五燈嚴統(第10卷-第25卷)': Strict Lineage of the Five Lamps (五燈嚴統): Baizhang Daoheng says that karmic delusion and dusty toil are Samantabhadra’s sphere."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o5: Compendium of the Five Lamps: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o5 expected '五燈會元': Compendium of the Five Lamps: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds."
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o6: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o6: Recorded Essentials of the Patriarchs’ Addresses (列祖提綱錄): an unidentified recorded master says that Manjushri and Samantabhadra both proclaim the true transformation."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o8: Record Pointing at the Moon: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_09ed57d56bcf/entry.v2.json",
+      "detail": "普賢 s1 o8 expected '指月錄': Record Pointing at the Moon: the compiler narrates Puyan Bodhisattva seeking Samantabhadra before Shakyamuni responds."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o1: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o1: Blue Cliff Record: the narrator labels or requests an attached comment associated with Xuedou Chongxian."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o1 expected '佛果圜悟禪師碧巖錄': Blue Cliff Record: the narrator labels or requests an attached comment associated with Xuedou Chongxian."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o2: Dahui Zonggao appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o2: Dahui Zonggao Record: the narrator labels or requests an attached comment associated with Yuanwu Keqin."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o2 expected '圓悟佛果禪師語錄': Dahui Zonggao Record: the narrator labels or requests an attached comment associated with Yuanwu Keqin."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o3: Book of Serenity: the narrator labels or requests an attached comment associated with Yuanwu Keqin."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o3 expected '萬松老人評唱天童覺和尚頌古從容庵錄': Book of Serenity: the narrator labels or requests an attached comment associated with Yuanwu Keqin."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o4: Tianyin Yuanxiu Record: the narrator labels or requests an attached comment associated with Tianyin Yuanxiu."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o4 expected '天隱和尚語錄': Tianyin Yuanxiu Record: the narrator labels or requests an attached comment associated with Tianyin Yuanxiu."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o5: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o5: Langting Jingting Record: the narrator labels or requests an attached comment associated with Langting Jingting."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o5 expected '雲溪俍亭挺禪師語錄': Langting Jingting Record: the narrator labels or requests an attached comment associated with Langting Jingting."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o7: Hongzhi Zhengjue Record: the narrator labels or requests an attached comment associated with Hongzhi Zhengjue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0a686fa27769/entry.v2.json",
+      "detail": "著語 s1 o7 expected '明州天童景德禪寺宏智覺禪師語錄': Hongzhi Zhengjue Record: the narrator labels or requests an attached comment associated with Hongzhi Zhengjue."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o1: Source record: guest prefect presents the censer."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o1 expected '勅修百丈清規': Source record: guest prefect presents the censer."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o2: Source record: the guest prefect’s rank is specified."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o2 expected '禪林備用清規': Source record: the guest prefect’s rank is specified."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o3: Source record: the guest prefect is directed to step out."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o3 expected '(重雕補註)禪苑清規': Source record: the guest prefect is directed to step out."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o4: Source record: Ming is labeled guest prefect."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o4 expected '浮石禪師語錄': Source record: Ming is labeled guest prefect."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o5: ['師問']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o5: Source record: Benjing is labeled guest prefect."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o5 expected '憨予暹禪師語錄': Source record: Benjing is labeled guest prefect."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o6: Source record: the guest prefect is thanked."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1 o6 expected '希叟紹曇禪師廣錄': Source record: the guest prefect is thanked."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s1: 未舉先知客"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0c53a5a2243b/entry.v2.json",
+      "detail": "知客 s2 o1 expected '萬如禪師語錄': Recorded Sayings of Miyun Yuanwu (密雲禪師語錄): Miyun Yuanwu contrasts the rare person who knows the guest before the matter is raised with people who chase a clod."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o1 expected '五燈全書(第1卷-第33卷)': Source lineage record: the boy later named Gayashata says, “I do not understand principle; I am exactly one hundred years old.”"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o3 expected '五燈嚴統(第10卷-第25卷)': Strict Lineage of the Five Lamps (五燈嚴統): Longya Judun tells Tiantai Deshao, “Go—you do not understand my words.”"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o4 expected '五燈會元': Source lineage record: the boy later named Gayashata says, “I do not understand principle; I am exactly one hundred years old.”"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o5 expected '指月錄': Source case commentary: Cuiyan Kezhen says that the outsider asks thus and Shakyamuni answers thus, yet does not understand that one penetration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o6 expected '景德傳燈錄': Source lineage record: the boy later named Gayashata says, “I do not understand principle; I am exactly one hundred years old.”"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o7 expected '宗鑑法林': Source case commentary: Cuiyan Kezhen says that the outsider asks thus and Shakyamuni answers thus, yet does not understand that one penetration."
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_11a4ff234f5a/entry.v2.json",
+      "detail": "不會 s1 o10: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Kangxi Emperor'"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_135a001a5b0e/entry.v2.json",
+      "detail": "青青翠竹 s1 o5: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_135a001a5b0e/entry.v2.json",
+      "detail": "青青翠竹 s1 o5: Recorded Essentials of the Patriarchs’ Addresses (列祖提綱錄): an unidentified recorded master quotes the claim that green bamboo is true thusness and rejects treating such formulations as settled theory."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_135a001a5b0e/entry.v2.json",
+      "detail": "青青翠竹 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_135a001a5b0e/entry.v2.json",
+      "detail": "青青翠竹 s1 o6: Complete Compendium of the Five Lamps (五燈全書): Long, the senior seat, tells Tianqi Benrui that verdant bamboo is entirely true thusness."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_135a001a5b0e/entry.v2.json",
+      "detail": "青青翠竹 s1 o6 expected '五燈全書(第34卷-第120卷)': Complete Compendium of the Five Lamps (五燈全書): Long, the senior seat, tells Tianqi Benrui that verdant bamboo is entirely true thusness."
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ff3b9302050a/entry.v2.json",
+      "detail": "逢場作戲 s1 o3: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ff3b9302050a/entry.v2.json",
+      "detail": "逢場作戲 s1 o3: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ff3b9302050a/entry.v2.json",
+      "detail": "逢場作戲 s1 o6: Recorded Sayings of Guting Shanjian (古庭禪師語錄), anonymous preface: the writer uses the phrase while discussing the record's transmission."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_ff3b9302050a/entry.v2.json",
+      "detail": "逢場作戲 s1 o6 expected '古庭禪師語錄輯略': Recorded Sayings of Guting Shanjian (古庭禪師語錄), anonymous preface: the writer uses the phrase while discussing the record's transmission."
+    }
+  ]
+}

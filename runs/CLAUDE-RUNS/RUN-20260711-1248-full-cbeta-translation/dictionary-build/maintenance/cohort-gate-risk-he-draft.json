@@ -1,0 +1,103 @@
+{
+  "generatedUtc": "2026-07-13T20:50:45.265982+00:00",
+  "elapsedSeconds": 4.055,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_193632bffe7b",
+      "term": "喝",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+      "sha256": "2092c3bf7cad584eafc40f358922c080609d4b9ce8f1fc6f6818b0b167c42d74"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 18,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+        "id": "t_193632bffe7b",
+        "term": "喝",
+        "verified": 18,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 1,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 18,
+        "named_occurrences": 14,
+        "attribution_notes": 18,
+        "actor_reviewed_unnamed": 3,
+        "context_master_links": 5,
+        "actor_impersonal": 1,
+        "deferred_non_roster_context": 3,
+        "note_missing_speaker": 1,
+        "deferred_non_roster": 4,
+        "vague_attributor": 2,
+        "reviewed_unnamed_prose": 1
+      },
+      "hardFailures": 3,
+      "failures": [
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+          "detail": "喝 s1 o3: The Eye of Humans and Gods (人天眼目), Linji-house exposition compiled by Huiyan Zhizhao. The exact actor is a compiled expository gloss, not an attributed historical master-turn: it says a shout distinguishing host and guest contains both, and a shout carrying illumination and function contains both."
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+          "detail": "喝 s1: 'a master'"
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+          "detail": "喝 s1: 'the master'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 18,\n    \"named_occurrences\": 14,\n    \"attribution_notes\": 18,\n    \"actor_reviewed_unnamed\": 3,\n    \"context_master_links\": 5,\n    \"actor_impersonal\": 1,\n    \"deferred_non_roster_context\": 3,\n    \"note_missing_speaker\": 1,\n    \"deferred_non_roster\": 4,\n    \"vague_attributor\": 2,\n    \"reviewed_unnamed_prose\": 1\n  },\n  \"hardFailures\": 3,\n  \"failures\": [\n    {\n      \"kind\": \"note_missing_speaker\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json\",\n      \"detail\": \"喝 s1 o3: The Eye of Humans and Gods (人天眼目), Linji-house exposition compiled by Huiyan Zhizhao. The exact actor is a compiled expository gloss, not an attributed historical master-turn: it says a shout distinguishing host and guest contains both, and a shout carrying illumination and function contains both.\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json\",\n      \"detail\": \"喝 s1: 'a master'\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json\",\n      \"detail\": \"喝 s1: 'the master'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmpg36zode_.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 18,
+      "tierACandidates": 0,
+      "reviewRequired": 18
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 18,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 18\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/cohort-gate-risk-he-draft-attribution-packets.json\n",
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/cohort-gate-risk-he-draft-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

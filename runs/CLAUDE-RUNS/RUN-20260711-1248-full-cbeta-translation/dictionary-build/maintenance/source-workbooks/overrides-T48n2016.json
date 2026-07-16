@@ -1,0 +1,24 @@
+{
+  "source": "T/T48/T48n2016.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:43:46Z",
+  "rows": [
+    {
+      "key": "t_643e9062503e:0626b28:1:3",
+      "entryId": "t_643e9062503e",
+      "sourceTerm": "漸修",
+      "RelPath": "T/T48/T48n2016.xml",
+      "FromLb": "0626b28",
+      "Kwic": "問。如何是頓漸四句。答。一漸修頓悟。二頓悟漸修。三漸修漸悟。四頓悟頓修。",
+      "caseClusterId": "T/T48/T48n2016.xml:1004190:1010205",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "宗鏡錄",
+      "defaultMasterName": "Yongming Yanshou",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

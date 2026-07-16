@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB421.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_cb3571346f22:0558b07:1:10",
+      "entryId": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "RelPath": "J/J38/J38nB421.xml",
+      "FromLb": "0558b07",
+      "Kwic": "釋迦之為釋迦，非增也；木石之為木石，非滅也。",
+      "caseClusterId": "J/J38/J38nB421.xml:11109:11650",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "鶴峰禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hefeng",
+        "AttributionNote": "Recorded Sayings of Hefeng (鶴峰禪師語錄): in his ascent-of-seat address, Hefeng says Shakyamuni being Shakyamuni is no increase and wood and stone being themselves no decrease."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

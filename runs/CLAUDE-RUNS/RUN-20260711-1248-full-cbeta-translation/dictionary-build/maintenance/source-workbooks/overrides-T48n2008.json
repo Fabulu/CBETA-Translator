@@ -1,0 +1,115 @@
+{
+  "source": "T/T48/T48n2008.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:42:00Z",
+  "rows": [
+    {
+      "key": "t_6c58ed7a7c6c:0346c05:1:6",
+      "entryId": "t_6c58ed7a7c6c",
+      "sourceTerm": "一行三昧",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0346c05",
+      "Kwic": "一行三昧者，法界一相之謂也。謂萬善雖殊，皆正於一行者也。",
+      "caseClusterId": "T/T48/T48n2008.xml:10334:11594",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Qisong",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "subject of the praised scripture"
+            ]
+          }
+        ],
+        "AttributionNote": "Platform Sutra of the Sixth Patriarch (六祖大師法寶壇經), Praise of the Platform Sutra (六祖大師法寶壇經贊). The section byline reads 'composed by Song-dynasty Mingjiao master Qisong' (宋明教大師契嵩撰); Qisong, not Huineng, defines single-practice samadhi here as the single aspect of the dharma realm and the many goods rectified in one practice."
+      }
+    },
+    {
+      "key": "t_283fc1afb0ca:0346c10:1:3",
+      "entryId": "t_283fc1afb0ca",
+      "sourceTerm": "無相戒",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0346c10",
+      "Kwic": "無相戒者，戒其必正覺也。",
+      "caseClusterId": "T/T48/T48n2008.xml:10334:11594",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Qisong",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "subject of the praised scripture"
+            ]
+          }
+        ],
+        "AttributionNote": "Platform Sutra of the Sixth Patriarch (六祖大師法寶壇經), Praise of the Platform Sutra (六祖大師法寶壇經贊). The section byline names Qisong as its composer (宋明教大師契嵩撰); Qisong, not Huineng, gives the direct gloss 'formless precepts are precepts concerning necessary correct awakening.'"
+      }
+    },
+    {
+      "key": "t_283fc1afb0ca:0347a19:1:4",
+      "entryId": "t_283fc1afb0ca",
+      "sourceTerm": "無相戒",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0347a19",
+      "Kwic": "無相戒，戒之最也；四弘願，願之極也；無相懺，懺之至也。",
+      "caseClusterId": "T/T48/T48n2008.xml:11746:12822",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Qisong",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "subject of the praised scripture"
+            ]
+          }
+        ],
+        "AttributionNote": "Platform Sutra of the Sixth Patriarch (六祖大師法寶壇經), Praise of the Platform Sutra (六祖大師法寶壇經贊). The section is explicitly composed by Qisong (宋明教大師契嵩撰); Qisong, not Huineng, appraises formless precepts as foremost among precepts."
+      }
+    },
+    {
+      "key": "t_c0a6177c9c44:0362c12:1:1",
+      "entryId": "t_c0a6177c9c44",
+      "sourceTerm": "律",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0362c12",
+      "Kwic": "西京智光律師為授戒師，蘇州慧靜律師為羯磨，荊州通應律師為教授，中天耆多羅律師為說戒，西國蜜多三藏為證戒。",
+      "caseClusterId": "T/T48/T48n2008.xml:133516:135252",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Fahai",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "ordination recipient",
+              "biographical subject"
+            ]
+          }
+        ],
+        "AttributionNote": "Platform Sutra of the Sixth Patriarch (六祖大師法寶壇經), Outer Record of the Sixth Patriarch's Origins (六祖大師緣起外紀). The section is explicitly compiled by the disciple Fahai and others (門人法海等集); Fahai is the named lead compiler narrating the five ordination offices, while Huineng is the recipient and biographical subject, not the narrator."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

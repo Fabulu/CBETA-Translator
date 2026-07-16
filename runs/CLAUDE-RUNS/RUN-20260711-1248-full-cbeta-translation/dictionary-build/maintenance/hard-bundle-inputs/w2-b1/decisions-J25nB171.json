@@ -1,0 +1,239 @@
+{
+  "source": "J/J25/J25nB171.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_afebc7b2a221:0513b12:1:3",
+      "entryId": "t_afebc7b2a221",
+      "sourceTerm": "切忌",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0513b12",
+      "Kwic": "諸人還覺毛寒骨豎麼？切忌卜度。」便下座。",
+      "caseClusterId": "J/J25/J25nB171.xml:23571:23715",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianyin Yuanxiu",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu closes his own public instruction by asking whether the assembly feels hair-cold and bone-chilled and warning them especially against conjecture."
+      }
+    },
+    {
+      "key": "t_fac9b9afebf6:0514c12:1:5",
+      "entryId": "t_fac9b9afebf6",
+      "sourceTerm": "探竿影草",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0514c12",
+      "Kwic": "假醉揚惺，亦是探竿影草。",
+      "caseClusterId": "J/J25/J25nB171.xml:30463:30963",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianyin Yuanxiu",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu supplies the stored comment on Baijuyi's reply in the raised Guizong case, calling it feigned drunkenness displaying sobriety and also a probing pole and shadowing grass."
+      }
+    },
+    {
+      "key": "t_6b8e3b4f44bb:0515b11:1:4",
+      "entryId": "t_6b8e3b4f44bb",
+      "sourceTerm": "照用",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0515b11",
+      "Kwic": "如何是照用同時？」師喝，和聲便打",
+      "caseClusterId": "J/J25/J25nB171.xml:33471:34824",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): an unnamed monk asks Tianyin Yuanxiu what illumination and function operating simultaneously is; Tianyin answers with a shout and a blow. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Tianyin Yuanxiu",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d7167b5f3236:0520b16:1:4",
+      "entryId": "t_d7167b5f3236",
+      "sourceTerm": "殺人刀",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0520b16",
+      "Kwic": "石霜雖有殺人刀且無活人劍；巖頭亦有殺人刀亦有活人劍。",
+      "caseClusterId": "J/J25/J25nB171.xml:58889:59905",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiashan Shanhui",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): inside a case raised by Tianyin Yuanxiu, Jiashan Shanhui tells his assembly that Shishuang Qingzhu has a killing blade but no life-giving sword, whereas Yantou Quanhuo has both.",
+        "ContextMasters": [
+          {
+            "MasterName": "Tianyin Yuanxiu",
+            "Roles": [
+              "later-raiser",
+              "commentator"
+            ]
+          },
+          {
+            "MasterName": "Shishuang Qingzhu",
+            "Roles": [
+              "master-appraised"
+            ]
+          },
+          {
+            "MasterName": "Yantou Quanhuo",
+            "Roles": [
+              "master-appraised"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e5259ce8bbf5:0528c18:1:4",
+      "entryId": "t_e5259ce8bbf5",
+      "sourceTerm": "垂示",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0528c18",
+      "Kwic": "室中垂示，師云：「五更熟睡時，撞鐘不聞鐘聲，頃寤時鳴鼓，便聞鼓聲。",
+      "caseClusterId": "J/J25/J25nB171.xml:102234:102533",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianyin Yuanxiu",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu gives the private-room indication and opens it with the contrast between not hearing the bell in deep sleep and hearing the drum upon waking."
+      }
+    },
+    {
+      "key": "t_8bd6933e6de3:0539c14:1:4",
+      "entryId": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0539c14",
+      "Kwic": "不見谷隱老人云：『一喝分賓主，照用一時行，會得箇中意，日午打三更。』",
+      "caseClusterId": "J/J25/J25nB171.xml:158287:159358",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guyin Zhiyan",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu explicitly quotes Guyin Zhiyan as saying that one shout distinguishes guest and host, illumination and function operate simultaneously, and noon strikes the third watch."
+      }
+    },
+    {
+      "key": "t_78f95517a347:0549c10:1:6",
+      "entryId": "t_78f95517a347",
+      "sourceTerm": "生死事大",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0549c10",
+      "Kwic": "天如和尚示眾云：『生死事大。諸禪德！須是將生死",
+      "caseClusterId": "J/J25/J25nB171.xml:221279:221479",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianru Weize",
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): in a case raised by Tianyin Yuanxiu, Tianru Weize tells the assembly that birth-and-death is the great matter and that Chan worthies must paste those two words on their foreheads.",
+        "ContextMasters": [
+          {
+            "MasterName": "Tianyin Yuanxiu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_db4a932ce500:0564a27:1:3",
+      "entryId": "t_db4a932ce500",
+      "sourceTerm": "大悟",
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0564a27",
+      "Kwic": "舉僧問華嚴：「大悟底人為甚麼卻迷？」嚴云：「破鏡不重照，落花難上枝。」",
+      "caseClusterId": "J/J25/J25nB171.xml:340667:340758",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天隱和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of the Monk Tianyin (天隱和尚語錄): in the case raised by Tianyin Yuanxiu, an unnamed monk asks Huayan Xiujing why a greatly awakened person nevertheless becomes confused; Huayan answers with the broken mirror and fallen flower. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huayan Xiujing",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Tianyin Yuanxiu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_afebc7b2a221:0513b12:1:3",
+    "t_fac9b9afebf6:0514c12:1:5",
+    "t_6b8e3b4f44bb:0515b11:1:4",
+    "t_d7167b5f3236:0520b16:1:4",
+    "t_e5259ce8bbf5:0528c18:1:4",
+    "t_8bd6933e6de3:0539c14:1:4",
+    "t_78f95517a347:0549c10:1:6",
+    "t_db4a932ce500:0564a27:1:3"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB433.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_31575552ede2:1001b28:1:5",
+      "entryId": "t_31575552ede2",
+      "sourceTerm": "頑空",
+      "RelPath": "J/J38/J38nB433.xml",
+      "FromLb": "1001b28",
+      "Kwic": "莫向頑空住，休於死水藏，直須活鱍鱍，如日照當陽。",
+      "caseClusterId": "J/J38/J38nB433.xml:56123:56302",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "純備德禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chunbei De",
+        "AttributionNote": "Recorded Sayings of Chunbei De (純備德禪師語錄): in his instruction to Chan student Mianjiu, Chunbei De warns not to dwell in stubborn emptiness or hide in dead water."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,90 @@
+{
+  "source": "T/T47/T47n1988.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:45:53Z",
+  "rows": [
+    {
+      "key": "t_e5259ce8bbf5:0553c24:1:3",
+      "entryId": "t_e5259ce8bbf5",
+      "sourceTerm": "垂示",
+      "RelPath": "T/T47/T47n1988.xml",
+      "FromLb": "0553c24",
+      "Kwic": "室中語要一百八十五則垂示代語二百九十則",
+      "caseClusterId": "T/T47/T47n1988.xml:68060:68168",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "雲門匡真禪師廣錄",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "title",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "editorial heading",
+          "ActorLabel": "collection contents heading",
+          "ActorRole": "textual division",
+          "GrammarEvidence": "The two parallel noun phrases count the contents of the following divisions: 185 essential chamber sayings and 290 indications and substitute answers. In the XML they are separate paragraphs immediately after the volume heading and collector byline and before the 室中語要 section head, with no speech marker or human subject; the occurrence is therefore an editorial contents statement, not Yunmen Wenyan's spoken turn.",
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T04:45:53Z"
+        },
+        "AttributionNote": "Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄). The collection contents heading counts 185 essential chamber sayings and 290 indications and substitute answers. It is an editorial textual division placed after the volume heading and collector byline, not a spoken turn by Yunmen Wenyan.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_df3e128ab4c1:0554b03:1:4",
+      "entryId": "t_df3e128ab4c1",
+      "sourceTerm": "竪拂",
+      "RelPath": "T/T47/T47n1988.xml",
+      "FromLb": "0554b03",
+      "Kwic": "舉僧問資福。古人拈槌竪拂意旨如何。福云。古人與麼那。",
+      "caseClusterId": "T/T47/T47n1988.xml:70500:70725",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "雲門匡真禪師廣錄",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "title",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T04:45:53Z"
+        },
+        "AttributionNote": "Extended Record of Chan Master Yunmen Kuangzhen (雲門匡真禪師廣錄), in Yunmen Wenyan's essential chamber sayings. An unnamed monk is the exact speaker asking Zifu Zhensui for the import of the ancients picking up the mallet and raising the whisk; Zifu Zhensui gives the following reply, and Yunmen Wenyan comments after the raised exchange. The line, expanded context, section header, book title, TEI header, and parallel passage do not name the questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zifu Zhensui",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

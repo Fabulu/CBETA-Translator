@@ -1,0 +1,44 @@
+{
+  "source": "X/X67/X67n1303.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_84043ffcdf90:0270a24:1:1",
+      "entryId": "t_84043ffcdf90",
+      "sourceTerm": "具眼",
+      "RelPath": "X/X67/X67n1303.xml",
+      "FromLb": "0270a24",
+      "Kwic": "為復是神通妙用？具眼者辨看。",
+      "caseClusterId": "X/X67/X67n1303.xml:53608:53737",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "林泉老人評唱投子青和尚頌古空谷集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linquan Conglun",
+        "AttributionNote": "Empty Valley Collection (林泉老人評唱投子青和尚頌古空谷集): at the close of his comment on case four, Linquan Conglun asks one who possesses the eye to discern the case."
+      }
+    },
+    {
+      "key": "t_a38d5c680c67:0287b02:1:4",
+      "entryId": "t_a38d5c680c67",
+      "sourceTerm": "咬嚼",
+      "RelPath": "X/X67/X67n1303.xml",
+      "FromLb": "0287b02",
+      "Kwic": "老宿曰：千年桃核。林泉道：切忌咬嚼。",
+      "caseClusterId": "X/X67/X67n1303.xml:173171:174036",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "林泉老人評唱投子青和尚頌古空谷集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linquan Conglun",
+        "AttributionNote": "Empty Valley Collection (林泉老人評唱投子青和尚頌古空谷集): after the old monk's thousand-year peach pit, Linquan Conglun comments 'strictly avoid chewing.'"
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

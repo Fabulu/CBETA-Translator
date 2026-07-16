@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "entries": 3,
+    "senses": 3,
+    "occurrences": 20,
+    "actor_reviewed_unnamed": 6,
+    "context_master_links": 23,
+    "attribution_notes": 23,
+    "named_occurrences": 16,
+    "deferred_non_roster": 7,
+    "pending_roster_master": 5,
+    "deferred_non_roster_context": 9,
+    "pending_roster_context_master": 6,
+    "actor_identified_non_master": 1,
+    "named_master_missing_structured_link": 1,
+    "claim_anchors": 3,
+    "chinese_strings": 5,
+    "anchored_chinese": 5
+  },
+  "hardFailures": 1,
+  "failures": [
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_43ecdacadde0/entry.v2.json",
+      "detail": "阿誰 s1 o7: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+    }
+  ]
+}

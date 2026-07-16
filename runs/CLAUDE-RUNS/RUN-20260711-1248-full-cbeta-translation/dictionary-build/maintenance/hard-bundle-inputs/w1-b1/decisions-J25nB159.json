@@ -1,0 +1,28 @@
+{
+  "source": "J/J25/J25nB159.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_368268e023e3:0138b14:1:5",
+      "entryId": "t_368268e023e3",
+      "sourceTerm": "塵勞",
+      "RelPath": "J/J25/J25nB159.xml",
+      "FromLb": "0138b14",
+      "Kwic": "，東西不分、南北不辨，通宵不寐、寢食俱忘，做到這裡只喚作塵勞暫息寂靜輕安之境，亦名解脫深坑，未為極則，切忌認著。山僧昔年",
+      "caseClusterId": "J/J25/J25nB159.xml:12390:14010",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天真毒峰善禪師要語",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dufeng Benshan",
+        "ActorAttribution": null,
+        "AttributionNote": "天真毒峰善禪師要語, Dufeng Benshan's instruction on investigating the buddha-recitation question. Dufeng Benshan is the exact speaker: he calls the state reached after all-night absorption merely a temporary rest from dusty toil and a quiet ease, also naming it a pit of liberation and warning against taking it as final."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

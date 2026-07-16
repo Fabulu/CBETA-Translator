@@ -1,0 +1,11 @@
+2026-07-14T18:26:47,618828418+02:00
+Traceback (most recent call last):
+  File "<stdin>", line 7, in <module>
+  File "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/audit_public_feedback.py", line 116, in audit
+    "path": str(path.relative_to(HERE)),
+  File "/usr/lib/python3.10/pathlib.py", line 818, in relative_to
+    raise ValueError("{!r} is not in the subpath of {!r}"
+ValueError: 'maintenance/regen-benchmark-clean/drafts/t_8f7b20536cb6/entry.v2.json' is not in the subpath of '/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build' OR one path is relative and the other is absolute.
+Command exited with non-zero status 1
+ELAPSED=19.97 CPU=57% MAXRSS=414736
+2026-07-14T18:27:07,659693294+02:00

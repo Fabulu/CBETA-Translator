@@ -1,0 +1,61 @@
+{
+  "source": "J/J38/J38nB425.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T07:20:00Z",
+  "rows": [
+    {
+      "key": "t_fc585583b815:0627a01:1:7",
+      "entryId": "t_fc585583b815",
+      "sourceTerm": "機用",
+      "RelPath": "J/J38/J38nB425.xml",
+      "FromLb": "0627a01",
+      "Kwic": "像道影讚雪峰即非禪師道影讚有臨濟之機用，而不濫行棒喝；有玅喜之波瀾，而不虛施語言。力救時弊，疏通禪源。凜凜",
+      "caseClusterId": "J/J38/J38nB425.xml:9184:9981",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "即非禪師全錄",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "inline",
+      "Override": {
+        "MasterName": "Zheng Puyuan",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Jifei Ruyi",
+            "Roles": [
+              "portrait subject",
+              "master praised"
+            ]
+          },
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "comparison for responsive operation"
+            ]
+          },
+          {
+            "MasterName": "Dahui Zonggao",
+            "Roles": [
+              "comparison under the name Miaoxi"
+            ]
+          },
+          {
+            "MasterName": "Yinyuan Longqi",
+            "Roles": [
+              "lineage teacher named as Huangbo Qi"
+            ]
+          },
+          {
+            "MasterName": "Feiyin Tongrong",
+            "Roles": [
+              "lineage grandfather named as Jingshan Rong"
+            ]
+          }
+        ],
+        "AttributionNote": "Complete Record of Chan Master Jifei (即非禪師全錄), portrait praise for Chan Master Xuefeng Jifei (雪峰即非禪師道影讚). Zheng Puyuan is the exact author, identified by the signature 三山弟子鄭溥元熏沐拜題 immediately after the praise. He says Jifei Ruyi possessed Linji Yixuan's responsive operation without indiscriminate blows and shouts and Dahui Zonggao's sweep without empty speech, then names Jifei as Yinyuan Longqi's direct heir and Feiyin Tongrong's true dharma-grandson. Xuefeng here is Jifei's mountain title, not Xuefeng Yicun and not the speaker."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

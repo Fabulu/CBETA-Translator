@@ -1,0 +1,28 @@
+{
+  "source": "J/J37/J37nB400.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_d9944cf1c47a:0764b07:1:1",
+      "entryId": "t_d9944cf1c47a",
+      "sourceTerm": "心戒",
+      "RelPath": "J/J37/J37nB400.xml",
+      "FromLb": "0764b07",
+      "Kwic": "既於山僧處求受心地戒法，須知即心是戒、即戒是心，心戒無二，萬善從生。",
+      "caseClusterId": "J/J37/J37nB400.xml:19777:20436",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "知空蘊禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhikong Xueyun",
+        "ActorAttribution": null,
+        "AttributionNote": "知空蘊禪師語錄. Zhikong Xueyun is the exact actor: 山僧 says 即心是戒、即戒是心，心戒無二."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

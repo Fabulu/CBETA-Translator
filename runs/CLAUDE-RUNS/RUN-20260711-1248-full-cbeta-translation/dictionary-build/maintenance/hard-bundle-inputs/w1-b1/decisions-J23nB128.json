@@ -1,0 +1,52 @@
+{
+  "source": "J/J23/J23nB128.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_7cddddb76d37:0348a07:2:1",
+      "entryId": "t_7cddddb76d37",
+      "sourceTerm": "任運",
+      "RelPath": "J/J23/J23nB128.xml",
+      "FromLb": "0348a07",
+      "Kwic": "無拘。山童穩坐青松下，一曲昇平樂有餘。任運任運普明禪師頌任運第七柳岸春波夕照中，淡煙芳草綠茸茸。饑餐渴飲隨時過，石上山童",
+      "caseClusterId": "J/J23/J23nB128.xml:9851:11042",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普明禪師牧牛圖頌",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document heading",
+          "ActorLabel": "the Ten Oxherding section heading",
+          "ActorRole": "document-structure label",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z",
+          "GrammarEvidence": "任運 is repeated as a mulu/head label between Puming's sixth and seventh oxherding verses; it is not a personal speech turn."
+        },
+        "AttributionNote": "普明禪師牧牛圖頌. The exact actor is the Ten Oxherding section heading: 任運 is an impersonal structural label for the seventh picture and verse, not a saying by Puming.",
+        "ContextMasters": [
+          {
+            "MasterName": "Puming",
+            "Roles": [
+              "following-verse-author"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,52 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 10,
+    "occurrences": 69,
+    "actor_reviewed_unnamed": 17,
+    "context_master_links": 67,
+    "deferred_non_roster_context": 27,
+    "pending_roster_context_master": 13,
+    "attribution_notes": 69,
+    "named_occurrences": 41,
+    "deferred_non_roster": 18,
+    "pending_roster_master": 8,
+    "chinese_strings": 21,
+    "anchored_chinese": 19,
+    "dangling_chinese": 2,
+    "actor_identified_non_master": 3,
+    "actor_narrated": 8,
+    "claim_anchors": 1,
+    "unresolved_actor": 1,
+    "claim_anchor_missing_claim_text": 1,
+    "missing_attribution_note": 1
+  },
+  "hardFailures": 5,
+  "failures": [
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_21926ca0b92e/entry.v2.json",
+      "detail": "頂門眼 s1: 擉瞎了也"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1 o6 J/J39/J39nB445.xml:0352a12"
+    },
+    {
+      "kind": "claim_anchor_missing_claim_text",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1 a6"
+    },
+    {
+      "kind": "missing_attribution_note",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1 o6"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2816f418822c/entry.v2.json",
+      "detail": "念佛是誰 s1: 不念佛是誰"
+    }
+  ]
+}

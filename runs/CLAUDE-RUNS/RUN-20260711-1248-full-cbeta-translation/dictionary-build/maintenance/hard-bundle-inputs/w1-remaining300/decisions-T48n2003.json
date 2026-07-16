@@ -1,0 +1,112 @@
+{
+  "source": "T/T48/T48n2003.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_acccac1051a4:0140a13:1:3",
+      "entryId": "t_acccac1051a4",
+      "sourceTerm": "衲僧",
+      "RelPath": "T/T48/T48n2003.xml",
+      "FromLb": "0140a13",
+      "Kwic": "舉一明三。目機銖兩。是衲僧家尋常茶飯。",
+      "caseClusterId": "T/T48/T48n2003.xml:21326:21546",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "佛果圜悟禪師碧巖錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "佛果圜悟禪師碧巖錄. Yuanwu Keqin is the exact actor: he authors case 1 垂示 calling this 衲僧家尋常茶飯."
+      }
+    },
+    {
+      "key": "t_44d14cd3a935:0143c25:1:1",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "T/T48/T48n2003.xml",
+      "FromLb": "0143c25",
+      "Kwic": "出群須是英靈漢。敵勝還他師子兒。選佛若無如是眼。",
+      "caseClusterId": "T/T48/T48n2003.xml:40968:44163",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "佛果圜悟禪師碧巖錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "佛果圜悟禪師碧巖錄. Yuanwu Keqin is the exact actor: his continuous 評唱 says 敵勝還他師子兒.",
+        "ContextMasters": [
+          {
+            "MasterName": "Deshan Xuanjian",
+            "Roles": [
+              "master-in-case"
+            ]
+          },
+          {
+            "MasterName": "Guishan Lingyou",
+            "Roles": [
+              "master-in-case"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_9199b9a31645:0144c24:1:1",
+      "entryId": "t_9199b9a31645",
+      "sourceTerm": "盡大地",
+      "RelPath": "T/T48/T48n2003.xml",
+      "FromLb": "0144c24",
+      "Kwic": "然。虎口裏橫身。不免喪身失命。試舉看。【五】舉雪峯示眾云盡大地撮來如粟米粒大拋向面前漆桶不會打鼓普請看。長慶問雲門。雪峯與麼道。還有",
+      "caseClusterId": "T/T48/T48n2003.xml:46465:49829",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "佛果圜悟禪師碧巖錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Xuefeng Yicun",
+        "ActorAttribution": null,
+        "AttributionNote": "佛果圜悟禪師碧巖錄. Xuefeng Yicun is the exact actor: case 5 explicitly says 舉雪峯示眾云 before 盡大地.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yuanwu Keqin",
+            "Roles": [
+              "commentator"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b8c3ecb60618:0147a28:1:3",
+      "entryId": "t_b8c3ecb60618",
+      "sourceTerm": "啐啄同時",
+      "RelPath": "T/T48/T48n2003.xml",
+      "FromLb": "0147a28",
+      "Kwic": "法眼禪師。有啐啄同時底機。具啐啄同時底用。方能如此答話。",
+      "caseClusterId": "T/T48/T48n2003.xml:59304:61505",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "佛果圜悟禪師碧巖錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "佛果圜悟禪師碧巖錄. Yuanwu Keqin is the exact actor: his 評唱 says Fayan had 啐啄同時底機/用.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fayan Wenyi",
+            "Roles": [
+              "master-appraised"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

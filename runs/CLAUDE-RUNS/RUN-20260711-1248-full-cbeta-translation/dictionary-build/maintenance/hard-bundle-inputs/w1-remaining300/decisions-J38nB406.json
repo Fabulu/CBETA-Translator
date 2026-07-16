@@ -1,0 +1,87 @@
+{
+  "source": "J/J38/J38nB406.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_d02b40e03f5d:0146a06:1:4",
+      "entryId": "t_d02b40e03f5d",
+      "sourceTerm": "一切現成",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0146a06",
+      "Kwic": "若道一切現成，豈不一夏虛過？若必有所構，作麼生又說箇本有？",
+      "caseClusterId": "J/J38/J38nB406.xml:115042:125199",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianran Hanshi",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Tianran Hanshi is the exact actor: his 普說 tests 若道一切現成."
+      }
+    },
+    {
+      "key": "t_b4795244cf8e:0152b18:1:7",
+      "entryId": "t_b4795244cf8e",
+      "sourceTerm": "斬蛇",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0152b18",
+      "Kwic": "纔掉得箇相似，便一切棄置。為伊方寸裏，先靠著箇心外無法，一切不可得底道理，任意舉止，隨順妄情，以為行于非道方合佛道。比于南泉斬貓，歸宗斬蛇，蜆子蝦蟆。殊不知古人劍刃上事，稍一眨眼，血濺梵天，豈更麤境，公然狂肆？今時禪病，多出於此。良由師家道眼不明，纔見學人蹋上箇豁達見",
+      "caseClusterId": "J/J38/J38nB406.xml:144845:152259",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianran Hanshi",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Tianran Hanshi is the exact actor: his 普說 invokes 歸宗斬蛇.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guizong Zhichang",
+            "Roles": [
+              "master-in-case"
+            ]
+          },
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "parallel-master-in-case"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_3bf26be0cd43:0182c24:1:5",
+      "entryId": "t_3bf26be0cd43",
+      "sourceTerm": "黑漆桶",
+      "RelPath": "J/J38/J38nB406.xml",
+      "FromLb": "0182c24",
+      "Kwic": "某甲於此事，如黑漆桶一樣。",
+      "caseClusterId": "J/J38/J38nB406.xml:347396:348033",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廬山天然禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuancheng",
+        "ActorAttribution": null,
+        "AttributionNote": "廬山天然禪師語錄. Yuancheng is the exact actor: section 復願乘禪人 has 日者禪云 before the quoted 黑漆桶 statement.",
+        "ContextMasters": [
+          {
+            "MasterName": "Tianran Hanshi",
+            "Roles": [
+              "letter-author",
+              "quoting-master"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

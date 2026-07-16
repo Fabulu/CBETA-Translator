@@ -1,0 +1,88 @@
+{
+  "source": "X/X79/X79n1557.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_becc0a1ea8cb:0093c06:1:5",
+      "entryId": "t_becc0a1ea8cb",
+      "sourceTerm": "方丈",
+      "RelPath": "X/X79/X79n1557.xml",
+      "FromLb": "0093c06",
+      "Kwic": "百千諸佛不出此方丈內。僧云：只如古人道：大千沙界海中漚。",
+      "caseClusterId": "X/X79/X79n1557.xml:686829:687172",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "聯燈會要",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baoshou Zhao",
+        "ActorAttribution": null,
+        "AttributionNote": "聯燈會要, Baoshou Zhao section. Baoshou Zhao is the exact speaker who tells the visiting monk that a hundred thousand buddhas do not leave this abbot's quarters."
+      }
+    },
+    {
+      "key": "t_79090ea8b22c:0106a11:1:3",
+      "entryId": "t_79090ea8b22c",
+      "sourceTerm": "動念即乖",
+      "RelPath": "X/X79/X79n1557.xml",
+      "FromLb": "0106a11",
+      "Kwic": "擬心即差，動念即乖。不擬不動，正在死水裏作活計。",
+      "caseClusterId": "X/X79/X79n1557.xml:779046:779325",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "聯燈會要",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shimen Cizhao Cong",
+        "ActorAttribution": null,
+        "AttributionNote": "聯燈會要, Shimen Cizhao Cong section. Shimen Cizhao Cong is the exact instruction speaker who says that intending with the mind already misses and moving a thought already goes awry."
+      }
+    },
+    {
+      "key": "t_207efae5f6bd:0133b21:1:3",
+      "entryId": "t_207efae5f6bd",
+      "sourceTerm": "死句",
+      "RelPath": "X/X79/X79n1557.xml",
+      "FromLb": "0133b21",
+      "Kwic": "如何是活句？師云：死中得。云：如何是死句？師云：活中得。",
+      "caseClusterId": "X/X79/X79n1557.xml:966321:966454",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "聯燈會要",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "聯燈會要, Baofeng Shanqing section. The exact headword-bearing speaker is an unnamed questioning monk who asks first for the living phrase and then the dead phrase. All six rungs leave him unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baofeng Shanqing",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

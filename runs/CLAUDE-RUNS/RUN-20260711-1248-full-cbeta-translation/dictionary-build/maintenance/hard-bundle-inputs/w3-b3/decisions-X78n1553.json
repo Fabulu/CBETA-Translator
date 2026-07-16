@@ -1,0 +1,76 @@
+{
+  "source": "X/X78/X78n1553.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_15eec715e731:0420a07:1:3",
+      "entryId": "t_15eec715e731",
+      "sourceTerm": "燈錄",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0420a07",
+      "Kwic": "題。天聖廣燈錄都帙目錄〔宋實〕天聖廣燈錄都帙目錄〔宋實〕天聖廣燈錄卷第一敘天竺釋迦佛下錄釋迦牟尼佛天聖廣燈錄卷第二天竺祖師八人第",
+      "caseClusterId": "X/X78/X78n1553.xml:44346:75720",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "catalogue heading",
+          "ActorLabel": "Canonical title and table-of-contents heading for the Tiansheng Expanded Record of the Lamp",
+          "ActorRole": "bibliographic heading rather than a speech turn",
+          "GrammarEvidence": "The occurrence is document metadata with no grammatical personal speaker.",
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:58:26.309747Z"
+        },
+        "AttributionNote": "天聖廣燈錄. Full six-rung exact-turn review identifies: Canonical title and table-of-contents heading for the Tiansheng Expanded Record of the Lamp. This is not personal speech."
+      }
+    },
+    {
+      "key": "t_b4367c692c8a:0519b23:1:2",
+      "entryId": "t_b4367c692c8a",
+      "sourceTerm": "有什麼交涉",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0519b23",
+      "Kwic": "若以唇吻聲色以為自己，有什麼交涉？設使百千問難，秖益自勞；",
+      "caseClusterId": "X/X78/X78n1553.xml:812057:812719",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Juehua Puzhao",
+        "ActorAttribution": null,
+        "AttributionNote": "天聖廣燈錄. Full six-rung exact-turn review identifies Juehua Puzhao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_b4367c692c8a:0539a10:1:3",
+      "entryId": "t_b4367c692c8a",
+      "sourceTerm": "有什麼交涉",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0539a10",
+      "Kwic": "進云：恁麼則昔日智門，今朝和尚。師云：有什麼交涉？",
+      "caseClusterId": "X/X78/X78n1553.xml:969713:970376",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Cuifeng Chongxian",
+        "ActorAttribution": null,
+        "AttributionNote": "天聖廣燈錄. Full six-rung exact-turn review identifies Cuifeng Chongxian as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_15eec715e731:0420a07:1:3",
+    "t_b4367c692c8a:0519b23:1:2",
+    "t_b4367c692c8a:0539a10:1:3"
+  ]
+}

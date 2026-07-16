@@ -1,0 +1,34 @@
+{
+  "source": "J/J37/J37nB372.xml",
+  "compiledFrom": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/source-workbooks/overrides-J37nB372.json",
+  "decisions": [
+    {
+      "entryId": "t_2d92f15fa0ab",
+      "sourceTerm": "雲水",
+      "RelPath": "J/J37/J37nB372.xml",
+      "FromLb": "0076b02",
+      "Kwic": "笑傲乾坤雲水間，回頭處處是青山。花兩岸，柳一灣，時人不識謂偷閒。",
+      "caseClusterId": "J/J37/J37nB372.xml:64730:69845",
+      "Decision": {
+        "MasterName": "Fomin Jine",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Chuanzi Decheng",
+            "Roles": [
+              "source poet whose boatman songs are being harmonized"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Chan Master Yinxin Fomin Jine (印心佛敏訥禪師語錄), Songs Harmonizing with the Boatman Monk (和船子和尚撥棹歌), second harmonization sequence (再和). Fomin Jine is the exact poet of this stanza about roaming amid clouds and water. Chuanzi Decheng is the named source poet whose boatman songs Fomin harmonizes, not the speaker of Fomin's response stanza."
+      },
+      "ExpectedSourceTitle": "印心佛敏訥禪師語錄",
+      "Review": {
+        "reviewer": "Codex source-batched exact-turn review",
+        "reviewedUtc": "2026-07-14T07:00:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "source": "J/J28/J28nB220.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_dab856504b69:0781b11:1:6",
+      "entryId": "t_dab856504b69",
+      "sourceTerm": "作家",
+      "RelPath": "J/J28/J28nB220.xml",
+      "FromLb": "0781b11",
+      "Kwic": "鉗鎚佛祖，必須作家。如何是作家？」師云：「殺人不眨眼。",
+      "caseClusterId": "J/J28/J28nB220.xml:25917:26380",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "法璽印禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Faxi Yin (法璽印禪師語錄): during the retreat-opening hall exchange, an unnamed monk says that forging buddhas and patriarchs requires an adept and asks Faxi Yin what an adept is; Faxi answers 'one who kills without blinking.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Faxi Yin",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_dab856504b69:0781b11:1:6"
+  ]
+}

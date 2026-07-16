@@ -1,0 +1,108 @@
+# Dictionary occurrence audit (dry-run)
+
+- Shipped entries: 128
+- entries_audited: 256
+- headword_free_kwics: 98
+- occurrences_audited: 1362
+- verified_occurrences: 1362
+
+## Non-anchor flags
+
+- `headword-free-kwic` — `t_4cc95950b59a` 一句 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_4cc95950b59a` 一句 — termbase — B/B25/B25n0145.xml
+- `headword-free-kwic` — `t_8bd6933e6de3` 一喝 — termbase — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — termbase — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — termbase — T/T47/T47n1988.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — termbase — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — termbase — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — termbase — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — termbase — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_7d440e0d91b4` 公案 — termbase — T/T48/T48n2003.xml
+- `headword-free-kwic` — `t_61c90d3a8edd` 兼中到 — termbase — X/X72/X72n1437.xml
+- `headword-free-kwic` — `t_8650004bb9d7` 兼中至 — termbase — T/T47/T47n1987B.xml
+- `headword-free-kwic` — `t_8650004bb9d7` 兼中至 — termbase — T/T47/T47n1987A.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — termbase — J/J34/J34nB306.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — termbase — J/J38/J38nB408.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — termbase — J/J28/J28nB211.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — termbase — J/J23/J23nB134.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — termbase — T/T47/T47n1994A.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — termbase — J/J25/J25nB175.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — termbase — J/J29/J29nB244.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — termbase — J/J29/J29nB235.xml
+- `headword-free-kwic` — `t_d69c18a98053` 喫茶去 — termbase — J/J33/J33nB282.xml
+- `headword-free-kwic` — `t_d69c18a98053` 喫茶去 — termbase — X/X82/X82n1571.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — termbase — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — termbase — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — termbase — X/X63/X63n1255.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — termbase — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — termbase — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — termbase — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — termbase — X/X73/X73n1457.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — termbase — T/T47/T47n1990.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — termbase — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — termbase — T/T47/T47n1997.xml
+- `headword-free-kwic` — `t_097f38f58678` 庭前柏樹子 — termbase — J/J24/J24nB137.xml
+- `headword-free-kwic` — `t_7180f7431520` 恁麼 — termbase — T/T51/T51n2076.xml
+- `headword-free-kwic` — `t_1d3706324b0c` 打成一片 — termbase — B/B27/B27n0152.xml
+- `headword-free-kwic` — `t_62044e7bbb87` 本分事 — termbase — B/B14/B14n0082.xml
+- `headword-free-kwic` — `t_36aa29eb1287` 水牯牛 — termbase — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_d35dc9e3723e` 無念 — termbase — T/T48/T48n2008.xml
+- `headword-free-kwic` — `t_4aa0ae72820e` 現成 — termbase — T/T47/T47n1997.xml
+- `headword-free-kwic` — `t_b4a4ae6874d0` 異類中行 — termbase — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_c891f0944482` 腳跟 — termbase — X/X82/X82n1571.xml
+- `headword-free-kwic` — `t_6da91f8ce284` 賓主 — termbase — J/J26/J26nB183.xml
+- `headword-free-kwic` — `t_6da91f8ce284` 賓主 — termbase — B/B25/B25n0144.xml
+- `headword-free-kwic` — `t_ebb0995c99fc` 頓悟 — termbase — T/T51/T51n2076.xml
+- `headword-free-kwic` — `t_097f38f58678` 庭前柏樹子 — term-file — J/J24/J24nB137.xml
+- `headword-free-kwic` — `t_1d3706324b0c` 打成一片 — term-file — B/B27/B27n0152.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — term-file — T/T47/T47n1994A.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — term-file — J/J25/J25nB175.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — term-file — J/J29/J29nB244.xml
+- `headword-free-kwic` — `t_1da939bf1267` 呵佛罵祖 — term-file — J/J29/J29nB235.xml
+- `headword-free-kwic` — `t_36aa29eb1287` 水牯牛 — term-file — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_4aa0ae72820e` 現成 — term-file — T/T47/T47n1997.xml
+- `headword-free-kwic` — `t_4cc95950b59a` 一句 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_4cc95950b59a` 一句 — term-file — B/B25/B25n0145.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — term-file — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — term-file — X/X63/X63n1255.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_4e10d7c80fbc` 四照用 — term-file — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — term-file — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — term-file — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_52391cba2cdf` 三玄三要 — term-file — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_61c90d3a8edd` 兼中到 — term-file — X/X72/X72n1437.xml
+- `headword-free-kwic` — `t_62044e7bbb87` 本分事 — term-file — B/B14/B14n0082.xml
+- `headword-free-kwic` — `t_6da91f8ce284` 賓主 — term-file — J/J26/J26nB183.xml
+- `headword-free-kwic` — `t_6da91f8ce284` 賓主 — term-file — B/B25/B25n0144.xml
+- `headword-free-kwic` — `t_7180f7431520` 恁麼 — term-file — T/T51/T51n2076.xml
+- `headword-free-kwic` — `t_7d440e0d91b4` 公案 — term-file — T/T48/T48n2003.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — term-file — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_81147ad4e8bf` 四料揀 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — term-file — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — term-file — T/T47/T47n1988.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_830700de49fb` 三句 — term-file — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_8650004bb9d7` 兼中至 — term-file — T/T47/T47n1987B.xml
+- `headword-free-kwic` — `t_8650004bb9d7` 兼中至 — term-file — T/T47/T47n1987A.xml
+- `headword-free-kwic` — `t_8bd6933e6de3` 一喝 — term-file — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — term-file — J/J34/J34nB306.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — term-file — J/J38/J38nB408.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — term-file — J/J28/J28nB211.xml
+- `headword-free-kwic` — `t_adde034233ba` 即心是佛 — term-file — J/J23/J23nB134.xml
+- `headword-free-kwic` — `t_b4a4ae6874d0` 異類中行 — term-file — X/X80/X80n1565.xml
+- `headword-free-kwic` — `t_c891f0944482` 腳跟 — term-file — X/X82/X82n1571.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — term-file — T/T47/T47n1990.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — term-file — C/C077/C077n1710.xml
+- `headword-free-kwic` — `t_d03aa9267f79` 大機大用 — term-file — T/T47/T47n1997.xml
+- `headword-free-kwic` — `t_d35dc9e3723e` 無念 — term-file — T/T48/T48n2008.xml
+- `headword-free-kwic` — `t_d69c18a98053` 喫茶去 — term-file — J/J33/J33nB282.xml
+- `headword-free-kwic` — `t_d69c18a98053` 喫茶去 — term-file — X/X82/X82n1571.xml
+- `headword-free-kwic` — `t_ebb0995c99fc` 頓悟 — term-file — T/T51/T51n2076.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — term-file — T/T47/T47n1985.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — term-file — T/T48/T48n2006.xml
+- `headword-free-kwic` — `t_ed962dfd1158` 四賓主 — term-file — X/X73/X73n1457.xml

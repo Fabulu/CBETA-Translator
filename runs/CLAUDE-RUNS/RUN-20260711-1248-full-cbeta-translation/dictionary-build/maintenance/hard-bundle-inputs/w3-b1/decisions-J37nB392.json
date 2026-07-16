@@ -1,0 +1,49 @@
+{
+  "source": "J/J37/J37nB392.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_acbbe22bdc76:0565a02:1:4",
+      "entryId": "t_acbbe22bdc76",
+      "sourceTerm": "打坐",
+      "RelPath": "J/J37/J37nB392.xml",
+      "FromLb": "0565a02",
+      "Kwic": "山僧則不然，青龍今日開爐，親切無如者箇，任從睡臥經行，何必拘拘打坐？",
+      "caseClusterId": "J/J37/J37nB392.xml:32676:32920",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "寒松操禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hansong Zhicao",
+        "ActorAttribution": null,
+        "AttributionNote": "寒松操禪師語錄. Full six-rung exact-turn review identifies Hansong Zhicao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_25fb43689d5e:0577c27:1:5",
+      "entryId": "t_25fb43689d5e",
+      "sourceTerm": "折腳鐺",
+      "RelPath": "J/J37/J37nB392.xml",
+      "FromLb": "0577c27",
+      "Kwic": "先老人遺下一箇折腳鐺兒，日炙風吹，不覺六七年矣。今朝須是大家出手扶將起來",
+      "caseClusterId": "J/J37/J37nB392.xml:96221:96650",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "寒松操禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hansong Zhicao",
+        "ActorAttribution": null,
+        "AttributionNote": "寒松操禪師語錄. Full six-rung exact-turn review identifies Hansong Zhicao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_acbbe22bdc76:0565a02:1:4",
+    "t_25fb43689d5e:0577c27:1:5"
+  ]
+}

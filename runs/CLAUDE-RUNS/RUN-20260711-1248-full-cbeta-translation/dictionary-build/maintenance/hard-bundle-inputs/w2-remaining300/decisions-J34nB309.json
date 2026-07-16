@@ -1,0 +1,27 @@
+{
+  "source": "J/J34/J34nB309.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_ba8066477571:0553b09:1:8",
+      "entryId": "t_ba8066477571",
+      "sourceTerm": "喝一喝",
+      "RelPath": "J/J34/J34nB309.xml",
+      "FromLb": "0553b09",
+      "Kwic": "喝一喝便陞。拈香云：",
+      "caseClusterId": "J/J34/J34nB309.xml:5687:6753",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雲腹智禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunfu Zhi",
+        "AttributionNote": "Recorded Sayings of Yunfu Zhi (雲腹智禪師語錄): at his Wudeng Monastery opening, Yunfu Zhi shouts once and immediately ascends the seat for the incense offering."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

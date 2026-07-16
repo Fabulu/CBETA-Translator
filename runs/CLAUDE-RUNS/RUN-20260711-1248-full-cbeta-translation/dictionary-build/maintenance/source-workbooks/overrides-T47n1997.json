@@ -1,0 +1,112 @@
+{
+  "source": "T/T47/T47n1997.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T01:35:00Z",
+  "rows": [
+    {
+      "key": "t_66792ea088de:0714b08:1:6",
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0714b08",
+      "Kwic": "卷第十八　　拈古下　頌古上",
+      "caseClusterId": "T/T47/T47n1997.xml:19859:19927",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_21a3463bc0db:0714c29:1:2",
+      "entryId": "t_21a3463bc0db",
+      "sourceTerm": "隨處",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0714c29",
+      "Kwic": "若委悉得。隨處作主。遇緣即宗。",
+      "caseClusterId": "T/T47/T47n1997.xml:23653:24969",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_6c1f113fbdcd:0726a20:1:2",
+      "entryId": "t_6c1f113fbdcd",
+      "sourceTerm": "淨裸裸",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0726a20",
+      "Kwic": "淨裸裸無遺。赤灑灑全露。",
+      "caseClusterId": "T/T47/T47n1997.xml:75451:76903",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_b701ed7c340b:0741a21:1:1",
+      "entryId": "t_b701ed7c340b",
+      "sourceTerm": "俱胝一指",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0741a21",
+      "Kwic": "雪峯輥毬雲門顧鑑。睦州見成俱胝一指。如生鐵鑄就。",
+      "caseClusterId": "T/T47/T47n1997.xml:143844:144474",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Juzhi",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), in Yuanwu Keqin's own hall address. Yuanwu is the exact speaker who lists Xuefeng's rolling ball, Yunmen's looking, Muzhou's ready-made response, and Juzhi's one finger as cast like raw iron. Juzhi is the person and device discussed, not the speaker of this line.",
+        "ContextMasters": [
+          {"MasterName": "Juzhi", "Roles": ["person-discussed"]},
+          {"MasterName": "Xuefeng Yicun", "Roles": ["person-discussed"]},
+          {"MasterName": "Yunmen Wenyan", "Roles": ["person-discussed"]},
+          {"MasterName": "Muzhou Daoming", "Roles": ["person-discussed"]}
+        ]
+      }
+    },
+    {
+      "key": "t_b701ed7c340b:0750a21:1:2",
+      "entryId": "t_b701ed7c340b",
+      "sourceTerm": "俱胝一指",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0750a21",
+      "Kwic": "俱胝一指頭上用此時節。鳥窠吹布毛處見此時節。",
+      "caseClusterId": "T/T47/T47n1997.xml:182204:183924",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Juzhi",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄), in Yuanwu Keqin's own discourse. Yuanwu is the exact speaker saying that Juzhi used this occasion atop his one finger and that Niaoke saw it when blowing the cloth hair. Juzhi and Niaoke are people discussed, not speakers of this line.",
+        "ContextMasters": [
+          {"MasterName": "Juzhi", "Roles": ["person-discussed"]},
+          {"MasterName": "Niaoke Daolin", "Roles": ["person-discussed"]}
+        ]
+      }
+    },
+    {
+      "key": "t_ffb0ee18f1a2:0757a19:1:1",
+      "entryId": "t_ffb0ee18f1a2",
+      "sourceTerm": "牢關",
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0757a19",
+      "Kwic": "末後一句始到牢關。把斷要津不通凡聖。",
+      "caseClusterId": "T/T47/T47n1997.xml:211963:212713",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "圓悟佛果禪師語錄",
+      "defaultMasterName": "Yuanwu Keqin",
+      "candidateBasis": "existing-note",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J28/J28nB206.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_a60b47e59680:0275b08:1:2",
+      "entryId": "t_a60b47e59680",
+      "sourceTerm": "斬葛藤",
+      "RelPath": "J/J28/J28nB206.xml",
+      "FromLb": "0275b08",
+      "Kwic": "達祖單傳，不存知解，滹沱棒喝，盡斬葛藤，縱云一物全無，業已和盤托出。",
+      "caseClusterId": "J/J28/J28nB206.xml:6536:7068",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "笑堂和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chen Zhishen",
+        "ActorAttribution": null,
+        "AttributionNote": "笑堂和尚語錄, preface by Chen Zhishen. Chen Zhishen is the exact author: the preface closes with his signature 陳之伸頓首拜撰, and the stored appraisal says the Linji staff and shout cut through all entangling vines."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

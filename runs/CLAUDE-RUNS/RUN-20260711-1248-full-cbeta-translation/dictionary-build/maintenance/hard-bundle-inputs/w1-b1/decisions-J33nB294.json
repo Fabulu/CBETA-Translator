@@ -1,0 +1,64 @@
+{
+  "source": "J/J33/J33nB294.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_461377f9b1da:0777a16:1:4",
+      "entryId": "t_461377f9b1da",
+      "sourceTerm": "顧鑒咦",
+      "RelPath": "J/J33/J33nB294.xml",
+      "FromLb": "0777a16",
+      "Kwic": "雲門顧鑒咦。太行山前，白日打劫。顧鑒咦，慣作賊，也能殺，也能活。",
+      "caseClusterId": "J/J33/J33nB294.xml:334613:334791",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雲溪俍亭挺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Langting Jingting",
+        "ActorAttribution": null,
+        "AttributionNote": "雲溪俍亭挺禪師語錄, 舉古. Langting Jingting is the exact commentator and verse author: after explicitly raising Yunmen's 'look, inspect, yi' case, Langting supplies the stored appraisal and repeats the phrase in his own comment.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "person-cited",
+              "case-source"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_283fc1afb0ca:0792c17:1:5",
+      "entryId": "t_283fc1afb0ca",
+      "sourceTerm": "無相戒",
+      "RelPath": "J/J33/J33nB294.xml",
+      "FromLb": "0792c17",
+      "Kwic": "師請圓戒，童諾。師隨問云：「如何是無相戒？」童便打，師云：「久知有這一棒。」",
+      "caseClusterId": "J/J33/J33nB294.xml:429167:438386",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雲溪俍亭挺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Langting Jingting",
+        "ActorAttribution": null,
+        "AttributionNote": "雲溪俍亭挺禪師語錄, 愚庵先老和尚行實. Langting Jingting is the exact questioner: the biography's continuing 師 asks Tiantong for the complete precepts and then asks, 'What is the formless precept?' Tiantong responds by striking him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Miyun Yuanwu",
+            "Roles": [
+              "Tiantong-respondent",
+              "precept-conferrer"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

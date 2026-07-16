@@ -12,6 +12,7 @@ BASE=Path(__file__).resolve().parent
 RISKY_CLAIM=re.compile(r"\b(?:demands?|discloses?|reveals?|symboli[sz]es?|proves?|guarantees?|means enlightenment)\b",re.I)
 ACTION_TARGET=re.compile(r"^to\s+(?:strike|hit|raise|lift|shout|slam|knock|beat|brandish|throw|point)\b",re.I)
 STAGE_TERM=re.compile(r"(?:一下|一喝|一棒|一掌|卓|拈|舉|竪|豎|打|喝)$")
+QUESTIONER_FRAME=re.compile(r"(?:僧問|進云)[^。！？；]*")
 
 def resolve(raw):
  p=Path(raw)
@@ -29,8 +30,11 @@ def lint(path):
    master=str(o.get('MasterName') or '');proof=o.get('DraftActorProof') or {};subject=str(proof.get('GrammaticalSubject') or '')
    if master and subject and master.casefold() not in subject.casefold() and subject.casefold() not in master.casefold():
     flags.append({'kind':'master-proof-subject-mismatch','sense':si,'occurrence':oi,'masterName':master,'proofSubject':subject,'action':'read the full case; MasterName must be the utterer of the headword'})
-   if master and action_risk:
+   if master and action_risk and proof.get('ActionPerformerRiskReviewed') is not True:
     flags.append({'kind':'action-performer-mastername-risk','sense':si,'occurrence':oi,'masterName':master,'action':'decide whether the text narrator states a physical action; if so MasterName is null and the performer belongs in ContextMasters'})
+   kwic=str(o.get('Kwic') or ''); headword_at=kwic.find(term)
+   if master and headword_at >= 0 and any(m.start() < headword_at for m in QUESTIONER_FRAME.finditer(kwic)):
+    flags.append({'kind':'questioner-frame-mastername-risk','sense':si,'occurrence':oi,'masterName':master,'action':'read the full exchange; 僧問 is anonymous and 進云 normally continues the interlocutor, while the respondent belongs in ContextMasters'})
  return {'id':e.get('Id'),'term':term,'path':str(path),'flags':flags,'passes':not flags}
 
 def main():

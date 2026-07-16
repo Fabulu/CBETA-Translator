@@ -1,0 +1,44 @@
+{
+  "source": "J/J37/J37nB392.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_2069b9c33315:0580c26:2:1",
+      "entryId": "t_2069b9c33315",
+      "sourceTerm": "君臣",
+      "RelPath": "J/J37/J37nB392.xml",
+      "FromLb": "0580c26",
+      "Kwic": "父子有親，君臣有義，夫婦有別，長幼有序，朋友有信。",
+      "caseClusterId": "J/J37/J37nB392.xml:110889:111395",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "寒松操禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hansong Zhicao",
+        "AttributionNote": "Recorded Sayings of Hansong Zhicao (寒松操禪師語錄): in his Xianglu Monastery discourse, Hansong Zhicao lists duty between lord and minister among the five relations."
+      }
+    },
+    {
+      "key": "t_167e8b0c7ba3:0582c27:1:4",
+      "entryId": "t_167e8b0c7ba3",
+      "sourceTerm": "畫餅",
+      "RelPath": "J/J37/J37nB392.xml",
+      "FromLb": "0582c27",
+      "Kwic": "談玄談玅，無殊指鹿為馬；行棒行喝，何異畫餅充饑？",
+      "caseClusterId": "J/J37/J37nB392.xml:121241:121889",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "寒松操禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hansong Zhicao",
+        "AttributionNote": "Recorded Sayings of Hansong Zhicao (寒松操禪師語錄): in his Yunji Monastery discourse, Hansong Zhicao compares wielding staff and shout to filling hunger with a painted cake."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

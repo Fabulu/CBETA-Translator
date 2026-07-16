@@ -1,0 +1,100 @@
+{
+  "generatedUtc": "2026-07-13T20:24:47.777006+00:00",
+  "elapsedSeconds": 1.883,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_4f7bd98ad40f",
+      "term": "上堂",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4f7bd98ad40f/entry.v2.json",
+      "sha256": "36921ef8b50560b02f16ec4f2febef848254d186b9a2a106d2b4c79219707590"
+    },
+    {
+      "id": "t_1a7e251bda53",
+      "term": "示眾",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1a7e251bda53/entry.v2.json",
+      "sha256": "c235c9259c7ab57d30fa33c88f5084935777b9baf2f0cb643112c473642224ca"
+    },
+    {
+      "id": "t_8a06e7d99b19",
+      "term": "法嗣",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8a06e7d99b19/entry.v2.json",
+      "sha256": "f763696c5159f8088333ee1f8892d18d0090e2b611c3d3515dc4316fffac97c2"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 40,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4f7bd98ad40f/entry.v2.json",
+        "id": "t_4f7bd98ad40f",
+        "term": "上堂",
+        "verified": 13,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1a7e251bda53/entry.v2.json",
+        "id": "t_1a7e251bda53",
+        "term": "示眾",
+        "verified": 11,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8a06e7d99b19/entry.v2.json",
+        "id": "t_8a06e7d99b19",
+        "term": "法嗣",
+        "verified": 16,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 6,
+        "occurrences": 40,
+        "named_occurrences": 31,
+        "attribution_notes": 40,
+        "actor_impersonal": 7,
+        "deferred_non_roster": 12,
+        "chinese_strings": 18,
+        "anchored_chinese": 18,
+        "context_master_links": 10,
+        "actor_reviewed_unnamed": 2,
+        "supporting_occurrences": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 6,\n    \"occurrences\": 40,\n    \"named_occurrences\": 31,\n    \"attribution_notes\": 40,\n    \"actor_impersonal\": 7,\n    \"deferred_non_roster\": 12,\n    \"chinese_strings\": 18,\n    \"anchored_chinese\": 18,\n    \"context_master_links\": 10,\n    \"actor_reviewed_unnamed\": 2,\n    \"supporting_occurrences\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp6hed0t8k.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 3,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 3,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

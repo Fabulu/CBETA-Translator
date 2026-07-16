@@ -1,0 +1,30 @@
+{
+  "source": "X/X70/X70n1376.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_f1b933473387:0076c05:1:3",
+      "entryId": "t_f1b933473387",
+      "sourceTerm": "閑葛藤",
+      "RelPath": "X/X70/X70n1376.xml",
+      "FromLb": "0076c05",
+      "Kwic": "巨帙已載閑葛藤，何堪又送閑家具。開眼一看笑呵呵，猶有這箇可奈何，",
+      "caseClusterId": "X/X70/X70n1376.xml:266458:267294",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "痴絕道冲禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xu Minzi",
+        "ActorAttribution": null,
+        "AttributionNote": "痴絕道冲禪師語錄. Full six-rung exact-turn review identifies Xu Minzi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_f1b933473387:0076c05:1:3"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "source": "T/T48/T48n2025.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_62230eb0d866:1117a07:1:2",
+      "entryId": "t_62230eb0d866",
+      "sourceTerm": "波羅提木叉",
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1117a07",
+      "Kwic": "汝等比丘於我滅後。當尊波羅提木叉。是汝大師。如我住世無異也。",
+      "caseClusterId": "T/T48/T48n2025.xml:65279:66354",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "勅修百丈清規",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "The Buddha",
+        "ActorAttribution": null,
+        "AttributionNote": "勅修百丈清規. The Buddha is the exact actor: 佛成道涅槃 quotes 汝等比丘…當尊波羅提木叉.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dehui",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_90e46d995978:1140a13:1:4",
+      "entryId": "t_90e46d995978",
+      "sourceTerm": "參請",
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1140a13",
+      "Kwic": "遊方參請遊方參請稟辭師長。慕有道尊宿處。依棲求掛搭古規首到客司相看。次往堂司掛搭。",
+      "caseClusterId": "T/T48/T48n2025.xml:208175:212655",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "勅修百丈清規",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "institutional procedure",
+          "ActorLabel": "the institutional procedure section",
+          "ActorRole": "procedural/editorial instruction",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z",
+          "GrammarEvidence": "It is a heading plus unframed procedural sequence, with no personal speech verb or first-person actor."
+        },
+        "AttributionNote": "勅修百丈清規. The exact actor is the institutional procedure section: 遊方參請/稟辭師長 is impersonal rule prose.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dehui",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_62230eb0d866:1158c08:1:3",
+      "entryId": "t_62230eb0d866",
+      "sourceTerm": "波羅提木叉",
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1158c08",
+      "Kwic": "且吾聖人以波羅提木叉為壽命。而百丈清規由是而出。此固叢林禮法之大經也。",
+      "caseClusterId": "T/T48/T48n2025.xml:324579:326404",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "勅修百丈清規",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Yixian",
+        "ActorAttribution": null,
+        "AttributionNote": "勅修百丈清規. Yixian is the exact actor: the 至大清規序 closes 廬山東林弌咸書 and contains this precept-code sentence.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dehui",
+            "Roles": [
+              "later-compiler"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

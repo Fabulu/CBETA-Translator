@@ -1,0 +1,43 @@
+{
+  "source": "T/T47/T47n2000.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_4dd50050b279:1030c11:1:3",
+      "entryId": "t_4dd50050b279",
+      "sourceTerm": "拾得",
+      "RelPath": "T/T47/T47n2000.xml",
+      "FromLb": "1030c11",
+      "Kwic": "寒山拾得㸑下偷僧飯。崖根抱虎眠。懶吟長短句。來把梵書看。",
+      "caseClusterId": "T/T47/T47n2000.xml:282727:354657",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "虛堂和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xutang Zhiyu",
+        "ActorAttribution": null,
+        "AttributionNote": "虛堂和尚語錄. Xutang Zhiyu is the exact actor: he authors the image inscription depicting 寒山拾得.",
+        "ContextMasters": [
+          {
+            "MasterName": "Hanshan",
+            "Roles": [
+              "depicted-figure"
+            ]
+          },
+          {
+            "MasterName": "Shide",
+            "Roles": [
+              "depicted-figure",
+              "headword-referent"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

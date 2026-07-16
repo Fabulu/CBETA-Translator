@@ -1,0 +1,30 @@
+{
+  "source": "J/J38/J38nB414.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_76cff76a9bd3:0430c01:1:2",
+      "entryId": "t_76cff76a9bd3",
+      "sourceTerm": "丹霞燒佛",
+      "RelPath": "J/J38/J38nB414.xml",
+      "FromLb": "0430c01",
+      "Kwic": "古人用處，如文殊持劍、歸宗斬蛇、丹霞燒佛、睦州掩門",
+      "caseClusterId": "J/J38/J38nB414.xml:68715:68967",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "山鐸真在禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shanduo Zhenzai",
+        "ActorAttribution": null,
+        "AttributionNote": "山鐸真在禪師語錄. Full six-rung exact-turn review identifies Shanduo Zhenzai as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_76cff76a9bd3:0430c01:1:2"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "source": "J/J28/J28nB203.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J28nB203.json",
+  "decisions": [
+    {
+      "entryId": "t_dc854763849c",
+      "sourceTerm": "聲色",
+      "RelPath": "J/J28/J28nB203.xml",
+      "FromLb": "0186a12",
+      "Kwic": "進云：「打鼓弄琵琶，相逢兩作家，秪如不動聲色還辯得麼？」師云：「三千里外少知音。」",
+      "caseClusterId": "J/J28/J28nB203.xml:127884:129023",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking whether it can be discerned without moving sound or form",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "雲峨喜禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking whether it can be discerned without moving sound or form as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Yun'e Xi"
+        ]
+      },
+      "ExpectedSourceTitle": "雲峨喜禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

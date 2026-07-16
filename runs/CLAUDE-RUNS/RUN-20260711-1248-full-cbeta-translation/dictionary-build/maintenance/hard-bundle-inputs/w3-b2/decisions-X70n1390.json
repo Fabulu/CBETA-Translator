@@ -1,0 +1,30 @@
+{
+  "source": "X/X70/X70n1390.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_efa1e241a7f0:0471a23:1:8",
+      "entryId": "t_efa1e241a7f0",
+      "sourceTerm": "擔荷",
+      "RelPath": "X/X70/X70n1390.xml",
+      "FromLb": "0471a23",
+      "Kwic": "爭得盧公賽子雲，一肩擔荷柴衝折。",
+      "caseClusterId": "X/X70/X70n1390.xml:481481:482166",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "希叟紹曇禪師廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xisou Shaotan",
+        "ActorAttribution": null,
+        "AttributionNote": "希叟紹曇禪師廣錄. Full six-rung exact-turn review identifies Xisou Shaotan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_efa1e241a7f0:0471a23:1:8"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "J/J35/J35nB336.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_ab6276be6e08:0691c06:1:6",
+      "entryId": "t_ab6276be6e08",
+      "sourceTerm": "末後句",
+      "RelPath": "J/J35/J35nB336.xml",
+      "FromLb": "0691c06",
+      "Kwic": "偉哉大丈夫，不會末後句。」遂就寢，右脅而化。",
+      "caseClusterId": "J/J35/J35nB336.xml:168089:168296",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "南海寶象林慧弓詗禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianning Xipu",
+        "AttributionNote": "Recorded Sayings of Huigong Xiong (南海寶象林慧弓詗禪師語錄): at death, Tianning Xipu tells the assembly 'a mighty great man does not understand the final phrase' and lies down on his right side."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

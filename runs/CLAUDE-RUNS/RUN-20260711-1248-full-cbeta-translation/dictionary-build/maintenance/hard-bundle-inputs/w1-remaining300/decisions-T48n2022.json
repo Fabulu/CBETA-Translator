@@ -1,0 +1,51 @@
+{
+  "source": "T/T48/T48n2022.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_becc0a1ea8cb:1028b24:2:1",
+      "entryId": "t_becc0a1ea8cb",
+      "sourceTerm": "方丈",
+      "RelPath": "T/T48/T48n2022.xml",
+      "FromLb": "1028b24",
+      "Kwic": "今之踞方丈者。非特刮眾人鉢盂中物以恣口腹。",
+      "caseClusterId": "T/T48/T48n2022.xml:62444:62919",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪林寶訓",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "the unnamed author of Nianya Manlu",
+          "ActorRole": "quoted prose author",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "禪林寶訓. The exact actor is the unnamed author of Nianya Manlu: the passage is explicitly labeled 拈崕漫錄, whose author is not named. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Jingshan",
+            "Roles": [
+              "later-compiler"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

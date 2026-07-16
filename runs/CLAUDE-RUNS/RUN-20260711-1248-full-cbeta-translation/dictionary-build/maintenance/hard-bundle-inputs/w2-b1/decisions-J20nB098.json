@@ -1,0 +1,44 @@
+{
+  "source": "J/J20/J20nB098.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_6edb551acb53:0514b20:1:5",
+      "entryId": "t_6edb551acb53",
+      "sourceTerm": "知解",
+      "RelPath": "J/J20/J20nB098.xml",
+      "FromLb": "0514b20",
+      "Kwic": "多被知解卜度瞞過",
+      "caseClusterId": "J/J20/J20nB098.xml:70539:71638",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "黃蘗無念禪師復問",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Huangbo Wunian Shenyou",
+        "AttributionNote": "Further Questions of Chan Master Huangbo Wunian (黃蘗無念禪師復問): replying to the student Mao Xuanshu, Huangbo Wunian Shenyou says that although Mao's letter is earnest, he has not entered the correct path and is repeatedly deceived by conceptual understanding and conjecture."
+      }
+    },
+    {
+      "key": "t_73fb9441f4fb:0517c30:2:3",
+      "entryId": "t_73fb9441f4fb",
+      "sourceTerm": "立地",
+      "RelPath": "J/J20/J20nB098.xml",
+      "FromLb": "0517c30",
+      "Kwic": "我今立地看你，縱修行百千年，木食草衣，只與吾一般。",
+      "caseClusterId": "J/J20/J20nB098.xml:88310:88591",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "黃蘗無念禪師復問",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Huangbo Wunian Shenyou",
+        "AttributionNote": "Further Questions of Chan Master Huangbo Wunian (黃蘗無念禪師復問): in his Dharma instruction, Huangbo Wunian Shenyou says that standing right here he sees the addressees would remain only equal to him even after hundreds of thousands of years of ascetic cultivation."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

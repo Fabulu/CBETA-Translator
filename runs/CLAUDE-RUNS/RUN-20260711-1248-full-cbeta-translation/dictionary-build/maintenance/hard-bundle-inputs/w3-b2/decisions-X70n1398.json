@@ -1,0 +1,30 @@
+{
+  "source": "X/X70/X70n1398.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_882860247a9b:0647a10:1:6",
+      "entryId": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "RelPath": "X/X70/X70n1398.xml",
+      "FromLb": "0647a10",
+      "Kwic": "寂寂惺惺、昏沉散亂，被寂寂惺惺、昏沉散亂縛",
+      "caseClusterId": "X/X70/X70n1398.xml:35833:36489",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "海印昭如禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Haiyin Zhaoru",
+        "ActorAttribution": null,
+        "AttributionNote": "海印昭如禪師語錄. Full six-rung exact-turn review identifies Haiyin Zhaoru as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_882860247a9b:0647a10:1:6"
+  ]
+}

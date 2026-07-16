@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "immediate-read-repair-ledger-v1",
+  "scope": "cohorts 1-3 entries 106-115",
+  "rule": "Defects found by full-case reading are repaired immediately, but the repair author cannot independently approve the new hash.",
+  "repairs": [
+    {"id":"t_041f65670cd4","headword":"無心","oldSha256":"2123e88837921cce69d94e6ce77610703db2a31c21dcdfa6cef6e5ea209e854b","newSha256":"70552621c2b8645b27ed62a4b94ae4e9cff313cb11be2f7f709e0553a529a42f","change":"Corrected imperial actor from Kangxi to Yongzheng in ActorLabel and AttributionNote.","requiresIndependentRereview":true},
+    {"id":"t_09ed57d56bcf","headword":"普賢","oldSha256":"5b2b539fc85837075fabc1b5e53559e0af7e6d324b706d9c66fb4331df94a8df","newSha256":"733cf3ee1ad22d3aecba44507853ab0311b8d2af01430aa3cb6324d9ef6bec6e","change":"Re-grounded the definition in all attested Chan deployments rather than the narrower elephant-and-pair description.","requiresIndependentRereview":true},
+    {"id":"t_0c53a5a2243b","headword":"知客","oldSha256":"a22ed0712efbc1a7044caff67ad048960bfb91b14d5a2f1ace4a7a5371ff7ccf","newSha256":"d4dfe8bc6af3e822689358efc2ecc83c98017b57ca9a209cb78d5bcbd1657722","change":"Removed a duplicated phrase from the office-sense explanation; evidence and sense boundary unchanged.","requiresIndependentRereview":true}
+  ],
+  "validation": {"jsonParse":true,"zcVerifyChecked":73,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

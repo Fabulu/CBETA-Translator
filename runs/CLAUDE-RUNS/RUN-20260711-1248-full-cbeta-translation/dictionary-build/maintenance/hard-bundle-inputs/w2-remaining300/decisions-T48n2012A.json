@@ -1,0 +1,27 @@
+{
+  "source": "T/T48/T48n2012A.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_6edb551acb53:0382c20:1:7",
+      "entryId": "t_6edb551acb53",
+      "sourceTerm": "知解",
+      "RelPath": "T/T48/T48n2012A.xml",
+      "FromLb": "0382c20",
+      "Kwic": "所謂知解不消。皆為毒藥。",
+      "caseClusterId": "T/T48/T48n2012A.xml:22267:24728",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "黃檗山斷際禪師傳心法要",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Huangbo Xiyun",
+        "AttributionNote": "Essentials of Mind Transmission of Huangbo Duanji (黃檗山斷際禪師傳心法要): in his Essentials of Mind Transmission, Huangbo Xiyun says undigested intellectual understanding is all poison."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

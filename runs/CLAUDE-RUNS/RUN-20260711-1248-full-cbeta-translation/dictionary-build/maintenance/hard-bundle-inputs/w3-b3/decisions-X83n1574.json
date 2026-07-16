@@ -1,0 +1,30 @@
+{
+  "source": "X/X83/X83n1574.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_15eec715e731:0257b18:1:6",
+      "entryId": "t_15eec715e731",
+      "sourceTerm": "燈錄",
+      "RelPath": "X/X83/X83n1574.xml",
+      "FromLb": "0257b18",
+      "Kwic": "景德中，沙門道原所集景德傳燈錄者，其立名甚當，況有所據。後來諸師所集，或名續燈，或名聯燈、普燈、廣燈，雖各有意趣，然終欠純一",
+      "caseClusterId": "X/X83/X83n1574.xml:41293:41644",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "增集續傳燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wenxiu",
+        "ActorAttribution": null,
+        "AttributionNote": "增集續傳燈錄. Full six-rung exact-turn review identifies Wenxiu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_15eec715e731:0257b18:1:6"
+  ]
+}

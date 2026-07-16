@@ -1,0 +1,27 @@
+{
+  "source": "T/T47/T47n1992.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_b887bf089b98:0600a06:1:3",
+      "entryId": "t_b887bf089b98",
+      "sourceTerm": "當處",
+      "RelPath": "T/T47/T47n1992.xml",
+      "FromLb": "0600a06",
+      "Kwic": "榑桑不遠。莫向外馳求。當處發生。隨處自現。乾坤大地。皎皎明白。",
+      "caseClusterId": "T/T47/T47n1992.xml:41683:42586",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "汾陽無德禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fenyang Shanzhao",
+        "AttributionNote": "Recorded Sayings of Fenyang Wude (汾陽無德禪師語錄): in his discourse, Fenyang Shanzhao contrasts outward seeking with arising right there and appearing wherever one goes."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

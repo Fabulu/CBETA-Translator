@@ -1,0 +1,25 @@
+{
+  "bundle": "hard-w1-b1",
+  "status": "complete",
+  "scope": {
+    "occurrences": 150,
+    "sources": 58,
+    "input": "maintenance/hard-bundle-inputs/worker-1-bundle-1-triage.json",
+    "decisionDirectory": "maintenance/hard-bundle-inputs/w1-b1"
+  },
+  "progress": {
+    "reviewedOccurrences": 150,
+    "signedSources": 58,
+    "appliedSources": 58,
+    "verifiedOccurrences": 150
+  },
+  "checkpoint": {
+    "state": "Complete: all 150 exact turns reviewed, all 58 source sheets explicitly signed, and all 58 sources compiled, strict-dry-run, applied, focused-gated, and directly XML-verified 150/150 with zero failures.",
+    "next": "None for hard-w1-b1. No merge, commit, or push was performed."
+  },
+  "prohibitionsObserved": {
+    "merged": false,
+    "committed": false,
+    "pushed": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "source": "J/J33/J33nB280.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J33nB280.json",
+  "decisions": [
+    {
+      "entryId": "t_dc81acde25fd",
+      "sourceTerm": "那畔",
+      "RelPath": "J/J33/J33nB280.xml",
+      "FromLb": "0277b16",
+      "Kwic": "一涉言詮，便落遮畔。如何是那畔底消息？」師云：「你在遮畔多少時也？",
+      "caseClusterId": "J/J33/J33nB280.xml:108109:109594",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking for news from the far side",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "神鼎雲外澤禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking for news from the far side as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Shending Yunwai Ze"
+        ]
+      },
+      "ExpectedSourceTitle": "神鼎雲外澤禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

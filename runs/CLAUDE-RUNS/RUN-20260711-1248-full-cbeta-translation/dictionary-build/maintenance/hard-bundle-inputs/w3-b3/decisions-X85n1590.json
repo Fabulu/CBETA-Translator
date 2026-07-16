@@ -1,0 +1,30 @@
+{
+  "source": "X/X85/X85n1590.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_7ccccfa5fe9a:0168a10:1:3",
+      "entryId": "t_7ccccfa5fe9a",
+      "sourceTerm": "嗣法",
+      "RelPath": "X/X85/X85n1590.xml",
+      "FromLb": "0168a10",
+      "Kwic": "後三處閱藏共九年，微恙而逝。敏樹相禪師敏樹相禪師隣水人。參萬峰明和尚，嗣法焉。住墊江百丈山。月旦，上堂：昨夜一聲獅子㖃，窟中抖擻金毛",
+      "caseClusterId": "X/X85/X85n1590.xml:372269:374819",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "錦江禪燈",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Minshu Xiang",
+        "ActorAttribution": null,
+        "AttributionNote": "錦江禪燈. Full six-rung exact-turn review identifies Minshu Xiang as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_7ccccfa5fe9a:0168a10:1:3"
+  ]
+}

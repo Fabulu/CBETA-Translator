@@ -1,0 +1,57 @@
+{
+  "source": "X/X72/X72n1443.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:00:39Z",
+  "rows": [
+    {
+      "key": "t_6457935dff62:0735c16:1:5",
+      "entryId": "t_6457935dff62",
+      "sourceTerm": "非心非佛",
+      "RelPath": "X/X72/X72n1443.xml",
+      "FromLb": "0735c16",
+      "Kwic": "大梅一人直下承當，何況後代？你看僧問大梅：因何便住此山？梅云：我當時見馬大師向我道：即心即佛。便向此住。僧云：于今大師又道：非心非佛。梅云：者老漢惑亂人未有了日在，任你非心非佛，我祇是即心即佛。大眾！者則因緣那一箇不",
+      "caseClusterId": "X/X72/X72n1443.xml:42910:43844",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "宗寶道獨禪師語錄",
+      "defaultMasterName": "Damei Fachang",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_dfd1dbffe9f2:0735c16:1:3",
+      "entryId": "t_dfd1dbffe9f2",
+      "sourceTerm": "即心即佛",
+      "RelPath": "X/X72/X72n1443.xml",
+      "FromLb": "0735c16",
+      "Kwic": "大梅一人直下承當，何況後代？你看僧問大梅：因何便住此山？梅云：我當時見馬大師向我道：即心即佛。便向此住。僧云：于今大師又道：非心非佛。梅云：者老漢惑亂人未有了日在，任你非心非佛",
+      "caseClusterId": "X/X72/X72n1443.xml:42910:43844",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "宗寶道獨禪師語錄",
+      "defaultMasterName": "Damei Fachang",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Mazu Daoyi",
+        "AttributionNote": "Recorded Sayings of Chan Master Zongbao Daodu (宗寶道獨禪師語錄), in Zongbao Daodu's later raising of the Damei Fachang exchange. Mazu Daoyi is the exact quoted speaker of 即心即佛: Damei Fachang explicitly reports, 'Master Ma said to me: this mind is this buddha.' Damei is the reporter who says he consequently remained on the mountain, and Zongbao is the later raiser, not the speaker inside the quotation.",
+        "ContextMasters": [
+          {
+            "MasterName": "Damei Fachang",
+            "Roles": [
+              "reporter",
+              "quoted-interlocutor"
+            ]
+          },
+          {
+            "MasterName": "Zongbao Daodu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

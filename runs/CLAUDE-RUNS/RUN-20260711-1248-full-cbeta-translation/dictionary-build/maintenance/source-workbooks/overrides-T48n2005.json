@@ -1,0 +1,75 @@
+{
+  "source": "T/T48/T48n2005.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T04:32:45Z",
+  "rows": [
+    {
+      "key": "t_6f138f2956d8:0293a18:1:1",
+      "entryId": "t_6f138f2956d8",
+      "sourceTerm": "不落因果",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0293a18",
+      "Kwic": "於過去迦葉佛時。曾住此山。因學人問。大修行底人還落因果。也無。某甲對云。不落因果。五百生墮野狐身。今請和尚。代一轉語",
+      "caseClusterId": "T/T48/T48n2005.xml:10690:11650",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "old man",
+          "ActorLabel": "unnamed old man and former abbot",
+          "ActorRole": "speaker",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T04:32:45Z"
+        },
+        "AttributionNote": "The Gateless Barrier (無門關), in Wumen Huikai's record of Baizhang Huaihai's fox case. The unnamed old man and former abbot is the exact speaker recounting that he answered 'does not fall under cause and effect' and consequently endured five hundred births as a wild fox. Baizhang Huaihai supplies the requested turning word. The line, expanded context, section header, book title, TEI header, and parallel passages do not name the old man.",
+        "ContextMasters": [
+          {"MasterName": "Baizhang Huaihai", "Roles": ["respondent"]},
+          {"MasterName": "Wumen Huikai", "Roles": ["later-recorder"]}
+        ]
+      }
+    },
+    {
+      "key": "t_fb9ab5bac0bf:0294c15:1:2",
+      "entryId": "t_fb9ab5bac0bf",
+      "sourceTerm": "草鞋",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0294c15",
+      "Kwic": "趙州外歸。泉舉似州。州乃脫履。安頭上而出。泉云。子若在即救得猫兒。無門曰。且道。趙州頂草鞋意作麼生。",
+      "caseClusterId": "T/T48/T48n2005.xml:20359:20714",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Wumen Huikai",
+      "candidateBasis": "inline",
+      "Override": null
+    },
+    {
+      "key": "t_ce2a5ef71afe:0295b11:1:3",
+      "entryId": "t_ce2a5ef71afe",
+      "sourceTerm": "麻三斤",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0295b11",
+      "Kwic": "突出麻三斤言親意更親",
+      "caseClusterId": "T/T48/T48n2005.xml:24001:24129",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Wumen Huikai",
+        "ActorAttribution": null,
+        "AttributionNote": "The Gateless Barrier (無門關), in Wumen Huikai's verse on Dongshan Shouchu's 'three pounds of hemp' case. Wumen Huikai is the exact author of the verse beginning 'he thrusts out three pounds of hemp; the words are intimate and the intent more intimate.' Dongshan Shouchu speaks the answer in the preceding case, not this stored verse.",
+        "ContextMasters": [
+          {"MasterName": "Dongshan Shouchu", "Roles": ["person-discussed", "case-speaker"]}
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

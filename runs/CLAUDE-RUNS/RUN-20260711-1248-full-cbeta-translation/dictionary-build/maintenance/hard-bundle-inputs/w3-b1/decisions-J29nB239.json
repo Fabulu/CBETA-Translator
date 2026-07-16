@@ -1,0 +1,49 @@
+{
+  "source": "J/J29/J29nB239.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_b1487d8fc8f9:0485c13:1:4",
+      "entryId": "t_b1487d8fc8f9",
+      "sourceTerm": "立定腳跟",
+      "RelPath": "J/J29/J29nB239.xml",
+      "FromLb": "0485c13",
+      "Kwic": "萬頃波中一片石，立定腳跟赤骨歷，縱橫無礙百千般，都緣應化非真實。",
+      "caseClusterId": "J/J29/J29nB239.xml:77242:77675",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "吹萬禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chuiwan Guangzhen",
+        "ActorAttribution": null,
+        "AttributionNote": "吹萬禪師語錄. Full six-rung exact-turn review identifies Chuiwan Guangzhen as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_5105a2174a19:0508c14:1:3",
+      "entryId": "t_5105a2174a19",
+      "sourceTerm": "依樣畫葫蘆",
+      "RelPath": "J/J29/J29nB239.xml",
+      "FromLb": "0508c14",
+      "Kwic": "不是隨人腳跟轉，不是依樣畫葫蘆，但能透得關捩子，到處人前稱丈夫。",
+      "caseClusterId": "J/J29/J29nB239.xml:234530:234953",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "吹萬禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chuiwan Guangzhen",
+        "ActorAttribution": null,
+        "AttributionNote": "吹萬禪師語錄. Full six-rung exact-turn review identifies Chuiwan Guangzhen as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_b1487d8fc8f9:0485c13:1:4",
+    "t_5105a2174a19:0508c14:1:3"
+  ]
+}

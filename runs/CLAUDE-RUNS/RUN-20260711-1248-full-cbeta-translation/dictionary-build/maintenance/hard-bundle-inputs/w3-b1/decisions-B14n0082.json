@@ -1,0 +1,85 @@
+{
+  "source": "B/B14/B14n0082.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_7b7ca6f375b5:0226b04:1:1",
+      "entryId": "t_7b7ca6f375b5",
+      "sourceTerm": "罔措",
+      "RelPath": "B/B14/B14n0082.xml",
+      "FromLb": "0226b04",
+      "Kwic": "喜禪師杭州文喜禪師僧問如何是涅槃相師曰香煙盡處驗問如何是自己師默然僧罔措再問師曰青天蒙昧不向月邊飛袁州光涌禪師仰山南塔光涌禪師僧問文殊是七佛",
+      "caseClusterId": "B/B14/B14n0082.xml:0:313839",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "傳燈玉英集（殘卷）",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk left at a loss in Wenxi's exchange",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "傳燈玉英集（殘卷）. Full six-rung exact-turn review identifies Unnamed monk left at a loss in Wenxi's exchange as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Wenxi"
+        ]
+      }
+    },
+    {
+      "key": "t_c728f3a8e02b:0169b07:1:1",
+      "entryId": "t_c728f3a8e02b",
+      "sourceTerm": "家風",
+      "RelPath": "B/B14/B14n0082.xml",
+      "FromLb": "0169b07",
+      "Kwic": "僧問如何是天柱家風師曰時有白雲來閉戶更無風月四山流",
+      "caseClusterId": "B/B14/B14n0082.xml:64651:65301",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "傳燈玉英集（殘卷）",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking about Tianzhu's house style",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "傳燈玉英集（殘卷）. Full six-rung exact-turn review identifies Unnamed monk asking about Tianzhu's house style as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Tianzhu Chonghui"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_7b7ca6f375b5:0226b04:1:1",
+    "t_c728f3a8e02b:0169b07:1:1"
+  ]
+}

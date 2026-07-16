@@ -1,0 +1,95 @@
+{
+  "source": "J/J26/J26nB188.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_ff50c6974a36:0756a04:1:2",
+      "entryId": "t_ff50c6974a36",
+      "sourceTerm": "五位",
+      "RelPath": "J/J26/J26nB188.xml",
+      "FromLb": "0756a04",
+      "Kwic": "五位君臣事若何？」師云：「爐中香裊裊。」進云：「如何是正中偏？」師云：「石女夜不眠。」進云：「如何是偏中正？」師云：「秋到樹頭赤。」進云：「如何是正中來？」師云：「泥牛上五台。」進云：「如何是兼中至？」師云：「黃葉頗相似。」進云：「如何是兼中到？」師云：「踏破波底月。」",
+      "caseClusterId": "J/J26/J26nB188.xml:46391:47067",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "入就瑞白禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Ruibai (入就瑞白禪師語錄): an unnamed monk asks Ruibai Mingxue about the five ruler-minister positions and then asks successively about each named position; Ruibai supplies each answer. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ruibai Mingxue",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b0f2ccf6d140:0762c06:1:6",
+      "entryId": "t_b0f2ccf6d140",
+      "sourceTerm": "結制",
+      "RelPath": "J/J26/J26nB188.xml",
+      "FromLb": "0762c06",
+      "Kwic": "如何是趙州茶？滿酌淺斟皆具足，何須山野再來傾？」僧問：「如何是結制？」師云：「歸單去。」進云：「如何是解制？」師云：「今日",
+      "caseClusterId": "J/J26/J26nB188.xml:82295:82700",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "入就瑞白禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Ruibai (入就瑞白禪師語錄): during the Yunmen retreat-opening tea, an unnamed monk asks Ruibai Mingxue what opening the retreat is; Ruibai tells him to return to his assigned place. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ruibai Mingxue",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_ff50c6974a36:0756a04:1:2",
+    "t_b0f2ccf6d140:0762c06:1:6"
+  ]
+}

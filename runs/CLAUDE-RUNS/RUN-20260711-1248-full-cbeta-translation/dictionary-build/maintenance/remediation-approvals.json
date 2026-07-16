@@ -1,0 +1,1475 @@
+{
+  "schemaVersion": 1,
+  "instructions": "Per-entry rows or cohortBundles store acceptance-bundle hashes and gate verdicts. A cohortBundle supplies entryHashes plus shared defaultGate/gates; explicit entry rows win. Review roles remain distinct.",
+  "entries": {
+    "t_462d9613abe9": {
+      "acceptanceBundleSha256": "0b5519b4249a206e9be55dc4dc916541d43cce48ba64e2c25aa8db1b01710e7f",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 鳥道 entry and WORK passed exact evidence, semantic, depth, search, inference, family-propagation, and reader-facing review.",
+        "reviewer": "repair_bird_path",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_462d9613abe9/entry.v2.json",
+          "terms/t_462d9613abe9/WORK.md",
+          "/tmp/calibration9-public.json",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "鳥道 is not one of the three karma-brief-gated headwords.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent falsification accepted both distinct referents after the stale 本來面目 family rendering and dependency edges were repaired.",
+          "reviewer": "repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_462d9613abe9/WORK.md",
+            "terms/t_1c7d25824f85/WORK.md",
+            "maintenance/family-dependencies.json"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the trackless aerial course and separate precipitous trail as corpus-supported, distinguishable referents with no untravelable-route overclaim.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_462d9613abe9/entry.v2.json",
+            "/tmp/calibration9-public.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Regenerated rich entry and expected shard equal the accepted source; all generated dictionary artifacts are clear of forbidden labels.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "Website card, evidence, speaker, attribution, exact-source link, numbered quote control, and alias-search tests passed in the 507-test suite.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js"
+          ]
+        }
+      }
+    },
+    "t_2b0b654aab0d": {
+      "acceptanceBundleSha256": "2d1de2b0e4648d662495db3447ec5b84b8c1619cd2ce8ef4cb574a49d494f7d9",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 玄路 entry and WORK passed exact evidence, semantic, depth, search, inference, nested-compound, and reader-facing review with seven true standalone anchors.",
+        "reviewer": "repair_dark_road",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_2b0b654aab0d/entry.v2.json",
+          "terms/t_2b0b654aab0d/WORK.md",
+          "/tmp/calibration9-public.json",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "玄路 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted the semantics and required both nested 金鎖玄路 witnesses to be family evidence; the correction was applied and verified.",
+          "reviewer": "repair_bird_path",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_2b0b654aab0d/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the named Caodong hidden-road category and its road/path/way retrieval family after strict nested-compound accounting.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_2b0b654aab0d/entry.v2.json",
+            "/tmp/calibration9-public.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website tests passed, including dark road/path/way aliases and evidence rendering.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_dda048ca832d": {
+      "acceptanceBundleSha256": "efd08cb08321864385bfc279f85077a3fb1e0ed88f43709eec0f2384a5990666",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 金鎖 entry and WORK passed two-referent, modifier, exact-evidence, attribution, depth, inference, and strict nested-family review.",
+        "reviewer": "feedback_lexicography",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_dda048ca832d/entry.v2.json",
+          "terms/t_dda048ca832d/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "金鎖 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted the semantic split and required six longer-compound witnesses to be family evidence; corrected distribution is 6 standalone, 6 family, 2 contrast.",
+          "reviewer": "repair_bird_path",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_dda048ca832d/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts ornate lock-barrier versus binding chain as different objects; solid-gold and enlightenment claims are explicitly rejected as unproved.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_dda048ca832d/entry.v2.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_3c1e31a193cd": {
+      "acceptanceBundleSha256": "b85af2f135f6f62519d07de0d05dd84e92535dacc8c891bfb2f14a2ebaf10a80",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 金 entry and WORK passed full-depth, two-referent, modifier, family-boundary, inference, attribution, and reader-facing review.",
+        "reviewer": "repair_dark_road",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_3c1e31a193cd/entry.v2.json",
+          "terms/t_3c1e31a193cd/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "金 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted ordinary gold and Five-Phase Metal as the two referents and confirmed longer ball families do not define bare 金.",
+          "reviewer": "repair_bird_path",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_3c1e31a193cd/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the two senses and the explicit finding that gold is not an invariant code for enlightenment.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_3c1e31a193cd/entry.v2.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_c994c4b419be": {
+      "acceptanceBundleSha256": "e4d3e7f450e4deaa64d5f41afba286d141b87e1b027f81b0500fcdc182404d24",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 銀 entry and WORK passed broad-corpus one-referent adjudication, depth, modifier, family-boundary, inference, attribution, and reader-facing review.",
+        "reviewer": "repair_bird_path",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_c994c4b419be/entry.v2.json",
+          "terms/t_c994c4b419be/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "銀 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted metal, payment, and comparison as roles of one silver referent and confirmed family images remain locally scoped.",
+          "reviewer": "repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_c994c4b419be/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the documented one-referent structure despite the deliberate broad-single-sense review notice; no sampled second object is being collapsed.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_c994c4b419be/entry.v2.json",
+            "maintenance/depth-sense-gate.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_1b76e4ae53f0": {
+      "acceptanceBundleSha256": "e11ddc5686733b6b584905b706c132b0b5571d3eab249e940e87420bfd8da9fa",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 金彈子 entry and WORK passed exact projectile predicates, depth, material/modifier, nested-family, attribution, inference, and reader-facing review.",
+        "reviewer": "feedback_lexicography",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_1b76e4ae53f0/entry.v2.json",
+          "terms/t_1b76e4ae53f0/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "金彈子 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review confirmed seven standalone and four family anchors, projectile grammar, precise ācārya translation, and local rather than universal value ranking.",
+          "reviewer": "repair_bird_path",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_1b76e4ae53f0/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts a costly gold projectile bent through named exchanges, without equating the pellet or bare gold with enlightenment.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_1b76e4ae53f0/entry.v2.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_45c9e0e72c21": {
+      "acceptanceBundleSha256": "2a1a4527f8a8c177e7ca31a60b60d11d437242e965630f8f6320a670a4ac3ad4",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 銀彈子 entry and WORK passed image-level modifier restraint, multi-source, depth, attribution, inference, family-boundary, and reader-facing review.",
+        "reviewer": "repair_bird_path",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_45c9e0e72c21/entry.v2.json",
+          "terms/t_45c9e0e72c21/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "銀彈子 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted the whole silver-pellet image target and its explicit unresolved material/color relation.",
+          "reviewer": "repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_45c9e0e72c21/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the local Nanquan valuation and independent iron-palm craft image without a universal inferiority code.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_45c9e0e72c21/entry.v2.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_e62a6a10b2f9": {
+      "acceptanceBundleSha256": "2bdb89ebca8b754a0b7f9b4e67a1d71ab08740f71f1730326b2150a419a28895",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 金毬 entry and WORK passed two-referent, verb-frame, modifier, depth, attribution, inference, family-boundary, and reader-facing review.",
+        "reviewer": "repair_bird_path",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_e62a6a10b2f9/entry.v2.json",
+          "terms/t_e62a6a10b2f9/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "金毬 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted acted-on moving ball versus explicit sun/reflected-light orb as different referents and confirmed separation from 金彈子 and bare 金.",
+          "reviewer": "repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_e62a6a10b2f9/WORK.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the two referents and unresolved modifier in moving-ball witnesses; neither is promoted to an enlightenment code.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_e62a6a10b2f9/entry.v2.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering and link tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    "t_1c7d25824f85": {
+      "acceptanceBundleSha256": "16152028ecc6d11d79a331b2fdd21a119ac95cb1f27be1043cc656b1072b48c5",
+      "defaultGate": {
+        "state": "pass",
+        "reason": "Current 本來面目 entry and WORK passed bounded propagation repair, exact evidence, depth, one-referent, nested-compound, attribution, inference, search, and reader-facing review.",
+        "reviewer": "repair_bird_path",
+        "role": "evidence_reviewer",
+        "reviewedUtc": "2026-07-13T17:53:32Z",
+        "evidence": [
+          "terms/t_1c7d25824f85/entry.v2.json",
+          "terms/t_1c7d25824f85/WORK.md",
+          "maintenance/depth-sense-gate.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "本來面目 is not karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent review accepted the one referent and bounded Dongshan sequence after parent-before-birth wording was moved from displayed alternate to retrieval alias.",
+          "reviewer": "feedback_lexicography",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_1c7d25824f85/WORK.md",
+            "terms/t_1c7d25824f85/entry.v2.json"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the recurring original-face question with varied case-scoped answers; neither travel nor non-travel is made a universal definition, and unsupported motive language was removed.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "terms/t_1c7d25824f85/entry.v2.json",
+            "/tmp/original-face-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "Rich artifact and shard equal source; forbidden-artifact scan is clean.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 507 website rendering, source-link, numbered-quote, and search tests passed.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T17:53:32Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    }
+  },
+  "cohortBundles": [
+    {
+      "id": "retrospective-b10-post-actor-law-20260713",
+      "entryHashes": {
+        "t_6f47a97d45b0": "4c697f03d214c3254374ecb228f24c6cfe659bd0a6c8ea90e15aaf4393d3f9ea",
+        "t_8ece09f6b91a": "e9717c23e2a1b0fa2aa46b24b18b674f36abb3cd5fedba207fc9a7c2c5633889",
+        "t_c13928184189": "68528bfca78db566444f362f56e5e05ed7dd691634da890e8b940f4a4986c414",
+        "t_16140def874d": "d4774e0a6a978761b58449326e7e5cd3062b85a6f71f9db9ee46a750bd207f62",
+        "t_c1af3ecba987": "c77e49772fa16bd4adb937ba8cfaaab4fc2d74778639dd11b5cae2488198c029",
+        "t_326be1e9c98a": "54e7d81de50c1095633fbf615bbb34636756c7d5c5a8a419da9df25af80b80f2",
+        "t_d11d5f0c78a5": "1fffa591125fb6682391ee4b222d59bf6d162b3e094fc0c4283fcf10147f268b",
+        "t_cc5235f9eb39": "2d42ef75af6ab88d697ab387195793af86afc5395e6962e74c6dae857108d703",
+        "t_21f09b3726e7": "58b4a9a568a5911f38be045d7ef44fb8fe5fc0ff3d08503c012a6cc818aa48f4",
+        "t_38e49b09cf9d": "3c5bc346565c49b7ca203e89820bd507611895b50668ff84530fdf4b246319bc"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The current ten-entry cohort passes the post-actor-law hard gate: 80/80 exact KWICs, complete attribution and quote anchors, current depth/sense/gloss rules, search recall, openings, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T20:15:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-first20-post-actor-law.json",
+          "maintenance/cohort-gate-b-revised.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these ten headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T20:15:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "An independent complete-case review passed all ten current entries and confirmed the corrected Fenyang Shanzhao attribution in 機鋒.",
+          "reviewer": "feedback_lexicography",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T20:15:00Z",
+          "evidence": [
+            "maintenance/cohort-b-independent-review-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the ten current definitions, sense boundaries, distinguishable glosses, inference limits, exact actors, and evidence families after rerunning the complete current gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T20:15:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-first20-post-actor-law.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "The deterministic merge now preserves optional source timestamps; all ten rich entries equal their generated artifacts and a second merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T20:15:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass, including exact actor, named context, KWIC, attribution, source-link, quote-control, and search behavior.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T20:15:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cohort-a-last3-independent-20260713",
+      "entryHashes": {
+        "t_4f7bd98ad40f": "517d1a84255ddf958785c655b1a30ff63cad727a3121d53a95dc89f4e7539bba",
+        "t_1a7e251bda53": "5d7bc1aa80005df15e304a9fdd4f6ca484b0338090d8e7780e07d346585ac6a6",
+        "t_8a06e7d99b19": "baf95d4372787529af5f8256dbadabc776ae06893a1d184d2ddeed99696d7aee"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The current 上堂, 示眾, and 法嗣 entries pass the full current gate: 40/40 exact KWICs, complete exact-actor XOR states, anchored quotations, current depth/sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T20:25:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-a-last3-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these three headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T20:25:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Three independent complete-case reviews repaired Jiexian's signed preface, impersonal editorial/code rows, the Yaoshan trousers evidence, and the succession actor/evidence structure.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T20:25:00Z",
+          "evidence": [
+            "maintenance/cohort-a-shangtang-independent-review-20260713.md",
+            "maintenance/independent-shizhong-remediation-20260713.md",
+            "maintenance/fasi-independent-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts both 上堂 senses, the 示眾 event/editorial boundary, and both 法嗣 person/relation senses after the actor repairs and added definition-like evidence.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T20:25:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-a-last3-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All three source entries equal the generated rich artifacts; the final deterministic merge changed zero shards on repetition.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T20:25:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass, including named masters, reviewed unnamed non-masters, impersonal actors, context links, KWIC, attribution, and sources.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T20:25:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "first20-a4-c6-independent-20260713",
+      "entryHashes": {
+        "t_8f7b20536cb6": "ac108356bd5a3f4d6031df3a836a5cc7c5b446051edce0666cd3c6e884b01304",
+        "t_f25cebd24730": "4f668c251e2ccade9fc1471c72381a03eeed6a25ca61ef04accb53eb3da4d06b",
+        "t_87cc840b8f33": "c43fc288f0d26ac22b82541a786343ec8f4487a5384c632c7ebe989437d28931",
+        "t_9f119d7965c2": "4517efc17b7b2658f15f981f71c28bf8dae968f89c0ed63caa61d9fef06b012f",
+        "t_12fe3700913c": "1a807c9d07b757e5cae61e2849e8630a5343fdf4f248472c6a1234f0f38f872e",
+        "t_16bbc5599cd2": "4975a1433cea546c9cd71e2edfa381fad9abfbd40d0c0bdc998005ae8e344e84",
+        "t_7653f61478aa": "b5c0047454293561f7872dd7b540d596889d4d4257a2806daed4e7ccc9c64f71",
+        "t_20a56b9c1026": "29066d1a3d5dd51b438b1d99f016599b144d7323ec90cba1ac10623a9002a677",
+        "t_99f4bff4b6c6": "7ce97372a7acc7733be1fab0e004ea955972e706da01138c1bbe365540f0bf12",
+        "t_b48fa1daa7d4": "628720e34ab298a37170315b1c6c59a96312314b97f493263a9cae32f70bef2c"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The current four keystone and six image entries pass the full post-actor-law gate: 111/111 exact KWICs, complete exact actors and notes, anchored quotations, current depth/sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T20:40:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-first20-a4-c6-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these ten headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T20:40:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent full-case reviews corrected seven mixed-turn/quoted-speaker defects in A4, removed family-derived image aliases, and bounded the Shaanfu Iron Ox claim while preserving all ten sense verdicts.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T20:40:00Z",
+          "evidence": [
+            "maintenance/independent-review-a4-report.md",
+            "maintenance/independent-c3a-image-review-20260713.md",
+            "maintenance/first20-c3b-independent-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the independently retested object/action, title/role, and literal/Zen-loaded sense boundaries and the corrected retrieval families after the combined 111-witness gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T20:40:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-first20-a4-c6-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All ten sources equal the generated rich artifacts; 金翅鳥's missing STATUS was repaired, the public set now has 627 entries, and repeat merge changes zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T20:40:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass for exact actors, master/context links, KWIC, attribution, source links, quotation controls, and retrieval aliases.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T20:40:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "risk-top3-attribution-20260713",
+      "entryHashes": {
+        "t_ac4749b5b609": "c4cf343f566ddf4ff67242c78ec3e9e3c95a57456a46f15c546365f28bfd2da2",
+        "t_193632bffe7b": "657ca9a902ffcd1b684450c23d1ef12d4a97781bcffa8d8d9bde77b103e98163",
+        "t_4cc95950b59a": "0d23bf8d7f634ed187304aea493c92b0bcd7921207aee351b113f7880b830a0c"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The three highest-risk attribution entries pass the full current gate after enrichment: 51/51 exact KWICs, complete exact-actor states and source notes, all useful Chinese evidence anchored, current depth/sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T21:05:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-risk-top3-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these three headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T21:05:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent full-case reviews corrected 無生 to no arising, falsified a drink sense for 喝, and broadened 一句 to sentence-or-phrase while resolving or formally reviewing every actor.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T21:05:00Z",
+          "evidence": [
+            "maintenance/independent-review-risk-wusheng-report.md",
+            "maintenance/independent-he-remediation-20260713.md",
+            "maintenance/risk-yiju-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the one-sense verdicts, corrected preferred targets and retrieval aliases, negative 喝水 probes, family boundaries, and explicit unnamed-non-master exception after the combined gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T21:05:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-risk-top3-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All three source entries equal the generated rich artifacts and the repeat deterministic merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T21:05:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass for named/reviewed actors, context links, KWIC, attribution, source links, quote controls, and search aliases.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T21:05:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "risk-next3-attribution-20260713",
+      "entryHashes": {
+        "t_ff59d753a7b1": "abcee344c75ac9d91a4e24ef2d0a3526c7e4578fe7272b8349cc5c20350ade46",
+        "t_26ea593a58e2": "c9359ad439367966db9c91d3f7b04a883f4de7369e8acb106b091507f3893052",
+        "t_8879b278cd83": "feee97748ed993bba09e578117cbb37b1bc68c9471229972b7ffafbf184aa656"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The second risk-ranked cohort passes the full current gate after enrichment: 37/37 exact KWICs, complete exact-actor states and source notes, useful Chinese evidence anchored, current depth/sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T21:20:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-risk-next3-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these three headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T21:20:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent reviews retained three actual 逍遙 referents, exposed the lower-seat nominal sense of 下座, and corrected Yangqi-vs-Linji plus striker/recipient roles in 便打.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T21:20:00Z",
+          "evidence": [
+            "maintenance/independent-review-risk2-xiaoyao-report.md",
+            "maintenance/independent-xiazuo-remediation-20260713.md",
+            "maintenance/risk-bianda-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the three-way person/place/action split for 逍遙, action/place split for 下座, and one immediate-action construction for 便打 after family/title controls and exact-turn repairs.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T21:20:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-risk-next3-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All three sources equal the generated rich artifacts and a repeat deterministic merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T21:20:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass for named/reviewed actors, context links, KWIC, attribution, source links, quote controls, multiple senses, and search aliases.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T21:20:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "risk-third3-attribution-20260713",
+      "entryHashes": {
+        "t_edd5d300476f": "2f1713bfc6a736beb84e603cd2de34c6db9c1dae71e62a9d7283e11df7fdc041",
+        "t_1d3473614976": "77d980fb99a4b9a85803c97ac00d6dd40388cce10ac2caa3d2ecd69601e0a5fe",
+        "t_c945c2cc0e79": "0b1d6522d20bbaa8ca6f56e1d1054b0b1a52a9682b87dfc88b688a8f2ab66baf"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The third risk-ranked cohort passes the full current gate: 40/40 exact KWICs, complete exact-actor states and source notes, 47/47 useful Chinese strings anchored, current depth/sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T21:25:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-risk-third3-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these three headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T21:25:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent complete-case reviews retained the lineage-versus-book split for 聯燈, kept one actor-pure bowing sense for 禮拜, and rebuilt 小參 as one public institutional event while anchoring every quoted string.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T21:25:00Z",
+          "evidence": [
+            "maintenance/independent-review-risk3-liandeng-report.md",
+            "maintenance/independent-libai-remediation-20260713.md",
+            "maintenance/risk-xiaocan-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the two distinct 聯燈 referents, one 禮拜 action despite differing recipients and consequences, and one institutionally defined 小參 event after the combined current gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T21:25:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-risk-third3-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All three sources equal the generated rich artifacts and the repeat deterministic merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T21:25:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass for named/reviewed actors, context links, KWIC, attribution, source links, quote controls, multiple senses, and search aliases.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T21:25:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "risk-fourth3-attribution-20260713",
+      "entryHashes": {
+        "t_4e30d47a452c": "35aa7dcecb0c63abfe161afb7ef0e34e47508a2038f263d410360ce25822a172",
+        "t_7182bedf65d1": "573b431ed5b36c56c0933923fc83779dece9dfcc99357fdf5b5cb5b44e2aeb58",
+        "t_8cf244d2d802": "a75cda0e0ef605ecc9fad4eb1403b1e8852064f1d217f6cad91f086f368232bc"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "The fourth risk-ranked cohort passes the full current gate: 36/36 exact KWICs, complete exact-actor states and source notes, all useful Chinese evidence anchored, current sense/gloss/opening rules, and forbidden-language checks.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-13T22:05:00Z",
+        "evidence": [
+          "maintenance/cohort-gate-risk-fourth3-final.json"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "None of these three headwords is karma-brief-gated.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-13T22:05:00Z",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Independent complete-case reviews retained one immediate-action shout, collapsed noun/verb grammar for one submitted capping response, and merged object-varying picking/presentation into one action while resolving every actor and quote.",
+          "reviewer": "feedback_lexicography; repair_bird_path; repair_dark_road",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-13T22:05:00Z",
+          "evidence": [
+            "maintenance/independent-review-risk4-bianhe-report.md",
+            "maintenance/independent-xiayu-remediation-20260713.md",
+            "maintenance/risk-nianchu-remediation-20260713.md"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts one audible 便喝 construction, one 下語 response referent across noun/verb grammar, and one 拈出 action across differing direct objects after the combined current gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-13T22:05:00Z",
+          "evidence": [
+            "maintenance/cohort-gate-risk-fourth3-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All three source entries equal the generated rich artifacts and the repeat deterministic merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-13T22:05:00Z",
+          "evidence": [
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+            "eng/tools/merge-dict-entries.js"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass after the checkpoint merge.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-13T22:05:00Z",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "semantic-r001-retrospective-20260714",
+      "entryHashes": {
+        "t_c891f0944482": "52ba367e2d0fda5b9be6bc0e641cbf5f1303682be935a31cf1c6daaf4d97db29",
+        "t_07343f750f68": "b2e4cdec7d68b7803f6cac2cfc1045f32a8b6930ecf12e35db440fdf3c4a6d9e",
+        "t_90435e47b008": "1c64ae907777203ca3948c735e1e82195baf47271fc9aaff91ace46fa8f10cc0",
+        "t_10ca0857a11b": "f5587e937f866faf13b18903fcbab3249ad8aa195a97ecdf0b450f75cb6ceade",
+        "t_4ccf8aed47d3": "a5a42cc8b87966fdd1d5015d0237e0ff5a4192d76a10a843c549081ac2c170a2",
+        "t_0f97bfab265c": "b7ee39ffffab7f39207b165ad4740db0783951a67f9d2b32c8c829e762ce6ef6",
+        "t_041f65670cd4": "955029b7e6ff4e88dc8862f17c8596cfec0e218d1ba05a577698ba0bd261a973",
+        "t_0b56e6349db2": "4bf69ecb0972d1fd6c59e86be1ba7afb386e1e97b09908ea1cbde0ced435b82f",
+        "t_d190cf45c531": "4a38f02ba162240519188d927312a3b4c8571dcc62fe68e574bc1b37c8047c67",
+        "t_7180f7431520": "545a1061bce06d527e3da300f48daacab5580d0a079f4a40477d678ec9bcd6bb",
+        "t_75a477117870": "335e9a5e16cb32622f9e87b10f5be1ba3c6cfe162e3a633ec9b5c3f9dbd695d9",
+        "t_67bff0d0e5d3": "c0372a90ce45843c821db196cf74e4667376e5287bbbb01e7598e3f01519779a",
+        "t_5f08e925c83d": "5aab3ef1214dd0f5aa0a8af9f2204209ffb405c1af14f05d22dd26d884fe9e5c",
+        "t_6da91f8ce284": "4956a5b3feb1a45002400bc157175a9ee6e2aee20ef62730b1f584c9f5bf8256",
+        "t_04bce52397dc": "eaf225633338bb8ecec8a0c9e36865cd6bb3bb9a797f70dbcb79ad6edd799d45",
+        "t_d3dbc300bfac": "730ca710e34f088545240c3928e926ecd77a49ef27ea368427e68fbcfe3d9f11",
+        "t_5369e90b59b3": "512aed39d404e3c9ff068845c58e1a3c94c2b5226f1d26572efabc1c9a63e740",
+        "t_04994645e07a": "2fcfcf055161b18389b624870edb1106aced1039c46afedd8df2268872c7fabb",
+        "t_2282e557069b": "28e975bf8550c9a84ef53a4478fc12f7d1f97cd63dac3641053c1a73bd007089",
+        "t_e34e9defcb79": "8cf84bab49cf5b846c9b3876dde9fd78de0ae9a1c39ca551c77d76e6a5944cb7",
+        "t_9d2a5e9aa477": "73f27eaff7dc8889d364506e7f78f39742e04d376b6726edcfc3f97bbc3a7402",
+        "t_62044e7bbb87": "ada11c64b21a20ab9d5c6de01f3c93d62b52e55d3085b051761f5f6a5cd1c8a8",
+        "t_8f89b12a0cc0": "fdbe65de209492150547fcfe944af46e5731ef636d9e141027de24ae05b78be3",
+        "t_bfa342b75391": "c93acf1d2fa4229f063efb17ca9f48bc96db90a35c38e181ebba26d7aa1a0901",
+        "t_ba6668ef3e6e": "48ffe65564e404df7eb5c6c28cbb6e5d50ba7473d9a2c62df2dffcfa35466589",
+        "t_ad0a8e5aac3d": "ea31da1a95e3a0a3e55c73f38e67f99b4f34c25f1115559b32fba147a9488e9a",
+        "t_0e49b88aecba": "805ad6a65b7cac55b5d63286624ecc085aa83b95dbfa25d579ae602b33b6e949",
+        "t_8650004bb9d7": "7e0e4edea2d08a2fa1990514f5dbad142182a9e659edbf2830e7e9da3d3114f6",
+        "t_0ad9fc2dfdda": "14b309fe94ee1a30eeda8e4e5d609f7009ec08d0b4286e4974a7068130c0d2b9",
+        "t_358f56dbf990": "8bcfb47ef880b99c5583e50dddc4450f016c6676cd371c0cfea19f70d9355696",
+        "t_b8d2633b12ef": "ea1facd5b29755906ef1fe2cd515f380fcf160fee8ff265d00f88cd22b7ab4fc",
+        "t_4aa0ae72820e": "66162e7dff9f7256303b28deeb7d2e17c480beb4b2fd8c4c312e11e3d92e3cf3",
+        "t_bb19ed0e0fab": "4df0dae87970ced3ac3a64b1a9bc4396d569dc7c99e8d01ac153418b5d085300",
+        "t_cd14935fc028": "069a278d4a7df7d653b360a5733ad18ae9918c07962bc71900360d7b8613e86a",
+        "t_351fa42d396b": "3df3ce11fe79b162bd6ca14f26346bbdf7d6a116f700e762469a9dac7eadc865",
+        "t_01a34ae8d223": "e240d7409136667bd74731d2591222089f3940d24e2e608e20bdb6c6416c925a",
+        "t_57145bc70a8d": "e7f0e82c420e8d76b06e2be2a306b397c2cc21d50eb97e8d77c4dac1928528fa",
+        "t_830700de49fb": "098b0432f0d4d38b318140e2f864283e072ca9285aff8028d83a3aec1f8dcdc1",
+        "t_adde034233ba": "de05fbdcc4670bf58814db6f27d3f184858aeccdeb609c008968b95d2b769b69",
+        "t_8021c6affb97": "77253ef3b75ca82ace850ed9ca4123ae3cb324ecccacb2503723646f3fd5a750",
+        "t_cc840e36f2da": "9d619ae08ba0d118d1e2a8c58d074454841dc58ddd5092db70cff41c1d155a0b",
+        "t_81147ad4e8bf": "bb4c989c591ddb7a8964621cbeb66d50c01de4d34217dd474ba5a6707bdda2b0",
+        "t_12e8cba30de6": "63b0df4a4e8718756d96f7a8780cbf13da530a4e9b62fb4115ac5cfe5dc9fb08",
+        "t_05a8e67efbf5": "7996b50e82e1f042d66fd7c204c8fdcbb5be96988102ec1c2b0c1d468c24f38d",
+        "t_52391cba2cdf": "31e18ae4517451a96d8a3172c63043501d8b1465226490553f6127bf23ac2039",
+        "t_0e7b683790e8": "37b01936fa9c5c791b24d72ceee8f8895013a1f5a9e0841d80834b2d0c42952a",
+        "t_0160fc00c70d": "4f722a6cbf5f1292b1ea87a13deae7c8189c2517014cd853efd66e31a5aed652",
+        "t_7d440e0d91b4": "6c77a0f11b1f5b3c411f6682f03c7af2e255587bca842fde34835533646f10ad",
+        "t_a234d7149c81": "1ee323765f43afc94d3649c49a91d77ecef264283a84aa0cec6e8416a8fd7456",
+        "t_bc9b4740f883": "fa7f1bfe953e970bcf123e3abf080e9eb07ea14aed91444de7a9d257ab214344",
+        "t_c0a6177c9c44": "62ab989d9529522a112f9d5ce8e142c778c3c3b7ff8472f0705e8e07240b6a35",
+        "t_0fb794f515bd": "8fd12e5210010f19da204c7b17cedcf43bf700ad39bb953a9369f5be40a46c9f",
+        "t_dc854763849c": "4bf15b3e8a6e05986672e2161e4b9240bb839b1a9d8da355a583061d07401a22",
+        "t_acccac1051a4": "aa847143e49a1d1e7ad87b85fd71f2039bec802a433b854cd492083d126cca20",
+        "t_d7883993745e": "b06400d1dbc69b3d482214ab88598233bbb594f236fc5d4a672d46bbc88c9ded",
+        "t_dab856504b69": "ee755289b1e4401e76397cce6cc9d7937425b8d5ee53151e20cdf06c1029269d",
+        "t_c657778889b0": "b25fceac204403fc03a3c1c01644d9e5421802b87c2fbcbb3bca609d17a34dd1",
+        "t_bd2caabef956": "8a090ff2a861ef6817c31d1b253324fbefc8cc531c1c6e0f8757b9152df51968",
+        "t_2069b9c33315": "a6c2d4bab60e2b2ac6c61c7f8078aab0ef7e4d7dbdb4b22f15697584dce550ef",
+        "t_4e10d7c80fbc": "a71b1b5bc9040e46da751772e72c7dc3816791821c8fbbb5d85af9e3c3dc0082",
+        "t_e5259ce8bbf5": "1392a161f7ef6eef0f830a4fe566d9c0780ed34e0113a1322c4b0501677ff9a6",
+        "t_8a016f49e5b8": "ee407b4ffa854d4cc4acc4a89be59283946d0d64d7bc7301856468f116737d18",
+        "t_0a686fa27769": "cf84eeb82014cac3c52d3ae4eaa8a75d7d39530b660663070b39e998ba1962ea",
+        "t_efa1e241a7f0": "f6942dfde1d62356d0feef9000d2384e7a90e7788ffba33d1d8efb3162f704f3",
+        "t_4cf045deab37": "fbe7e446d39caacabb27e0f802b3a0da3cfccaa99ef6a7c135b284f0fefef55e",
+        "t_c875e45fbb9d": "acf5b8352c5640574fdccdad856761daccc1d7015f391c3bc6b74541446c2864",
+        "t_51fe593d9ffe": "953c95115a34bd505f1058f8668d6c0206a50a8fdda7b245b219e4b5b16819fb",
+        "t_01a355a89ba1": "6f5ca920ba2696a8c2d30f276224cdb7baf9ef1b9958e36c407a3951c80beee1",
+        "t_ea2a427c7aba": "31b55d3a1a6e4ae82255cc5fba330a074f8c8675b135eb9863ad47b0c2613008",
+        "t_d35dc9e3723e": "34b0c20b698bb24fe57e228f26a052064bafe0d8b8bdce0b4b86efe019cf7793",
+        "t_ae34e87d493d": "f98e3ca9d04331fca135e8d45e4913d00527c9e5b7c7890a5de46c65523a3222",
+        "t_ed962dfd1158": "63cdf9ea381259b31ba718239cc98dbf76e8895edcde7784059fb08b904c63fa",
+        "t_6abcff898d95": "3784975a8c39b9de770426d4e260bb09260a5b069ba36cfc2f5d711ca6aa077b",
+        "t_8bd6933e6de3": "8fc246c47f9958c1a31088e2e640197a73e48c6ba7bf7a2173eaaab462274250",
+        "t_1da939bf1267": "c64e7073bf0cbc04d8852c7f09299416167ebbcb72d308e5b14d30cc9a14c5f0",
+        "t_0ed8638229a9": "8604b3a1cc9b417c67c0c65343d74e725588971c1db87b440c34b9e5c6206f09",
+        "t_cb3571346f22": "2a22520b214c4ed097f0cfc36ecf54cf8d438727cbe94c6c663192f35757fcd1",
+        "t_9b71e523fe10": "b45d8b3c863a0e0b1bfed840ac0398d78fcac78ed2b879e9d755c073a973a11b",
+        "t_ba8066477571": "0bfb0fe441382366fb602b203f85602b5e7c71e019e29fbc92d0bcd25b2d4877",
+        "t_d03aa9267f79": "0c8956d87d45719e8d915a625415213d75ce69234df13731bae9babecf8679cd",
+        "t_ab6276be6e08": "6fe634277ffc68d81b58b2317da48af682caaf6ebec66b9d95088cfe04a6ab75",
+        "t_4ccccac73fe7": "4bf648818eb1b7ec069b133c1fbcbcda624e41ccd735e95f04ba61d046a7f200",
+        "t_c3a7862b9971": "beb25ab39be5c8f8d682ac6622d4e50df6ac6ce0b58ce160d4b7132e0574f896",
+        "t_0427b79d8ba4": "a3b3ada87caa5a504af6d3a7f734ea9c07fd012dbfa62e7bab44af439c620380",
+        "t_7cddddb76d37": "0ab4b742b17f2e42e794e7bbb79c2e7c7ab44f359831c9e1c3f8c7ccb787a516",
+        "t_094be4e93da2": "1877c7b330326207f479fff4ef7307038364cacf76ac11e0817e47ec05d74b9a",
+        "t_d1e06fd225fa": "49e89723643be297ca439f6b00e0e03c1e319346de6e839e4c9a28f5a5859324",
+        "t_54de754ed6d3": "febc8c46fa8fe16517e1d04f4a4aef9dfa239a74343f543aa90f74bd82aad2a8",
+        "t_aab4ca02ec21": "3af14bc4f3c2db30449a13339501adbf23d5a7d3755eca67038918f0d0055e23",
+        "t_627549d4c466": "36372b98ec32d33a4438e668eba13195378abc3dec40c6057f31a2cc9cea2a6e"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "All 90 current entries passed evidence-owner gates, current-hash independent review, root's 888/888 exact-Witness cohort gate, semantic smell checks, and source/public parity.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+        "evidence": [
+          "maintenance/semantic-cohorts/semantic-r001-root-gate-final.json",
+          "maintenance/semantic-cohorts/semantic-r001-root-adjudication.md"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "This wave contains none of the three karma-brief-gated headwords.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Cyclic role-separated review produced 90 current-hash KEEP verdicts; every revise finding was repaired and re-reviewed before registration.",
+          "reviewer": "feedback_lexicography; repair_bird_path; remaining137_research",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+          "evidence": [
+            "maintenance/semantic-cohorts/semantic-r001-independent-reviewer1.json",
+            "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2.json",
+            "maintenance/semantic-cohorts/semantic-r001-independent-reviewer3.json"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the final sense boundaries, plain-English openings, inference limits, depth, retrieval aliases, exact actors, and anchored evidence after the fresh whole-wave gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+          "evidence": [
+            "maintenance/semantic-cohorts/semantic-r001-root-adjudication.md",
+            "maintenance/semantic-cohorts/semantic-r001-root-gate-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All 90 source entries exactly equal the regenerated rich artifacts; the repeat merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+          "evidence": [
+            "eng/tools/merge-dict-entries.js",
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass, including visible openings, KWIC, exact actor links/states, attribution, source links, quotation controls, and retrieval behavior.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-14T10:53:31.930050+00:00",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "semantic-r002-retrospective-20260714",
+      "entryHashes": {
+        "t_79e00cdbc129": "046e6dae47719b4be5dfb87349cdfd49208e5eec1f21ae05a89f2502e4a2dac3",
+        "t_8601e4559c1a": "449bdbf456faa2f33579bfe47b0031fae2888ac770377940b5d07f39487b569e",
+        "t_292ac4c33b4f": "0be77e2b5e62c9c137d2186168050cfca8bacad2ebc553b7116e1eeed0fbcd1e",
+        "t_18b083a026ba": "ae445ee12ad88b2d7bcbae4d6bbb23ce15b4284ed1123ef386abf8da9281d657",
+        "t_0d6794766098": "25d14e185701ce4f48fd8ae8d29e29354186d645d3b21e73940dd5b6b3d7169b",
+        "t_5ce4bbfe682f": "0a1aa78ddbf74c0b84022a4e63d68a144f1cd14dd5cae9851916a0f3626a0040",
+        "t_ca8f7f2d5d03": "f08ab1990e3d12f4c756467e5554f421dc0efc03365fa536bda9160a8b7385fc",
+        "t_ada407625f42": "af5622fa007ab57bec7a3f327fff255f652ace70f46d0db0fad7e3d9ea30f31a",
+        "t_972b8e6cebdd": "25d78d83112402f64fac8869e83900657a51e2fc67aa2c7da4c83b7c14eb4621",
+        "t_0c86700b60cb": "850f8f8a9bdb6523bb8b54719f0d438c632f86eba78f864e1ef248721562f8eb",
+        "t_3386ec3f2fa0": "c52ae56a2c58fbca6f3752c22debad2fe3e407a09db16e7bc725e431337cd3bd",
+        "t_5e59b126e608": "b37cffff65a7d05c935ef021b26f9eb6257bf160155d6ae8269e12158fb61e66",
+        "t_ff50c6974a36": "3353ecdd940601df92ebaec1882dc84674a63bf7fedc7e8970c1a40f83951b16",
+        "t_083de4a490e2": "a5e79285e43562179c90e5ce351c305d255edd9e648bfc06652da4f2de0f0d6b",
+        "t_e1bba3f0355e": "f8157cb121ff2814d9bc73dc843ac8da76b8520551191cf0dbb4f2ea3a1b2ad7",
+        "t_90e46d995978": "f1e8c271a4e9c45a4a0556e5834b6de7c7a4988b4e090655774b0d6890d83176",
+        "t_12f74718424d": "7bf567bfbc5e4c25006359d2849910b2a86449eb904560214c467413c4337a77",
+        "t_b96051d06349": "ce25f2d6fb47bf86f96343acdb97c3925ef30d79eb79318fa6c5441cd9b21d47",
+        "t_9571d06dd1c7": "dc052262d47efff8440ba5b33abc811423be25415dac5b685752a2b95aa4ef90",
+        "t_4aa29a0183ae": "16c0fdbecd0a62c90586f0ec238531a8e48049e9038f9135daad920378ef91aa",
+        "t_e156057131dc": "fa3c40050b6f00215c99cd346aac915d6b4157b05305a5d1a6befe37c70c9623",
+        "t_114bbd284d1c": "baa0d822e93db44ff817e2f9321c761ad4be0d58404fa101010aec75cc5bacc2",
+        "t_68835cda6c3f": "1a9cb6bed55a3f053a4e71e3345491b8b766170b3390906f54f98292daa37ca1",
+        "t_51f93b6474e8": "739b86c2bbb8248e1858555996dee61157d21fd9e098fe8d75c0dc64c81c4c88",
+        "t_ec1241360056": "c6ad20e5589ed2e10ec81edb49bceb36c9ba9ef3194015609f5361793d865271",
+        "t_f5f691fd0483": "e9c6eddbd5658b1bc0fef3a9541c5361c118d2eff56aa7f3cc9cf0ae0cea0c58",
+        "t_b4a4ae6874d0": "4c79da0448337ce5d936e4eebfe5733d31429475aa89f0b0bd875b7229f93765",
+        "t_08ca0c164829": "63a73b40886191ff5255d49391975c431a4be8adc6c412ed649115e47508a6b6",
+        "t_539b931c442a": "d9c880876205a4fbd2f3cda708308672c1a425b0b38069d60c1f364d7a20de14",
+        "t_5d8f2f79dc60": "42240090389ddff82b37ba89f56cf9b2f85d7f79cebc4f161929acfa58e317c7",
+        "t_a7c8b47ff1a3": "dcb7c26afd4684c11652e622ea906d4530fcbee3979f8c12c3059170f5bdb763",
+        "t_707c9af5cb8e": "62f5b71a7f28959ff20d8d5a9c8346f84c1cfd3673d6ddb2ebb049abb7606774",
+        "t_1d3706324b0c": "57de99393efa5c088ee70237a729f6f5f26f5d0b34a71223f25c443609ef3818",
+        "t_ef39bdc0eb99": "db2fd61f0f2ae070322ae8d237d86222f5ec67f23849824999526e3385a4755c",
+        "t_7cec096303ee": "b7ed26c5941ba574b9dd593a7a23b1be4376cbd9d94e048cc57fed4f747ffe18",
+        "t_66630c6a8a37": "8bbc02218115c0a390f33b978bcd0e594b1f843932e672a386e6a4d96f5041c4",
+        "t_62bc43101d57": "2fd1dbd3a3e3c2f96f54d228bf5a8579ae36e5556f43afe1ec6f23dc7de3219c",
+        "t_6293dead3bb2": "f3a5dd5eb2993abb6661c46662b4d33f1265eb9eed5f7d7ba93f8958b76ea375",
+        "t_5d84cccab8df": "456218de6915ae26ee24bb928f4e287e97d21dafcaad26b37ccd3510bce021fb",
+        "t_93e6bc6b2103": "24664a5a6ff29683919dc86ab02a2ab32bed1de739911b052e6ff57a3c17bd9c",
+        "t_e2c55f8feca0": "2eca85eaaf9e44c282e435f656a5c9cbe4f8f52aea1765a3adcb58761de56a17",
+        "t_1307081cf96c": "c46d0f9987eada2492b1ac13592f7accd457ad8342a16b75ce55d909bf03ff78",
+        "t_da6965508721": "b9c25b6aca39b0535e762825a673932fd80fe6497a73fac6e62364cb64bdba24",
+        "t_91d84c849fc7": "07a5ed5fe18ee82f1eee6af093f2279fd9211fa7c0d4c9b56dff98a7d7c2596f",
+        "t_61c90d3a8edd": "4fffb9ce03e245f840f811646ce957cc36b97f7e9c509437b3dcb043deb8a6bd",
+        "t_3414320aa87c": "7d6cabe9f895b7e21b6c54b8def824c9a762b9bca6ccbd2b5c1e65b30b8d3931",
+        "t_38695d7fdbe2": "f834827f6094f6818411c42985bf07b9e7d4887733d0a3cea32022d333e58741",
+        "t_64b296f04e9b": "f6e161f6dfaa12f3608caa891c2bda2ffd4dd71bcf4e08ccde08aed9bf4d7bfc",
+        "t_4dd50050b279": "d3c34485bf4f83ad9d188f2ca451dffe7a2a173afc5c2ddd4b65bed2104d573d",
+        "t_b4795244cf8e": "3a9f8a1ecfa761e63704ec9e2d8a4c04242aad80623dc3d9f917477692871c1b",
+        "t_bf4ad761840f": "2db4e63853db3f8be6924f5be83449b415416aea91ab1d9511ca7610a61c2113",
+        "t_dd2b39789323": "387e673c7443cacbceb3aa98d9e8ba43d69d8ca420eb6ee15b769b73cbb12840",
+        "t_00e8627f3a48": "fcdd6dbbc2ac72b0c5b324c34d327bc82aa339aad3a0875ef92238d7854931a1",
+        "t_fab146271b10": "cbd2dfc9aae4e1c68c376328bde488fd365fdfde3c78cae1aa4f159dc4124cb3",
+        "t_1f6124388d25": "94e6408485729518ec0158cfd9bfda3a5920ecb1b70987f875448c774f2812e1",
+        "t_66104edf58da": "d6c76904be288b04bc238dd34e4e129780263fc7811ae3b84f0f393464c955b0",
+        "t_38ad422a3ce7": "4f737f73c9622ce044a1f4469d21f4ecdd1168199533b8ba6972645704dd93f4",
+        "t_6edb551acb53": "c6767e40bbb29581d2623aacfd5e311402f340a8e4f302cb94a6a1bf66d9773a",
+        "t_73fb9441f4fb": "4d27360507d72b3171af6d23f417f4b081c413c6aa8ec6589e9139ac7c3c4ee3",
+        "t_c14e0b35341b": "df084dab77ee1899eb7037e9885f357cb151f2426c883be029619e2ad7bf8416",
+        "t_44d14cd3a935": "b4466f9e80f9823dde085b39eb4cc0a8faadb4ab55eda6f693a8395862fee101",
+        "t_db4979f3cddc": "747b6624f18a1e3ef7f321e36704ea380896cea4f2c892a4541e8123dfc663be",
+        "t_986000f3d4d3": "139df08945be3a4509a38bea74dab7ce1388d246cf750ad2debbe604b4c7b309",
+        "t_becc0a1ea8cb": "1c238cc9511485c2864a72550fd71a87244b874d8c84b37ac01ef66cad987e0b",
+        "t_ac98d8955d59": "8ca80357c79a52f55324142f42aa7e12bd1be0178b77c50a3650a4529aef06ba",
+        "t_36aa29eb1287": "4ad889cf2e72de6ad5f4f94e3a3cee7dfe62d29916dede2e75ae1faeeb1c7653",
+        "t_63ca7d059ee8": "a983aa344fc3fed340fdb3eb42310d58195b2d972e7be51997f7886b55f31890",
+        "t_c8ef8a6a8ef7": "fc5de55d4ee653d9a726aed15009bdd572b42e5d851269dca18b1e2f223ff87c",
+        "t_ebb0995c99fc": "d406c90eb17adb01a6125e41bd1ac99e72f34d49bf6e6870d199c646cd7e44d9",
+        "t_ea138c7335d3": "95ca6055f8e80bc9ce86097e881d167155ee78438d9b425bf34d75cb65244d95",
+        "t_462c3d1711b6": "520358d9f2dd7ed1cde06c9fa5425f30907ffe8247a636227e376626d0a23c79",
+        "t_a47845c3571c": "84a68490525b82e052c20c75b84b6a8173d60dc212fb792151e823c0aebe5ed9",
+        "t_bf467ac18ec0": "92f0d1af2b370b74d88481a88667fb97dea042d9057c284d905a6a49ef9272ff",
+        "t_811f46dd81e3": "c2ae67f3ab6f2f092baa809cc6ca49934deddcada08faeae193abb8582ee3f39",
+        "t_4f088a7a7f47": "85345073a9c9a2a3beba94fd3511355d787ff042221f483dad08b45ae99526ac",
+        "t_0fb97dffe2bc": "66fd9e7b65489f9b59cb03578ae39537206cb7e5651e4e59aef591998db89cf4",
+        "t_0f8c3a2073e3": "38a1942c22ede3f0e0bbcbdf4ad6987abec0fe3907615e0f6d7ea3407bc41a8f",
+        "t_097f38f58678": "12571cf5c1cba1980861ea34c8dfefe9f28b121145f53498807ceaefb5b4fb08",
+        "t_d7a73033c034": "f2e56292b17d41299afe3c508237be7a1f603cfc9cb5ad0c1df07f80212cc89d",
+        "t_1274824e797b": "e90e5d8c98ddf4a6f145c2911a07db0b5b02415c6d5d0deef36bab9e8e432956",
+        "t_734eadab549a": "28ab2f731cfc19a0f2161323077c660a58fcc1c638b8ae6b67f01d9648f49056",
+        "t_fc585583b815": "0a4f29deb943615e61462db699627ade64308df7cfce8f78b8901e8d4c8f9f43",
+        "t_9bddb36dfcaf": "37fac496554a59d8fb014ed87e882dda444cf94f31502d7441a3d4b2581e35f6",
+        "t_8f4ef1246821": "3ecc2d1fbfb227a1dec2d2cf9df0f1192ae953aa5a0d5bcf54fe667a9e60bbc0",
+        "t_f41961e0e5be": "a185768f5b7e25732bc8e973a24861caa73294c58fa27a8f0679bf585e7d241b",
+        "t_a9f422b3b249": "a59cf9fe4e6cc2ec4cc110f78ce827a0109dbb503241646993c27c5ba892ab40",
+        "t_a17800fe2986": "68e6218ee8371af45b0a740f92b7023b69043b4d51854d46954520212ff4f430",
+        "t_200fc439a99e": "356bf51324956df2c70c6d0aad317f5e59a14e0c4619fd844adde6da85dffe72",
+        "t_d2892b1eaae0": "8c9a48b7d3bf374fd4dd3dc850b516bdfa82dc3d1d4e23c0ac8980f0b7e56890",
+        "t_6bc71cc88c2f": "d87c8c74b379341ea40cab1a72edb1453e6c019d473ca0eeb33d5935afda3751"
+      },
+      "defaultGate": {
+        "state": "pass",
+        "reason": "All 90 current entries passed evidence-owner gates, current-hash independent review, root's 696/696 exact-Witness cohort gate, semantic smell checks, and source/public parity.",
+        "reviewer": "root",
+        "role": "cohort_gate_reviewer",
+        "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+        "evidence": [
+          "maintenance/semantic-cohorts/semantic-r002-root-gate-final.json",
+          "maintenance/semantic-cohorts/semantic-r002-root-adjudication.md"
+        ]
+      },
+      "gates": {
+        "karma_brief": {
+          "state": "not_applicable",
+          "reason": "This wave contains none of the three karma-brief-gated headwords.",
+          "reviewer": "root",
+          "role": "scope_reviewer",
+          "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+          "evidence": [
+            "REMEDIATION_MASTER.md"
+          ]
+        },
+        "independent_review": {
+          "state": "pass",
+          "reason": "Cyclic role-separated review produced 90 current-hash KEEP verdicts; every revise finding was repaired and re-reviewed before registration.",
+          "reviewer": "feedback_lexicography; repair_bird_path; remaining137_research",
+          "role": "independent_reviewer",
+          "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+          "evidence": [
+            "maintenance/semantic-cohorts/semantic-r002-independent-reviewer1.json",
+            "maintenance/semantic-cohorts/semantic-r002-independent-reviewer2.json",
+            "maintenance/semantic-cohorts/semantic-r002-independent-reviewer3.json"
+          ]
+        },
+        "root_adjudication": {
+          "state": "pass",
+          "reason": "Root accepts the final sense boundaries, plain-English openings, inference limits, depth, retrieval aliases, exact actors, and anchored evidence after the fresh whole-wave gate.",
+          "reviewer": "root",
+          "role": "root_adjudicator",
+          "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+          "evidence": [
+            "maintenance/semantic-cohorts/semantic-r002-root-adjudication.md",
+            "maintenance/semantic-cohorts/semantic-r002-root-gate-final.json"
+          ]
+        },
+        "artifact_parity": {
+          "state": "pass",
+          "reason": "All 90 source entries exactly equal the regenerated rich artifacts; the repeat merge changed zero shards.",
+          "reviewer": "root",
+          "role": "artifact_reviewer",
+          "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+          "evidence": [
+            "eng/tools/merge-dict-entries.js",
+            "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json"
+          ]
+        },
+        "website_render": {
+          "state": "pass",
+          "reason": "All 509 website tests pass, including visible openings, KWIC, exact actor links/states, attribution, source links, quotation controls, and retrieval behavior.",
+          "reviewer": "root",
+          "role": "website_tester",
+          "reviewedUtc": "2026-07-14T12:46:57.753589+00:00",
+          "evidence": [
+            "/mnt/c/programmieren/ZenLinkPage/test/zen-dict.test.js",
+            "/mnt/c/programmieren/ZenLinkPage/test/dict-browse-search.test.js"
+          ]
+        }
+      }
+    }
+  ]
+}

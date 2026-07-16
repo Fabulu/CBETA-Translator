@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB425.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_bf67613e4573:0669a29:1:5",
+      "entryId": "t_bf67613e4573",
+      "sourceTerm": "千手眼",
+      "RelPath": "J/J38/J38nB425.xml",
+      "FromLb": "0669a29",
+      "Kwic": "百千手眼一毫頭，個個須開頂上眸。",
+      "caseClusterId": "J/J38/J38nB425.xml:284760:301483",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "即非禪師全錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jifei Ruyi",
+        "AttributionNote": "Complete Record of Jifei (即非禪師全錄): in his verse on Guanyin, Jifei Ruyi places a hundred-thousand hands and eyes on a single hair-tip."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

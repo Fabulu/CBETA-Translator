@@ -1,0 +1,78 @@
+{
+  "source": "J/J39/J39nB454.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_1d1a833551a9:0606b22:1:5",
+      "entryId": "t_1d1a833551a9",
+      "sourceTerm": "活鱍鱍",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0606b22",
+      "Kwic": "如何是活鱍鱍地句？」遂舉拂子曰：「花發雞冠覓早秋，誰人能染紫絲頭？有時風動頻相倚，似向街前鬥不休。",
+      "caseClusterId": "J/J39/J39nB454.xml:42980:43276",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "頻吉祥禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "頻吉祥禪師語錄. The exact actor is an unnamed monk: he asks 如何是活鱍鱍地句. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Pin Jixiang",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_94be914de45d:0644a23:1:6",
+      "entryId": "t_94be914de45d",
+      "sourceTerm": "體露",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0644a23",
+      "Kwic": "」舉火。「花似錦，水如藍。無生國，儘安閒。即今葉落歸根，如何是體露金風句？」遂下火曰：「掣斷黃金鎖，推倒須彌山。」蒲菴師太封龕。",
+      "caseClusterId": "J/J39/J39nB454.xml:234576:235004",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "頻吉祥禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Pin Jixiang",
+        "ActorAttribution": null,
+        "AttributionNote": "頻吉祥禪師語錄. Pin Jixiang is the exact actor: as funeral officiant he asks 如何是體露金風句.",
+        "ContextMasters": [
+          {
+            "MasterName": "Lingzhuo",
+            "Roles": [
+              "deceased-practitioner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

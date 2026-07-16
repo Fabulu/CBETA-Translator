@@ -1,0 +1,52 @@
+{
+  "source": "X/X80/X80n1565.xml",
+  "instructions": "Single omitted ownership repair. Full case and six-rung ladder reviewed; X82 occurrence remains out of scope.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/repair_bird_path",
+  "reviewedUtc": "2026-07-14T06:24:20Z",
+  "rows": [
+    {
+      "key": "t_3972185a2e25:0050b21:1:3",
+      "entryId": "t_3972185a2e25",
+      "sourceTerm": "宗門",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0050b21",
+      "Kwic": "問。宗門中事。請師舉唱。",
+      "caseClusterId": "X/X80/X80n1565.xml:tianzhu-chonghui-0050",
+      "reviewClass": "full-case-repair",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "six-rung-full-case",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:24:20Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Tianzhu Chonghui",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Tianzhu Chonghui section. An unnamed monk is the exact speaker who asks the teacher to raise and proclaim the matter within the lineage gate; Tianzhu Chonghui answers with the stone ox and wooden horse couplet. The line, expanded context, section header, book title, TEI header, and the corpus-wide exact parallel search do not give the questioning monk a personal name."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

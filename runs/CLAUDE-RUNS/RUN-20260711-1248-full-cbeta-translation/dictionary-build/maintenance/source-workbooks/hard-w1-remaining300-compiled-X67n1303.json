@@ -1,0 +1,50 @@
+{
+  "source": "X/X67/X67n1303.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w1-remaining300/decisions-X67n1303.json",
+  "decisions": [
+    {
+      "entryId": "t_27e66043b271",
+      "sourceTerm": "聲前一句",
+      "RelPath": "X/X67/X67n1303.xml",
+      "FromLb": "0307a16",
+      "Kwic": "僧問黃連和尚：如何是聲前一句？連云：聲前無句，聲後問將來。",
+      "caseClusterId": "X/X67/X67n1303.xml:312266:312468",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "林泉老人評唱投子青和尚頌古空谷集, case 74, Huanglian's phrase before sound. The exact headword-bearing speaker is an unnamed questioning monk: he asks Huanglian what a phrase before sound is, and Huanglian answers that before sound there is no phrase. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huanglian Heshang",
+            "Roles": [
+              "respondent",
+              "case-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "林泉老人評唱投子青和尚頌古空谷集",
+      "Review": {
+        "reviewer": "Codex hard-w1-remaining300",
+        "reviewedUtc": "2026-07-14T00:00:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

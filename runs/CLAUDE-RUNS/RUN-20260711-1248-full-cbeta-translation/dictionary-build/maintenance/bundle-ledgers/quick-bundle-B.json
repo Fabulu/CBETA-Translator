@@ -1,0 +1,120 @@
+{
+  "bundleId": "quick-bundle-B",
+  "worker": "/root/repair_bird_path",
+  "updatedUtc": "2026-07-14T09:20:00Z",
+  "bundleAudit": {
+    "report": "maintenance/source-batch-quick-bundle-B-report-20260714.md",
+    "audit": "maintenance/source-batch-quick-bundle-B-final-audit.json",
+    "triageMatches": "9/9",
+    "sourceGates": "9/9",
+    "distinctEntries": 7,
+    "kwicAndAnchorVerification": "45/45",
+    "failures": []
+  },
+  "completedUnits": [
+    "T/T47/T47n1993.xml",
+    "X/X69/X69n1363.xml",
+    "X/X71/X71n1425.xml",
+    "T/T47/T47n1987A.xml",
+    "T/T48/T48n2025.xml",
+    "X/X67/X67n1307.xml",
+    "X/X70/X70n1381.xml",
+    "X/X71/X71n1426.xml",
+    "X/X73/X73n1445.xml"
+  ],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": null,
+  "units": [
+    {
+      "source": "T/T47/T47n1993.xml",
+      "occurrenceKeys": ["t_c8ef8a6a8ef7:0630b17:1:5"],
+      "exactActorDecisions": ["Huanglong Huinan"],
+      "overrides": 1,
+      "contextFigures": ["Yaoshan Weiyan", "Zun Bunao"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "8/8 KWICs and exact anchors",
+      "entrySha256": "03747b134b12851dca719f476b0984149412d7b66b04206cd4989f81ec8ed4ee"
+    },
+    {
+      "source": "X/X69/X69n1363.xml",
+      "occurrenceKeys": ["t_c8ef8a6a8ef7:0650c14:1:4"],
+      "exactActorDecisions": ["Huineng"],
+      "overrides": 1,
+      "contextFigures": ["Huiming", "Xishan Liang"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "8/8 KWICs and exact anchors",
+      "entrySha256": "03747b134b12851dca719f476b0984149412d7b66b04206cd4989f81ec8ed4ee"
+    },
+    {
+      "source": "X/X71/X71n1425.xml",
+      "occurrenceKeys": ["t_c8ef8a6a8ef7:0758b05:1:3"],
+      "exactActorDecisions": ["Danxia Zichun"],
+      "overrides": 0,
+      "contextFigures": [],
+      "sourceGate": "1/1 hard pass",
+      "verification": "8/8 KWICs and exact anchors",
+      "entrySha256": "03747b134b12851dca719f476b0984149412d7b66b04206cd4989f81ec8ed4ee"
+    },
+    {
+      "source": "T/T47/T47n1987A.xml",
+      "occurrenceKeys": ["t_61c2d0e23c2b:0533c09:1:4"],
+      "exactActorDecisions": ["Caoshan Benji"],
+      "overrides": 0,
+      "contextFigures": [],
+      "sourceGate": "1/1 hard pass",
+      "verification": "5/5 KWICs and exact anchors",
+      "entrySha256": "92740905c86663fbccc57f40d1a1350eaed973732b7c070675ac0e366acc28ce"
+    },
+    {
+      "source": "T/T48/T48n2025.xml",
+      "occurrenceKeys": ["t_bf4ad761840f:1110b29:2:1"],
+      "exactActorDecisions": ["Imperial Preceptor Kunga Gyaltsen Pelzangpo"],
+      "overrides": 1,
+      "contextFigures": ["Baizhang Huaihai", "Dehui", "Xiaoyin Daxin"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "7/7 KWICs and exact anchors",
+      "entrySha256": "f2b03b4f3b38fb75614b4dbe1256422d74913b891a08447476c561fb75a8ae56"
+    },
+    {
+      "source": "X/X67/X67n1307.xml",
+      "occurrenceKeys": ["t_66792ea088de:0469a13:1:1"],
+      "exactActorDecisions": ["Wansong Xingxiu"],
+      "overrides": 1,
+      "contextFigures": ["Shakyamuni Buddha", "Yangshan Huiji", "Fayan Wenyi", "Hongzhi Zhengjue"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "6/6 KWICs and exact anchors",
+      "entrySha256": "0adb4840e568e15d95649cfc49f66416685ebb14a4ee8c8c728160ebea1e2a96"
+    },
+    {
+      "source": "X/X70/X70n1381.xml",
+      "occurrenceKeys": ["t_2745ffff5972:0210c05:1:2"],
+      "exactActorDecisions": ["Po'an Zuxian"],
+      "overrides": 0,
+      "contextFigures": [],
+      "sourceGate": "1/1 hard pass",
+      "verification": "5/5 KWICs and exact anchors",
+      "entrySha256": "9ff9926c8d44b6743fb89600161697c2e23470fe0a268e010476956379d40f3c"
+    },
+    {
+      "source": "X/X71/X71n1426.xml",
+      "occurrenceKeys": ["t_63ee0f50447f:0784a19:1:3"],
+      "exactActorDecisions": ["Sengcan"],
+      "overrides": 1,
+      "contextFigures": ["Zhenxie Qingliao"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "5/5 KWICs and exact anchors",
+      "entrySha256": "9cdac7994c6ee616ab21d34c5d097601bb9b2563007db097331247664dcd791d"
+    },
+    {
+      "source": "X/X73/X73n1445.xml",
+      "occurrenceKeys": ["t_9b71e523fe10:0001b07:1:7"],
+      "exactActorDecisions": ["Zongyi"],
+      "overrides": 1,
+      "contextFigures": ["Xuansha Shibei", "Yitong", "Hongzhao", "Vinaya Master Daoxuan", "Xuefeng Yicun"],
+      "sourceGate": "1/1 hard pass",
+      "verification": "9/9 KWICs and exact anchors",
+      "entrySha256": "94963c9ca57f10d673ea8d65f268e067ee79a68db844fc112d865b10543baef9"
+    }
+  ]
+}

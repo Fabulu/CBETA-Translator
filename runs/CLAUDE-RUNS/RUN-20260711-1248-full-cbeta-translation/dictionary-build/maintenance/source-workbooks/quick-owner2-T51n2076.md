@@ -1,0 +1,384 @@
+# Exact-actor source workbook — `T/T51/T51n2076.xml`
+
+Read each complete case once, map every exact turn, then update every listed entry occurrence. The title/header
+is a candidate only. Every master must be named; reviewed-unnamed is reserved for a genuinely unnamed non-master.
+
+Occurrences: **15** · complete-case clusters: **14**
+
+## Case 1
+
+- Cluster: `T/T51/T51n2076.xml:160464:163726`
+- Title: 景德傳燈錄
+- Review class: `existing-note-canonical-candidate`
+- Title candidate(s): —
+- Header candidate(s): —
+- Risks: embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+衒之聞偈悲喜交并曰。願師久住世間化導群有。師曰。吾即逝矣不可久留。根性萬差多逢患難。衒之曰。未審何人。弟子為師除得。師曰。吾以傳佛祕密利益迷途。害彼自安必無此理。衒之曰。師若不言。何表通變觀照之力。師不獲已乃為讖曰。江槎分玉浪。管炬開金鎖。五口相共行。九十無彼我。衒之聞語。莫究其端。默記于懷禮辭而去。師之所讖。雖當時不測。而後皆符驗。時魏氏奉釋禪俊如林。光統律師流支三藏者乃僧中之鸞鳳也。覩師演道斥相指心。每與師論議是非鋒起。師遐振玄風普施法雨而偏局之量自不堪任。競起害心數加毒藥。至第六度。以化緣已畢傳法得人。遂不復救之端居而逝。即後魏孝明帝太和十九年丙辰歲十月五日也。其年十二月二十八日葬熊耳山。起塔於定林寺。後三歲魏宋雲奉使西域迴。遇師于葱嶺。見手携隻履翩翩獨逝。雲問。師何往。師曰。西天去。又謂雲曰。汝主已厭世。雲聞之茫然。別師東邁。暨復命。即明帝已登遐矣。而孝莊即位。雲具奏其事。帝令啟壙。唯空棺一隻革履存焉。舉朝為之驚歎奉詔取遺履。於少林寺供養。至唐開元十五年丁卯歲。為信道者竊在五臺華嚴寺。今不知所在。初梁武遇師因緣未契。及聞化行魏邦。遂欲自撰師碑而未暇也。後聞宋雲事乃成之。代宗諡圓覺大師。塔曰空觀。師自魏丙辰歲告寂。迄皇宋景德元年甲辰。得四百六十七年矣。
+```
+
+### 律師 — `t_96f468d6b843` S1/O4
+
+- Lines: `0220a23`–`0220a25`
+- Named inline candidate(s): —
+- Row header candidate(s): —
+- Row review class: `existing-note-canonical-candidate`
+
+> 光統律師流支三藏者乃僧中之鸞鳳也。覩師演道斥相指心。每與師論議是非鋒起。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 2
+
+- Cluster: `T/T51/T51n2076.xml:316344:319102`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Wuxiang
+- Risks: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+中。如何是無情因緣。師曰。如今一切動用之中。但凡聖兩流都無少分起滅。便是出識不屬有無。熾然見覺。只聞無其情識繫執。所以六祖云。六根對境分別非識。有僧到參禮。師問。蘊何事業。曰講金剛經。師曰。最初兩字是什麼。曰如是。師曰。是什麼無對。有人問。如何是解脫。師曰。諸法不相到當處解脫。曰恁麼即斷去也。師曰。向汝道諸法不相到斷什麼。師見僧來。以手作圓相。相中書日字。僧無對。師問本淨禪師。汝已後見奇特言語如何淨曰。無一念心愛。師曰。是汝屋裏事。肅宗問。師得何法。師曰。陛下見空中一片雲麼。帝曰見。師曰。釘釘著懸掛著。又問。如何是十身調御。師乃起立曰。還會麼。曰不會。師曰。與老僧過淨瓶來。又曰。如何是無諍三昧。師曰。檀越蹋毘盧頂上行。曰此意如何。師曰。莫認自己清淨法身。又問師。師都不視之。曰朕是大唐天子。師何以殊不顧視。師曰。還見虛空麼。曰見。師曰。他還眨目視陛下否。魚軍容問。師住白崖山。十二時中如何修道。師喚童子來。摩頂曰。惺惺直然惺惺。歷歷直然歷歷。已後莫受人謾。師與紫璘供奉論義。既陞坐。供奉曰。請師立義某甲破。師曰。立義竟。供奉曰。是什麼義。師曰。果然不見。非公境界。便下坐。一日師問紫璘供奉。佛是什麼義。曰是覺義。師曰。佛曾迷否。曰不曾迷。師曰。用覺作麼無對。又問。如何是實相。師曰。把將虛底來。曰虛底不可得。師曰。虛底尚不可得。問實相作麼。僧問。如何是佛法大意。師曰。文殊堂裏萬菩薩。曰學人不會。師曰。大悲千手眼。耽源問。百年後有人問極則事作麼生。師曰。幸自可憐生。須要箇護身符子作麼。師以化緣將畢涅槃時至。乃辭代宗。代宗曰。師滅度後弟子將何所記。師曰。告檀越。造取一所無縫塔。曰就師請取塔樣。師良久曰。會麼。曰不會。師曰。貧道去後有侍者應真。却知此事。大歷十年十二月九日右脅長往。弟子奉靈儀於黨子谷建塔。勅諡大證禪師。代宗後詔應真入內舉問前語。真良久曰。聖上會麼。曰不會。真述偈曰。
+```
+
+### 還會麼 — `t_9ec945311be0` S1/O4
+
+- Lines: `0244c14`–`0244c15`
+- Named inline candidate(s): —
+- Row header candidate(s): Wuxiang
+- Row review class: `anthology-header-candidate`
+
+> 師乃起立曰。還會麼。曰不會。師曰。與老僧過淨瓶來
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 3
+
+- Cluster: `T/T51/T51n2076.xml:334803:339730`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Mazu Daoyi
+- Risks: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+渾如此。師却問曰。大德說何法度人。曰講金剛般若經。師曰。講幾坐來。曰二十餘坐。師曰。此經是阿誰說。僧抗聲曰。禪師相弄。豈不知是佛說耶。師曰。若言如來有所說法。則為謗佛。是人不解我所說義。若言此經不是佛說。則是謗經。請大德說看。無對。師少頃又問。經云。若以色見我。以音聲求我。是人行邪道。不能見如來。大德且道。阿那箇是如來。曰某甲到此却迷去。師曰。從來未悟說什麼却迷。僧曰。請禪師為說。師曰。大德講經二十餘坐。却未識如來。其僧再禮拜。願垂開示。師曰。如來者。是諸法如義。何得忘却。曰是。是諸法如義。師曰。大德是亦未是。曰經文分明那得未是。師曰。大德如否。曰如。師曰。木石如否。曰如。師曰。大德如同木石如否。曰無二。師曰。大德與木石何別。僧無對。良久却問。如何得大涅槃。師曰。不造生死業對。曰如何是生死業。師曰。求大涅槃是生死業。捨垢取淨是生死業。有得有證是生死業。不脫對治門是生死業。曰云何即得解脫。師曰。本自無縛不用求解。直用直行是無等等。僧曰。如禪師和尚者。實謂希有禮謝而去。有行者問。即心即佛那箇是佛。師云。汝疑那箇不是佛指出看。無對。師云。達即遍境是。不悟永乖疎。有律師法明。謂師曰。禪師家多落空。師曰。却是坐主家多落空。法明大驚曰。何得落空。師曰。經論是紙墨文字。紙墨文字者俱空。設於聲上建立名句等法。無非是空。坐主執滯教體。豈不落空。法明曰。禪師落空否。師曰。不落空。曰何却不落空。師曰。文字等皆從智慧而生。大用現前那得落空。法明曰。故知一法不達不名悉達。師曰。律師不唯落空。兼乃錯用名言。法明作色問曰。何處是錯。師曰。律師未辨華竺之音。如何講說。曰請禪師指出法明錯處。師曰。豈不知悉達是梵語邪。律師雖省過。而心猶憤然又問曰。夫經律論是佛語。讀誦依教奉行。何故不見性。師曰。如狂狗趁塊師子齩人。經律論是自性用。讀誦者是性法。法明曰。阿彌陀佛有父母及姓否。師曰。阿彌陀姓憍尸迦。父名月上。母名殊勝妙顏。曰出何教文。師曰。出陀羅尼集。法明禮謝讚歎而退。有三藏法師問。真如有變易否。師曰。有變易。三藏曰。禪師錯也。師却問三藏。有真如否。曰有。師曰。若無變易決定是凡僧也。豈不聞。善知識者能迴三毒為三聚淨戒。迴六識為六神通。迴煩惱作菩提。迴無明為大智真如。若無變易三藏真是自然外道也。三藏曰。若爾者真如即有變易。師曰。若執真如有變易亦是外道。曰禪師適來說真如有變易。如今又道不變易。如何即是的當。師曰。若了了見性者。如摩尼珠現色。說變亦得。說不變亦得。若不見性人。聞說真如變便作變解。聞說不變便作不變解。三藏曰。故知南宗實不可測。有道流問。世間有法過自然否。師曰有。曰何法過得。師曰。能知自然者。曰元氣是道否。師曰。元氣自元氣道自道。曰若如是者則應有二。師曰。知無兩人。又問。云何為邪云何為正。師曰。心逐物為邪。物從心為正。有源律師來問。和尚修道還用功否。師曰。用功。曰如何用功。師曰。饑來喫飯困來即眠。曰一切人總如是同師用功否。師曰。不同。曰何故不同。師曰。他喫飯時不肯喫飯。百種須索。睡時不肯睡。千般計校。所以不同也。律師杜口。有韞光大德問。禪師自知生處否。師曰。未曾死何用論生。知生即是無生法無離生法說有無生。祖師云。當生即不生。曰不見性人亦得如此否。師曰。自不見性不是無性。何以故。見即是性無性不能見。識即是性故名識性。了即是性喚作了性。能生萬法喚作法性。亦名法身。馬鳴祖師云。所言法者。謂眾生心。若心生故一切法生。若心無生法無從生。亦無名字。迷人不知法身無象應物現形。遂喚青青翠竹總是法身欝欝黃華無非般若。黃華若是般若。般若即同無情。翠竹若是法身。法身即同草木。如人喫筍。應總喫法身也。如此之言寧堪齒錄。對面迷佛長劫希求。全體法中迷而外覓。是以解道者行住坐臥無非是道。悟法者縱橫自在無非是法。大德又問。太虛能生靈智否。真心緣於善惡否。貪欲人是道否。執是執非人向後心通否。觸境生心人有定否。住寂寞人有慧否。懷傲物人有我否。執空執有人有智否。尋文取證人。苦行求佛人。離心求佛人。執心是佛人。此智稱道否。請禪師一一為說。師曰。太虛不生靈智。真心不緣善惡。嗜欲深者機淺。是非交爭者未通。觸境生心者少定。寂寞忘機者慧沈。傲物高心者我壯。執空執有者皆愚。尋文取證者益滯。苦行求佛者俱迷。離心求佛者外道。執心是佛者為魔。大德曰。若如是應畢竟無所有。師曰。畢竟是大德。不是畢竟無所有。大德踊躍禮謝而去。
+```
+
+### 阿誰 — `t_43ecdacadde0` S1/O3
+
+- Lines: `0247a02`–`0247a04`
+- Named inline candidate(s): —
+- Row header candidate(s): Mazu Daoyi
+- Row review class: `anthology-header-candidate`
+
+> 師曰。此經是阿誰說。僧抗聲曰。禪師相弄。豈不知是佛說耶。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 4
+
+- Cluster: `T/T51/T51n2076.xml:477665:478982`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Baizhang Huaihai
+- Risks: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+福州古靈神贊禪師。本州大中寺受業後。行脚遇百丈開悟。却迴本寺。受業師問曰。汝離吾在外得何事業。曰並無事業。遂遣執役。一日因澡身。命師去垢。師乃拊背曰。好所佛殿而佛不聖。其師。迴首視之師曰。佛雖不聖且能放光。其師又一日在窓下看經。蜂子投窓紙求出。師覩之曰。世界如許廣闊不肯出。鑽他故紙驢年去得。其師置經問曰。汝行脚遇何人。吾前後見汝發言異常。師曰。某甲蒙百丈和尚指箇歇處。今欲報慈德耳。其師於是告眾致齋。請師說法。師登座舉唱百丈門風。乃曰。靈光獨耀逈脫根塵。體露真常不拘文字。心性無染本自圓成。但離妄緣即如如佛。其師於言下感悟曰。何期垂老得聞極則事。師後住古靈聚徒數載。臨遷化剃沐聲鍾。告眾曰。汝等諸人還識無聲三昧否。眾曰。不識。師曰。汝等靜聽莫別思惟眾皆側聆。師儼然順寂。塔存本山焉。
+```
+
+### 開悟 — `t_33d49f4710be` S1/O1
+
+- Lines: `0268a10`–`0268a11`
+- Named inline candidate(s): —
+- Row header candidate(s): Baizhang Huaihai
+- Row review class: `anthology-header-candidate`
+
+> 行脚遇百丈開悟。却迴本寺。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 5
+
+- Cluster: `T/T51/T51n2076.xml:497868:502271`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Huangbo Xiyun
+- Risks: embedded-case-or-citation, excluded-contributor-or-document-section, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+可以功用到。諸佛菩薩與一切蠢動眾生同大涅槃性。性即是心。心即是佛。佛即是法。一念離真皆為妄想。不可以心更求於心。不可以佛更求於佛。不可以法更求於法。故修道人直下無心默契。擬心即差。以心傳心此為正見。慎勿向外逐境為心。是認賊為子。為有貪瞋癡即立戒定慧。本無煩惱焉有菩提。故祖師云。佛說一切法。為除一切心。我無一切心。何用一切法。本源清淨佛上更不得著一物。譬如虛空。雖以無量珍寶莊嚴。終不能住。佛性同虛空。雖以無量智慧功德莊嚴。終不能住。但迷本性轉不見耳○所謂心地法門。萬法皆依此心建立。遇境即有。無境即無。不可於淨性上專作境解。所言定慧鑑用歷歷寂寂惺惺。見聞覺知皆境上作解。暫為中下人說即得。若欲親證。皆不可作如此解。盡是境縛。法有沒處沒於有地。但於一切法不作有見。即見法○自達磨大師到中國。唯說一性。唯傳一法。以佛傳佛不說餘佛。以法傳法不說餘法。法即不可說之法。佛即不可取之佛。乃是本源清淨心也。唯此一事實餘二則非真。般若為慧。此慧即無相之本也○凡夫不趣道。唯恣六情乃行六道。即學道後。一念計生死。即落諸魔道。一念起諸見。即落外道。見有生趣其滅。即落聲聞道。不見有生唯見有滅。即緣覺道。法本不生今亦不滅。不起二見不厭不忻。一切諸法唯一心是。然後乃為佛乘也○凡人皆逐境生心。心隨欣厭。若欲無境當忘其心。心忘則境空。境空則心滅。不忘心而除境。境不可除。只益紛擾耳。故萬法唯心心亦不可得。復何求哉○學般若法人。不見一法可得。絕意三乘。唯一真實。不可證得。謂我能證能得。皆增上慢人也。法華會下拂衣而去者。皆斯徒也。故佛言。我於菩提實無所得。默契而已○凡人欲修證。但觀五蘊皆空四大無我。真心無相不去不來。生時性亦不來。死時性亦不去。湛然圓寂心境一如。但能如此直下頓了。不為三世所拘繫。便出世人也。切不得有分毫趣向。若見善相諸佛來迎。及種種現前亦無心隨去。若見惡相種種現前亦無畏心。但自忘心同於法界。便得自在○凡言化城者。二乘及十地乃至等覺妙覺。皆是權立接引之教。並為化城也。言寶所者。乃真心本佛自性之寶。此寶不屬情量。不可建立。無佛無眾生。無能無所。何處有城。若問此既是化城何處為寶所。寶所不可指。指即有寶所。非真實所也。故云在近而已。在近者。不可定量言之。但當體會契之即是。闡提者信不具也。一切六道眾生。及至二乘不信有佛果。皆謂之斷善根闡提。菩薩深信佛法。不見有大乘小乘佛與眾生同一法性。乃謂之善根闡提。大抵因聲教而悟者名聲聞。觀因緣而悟者名緣覺。若不向自心中悟。雖至成佛亦謂之聲聞佛。學道人於法上悟不於心上悟。雖歷劫修行。終不是本佛。若不心悟乃於法悟。即是輕心重法。遂成逐塊。忘於本心故。但契本心不用求法。心即法也○凡人多謂境礙心。謂事礙理。常欲逃境以安心屏事以存理。不知乃是心礙境理礙事。但令心空境自空。但令理寂事自寂。勿倒用心也○凡人多不肯空心恐落空。不知自心本空。愚人除事不除心。智者除心不除事。菩薩心如虛空一切俱捨。所作福德皆不貪著。然捨有三等。內外身心一切俱捨。猶如虛空無所取著。然後隨方應物能所皆忘。是謂大捨。若一邊行道布德。一邊旋捨無希望。心是謂中捨。若廣修眾善有所希望。聞法知空。遂乃不著是謂小捨。大捨如火燭在前更無迷悟。中捨如火燭在旁。或明或暗。小捨如火燭在後不見坑阱故。菩薩心如虛空。一切俱捨。過去心不可得。是過去捨。現在心不可得。是現在捨。未來心不可得。是未來捨。所謂三世俱捨。自如來付法迦葉以來。以心印心。心心不異。印著空則印不成文。印著物則印不成法。故以心印心心心不異。能印所印俱難契會。故得者少。然心即無心得即無得○佛有三身。法身說自性靈通法。報身說一切清淨法。化身說六度萬行法。法身說法不以語言音聲形相文字。無所說無所證。自性靈通而已。故曰。無法可說是名說法。報身化身皆隨機感現所說法。亦隨事應根以為攝化。皆非真法。故曰報化非真佛。亦非說法者○所言同是一精明分為六和合者。一精明者一心也。六和合者六根各與塵合。眼與色合。耳與聲合。鼻與香合。舌與味合。身與觸合。意與法合。中間生六識為十八界。若了知十八界空無所有。束六和合為一精明。一精明者即心也。學道人皆知此。但不能免作一精明六和合解。遂為法縛不契本心。如來現世欲說一乘真法。則眾生不信興謗沒於苦海。若都不說則佛墮慳貪。不為眾生普捨妙道。遂方便說三乘。乘有大小得有深淺。皆非本法。故云。惟此一乘道餘二即非真。然終未能顯一心法。故召迦葉同法座坐。別付一心離言說法。此一枝法今別行。若能契悟者。便至佛地。
+```
+
+### 擬心即差 — `t_cf1445e57ef2` S1/O1
+
+- Lines: `0272a04`–`0272a06`
+- Named inline candidate(s): —
+- Row header candidate(s): Huangbo Xiyun
+- Row review class: `anthology-header-candidate`
+
+> 故修道人直下無心默契。擬心即差。以心傳心此為正見。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+### 認賊為子 — `t_e016fb20e6da` S1/O2
+
+- Lines: `0272a06`–`0272a07`
+- Named inline candidate(s): —
+- Row header candidate(s): Huangbo Xiyun
+- Row review class: `anthology-header-candidate`
+
+> 慎勿向外逐境為心。是認賊為子。為有貪瞋癡即立戒定慧。本無煩惱焉有菩提。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 6
+
+- Cluster: `T/T51/T51n2076.xml:522570:523232`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Nanquan Puyuan
+- Risks: embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+又問。如何是陀羅尼。師指禪床右邊曰。遮箇師僧却誦得。又問。別有人誦得否。又指禪床左邊曰。遮箇師僧亦誦得。云某甲為什麼不聞。師曰。大德豈不聞道。真誦無響真聽無聞。云恁麼則音聲不入法界性也。師曰。離色求觀非正見。離聲求聽是邪聞。云如何不離色是正見。不離聲是真聞。師乃有偈曰。
+```
+
+### 恁麼則 — `t_707c9af5cb8e` S1/O4
+
+- Lines: `0275a07`–`0275a08`
+- Named inline candidate(s): —
+- Row header candidate(s): Nanquan Puyuan
+- Row review class: `anthology-header-candidate`
+
+> 云恁麼則音聲不入法界性也。師曰。離色求觀非正見。離聲求聽是邪聞。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 7
+
+- Cluster: `T/T51/T51n2076.xml:527822:528360`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Nanquan Puyuan
+- Risks: inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+心。師曰。盡十方世界是爾心。云恁麼則學人無著身處也。師曰。是爾著身處。云如何是著身處。師曰。大海水深又深。云學人不會。師曰。魚龍出入任升沈。問有人問和尚即隨因緣答。總無人問和尚如何。師曰。困即睡健即起。云教學人向什麼處會。師曰。夏天赤骨力。冬寒須得被。問亡僧什麼處去也。師有偈云。
+```
+
+### 恁麼則 — `t_707c9af5cb8e` S1/O1
+
+- Lines: `0276a01`–`0276a02`
+- Named inline candidate(s): —
+- Row header candidate(s): Nanquan Puyuan
+- Row review class: `anthology-header-candidate`
+
+> 云恁麼則學人無著身處也。師曰。是爾著身處。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 8
+
+- Cluster: `T/T51/T51n2076.xml:598937:602131`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Guishan Lingyou
+- Risks: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+聖不携。此時疎山在眾作嘔聲曰。是何言歟。師問阿誰。眾曰。師叔。師曰。不諾老僧耶。疎山出曰是。師曰。汝莫道得麼。曰道得。師曰。汝試道看。曰若教某甲道須還師資禮始得。師乃下坐禮拜躡前語問之。疎山曰。何不道肯重不得全。師曰。饒汝恁麼也須三十年倒屙。設住山無柴燒。近水無水喫。分明記取。後住疎山果。如師記。至二十七年病愈。自云。香嚴師兄記我。三十年倒屙。今少三年在。每至食畢以手抉而吐之。以應前記問如何是聲前句。師曰。大德未問時即答。僧曰。即時如何。師曰。即時問也。問如何是直截根源佛所印。師拋下。拄杖散手而去。問如何是師法大意。師曰。今年霜降早喬麥總不收。問如何是西來意。師以手入懷出拳展開與之。僧乃跪膝以兩手作受勢。師曰。是什麼。僧無對。問如何是道。師曰。枯木龍吟。僧曰。學人不會。師曰。髑髏裏眼睛問離四句絕百非。請和尚道。師曰。獵師前不得說本師戒。一日謂眾曰。如人在千尺懸崖。口銜樹枝。脚無所蹋。手無所攀。忽有人問如何是西來意。若開口答即喪身失命。若不答又違他所問。當恁麼時作麼生。時有招上座出曰。上樹時即不問。未上樹時如何。師笑而已。師問僧。什麼處來。僧曰。溈山來。師曰。和尚近日有何言句。僧曰。人問如何是西來意。和尚竪起拂子。師聞舉乃曰。彼中兄弟作麼會和尚意旨。僧曰。彼中商量道。即色明心附物顯理。師曰。會即便會。不會著什麼死急。僧却問。師意如何。師還舉拂子師凡示學徒語多簡直。有偈頌二百餘篇。隨緣對機不拘聲律。諸方盛行。後諡襲燈大師。
+```
+
+### 喪身失命 — `t_757827b8d4cb` S1/O1
+
+- Lines: `0284b23`–`0284b24`
+- Named inline candidate(s): —
+- Row header candidate(s): Guishan Lingyou
+- Row review class: `anthology-header-candidate`
+
+> 若開口答即喪身失命。若不答又違他所問。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 9
+
+- Cluster: `T/T51/T51n2076.xml:665365:673631`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Huangbo Xiyun
+- Risks: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+陳尊宿初居睦州龍興寺晦迹藏用。常製草屨密置於道上。歲久人知乃有陳蒲鞋之號焉。時有學人叩激。隨問遽答。詞語峻嶮既非循轍。故淺機之流往往嗤之。唯玄學性敏者欽伏。由是諸方歸慕。謂之陳尊宿。師因晚參謂眾曰。汝等諸人未得箇入頭。須得箇入頭。若得箇入頭。已後不得孤負老僧。時有僧出禮拜曰。某甲終不敢孤負和尚。師曰。早是孤負我了也。師又曰。老僧在此住持。不曾見箇無事人到來。汝等何不近前。時有一僧方近前。師云。維那不在。汝自領出去三門外與二十棒。僧云。某甲過在什麼處。師云。枷上更著杻。師尋常或見衲僧來即閉門。或見講僧乃召云座主。其僧應諾。師云。擔板漢。或云。遮裏有桶與我取水。師一日在廊階上立。有僧來問云。陳尊宿房在何處。師脫草屨騫頭打。僧便走。師召云。大德。僧迴首。師指云。却從那邊去。有僧扣門。師云。阿誰。僧云。某甲。師云。秦時鐸落鑽。一日有天使問。三門俱開從那門而入。師喚尚書。天使應諾。師云。從信門入。天使又見壁畫問云。二尊者對譚何事。師摑露柱云。三身中那箇不說法。師問座主。汝莫是講唯識否。對曰是。師云。五戒不持。師問一長老云。了即毛端吞巨海。始知大地一微塵。長老作麼生。對云。問阿誰。師云。問長老。長老云。何不領話。師云。汝不領話我不領話。師見僧來云。見成公案放汝三十棒。僧云。某甲如是。師云。三門金剛為什麼舉拳。僧云。金剛尚乃如是。師便打。問如何是向上一路。師云。要道有什麼難。僧云。請師道。師云。初三十一中九下七。問以一重去一重即不問。不以一重不去一重時如何。師云。昨朝栽茄子。今日種冬瓜。問如何是曹谿的的意。師云。老僧愛嗔不愛喜。僧云。為什麼如是。師云。路逢劍客須呈劍。不是詩人莫說詩。僧到參。師問。什麼處來。僧云。瀏陽。師云。彼中老宿祇對佛法大意道什麼。云遍地行無路。師云。老宿實有此語否。云實有。師拈拄杖打云。遮念言語漢。師問一長老。若有兄弟來將什麼祇對。長老云。待他來。師云。何不道。長老云。和尚欠少什麼。師云。請不煩葛藤。有僧參。師云。汝豈不是行脚。僧云是。師云。禮佛也未。云禮那土堆作麼。師云。自領出去。僧問。某甲講兼行脚不會教意時如何。師云。實語當懺悔。僧云。乞師指示。師云。汝若不會。老僧即緘口無言。僧云。便請道。師云。心不負人面無漸色。問一句道盡時如何。師云。義墮也。僧云。什麼是學人義墮處。師云。三十棒教誰喫。問教意祖意是同是別。師云。青山自青山。白雲自白雲。僧云。如何是青山。師云。還我一滴雨來。僧云。道不得請師道。師云。法華鋒前陣涅槃句後收。師問僧。今夏在什麼處。云待和尚有住處即說似和尚。師云。狐非師子類。燈非日月明。師問新到僧。什麼處來。僧瞪目視之。師云。驢前馬後漢。僧云。請師鑒。師云。驢前馬後漢道將一向來。無對。師看經次。陳操尚書問。和尚看什麼經。師云。金剛經。尚書云。六朝翻譯此當第幾譯。師舉起經云。一切有為法如夢幻泡影。師又因看涅槃經。僧問。和尚看什麼經。師拈起經云。遮箇是茶毘品最末後。師問新到僧。今夏在什麼處。僧云。徑山。師云。多少人。云四百人。師云。遮喫夜飯漢。僧云。尊宿叢林何言喫夜飯。師乃棒趁出。師聞一老宿難親近。躬往相訪。老宿見師才入方丈便喝。師側掌云。兩重公案老宿云。過在什麼處。師云。遮野狐精便退。師問僧。近離什麼處。僧云。江西。師云。蹋破多少草鞋。僧無對。師與講僧喫茶。師云。我救汝不得也。僧云。某甲不曉乞師垂示。師拈油餅示之云。遮箇是什麼。僧云。色法。師云。遮入鑊湯漢。有一紫衣大德到禮拜。師拈帽子帶示之云。遮箇喚作什麼。大德云。朝天帽。師云。恁麼即老僧不卸也。師復問。所習何業。云唯識。師云。作麼生說。云三界唯心萬法唯識。師指門扇云。遮箇是什麼。云是色法。師云。簾前賜紫對御譚經。何得不持五戒。無對。僧問。某甲乍入叢林。乞指師示。師云。爾不解問。云和尚作麼生。師云。放汝三十棒自領出去。問教意請師提綱。師云。但問將來與爾道。僧云。請和尚道。師云。佛殿裏燒香。三門外合掌。問如何是展演之言。師云。量才補職。僧云。如何得不落展演。師云。伏惟尚饗。師喚焦山近前來。又呼童子取斧來。童子取斧至云。未有繩墨且斫麁。師喝之。又喚童子云。作麼生是爾斧頭。童子遂作斫勢。師云。斫爾老爺頭不得。問如何是放一線道。師云。量才補職。又問。如何是不放一線道。師云。伏惟尚饗。新到僧參。師云。汝是新到否。云是。師云。且放下葛藤會麼。云不會。師云。擔枷陳狀自領出去。僧便出。師云。來來我實問爾什麼處來。云江西。師云。泐潭和尚在爾背後怕爾亂道見麼。無對。問寺門前金剛托即。乾坤大地不托即。絲髮不逢時如何。師云。吽吽我不曾見此問。先跳三千倒退八百。爾合作麼生。僧云諾。師云。先責一紙罪狀好便打。其僧擬出。師云。來我共爾葛藤。托即乾坤大地。爾且道洞庭湖裏水深多少。僧云。不曾量度。師云。洞庭湖又作麼生。僧云。只為今時。師云。只遮葛藤尚不會乃打之。問如何是觸途無滯底句。師云。我不恁麼道。云師作麼生道。師云。箭過西天十萬里向大唐國裏等候。有僧扣門。師云。作麼。云己事未明乞師指示。師云。遮裏只有棒方開門。其僧擬問。師便摑其僧口問。以字不成。八字不是。是何章句。師彈指一聲云。會麼。云不會。師云。上來表讚無限勝因。蝦蟇跳上梵天。蚯蚓走過東海。西峯長老來參。師致茶果命之令坐問云。長老今夏在什麼處安居。云蘭谿。師云。有多少徒眾。云七十來人。師云。時中將何示徒。長老拈起甘子呈云。已了。師云。著什麼死急。時有僧新到參方禮拜。師叱云。闍梨因何偷常住果子喫。僧云。學人才到。和尚為什麼道偷果子。師云。贓物見在。師問僧。近離什麼處。曰仰山。師曰。五戒也不持。曰某甲什麼處是妄語。師云遮裏不著沙彌。
+```
+
+### 無事人 — `t_fab146271b10` S1/O7
+
+- Lines: `0291a28`–`0291b02`
+- Named inline candidate(s): —
+- Row header candidate(s): Huangbo Xiyun
+- Row review class: `anthology-header-candidate`
+
+> 老僧在此住持。不曾見箇無事人到來。汝等何不近前。時有一僧方近前。師云。維那不在。汝自領出去三門外與二十棒。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 10
+
+- Cluster: `T/T51/T51n2076.xml:722976:723196`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Sansheng Huiran
+- Risks: anonymous-interlocutor, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+淄州水陸和尚有僧問。如何是學人用心處。師曰。用心即錯。僧曰。不起一念時如何。師曰。勿用處漢。問此事如何保任師曰。切忌。問如何是最初一句。師便喝。問狹路相逢時如何。師便攔胸托一托。
+```
+
+### 保任 — `t_91d84c849fc7` S1/O3
+
+- Lines: `0299a17`–`0299a18`
+- Named inline candidate(s): —
+- Row header candidate(s): Sansheng Huiran
+- Row review class: `anthology-header-candidate`
+
+> 問此事如何保任師曰。切忌。問如何是最初一句。師便喝。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 11
+
+- Cluster: `T/T51/T51n2076.xml:991004:991788`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Dongshan Liangjie
+- Risks: anonymous-interlocutor, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+洞山道全禪師初問洞山价和尚。如何是出離之要。洞山曰。闍梨足下煙生。師當下契悟。更不他遊暨价和尚圓寂。眾請踵迹住持。海眾悅服玄風不墜。僧問。佛入王宮豈不是大聖再來。師曰。護明不下生。僧曰。既是大聖再來。何更六年苦行。師曰。幻人呈幻事。曰非幻者如何。師曰。王宮覓不得。問清淨行者不入涅槃。破戒比丘不入地獄如何。師曰。度盡無遺影還他越涅槃。問極目千里是什麼風範。師曰。是闍梨風範。曰未審和尚風範如何。師曰。不布婆娑眼。
+```
+
+### 破戒 — `t_3a400cdd72bb` S1/O2
+
+- Lines: `0337a26`–`0337a28`
+- Named inline candidate(s): —
+- Row header candidate(s): Dongshan Liangjie
+- Row review class: `anthology-header-candidate`
+
+> 問清淨行者不入涅槃。破戒比丘不入地獄如何。師曰。度盡無遺影還他越涅槃。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 12
+
+- Cluster: `T/T51/T51n2076.xml:1183315:1183496`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Caoshan Benji
+- Risks: inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+華州草菴法義禪師。問如何是祖師西來意。師曰。爛炒浮漚飽滿喫。問擬心即差動念即乖。學人如何進道。師曰。有人常擬為什麼不差。曰即今事如何。師曰。早成差也。
+```
+
+### 擬心即差 — `t_cf1445e57ef2` S1/O5
+
+- Lines: `0365a17`–`0365a19`
+- Named inline candidate(s): —
+- Row header candidate(s): Caoshan Benji
+- Row review class: `anthology-header-candidate`
+
+> 問擬心即差動念即乖。學人如何進道。師曰。有人常擬為什麼不差。曰即今事如何。師曰。早成差也。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 13
+
+- Cluster: `T/T51/T51n2076.xml:1436293:1438191`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Luohan Guichen
+- Risks: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+幼出家十九納戒。嘗自謂曰。苟尚能詮則為滯筏。將趣凝寂復患墮空。既進退莫決。捨二何之。乃參尋宗匠緣會地藏和尚後繼法眼住撫州崇壽。甲辰歲江南國主創清涼大道場延請居之。上堂示眾曰。古聖才生下便周行七步目顧四方云。天上天下唯我獨尊。他便有遮箇方便奇特。只如諸上座初生下時有箇什麼奇特。試舉看。若道無即對面諱却。若道有又作麼生通得箇消息。還會麼。上座幸然有奇特事。因什麼不知去。珍重。僧問如何是佛。師曰。汝是眾生。曰還肯也無。師曰。虛施此問。問如何是西來意。師曰。汝道此土還有麼。問省要處乞師一言。師曰。珍重。問如何是道。師曰。本來無一物何處有塵埃。僧禮拜。師曰。莫錯會。問如何是一塵入正受。師曰。色即空。曰如何是諸塵三昧起。師曰。空即色。問諸餘即不問。如何是悟空一句。師曰。兩句也。問牛頭未見四祖時為什麼百鳥銜華。師曰。未見四祖。曰見後為什麼不銜華。師曰。見四祖。問如何是自己事。師曰。幾處問人來。問古人得箇什麼即便休歇去。師曰。汝得箇什麼即不休歇去。問如何是學人出身處。師曰。千般比不得萬般況不及。曰請和尚道。師曰。古亦有今亦有問如何是亡僧面前觸目菩提。師曰。問取髑髏後人問。如何是諸佛本源。師曰。汝喚什麼作諸佛。問雨華動地始起雷音。未審和尚此日稱揚何事。師曰。向上座道什麼。曰恁麼即得遇清涼也。師曰。實即得。問毒龍奮迅萬象同然時如何。師曰。爾什麼處得遮箇問頭。師平日居方丈唯毳一襪。每哂同參法眼多為偈頌。晉天福八年癸卯十月朔日遣僧往報恩院。命法眼禪師至方丈囑付。又致書辭國主。取三日夜子時入滅。國主屢遣使候問。令本院至時擊鍾及期大眾並集。師端坐警眾曰。無棄光影語絕告寂。時國主聞鍾登高臺遙禮清涼。深加哀慕仍致祭。茶毘收舍利建塔。
+```
+
+### 休歇 — `t_da6965508721` S1/O5
+
+- Lines: `0400b21`–`0400b22`
+- Named inline candidate(s): —
+- Row header candidate(s): Luohan Guichen
+- Row review class: `anthology-header-candidate`
+
+> 問古人得箇什麼即便休歇去。師曰。汝得箇什麼即不休歇去。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+
+## Case 14
+
+- Cluster: `T/T51/T51n2076.xml:1804571:1805669`
+- Title: 景德傳燈錄
+- Review class: `anthology-header-candidate`
+- Title candidate(s): —
+- Header candidate(s): Shitou Xiqian
+- Risks: not-a-verified-single-master-container, title-owner-not-unique
+
+```text
+吾結草庵無寶貝。飯了從容圖睡快。成時初見茆草新。破後還將茆草蓋。住庵人鎮常在。不屬中間與內外。世人住處我不住。世人愛處我不愛。庵雖小含法界。方丈老人相體解。上乘菩薩信無疑。中下聞之必生怪。問此庵壞不壞。壞與不壞主元在。不居南北與東西。基上堅牢以為最。青松下明窓內。玉殿朱樓未為對。衲帔幪頭萬事休。此時山僧都不會。住此庵休作解。誰誇鋪席圖人買。迴光返照便歸來。廓達靈根非向背。遇祖師親訓誨結草為庵莫生退。百年拋却任縱橫。擺手便行且無罪。千種言萬般解。只要教君長不昧。欲識庵中不死人。豈離而今遮皮袋。
+```
+
+### 迴光返照 — `t_b26bfa9e399e` S1/O2
+
+- Lines: `0461c17`–`0461c18`
+- Named inline candidate(s): —
+- Row header candidate(s): Shitou Xiqian
+- Row review class: `anthology-header-candidate`
+
+> 迴光返照便歸來。
+
+- Exact actor and role: **[REVIEW]**
+- Six-rung evidence / full-case turn map: **[REVIEW]**
+- Entry and attribution-note update: **[REVIEW]**
+

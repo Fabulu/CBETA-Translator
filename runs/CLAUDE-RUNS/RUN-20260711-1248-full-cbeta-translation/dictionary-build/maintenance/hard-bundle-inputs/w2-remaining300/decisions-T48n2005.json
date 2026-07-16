@@ -1,0 +1,35 @@
+{
+  "source": "T/T48/T48n2005.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_9a5dc768cbc5:0295b14:1:2",
+      "entryId": "t_9a5dc768cbc5",
+      "sourceTerm": "平常心是道",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0295b14",
+      "Kwic": "南泉因趙州問。如何是道。泉云。平常心是道。",
+      "caseClusterId": "T/T48/T48n2005.xml:24269:24503",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Wumen Huikai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Nanquan Puyuan",
+        "AttributionNote": "The Gateless Barrier (無門關): in case nineteen, Nanquan Puyuan answers Zhaozhou Congshen's question about the Way with 'ordinary mind is the Way.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "questioner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

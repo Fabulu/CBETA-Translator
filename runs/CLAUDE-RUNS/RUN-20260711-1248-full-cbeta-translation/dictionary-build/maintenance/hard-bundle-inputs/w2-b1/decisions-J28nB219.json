@@ -1,0 +1,141 @@
+{
+  "source": "J/J28/J28nB219.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_aef7434b8470:0663c23:1:6",
+      "entryId": "t_aef7434b8470",
+      "sourceTerm": "沒交涉",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0663c23",
+      "Kwic": "於自己分上全沒交涉。",
+      "caseClusterId": "J/J28/J28nB219.xml:39942:41464",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhuanyu Guanheng",
+        "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): in his instruction to Huixin Zhao, Zhuanyu Guanheng says that merely memorizing abstruse sayings, even eloquently enough to make a stubborn stone nod, has no connection at all with one's own share."
+      }
+    },
+    {
+      "key": "t_2baf0ec63b2c:0667b05:1:6",
+      "entryId": "t_2baf0ec63b2c",
+      "sourceTerm": "經行",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0667b05",
+      "Kwic": "病僧每飯罷經行時，見子事眾畢方就飯堂",
+      "caseClusterId": "J/J28/J28nB219.xml:57071:59025",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhuanyu Guanheng",
+        "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): referring to himself as the sick monk in his instruction to Wanbai Hao, Zhuanyu Guanheng recounts walking in meditation after meals and observing Hao's consistently careful service and eating routine."
+      }
+    },
+    {
+      "key": "t_cb3571346f22:0668b25:1:2",
+      "entryId": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0668b25",
+      "Kwic": "當時釋迦拈花何等直捷？迦葉微笑何等快便？",
+      "caseClusterId": "J/J28/J28nB219.xml:62171:64279",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): inside Zhuanyu Guanheng's instruction to Kuanju Yong, Shakyamuni Buddha is the exact actor who holds up the flower, paired with Mahakasyapa's smile as a direct and rapid exchange.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "responding-master"
+            ]
+          },
+          {
+            "MasterName": "Zhuanyu Guanheng",
+            "Roles": [
+              "raiser",
+              "commentator",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2baf0ec63b2c:0722b06:1:1",
+      "entryId": "t_2baf0ec63b2c",
+      "sourceTerm": "經行",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0722b06",
+      "Kwic": "隱者出巖外經行，師亦隨之，第東西各步。",
+      "caseClusterId": "J/J28/J28nB219.xml:353723:354793",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "hermit",
+          "ActorLabel": "unnamed rock-hermit",
+          "ActorRole": "person walking in meditation",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): in the biography of Hanshan Deqing, an unnamed hermit living in a rock shelter goes outside at night to walk in meditation; Hanshan follows and the two walk separately east and west. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed rock-hermit.",
+        "ContextMasters": [
+          {
+            "MasterName": "Hanshan Deqing",
+            "Roles": [
+              "companion",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d1e06fd225fa:0723c04:2:2",
+      "entryId": "t_d1e06fd225fa",
+      "sourceTerm": "入室",
+      "RelPath": "J/J28/J28nB219.xml",
+      "FromLb": "0723c04",
+      "Kwic": "上下虛明如大圓鏡相似，入室取《楞嚴經》證之。開卷見「汝身汝心，外及山河、虛空大地咸是妙明真心中物。」",
+      "caseClusterId": "J/J28/J28nB219.xml:360316:360785",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "紫竹林顓愚衡和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hanshan Deqing",
+        "AttributionNote": "Recorded Sayings of Preceptor Zhuanyu Heng at Purple Bamboo Grove (紫竹林顓愚衡和尚語錄): the biography of Hanshan Deqing recounts that after a night of walking meditation at Laoshan, Hanshan enters his room and takes up the Surangama Sutra to test the luminous, mirror-like experience against its words."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_aef7434b8470:0663c23:1:6",
+    "t_2baf0ec63b2c:0667b05:1:6",
+    "t_cb3571346f22:0668b25:1:2",
+    "t_2baf0ec63b2c:0722b06:1:1",
+    "t_d1e06fd225fa:0723c04:2:2"
+  ]
+}

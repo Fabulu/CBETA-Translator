@@ -1,0 +1,49 @@
+{
+  "source": "D/D48/D48n8939.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_e3226b1e195a:0031b04:1:3",
+      "entryId": "t_e3226b1e195a",
+      "sourceTerm": "覷破",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0031b04",
+      "Kwic": "各自大家堂中喫茶自由自在免見他時異日被人覷破",
+      "caseClusterId": "D/D48/D48n8939.xml:287366:287704",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄. Full six-rung exact-turn review identifies Foyan Qingyuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_28fac5e98308:0171a06:1:1",
+      "entryId": "t_28fac5e98308",
+      "sourceTerm": "問話",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0171a06",
+      "Kwic": "誡問話近代問話多招譏謗蓋緣不知伸問致疑咨請之意後生相承多用祝賛順時語並非宗乗中建立",
+      "caseClusterId": "D/D48/D48n8939.xml:515360:516081",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄. Full six-rung exact-turn review identifies Foyan Qingyuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_e3226b1e195a:0031b04:1:3",
+    "t_28fac5e98308:0171a06:1:1"
+  ]
+}

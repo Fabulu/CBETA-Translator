@@ -54,7 +54,8 @@
               "MasterName": "Shoushan Xingnian",
               "Roles": [
                 "respondent",
-                "record-subject"
+                "section-subject",
+                "person-described"
               ]
             }
           ]
@@ -85,19 +86,19 @@
           "Curated": true,
           "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄): the lamp compiler's narrative says that the matter before words handed down from Fengxue Yanzhao was presented to Shoukuo Shangzuo, who then replied.",
           "ActorAttribution": {
-            "Status": "impersonal",
-            "Kind": "compiler narrative",
-            "ActorLabel": "lamp compiler's narrative",
-            "ActorRole": "document voice",
-            "GrammarEvidence": "The headword occurs in third-person transmission narrative rather than a quoted turn.",
-            "ReviewedBy": "Codex hard-w2-remaining300",
-            "ReviewedUtc": "2026-07-14T07:45:00Z"
+            "Status": "narrated",
+            "Kind": "compiler narration",
+            "ActorLabel": "lamp-record compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The complete transmission unit narrates in the third person that the matter from Fengxue was presented to Shoukuo; 言前 is in that compiler-owned narration, not in a quoted turn.",
+            "ReviewedBy": "Codex literal full-case repair",
+            "ReviewedUtc": "2026-07-15T23:45:55.143106Z"
           },
           "ContextMasters": [
             {
               "MasterName": "Fengxue Yanzhao",
               "Roles": [
-                "transmission-source"
+                "case-figure"
               ]
             },
             {

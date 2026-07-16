@@ -1,0 +1,64 @@
+2026-07-14T18:23:46,126643073+02:00
+Traceback (most recent call last):
+  File "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/regen-benchmark-clean/build_clean_drafts.py", line 106, in <module>
+    ev_standalone('正法眼','B/B14/B14n0082.xml',4,None,[],unnamed_monk()),
+  File "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/regen-benchmark-clean/build_clean_drafts.py", line 39, in ev_standalone
+    hit=hits[index]; kwic=hit['window']; v=zc.verify(rel,kwic)
+IndexError: list index out of range
+Command exited with non-zero status 1
+ELAPSED=3.61 CPU=49% MAXRSS=77716
+2026-07-14T18:23:49,838433251+02:00
+2026-07-14T18:24:15,955681790+02:00
+{
+  "written": [
+    {
+      "id": "t_b2f05c3e4b7d",
+      "term": "合頭語"
+    },
+    {
+      "id": "t_8f7b20536cb6",
+      "term": "和尚"
+    },
+    {
+      "id": "t_f25cebd24730",
+      "term": "棒"
+    },
+    {
+      "id": "t_970c3f191929",
+      "term": "正法眼"
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物"
+    }
+  ]
+}
+ELAPSED=4.91 CPU=44% MAXRSS=81884
+2026-07-14T18:24:20,975167471+02:00
+2026-07-14T18:24:46,216258840+02:00
+{
+  "written": [
+    {
+      "id": "t_b2f05c3e4b7d",
+      "term": "合頭語"
+    },
+    {
+      "id": "t_8f7b20536cb6",
+      "term": "和尚"
+    },
+    {
+      "id": "t_f25cebd24730",
+      "term": "棒"
+    },
+    {
+      "id": "t_970c3f191929",
+      "term": "正法眼"
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物"
+    }
+  ]
+}
+ELAPSED=12.50 CPU=50% MAXRSS=361424
+2026-07-14T18:24:58,755573934+02:00

@@ -1,0 +1,30 @@
+{
+  "source": "J/J27/J27nB198.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_a7c8b47ff1a3:0524b04:1:4",
+      "entryId": "t_a7c8b47ff1a3",
+      "sourceTerm": "寒山",
+      "RelPath": "J/J27/J27nB198.xml",
+      "FromLb": "0524b04",
+      "Kwic": "我愛寒山詩，不入時人調；句句洗塵情，安在事華藻。",
+      "caseClusterId": "J/J27/J27nB198.xml:551274:593771",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雪關禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xueguan Zhiyin",
+        "ActorAttribution": null,
+        "AttributionNote": "雪關禪師語錄. Full six-rung exact-turn review identifies Xueguan Zhiyin as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_a7c8b47ff1a3:0524b04:1:4"
+  ]
+}

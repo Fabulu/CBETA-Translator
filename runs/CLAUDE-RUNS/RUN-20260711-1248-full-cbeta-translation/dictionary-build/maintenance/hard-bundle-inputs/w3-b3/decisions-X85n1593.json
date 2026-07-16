@@ -1,0 +1,30 @@
+{
+  "source": "X/X85/X85n1593.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_42162fbd382d:0520b21:1:5",
+      "entryId": "t_42162fbd382d",
+      "sourceTerm": "貓兒",
+      "RelPath": "X/X85/X85n1593.xml",
+      "FromLb": "0520b21",
+      "Kwic": "子見貓兒捕鼠乎？目睛不瞬，四足踞地，諸根順向，首尾一直，擬無不中。",
+      "caseClusterId": "X/X85/X85n1593.xml:1245118:1246295",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗正脉",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Caotang Shanqing",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗正脉. Full six-rung exact-turn review identifies Caotang Shanqing as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_42162fbd382d:0520b21:1:5"
+  ]
+}

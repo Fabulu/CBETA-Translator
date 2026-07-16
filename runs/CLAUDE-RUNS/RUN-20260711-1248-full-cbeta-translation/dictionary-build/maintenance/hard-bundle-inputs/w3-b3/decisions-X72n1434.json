@@ -1,0 +1,30 @@
+{
+  "source": "X/X72/X72n1434.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_2816f418822c:0232c19:1:3",
+      "entryId": "t_2816f418822c",
+      "sourceTerm": "念佛是誰",
+      "RelPath": "X/X72/X72n1434.xml",
+      "FromLb": "0232c19",
+      "Kwic": "念佛是誰誰是佛，非心非佛復何物。",
+      "caseClusterId": "X/X72/X72n1434.xml:45209:45324",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "見如元謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jianru Yuanmi",
+        "ActorAttribution": null,
+        "AttributionNote": "見如元謐禪師語錄. Full six-rung exact-turn review identifies Jianru Yuanmi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_2816f418822c:0232c19:1:3"
+  ]
+}

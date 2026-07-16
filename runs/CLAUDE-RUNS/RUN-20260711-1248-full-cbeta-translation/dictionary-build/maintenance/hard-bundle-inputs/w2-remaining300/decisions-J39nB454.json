@@ -1,0 +1,74 @@
+{
+  "source": "J/J39/J39nB454.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_dd2b39789323:0602b26:1:7",
+      "entryId": "t_dd2b39789323",
+      "sourceTerm": "格外句",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0602b26",
+      "Kwic": "格外句是破艸鞋，向上機是爛麻索",
+      "caseClusterId": "J/J39/J39nB454.xml:23112:23356",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "頻吉祥禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Pin Jixiang",
+        "AttributionNote": "Recorded Sayings of Pin Jixiang (頻吉祥禪師語錄): in his Yunfeng Foguo Monastery discourse, Pin Jixiang calls a phrase outside the standard a worn-out straw sandal."
+      }
+    },
+    {
+      "key": "t_19705602b956:0649b20:1:2",
+      "entryId": "t_19705602b956",
+      "sourceTerm": "凡情聖見",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0649b20",
+      "Kwic": "僧問：「某甲一事啟請和尚：昔日曹山立三種墮，開口便道：『凡情聖見是金鎖玄關，直須回互。』未審如何回互即得不墮？」師曰：「",
+      "caseClusterId": "J/J39/J39nB454.xml:262252:267041",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "頻吉祥禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Pin Jixiang (頻吉祥禪師語錄): in Pin Jixiang's record, an unnamed monk quotes Caoshan's ordinary-feelings-and-holy-views formula and asks how to interchange without falling. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Pin Jixiang",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          },
+          {
+            "MasterName": "Caoshan Benji",
+            "Roles": [
+              "quoted-source"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

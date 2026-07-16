@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "immediate-read-repair-ledger-v1",
+  "sourceReview": "independent-rereview-live-backlog-25-v3.json",
+  "repairs": [
+    {"id":"t_79e00cdbc129","oldSha256":"17cc1ae83afba19da84d0fc5bcae42628e79fc434ed48d5fb863a604a6ca1020","newSha256":"a85facb15fa80000a90bb89937442df710d04d85a235d708974aa6a03bdc9499"},
+    {"id":"t_7c5f24652dfa","oldSha256":"39463091bfff709324d761ff2487a0104f32e325cc085864c3931825248c7dc1","newSha256":"e6c1700d8b9ad9052d378a3e607f0595cf7b06567f0eeb83abab67619fefe422"},
+    {"id":"t_84e490b1773f","oldSha256":"bb7f29ebfd3e61931f923be8b5b25bac2c67e0e5bb8c720fba0a8f3e6c1e1015","newSha256":"0bbc77bb2578665d07bb4515d36051bd231eb0cf7e10fbd6eda8f645fdef11c5"},
+    {"id":"t_d0d82a2681a0","oldSha256":"1771807d26da16759625e0b0ed12f880af3c478bb3777e433c1c0e4bbe988ce7","newSha256":"9d645e6bc928030f7b15926c41d2c2350b2a15c5f37d35d3a91186c14bcc8f32"},
+    {"id":"t_e17068150613","oldSha256":"1bb865408546e178fc13c48cd9a801b50cc0267aae081a92fffa5d8af8e9d5b5","newSha256":"b7f820acc9e623e20ffed8112f3bb20b3616d710777010a9ccfe8cdeca922780"}
+  ],
+  "requiresDifferentReviewer": true,
+  "validation": {"jsonParse":true,"zcVerifyChecked":185,"zcVerifyFailures":0,"ownHeadwordFailures":0}
+}

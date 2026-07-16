@@ -1,0 +1,29 @@
+{
+  "source": "D/D46/D46n8930.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:12:57Z",
+  "rows": [
+    {
+      "key": "t_53da4e346a6f:0030a06:1:5",
+      "entryId": "t_53da4e346a6f",
+      "sourceTerm": "百尺竿頭",
+      "RelPath": "D/D46/D46n8930.xml",
+      "FromLb": "0030a06",
+      "Kwic": "雖然得入未為真百尺竿頭須進步",
+      "caseClusterId": "D/D46/D46n8930.xml:145061:145218",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "特賜興禪大燈國師參詳語要",
+      "defaultMasterName": "Xuedou Chongxian",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Changsha Jingcen",
+        "ActorAttribution": null,
+        "AttributionNote": "Essentials of the Detailed Investigations of Imperially Honored Daitō Kokushi (特賜興禪大燈國師參詳語要), in its section on matters in Xuedou's record. The line explicitly introduces the verse with ‘therefore Master Changsha said’ (所以長沙和尚道); Changsha Jingcen is the exact quoted speaker saying that even entry is not yet genuine and that one must step forward from atop the hundred-foot pole. The section heading names the record being investigated, not Xuedou Chongxian as speaker of Changsha's verse.",
+        "ContextMasters": []
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

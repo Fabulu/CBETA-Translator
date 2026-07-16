@@ -1,0 +1,43 @@
+{
+  "source": "X/X70/X70n1384.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:43:46Z",
+  "rows": [
+    {
+      "key": "t_966bc615eb6e:0289a17:1:6",
+      "entryId": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "RelPath": "X/X70/X70n1384.xml",
+      "FromLb": "0289a17",
+      "Kwic": "舉：玄沙問雪峰：大用現前時如何？雪峰以三毬一齊輥動。玄沙作斫牌勢，",
+      "caseClusterId": "X/X70/X70n1384.xml:76493:76759",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "絕岸可湘禪師語錄",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Xuansha Shibei",
+        "ActorAttribution": null,
+        "AttributionNote": "絕岸可湘禪師語錄: Xuansha Shibei is the exact speaker who asks Xuefeng Yicun, ‘When great function manifests before you, how is it?’ Xuefeng responds by rolling three balls together; Jue'an Kexiang later raises and comments on the exchange.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuefeng Yicun",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Jue'an Kexiang",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

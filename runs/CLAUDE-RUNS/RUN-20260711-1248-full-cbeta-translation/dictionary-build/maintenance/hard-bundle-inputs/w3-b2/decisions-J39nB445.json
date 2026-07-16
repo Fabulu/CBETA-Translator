@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB445.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_2816f418822c:0352a12:1:2",
+      "entryId": "t_2816f418822c",
+      "sourceTerm": "念佛是誰",
+      "RelPath": "J/J39/J39nB445.xml",
+      "FromLb": "0352a12",
+      "Kwic": "命參念佛是誰，久之有省，呈偈曰：「念佛是誰誰念佛？一聲高了一聲低",
+      "caseClusterId": "J/J39/J39nB445.xml:44411:45288",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "別菴禪師同門錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Daxiao Xingchong",
+        "ActorAttribution": null,
+        "AttributionNote": "別菴禪師同門錄. Full six-rung exact-turn review identifies Daxiao Xingchong as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_2816f418822c:0352a12:1:2"
+  ]
+}

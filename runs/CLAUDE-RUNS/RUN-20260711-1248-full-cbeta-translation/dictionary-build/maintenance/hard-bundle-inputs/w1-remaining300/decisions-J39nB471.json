@@ -1,0 +1,154 @@
+{
+  "source": "J/J39/J39nB471.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_9bdac4a01636:0941b14:1:4",
+      "entryId": "t_9bdac4a01636",
+      "sourceTerm": "理事",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0941b14",
+      "Kwic": "宣揚默示，理事俱備",
+      "caseClusterId": "J/J39/J39nB471.xml:48171:49260",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Konggu Daocheng",
+        "ActorAttribution": null,
+        "AttributionNote": "空谷道澄禪師語錄. Konggu Daocheng is the exact actor: his 上堂 says 宣揚默示，理事俱備."
+      }
+    },
+    {
+      "key": "t_58099932161b:0941b26:1:4",
+      "entryId": "t_58099932161b",
+      "sourceTerm": "斷臂",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0941b26",
+      "Kwic": "問：「者段家風，人人本具，因甚斷臂求道？」師云：「錯會不少。」",
+      "caseClusterId": "J/J39/J39nB471.xml:49285:50937",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "空谷道澄禪師語錄. The exact actor is an unnamed monk: he asks 因甚斷臂求道. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Konggu Daocheng",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          },
+          {
+            "MasterName": "Huike",
+            "Roles": [
+              "alluded-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_dc5f4386a0ed:0942a10:1:1",
+      "entryId": "t_dc5f4386a0ed",
+      "sourceTerm": "明心見性",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0942a10",
+      "Kwic": "問：「如何是明心見性？」師云：「不識。」",
+      "caseClusterId": "J/J39/J39nB471.xml:51856:52784",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "空谷道澄禪師語錄. The exact actor is an unnamed monk: he asks 如何是明心見性. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Konggu Daocheng",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2f4b60453d19:0942a16:1:4",
+      "entryId": "t_2f4b60453d19",
+      "sourceTerm": "承當",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0942a16",
+      "Kwic": "各得恰合，直下承當。如何是承當一句？",
+      "caseClusterId": "J/J39/J39nB471.xml:51856:52784",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Konggu Daocheng",
+        "ActorAttribution": null,
+        "AttributionNote": "空谷道澄禪師語錄. Konggu Daocheng is the exact actor: his discourse says 直下承當 and asks 如何是承當一句."
+      }
+    },
+    {
+      "key": "t_d9944cf1c47a:0960c08:1:2",
+      "entryId": "t_d9944cf1c47a",
+      "sourceTerm": "心戒",
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "0960c08",
+      "Kwic": "戒有兩般，心無二用。兩般者，心戒、相戒；二用者，體持、用持。戒者，心也；衣者，意也。",
+      "caseClusterId": "J/J39/J39nB471.xml:146598:147525",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "空谷道澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Konggu Daocheng",
+        "ActorAttribution": null,
+        "AttributionNote": "空谷道澄禪師語錄. Konggu Daocheng is the exact actor: his sermon distinguishes 心戒 and 相戒."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

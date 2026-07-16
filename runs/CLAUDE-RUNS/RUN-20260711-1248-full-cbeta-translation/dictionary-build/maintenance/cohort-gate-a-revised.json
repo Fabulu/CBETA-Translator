@@ -1,0 +1,110 @@
+{
+  "generatedUtc": "2026-07-13T18:56:35.570132+00:00",
+  "elapsedSeconds": 2.976,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_8f7b20536cb6",
+      "term": "和尚",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8f7b20536cb6/entry.v2.json",
+      "sha256": "e72858bc6d5146806af6e81cc29f92b466bff461a764773595811b28c4f62c3f"
+    },
+    {
+      "id": "t_f25cebd24730",
+      "term": "棒",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f25cebd24730/entry.v2.json",
+      "sha256": "1fd1d5e2ce2b81e91008c85df7c0e6d6b12bfee3847dbb48bc90bf99cb6501ad"
+    },
+    {
+      "id": "t_87cc840b8f33",
+      "term": "拄杖子",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_87cc840b8f33/entry.v2.json",
+      "sha256": "22672b240e10f6656be3e76257523eb89a29dde4ee75d19ff422cbe40b9bda2c"
+    },
+    {
+      "id": "t_9f119d7965c2",
+      "term": "拂子",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_9f119d7965c2/entry.v2.json",
+      "sha256": "0a6077155e334ab831d40b30a39572513ef18d0b4220fe569cf9268764986a3d"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 62,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_8f7b20536cb6/entry.v2.json",
+        "id": "t_8f7b20536cb6",
+        "term": "和尚",
+        "verified": 16,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f25cebd24730/entry.v2.json",
+        "id": "t_f25cebd24730",
+        "term": "棒",
+        "verified": 16,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_87cc840b8f33/entry.v2.json",
+        "id": "t_87cc840b8f33",
+        "term": "拄杖子",
+        "verified": 18,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_9f119d7965c2/entry.v2.json",
+        "id": "t_9f119d7965c2",
+        "term": "拂子",
+        "verified": 12,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 6,
+        "occurrences": 62,
+        "named_occurrences": 62,
+        "attribution_notes": 62,
+        "deferred_non_roster": 24,
+        "supporting_occurrences": 4,
+        "chinese_strings": 49,
+        "anchored_chinese": 49
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 6,\n    \"occurrences\": 62,\n    \"named_occurrences\": 62,\n    \"attribution_notes\": 62,\n    \"deferred_non_roster\": 24,\n    \"supporting_occurrences\": 4,\n    \"chinese_strings\": 49,\n    \"anchored_chinese\": 49\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 4,
+      "passing": 4,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 4,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpz7ot_njf.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 0,
+      "reviewFlagged": 2,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 4,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 4,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

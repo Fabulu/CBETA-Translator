@@ -1,0 +1,40 @@
+{
+  "counts": {
+    "entries": 1,
+    "senses": 1,
+    "occurrences": 5,
+    "named_occurrences": 4,
+    "context_master_links": 2,
+    "deferred_non_roster_context": 1,
+    "attribution_notes": 5,
+    "unresolved_actor": 1,
+    "note_missing_speaker": 1,
+    "note_missing_source": 1,
+    "chinese_strings": 8,
+    "anchored_chinese": 7,
+    "dangling_chinese": 1
+  },
+  "hardFailures": 4,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4 J/J29/J29nB244.xml:0725c08"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4: Sanshan explicitly challenges the phrase and says it cheated and buried the monk alive."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4 expected '三山來禪師語錄': Sanshan explicitly challenges the phrase and says it cheated and buried the monk alive."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1: 俱胝一指"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+2026-07-14T18:27:19,280663012+02:00
+{
+  "depthSense": {
+    "audited": 5,
+    "hardFailed": 1,
+    "results": [
+      {
+        "entryId": "t_8f7b20536cb6",
+        "sourceTerm": "和尚",
+        "entrySha256": "61c62e6546edd699ace2def51389fc4213c176cbb3e81e2460b0990681afafb1",
+        "corpusHits": 61053,
+        "corpusFiles": 473,
+        "evidenceFloor": 10,
+        "occurrences": 10,
+        "totalOccurrences": 10,
+        "sourceTexts": 7,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 61053,
+            "corpusFiles": 473
+          }
+        ]
+      },
+      {
+        "entryId": "t_93ab42fecdca",
+        "sourceTerm": "本來無一物",
+        "entrySha256": "0ce136e173ffc5cc73781fd033985f91505af4cee22c2d5cc05591875c497ea2",
+        "corpusHits": 263,
+        "corpusFiles": 127,
+        "evidenceFloor": 6,
+        "occurrences": 6,
+        "totalOccurrences": 6,
+        "sourceTexts": 5,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": []
+      },
+      {
+        "entryId": "t_970c3f191929",
+        "sourceTerm": "正法眼",
+        "entrySha256": "3f50d07f19cced7bf87c036fe5005708fd127ab59115f7847512095ca9ac63bd",
+        "corpusHits": 2597,
+        "corpusFiles": 355,
+        "evidenceFloor": 8,
+        "occurrences": 8,
+        "totalOccurrences": 8,
+        "sourceTexts": 7,
+        "senseCount": 1,
+        "hardPass": false,
+        "hardFlags": [
+          {
+            "kind": "banned-framing-dharma-loan",
+            "field": "Senses[0].PreferredTarget",
+            "matches": [
+              "dharma"
+            ]
+          },
+          {
+            "kind": "banned-framing-dharma-loan",
+            "field": "Senses[0].AlternateTargets[0]",
+            "matches": [
+              "dharma"
+            ]
+          },
+          {
+            "kind": "banned-framing-dharma-loan",
+            "field": "Senses[0].Explanation",
+            "matches": [
+              "dharma"
+            ]
+          }
+        ],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2597,
+            "corpusFiles": 355
+          }
+        ]
+      },
+      {
+        "entryId": "t_b2f05c3e4b7d",
+        "sourceTerm": "合頭語",
+        "entrySha256": "6866f9482d69e70cc9fc1da9d2b1fd54d699070fb446a527552b1976adf3e569",
+        "corpusHits": 143,
+        "corpusFiles": 96,
+        "evidenceFloor": 6,
+        "occurrences": 6,
+        "totalOccurrences": 6,
+        "sourceTexts": 5,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": []
+      },
+      {
+        "entryId": "t_f25cebd24730",
+        "sourceTerm": "棒",
+        "entrySha256": "f309e393adfc700b62ad2dd4e06fabe2fa9837c6849e50e77224837d884dfb66",
+        "corpusHits": 21118,
+        "corpusFiles": 447,
+        "evidenceFloor": 10,
+        "occurrences": 11,
+        "totalOccurrences": 11,
+        "sourceTexts": 8,
+        "senseCount": 2,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "paraphrase-merge-review",
+            "senseIndexes": [
+              0,
+              1
+            ],
+            "targets": [
+              "staff",
+              "a blow with a staff"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "publicFeedback": {
+    "audited": 5,
+    "flagged": 0,
+    "results": [
+      {
+        "entryId": "t_8f7b20536cb6",
+        "sourceTerm": "和尚",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_8f7b20536cb6/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_93ab42fecdca",
+        "sourceTerm": "本來無一物",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_93ab42fecdca/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_970c3f191929",
+        "sourceTerm": "正法眼",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_970c3f191929/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_b2f05c3e4b7d",
+        "sourceTerm": "合頭語",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_b2f05c3e4b7d/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_f25cebd24730",
+        "sourceTerm": "棒",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+        "flags": [],
+        "passes": true
+      }
+    ]
+  }
+}
+Command exited with non-zero status 1
+ELAPSED=15.31 CPU=34% MAXRSS=345988
+2026-07-14T18:27:34,666298144+02:00

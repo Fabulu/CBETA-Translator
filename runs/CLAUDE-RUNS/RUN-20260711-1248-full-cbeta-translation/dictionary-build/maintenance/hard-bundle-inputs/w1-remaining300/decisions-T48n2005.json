@@ -1,0 +1,36 @@
+{
+  "source": "T/T48/T48n2005.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_53da4e346a6f:0298c12:1:2",
+      "entryId": "t_53da4e346a6f",
+      "sourceTerm": "百尺竿頭",
+      "RelPath": "T/T48/T48n2005.xml",
+      "FromLb": "0298c12",
+      "Kwic": "石霜和尚云。百尺竿頭如何進步。又古德云。",
+      "caseClusterId": "T/T48/T48n2005.xml:44475:44608",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "無門關",
+      "defaultMasterName": "Wumen Huikai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Shishuang Qingzhu",
+        "ActorAttribution": null,
+        "AttributionNote": "無門關. Shishuang Qingzhu is the exact actor: case 46 says 石霜和尚云 before 百尺竿頭如何進步.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wumen Huikai",
+            "Roles": [
+              "case-editor"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -33,7 +33,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): exact actor (長沙東明慧遷禪師) owns the headword-bearing wording. Exact headword utterer: Dongming Huiqian."
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Exact actor: Dongming Huiqian. Dongming says the exposed pillar is made of wood and the scale weight is cast from iron."
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -41,38 +41,22 @@
           "ToLb": "0375c18",
           "Kwic": "秤錘搦出油，閒言長語休，腰纏十萬貫，騎鶴上揚州。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T04:46:29.393398+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
-          },
           "ContextMasters": [
             {
-              "MasterName": "Yinshan",
+              "MasterName": "Qigang Zong",
               "Roles": [
-                "person-described"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "Source text (宗鑑法林): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "AttributionNote": "Source text (宗鑑法林). Exact actor: Qigang Zong. Qigang Zong’s attached verse says a scale weight is squeezed for oil.",
+          "MasterName": "Qigang Zong"
         },
         {
           "RelPath": "L/L158/L158n1652.xml",
-          "FromLb": "0029a06",
-          "ToLb": "0029a14",
-          "Kwic": "上堂僧問陞堂說法龍天喜惡辣鉗鎚虎皺眉棒喝交馳即不問愍忠佛法意如何師云一箇秤錘重七觔進云戒定無二意總共證無生師云到頭明月歸西去水出高原總到渠進云恁麼則太平天子貴國靖萬民安師云一任讚歎進云杲日當空照乾坤更有誰師云莫向棺材裡瞠眼僧喝師云得縮頭處且縮頭乃云正法眼藏涅槃妙心靈丹一粒點鐵",
+          "FromLb": "0029a08",
+          "ToLb": "0029a08",
+          "Kwic": "師云一箇秤錘重七觔",
           "Curated": true,
           "ContextMasters": [
             {
@@ -82,7 +66,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (明覺聰禪師語錄). In the explicit monk-question/master-answer frame, Mingjue Cong’s answer contains the headword.",
+          "AttributionNote": "Source text (明覺聰禪師語錄). Exact actor: Mingjue Cong. Mingjue answers that a scale weight weighs seven catties.",
           "MasterName": "Mingjue Cong"
         },
         {
@@ -100,7 +84,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (天岸昇禪師語錄): exact actor (天岸昇禪師) owns the headword-bearing wording. Exact headword utterer: Tian'an Sheng."
+          "AttributionNote": "Source text (天岸昇禪師語錄). Exact actor: Tian'an Sheng. Tian'an says that a scale weight is pressed until golden juice comes out."
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -117,7 +101,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): exact actor (襄州谷隱山蘊聰慈照禪師) owns the headword-bearing wording. Exact headword utterer: Guyin Yuncong."
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Exact actor: Guyin Yuncong. Guyin says that stepping on a scale weight is hard as iron."
         },
         {
           "RelPath": "X/X84/X84n1583.xml",
@@ -134,7 +118,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (續燈正統): exact actor (寧波府東山全菴齊己禪師) owns the headword-bearing wording. Exact headword utterer: Quanan Qiji."
+          "AttributionNote": "Source text (續燈正統). Exact actor: Quanan Qiji. Quanan says that even the proposed reading has no connection: stepping on a scale weight is hard as iron."
         }
       ],
       "ClaimAnchors": [],
@@ -154,7 +138,7 @@
         "長沙東明慧遷禪師"
       ],
       "RelatedTerms": [],
-      "Explanation": "A balance weight is the counterweight used to measure against an object on a scale. Chan exchanges ask how heavy the iron weight is, compare a person or saying to one, and place weight-language beside scales. The object’s measurable heaviness is the common feature; 'real heft' is not a separate claim supplied by the records."
+      "Explanation": "The scale weight is the dense iron counterweight used in weighing. Masters exploit that physical hardness and fixed weight in public answers: Mingjue Cong calls it seven catties; Guyin Yuncong and Quanan Qiji say that stepping on it is hard as iron. Tian’an Sheng and Qigang Zong deliberately force the impossible image further, pressing the iron weight for golden juice or oil. The corpus keeps the concrete implement visible while using its resistant material in replies and attached verses."
     }
   ]
 }

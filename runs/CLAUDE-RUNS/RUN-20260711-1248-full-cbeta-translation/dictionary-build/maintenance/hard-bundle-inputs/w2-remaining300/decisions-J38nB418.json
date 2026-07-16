@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB418.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_240ea0594a5f:0500a10:1:4",
+      "entryId": "t_240ea0594a5f",
+      "sourceTerm": "大休大歇",
+      "RelPath": "J/J38/J38nB418.xml",
+      "FromLb": "0500a10",
+      "Kwic": "致令後代兒孫咬住矢橛，以為大休大歇的田地。正眼看來，大似羊質虎皮。",
+      "caseClusterId": "J/J38/J38nB418.xml:29567:29814",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "晦嶽旭禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huiyue Xu",
+        "AttributionNote": "Recorded Sayings of Huiyue Xu (晦嶽旭禪師語錄): in his Jinming Monastery discourse, Huiyue Xu criticizes later descendants for taking a bitten excrement-stake as the ground of great rest and cessation."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

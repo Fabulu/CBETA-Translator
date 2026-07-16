@@ -1,0 +1,36 @@
+{
+  "source": "J/J38/J38nB415.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_c81bf91e508f:0453c29:1:1",
+      "entryId": "t_c81bf91e508f",
+      "sourceTerm": "換卻眼睛",
+      "RelPath": "J/J38/J38nB415.xml",
+      "FromLb": "0453c29",
+      "Kwic": "玄沙因僧問：「如何是學人自己？」沙曰：「用自己作麼？」「者僧氣概天然，卻被玄沙換卻眼睛。",
+      "caseClusterId": "J/J38/J38nB415.xml:90054:90773",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大悲妙雲禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Miaoyun",
+        "ActorAttribution": null,
+        "AttributionNote": "大悲妙雲禪師語錄. Miaoyun is the exact actor: his 拈古 says the monk was 被玄沙換卻眼睛.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuansha Shibei",
+            "Roles": [
+              "master-in-case"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

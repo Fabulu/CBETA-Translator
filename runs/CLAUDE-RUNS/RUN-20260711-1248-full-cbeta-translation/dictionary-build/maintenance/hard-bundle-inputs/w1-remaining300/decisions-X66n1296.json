@@ -1,0 +1,226 @@
+{
+  "source": "X/X66/X66n1296.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_66792ea088de:0001a02:1:2",
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0001a02",
+      "Kwic": "宗門拈古彙集序",
+      "caseClusterId": "X/X66/X66n1296.xml:52471:55753",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document-section",
+          "ActorLabel": "the title of Jingfu's preface",
+          "ActorRole": "document heading",
+          "GrammarEvidence": "The headword is embedded in the cb:mulu and head title 宗門拈古彙集序 before the preface prose begins; it has no speech predicate or personal grammatical subject.",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "宗門拈古彙集, preface by the compiler Jingfu. the title of Jingfu's preface is the exact impersonal actor here: this occurrence is the document heading 宗門拈古彙集序, not a speech turn; the title itself names the collection of comments on old cases.",
+        "ContextMasters": [
+          {
+            "MasterName": "Jingfu",
+            "Roles": [
+              "preface-author",
+              "compiler"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8107ccae18eb:0001a16:1:4",
+      "entryId": "t_8107ccae18eb",
+      "sourceTerm": "拈提",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0001a16",
+      "Kwic": "所以脚下兒孫競從而舉唱之、拈提之。當舉椎豎拂、電掣雷轟之際，一揚一抑，愈出愈奇，",
+      "caseClusterId": "X/X66/X66n1296.xml:52801:55753",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jingfu",
+        "ActorAttribution": null,
+        "AttributionNote": "宗門拈古彙集序, signed by the compiler Jingfu. Jingfu is the exact preface author: describing the lineage descendants' handling of inherited sayings, he says they successively raise, sing out, and bring them up for comment."
+      }
+    },
+    {
+      "key": "t_ef39bdc0eb99:0019a03:1:3",
+      "entryId": "t_ef39bdc0eb99",
+      "sourceTerm": "擬議",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0019a03",
+      "Kwic": "如金剛王寶劍，你纔擬議，早是血濺梵天了也。",
+      "caseClusterId": "X/X66/X66n1296.xml:172091:172501",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Luohan Ji",
+        "ActorAttribution": null,
+        "AttributionNote": "宗門拈古彙集 explicitly introduces Luohan Ji's comment. Luohan Ji is the exact speaker: after contrasting two readings of Manjusri's answer, he says that as soon as you begin to deliberate, blood is already splashed across Brahma's heaven.",
+        "ContextMasters": [
+          {
+            "MasterName": "Manjusri",
+            "Roles": [
+              "case-subject",
+              "referent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_a989d784dc81:0019b12:1:5",
+      "entryId": "t_a989d784dc81",
+      "sourceTerm": "話會",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0019b12",
+      "Kwic": "者一轉語，叢林話會不少，有道默然，有道良久，有道據坐，有道不對，要且摸索不著",
+      "caseClusterId": "X/X66/X66n1296.xml:175295:175664",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuanwu Keqin",
+        "ActorAttribution": null,
+        "AttributionNote": "宗門拈古彙集 explicitly introduces Zhaojue Qin, Yuanwu Keqin, as the commentator. Yuanwu Keqin is the exact speaker: he surveys the many ways the monastic community interprets Vimalakirti's silence and says they still cannot feel it out.",
+        "ContextMasters": [
+          {
+            "MasterName": "Vimalakirti",
+            "Roles": [
+              "case-subject",
+              "referent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_f3488daf27fd:0025a05:1:5",
+      "entryId": "t_f3488daf27fd",
+      "sourceTerm": "較些子",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0025a05",
+      "Kwic": "量之才，可惜武帝未能搆得。雖然，帝王自有擎天略，不動干戈定太平。白巖符云：大士誌公雖善分科演義，要且未解講經，總不如衍老當時却較些子。法海猊云：大士據虎頭，誌公收虎尾。武帝聻？良久，云：四海浪平龍睡穩，九天雲靜鶴飛高。大士曰：法地若動，一切不",
+      "caseClusterId": "X/X66/X66n1296.xml:213699:214492",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jingfu",
+        "ActorAttribution": null,
+        "AttributionNote": "宗門拈古彙集 explicitly introduces Baiyan Fu, the compiler Jingfu. Jingfu is the exact speaker: appraising Fu Dashi, Baozhi, and Emperor Wu, he says they still do not compare quite as well with Yan's action at the time.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fu Dashi",
+            "Roles": [
+              "case-subject"
+            ]
+          },
+          {
+            "MasterName": "Baozhi",
+            "Roles": [
+              "case-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b0d4b62a9c2f:0041c14:1:3",
+      "entryId": "t_b0d4b62a9c2f",
+      "sourceTerm": "皮下有血",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0041c14",
+      "Kwic": "他若皮下有血，必定別有生涯，免得郎郎當當遞相鈍置。",
+      "caseClusterId": "X/X66/X66n1296.xml:332746:333033",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fengri Yue",
+        "ActorAttribution": null,
+        "AttributionNote": "宗門拈古彙集 explicitly introduces Fengri Yue's comment after he raises Xuedou Chongxian's words. Fengri Yue is the exact speaker: describing how he would answer the monk with a blow and drive him out, he says that if the monk has blood beneath the skin he will surely have another livelihood.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "earlier-commentator",
+              "quoted speaker"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e7f672904614:0245a04:1:3",
+      "entryId": "t_e7f672904614",
+      "sourceTerm": "心地",
+      "RelPath": "X/X66/X66n1296.xml",
+      "FromLb": "0245a04",
+      "Kwic": "雲峰因僧問：如何是心地法門？峰曰：不從人得。",
+      "caseClusterId": "X/X66/X66n1296.xml:1744543:1744668",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "宗門拈古彙集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "宗門拈古彙集, Yunfeng Wenyue section. The exact headword-bearing speaker is an unnamed questioning monk: he asks Yunfeng what the mind-ground Dharma gate is, and Yunfeng answers that it is not obtained from another. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunfeng Wenyue",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

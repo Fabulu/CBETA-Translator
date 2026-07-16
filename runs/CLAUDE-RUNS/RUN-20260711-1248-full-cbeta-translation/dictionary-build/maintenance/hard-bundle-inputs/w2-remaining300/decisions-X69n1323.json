@@ -1,0 +1,27 @@
+{
+  "source": "X/X69/X69n1323.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_b887bf089b98:0008a02:1:2",
+      "entryId": "t_b887bf089b98",
+      "sourceTerm": "當處",
+      "RelPath": "X/X69/X69n1323.xml",
+      "FromLb": "0008a02",
+      "Kwic": "知心與境本不相到，當處解脫。一一諸法，當處寂滅，當處道場。又本有之性，不可名目。",
+      "caseClusterId": "X/X69/X69n1323.xml:4618:5466",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百丈懷海禪師廣錄（四家語錄卷三）",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Baizhang Huaihai",
+        "AttributionNote": "Extensive Record of Baizhang Huaihai (百丈懷海禪師廣錄（四家語錄卷三）): in his extensive record, Baizhang Huaihai enumerates liberation, quiescence, and the teaching place right there."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

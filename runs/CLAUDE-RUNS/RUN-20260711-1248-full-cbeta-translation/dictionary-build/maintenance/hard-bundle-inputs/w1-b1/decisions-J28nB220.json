@@ -1,0 +1,28 @@
+{
+  "source": "J/J28/J28nB220.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_caf826491397:0785a06:1:2",
+      "entryId": "t_caf826491397",
+      "sourceTerm": "高高峰頂立",
+      "RelPath": "J/J28/J28nB220.xml",
+      "FromLb": "0785a06",
+      "Kwic": "諸仁者！到恁麼地，正好高高峰頂立，深深海底行，",
+      "caseClusterId": "J/J28/J28nB220.xml:42649:43193",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "法璽印禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Faxi Yin",
+        "ActorAttribution": null,
+        "AttributionNote": "法璽印禪師語錄, celebratory hall address. Faxi Yin is the exact speaker: he says that upon recognizing the present occasion one may stand on the highest peak and walk in the deepest ocean, before calling this still a course of establishment and transformation."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

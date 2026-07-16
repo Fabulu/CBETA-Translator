@@ -1,0 +1,27 @@
+{
+  "source": "X/X70/X70n1392.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_bb19ed0e0fab:0524a09:1:7",
+      "entryId": "t_bb19ed0e0fab",
+      "sourceTerm": "普說",
+      "RelPath": "X/X70/X70n1392.xml",
+      "FromLb": "0524a09",
+      "Kwic": "為諸人普說一上，諸人當起難遭之想。",
+      "caseClusterId": "X/X70/X70n1392.xml:147659:148689",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "月磵禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuejian Shanquan",
+        "AttributionNote": "Recorded Sayings of Yuejian (月磵禪師語錄): in his announced general address, Yuejian Shanquan says he will give the assembly one general address and they should regard it as rare."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

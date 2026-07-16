@@ -1,0 +1,50 @@
+{
+  "source": "J/J10/J10nA158.xml",
+  "compiledFrom": "maintenance/source-workbooks/overrides-J10nA158.json",
+  "decisions": [
+    {
+      "entryId": "t_831f84399d0b",
+      "sourceTerm": "本地風光",
+      "RelPath": "J/J10/J10nA158.xml",
+      "FromLb": "0029a11",
+      "Kwic": "比丘尼問：「如何是本地風光？」師云：「嘗在汝面門出入。」",
+      "caseClusterId": "J/J10/J10nA158.xml:160947:161047",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "bhikshuni",
+          "ActorLabel": "unnamed bhikshuni",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex",
+          "ReviewedUtc": "2026-07-14T05:47:00Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Miyun Yuanwu",
+            "Roles": [
+              "respondent",
+              "record subject"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄). An unnamed bhikshuni is the exact questioner who asks, 'what is the native scenery?'; Miyun Yuanwu answers that it has always entered and exited through her face-gate, and then responds to her pleased bow. The line, expanded context, section header, book title, TEI header, and corpus-wide parallel-passage search do not give the bhikshuni a personal name."
+      },
+      "ExpectedSourceTitle": "密雲禪師語錄",
+      "Review": {
+        "reviewer": "Codex source-batched exact-turn review",
+        "reviewedUtc": "2026-07-14T05:47:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J35/J35nB337.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_d02b40e03f5d:0706c02:1:3",
+      "entryId": "t_d02b40e03f5d",
+      "sourceTerm": "一切現成",
+      "RelPath": "J/J35/J35nB337.xml",
+      "FromLb": "0706c02",
+      "Kwic": "如何是法眼宗？」師云：「一切現成。」學云：「謝師答話。」師打，云：「逢人不得錯舉。",
+      "caseClusterId": "J/J35/J35nB337.xml:10705:11420",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "寶持總禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baochi Xuanzong",
+        "ActorAttribution": null,
+        "AttributionNote": "寶持總禪師語錄, five-house public exchange. Baochi Xuanzong is the exact speaker of the stored answer: when the student asks what the Fayan school is, she replies, 'everything is already manifest,' then warns against raising it wrongly."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

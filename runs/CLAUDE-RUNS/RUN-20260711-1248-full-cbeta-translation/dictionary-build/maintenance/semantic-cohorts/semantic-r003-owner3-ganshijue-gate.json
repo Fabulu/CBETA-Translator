@@ -1,0 +1,69 @@
+{
+  "generatedUtc": "2026-07-14T13:20:19.246273+00:00",
+  "elapsedSeconds": 4.284,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_ba841f6e11c8",
+      "term": "乾屎橛",
+      "path": "terms/t_ba841f6e11c8/entry.v2.json",
+      "sha256": "3698cc2e4f14782bf5d245221a3bb928e8634d328795d574f8cbbac6cbbee470"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 10,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_ba841f6e11c8/entry.v2.json",
+        "id": "t_ba841f6e11c8",
+        "term": "乾屎橛",
+        "verified": 10,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 10,
+        "named_occurrences": 10,
+        "attribution_notes": 10,
+        "context_master_links": 4,
+        "deferred_non_roster": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 10,\n    \"named_occurrences\": 10,\n    \"attribution_notes\": 10,\n    \"context_master_links\": 4,\n    \"deferred_non_roster\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp4dbshl63.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

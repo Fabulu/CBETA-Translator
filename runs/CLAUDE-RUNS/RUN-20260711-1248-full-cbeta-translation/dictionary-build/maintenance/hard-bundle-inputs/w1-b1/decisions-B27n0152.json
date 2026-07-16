@@ -1,0 +1,113 @@
+{
+  "source": "B/B27/B27n0152.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_ba6668ef3e6e:0499b06:1:5",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0499b06",
+      "Kwic": "世尊拈花迦葉微笑百萬人天次第成佛",
+      "caseClusterId": "B/B27/B27n0152.xml:87584:89711",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yulin Tongxiu",
+        "ActorAttribution": null,
+        "AttributionNote": "普濟玉琳國師語錄, imperial hall address. Yulin Tongxiu is the exact speaker: after the chief-seat's announcement the complete turn says that Yulin looked left and right and spoke (師左右顧視云), then recounted Shakyamuni raising the flower and Mahakasyapa smiling.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "person-discussed",
+              "flower-raiser"
+            ]
+          },
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "person-discussed",
+              "smiling-responder"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ef39bdc0eb99:0531a11:1:7",
+      "entryId": "t_ef39bdc0eb99",
+      "sourceTerm": "擬議",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0531a11",
+      "Kwic": "三世諸佛不知有狸奴白牯卻知有僧擬議師便喝落堂",
+      "caseClusterId": "B/B27/B27n0152.xml:157111:158017",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "the unnamed deliberating monk",
+          "ActorRole": "deliberating participant",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "普濟玉琳國師語錄, public instruction. The exact actor is the unnamed deliberating monk: the grammar is 有僧擬議, followed by Yulin Tongxiu shouting and leaving the hall; the complete case and all six ladder rungs give the monk no personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "following-speaker",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_66792ea088de:0580a09:1:4",
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "B/B27/B27n0152.xml",
+      "FromLb": "0580a09",
+      "Kwic": "呈拈古十餘則",
+      "caseClusterId": "B/B27/B27n0152.xml:263002:263315",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普濟玉琳國師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huiji Zhou",
+        "ActorAttribution": null,
+        "AttributionNote": "普濟玉琳國師語錄, instruction to Huiji Zhou (示慧濟舟). Huiji Zhou is the exact actor: the complete sentence says that after returning to office in the hall he presented more than ten old-case comments (呈拈古十餘則) to Yulin Tongxiu.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yulin Tongxiu",
+            "Roles": [
+              "recipient",
+              "section-speaker"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

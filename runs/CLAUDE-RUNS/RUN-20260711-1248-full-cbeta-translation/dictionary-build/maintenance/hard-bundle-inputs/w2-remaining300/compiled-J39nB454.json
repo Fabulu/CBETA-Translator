@@ -1,0 +1,74 @@
+{
+  "source": "J/J39/J39nB454.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-remaining300/decisions-J39nB454.json",
+  "decisions": [
+    {
+      "entryId": "t_dd2b39789323",
+      "sourceTerm": "格外句",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0602b26",
+      "Kwic": "格外句是破艸鞋，向上機是爛麻索",
+      "caseClusterId": "J/J39/J39nB454.xml:23112:23356",
+      "Decision": {
+        "MasterName": "Pin Jixiang",
+        "AttributionNote": "Recorded Sayings of Pin Jixiang (頻吉祥禪師語錄): in his Yunfeng Foguo Monastery discourse, Pin Jixiang calls a phrase outside the standard a worn-out straw sandal."
+      },
+      "ExpectedSourceTitle": "頻吉祥禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-remaining300",
+        "reviewedUtc": "2026-07-14T07:45:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_19705602b956",
+      "sourceTerm": "凡情聖見",
+      "RelPath": "J/J39/J39nB454.xml",
+      "FromLb": "0649b20",
+      "Kwic": "僧問：「某甲一事啟請和尚：昔日曹山立三種墮，開口便道：『凡情聖見是金鎖玄關，直須回互。』未審如何回互即得不墮？」師曰：「",
+      "caseClusterId": "J/J39/J39nB454.xml:262252:267041",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Pin Jixiang (頻吉祥禪師語錄): in Pin Jixiang's record, an unnamed monk quotes Caoshan's ordinary-feelings-and-holy-views formula and asks how to interchange without falling. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Pin Jixiang",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          },
+          {
+            "MasterName": "Caoshan Benji",
+            "Roles": [
+              "quoted-source"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "頻吉祥禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-remaining300",
+        "reviewedUtc": "2026-07-14T07:45:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+2026-07-14T17:57:58,742608094+02:00
+{
+  "entries": 5,
+  "verified": 20,
+  "failureCount": 0,
+  "results": [
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_8f7b20536cb6/entry.v2.json",
+      "id": "t_8f7b20536cb6",
+      "term": "和尚",
+      "verified": 4,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_93ab42fecdca/entry.v2.json",
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物",
+      "verified": 5,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_970c3f191929/entry.v2.json",
+      "id": "t_970c3f191929",
+      "term": "正法眼",
+      "verified": 3,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_b2f05c3e4b7d/entry.v2.json",
+      "id": "t_b2f05c3e4b7d",
+      "term": "合頭語",
+      "verified": 3,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+      "id": "t_f25cebd24730",
+      "term": "棒",
+      "verified": 5,
+      "failures": []
+    }
+  ],
+  "elapsedSeconds": 0.825
+}
+VERIFY_ELAPSED=1.88 CPU=43% MAXRSS=28436
+{
+  "counts": {
+    "entries": 5,
+    "senses": 6,
+    "occurrences": 19,
+    "named_occurrences": 15,
+    "context_master_links": 25,
+    "attribution_notes": 20,
+    "actor_reviewed_unnamed": 2,
+    "claim_anchors": 1,
+    "actor_narrated": 3,
+    "note_missing_speaker": 3,
+    "chinese_strings": 2,
+    "anchored_chinese": 2
+  },
+  "hardFailures": 3,
+  "failures": [
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/regen-benchmark-clean/drafts/t_970c3f191929/entry.v2.json",
+      "detail": "正法眼 s1 o2: 傳燈玉英集（殘卷）: compiler is the exact actor of the stored headword; full-case review did not transfer a nearby master's identity."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+      "detail": "棒 s1 o2: 祖堂集: compiler is the exact actor of the stored headword; full-case review did not transfer a nearby master's identity."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+      "detail": "棒 s2 o2: 祖堂集: compiler is the exact actor of the stored headword; full-case review did not transfer a nearby master's identity."
+    }
+  ]
+}
+Command exited with non-zero status 1
+ATTR_ELAPSED=2.55 CPU=37% MAXRSS=21840
+2026-07-14T17:58:03,664079081+02:00

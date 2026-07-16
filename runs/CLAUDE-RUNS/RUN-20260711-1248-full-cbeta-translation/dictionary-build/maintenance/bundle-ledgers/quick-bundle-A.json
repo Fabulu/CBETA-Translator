@@ -1,0 +1,235 @@
+{
+  "bundleId": "quick-bundle-A",
+  "worker": "Codex /root/feedback_lexicography",
+  "updatedUtc": "2026-07-14T05:51:50Z",
+  "queue": [
+    "T47n1986A", "T47n1986B", "X69n1354", "J39nB463", "T48n2023",
+    "X67n1303", "X69n1357", "X70n1402", "X72n1440", "X81n1568"
+  ],
+  "completedUnits": ["T47n1986A", "T47n1986B", "X69n1354", "J39nB463", "T48n2023", "X67n1303", "X69n1357", "X70n1402", "X72n1440", "X81n1568"],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": null,
+  "units": {
+    "T47n1986A": {
+      "source": "T/T47/T47n1986A.xml",
+      "occurrenceKeys": ["t_ff25afe69d14:0511c14:1:1"],
+      "exactActorDecisions": [
+        {
+          "entryId": "t_ff25afe69d14",
+          "sourceTerm": "空劫",
+          "decision": "reviewed-unnamed monk questioner",
+          "override": "Rejected Dongshan Liangjie as exact actor; the unnamed monk says the headword question.",
+          "contextFigures": ["Dongshan Liangjie: respondent, record-owner"]
+        }
+      ],
+      "verification": {
+        "compile": "1/1, zero failures",
+        "dryRun": "1/1, zero failures",
+        "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 12, "after": 9},
+        "zcVerify": "1/1; 0511c14–0511c15",
+        "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_ff25afe69d14/entry.v2.json": "68589af4029a76497e4498c510a6830ed9cf5d73c1d6adade6c9568bae44d3fb",
+        "maintenance/source-workbooks/overrides-T47n1986A.json": "899a477b8d0790266135a77a47e6754289ffbc680a6a1dfc6b519aca6393c7af",
+        "maintenance/source-workbooks/decisions-T47n1986A.json": "151855d03ccc7bbd2031ccd7751e75fc6f869ed03b451ce6be2789ce91c3679b",
+        "maintenance/source-workbooks/applied-T47n1986A.json": "3f6f6da2138d72c3b1343d2e91202265d0d91f385bb0c8e8535a336a3f27ac49",
+        "maintenance/source-workbooks/audit-after-T47n1986A.json": "1092807e3c393b3a2bab1b4b239e9396ed5add5d043d33620f9d6778a11a651b"
+      },
+      "sharedEntryAdvancedBy": ["T47n1986B", "X69n1354"]
+    },
+    "T47n1986B": {
+      "source": "T/T47/T47n1986B.xml",
+      "occurrenceKeys": ["t_ff25afe69d14:0522b25:1:2"],
+      "exactActorDecisions": [{
+        "entryId": "t_ff25afe69d14",
+        "sourceTerm": "空劫",
+        "decision": "Dongshan Liangjie, exact questioner",
+        "override": "Confirmed the title owner only after the complete turn map; Dongshan asks and Shushan Kuangren answers.",
+        "contextFigures": ["Shushan Kuangren: respondent"]
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 9, "after": 6},
+        "zcVerify": "1/1; 0522b25–0522b26", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_ff25afe69d14/entry.v2.json": "68589af4029a76497e4498c510a6830ed9cf5d73c1d6adade6c9568bae44d3fb",
+        "maintenance/source-workbooks/overrides-T47n1986B.json": "d25173404a736189d34d1823ff4b4000a62a7262180876560adcd5a76cc3b909",
+        "maintenance/source-workbooks/decisions-T47n1986B.json": "81b4fcaaaa778d289a0c160bc1c802cd3ebaf72e96c6e58d63aa89d2af58c1e5",
+        "maintenance/source-workbooks/applied-T47n1986B.json": "59877587167435c4d8511752cd706399d7ec32825714c0d747ca8ed999f27448",
+        "maintenance/source-workbooks/audit-after-T47n1986B.json": "15b7a6ef959901c0b26137290543f2fbb3428e372fe5d420c824c39123c087ad"
+      },
+      "sharedEntryAdvancedBy": ["X69n1354"]
+    },
+    "X69n1354": {
+      "source": "X/X69/X69n1354.xml",
+      "occurrenceKeys": ["t_ff25afe69d14:0346c14:1:5"],
+      "exactActorDecisions": [{
+        "entryId": "t_ff25afe69d14", "sourceTerm": "空劫",
+        "decision": "Yuelin Shiguan, exact hall speaker",
+        "override": "Confirmed the record owner against the Chengtian Nengren section and exact hall-address turn.",
+        "contextFigures": []
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 6, "after": 3},
+        "zcVerify": "1/1; 0346c14–0346c15", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_ff25afe69d14/entry.v2.json": "68589af4029a76497e4498c510a6830ed9cf5d73c1d6adade6c9568bae44d3fb",
+        "maintenance/source-workbooks/overrides-X69n1354.json": "17d97045347fa258a2d86a6e143de7592ca4776b4f71986b0352446149fae95e",
+        "maintenance/source-workbooks/decisions-X69n1354.json": "4b0013973a1400cccba9744279c79ca3589c46d22904fb35a57120ca431d2702",
+        "maintenance/source-workbooks/applied-X69n1354.json": "d294c98cda9ce73c5b2da89c40d8dc501fd47b323871d536f26d34728283e02c",
+        "maintenance/source-workbooks/audit-after-X69n1354.json": "9eb8749f08dda6671079ba1db4300dcc8873822fc65e2502456cd92d0618f4ea"
+      }
+    },
+    "J39nB463": {
+      "source": "J/J39/J39nB463.xml",
+      "occurrenceKeys": ["t_2069b9c33315:0800c13:2:2"],
+      "exactActorDecisions": [{
+        "entryId": "t_2069b9c33315", "sourceTerm": "君臣",
+        "decision": "Gumei Dinglie, exact whisk-address speaker",
+        "override": "Rejected Guishan Lingyou: Guishan is the monastery, while the title, byline, section, and complete turn name Gumei Dinglie.",
+        "contextFigures": []
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 15, "after": 12},
+        "zcVerify": "1/1; 0800c13–0800c14", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_2069b9c33315/entry.v2.json": "0ae263a254baaaaac943eea6396d67b68c52a75d33edc9fbf9a3da21e4b0e74c",
+        "maintenance/source-workbooks/overrides-J39nB463.json": "53ec3235c0fa7419cc2c5006b5a817ba566ebf39d5ac1b4039a165943d049237",
+        "maintenance/source-workbooks/decisions-J39nB463.json": "d738183e9b2051d2ae3d78c3938b7c1e9892d81c375027ff9ac8a90741b4e34e",
+        "maintenance/source-workbooks/applied-J39nB463.json": "72ac0182fbee656a5ec22800712bb9c3210fa95289c957e710ef9e29624c08d7",
+        "maintenance/source-workbooks/audit-after-J39nB463.json": "af54f1392ef39676186fe11474d4cbe5260c8a652613d03a37e0d3480aa9dcf5"
+      }
+    },
+    "T48n2023": {
+      "source": "T/T48/T48n2023.xml",
+      "occurrenceKeys": ["t_57fd70bfc9ec:1048b16:1:5"],
+      "exactActorDecisions": [{
+        "entryId": "t_57fd70bfc9ec", "sourceTerm": "客塵",
+        "decision": "Foyan Qingyuan, exact inscription author",
+        "override": "Confirmed through the explicit 龍門佛眼遠禪師坐禪銘 section heading.", "contextFigures": []
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 9, "after": 6}, "zcVerify": "1/1; 1048b16–1048b17", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_57fd70bfc9ec/entry.v2.json": "3fb7c7b96f30d2eb71fe0ccd78ae9fe812a79ec5ed0a79207b5b48a56a86c928",
+        "maintenance/source-workbooks/overrides-T48n2023.json": "0a0bf9e982126d5f191ba612fad76d33fbdcee257c137ea6c7aaecefeb4b0428",
+        "maintenance/source-workbooks/decisions-T48n2023.json": "cb37423f07434159d87aa0c45197b5a9df3120775a920290153af52627fb9810",
+        "maintenance/source-workbooks/applied-T48n2023.json": "676e5b4d8d6873be8e312ab4e689de4f37d3ef745dc56407ff5b08b46b8579d9",
+        "maintenance/source-workbooks/audit-after-T48n2023.json": "e514d52893084489bc2ed44bec224955a0e28e32990de83e20906444e155a5e9"
+      }
+    },
+    "X67n1303": {
+      "source": "X/X67/X67n1303.xml",
+      "occurrenceKeys": ["t_76cff76a9bd3:0282b13:1:1"],
+      "exactActorDecisions": [{
+        "entryId": "t_76cff76a9bd3", "sourceTerm": "丹霞燒佛",
+        "decision": "impersonal narratorial case heading",
+        "override": "Rejected Danxia Tianran as exact actor: the headword occurs in the numbered XML heading, not in a spoken turn.",
+        "contextFigures": ["Danxia Tianran: case-subject", "Linquan Conglun: commentator, collection-owner"]
+      }],
+      "verification": {
+        "compile": "1/1, zero failures after exact ActorLabel/narratorial-note correction", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 12, "after": 9}, "zcVerify": "1/1; 0282b13–0282b14", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_76cff76a9bd3/entry.v2.json": "069eca8d042b9a7c56c684542bd4db3d7fe1ebd5247560be146b8d29608afa15",
+        "maintenance/source-workbooks/overrides-X67n1303.json": "ba60587bc272205c31604f49176c646a4edc6fab770f7f2c51651b2c8eadbc4b",
+        "maintenance/source-workbooks/decisions-X67n1303.json": "4b37e54efe3677e1ceb65baa561b8239e468f70e5c355d0703e3f083a81ed997",
+        "maintenance/source-workbooks/applied-X67n1303.json": "da5f81f1b14e4b6358bca137a848c6d187243395f94f6019cac7f3a1a1d3b91d",
+        "maintenance/source-workbooks/audit-after-X67n1303.json": "1cb6561776dba8bd5ce5d90d28befb72d3672cbe35cfd5b2b05616b230fa01fa"
+      }
+    },
+    "X69n1357": {
+      "source": "X/X69/X69n1357.xml",
+      "occurrenceKeys": ["t_6a1ea4df00ce:0491a07:1:2"],
+      "exactActorDecisions": [{
+        "entryId": "t_6a1ea4df00ce", "sourceTerm": "騰騰任運",
+        "decision": "Yuanwu Keqin, exact author",
+        "override": "Confirmed in Yuanwu's own Essentials of Mind under the instruction headed 示禪人.", "contextFigures": []
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 10, "after": 7}, "zcVerify": "1/1; 0491a07–0491a08", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_6a1ea4df00ce/entry.v2.json": "15b4658f9e84fab527727442798b48010d190ec0fc7a103c02c1e4ca21043324",
+        "maintenance/source-workbooks/overrides-X69n1357.json": "f5f99d544ec8067e552f19470f41b801cd4ffec9408e95aa6730b52179f422a3",
+        "maintenance/source-workbooks/decisions-X69n1357.json": "8cb24bc5f2ae05f11617b3e8d982b2252c15473b8f25ed9dcd7ded2da80a6cba",
+        "maintenance/source-workbooks/applied-X69n1357.json": "345dc7258e8f687edf8f007d19296b4df243a02941aba69f4c788dfa3cbc35e4",
+        "maintenance/source-workbooks/audit-after-X69n1357.json": "7b73edce91c32006e0e02b4270400798552b6a3447efb96c5cda6d5b6f334a16"
+      }
+    },
+    "X70n1402": {
+      "source": "X/X70/X70n1402.xml",
+      "occurrenceKeys": ["t_18b083a026ba:0714c20:1:5"],
+      "exactActorDecisions": [{
+        "entryId": "t_18b083a026ba", "sourceTerm": "提起",
+        "decision": "Zhongfeng Mingben, exact instruction author",
+        "override": "Confirmed in his own Miscellaneous Records under 結夏示順心庵眾.", "contextFigures": []
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 20, "after": 17}, "zcVerify": "1/1; 0714c20–0714c22", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_18b083a026ba/entry.v2.json": "df669257a4ece151c0d8ade4877ffa7ece7c893d8bafd830ed79899ce3b2d8af",
+        "maintenance/source-workbooks/overrides-X70n1402.json": "69dc763fdf6102e8abc8f3edb731b9f7045226a2397035b704d8281e0417c871",
+        "maintenance/source-workbooks/decisions-X70n1402.json": "26620f7b097c40abdb34e365b3b1eb8cfba38f199a32cc16a3da303db285f29f",
+        "maintenance/source-workbooks/applied-X70n1402.json": "88d1b325fd73e1e3e96ddf29bc486097885d22190bde8bee60e7213d15881817",
+        "maintenance/source-workbooks/audit-after-X70n1402.json": "b34508e951b9f9b15a7f1d15fad95cf7859bc6cd8f13f12d6c7b8f398971e4c6"
+      }
+    },
+    "X72n1440": {
+      "source": "X/X72/X72n1440.xml",
+      "occurrenceKeys": ["t_d190cf45c531:0653a16:1:7"],
+      "exactActorDecisions": [{
+        "entryId": "t_d190cf45c531", "sourceTerm": "話頭",
+        "decision": "Weilin Daopei, exact general-address speaker",
+        "override": "Confirmed from the return-to-mountain record's volume/section and complete winter-restriction address; Dahui is discussed afterward.",
+        "contextFigures": ["Dahui Zonggao: person-discussed"]
+      }],
+      "verification": {
+        "compile": "1/1, zero failures", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 39, "after": 36}, "zcVerify": "1/1; 0653a16–0653a17", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_d190cf45c531/entry.v2.json": "3909ce5f97eb06fbe3c7a79169645a4a0f8e8865cca3e894f127632cc8a7b7e8",
+        "maintenance/source-workbooks/overrides-X72n1440.json": "157a94dc220d1dc39d2af0615aef459484e92102d1b1750281ebf93fdeba95ac",
+        "maintenance/source-workbooks/decisions-X72n1440.json": "50d8f281e5da2f0f8e562a7fb1bc0b908951fcfd9293574f62bdd081c2662b8f",
+        "maintenance/source-workbooks/applied-X72n1440.json": "a63db4effee7dc51a8d5d66839414d52d63bc20ac5a88fc8480a19958fd5dab0",
+        "maintenance/source-workbooks/audit-after-X72n1440.json": "979e1439d451021b864f8be950db7382abebf99d1ad7669d7869e0e9c8d98618"
+      }
+    },
+    "X81n1568": {
+      "source": "X/X81/X81n1568.xml",
+      "occurrenceKeys": ["t_d2892b1eaae0:0054c12:1:4"],
+      "exactActorDecisions": [{
+        "entryId": "t_d2892b1eaae0", "sourceTerm": "立雪",
+        "decision": "Bailu Xianduan, exact hall speaker",
+        "override": "Rejected Bodhidharma: he and Huike are discussed inside Bailu Xianduan's explicitly headed hall address.",
+        "contextFigures": ["Bodhidharma: person-discussed", "Huike: person-discussed"]
+      }],
+      "verification": {
+        "compile": "1/1, zero failures after restoring the exact full source title", "dryRun": "1/1, zero failures", "apply": "1/1, zero failures",
+        "focusedAuditHardFailures": {"before": 13, "after": 10}, "zcVerify": "1/1; 0054c12–0054c13", "jsonParse": "passed"
+      },
+      "hashes": {
+        "terms/t_d2892b1eaae0/entry.v2.json": "a776a6270888b88c052ff6af93b8888e5bd717b06a119d7964885da1e3932c6b",
+        "maintenance/source-workbooks/overrides-X81n1568.json": "3b06cb3e3957d8ceaa5549367663a91b0a5f763b3b2c37a8bf2cef78e0fe4f9c",
+        "maintenance/source-workbooks/decisions-X81n1568.json": "1711026f51faffe6eacb8d3de1b9023ef314d09fd327ddfc95bce72ca7c5efd3",
+        "maintenance/source-workbooks/applied-X81n1568.json": "bd1d0ddeac0e1a4799c63168d2291792cfdab974eeb2b60cfe5a5f0d66f41b36",
+        "maintenance/source-workbooks/audit-after-X81n1568.json": "27ed80f60770a08a2f48489a46dcb3e7e62adc4bca29914b038cc3bf3487ec5c"
+      }
+    }
+  }
+}

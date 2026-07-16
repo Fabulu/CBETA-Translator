@@ -1,0 +1,84 @@
+{
+  "source": "J/J26/J26nB177.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J26nB177.json",
+  "decisions": [
+    {
+      "entryId": "t_52fdda90e9ab",
+      "sourceTerm": "行腳",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0016c14",
+      "Kwic": "問：「如何是行腳事？」師云：「面面相看口如木。」",
+      "caseClusterId": "J/J26/J26nB177.xml:101070:101143",
+      "Decision": {
+        "MasterName": "Poshan Haiming",
+        "ActorAttribution": null,
+        "AttributionNote": "破山禪師語錄. Full six-rung exact-turn review identifies Poshan Haiming as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "破山禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_7efdfe4296c6",
+      "sourceTerm": "父母未生前",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0029a07",
+      "Kwic": "弟子姓萬，未審父母未生前姓甚麼？",
+      "caseClusterId": "J/J26/J26nB177.xml:166258:166413",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "lay practitioner",
+          "ActorLabel": "Lay practitioner surnamed Wan",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "破山禪師語錄. Full six-rung exact-turn review identifies Lay practitioner surnamed Wan as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Poshan Haiming"
+        ]
+      },
+      "ExpectedSourceTitle": "破山禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_b1c32bd93e66",
+      "sourceTerm": "鵝王",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0045a03",
+      "Kwic": "水中有乳，人莫之見，在鵝王擇之矣。如爾之見地，阿誰知之？",
+      "caseClusterId": "J/J26/J26nB177.xml:269168:269269",
+      "Decision": {
+        "MasterName": "Poshan Haiming",
+        "ActorAttribution": null,
+        "AttributionNote": "破山禪師語錄. Full six-rung exact-turn review identifies Poshan Haiming as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "破山禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

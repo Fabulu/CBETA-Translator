@@ -1,0 +1,71 @@
+{
+  "generatedUtc": "2026-07-13T21:04:20.827302+00:00",
+  "elapsedSeconds": 1.471,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_8879b278cd83",
+      "term": "便打",
+      "path": "terms/t_8879b278cd83/entry.v2.json",
+      "sha256": "5c41c9c4517aaa3b18e96fcae5d3e6096947cb73e3758f5ca8a15a06fa4a6be9"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 11,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_8879b278cd83/entry.v2.json",
+        "id": "t_8879b278cd83",
+        "term": "便打",
+        "verified": 11,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 11,
+        "named_occurrences": 9,
+        "attribution_notes": 11,
+        "actor_reviewed_unnamed": 2,
+        "context_master_links": 4,
+        "deferred_non_roster": 2,
+        "deferred_non_roster_context": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 11,\n    \"named_occurrences\": 9,\n    \"attribution_notes\": 11,\n    \"actor_reviewed_unnamed\": 2,\n    \"context_master_links\": 4,\n    \"deferred_non_roster\": 2,\n    \"deferred_non_roster_context\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpagpj1oly.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

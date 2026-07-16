@@ -1,0 +1,98 @@
+{
+  "generatedUtc": "2026-07-13T21:15:11.779477+00:00",
+  "elapsedSeconds": 3.284,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+      "sha256": "9ed6a58e5ce4c5ea6d5a3ddec1aed9803f644e6b0899835e8116636435efee25"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 11,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+        "id": "t_edd5d300476f",
+        "term": "聯燈",
+        "verified": 11,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 1,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "occurrences": 11,
+        "named_occurrences": 11,
+        "attribution_notes": 11,
+        "deferred_non_roster": 7,
+        "note_missing_source": 1,
+        "vague_attributor": 2
+      },
+      "hardFailures": 3,
+      "failures": [
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+          "detail": "聯燈 s1 o5 expected '五燈全書(第34卷-第120卷)': The Complete Book of the Five Lamps (五燈全書), in the explicitly headed section for Zefeng Yue of Jubao in Dingzhou, records Zefeng Yue establishing the patriarchs' room, mounting the teaching seat, inserting incense, and speaking of one portrait linking the lamp far away in succession."
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+          "detail": "聯燈 s1: 'one teacher'"
+        },
+        {
+          "kind": "vague_attributor",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+          "detail": "聯燈 s1: 'a teacher'"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"occurrences\": 11,\n    \"named_occurrences\": 11,\n    \"attribution_notes\": 11,\n    \"deferred_non_roster\": 7,\n    \"note_missing_source\": 1,\n    \"vague_attributor\": 2\n  },\n  \"hardFailures\": 3,\n  \"failures\": [\n    {\n      \"kind\": \"note_missing_source\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json\",\n      \"detail\": \"聯燈 s1 o5 expected '五燈全書(第34卷-第120卷)': The Complete Book of the Five Lamps (五燈全書), in the explicitly headed section for Zefeng Yue of Jubao in Dingzhou, records Zefeng Yue establishing the patriarchs' room, mounting the teaching seat, inserting incense, and speaking of one portrait linking the lamp far away in succession.\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json\",\n      \"detail\": \"聯燈 s1: 'one teacher'\"\n    },\n    {\n      \"kind\": \"vague_attributor\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json\",\n      \"detail\": \"聯燈 s1: 'a teacher'\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmpzhsx808z.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 11,
+      "tierACandidates": 1,
+      "reviewRequired": 10
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 11,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 10\n}\nreport: maintenance/cohort-gate-risk3-liandeng-draft-attribution-packets.json\n",
+    "report": "maintenance/cohort-gate-risk3-liandeng-draft-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

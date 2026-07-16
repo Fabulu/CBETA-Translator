@@ -1,0 +1,119 @@
+{
+  "source": "D/D48/D48n8939.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e84753568cda:0038b01:1:3",
+      "entryId": "t_e84753568cda",
+      "sourceTerm": "向上事",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0038b01",
+      "Kwic": "更須知有向上事末後句始得",
+      "caseClusterId": "D/D48/D48n8939.xml:298097:298378",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄, Foyan Qingyuan's recorded sayings. Foyan Qingyuan is the exact speaker: in his hall address he says that even after seeing colors clearly one must know the matter beyond and the final phrase before study is finished."
+      }
+    },
+    {
+      "key": "t_927d274aa0fc:0108a06:1:3",
+      "entryId": "t_927d274aa0fc",
+      "sourceTerm": "悟道",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0108a06",
+      "Kwic": "忽然大悟乃有悟道頌云我有明珠一顆久被諸塵封褁",
+      "caseClusterId": "D/D48/D48n8939.xml:412922:413683",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄, Foyan Qingyuan's general address. Foyan Qingyuan is the exact narrating speaker: he recounts Chaling Yu's fall from a donkey, says Chaling suddenly awakened greatly, and introduces the ensuing verse as his verse on awakening to the Way.",
+        "ContextMasters": [
+          {
+            "MasterName": "Chaling Yu",
+            "Roles": [
+              "person-discussed",
+              "quoted-verse-author"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_782f20a368c3:0108a10:1:5",
+      "entryId": "t_782f20a368c3",
+      "sourceTerm": "省悟",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0108a10",
+      "Kwic": "須知有省悟之由若真實叅學但恁麼看據現定會些子言句便休也在",
+      "caseClusterId": "D/D48/D48n8939.xml:412922:413683",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄, Foyan Qingyuan's general address after recounting Chaling Yu's awakening. Foyan Qingyuan is the exact speaker: he tells listeners they must know that awakening has an occasion and warns genuine students against stopping at a few presently understood phrases."
+      }
+    },
+    {
+      "key": "t_2b6fde4fdf58:0520b04:1:6",
+      "entryId": "t_2b6fde4fdf58",
+      "sourceTerm": "壁立千仞",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0520b04",
+      "Kwic": "上堂拈起拄杖云盤山道向上一路師云滑南院道壁立千仞師云險林際道石火電光師云鈍",
+      "caseClusterId": "D/D48/D48n8939.xml:1139756:1139992",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Nanyuan Huiyong",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄, Langya Huijue's Later Record. Nanyuan Huiyong is the exact speaker of the stored inherited phrase 'a wall standing a thousand fathoms' (南院道壁立千仞); Langya Huijue raises it and appraises it as dangerous.",
+        "ContextMasters": [
+          {
+            "MasterName": "Langya Huijue",
+            "Roles": [
+              "later-raiser",
+              "commentator"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8d9558f7f8a5:0605a11:1:1",
+      "entryId": "t_8d9558f7f8a5",
+      "sourceTerm": "隨他去",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0605a11",
+      "Kwic": "僧遂問刼火洞然大千俱壞未審此箇性壞不壞師云壞進云恁麼則隨他去也師云隨他隨他去也",
+      "caseClusterId": "D/D48/D48n8939.xml:1278732:1280375",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dasui Fazhen",
+        "ActorAttribution": null,
+        "AttributionNote": "古尊宿語錄, record of Dasui's world-ending-fire exchange. Dasui Fazhen is the exact answering speaker of the repeated stored phrase: an unnamed monk first advances, 'then it goes along with it,' and Dasui replies, 'go along with it, go along with it.'",
+        "ContextMasters": []
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

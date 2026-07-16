@@ -1,0 +1,469 @@
+{
+  "schemaVersion": "1.0",
+  "cohort": "semantic-r003",
+  "scope": "reviewer2 re-audit of prior owner2 entries under ACTOR_AUDIT.md",
+  "reviewer": "/root/repair_bird_path",
+  "instructions": "Audit every occurrence in its complete passage. MasterName is the exact utterer of the headword. ContextMasters uses only the closed role vocabulary and includes each named utterer with role utterer. Recut or replace every KWIC lacking the headword; verify all retained or replacement KWICs with zc.verify. This ledger records findings only and does not authorize edits to entries assigned to another live owner.",
+  "entries": [
+    {
+      "id": "t_37261001c332",
+      "sourceTerm": "觀心",
+      "path": "terms/t_37261001c332/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "064652dd32a7ffdf156832fdb12d1ee4f9d756922e3356edf322a752388d2899",
+      "evidence": [
+        "All nine stored KWIC strings verify at their stored bounds, but occurrence 9 does not contain the headword 觀心 at all: it contains 觀靜. ACTOR_AUDIT requires replacing it with a genuine 觀心 witness rather than retaining an adjacent conceptual contrast.",
+        "Occurrence 1 correctly assigns Niutou Farong as the utterer, but its ContextMasters omits Niutou himself with mandatory role utterer.",
+        "Occurrence 2 assigns the attributed answer to Bodhidharma but gives no self ContextMasters utterer role; occurrences 5-7 likewise name Yongzheng Emperor or Xuri Jushi without mandatory self utterer context.",
+        "Occurrences 3 and 8 inconsistently classify the same attributed Bodhidharma treatise dialogue as impersonal compiler narrative, even though occurrence 2 treats its answer-voice as Bodhidharma. Occurrence 3's exact headword is spoken by the anonymous questioner, not by an impersonal/no-human actor; it needs the reviewed other-utterer outcome, with Bodhidharma only as the attributed treatise figure if that contextual relation is retained.",
+        "Multiple ContextMasters roles are outside the closed vocabulary: attributed-treatise-figure, quoting-author, reporting-questioner, and person-reported. Replace them with supported closed roles and put nuance in GrammarEvidence.",
+        "Occurrence 9 wrongly assigns Huineng as MasterName although the quoted phrase is Zhicheng's report of Shenxiu's instruction; independently, the KWIC is unusable because 觀心 is absent."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 9,
+          "previousMasterName": "Huineng",
+          "finding": "Huineng does not utter the stored phrase; Zhicheng reports Shenxiu's wording, and the stored KWIC contains 觀靜 rather than the headword 觀心, so this witness must be replaced."
+        }
+      ],
+      "reason": "Revise comprehensively for actor parity, closed roles, consistent treatment of the attributed treatise dialogue, and replacement of the headword-free ninth witness. Preserve the sound inspect-mind semantic analysis only after every replacement and retained KWIC is reverified."
+    },
+    {
+      "id": "t_f3488daf27fd",
+      "sourceTerm": "較些子",
+      "path": "terms/t_f3488daf27fd/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "002e66a19aa0a08a6c23ca7af604dc6bc47e6108160b2777bc5fbf0019819d1e",
+      "evidence": [
+        "All seven stored KWICs contain 較些子 and verify, and the one comparative sense remains semantically sound.",
+        "Occurrence 1 is correctly Huangbo Xiyun's utterance about Guizong Zhichang, but Huangbo lacks mandatory self ContextMasters role utterer and the contextual roles person-appraised and lineage-teacher are outside the closed vocabulary.",
+        "Occurrence 2 sits in the explicitly headed Xitang Zhizang record: `師召云：大眾！這箇師僧猶較些子`. The exact utterer is Xitang Zhizang, not stored Fenzhou Wuye.",
+        "Occurrence 3 sits in the explicitly headed Mingzhou Guanghui Qingshun record: after the monk says he does not understand, `師云：却較些子`. The exact utterer is Guanghui Qingshun, not stored Yaoshan Xuan.",
+        "Occurrence 5 explicitly says `白巖符云...總不如衍老當時却較些子`; the exact utterer is Baiyan Fu, not stored Jingfu. Fu Dashi and Baozhi are discussed case figures, and existing role case-subject is outside the closed vocabulary.",
+        "Occurrences 4, 6, and 7 retain Yuanwu Keqin, Xuefeng Sihui, and Changqing Huileng respectively as exact utterers, but all named occurrences need mandatory self ContextMasters role utterer. Occurrence 6's earlier-case-subject role must become a supported closed role such as case-figure."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Fenzhou Wuye",
+          "exactUtterer": "Xitang Zhizang",
+          "finding": "The complete passage is in Xitang Zhizang's headed record and 師 utters the headword."
+        },
+        {
+          "occurrence": 3,
+          "previousMasterName": "Yaoshan Xuan",
+          "exactUtterer": "Guanghui Qingshun",
+          "finding": "The complete passage is in Mingzhou Guanghui Qingshun's headed record and 師 utters the headword."
+        },
+        {
+          "occurrence": 5,
+          "previousMasterName": "Jingfu",
+          "exactUtterer": "Baiyan Fu",
+          "finding": "The reporting formula 白巖符云 directly names Baiyan Fu as the utterer."
+        }
+      ],
+      "reason": "Revise for three displaced MasterName assignments, mandatory utterer self-context on all retained named occurrences, and closed-role normalization. Preserve the verified witnesses and sound comparative sense."
+    },
+    {
+      "id": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "path": "terms/t_77821881a767/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "1731e80778808fb28bc3ecd298becd96167a0ca0ce50c04e8c646409c0b61bb7",
+      "evidence": [
+        "All eight KWICs contain 釋迦老子 and verify; the single familiar/irreverent designation of Shakyamuni remains semantically sound across invocation, quotation, staged arrival, criticism, and comparison.",
+        "Occurrence 1 is inside Deshan Xuanjian's record and begins `師上堂...我先祖見處即不然`; Deshan, not stored Puhua, utters `釋迦老子是乾屎橛`.",
+        "Occurrence 7 explicitly reports `雲門道。釋迦老子與天帝釋...` before Dahui comments `師云`; Yunmen Wenyan, not stored Dahui Zonggao, utters the headword.",
+        "Occurrences 2-6 and 8 retain Longji Shaoxiu, Dahui Zonggao, Shoushan Xingnian, Yunmen Wenyan, Shanhui, and Yuanwu Keqin as exact utterers, but every named occurrence lacks mandatory self ContextMasters role utterer (or verse-author only where the headword is genuinely authored verse).",
+        "All current contextual role strings are outside the closed vocabulary: named-target, person-invoked, quoted-source, and contrasted-source. Normalize them to supported roles such as person-discussed, case-figure, later-quoter, or teacher only where the complete passage proves that relation."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 1,
+          "previousMasterName": "Puhua",
+          "exactUtterer": "Deshan Xuanjian",
+          "finding": "The headword occurs in Deshan's explicitly governed hall address."
+        },
+        {
+          "occurrence": 7,
+          "previousMasterName": "Dahui Zonggao",
+          "exactUtterer": "Yunmen Wenyan",
+          "finding": "The reporting formula 雲門道 names Yunmen as the utterer; Dahui is the later commentator."
+        }
+      ],
+      "reason": "Revise for two displaced utterers, mandatory utterer self-context throughout, and closed-role normalization. Preserve all eight verified witnesses and the sound person-designation sense."
+    },
+    {
+      "id": "t_bcc96a299271",
+      "sourceTerm": "開示",
+      "path": "terms/t_bcc96a299271/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "78e93da8f35afa284ae93a3b927d2961853b2814da597b066db3114c43c25ac3",
+      "evidence": [
+        "All seven KWICs contain 開示 and verify; the disclose/show sense remains sound across requests, reported instruction, a teacher-student complaint, and compiler description.",
+        "Occurrence 1 is an anonymous monk's request in the explicitly headed Baizhang Yuansu record. MasterName null is correct, but ContextMasters wrongly names Guizong Zhizhi as respondent; the respondent/section subject is Baizhang Yuansu.",
+        "Occurrence 2 is spoken by the anonymous monk (`僧問...請師開示`), not stored Liangshan Huan. Liangshan is the respondent and section subject and belongs only in ContextMasters; the monk requires reviewed other-utterer attribution.",
+        "Occurrence 3's complete passage names the lay questioner as He Changbai (`何長白問...今日福山大眾請和尚開示`). He is a named non-roster utterer, not reviewed-unnamed; Juelang Daosheng is the respondent/record owner in ContextMasters.",
+        "Occurrences 4-6 retain Bodhidharma, Chengyi, and Longtan Chongxin as exact utterers but require mandatory self ContextMasters role utterer; their other supported contextual actors may retain closed roles.",
+        "Occurrence 7 is compiler narrative: `得旨後。常以啐啄之機。開示後學` describes Jingqing Daofu. Jingqing does not utter 開示; MasterName must be null, Status narrated, Kind compiler narrative, with Jingqing as person-described."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Liangshan Huan",
+          "finding": "An anonymous monk utters the headword in a request; Liangshan answers and is not the utterer."
+        },
+        {
+          "occurrence": 7,
+          "previousMasterName": "Jingqing Daofu",
+          "finding": "The compiler narrates that Jingqing used the pecking-and-hatching mechanism to instruct later students; Jingqing does not speak the headword."
+        }
+      ],
+      "reason": "Revise for two displaced MasterName assignments, one wrong contextual respondent, recovery of named non-roster utterer He Changbai, narrated classification for the biographical witness, and mandatory utterer self-context on retained named turns."
+    },
+    {
+      "id": "t_327d40c2c9cb",
+      "sourceTerm": "飢來喫飯",
+      "path": "terms/t_327d40c2c9cb/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "d110fd2c4d9e801a4b120fb1b78827163116e066ba05f8405d04e9c08c4b8bc0",
+      "evidence": [
+        "The concrete when-hungry-eat-rice sense remains sound, but the occurrence set fails the headword gate: occurrences 2 and 3 contain the graphic variant 饑來喫飯 rather than SourceTerm 飢來喫飯, and occurrence 4 contains neither form—only a longer explanation about eating without simply eating.",
+        "Occurrence 4 must be replaced with a true headword-bearing KWIC. Occurrences 2 and 3 require an explicit, consistently supported variant policy or replacement with exact SourceTerm witnesses; they cannot silently count as exact headword occurrences.",
+        "The retained exact-form witnesses assign plausible named utterers—Huanglong Huinan, Lingzhao, Hongzhi Zhengjue, and Yuanwu Keqin—but none carries mandatory self ContextMasters role utterer. Lingzhao's saying is later quoted and appraised by Dahui Zonggao, who belongs in contextual roles rather than replacing her as utterer.",
+        "Every retained or replacement witness must be reread in full after the occurrence set is corrected, since occurrence 7 introduces the phrase immediately before `雪竇意道` and must distinguish Yuanwu's own paraphrasing voice from the person whose intent he explains."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for one wholly headword-free occurrence, two ungoverned graphic-variant witnesses, and missing exact-utterer context throughout. Preserve the concrete ordinary-action sense only after rebuilding and reverifying a compliant occurrence set."
+    },
+    {
+      "id": "t_87ad33788c8e",
+      "sourceTerm": "驪龍",
+      "path": "terms/t_87ad33788c8e/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "8293bfad59e6ff29b826eab5c99f252cf80e009e007b9b412e5f164ffac279b6",
+      "evidence": [
+        "All seven KWICs contain 驪龍 and verify; the black-dragon image and its chin-pearl deployment remain one coherent figure family.",
+        "Occurrence 2 is an anonymous monk's question (`僧問。驪龍頷下珠如何取得`); Dapu Xuantong responds only by clapping and looking. Stored MasterName Dapu Xuantong must be demoted to respondent/section-subject context and the monk recorded as reviewed unnamed utterer.",
+        "Occurrence 5 explicitly begins `愚庵盂云` before the headword-bearing sentence. Yu'an Yu, not stored Baizhang Huaihai, is the exact utterer; the passage is a later appraisal of the Nanyuan cat case.",
+        "Occurrences 1 and 6 are Tianyi Yihuai's authored verses, occurrence 7 is Danxia Tianran's explicitly titled dragon-pearl song, and occurrences 3-4 are Wuyi Yuanlai and Sanyi Mingyu's own addresses. Each retained named actor needs closed ContextMasters roles—verse-author for authored verse and utterer for spoken addresses—instead of a bare MasterName."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Dapu Xuantong",
+          "finding": "An unnamed monk utters 驪龍 in the question; Dapu only responds nonverbally."
+        },
+        {
+          "occurrence": 5,
+          "previousMasterName": "Baizhang Huaihai",
+          "exactUtterer": "Yu'an Yu (愚庵盂)",
+          "finding": "The direct reporting formula 愚庵盂云 governs the headword-bearing appraisal."
+        }
+      ],
+      "reason": "Revise for two displaced speakers and mandatory closed-role actor context on every retained named verse or address. Preserve all seven verified witnesses and the coherent dragon/dragon-pearl figure sense."
+    },
+    {
+      "id": "t_22885135d39e",
+      "sourceTerm": "一塵",
+      "path": "terms/t_22885135d39e/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "ce1415707522e87f3bd16b04a2141ef17c897180a415d8915bf14d2d54de16cd",
+      "evidence": [
+        "All seven KWICs contain 一塵 and verify, and the one-speck-of-dust sense remains coherent across literal scale language and Zen deployments involving a world in one speck or admitting no speck.",
+        "Occurrence 2's headword is uttered by an anonymous monk asking `如何是一塵`; the complete passage is in Hangzhou Xixing Huadu Shiyu's section, not a Chen Cao speech turn. Stored MasterName Chen Cao is unsupported; Huadu Shiyu is respondent/section-subject context.",
+        "Occurrence 3 contains two different headword utterers in one KWIC: the unnamed monk asks `如何是一塵`, and Zihu Shenli later answers `即汝是` and then says `但識取一塵`. Recut the stored evidence around the intended master utterance or represent the anonymous question separately so MasterName is unambiguous.",
+        "Occurrences 1 and 4-7 plausibly retain Dazhu Huihai, Yuanwu Keqin, Yu'an Zhiji, Dabo Qian, and Hongzhi Zhengjue as exact utterers, but every named occurrence lacks mandatory self ContextMasters role utterer."
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Chen Cao",
+          "finding": "An anonymous monk utters the headword; the responding section master is Hangzhou Xixing Huadu Shiyu, not Chen Cao."
+        }
+      ],
+      "reason": "Revise for one unsupported MasterName, one multi-speaker ambiguous KWIC requiring recutting, and missing mandatory utterer context on every retained named occurrence. Preserve the verified lexical evidence and sound speck-of-dust sense."
+    },
+    {
+      "id": "t_192801178305",
+      "sourceTerm": "三界唯心",
+      "path": "terms/t_192801178305/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "eacadfced73f40138a5ac579078508f882a9c085b7a227c7c54217aca303419e",
+      "evidence": [
+        "All six KWICs contain 三界唯心 and verify; the proposition that the three realms are mind-only remains one stable phrase-level sense.",
+        "Occurrence 1 is introduced by `經云`; a quoted scripture/document voice utters the phrase, not stored Yongming Yanshou. Yongming is compiler/later quoter context and MasterName must be null with the appropriate nonhuman document attribution.",
+        "Occurrence 2 is in Mazu Daoyi's explicitly headed record and governed by his address `一日謂眾曰`; Mazu, not stored Guifeng Zongmi, utters the headword.",
+        "Occurrence 6 is introduced by Yuanwu Keqin as `古人道`; the unnamed old speaker utters the formula and Yuanwu is later quoter/commentator, not MasterName.",
+        "Occurrences 3-5 retain Xuansha Shibei, Dizang Guichen, and Baoning Renyong as exact utterers but require mandatory closed-role self ContextMasters."
+      ],
+      "displacedNameFindings": [
+        {"occurrence": 1, "previousMasterName": "Yongming Yanshou", "finding": "The reporting formula 經云 assigns the words to a scripture/document voice; Yongming quotes it."},
+        {"occurrence": 2, "previousMasterName": "Guifeng Zongmi", "exactUtterer": "Mazu Daoyi", "finding": "Mazu's headed record and 一日謂眾曰 govern the sentence."},
+        {"occurrence": 6, "previousMasterName": "Yuanwu Keqin", "finding": "Yuanwu explicitly attributes the phrase to an unnamed 古人 and then explains it."}
+      ],
+      "reason": "Revise for three displaced speakers and mandatory utterer context on the retained named turns; preserve the six verified phrase witnesses and stable proposition sense."
+    },
+    {
+      "id": "t_0d926425f385",
+      "sourceTerm": "五戒",
+      "path": "terms/t_0d926425f385/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "9e23b6c8cf100a0c68fd12331f39f0d89f90f5d2352bc5f1dd4aa647d508030f",
+      "evidence": [
+        "All six KWICs contain 五戒 and verify; the five-precepts rule remains a single literal precept set across rebuke, verse, exposition, conferral narrative, and monastic instruction.",
+        "Occurrences 1-2 retain Muzhou Daoming as exact utterer, occurrence 4 is Zhu Shien's authored exposition, and occurrence 6 is Yulin Tongxiu's direct community instruction; all require closed-role self actor context rather than bare MasterName.",
+        "Occurrence 3 is an unattributed `頌曰` embedded in a later compiled appraisal of Yaoshan. The complete local passage does not support stored Hengchuan Xinggong as exact verse-author; apply the full six-rung attribution ladder and either name the actual verse-author or record a reviewed unnamed verse-author.",
+        "Occurrence 5 is compiler narrative (`有嶽神乞戒，師即為張座，付五戒已`) describing Songyue Yuangui's action. Songyue does not utter 五戒; MasterName must be null, Status narrated, Kind compiler narrative, with Songyue as person-described/case-figure."
+      ],
+      "displacedNameFindings": [
+        {"occurrence": 3, "previousMasterName": "Hengchuan Xinggong", "finding": "The headword sits in an unattributed compiled verse; the local passage does not name Hengchuan as verse-author."},
+        {"occurrence": 5, "previousMasterName": "Songyue Yuangui", "finding": "A compiler narrates Yuangui's conferral of the five precepts; Yuangui does not speak the headword."}
+      ],
+      "reason": "Revise for an unsupported verse attribution, a narrated occurrence wrongly assigned to its subject, and missing closed actor roles on all retained authored or spoken witnesses."
+    },
+    {
+      "id": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "path": "terms/t_ff560195f161/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "e1189b80473c92f1b6c4a8328c976018ebfab3aacbbdd8607903387ea4a17d9e",
+      "evidence": [
+        "All seven KWICs contain 作麼生會 and verify; the direct question `how do you understand it?` remains one stable speech-act sense.",
+        "The complete passages support the stored exact utterers: Ganzi Xingzhe, Wufeng Ziqi, Cuiyan Shouzhi, Xuansha Shibei, Xuedou Faning, Huanglong Sixin Wuxin, and Yunju Shun.",
+        "Every named occurrence nevertheless lacks mandatory self ContextMasters role utterer. Existing contextual roles earlier-case-respondent, biographical-subject, case-subject, and person-sought-in-case are outside the closed vocabulary and must be normalized to supported roles such as respondent, student, person-described, or case-figure, with nuance moved to prose evidence."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic missing positive actor evidence and closed-role normalization; preserve all seven verified questions, their exact speakers, and the single speech-act sense."
+    },
+    {
+      "id": "t_3f7a6ab74b68",
+      "sourceTerm": "僧堂",
+      "path": "terms/t_3f7a6ab74b68/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "ef35b31e007b343e9f0a6cfd6229fd6fb923c0a310fe69d73c785a0498498d71",
+      "evidence": [
+        "All seven KWICs contain 僧堂 and verify; the monks' hall remains one concrete institutional place across rules, narrative scenes, and Xuansha Shibei's direct enumeration.",
+        "Occurrences 1-2 and 7 are impersonal rule/procedure statements; occurrences 3-4 are compiler narration of actions or circumstances. Their null MasterName classifications are directionally correct, but legacy roles redactor, observer, and biographical-subject are outside the closed vocabulary and the narratives must use Status narrated rather than impersonal where a compiler describes an event.",
+        "Occurrence 5 is compiler narrative (`大眾...師乃關却僧堂門`) describing Zhaozhou Congshen's action. Zhaozhou does not utter the headword and must move from MasterName to ContextMasters as person-described/section-subject under narrated attribution.",
+        "Occurrence 6 retains Xuansha Shibei as exact utterer but needs mandatory self ContextMasters role utterer."
+      ],
+      "displacedNameFindings": [
+        {"occurrence": 5, "previousMasterName": "Zhaozhou Congshen", "finding": "A compiler narrates Zhaozhou closing the monks' hall door; Zhaozhou does not speak 僧堂."}
+      ],
+      "reason": "Revise for one narrated occurrence wrongly assigned to its subject, narrated-versus-impersonal normalization, closed-role cleanup, and missing positive utterer context for Xuansha."
+    },
+    {
+      "id": "t_a93cfc8fba26",
+      "sourceTerm": "分疏不下",
+      "path": "terms/t_a93cfc8fba26/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "88f9a34922b37dd3c257ba478cb8c3cc746adc534232f95d52b6bc1ae1b8dfc0",
+      "evidence": [
+        "All seven KWICs contain 分疏不下 and verify; inability to sort out or account for something remains one stable verbal predicate.",
+        "Occurrence 2 correctly leaves MasterName null because the headword is uttered by the unnamed monastic interlocutor (`云：衲子分疏不下`) after Yongzheng Emperor answers; Yongzheng is respondent context, but legacy role record-subject is outside the closed vocabulary.",
+        "Occurrences 1 and 3-7 retain Zhaozhou Congshen, Yuan'an Feng, and Linye Tongqi as exact utterers, but every named occurrence lacks mandatory self ContextMasters role utterer.",
+        "The reviewed unnamed occurrence must retain all six rungs and explicit reader prose; all contextual roles must be normalized to the closed vocabulary."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic missing positive actor evidence and closed-role normalization; preserve the seven verified witnesses, exact named speakers, and stable predicate sense."
+    },
+    {
+      "id": "t_b2f05c3e4b7d",
+      "sourceTerm": "合頭語",
+      "path": "terms/t_b2f05c3e4b7d/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "75b017379481ab59dcaea639d2287b60be8fbcef63dedbf021ada1bbf8c796ce",
+      "evidence": [
+        "All six KWICs contain 合頭語 and verify; the stock-fitting/conventional response sense remains coherent across warning, classification, and criticism.",
+        "Occurrence 1 explicitly begins `古人道一句合頭語`; the unnamed old speaker, not stored Chuanzi Decheng, utters the headword. Yunmen Wenyan is the later raiser/record owner and Chuanzi is unsupported as exact utterer.",
+        "Occurrences 2-6 retain Yuanwu Keqin, Yunwai Ze, and Yushan Shangsi as exact utterers but all lack mandatory self ContextMasters role utterer. Occurrence 6's master-in-case role is outside the closed vocabulary and should become case-figure where supported."
+      ],
+      "displacedNameFindings": [
+        {"occurrence": 1, "previousMasterName": "Chuanzi Decheng", "finding": "The reporting formula 古人道 assigns the phrase to an unnamed old speaker; Chuanzi is not named in the headword-bearing turn."}
+      ],
+      "reason": "Revise for one displaced inherited-saying speaker, mandatory utterer context on all retained named occurrences, and closed-role normalization."
+    },
+    {
+      "id": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "path": "terms/t_757827b8d4cb/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "1c83ac69ce98ff222175d73e3c7120cb54429727caa88e079210b4e53e380388",
+      "evidence": [
+        "All seven KWICs contain 喪身失命 and verify; the lose-body-and-life danger formula remains one stable predicate across case speech and commentary.",
+        "The stored exact utterers—Xiangyan Zhixian, Zihu Lizong, Changqing Huileng, Baofu Congzhan, Linji Yixuan, Shishuang Chuyuan, and Yuanwu Keqin—are supported by their complete speech or quoted-case units.",
+        "Every occurrence lacks mandatory self ContextMasters role utterer. Legacy roles case-raiser and record-owner are outside the closed vocabulary and must be normalized to later-raiser, case-figure, commentator, or section-subject only as the full passage supports."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic positive actor-parity and closed-role defects; preserve all seven verified witnesses and the stable danger predicate."
+    },
+    {
+      "id": "t_2398f8fb6328",
+      "sourceTerm": "困來即眠",
+      "path": "terms/t_2398f8fb6328/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "83c266519c3a13de1906dd2298be525dd7b00ddaeb81820ce49f5351e1ac088e",
+      "evidence": [
+        "Occurrences 1 and 3-6 contain 困來即眠 and support the literal when-tired-sleep formula through Dazhu Huihai and Nanyue Lanzan; occurrence 2 does not contain the headword at all and merely continues Huihai's explanation.",
+        "The headword-free occurrence 2 must be replaced, not retained as adjacent conceptual evidence. The remaining five named occurrences need mandatory self ContextMasters role utterer or verse-author, with duplicate textual transmissions explicitly recognized rather than treated as independent semantic depth."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for one headword-free witness, duplicate-transmission depth accounting, and missing actor context on every retained occurrence."
+    },
+    {
+      "id": "t_368268e023e3",
+      "sourceTerm": "塵勞",
+      "path": "terms/t_368268e023e3/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "b7dd70d67da9f68b5e7da9586f9de2ef0266e03c7a87fa343e9dcb12865e8bd5",
+      "evidence": [
+        "All seven KWICs contain 塵勞 and verify; the worldly toil/defilement sense remains coherent across named addresses and instructions.",
+        "The complete units support the stored exact utterers Dahui Zonggao, Yunmen Wenyan, Zhenjing Kewen, Yuanhu Miaoyong, Dufeng Benshan, Wuyi Yuanlai, and Shending Yunwai Ze.",
+        "All seven named occurrences are bare MasterName assertions and lack mandatory self ContextMasters role utterer. Reader prose and attribution notes must retain the exact named actor for every claim after role repair."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic missing positive actor evidence; preserve all seven verified witnesses and the coherent worldly-toil sense."
+    },
+    {
+      "id": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "path": "terms/t_966bc615eb6e/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "982a0eee416bc085654ea2608d4ceb295cba2744f4128594c099bbdb092b7e1d",
+      "evidence": [
+        "All eight KWICs contain 大用 and verify; the great-function/capacity sense remains coherent across direct questions, assembly instruction, named comparison, raised cases, and Yuanwu commentary.",
+        "Occurrences 1 and 3 correctly use reviewed unnamed questioners with Changqing Da'an and Shanhui as respondents. Occurrences 2 and 4-8 retain Fengxue Yanzhao, Guishan Lingyou, Yangshan Huiji, Xuansha Shibei, and Yuanwu Keqin as exact utterers or explicitly quoted speakers.",
+        "Every retained named occurrence lacks mandatory self ContextMasters role utterer. Legacy roles compiler, record-owner, and person-appraised require closed-role normalization; contextual compiler belongs only where the passage proves compilation, and appraised figures should be person-discussed or case-figure."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic actor-parity and closed-role defects; preserve all eight verified occurrences and the stable great-function sense."
+    },
+    {
+      "id": "t_37771a869b4f",
+      "sourceTerm": "如何是祖師西來意",
+      "path": "terms/t_37771a869b4f/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "6fdf4997965f1fef3a93110847974a2e8a6a3b5c77bcd26fdf0e05fb9285c2eb",
+      "evidence": [
+        "All seven KWICs contain the exact question and verify; the speech-act sense remains stable while answers vary.",
+        "Occurrences 1, 4, and 5 correctly record reviewed unnamed questioners with named respondents, but legacy roles case-master, later-commentator, and record-owner must be normalized to the closed vocabulary.",
+        "Occurrence 2 explicitly says both Tanran and Huairang ask (`有僧坦然、懷讓問`). Storing only Nanyue Huairang as MasterName suppresses a co-utterer; the occurrence needs unambiguous multi-actor treatment rather than a single bare name.",
+        "Occurrences 3 and 6 retain Zhaozhou Congshen and Letan Fahui as exact questioners but need self ContextMasters role utterer. Occurrence 7 must distinguish Lingyin Huiyuan's present raising from the quoted Wuzu/Zhaozhou/Dongshan material and normalize quoted-speaker/quoted-respondent roles."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for a suppressed co-questioner, missing utterer context, and pervasive legacy-role normalization; preserve all seven verified question witnesses."
+    },
+    {
+      "id": "t_97b566635d6c",
+      "sourceTerm": "宗師",
+      "path": "terms/t_97b566635d6c/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "0abafb7dc8b434fba0bf7816c6f04dfc0472606289379a9e80ea7870fd0e02e3",
+      "evidence": [
+        "All seven KWICs contain 宗師 and verify; the lineage/teaching master sense remains coherent across definitions, requirements, praise, and criticism.",
+        "The stored exact utterers Daowu Wuzhen, Dahui Zonggao, Yuanwu Keqin, Xuedou Chongxian, and Guishan Lingyou are supported, including Guishan's saying later raised by Zihu Lizong.",
+        "Every named occurrence lacks mandatory self ContextMasters role utterer; Zihu's contextual record-owner role must be removed or normalized while later-raiser is retained."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic positive actor-parity and closed-role defects; preserve the verified witnesses and stable master sense."
+    },
+    {
+      "id": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "path": "terms/t_57ef1bbc3a81/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "8ca81394d75705fbbae281680b4e3f510b9fcab9258f0a77249cc921705a9846",
+      "evidence": [
+        "All eight KWICs contain 山河大地 and verify; mountains, rivers, and the great earth remain one concrete totalizing landscape phrase across direct answers and doctrinal deployment.",
+        "The stored exact utterers Huilin Zongben, Sizushan Fayan, Sanfeng Hanyue Fazang, Dahui Zonggao, Dizang Guichen, Huangbo Xiyun, Baiyun Shouduan, and Wuyi Yuanlai are supported by their complete units.",
+        "Every named occurrence lacks mandatory self ContextMasters role utterer. Occurrence 5's contextual Fayan Wenyi roles include biographical-subject, which is outside the closed vocabulary and should become student/person-described as the passage supports."
+      ],
+      "displacedNameFindings": [],
+      "reason": "Revise for systematic missing positive actor evidence and one legacy-role defect; preserve all eight verified landscape witnesses and the coherent sense."
+    },
+    {
+      "id": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "path": "terms/t_882860247a9b/entry.v2.json",
+      "state": "audited",
+      "verdict": "revise",
+      "subjectEntrySha256": "ad2e33f3e24c8945d15aeb9e83d8f4e66b69248d188a6d0411c4da8d63d9cde2",
+      "evidence": [
+        "All seven KWICs contain 惺惺 and verify; alert/awake remains one stable descriptive state across Yongjia's formulas and later deployments.",
+        "Occurrence 5 explicitly quotes Ruiyan Shiyan's `主人公惺惺著` saying (`昔瑞巖喚主人公惺惺著`); Ruiyan, not stored Fangrong Tongxi, is the headword utterer. Fangrong is later quoter/commentator context.",
+        "Occurrences 1-4 and 6-7 retain Yongjia Xuanjue, Yongzheng Emperor, Ruiyan Shiyan, Haiyin Zhaoru, and Tianyin Yuanxiu as exact authors/utterers, but all need closed self roles. Legacy roles record-owner, person-quoted, and case-master require normalization."
+      ],
+      "displacedNameFindings": [
+        {"occurrence": 5, "previousMasterName": "Fangrong Tongxi", "exactUtterer": "Ruiyan Shiyan", "finding": "Fangrong explicitly quotes Ruiyan's headword-bearing self-address and comments on it."}
+      ],
+      "reason": "Revise for one displaced quoted speaker, mandatory actor context throughout, and closed-role normalization."
+    },
+    {
+      "id": "t_2d56070190a7", "sourceTerm": "戒律", "path": "terms/t_2d56070190a7/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "1f9d2519bf2f1557839a32aadb81dcebcc9aed4e75c170151c0a0d5f471cc8e0",
+      "evidence": ["All six KWICs contain 戒律 and verify; the precept-code sense remains stable across criticism, defense, verse, biography, and institutional statement.", "The stored exact speakers/authors are supported, including Fu Dashi as quoted verse-author and Yongming Yanshou as later quoter/compiler context.", "Every named occurrence lacks mandatory closed self role utterer or verse-author; legacy role quoter must become later-quoter."],
+      "displacedNameFindings": [], "reason": "Revise for systematic actor-parity and closed-role defects; preserve all verified precept-code witnesses."
+    },
+    {
+      "id": "t_8c870cb5e69d", "sourceTerm": "把定", "path": "terms/t_8c870cb5e69d/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "bb85228ae5d932ebde78e170f0daa98aeb6cbf5c2f1fbec8feacc95c96660e4a",
+      "evidence": ["All ten KWICs contain 把定 and verify; the hold-fast/control sense remains coherent.", "The stored named speakers are supported, including Jiufeng Daoqian in a case later quoted/commented by Wansong Xingxiu.", "All named occurrences lack mandatory self utterer context; legacy quoter role must become later-quoter."],
+      "displacedNameFindings": [], "reason": "Revise for systematic positive actor evidence and closed-role normalization."
+    },
+    {
+      "id": "t_a0634fecce83", "sourceTerm": "拖泥帶水", "path": "terms/t_a0634fecce83/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "5f3d099b3680c69052a9d45141d6652280efb8ebb7c00456f0b451e148a84f63",
+      "evidence": ["All six KWICs contain 拖泥帶水 and verify; the drag-through-mud-and-water image and its cumbersome/entangled deployment remain one sense.", "Luohan, Zhanran Yuancheng, Yuanwu Keqin, Lingyin Yinwen, and Dagui Huaixiu are supported exact utterers.", "Every occurrence lacks mandatory self ContextMasters role utterer."],
+      "displacedNameFindings": [], "reason": "Revise for systematic missing positive actor evidence; preserve all six witnesses."
+    },
+    {
+      "id": "t_e7a86b9e58d8", "sourceTerm": "提撕", "path": "terms/t_e7a86b9e58d8/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "0922fa85ab3b034624c0516c5866c284ed3259530e5539ab81ff9100230181be",
+      "evidence": ["All seven KWICs contain 提撕 and verify; sustained prompting/reminding remains coherent across direct instruction and recollection.", "The stored named speakers Gushan Shenyan, Hongzhi Zhengjue, Dahui Zonggao, Wumen Huikai, and Foyan Qingyuan are supported.", "All seven lack mandatory self ContextMasters role utterer."],
+      "displacedNameFindings": [], "reason": "Revise for systematic positive actor-parity defects."
+    },
+    {
+      "id": "t_057cc9ea8755", "sourceTerm": "攝心", "path": "terms/t_057cc9ea8755/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "815299b3a4d227f54ec99c47eb91ea684a41b4e2b23c454fb5a7866dfa6febea",
+      "evidence": ["All six KWICs contain 攝心 and verify; collect/restrain mind remains one action phrase across request, critique, and instruction.", "Occurrence 1 is uttered by the unnamed monk asking `請和尚示攝心之法`; Chaozong Tongren only answers. Stored MasterName Chaozong must move to respondent/section-subject context.", "Occurrences 2-6 retain Chaozong, Yongjue Yuanxian, Yongming Yanshou, Shiwu Qinggong, and attributed Bodhidharma as speakers/authors but need closed self roles."],
+      "displacedNameFindings": [{"occurrence": 1, "previousMasterName": "Chaozong Tongren", "finding": "An unnamed monk utters 攝心 in the request; Chaozong answers afterward."}],
+      "reason": "Revise for one displaced question speaker and systematic missing actor context."
+    },
+    {
+      "id": "t_6dadcc69c361", "sourceTerm": "料揀", "path": "terms/t_6dadcc69c361/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "86996bfdaa9d3b58c461ba01a483bc6863da1817749424ef60ab3334bce8acd8",
+      "evidence": ["All six KWICs contain 料揀 and verify; distinguish/sort out remains one stable verbal sense.", "Occurrences 1 and 6 correctly retain reviewed unnamed questioners; occurrences 2-5 retain Wuyi Yuanlai, Nanyuan Huiyong, Huiyan Zhizhao, and Zhanran Yuancheng as exact speakers/authors.", "Named occurrences lack self utterer context and legacy roles record-owner, school-founder, and subject-of-exposition are outside the closed vocabulary."],
+      "displacedNameFindings": [], "reason": "Revise for actor parity and closed-role normalization."
+    },
+    {
+      "id": "t_93ab42fecdca", "sourceTerm": "本來無一物", "path": "terms/t_93ab42fecdca/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "810961ed347a4d4588123ab53a3aa5c175544f5c154453bb3c282fd5a5fbdabd",
+      "evidence": ["Occurrences 1-7 contain 本來無一物 and support the inherited Huineng line plus later criticism and deployment; occurrence 8 does not contain the headword and is a different Huineng verse variant.", "Occurrence 8 must be replaced rather than treated as exact headword evidence.", "Retained Huineng, Dongshan Liangjie, and Huangbo Xiyun witnesses need self utterer/verse-author roles; Yulin Tongxiu is later quoter, not record-owner."],
+      "displacedNameFindings": [], "reason": "Revise for one headword-free witness, mandatory actor context, and closed-role normalization."
+    },
+    {
+      "id": "t_4416ef85b3a5", "sourceTerm": "森羅萬象", "path": "terms/t_4416ef85b3a5/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "65d12f93f3915d610f0dbcc7550706ac3be7786040f9ac7c666133767d65cff2",
+      "evidence": ["All seven KWICs contain 森羅萬象 and verify; the myriad array of phenomena remains one collective phrase.", "The stored named speakers Fayan Wenyi, Xuedou Faning, Shangfeng Bencai, Lingyun Baoyin, Kongsou Yin, Changlu Yingfu, and Hongzhi Zhengjue are supported.", "All lack mandatory self utterer context; Vimalakirti's figure-deployed role must become case-figure/person-discussed."],
+      "displacedNameFindings": [], "reason": "Revise for systematic actor parity and one legacy-role defect."
+    },
+    {
+      "id": "t_970c3f191929", "sourceTerm": "正法眼", "path": "terms/t_970c3f191929/entry.v2.json", "state": "audited", "verdict": "revise", "subjectEntrySha256": "d6e30fca839c1ccfc2abbb4bec55f2c7eec416a5b1fa5cc260f86a4108ebda1d",
+      "evidence": ["All nine KWICs contain 正法眼 and verify; the true Dharma eye remains one phrase across questions, assertions, criticism, and Shakyamuni's transmission formula.", "Occurrence 7 correctly records an unnamed questioner with Mupingshan Shandao as respondent; the other stored named utterers are supported, including Ying'an Tanhua as questioner and Shakyamuni Buddha as speaker to Mahakasyapa.", "Every named occurrence lacks mandatory self utterer context; figure-deployed and compiler contextual roles require closed-vocabulary normalization."],
+      "displacedNameFindings": [], "reason": "Revise for systematic positive actor evidence and closed-role normalization."
+    }
+  ]
+}

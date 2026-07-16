@@ -1,0 +1,33 @@
+{
+  "source": "T/T48/T48n2025.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex Bundle B exact-turn review",
+  "reviewedUtc": "2026-07-14T08:20:00Z",
+  "rows": [
+    {
+      "key": "t_bf4ad761840f:1110b29:2:1",
+      "entryId": "t_bf4ad761840f",
+      "sourceTerm": "本地",
+      "RelPath": "T/T48/T48n2025.xml",
+      "FromLb": "1110b29",
+      "Kwic": "城子裏達魯花赤官人每根底。往來使臣每根底。本地面官人每根底。百姓每根底。眾和尚每根底。",
+      "caseClusterId": "T/T48/T48n2025.xml:18326:19273",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "勅修百丈清規",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Imperial Preceptor Kunga Gyaltsen Pelzangpo",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Baizhang Huaihai", "Roles": ["earlier monastic-code founder named in the decree"]},
+          {"MasterName": "Dehui", "Roles": ["named redactor commissioned by the decree"]},
+          {"MasterName": "Xiaoyin Daxin", "Roles": ["named reviewing editor commissioned by the decree"]}
+        ],
+        "AttributionNote": "Imperially Revised Baizhang Monastic Code (勅修百丈清規), decree (法旨) issued by Imperial Preceptor Kunga Gyaltsen Pelzangpo (帝師公哥兒監藏班藏卜). The stored administrative address names local officials (本地面官人) among its recipients. Baizhang Huaihai is the earlier founder invoked by the decree; Dehui and Xiaoyin Daxin are the named redactor and reviewing editor. None is the speaker of this recipient list."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

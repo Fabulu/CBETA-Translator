@@ -1,0 +1,48 @@
+{
+  "source": "J/J33/J33nB280.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_dc81acde25fd:0277b16:1:2",
+      "entryId": "t_dc81acde25fd",
+      "sourceTerm": "那畔",
+      "RelPath": "J/J33/J33nB280.xml",
+      "FromLb": "0277b16",
+      "Kwic": "一涉言詮，便落遮畔。如何是那畔底消息？」師云：「你在遮畔多少時也？",
+      "caseClusterId": "J/J33/J33nB280.xml:108109:109594",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "神鼎雲外澤禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking for news from the far side",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "神鼎雲外澤禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking for news from the far side as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Shending Yunwai Ze"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_dc81acde25fd:0277b16:1:2"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J39/J39nB451.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_7e735921071e:0513c12:1:2",
+      "entryId": "t_7e735921071e",
+      "sourceTerm": "冷灰豆爆",
+      "RelPath": "J/J39/J39nB451.xml",
+      "FromLb": "0513c12",
+      "Kwic": "上善拼命必死，壁立萬仞，縣崖撒手，及第還鄉；中善寒爐煙絕，冷灰豆爆，親知下落；下善步步踏著實地",
+      "caseClusterId": "J/J39/J39nB451.xml:28677:29418",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "赤松領禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chisong Daoling",
+        "ActorAttribution": null,
+        "AttributionNote": "赤松領禪師語錄. Chisong Daoling is the exact actor: his 上堂 enumeration includes 冷灰豆爆."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

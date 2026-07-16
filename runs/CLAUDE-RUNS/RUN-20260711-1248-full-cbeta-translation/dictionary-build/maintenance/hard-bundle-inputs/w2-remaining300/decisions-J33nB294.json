@@ -1,0 +1,27 @@
+{
+  "source": "J/J33/J33nB294.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_a38d5c680c67:0736c15:1:1",
+      "entryId": "t_a38d5c680c67",
+      "sourceTerm": "咬嚼",
+      "RelPath": "J/J33/J33nB294.xml",
+      "FromLb": "0736c15",
+      "Kwic": "且去咬嚼他一個顛撲不破的現成句子。咬嚼來、咬嚼去",
+      "caseClusterId": "J/J33/J33nB294.xml:87819:89205",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雲溪俍亭挺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunxi Langting Ting",
+        "AttributionNote": "Recorded Sayings of Chan Master Yunxi Langting Ting (雲溪俍亭挺禪師語錄): in his volume-four general address, Yunxi Langting Ting instructs beginning students to chew over an unbreakable ready-made sentence repeatedly until old masters' tongues can no longer deceive them."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,27 @@
+{
+  "source": "J/J37/J37nB383.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_b0f2ccf6d140:0205c14:1:5",
+      "entryId": "t_b0f2ccf6d140",
+      "sourceTerm": "結制",
+      "RelPath": "J/J37/J37nB383.xml",
+      "FromLb": "0205c14",
+      "Kwic": "叢林，優曇花綻三冬蕊，福海源長壽量深。』」解制，上堂。「自昨冬十月十五結制，於廣教寺裏捱拶，至今朝上元佳節，聖制告圓雲堂，衲子人人",
+      "caseClusterId": "J/J37/J37nB383.xml:41483:42443",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "憨休禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Hanxiu Ruqian",
+        "AttributionNote": "Recorded Sayings of Hanxiu (憨休禪師語錄): in his release-day hall address, Hanxiu Ruqian describes the retreat restriction from the fifteenth of the tenth month through the Lantern Festival."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

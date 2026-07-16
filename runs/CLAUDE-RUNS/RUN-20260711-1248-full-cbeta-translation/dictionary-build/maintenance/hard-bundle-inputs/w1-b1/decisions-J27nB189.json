@@ -1,0 +1,28 @@
+{
+  "source": "J/J27/J27nB189.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_48e808f5d2a7:0016a24:1:5",
+      "entryId": "t_48e808f5d2a7",
+      "sourceTerm": "門庭",
+      "RelPath": "J/J27/J27nB189.xml",
+      "FromLb": "0016a24",
+      "Kwic": "其奈門庭高峻，波瀾浩大。",
+      "caseClusterId": "J/J27/J27nB189.xml:87605:88038",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三宜盂禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Sanyi Mingyu",
+        "ActorAttribution": null,
+        "AttributionNote": "三宜盂禪師語錄, invitational address for the Tianjie elder's ascent of the seat. Sanyi Mingyu is the exact speaker: the TEI header identifies the record's speaker as 明盂, and he praises his Tianjie Dharma brother's accord and says that his house's gate and courtyard are lofty and steep and its waves vast."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

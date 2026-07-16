@@ -59,7 +59,15 @@
           "Kwic": "進云：「二祖安心事如何？」師打云：「安心竟。」",
           "Curated": true,
           "AttributionNote": "The Record of Chan Master Konggu Daocheng (空谷道澄禪師語錄). Full six-rung exact-turn review identifies Konggu Daocheng as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
-          "MasterName": "Konggu Daocheng"
+          "MasterName": "Konggu Daocheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Konggu Daocheng",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "X/X82/X82n1571.xml",
@@ -99,7 +107,7 @@
             "Status": "reviewed-unnamed",
             "Kind": "attendant",
             "ActorLabel": "Unnamed attendant telling Gaofeng to settle his mind",
-            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "ActorRole": "person-described",
             "RungsChecked": [
               "line",
               "expanded-context",

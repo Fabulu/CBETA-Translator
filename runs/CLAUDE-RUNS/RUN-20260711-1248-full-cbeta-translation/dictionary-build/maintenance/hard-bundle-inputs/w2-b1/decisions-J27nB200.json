@@ -1,0 +1,29 @@
+{
+  "source": "J/J27/J27nB200.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_408abe2e38ca:0568b30:1:3",
+      "entryId": "t_408abe2e38ca",
+      "sourceTerm": "現成公案",
+      "RelPath": "J/J27/J27nB200.xml",
+      "FromLb": "0568b30",
+      "Kwic": "敢問諸人，如何是現成公案？東澗水流西澗水，南山雲起北山雲。",
+      "caseClusterId": "J/J27/J27nB200.xml:21519:22427",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "石霜爾瞻尊禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shishuang Dazun",
+        "AttributionNote": "Recorded Sayings of Chan Master Shishuang Erzhan (石霜爾瞻尊禪師語錄): in his eighth-day-of-the-twelfth-month hall address, Shishuang Dazun asks the assembly what the ready-made public case is and answers with water flowing east and west and clouds rising north and south."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_408abe2e38ca:0568b30:1:3"
+  ]
+}

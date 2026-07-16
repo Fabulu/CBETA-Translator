@@ -1,0 +1,73 @@
+{
+  "source": "J/J25/J25nB163.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_66630c6a8a37:0224c05:2:2",
+      "entryId": "t_66630c6a8a37",
+      "sourceTerm": "機緣",
+      "RelPath": "J/J25/J25nB163.xml",
+      "FromLb": "0224c05",
+      "Kwic": "和尚誠無際之正傳，機緣吻合，際囑曰：「吾居川中，得法之徒十有餘人",
+      "caseClusterId": "J/J25/J25nB163.xml:13327:13935",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古庭禪師語錄輯略",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhang Hui",
+        "AttributionNote": "Collected Abridgment of the Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略): the byline names Zhang Hui as author of this preface; Zhang says Guting Shanjian is Wuji's true transmission and that their encounter and affinity accorded.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guting Shanjian",
+            "Roles": [
+              "subject-of-preface"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_66630c6a8a37:0229c09:1:3",
+      "entryId": "t_66630c6a8a37",
+      "sourceTerm": "機緣",
+      "RelPath": "J/J25/J25nB163.xml",
+      "FromLb": "0229c09",
+      "Kwic": "門庭施設，問答機緣，講學宗徒、禪那衲子，一一吐盡野狐涎",
+      "caseClusterId": "J/J25/J25nB163.xml:40338:47927",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古庭禪師語錄輯略",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guting Shanjian",
+        "AttributionNote": "Collected Abridgment of the Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略): in his own extended Dharma instruction, Guting Shanjian opens by naming the establishment of the house, question-and-answer encounters, scholastic followers, and Chan monastics before rejecting their false talk."
+      }
+    },
+    {
+      "key": "t_f04c29743e77:0245c11:1:3",
+      "entryId": "t_f04c29743e77",
+      "sourceTerm": "閑道人",
+      "RelPath": "J/J25/J25nB163.xml",
+      "FromLb": "0245c11",
+      "Kwic": "如此一念萬年、萬年一念，猶太虛空，不與萬象森羅為礙，豈不名絕學無為閑道人也。",
+      "caseClusterId": "J/J25/J25nB163.xml:115863:117525",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古庭禪師語錄輯略",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guting Shanjian",
+        "AttributionNote": "Collected Abridgment of the Recorded Sayings of Chan Master Guting (古庭禪師語錄輯略): in his Niushou daily record, Guting Shanjian says that one thought for ten thousand years and ten thousand years in one thought, unobstructed like empty space, is called the person of the Way beyond learning and contrivance."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_66630c6a8a37:0224c05:2:2",
+    "t_66630c6a8a37:0229c09:1:3",
+    "t_f04c29743e77:0245c11:1:3"
+  ]
+}

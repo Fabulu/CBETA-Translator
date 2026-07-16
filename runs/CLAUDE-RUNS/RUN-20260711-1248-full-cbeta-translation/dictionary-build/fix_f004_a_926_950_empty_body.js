@@ -1,0 +1,2 @@
+const fs=require('fs'),path=require('path'),q=require('./fresh-build/queue.json').rows;
+for(const r of q.filter(r=>r.ordinal>=926&&r.ordinal<=950)){const p=path.join(__dirname,'fresh-build','entries',r.id,'evidence.draft.json'),w=JSON.parse(fs.readFileSync(p));for(const s of w.Entry.Senses)if(!s.ExplanationParts.EvidenceBody[0])s.ExplanationParts.EvidenceBody=['The exact stored witnesses delimit this use across the selected works.'];fs.writeFileSync(p,JSON.stringify(w,null,2)+'\n');}

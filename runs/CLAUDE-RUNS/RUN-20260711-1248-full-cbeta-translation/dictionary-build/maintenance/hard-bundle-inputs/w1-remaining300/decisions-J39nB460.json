@@ -1,0 +1,58 @@
+{
+  "source": "J/J39/J39nB460.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_9a4a6df85ba0:0740b16:1:4",
+      "entryId": "t_9a4a6df85ba0",
+      "sourceTerm": "眉毛墮落",
+      "RelPath": "J/J39/J39nB460.xml",
+      "FromLb": "0740b16",
+      "Kwic": "進云：「丹霞燒木佛，院主為甚麼眉毛墮落？」師云：「脫體風光。」",
+      "caseClusterId": "J/J39/J39nB460.xml:75522:76050",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "灤州萬善暉州昊禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "灤州萬善暉州昊禪師語錄. The exact actor is an unnamed monk: 進云 introduces the eyebrow-loss question. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huizhou Hao",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          },
+          {
+            "MasterName": "Danxia Tianran",
+            "Roles": [
+              "master-in-question"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

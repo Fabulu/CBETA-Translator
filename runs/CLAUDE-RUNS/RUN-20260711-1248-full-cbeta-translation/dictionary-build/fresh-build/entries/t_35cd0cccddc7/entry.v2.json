@@ -27,7 +27,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed interlocutor asking the recorded question",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -37,12 +37,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
-            "GrammarEvidence": "The headword lies in the question before the separately marked response."
+            "GrammarEvidence": "問 introduces the headword-bearing request; the named master’s answer follows at 師曰/師云.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint3 full read",
+            "ReviewedUtc": "2026-07-16T00:21:01.901754+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the unnamed interlocutor asking the recorded question owns the exact headword turn."
+          "ContextMasters": [
+            {
+              "MasterName": "Ciji Cong",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)). Exact actor: the unnamed monk. An unnamed monk asks Ciji Cong about the color-following mani jewel.",
+          "MasterName": null
         },
         {
           "RelPath": "T/T48/T48n2016.xml",
@@ -50,25 +59,16 @@
           "ToLb": "0463c11",
           "Kwic": "如摩尼珠。",
           "Curated": true,
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
-          },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (宗鏡錄): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (宗鏡錄). Exact actor: Yongming Yanshou. Yongming Yanshou compares the mind’s protective and responsive action to a mani jewel.",
+          "MasterName": "Yongming Yanshou"
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -79,7 +79,7 @@
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed interlocutor asking the recorded question",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -89,12 +89,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
-            "GrammarEvidence": "The headword lies in the question before the separately marked response."
+            "GrammarEvidence": "問 introduces the headword-bearing request; the named master’s answer follows at 師曰/師云.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint3 full read",
+            "ReviewedUtc": "2026-07-16T00:21:01.901754+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the unnamed interlocutor asking the recorded question owns the exact headword turn."
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Daoqian",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)). Exact actor: the unnamed monk. An unnamed monk asks Yongming Daoqian about the color-following mani jewel.",
+          "MasterName": null
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -103,9 +112,9 @@
           "Kwic": "世尊一日示隨色摩尼珠。",
           "Curated": true,
           "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the headword-bearing clause",
+            "Status": "reviewed-unnamed",
+            "Kind": "compiled case narration",
+            "ActorLabel": "the unnamed compiler",
             "ActorRole": "compiler",
             "RungsChecked": [
               "line",
@@ -115,12 +124,21 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 Lane A full-case author",
-            "ReviewedUtc": "2026-07-15T05:09:02.950859+00:00",
-            "GrammarEvidence": "The complete case presents the headword in narration, a heading, a named action, or documentary prose rather than a safely isolated master utterance."
+            "GrammarEvidence": "世尊一日示隨色摩尼珠 is third-person narration of Shakyamuni displaying the jewel; no character utters the headword in that clause.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint3 full read",
+            "ReviewedUtc": "2026-07-16T00:21:01.901754+00:00"
           },
-          "ContextMasters": [],
-          "AttributionNote": "Source text (五燈會元): the compiler narrating the headword-bearing clause owns the exact headword-bearing wording."
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni",
+              "Roles": [
+                "person-described",
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "Source text (五燈會元). Exact actor: the unnamed compiler. The compiler narrates Shakyamuni displaying a color-following mani jewel to the five directional kings.",
+          "MasterName": null
         },
         {
           "RelPath": "X/X71/X71n1414.xml",
@@ -137,27 +155,28 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (了菴清欲禪師語錄): exact actor (了菴清欲禪師) owns the headword-bearing wording. Exact headword utterer: Lia'an Qingyu."
+          "AttributionNote": "Source text (了菴清欲禪師語錄). Exact actor: Lia'an Qingyu. Lia'an Qingyu quotes “mani jewel, people do not recognize it,” then counters that everyone recognizes it and it is not worth a penny when smashed."
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0706c05",
-          "ToLb": "0706c15",
-          "Kwic": "字即是祖佛眾生也學云不可只󲟏麼去也師云卒未󲟏你去在問如何是平常心師云狐狼野干是問作何方便即得聞於未聞師云未聞且致你曾聞箇什麼來問承教有言隨色摩尼珠如何是本色師召僧名僧應喏師云過者邊來僧便過又問如何是本色師云且隨色走問平常心底人還受教化也無師云我不麼他門戶學云󲟏麼則莫沉却那邊人麼師云大好平常心問如何是學任底物盡未來際揀不出問如何是大修行底人云寺裏",
+          "FromLb": "0706c09",
+          "ToLb": "0706c10",
+          "Kwic": "問承教有言隨色摩尼珠如何是本色",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Zihu Lizong",
               "Roles": [
-                "respondent"
+                "respondent",
+                "section-subject"
               ]
             }
           ],
-          "AttributionNote": "Source text (古尊宿語錄). The question-and-response frame assigns the headword to the monk’s question; Zihu replies by calling him. Exact headword actor: the unnamed monk asking Zihu Lizong.",
+          "AttributionNote": "Source text (古尊宿語錄). Exact actor: the unnamed monk. An unnamed monk asks Zihu Lizong about the color-following mani jewel.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "questioner",
-            "ActorLabel": "the unnamed monk asking Zihu Lizong",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -167,10 +186,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex f003 A601-650 round4 repair author",
-            "ReviewedUtc": "2026-07-15T16:30:00Z",
-            "GrammarEvidence": "The question-and-response frame assigns the headword to the monk’s question; Zihu replies by calling him."
-          }
+            "GrammarEvidence": "問 introduces the headword-bearing request; the named master’s answer follows at 師曰/師云.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint3 full read",
+            "ReviewedUtc": "2026-07-16T00:21:01.901754+00:00"
+          },
+          "MasterName": null
         }
       ],
       "ClaimAnchors": [],
@@ -187,7 +207,7 @@
         "子湖山第一代神力禪師"
       ],
       "RelatedTerms": [],
-      "Explanation": "The mani jewel is a named jewel that changes with color and is displayed, kept, or questioned in Chan records. Several questioners ask, 'What is the mani jewel that follows color?' One record narrates the World-Honored One displaying it; Liaowan says it is personally kept in the tathāgata storehouse. The stored uses emphasize changing color, possession, display, and recognition rather than a general promise to grant wishes."
+      "Explanation": "The mani jewel is a responsive precious jewel whose displayed color varies with conditions. An unnamed monk repeatedly asks what the “color-following mani jewel” is; one compiled case has Shakyamuni display it while five kings report different colors. Yongming Yanshou uses its luminosity, protection, and responsiveness in an extended comparison with mind. Lia’an Qingyu quotes the inherited jewel verse and then sharply devalues the object when smashed. The entry therefore retains both the named jewel and the records’ public testing of what, if anything, its changing color shows."
     }
   ]
 }

@@ -1,0 +1,148 @@
+{
+  "source": "T/T48/T48n2006.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_80ea075a6c5d:0300a02:1:1",
+      "entryId": "t_80ea075a6c5d",
+      "sourceTerm": "綱宗",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0300a02",
+      "Kwic": "No.2006人天眼目序人天眼目序予遊方時。所至盡誠。咨扣尊宿五宗綱要。其間件目。往往亦有所未知者。因慨念。既據師位。而綱宗語句。尚不知其名。",
+      "caseClusterId": "T/T48/T48n2006.xml:13849:17788",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huiyan Zhizhao",
+        "ActorAttribution": null,
+        "AttributionNote": "人天眼目序. Huiyan Zhizhao is the exact actor: the first-person preface containing 綱宗語句 closes 晦巖智昭序."
+      }
+    },
+    {
+      "key": "t_18ec645f99f7:0303b09:1:1",
+      "entryId": "t_18ec645f99f7",
+      "sourceTerm": "賓中主",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0303b09",
+      "Kwic": "如何是賓中主。穴云。入市雙瞳瞽。",
+      "caseClusterId": "T/T48/T48n2006.xml:67921:69414",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "人天眼目. The exact actor is an unnamed monk: 僧問風穴 introduces 如何是賓中主. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fengxue Yanzhao",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Huiyan Zhizhao",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_966bc615eb6e:0309c09:1:2",
+      "entryId": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0309c09",
+      "Kwic": "夫參學眼目。臨機直須大用現前。莫自拘於小節。",
+      "caseClusterId": "T/T48/T48n2006.xml:180821:181874",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fengxue Yanzhao",
+        "ActorAttribution": null,
+        "AttributionNote": "人天眼目. Fengxue Yanzhao is the exact actor: 汝州風穴和尚示眾云 introduces 臨機直須大用現前.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huiyan Zhizhao",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_f7bdd2def0ec:0312b06:1:4",
+      "entryId": "t_f7bdd2def0ec",
+      "sourceTerm": "截斷眾流",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0312b06",
+      "Kwic": "如何是截斷眾流句。宗云。銕蛇橫古路。",
+      "caseClusterId": "T/T48/T48n2006.xml:222941:223290",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioner in the compiled three-phrase catechism",
+          "ActorRole": "questioning speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex remaining300 research A",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "人天眼目. The exact actor is an unnamed questioner in the compiled three-phrase catechism: 如何是截斷眾流句 is followed by 宗云銕蛇橫古路. No personal name remains after the six-rung review.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guizong Tong",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Huiyan Zhizhao",
+            "Roles": [
+              "compiler"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

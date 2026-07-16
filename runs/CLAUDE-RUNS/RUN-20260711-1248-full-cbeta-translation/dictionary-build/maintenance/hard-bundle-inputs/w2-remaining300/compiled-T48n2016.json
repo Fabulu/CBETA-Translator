@@ -1,0 +1,61 @@
+{
+  "source": "T/T48/T48n2016.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-remaining300/decisions-T48n2016.json",
+  "decisions": [
+    {
+      "entryId": "t_37261001c332",
+      "sourceTerm": "觀心",
+      "RelPath": "T/T48/T48n2016.xml",
+      "FromLb": "0550a25",
+      "Kwic": "普賢觀云。觀心無心。法不住法。我心自空。罪福無主。即是無心無數。名為正觀。",
+      "caseClusterId": "T/T48/T48n2016.xml:649412:673755",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "quoted Puxian Contemplation text",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The reporting formula 普賢觀云 names a source text rather than a human speech turn.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Record of the Source-Mirror (宗鏡錄): the quoted Puxian Contemplation text is explicitly introduced by Yongming Yanshou as saying to inspect mind as no-mind, that mind itself is empty, and that this is called correct contemplation.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yongming Yanshou",
+            "Roles": [
+              "compiler",
+              "quoting-author"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "宗鏡錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-remaining300",
+        "reviewedUtc": "2026-07-14T07:45:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_ad2c9d24126f",
+      "sourceTerm": "入定",
+      "RelPath": "T/T48/T48n2016.xml",
+      "FromLb": "0613a15",
+      "Kwic": "只謂離念入定。厭境求真。不知塵塵是文殊。念念即普賢故。",
+      "caseClusterId": "T/T48/T48n2016.xml:937826:939732",
+      "Decision": {
+        "MasterName": "Yongming Yanshou",
+        "AttributionNote": "Record of the Source-Mirror (宗鏡錄): in his Source-Mirror argument, Yongming Yanshou criticizes merely leaving thought to enter concentration and rejecting objects to seek truth, saying this misses each speck as Manjusri and each thought as Samantabhadra."
+      },
+      "ExpectedSourceTitle": "宗鏡錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-remaining300",
+        "reviewedUtc": "2026-07-14T07:45:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

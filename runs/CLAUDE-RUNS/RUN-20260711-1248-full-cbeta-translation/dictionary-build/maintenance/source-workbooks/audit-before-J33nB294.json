@@ -1,0 +1,54 @@
+{
+  "counts": {
+    "entries": 1,
+    "senses": 1,
+    "occurrences": 5,
+    "unresolved_actor": 2,
+    "attribution_notes": 5,
+    "note_missing_speaker": 2,
+    "note_missing_source": 2,
+    "named_occurrences": 3,
+    "context_master_links": 1,
+    "chinese_strings": 8,
+    "anchored_chinese": 7,
+    "dangling_chinese": 1
+  },
+  "hardFailures": 7,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o1 J/J33/J33nB294.xml:0755c18"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o1: A later record gives the direct naming formula: Juzhi extended one finger to visitors and called it one-finger Chan."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o1 expected '雲溪俍亭挺禪師語錄': A later record gives the direct naming formula: Juzhi extended one finger to visitors and called it one-finger Chan."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4 J/J29/J29nB244.xml:0725c08"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4: Sanshan explicitly challenges the phrase and says it cheated and buried the monk alive."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1 o4 expected '三山來禪師語錄': Sanshan explicitly challenges the phrase and says it cheated and buried the monk alive."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b655ff97e2c3/entry.v2.json",
+      "detail": "一指頭禪 s1: 俱胝一指"
+    }
+  ]
+}

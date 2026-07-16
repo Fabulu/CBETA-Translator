@@ -1,0 +1,52 @@
+{
+  "source": "J/J23/J23nB129.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_7cddddb76d37:0360c22:2:2",
+      "entryId": "t_7cddddb76d37",
+      "sourceTerm": "任運",
+      "RelPath": "J/J23/J23nB129.xml",
+      "FromLb": "0360c22",
+      "Kwic": "納允菴居士任運任運第七圖任運第七圖任運第七頌任運第七頌柳岸春波夕照中，淡煙芳草綠茸茸，饑餐渴飲隨時過，石上山童睡正濃。",
+      "caseClusterId": "J/J23/J23nB129.xml:28528:29598",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "牧牛圖頌",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document heading",
+          "ActorLabel": "the Ten Oxherding section heading",
+          "ActorRole": "document-structure label",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z",
+          "GrammarEvidence": "The headword occurs in the mulu/head labels 任運, 任運第七圖, and 任運第七頌; Nayu'an's signature closes the preceding verse, and Puming's signed verse follows."
+        },
+        "AttributionNote": "牧牛圖頌. The exact actor is the Ten Oxherding section heading: the repeated 任運 labels are impersonal document structure between Nayu'an Jushi's preceding verse and Puming's signed original seventh verse.",
+        "ContextMasters": [
+          {
+            "MasterName": "Puming",
+            "Roles": [
+              "following-verse-author"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

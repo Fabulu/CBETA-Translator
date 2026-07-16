@@ -1,0 +1,117 @@
+{
+  "generatedUtc": "2026-07-14T17:06:32.289793+00:00",
+  "elapsedSeconds": 349.034,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_ff50c6974a36",
+      "term": "五位",
+      "path": "fresh-build/entries/t_ff50c6974a36/entry.v2.json",
+      "sha256": "c4c914e6e7b28dbdc00159d75f1558e5fefd5cdd9cc1094057a9bd7f72e302d3"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 17,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_ff50c6974a36/entry.v2.json",
+        "id": "t_ff50c6974a36",
+        "term": "五位",
+        "verified": 17,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 9.436,
+    "attribution": 17.672,
+    "publicFeedback": 152.746,
+    "depthSense": 111.303,
+    "workSourceValidation": 2.038,
+    "corpusBaseline": 2.679,
+    "attributionPackets": 51.343
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 17.672,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "occurrences": 17,
+        "named_occurrences": 12,
+        "context_master_links": 18,
+        "attribution_notes": 17,
+        "actor_reviewed_unnamed": 5,
+        "deferred_non_roster_context": 10,
+        "deferred_non_roster": 6
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"occurrences\": 17,\n    \"named_occurrences\": 12,\n    \"context_master_links\": 18,\n    \"attribution_notes\": 17,\n    \"actor_reviewed_unnamed\": 5,\n    \"deferred_non_roster_context\": 10,\n    \"deferred_non_roster\": 6\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 152.746,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp0qbllkp1.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 111.303,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 1,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 1,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.038,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.679,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 51.343,
+    "payload": {
+      "entries": 1,
+      "occurrences": 17,
+      "tierACandidates": 0,
+      "reviewRequired": 17
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 17,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 17\n}\nreport: /tmp/tmpil750gxp-packets.json\n",
+    "report": "/tmp/tmpil750gxp-packets.json"
+  },
+  "semanticReviewRequired": true
+}

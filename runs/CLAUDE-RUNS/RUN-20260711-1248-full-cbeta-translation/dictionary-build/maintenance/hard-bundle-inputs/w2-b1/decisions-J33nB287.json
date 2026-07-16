@@ -1,0 +1,59 @@
+{
+  "source": "J/J33/J33nB287.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_ab6276be6e08:0545b15:1:7",
+      "entryId": "t_ab6276be6e08",
+      "sourceTerm": "末後句",
+      "RelPath": "J/J33/J33nB287.xml",
+      "FromLb": "0545b15",
+      "Kwic": "聲聲道：『願聞先師末後句！』",
+      "caseClusterId": "J/J33/J33nB287.xml:58808:59057",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "自閒覺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "personified pavilion",
+          "ActorLabel": "personified Three-Arrivals Pavilion",
+          "ActorRole": "staged speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Zixian Jue (自閒覺禪師語錄): in Zixian Jue's invitation for Chuanzi Mi to mount the hall, the Three-Arrivals Pavilion is personified as repeatedly saying that it wishes to hear the late teacher's final phrase. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the personified Three-Arrivals Pavilion.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zixian Jue",
+            "Roles": [
+              "framing-speaker",
+              "record-owner"
+            ]
+          },
+          {
+            "MasterName": "Chuanzi Mi",
+            "Roles": [
+              "invited-hall-speaker"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_ab6276be6e08:0545b15:1:7"
+  ]
+}

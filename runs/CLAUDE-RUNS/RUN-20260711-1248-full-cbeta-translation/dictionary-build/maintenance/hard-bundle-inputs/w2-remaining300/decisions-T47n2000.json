@@ -1,0 +1,36 @@
+{
+  "source": "T/T47/T47n2000.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_7ba176a992ec:0994c10:1:6",
+      "entryId": "t_7ba176a992ec",
+      "sourceTerm": "觸目",
+      "RelPath": "T/T47/T47n2000.xml",
+      "FromLb": "0994c10",
+      "Kwic": "上堂。舉。雲門示眾。直得觸目無滯。達得名身句身。一切法空。山河大地是名。名亦不可得。",
+      "caseClusterId": "T/T47/T47n2000.xml:79005:79318",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "虛堂和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunmen Wenyan",
+        "AttributionNote": "Recorded Sayings of Xutang (虛堂和尚語錄): inside a case raised by Xutang Zhiyu, Yunmen Wenyan is the explicitly named earlier speaker who says to meet the eye without obstruction.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xutang Zhiyu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

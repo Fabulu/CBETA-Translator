@@ -1,0 +1,137 @@
+{
+  "source": "J/J26/J26nB177.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_6293dead3bb2:0028b05:1:5",
+      "entryId": "t_6293dead3bb2",
+      "sourceTerm": "轉身",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0028b05",
+      "Kwic": "如何是轉身句？」師云：「六月炎天冰似火。",
+      "caseClusterId": "J/J26/J26nB177.xml:162459:162619",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Poshan (破山禪師語錄): an unnamed monk sets aside easy emergence inside the gate and difficult turning outside it, then asks Poshan Haiming what a turning phrase is. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Poshan Haiming",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_96255c741b17:0028c03:1:6",
+      "entryId": "t_96255c741b17",
+      "sourceTerm": "沒滋味",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0028c03",
+      "Kwic": "僧問：「和尚起期，還是為人？為己？」師云：「一箇瓜子兩瓣殼。」進云：「沒滋味。」師噓一聲。",
+      "caseClusterId": "J/J26/J26nB177.xml:164194:164295",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Poshan (破山禪師語錄): after Poshan Haiming answers the monk's question about starting a retreat with one melon seed and two shell halves, the unnamed monk says it has no flavor; Poshan hisses once. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Poshan Haiming",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ba8066477571:0028c16:1:7",
+      "entryId": "t_ba8066477571",
+      "sourceTerm": "喝一喝",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0028c16",
+      "Kwic": "僧喝一喝便出，師休去。",
+      "caseClusterId": "J/J26/J26nB177.xml:164877:165041",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "person shouting",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Poshan (破山禪師語錄): after Poshan Haiming strikes him twice, the unnamed monk gives one shout and leaves; Poshan then rests. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Poshan Haiming",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_6293dead3bb2:0028b05:1:5",
+    "t_96255c741b17:0028c03:1:6",
+    "t_ba8066477571:0028c16:1:7"
+  ]
+}

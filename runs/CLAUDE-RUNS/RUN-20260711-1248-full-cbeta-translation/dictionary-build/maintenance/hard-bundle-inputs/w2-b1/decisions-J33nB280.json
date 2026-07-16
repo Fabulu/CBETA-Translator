@@ -1,0 +1,53 @@
+{
+  "source": "J/J33/J33nB280.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_8f76148e713f:0286c28:1:4",
+      "entryId": "t_8f76148e713f",
+      "sourceTerm": "水泄不通",
+      "RelPath": "J/J33/J33nB280.xml",
+      "FromLb": "0286c28",
+      "Kwic": "僧問：「水泄不通處還有過也無？」師云：「死蝦蟆。」",
+      "caseClusterId": "J/J33/J33nB280.xml:159642:159743",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "神鼎雲外澤禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Shending Yunwai Ze (神鼎雲外澤禪師語錄): an unnamed monk asks whether there is still a fault where not even water can leak through; Shending Yunwai Ze answers 'a dead toad.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shending Yunwai Ze",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_8f76148e713f:0286c28:1:4"
+  ]
+}

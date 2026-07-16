@@ -1,0 +1,94 @@
+{
+  "generatedUtc": "2026-07-14T10:43:55.598608+00:00",
+  "elapsedSeconds": 4.333,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_830700de49fb",
+      "term": "三句",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "sha256": "216caa55be89a19b9c475665bab54a2892169ad718443de6c6ed6b1d41a89663"
+    },
+    {
+      "id": "t_12e8cba30de6",
+      "term": "老僧",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_12e8cba30de6/entry.v2.json",
+      "sha256": "145fca8989f04b438e73952a59de1e7737873b92e3fb32c3d549ee42e603acc8"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 24,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+        "id": "t_830700de49fb",
+        "term": "三句",
+        "verified": 13,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_12e8cba30de6/entry.v2.json",
+        "id": "t_12e8cba30de6",
+        "term": "老僧",
+        "verified": 11,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 6,
+        "occurrences": 24,
+        "named_occurrences": 24,
+        "attribution_notes": 24,
+        "deferred_non_roster": 10,
+        "chinese_strings": 43,
+        "anchored_chinese": 43,
+        "supporting_occurrences": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 6,\n    \"occurrences\": 24,\n    \"named_occurrences\": 24,\n    \"attribution_notes\": 24,\n    \"deferred_non_roster\": 10,\n    \"chinese_strings\": 43,\n    \"anchored_chinese\": 43,\n    \"supporting_occurrences\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpyew3bavg.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 2,
+      "occurrences": 24,
+      "tierACandidates": 0,
+      "reviewRequired": 24
+    },
+    "output": "{\n  \"entries\": 2,\n  \"occurrences\": 24,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 24\n}\nreport: maintenance/semantic-cohorts/semantic-r001-owner2-schema-normalization-gate-attribution-packets.json\n",
+    "report": "maintenance/semantic-cohorts/semantic-r001-owner2-schema-normalization-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

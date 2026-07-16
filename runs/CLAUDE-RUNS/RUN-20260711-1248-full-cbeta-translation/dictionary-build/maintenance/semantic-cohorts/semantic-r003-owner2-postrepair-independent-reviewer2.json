@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "1.0",
+  "cohort": "semantic-r003-owner2-postrepair",
+  "repairLedger": "maintenance/semantic-cohorts/semantic-r003-owner2-actor-repair.json",
+  "reviewer": "/root/repair_bird_path",
+  "instructions": "Independent current-hash review after actor repair: reread complete passages, verify exact actor and closed roles, verify every KWIC, and retest semantics and reader prose. Findings only; no subject-entry edits.",
+  "entries": [
+    {
+      "id": "t_37261001c332",
+      "sourceTerm": "觀心",
+      "path": "terms/t_37261001c332/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "6156ea0cd1d0bda5b7731326a215ff970e539b66feb20ded7ba94321a0f26396",
+      "evidence": [
+        "All nine current KWICs contain 觀心 and verify; the former headword-free Huineng/觀靜 witness has been replaced by Xuri Jushi's exact 觀心 verse.",
+        "Complete-passage actor assignments pass: Niutou Farong answers Daoxin; the attributed Bodhidharma treatise answer voice is distinguished from its reviewed unnamed questioner; the Puxian Contemplation citation is impersonal document voice with Yongming Yanshou as compiler/later quoter; Yongzheng Emperor and Xuri Jushi are exact utterers.",
+        "All named actors carry self role utterer and all contextual roles are in the closed vocabulary. The single inspect-mind sense remains compatible with positive definition, critical contrast, and poem witnesses, and reader prose preserves exact attribution."
+      ],
+      "reason": "Keep. The repair resolves the headword-free witness, actor ambiguity, and legacy roles without destabilizing the verified single sense. Current hash rechecked after final schema normalization; all stored witnesses still verify and the reviewed semantic/actor decision is unchanged."
+    },
+    {
+      "id": "t_f3488daf27fd",
+      "sourceTerm": "較些子",
+      "path": "terms/t_f3488daf27fd/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "bde8a342938a3dce68fccb7d9b0fa90af1650619262b69543aa0d2fde3f75a12",
+      "evidence": [
+        "All seven current KWICs contain 較些子 and verify against their stored sources.",
+        "Complete-passage actors pass after repair: Huangbo Xiyun, Xitang Zhizang, Guanghui Qingshun, Yuanwu Keqin, Baiyan Fu, Xuefeng Sihui, and Changqing Huileng are the exact utterers; all carry self role utterer and contextual figures use only closed roles.",
+        "The reader prose accurately describes a qualified comparative appraisal across words, actions, silence, and conditions without turning `somewhat closer` into full approval or multiple senses."
+      ],
+      "reason": "Keep. The repaired names, roles, verified KWICs, one comparative sense, and reader-facing explanation all pass at the current hash. Current hash rechecked after final schema normalization; all stored witnesses still verify and the reviewed semantic/actor decision is unchanged."
+    },
+    {
+      "id": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "path": "terms/t_77821881a767/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "b004e899efc5f040613c9968b8b75fb5d6f4b79f570f5c46ac4dc27228796fca",
+      "evidence": [
+        "All eight current KWICs contain 釋迦老子 and verify against their stored sources.",
+        "Complete-passage actor assignments pass: Deshan Xuanjian, Longji, Dahui Zonggao, Shoushan Shengnian, Yunmen Wenyan, Shanhui, and Yuanwu Keqin are exact utterers; the seventh witness correctly distinguishes Yunmen as quoted utterer from Dahui as later quoter and commentator.",
+        "The familiar old-man designation remains one lexical sense while the prose shows its Zen deployment in quotation, rebuke, case handling, and teaching-seat speech without replacing attested evidence with hagiography."
+      ],
+      "reason": "Keep. Current KWICs, exact speakers, closed roles, and the reader-facing explanation pass at the current hash. Current hash rechecked after final schema normalization; all stored witnesses still verify and the reviewed semantic/actor decision is unchanged."
+    },
+    {
+      "id": "t_bcc96a299271",
+      "sourceTerm": "開示",
+      "path": "terms/t_bcc96a299271/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "3cc921eef50796a214ba996e18f78acfa825a13cc0909d946187c055bc058e8c",
+      "evidence": [
+        "All seven current KWICs contain 開示 and verify; the one disclose-or-show sense and the request, receipt, repeated-conduct, and compiler-narrative distinctions are semantically coherent.",
+        "Occurrence 3 explicitly identifies 何長白 (He Changbai), and both its AttributionNote and ActorLabel correctly call him named, but ActorAttribution.Status remains `reviewed-unnamed`.",
+        "Other actors and contextual roles pass, including unnamed monk questioners only after the six-rung check, Bodhidharma and Longtan as exact utterers, Chengyi as exact utterer, and the Blue Cliff compiler as narrator describing Jingqing."
+      ],
+      "reason": "Keep after independent re-review. He Changbai now has identified-non-master status, exact ActorLabel, and grammar evidence; all seven KWICs and the unchanged sense pass."
+    },
+    {
+      "id": "t_327d40c2c9cb",
+      "sourceTerm": "飢來喫飯",
+      "path": "terms/t_327d40c2c9cb/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "2d685b8c9598d75c4defc256b5e8e52e77b8fb4ab415f714c93153c5059b032d",
+      "evidence": [
+        "All seven current exact-headword KWICs verify, and their exact utterers pass: Huanglong Huinan, Linji Yixuan, Xisou Shaotan, Liaoran Qingyu, Lingzhao, Hongzhi Zhengjue, and Yuanwu Keqin.",
+        "The explanation still claims that Yuanwu uses a graphic variant and that Baoci Jinying uses that variant in self-description, but the current Yuanwu witness uses exact 飢來喫飯 and no stored occurrence anchors Baoci or the claimed variant.",
+        "The explanation also attributes an explicit contrast to Dazhu Huihai, but no current stored occurrence anchors Dazhu; SourceTexts and RelatedMasters retain legacy references that do not correspond to the seven current occurrences."
+      ],
+      "reason": "Keep after second independent re-review. Dazhu is anchored; Yuanwu and Dongshan variant witnesses are accurately attributed and now carry the required VariantForm `饑來喫飯` plus EvidenceRole `variant`, leaving eight exact witnesses for depth."
+    },
+    {
+      "id": "t_87ad33788c8e",
+      "sourceTerm": "驪龍",
+      "path": "terms/t_87ad33788c8e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "e143777429e38b8c8f804643a640bed5bb1246ace9c57db24c77ef278699d857",
+      "evidence": [
+        "All seven KWICs contain 驪龍 and verify at the stored line anchors.",
+        "The actor assignments distinguish Tianyi, Wuyi, Sanyi, Yu'an, and Danxia as exact utterers from the six-rung unnamed monk questioner and Dapu respondent.",
+        "The revised gloss correctly keeps the black dragon as referent and treats its jaw, horn, and guarded pearl as a recurrent image family rather than mistranslating the dragon as the pearl."
+      ],
+      "reason": "Keep. Mechanics, attribution, and the single creature sense pass. Current hash rechecked after final schema normalization; all stored witnesses still verify and the reviewed semantic/actor decision is unchanged."
+    },
+    {
+      "id": "t_22885135d39e",
+      "sourceTerm": "一塵",
+      "path": "terms/t_22885135d39e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "c96f05865c75cd054c57a5629b5c7bf2ddb62b2043b8186c511c1fdc56fba007",
+      "evidence": [
+        "All seven KWICs contain 一塵 and verify at the stored anchors.",
+        "Exact speakers and the six-rung unnamed monk questioner are correctly distinguished, with Huadu retained only as respondent to the headword-bearing question.",
+        "The prose preserves the concrete smallest-particle image while reporting attested scale reversals and Dazhu's explicitly local thought-speck identification without universalizing it."
+      ],
+      "reason": "Keep. Verified evidence, actors, and the corpus-wide one-speck sense pass."
+    },
+    {
+      "id": "t_192801178305",
+      "sourceTerm": "三界唯心",
+      "path": "terms/t_192801178305/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "41ce4299440b6b643f5a3f729ebd9cd4cab7f8e87c78a35c12c8a562fc789b5c",
+      "evidence": [
+        "All six KWICs contain 三界唯心 and verify; the proposition remains semantically coherent across assertion, quotation, commentary, and public testing.",
+        "Occurrence 1 correctly uses impersonal quoted-document attribution and distinguishes Yongming as compiler/later quoter; `document voice` is confined to ActorAttribution prose fields, while all ContextMasters roles obey the closed vocabulary.",
+        "The remaining exact utterers and the six-rung unnamed old speaker pass."
+      ],
+      "reason": "Keep. Verified evidence, exact speaker distinctions, closed ContextMasters roles, and the single proposition sense pass. Current hash rechecked after final schema normalization; all stored witnesses still verify and the reviewed semantic/actor decision is unchanged."
+    },
+    {
+      "id": "t_0d926425f385",
+      "sourceTerm": "五戒",
+      "path": "terms/t_0d926425f385/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "2c789a8487b7d69a5e6cdf9442c71129d751b900db768d8a85980c6ff3f03477",
+      "evidence": [
+        "All six KWICs contain 五戒 and verify at their stored anchors.",
+        "Muzhou, Hengchuan, Zhu Shien, and Yulin are exact utterers; the Songyue witness correctly uses compiler narration with Songyue as person described and case figure.",
+        "The explanation preserves the five precepts as a hard rule-list while showing both enumerated/conferred use and the stock public-interview rebuke, without turning deployment differences into extra senses."
+      ],
+      "reason": "Keep. Mechanics, attribution, precepts carve-out, and semantic scope pass."
+    },
+    {
+      "id": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "path": "terms/t_ff560195f161/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "1ba7653ae0b3c222d15c82a73421ae27545b89d68d805fbf1d651c70ed2235c8",
+      "evidence": [
+        "All seven current KWICs contain 作麼生會 and verify; their exact utterers and contextual case figures use closed roles.",
+        "The explanation opens with a specific Linji Yixuan shout exchange, but no current occurrence stores or anchors that Linji passage.",
+        "The Wufeng, Ganzi, Cuiyan, and Yunju claims are represented in the occurrence set and the public-interview gloss remains semantically apt."
+      ],
+      "reason": "Keep after independent re-review. The Linji four-shouts exchange is now stored at T47n1985 0504a26, verifies, contains the exact headword, and names Linji as exact utterer."
+    },
+    {
+      "id": "t_3f7a6ab74b68",
+      "sourceTerm": "僧堂",
+      "path": "terms/t_3f7a6ab74b68/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "81b8967b133fd3eaef9f6ed77d141ea078d5e64fa25e3d88329722c238859a2b",
+      "evidence": [
+        "All seven KWICs contain 僧堂 and verify; the physical communal-building sense is well supported by regulations, narrated cases, and Xuansha's exact utterance.",
+        "Occurrence 7 has impersonal monastic-regulations narrative attribution but no ContextMasters field at all, contrary to the requirement that every occurrence carry ContextMasters, even when the correct value is an empty array.",
+        "The remaining procedural, compiler-narrated, and exact-utterer distinctions are sound."
+      ],
+      "reason": "Keep after independent re-review. Occurrence 7 now carries the evidence-supported empty ContextMasters array; all seven KWICs and the physical-building sense pass."
+    },
+    {
+      "id": "t_a93cfc8fba26",
+      "sourceTerm": "分疏不下",
+      "path": "terms/t_a93cfc8fba26/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "f635d6a4f6994e35e699dff7ced8ad0342911460d1b0f862d80e07a1c50291c4",
+      "evidence": [
+        "All seven KWICs contain 分疏不下 and verify.",
+        "The unnamed monk's self-report is correctly separated from Yongzheng as respondent, and Zhaozhou, Yuan'an, and Linye are exact utterers in their witnesses.",
+        "Self-report, interview verdict, and reader-directed challenge remain deployments of one inability-to-account idiom."
+      ],
+      "reason": "Keep. Mechanics, attribution, and semantic scope pass."
+    },
+    {
+      "id": "t_b2f05c3e4b7d",
+      "sourceTerm": "合頭語",
+      "path": "terms/t_b2f05c3e4b7d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "4664d616d1a5267749c6dc70a64e38bf9a1eb4f5df42b5268b9e346a78768dbb",
+      "evidence": [
+        "All six KWICs contain 合頭語 and verify.",
+        "The six-rung unnamed old speaker is distinguished from Yunmen as later raiser/record owner; Yuanwu, Yunwai, and Yushan are exact utterers.",
+        "The conforming-or-pat-phrase gloss is discriminating, and the prose anchors both stock examples and Yushan's disputed verdict."
+      ],
+      "reason": "Keep. Evidence, actors, and one lexical sense pass."
+    },
+    {
+      "id": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "path": "terms/t_757827b8d4cb/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "38cac71c6e1edd3704f80aa14c3a70ff00102b7b0044dde87227d04a12e11a9f",
+      "evidence": [
+        "All seven KWICs contain 喪身失命 and verify.",
+        "Xiangyan, Zihu, Changqing, Baofu, Linji, Shishuang, and Yuanwu are exact utterers; Xuefeng and Xuedou are correctly retained only in contextual roles.",
+        "The prose describes the stated loss/danger across distinct cases without deciding what body and life secretly signify."
+      ],
+      "reason": "Keep. Mechanics, attribution, and describe-only idiom treatment pass."
+    },
+    {
+      "id": "t_2398f8fb6328",
+      "sourceTerm": "困來即眠",
+      "path": "terms/t_2398f8fb6328/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "12b79b87ac7e89c7d16b8bc9228240d662dc0e450ab2cbf1524c47f4d3c71075",
+      "evidence": [
+        "All six exact-headword KWICs verify across the Dazhu and Nanyue textual traditions.",
+        "Dazhu and Nanyue are exact utterers, while Yuan'an is correctly marked only as later quoter in the repeated Dazhu witness.",
+        "The entry keeps the ordinary bodily action literal and locates the Zen bend in Dazhu's public contrast between same-looking conduct and demands/calculation."
+      ],
+      "reason": "Keep. Verified witnesses, speaker distinctions, and one action sense pass."
+    },
+    {
+      "id": "t_368268e023e3",
+      "sourceTerm": "塵勞",
+      "path": "terms/t_368268e023e3/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "f745b043b57f5a7348ffec282540844c01dd4a93a31fee24beb016e25ff35d45",
+      "evidence": [
+        "All seven KWICs contain 塵勞 and verify.",
+        "Dahui, Yunmen, Zhenjing, Yuanhu, Dufeng, Wuyi, and Yunwai are exact utterers with closed contextual roles.",
+        "The worldly-toil gloss retains ordinary burden while describing attested tests of avoidance, temporary quiet, and non-invasion without making it a hidden awakening term."
+      ],
+      "reason": "Keep. Mechanics, attribution, and describe-only semantics pass."
+    },
+    {
+      "id": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "path": "terms/t_966bc615eb6e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "d81991f69f154cf9b44d07cfc106e645b6be7f05df9e2fb04fd0e62de1cf9790",
+      "evidence": [
+        "All eight KWICs contain 大用 and verify.",
+        "The two unnamed monk questioners are correctly separated from Changqing and Shanhui as respondents; Fengxue, Guishan, Yangshan, Xuansha, and Yuanwu are exact utterers.",
+        "The great-function gloss is grounded by public questions, bodily replies, pairings, and explicit contrasts without inventing a metaphysical object."
+      ],
+      "reason": "Keep. Depth, actors, and semantic scope pass."
+    },
+    {
+      "id": "t_37771a869b4f",
+      "sourceTerm": "如何是祖師西來意",
+      "path": "terms/t_37771a869b4f/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "73e064023dd8502fa70b3fd69387daefcadfb8051ddd82ef4d73e8cf11c71582",
+      "evidence": [
+        "All seven KWICs contain the full headword and verify.",
+        "Questioner attribution is exact, including identified non-master Tanran alongside Nanyue Huairang, Zhaozhou and Letan as named questioners, and properly six-rung unnamed monks; respondents remain contextual rather than being mistaken for headword utterers.",
+        "The stable stock-question gloss names Bodhidharma and India and preserves divergent recorded replies without collapsing them into a hidden proposition."
+      ],
+      "reason": "Keep. Mechanics, exact utterers, public-interview gate, and semantics pass."
+    },
+    {
+      "id": "t_97b566635d6c",
+      "sourceTerm": "宗師",
+      "path": "terms/t_97b566635d6c/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "77102c82fe2d4ef835628108008e6614c70278f27c8c137c9bd436c3ac08d2ed",
+      "evidence": [
+        "All seven KWICs contain 宗師 and verify.",
+        "Daowu, Dahui, Yuanwu, Xuedou, and Guishan are exact utterers; later raisers and discussed masters remain correctly contextual.",
+        "The lineage-master designation is distinguished as title/appraisal tied to public responsibilities and as a rebuke when withheld, without splitting evaluative polarity into different referents."
+      ],
+      "reason": "Keep. Evidence, actors, and title/appraisal treatment pass."
+    },
+    {
+      "id": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "path": "terms/t_57ef1bbc3a81/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "cf38a61dbdbb3098c1567fbb14b9441c97be738105b71ad0f1b33462755e401e",
+      "evidence": [
+        "All eight KWICs contain 山河大地 and verify.",
+        "Huilin, Sizushan, Sanfeng, Dahui, Dizang, Huangbo, Baiyun, and Wuyi are exact utterers, with Fayan correctly contextualized as student/person described.",
+        "The whole-visible-terrain gloss remains ordinary while the prose anchors its use in questions, naming tests, local formulations, and assembly addresses without universalizing Sanfeng's local explanation."
+      ],
+      "reason": "Keep. Depth, attribution, and corpus-wide versus local semantics pass."
+    },
+    {
+      "id": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "path": "terms/t_882860247a9b/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "783962dad2bd4ab488f948602fd865acde7908e531663f14ba0a8211434a2241",
+      "evidence": [
+        "All seven KWICs contain 惺惺 and verify.",
+        "Yongjia, Yongzheng, Ruiyan, Haiyin, and Tianyin are exact utterers; Zhanran and Fangrong are correctly marked as later handling voices.",
+        "The alert/wide-awake gloss retains command, person-description, still-and-alert formula, and named criticisms as deployments rather than multiplying senses."
+      ],
+      "reason": "Keep. Mechanics, attribution, and semantic distinctions pass."
+    },
+    {
+      "id": "t_2d56070190a7",
+      "sourceTerm": "戒律",
+      "path": "terms/t_2d56070190a7/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "7dcb3193743e96a6a911b099ec3ac8789ebfdf70feaafd850e1fbd72b6ee4d96",
+      "evidence": [
+        "All six KWICs contain 戒律 and verify.",
+        "Dazhu, Yongjue, Fu Dashi, Juelang, Baizhang, and Zhongfeng are exact utterers; Yongming is correctly only later quoter/compiler.",
+        "The hard precepts-and-code referent survives opposing predicates, and the prose explicitly preserves institutional constraint, release language, and rebuke of rhetorical cancellation."
+      ],
+      "reason": "Keep. Precepts carve-out, actors, and one compound sense pass."
+    },
+    {
+      "id": "t_8c870cb5e69d",
+      "sourceTerm": "把定",
+      "path": "terms/t_8c870cb5e69d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "63f6a28bd9a40b8f85df6a311415c9de539e81207303d05c799faafbca512f3c",
+      "evidence": [
+        "All ten KWICs contain 把定 and verify.",
+        "Wansong, Jiufeng, Xuedou, Jiangshan, Hongzhi, and Wumen are exact utterers, with later quotation/commentary correctly contextualized.",
+        "The hold-fast gloss is grounded in the release opposition and recurrent objects; the prose responsibly notes that true-gold/rubble contrasts do not alone prove a universal enlightenment symbolism for gold."
+      ],
+      "reason": "Keep. Strong depth, exact attribution, and evidence-bounded inference pass."
+    },
+    {
+      "id": "t_a0634fecce83",
+      "sourceTerm": "拖泥帶水",
+      "path": "terms/t_a0634fecce83/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "6e8208959373caec6621000b7e6fc56b8a3e07b314c0167fb2b2ab1a395dc8c6",
+      "evidence": [
+        "All six KWICs contain the base headword and verify.",
+        "Luohan, Zhanran, Yuanwu, Lingyin, and Dagui are exact utterers.",
+        "The cumbersome muddy movement is preserved as image and its use as appraisal is shown through direct definitions, verdicts, and Lingyin's reversal against wall-like sheer standing."
+      ],
+      "reason": "Keep. Image, deployment, actors, and mechanics pass."
+    },
+    {
+      "id": "t_e7a86b9e58d8",
+      "sourceTerm": "提撕",
+      "path": "terms/t_e7a86b9e58d8/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "c4f09ecf85d97b8e4d0ba3df3b13e9550af79851cc0b46d7a208c5f0b78941eb",
+      "evidence": [
+        "All seven KWICs contain 提撕 and verify.",
+        "Gushan, Hongzhi, Dahui, Wumen, and Foyan are exact utterers.",
+        "The common transitive act of bringing up and calling attention is explicitly grounded by Gushan's in-record explanation; changes of actor and object are correctly kept within one sense."
+      ],
+      "reason": "Keep. Mechanics, attribution, and sense hygiene pass."
+    },
+    {
+      "id": "t_057cc9ea8755",
+      "sourceTerm": "攝心",
+      "path": "terms/t_057cc9ea8755/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "7a5dbdde5577182f5a1d310151dc3cbc6cc5c5c5287ad90b2726edfa5315ec3a",
+      "evidence": [
+        "All six KWICs contain 攝心 and verify.",
+        "The unnamed monk requester is separated from Chaozong as respondent; Chaozong, Yongjue, Yongming, Shiwu, and Bodhidharma are exact utterers.",
+        "The gather-the-mind action is retained while concrete instruction and explicit challenges to its basis remain an unresolved attested tension rather than a system."
+      ],
+      "reason": "Keep. Mechanics, actors, and evidence-bounded tension pass."
+    },
+    {
+      "id": "t_6dadcc69c361",
+      "sourceTerm": "料揀",
+      "path": "terms/t_6dadcc69c361/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "22276118ab76e9cd71f92fd15e61d4575fd29711e47e83929b232f32f4e2fbc2",
+      "evidence": [
+        "All six KWICs contain 料揀 and verify.",
+        "The two six-rung unnamed requesters are distinguished from Nanyue and Pin as respondents; Wuyi, Nanyuan, Huiyan, and Zhanran are exact utterers.",
+        "Verb, result noun, and named Four Selections remain one appraisal-and-distinction family; grammar alone does not produce false polysemy."
+      ],
+      "reason": "Keep. Evidence, attribution, and gloss hygiene pass."
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "sourceTerm": "本來無一物",
+      "path": "terms/t_93ab42fecdca/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "e9a4ca528666cd2883d15dbece27444a225aaed8b6a7fc760638d08c9305bf95",
+      "evidence": [
+        "All eight stored KWICs contain 本來無一物 and verify.",
+        "Huineng, Dongshan, Huangbo, and Zhongfeng are exact utterers; Yulin is correctly a later quoter while Huineng remains the quoted utterer.",
+        "The grammar and received textual line are distinguished from Dunhuang wording, and later challenges are preserved without deciding a metaphysical theory."
+      ],
+      "reason": "Keep. Textual care, actors, and public testing pass."
+    },
+    {
+      "id": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "path": "terms/t_4416ef85b3a5/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "e64a4a3912c52d3526cbd95123875b5c56138b4b48e273895a17c304caa179f9",
+      "evidence": [
+        "All seven KWICs contain 森羅萬象 and verify.",
+        "Fayan, Xuedou, Shangfeng, Lingyun, Kongsou, Changlu, and Hongzhi are exact utterers; Vimalakirti is correctly only a case figure.",
+        "The whole-array collective remains grounded in visible multiplicity while its use as answer, comparison, question, and grammatical subject is treated as deployment rather than a hidden entity."
+      ],
+      "reason": "Keep. Mechanics, attribution, and collective sense pass."
+    },
+    {
+      "id": "t_970c3f191929",
+      "sourceTerm": "正法眼",
+      "path": "terms/t_970c3f191929/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "subjectEntrySha256": "58093a302bbd68d3f51764eccaacd7578752d54022b3773aab0971d0830000aa",
+      "evidence": [
+        "All nine current KWICs contain standalone 正法眼, exclude 正法眼藏, and zc-verify at their stored anchors.",
+        "The replacement witness is a public question in Yunmen Wenyan's section and correctly distinguishes the six-rung unnamed exact questioner from Yunmen as respondent and section subject.",
+        "The true-eye faculty remains coherently supported by possession, lack, illumination, blinding, brightness, and divergent public answers without harmonizing those case replies."
+      ],
+      "reason": "Keep after independent re-review. The replacement resolves the lexical-boundary defect while preserving exact attribution and the reader-facing sense."
+    }
+  ]
+}

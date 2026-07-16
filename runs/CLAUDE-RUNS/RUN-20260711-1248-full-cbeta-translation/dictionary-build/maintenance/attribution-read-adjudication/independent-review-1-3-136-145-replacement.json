@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "independent-full-case-review-with-immediate-repair-v1",
+  "reviewer": "Codex independent reviewer replacement",
+  "selfReview": false,
+  "scope": "cohorts 1-3 entries 136-145",
+  "sourcePacket": "cohorts-1-3-v6-packets-136-145.json",
+  "completeCasesRead": 70,
+  "definitionsRead": 10,
+  "unchangedKeep": [
+    {"id":"t_47cbec4da028","term":"箭鋒相拄","sha256":"f90754447bf3e15e75ae7eb2ae248e95a9c5aee1016f0b281ac09d1848fb79fb"},
+    {"id":"t_4c1448553bb6","term":"拍禪床","sha256":"3543e0a0a1917eedcd2f5be5196813597873f34f8dbf9928ea973af9d0b55a61"},
+    {"id":"t_4e30d47a452c","term":"便喝","sha256":"64543fcae663cff9d5fcc644ab1a73e26531ac0d0c1ec9d51af0e7d57ddf85ee"},
+    {"id":"t_4fe02da64434","term":"喫棒","sha256":"8e7688dc793d4ef31f612c0fb9aeec464db412296dc55907dd7d79e46da6adc9"},
+    {"id":"t_502eeb8c9b1e","term":"驪珠","sha256":"cb1dac39a7e994c4af4bcb5d38d62754cd8f91bf7a6f222bf60808c09de1c511"},
+    {"id":"t_5306489d35c6","term":"化主","sha256":"2a3001ddd91032afea879431c5659b0ede8899948b089038829603e3840feaee"},
+    {"id":"t_5342014cb2ee","term":"土地堂","sha256":"403fd3cd2a6496aa8e4a3cf628032f00ec92ca1f2642efb0895350b1ee9ec24b"},
+    {"id":"t_5517bf8c66c2","term":"不動尊","sha256":"13833c4975f678597cbe856857c8709069a415c95f9031c441c2a9ec81f7bc82"},
+    {"id":"t_5854f7c24ddf","term":"擊禪床","sha256":"ebd2117ff72257ed651519bb2c5c9f6fc7199fd97eeea0ff5a8b5361c9856dee"}
+  ],
+  "repairedAwaitingIndependentRereview": [
+    {"id":"t_45e1950bfe3e","term":"梵志","oldSha256":"4b027489c5a111694bdf6677b5f71b8829b2400b33897f00cb3e5da55a42c244","newSha256":"da14eaa0e6ec155cf87475f86819971ed4e27ce5be0d347b0713bb7f31da758e","finding":"Fengxue is the later quoter and exact utterer of the headword-bearing passage. Hanshan was incorrectly assigned the later-quoter role; corrected Hanshan to verse-author and person-discussed."}
+  ],
+  "summary": {"KEEP_UNCHANGED":9,"REPAIRED_AWAITING_INDEPENDENT_REREVIEW":1},
+  "mechanicalGate": {"occurrencesChecked":70,"zcVerifyFailures":0,"ownHeadwordFailures":0},
+  "promotionOrMergePerformed": false
+}

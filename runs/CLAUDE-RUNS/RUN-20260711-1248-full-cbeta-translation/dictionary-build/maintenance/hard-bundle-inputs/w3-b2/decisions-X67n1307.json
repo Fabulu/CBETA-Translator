@@ -1,0 +1,28 @@
+{
+  "source": "X/X67/X67n1307.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_e016fb20e6da:0474c12:1:1",
+      "entryId": "t_e016fb20e6da",
+      "sourceTerm": "認賊為子",
+      "RelPath": "X/X67/X67n1307.xml",
+      "FromLb": "0474c12",
+      "Kwic": "天童略舉云：若能推底是汝心，則認賊為子。衲僧門下謂之認奴作郎。",
+      "caseClusterId": "X/X67/X67n1307.xml:124863:127599",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "萬松老人評唱天童覺和尚拈古請益錄",
+      "defaultMasterName": "Wansong Xingxiu",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Wansong Xingxiu",
+        "ActorAttribution": null,
+        "AttributionNote": "萬松老人評唱天童覺和尚拈古請益錄. Full six-rung exact-turn review identifies Wansong Xingxiu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

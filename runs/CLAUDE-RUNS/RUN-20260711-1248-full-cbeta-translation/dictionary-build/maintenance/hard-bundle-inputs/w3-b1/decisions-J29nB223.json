@@ -1,0 +1,30 @@
+{
+  "source": "J/J29/J29nB223.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_52fdda90e9ab:0026b27:1:4",
+      "entryId": "t_52fdda90e9ab",
+      "sourceTerm": "行腳",
+      "RelPath": "J/J29/J29nB223.xml",
+      "FromLb": "0026b27",
+      "Kwic": "雖則千里行腳，為尋宗師",
+      "caseClusterId": "J/J29/J29nB223.xml:36770:37365",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "山暉禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shanhui",
+        "ActorAttribution": null,
+        "AttributionNote": "山暉禪師語錄. Full six-rung exact-turn review identifies Shanhui as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_52fdda90e9ab:0026b27:1:4"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "source": "J/J25/J25nB174.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_7c1991e9eabb:0687c30:1:1",
+      "entryId": "t_7c1991e9eabb",
+      "sourceTerm": "宗風",
+      "RelPath": "J/J25/J25nB174.xml",
+      "FromLb": "0687c30",
+      "Kwic": "洞上宗風，正偏妙協",
+      "caseClusterId": "J/J25/J25nB174.xml:26340:26868",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天界覺浪盛禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Juelang Dasheng",
+        "AttributionNote": "Recorded Sayings of Chan Master Juelang Dasheng (天界覺浪盛禪師語錄): in his Jingju Temple hall address, Juelang Dasheng describes the Dongshan house style as wondrously coordinating upright and inclined positions."
+      }
+    },
+    {
+      "key": "t_7c1991e9eabb:0699b09:1:2",
+      "entryId": "t_7c1991e9eabb",
+      "sourceTerm": "宗風",
+      "RelPath": "J/J25/J25nB174.xml",
+      "FromLb": "0699b09",
+      "Kwic": "重興洞上宗風",
+      "caseClusterId": "J/J25/J25nB174.xml:85273:85597",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天界覺浪盛禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Juelang Dasheng",
+        "AttributionNote": "Recorded Sayings of Chan Master Juelang Dasheng (天界覺浪盛禪師語錄): in the hall address requested by Yunmen Weicen, Juelang Dasheng says that the Dongshan house style has been revived across western Jiangxi and eastern Yue."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_7c1991e9eabb:0687c30:1:1",
+    "t_7c1991e9eabb:0699b09:1:2"
+  ]
+}

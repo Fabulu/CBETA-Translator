@@ -1,0 +1,30 @@
+{
+  "source": "J/J37/J37nB386.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_7bd745af24d7:0341a25:1:6",
+      "entryId": "t_7bd745af24d7",
+      "sourceTerm": "格外",
+      "RelPath": "J/J37/J37nB386.xml",
+      "FromLb": "0341a25",
+      "Kwic": "藥山自謂得格外之機、行逸群之令，檢點將來，未免藏頭露尾",
+      "caseClusterId": "J/J37/J37nB386.xml:42563:43447",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "遠菴僼禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuan'an Feng",
+        "ActorAttribution": null,
+        "AttributionNote": "遠菴僼禪師語錄. Full six-rung exact-turn review identifies Yuan'an Feng as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_7bd745af24d7:0341a25:1:6"
+  ]
+}

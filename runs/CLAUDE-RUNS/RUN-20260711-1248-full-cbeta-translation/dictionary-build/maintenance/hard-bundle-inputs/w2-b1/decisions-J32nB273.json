@@ -1,0 +1,47 @@
+{
+  "source": "J/J32/J32nB273.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_78f95517a347:0204b18:1:5",
+      "entryId": "t_78f95517a347",
+      "sourceTerm": "生死事大",
+      "RelPath": "J/J32/J32nB273.xml",
+      "FromLb": "0204b18",
+      "Kwic": "又是九月半也，生死事大，無常迅速，討甚",
+      "caseClusterId": "J/J32/J32nB273.xml:13706:13854",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "千巖和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Qianyan Yuanzhang",
+        "AttributionNote": "Recorded Sayings of Preceptor Qianyan (千巖和尚語錄): opening a ninth-month hall address, Qianyan Yuanzhang tells the assembly that birth-and-death is the great matter and impermanence is swift."
+      }
+    },
+    {
+      "key": "t_7887dc8d449f:0228a28:1:5",
+      "entryId": "t_7887dc8d449f",
+      "sourceTerm": "尊宿",
+      "RelPath": "J/J32/J32nB273.xml",
+      "FromLb": "0228a28",
+      "Kwic": "瞎，耳又聾。佛法不會，世法不通。肚腸窄狹，毫髮不容。箇般喚作尊宿，滅卻臨濟正宗。德智知客請讚德智知客請讚這箇真難描摸，有",
+      "caseClusterId": "J/J32/J32nB273.xml:169275:169704",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "千巖和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Qianyan Yuanzhang",
+        "AttributionNote": "Recorded Sayings of Preceptor Qianyan (千巖和尚語錄): in his own verse preceding the praise requested by guest-prefect Dezhi, Qianyan Yuanzhang caricatures one called a venerable master as blind, deaf, ignorant of both Buddhist and worldly matters, and destructive of Linji's true lineage."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_78f95517a347:0204b18:1:5",
+    "t_7887dc8d449f:0228a28:1:5"
+  ]
+}

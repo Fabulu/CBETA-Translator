@@ -1,0 +1,84 @@
+{
+  "source": "J/J28/J28nB212.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_2069b9c33315:0474c22:1:2",
+      "entryId": "t_2069b9c33315",
+      "sourceTerm": "君臣",
+      "RelPath": "J/J28/J28nB212.xml",
+      "FromLb": "0474c22",
+      "Kwic": "君為正位，臣乃偏位，臣向君是偏中正，君視臣是正中偏，君臣道合",
+      "caseClusterId": "J/J28/J28nB212.xml:26770:28057",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "二隱謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Caoshan Benji",
+        "AttributionNote": "Recorded Sayings of Chan Master Eryin Mi (二隱謐禪師語錄): Eryin Mi explicitly introduces Caoshan Benji's formulation; Caoshan defines ruler as the upright position, minister as the inclined position, their mutual orientations, and their accord.",
+        "ContextMasters": [
+          {
+            "MasterName": "Eryin Mi",
+            "Roles": [
+              "raiser",
+              "commentator",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cb3571346f22:0475c11:1:7",
+      "entryId": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "RelPath": "J/J28/J28nB212.xml",
+      "FromLb": "0475c11",
+      "Kwic": "豈不見釋迦陞座，文殊白椎，馬祖陞堂，百丈捲席",
+      "caseClusterId": "J/J28/J28nB212.xml:32273:32654",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "二隱謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "AttributionNote": "Recorded Sayings of Chan Master Eryin Mi (二隱謐禪師語錄): in Eryin Mi's address appointing officers, Shakyamuni Buddha is the exact actor who mounts the seat, paired with Manjusri's sounding the gavel; Eryin sets this beside Mazu mounting the hall and Baizhang rolling the mat.",
+        "ContextMasters": [
+          {
+            "MasterName": "Manjusri",
+            "Roles": [
+              "gavel-officiant"
+            ]
+          },
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "parallel-master"
+            ]
+          },
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "parallel-master"
+            ]
+          },
+          {
+            "MasterName": "Eryin Mi",
+            "Roles": [
+              "raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_2069b9c33315:0474c22:1:2",
+    "t_cb3571346f22:0475c11:1:7"
+  ]
+}

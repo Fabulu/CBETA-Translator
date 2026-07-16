@@ -1,0 +1,206 @@
+{
+  "source": "B/B25/B25n0144.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_44d14cd3a935:0327b13:2:1",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0327b13",
+      "Kwic": "第二十四祖師子尊者，中印土人。姓婆羅門。爾時師子告婆舍斯多曰：「如來以正法眼付囑迦葉，如是展轉，乃至於我。",
+      "caseClusterId": "B/B25/B25n0144.xml:149072:149550",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Simha",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Venerable Simha section. Simha is the exact actor: the biographical sentence names him as the Twenty-fourth Patriarch and then says that Simha addressed Vasiasita before the stored quotation.",
+        "ContextMasters": [
+          {
+            "MasterName": "Vasiasita",
+            "Roles": [
+              "addressee",
+              "recipient"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_6a1ea4df00ce:0353b13:1:1",
+      "entryId": "t_6a1ea4df00ce",
+      "sourceTerm": "騰騰任運",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0353b13",
+      "Kwic": "晨時以粥充飢，仲時更餐一頓。今日任運騰騰，明日騰騰任運。心中了了總知，只沒佯癡縛鈍。",
+      "caseClusterId": "B/B25/B25n0144.xml:220373:220892",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tengteng",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Tengteng Heshang section. Tengteng is the exact speaker and author of the Song of Delighting in the Way (樂道歌); the stored lines occur inside that song, after the section header identifies him as a successor of National Teacher An."
+      }
+    },
+    {
+      "key": "t_358f56dbf990:0354b09:1:8",
+      "entryId": "t_358f56dbf990",
+      "sourceTerm": "善知識",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0354b09",
+      "Kwic": "大善知識歷劫難逢。今既得遇，豈惜身命！",
+      "caseClusterId": "B/B25/B25n0144.xml:222795:223475",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shenhui",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Heze Shenhui section. Shenhui is the exact thinker: while being struck by Huineng, the narrative explicitly introduces the stored words as Shenhui's reflection (師杖下思惟).",
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "teacher",
+              "person-addressed-as-good-teacher"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_df50ad77cfc7:0372b02:1:1",
+      "entryId": "t_df50ad77cfc7",
+      "sourceTerm": "戒體",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0372b02",
+      "Kwic": "自性清淨，謂之戒體。諸佛無作，何有生也？",
+      "caseClusterId": "B/B25/B25n0144.xml:257985:258621",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Nanyue Huairang",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Nanyue Huairang biography. Nanyue Huairang is the exact speaker: after the biography records his years under the precepts and Vinaya study, it introduces the stored self-definition with Huairang's declaration (乃曰)."
+      }
+    },
+    {
+      "key": "t_77774b8724f1:0413b05:1:1",
+      "entryId": "t_77774b8724f1",
+      "sourceTerm": "付法",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0413b05",
+      "Kwic": "又佛滅後付法於迦葉，以心傳心",
+      "caseClusterId": "B/B25/B25n0144.xml:361801:362282",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shi Zhicheng",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Guifeng Zongmi section, Reply to the Ten Questions of Layman Shi. Shi Zhicheng is the exact questioner: the headword occurs in his ninth question, and the colophon identifies the questioner as 史制誠; Guifeng Zongmi answers only after this stored turn.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guifeng Zongmi",
+            "Roles": [
+              "respondent",
+              "section-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ba6668ef3e6e:0413b05:1:6",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0413b05",
+      "Kwic": "又佛滅後付法於迦葉，以心傳心",
+      "caseClusterId": "B/B25/B25n0144.xml:361801:362282",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shi Zhicheng",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Guifeng Zongmi section, Reply to the Ten Questions of Layman Shi. Shi Zhicheng is the exact questioner: the reference to entrusting the teaching to Mahakasyapa occurs in his ninth question, and the colophon identifies him as 史制誠; Guifeng Zongmi is the respondent.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guifeng Zongmi",
+            "Roles": [
+              "respondent",
+              "section-owner"
+            ]
+          },
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "person-discussed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cd9e5485fbe1:0469b11:1:4",
+      "entryId": "t_cd9e5485fbe1",
+      "sourceTerm": "張三李四",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0469b11",
+      "Kwic": "瞥爾暫起見聞，便有張三李四，胡來漢去，四姓雜居",
+      "caseClusterId": "B/B25/B25n0144.xml:486659:487879",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Luopu Yuanan",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Luopu Yuanan section. Luopu Yuanan is the exact speaker: after the section recounts his study with Cuiwei, Linji, and Jiashan, the complete unit introduces this stored line as Luopu's hall address (師有時上堂云)."
+      }
+    },
+    {
+      "key": "t_d9944cf1c47a:0636a05:1:4",
+      "entryId": "t_d9944cf1c47a",
+      "sourceTerm": "心戒",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0636a05",
+      "Kwic": "公親受南泉心戒。大夫問南泉：「弟子家中有一片石。",
+      "caseClusterId": "B/B25/B25n0144.xml:893705:893940",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lu Gen",
+        "ActorAttribution": null,
+        "AttributionNote": "祖堂集, Lu Gen section. Lu Gen is the exact biographical actor in the stored sentence: the section header names 陸亙太夫 and the narration says that Lu Gen personally received Nanquan's mind-precept before the following stone exchange.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "teacher",
+              "precept-conferrer",
+              "following-addressee"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

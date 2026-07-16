@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB427.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_84043ffcdf90:0866c01:1:2",
+      "entryId": "t_84043ffcdf90",
+      "sourceTerm": "具眼",
+      "RelPath": "J/J38/J38nB427.xml",
+      "FromLb": "0866c01",
+      "Kwic": "可中若個具眼衲僧出來道",
+      "caseClusterId": "J/J38/J38nB427.xml:30849:31082",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "青城竹浪生禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhusheng",
+        "AttributionNote": "Recorded Sayings of Zhusheng of Qingcheng (青城竹浪生禪師語錄): in his hall address, Zhusheng calls for a patch-robed monk who possesses the eye to come forward and speak."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -28,25 +28,17 @@
           "ToLb": "0051a24",
           "Kwic": "鎮州蘿蔔極貴，廬陵米價甚賤。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 鎮州蘿蔔-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 鎮州蘿蔔 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "五燈全書(第34卷-第120卷). Exact headword actor: Taiping An. The complete source unit assigns the headword-bearing wording to Taiping An.",
+          "ContextMasters": [
+            {
+              "MasterName": "Taiping An",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": "Taiping An"
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -54,25 +46,17 @@
           "ToLb": "0037a09",
           "Kwic": "師曰：鎮州蘿蔔重三斤。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 鎮州蘿蔔-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 鎮州蘿蔔 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "五燈嚴統(第10卷-第25卷). Exact headword actor: Shoushan Xingnian. The complete source unit assigns the headword-bearing wording to Shoushan Xingnian.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": "Shoushan Xingnian"
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -80,25 +64,17 @@
           "ToLb": "0233a09",
           "Kwic": "鎮州蘿蔔重三斤。",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 鎮州蘿蔔-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 鎮州蘿蔔 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "五燈會元. Exact headword actor: Shoushan Xingnian. The complete source unit assigns the headword-bearing wording to Shoushan Xingnian.",
+          "ContextMasters": [
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": "Shoushan Xingnian"
         },
         {
           "RelPath": "C/C078/C078n1720.xml",
@@ -106,13 +82,20 @@
           "ToLb": "0717c10",
           "Kwic": "。頌曰。因問當初淂法緣不言東土及西天鎮州有菜名蘿蔔濟却飢瘡幾萬年鎮州出大蘿蔔天下衲僧取則只知自古自今爭辨鵠白烏黑賊賊衲僧鼻孔曾拈得鎮州蘿蔔播華夷萬物還他本土冝孰謂當時人獨愛至今更是好充飢陶潛彭澤唯栽柳潘岳河陽只種花何似晚來江上望數峯蒼翠属漁家衲僧巴鼻徒穿鑿平實商量紹祖宗多謝張公勤苦力滿園留得過深冬鎮州出大蘿",
           "Curated": true,
-          "AttributionNote": "Source text (禪宗頌古聯珠通集): an unnamed interlocutor owns the exact headword-bearing question.",
-          "ContextMasters": [],
+          "AttributionNote": "禪宗頌古聯珠通集. Exact headword actor: the unnamed author of the first 頌曰 verse. 頌曰 introduces the headword-bearing verse, but the complete anthology unit does not name its author.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed questioner asking with 鎮州蘿蔔",
-            "ActorRole": "questioner",
+            "Kind": "capping-verse author",
+            "ActorLabel": "the unnamed author of the first 頌曰 verse",
+            "ActorRole": "verse-author",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -121,10 +104,11 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The 問 frame assigns the exact 鎮州蘿蔔-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+            "GrammarEvidence": "頌曰 introduces the headword-bearing verse, but the complete anthology unit does not name its author.",
+            "ReviewedBy": "Codex cohorts 1-3 146-150 literal full-case read",
+            "ReviewedUtc": "2026-07-16T00:39:19.909330Z"
+          },
+          "MasterName": null
         },
         {
           "RelPath": "T/T47/T47n1998A.xml",
@@ -132,25 +116,17 @@
           "ToLb": "0827b15",
           "Kwic": "只如鎮州蘿蔔頭。",
           "Curated": true,
-          "AttributionNote": "Source text (大慧普覺禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 鎮州蘿蔔-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 鎮州蘿蔔 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "大慧普覺禪師語錄. Exact headword actor: Dahui Zonggao. The complete source unit assigns the headword-bearing wording to Dahui Zonggao.",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": "Dahui Zonggao"
         },
         {
           "RelPath": "T/T51/T51n2077.xml",
@@ -158,25 +134,17 @@
           "ToLb": "0492a04",
           "Kwic": "鎮州蘿蔔石。",
           "Curated": true,
-          "AttributionNote": "Source text (續傳燈錄): the compiler preserves the exact headword-bearing narration or formula.",
-          "ContextMasters": [],
-          "ActorAttribution": {
-            "Status": "narrated",
-            "Kind": "compiler narrative",
-            "ActorLabel": "the compiler narrating the 鎮州蘿蔔-bearing event",
-            "ActorRole": "compiler",
-            "RungsChecked": [
-              "line",
-              "expanded-context",
-              "section-header",
-              "book-title",
-              "tei-header",
-              "parallel-passage"
-            ],
-            "GrammarEvidence": "The selected span presents 鎮州蘿蔔 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-            "ReviewedBy": "Codex f003 Lane C full-turn author",
-            "ReviewedUtc": "2026-07-15T04:30:59.686577+00:00"
-          }
+          "AttributionNote": "續傳燈錄. Exact headword actor: Tianping Qiyu. The complete source unit assigns the headword-bearing wording to Tianping Qiyu.",
+          "ContextMasters": [
+            {
+              "MasterName": "Tianping Qiyu",
+              "Roles": [
+                "utterer",
+                "section-subject"
+              ]
+            }
+          ],
+          "MasterName": "Tianping Qiyu"
         }
       ],
       "ClaimAnchors": [],

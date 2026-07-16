@@ -1,0 +1,44 @@
+{
+  "source": "J/J28/J28nB220.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J28nB220.json",
+  "decisions": [
+    {
+      "entryId": "t_dc81acde25fd",
+      "sourceTerm": "那畔",
+      "RelPath": "J/J28/J28nB220.xml",
+      "FromLb": "0802b03",
+      "Kwic": "問僧：「如何是那畔事？」僧云：「不是山，不是水。」師云：「如何是者邊事？」僧云：「是山是水。」",
+      "caseClusterId": "J/J28/J28nB220.xml:127928:128096",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk answering about the far side and this side",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "法璽印禪師語錄. Full six-rung exact-turn review identifies Unnamed monk answering about the far side and this side as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Faxi Yin"
+        ]
+      },
+      "ExpectedSourceTitle": "法璽印禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

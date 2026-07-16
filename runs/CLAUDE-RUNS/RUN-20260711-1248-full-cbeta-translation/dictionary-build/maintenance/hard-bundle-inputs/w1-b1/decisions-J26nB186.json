@@ -1,0 +1,46 @@
+{
+  "source": "J/J26/J26nB186.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_a93cfc8fba26:0648b27:1:4",
+      "entryId": "t_a93cfc8fba26",
+      "sourceTerm": "分疏不下",
+      "RelPath": "J/J26/J26nB186.xml",
+      "FromLb": "0648b27",
+      "Kwic": "進云：「和尚不妨著眼。」師云：「老僧分疏不下。」",
+      "caseClusterId": "J/J26/J26nB186.xml:134135:134344",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "林野奇禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linye Tongqi",
+        "ActorAttribution": null,
+        "AttributionNote": "林野奇禪師語錄, exchange with Pomeng. Linye Tongqi is the exact speaker of the stored answer: after Pomeng tells him to apply his eye, Linye says that this old monk cannot explain it away."
+      }
+    },
+    {
+      "key": "t_79090ea8b22c:0651b13:1:5",
+      "entryId": "t_79090ea8b22c",
+      "sourceTerm": "動念即乖",
+      "RelPath": "J/J26/J26nB186.xml",
+      "FromLb": "0651b13",
+      "Kwic": "進云：「畢竟如何趨向？」師云：「動念即乖。」進云：「不動念時如何？」師云：「眉毛在眼上。」",
+      "caseClusterId": "J/J26/J26nB186.xml:151165:151369",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "林野奇禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linye Tongqi",
+        "ActorAttribution": null,
+        "AttributionNote": "林野奇禪師語錄, public exchange with a nun studying Zhaozhou's dog case. Linye Tongqi is the exact speaker of the stored answer: when she asks how ultimately to proceed, he says that stirring a thought immediately goes astray."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

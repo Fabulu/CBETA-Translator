@@ -1,0 +1,28 @@
+{
+  "source": "J/J26/J26nB185.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_2d92f15fa0ab:0580b19:1:4",
+      "entryId": "t_2d92f15fa0ab",
+      "sourceTerm": "雲水",
+      "RelPath": "J/J26/J26nB185.xml",
+      "FromLb": "0580b19",
+      "Kwic": "：「大有人未肯在。」乃云：「饑者食，渴者飲，不饑不渴者，請進雲水堂，上單好安寢，不安寢，普淨檀林飯似山，飽上加餐終作疹，不",
+      "caseClusterId": "J/J26/J26nB185.xml:49988:50495",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "浮石禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fushi Tongxian",
+        "ActorAttribution": null,
+        "AttributionNote": "浮石禪師語錄, hall address. Fushi Tongxian is the exact speaker: after a public exchange he tells those neither hungry nor thirsty to enter the cloud-and-water hall, take their places, and sleep well."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

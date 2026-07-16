@@ -1,0 +1,31 @@
+{
+  "source": "T/T47/T47n1986B.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_ff25afe69d14:0522b25:1:2",
+      "entryId": "t_ff25afe69d14",
+      "sourceTerm": "空劫",
+      "RelPath": "T/T47/T47n1986B.xml",
+      "FromLb": "0522b25",
+      "Kwic": "師問疎山。空劫無人家。是甚麼人住處。疎山云。不識。師云。人還有意旨也無。",
+      "caseClusterId": "T/T47/T47n1986B.xml:19556:19729",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "瑞州洞山良价禪師語錄",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Dongshan Liangjie",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Shushan Kuangren", "Roles": ["respondent"]}
+        ],
+        "AttributionNote": "The Recorded Sayings of Chan Master Dongshan Liangjie of Ruizhou (瑞州洞山良价禪師語錄). Dongshan Liangjie is the exact questioner who asks Shushan Kuangren, ‘the empty eon has no human household—whose dwelling place is it?’ Shushan answers that he does not know; Dongshan then asks whether that person has an import."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

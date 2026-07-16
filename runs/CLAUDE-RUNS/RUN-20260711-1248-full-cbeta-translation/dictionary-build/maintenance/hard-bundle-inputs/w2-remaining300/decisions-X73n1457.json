@@ -1,0 +1,27 @@
+{
+  "source": "X/X73/X73n1457.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_372fb5a2b7ce:0864c05:1:6",
+      "entryId": "t_372fb5a2b7ce",
+      "sourceTerm": "活句",
+      "RelPath": "X/X73/X73n1457.xml",
+      "FromLb": "0864c05",
+      "Kwic": "不落言詮，不墮理路，不入思惟，不容擬議，千變萬化，八面受敵者，謂之活句",
+      "caseClusterId": "X/X73/X73n1457.xml:43462:44556",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雲門麥浪懷禪師宗門設難",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Mailang Minghuai",
+        "AttributionNote": "Mailang Minghuai's Questions Set Up for the Chan House (雲門麥浪懷禪師宗門設難): in his Questions Set Up for the Chan House, Mailang Minghuai directly defines a living phrase through eight observable constraints."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

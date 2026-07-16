@@ -1,0 +1,30 @@
+{
+  "source": "J/J38/J38nB410.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_5105a2174a19:0325c22:1:4",
+      "entryId": "t_5105a2174a19",
+      "sourceTerm": "依樣畫葫蘆",
+      "RelPath": "J/J38/J38nB410.xml",
+      "FromLb": "0325c22",
+      "Kwic": "世尊拈花，徒標形影；達磨面壁，早涉程途。引得兒孫不唧溜，人人依樣畫葫蘆。臨濟喝、德山棒，總是一場乾打鬨；",
+      "caseClusterId": "J/J38/J38nB410.xml:68565:69313",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蓮峰禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lianfeng",
+        "ActorAttribution": null,
+        "AttributionNote": "蓮峰禪師語錄. Full six-rung exact-turn review identifies Lianfeng as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_5105a2174a19:0325c22:1:4"
+  ]
+}

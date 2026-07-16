@@ -1,0 +1,41 @@
+{
+  "source": "X/X69/X69n1335.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_19784084ccb4:0130a17:1:2",
+      "entryId": "t_19784084ccb4",
+      "sourceTerm": "誌公",
+      "RelPath": "X/X69/X69n1335.xml",
+      "FromLb": "0130a17",
+      "Kwic": "梁武帝請講金剛經，士纔陞座，以尺揮按一下，便下座，帝愕然。誌公曰：陛下會麼？帝曰：不會。誌公曰：大士講經竟。",
+      "caseClusterId": "X/X69/X69n1335.xml:182922:187211",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "善慧大士語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baozhi",
+        "AttributionNote": "Recorded Sayings of Shanhui Dashi (善慧大士語錄): after Fu Dashi leaves the lecture seat, Baozhi asks Emperor Wu whether he understands and declares the great man's scripture lecture finished.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fu Dashi",
+            "Roles": [
+              "silent-lecture-actor"
+            ]
+          },
+          {
+            "MasterName": "Emperor Wu of Liang",
+            "Roles": [
+              "interlocutor"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

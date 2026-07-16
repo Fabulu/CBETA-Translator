@@ -1,0 +1,64 @@
+{
+  "source": "J/J26/J26nB177.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e9847e6f41c9:0005b11:1:1",
+      "entryId": "t_e9847e6f41c9",
+      "sourceTerm": "腳跟下",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0005b11",
+      "Kwic": "死去生來不依本分，過在甚麼處？」師云：「腳跟下好與三十棒。」",
+      "caseClusterId": "J/J26/J26nB177.xml:37610:38289",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Poshan Haiming",
+        "ActorAttribution": null,
+        "AttributionNote": "破山禪師語錄, memorial public exchange for Elder Jueran. Poshan Haiming is the exact speaker of the stored answer: when an unnamed monk asks where the fault lies in coming to birth and going to death outside the fundamental, Poshan says that beneath his heels deserves thirty blows."
+      }
+    },
+    {
+      "key": "t_ada407625f42:0051b20:2:1",
+      "entryId": "t_ada407625f42",
+      "sourceTerm": "珍重",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0051b20",
+      "Kwic": "屢承翰教，珍重法門，筆舌難盡。",
+      "caseClusterId": "J/J26/J26nB177.xml:308785:309164",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Poshan Haiming",
+        "ActorAttribution": null,
+        "AttributionNote": "破山禪師語錄, Poshan Haiming's reply-letter to academy chancellor Tan Sao'an (復祭酒譚埽菴). Poshan Haiming is the exact author, thanking his correspondent for repeated written instruction and for treating the Dharma gate with care."
+      }
+    },
+    {
+      "key": "t_dc5f4386a0ed:0090b19:1:6",
+      "entryId": "t_dc5f4386a0ed",
+      "sourceTerm": "明心見性",
+      "RelPath": "J/J26/J26nB177.xml",
+      "FromLb": "0090b19",
+      "Kwic": "渠謂「明心見性」為當，試問心是何形？性是何物？",
+      "caseClusterId": "J/J26/J26nB177.xml:668757:669055",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "破山禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Poshan Haiming",
+        "ActorAttribution": null,
+        "AttributionNote": "破山禪師語錄, Poshan Haiming's response to Songgu's report of a Juyun informal address. Poshan Haiming is the exact author: calling himself the sick monk, he challenges the claim that clarifying mind and seeing nature alone is fitting by asking the shapes of mind and nature."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

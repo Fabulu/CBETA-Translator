@@ -1,0 +1,38 @@
+{
+  "source": "B/B14/B14n0082.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:33:01Z",
+  "rows": [
+    {
+      "key": "t_bc7bbb4299f1:0170b09:1:1",
+      "entryId": "t_bc7bbb4299f1",
+      "sourceTerm": "如何是佛法大意",
+      "RelPath": "B/B14/B14n0082.xml",
+      "FromLb": "0170b09",
+      "Kwic": "曰太守危險尤甚曰弟子位鎮江山何險之有師曰薪火相交識性不停得非險乎又問如何是佛法大意師曰諸惡莫作眾善奉行白曰三歲孩兒也解恁麼道師曰三歲孩兒雖道得八十老人",
+      "caseClusterId": "B/B14/B14n0082.xml:66018:66748",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "傳燈玉英集（殘卷）",
+      "defaultMasterName": "Bai Juyi",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_966bc615eb6e:0218b10:1:4",
+      "entryId": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "RelPath": "B/B14/B14n0082.xml",
+      "FromLb": "0218b10",
+      "Kwic": "溈山上堂云汝等諸人只得大體不得大用師抽身出去溈山召之師更不迴顧",
+      "caseClusterId": "B/B14/B14n0082.xml:153863:153993",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "傳燈玉英集（殘卷）",
+      "defaultMasterName": "Guishan Lingyou",
+      "candidateBasis": "inline",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

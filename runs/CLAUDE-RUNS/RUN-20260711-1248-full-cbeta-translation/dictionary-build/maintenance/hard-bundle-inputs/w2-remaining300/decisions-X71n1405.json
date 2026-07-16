@@ -1,0 +1,27 @@
+{
+  "source": "X/X71/X71n1405.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_2069b9c33315:0047b15:1:6",
+      "entryId": "t_2069b9c33315",
+      "sourceTerm": "君臣",
+      "RelPath": "X/X71/X71n1405.xml",
+      "FromLb": "0047b15",
+      "Kwic": "謂具三玄三要者，覿體全真；謂分五位君臣者，宛轉回互。",
+      "caseClusterId": "X/X71/X71n1405.xml:196834:197333",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "石溪心月禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shixi Xinyue",
+        "AttributionNote": "Recorded Sayings of Shixi Xinyue (石溪心月禪師語錄): in his Bao'en Monastery small address, Shixi Xinyue contrasts the three mysteries and essentials with the five lord-minister positions."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

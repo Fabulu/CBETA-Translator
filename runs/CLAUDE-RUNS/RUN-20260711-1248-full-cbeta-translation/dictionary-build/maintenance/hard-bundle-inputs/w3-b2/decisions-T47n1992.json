@@ -1,0 +1,30 @@
+{
+  "source": "T/T47/T47n1992.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_b1c32bd93e66:0599c15:1:3",
+      "entryId": "t_b1c32bd93e66",
+      "sourceTerm": "鵝王",
+      "RelPath": "T/T47/T47n1992.xml",
+      "FromLb": "0599c15",
+      "Kwic": "上堂云。鵝王擇乳。素非鴨類。問鵝王擇乳。素非鴨類。意旨如何。師云。江南有江北無。",
+      "caseClusterId": "T/T47/T47n1992.xml:40981:42586",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "汾陽無德禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fenyang Shanzhao",
+        "ActorAttribution": null,
+        "AttributionNote": "汾陽無德禪師語錄. Full six-rung exact-turn review identifies Fenyang Shanzhao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_b1c32bd93e66:0599c15:1:3"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "source": "X/X79/X79n1559.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-13T22:32:55Z",
+  "rows": [
+    {
+      "key": "t_79e00cdbc129:0289b16:1:1",
+      "entryId": "t_79e00cdbc129",
+      "sourceTerm": "安心",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0289b16",
+      "Kwic": "光曰：我心未寧，乞師與安。曰：將心來，與汝安。光曰：覔心了不可得。曰：與汝安心竟。",
+      "caseClusterId": "X/X79/X79n1559.xml:71468:74458",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_5636cffb8ad1:0301a19:1:4",
+      "entryId": "t_5636cffb8ad1",
+      "sourceTerm": "擬對",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0301a19",
+      "Kwic": "師擬對，鑑掩其口。師了然開悟，遂禮拜。",
+      "caseClusterId": "X/X79/X79n1559.xml:153193:156358",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Touzi Yiqing",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_bf467ac18ec0:0302c23:1:2",
+      "entryId": "t_bf467ac18ec0",
+      "sourceTerm": "佛手",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0302c23",
+      "Kwic": "室中舉手問僧：我手何似佛手？垂足曰：我脚何似驢脚？人人盡有生緣，上座生緣在何處？學者莫有契其旨，叢林目之為黃龍三關。",
+      "caseClusterId": "X/X79/X79n1559.xml:162719:165966",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Huanglong Huinan",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_a9f422b3b249:0303a01:1:1",
+      "entryId": "t_a9f422b3b249",
+      "sourceTerm": "生緣",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0303a01",
+      "Kwic": "人人盡有生緣，上座生緣在何處？學者莫有契其旨，叢林目之為黃龍三關。",
+      "caseClusterId": "X/X79/X79n1559.xml:164898:165966",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Huanglong Huinan",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_694f447dbd89:0304c18:1:4",
+      "entryId": "t_694f447dbd89",
+      "sourceTerm": "面壁",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0304c18",
+      "Kwic": "室中問僧：魯祖當日見僧來參，何故便面壁？眾下語不契，",
+      "caseClusterId": "X/X79/X79n1559.xml:175566:177461",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Luzu",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Cuiyan Kezhen",
+        "ActorAttribution": null,
+        "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄), Cuiyan Kezhen entry. Cuiyan Kezhen is the exact chamber speaker who asks a monk why Luzu faced the wall when a monk came to inquire; Luzu is the embedded subject of Cuiyan's question, not the speaker of this headword-bearing turn."
+      }
+    },
+    {
+      "key": "t_ef39bdc0eb99:0309c05:1:5",
+      "entryId": "t_ef39bdc0eb99",
+      "sourceTerm": "擬議",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0309c05",
+      "Kwic": "擬議之間，長途萬里。",
+      "caseClusterId": "X/X79/X79n1559.xml:210027:213562",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Furong Daokai",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_ba6668ef3e6e:0343c18:1:2",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0343c18",
+      "Kwic": "世尊拈華，迦葉微笑。正當恁麼時，好與三十棒。",
+      "caseClusterId": "X/X79/X79n1559.xml:445205:446113",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Yuelin Zongshan",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_b4a4ae6874d0:0362b08:1:3",
+      "entryId": "t_b4a4ae6874d0",
+      "sourceTerm": "異類中行",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0362b08",
+      "Kwic": "九、須大機大用。十、須向異類中行。凡欲紹隆法種，須盡此綱要，方坐得這曲彔床子",
+      "caseClusterId": "X/X79/X79n1559.xml:572427:578001",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Dasui Fazhen",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Nantang Yuanjing",
+        "ActorAttribution": null,
+        "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄), Nantang Yuanjing entry. Nantang Yuanjing, later named Daoxing, is the exact hall speaker who lists going among the different kinds as the tenth requirement for continuing the teaching line; Dasui Fazhen is a different master produced by an over-broad Dasui header match."
+      }
+    },
+    {
+      "key": "t_5bc32131e0a8:0429b09:1:4",
+      "entryId": "t_5bc32131e0a8",
+      "sourceTerm": "德山托鉢",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0429b09",
+      "Kwic": "悅因舉德山托鉢話令熟究之，公悵然不寐，至五鼓，忽垂脚飜溺器，猛省",
+      "caseClusterId": "X/X79/X79n1559.xml:1034854:1038941",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": "Zhang Shangying",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Doushuai Congyue",
+        "ActorAttribution": null,
+        "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄), Zhang Shangying biography. Doushuai Congyue is the exact actor who raises Deshan's bowl-carrying case and assigns it to Zhang Shangying for sustained investigation; Zhang is the recipient who studies it and awakens later."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

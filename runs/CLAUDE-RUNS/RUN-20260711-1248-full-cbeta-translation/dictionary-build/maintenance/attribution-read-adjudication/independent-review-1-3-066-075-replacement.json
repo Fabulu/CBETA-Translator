@@ -1,0 +1,87 @@
+{
+  "selfReview": false,
+  "reviewer": "Codex attr_reviewer_replacement",
+  "sourceCheckpoint": "current exact author-complete entries plus cohorts-1-3-v6-packets-066-075.json; all 80 stored occurrences read in their complete packet source units; MasterName treated only as exact headword utterer; roster-only gaps deferred/nonblocking",
+  "rows": [
+    {
+      "id": "t_7182bedf65d1",
+      "term": "下語",
+      "verdict": "REVISE",
+      "reviewedSha256": "1f9aed3470483f26d6cd731ea43bfe5aab97d15888fd4f152cf450141191feb2",
+      "finding": "All seven complete cases read. Direct Langye speech is correctly separated from recorder-governed reports of students, crowds, and Nanyue Huairang supplying responses, and the response-operation sense holds. The entry nevertheless violates ACTOR_AUDIT's closed role vocabulary: instructor and case-teacher are stored roles. Replace them with the nearest permitted roles (teacher/respondent/case-figure as the case warrants) without changing the exact-turn decisions.",
+      "selfReview": false
+    },
+    {
+      "id": "t_74c3c0e1b896",
+      "term": "下禪床",
+      "verdict": "REVISE",
+      "reviewedSha256": "2d71085a0f87aa7a7f4e4c19ffa7788b0e4e26c5ba64b4e9ac2e96586e0e6d96",
+      "finding": "All seven complete cases read. Most nonverbal descents are correctly narrator-owned, but the Feiyin Tongrong hall address itself says 又有一婆子…趙州得財乃下禪床: Feiyin is the utterer of this embedded case narration, not an impersonal record narrator. The Nanquan verse row likewise requires the named verse/comment voice if its section resolves one, rather than automatically treating a verse's words as stage-direction narration. In addition, action-performer is outside the closed role vocabulary. Re-resolve those two utterers from their full source sections and normalize roles.",
+      "selfReview": false
+    },
+    {
+      "id": "t_79e00cdbc129",
+      "term": "安心",
+      "verdict": "REVISE",
+      "reviewedSha256": "d8083bd3942f9879d83a0e401122a352282e7a26d5e5d54f1d292d211dbb3144",
+      "finding": "All eight complete cases read. Bodhidharma, Fojian Huiqin, Konggu Daocheng, Xi'an Daguan, Ningran Liaogai, Doushuai Huizhao, and Gaofeng's unnamed attendant are assigned to the correct turns. The sole structural defect is the forbidden case-teacher ContextMasters role on Gaofeng; use respondent/teacher/case-figure as warranted. Also remove the orphaned duplicate prose fragment 'To set the mind at ease or to be at ease,' which interrupts an otherwise evidence-grounded explanation.",
+      "selfReview": false
+    },
+    {
+      "id": "t_7c5f24652dfa",
+      "term": "法身向上事",
+      "verdict": "REVISE",
+      "reviewedSha256": "a2a9ecea2a3c8312fe2ab148f00d95330de057ee610813a24e1afc5c7446f075",
+      "finding": "All six complete cases read. The explicit monk questions and the direct Shushan/Tianyin turns are correctly separated. The Qingshan row at X66n1297, however, leaves ContextMasters empty although the complete unit explicitly supplies Qingshan as respondent/case figure and Miaowei Jun as later commentator; preserve the unnamed monk as utterer but record those contextual masters. Replace case-teacher in the Yunmen and Jingqing rows with permitted roles.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8021c6affb97",
+      "term": "漁父",
+      "verdict": "KEEP",
+      "reviewedSha256": "b90f6d5e58672907067c5bde1ede58152357126b58335116aa12dec7e66f25ec",
+      "finding": "All fourteen complete prose, verse, title, and Qu Yuan-dialogue units read. The direct speakers and authors own their exact headword tokens, the fisherman/Qu Yuan figure and written-work title are genuinely different things, and the explanation distinguishes the corpus's varied deployments without turning them into one imported symbol.",
+      "selfReview": false
+    },
+    {
+      "id": "t_802b405cbb3d",
+      "term": "舍利",
+      "verdict": "KEEP",
+      "reviewedSha256": "13d51f273595d32984ff675ea964bc96df5ef41de625f04f6427c48998523836",
+      "finding": "All eight complete biographical, commentary, verse, and direct-address units read. Cremation and relic-event clauses remain compiler-owned, while the directly marked later comments retain their speakers. The relic referent and its Chan documentary/commentarial deployments remain coherent and no non-roster semantic defect was found.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8060f979f21b",
+      "term": "目前無法",
+      "verdict": "REVISE",
+      "reviewedSha256": "e562c70624d9d1a0eedfd2cd09b8e7eb4a2041854a3dfdaa999e2c2a19110039",
+      "finding": "All seven complete cases read. The Shushan, Jiashan, Xuedou, Huqiu, and unnamed-monk turns are correctly resolved. Jiashan's X80n1565 direct utterance has an empty ContextMasters array despite the definition-of-done requiring contextual roles for named occurrences. Three other rows use the forbidden case-teacher role. The English gloss also overcommits 法 to 'teaching-object' without explaining why the paired corpus formula warrants that narrower reading rather than 'thing/phenomenon'; re-test and state the evidence for the chosen English.",
+      "selfReview": false
+    },
+    {
+      "id": "t_8107ccae18eb",
+      "term": "拈提",
+      "verdict": "KEEP",
+      "reviewedSha256": "6e63e72b813871d5b50edff077644e652aead6c2986836c9b4e0d409fae43e36",
+      "finding": "All seven complete publication, preface, address, and commentary units read. Wumen, Yuanwu, Dahui, Jingfu, Dagui, and Yulin own the exact tokens assigned to them, the two Jingfu editorial statements are direct authorial prose rather than anonymous headings, and the public taking-up/commenting sense is supported without an actor or sense-boundary defect.",
+      "selfReview": false
+    },
+    {
+      "id": "t_830700de49fb",
+      "term": "三句",
+      "verdict": "REVISE",
+      "reviewedSha256": "3851ce7de888191e34236584a94f3b223092c3695ece3fe4bc0e1bb673005b8b",
+      "finding": "All ten complete units across the six distinct triads read. The sense split is justified by genuinely different referents, direct speakers are correct, and Yunmen's raising of Linji's saying is properly recorder-governed rather than assigned to Yunmen. That row still stores action-performer and case-source, both outside the closed role vocabulary; replace them with later-raiser/questioner and case-figure/person-discussed as warranted.",
+      "selfReview": false
+    },
+    {
+      "id": "t_84e490b1773f",
+      "term": "撫掌",
+      "verdict": "REVISE",
+      "reviewedSha256": "7584ebb3db22814a8b5e3a0fdb17d65ac837d2d32f6eea02395796e9e2fa51d7",
+      "finding": "All eight complete cases read. The action remains one physical clap with different surrounding deployments, and most bodily acts are correctly narrator-owned. Baoshou Fang's X66n1296 row is not a direct utterance of 撫掌: after his quoted appraisal the recorder says he clapped, laughed, swept his sleeves, and left, so MasterName must be null with Baoshou as the described performer. The Yangqi row contains two separate claps by Yangqi and the supply master and needs actor-specific GrammarEvidence rather than a generic narrator label. action-performer is also outside the closed role vocabulary throughout.",
+      "selfReview": false
+    }
+  ]
+}

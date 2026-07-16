@@ -1,0 +1,29 @@
+{
+  "source": "X/X70/X70n1402.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_18b083a026ba:0714c20:1:5",
+      "entryId": "t_18b083a026ba",
+      "sourceTerm": "提起",
+      "RelPath": "X/X70/X70n1402.xml",
+      "FromLb": "0714c20",
+      "Kwic": "單單提起箇無義味話頭，自最初一日立定脚頭，不得分毫移動，密密與之做向前去，",
+      "caseClusterId": "X/X70/X70n1402.xml:25910:28148",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "天目明本禪師雜錄",
+      "defaultMasterName": "Zhongfeng Mingben",
+      "candidateBasis": "co-located-reviewed",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "ContextMasters": [],
+        "AttributionNote": "Miscellaneous Records of Chan Master Tianmu Mingben (天目明本禪師雜錄), in Zhongfeng Mingben's summer-restriction instruction to the assembly at Shunxin Hermitage (結夏示順心庵眾). Zhongfeng Mingben is the exact author who tells the assembly to raise only a saying without the flavor of meaning and continue forward with it from the first day."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

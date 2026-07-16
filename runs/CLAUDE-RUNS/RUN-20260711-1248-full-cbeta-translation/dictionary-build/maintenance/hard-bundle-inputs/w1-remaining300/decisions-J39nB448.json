@@ -1,0 +1,28 @@
+{
+  "source": "J/J39/J39nB448.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_7e735921071e:0434a21:1:1",
+      "entryId": "t_7e735921071e",
+      "sourceTerm": "冷灰豆爆",
+      "RelPath": "J/J39/J39nB448.xml",
+      "FromLb": "0434a21",
+      "Kwic": "忽有箇冷灰豆爆底人到來，如何接待？",
+      "caseClusterId": "J/J39/J39nB448.xml:61977:62430",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "靈機禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lingji Xingguan",
+        "ActorAttribution": null,
+        "AttributionNote": "靈機禪師語錄. Lingji Xingguan is the exact actor: he asks how to receive a 冷灰豆爆 person."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

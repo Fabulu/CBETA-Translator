@@ -1,0 +1,155 @@
+{
+  "source": "B/B25/B25n0145.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_66792ea088de:0692a05:1:5",
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0692a05",
+      "Kwic": "卷第三拈古頌古",
+      "caseClusterId": "B/B25/B25n0145.xml:60386:71980",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document heading",
+          "ActorLabel": "the table-of-contents heading",
+          "ActorRole": "document-structure label",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z",
+          "GrammarEvidence": "卷第三拈古頌古 is a table-of-contents label naming the contents of fascicle three; it is not a personal utterance or action."
+        },
+        "AttributionNote": "天目中峰廣錄. The exact actor is the table-of-contents heading: 卷第三拈古頌古 is an impersonal document-structure label for fascicle three, not a saying by Zhongfeng Mingben."
+      }
+    },
+    {
+      "key": "t_b4e104076bdf:0699a09:1:1",
+      "entryId": "t_b4e104076bdf",
+      "sourceTerm": "窠臼",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0699a09",
+      "Kwic": "墮他窠臼。如油入麵不得出頭。",
+      "caseClusterId": "B/B25/B25n0145.xml:81532:83973",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "AttributionNote": "天目中峰廣錄, 示眾. Zhongfeng Mingben is the exact speaker: the complete address is his own instruction, and he says that students who do not distinguish good from bad fall into another person's rut like oil entering flour."
+      }
+    },
+    {
+      "key": "t_47e7132eb361:0750a06:1:1",
+      "entryId": "t_47e7132eb361",
+      "sourceTerm": "六根門頭",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0750a06",
+      "Kwic": "有一句子在六根門頭。向六根門頭薦得。",
+      "caseClusterId": "B/B25/B25n0145.xml:250465:251383",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "AttributionNote": "天目中峰廣錄, instruction to Xiyou (示希有上人行脚). Zhongfeng Mingben is the exact speaker throughout the complete instruction and says that there is a phrase at the gates of the six faculties."
+      }
+    },
+    {
+      "key": "t_438eb81f17bf:0827b07:1:5",
+      "entryId": "t_438eb81f17bf",
+      "sourceTerm": "心行處滅",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0827b07",
+      "Kwic": "絕言則言語道斷。絕慮則心行處滅。",
+      "caseClusterId": "B/B25/B25n0145.xml:495805:496340",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "hypothetical interpreter",
+          "ActorLabel": "the unnamed interpreter relying on written wording",
+          "ActorRole": "quoted hypothetical speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "天目中峰廣錄, 山房夜話下. The exact actor is the unnamed interpreter relying on written wording: Zhongfeng Mingben introduces the stored equation with 或者依文解義道, marks it as a hypothetical person's explanation, and then contests it; no personal name exists at any ladder rung.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhongfeng Mingben",
+            "Roles": [
+              "record-owner",
+              "introducer",
+              "following-commentator"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ce2a5ef71afe:0897a15:1:5",
+      "entryId": "t_ce2a5ef71afe",
+      "sourceTerm": "麻三斤",
+      "RelPath": "B/B25/B25n0145.xml",
+      "FromLb": "0897a15",
+      "Kwic": "惟雲門乾屎橛。洞山麻三斤。却較些子。",
+      "caseClusterId": "B/B25/B25n0145.xml:734495:735880",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目中峰廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "AttributionNote": "天目中峰廣錄, 東語西話下. Zhongfeng Mingben is the exact governing speaker: in his own extended discussion he pairs Yunmen's dry shit-stick with Dongshan's three pounds of hemp and says that these come somewhat closer.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "person-cited"
+            ]
+          },
+          {
+            "MasterName": "Dongshan Shouchu",
+            "Roles": [
+              "person-cited"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

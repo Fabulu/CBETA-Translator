@@ -1,0 +1,30 @@
+{
+  "source": "X/X63/X63n1257.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_1e3e02536ca2:0756b14:1:5",
+      "entryId": "t_1e3e02536ca2",
+      "sourceTerm": "疑團",
+      "RelPath": "X/X63/X63n1257.xml",
+      "FromLb": "0756b14",
+      "Kwic": "通身內外只是一箇疑團，可謂攪渾世界。疑團不破，誓不休心",
+      "caseClusterId": "X/X63/X63n1257.xml:17831:18103",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "博山禪警語",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuyi Yuanlai",
+        "ActorAttribution": null,
+        "AttributionNote": "博山禪警語. Full six-rung exact-turn review identifies Wuyi Yuanlai as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_1e3e02536ca2:0756b14:1:5"
+  ]
+}

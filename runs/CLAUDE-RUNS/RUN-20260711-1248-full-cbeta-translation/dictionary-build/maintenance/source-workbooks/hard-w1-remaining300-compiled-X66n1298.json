@@ -1,0 +1,51 @@
+{
+  "source": "X/X66/X66n1298.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w1-remaining300/decisions-X66n1298.json",
+  "decisions": [
+    {
+      "entryId": "t_7a3345012bae",
+      "sourceTerm": "十牛",
+      "RelPath": "X/X66/X66n1298.xml",
+      "FromLb": "0754b19",
+      "Kwic": "梁山廓庵則和尚十牛頌",
+      "caseClusterId": "X/X66/X66n1298.xml:283295:284160",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document-section",
+          "ActorLabel": "the heading of Kuoan Ze's Ten Ox Verses",
+          "ActorRole": "work title",
+          "GrammarEvidence": "The headword 十牛 occurs inside the standalone title 梁山廓庵則和尚十牛頌, immediately after the preceding letter ends and before the verses begin; no speech predicate governs it.",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "禪門諸祖師偈頌. the heading of Kuoan Ze's Ten Ox Verses is the exact impersonal actor: 梁山廓庵則和尚十牛頌 titles the following work rather than recording a spoken turn.",
+        "ContextMasters": [
+          {
+            "MasterName": "Kuoan Ze",
+            "Roles": [
+              "verse-author",
+              "work-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "禪門諸祖師偈頌",
+      "Review": {
+        "reviewer": "Codex hard-w1-remaining300",
+        "reviewedUtc": "2026-07-14T00:00:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

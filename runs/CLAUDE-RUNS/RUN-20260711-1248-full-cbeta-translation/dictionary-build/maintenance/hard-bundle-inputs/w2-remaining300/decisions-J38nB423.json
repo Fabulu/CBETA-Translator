@@ -1,0 +1,27 @@
+{
+  "source": "J/J38/J38nB423.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_dd2b39789323:0596a28:1:6",
+      "entryId": "t_dd2b39789323",
+      "sourceTerm": "格外句",
+      "RelPath": "J/J38/J38nB423.xml",
+      "FromLb": "0596a28",
+      "Kwic": "夾山用本分機，這僧行格外句，至明日掘坑請埋",
+      "caseClusterId": "J/J38/J38nB423.xml:51452:51714",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "石關禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shiguan Fazang",
+        "AttributionNote": "Recorded Sayings of Shiguan (石關禪師語錄): in his case appraisal, Shiguan Fazang says Jiashan uses the basic-function mechanism while the monk performs a phrase outside the standard."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

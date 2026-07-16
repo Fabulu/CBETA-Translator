@@ -1,0 +1,30 @@
+{
+  "source": "J/J29/J29nB235.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_5f1287817ebd:0414a28:1:4",
+      "entryId": "t_5f1287817ebd",
+      "sourceTerm": "野狐禪",
+      "RelPath": "J/J29/J29nB235.xml",
+      "FromLb": "0414a28",
+      "Kwic": "修行一隊野狐禪，五百生來一語圓。",
+      "caseClusterId": "J/J29/J29nB235.xml:93286:93374",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蓮月禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lianyue Guangsi",
+        "ActorAttribution": null,
+        "AttributionNote": "蓮月禪師語錄. Full six-rung exact-turn review identifies Lianyue Guangsi as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_5f1287817ebd:0414a28:1:4"
+  ]
+}

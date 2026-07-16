@@ -14,7 +14,7 @@
         "whom?"
       ],
       "Status": "preferred",
-      "Note": "Family comparison: 'who?' (誰) and 'which one?' (阿那箇) are interrogatives; 'that one' (那箇) and 'this one' (這箇) are demonstratives; 'who?' (阿誰) does not acquire a separate 'true self' sense merely because identity is sometimes its subject. Agent, author, beneficiary, and lineage predecessor are different answers to the same pronoun, not different referents encoded by the word. Frozen-corpus concordance: 3312 exact hits in 374 storage files representing 369 independent works. Frozen-corpus concordance: 3312 exact hits in 374 storage files representing 369 independent works. Frozen-corpus concordance: 3312 exact hits in 374 storage files representing 369 independent works. Frozen-corpus concordance: 3312 exact hits in 374 storage files representing 369 independent works.",
+      "Note": "Family comparison: 'who?' (誰) and 'which one?' (阿那箇) are interrogatives; 'that one' (那箇) and 'this one' (這箇) are demonstratives; 'who?' (阿誰) does not acquire a separate 'true self' sense merely because identity is sometimes its subject. Agent, author, beneficiary, and lineage predecessor are different answers to the same pronoun, not different referents encoded by the word. Frozen-corpus concordance: 3312 exact hits in 374 storage files representing 369 independent works.",
       "Validation": "multi-source",
       "Occurrences": [
         {
@@ -24,7 +24,7 @@
           "Kwic": "問。如何是佛。師曰。汝是阿誰。曰。某甲。師曰。汝識某甲否。曰。分明箇。",
           "MasterName": "Baizhang Huaihai",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Baizhang Huaihai owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈會元). Exact actor: Baizhang Huaihai. Baizhang asks the questioner, “Who are you?”",
           "ContextMasters": [
             {
               "MasterName": "Baizhang Huaihai",
@@ -37,14 +37,14 @@
         {
           "RelPath": "X/X78/X78n1556.xml",
           "FromLb": "0654a21",
-          "ToLb": "0654a23",
-          "Kwic": "問：師唱誰家曲，宗風嗣阿誰？師云：窣堵那叱掌上擎。僧曰：恁麼則北塔嫡子，韶石兒孫。",
+          "ToLb": "0654a22",
+          "Kwic": "問：師唱誰家曲，宗風嗣阿誰？",
           "Curated": true,
-          "AttributionNote": "Source text (建中靖國續燈錄). unnamed monk owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (建中靖國續燈錄). Exact actor: the unnamed monk. An unnamed monk asks Baoyue Zhiying whose lineage style he succeeds to.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monk",
-            "ActorLabel": "unnamed monk",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -54,19 +54,20 @@
               "tei-header",
               "parallel-passage"
             ],
-            "ReviewedBy": "Codex",
-            "ReviewedUtc": "2026-07-14T00:35:00Z",
-            "GrammarEvidence": "The complete-case markers assign the exact clause to unnamed monk."
+            "GrammarEvidence": "問 assigns “whose lineage style do you succeed to?” to an unnamed monk; Baoyue Zhiying answers afterward.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint4 full read",
+            "ReviewedUtc": "2026-07-16T00:25:51.129038+00:00"
           },
           "ContextMasters": [
             {
-              "MasterName": "Baizhang Zhiying",
+              "MasterName": "Baoyue Zhiying",
               "Roles": [
                 "respondent",
                 "section-subject"
               ]
             }
-          ]
+          ],
+          "MasterName": null
         },
         {
           "RelPath": "T/T51/T51n2076.xml",
@@ -74,11 +75,11 @@
           "ToLb": "0247a04",
           "Kwic": "師曰。此經是阿誰說。僧抗聲曰。禪師相弄。豈不知是佛說耶。",
           "Curated": true,
-          "AttributionNote": "Source text (景德傳燈錄). Mazu Daoyi owns the exact clause in the complete case.",
-          "MasterName": "Mazu Daoyi",
+          "AttributionNote": "Source text (景德傳燈錄). Exact actor: Dazhu Huihai. The complete section headed 越州大珠慧海禪師 identifies Dazhu—not Mazu—as the master who asks the scripture lecturer who spoke the scripture.",
+          "MasterName": "Dazhu Huihai",
           "ContextMasters": [
             {
-              "MasterName": "Mazu Daoyi",
+              "MasterName": "Dazhu Huihai",
               "Roles": [
                 "utterer"
               ]
@@ -92,7 +93,7 @@
           "Kwic": "師謂眾曰。我要一人。傳語西堂。阿誰去得。五峯曰。某甲去。師曰。汝作麼生傳語。",
           "MasterName": "Baizhang Huaihai",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Baizhang Huaihai owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈會元). Exact actor: Baizhang Huaihai. Baizhang asks who can carry a message to Xitang.",
           "ContextMasters": [
             {
               "MasterName": "Baizhang Huaihai",
@@ -108,19 +109,20 @@
           "ToLb": "0617c13",
           "Kwic": "雲巖問和尚每日區區為阿誰師曰有一人要巖曰囙甚麼不教伊自作師曰他無家活",
           "Curated": true,
-          "AttributionNote": "Source text (古尊宿語錄). Yunyan Tansheng owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (古尊宿語錄). Exact actor: Yunyan Tansheng. Yunyan asks Baizhang for whom he works busily every day.",
           "MasterName": "Yunyan Tansheng",
           "ContextMasters": [
-            {
-              "MasterName": "Baizhang Huaihai",
-              "Roles": [
-                "respondent"
-              ]
-            },
             {
               "MasterName": "Yunyan Tansheng",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "respondent",
+                "case-figure"
               ]
             }
           ]
@@ -128,19 +130,37 @@
         {
           "RelPath": "J/J26/J26nB177.xml",
           "FromLb": "0008c13",
-          "ToLb": "0008c14",
-          "Kwic": "上堂，僧問：「盡力道不出底句分付阿誰？」師云：「猢猻入布袋。",
-          "MasterName": "Poshan Haiming",
+          "ToLb": "0008c13",
+          "Kwic": "僧問：「盡力道不出底句分付阿誰？」",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "Source text (破山禪師語錄). Poshan Haiming owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (破山禪師語錄). Exact actor: the unnamed monk. An unnamed monk asks Poshan Haiming to whom the unsayable phrase is entrusted.",
           "ContextMasters": [
             {
               "MasterName": "Poshan Haiming",
               "Roles": [
-                "utterer"
+                "respondent",
+                "record-owner"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "the unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "僧問 assigns the question about to whom the unsayable phrase is entrusted to an unnamed monk; Poshan Haiming answers afterward.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint4 full read",
+            "ReviewedUtc": "2026-07-16T00:25:51.129038+00:00"
+          }
         },
         {
           "RelPath": "X/X68/X68n1319.xml",
@@ -148,16 +168,33 @@
           "ToLb": "0558c20",
           "Kwic": "本自具足，阿誰拈起放下？",
           "Curated": true,
-          "AttributionNote": "Source text (御選語錄). Yongzheng Emperor owns the exact clause in the complete case.",
-          "MasterName": "Yongzheng Emperor",
+          "AttributionNote": "Source text (御選語錄). Exact actor: Yongzheng Emperor. The Yongzheng Emperor asks who releases or holds, takes up or puts down, what is originally unmoving and complete.",
+          "MasterName": null,
           "ContextMasters": [
             {
               "MasterName": "Yongzheng Emperor",
               "Roles": [
-                "utterer"
+                "compiler"
               ]
             }
-          ]
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "imperial author",
+            "ActorLabel": "Yongzheng Emperor",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The first-person critique belongs to the imperially authored record; the emperor asks who could put down, take up, release, or hold what is originally complete.",
+            "ReviewedBy": "Codex author 1-3 126-135 checkpoint4 full read",
+            "ReviewedUtc": "2026-07-16T00:25:51.129038+00:00"
+          }
         },
         {
           "RelPath": "X/X70/X70n1400.xml",
@@ -167,12 +204,19 @@
           "MasterName": "Xueyan Zuqin",
           "Curated": true,
           "EvidenceRole": "family",
-          "AttributionNote": "Source text (高峰原妙禪師語錄). Xueyan Zuqin owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (高峰原妙禪師語錄). Exact actor: Xueyan Zuqin. Xueyan repeatedly asks Gaofeng Yuanmiao who drags this dead corpse here.",
           "ContextMasters": [
             {
               "MasterName": "Xueyan Zuqin",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Gaofeng Yuanmiao",
+              "Roles": [
+                "interlocutor",
+                "person-described"
               ]
             }
           ]
@@ -223,15 +267,22 @@
           "FromLb": "0052b16",
           "ToLb": "0052b17",
           "Kwic": "阿那箇是明上座本來面目。師當下大悟。徧體汗流。",
-          "MasterName": "Mengshan Daoming",
+          "MasterName": "Huineng",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Mengshan Daoming owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈會元). Exact actor: Huineng. Huineng asks which is Ming’s original face; Mengshan Daoming is the addressed respondent who awakens at the question.",
           "ClaimText": "那箇",
           "ContextMasters": [
             {
-              "MasterName": "Mengshan Daoming",
+              "MasterName": "Huineng",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Mengshan Daoming",
+              "Roles": [
+                "respondent",
+                "section-subject"
               ]
             }
           ]
@@ -241,21 +292,28 @@
           "FromLb": "0052b16",
           "ToLb": "0052b17",
           "Kwic": "阿那箇是明上座本來面目。師當下大悟。徧體汗流。",
-          "MasterName": "Mengshan Daoming",
+          "MasterName": "Huineng",
           "Curated": true,
-          "AttributionNote": "Source text (五燈會元). Mengshan Daoming owns the exact clause in the complete case.",
+          "AttributionNote": "Source text (五燈會元). Exact actor: Huineng. Huineng asks which is Ming’s original face; Mengshan Daoming is the addressed respondent who awakens at the question.",
           "ClaimText": "阿那箇",
           "ContextMasters": [
             {
-              "MasterName": "Mengshan Daoming",
+              "MasterName": "Huineng",
               "Roles": [
                 "utterer"
+              ]
+            },
+            {
+              "MasterName": "Mengshan Daoming",
+              "Roles": [
+                "respondent",
+                "section-subject"
               ]
             }
           ]
         }
       ],
-      "Explanation": "An interrogative pronoun: 'who?' or, according to syntax, 'whom?' The records put it to several public uses. It asks the recorded questioner's identity inside the exchange 'what is buddha?' — 'who are you?' / 'so-and-so' / 'do you recognize so-and-so?' (汝是阿誰／某甲／汝識某甲否). It asks lineage in the stock interview formula 'whose song does the identified master sing; to whom does the house style succeed?' (師唱誰家曲，宗風嗣阿誰), agency in 'who can go?' (阿誰去得), authorship in 'who spoke this scripture?' (此經是阿誰說), and the beneficiary of activity in 'for whom are you busy every day?' (每日區區為阿誰). The Chan deviation lies in this concentration inside public identity, lineage, authorship, and accountability questions; the word itself remains the ordinary interrogative and does not name a special inward self."
+      "Explanation": "Who? is the direct interrogative used to demand a person rather than a doctrine or object. Baizhang Huaihai asks “Who are you?” and who can carry a message; Dazhu Huihai asks who spoke a scripture. Yunyan Tansheng asks for whom Baizhang works daily, and Xueyan Zuqin repeatedly asks Gaofeng Yuanmiao who drags the dead corpse. Unnamed monks use the same word to demand lineage succession or the recipient of an unsayable phrase. The force is the public demand to identify the responsible person in the exchange."
     }
   ]
 }

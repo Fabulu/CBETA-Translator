@@ -1,0 +1,50 @@
+{
+  "bundleId": "quick-owner-repair-R1",
+  "worker": "Codex /root/feedback_lexicography",
+  "updatedUtc": "2026-07-14T09:50:00Z",
+  "status": "complete",
+  "scope": {
+    "entryId": "t_2d4525b4b123",
+    "term": "教外別傳",
+    "sense": 1,
+    "occurrence": 1,
+    "RelPath": "X/X80/X80n1565.xml",
+    "FromLb": "0031a08",
+    "Kwic": "正法眼藏。涅槃妙心。實相無相。微妙法門。不立文字。教外別傳。付囑摩訶迦葉。"
+  },
+  "decision": {
+    "MasterName": "Shakyamuni Buddha",
+    "ContextMasters": [
+      {
+        "MasterName": "Mahakasyapa",
+        "Roles": ["sole-smiling-responder", "recipient"]
+      }
+    ],
+    "finding": "The complete case is in the Shakyamuni Buddha section. Shakyamuni Buddha raises the flower and is the exact speaker of the transmission formula; Mahakasyapa alone smiles and receives the entrustment."
+  },
+  "artifacts": {
+    "decisionSheet": "maintenance/source-workbooks/decisions-quick-owner-repair-R1.json",
+    "baselineAudit": "maintenance/source-workbooks/baseline-quick-owner-repair-R1.json",
+    "dryRun": "maintenance/source-workbooks/dryrun-quick-owner-repair-R1.json",
+    "applyReport": "maintenance/source-workbooks/applied-quick-owner-repair-R1.json",
+    "afterAudit": "maintenance/source-workbooks/after-quick-owner-repair-R1.json"
+  },
+  "gates": {
+    "dryRunPrepared": 1,
+    "dryRunFailures": 0,
+    "appliedRows": 1,
+    "applyFailures": 0,
+    "focusedDecisionMismatches": 0,
+    "wholeEntryOccurrences": 5,
+    "wholeEntryZcVerified": 5,
+    "jsonParse": "passed",
+    "gitDiffCheck": "passed; unrelated CRLF conversion warnings only"
+  },
+  "auditDelta": {
+    "unresolvedActor": "2 -> 1",
+    "namedOccurrences": "3 -> 4",
+    "noteMissingSpeaker": "5 -> 4",
+    "noteMissingSource": "5 -> 4"
+  },
+  "outOfScopeExistingIssue": "S1/O5 in C/C077/C077n1710.xml remains an unresolved raised-case occurrence and was not part of repair R1. All five stored KWIC anchors, including that row, verify exactly."
+}

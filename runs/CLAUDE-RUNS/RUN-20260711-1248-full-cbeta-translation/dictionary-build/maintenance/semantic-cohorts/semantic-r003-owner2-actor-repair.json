@@ -1,0 +1,2269 @@
+{
+  "schemaVersion": "1.0",
+  "cohort": "semantic-r003-owner2-actor-repair",
+  "instructions": "Editor repair ledger for reviewer2 passage-reading findings; updated after every entry.",
+  "updatedUtc": "2026-07-14T15:40:12.272039Z",
+  "entries": [
+    {
+      "id": "t_37261001c332",
+      "sourceTerm": "觀心",
+      "entryRelPath": "terms/t_37261001c332/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "064652dd32a7ffdf156832fdb12d1ee4f9d756922e3356edf322a752388d2899",
+      "entryBeforeSha256": "064652dd32a7ffdf156832fdb12d1ee4f9d756922e3356edf322a752388d2899",
+      "entryAfterSha256": "6156ea0cd1d0bda5b7731326a215ff970e539b66feb20ded7ba94321a0f26396",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0227a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X63/X63n1220.xml",
+          "fromLb": "0008c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X63/X63n1220.xml",
+          "fromLb": "0008c17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0550a25",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0559c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0727c13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0735a09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "X/X63/X63n1220.xml",
+          "fromLb": "0009a05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0747a17",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 9,
+          "previousMasterName": "Huineng",
+          "finding": "Huineng does not utter the stored phrase; Zhicheng reports Shenxiu's wording, and the stored KWIC contains 觀靜 rather than the headword 觀心, so this witness must be replaced."
+        }
+      ],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 474,
+        "occurrences": 9,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_37261001c332"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T14:57:09.954529Z"
+    },
+    {
+      "id": "t_f3488daf27fd",
+      "sourceTerm": "較些子",
+      "entryRelPath": "terms/t_f3488daf27fd/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "002e66a19aa0a08a6c23ca7af604dc6bc47e6108160b2777bc5fbf0019819d1e",
+      "entryBeforeSha256": "002e66a19aa0a08a6c23ca7af604dc6bc47e6108160b2777bc5fbf0019819d1e",
+      "entryAfterSha256": "bde8a342938a3dce68fccb7d9b0fa90af1650619262b69543aa0d2fde3f75a12",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0076a18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0047a15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0654b21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0716a14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0025a05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0023b24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0046c16",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Fenzhou Wuye",
+          "exactUtterer": "Xitang Zhizang",
+          "finding": "The complete passage is in Xitang Zhizang's headed record and 師 utters the headword."
+        },
+        {
+          "occurrence": 3,
+          "previousMasterName": "Yaoshan Xuan",
+          "exactUtterer": "Guanghui Qingshun",
+          "finding": "The complete passage is in Mingzhou Guanghui Qingshun's headed record and 師 utters the headword."
+        },
+        {
+          "occurrence": 5,
+          "previousMasterName": "Jingfu",
+          "exactUtterer": "Baiyan Fu",
+          "finding": "The reporting formula 白巖符云 directly names Baiyan Fu as the utterer."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:05:47.445546Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 854,
+            "corpusFiles": 224
+          }
+        ],
+        "corpusHits": 854,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_f3488daf27fd"
+      }
+    },
+    {
+      "id": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "entryRelPath": "terms/t_77821881a767/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "1731e80778808fb28bc3ecd298becd96167a0ca0ce50c04e8c646409c0b61bb7",
+      "entryBeforeSha256": "1731e80778808fb28bc3ecd298becd96167a0ca0ce50c04e8c646409c0b61bb7",
+      "entryAfterSha256": "b004e899efc5f040613c9968b8b75fb5d6f4b79f570f5c46ac4dc27228796fca",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0143b02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0307a05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0818b13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0667a20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0719c23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J29/J29nB223.xml",
+          "fromLb": "0045a16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0823b29",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0009a12",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 1,
+          "previousMasterName": "Puhua",
+          "exactUtterer": "Deshan Xuanjian",
+          "finding": "The headword occurs in Deshan's explicitly governed hall address."
+        },
+        {
+          "occurrence": 7,
+          "previousMasterName": "Dahui Zonggao",
+          "exactUtterer": "Yunmen Wenyan",
+          "finding": "The reporting formula 雲門道 names Yunmen as the utterer; Dahui is the later commentator."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:05:47.445546Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2409,
+            "corpusFiles": 281
+          }
+        ],
+        "corpusHits": 2409,
+        "occurrences": 8,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_77821881a767"
+      }
+    },
+    {
+      "id": "t_bcc96a299271",
+      "sourceTerm": "開示",
+      "entryRelPath": "terms/t_bcc96a299271/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "78e93da8f35afa284ae93a3b927d2961853b2814da597b066db3114c43c25ac3",
+      "entryBeforeSha256": "78e93da8f35afa284ae93a3b927d2961853b2814da597b066db3114c43c25ac3",
+      "entryAfterSha256": "3cc921eef50796a214ba996e18f78acfa825a13cc0909d946187c055bc058e8c",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0041b17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0062a12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0597c15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0217a15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0631a23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0800b07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0156a26",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Liangshan Huan",
+          "finding": "An anonymous monk utters the headword in a request; Liangshan answers and is not the utterer."
+        },
+        {
+          "occurrence": 7,
+          "previousMasterName": "Jingqing Daofu",
+          "finding": "The compiler narrates that Jingqing used the pecking-and-hatching mechanism to instruct later students; Jingqing does not speak the headword."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:05:47.445546Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1446,
+            "corpusFiles": 267
+          }
+        ],
+        "corpusHits": 1446,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_bcc96a299271"
+      }
+    },
+    {
+      "id": "t_327d40c2c9cb",
+      "sourceTerm": "飢來喫飯",
+      "entryRelPath": "terms/t_327d40c2c9cb/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "d110fd2c4d9e801a4b120fb1b78827163116e066ba05f8405d04e9c08c4b8bc0",
+      "entryBeforeSha256": "d110fd2c4d9e801a4b120fb1b78827163116e066ba05f8405d04e9c08c4b8bc0",
+      "entryAfterSha256": "2d685b8c9598d75c4defc256b5e8e52e77b8fb4ab415f714c93153c5059b032d",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0120a17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T47/T47n1985.xml",
+          "fromLb": "0502c19",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0415c17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X71/X71n1414.xml",
+          "fromLb": "0311b08",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0896b04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0037c04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0205b19",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0741a24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0051b21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 10,
+          "relPath": "X/X63/X63n1224.xml",
+          "fromLb": "0025b09",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 93,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_327d40c2c9cb"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:14:32.027066Z"
+    },
+    {
+      "id": "t_87ad33788c8e",
+      "sourceTerm": "驪龍",
+      "entryRelPath": "terms/t_87ad33788c8e/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "8293bfad59e6ff29b826eab5c99f252cf80e009e007b9b412e5f164ffac279b6",
+      "entryBeforeSha256": "8293bfad59e6ff29b826eab5c99f252cf80e009e007b9b412e5f164ffac279b6",
+      "entryAfterSha256": "e143777429e38b8c8f804643a640bed5bb1246ace9c57db24c77ef278699d857",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0001b02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0159b13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0243a16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J27/J27nB189.xml",
+          "fromLb": "0009b20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0051c10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0002a14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0380b02",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Dapu Xuantong",
+          "finding": "An unnamed monk utters 驪龍 in the question; Dapu only responds nonverbally."
+        },
+        {
+          "occurrence": 5,
+          "previousMasterName": "Baizhang Huaihai",
+          "exactUtterer": "Yu'an Yu (愚庵盂)",
+          "finding": "The direct reporting formula 愚庵盂云 governs the headword-bearing appraisal."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:14:32.027066Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 364,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_87ad33788c8e"
+      }
+    },
+    {
+      "id": "t_22885135d39e",
+      "sourceTerm": "一塵",
+      "entryRelPath": "terms/t_22885135d39e/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "ce1415707522e87f3bd16b04a2141ef17c897180a415d8915bf14d2d54de16cd",
+      "entryBeforeSha256": "ce1415707522e87f3bd16b04a2141ef17c897180a415d8915bf14d2d54de16cd",
+      "entryAfterSha256": "c96f05865c75cd054c57a5629b5c7bf2ddb62b2043b8186c511c1fdc56fba007",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0444a11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0160a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0700a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0759b29",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0199c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J40/J40nB472.xml",
+          "fromLb": "0013a18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0010b17",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 2,
+          "previousMasterName": "Chen Cao",
+          "finding": "An anonymous monk utters the headword; the responding section master is Hangzhou Xixing Huadu Shiyu, not Chen Cao."
+        }
+      ],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1830,
+            "corpusFiles": 293
+          }
+        ],
+        "corpusHits": 1830,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_22885135d39e"
+      }
+    },
+    {
+      "id": "t_192801178305",
+      "sourceTerm": "三界唯心",
+      "entryRelPath": "terms/t_192801178305/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "eacadfced73f40138a5ac579078508f882a9c085b7a227c7c54217aca303419e",
+      "entryBeforeSha256": "eacadfced73f40138a5ac579078508f882a9c085b7a227c7c54217aca303419e",
+      "entryAfterSha256": "41ce4299440b6b643f5a3f729ebd9cd4cab7f8e87c78a35c12c8a562fc789b5c",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0423c25",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0070b08",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0166a15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0574a11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0845c17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0206b10",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 1,
+          "previousMasterName": "Yongming Yanshou",
+          "finding": "The reporting formula 經云 assigns the words to a scripture/document voice; Yongming quotes it."
+        },
+        {
+          "occurrence": 2,
+          "previousMasterName": "Guifeng Zongmi",
+          "exactUtterer": "Mazu Daoyi",
+          "finding": "Mazu's headed record and 一日謂眾曰 govern the sentence."
+        },
+        {
+          "occurrence": 6,
+          "previousMasterName": "Yuanwu Keqin",
+          "finding": "Yuanwu explicitly attributes the phrase to an unnamed 古人 and then explains it."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:14:32.027066Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 248,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_192801178305"
+      }
+    },
+    {
+      "id": "t_0d926425f385",
+      "sourceTerm": "五戒",
+      "entryRelPath": "terms/t_0d926425f385/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "9e23b6c8cf100a0c68fd12331f39f0d89f90f5d2352bc5f1dd4aa647d508030f",
+      "entryBeforeSha256": "9e23b6c8cf100a0c68fd12331f39f0d89f90f5d2352bc5f1dd4aa647d508030f",
+      "entryAfterSha256": "2c789a8487b7d69a5e6cdf9442c71129d751b900db768d8a85980c6ff3f03477",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0658c16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0661b02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X71/X71n1411.xml",
+          "fromLb": "0201c18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X86/X86n1607.xml",
+          "fromLb": "0577c16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X85/X85n1593.xml",
+          "fromLb": "0389a21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0569b12",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 3,
+          "previousMasterName": "Hengchuan Xinggong",
+          "finding": "The headword sits in an unattributed compiled verse; the local passage does not name Hengchuan as verse-author."
+        },
+        {
+          "occurrence": 5,
+          "previousMasterName": "Songyue Yuangui",
+          "finding": "A compiler narrates Yuangui's conferral of the five precepts; Yuangui does not speak the headword."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T14:54:11.986289Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 334,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_0d926425f385"
+      }
+    },
+    {
+      "id": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "entryRelPath": "terms/t_ff560195f161/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "e1189b80473c92f1b6c4a8328c976018ebfab3aacbbdd8607903387ea4a17d9e",
+      "entryBeforeSha256": "e1189b80473c92f1b6c4a8328c976018ebfab3aacbbdd8607903387ea4a17d9e",
+      "entryAfterSha256": "1ba7653ae0b3c222d15c82a73421ae27545b89d68d805fbf1d651c70ed2235c8",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0098a03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0024c22",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0035a17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0152a18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0028c24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0044a04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0014a02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "T/T47/T47n1985.xml",
+          "fromLb": "0504a26",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1570,
+            "corpusFiles": 244
+          }
+        ],
+        "corpusHits": 1570,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_ff560195f161"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:05:47.445546Z"
+    },
+    {
+      "id": "t_3f7a6ab74b68",
+      "sourceTerm": "僧堂",
+      "entryRelPath": "terms/t_3f7a6ab74b68/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "ef35b31e007b343e9f0a6cfd6229fd6fb923c0a310fe69d73c785a0498498d71",
+      "entryBeforeSha256": "ef35b31e007b343e9f0a6cfd6229fd6fb923c0a310fe69d73c785a0498498d71",
+      "entryAfterSha256": "0f12d47b42dfdfae73e8d46a96f42aa1c10291dccb0befb01fa86cc426d612e0",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1113c13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1123a14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0074a06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0077c21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0468c10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X73/X73n1445.xml",
+          "fromLb": "0003c12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0251a10",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 5,
+          "previousMasterName": "Zhaozhou Congshen",
+          "finding": "A compiler narrates Zhaozhou closing the monks' hall door; Zhaozhou does not speak 僧堂."
+        }
+      ],
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z",
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1743,
+            "corpusFiles": 275
+          }
+        ],
+        "corpusHits": 1743,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_3f7a6ab74b68"
+      }
+    },
+    {
+      "id": "t_a93cfc8fba26",
+      "sourceTerm": "分疏不下",
+      "entryRelPath": "terms/t_a93cfc8fba26/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "88f9a34922b37dd3c257ba478cb8c3cc746adc534232f95d52b6bc1ae1b8dfc0",
+      "entryBeforeSha256": "88f9a34922b37dd3c257ba478cb8c3cc746adc534232f95d52b6bc1ae1b8dfc0",
+      "entryAfterSha256": "f635d6a4f6994e35e699dff7ced8ad0342911460d1b0f862d80e07a1c50291c4",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0661b04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0560c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0358c28",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J26/J26nB186.xml",
+          "fromLb": "0648b27",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0390b14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0403b12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0316b01",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 100,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_a93cfc8fba26"
+      }
+    },
+    {
+      "id": "t_b2f05c3e4b7d",
+      "sourceTerm": "合頭語",
+      "entryRelPath": "terms/t_b2f05c3e4b7d/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "75b017379481ab59dcaea639d2287b60be8fbcef63dedbf021ada1bbf8c796ce",
+      "entryBeforeSha256": "75b017379481ab59dcaea639d2287b60be8fbcef63dedbf021ada1bbf8c796ce",
+      "entryAfterSha256": "15ded8b3d962b2a9c290c721b0b6634e6957ae72f157347335605e88eadfacbd",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0737b07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0724b17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0725a16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J33/J33nB280.xml",
+          "fromLb": "0274a21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0767a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J40/J40nB494.xml",
+          "fromLb": "0576c30",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 1,
+          "previousMasterName": "Chuanzi Decheng",
+          "finding": "The reporting formula 古人道 assigns the phrase to an unnamed old speaker; Chuanzi is not named in the headword-bearing turn."
+        }
+      ],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 126,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_b2f05c3e4b7d"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    },
+    {
+      "id": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "entryRelPath": "terms/t_757827b8d4cb/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "1c83ac69ce98ff222175d73e3c7120cb54429727caa88e079210b4e53e380388",
+      "entryBeforeSha256": "1c83ac69ce98ff222175d73e3c7120cb54429727caa88e079210b4e53e380388",
+      "entryAfterSha256": "38cac71c6e1edd3704f80aa14c3a70ff00102b7b0044dde87227d04a12e11a9f",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0284b23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0096c14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0146b08",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0672c12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0640b23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0660b24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0720b22",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 645,
+            "corpusFiles": 217
+          }
+        ],
+        "corpusHits": 645,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_757827b8d4cb"
+      }
+    },
+    {
+      "id": "t_2398f8fb6328",
+      "sourceTerm": "困來即眠",
+      "entryRelPath": "terms/t_2398f8fb6328/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "83c266519c3a13de1906dd2298be525dd7b00ddaeb81820ce49f5351e1ac088e",
+      "entryBeforeSha256": "83c266519c3a13de1906dd2298be525dd7b00ddaeb81820ce49f5351e1ac088e",
+      "entryAfterSha256": "22f33c07c3b4f0ed63e974cccd7740f12c2fe90c0cf66904f46d077bd7bf43a3",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0247c03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0340b06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0461b20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0655a13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X66/X66n1298.xml",
+          "fromLb": "0744b16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0079c24",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 12,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_2398f8fb6328"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    },
+    {
+      "id": "t_368268e023e3",
+      "sourceTerm": "塵勞",
+      "entryRelPath": "terms/t_368268e023e3/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "b7dd70d67da9f68b5e7da9586f9de2ef0266e03c7a87fa343e9dcb12865e8bd5",
+      "entryBeforeSha256": "b7dd70d67da9f68b5e7da9586f9de2ef0266e03c7a87fa343e9dcb12865e8bd5",
+      "entryAfterSha256": "f745b043b57f5a7348ffec282540844c01dd4a93a31fee24beb016e25ff35d45",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0838a27",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0013a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0036b03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J27/J27nB196.xml",
+          "fromLb": "0382c25",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J25/J25nB159.xml",
+          "fromLb": "0138b14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0257a02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J33/J33nB280.xml",
+          "fromLb": "0261c08",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1353,
+            "corpusFiles": 275
+          }
+        ],
+        "corpusHits": 1353,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_368268e023e3"
+      }
+    },
+    {
+      "id": "t_966bc615eb6e",
+      "sourceTerm": "大用",
+      "entryRelPath": "terms/t_966bc615eb6e/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "982a0eee416bc085654ea2608d4ceb295cba2744f4128594c099bbdb092b7e1d",
+      "entryBeforeSha256": "982a0eee416bc085654ea2608d4ceb295cba2744f4128594c099bbdb092b7e1d",
+      "entryAfterSha256": "d81991f69f154cf9b44d07cfc106e645b6be7f05df9e2fb04fd0e62de1cf9790",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0089b20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0309c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J29/J29nB223.xml",
+          "fromLb": "0033c02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "B/B14/B14n0082.xml",
+          "fromLb": "0218b10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0618a14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X70/X70n1384.xml",
+          "fromLb": "0289a17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0459a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0155c10",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2094,
+            "corpusFiles": 330
+          }
+        ],
+        "corpusHits": 2094,
+        "occurrences": 8,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_966bc615eb6e"
+      }
+    },
+    {
+      "id": "t_37771a869b4f",
+      "sourceTerm": "如何是祖師西來意",
+      "entryRelPath": "terms/t_37771a869b4f/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "6fdf4997965f1fef3a93110847974a2e8a6a3b5c77bcd26fdf0e05fb9285c2eb",
+      "entryBeforeSha256": "6fdf4997965f1fef3a93110847974a2e8a6a3b5c77bcd26fdf0e05fb9285c2eb",
+      "entryAfterSha256": "73e064023dd8502fa70b3fd69387daefcadfb8051ddd82ef4d73e8cf11c71582",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0256c24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0027c06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0467c06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0044a20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0051a06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0080b16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0662a10",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1858,
+            "corpusFiles": 231
+          }
+        ],
+        "corpusHits": 1858,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_37771a869b4f"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:05:47.445546Z"
+    },
+    {
+      "id": "t_97b566635d6c",
+      "sourceTerm": "宗師",
+      "entryRelPath": "terms/t_97b566635d6c/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "0abafb7dc8b434fba0bf7816c6f04dfc0472606289379a9e80ea7870fd0e02e3",
+      "entryBeforeSha256": "0abafb7dc8b434fba0bf7816c6f04dfc0472606289379a9e80ea7870fd0e02e3",
+      "entryAfterSha256": "77102c82fe2d4ef835628108008e6614c70278f27c8c137c9bd436c3ac08d2ed",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0051c11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0815b02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0141c25",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0146a21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0048c05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0702b11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0188a09",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1445,
+            "corpusFiles": 257
+          }
+        ],
+        "corpusHits": 1445,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_97b566635d6c"
+      }
+    },
+    {
+      "id": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "entryRelPath": "terms/t_57ef1bbc3a81/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "8ca81394d75705fbbae281680b4e3f510b9fcab9258f0a77249cc921705a9846",
+      "entryBeforeSha256": "8ca81394d75705fbbae281680b4e3f510b9fcab9258f0a77249cc921705a9846",
+      "entryAfterSha256": "cf38a61dbdbb3098c1567fbb14b9441c97be738105b71ad0f1b33462755e401e",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0009b17",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0040b22",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0146c04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0879c16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0001a16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0633c09",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X69/X69n1352.xml",
+          "fromLb": "0307c06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0267a21",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2224,
+            "corpusFiles": 305
+          }
+        ],
+        "corpusHits": 2224,
+        "occurrences": 8,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_57ef1bbc3a81"
+      }
+    },
+    {
+      "id": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "entryRelPath": "terms/t_882860247a9b/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "ad2e33f3e24c8945d15aeb9e83d8f4e66b69248d188a6d0411c4da8d63d9cde2",
+      "entryBeforeSha256": "ad2e33f3e24c8945d15aeb9e83d8f4e66b69248d188a6d0411c4da8d63d9cde2",
+      "entryAfterSha256": "e0ffcbff364e40ca88b426ec0d0732dcde01f0c37a6eb6c3446bbefbf66e7142",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2013.xml",
+          "fromLb": "0390b14",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2013.xml",
+          "fromLb": "0389b29",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0594a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0791c04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J29/J29nB249.xml",
+          "fromLb": "0822c22",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X70/X70n1398.xml",
+          "fromLb": "0647a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0542b13",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 5,
+          "previousMasterName": "Fangrong Tongxi",
+          "exactUtterer": "Ruiyan Shiyan",
+          "finding": "Fangrong explicitly quotes Ruiyan's headword-bearing self-address and comments on it."
+        }
+      ],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 1135,
+            "corpusFiles": 248
+          }
+        ],
+        "corpusHits": 1135,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_882860247a9b"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    },
+    {
+      "id": "t_2d56070190a7",
+      "sourceTerm": "戒律",
+      "entryRelPath": "terms/t_2d56070190a7/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "1f9d2519bf2f1557839a32aadb81dcebcc9aed4e75c170151c0a0d5f471cc8e0",
+      "entryBeforeSha256": "1f9d2519bf2f1557839a32aadb81dcebcc9aed4e75c170151c0a0d5f471cc8e0",
+      "entryAfterSha256": "7dcb3193743e96a6a911b099ec3ac8789ebfdf70feaafd850e1fbd72b6ee4d96",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0450c12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0418a03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0530b03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0641c22",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0251a03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0810a13",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 229,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_2d56070190a7"
+      }
+    },
+    {
+      "id": "t_8c870cb5e69d",
+      "sourceTerm": "把定",
+      "entryRelPath": "terms/t_8c870cb5e69d/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "bb85228ae5d932ebde78e170f0daa98aeb6cbf5c2f1fbec8feacc95c96660e4a",
+      "entryBeforeSha256": "bb85228ae5d932ebde78e170f0daa98aeb6cbf5c2f1fbec8feacc95c96660e4a",
+      "entryAfterSha256": "63f6a28bd9a40b8f85df6a311415c9de539e81207303d05c799faafbca512f3c",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0468b24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0506a11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0237b28",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0673c22",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0278b16",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0510b11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0015b20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0670c07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "T/T48/T48n2005.xml",
+          "fromLb": "0299a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 10,
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0675c12",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 684,
+            "corpusFiles": 186
+          }
+        ],
+        "corpusHits": 684,
+        "occurrences": 10,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_8c870cb5e69d"
+      }
+    },
+    {
+      "id": "t_a0634fecce83",
+      "sourceTerm": "拖泥帶水",
+      "entryRelPath": "terms/t_a0634fecce83/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "5f3d099b3680c69052a9d45141d6652280efb8ebb7c00456f0b451e148a84f63",
+      "entryBeforeSha256": "5f3d099b3680c69052a9d45141d6652280efb8ebb7c00456f0b451e148a84f63",
+      "entryAfterSha256": "6e8208959373caec6621000b7e6fc56b8a3e07b314c0167fb2b2ab1a395dc8c6",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0650b23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0804c05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0755b18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0141b23",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "J/J39/J39nB446.xml",
+          "fromLb": "0364b11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0198c11",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 323,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_a0634fecce83"
+      }
+    },
+    {
+      "id": "t_e7a86b9e58d8",
+      "sourceTerm": "提撕",
+      "entryRelPath": "terms/t_e7a86b9e58d8/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "0922fa85ab3b034624c0516c5866c284ed3259530e5539ab81ff9100230181be",
+      "entryBeforeSha256": "0922fa85ab3b034624c0516c5866c284ed3259530e5539ab81ff9100230181be",
+      "entryAfterSha256": "c4f09ecf85d97b8e4d0ba3df3b13e9550af79851cc0b46d7a208c5f0b78941eb",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0889a24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0002c24",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0868a03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0886a02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X69/X69n1355.xml",
+          "fromLb": "0362a04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0817a19",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0886a10",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 521,
+            "corpusFiles": 191
+          }
+        ],
+        "corpusHits": 521,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_e7a86b9e58d8"
+      }
+    },
+    {
+      "id": "t_057cc9ea8755",
+      "sourceTerm": "攝心",
+      "entryRelPath": "terms/t_057cc9ea8755/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "815299b3a4d227f54ec99c47eb91ea684a41b4e2b23c454fb5a7866dfa6febea",
+      "entryBeforeSha256": "815299b3a4d227f54ec99c47eb91ea684a41b4e2b23c454fb5a7866dfa6febea",
+      "entryAfterSha256": "4a790c83fa784b1b0760daa6d0ad767f912296750df6856857d8fe44e93360f6",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0260a13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0270b06",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0412c11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0500b18",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T48/T48n2023.xml",
+          "fromLb": "1066b19",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "T/T48/T48n2009.xml",
+          "fromLb": "0369c08",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [
+        {
+          "occurrence": 1,
+          "previousMasterName": "Chaozong Tongren",
+          "finding": "An unnamed monk utters 攝心 in the request; Chaozong answers afterward."
+        }
+      ],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 137,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_057cc9ea8755"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    },
+    {
+      "id": "t_6dadcc69c361",
+      "sourceTerm": "料揀",
+      "entryRelPath": "terms/t_6dadcc69c361/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "86996bfdaa9d3b58c461ba01a483bc6863da1817749424ef60ab3334bce8acd8",
+      "entryBeforeSha256": "86996bfdaa9d3b58c461ba01a483bc6863da1817749424ef60ab3334bce8acd8",
+      "entryAfterSha256": "82d108d6c52fcff206e4843f4e1dafba876bac4b3d507594cd02e01f7d7a0587",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "J/J34/J34nB301.xml",
+          "fromLb": "0294b13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0247b10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0300c20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0311b13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0791a01",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "J/J39/J39nB454.xml",
+          "fromLb": "0648a30",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 266,
+        "occurrences": 6,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_6dadcc69c361"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "sourceTerm": "本來無一物",
+      "entryRelPath": "terms/t_93ab42fecdca/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "810961ed347a4d4588123ab53a3aa5c175544f5c154453bb3c282fd5a5fbdabd",
+      "entryBeforeSha256": "810961ed347a4d4588123ab53a3aa5c175544f5c154453bb3c282fd5a5fbdabd",
+      "entryAfterSha256": "e9a4ca528666cd2883d15dbece27444a225aaed8b6a7fc760638d08c9305bf95",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "T/T48/T48n2008.xml",
+          "fromLb": "0349a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "B/B14/B14n0082.xml",
+          "fromLb": "0167a07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0341a03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0416b11",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "B/B14/B14n0082.xml",
+          "fromLb": "0236b12",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0633b05",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0563b02",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "X/X70/X70n1402.xml",
+          "fromLb": "0731b02",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [],
+        "corpusHits": 214,
+        "occurrences": 8,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_93ab42fecdca"
+      }
+    },
+    {
+      "id": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "entryRelPath": "terms/t_4416ef85b3a5/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "65d12f93f3915d610f0dbcc7550706ac3be7786040f9ac7c666133767d65cff2",
+      "entryBeforeSha256": "65d12f93f3915d610f0dbcc7550706ac3be7786040f9ac7c666133767d65cff2",
+      "entryAfterSha256": "e64a4a3912c52d3526cbd95123875b5c56138b4b48e273895a17c304caa179f9",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0002c03",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0028c15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0060a21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0501a21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0488b07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0010b20",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0057a20",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 685,
+            "corpusFiles": 213
+          }
+        ],
+        "corpusHits": 685,
+        "occurrences": 7,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_4416ef85b3a5"
+      }
+    },
+    {
+      "id": "t_970c3f191929",
+      "sourceTerm": "正法眼",
+      "entryRelPath": "terms/t_970c3f191929/entry.v2.json",
+      "status": "complete",
+      "reviewerSubjectSha256": "d6e30fca839c1ccfc2abbb4bec55f2c7eec416a5b1fa5cc260f86a4108ebda1d",
+      "entryBeforeSha256": "d6e30fca839c1ccfc2abbb4bec55f2c7eec416a5b1fa5cc260f86a4108ebda1d",
+      "entryAfterSha256": "34760e6f211c575ad2b3d053490eef3fdcf91b9a8ec907e928056213152c1026",
+      "reviewVerdict": "revise",
+      "disposition": "all reviewer findings applied; definition and sense structure re-tested and retained",
+      "semanticRetest": "Changed actor evidence and replacement witnesses remain compatible with the existing preferred target, sense count, validation, and corpus-deviation claim.",
+      "zcResults": [
+        {
+          "occurrence": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0882c10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 2,
+          "relPath": "X/X67/X67n1304.xml",
+          "fromLb": "0338b04",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 3,
+          "relPath": "X/X67/X67n1304.xml",
+          "fromLb": "0365a15",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 4,
+          "relPath": "T/T47/T47n1985.xml",
+          "fromLb": "0495a10",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 5,
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0676b07",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 6,
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0132b13",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 7,
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0135c21",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 8,
+          "relPath": "J/J39/J39nB447.xml",
+          "fromLb": "0384a27",
+          "zcVerify": "ok"
+        },
+        {
+          "occurrence": 9,
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0368a09",
+          "zcVerify": "ok"
+        }
+      ],
+      "displacedNameFindings": [],
+      "semanticHardGate": {
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2272,
+            "corpusFiles": 326
+          }
+        ],
+        "corpusHits": 2272,
+        "occurrences": 8,
+        "senseCount": 1,
+        "command": "audit_depth_sense.py --ids t_970c3f191929"
+      },
+      "postRepairCleanupReverifiedUtc": "2026-07-14T15:40:12.272039Z"
+    }
+  ]
+}

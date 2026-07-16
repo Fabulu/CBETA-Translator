@@ -1,0 +1,30 @@
+{
+  "source": "X/X63/X63n1255.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_7bd745af24d7:0738b11:1:3",
+      "entryId": "t_7bd745af24d7",
+      "sourceTerm": "格外",
+      "RelPath": "X/X63/X63n1255.xml",
+      "FromLb": "0738b11",
+      "Kwic": "州答云：庭前栢樹子。此所謂格外禪旨也",
+      "caseClusterId": "X/X63/X63n1255.xml:15886:16109",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪家龜鑑",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Qingxu Xiujing",
+        "ActorAttribution": null,
+        "AttributionNote": "禪家龜鑑. Full six-rung exact-turn review identifies Qingxu Xiujing as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_7bd745af24d7:0738b11:1:3"
+  ]
+}

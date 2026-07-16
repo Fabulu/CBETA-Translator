@@ -1,0 +1,49 @@
+{
+  "source": "J/J40/J40nB491.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_18b083a026ba:0480b04:1:8",
+      "entryId": "t_18b083a026ba",
+      "sourceTerm": "提起",
+      "RelPath": "J/J40/J40nB491.xml",
+      "FromLb": "0480b04",
+      "Kwic": "禪客提起茶甌。泉曰：「此猶是這邊事，那邊事作麼生？」",
+      "caseClusterId": "J/J40/J40nB491.xml:34849:35147",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天寧法舟濟禪師剩語",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed visiting monk lifting a tea bowl",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:48:19.232189Z"
+        },
+        "AttributionNote": "天寧法舟濟禪師剩語. Full six-rung exact-turn review identifies Unnamed visiting monk lifting a tea bowl as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Nanquan Puyuan",
+          "Fazhou Ji"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_18b083a026ba:0480b04:1:8"
+  ]
+}

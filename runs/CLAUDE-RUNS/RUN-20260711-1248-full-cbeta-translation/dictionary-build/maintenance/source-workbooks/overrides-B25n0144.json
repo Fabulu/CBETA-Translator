@@ -1,0 +1,109 @@
+{
+  "source": "B/B25/B25n0144.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:11:17Z",
+  "rows": [
+    {
+      "key": "t_659e88cc44d5:0342b07:1:1",
+      "entryId": "t_659e88cc44d5",
+      "sourceTerm": "冷暖自知",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0342b07",
+      "Kwic": "今蒙行者指授，也有入處，如人飲水冷暖自知。從今向後，行者即是慧明師",
+      "caseClusterId": "B/B25/B25n0144.xml:196454:197378",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Huiming",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Huineng", "Roles": ["instructor", "addressee"]}
+        ],
+        "AttributionNote": "Patriarchal Hall Collection (祖堂集), Huineng encounter. Huiming is the exact speaker who tells Huineng that after receiving his instruction he has an entry, 'like a person drinking water, knowing cold and warmth for himself'; Huineng is the instructor and addressee, not the speaker of this report."
+      }
+    },
+    {
+      "key": "t_6c58ed7a7c6c:0346b12:1:4",
+      "entryId": "t_6c58ed7a7c6c",
+      "sourceTerm": "一行三昧",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0346b12",
+      "Kwic": "一行三昧者，於一切處行住坐臥，皆一直心，即是道場，即是淨土。此之名為一行三昧。",
+      "caseClusterId": "B/B25/B25n0144.xml:204744:205755",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_d9944cf1c47a:0352a05:1:5",
+      "entryId": "t_d9944cf1c47a",
+      "sourceTerm": "心戒",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0352a05",
+      "Kwic": "白舍人親受心戒，又時對坐，並無言說。",
+      "caseClusterId": "B/B25/B25n0144.xml:215618:215721",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": "Bai Juyi",
+      "candidateBasis": "existing-note",
+      "Override": null
+    },
+    {
+      "key": "t_bc7bbb4299f1:0354a09:1:2",
+      "entryId": "t_bc7bbb4299f1",
+      "sourceTerm": "如何是佛法大意",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0354a09",
+      "Kwic": "諱行思，俗姓劉，盧陵人也。自傳曹溪密旨，便復廬陵，化度群生。僧問：「如何是佛法大意？」師曰：「廬陵米作摩價？」師問神會：「汝從何方而來？」對曰：「從曹",
+      "caseClusterId": "B/B25/B25n0144.xml:221570:222216",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": "Qingyuan Xingsi",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex",
+          "ReviewedUtc": "2026-07-14T04:11:17Z"
+        },
+        "ContextMasters": [
+          {"MasterName": "Qingyuan Xingsi", "Roles": ["respondent", "section-subject"]}
+        ],
+        "AttributionNote": "Patriarchal Hall Collection (祖堂集), Qingyuan Xingsi section. An unnamed monk is the exact questioner who asks, 'what is the great meaning of the Buddha Dharma?'; Qingyuan Xingsi answers by asking the price of rice in Luling. The line, expanded context, section header, book title, TEI header, and parallel versions do not name the monk."
+      }
+    },
+    {
+      "key": "t_7b7ca6f375b5:0363a07:1:2",
+      "entryId": "t_7b7ca6f375b5",
+      "sourceTerm": "罔措",
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0363a07",
+      "Kwic": "？」師曰：「與老僧造個無縫塔。」帝乃胡跪曰：「請師塔樣。」師良久，帝罔措。師曰：「吾有付法弟子在，耽源卻諳此事，問取他去。」國師頓世後，帝乃",
+      "caseClusterId": "B/B25/B25n0144.xml:239891:240199",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "祖堂集",
+      "defaultMasterName": "Nanyang Huizhong",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Emperor Daizong",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Nanyang Huizhong", "Roles": ["preceding-speaker", "silent-respondent"]}
+        ],
+        "AttributionNote": "Patriarchal Hall Collection (祖堂集), seamless-stupa exchange. Emperor Daizong is the exact actor recorded as at a loss after Nanyang Huizhong pauses in response to the emperor's request for the stupa's form; Nanyang is the preceding speaker and silent respondent, not the actor of bewilderment."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

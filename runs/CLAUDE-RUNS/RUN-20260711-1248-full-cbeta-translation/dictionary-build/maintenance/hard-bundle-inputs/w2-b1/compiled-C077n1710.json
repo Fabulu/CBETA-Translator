@@ -1,0 +1,866 @@
+{
+  "source": "C/C077/C077n1710.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-b1/decisions-C077n1710.json",
+  "decisions": [
+    {
+      "entryId": "t_7887dc8d449f",
+      "sourceTerm": "尊宿",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0615a01",
+      "Kwic": "古尊宿語錄卷苐一之二密二南嶽大慧禪師馬祖大寂禪師百丈大智禪師南嶽大慧",
+      "caseClusterId": "C/C077/C077n1710.xml:149192:149909",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "document title and contents list",
+          "ActorLabel": "document title and contents list",
+          "ActorRole": "metadata",
+          "GrammarEvidence": "The headword occurs in the volume title 古尊宿語錄 and its contents list, not in a speech turn.",
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): the document title and contents list use 尊宿 impersonally while listing Nanyue Huairang, Mazu Daoyi, and Baizhang Huaihai.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanyue Huairang",
+            "Roles": [
+              "listed-record-subject"
+            ]
+          },
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "listed-record-subject"
+            ]
+          },
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "listed-record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_dfd1dbffe9f2",
+      "sourceTerm": "即心即佛",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0616c02",
+      "Kwic": "圓相徑山纔開見索筆於中著一點後有僧舉似忠國師國師云欽師猶被馬師惑。問和尚為甚麼說即心即佛師曰為止小兒啼曰啼止時如何師曰非心非佛曰除此二種人來如何指示師曰向伊道不",
+      "caseClusterId": "C/C077/C077n1710.xml:157031:157423",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Mazu Daoyi's record, an unnamed monk asks why Mazu says 'this mind is Buddha'; Mazu answers that it stops a small child's crying. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_d1e06fd225fa",
+      "sourceTerm": "入室",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617a10",
+      "Kwic": "師入室弟子一百三十九人各為一方宗主轉化無窮",
+      "caseClusterId": "C/C077/C077n1710.xml:158401:159287",
+      "Decision": {
+        "MasterName": "Mazu Daoyi",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Mazu Daoyi is the grammatical subject of the biographical notice saying that his chamber-entering disciples numbered 139."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617c01",
+      "Kwic": "老僧昔被馬大師一喝直淂三日耳聾",
+      "caseClusterId": "C/C077/C077n1710.xml:161294:161889",
+      "Decision": {
+        "MasterName": "Baizhang Huaihai",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Baizhang Huaihai says that Master Ma once gave him one shout and that he was deaf for three days.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "source-of-quoted-shout"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_43ecdacadde0",
+      "sourceTerm": "阿誰",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0617c11",
+      "Kwic": "雲巖問和尚每日區區為阿誰師曰有一人要巖曰囙甚麼不教伊自作師曰他無家活",
+      "caseClusterId": "C/C077/C077n1710.xml:162065:162252",
+      "Decision": {
+        "MasterName": "Yunyan Tansheng",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Yunyan Tansheng is named immediately before 問 and asks Baizhang Huaihai for whom he busies himself every day.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_63ca7d059ee8",
+      "sourceTerm": "無語",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0618a08",
+      "Kwic": "師以拄杖指醬瓮云道得即不打破道不得即打破眾無語師便打破歸方丈。",
+      "caseClusterId": "C/C077/C077n1710.xml:163214:163487",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monastic assembly",
+          "ActorLabel": "unnamed monastic assembly",
+          "ActorRole": "nonresponding group",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Baizhang Huaihai's record, the assembled monks are the exact grammatical subject of 眾無語 after Baizhang tests them with the sauce jars. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monastic assembly.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "questioner",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_f04c29743e77",
+      "sourceTerm": "閑道人",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0630a17",
+      "Kwic": "古人心利纔聞一言便乃絕學所以喚作絕學無為閑道人今時人只欲得多知多觧廣求文義",
+      "caseClusterId": "C/C077/C077n1710.xml:205321:206999",
+      "Decision": {
+        "MasterName": "Huangbo Xiyun",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Huangbo Xiyun is the continuing speaker in his named record and calls the old exemplar an idle person of the Way who has ended learning."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0667a20",
+      "Kwic": "直饒釋迦老子到這裏也與三十棒",
+      "caseClusterId": "C/C077/C077n1710.xml:344811:345764",
+      "Decision": {
+        "MasterName": "Shoushan Xingnian",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Shoushan Xingnian says in his own named record that even old Shakyamuni arriving here would receive thirty blows."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_eedf4100b3d7",
+      "sourceTerm": "師子吼",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0667b14",
+      "Kwic": "忽遇師子吼時如何師云一任野干鳴僧便喝",
+      "caseClusterId": "C/C077/C077n1710.xml:345857:347255",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk asks what happens on meeting a lion's roar; Shoushan answers and the monk shouts. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shoushan Xingnian",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_1793c3514a69",
+      "sourceTerm": "舉問",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0669b20",
+      "Kwic": "舉問德山棒臨濟喝未審明得什麼邊事師云你試道看僧便喝師云瞎",
+      "caseClusterId": "C/C077/C077n1710.xml:353218:356020",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk raises Deshan's stick and Linji's shout as a question; Shoushan answers. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shoushan Xingnian",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          },
+          {
+            "MasterName": "Deshan Xuanjian",
+            "Roles": [
+              "named-case-master"
+            ]
+          },
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "named-case-master"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_e5259ce8bbf5",
+      "sourceTerm": "垂示",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0669c04",
+      "Kwic": "臨機一句截断眾流請師垂示師云棒下迸流星",
+      "caseClusterId": "C/C077/C077n1710.xml:354318:356020",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk requests that the master offer an indication; Shoushan answers 'under the staff a shooting star bursts.' The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shoushan Xingnian",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_961b548d6462",
+      "sourceTerm": "言前",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0670b15",
+      "Kwic": "言前薦得辜負平生句後投機殊乖道體離此二途請師方便師竪拂",
+      "caseClusterId": "C/C077/C077n1710.xml:356792:359275",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk states the before-the-word and after-the-phrase contrast and asks for a device; Shoushan raises the whisk. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shoushan Xingnian",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_36aa29eb1287",
+      "sourceTerm": "水牯牛",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0672c18",
+      "Kwic": "師云水牯牛安樂麼僧云及時水草師云為什麼傷人苗稼僧云對和尚不敢造次",
+      "caseClusterId": "C/C077/C077n1710.xml:365736:369490",
+      "Decision": {
+        "MasterName": "Shoushan Xingnian",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Shoushan Xingnian asks an unnamed monk whether the water buffalo is at ease; the monk answers and Shoushan continues the test."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_b8d2633b12ef",
+      "sourceTerm": "敗闕",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0673b02",
+      "Kwic": "一日因僧入室師喚僧名僧應諾師云錯僧云某甲有什麼敗闕處師云錯",
+      "caseClusterId": "C/C077/C077n1710.xml:368483:369490",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Shoushan Xingnian's record, an unnamed monk asks what exposed fault he has after Shoushan calls his answer wrong. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shoushan Xingnian",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_936118ea496c",
+      "sourceTerm": "喫粥",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0676a06",
+      "Kwic": "問法尚應捨何況非法如何是非法師云喫粥喫飯",
+      "caseClusterId": "C/C077/C077n1710.xml:378482:378868",
+      "Decision": {
+        "MasterName": "Shimen Yuncong",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Shimen Yuncong, identified in the section as Shimen Cizhao Yuncong (石門山慈照禪師蘊聦), answers 'eat gruel, eat rice' when asked what is non-Dharma."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_4cf045deab37",
+      "sourceTerm": "粥飯僧",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0682a12",
+      "Kwic": "乃曰我長行粥飯僧傳佛心宗非細事也前後八請堅臥不荅",
+      "caseClusterId": "C/C077/C077n1710.xml:403866:404838",
+      "Decision": {
+        "MasterName": "Fenyang Shanzhao",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Fenyang Shanzhao is the named subject and speaker who says that he has long been a gruel-and-rice monk and that transmitting the Buddha-mind lineage is no small matter."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_84e490b1773f",
+      "sourceTerm": "撫掌",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0691b05",
+      "Kwic": "僧以手面前一劃師云是何言欵僧便喝師云作甚麼僧撫掌一下便打師云瞎漢乱做作麼以坐具真打出法堂",
+      "caseClusterId": "C/C077/C077n1710.xml:438256:439769",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "interlocutor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Ciming Chuyuan's record, an unnamed monk makes the palm-clapping action; Ciming rebukes and drives him from the hall. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ciming Chuyuan",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0692a11",
+      "Kwic": "若也不知長連牀上有粥有飯喝一喝下座",
+      "caseClusterId": "C/C077/C077n1710.xml:441250:441477",
+      "Decision": {
+        "MasterName": "Ciming Chuyuan",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Ciming Chuyuan completes his own teaching-seat address with one shout and leaves the seat."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_2d4525b4b123",
+      "sourceTerm": "教外別傳",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0732b03",
+      "Kwic": "僧問如何是教外別傳一句霜云非句",
+      "caseClusterId": "C/C077/C077n1710.xml:605401:605537",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "quoted questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in a case raised and commented on by Yunmen Wenyan, an unnamed monk asks Shishuang Qingzhu for the one phrase transmitted outside the teaching. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shishuang Qingzhu",
+            "Roles": [
+              "quoted-respondent"
+            ]
+          },
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "later-raiser",
+              "commentator",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_35c3fb655630",
+      "sourceTerm": "驗人",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0788c03",
+      "Kwic": "廣教有驗人關截人機活人句還有人道得麼",
+      "caseClusterId": "C/C077/C077n1710.xml:847802:848431",
+      "Decision": {
+        "MasterName": "Yexian Guixing",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Yexian Guixing speaks from the teaching seat in his Guangjiao record and calls for someone to answer the testing barrier, intercepting function, and enlivening phrase."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_5854f7c24ddf",
+      "sourceTerm": "擊禪床",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0801b05",
+      "Kwic": "在爐中從𦗟老僧葛藤時有僧問如何是佛師云還記得麼僧云若不請益爭知如是師擊禪床一下云早是忘却了僧云放和尚一線道師云一任𨁝跳問如何是洪州境荅云滕王閣",
+      "caseClusterId": "C/C077/C077n1710.xml:906937:907565",
+      "Decision": {
+        "MasterName": "Dayu Shouzhi",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Dayu Shouzhi, the named owner of the Cuiyan Monastery record, strikes the Chan seat once during his exchange with an unnamed monk."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_78f95517a347",
+      "sourceTerm": "生死事大",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0808a20",
+      "Kwic": "問生死事大請師相救",
+      "caseClusterId": "C/C077/C077n1710.xml:934882:937896",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Fahua Quanju's record, an unnamed monk says that birth and death are a great matter and asks the master to save him. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fahua Quanju",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0808c13",
+      "Kwic": "僧云大機師云若是大機爭受一喝僧便喝師云一潭綠水兩處洪波",
+      "caseClusterId": "C/C077/C077n1710.xml:936810:937896",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "interlocutor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:15:00Z"
+        },
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): in Fahua Quanju's record, an unnamed monk gives the exact shout after Fahua challenges his claim about the great function. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not name the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fahua Quanju",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_ab6276be6e08",
+      "sourceTerm": "末後句",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0817a16",
+      "Kwic": "忌晨上堂先師當年末後句與人皮下挑出",
+      "caseClusterId": "C/C077/C077n1710.xml:969602:970251",
+      "Decision": {
+        "MasterName": "Foyan Qingyuan",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Foyan Qingyuan gives the memorial-morning address for his late teacher and says that the teacher's final phrase picked something out from beneath people's skin.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wuzu Fayan",
+            "Roles": [
+              "deceased-teacher",
+              "subject-of-memorial"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_6edb551acb53",
+      "sourceTerm": "知解",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0917a14",
+      "Kwic": "此子已後設有把茅蓋頭只成得箇知解宗徒",
+      "caseClusterId": "C/C077/C077n1710.xml:1390887:1391467",
+      "Decision": {
+        "MasterName": "Huineng",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): inside a case raised in Yunfeng Wenyue's record, Huineng is the quoted patriarch who says that the novice will become only a follower of an understanding-based lineage.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunfeng Wenyue",
+            "Roles": [
+              "later-raiser",
+              "commentator",
+              "record-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_4cf045deab37",
+      "sourceTerm": "粥飯僧",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0938c04",
+      "Kwic": "既到㱕宗門下須是一箇箇心空及第㱕不可作長行粥飯僧",
+      "caseClusterId": "C/C077/C077n1710.xml:1490914:1491186",
+      "Decision": {
+        "MasterName": "Zhenjing Kewen",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Zhenjing Kewen tells those who have reached Guizong that each must pass with an empty mind and must not become a long-term gruel-and-rice monk."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_c0a6177c9c44",
+      "sourceTerm": "律",
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0948a13",
+      "Kwic": "打皷弄琵琶相逢一會家雲門能合調長慶解隨邪古曲非音律南山鼈鼻蛇何人知妙訣",
+      "caseClusterId": "C/C077/C077n1710.xml:1530732:1530913",
+      "Decision": {
+        "MasterName": "Zhenjing Kewen",
+        "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄): Zhenjing Kewen is the author of the verse on the Xuefeng turtle-nosed-snake case that says the old tune is not a musical measure."
+      },
+      "ExpectedSourceTitle": "古尊宿語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:15:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

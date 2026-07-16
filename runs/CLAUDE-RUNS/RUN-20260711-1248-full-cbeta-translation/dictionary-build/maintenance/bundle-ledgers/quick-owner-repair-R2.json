@@ -1,0 +1,43 @@
+{
+  "bundleId": "quick-owner-repair-R2",
+  "worker": "/root/repair_bird_path",
+  "updatedUtc": "2026-07-14T06:24:20Z",
+  "completedUnits": [
+    "t_3972185a2e25:0050b21:1:3"
+  ],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": null,
+  "decision": {
+    "entryId": "t_3972185a2e25",
+    "sourceTerm": "宗門",
+    "RelPath": "X/X80/X80n1565.xml",
+    "FromLb": "0050b21",
+    "Kwic": "問。宗門中事。請師舉唱。",
+    "exactActor": "unnamed monk",
+    "actorStatus": "reviewed-unnamed",
+    "contextMasters": [
+      "Tianzhu Chonghui"
+    ],
+    "finding": "The complete Tianzhu Chonghui case marks the headword-bearing line as an anonymous 問 turn; Tianzhu Chonghui answers with the stone-ox and wooden-horse couplet. Exact corpus-wide parallel search returns only this witness and supplies no personal name."
+  },
+  "artifacts": {
+    "signedSheet": "maintenance/source-workbooks/overrides-quick-owner-repair-R2.json",
+    "compiledSheet": "maintenance/source-workbooks/compiled-quick-owner-repair-R2.json",
+    "dryRun": "maintenance/source-batch-quick-owner-repair-R2-dryrun.json",
+    "apply": "maintenance/source-batch-quick-owner-repair-R2-apply.json",
+    "focusedGate": "maintenance/source-batch-quick-owner-repair-R2-gate.json",
+    "verification": "maintenance/source-batch-quick-owner-repair-R2-verify.json"
+  },
+  "verification": {
+    "compile": "1/1",
+    "dryRun": "1/1",
+    "apply": "1/1",
+    "focusedActorSourceGate": "1/1",
+    "entryJsonParse": "1/1",
+    "entryExactZcVerify": "6/6",
+    "x82OccurrenceO4Unchanged": true,
+    "entrySha256": "06d8bdd5b35893831ff99ddd0e5dca941e08975a6a2f353c56acb5747846175b",
+    "failures": []
+  }
+}

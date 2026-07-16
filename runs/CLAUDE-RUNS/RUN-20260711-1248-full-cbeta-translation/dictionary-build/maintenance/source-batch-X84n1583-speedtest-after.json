@@ -1,0 +1,887 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 14,
+    "occurrences": 62,
+    "unresolved_actor": 39,
+    "attribution_notes": 62,
+    "note_missing_speaker": 44,
+    "note_missing_source": 42,
+    "chinese_strings": 128,
+    "dangling_chinese": 31,
+    "anchored_chinese": 97,
+    "named_occurrences": 22,
+    "context_master_links": 3,
+    "vague_attributor": 17,
+    "actor_reviewed_unnamed": 1,
+    "deferred_non_roster": 2
+  },
+  "hardFailures": 173,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o1 X/X69/X69n1367.xml:0707b23"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o1: The master repeatedly raises Baizhang's wild-fox story in the chamber to question monks, explicitly deploying it as a named case."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o1 expected '笑隱大訢禪師語錄': The master repeatedly raises Baizhang's wild-fox story in the chamber to question monks, explicitly deploying it as a named case."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o2 X/X82/X82n1571.xml:0072a13"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o2: In a hall address the master raises Baizhang's wild-fox story and comments on it, again treating the phrase as a case-title."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1 o2 expected '五燈全書(第34卷-第120卷)': In a hall address the master raises Baizhang's wild-fox story and comments on it, again treating the phrase as a case-title."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1: 不昧因果"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1: 不落因果"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1: 公案"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s1: 野狐公案"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o1 X/X80/X80n1565.xml:0071c03"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o1: The Baizhang account connects the answer 'does not fall under cause and effect' with five hundred births in a wild-fox body."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o1 expected '五燈會元': The Baizhang account connects the answer 'does not fall under cause and effect' with five hundred births in a wild-fox body."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o2 C/C077/C077n1710.xml:0618b11"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o2: After Baizhang says 'is not blind to cause and effect,' the old man reports release from the wild-fox body."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o2 expected '古尊宿語錄': After Baizhang says 'is not blind to cause and effect,' the old man reports release from the wild-fox body."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o3 X/X79/X79n1559.xml:0315a18"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o3: Two monks explicitly debate the two formulas through the continued or denied wild-fox body."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s2 o3 expected '嘉泰普燈錄': Two monks explicitly debate the two formulas through the continued or denied wild-fox body."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s3 o1 X/X82/X82n1571.xml:0029a19"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s3 o1: A master rebukes an interlocutor directly as 'this wild-fox spirit.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_250794fa9636/entry.v2.json",
+      "detail": "野狐 s3 o1 expected '五燈全書(第34卷-第120卷)': A master rebukes an interlocutor directly as 'this wild-fox spirit.'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o1 X/X64/X64n1260.xml:0051b23"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o1: A three-part appraisal assigns mixing mud and water to understanding from the first phrase."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o1 expected '列祖提綱錄': A three-part appraisal assigns mixing mud and water to understanding from the first phrase."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o2 X/X68/X68n1318.xml:0352b12"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o2: The phrase is grouped with speaking a dream without a dream and not knowing good from bad."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o2 expected '續古尊宿語要': The phrase is grouped with speaking a dream without a dream and not knowing good from bad."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o5 X/X80/X80n1565.xml:0254b15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o5: The phrase is contrasted with failing to mark the moment while black and white remain undistinguished."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26c9a5cb0fe3/entry.v2.json",
+      "detail": "和泥合水 s1 o5 expected '五燈會元': The phrase is contrasted with failing to mark the moment while black and white remain undistinguished."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1 o1 X/X80/X80n1565.xml:0100c04"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1 o1: The demand is doubled while a fork is held at the addressee's neck: whether he can speak or cannot, the case says death follows."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1 o1 expected '五燈會元': The demand is doubled while a fork is held at the addressee's neck: whether he can speak or cannot, the case says death follows."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4d4cbd834b80/entry.v2.json",
+      "detail": "速道 s1: 'a monk'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o1 X/X66/X66n1296.xml:0011a08"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o1: Case commentary: \"this is precisely letting one move pass.\" It then adds, \"danger.\" The quoted appraisal remains unlinked."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o1 expected '宗門拈古彙集': Case commentary: \"this is precisely letting one move pass.\" It then adds, \"danger.\" The quoted appraisal remains unlinked."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o2 X/X81/X81n1568.xml:0056b20"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o2: Yunfeng Wenyue's section: \"Linji's vanguard—let one move pass; Deshan's later command—set it aside.\" Multi-master comparison remains unlinked."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o2 expected '五燈嚴統(第10卷-第25卷)': Yunfeng Wenyue's section: \"Linji's vanguard—let one move pass; Deshan's later command—set it aside.\" Multi-master comparison remains unlinked."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o4 J/J26/J26nB178.xml:0105b07"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o4: Feiyin's address: \"present one move face to face; the person concerned must personally take it up.\" No validated roster link is used."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o4 expected '費隱禪師語錄': Feiyin's address: \"present one move face to face; the person concerned must personally take it up.\" No validated roster link is used."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o5 X/X70/X70n1403.xml:0839c14"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o5: Tianru Weize's Lineage Essentials refers to \"one who singles out the upward move.\" This is a productive qualified form, not a self-definition."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1 o5 expected '天如惟則禪師語錄': Tianru Weize's Lineage Essentials refers to \"one who singles out the upward move.\" This is a productive qualified form, not a self-definition."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1: 一著子"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1: 先一著"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_549e7766dfa1/entry.v2.json",
+      "detail": "一著 s1: 末後一著"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o1: A public interview explicitly names both paired lines and records separate answers."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o1 expected '五燈嚴統(第10卷-第25卷)': A public interview explicitly names both paired lines and records separate answers."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o2 X/X80/X80n1565.xml:0135c06"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o2: The phrase is recorded as a direct answer to a monk's question."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o2 expected '五燈會元': The phrase is recorded as a direct answer to a monk's question."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o3 X/X80/X80n1565.xml:0128c24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o3: A question explicitly connects the image with losing one's life."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o3 expected '五燈會元': A question explicitly connects the image with losing one's life."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o4: Yuanwu preserves the stock paired saying in a sermon."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o4 expected '圓悟佛果禪師語錄': Yuanwu preserves the stock paired saying in a sermon."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o5: A letter draws the loss-of-life and revival comparison in its own words."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_586bc9a3f0a8/entry.v2.json",
+      "detail": "懸崖撒手 s1 o5 expected '佛果克勤禪師心要': A letter draws the loss-of-life and revival comparison in its own words."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o1 J/J27/J27nB192.xml:0197a17"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o1: (曹溪大休珠禪師六會語錄) (J27nB192); the Yongjia–Huineng exchange narrated within it. (覺) = (永嘉玄覺) (Yongjia Xuanjue) speaking to (祖) = (六祖) (Huineng). A retold historical exchange, so MasterName null per the raised/narrated-case rule."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o1 expected '大休珠禪師語錄': (曹溪大休珠禪師六會語錄) (J27nB192); the Yongjia–Huineng exchange narrated within it. (覺) = (永嘉玄覺) (Yongjia Xuanjue) speaking to (祖) = (六祖) (Huineng). A retold historical exchange, so MasterName null per the raised/narrated-case rule."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o2 C/C077/C077n1710.xml:0808a20"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o2: (古尊宿語錄) (C077n1710); a questioner's plea in a raised exchange — (問生死事大請師相救) (師云：三家村人失却火). Raised question, MasterName null. Shows the term deployed as a supplicant's opening to a master. The same eight-graph question also occurs earlier in the volume at lb 0808a20 with a different answer; this occurrence is the one at 0896c08."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o4 J/J26/J26nB180.xml:0301c02"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o4: (弘覺忞禪師北遊集) (J26nB180); notice of the emperor's lodging — (上所居師蕘)，(堂門書)「(生死事大)」，(壁書)「(莫道老來方學道)，(孤墳盡是少年人)」(之句) — (上) (the emperor) then tells (忞) (木陳道忞): (每對此輒萬緣寢削). MasterName null (narrated notice; an inscription, not a master's utterance). Shows deployment as an inscription."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o4 expected '天童弘覺忞禪師北遊集': (弘覺忞禪師北遊集) (J26nB180); notice of the emperor's lodging — (上所居師蕘)，(堂門書)「(生死事大)」，(壁書)「(莫道老來方學道)，(孤墳盡是少年人)」(之句) — (上) (the emperor) then tells (忞) (木陳道忞): (每對此輒萬緣寢削). MasterName null (narrated notice; an inscription, not a master's utterance). Shows deployment as an inscription."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o5 J/J32/J32nB273.xml:0204b18"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o5: (千巖禪師語錄) (J32nB273); the opening of an (上堂) (formal sermon) — (上堂)：「(大眾)！(又是九月半也)，(生死事大)，(無常迅速)… Raised in a compiled (語錄); MasterName null. Shows deployment as a sermon opener with the standard (無常迅速) pairing."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o5 expected '千巖和尚語錄': (千巖禪師語錄) (J32nB273); the opening of an (上堂) (formal sermon) — (上堂)：「(大眾)！(又是九月半也)，(生死事大)，(無常迅速)… Raised in a compiled (語錄); MasterName null. Shows deployment as a sermon opener with the standard (無常迅速) pairing."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o6 J/J25/J25nB171.xml:0549c10"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1 o6: (天隱和尚語錄) (J25nB171) raising (天如和尚) (the roster's 天如惟則): (舉)：「(天如和尚示眾云)：『(生死事大)。(諸禪德)！(須是將生死兩字貼在額頭上始得)。』 The raised exchange continues with a monk countering (只將不生不死四字貼在額頭上) and being driven out (遂拈拄杖趁出). Raised case, so MasterName null though the (示眾) is attributed to (天如) in the text."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 'a teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 'the master'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 一大事因緣"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 上堂"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 乃薙染完具"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 了無速乎"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 兩句現話"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 古尊宿語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 大事因緣"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 大眾"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 奮志尋師"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 年十七"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 弘覺忞禪師北遊集"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 念生死事大"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 永嘉玄覺"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 為生死事大"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 續燈正統"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 補邑庠"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 雲棲蓮池袾宏大師"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_78f95517a347/entry.v2.json",
+      "detail": "生死事大 s1: 須是將生死兩字貼在額頭上始得"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o1 X/X80/X80n1565.xml:0055c06"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o1: After hearing the instruction, the monk bows farewell, reaches Shaoyang, and joins the assembly to visit and inquire without saying where he came from."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o1 expected '五燈會元': After hearing the instruction, the monk bows farewell, reaches Shaoyang, and joins the assembly to visit and inquire without saying where he came from."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o2 X/X80/X80n1565.xml:0194a22"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o2: At Shishuang, the visitor merely follows the assembly and no longer visits and inquires. The negative construction defines the expected institutional action by its absence."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o2 expected '五燈會元': At Shishuang, the visitor merely follows the assembly and no longer visits and inquires. The negative construction defines the expected institutional action by its absence."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o3: Fayan asks what scripture the visitor reads apart from visiting and inquiry, marking the term as an ordinary category of his activity."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o3 expected '五燈會元': Fayan asks what scripture the visitor reads apart from visiting and inquiry, marking the term as an ordinary category of his activity."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o4 T/T48/T48n2025.xml:1140a13"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o4: Institutional heading and procedure: leave one's teacher; seek a respected elder; request lodging; first report to the guest office; next register at the hall office."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o4 expected '勅修百丈清規': Institutional heading and procedure: leave one's teacher; seek a respected elder; request lodging; first report to the guest office; next register at the hall office."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o6 X/X84/X84n1583.xml:0506b11"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o6: Morning and evening the assembly visits and inquires, and the teacher responds without weariness."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1 o6 expected '續燈正統': Morning and evening the assembly visits and inquires, and the teacher responds without weariness."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 'A monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 'one teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 'the teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 'the teacher'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 入室參請"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_90e46d995978/entry.v2.json",
+      "detail": "參請 s1: 參請因緣"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o1 X/X82/X82n1571.xml:0002a09"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o1: Five Lamps Complete: the formula says the master questioned a monk in the chamber, followed by the question itself."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o1 expected '五燈全書(第34卷-第120卷)': Five Lamps Complete: the formula says the master questioned a monk in the chamber, followed by the question itself."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o3 X/X84/X84n1585.xml:0668b01"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o3: Continued Lamp Surviving Draft: the no-buddha-nature saying is repeatedly presented in the chamber; when the student begins to speak, the bamboo switch is used."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o3 expected '續燈存稿': Continued Lamp Surviving Draft: the no-buddha-nature saying is repeatedly presented in the chamber; when the student begins to speak, the bamboo switch is used."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o5: Dahui's Recorded Sayings: a section headed “chamber encounters” opens with Dahui questioning a monk about the Yantou–Deshan exchange."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1 o5 expected '大慧普覺禪師語錄': Dahui's Recorded Sayings: a section headed “chamber encounters” opens with Dahui questioning a monk about the Yantou–Deshan exchange."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1: 'a monk'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s1: 握竹篦以驗學者"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o1 J/J26/J26nB183.xml:0526c12"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o1: A verse to a friend: “idle inside the room, I cannot be bothered to burn incense”; an ordinary private room with no interview action."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o1 expected '雪竇石奇禪師語錄': A verse to a friend: “idle inside the room, I cannot be bothered to burn incense”; an ordinary private room with no interview action."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o2 J/J25/J25nB171.xml:0589a28"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o2: A verse describes lying ill in a single room and disciples coming to ask after the illness; the room is a sickroom, not an interview chamber."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2 o2 expected '天隱和尚語錄': A verse describes lying ill in a single room and disciples coming to ask after the illness; the room is a sickroom, not an interview chamber."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_b96051d06349/entry.v2.json",
+      "detail": "室中 s2: 'the master'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o3 X/X82/X82n1571.xml:0001a24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o3: Tianyi Yihuai's biography: \"during a chamber interview, Xuedou said, thus will not do; not thus will not do.\" The quoted teacher is Xuedou; the interviewee is Yihuai, so unlinked."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o3 expected '五燈全書(第34卷-第120卷)': Tianyi Yihuai's biography: \"during a chamber interview, Xuedou said, thus will not do; not thus will not do.\" The quoted teacher is Xuedou; the interviewee is Yihuai, so unlinked."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o4 X/X79/X79n1559.xml:0439a08"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o4: The biography says the student relied on Master Bailian Xian, entered the chamber to ask about the Way of complete change, and received an answer pointing to a moving lamp."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o4 expected '嘉泰普燈錄': The biography says the student relied on Master Bailian Xian, entered the chamber to ask about the Way of complete change, and received an answer pointing to a moving lamp."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o5 C/C077/C077n1710.xml:0617a10"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o5: A lineage notice counts 139 chamber-entering disciples and says each became a lineage master in one region."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o5 expected '古尊宿語錄': A lineage notice counts 139 chamber-entering disciples and says each became a lineage master in one region."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o6 C/C078/C078n1720.xml:0837a18"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o6: A later case says Ciming placed a sword, sandals, and a basin in the chamber; whenever someone entered he said, 'look, look,' and shouted out anyone who hesitated by the sword."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1 o6 expected '禪宗頌古聯珠通集': A later case says Ciming placed a sword, sandals, and a basin in the chamber; whenever someone entered he said, 'look, look,' and shouted out anyone who hesitated by the sword."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1: 'a master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s1: 'the teacher'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o1 X/X80/X80n1565.xml:0046a14"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o1: Hongren's biography: \"he then entered the room, sat upright, and died at the age of seventy-four.\" Ordinary spatial narration."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o1 expected '五燈會元': Hongren's biography: \"he then entered the room, sat upright, and died at the age of seventy-four.\" Ordinary spatial narration."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o2 J/J28/J28nB219.xml:0723c04"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o2: A biography says the subject entered the room to fetch the Complete Meaning Sutra for verification and then opened it to a quoted passage."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d1e06fd225fa/entry.v2.json",
+      "detail": "入室 s2 o2 expected '紫竹林顓愚衡和尚語錄': A biography says the subject entered the room to fetch the Complete Meaning Sutra for verification and then opened it to a quoted passage."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o1 T/T51/T51n2077.xml:0470c23"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o1: Continued Transmission of the Lamp, under the heirs of Shoushan Shengnian. The formula opens an assembly statement; the nearest heading does not supply a safe roster link."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o1 expected '續傳燈錄': Continued Transmission of the Lamp, under the heirs of Shoushan Shengnian. The formula opens an assembly statement; the nearest heading does not supply a safe roster link."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o2 T/T51/T51n2077.xml:0472b02"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o2: A master in the Shoushan-heir section waits before giving the one-line statement about a drop of spring rain. The broader lineage heading is insufficient for a link."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o2 expected '續傳燈錄': A master in the Shoushan-heir section waits before giving the one-line statement about a drop of spring rain. The broader lineage heading is insufficient for a link."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o4 X/X82/X82n1571.xml:0001b15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o4: Five Lamps Complete Collection, Tianyi Yihuai section. His question is followed by the interval formula and a short closing."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o4 expected '五燈全書(第34卷-第120卷)': Five Lamps Complete Collection, Tianyi Yihuai section. His question is followed by the interval formula and a short closing."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o5 X/X81/X81n1568.xml:0015c24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o5: Five Lamps Rigorous Continuation, Wuyun Zhifeng section. The master waits, tells the assembly to look, and descends."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1 o5 expected '五燈嚴統(第10卷-第25卷)': Five Lamps Rigorous Continuation, Wuyun Zhifeng section. The master waits, tells the assembly to look, and descends."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1: 'the speaker'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1: 良久下座"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1: 良久云"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_d926adb80feb/entry.v2.json",
+      "detail": "良久曰 s1: 默然良久"
+    }
+  ]
+}

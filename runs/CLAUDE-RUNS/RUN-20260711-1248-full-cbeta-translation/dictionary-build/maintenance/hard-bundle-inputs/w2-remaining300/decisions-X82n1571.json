@@ -1,0 +1,930 @@
+{
+  "source": "X/X82/X82n1571.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_961b548d6462:0003b19:1:1",
+      "entryId": "t_961b548d6462",
+      "sourceTerm": "言前",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0003b19",
+      "Kwic": "言前薦得，孤負平生。句後投機，全乖道體。",
+      "caseClusterId": "X/X82/X82n1571.xml:140190:140392",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huiyin Yining",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Huiyin Yining's explicitly headed section, Huiyin Yining opens his hall address by contrasting recommendation before words with responsive accord after the phrase."
+      }
+    },
+    {
+      "key": "t_3972185a2e25:0004a05:1:4",
+      "entryId": "t_3972185a2e25",
+      "sourceTerm": "宗門",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0004a05",
+      "Kwic": "以拄杖畫一畫，曰：這箇即且止，宗門事作麼生？",
+      "caseClusterId": "X/X82/X82n1571.xml:143495:149721",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fachang Yiyu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the Fachang Yiyu section, Fachang Yiyu draws a line with his staff and asks Ying what the lineage matter is.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ying Shouzuo",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ec1241360056:0004a20:1:1",
+      "entryId": "t_ec1241360056",
+      "sourceTerm": "無孔鐵鎚",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0004a20",
+      "Kwic": "直得水灑不著，風吹不入，如箇無孔鐵鎚相似。",
+      "caseClusterId": "X/X82/X82n1571.xml:143495:149721",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fachang Yiyu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in his own hall address, Fachang Yiyu describes a state that water cannot wet and wind cannot enter as resembling an iron hammer without a hole."
+      }
+    },
+    {
+      "key": "t_d2892b1eaae0:0006c17:1:5",
+      "entryId": "t_d2892b1eaae0",
+      "sourceTerm": "立雪",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0006c17",
+      "Kwic": "問：二祖立雪齊腰，意旨如何？師曰：三年逢一閏。曰：為甚麼付法傳衣？師曰：村酒足人酤。",
+      "caseClusterId": "X/X82/X82n1571.xml:161646:164190",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): inside Jiangshan Faquan's section, an unnamed monk asks the meaning of Huike standing in snow to his waist and then asks why robe and Dharma were transmitted; Jiangshan Faquan answers both questions. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Jiangshan Faquan",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          },
+          {
+            "MasterName": "Huike",
+            "Roles": [
+              "case-figure"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_84043ffcdf90:0008b18:1:4",
+      "entryId": "t_84043ffcdf90",
+      "sourceTerm": "具眼",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0008b18",
+      "Kwic": "良久，曰：具眼者看取。",
+      "caseClusterId": "X/X82/X82n1571.xml:173798:174524",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Rui'an Sengyin",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Rui'an Sengyin's explicitly headed section, Rui'an Sengyin pauses during his hall address and tells those who possess the eye to look."
+      }
+    },
+    {
+      "key": "t_cb3571346f22:0010a21:1:8",
+      "entryId": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0010a21",
+      "Kwic": "衲僧家高揖釋迦，不拜彌勒，未為分外。",
+      "caseClusterId": "X/X82/X82n1571.xml:183511:185816",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fayun Faxiu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Fayun Faxiu's own hall address, Fayun Faxiu says it is not extraordinary for a patch-robed monk to salute Shakyamuni from a distance and decline to bow to Maitreya.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "named-figure"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_4416ef85b3a5:0010b20:1:6",
+      "entryId": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0010b20",
+      "Kwic": "召眾曰：江山遶檻，宛如水墨屏風。殿閣凌空，麗若神仙洞府。森羅萬象，海印交參。一道神光，更無遮障。諸人還會麼？良久曰：寥寥天地間，獨",
+      "caseClusterId": "X/X82/X82n1571.xml:186706:187725",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Changlu Yingfu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Changlu Yingfu's own hall address, Changlu Yingfu surveys the assembly and says the myriad phenomena interpenetrate like the ocean-reflection concentration."
+      }
+    },
+    {
+      "key": "t_fb23e0284d73:0011a06:1:1",
+      "entryId": "t_fb23e0284d73",
+      "sourceTerm": "印可",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0011a06",
+      "Kwic": "衣印可曰：此吾家千里駒也。",
+      "caseClusterId": "X/X82/X82n1571.xml:189888:191465",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianyi Yihuai",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the biography of Tianbo Zhongyuan, Tianyi Yihuai is the exact speaker marked 衣 who certifies Zhongyuan and calls him the household's thousand-li colt.",
+        "ContextMasters": [
+          {
+            "MasterName": "Tianbo Zhongyuan",
+            "Roles": [
+              "student",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_63ca7d059ee8:0013a22:1:5",
+      "entryId": "t_63ca7d059ee8",
+      "sourceTerm": "無語",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0013a22",
+      "Kwic": "曰：莫是學人著力處也無？師曰：歸宗拽石。僧無語。師曰：真箇衲僧。",
+      "caseClusterId": "X/X82/X82n1571.xml:206644:207124",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner and nonverbal actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): inside Wangxian Zong's section, an unnamed monk asks a follow-up, receives the answer 'Guizong drags a stone,' and then remains silent; Wangxian Zong calls him a real patch-robed monk. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wangxian Zong",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_936118ea496c:0018a07:1:4",
+      "entryId": "t_936118ea496c",
+      "sourceTerm": "喫粥",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0018a07",
+      "Kwic": "堂內展鉢喫粥，粥後打睡，睡起喫茶，見客相喚，齋時喫飯，日日相似，有甚麼過？",
+      "caseClusterId": "X/X82/X82n1571.xml:241077:241563",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Miaohui Wenyi",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Miaohui Wenyi's explicitly headed section, Miaohui Wenyi's hall address lists spreading the bowls and eating gruel among the ordinary repeated events of the day."
+      }
+    },
+    {
+      "key": "t_7887dc8d449f:0018c02:1:2",
+      "entryId": "t_7887dc8d449f",
+      "sourceTerm": "尊宿",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0018c02",
+      "Kwic": "氏子。幼投劒門慈雲亮出家。年二十二，試經得度。游講成都，南參尊宿，見圓照本於淨慈。本曰：吾昔夢汝甚異，汝不勉則死。師茫然",
+      "caseClusterId": "X/X82/X82n1571.xml:245588:246913",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xiaoyao Cong",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): expanded context places the line in Xiaoyao Cong's biography: Xiaoyao Cong studies doctrine in Chengdu and then travels south to call on venerable masters before meeting Huilin Zongben.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huilin Zongben",
+            "Roles": [
+              "teacher-met"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_c968268a64d1:0023a18:1:1",
+      "entryId": "t_c968268a64d1",
+      "sourceTerm": "心印",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0023a18",
+      "Kwic": "祖師心印，非長非短，非方非圓，非內非外，亦非中間。",
+      "caseClusterId": "X/X82/X82n1571.xml:280038:281261",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chuming Baoyin",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Chuming Baoyin's explicitly headed section, Chuming Baoyin opens his hall address by describing the ancestral mind-seal as neither long nor short, square nor round, internal nor external."
+      }
+    },
+    {
+      "key": "t_560356022866:0026b12:1:6",
+      "entryId": "t_560356022866",
+      "sourceTerm": "孤明",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0026b12",
+      "Kwic": "歷歷孤明，是誰光彩？若道真如實際，大似好肉剜瘡。",
+      "caseClusterId": "X/X82/X82n1571.xml:304157:304512",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Miaozhan Wenzhao",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Miaozhan Wenzhao's explicitly headed section, Miaozhan Wenzhao asks whose radiance is distinctly solitary and warns that answering with suchness or ultimate reality cuts a wound in sound flesh."
+      }
+    },
+    {
+      "key": "t_b88b6a8a5659:0028a08:1:4",
+      "entryId": "t_b88b6a8a5659",
+      "sourceTerm": "契悟",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0028a08",
+      "Kwic": "參佛國。入室次，聞舉栢樹子話，豁然契悟。",
+      "caseClusterId": "X/X82/X82n1571.xml:316040:317379",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jinshan Weizhong",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Jinshan Weizhong's biography, Jinshan Weizhong enters Foguang's room, hears the cypress-tree case raised, and breaks through in awakening.",
+        "ContextMasters": [
+          {
+            "MasterName": "Foguang",
+            "Roles": [
+              "teacher",
+              "case-raiser"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_4416ef85b3a5:0028c15:1:2",
+      "entryId": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0028c15",
+      "Kwic": "禪師明州雪竇法寧禪師衢州杜氏子。上堂：百川異流以海為極，森羅萬象以空為極，四聖六凡以佛為極，明眼衲子以拄杖子為極。且道拄杖子以何",
+      "caseClusterId": "X/X82/X82n1571.xml:320327:321518",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xuedou Faning",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Xuedou Faning's explicitly headed section, Xuedou Faning says that the hundred rivers reach their limit in the sea and the myriad phenomena reach their limit in emptiness."
+      }
+    },
+    {
+      "key": "t_ff560195f161:0028c24:1:5",
+      "entryId": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0028c24",
+      "Kwic": "諸人作麼生會？向這裏辨得，羅紋十字，一任橫行。苟或未然，切忌亂走。",
+      "caseClusterId": "X/X82/X82n1571.xml:321666:322154",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xuedou Faning",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the same hall address, Xuedou Faning asks the assembly how it understands the staff's own limit and says that discerning it permits unhindered passage."
+      }
+    },
+    {
+      "key": "t_ff560195f161:0044a04:1:6",
+      "entryId": "t_ff560195f161",
+      "sourceTerm": "作麼生會",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0044a04",
+      "Kwic": "一日，龍問：風幡話子作麼生會？師曰：逈無入處，乞師方便。",
+      "caseClusterId": "X/X82/X82n1571.xml:423009:425562",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huanglong Sixin Wuxin",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Caotang Shanqing's biography, Huanglong Sixin Wuxin is the exact teacher denoted by 龍 who asks Shanqing how he understands the wind-and-banner saying and then instructs him through the cat-catching-a-mouse image.",
+        "ContextMasters": [
+          {
+            "MasterName": "Caotang Shanqing",
+            "Roles": [
+              "student",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cf07831c1f12:0055a20:1:5",
+      "entryId": "t_cf07831c1f12",
+      "sourceTerm": "赤灑灑",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0055a20",
+      "Kwic": "是知赤灑灑處恁麼即易，明歷歷處恁麼還難。",
+      "caseClusterId": "X/X82/X82n1571.xml:499427:501987",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jianfu Daoying",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Jianfu Daoying's explicitly headed section, Jianfu Daoying distinguishes the relatively easy condition of being wholly stripped clean from the harder condition of being clearly manifest."
+      }
+    },
+    {
+      "key": "t_4416ef85b3a5:0060a21:1:3",
+      "entryId": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0060a21",
+      "Kwic": "毗耶老病翁。維摩病則上封病，上封病則拄杖子病，拄杖子病則森羅萬象病，森羅萬象病則凡之與聖病。諸人還覺病本起處麼？若也覺去，",
+      "caseClusterId": "X/X82/X82n1571.xml:534955:537195",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shangfeng Bencai",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Shangfeng Bencai's explicitly headed section, Shangfeng Bencai extends Vimalakirti's illness through his staff, the myriad phenomena, and ordinary and holy beings before asking where the illness begins.",
+        "ContextMasters": [
+          {
+            "MasterName": "Vimalakirti",
+            "Roles": [
+              "figure-deployed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b33fddd5d4f1:0068a22:1:2",
+      "entryId": "t_b33fddd5d4f1",
+      "sourceTerm": "深深海底行",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0068a22",
+      "Kwic": "高高峰頂立，深深海底行。汝作麼生會？師于言下頓悟曰：釘殺脚跟也。",
+      "caseClusterId": "X/X82/X82n1571.xml:592213:594921",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhaojue Chunbai",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Zhengjue Zongxian's biography, Zhaojue Chunbai is the exact teacher marked 覺 who asks Zongxian how he understands standing on the highest peak and walking on the deepest sea floor; Zongxian awakens at the words.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhengjue Zongxian",
+            "Roles": [
+              "student",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_84e490b1773f:0075c19:1:3",
+      "entryId": "t_84e490b1773f",
+      "sourceTerm": "撫掌",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0075c19",
+      "Kwic": "主指曰：春雨霖霖。師撫掌大笑曰：不直半分錢。主便喝，師曰：者瞎漢向道不直半分錢，又惡發作什麼？主撫掌一下，師曰：且坐喫茶。",
+      "caseClusterId": "X/X82/X82n1571.xml:645889:648701",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yangqi Fanghui",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Yangqi Fanghui's section, Yangqi Fanghui is the first exact actor at the stored occurrence: after the visiting Daowu offering-master points and says 'the spring rain pours down,' Yangqi claps his hands, laughs, and appraises the answer.",
+        "ContextMasters": [
+          {
+            "MasterName": "unnamed Daowu offering-master",
+            "Roles": [
+              "visiting-interlocutor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_937f63a4fb51:0082b10:1:6",
+      "entryId": "t_937f63a4fb51",
+      "sourceTerm": "目前",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0082b10",
+      "Kwic": "如何是一色？師曰：目前無闍黎，此間無老僧。",
+      "caseClusterId": "X/X82/X82n1571.xml:689277:689884",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yuezhang Zhiyuan",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Yuezhang Zhiyuan's explicitly headed section, Yuezhang Zhiyuan answers the question 'what is the single color?' with 'before the eyes there is no acarya; here there is no old monk.'"
+      }
+    },
+    {
+      "key": "t_cf07831c1f12:0082c01:1:6",
+      "entryId": "t_cf07831c1f12",
+      "sourceTerm": "赤灑灑",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0082c01",
+      "Kwic": "直饒淨躶躶，赤灑灑，沒可把，尚有廉纖。",
+      "caseClusterId": "X/X82/X82n1571.xml:690654:690855",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuzhen Chuwen",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Wuzhen Chuwen's explicitly headed section, Wuzhen Chuwen says that even being clean naked, wholly stripped, and with nothing to grasp still leaves a fine trace."
+      }
+    },
+    {
+      "key": "t_fac9b9afebf6:0101b19:1:2",
+      "entryId": "t_fac9b9afebf6",
+      "sourceTerm": "探竿影草",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0101b19",
+      "Kwic": "如何是一喝如探竿影草。師曰，驗得你骨出。",
+      "caseClusterId": "X/X82/X82n1571.xml:809172:810806",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): inside Zhongyan Huayan Zujue's section, an unnamed monk asks how one shout is like a probing pole and shadowing grass; Zhongyan Huayan Zujue answers that he has tested the monk to the bone. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhongyan Huayan Zujue",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2baf0ec63b2c:0104c02:1:2",
+      "entryId": "t_2baf0ec63b2c",
+      "sourceTerm": "經行",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0104c02",
+      "Kwic": "若也見得行得，健即經行困即歇。",
+      "caseClusterId": "X/X82/X82n1571.xml:831741:833337",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Longya Zhicai",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Longya Zhicai's explicitly headed section, Longya Zhicai tells the assembly that if it sees and can carry it out, it should walk meditation when vigorous and rest when tired."
+      }
+    },
+    {
+      "key": "t_cba9cbb44845:0105b04:1:1",
+      "entryId": "t_cba9cbb44845",
+      "sourceTerm": "婆子燒庵",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0105b04",
+      "Kwic": "舉婆子燒庵話，師曰：大凡扶宗立教，須是其人。",
+      "caseClusterId": "X/X82/X82n1571.xml:835807:838325",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Heshan Shouxun",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Heshan Shouxun's explicitly headed section, Heshan Shouxun raises the old-woman-burns-the-hermitage case and says that supporting the lineage and establishing its teaching requires the right person."
+      }
+    },
+    {
+      "key": "t_eba970114dd2:0107a14:1:2",
+      "entryId": "t_eba970114dd2",
+      "sourceTerm": "邯鄲",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0107a14",
+      "Kwic": "脚下若參差，邯鄲學唐步。",
+      "caseClusterId": "X/X82/X82n1571.xml:847875:849577",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xichan Wenlian",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Xichan Wenlian's explicitly headed section, Xichan Wenlian warns that if one's footing is off, one resembles the Handan walker imitating another gait."
+      }
+    },
+    {
+      "key": "t_9a7a00ea0cd1:0115b06:1:5",
+      "entryId": "t_9a7a00ea0cd1",
+      "sourceTerm": "一歸何處",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0115b06",
+      "Kwic": "室中問僧：萬法歸一，一歸何處？曰：新羅國裏。",
+      "caseClusterId": "X/X82/X82n1571.xml:902279:903089",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lanan Dingxu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Lanan Dingxu's explicitly headed section, Lanan Dingxu asks a monk in the private room where the one returns when the ten thousand things return to one; the monk answers 'inside Korea.'",
+        "ContextMasters": [
+          {
+            "MasterName": "unnamed monk",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8bced2c0bc2f:0117c13:1:1",
+      "entryId": "t_8bced2c0bc2f",
+      "sourceTerm": "逐塊",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0117c13",
+      "Kwic": "直須師子咬人，莫學韓獹逐塊",
+      "caseClusterId": "X/X82/X82n1571.xml:917938:918293",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dawei Fabao",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Dawei Fabao's explicitly headed section, Dawei Fabao says one must be the lion that bites the person and must not imitate the Korean hound that chases the clod."
+      }
+    },
+    {
+      "key": "t_91d84c849fc7:0135a16:1:6",
+      "entryId": "t_91d84c849fc7",
+      "sourceTerm": "保任",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0135a16",
+      "Kwic": "慧曰：如何保任？師曰：饑來喫飯，困來打眠。",
+      "caseClusterId": "X/X82/X82n1571.xml:1034851:1037252",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dahui Zonggao",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Xin'an Weiyin's biography, Dahui Zonggao is the exact speaker marked 慧 who asks Weiyin how he preserves it; Weiyin answers that he eats when hungry and sleeps when tired.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xin'an Weiyin",
+            "Roles": [
+              "respondent",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_a38d5c680c67:0135b24:1:5",
+      "entryId": "t_a38d5c680c67",
+      "sourceTerm": "咬嚼",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0135b24",
+      "Kwic": "祇有木札羹、鉄釘飯，任汝咬嚼。",
+      "caseClusterId": "X/X82/X82n1571.xml:1038538:1041043",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wanan Daoyan",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Kentang Yanchong's biography, Wanan Daoyan is the exact quoted teacher denoted by Donglin who tells his assembly that he has no special mystery, only wooden-slip soup and iron-nail rice for them to chew.",
+        "ContextMasters": [
+          {
+            "MasterName": "Kentang Yanchong",
+            "Roles": [
+              "listener",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2baf0ec63b2c:0177b06:1:4",
+      "entryId": "t_2baf0ec63b2c",
+      "sourceTerm": "經行",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0177b06",
+      "Kwic": "一夕，松下經行，聞巖泉聲，微有所觸。",
+      "caseClusterId": "X/X82/X82n1571.xml:1316169:1317377",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Songyin Mao",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Songyin Mao's explicitly headed biography, Songyin Mao walks meditation beneath the pines one evening, hears the rock-spring, and is slightly touched by it."
+      }
+    },
+    {
+      "key": "t_4d4ce329367f:0206b08:1:2",
+      "entryId": "t_4d4ce329367f",
+      "sourceTerm": "說食",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0206b08",
+      "Kwic": "說飲說食豈能救療？直須自飲水、自喫飯，方有實効處。",
+      "caseClusterId": "X/X82/X82n1571.xml:1506321:1507064",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guaishi Qi",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Guaishi Qi's explicitly headed section, Guaishi Qi says that merely speaking of drink and food cannot cure hunger and thirst; one must drink water and eat rice oneself."
+      }
+    },
+    {
+      "key": "t_df4e71aa0bc5:0210a19:1:4",
+      "entryId": "t_df4e71aa0bc5",
+      "sourceTerm": "徹悟",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0210a19",
+      "Kwic": "古今徹悟者如稻麻竹葦，錯會者如稻麻竹葦。",
+      "caseClusterId": "X/X82/X82n1571.xml:1530896:1535829",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Nanshi Wenxiu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Nanshi Wenxiu's explicitly headed section, Nanshi Wenxiu says that those who thoroughly awaken and those who understand wrongly have both been as numerous as rice plants, hemp, bamboo, and reeds."
+      }
+    },
+    {
+      "key": "t_8bced2c0bc2f:0261c01:1:4",
+      "entryId": "t_8bced2c0bc2f",
+      "sourceTerm": "逐塊",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0261c01",
+      "Kwic": "如此等輩，皆是狂狗逐塊，何曾夢見有獅子奮迅的牙爪",
+      "caseClusterId": "X/X82/X82n1571.xml:1872269:1872696",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Kongxiang Gui",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Kongxiang Gui's explicitly headed section, Kongxiang Gui calls the people just described mad dogs chasing clods and asks when they have ever dreamed of a lion's surging claws and fangs."
+      }
+    },
+    {
+      "key": "t_8bced2c0bc2f:0261c03:1:5",
+      "entryId": "t_8bced2c0bc2f",
+      "sourceTerm": "逐塊",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0261c03",
+      "Kwic": "逐塊尋香，未為好狗",
+      "caseClusterId": "X/X82/X82n1571.xml:1872269:1872696",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Kongxiang Gui",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the same address, Kongxiang Gui says that chasing clods and following scent does not yet make a good dog."
+      }
+    },
+    {
+      "key": "t_a9f422b3b249:0347a10:1:6",
+      "entryId": "t_a9f422b3b249",
+      "sourceTerm": "生緣",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0347a10",
+      "Kwic": "容曰：人人有箇生緣，你生緣在甚麼處？師曰：覿面不識。容曰：離了三關又作麼生？師便喝，容曰：好與三十棒。",
+      "caseClusterId": "X/X82/X82n1571.xml:2413742:2414447",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jinsu Rong",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Lingyue Gu's biography, Jinsu Rong is the exact teacher marked 容 who asks where Lingyue's birth-condition is and then presses what happens apart from the three barriers.",
+        "ContextMasters": [
+          {
+            "MasterName": "Lingyue Gu",
+            "Roles": [
+              "respondent",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d4df8bc75ad7:0353c05:1:3",
+      "entryId": "t_d4df8bc75ad7",
+      "sourceTerm": "銅頭鐵額",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0353c05",
+      "Kwic": "縱使銅頭鐵額漢，也須一棒一條痕",
+      "caseClusterId": "X/X82/X82n1571.xml:2457880:2458399",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fajing Hao",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in the nun Fajing Hao's explicitly headed section, Fajing Hao says that even a fellow with a copper head and iron brow must receive one welt from each staff-blow."
+      }
+    },
+    {
+      "key": "t_f2f4079b20e5:0382b16:1:6",
+      "entryId": "t_f2f4079b20e5",
+      "sourceTerm": "隨處作主",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0382b16",
+      "Kwic": "法無定相，遇緣即宗；道不虗行，隨處作主。",
+      "caseClusterId": "X/X82/X82n1571.xml:2650568:2651263",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wufeng Ruxue",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Wufeng Ruxue's explicitly headed section, Wufeng Ruxue says that Dharma has no fixed form, meets conditions as its lineage-principle, and makes the host wherever it goes."
+      }
+    },
+    {
+      "key": "t_78bd967fdcd6:0390c16:1:4",
+      "entryId": "t_78bd967fdcd6",
+      "sourceTerm": "大疑",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0390c16",
+      "Kwic": "師大疑，猛力參究",
+      "caseClusterId": "X/X82/X82n1571.xml:2703878:2706244",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xiuyun Wei",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Xiuyun Wei's explicitly headed biography, Xiuyun Wei is the grammatical actor who comes into great doubt and investigates with fierce effort."
+      }
+    },
+    {
+      "key": "t_35c3fb655630:0443b22:1:2",
+      "entryId": "t_35c3fb655630",
+      "sourceTerm": "驗人",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0443b22",
+      "Kwic": "師室中甞舉狗子無佛性話驗人，罕有契其機者",
+      "caseClusterId": "X/X82/X82n1571.xml:3050044:3052310",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shending Yunwai Ze",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Shending Yunwai Ze's explicitly headed section, Shending Yunwai Ze often raises Zhaozhou's dog-has-no-buddha-nature case in his room to test people, with few matching his function."
+      }
+    },
+    {
+      "key": "t_bf67613e4573:0520c07:1:4",
+      "entryId": "t_bf67613e4573",
+      "sourceTerm": "千手眼",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0520c07",
+      "Kwic": "乃驀豎拂子，曰：此是大悲千手眼。",
+      "caseClusterId": "X/X82/X82n1571.xml:3581430:3583470",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiesan Hong",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Jiesan Hong's explicitly headed section, Jiesan Hong suddenly raises the fly-whisk and declares it to be Great Compassion's thousand hands and eyes."
+      }
+    },
+    {
+      "key": "t_898279a78ecf:0649a13:1:5",
+      "entryId": "t_898279a78ecf",
+      "sourceTerm": "漏逗",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0649a13",
+      "Kwic": "且道如何是漏逗處？良久，曰：雲門餬餅趙州茶，雪峰木毬紫湖狗。",
+      "caseClusterId": "X/X82/X82n1571.xml:4469354:4469771",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈全書(第34卷-第120卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianzhang Yu",
+        "AttributionNote": "The Complete Book of the Five Lamps, volumes 34–120 (五燈全書(第34卷-第120卷)): in Tianzhang Yu's explicitly headed section, Tianzhang Yu asks where the leak is and, after pausing, answers with Yunmen's cake, Zhaozhou's tea, Xuefeng's wooden ball, and Zihu's dog."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

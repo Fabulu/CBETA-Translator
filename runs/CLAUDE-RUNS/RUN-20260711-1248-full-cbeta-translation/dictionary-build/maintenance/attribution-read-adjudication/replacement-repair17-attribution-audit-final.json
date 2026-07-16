@@ -1,0 +1,583 @@
+{
+  "counts": {
+    "entries": 17,
+    "senses": 21,
+    "occurrences": 126,
+    "actor_narrated": 20,
+    "context_master_links": 112,
+    "deferred_non_roster_context": 42,
+    "pending_roster_context_master": 18,
+    "attribution_notes": 126,
+    "note_missing_source": 24,
+    "explicit_master_turn_left_anonymous": 9,
+    "actor_reviewed_unnamed": 23,
+    "placeholder_actor_forbidden": 1,
+    "named_occurrences": 71,
+    "deferred_non_roster": 25,
+    "pending_roster_master": 6,
+    "raised_old_saying_lacks_raiser": 1,
+    "chinese_strings": 88,
+    "anchored_chinese": 88,
+    "actor_impersonal": 10,
+    "invalid_actor_status": 2,
+    "unnamed_master_forbidden": 1,
+    "note_missing_speaker": 2,
+    "reviewed_unnamed_label_not_explicit": 2,
+    "missing_utterer_context": 44,
+    "named_master_missing_structured_link": 11,
+    "supporting_occurrences": 7,
+    "headword_absent_from_kwic": 7,
+    "action_performer_in_utterer_field": 2,
+    "vague_attributor": 2,
+    "reviewed_unnamed_prose": 4,
+    "anonymous_monk_question_assigned_to_master": 1
+  },
+  "hardFailures": 109,
+  "failures": [
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o1 expected '五燈全書(第1卷-第33卷)': Complete case read: 下禪床 is the narrator's stage direction; the named master performs the descent but does not utter the phrase."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o2 expected '古尊宿語錄': Complete case read: 下禪床 is the narrator's stage direction; the named master performs the descent but does not utter the phrase."
+    },
+    {
+      "kind": "placeholder_actor_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o3 Kind: 'anonymous capping-verse voice'"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o3: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o4 expected '列祖提綱錄': Complete case read: 下禪床 is the narrator's stage direction; the named master performs the descent but does not utter the phrase."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o5 expected '嘉泰普燈錄': Complete case read: 下禪床 is the narrator's stage direction; the named master performs the descent but does not utter the phrase."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o6 expected '大光明藏': Complete case read: 下禪床 is the narrator's stage direction; the named master performs the descent but does not utter the phrase."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o1 expected '古尊宿語錄': Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Yunmen Wenyan gives the separately marked answer."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o2 expected '五燈全書(第1卷-第33卷)': Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Jingqing Daofu gives the separately marked answer."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o4 expected '五燈嚴統(第10卷-第25卷)': Complete visit: Shushan Kuangren directly quotes the 'before the eyes there is no Dharma' formula while questioning Jiashan Shanhui."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o5 expected '宗鑑法林': Complete exchange: an unnamed monk quotes the formula in a question to Mingzhao Deqian, who answers in the next turn."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o6 expected '五燈會元': Complete Jiashan instruction: Jiashan Shanhui directly states 'before the eyes there is no Dharma' and develops the paired formula."
+    },
+    {
+      "kind": "raised_old_saying_lacks_raiser",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o7: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o7 expected '祖堂集': Complete exchange: an unnamed monk quotes the formula in a question to Touzi Datong, who answers in the next turn."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a2c5b2af7b10/entry.v2.json",
+      "detail": "臘八 s1 o8: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o2 expected '宗鑑法林': Complete long-clawed Brahmin case: the narrator reports Dirghanakha sweeping his sleeves and leaving after Shakyamuni's question; Dirghanakha performs the action but does not utter its label."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o3 expected '五燈嚴統(第10卷-第25卷)': Complete exchange: the narrator reports the named-but-unrostered Xingjiao Ming sweeping his sleeves and leaving after the master's answer."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o4: ['師問', '師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o4 expected '古尊宿語錄': Source text; exact headword actor: the compiler narrating Nanquan Puyuan’s sleeve-flick. The complete case was read before attribution."
+    },
+    {
+      "kind": "invalid_actor_status",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5: 'named-unrostered'"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5: every master must be named"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5: Yunmen Cheng directly prescribes the response: shout, sweep the sleeves, and leave; he is named in the source but not yet rostered."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5 expected '宗門拈古彙集': Yunmen Cheng directly prescribes the response: shout, sweep the sleeves, and leave; he is named in the source but not yet rostered."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o6 expected '指月錄': Dahui Zonggao directly criticizes contrived enactments of the woman-leaving-absorption case, including sleeve-sweeping, as shameful on cold inspection."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o7 expected '聯燈會要': Parallel long-clawed Brahmin case: the narrator reports Dirghanakha sweeping his sleeves and leaving; Shakyamuni is the respondent."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o1 expected '普濟玉琳國師語錄': Yulin Tongxiu's biographer reports disciples keeping the name of Medicine Master Lapis-Lazuli Buddha and saying Yulin had manifested from that realm; the biographer owns the wording."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o2 expected '御選語錄': Ritual narration in the Imperial Selection records officiants reciting the Medicine Master spell among the listed spells, circumambulating, repenting, vowing, and dedicating merit."
+    },
+    {
+      "kind": "invalid_actor_status",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3: 'editorial'"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3: ['師道']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3: Editorial ceremony heading: Zhongfeng Mingben gives a small-group address before the spirit at the Medicine Master observance for the deceased transport commissioner Qü Tingfa."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3 expected '列祖提綱錄': Editorial ceremony heading: Zhongfeng Mingben gives a small-group address before the spirit at the Medicine Master observance for the deceased transport commissioner Qü Tingfa."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o5 expected '高峰三山來禪師疏語': Gaofeng San Shanlai's ritual-formulary heading identifies a Medicine Master memorial; the headword is a ceremony/title label rather than dialogue."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o6 expected '香嚴禪師語錄': Complete Puming record: the narrator labels the opening of a Medicine Master observance and the following hall address; Puming conducts the event but does not utter the heading."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fa1b42d25280/entry.v2.json",
+      "detail": "雪山童子 s1 o1: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fa1b42d25280/entry.v2.json",
+      "detail": "雪山童子 s1 o1 expected '古尊宿語錄': Complete Yexian exchange: an unnamed monk asks about the Snow Mountain Youth's self-sacrifice; Yexian Guixing gives the separately marked answer."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fa1b42d25280/entry.v2.json",
+      "detail": "雪山童子 s1 o3 expected '介為舟禪師語錄': Source text; exact headword actor: an unnamed monastic questioner. The complete case was read before attribution."
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_37261001c332/entry.v2.json",
+      "detail": "觀心 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o2: Langye Huijue"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o3: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o9: Nanyue Huairang"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o10: Xianglin Chengyuan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o11: Hu Shi"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o11: Shenhui appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o12: Yuanwu Keqin"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o12: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o13: Yuanwu Keqin"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o13: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o14: Yuanwu Keqin"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o14: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o15: Jinfeng"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o15: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o1: Bodhidharma"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o2: Bodhidharma"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o2: Huike appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o3: Fojian Huiqin"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o4: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o4: Konggu Daocheng"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o5: Xi'an Daguan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o6: Ningran Liaogai"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o7: Doushuai Huizhao"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s1 o1: Wuming Huijing"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s1 o2: Wuzhu"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s1 o3: Zhaozhou Congshen"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s2 o1: Fenyang Shanzhao"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o1: Huiyan Zhizhao"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o1: Deshan Yuanming appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o2: Yunmen Wenyan"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o2: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o3: Xichan Qin"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o3: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o4: Tianyin Yuanxiu"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s3 o5: Tian'an Sheng"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o1: Linji Yixuan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o2: Linji Yixuan"
+    },
+    {
+      "kind": "headword_absent_from_kwic",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o2: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o3: Huiyan Zhizhao"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o4: ['師舉']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_830700de49fb/entry.v2.json",
+      "detail": "三句 s4 o4: Yunmen Wenyan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o1: Jinniu Heshang"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o2: Xiyuan Tancang"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o3: Yangqi Fanghui"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o4: Shuilao Heshang"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o5: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o6: Foyan Qingyuan"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1: 'One master'"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o1: Huiyin Yining"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o3: Fengxue Yanzhao"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o4: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o5: Song Huizong"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o3: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o4: Dongshan Shouchu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o4: Xianglin Chengyuan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o4: Zhimen Guangzuo appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o5: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o7: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_97b566635d6c/entry.v2.json",
+      "detail": "宗師 s1 o7: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bb3cdb68e388/entry.v2.json",
+      "detail": "茫然 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bb3cdb68e388/entry.v2.json",
+      "detail": "茫然 s1 o3: Wenshu Zhengdao"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bb3cdb68e388/entry.v2.json",
+      "detail": "茫然 s1 o5: Dasui Fazhen"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bb3cdb68e388/entry.v2.json",
+      "detail": "茫然 s1: 'the master'"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s1 o1: Huanglong Huinan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s1 o2: Huanglong Huinan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s1 o3: Huanglong Huinan"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s1 o5: Zhenjing Kewen"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s2 o1: Five Direction Deva Kings"
+    },
+    {
+      "kind": "anonymous_monk_question_assigned_to_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s2 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s2 o2: Zhengjue Yi"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "generatedUtc": "2026-07-14T12:59:54.218942+00:00",
+  "elapsedSeconds": 3.555,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_192801178305",
+      "term": "三界唯心",
+      "path": "terms/t_192801178305/entry.v2.json",
+      "sha256": "eacadfced73f40138a5ac579078508f882a9c085b7a227c7c54217aca303419e"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 6,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_192801178305/entry.v2.json",
+        "id": "t_192801178305",
+        "term": "三界唯心",
+        "verified": 6,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 6,
+        "named_occurrences": 6,
+        "attribution_notes": 6,
+        "deferred_non_roster": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 6,\n    \"named_occurrences\": 6,\n    \"attribution_notes\": 6,\n    \"deferred_non_roster\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpwq7i1w3r.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 6,
+      "tierACandidates": 0,
+      "reviewRequired": 6
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 6,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 6\n}\nreport: maintenance/semantic-cohorts/semantic-r003-owner2-aliascap-t_192801178305-gate-attribution-packets.json\n",
+    "report": "maintenance/semantic-cohorts/semantic-r003-owner2-aliascap-t_192801178305-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

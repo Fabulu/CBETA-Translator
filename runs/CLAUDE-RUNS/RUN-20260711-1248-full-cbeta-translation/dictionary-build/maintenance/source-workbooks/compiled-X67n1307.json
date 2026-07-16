@@ -1,0 +1,52 @@
+{
+  "source": "X/X67/X67n1307.xml",
+  "compiledFrom": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/source-workbooks/overrides-X67n1307.json",
+  "decisions": [
+    {
+      "entryId": "t_66792ea088de",
+      "sourceTerm": "拈古",
+      "RelPath": "X/X67/X67n1307.xml",
+      "FromLb": "0469a13",
+      "Kwic": "古來有拈古、頌古、徵古、代古、別古",
+      "caseClusterId": "X/X67/X67n1307.xml:84692:85956",
+      "Decision": {
+        "MasterName": "Wansong Xingxiu",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "scripture speaker discussed"
+            ]
+          },
+          {
+            "MasterName": "Yangshan Huiji",
+            "Roles": [
+              "quoted comparator"
+            ]
+          },
+          {
+            "MasterName": "Fayan Wenyi",
+            "Roles": [
+              "quoted case subject"
+            ]
+          },
+          {
+            "MasterName": "Hongzhi Zhengjue",
+            "Roles": [
+              "source old-case author commented upon"
+            ]
+          }
+        ],
+        "AttributionNote": "Wansong Xingxiu's Evaluations of Hongzhi Zhengjue's Old Cases (萬松老人評唱天童覺和尚拈古請益錄). Wansong Xingxiu is the exact speaker, marked 師云 at the start of this continuous evaluation; he enumerates old-case raising, verse, probing, substitution, and alternative responses. Shakyamuni Buddha, Yangshan Huiji, and Fayan Wenyi are quoted or discussed within Wansong's evaluation, while Hongzhi Zhengjue is the old-case author being commented upon. The Fayan header is not the speaker of this genre list."
+      },
+      "ExpectedSourceTitle": "萬松老人評唱天童覺和尚拈古請益錄",
+      "Review": {
+        "reviewer": "Codex Bundle B exact-turn review",
+        "reviewedUtc": "2026-07-14T08:30:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J36/J36nB352.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_9a4a6df85ba0:0530c08:1:3",
+      "entryId": "t_9a4a6df85ba0",
+      "sourceTerm": "眉毛墮落",
+      "RelPath": "J/J36/J36nB352.xml",
+      "FromLb": "0530c08",
+      "Kwic": "看這翠巖眉毛墮落處自救不了，復有三元龍象互相蹴踏，",
+      "caseClusterId": "J/J36/J36nB352.xml:22995:23639",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "東山破峰重禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Pofeng Puzhong",
+        "ActorAttribution": null,
+        "AttributionNote": "東山破峰重禪師語錄, hall address raising Cuiyan's end-of-retreat eyebrow case. Pofeng Puzhong is the exact framing and commenting speaker: after quoting Cuiyan, Changqing, Baofu, and Yunmen, he says Cuiyan cannot save himself where his eyebrows fall out and then tests his own assembly."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

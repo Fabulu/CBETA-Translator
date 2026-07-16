@@ -1,0 +1,28 @@
+{
+  "source": "J/J39/J39nB447.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_8a016f49e5b8:0388a02:1:7",
+      "entryId": "t_8a016f49e5b8",
+      "sourceTerm": "思量",
+      "RelPath": "J/J39/J39nB447.xml",
+      "FromLb": "0388a02",
+      "Kwic": "秪是窺覷不得、思量不得。何故？稍起思量，而墻千尺；纔涉窺覷，白雲萬里。",
+      "caseClusterId": "J/J39/J39nB447.xml:70593:71254",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "東山梅溪度禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Meixi Fudu",
+        "ActorAttribution": null,
+        "AttributionNote": "東山梅溪度禪師語錄. Meixi Fudu is the exact actor: his 上堂 says 思量不得."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

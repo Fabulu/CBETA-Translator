@@ -1,0 +1,30 @@
+{
+  "source": "T/T48/T48n2024.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_edabab064644:1100b02:1:5",
+      "entryId": "t_edabab064644",
+      "sourceTerm": "疑情",
+      "RelPath": "T/T48/T48n2024.xml",
+      "FromLb": "1100b02",
+      "Kwic": "參禪須是起疑情。小疑小悟。",
+      "caseClusterId": "T/T48/T48n2024.xml:17835:20047",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪關策進",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunqi Zhuhong",
+        "ActorAttribution": null,
+        "AttributionNote": "禪關策進. Full six-rung exact-turn review identifies Yunqi Zhuhong as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_edabab064644:1100b02:1:5"
+  ]
+}

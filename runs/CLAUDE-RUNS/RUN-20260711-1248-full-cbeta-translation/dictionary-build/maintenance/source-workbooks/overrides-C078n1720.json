@@ -1,0 +1,88 @@
+{
+  "source": "C/C078/C078n1720.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T04:11:21Z",
+  "rows": [
+    {
+      "key": "t_79e00cdbc129:0648b05:1:2",
+      "entryId": "t_79e00cdbc129",
+      "sourceTerm": "安心",
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0648b05",
+      "Kwic": "祖曰我心未寧乞師安心磨曰將心來與汝安祖曰覔心了不可得曰與汝安心竟祖於此悟入。",
+      "caseClusterId": "C/C078/C078n1720.xml:329773:330124",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "defaultMasterName": "Huike",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Bodhidharma",
+        "ActorAttribution": null,
+        "AttributionNote": "Collected Pearls Linking Verses on Old Cases in the Chan Lineage (禪宗頌古聯珠通集), Bodhidharma–Huike mind-settling case. Huike asks that his unsettled mind be set at ease and says he cannot find it; Bodhidharma is the exact respondent who concludes, 'I have finished setting your mind at ease.' Huike is the requester and the person who awakens afterward, not the speaker of the closing headword-bearing response."
+      }
+    },
+    {
+      "key": "t_53da4e346a6f:0705a16:1:4",
+      "entryId": "t_53da4e346a6f",
+      "sourceTerm": "百尺竿頭",
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0705a16",
+      "Kwic": "百尺竿頭進步時築着磕著自家底老長沙",
+      "caseClusterId": "C/C078/C078n1720.xml:729466:729692",
+      "reviewClass": "co-located-reviewed-candidate",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "defaultMasterName": "Fojian Huiqin",
+      "candidateBasis": "co-located-reviewed",
+      "Override": null
+    },
+    {
+      "key": "t_ca8f7f2d5d03:0712a08:1:2",
+      "entryId": "t_ca8f7f2d5d03",
+      "sourceTerm": "法眼",
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0712a08",
+      "Kwic": "曰如何是法眼曰法眼無瑕",
+      "caseClusterId": "C/C078/C078n1720.xml:778566:779750",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "defaultMasterName": "Fayan Wenyi",
+      "candidateBasis": "inline",
+      "Override": {
+        "MasterName": "Jiashan Shanhui",
+        "ActorAttribution": null,
+        "AttributionNote": "Collected Pearls Linking Verses on Old Cases in the Chan Lineage (禪宗頌古聯珠通集), in the narrative leading Jiashan Shanhui to Chuanzi Decheng. An unnamed monk asks Jiashan what the Dharma eye is, and Jiashan Shanhui is the exact respondent who says that the Dharma eye has no flaw. The graphs 法眼 here name the eye of the teaching, not the later title-name Fayan Wenyi."
+      }
+    },
+    {
+      "key": "t_937f63a4fb51:0757c06:1:2",
+      "entryId": "t_937f63a4fb51",
+      "sourceTerm": "目前",
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0757c06",
+      "Kwic": "夾山示眾云目前無法意在目前不是目前法非耳目之所到。",
+      "caseClusterId": "C/C078/C078n1720.xml:1106842:1106966",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "defaultMasterName": "Jiashan Shanhui",
+      "candidateBasis": "inline",
+      "Override": null
+    },
+    {
+      "key": "t_461377f9b1da:0805c23:1:2",
+      "entryId": "t_461377f9b1da",
+      "sourceTerm": "顧鑒咦",
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0805c23",
+      "Kwic": "雲門每見僧必顧視曰鑒僧擬議乃曰咦後德山圓明大師刪去顧字謂之抽顧叢林目雲門顧鑒咦",
+      "caseClusterId": "C/C078/C078n1720.xml:1451441:1451639",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "禪宗頌古聯珠通集",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "inline",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

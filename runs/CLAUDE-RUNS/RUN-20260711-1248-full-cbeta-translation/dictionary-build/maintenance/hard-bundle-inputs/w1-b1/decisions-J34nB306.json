@@ -1,0 +1,28 @@
+{
+  "source": "J/J34/J34nB306.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_9a4a6df85ba0:0420c05:1:1",
+      "entryId": "t_9a4a6df85ba0",
+      "sourceTerm": "眉毛墮落",
+      "RelPath": "J/J34/J34nB306.xml",
+      "FromLb": "0420c05",
+      "Kwic": "趨炎附暖底不顧爛額焦頭、添薪熾炭底那管眉毛墮落？",
+      "caseClusterId": "J/J34/J34nB306.xml:64367:65003",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "內紹種禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Neishao Zhong",
+        "ActorAttribution": null,
+        "AttributionNote": "內紹種禪師語錄, hall address on Baizhang, Longtan, Deshan, and Linji. Neishao Zhong is the exact speaker: he says those adding fuel and blazing coals pay no heed to their eyebrows falling out."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

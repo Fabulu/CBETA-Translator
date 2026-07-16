@@ -1,0 +1,100 @@
+{
+  "source": "J/J26/J26nB180.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_ff50c6974a36:0295b04:2:2",
+      "entryId": "t_ff50c6974a36",
+      "sourceTerm": "五位",
+      "RelPath": "J/J26/J26nB180.xml",
+      "FromLb": "0295b04",
+      "Kwic": "第五位聖人又是那箇？",
+      "caseClusterId": "J/J26/J26nB180.xml:50697:51042",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天童弘覺忞禪師北遊集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "anecdotal interlocutor",
+          "ActorLabel": "unnamed anecdotal questioner",
+          "ActorRole": "questioner in a joke recounted by the Shunzhi Emperor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Northern Travels Collection of Chan Master Hongjue Min of Tiantong (天童弘覺忞禪師北遊集): in the Shunzhi Emperor's joke about a village pedant who counts only five sages, an unnamed interlocutor asks who the fifth sage is. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed anecdotal questioner.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shunzhi Emperor",
+            "Roles": [
+              "anecdote-teller"
+            ]
+          },
+          {
+            "MasterName": "Hongjue Min",
+            "Roles": [
+              "audience",
+              "compiler-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_78f95517a347:0301c02:1:4",
+      "entryId": "t_78f95517a347",
+      "sourceTerm": "生死事大",
+      "RelPath": "J/J26/J26nB180.xml",
+      "FromLb": "0301c02",
+      "Kwic": "堂門書「生死事大」，壁書",
+      "caseClusterId": "J/J26/J26nB180.xml:85561:85793",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天童弘覺忞禪師北遊集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "inscription",
+          "ActorLabel": "hall-door inscription",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "堂門書 introduces displayed writing on the hall door and supplies no personal speaker or author.",
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Northern Travels Collection of Chan Master Hongjue Min of Tiantong (天童弘覺忞禪師北遊集): the hall-door inscription at the Shunzhi Emperor's residence reads 'birth-and-death is the great matter'; the narrative does not identify its writer.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shunzhi Emperor",
+            "Roles": [
+              "resident",
+              "person-reflecting-on-inscription"
+            ]
+          },
+          {
+            "MasterName": "Hongjue Min",
+            "Roles": [
+              "addressee-of-report"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_ff50c6974a36:0295b04:2:2",
+    "t_78f95517a347:0301c02:1:4"
+  ]
+}

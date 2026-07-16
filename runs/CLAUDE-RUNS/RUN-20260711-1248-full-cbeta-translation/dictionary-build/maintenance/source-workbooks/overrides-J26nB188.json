@@ -1,0 +1,35 @@
+{
+  "source": "J/J26/J26nB188.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:16:16Z",
+  "rows": [
+    {
+      "key": "t_5f1287817ebd:0758b06:1:2",
+      "entryId": "t_5f1287817ebd",
+      "sourceTerm": "野狐禪",
+      "RelPath": "J/J26/J26nB188.xml",
+      "FromLb": "0758b06",
+      "Kwic": "諸方野狐禪以達磨對梁王實無功德一語",
+      "caseClusterId": "J/J26/J26nB188.xml:58657:60086",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "入就瑞白禪師語錄",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Ruibai Mingxue",
+        "AttributionNote": "Recorded Sayings of Chan Master Ruibai (入就瑞白禪師語錄), in Ruibai Mingxue's memorial hall address for his late teacher. Ruibai Mingxue is the exact speaker who criticizes 'wild-fox Chan from various quarters' for using Bodhidharma's reply to Emperor Wu of Liang, 'really, no merit,' as a lineage label. Bodhidharma is the quoted case speaker whose words Ruibai discusses, not the speaker of the headword-bearing judgment.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "quoted-case-speaker"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

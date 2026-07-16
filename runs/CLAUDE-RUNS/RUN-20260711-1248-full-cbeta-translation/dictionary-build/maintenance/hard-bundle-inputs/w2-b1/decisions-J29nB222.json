@@ -1,0 +1,43 @@
+{
+  "source": "J/J29/J29nB222.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_6edb551acb53:0007b20:1:2",
+      "entryId": "t_6edb551acb53",
+      "sourceTerm": "知解",
+      "RelPath": "J/J29/J29nB222.xml",
+      "FromLb": "0007b20",
+      "Kwic": "神會、圭峰尚斥為知解宗徒",
+      "caseClusterId": "J/J29/J29nB222.xml:40600:40745",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "夔州臥龍字水禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wolong Zishui",
+        "AttributionNote": "Recorded Sayings of Chan Master Wolong Zishui (夔州臥龍字水禪師語錄): in his hall address, Wolong Zishui says that even Shenhui and Guifeng Zongmi were rejected as followers of conceptual understanding and asks what hope remains for loose expounders of words.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shenhui",
+            "Roles": [
+              "master-discussed"
+            ]
+          },
+          {
+            "MasterName": "Guifeng Zongmi",
+            "Roles": [
+              "master-discussed"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_6edb551acb53:0007b20:1:2"
+  ]
+}

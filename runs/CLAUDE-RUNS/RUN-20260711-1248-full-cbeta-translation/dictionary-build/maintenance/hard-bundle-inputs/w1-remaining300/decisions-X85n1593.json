@@ -1,0 +1,97 @@
+{
+  "source": "X/X85/X85n1593.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_782f20a368c3:0401a18:1:2",
+      "entryId": "t_782f20a368c3",
+      "sourceTerm": "省悟",
+      "RelPath": "X/X85/X85n1593.xml",
+      "FromLb": "0401a18",
+      "Kwic": "石鞏慧藏禪師初為獵人射鹿，因遇馬，祖令自射，無下手處，省悟。",
+      "caseClusterId": "X/X85/X85n1593.xml:260904:261691",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗正脉",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shigong Huizang",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗正脉. Record of Lineage Pivot Essentials (宗門統要續集), Shigong Huizang biography. Shigong Huizang is the exact grammatical actor: while still a deer-hunter he meets Mazu Daoyi, cannot shoot when Mazu orders him to shoot himself, and awakens.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "teacher",
+              "interlocutor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2852a9ae231c:0477b14:2:1",
+      "entryId": "t_2852a9ae231c",
+      "sourceTerm": "隨波逐浪",
+      "RelPath": "X/X85/X85n1593.xml",
+      "FromLb": "0477b14",
+      "Kwic": "見色聞聲，隨波逐浪，流轉",
+      "caseClusterId": "X/X85/X85n1593.xml:886815:887384",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗正脉",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Qingshan Neng",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗正脉. Record of Lineage Pivot Essentials (宗門統要續集), Qingshan Neng section. Qingshan Neng is the exact hall speaker who says that beings, seeing forms and hearing sounds, follow waves and chase currents, revolve through the three realms, and sink among the four modes of birth."
+      }
+    },
+    {
+      "key": "t_461377f9b1da:0501b13:1:3",
+      "entryId": "t_461377f9b1da",
+      "sourceTerm": "顧鑒咦",
+      "RelPath": "X/X85/X85n1593.xml",
+      "FromLb": "0501b13",
+      "Kwic": "僧問：覿面相逢處，如何顧鑒咦？乞師垂半偈，免使後人疑。",
+      "caseClusterId": "X/X85/X85n1593.xml:1083261:1083547",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗正脉",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-residual-six",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "禪宗正脉. an unnamed questioning monk is the exact actor. Record of Lineage Pivot Essentials (宗門統要續集), Zifu Quan section. An unnamed monk is the exact speaker who asks how one looks after the encounter face to face and requests half a verse; Zifu Quan answers him. All six rungs leave the questioning monk personally unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zifu Quan",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,30 @@
+{
+  "source": "J/J25/J25nB156.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_c728f3a8e02b:0059a02:1:3",
+      "entryId": "t_c728f3a8e02b",
+      "sourceTerm": "家風",
+      "RelPath": "J/J25/J25nB156.xml",
+      "FromLb": "0059a02",
+      "Kwic": "佛祖家風，衲僧活計，百姓日用，無不在內，喫粥喫飯，也要仔細。",
+      "caseClusterId": "J/J25/J25nB156.xml:36718:96182",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "無幻禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuhuan",
+        "ActorAttribution": null,
+        "AttributionNote": "無幻禪師語錄. Full six-rung exact-turn review identifies Wuhuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_c728f3a8e02b:0059a02:1:3"
+  ]
+}

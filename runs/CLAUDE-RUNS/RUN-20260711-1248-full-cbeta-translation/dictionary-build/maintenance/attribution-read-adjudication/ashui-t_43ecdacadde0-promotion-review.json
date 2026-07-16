@@ -1,0 +1,29 @@
+{
+  "entryId": "t_43ecdacadde0",
+  "SourceTerm": "阿誰",
+  "disposition": "REVISE",
+  "reviewScope": "Full current definition, eight complete occurrence cases, and three claim anchors",
+  "reviewedInputSha256": "07621b64764fddee19a04a0893398a0037c40cde39f7b5401b7d026b19a6734d",
+  "revisedOutputSha256": "9d09e8783ca5b98dc03297ff9cc1a1b84d66d6ea248fb8535ba1f2c8d2357d2c",
+  "selfApproved": false,
+  "promotionReady": false,
+  "requiresIndependentReviewOfRevisedBytes": true,
+  "findings": [
+    "The 景德傳燈錄 scripture-lecturer occurrence belongs to Dazhu Huihai's 越州大珠慧海禪師 section, not Mazu Daoyi.",
+    "The Note repeated its frozen-corpus concordance sentence four times.",
+    "Both defects were repaired inline and the explanatory prose now names Dazhu Huihai."
+  ],
+  "validation": {
+    "attributionAuditHardFailures": 0,
+    "zcExactChecked": 11,
+    "zcExactFailures": 0,
+    "occurrencesChecked": 8,
+    "claimAnchorsChecked": 3,
+    "ownHeadwordFailures": 0
+  },
+  "artifacts": {
+    "ledger": "ashui-t_43ecdacadde0-independent-review-ledger.json",
+    "attributionAudit": "ashui-t_43ecdacadde0-attribution-audit.json",
+    "zcVerify": "ashui-t_43ecdacadde0-zc-verify.json"
+  }
+}

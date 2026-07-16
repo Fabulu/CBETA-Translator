@@ -1,0 +1,62 @@
+# Hard bundle ledger — hard-w3-b1
+
+- Worker: `/root/source_x66_batch`
+- Reviewed: 150/150
+- Applied and fully gated: 150/150
+- Completed sources: 53/53
+
+## Completed sources
+
+- `C/C077/C077n1710.xml` — 14 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `B/B25/B25n0145.xml` — 11 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `B/B25/B25n0144.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J26/J26nB178.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J33/J33nB294.xml` — 6 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB202.xml` — 7 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `C/C078/C078n1720.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J25/J25nB171.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J34/J34nB311.xml` — 6 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J26/J26nB187.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB208.xml` — 6 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J36/J36nB359.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `B/B27/B27n0152.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J10/J10nA158.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `D/D48/D48n8939.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J27/J27nB198.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J34/J34nB299.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J26/J26nB177.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J27/J27nB190.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB219.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J25/J25nB174.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J36/J36nB369.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J37/J37nB386.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB406.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J26/J26nB188.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB244.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J34/J34nB300.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J27/J27nB192.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB212.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `B/B14/B14n0082.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J20/J20nB098.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J27/J27nB197.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J32/J32nB273.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J33/J33nB286.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J37/J37nB392.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J26/J26nB180.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB220.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB249.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J37/J37nB394.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J25/J25nB156.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB211.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB223.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB239.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB242.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J33/J33nB280.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J37/J37nB396.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J27/J27nB191.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J28/J28nB203.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J29/J29nB235.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J34/J34nB301.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J34/J34nB304.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J35/J35nB343.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J37/J37nB384.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.

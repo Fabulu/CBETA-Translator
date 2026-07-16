@@ -1,0 +1,72 @@
+{
+  "generatedUtc": "2026-07-15T20:35:17.926720+00:00",
+  "entryCount": 19,
+  "claimCount": 3,
+  "candidatePhraseCount": 2,
+  "mismatchCount": 0,
+  "noNearCandidateCount": 1,
+  "claims": [
+    {
+      "entryId": "t_75a477117870",
+      "sourceTerm": "紫芝",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 136,
+      "unit": "hits",
+      "candidatePhrase": "紫芝",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "紫芝"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The unsplit string has 136 hits in 72 allowlisted texts, including collisions wit",
+      "currentHits": 142,
+      "currentFiles": 77,
+      "currentWorks": 76,
+      "expectedForUnit": 142,
+      "audit": "no-near-candidate"
+    },
+    {
+      "entryId": "t_75a477117870",
+      "sourceTerm": "紫芝",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 21,
+      "unit": "hits",
+      "candidatePhrase": "紫芝歌",
+      "candidateDistance": 6,
+      "candidatePhrases": [
+        "紫芝歌",
+        "紫芝"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "allowlisted texts, including collisions with personal and place names. Purple Fungus Song (紫芝歌) has 21 hits in 19 texts; gathering purple fungus (採紫芝) occurs",
+      "currentHits": 21,
+      "currentFiles": 19,
+      "currentWorks": 18,
+      "expectedForUnit": 21,
+      "audit": "match"
+    },
+    {
+      "entryId": "t_75a477117870",
+      "sourceTerm": "紫芝",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 19,
+      "unit": "texts",
+      "candidatePhrase": "紫芝歌",
+      "candidateDistance": 17,
+      "candidatePhrases": [
+        "紫芝歌",
+        "紫芝"
+      ],
+      "genericHeadwordClaim": false,
+      "context": " texts, including collisions with personal and place names. Purple Fungus Song (紫芝歌) has 21 hits in 19 texts; gathering purple fungus (採紫芝) occurs once. Six e",
+      "currentHits": 21,
+      "currentFiles": 19,
+      "currentWorks": 18,
+      "expectedForUnit": 19,
+      "audit": "match"
+    }
+  ]
+}

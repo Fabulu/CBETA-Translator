@@ -1,0 +1,55 @@
+{
+  "source": "J/J32/J32nB272.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T04:44:05Z",
+  "rows": [
+    {
+      "key": "t_31575552ede2:0185a03:1:2",
+      "entryId": "t_31575552ede2",
+      "sourceTerm": "頑空",
+      "RelPath": "J/J32/J32nB272.xml",
+      "FromLb": "0185a03",
+      "Kwic": "莫認頑空便為自己，洞山五位曲為今時，不究根源妄生階塹。",
+      "caseClusterId": "J/J32/J32nB272.xml:26526:27495",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "明州天童景德禪寺宏智覺禪師語錄",
+      "defaultMasterName": "Hongzhi Zhengjue",
+      "candidateBasis": "title",
+      "Override": null
+    },
+    {
+      "key": "t_b669cf104663:0192b08:1:3",
+      "entryId": "t_b669cf104663",
+      "sourceTerm": "兩堂爭貓",
+      "RelPath": "J/J32/J32nB272.xml",
+      "FromLb": "0192b08",
+      "Kwic": "南泉一日兩堂爭貓，泉提起貓云：「道得即不斬。」眾無對，泉斬貓為兩段。南泉舉問趙州，州脫鞋戴出，泉云：「子在，救得貓兒。」",
+      "caseClusterId": "J/J32/J32nB272.xml:76795:76960",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "明州天童景德禪寺宏智覺禪師語錄",
+      "defaultMasterName": "Hongzhi Zhengjue",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monastic groups",
+          "ActorLabel": "unnamed monks of the two halls",
+          "ActorRole": "collective actors",
+          "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T04:44:05Z"
+        },
+        "AttributionNote": "The Recorded Sayings of Chan Master Hongzhi Jue at Tiantong Jingde Chan Monastery (明州天童景德禪寺宏智覺禪師語錄), in a case later versified by Hongzhi Zhengjue. The unnamed monks of the two halls are the collective actors contending over the cat; Nanquan Puyuan raises and cuts the cat, and Zhaozhou Congshen later puts a sandal on his head. The line, expanded context, section header, book title, TEI header, and parallel passages do not name the monks of either hall.",
+        "ContextMasters": [
+          {"MasterName": "Nanquan Puyuan", "Roles": ["case-actor", "questioner"]},
+          {"MasterName": "Zhaozhou Congshen", "Roles": ["later-respondent", "case-actor"]},
+          {"MasterName": "Hongzhi Zhengjue", "Roles": ["later-commentator", "record-owner"]}
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

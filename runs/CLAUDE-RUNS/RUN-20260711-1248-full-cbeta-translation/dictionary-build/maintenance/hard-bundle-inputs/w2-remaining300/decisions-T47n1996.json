@@ -1,0 +1,77 @@
+{
+  "source": "T/T47/T47n1996.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_757827b8d4cb:0672c12:1:4",
+      "entryId": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "RelPath": "T/T47/T47n1996.xml",
+      "FromLb": "0672c12",
+      "Kwic": "此事如擊石火閃電光。搆得搆不得。未免喪身失命。",
+      "caseClusterId": "T/T47/T47n1996.xml:30292:30750",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "明覺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baofu Congzhan",
+        "AttributionNote": "Recorded Sayings of Mingjue (明覺禪師語錄): inside an old case raised by Xuedou Chongxian, Baofu Congzhan says that whether one catches it or not, one loses body and life.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b887bf089b98:0677c19:1:4",
+      "entryId": "t_b887bf089b98",
+      "sourceTerm": "當處",
+      "RelPath": "T/T47/T47n1996.xml",
+      "FromLb": "0677c19",
+      "Kwic": "士云。古人道。不離當處常湛然。在那裏。師指景德長老云。只者老子也不知落處。",
+      "caseClusterId": "T/T47/T47n1996.xml:53048:53307",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "明覺禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed lay questioner",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Mingjue (明覺禪師語錄): an unnamed layman quotes the line about not leaving the very place and asks Xuedou Chongxian where it is. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed lay questioner.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

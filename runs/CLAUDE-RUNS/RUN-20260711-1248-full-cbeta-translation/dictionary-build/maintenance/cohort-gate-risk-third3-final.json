@@ -1,0 +1,112 @@
+{
+  "generatedUtc": "2026-07-13T21:19:52.114540+00:00",
+  "elapsedSeconds": 8.939,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_edd5d300476f",
+      "term": "聯燈",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+      "sha256": "46a1787290c2503e4a4e86321a4df216d1405ef2ee8302ffbef6c5b5608414fd"
+    },
+    {
+      "id": "t_1d3473614976",
+      "term": "禮拜",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1d3473614976/entry.v2.json",
+      "sha256": "94e459ab4ca8c12e8bf875e8c62b12232108065cad4e1064a67309003c653dd8"
+    },
+    {
+      "id": "t_c945c2cc0e79",
+      "term": "小參",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_c945c2cc0e79/entry.v2.json",
+      "sha256": "c15a4df223d9dca92a3f6de90c91b3a6e449b121dd28d6cd86491062f5149595"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 40,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_edd5d300476f/entry.v2.json",
+        "id": "t_edd5d300476f",
+        "term": "聯燈",
+        "verified": 11,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1d3473614976/entry.v2.json",
+        "id": "t_1d3473614976",
+        "term": "禮拜",
+        "verified": 14,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_c945c2cc0e79/entry.v2.json",
+        "id": "t_c945c2cc0e79",
+        "term": "小參",
+        "verified": 15,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 4,
+        "occurrences": 40,
+        "named_occurrences": 25,
+        "context_master_links": 18,
+        "attribution_notes": 40,
+        "actor_reviewed_unnamed": 11,
+        "deferred_non_roster_context": 3,
+        "supporting_occurrences": 2,
+        "reviewed_unnamed_prose": 1,
+        "chinese_strings": 47,
+        "anchored_chinese": 47,
+        "actor_impersonal": 4,
+        "deferred_non_roster": 12
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 4,\n    \"occurrences\": 40,\n    \"named_occurrences\": 25,\n    \"context_master_links\": 18,\n    \"attribution_notes\": 40,\n    \"actor_reviewed_unnamed\": 11,\n    \"deferred_non_roster_context\": 3,\n    \"supporting_occurrences\": 2,\n    \"reviewed_unnamed_prose\": 1,\n    \"chinese_strings\": 47,\n    \"anchored_chinese\": 47,\n    \"actor_impersonal\": 4,\n    \"deferred_non_roster\": 12\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpqh5x2pw9.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 2,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 3,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 3,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "occurrences": 40,
+      "tierACandidates": 1,
+      "reviewRequired": 39
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 40,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 39\n}\nreport: maintenance/cohort-gate-risk-third3-final-attribution-packets.json\n",
+    "report": "maintenance/cohort-gate-risk-third3-final-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

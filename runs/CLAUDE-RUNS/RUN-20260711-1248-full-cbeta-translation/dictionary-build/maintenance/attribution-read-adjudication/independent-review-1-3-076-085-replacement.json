@@ -1,0 +1,87 @@
+{
+  "selfReview": false,
+  "reviewer": "Codex attr_reviewer_replacement",
+  "sourceCheckpoint": "current exact author-complete entries plus cohorts-1-3-v6-packets-076-085.json and author repair ledger; all 69 stored occurrences read in their complete packet source units; roster-only gaps deferred/nonblocking",
+  "rows": [
+    {
+      "id": "t_916ec389a07d",
+      "term": "香合",
+      "verdict": "REVISE",
+      "reviewedSha256": "ce69a534b9abe3201dcb148c0013a168bed80fdf30cc5dbe8e988b5157dcb61b",
+      "finding": "All five complete regulation, biography, and encounter units read. The two Weizheng biography rows are correctly recorder-owned and now retain Weizheng in context; the Qingliang row correctly treats lifting the box as narrated action rather than speech. Its ContextMasters role action-performer is outside ACTOR_AUDIT's closed vocabulary, however. Replace it with section-subject/case-figure as warranted and keep the exact-turn decision unchanged.",
+      "selfReview": false
+    },
+    {
+      "id": "t_9571d06dd1c7",
+      "term": "張公喫酒李公醉",
+      "verdict": "KEEP",
+      "reviewedSha256": "c2c9b2843caef52d6da96820b68d3f19113a88c5e157f840856b12fb9483b3fd",
+      "finding": "All six complete interviews, addresses, verse-like extensions, and later raisings read. Xiangtian, Huanglong Zhong, Yunmen, Mingjiao, Xiaoyin Daxin, and Sixin Wuxin own their exact tokens. The actor/consequence mismatch is the smallest reproducible inference from the wording, while the explanation correctly refuses to invent one universal hidden answer.",
+      "selfReview": false
+    },
+    {
+      "id": "t_961b548d6462",
+      "term": "言前",
+      "verdict": "REVISE",
+      "reviewedSha256": "cfb247f4182c95698f083f8d9adab6319978ec8353ab7865a0dc18be976c488a",
+      "finding": "All seven complete addresses, encounter, preface, and transmission units read. Shoushan's explicit 師便打云 turn is now correctly recovered and all direct speakers otherwise hold. The X78n1553 row says 風穴下來言前事 in third-person transmission narration, but its ActorAttribution.Status is impersonal. This has a human/compiler narrator and must be narrated, not impersonal; preserve Fengxue and Shoukuo as contextual figures.",
+      "selfReview": false
+    },
+    {
+      "id": "t_9c0e7c40344c",
+      "term": "碓嘴生花",
+      "verdict": "KEEP",
+      "reviewedSha256": "132a32a435578f03149c34731b3b6160b868cb6fb5e1b9b7aa1d3eeb0bf9d6cb",
+      "finding": "All five complete hall-address, verse, signed-preface, exposition, and interview units read. Cai Lianbi is correctly recovered from the closing signature, while Feiyin, Ruibai, Hanxiu, and Mingjue own their direct tokens. The impossible pestle-tip image is one referent across these deployments and the explanation does not add an external symbolic meaning.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a14a883193a5",
+      "term": "德山棒",
+      "verdict": "KEEP",
+      "reviewedSha256": "73f1107f9ffaa951a1db9cfc1f026137eacf07b7b53fa4d0bf971bd22f683b1a",
+      "finding": "All eight complete addresses, questions, quotations, and commentary units read. The two monk questions are now correctly reviewed-unnamed, Mian Jie owns the imperial-incense address, and every other named direct voice holds. The staff as implement and the countable/receptive blow in 德山棒下 are genuinely different things and each has its own occurrence.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a2c5b2af7b10",
+      "term": "臘八",
+      "verdict": "REVISE",
+      "reviewedSha256": "a28a45b92dd435fddb55b5b4f2ad61f337b129f10b7b12979260ab1cab69ca5f",
+      "finding": "All ten complete occasion/address units read. Nine heading tokens are correctly impersonal editorial labels with their following hall speakers in context, while Feiyin directly says 臘八午夜. Feiyin's ContextMasters roles contain utterer twice; deduplicate the closed role array. The calendrical sense and restrained awakening-association prose otherwise hold.",
+      "selfReview": false
+    },
+    {
+      "id": "t_a989d784dc81",
+      "term": "話會",
+      "verdict": "KEEP",
+      "reviewedSha256": "97a6b959484042af95cc6197d74687103b92cdc3f36d8841288768993298865d",
+      "finding": "All eight complete records read. Guyin Yuncong is correctly restored as the explicit 師云 speaker, and Yuanwu, Dahui, Fayan, Jiufeng, and Tianyi own their direct uses. The explanation accurately derives the critical 'construe the words' deployment from repeated corpus predicates without supplying the meanings that the records themselves withhold.",
+      "selfReview": false
+    },
+    {
+      "id": "t_bb3cdb68e388",
+      "term": "茫然",
+      "verdict": "REVISE",
+      "reviewedSha256": "c7a69b5d0d621b47054e7b0770416e8152b2dd731e9a2305d029b79f3073bc91",
+      "finding": "All seven complete biographies and encounters read. Every 茫然 token is correctly narrator-governed rather than spoken, and Wenshu Zhengdao and Dasui Fazhen are correctly retained as people described. The X68n1319 exchange still has an empty ContextMasters array even though 師搊住…師遂托開 supplies a named section master/respondent around the unnamed monk's reaction. Resolve that master from the section and add permitted contextual roles; do not guess from the title alone.",
+      "selfReview": false
+    },
+    {
+      "id": "t_bdc0cdca39d0",
+      "term": "趙州戴草鞋",
+      "verdict": "KEEP",
+      "reviewedSha256": "7f62a7ca013f1c2a73a80274fa04f3b2cc78cc2d103a63602163af1013072710",
+      "finding": "All five complete addresses and interview cases read. Lia'an and Zhe'an directly raise the case, the two unnamed monks own their questions, and Xuzhou Pudu is correctly recovered from 退耕虛舟/舟曰 rather than misassigned to Mengshan. The explanation stays with the observable second half of the cat case and does not invent its point.",
+      "selfReview": false
+    },
+    {
+      "id": "t_bf467ac18ec0",
+      "term": "佛手",
+      "verdict": "REVISE",
+      "reviewedSha256": "d4cc5517013ec2dddca34c38e731ed4b52a6b63a0d8e1a31711fb58a1ab014de",
+      "finding": "All eight complete Huanglong-case, later-question, verse, deva-kings, and body-part units read. The Huanglong formula's monk question is correctly reviewed-unnamed, the Five Direction Deva Kings are correctly non-master respondents, and the case-name/physical-hand split is real. The opening explanation contains a sentence fragment: 'Huanglong Huinan's recurring question ... one of his Three Barriers.' Rewrite it as a complete English sentence without changing the evidence-bound interpretation.",
+      "selfReview": false
+    }
+  ]
+}

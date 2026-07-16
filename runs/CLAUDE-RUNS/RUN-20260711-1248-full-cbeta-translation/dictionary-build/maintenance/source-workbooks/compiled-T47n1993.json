@@ -1,0 +1,40 @@
+{
+  "source": "T/T47/T47n1993.xml",
+  "compiledFrom": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/source-workbooks/overrides-T47n1993.json",
+  "decisions": [
+    {
+      "entryId": "t_c8ef8a6a8ef7",
+      "sourceTerm": "那箇",
+      "RelPath": "T/T47/T47n1993.xml",
+      "FromLb": "0630b17",
+      "Kwic": "藥山問。汝祇浴得這箇。還浴得那箇麼。遵云。把將那箇來。藥山便休。",
+      "caseClusterId": "T/T47/T47n1993.xml:9431:10928",
+      "Decision": {
+        "MasterName": "Huanglong Huinan",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Yaoshan Weiyan",
+            "Roles": [
+              "embedded case questioner"
+            ]
+          },
+          {
+            "MasterName": "Zun Bunao",
+            "Roles": [
+              "embedded case respondent"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Chan Master Huanglong Huinan (黃龍慧南禪師語錄), bathing-the-Buddha day discourse. Huanglong Huinan is the exact governing speaker who raises and adjudicates the inherited exchange. Inside it, Yaoshan Weiyan asks whether Zun Bunao can bathe 'that one,' and Zun Bunao replies by demanding that 'that one' be brought. Both embedded speakers use 那箇; neither replaces Huanglong as the speaker who presents the case to this assembly."
+      },
+      "ExpectedSourceTitle": "黃龍慧南禪師語錄",
+      "Review": {
+        "reviewer": "Codex Bundle B exact-turn review",
+        "reviewedUtc": "2026-07-14T07:40:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

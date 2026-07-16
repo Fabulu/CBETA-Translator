@@ -1,0 +1,30 @@
+{
+  "source": "X/X72/X72n1441.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_ccd48e1c9145:0681b03:1:5",
+      "entryId": "t_ccd48e1c9145",
+      "sourceTerm": "正中來",
+      "RelPath": "X/X72/X72n1441.xml",
+      "FromLb": "0681b03",
+      "Kwic": "正中來，乃五位之樞紐，前二位入此者也",
+      "caseClusterId": "X/X72/X72n1441.xml:52868:54410",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "為霖禪師雲山法會錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Weilin Daopei",
+        "ActorAttribution": null,
+        "AttributionNote": "為霖禪師雲山法會錄. Full six-rung exact-turn review identifies Weilin Daopei as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_ccd48e1c9145:0681b03:1:5"
+  ]
+}

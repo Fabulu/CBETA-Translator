@@ -1,0 +1,83 @@
+{
+  "repairId": "quick-owner-repair-R2",
+  "entryId": "t_3972185a2e25",
+  "entrySha256": "06d8bdd5b35893831ff99ddd0e5dca941e08975a6a2f353c56acb5747846175b",
+  "occurrences": 6,
+  "verified": 6,
+  "focusedDecision": {
+    "MasterName": null,
+    "ActorAttribution": {
+      "Status": "reviewed-unnamed",
+      "Kind": "monk",
+      "ActorLabel": "unnamed monk",
+      "ActorRole": "questioner",
+      "RungsChecked": [
+        "line",
+        "expanded-context",
+        "section-header",
+        "book-title",
+        "tei-header",
+        "parallel-passage"
+      ],
+      "ReviewedBy": "Codex /root/repair_bird_path",
+      "ReviewedUtc": "2026-07-14T06:24:20Z"
+    },
+    "ContextMasters": [
+      {
+        "MasterName": "Tianzhu Chonghui",
+        "Roles": [
+          "respondent",
+          "section-subject"
+        ]
+      }
+    ],
+    "AttributionNote": "The Compendium of the Five Lamps (五燈會元), Tianzhu Chonghui section. An unnamed monk is the exact speaker who asks the teacher to raise and proclaim the matter within the lineage gate; Tianzhu Chonghui answers with the stone ox and wooden horse couplet. The line, expanded context, section header, book title, TEI header, and the corpus-wide exact parallel search do not give the questioning monk a personal name."
+  },
+  "x82O4Unchanged": true,
+  "rows": [
+    {
+      "RelPath": "T/T47/T47n1997.xml",
+      "FromLb": "0786a25",
+      "ok": true,
+      "MasterName": "Yuanwu Keqin",
+      "ActorStatus": null
+    },
+    {
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0655c08",
+      "ok": true,
+      "MasterName": null,
+      "ActorStatus": "reviewed-unnamed"
+    },
+    {
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0050b21",
+      "ok": true,
+      "MasterName": null,
+      "ActorStatus": "reviewed-unnamed"
+    },
+    {
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0004a05",
+      "ok": true,
+      "MasterName": null,
+      "ActorStatus": null
+    },
+    {
+      "RelPath": "X/X72/X72n1435.xml",
+      "FromLb": "0251a04",
+      "ok": true,
+      "MasterName": "Wuyi Yuanlai",
+      "ActorStatus": null
+    },
+    {
+      "RelPath": "X/X72/X72n1435.xml",
+      "FromLb": "0265c11",
+      "ok": true,
+      "MasterName": "Wuyi Yuanlai",
+      "ActorStatus": null
+    }
+  ],
+  "failures": [],
+  "hardPass": true
+}

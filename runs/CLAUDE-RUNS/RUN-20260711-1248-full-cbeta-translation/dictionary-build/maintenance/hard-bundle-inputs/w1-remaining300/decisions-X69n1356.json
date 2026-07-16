@@ -1,0 +1,37 @@
+{
+  "source": "X/X69/X69n1356.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_5d6035b1e800:0397b16:1:6",
+      "entryId": "t_5d6035b1e800",
+      "sourceTerm": "露地白牛",
+      "RelPath": "X/X69/X69n1356.xml",
+      "FromLb": "0397b16",
+      "Kwic": "華嚴論主深歎法華經中露地白牛，及以是法住法位，世間相常住。",
+      "caseClusterId": "X/X69/X69n1356.xml:206454:214293",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普菴印肅禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Puan Yinsu",
+        "ActorAttribution": null,
+        "AttributionNote": "Recorded Sayings of Chan Master Puan Yinsu (普菴印肅禪師語錄), Puan Yinsu's extended instruction. Puan Yinsu is the exact narrator who says that Li Tongxuan, the Huayan Treatise Lord, deeply praised the open-ground white ox in the Lotus Sutra; Li is the person discussed, not the speaker of this turn.",
+        "ContextMasters": [
+          {
+            "MasterName": "Li Tongxuan",
+            "Roles": [
+              "person-discussed",
+              "quoted-authority"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

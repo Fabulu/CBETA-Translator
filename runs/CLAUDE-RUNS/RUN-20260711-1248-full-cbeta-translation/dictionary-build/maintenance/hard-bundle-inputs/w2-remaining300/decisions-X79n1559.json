@@ -1,0 +1,53 @@
+{
+  "source": "X/X79/X79n1559.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_dfd1dbffe9f2:0310a22:1:5",
+      "entryId": "t_dfd1dbffe9f2",
+      "sourceTerm": "即心即佛",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0310a22",
+      "Kwic": "，詔師居之。上堂曰：五五二十五，案山雷，主山雨。明眼衲僧，莫教錯舉。上堂：若向這裏說即心即佛，大似頭上安頭。若說非心非佛，何異迷頭認影？賞箇名，安箇字，定箇是，立箇非，向甚麼處",
+      "caseClusterId": "X/X79/X79n1559.xml:213718:219546",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dahong Baoen",
+        "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄): inside Dahong Baoen's explicitly headed biography, Dahong Baoen says in a hall address that saying 'this mind is this buddha' here resembles placing a head atop one's head, while saying 'not mind, not buddha' resembles mistaking a reflected head."
+      }
+    },
+    {
+      "key": "t_d1e06fd225fa:0439a08:1:4",
+      "entryId": "t_d1e06fd225fa",
+      "sourceTerm": "入室",
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0439a08",
+      "Kwic": "依白蓮僊法師。入室問具變之道，僊指行燈曰：如此燈者，離性絕非，本自空寂，理則具矣。",
+      "caseClusterId": "X/X79/X79n1559.xml:1101264:1102745",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "嘉泰普燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhengwu Yuanzhi",
+        "AttributionNote": "Jiatai Universal Lamp Record (嘉泰普燈錄): inside Zhengwu Yuanzhi's explicitly headed biography, Zhengwu Yuanzhi relies on Dharma Master Bailian Xian, enters his chamber, and asks about the Way of complete change; Bailian Xian answers by pointing to a moving lamp.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bailian Xian",
+            "Roles": [
+              "teacher",
+              "respondent"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

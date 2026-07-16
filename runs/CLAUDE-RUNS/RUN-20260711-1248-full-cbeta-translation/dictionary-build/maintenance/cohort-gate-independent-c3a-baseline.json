@@ -1,0 +1,104 @@
+{
+  "generatedUtc": "2026-07-13T20:28:02.104361+00:00",
+  "elapsedSeconds": 9.245,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_12fe3700913c",
+      "term": "金翅鳥",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_12fe3700913c/entry.v2.json",
+      "sha256": "cc1f59db657730964ce8844a4dcaad99acf59a8951b2f121ef612accad223625"
+    },
+    {
+      "id": "t_16bbc5599cd2",
+      "term": "木人",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_16bbc5599cd2/entry.v2.json",
+      "sha256": "ab2742f2a1190a27adc089f01b2b5e23f9ee7c44ec9f315200543c4c0833431c"
+    },
+    {
+      "id": "t_7653f61478aa",
+      "term": "石女",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7653f61478aa/entry.v2.json",
+      "sha256": "3d89b0b09753f14257b52dfad7f2cc7c652ffc964a194eb4652372598abef1fb"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 24,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_12fe3700913c/entry.v2.json",
+        "id": "t_12fe3700913c",
+        "term": "金翅鳥",
+        "verified": 9,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_16bbc5599cd2/entry.v2.json",
+        "id": "t_16bbc5599cd2",
+        "term": "木人",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_7653f61478aa/entry.v2.json",
+        "id": "t_7653f61478aa",
+        "term": "石女",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 24,
+        "named_occurrences": 24,
+        "attribution_notes": 24,
+        "deferred_non_roster": 17
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 24,\n    \"named_occurrences\": 24,\n    \"attribution_notes\": 24,\n    \"deferred_non_roster\": 17\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpc_64c5qc.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 2,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 2,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "occurrences": 24,
+      "tierACandidates": 1,
+      "reviewRequired": 23
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 24,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 23\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/cohort-gate-independent-c3a-baseline-attribution-packets.json\n",
+    "report": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/cohort-gate-independent-c3a-baseline-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

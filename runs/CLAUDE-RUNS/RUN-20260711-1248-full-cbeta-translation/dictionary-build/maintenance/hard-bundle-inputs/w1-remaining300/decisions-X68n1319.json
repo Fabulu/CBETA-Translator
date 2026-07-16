@@ -1,0 +1,208 @@
+{
+  "source": "X/X68/X68n1319.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_130eccf5145c:0523c19:1:5",
+      "entryId": "t_130eccf5145c",
+      "sourceTerm": "重關",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0523c19",
+      "Kwic": "境智融通，色空無礙，獲大自在，常住不動，是則名為透重關，名為大死大活者。透重關後，家舍即在途中，途中不離家舍",
+      "caseClusterId": "X/X68/X68n1319.xml:40686:46542",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongzheng Emperor",
+        "ActorAttribution": null,
+        "AttributionNote": "御選語錄, imperial general preface. The Yongzheng Emperor is the exact author: he defines penetrating the heavy barrier as the stage in which mountains, rivers, earth, and the elements are each themselves, and calls it great death and great life."
+      }
+    },
+    {
+      "key": "t_fd1759947989:0523c20:1:5",
+      "entryId": "t_fd1759947989",
+      "sourceTerm": "大死",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0523c20",
+      "Kwic": "是則名為透重關，名為大死大活者。",
+      "caseClusterId": "X/X68/X68n1319.xml:40686:46542",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongzheng Emperor",
+        "ActorAttribution": null,
+        "AttributionNote": "御選語錄, imperial general preface. The Yongzheng Emperor is the exact author: in his three-barrier account he names penetrating the heavy barrier 'great death and great life.'"
+      }
+    },
+    {
+      "key": "t_a93cfc8fba26:0560c09:1:2",
+      "entryId": "t_a93cfc8fba26",
+      "sourceTerm": "分疏不下",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0560c09",
+      "Kwic": "云：王爺還是演教？還是酬機？王云：先演教，後酬機。云：衲子分疏不下。",
+      "caseClusterId": "X/X68/X68n1319.xml:282800:283383",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "御選語錄, Recorded Sayings of Prince Yong. The exact headword-bearing speaker is an unnamed questioning monk: after asking whether the prince expounds doctrine or responds to the occasion, he says that this patch-robed monk cannot explain it. All six rungs leave him unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yongzheng Emperor",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_dc5f4386a0ed:0561b12:1:3",
+      "entryId": "t_dc5f4386a0ed",
+      "sourceTerm": "明心見性",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0561b12",
+      "Kwic": "有侍從一人求請開示明心見性之法，王云：大海裏張燈捕魚蝦去即得。從者云：水裏何可張燈？王云：水裏既不可張燈，心如何可明？性如何可見？",
+      "caseClusterId": "X/X68/X68n1319.xml:287702:288143",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed attendant seeking instruction",
+          "ActorRole": "requester",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "御選語錄, Recorded Sayings of Prince Yong. The exact headword-bearing actor is an unnamed attendant seeking instruction: the narrative says he requests instruction in the method of illuminating mind and seeing nature; Prince Yong replies with the image of lighting a lamp under the sea. All six rungs leave the attendant unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yongzheng Emperor",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_df9aad1ce22d:0562b19:1:5",
+      "entryId": "t_df9aad1ce22d",
+      "sourceTerm": "芥子",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0562b19",
+      "Kwic": "問：如何是芥子納須彌？王云：易。問：如何是須彌納芥子？王云：難。",
+      "caseClusterId": "X/X68/X68n1319.xml:292877:296094",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioner",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "御選語錄, Recorded Sayings of Prince Yong. The exact headword-bearing speaker is an unnamed questioner in the rapid one-word catechism: he asks both how a mustard seed contains Mount Sumeru and how Sumeru contains a mustard seed; Prince Yong answers 'easy' and 'difficult.' All six rungs leave the questioner unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yongzheng Emperor",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_dc5f4386a0ed:0570a05:1:4",
+      "entryId": "t_dc5f4386a0ed",
+      "sourceTerm": "明心見性",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0570a05",
+      "Kwic": "明者明其心，見者見其體。見性明心體，明心見性理。",
+      "caseClusterId": "X/X68/X68n1319.xml:345061:345116",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongzheng Emperor",
+        "ActorAttribution": null,
+        "AttributionNote": "御選語錄, Recorded Sayings of Prince Yong, verse titled 心體. The Yongzheng Emperor is the exact verse author: the four-line wordplay pairs illuminating mind with seeing its substance and seeing nature with the principle of illuminating mind."
+      }
+    },
+    {
+      "key": "t_8184622cecd7:0588a02:1:1",
+      "entryId": "t_8184622cecd7",
+      "sourceTerm": "大徹大悟",
+      "RelPath": "X/X68/X68n1319.xml",
+      "FromLb": "0588a02",
+      "Kwic": "古人大徹大悟，參學事畢，且於水邊林下長養聖胎，不惜口頭生醭，龍天推出，方乃為人。",
+      "caseClusterId": "X/X68/X68n1319.xml:465835:466460",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "御選語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunqi Zhuhong",
+        "ActorAttribution": null,
+        "AttributionNote": "御選語錄, selected Recorded Sayings of Yunqi Lianchi. Yunqi Zhuhong is the exact author: in the instruction 'only when one's own affair is finished may one act for others,' he says the ancients, after great thorough awakening and completion of study, nurtured the sacred embryo in seclusion before teaching others."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

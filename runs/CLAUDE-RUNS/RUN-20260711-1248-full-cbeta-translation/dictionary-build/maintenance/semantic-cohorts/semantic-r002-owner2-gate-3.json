@@ -1,0 +1,138 @@
+{
+  "generatedUtc": "2026-07-14T10:26:31.659568+00:00",
+  "elapsedSeconds": 10.108,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_e2c55f8feca0",
+      "term": "三寸",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_e2c55f8feca0/entry.v2.json",
+      "sha256": "4ce30b4c14cb1cbff02866b323707745ab68383ed4724be55a8235aacc4b037d"
+    },
+    {
+      "id": "t_1307081cf96c",
+      "term": "不昧因果",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1307081cf96c/entry.v2.json",
+      "sha256": "cf65cfaa92c8256a37e7914c63a29a573f559677d47a24f159ed4610f2e7c6a1"
+    },
+    {
+      "id": "t_da6965508721",
+      "term": "休歇",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_da6965508721/entry.v2.json",
+      "sha256": "39848febbc9da6d57da72d69e07ff39f5556f90a5f6fd54073ffc9d86f351469"
+    },
+    {
+      "id": "t_91d84c849fc7",
+      "term": "保任",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_91d84c849fc7/entry.v2.json",
+      "sha256": "146deff7c018468cfdea0c16991b3c1511754af2c4ed0a9bdf60eb57b6e29212"
+    },
+    {
+      "id": "t_61c90d3a8edd",
+      "term": "兼中到",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_61c90d3a8edd/entry.v2.json",
+      "sha256": "cce4cc0b7326fe068d16c9c69e49cec7270e06a0f6f74887c811f58197cd0f6a"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 39,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_e2c55f8feca0/entry.v2.json",
+        "id": "t_e2c55f8feca0",
+        "term": "三寸",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_1307081cf96c/entry.v2.json",
+        "id": "t_1307081cf96c",
+        "term": "不昧因果",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_da6965508721/entry.v2.json",
+        "id": "t_da6965508721",
+        "term": "休歇",
+        "verified": 11,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_91d84c849fc7/entry.v2.json",
+        "id": "t_91d84c849fc7",
+        "term": "保任",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_61c90d3a8edd/entry.v2.json",
+        "id": "t_61c90d3a8edd",
+        "term": "兼中到",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 7,
+        "occurrences": 39,
+        "named_occurrences": 35,
+        "attribution_notes": 39,
+        "deferred_non_roster": 11,
+        "chinese_strings": 54,
+        "anchored_chinese": 54,
+        "supporting_occurrences": 2,
+        "actor_reviewed_unnamed": 4,
+        "context_master_links": 8,
+        "deferred_non_roster_context": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 7,\n    \"occurrences\": 39,\n    \"named_occurrences\": 35,\n    \"attribution_notes\": 39,\n    \"deferred_non_roster\": 11,\n    \"chinese_strings\": 54,\n    \"anchored_chinese\": 54,\n    \"supporting_occurrences\": 2,\n    \"actor_reviewed_unnamed\": 4,\n    \"context_master_links\": 8,\n    \"deferred_non_roster_context\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 5,
+      "passing": 3,
+      "flagged": 2,
+      "flagsByKind": {
+        "opening-interpretation-needs-review": 2
+      }
+    },
+    "output": "{\n  \"entries\": 5,\n  \"passing\": 3,\n  \"flagged\": 2,\n  \"flagsByKind\": {\n    \"opening-interpretation-needs-review\": 2\n  }\n}\nreport: /tmp/tmpo352g7to.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 5,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 5,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 5,
+      "occurrences": 39,
+      "tierACandidates": 1,
+      "reviewRequired": 38
+    },
+    "output": "{\n  \"entries\": 5,\n  \"occurrences\": 39,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 38\n}\nreport: maintenance/semantic-cohorts/semantic-r002-owner2-gate-3-attribution-packets.json\n",
+    "report": "maintenance/semantic-cohorts/semantic-r002-owner2-gate-3-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

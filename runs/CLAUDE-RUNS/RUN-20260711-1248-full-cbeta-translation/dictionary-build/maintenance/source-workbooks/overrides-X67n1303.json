@@ -1,0 +1,40 @@
+{
+  "source": "X/X67/X67n1303.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:41:38Z",
+  "rows": [
+    {
+      "key": "t_76cff76a9bd3:0282b13:1:1",
+      "entryId": "t_76cff76a9bd3",
+      "sourceTerm": "丹霞燒佛",
+      "RelPath": "X/X67/X67n1303.xml",
+      "FromLb": "0282b13",
+      "Kwic": "第二十五則丹霞燒佛第二十五則丹霞燒佛示眾云：熱則趂凉，非為分外；寒時向火，亦是尋常。",
+      "caseClusterId": "X/X67/X67n1303.xml:137919:139102",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "林泉老人評唱投子青和尚頌古空谷集",
+      "defaultMasterName": "Danxia Tianran",
+      "candidateBasis": "inline",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "case heading",
+          "ActorLabel": "case twenty-five heading",
+          "ActorRole": "textual division",
+          "GrammarEvidence": "The exact headword appears twice in the XML section title 第二十五則丹霞燒佛, immediately before a separate paragraph beginning 示眾云. The title is a numbered nominal heading with no speech marker or human subject; it labels the case rather than constituting Danxia Tianran's or Linquan Conglun's spoken turn.",
+          "ReviewedBy": "Codex /root/feedback_lexicography",
+          "ReviewedUtc": "2026-07-14T05:41:38Z"
+        },
+        "ContextMasters": [
+          {"MasterName": "Danxia Tianran", "Roles": ["case-subject"]},
+          {"MasterName": "Linquan Conglun", "Roles": ["commentator", "collection-owner"]}
+        ],
+        "AttributionNote": "Linquan Conglun's Empty Valley Collection (林泉老人評唱投子青和尚頌古空谷集). The exact headword is the impersonal narratorial case twenty-five heading, ‘Danxia burns the buddha,’ not a spoken turn. Danxia Tianran is the named subject of the old case; Linquan Conglun supplies the following instruction and commentary."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

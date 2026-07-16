@@ -1,0 +1,81 @@
+{
+  "generatedUtc": "2026-07-13T21:06:35.170540+00:00",
+  "elapsedSeconds": 3.829,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_26ea593a58e2",
+      "term": "下座",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26ea593a58e2/entry.v2.json",
+      "sha256": "9c55853edbe9eac123604c7c4314f8b36e09e53949034d4f34f6f7cf63e51daf"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 14,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_26ea593a58e2/entry.v2.json",
+        "id": "t_26ea593a58e2",
+        "term": "下座",
+        "verified": 14,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 2,
+        "occurrences": 14,
+        "named_occurrences": 12,
+        "deferred_non_roster": 3,
+        "context_master_links": 7,
+        "deferred_non_roster_context": 1,
+        "attribution_notes": 14,
+        "actor_reviewed_unnamed": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 2,\n    \"occurrences\": 14,\n    \"named_occurrences\": 12,\n    \"deferred_non_roster\": 3,\n    \"context_master_links\": 7,\n    \"deferred_non_roster_context\": 1,\n    \"attribution_notes\": 14,\n    \"actor_reviewed_unnamed\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp29ewk3az.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 0,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 0,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14\n}\nreport: maintenance/cohort-gate-risk2-xiazuo-final-attribution-packets.json\n",
+    "report": "maintenance/cohort-gate-risk2-xiazuo-final-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

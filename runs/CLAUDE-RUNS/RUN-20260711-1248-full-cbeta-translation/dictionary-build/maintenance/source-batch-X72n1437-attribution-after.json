@@ -1,0 +1,40 @@
+{
+  "scope": "15 entries containing the 18 assigned X/X72/X72n1437.xml occurrences",
+  "command": "audit_attribution.py --json <15 entry.v2.json paths>",
+  "counts": {
+    "entries": 15,
+    "senses": 15,
+    "occurrences": 84,
+    "named_occurrences": 29,
+    "deferred_non_roster": 3,
+    "actor_reviewed_unnamed": 1,
+    "actor_impersonal": 1,
+    "unresolved_actor": 53,
+    "attribution_notes": 84,
+    "note_missing_speaker": 63,
+    "note_missing_source": 51,
+    "vague_attributor": 12,
+    "chinese_strings": 185,
+    "anchored_chinese": 122,
+    "dangling_chinese": 63,
+    "context_master_links": 7
+  },
+  "hardFailures": 242,
+  "focused_source_rows": {
+    "assigned": 18,
+    "resolved_named": 16,
+    "reviewed_unnamed": 1,
+    "impersonal": 1,
+    "source_title_present": 18,
+    "kwic_verified": 18,
+    "anchor_pairs_match": 18
+  },
+  "modified_file_audit": {
+    "entries_parse_ok": 15,
+    "occurrences": 84,
+    "kwic_verified": 84,
+    "exact_anchor_pairs_match": 84,
+    "git_diff_check": "pass"
+  },
+  "note": "Remaining whole-file failures belong to the 66 non-assigned occurrences and to whole-entry prose; this source-batched pass did not claim whole-entry remediation."
+}

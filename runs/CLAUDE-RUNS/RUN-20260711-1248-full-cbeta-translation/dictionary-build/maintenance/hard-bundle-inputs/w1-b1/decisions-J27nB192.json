@@ -1,0 +1,70 @@
+{
+  "source": "J/J27/J27nB192.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_130eccf5145c:0193b11:1:4",
+      "entryId": "t_130eccf5145c",
+      "sourceTerm": "重關",
+      "RelPath": "J/J27/J27nB192.xml",
+      "FromLb": "0193b11",
+      "Kwic": "僧問：「大開爐煹，鋾鑄聖凡，末後重關，請師拈出。」師云：「但得雪消後，自然春到來。」",
+      "caseClusterId": "J/J27/J27nB192.xml:69013:69567",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大休珠禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "大休珠禪師語錄, opening-of-retreat public exchange. The exact headword-bearing speaker is an unnamed questioning monk: he asks Daxiu Zhu to bring out the final heavy barrier, and Daxiu answers that when the snow melts spring naturally arrives. The six-rung review found no personal name for this monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Daxiu Zhu",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_77774b8724f1:0213c27:1:5",
+      "entryId": "t_77774b8724f1",
+      "sourceTerm": "付法",
+      "RelPath": "J/J27/J27nB192.xml",
+      "FromLb": "0213c27",
+      "Kwic": "千個省發者不如一付法者，千個付法者不如一出世者。",
+      "caseClusterId": "J/J27/J27nB192.xml:207299:208600",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大休珠禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Daxiu Zhu",
+        "ActorAttribution": null,
+        "AttributionNote": "大休珠禪師語錄, general address on Dharma transmission. Daxiu Zhu is the exact speaker: he ranks a thousand students below one who awakens, a thousand awakened people below one entrusted with the Dharma, and a thousand such recipients below one who appears in the world to teach."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

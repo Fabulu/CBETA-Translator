@@ -1,0 +1,28 @@
+{
+  "source": "J/J28/J28nB212.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_1e3d3a5173a6:0475c24:1:4",
+      "entryId": "t_1e3d3a5173a6",
+      "sourceTerm": "回互",
+      "RelPath": "J/J28/J28nB212.xml",
+      "FromLb": "0475c24",
+      "Kwic": "下喝，賓主分明，賓則始終賓，主則始終主。雖然如是，未免賓主相待，彼此回互。直須賓不是賓、賓中有主，主不是主、主中有賓，賓主交參、互換無位",
+      "caseClusterId": "J/J28/J28nB212.xml:32679:33333",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "二隱謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Eryin Mi",
+        "ActorAttribution": null,
+        "AttributionNote": "二隱謐禪師語錄, hall address raising Linji's guest-and-host exchange. Eryin Mi is the exact speaker of the stored comment: he says that even clearly distinguished guest and host still await and reciprocally interact with one another, then demands their interpenetration and interchange."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

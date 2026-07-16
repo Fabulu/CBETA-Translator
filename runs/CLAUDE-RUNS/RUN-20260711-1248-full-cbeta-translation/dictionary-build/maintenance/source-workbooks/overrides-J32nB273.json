@@ -1,0 +1,36 @@
+{
+  "source": "J/J32/J32nB273.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T06:30:00Z",
+  "rows": [
+    {
+      "key": "t_44d14cd3a935:0204c01:2:2",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "J/J32/J32nB273.xml",
+      "FromLb": "0204c01",
+      "Kwic": "罽賓國王斬師子尊者頭，王臂自落。雪竇云：『作家君王，天然有在。』",
+      "caseClusterId": "J/J32/J32nB273.xml:14479:14721",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "千巖和尚語錄",
+      "defaultMasterName": "Xuedou Chongxian",
+      "candidateBasis": "inline",
+      "Override": {
+        "MasterName": "Qianyan Yuanzhang",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "quoted commentator on the inherited case"
+            ]
+          }
+        ],
+        "AttributionNote": "Recorded Sayings of Qianyan (千巖和尚語錄), public instruction. Qianyan Yuanzhang is the exact governing speaker who raises the inherited case of the king of Kashmir beheading Venerable Siṃha. Xuedou Chongxian is the explicitly named commentator quoted immediately afterward, not the speaker of the case-narration clause containing 師子. The wider case also preserves later comments by Huanglong Xin and Dahui Zonggao."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,36 @@
+{
+  "source": "J/J36/J36nB363.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_1f6124388d25:0782a07:1:7",
+      "entryId": "t_1f6124388d25",
+      "sourceTerm": "燈籠",
+      "RelPath": "J/J36/J36nB363.xml",
+      "FromLb": "0782a07",
+      "Kwic": "禪師上堂：『法昌今日開爐，行腳僧無一箇，惟有十八高人，緘口圍爐打坐。不是規矩嚴難，免見諸人話墮。直饒口似秤鎚，未免燈籠勘破。不知道絕功勳，妄自脩因證果。』喝曰：『但能一念回光，頓脫三乘羈鎖。』」師云：「這老孟八得恁麼啀啀喍喍，你怕佛",
+      "caseClusterId": "J/J36/J36nB363.xml:17577:18284",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "文穆念禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fachang Yu",
+        "AttributionNote": "Recorded Sayings of Wenmu Nian (文穆念禪師語錄): inside a case raised by Wenmu Nian, Fachang Yu is the explicitly named earlier speaker who says even sealed-mouth sitters are exposed by the lantern.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wenmu Nian",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

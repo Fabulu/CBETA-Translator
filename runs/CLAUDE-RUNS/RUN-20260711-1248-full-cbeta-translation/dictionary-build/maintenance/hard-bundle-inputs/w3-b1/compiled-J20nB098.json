@@ -1,0 +1,64 @@
+{
+  "source": "J/J20/J20nB098.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J20nB098.json",
+  "decisions": [
+    {
+      "entryId": "t_dc854763849c",
+      "sourceTerm": "聲色",
+      "RelPath": "J/J20/J20nB098.xml",
+      "FromLb": "0507a03",
+      "Kwic": "非一面作功名、受富貴、耽聲色、料理世情，一面又去學可以了得。",
+      "caseClusterId": "J/J20/J20nB098.xml:29760:30522",
+      "Decision": {
+        "MasterName": "Huangbo Wunian Shenyou",
+        "ActorAttribution": null,
+        "AttributionNote": "黃蘗無念禪師復問. Full six-rung exact-turn review identifies Huangbo Wunian Shenyou as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "黃蘗無念禪師復問",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_dd3bf8dd507a",
+      "sourceTerm": "自性",
+      "RelPath": "J/J20/J20nB098.xml",
+      "FromLb": "0520a12",
+      "Kwic": "且道一句看？」學人無對。師曰：「你被語音塞卻口。」問：「如何是自性？」師曰：「不說，不說。」曰：「如何不說？」師曰：「恐你",
+      "caseClusterId": "J/J20/J20nB098.xml:100147:100468",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "questioner",
+          "ActorLabel": "Unnamed questioner asking about self-nature",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "黃蘗無念禪師復問. Full six-rung exact-turn review identifies Unnamed questioner asking about self-nature as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Huangbo Wunian Shenyou"
+        ]
+      },
+      "ExpectedSourceTitle": "黃蘗無念禪師復問",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

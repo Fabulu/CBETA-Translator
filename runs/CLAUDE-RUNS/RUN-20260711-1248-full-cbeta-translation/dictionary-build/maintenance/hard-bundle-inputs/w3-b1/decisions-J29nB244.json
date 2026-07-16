@@ -1,0 +1,48 @@
+{
+  "source": "J/J29/J29nB244.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_b191c4fa2e9f:0709b10:1:6",
+      "entryId": "t_b191c4fa2e9f",
+      "sourceTerm": "請益",
+      "RelPath": "J/J29/J29nB244.xml",
+      "FromLb": "0709b10",
+      "Kwic": "打云：「蒼天蒼天！」一僧進方丈，纔展具，師便喝，僧云：「特來請益和尚！」師驀面一掌，僧云：「痛快痛快！」師復打，僧擬進語，師",
+      "caseClusterId": "J/J29/J29nB244.xml:104942:105221",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "三山來禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk requesting instruction",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "三山來禪師語錄. Full six-rung exact-turn review identifies Unnamed monk requesting instruction as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Sanshan Denglai"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_b191c4fa2e9f:0709b10:1:6"
+  ]
+}

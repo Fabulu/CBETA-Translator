@@ -1,0 +1,49 @@
+{
+  "source": "J/J27/J27nB189.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-b1/decisions-J27nB189.json",
+  "decisions": [
+    {
+      "entryId": "t_6ac3f9f0a2d2",
+      "sourceTerm": "渠今正是我",
+      "RelPath": "J/J27/J27nB189.xml",
+      "FromLb": "0041a19",
+      "Kwic": "一僧著語云：「渠今正是我，我今不是渠。」師云：「銜銕負鞍有日在。且道過在甚麼處？試檢點看。」",
+      "caseClusterId": "J/J27/J27nB189.xml:221112:221275",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "interjecting commentator",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Sanyi Mingyu (三宜盂禪師語錄): an unnamed monk adds the comment 'he is now precisely me; I now am not him'; Sanyi Mingyu warns of bearing bit and saddle and asks the assembly to locate the fault. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Sanyi Mingyu",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "三宜盂禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:30:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

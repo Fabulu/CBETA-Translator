@@ -1,0 +1,46 @@
+{
+  "source": "J/J34/J34nB305.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e7f672904614:0401c25:1:4",
+      "entryId": "t_e7f672904614",
+      "sourceTerm": "心地",
+      "RelPath": "J/J34/J34nB305.xml",
+      "FromLb": "0401c25",
+      "Kwic": "拈起拄杖，云：「這箇是心地印。」",
+      "caseClusterId": "J/J34/J34nB305.xml:20463:20807",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "國清大庾韜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guoqing Dayu Xingtao",
+        "ActorAttribution": null,
+        "AttributionNote": "國清大庾韜禪師語錄, instruction to the assembly. Guoqing Dayu Xingtao is the exact speaker: he raises his staff and declares, 'This is the mind-ground seal,' then draws one stroke and identifies it as the patriarchal barrier."
+      }
+    },
+    {
+      "key": "t_5bc4624579e5:0404a29:1:4",
+      "entryId": "t_5bc4624579e5",
+      "sourceTerm": "銀碗裏盛雪",
+      "RelPath": "J/J34/J34nB305.xml",
+      "FromLb": "0404a29",
+      "Kwic": "辨得即山是山、水是水，銀碗裏盛雪；辨不得山不是山、水不是水，墨汁裏洗炭。",
+      "caseClusterId": "J/J34/J34nB305.xml:31540:37289",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "國清大庾韜禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Guoqing Dayu Xingtao",
+        "ActorAttribution": null,
+        "AttributionNote": "國清大庾韜禪師語錄, biographical record quoting Guoqing's instruction to Magistrate Zhan Que'an. Guoqing Dayu Xingtao is the exact quoted speaker: he says that if one distinguishes it, mountains are mountains and waters are waters, snow heaped in a silver bowl; if not, mountains and waters are not themselves, charcoal washed in ink."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

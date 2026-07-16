@@ -1,0 +1,88 @@
+{
+  "source": "T/T48/T48n2008.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_5ce4bbfe682f:0348c09:1:1",
+      "entryId": "t_5ce4bbfe682f",
+      "sourceTerm": "本性",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0348c09",
+      "Kwic": "汝作此偈，未見本性，只到門外，未入門內。",
+      "caseClusterId": "T/T48/T48n2008.xml:24997:25889",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Hongren",
+        "ActorAttribution": null,
+        "AttributionNote": "六祖大師法寶壇經. Hongren is the exact actor: 祖三更喚秀入堂 and 祖曰 introduce 汝作此偈，未見本性.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shenxiu",
+            "Roles": [
+              "addressee"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_5ce4bbfe682f:0348c11:1:2",
+      "entryId": "t_5ce4bbfe682f",
+      "sourceTerm": "本性",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0348c11",
+      "Kwic": "須得言下識自本心，見自本性不生不滅",
+      "caseClusterId": "T/T48/T48n2008.xml:24997:25889",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Hongren",
+        "ActorAttribution": null,
+        "AttributionNote": "六祖大師法寶壇經. Hongren is the exact actor: he continues to Shenxiu: 須得言下識自本心，見自本性.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shenxiu",
+            "Roles": [
+              "addressee"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_5ce4bbfe682f:0349a22:1:3",
+      "entryId": "t_5ce4bbfe682f",
+      "sourceTerm": "本性",
+      "RelPath": "T/T48/T48n2008.xml",
+      "FromLb": "0349a22",
+      "Kwic": "若識自本心，見自本性，即名丈夫、天人師、佛。",
+      "caseClusterId": "T/T48/T48n2008.xml:29101:30291",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "六祖大師法寶壇經",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Hongren",
+        "ActorAttribution": null,
+        "AttributionNote": "六祖大師法寶壇經. Hongren is the exact actor: 祖知悟本性，謂惠能曰 introduces 若識自本心，見自本性.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "addressee"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

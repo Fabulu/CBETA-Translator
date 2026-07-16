@@ -1,0 +1,64 @@
+{
+  "bundleId": "quick-owner-3",
+  "worker": "/root/source_x66_batch",
+  "reviewedRows": 67,
+  "totalRows": 67,
+  "completedUnits": ["X80n1565", "X82n1571", "T51n2076"],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": null,
+  "incompleteReviewCheckpoint": {
+    "source": "all three sources",
+    "reviewedThroughRow": 67,
+    "completeUnit": false,
+    "decisions": [
+      "發明: Bodhidharma",
+      "無相: Wuxiang",
+      "師子吼: Nanyang Huizhong",
+      "野狐: old man in Baizhang's wild-fox case (named-decision resolution pending)",
+      "威音王: Huangbo Xiyun (override)",
+      "僧堂: reviewed unnamed monk (override)",
+      "猫兒: Nanquan Puyuan",
+      "茫然: impersonal assembly (override)",
+      "省悟: reviewed unnamed monk (override)",
+      "意旨如何: reviewed unnamed monk (override)",
+      "rows 11-20: exact-turn review complete",
+      "rows 21-30: exact-turn review complete; final 話頭 actor Fuyan Liangya",
+      "rows 31-40: X82 rows 1-10 complete",
+      "rows 41-50: X82 rows 11-20 complete",
+      "rows 51-60: X82 rows 21-24 and T51 rows 1-6 complete",
+      "rows 61-67: T51 rows 7-13 complete"
+    ]
+  },
+  "sourceResults": {
+    "X80n1565": {
+      "rows": 30,
+      "decisionSheet": "maintenance/source-workbooks/decisions-owner3-X80n1565.json",
+      "occurrenceKeys": "all 30 exact entryId/RelPath/FromLb/Kwic tuples in decision sheet",
+      "exactDecisions": "Bodhidharma; Wuxiang; Nanyang Huizhong; Baizhang Wild-Fox Elder; Huangbo Xiyun; five reviewed unnamed actors; one assembled-monks actor; Nanquan Puyuan; Yaoshan Weiyan; Shitou Xiqian; Chuanzi Decheng; Jiashan Shanhui; Zhaozhou Congshen; Deshan Xuanjian; Yantou Quanhuo; Xuansha Shibei; Changqing Huileng; Linji Yixuan; Yunmen Wenyan; one impersonal bucket-bottom detachment; Fuyan Liangya",
+      "overrides": 15,
+      "contextFigures": "structured per overridden row in decision sheet",
+      "verification": {"compile": "30/30", "dryRun": "30/30", "apply": "30/30", "focusedGate": "30/30", "zcVerify": "30/30", "jsonArtifacts": "4/4"}
+    },
+    "X82n1571": {
+      "rows": 24,
+      "decisionSheet": "maintenance/source-workbooks/decisions-owner3-X82n1571.json",
+      "occurrenceKeys": "all 24 exact entryId/RelPath/FromLb/Kwic tuples in decision sheet",
+      "exactDecisions": "Tianyi Yihuai; one reviewed unnamed questioner; Yunmen Wenyan; Ruixiang Zilai; Guangfu Weishang; Xuefeng Yicun; Zhenjing Kewen; Dongshan Liangjie; Foyan Qingyuan; Dasui Fazhen; Dahui Zonggao; one reviewed unnamed appraiser; Panshan Baoji; Miaozong; Shantang Dechun; Mi'an Xianjie; Songyuan Chongyue; Wuzhun Shifan; Tianqi Benrui; Xiaoyan Debao; Baizhang Huaihai",
+      "overrides": 4,
+      "contextFigures": "structured per overridden row in decision sheet",
+      "verification": {"compile": "24/24", "dryRun": "24/24", "apply": "24/24", "focusedGate": "24/24", "zcVerify": "24/24", "jsonArtifacts": "4/4"}
+    },
+    "T51n2076": {
+      "rows": 13,
+      "decisionSheet": "maintenance/source-workbooks/decisions-owner3-T51n2076.json",
+      "occurrenceKeys": "all 13 exact entryId/RelPath/FromLb/Kwic tuples in decision sheet",
+      "exactDecisions": "Lao'an; Wuxiang; Vinaya Master Faming; Dazhu Huihai; Huangbo Xiyun; two reviewed unnamed questioners; Sansheng Huiran; Dongshan Liangjie; Luohan Guichen",
+      "overrides": 4,
+      "contextFigures": "structured per overridden row in decision sheet",
+      "verification": {"compile": "13/13", "dryRun": "13/13", "apply": "13/13", "focusedGate": "13/13", "zcVerify": "13/13", "jsonArtifacts": "4/4"}
+    }
+  },
+  "ownershipGate": {"rows": 67, "uniqueEntries": 51, "matchesWorker3ManifestExactly": true},
+  "touchedEntryAudit": {"entries": 51, "occurrences": 295, "named": 157, "reviewedUnnamed": 14, "impersonal": 1, "unresolvedOutsideFocusedRows": 123, "hardFailuresOutsideFocusedRows": 696}
+}

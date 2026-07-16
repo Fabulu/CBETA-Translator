@@ -1,0 +1,1152 @@
+{
+  "source": "X/X80/X80n1565.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_44d14cd3a935:0028c03:1:4",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0028c03",
+      "Kwic": "東西及南北。各行於七步。分手指天地。作師子吼聲。上下及四維。無能尊我者。",
+      "caseClusterId": "X/X80/X80n1565.xml:75234:90910",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shakyamuni Buddha biography. The newborn Shakyamuni Buddha is the exact actor who walks seven steps in each direction, points to heaven and earth, and makes the lion's roar; this is narration of his act, not an anonymous master's saying."
+      }
+    },
+    {
+      "key": "t_c8ef8a6a8ef7:0029c18:1:1",
+      "entryId": "t_c8ef8a6a8ef7",
+      "sourceTerm": "那箇",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0029c18",
+      "Kwic": "世尊遂問迦葉。汝擬擯那箇文殊。迦葉無對。",
+      "caseClusterId": "X/X80/X80n1565.xml:81502:90910",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shakyamuni Buddha biography. Shakyamuni Buddha is the exact speaker who asks Mahakasyapa which Manjusri he intends to expel; Mahakasyapa gives no answer.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "addressee"
+            ]
+          },
+          {
+            "MasterName": "Manjusri",
+            "Roles": [
+              "person-discussed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ba6668ef3e6e:0031a07:1:1",
+      "entryId": "t_ba6668ef3e6e",
+      "sourceTerm": "迦葉",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0031a07",
+      "Kwic": "世尊在靈山會上。拈華示眾。是時眾皆默然。唯迦葉尊者破顏微笑。世尊曰。吾有正法眼藏。涅槃妙心。實相無相。微妙法門。不立文字。教外別傳。付囑摩訶迦葉。",
+      "caseClusterId": "X/X80/X80n1565.xml:89549:90910",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shakyamuni Buddha",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shakyamuni Buddha biography. In the flower-sermon account Shakyamuni Buddha is the exact speaker who announces the treasury of the true Dharma eye and entrusts it to Mahakasyapa after Mahakasyapa smiles.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mahakasyapa",
+            "Roles": [
+              "recipient",
+              "smiling participant"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_77774b8724f1:0034b10:1:4",
+      "entryId": "t_77774b8724f1",
+      "sourceTerm": "付法",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0034b10",
+      "Kwic": "祖付法已。即現神變而入涅槃。",
+      "caseClusterId": "X/X80/X80n1565.xml:112677:113895",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Parshva",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), biography of the Tenth Patriarch Parshva (脇尊者). Parshva is the exact grammatical actor: after entrusting the teaching to Punyayashas, he manifests transformations and enters nirvana.",
+        "ContextMasters": [
+          {
+            "MasterName": "Punyayashas",
+            "Roles": [
+              "Dharma-recipient",
+              "successor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ac2e2908084d:0051a21:1:1",
+      "entryId": "t_ac2e2908084d",
+      "sourceTerm": "見性成佛",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0051a21",
+      "Kwic": "乃名見性。性即佛。佛即性。故曰見性成佛。",
+      "caseClusterId": "X/X80/X80n1565.xml:230541:232404",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunju Zhi",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Yunju Zhi section. Yunju Zhi is the exact speaker answering what seeing the nature and becoming buddha means; he says nature is buddha and buddha is nature."
+      }
+    },
+    {
+      "key": "t_707c9af5cb8e:0053b18:1:5",
+      "entryId": "t_707c9af5cb8e",
+      "sourceTerm": "恁麼則",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0053b18",
+      "Kwic": "曰。恁麼則順正歸元去也。師曰。歸元何順。",
+      "caseClusterId": "X/X80/X80n1565.xml:245597:247676",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed monk from Niutou",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Pozhao Duo section. The exact speaker is an unnamed monk from Niutou who infers, 'If so, then one returns to the source by following the correct'; Pozhao Duo challenges the claimed direction. All six rungs leave the monk personally unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Pozhao Duo",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_90e46d995978:0055c06:1:1",
+      "entryId": "t_90e46d995978",
+      "sourceTerm": "參請",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0055c06",
+      "Kwic": "師聞此語。禮辭至韶陽。隨眾參請。不言來處。",
+      "caseClusterId": "X/X80/X80n1565.xml:261680:262881",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhicheng",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Zhicheng biography. Zhicheng is the exact grammatical actor: after hearing Shenxiu's instruction he bows farewell, travels to Shaoyang, and joins the assembly to visit and inquire without disclosing where he came from.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shenxiu",
+            "Roles": [
+              "former teacher"
+            ]
+          },
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "teacher visited"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_becc0a1ea8cb:0070b20:1:2",
+      "entryId": "t_becc0a1ea8cb",
+      "sourceTerm": "方丈",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0070b20",
+      "Kwic": "師直上󳬇。士禮拜。師歸方丈。居士隨後。",
+      "caseClusterId": "X/X80/X80n1565.xml:360702:365475",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Mazu Daoyi",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Mazu Daoyi section. Mazu Daoyi is the exact grammatical actor who returns to the abbot's quarters after his exchange with Layman Pang; Pang bows and follows behind him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Layman Pang",
+            "Roles": [
+              "interlocutor",
+              "follower"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d055e572dc64:0070c11:1:1",
+      "entryId": "t_d055e572dc64",
+      "sourceTerm": "依前",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0070c11",
+      "Kwic": "却回舉似師。師曰。汝更去問。待他有答。汝便噓兩聲。峯又去。依前問。石頭乃噓兩聲。峯又無語。回舉似師。師曰。向汝道石頭路滑。",
+      "caseClusterId": "X/X80/X80n1565.xml:362892:365475",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Deng Yinfeng",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Mazu Daoyi section, complete Deng Yinfeng–Shitou encounter. Deng Yinfeng is the exact grammatical actor who goes back and asks the same question as before; Shitou Xiqian responds by hissing twice.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shitou Xiqian",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "later adviser",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_f3488daf27fd:0076a18:1:1",
+      "entryId": "t_f3488daf27fd",
+      "sourceTerm": "較些子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0076a18",
+      "Kwic": "也。師曰。道。道。僧擬開口。師又打。僧後到黃檗。舉前話。檗上堂曰。馬大師出八十四人。善知識問著。箇箇屙漉漉地。祇有歸宗較些子。江州刺史李㴾問。教中所言。須彌納芥子。㴾即不疑。芥子納須彌。莫是妄譚否。師曰。人傳使君讀萬卷書籍。還是否。曰",
+      "caseClusterId": "X/X80/X80n1565.xml:396947:399915",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huangbo Xiyun",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Guizong Zhichang section. Huangbo Xiyun is the exact quoted speaker: after hearing a monk's report of Guizong's blows, Huangbo says that among Mazu's eighty-four teachers only Guizong is somewhat close.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guizong Zhichang",
+            "Roles": [
+              "person-appraised"
+            ]
+          },
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "lineage-teacher"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_df9aad1ce22d:0076a21:1:1",
+      "entryId": "t_df9aad1ce22d",
+      "sourceTerm": "芥子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0076a21",
+      "Kwic": "教中所言。須彌納芥子。㴾即不疑。芥子納須彌。莫是妄譚否。",
+      "caseClusterId": "X/X80/X80n1565.xml:396947:399915",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Li Bo",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Guizong Zhichang section. Jiangzhou governor Li Bo is the exact questioner: he accepts Mount Sumeru entering a mustard seed but asks whether a mustard seed containing Sumeru is false talk; Guizong answers him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Guizong Zhichang",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_18ec645f99f7:0087b15:2:2",
+      "entryId": "t_18ec645f99f7",
+      "sourceTerm": "賓中主",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0087b15",
+      "Kwic": "如何是賓中主。師曰。長年不出戶。",
+      "caseClusterId": "X/X80/X80n1565.xml:480556:481846",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dongshan Liangjie",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Longshan encounter. Dongshan Liangjie is the exact questioner who asks what host within guest is; Longshan answers, 'long years not leaving the house.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Longshan",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2f533e7ff5f8:0090a21:1:3",
+      "entryId": "t_2f533e7ff5f8",
+      "sourceTerm": "隨緣",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0090a21",
+      "Kwic": "著。有偈示眾曰。大道虗曠。常一真心。善惡莫思。神清物表。隨緣飲啄。更復何為。終于本院。遺塔存焉。瑞州五峯常觀禪師瑞州五峯",
+      "caseClusterId": "X/X80/X80n1565.xml:497871:500317",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Pingtian Puan",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Pingtian Puan section. Pingtian Puan is the exact verse author; his verse to the assembly says to drink and eat following conditions and asks what more is to be done."
+      }
+    },
+    {
+      "key": "t_f1eb87aa18ef:0104c07:1:4",
+      "entryId": "t_f1eb87aa18ef",
+      "sourceTerm": "露柱",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0104c07",
+      "Kwic": "長生問。混沌未分時含生何來。師曰。如露柱懷胎。",
+      "caseClusterId": "X/X80/X80n1565.xml:598430:600019",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lingyun Zhiqin",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Lingyun Zhiqin section. Lingyun Zhiqin is the exact respondent: when Changsheng Jiaoran asks whence living beings come before chaos divides, Lingyun answers, 'like an exposed pillar bearing a child.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Changsheng Jiaoran",
+            "Roles": [
+              "questioner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e84753568cda:0104c12:1:1",
+      "entryId": "t_e84753568cda",
+      "sourceTerm": "向上事",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0104c12",
+      "Kwic": "曰。如何是向上事。師曰。打破鏡來。與汝相見。",
+      "caseClusterId": "X/X80/X80n1565.xml:598430:600019",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Changsheng Jiaoran",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Lingyun Zhiqin section. Changsheng Jiaoran remains the named exact questioner through the complete exchange and asks what the upward matter is; Lingyun answers, 'break the mirror and come; I will meet you.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Lingyun Zhiqin",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e3a829e28b09:0105a07:1:3",
+      "entryId": "t_e3a829e28b09",
+      "sourceTerm": "丈六金身",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0105a07",
+      "Kwic": "問。如何是丈六金身。師曰。判官斷案相公改。",
+      "caseClusterId": "X/X80/X80n1565.xml:600944:601392",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Raoshan Heshang section. The headword occurs in an unnamed monk's exact question, 'What is the sixteen-foot golden body?'; Raoshan answers with the judge and minister line. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Raoshan Heshang",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d055e572dc64:0112b02:1:4",
+      "entryId": "t_d055e572dc64",
+      "sourceTerm": "依前",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0112b02",
+      "Kwic": "師曰。以木為船筏。曰。恁麼即得度也。師曰。盲者依前盲。瘂者依前瘂。",
+      "caseClusterId": "X/X80/X80n1565.xml:650950:651442",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Datian Baotong",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Datian Baotong section. Datian Baotong is the exact speaker who answers that wood serves as boat and raft and then says the blind remain blind as before and the mute remain mute as before."
+      }
+    },
+    {
+      "key": "t_f2181872b682:0116a01:1:5",
+      "entryId": "t_f2181872b682",
+      "sourceTerm": "轉語",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0116a01",
+      "Kwic": "今請闍黎別下一轉語。若愜老僧意。",
+      "caseClusterId": "X/X80/X80n1565.xml:675545:675816",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baiyan Mingzhe",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Baiyan Mingzhe section. Baiyan Mingzhe is the exact speaker who asks the ācārya to lay down a different turning word and offers to open the gruel stores for the summer if it accords with his intent."
+      }
+    },
+    {
+      "key": "t_a989d784dc81:0124b18:1:6",
+      "entryId": "t_a989d784dc81",
+      "sourceTerm": "話會",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0124b18",
+      "Kwic": "到這裏不假三寸試話會看。不假耳試釆聽看。不假眼試辯白看。",
+      "caseClusterId": "X/X80/X80n1565.xml:731761:738197",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiufeng Daoqian",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Jiufeng Daoqian section. Jiufeng Daoqian is the exact speaker of the sustained hall instruction; he challenges the assembly to construe the matter without relying on the three-inch tongue, listen without ears, and distinguish without eyes."
+      }
+    },
+    {
+      "key": "t_acccac1051a4:0125c12:1:1",
+      "entryId": "t_acccac1051a4",
+      "sourceTerm": "衲僧",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0125c12",
+      "Kwic": "問。如何是衲僧。師曰。參尋訪道。",
+      "caseClusterId": "X/X80/X80n1565.xml:739977:741488",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Yungai Zhiyuan section. The headword is spoken by an unnamed monk asking, 'What is a patch-robed monk?'; Yungai Zhiyuan answers, 'investigating, seeking, and visiting the Way.' All six rungs leave the questioner unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yungai Zhiyuan",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8482770fe735:0128b23:1:2",
+      "entryId": "t_8482770fe735",
+      "sourceTerm": "象王",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0128b23",
+      "Kwic": "師子窟中無異獸。象王行處絕狐蹤。",
+      "caseClusterId": "X/X80/X80n1565.xml:759119:767395",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Luopu Yuanan",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Luopu Yuanan section. Luopu Yuanan is the exact speaker answering whether patriarchal intent and scriptural intent are the same or different: no other beast inhabits the lion's den, and fox tracks cease where the elephant king walks."
+      }
+    },
+    {
+      "key": "t_44d14cd3a935:0130a04:1:2",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0130a04",
+      "Kwic": "子且還老僧草鞋錢。然後老僧還子廬陵米價。師曰。恁麼則不識和尚也。未委廬陵米作麼價。山曰。真師子兒。善能哮吼。",
+      "caseClusterId": "X/X80/X80n1565.xml:769705:771295",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiashan Shanhui",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Huangshan Yuelun biography. Jiashan Shanhui is the exact appraising speaker who calls Huangshan a true lion cub well able to roar after their Luling-rice exchange.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huangshan Yuelun",
+            "Roles": [
+              "interlocutor",
+              "biographical subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_6457935dff62:0133c04:1:3",
+      "entryId": "t_6457935dff62",
+      "sourceTerm": "非心非佛",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0133c04",
+      "Kwic": "師曰。禾山解打鼓。曰。如何是真諦。師曰。禾山解打鼓。問。即心即佛則不問。如何是非心非佛。師曰。禾山解打鼓。曰。如何是向上事。師曰。禾山解打鼓。問。萬法齊興時如",
+      "caseClusterId": "X/X80/X80n1565.xml:796293:798056",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Heshan Wuyin section. An unnamed monk is the exact speaker who sets aside 'mind itself is buddha' and asks what 'not mind, not buddha' is; Heshan answers that Heshan knows how to beat the drum. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Heshan Wuyin",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_44d14cd3a935:0139b22:1:3",
+      "entryId": "t_44d14cd3a935",
+      "sourceTerm": "師子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0139b22",
+      "Kwic": "昔有一老宿。因僧問。師子捉兔亦全其力。捉象亦全其力。未審全箇甚麼力。老宿曰。不欺之力。",
+      "caseClusterId": "X/X80/X80n1565.xml:842643:842859",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk in a transmitted old case",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk in a transmitted old case is the exact actor. Five Lamps Meeting the Source (五燈會元), anonymous-old-cases sequence. An unnamed monk is the exact headword-bearing speaker who asks what complete strength the lion uses in catching both rabbit and elephant; an unnamed old adept answers, 'the strength that does not deceive.' All six rungs and parallel review preserve both actors as unnamed."
+      }
+    },
+    {
+      "key": "t_6214dc704b24:0158c08:1:1",
+      "entryId": "t_6214dc704b24",
+      "sourceTerm": "莫錯會",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0158c08",
+      "Kwic": "僧問。如何是西來意。師曰。是即是。莫錯會。",
+      "caseClusterId": "X/X80/X80n1565.xml:968071:971007",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Anguo Hongtao",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Anguo Hongtao section. Anguo Hongtao is the exact respondent who answers a monk's question about the meaning of coming from the West with, 'It is so, but do not understand it wrongly.'"
+      }
+    },
+    {
+      "key": "t_a0f2bb1de215:0175c17:1:4",
+      "entryId": "t_a0f2bb1de215",
+      "sourceTerm": "卜度",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0175c17",
+      "Kwic": "莫向意識裏卜度。却成妄想顛倒。無有出期。",
+      "caseClusterId": "X/X80/X80n1565.xml:1092044:1092625",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baoguo Zhao",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Baoguo Zhao section. Baoguo Zhao is the exact hall speaker; after striking the rope-seat twice and asking whether the assembly sees and hears, he warns them not to conjecture inside consciousness."
+      }
+    },
+    {
+      "key": "t_df9aad1ce22d:0181b01:1:2",
+      "entryId": "t_df9aad1ce22d",
+      "sourceTerm": "芥子",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0181b01",
+      "Kwic": "曰。如何是芥子。師曰。塞將汝眼。",
+      "caseClusterId": "X/X80/X80n1565.xml:1130978:1133144",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Longji Shaoxiu section. The exact headword-bearing speaker is an unnamed monk who asks, 'What is the mustard seed?'; Longji answers that it blocks the monk's eye. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Longji Shaoxiu",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cd9e5485fbe1:0183c07:1:2",
+      "entryId": "t_cd9e5485fbe1",
+      "sourceTerm": "張三李四",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0183c07",
+      "Kwic": "僧問。如何是學人自己。師曰。張三李四。",
+      "caseClusterId": "X/X80/X80n1565.xml:1149500:1150049",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Longxing Yu",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Longxing Yu section. Longxing Yu is the exact respondent: asked what the student's own self is, he answers, 'Zhang the Third and Li the Fourth.'"
+      }
+    },
+    {
+      "key": "t_90e46d995978:0194a22:1:2",
+      "entryId": "t_90e46d995978",
+      "sourceTerm": "參請",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0194a22",
+      "Kwic": "後到石霜。但隨眾而已。更不參請。",
+      "caseClusterId": "X/X80/X80n1565.xml:1222736:1223768",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shuangfeng Gu",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shuangfeng Gu biography. Shuangfeng Gu is the exact grammatical actor: after serving his former Shuangfeng teacher for years, he goes to Shishuang, merely follows the assembly, and does not perform a formal visit and inquiry."
+      }
+    },
+    {
+      "key": "t_acccac1051a4:0196a16:1:2",
+      "entryId": "t_acccac1051a4",
+      "sourceTerm": "衲僧",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0196a16",
+      "Kwic": "曰。如何是衲僧分上事。師曰。要行即行。要坐即坐。",
+      "caseClusterId": "X/X80/X80n1565.xml:1234886:1236572",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Bajiao Jiche section. An unnamed monk is the exact speaker who asks what the patch-robed monk's own affair is; Bajiao answers, 'when you want to walk, walk; when you want to sit, sit.' All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Bajiao Jiche",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_358f56dbf990:0205b08:1:4",
+      "entryId": "t_358f56dbf990",
+      "sourceTerm": "善知識",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0205b08",
+      "Kwic": "凡行脚人參善知識。到一叢林。放下瓶鉢。",
+      "caseClusterId": "X/X80/X80n1565.xml:1295643:1297548",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baoci Xingyan",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Baoci Xingyan section. Baoci Xingyan is the exact hall speaker who says that travelling practitioners visit good teachers, reach a monastery, and set down bottle and bowls."
+      }
+    },
+    {
+      "key": "t_8a016f49e5b8:0207a22:1:4",
+      "entryId": "t_8a016f49e5b8",
+      "sourceTerm": "思量",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0207a22",
+      "Kwic": "更莫思量。思量不及。",
+      "caseClusterId": "X/X80/X80n1565.xml:1307782:1309364",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baoen Kuangyi",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Baoen Kuangyi section. Baoen Kuangyi is the exact hall speaker: looking over the assembly, he tells them not to ponder further because pondering cannot reach it."
+      }
+    },
+    {
+      "key": "t_fab146271b10:0207b22:1:5",
+      "entryId": "t_fab146271b10",
+      "sourceTerm": "無事人",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0207b22",
+      "Kwic": "所以清涼先師道。佛是無事人。且如今覓箇無事人也不可得。",
+      "caseClusterId": "X/X80/X80n1565.xml:1309514:1312343",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fayan Wenyi",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Baoci Wensui section. Baoci explicitly introduces his late teacher Qingliang; Fayan Wenyi is therefore the exact quoted speaker of 'the buddha is a person with nothing going on.' Baoci is the later raiser who adds that such a person cannot now be found.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baoci Wensui",
+            "Roles": [
+              "later-raiser",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_bf1399632fd6:0225b14:1:2",
+      "entryId": "t_bf1399632fd6",
+      "sourceTerm": "奪境不奪人",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0225b14",
+      "Kwic": "師曰。如何是奪境不奪人。濟曰。王令已行天下遍。將軍塞外絕煙塵。",
+      "caseClusterId": "X/X80/X80n1565.xml:1438399:1440211",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Kefu Daozhe",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Kefu Daozhe biography. Kefu Daozhe is the exact questioner who asks Linji Yixuan what taking away the object but not the person is; Linji answers with the king's command and frontier general.",
+        "ContextMasters": [
+          {
+            "MasterName": "Linji Yixuan",
+            "Roles": [
+              "respondent",
+              "teacher"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ecac19a083df:0225b18:1:3",
+      "entryId": "t_ecac19a083df",
+      "sourceTerm": "奪人不奪境",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0225b18",
+      "Kwic": "奪人不奪境。緣自帶誵訛。擬欲求玄旨。思量反責麼。",
+      "caseClusterId": "X/X80/X80n1565.xml:1438399:1440211",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Kefu Daozhe",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Kefu Daozhe section. Kefu Daozhe is the exact author of the verse headed 'taking away the person but not the object,' beginning that conditions themselves bear discrepancy."
+      }
+    },
+    {
+      "key": "t_ba841f6e11c8:0227a10:1:1",
+      "entryId": "t_ba841f6e11c8",
+      "sourceTerm": "乾屎橛",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0227a10",
+      "Kwic": "無位真人是甚麼乾屎橛。巖頭不覺吐舌。雪峯曰。",
+      "caseClusterId": "X/X80/X80n1565.xml:1449449:1451027",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linji Yixuan",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Ding Shangzuo biography. Ding explicitly raises Linji Yixuan's earlier hall case; Linji is the exact quoted speaker who pushes away the hesitant monk and calls the person of no rank a dry shit-stick. Ding is the transmitter, not the speaker of the stored line.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ding Shangzuo",
+            "Roles": [
+              "later-raiser",
+              "transmitter"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ecac19a083df:0237c01:1:5",
+      "entryId": "t_ecac19a083df",
+      "sourceTerm": "奪人不奪境",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0237c01",
+      "Kwic": "如何是奪人不奪境。師曰。家鄉有路無人到。",
+      "caseClusterId": "X/X80/X80n1565.xml:1520660:1522799",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Sanjiao Zhisong section. The exact headword-bearing speaker is an unnamed monk who asks what taking away the person but not the object is; Sanjiao answers that the home country has a road no one reaches. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Sanjiao Zhisong",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ddab56ede4ef:0238a09:1:3",
+      "entryId": "t_ddab56ede4ef",
+      "sourceTerm": "桶底脫",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0238a09",
+      "Kwic": "問。如何是佛。師曰。桶底脫。",
+      "caseClusterId": "X/X80/X80n1565.xml:1523540:1523814",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Shoushan Huaizhi",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Shoushan Huaizhi section. Shoushan Huaizhi is the exact respondent who answers the question 'What is buddha?' with 'the bucket-bottom falls out.'"
+      }
+    },
+    {
+      "key": "t_7cddddb76d37:0250a14:1:5",
+      "entryId": "t_7cddddb76d37",
+      "sourceTerm": "任運",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0250a14",
+      "Kwic": "旨如何。師曰。水內覓魚踪。師進心珠歌曰。心如意。心如意。任運隨緣不相離。但知莫向外邊求。外邊求。終不是。枉用工夫隱真理。識心珠",
+      "caseClusterId": "X/X80/X80n1565.xml:1604174:1605517",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lingyin Dezhang",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Lingyin Dezhang section. Lingyin Dezhang is the exact author and presenter of the Song of the Mind-Pearl, which says that natural functioning and following conditions do not separate. Direct XML section boundaries correct the broader inherited header."
+      }
+    },
+    {
+      "key": "t_8a016f49e5b8:0254c22:1:5",
+      "entryId": "t_8a016f49e5b8",
+      "sourceTerm": "思量",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0254c22",
+      "Kwic": "更擬思量箇甚麼。",
+      "caseClusterId": "X/X80/X80n1565.xml:1637190:1638529",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jinshan Tanying",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Li Duanyuan biography. The complete exchange and parallel lamp witness identify Jinshan Tanying, called Daguan, as the exact speaker: he strikes Li's chest and asks what more Li is setting himself to ponder.",
+        "ContextMasters": [
+          {
+            "MasterName": "Li Duanyuan",
+            "Roles": [
+              "addressee",
+              "student",
+              "biographical subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ce2a5ef71afe:0318a20:1:6",
+      "entryId": "t_ce2a5ef71afe",
+      "sourceTerm": "麻三斤",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0318a20",
+      "Kwic": "洞山麻三斤。意旨如何。",
+      "caseClusterId": "X/X80/X80n1565.xml:2082263:2082563",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-X80n1565",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioning monk is the exact actor. Five Lamps Meeting the Source (五燈會元), Ziyan Shangzuo section. An unnamed monk is the exact speaker who asks the purport of Dongshan's 'three pounds of flax'; Ziyan answers with an eighty-year-old woman not applying makeup. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Ziyan Shangzuo",
+            "Roles": [
+              "respondent",
+              "section-master"
+            ]
+          },
+          {
+            "MasterName": "Dongshan Shouchu",
+            "Roles": [
+              "speaker of case cited"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_f7bdd2def0ec:0373a24:1:3",
+      "entryId": "t_f7bdd2def0ec",
+      "sourceTerm": "截斷眾流",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0373a24",
+      "Kwic": "昔日雲門有三句。謂函蓋乾坤句。截斷眾流",
+      "caseClusterId": "X/X80/X80n1565.xml:2477176:2477733",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiuding Huiquan",
+        "ActorAttribution": null,
+        "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Jiuding Huiquan section. Jiuding Huiquan is the exact hall speaker who raises Yunmen Wenyan's three phrases and names the phrase that cuts off the many streams before offering his own three phrases.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "source of raised three-phrase scheme"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

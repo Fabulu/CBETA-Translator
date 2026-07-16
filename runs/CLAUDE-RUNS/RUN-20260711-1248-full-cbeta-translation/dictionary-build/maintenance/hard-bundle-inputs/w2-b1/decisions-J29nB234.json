@@ -1,0 +1,53 @@
+{
+  "source": "J/J29/J29nB234.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_d9c587fad710:0382c02:1:4",
+      "entryId": "t_d9c587fad710",
+      "sourceTerm": "泥佛",
+      "RelPath": "J/J29/J29nB234.xml",
+      "FromLb": "0382c02",
+      "Kwic": "如何是泥佛不度水？」師云：「浸他不爛。",
+      "caseClusterId": "J/J29/J29nB234.xml:20677:22009",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "一初元禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Yichu Yuan (一初元禪師語錄): an unnamed monk asks what it means that a clay Buddha does not cross water; Yichu Yuan answers that soaking does not rot it. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yichu Yuan",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_d9c587fad710:0382c02:1:4"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "source": "J/J29/J29nB233.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-b1/decisions-J29nB233.json",
+  "decisions": [
+    {
+      "entryId": "t_e931d476fd02",
+      "sourceTerm": "鬱鬱黃花",
+      "RelPath": "J/J29/J29nB233.xml",
+      "FromLb": "0333a13",
+      "Kwic": "僧問忠國師：『青青翠竹，盡是法身；鬱鬱黃花，無非般若。有人不許，云是邪說；亦有信者，云不思議。不知若為？』",
+      "caseClusterId": "J/J29/J29nB233.xml:57606:58950",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner in a raised case",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-b1",
+          "ReviewedUtc": "2026-07-14T07:30:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Chan Master Jie'an Wujin (介菴進禪師語錄): inside the case raised by Jie'an Wujin, an unnamed monk asks Nanyang Huizhong about the competing claims that luxuriant yellow flowers are none other than prajna and that this is false teaching. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanyang Huizhong",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Jie'an Wujin",
+            "Roles": [
+              "later-raiser",
+              "commentator",
+              "record-owner"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "介菴進禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-b1",
+        "reviewedUtc": "2026-07-14T07:30:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

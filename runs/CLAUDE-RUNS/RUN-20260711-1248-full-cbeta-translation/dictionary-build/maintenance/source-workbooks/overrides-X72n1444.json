@@ -1,0 +1,65 @@
+{
+  "source": "X/X72/X72n1444.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:08:41Z",
+  "rows": [
+    {
+      "key": "t_882860247a9b:0791c04:1:4",
+      "entryId": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0791c04",
+      "Kwic": "主人公，噯！惺惺著，以後莫被人瞞。諾！諸方謂其弄精魂",
+      "caseClusterId": "X/X72/X72n1444.xml:167336:168699",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": "Yongjue Yuanxian",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Ruiyan Shiyan",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), in Zhanran Yuancheng's later raising of the Ruiyan case. Ruiyan Shiyan is the exact quoted speaker who calls to himself, answers, and says, ‘Stay alert; from now on do not be fooled by anyone.’ Zhanran Yuancheng then comments on the case; neither the record owner nor Yongjue Yuanxian speaks the stored quoted line.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhanran Yuancheng",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_412d9358cc70:0839b02:1:5",
+      "entryId": "t_412d9358cc70",
+      "sourceTerm": "綿密",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0839b02",
+      "Kwic": "舟曰：語句綿密，不落終始，真當家種草也。遂付法，",
+      "caseClusterId": "X/X72/X72n1444.xml:488613:490915",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Cizhou Fangnian",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), in the tower inscription for Zhanran Yuancheng. Cizhou Fangnian is the exact speaker abbreviated 舟: after Zhanran presents his verse on the Caodong purport, Cizhou says that its phrases are close-woven, do not fall into beginning or end, and are truly seed of the house, then transmits the Dharma to him. The source's Yunmen heading names Zhanran's monastery/place association, not Yunmen Wenyan as speaker.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhanran Yuancheng",
+            "Roles": [
+              "addressee",
+              "transmission-recipient",
+              "inscription-subject"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

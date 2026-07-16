@@ -1,0 +1,28 @@
+{
+  "source": "J/J29/J29nB224.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_5bc4624579e5:0102c02:1:5",
+      "entryId": "t_5bc4624579e5",
+      "sourceTerm": "銀碗裏盛雪",
+      "RelPath": "J/J29/J29nB224.xml",
+      "FromLb": "0102c02",
+      "Kwic": "銀碗裏盛雪也好，秤錘裏掜汁也好，破沙盆裏煬羹也好",
+      "caseClusterId": "J/J29/J29nB224.xml:76627:76827",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "嵩山野竹禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yezhu Fusheng",
+        "ActorAttribution": null,
+        "AttributionNote": "嵩山野竹禪師語錄, winter-solstice hall address requested by Yang Wengu. Yezhu Fusheng is the exact speaker: he lists 'snow heaped in a silver bowl' among four expressions he will set aside before asking who the heart of heaven is."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

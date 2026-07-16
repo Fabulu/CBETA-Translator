@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "independent-current-hash-rereview-v1",
+  "reviewer": "Codex attr_read_4_6_real",
+  "method": "Literal reading of every complete packet case for each repaired entry, followed by comparison with every current sense, occurrence, actor field, and explanation. No classifier or title-only inference used.",
+  "sourceLedger": "cohorts-1-3-106-115-immediate-repair-ledger.json",
+  "results": [
+    {
+      "id": "t_041f65670cd4",
+      "headword": "無心",
+      "sha256": "70552621c2b8645b27ed62a4b94ae4e9cff313cb11be2f7f709e0553a529a42f",
+      "disposition": "KEEP",
+      "casesRead": 11,
+      "reason": "The 御選語錄 passage is first-person imperial prose (朕) and explicitly contains 無心而自合. Yongzheng Emperor is the corrected actor; Kangxi is not supported. The remaining ten cases preserve the stated condition/adverbial split and their current actor assignments."
+    },
+    {
+      "id": "t_09ed57d56bcf",
+      "headword": "普賢",
+      "sha256": "733cf3ee1ad22d3aecba44507853ab0311b8d2af01430aa3cb6324d9ef6bec6e",
+      "disposition": "KEEP",
+      "casesRead": 8,
+      "reason": "All eight complete cases support the broadened corpus-derived definition: paired deployment with Manjusri, adaptive discernment, a reality-realm body, a sphere of delusive activity, public-case narration, and the sought-but-unseen figure. The definition no longer falsely reduces the entry to the elephant image."
+    },
+    {
+      "id": "t_0c53a5a2243b",
+      "headword": "知客",
+      "sha256": "d4dfe8bc6af3e822689358efc2ecc83c98017b57ca9a209cb78d5bcbd1657722",
+      "disposition": "KEEP",
+      "casesRead": 7,
+      "reason": "The six office cases describe or identify the guest prefect, while Miyun Yuanwu's full sermon supports the separate verb-object reading 先知客. The repaired explanation is no longer duplicated and does not change or blur that evidence-backed boundary."
+    }
+  ],
+  "summary": {"KEEP": 3, "REVISE": 0},
+  "promotionOrMergePerformed": false
+}

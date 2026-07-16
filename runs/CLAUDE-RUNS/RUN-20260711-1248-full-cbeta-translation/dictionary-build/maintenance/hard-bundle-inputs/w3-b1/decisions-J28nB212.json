@@ -1,0 +1,85 @@
+{
+  "source": "J/J28/J28nB212.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_332a9a8accb6:0474a29:1:4",
+      "entryId": "t_332a9a8accb6",
+      "sourceTerm": "主中賓",
+      "RelPath": "J/J28/J28nB212.xml",
+      "FromLb": "0474a29",
+      "Kwic": "如何是主中賓？」師云：「青山覆白雲。",
+      "caseClusterId": "J/J28/J28nB212.xml:24188:25070",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "二隱謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking about the guest within the host",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "二隱謐禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the guest within the host as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Eryin Mi"
+        ]
+      }
+    },
+    {
+      "key": "t_332a9a8accb6:0495c12:1:5",
+      "entryId": "t_332a9a8accb6",
+      "sourceTerm": "主中賓",
+      "RelPath": "J/J28/J28nB212.xml",
+      "FromLb": "0495c12",
+      "Kwic": "如何是主中賓？」師云：「赤手混埃塵。",
+      "caseClusterId": "J/J28/J28nB212.xml:138674:138839",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "二隱謐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking about the guest within the host",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "二隱謐禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the guest within the host as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Eryin Mi"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_332a9a8accb6:0474a29:1:4",
+    "t_332a9a8accb6:0495c12:1:5"
+  ]
+}

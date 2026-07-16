@@ -1,0 +1,47 @@
+{
+  "source": "J/J28/J28nB202.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_936118ea496c:0078c05:1:6",
+      "entryId": "t_936118ea496c",
+      "sourceTerm": "喫粥",
+      "RelPath": "J/J28/J28nB202.xml",
+      "FromLb": "0078c05",
+      "Kwic": "參禪學道是汝本分事、喫粥喫飯是汝本分事、屙屎撒尿是汝本分事、行坐打眠是汝本分事",
+      "caseClusterId": "J/J28/J28nB202.xml:482766:483145",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百癡禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baichi Yuan",
+        "AttributionNote": "Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuan, in his own informal address, lists studying Chan, eating gruel and rice, bodily functions, and ordinary movement as the listeners' own fundamental matter."
+      }
+    },
+    {
+      "key": "t_eba970114dd2:0136a28:2:2",
+      "entryId": "t_eba970114dd2",
+      "sourceTerm": "邯鄲",
+      "RelPath": "J/J28/J28nB202.xml",
+      "FromLb": "0136a28",
+      "Kwic": "邯鄲一枕，歷盡榮華五十載，覺來黃粱炊尚未熟",
+      "caseClusterId": "J/J28/J28nB202.xml:885564:885841",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百癡禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baichi Yuan",
+        "AttributionNote": "Recorded Sayings of Chan Master Baichi (百癡禪師語錄): Baichi Yuan, in his inscription on the Record of Lu Sheng's Yellow-Millet Dream (題盧生黃粱夢記), recounts the Handan pillow dream and says that Lu Sheng awoke before the millet was cooked."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_936118ea496c:0078c05:1:6",
+    "t_eba970114dd2:0136a28:2:2"
+  ]
+}

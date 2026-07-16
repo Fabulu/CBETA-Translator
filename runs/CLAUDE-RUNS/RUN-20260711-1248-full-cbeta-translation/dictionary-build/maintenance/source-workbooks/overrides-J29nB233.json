@@ -1,0 +1,37 @@
+{
+  "source": "J/J29/J29nB233.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:25:31Z",
+  "rows": [
+    {
+      "key": "t_e931d476fd02:0333a21:1:2",
+      "entryId": "t_e931d476fd02",
+      "sourceTerm": "鬱鬱黃花",
+      "RelPath": "J/J29/J29nB233.xml",
+      "FromLb": "0333a21",
+      "Kwic": "禪師何故不許青青翠竹盡是法身，鬱鬱黃花無非般若？』珠云：『法身無象，應翠竹以成形；般若無知，對黃花而顯相。非彼黃花翠竹而有般若法身",
+      "caseClusterId": "J/J29/J29nB233.xml:57606:58950",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "介菴進禪師語錄",
+      "defaultMasterName": "Dazhu Huihai",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Huayan Lecturer Zhi",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Jie'an Jin (介菴進禪師語錄), in a later raising of the Dazhu exchange. The stored headword occurs in the question addressed to Dazhu Huihai, not in Dazhu's reply. This abbreviated witness calls the questioner 華嚴座主; the parallel passage in the Jingde Record of the Transmission of the Lamp (景德傳燈錄) names him 講華嚴志座主, Huayan Lecturer Zhi. Huayan Lecturer Zhi is therefore the exact source-attested speaker asking why Dazhu does not allow ‘luxuriant yellow flowers are none other than prajna’; Dazhu Huihai answers immediately afterward.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dazhu Huihai",
+            "Roles": [
+              "addressee",
+              "respondent"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

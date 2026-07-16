@@ -1,0 +1,29 @@
+{
+  "source": "J/J37/J37nB387.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/feedback_lexicography",
+  "reviewedUtc": "2026-07-14T05:37:19Z",
+  "rows": [
+    {
+      "key": "t_a8b4f101d192:0417c22:1:5",
+      "entryId": "t_a8b4f101d192",
+      "sourceTerm": "玄關",
+      "RelPath": "J/J37/J37nB387.xml",
+      "FromLb": "0417c22",
+      "Kwic": "僧問：「結制安禪即不問，今朝解制事如何？」師云：「蹋倒玄關無障礙。」進云：「解制後又如何？」師云：「十方世界任逍遙。」",
+      "caseClusterId": "J/J37/J37nB387.xml:64873:65322",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "古宿尊禪師語錄",
+      "defaultMasterName": "Danxia Tianran",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Gusu Zun",
+        "ActorAttribution": null,
+        "AttributionNote": "The Recorded Sayings of Chan Master Gusu Zun (古宿尊禪師語錄), in Gusu Zun's release-from-restriction hall address at Danxia Chan Monastery in Dengzhou. An unnamed monk asks about the day's release; Gusu Zun is the exact respondent who says, ‘Kick down the dark barrier—without obstruction’ (蹋倒玄關無障礙), then answers the monk's follow-up. The heading 住鄧州丹霞禪寺語錄 names the monastery where Gusu speaks, not Danxia Tianran as speaker.",
+        "ContextMasters": []
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

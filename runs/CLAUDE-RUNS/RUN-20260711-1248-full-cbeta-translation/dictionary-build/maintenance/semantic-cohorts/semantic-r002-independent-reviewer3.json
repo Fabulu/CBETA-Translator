@@ -1,0 +1,1000 @@
+{
+  "schemaVersion": 1,
+  "wave": "semantic-r002",
+  "reviewerOwner": 3,
+  "subjectOwner": 1,
+  "status": "waiting_for_evidence_completion",
+  "instructions": "Do not edit the subject owner's entry. Falsify the current draft against exact corpus evidence, literal controls, alternate senses and verb frames, depth, family dependencies, search probes, opening inference, quote anchors, and forbidden English. Record keep/revise/reject with evidence. A revise/reject verdict returns the row to its evidence owner; it never silently edits across ownership.",
+  "entries": [
+    {
+      "id": "t_79e00cdbc129",
+      "sourceTerm": "安心",
+      "path": "terms/t_79e00cdbc129/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_79e00cdbc129-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "causative versus intransitive grammar",
+            "ordinary reassurance versus Bodhidharma-Huike case",
+            "mind-settling family contamination",
+            "opening and lookup alias coverage",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The ordinary reassurance uses and the Bodhidharma-Huike case retain one mind-at-ease state across causative and intransitive grammar; the opening defines it before the case, and eight current-hash witnesses preserve both controls and the Zen deployment.",
+      "subjectEntrySha256": "3b4e90b64000f47c4bfbfe85c40e329e01981f3c6c4d611fe67a3086214396d1",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-anxin-gate.json"
+    },
+    {
+      "id": "t_8601e4559c1a",
+      "sourceTerm": "師子兒",
+      "path": "terms/t_8601e4559c1a/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_8601e4559c1a-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "animal image versus public person-appraisal",
+            "true-cub and succession overreach",
+            "roar and cave family contamination",
+            "direct-question and counter-appraisal controls",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The entry defines the young animal before showing its explicit use as a proposed, refused, confirmed, or criticized person-appraisal; the anchors block automatic succession inference and do not require a detached title sense.",
+      "subjectEntrySha256": "d495f818f20e636869c0e39dbd1cbf6134ffe88a9cf4bee793ba19d6d764feb0",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-lioncub-gate.json"
+    },
+    {
+      "id": "t_292ac4c33b4f",
+      "sourceTerm": "戒",
+      "path": "terms/t_292ac4c33b4f/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_292ac4c33b4f-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 11,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "binding rule versus interpersonal warning",
+            "precept compound and personal-name contamination",
+            "ordination, violation, institutional, and formless-precept depth",
+            "imperative and object-frame countersearch",
+            "exact actor, source, quote anchoring, and attribution of old sayings"
+          ]
+        }
+      ],
+      "reason": "Receiving, keeping, breaking, and conferring a rule cannot share a target with warning another person; the three warning witnesses have unambiguous object or imperative frames, while eleven current-hash anchors retain the precept carve-out and contradictory Chan deployments.",
+      "subjectEntrySha256": "54bc32cb9bebbaa3dc40532b44db355a69e246ad25d91ac7179f76ce5c80d2e5",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-precept-gate.json"
+    },
+    {
+      "id": "t_18b083a026ba",
+      "sourceTerm": "提起",
+      "path": "terms/t_18b083a026ba/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_18b083a026ba-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "physical lifting versus discursive or attentional taking-up",
+            "whisk, cloth, cat, rosary, and tea-bowl object frames",
+            "saying, investigated saying, and full-question object frames",
+            "literal versus extended-action sense boundary",
+            "exact actor, source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "提起坐具 and 提起猫兒 describe moving a physical object upward or into view",
+            "提起箇所參話 and 提起箇萬法歸一、一歸何處話 direct sustained taking-up of a verbal question rather than moving an object"
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "split physical lifting from sustained discursive taking-up",
+            "made both preferred targets independently distinguishable",
+            "added Dufeng Benshan as a second-source discursive witness"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "exactKwicFailures": 0
+        }
+      ],
+      "reason": "Revision accepted: the entry now distinguishes bodily lifting from sustained taking-up of a saying or question, with five physical anchors and four discursive anchors across an independent second discursive source.",
+      "subjectEntrySha256": "287f6b86a11d15bd5c47a8f897c6ff2527d863cd066f2a702b830ece5077d63b",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-tiqi-gate.json"
+    },
+    {
+      "id": "t_0d6794766098",
+      "sourceTerm": "是什麼",
+      "path": "terms/t_0d6794766098/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_0d6794766098-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "bare question versus person, thing, place, and phrase complements",
+            "answer-content contamination",
+            "graphic variants and neighboring naming questions",
+            "public pointing/interview deployment",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Objects, persons, places, and phrases vary what is questioned but not the interrogative construction; the opening gives a natural English question, and the entry preserves its live interview use without supplying a hidden answer.",
+      "subjectEntrySha256": "d3f2cfa9ca092445b79e6d70c89a2b432451918faf9fc6597acbd4a3ce5682d7",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-shishenme-gate.json"
+    },
+    {
+      "id": "t_5ce4bbfe682f",
+      "sourceTerm": "本性",
+      "path": "terms/t_5ce4bbfe682f/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_5ce4bbfe682f-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "original nature versus ordinary temperament",
+            "original-mind and own-nature family contamination",
+            "original-nature-empty syntax and local self-definition",
+            "non-arising, difference, and conduct predicates",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The from-the-outset nature remains one referent across seeing, recognizing, non-arising, no-difference, and locally bounded empty predicates; the sparse temperament controls do not establish an independently defined object, and the entry does not universalize the longer compound.",
+      "subjectEntrySha256": "e02ccf1b32c0f3270b7bb68c64875a7ecd4ade5026c7359499be94b4f1e8078e",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-benxing-gate.json"
+    },
+    {
+      "id": "t_ca8f7f2d5d03",
+      "sourceTerm": "法眼",
+      "path": "terms/t_ca8f7f2d5d03/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_ca8f7f2d5d03-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "teaching faculty versus Fayan Wenyi title-name",
+            "definition and possession predicates versus roster and biography predicates",
+            "correct-eye, selecting-eye, and Fayan-school family contamination",
+            "sense-specific alias isolation",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Definitions, questions, possession, and entrustment predicate an eye or criterion, while heir counts, biography headings, and quotation labels identify Fayan Wenyi; the incompatible predicate families and independently usable targets require the existing split.",
+      "subjectEntrySha256": "7505518000dc1d8941648afee615a99a5663ef85d0b6a8188c7957fea0c35777",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-fayan-gate.json"
+    },
+    {
+      "id": "t_ada407625f42",
+      "sourceTerm": "珍重",
+      "path": "terms/t_ada407625f42/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_ada407625f42-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "formulaic farewell versus object-valuing verb",
+            "hall-close, written-close, and departure frames",
+            "explicit teaching-gate, record, and matter objects",
+            "sense-specific alias isolation",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "A leave-taking utterance that closes an address or accompanies departure is a different speech act from treasuring a named object; the preferred targets and aliases distinguish those uses and all eight current-hash witnesses remain anchored.",
+      "subjectEntrySha256": "888a1d29a278e1e867066e998f58f3dcbaaa1084d14ea2eb04df1ae93828131a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-zhenzhong-gate.json"
+    },
+    {
+      "id": "t_972b8e6cebdd",
+      "sourceTerm": "阿難",
+      "path": "terms/t_972b8e6cebdd/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_972b8e6cebdd-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "Chan deployment versus general hagiography",
+            "name variants, honorifics, and titled-person collision",
+            "flagpole, bowl, teaching-seat, outsider, compilation, and succession families",
+            "later raiser versus narrated actor responsibility",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "All exact and family witnesses designate one Ananda while defining him through Chan-record actions—questions, name-calls, flagpole and bowl cases, the teaching seat, compilation, and succession—rather than importing a general life story.",
+      "subjectEntrySha256": "42d209c7ee84f6af44257eb34209ffed33a7b9d7e2f1f105fdebd09938ef3adc",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-ananda-gate.json"
+    },
+    {
+      "id": "t_0c86700b60cb",
+      "sourceTerm": "頓漸",
+      "path": "terms/t_0c86700b60cb/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_0c86700b60cb-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "paired contrast versus named school or method",
+            "slow-fast seeing and sharp-dull people",
+            "reversed order and four refining-understanding combinations",
+            "Platform correction versus later no-difference claim",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The entry identifies a paired sudden/gradual contrast and preserves the corpus's own dispute over where it applies; school labels, reversed order, and refining-understanding combinations remain deployments of the pair rather than additional objects.",
+      "subjectEntrySha256": "64ceaf1e86ba8016df75ddf41ec9598cd53efbc89c31322fd573a4d3f714c626",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-dunjian-gate.json"
+    },
+    {
+      "id": "t_3386ec3f2fa0",
+      "sourceTerm": "龍蛇",
+      "path": "terms/t_3386ec3f2fa0/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_3386ec3f2fa0-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "mixed human assembly versus creature pair",
+            "ordinary-and-holy control versus unsupported adept-novice taxonomy",
+            "enlivening and battle-formation occurrence assignment",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "The note for 徑山布龍蛇陣 says the questioner utters the headword-bearing line, but MasterName assigns Dahui Zonggao without a reviewed-unnamed questioner packet.",
+            "杖頭卓處活龍蛇 does not itself state a human assembly referent; its placement under the mixed-assembly sense needs contextual proof or reassignment to creature imagery."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "assigned battle-formation headword to a six-rung reviewed unnamed monk and retained Dahui only as respondent context",
+            "moved staff-end enlivening from mixed human assembly to creature imagery",
+            "retained four explicit anchors in each distinguishable sense"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "exactKwicFailures": 0
+        }
+      ],
+      "reason": "Revision accepted: the exact battle-formation speaker is now the reviewed unnamed monk, and the unsupported staff-end human inference was removed by placing it with creature imagery; four explicit witnesses remain for each sense.",
+      "subjectEntrySha256": "9198afb5449f74d2366cbcfd52e2a3091f9c8d301df3cbf6f61326fe9f921a84",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-longshe-gate.json"
+    },
+    {
+      "id": "t_5e59b126e608",
+      "sourceTerm": "三關",
+      "path": "terms/t_5e59b126e608/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_5e59b126e608-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "generic countable barriers versus Huanglong and Doushuai fixed sets",
+            "enumerated-member incompatibility",
+            "one-arrow formula and named-taxonomy contamination",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "In the Qinshan witness, the headword occurs in Juliang's question 一鏃破三關時如何; Qinshan's reply contains no headword, but MasterName is Qinshan Wensui and the note only identifies him as respondent."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "assigned the one-arrow question to named visitor Juliang",
+            "retained Qinshan Wensui only as respondent and section context",
+            "preserved the generic, Huanglong, and Doushuai sense boundaries"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        }
+      ],
+      "reason": "Revision accepted: named visitor Juliang now owns the headword-bearing question, Qinshan remains respondent context, and the three distinguishable checkpoint referents remain intact.",
+      "subjectEntrySha256": "d8b92d4c42203f9a6f4a5623c2ad9ea9ed2613c43a323953e40de40e08035ca9",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-sanguan-gate.json"
+    },
+    {
+      "id": "t_ff50c6974a36",
+      "sourceTerm": "五位",
+      "path": "terms/t_ff50c6974a36/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_ff50c6974a36-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 17,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "Caodong technical system versus generic five-position count",
+            "Dongshan origin versus shared house vocabulary",
+            "upright-crooked, ruler-minister, merit, prince, and ordinal families",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "The technical sense note says the sense is corpus-wide/shared and its SenseKey is null, but the sense-level MasterName is Dongshan Liangjie; the metadata and stated scope conflict.",
+            "In the Sanyi Mingyu witness, the headword occurs in the unnamed question 如何是洞上五位; Sanyi's answer contains no headword, yet MasterName assigns Sanyi and no reviewed-unnamed questioner packet is present."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "removed private sense ownership from shared Caodong vocabulary",
+            "assigned the Dongshan-school question to a six-rung reviewed unnamed monk",
+            "retained Sanyi Mingyu only as respondent context"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 17,
+          "exactKwicFailures": 0,
+          "anchoredChineseStrings": 72
+        }
+      ],
+      "reason": "Revision accepted: the shared technical sense no longer carries private ownership, the exact unnamed questioner owns the Sanyi-section token, and the technical-versus-generic split remains deeply and fully anchored.",
+      "subjectEntrySha256": "6cb3136178516752fc94a2fbafa05cb4376f1529c919fe92fc29df1f76b97bd7",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-wuwei-gate.json"
+    },
+    {
+      "id": "t_083de4a490e2",
+      "sourceTerm": "依草附木",
+      "path": "terms/t_083de4a490e2/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_083de4a490e2-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "literal plant-clinging image versus dependence rebuke",
+            "spirit, person, and interlocutor bearers",
+            "word, gesture, object, circumstance, and contrivance supports",
+            "ordinary botanical countersearch",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Explicit object and predicate frames support dependence on borrowed supports, while differing bearers and supports retain one act; the opening decodes the image, the literal calque remains searchable, and no botanical referent was established in the surveyed corpus.",
+      "subjectEntrySha256": "7e4716ddbfd285eeb13438dea5146f7262856657fcbccb4add2b6b6856088d0a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-yicaofumu-gate.json"
+    },
+    {
+      "id": "t_e1bba3f0355e",
+      "sourceTerm": "全提",
+      "path": "terms/t_e1bba3f0355e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_e1bba3f0355e-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "full versus half presentation",
+            "saying, command, and entrustment object variation",
+            "noun versus verb grammar",
+            "teaching-seat and direct-question deployment",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Yunmen's explicit half/full contrast grounds the action, while sayings, commands, and entrustments vary only what is presented; the preferred target gives the complete-presentation meaning and seven named witnesses cover its public deployment.",
+      "subjectEntrySha256": "83a7cdcabe750f7be376b0603ecbc78f1d68e3d18c7c8c92ba2b312020019863",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-quanti-gate.json"
+    },
+    {
+      "id": "t_90e46d995978",
+      "sourceTerm": "參請",
+      "path": "terms/t_90e46d995978/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_90e46d995978-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "travel, assembly attendance, room entry, and direct inquiry",
+            "verb versus verbal-noun grammar",
+            "institutional procedure versus public encounter",
+            "negative and inquiry-apart-from controls",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Travel, registration, joining an assembly, entering a room, and direct questions form one visit-for-inquiry event rather than separate meanings; the opening tells who is visited and why, and nine anchors cover both institutional and encounter frames.",
+      "subjectEntrySha256": "1aed1a94c28de73ef47f135d51fe7663c111faad94e410264944ecf32b8509b9",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-canqing-gate.json"
+    },
+    {
+      "id": "t_12f74718424d",
+      "sourceTerm": "堯舜",
+      "path": "terms/t_12f74718424d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_12f74718424d-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "paired sage-kings versus individual and Yu-Tang family",
+            "affirmative court use versus limiting public questions",
+            "pre-Zen figure deployment rather than hagiography",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "In the Nantang Qingyu witness, an unnamed monk utters the headword-bearing old-farmer line; Nantang's reply contains no 堯舜, but MasterName assigns Nantang and there is no reviewed-unnamed questioner packet."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "assigned the old-farmer line to a six-rung reviewed unnamed monk",
+            "retained Nantang Qingyu only as respondent and section context",
+            "preserved the paired-figure definition and balanced deployment"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        }
+      ],
+      "reason": "Revision accepted: the unnamed monk now owns the headword-bearing old-farmer line, Nantang remains respondent context, and the single paired-figure sense retains affirmative and limiting deployments without hagiographic drift.",
+      "subjectEntrySha256": "614b9d27f9bf37cce4a98893a062f2d5f6e3555f8fd6d299b06fdabc7f9138be",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-yaoshun-gate.json"
+    },
+    {
+      "id": "t_b96051d06349",
+      "sourceTerm": "室中",
+      "path": "terms/t_b96051d06349/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_b96051d06349-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "institutional chamber-interview site versus ordinary room interior",
+            "question, implement, entrant-test, and section-heading predicates",
+            "living-room and sickroom controls",
+            "enter-the-room family contamination",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "An institutional site repeatedly used for questions, implements, and entrant tests cannot gloss an idle living room or sickroom; both targets define their place directly, and the entry keeps entrance, approval, and succession from leaking into the locative headword.",
+      "subjectEntrySha256": "da1544da5a5d999db5d97b48344bde3770c070fe9f49411d53a669a12ee4c011",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-shizhong-gate.json"
+    },
+    {
+      "id": "t_9571d06dd1c7",
+      "sourceTerm": "張公喫酒李公醉",
+      "path": "terms/t_9571d06dd1c7/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_9571d06dd1c7-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "literal translation versus actor-effect structure",
+            "two proverb clauses versus fused senses",
+            "unrelated public questions and universal-hidden-answer overreach",
+            "generic Zhang-Li name family contamination",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The entry preserves the full comic scene and states only the mechanically visible mismatch—Zhang acts while Li bears the effect. Its unrelated interview uses disprove any universal hidden answer, while the two clauses remain one indivisible proverb.",
+      "subjectEntrySha256": "64646658ced968fc8936d9a2a769dc16e6a7f24a1497e0113254d09822524349",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-zhangli-gate.json"
+    },
+    {
+      "id": "t_4aa29a0183ae",
+      "sourceTerm": "斬猫",
+      "path": "terms/t_4aa29a0183ae/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_4aa29a0183ae-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "named case versus general cat-cutting action",
+            "orthographic and expanded-form family identity",
+            "precept question and rejected-rationale controls",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "The Miyun witness contains 斬猫 only in the unnamed monk's precept question; Miyun's repentance reply does not repeat it.",
+            "The Jueyin witness contains the headword in the visitor's question; Jueyin's answer 須是南泉始得 does not repeat it.",
+            "The Hu Anguo witness explicitly says a Chan visitor raised the headword-bearing question; Hu's verse answer does not repeat it."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "resolved": [
+            "assigned Miyun's incoming precept question to a reviewed unnamed monk",
+            "assigned Jueyin's incoming import question to a reviewed unnamed visitor",
+            "assigned Hu Anguo's incoming case question to a reviewed unnamed Chan visitor"
+          ],
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        }
+      ],
+      "reason": "Revision accepted: all three question-form tokens now belong to their exact reviewed unnamed speakers, respondents remain context only, and the named-case, precept, and rejected-rationale treatment remains intact.",
+      "subjectEntrySha256": "42ab086f28ceeaa8382e258aa0066a5ff68803170014a825f72c41ccca504591",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-zhanmao-gate.json"
+    },
+    {
+      "id": "t_e156057131dc",
+      "sourceTerm": "本參",
+      "path": "terms/t_e156057131dc/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_e156057131dc-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "assigned or selected subject versus named system",
+            "saying, question, and public-case forms",
+            "placing, raising, dropping, and breaking-through predicates",
+            "conditional recollecting-buddha example overreach",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Possessives and object predicates establish a person's selected or assigned subject of inquiry; saying, question, and case are forms of that one referent, and the conditional recollecting-buddha example is correctly bounded rather than universalized.",
+      "subjectEntrySha256": "2e3dc1a548ebf45424e6c91decfa1e1096ec8bac31653a18e4b09c7ed5ca8068",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-bencan-gate.json"
+    },
+    {
+      "id": "t_114bbd284d1c",
+      "sourceTerm": "東山水上行",
+      "path": "terms/t_114bbd284d1c/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_114bbd284d1c-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "literal sentence versus portable case-saying",
+            "originating question and alternate-answer contamination",
+            "unsupported symbolic decoding",
+            "questioner versus respondent exact-actor responsibility",
+            "source, quote anchoring, and depth"
+          ],
+          "counterevidence": [
+            "The Xiatang Huiyuan witness contains the headword only in the incoming question; Xiatang's answer does not repeat it.",
+            "The Chaozong witness likewise contains the headword only in the monk's question; Chaozong's reply does not repeat it."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_114bbd284d1c-recheck-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0,
+          "finding": "The Xiatang and Chaozong questioners are now correctly represented, but X/X82/X82n1571.xml 0093b14–b16 still assigns Yuanwu Keqin although the only 東山水上行 token is Yunmen Wenyan's quoted answer. Yuanwu supplies a different answer and should be quoter/context, while Yunmen is the quoted token speaker."
+        },
+        {
+          "kind": "revision-recheck",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_114bbd284d1c-recheck2-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0,
+          "finding": "Yunmen now owns the quoted token; Yuanwu is explicitly retained as quoter, commentator, and section subject. All seven turns are consistent with their notes."
+        }
+      ],
+      "reason": "The documentary definition identifies Yunmen's fixed answer and its portable case-saying use without inventing a symbolic decoding. The two direct-import questions and the quoted Yunmen answer now all belong to their exact speakers, with respondents and quoters retained as context.",
+      "subjectEntrySha256": "64292f6b2dbc7b689e6234d2cbc1e1836fc70031869aee11200c540583114e49",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-dongshanwater-gate.json"
+    },
+    {
+      "id": "t_68835cda6c3f",
+      "sourceTerm": "正令",
+      "path": "terms/t_68835cda6c3f/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_68835cda6c3f-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "ordinary authority scene versus teaching-seat transfer",
+            "issuance, execution, full presentation, and criticism predicates",
+            "holder and instrument variation",
+            "command-family contamination",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The target states an authoritative order in force, while carrying out, fully presenting, questioning, praising, and criticizing vary the handling of that same command. Public-seat, staff, and blow settings expose the Zen transfer without turning an instrument or appraisal into another sense.",
+      "subjectEntrySha256": "0a040a7ca4e201a6733552958e36f2e9725b6c350f2720d9fbfedb97bc6286ea",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-zhengling-gate.json"
+    },
+    {
+      "id": "t_51f93b6474e8",
+      "sourceTerm": "湊泊",
+      "path": "terms/t_51f93b6474e8/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_51f93b6474e8-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "relational approach versus component coalescence",
+            "single-source repetition and provisional-secondary containment",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "Relationally finding purchase on a saying, encounter, or person and physical components coalescing temporarily have incompatible subjects and predicates. The targets distinguish them, while the repeated component-coalescence statement remains explicitly provisional rather than being generalized beyond its evidence.",
+      "subjectEntrySha256": "d046df5ac3a41b2ad21a5b62bc2e437be85a1fc181af6c7725850ed60fb4690a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-coubo-gate.json"
+    },
+    {
+      "id": "t_ec1241360056",
+      "sourceTerm": "無孔鐵鎚",
+      "path": "terms/t_ec1241360056/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_ec1241360056-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "literal manufactured-tool overclaim",
+            "solid object-image versus direct person-label",
+            "iron modifier and handle-eye mechanics",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The entry gives the missing handle-eye mechanics, marks the object as imagined rather than asserting an attested manufactured tool, and derives the no-entry deployment from corpus predicates such as water not wetting and wind not entering. A solid object-image and people directly called holeless iron hammers are different referents, so the two-sense boundary is usable and non-interpretive.",
+      "subjectEntrySha256": "b1b49d2b0d46e7a0e5deea7752552b09cb126c5a0607fe05ad64ec20a3f7c132",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-holelesshammer-gate.json"
+    },
+    {
+      "id": "t_f5f691fd0483",
+      "sourceTerm": "犀牛",
+      "path": "terms/t_f5f691fd0483/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_f5f691fd0483-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-counterevidence",
+          "finding": "At J/J27/J27nB190.xml 0115a02–a03, the exact headword token occurs in the unnamed monk's quoted verse (僧呈題扇偈曰), but MasterName is Shiyu Mingfang. Shiyu is the respondent/context master, not the token speaker."
+        },
+        {
+          "kind": "revision-recheck",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_f5f691fd0483-recheck-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0,
+          "finding": "The verse-presenting monk now owns the token through six-rung reviewed-unnamed attribution, with Shiyu Mingfang retained only as respondent and record-owner context."
+        }
+      ],
+      "reason": "The one-sense semantic decision avoids inventing a symbolic rhinoceros meaning, distinguishes the animal from the fan compound, and now attributes the disputed fan-verse token to its exact unnamed speaker while preserving Shiyu as context.",
+      "subjectEntrySha256": "8d808aa375799d5eef4a01759f57f8f14c2b2839df469d76c387762b09050aab",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-rhino-gate.json"
+    },
+    {
+      "id": "t_b4a4ae6874d0",
+      "sourceTerm": "異類中行",
+      "path": "terms/t_b4a4ae6874d0/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_b4a4ae6874d0-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-counterevidence",
+          "findings": [
+            "At X/X66/X66n1296.xml 0052a11–a12, Nanquan Puyuan speaks the sole headword token; Guizong Zhichang's response does not repeat it, so Guizong cannot be MasterName.",
+            "At T/T47/T47n1987A.xml 0534c09–c12, the headword is within Caoshan Benji's explicit quotation of Nanquan (南泉曰); Caoshan's own following comment does not repeat it."
+          ]
+        },
+        {
+          "kind": "revision-recheck",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_b4a4ae6874d0-recheck-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0,
+          "finding": "Nanquan now owns both quoted headword tokens; Guizong and Caoshan are explicitly preserved as respondent/commentator context without being credited for words they do not repeat."
+        },
+        {
+          "kind": "parity-recheck",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_b4a4ae6874d0-parity-recheck-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0,
+          "finding": "The source-only Curated normalization changes no wording, sense, occurrence, actor, or evidence boundary; the previously accepted semantic and exact-turn decisions remain valid."
+        }
+      ],
+      "reason": "The single relational sense remains appropriately conservative across animal, public-interview, and Caodong deployments. Both disputed quoted tokens now belong to Nanquan, with Guizong and Caoshan represented in their exact contextual roles.",
+      "subjectEntrySha256": "c3b8569e484528f594f09ccf401e6f32d2e7a0c7f1c276720c984e23b6eb619d",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-yileizhongxing-gate.json"
+    },
+    {
+      "id": "t_08ca0c164829",
+      "sourceTerm": "相賺",
+      "path": "terms/t_08ca0c164829/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_08ca0c164829-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "reciprocal action versus one-way deception",
+            "negative assurance versus affirmative or interrogative polarity",
+            "quotation formula versus a new referent",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The target makes the two-party reciprocal action explicit. Negative assurances, affirmative possibility, and interrogative challenge vary polarity rather than referent, and the recurring assenting-heart formula is reported as a Zen deployment rather than promoted to a separate sense.",
+      "subjectEntrySha256": "37f2b081f02163149fa57aead8491cdbeff19e57285587894044788cf2aa83fd",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-xiangzhuan-gate.json"
+    },
+    {
+      "id": "t_539b931c442a",
+      "sourceTerm": "秉拂",
+      "path": "terms/t_539b931c442a/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_539b931c442a-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "casual object handling versus authorized presiding act",
+            "hall, general-address, small-gathering, robe, retreat, and code-format variation",
+            "delegated office versus permanent master identity",
+            "exact actor, source, quote anchoring, and depth"
+          ]
+        }
+      ],
+      "reason": "The entry names the institutional action hidden by a literal ‘hold the whisk’: delegated teaching-seat authority exercised in a public format. The code procedure supplies the ordinary mechanics, while hall, general-address, and small-gathering settings vary the format rather than the referent.",
+      "subjectEntrySha256": "49abb2d39b214f03180f65ecde1a3a4027648712ae8c65cd50163e77f3545f1a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-bingfu-gate.json"
+    },
+    {
+      "id": "t_5d8f2f79dc60",
+      "sourceTerm": "竿頭進步",
+      "path": "terms/t_5d8f2f79dc60/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "current-hash-entry-gate",
+          "report": "maintenance/semantic-cohorts/semantic-r002-reviewer3-t_5d8f2f79dc60-gate.json",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "exactKwicFailures": 0
+        },
+        {
+          "kind": "independent-semantic-falsification",
+          "tests": [
+            "missing physical geometry and footing",
+            "case title versus verse-line versus public question",
+            "different answers mistaken for different senses",
+            "quoted source, exact questioner, respondent, and compiler attribution",
+            "family evidence containment and depth"
+          ]
+        }
+      ],
+      "reason": "The target now states the crucial ordinary geometry: the demanded next step is beyond a pole-top where no footing remains. Case title, verse line, instruction, and public question preserve that same impossible action, while the entry reports rather than harmonizes the masters' different answers. Exact speakers, named and reviewed-unnamed questioners, respondents, and Wumen's compiler role are cleanly separated.",
+      "subjectEntrySha256": "ce5f3a0d37998a27347c124010e0510eb1882326c3086649c4dea65e4d5b7116",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r002-owner1-gantoujinbu-gate.json"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "X/X70/X70n1390.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_31575552ede2:0442b19:1:4",
+      "entryId": "t_31575552ede2",
+      "sourceTerm": "頑空",
+      "RelPath": "X/X70/X70n1390.xml",
+      "FromLb": "0442b19",
+      "Kwic": "若鈍根者，於無事角，力守頑空，全無孔竅，執為木偶，不知非木偶，執為墻壁，不知非墻壁",
+      "caseClusterId": "X/X70/X70n1390.xml:263016:263283",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "希叟紹曇禪師廣錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xisou Shaotan",
+        "AttributionNote": "Extensive Record of Xisou Shaotan (希叟紹曇禪師廣錄): in his small address, Xisou Shaotan describes dull students guarding stubborn emptiness as a wooden puppet and wall without openings."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

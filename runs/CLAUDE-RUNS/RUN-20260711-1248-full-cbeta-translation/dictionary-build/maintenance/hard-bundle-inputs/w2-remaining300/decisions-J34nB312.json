@@ -1,0 +1,27 @@
+{
+  "source": "J/J34/J34nB312.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_dd2b39789323:0809a18:1:3",
+      "entryId": "t_dd2b39789323",
+      "sourceTerm": "格外句",
+      "RelPath": "J/J34/J34nB312.xml",
+      "FromLb": "0809a18",
+      "Kwic": "如何是格外句？」師云：「杖頭指出千峰秀，五鳳樓前聽好音。",
+      "caseClusterId": "J/J34/J34nB312.xml:12412:13502",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天界覺浪盛禪師嘉禾語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Juelang Dasheng",
+        "AttributionNote": "Jiahe Recorded Sayings of Juelang Dasheng (天界覺浪盛禪師嘉禾語錄): in his Jiahe record, Juelang Dasheng answers the question about a phrase outside the standard with a paired verse line."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

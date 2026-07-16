@@ -1,0 +1,259 @@
+{
+  "bundleId": "quick-owner-2",
+  "worker": "/root/repair_bird_path",
+  "updatedUtc": "2026-07-14T06:58:00Z",
+  "totalRows": 67,
+  "reviewedRows": 67,
+  "appliedRows": 67,
+  "completedUnits": [
+    "X/X80/X80n1565.xml",
+    "X/X82/X82n1571.xml",
+    "T/T51/T51n2076.xml"
+  ],
+  "failedOrDeferredUnits": [],
+  "remainingRows": 0,
+  "nextUnit": null,
+  "bundleAudit": {
+    "report": "maintenance/source-batch-quick-owner-2-report-20260714.md",
+    "audit": "maintenance/source-batch-quick-owner-2-final-audit.json",
+    "triageMatches": "67/67",
+    "focusedActorRows": "67/67",
+    "exclusiveEntryJsonParse": "50/50",
+    "currentExactVerification": "307/307",
+    "failures": []
+  },
+  "completedSourceDetails": [
+    {
+      "source": "X/X80/X80n1565.xml",
+      "rows": 33,
+      "overrides": 20,
+      "distinctEntries": 25,
+      "compile": "maintenance/source-workbooks/compiled-owner2-X80n1565.json",
+      "dryRun": "maintenance/source-batch-owner2-X80n1565-dryrun.json",
+      "apply": "maintenance/source-batch-owner2-X80n1565-apply.json",
+      "focusedGate": "maintenance/source-batch-owner2-X80n1565-gate.json",
+      "verificationAndEntryHashes": "maintenance/source-batch-owner2-X80n1565-verify.json",
+      "focusedActorGate": "33/33",
+      "touchedEntryExactVerification": "159/159",
+      "failures": []
+    },
+    {
+      "source": "X/X82/X82n1571.xml",
+      "rows": 19,
+      "overrides": 13,
+      "distinctEntries": 19,
+      "compile": "maintenance/source-workbooks/compiled-owner2-X82n1571.json",
+      "dryRun": "maintenance/source-batch-owner2-X82n1571-dryrun.json",
+      "apply": "maintenance/source-batch-owner2-X82n1571-apply.json",
+      "focusedGate": "maintenance/source-batch-owner2-X82n1571-gate.json",
+      "verificationAndEntryHashes": "maintenance/source-batch-owner2-X82n1571-verify.json",
+      "focusedActorGate": "19/19",
+      "touchedEntryExactVerification": "117/117",
+      "failures": []
+    },
+    {
+      "source": "T/T51/T51n2076.xml",
+      "rows": 15,
+      "overrides": 10,
+      "distinctEntries": 13,
+      "compile": "maintenance/source-workbooks/compiled-owner2-T51n2076.json",
+      "dryRun": "maintenance/source-batch-owner2-T51n2076-dryrun.json",
+      "apply": "maintenance/source-batch-owner2-T51n2076-apply.json",
+      "focusedGate": "maintenance/source-batch-owner2-T51n2076-gate.json",
+      "verificationAndEntryHashes": "maintenance/source-batch-owner2-T51n2076-verify.json",
+      "focusedActorGate": "15/15",
+      "touchedEntryExactVerification": "74/74",
+      "failures": []
+    }
+  ],
+  "reviewCheckpoints": [
+    {
+      "source": "X/X80/X80n1565.xml",
+      "rows": "1-10",
+      "occurrenceKeys": [
+        "t_1a86ee3d406f:0029a12:1:1",
+        "t_1a86ee3d406f:0029a18:1:2",
+        "t_ba6668ef3e6e:0029a18:1:3",
+        "t_ba6668ef3e6e:0031c15:1:4",
+        "t_694f447dbd89:0042c14:1:1",
+        "t_d2892b1eaae0:0042c21:1:1",
+        "t_93e6bc6b2103:0061b13:1:1",
+        "t_38695d7fdbe2:0064a16:1:3",
+        "t_9ec945311be0:0067a03:1:1",
+        "t_33d49f4710be:0070b03:1:4"
+      ],
+      "decisions": [
+        "Shakyamuni Buddha",
+        "Shakyamuni Buddha",
+        "Mahakasyapa (override required)",
+        "Ananda",
+        "Bodhidharma",
+        "Huike (override required; Bodhidharma is respondent/context)",
+        "Nanyang Huizhong",
+        "Guifeng Zongmi",
+        "Shanhui Dashi",
+        "Bodhidharma"
+      ],
+      "status": "review-only checkpoint; source not yet signed, compiled, applied, or complete"
+    },
+    {
+      "source": "X/X80/X80n1565.xml",
+      "rows": "11-33",
+      "occurrenceKeys": [
+        "t_5d84cccab8df:0073a05:1:1",
+        "t_9b71e523fe10:0073a16:1:8",
+        "t_38695d7fdbe2:0077b05:1:4",
+        "t_72e01bbb3474:0077b05:1:3",
+        "t_37771a869b4f:0080b16:1:6",
+        "t_8dc9df82b364:0087c03:1:1",
+        "t_19784084ccb4:0089b14:1:5",
+        "t_93e6bc6b2103:0089b22:1:5",
+        "t_38695d7fdbe2:0093a04:1:5",
+        "t_694f447dbd89:0113a23:1:2",
+        "t_bf67613e4573:0114c21:1:2",
+        "t_e5259ce8bbf5:0116b21:2:2",
+        "t_e84753568cda:0132a13:1:2",
+        "t_77821881a767:0143b02:1:1",
+        "t_ab6276be6e08:0143c24:1:3",
+        "t_757827b8d4cb:0146b08:1:3",
+        "t_ff560195f161:0152a18:1:4",
+        "t_e9adcb470950:0204b23:1:1",
+        "t_e9adcb470950:0211b05:1:2",
+        "t_bf67613e4573:0222c24:1:3",
+        "t_c968268a64d1:0230b06:1:3",
+        "t_acccac1051a4:0230c19:1:8",
+        "t_cc6b4c4e9ba8:0340a14:1:3"
+      ],
+      "decisions": [
+        "Baizhang Huaihai",
+        "Nanquan Puyuan",
+        "reviewed-unnamed questioner; Panshan Baoji respondent",
+        "Panshan Baoji",
+        "Letan Fahui",
+        "Mazu Daoyi",
+        "Baozhi",
+        "reviewed-unnamed monk; Changqing Da'an context",
+        "reviewed-unnamed monk; Zhaozhou Congshen respondent",
+        "Datong Ji",
+        "Daowu Yuanzhi",
+        "Touzi Datong",
+        "reviewed-unnamed questioner; Zhaozhou Congshen respondent",
+        "Puhua",
+        "Yantou Quanhuo",
+        "Changqing Huileng",
+        "Xuansha Shibei",
+        "Yongming Daoqian",
+        "Yongming Yanshou",
+        "Magu Baoche",
+        "Fengxue Yanzhao",
+        "reviewed-unnamed questioner; Fengxue Yanzhao respondent",
+        "named prose author of Mingdao yuru pian; Shakyamuni Buddha/Bodhidharma context"
+      ],
+      "status": "review-only checkpoint; source decision sheet not yet signed or applied"
+    },
+    {
+      "source": "X/X82/X82n1571.xml",
+      "rows": "1-10",
+      "occurrenceKeys": [
+        "t_5d84cccab8df:0001b08:1:7",
+        "t_21a3463bc0db:0019c21:1:3",
+        "t_93e6bc6b2103:0019c21:1:7",
+        "t_f3488daf27fd:0023b24:1:6",
+        "t_ff560195f161:0024c22:1:2",
+        "t_a14a883193a5:0036c22:1:2",
+        "t_bcc96a299271:0041b17:1:1",
+        "t_4d4ce329367f:0043a04:1:1",
+        "t_a7c8b47ff1a3:0050c03:1:2",
+        "t_643fab6ecc1b:0057b14:1:3"
+      ],
+      "decisions": [
+        "Tianyi Yihuai",
+        "Xiangji Yongmin",
+        "Xiangji Yongmin",
+        "Xuefeng Sihui",
+        "Wufeng Ziqi",
+        "Huangbo Weisheng",
+        "reviewed-unnamed monk; Guizong Zhizhi respondent",
+        "Sixin Wuxin",
+        "Dongshan Fanyan",
+        "Baizhang Weigu"
+      ],
+      "status": "review-only checkpoint; source not yet signed or applied"
+    },
+    {
+      "source": "X/X82/X82n1571.xml",
+      "rows": "11-19",
+      "occurrenceKeys": [
+        "t_8dc9df82b364:0080c21:1:5",
+        "t_bf4ad761840f:0092b14:1:6",
+        "t_24adbdf51a15:0094c10:1:3",
+        "t_2baf0ec63b2c:0110a09:1:3",
+        "t_b95cbb303b12:0116c20:1:2",
+        "t_ee57d3ff5e43:0120c06:1:6",
+        "t_fc585583b815:0187a09:1:5",
+        "t_82829641b07c:0194b17:1:2",
+        "t_dc02eefd07f5:0279b20:1:6"
+      ],
+      "decisions": [
+        "Wuzu Fayan; Mazu Daoyi quoted context",
+        "Huqiu Shaolong",
+        "Zhaozhou Congshen; Dahui Zonggao later raiser",
+        "Feng Ji; Foyan Qingyuan co-actor",
+        "Fozhao Deguang",
+        "Miaodao",
+        "Wumen Huikai; Yuelin Shiguan co-actor",
+        "Gufeng Xiu; Wanshan Zhengning addressee",
+        "Baizhang Ruibai Mingxue"
+      ],
+      "status": "review-only checkpoint; X82 ready to sign and gate"
+    },
+    {
+      "source": "T/T51/T51n2076.xml",
+      "rows": "1-10",
+      "occurrenceKeys": [
+        "t_96f468d6b843:0220a23:1:4",
+        "t_9ec945311be0:0244c14:1:4",
+        "t_43ecdacadde0:0247a02:1:3",
+        "t_33d49f4710be:0268a10:1:1",
+        "t_cf1445e57ef2:0272a04:1:1",
+        "t_e016fb20e6da:0272a06:1:2",
+        "t_707c9af5cb8e:0275a07:1:4",
+        "t_707c9af5cb8e:0276a01:1:1",
+        "t_757827b8d4cb:0284b23:1:1",
+        "t_fab146271b10:0291a28:1:7"
+      ],
+      "decisions": [
+        "Bodhidharma; Guangtong and Bodhiruci named in note",
+        "Wuxiang",
+        "Mazu Daoyi",
+        "Guling Shenzan",
+        "Huangbo Xiyun",
+        "Huangbo Xiyun",
+        "reviewed-unnamed student; Nanquan lineage context",
+        "reviewed-unnamed student; Nanquan lineage context",
+        "Xiangyan Zhixian",
+        "Muzhou Daoming"
+      ],
+      "status": "review-only checkpoint; source not yet signed or applied"
+    },
+    {
+      "source": "T/T51/T51n2076.xml",
+      "rows": "11-15",
+      "occurrenceKeys": [
+        "t_91d84c849fc7:0299a17:1:3",
+        "t_3a400cdd72bb:0337a26:1:2",
+        "t_cf1445e57ef2:0365a17:1:5",
+        "t_da6965508721:0400b21:1:5",
+        "t_b26bfa9e399e:0461c17:1:2"
+      ],
+      "decisions": [
+        "reviewed-unnamed monk; Zizhou Shuilu Heshang respondent",
+        "reviewed-unnamed monk; Dongshan Daoquan respondent",
+        "reviewed-unnamed monk; Ca'an Fayi respondent",
+        "reviewed-unnamed monk; Fayan Wenyi respondent",
+        "Shitou Xiqian"
+      ],
+      "status": "review complete; mechanical signed pipeline pending"
+    }
+  ]
+}

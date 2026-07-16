@@ -1,0 +1,83 @@
+{
+  "source": "X/X69/X69n1362.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_f0cb4dcfc70c:0625b05:1:5",
+      "entryId": "t_f0cb4dcfc70c",
+      "sourceTerm": "掛搭",
+      "RelPath": "X/X69/X69n1362.xml",
+      "FromLb": "0625b05",
+      "Kwic": "你兩箇要參禪，却去掛搭。",
+      "caseClusterId": "X/X69/X69n1362.xml:50389:51570",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普覺宗杲禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yexian Guixing",
+        "AttributionNote": "Recorded Sayings of Pujue Zonggao (普覺宗杲禪師語錄): Yexian Guixing laughs at Fushan Fayuan and Tianyi Yihuai's persistence and tells the two to go register.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fushan Fayuan",
+            "Roles": [
+              "student"
+            ]
+          },
+          {
+            "MasterName": "Tianyi Yihuai",
+            "Roles": [
+              "student"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_f0cb4dcfc70c:0625c11:1:6",
+      "entryId": "t_f0cb4dcfc70c",
+      "sourceTerm": "掛搭",
+      "RelPath": "X/X69/X69n1362.xml",
+      "FromLb": "0625c11",
+      "Kwic": "且令別處掛搭，候此間單位空，即令入堂。",
+      "caseClusterId": "X/X69/X69n1362.xml:53145:53791",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普覺宗杲禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fayun Faxiu",
+        "AttributionNote": "Recorded Sayings of Pujue Zonggao (普覺宗杲禪師語錄): Fayun Faxiu directs that Ziqing register elsewhere until a place opens at Fayun."
+      }
+    },
+    {
+      "key": "t_eba970114dd2:0627c03:3:1",
+      "entryId": "t_eba970114dd2",
+      "sourceTerm": "邯鄲",
+      "RelPath": "X/X69/X69n1362.xml",
+      "FromLb": "0627c03",
+      "Kwic": "邯鄲公諱淑，時方七歲。",
+      "caseClusterId": "X/X69/X69n1362.xml:64933:66062",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "普覺宗杲禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "biographical compiler's narrative",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The clause is third-person biography rather than a speech turn.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Recorded Sayings of Pujue Zonggao (普覺宗杲禪師語錄): the biographical compiler's narrative identifies Handan Gong as Li Shu, then aged seven."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,96 @@
+{
+  "generatedUtc": "2026-07-13T20:32:56.980471+00:00",
+  "elapsedSeconds": 1.787,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_20a56b9c1026",
+      "term": "鐵牛",
+      "path": "terms/t_20a56b9c1026/entry.v2.json",
+      "sha256": "fbc5fbc61f37a750f43e255c4d42e45a168f3fce073a027405e503bcc48d3462"
+    },
+    {
+      "id": "t_99f4bff4b6c6",
+      "term": "寒灰",
+      "path": "terms/t_99f4bff4b6c6/entry.v2.json",
+      "sha256": "cff5dcc8d089123f5988e2aeb34909a1a5e59119d0d809517ef8eb81e7f14308"
+    },
+    {
+      "id": "t_b48fa1daa7d4",
+      "term": "虛空",
+      "path": "terms/t_b48fa1daa7d4/entry.v2.json",
+      "sha256": "b6445a6f9575725cd66dda659c84867550889a2621068091992861663eb2315b"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 27,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_20a56b9c1026/entry.v2.json",
+        "id": "t_20a56b9c1026",
+        "term": "鐵牛",
+        "verified": 10,
+        "failures": []
+      },
+      {
+        "path": "terms/t_99f4bff4b6c6/entry.v2.json",
+        "id": "t_99f4bff4b6c6",
+        "term": "寒灰",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "terms/t_b48fa1daa7d4/entry.v2.json",
+        "id": "t_b48fa1daa7d4",
+        "term": "虛空",
+        "verified": 10,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 4,
+        "occurrences": 27,
+        "named_occurrences": 27,
+        "attribution_notes": 27,
+        "deferred_non_roster": 15,
+        "chinese_strings": 19,
+        "anchored_chinese": 19
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 4,\n    \"occurrences\": 27,\n    \"named_occurrences\": 27,\n    \"attribution_notes\": 27,\n    \"deferred_non_roster\": 15,\n    \"chinese_strings\": 19,\n    \"anchored_chinese\": 19\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp39uft3i3.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 2,
+      "tenOrMoreOccurrences": 1,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 2,\n  \"tenOrMoreOccurrences\": 1,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

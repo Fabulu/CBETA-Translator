@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB456.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_5f1287817ebd:0694b22:1:5",
+      "entryId": "t_5f1287817ebd",
+      "sourceTerm": "野狐禪",
+      "RelPath": "J/J39/J39nB456.xml",
+      "FromLb": "0694b22",
+      "Kwic": "掃盡諸方野狐禪",
+      "caseClusterId": "J/J39/J39nB456.xml:27120:31121",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "通天澹崖原禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tongtian Danya Yuan",
+        "ActorAttribution": null,
+        "AttributionNote": "通天澹崖原禪師語錄. Full six-rung exact-turn review identifies Tongtian Danya Yuan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_5f1287817ebd:0694b22:1:5"
+  ]
+}

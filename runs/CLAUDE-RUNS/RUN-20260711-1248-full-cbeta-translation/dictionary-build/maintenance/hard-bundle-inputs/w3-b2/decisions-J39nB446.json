@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB446.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_a0634fecce83:0364b11:1:5",
+      "entryId": "t_a0634fecce83",
+      "sourceTerm": "拖泥帶水",
+      "RelPath": "J/J39/J39nB446.xml",
+      "FromLb": "0364b11",
+      "Kwic": "拖泥帶水處千仞壁立，千仞壁立處帶水拖泥，自然全殺全活，",
+      "caseClusterId": "J/J39/J39nB446.xml:24374:24528",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "靈隱文禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Lingyin Yinwen",
+        "ActorAttribution": null,
+        "AttributionNote": "靈隱文禪師語錄. Full six-rung exact-turn review identifies Lingyin Yinwen as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_a0634fecce83:0364b11:1:5"
+  ]
+}

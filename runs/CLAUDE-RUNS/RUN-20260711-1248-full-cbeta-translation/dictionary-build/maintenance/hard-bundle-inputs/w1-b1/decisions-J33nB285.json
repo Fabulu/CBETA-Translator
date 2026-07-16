@@ -1,0 +1,52 @@
+{
+  "source": "J/J33/J33nB285.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e9847e6f41c9:0467b26:1:6",
+      "entryId": "t_e9847e6f41c9",
+      "sourceTerm": "腳跟下",
+      "RelPath": "J/J33/J33nB285.xml",
+      "FromLb": "0467b26",
+      "Kwic": "第一義諦即不問，腳跟下事是如何？」師云：「頭上安頭。」",
+      "caseClusterId": "J/J33/J33nB285.xml:17439:18099",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "兜率不磷堅禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-b1",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "兜率不磷堅禪師語錄, spring-beginning public exchange. The exact headword-bearing speaker is an unnamed questioning monk: he sets aside the highest truth and asks about the affair beneath his heels; Doushuai Bulin Jian answers, 'putting a head atop a head.' The six-rung review found no personal name for this monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Doushuai Bulin Jian",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

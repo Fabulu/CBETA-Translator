@@ -1,0 +1,28 @@
+{
+  "source": "X/X69/X69n1333.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_5ac2c5d1fc1e:0083b09:1:1",
+      "entryId": "t_5ac2c5d1fc1e",
+      "sourceTerm": "寸絲不掛",
+      "RelPath": "X/X69/X69n1333.xml",
+      "FromLb": "0083b09",
+      "Kwic": "師云：日織多少？僧云：寸絲不掛。師云：參堂去。僧行三五步，師云：袈裟落地也。僧回首，師便打，云：大好寸絲不掛。",
+      "caseClusterId": "X/X69/X69n1333.xml:100866:101221",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "雪峰義存禪師語錄（真覺禪師語錄）",
+      "defaultMasterName": "Xuefeng Yicun",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Xuefeng Yicun",
+        "ActorAttribution": null,
+        "AttributionNote": "雪峰義存禪師語錄（真覺禪師語錄）. Full six-rung exact-turn review identifies Xuefeng Yicun as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

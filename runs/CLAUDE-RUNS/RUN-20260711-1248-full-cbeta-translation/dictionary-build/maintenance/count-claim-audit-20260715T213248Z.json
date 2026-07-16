@@ -1,0 +1,115 @@
+{
+  "generatedUtc": "2026-07-15T21:32:48.165044+00:00",
+  "entryCount": 10,
+  "claimCount": 5,
+  "candidatePhraseCount": 9,
+  "mismatchCount": 2,
+  "noNearCandidateCount": 1,
+  "claims": [
+    {
+      "entryId": "t_c1af3ecba987",
+      "sourceTerm": "機鋒",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 221,
+      "unit": "files",
+      "candidatePhrase": "機鋒",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "機鋒"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The frozen corpus has 780 exact hits in 221 files representing 217 works. Seven standalone anchors ",
+      "currentHits": 780,
+      "currentFiles": 221,
+      "currentWorks": 217,
+      "expectedForUnit": 221,
+      "audit": "match"
+    },
+    {
+      "entryId": "t_c1af3ecba987",
+      "sourceTerm": "機鋒",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 217,
+      "unit": "works",
+      "candidatePhrase": "機鋒",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "機鋒"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The frozen corpus has 780 exact hits in 221 files representing 217 works. Seven standalone anchors cover description, exch",
+      "currentHits": 780,
+      "currentFiles": 221,
+      "currentWorks": 217,
+      "expectedForUnit": 217,
+      "audit": "match"
+    },
+    {
+      "entryId": "t_c698ab3d0cf9",
+      "sourceTerm": "拖死屍",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 64,
+      "unit": "hits",
+      "candidatePhrase": "拖死屍",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "拖死屍"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "The exact headword has 64 hits in 23 allowlisted texts. Four exact witnesses acr",
+      "currentHits": 72,
+      "currentFiles": 28,
+      "currentWorks": 28,
+      "expectedForUnit": 72,
+      "audit": "no-near-candidate"
+    },
+    {
+      "entryId": "t_c968268a64d1",
+      "sourceTerm": "心印",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 145,
+      "unit": "texts",
+      "candidatePhrase": "祖師心印",
+      "candidateDistance": 22,
+      "candidatePhrases": [
+        "祖師心印",
+        "心印"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "t shape-negations and seal-mechanism explanations. 'Ancestral mind-seal' (祖師心印) occurs 336 times in 145 texts, while 'mind-seal of buddhas and ancestors' occur",
+      "currentHits": 368,
+      "currentFiles": 162,
+      "currentWorks": 160,
+      "expectedForUnit": 162,
+      "audit": "mismatch-or-wrong-candidate"
+    },
+    {
+      "entryId": "t_ccae22e8375d",
+      "sourceTerm": "一隻眼",
+      "senseIndex": 0,
+      "field": "Explanation",
+      "claimed": 381,
+      "unit": "occurrences",
+      "candidatePhrase": "具一隻眼",
+      "candidateDistance": 2,
+      "candidatePhrases": [
+        "只具一隻眼",
+        "只管瞻前",
+        "不管照後",
+        "具一隻眼",
+        "一隻眼"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "head and does not look behind\" (只具一隻眼，只管瞻前，不管照後). Productive forms include \"possess one eye\" (具一隻眼, 381 occurrences), \"place one eye here\" (著得一隻眼, 89), \"lose one eye",
+      "currentHits": 476,
+      "currentFiles": 160,
+      "currentWorks": 156,
+      "expectedForUnit": 476,
+      "audit": "mismatch-or-wrong-candidate"
+    }
+  ]
+}

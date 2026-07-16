@@ -1,0 +1,53 @@
+{
+  "counts": {
+    "entries": 1,
+    "senses": 1,
+    "occurrences": 4,
+    "unresolved_actor": 2,
+    "attribution_notes": 4,
+    "note_missing_speaker": 2,
+    "note_missing_source": 2,
+    "named_occurrences": 2,
+    "chinese_strings": 9,
+    "anchored_chinese": 8,
+    "dangling_chinese": 1
+  },
+  "hardFailures": 7,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o1 B/B25/B25n0144.xml:0353b13"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o1: The Collection of the Patriarchal Hall transmits Anquan's lyric: morning gruel and a midday meal are followed by the two reversible orders and the line about clearly knowing while feigning foolishness."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o1 expected '祖堂集': The Collection of the Patriarchal Hall transmits Anquan's lyric: morning gruel and a midday meal are followed by the two reversible orders and the line about clearly knowing while feigning foolishness."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o4 J/J26/J26nB178.xml:0107c15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o4: Feiyin Tongrong repeats both orders before saying that a stretched foot knocks down the holy monk of former years, leaving Shakyamuni nowhere to breathe and Bodhidharma gone west again."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1 o4 expected '費隱禪師語錄': Feiyin Tongrong repeats both orders before saying that a stretched foot knocks down the holy monk of former years, leaving Shakyamuni nowhere to breathe and Bodhidharma gone west again."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6a1ea4df00ce/entry.v2.json",
+      "detail": "騰騰任運 s1: 灑灑落落"
+    }
+  ]
+}

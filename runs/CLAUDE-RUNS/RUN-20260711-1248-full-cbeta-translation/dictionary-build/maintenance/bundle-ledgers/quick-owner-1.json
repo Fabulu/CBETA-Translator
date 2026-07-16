@@ -1,0 +1,279 @@
+{
+  "bundleId": "quick-owner-1",
+  "worker": "Codex /root/feedback_lexicography",
+  "updatedUtc": "2026-07-14T09:30:00Z",
+  "bundleStatus": "complete",
+  "declaredOccurrenceCount": 67,
+  "preparedOccurrenceCount": 66,
+  "countDiscrepancy": "Resolved: 66 real owned rows exist for this bundle. The manifest's 67th count is a phantom X80 row caused by owned entry t_2f4b60453d19 listing X80 in SourceTexts although it has no stored X80 occurrence. Its one real omitted T51 occurrence was full-ladder class and has now been appended and reviewed.",
+  "discrepancyResolution": {
+    "ownedEntry": "t_2f4b60453d19",
+    "term": "承當",
+    "realOmittedRow": "t_2f4b60453d19:0344b27:1:2 in T51n2076; appended and attributed to Xuansha Shibei",
+    "phantomManifestRow": "X80 was present only in the entry SourceTexts list; exhaustive stored-occurrence comparison found no X80 occurrence to review or apply",
+    "realBundleTotal": 66
+  },
+  "sources": ["X80n1565", "X82n1571", "T51n2076"],
+  "reviewedRows": 66,
+  "completedUnits": ["X80n1565", "X82n1571", "T51n2076"],
+  "failedOrDeferredUnits": [],
+  "remainingUnits": [],
+  "nextUnit": "bundle complete; root may integrate ledger-complete units",
+  "reviewCheckpoints": [
+    {
+      "source": "X80n1565",
+      "rows": "1–10",
+      "occurrenceKeys": [
+        "t_cf0513be4012:0043a17:1:1", "t_d1e06fd225fa:0046a14:2:1", "t_6bc71cc88c2f:0052b12:1:1",
+        "t_395ae8fd7f32:0061c11:1:5", "t_aa25afedf184:0061c20:1:2", "t_63ca7d059ee8:0069c01:1:1",
+        "t_f56016646d8f:0071b09:1:1", "t_15eac1a3b037:0074a16:1:2", "t_133711ebf761:0077b06:1:4",
+        "t_966bc615eb6e:0089b20:1:1"
+      ],
+      "decisions": [
+        "Bodhidharma speaks 宗旨", "Hongren performs 入室", "Huineng throws and discusses 衣鉢",
+        "Shenhui speaks 無住", "Shenhui asks 戒定慧", "Nanyue Huairang is 無語",
+        "Huangbo Xiyun performs 吐舌; Baizhang candidate rejected", "Nanquan Puyuan returns 歸方丈",
+        "Panshan Baoji speaks 玄機", "reviewed unnamed monk asks 大用; Changqing candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "X82n1571",
+      "rows": "21–22",
+      "occurrenceKeys": ["t_79e00cdbc129:0265a20:1:6", "t_ba8066477571:0303b06:1:9"],
+      "decisions": [
+        "Ningran Liaogai speaks the 安心 passage while discussing Huike and Bodhidharma",
+        "Feiyin Tongrong performs 喝一喝 and returns to the quarters"
+      ],
+      "status": "reviewed and included in applied complete source unit"
+    },
+    {
+      "source": "X80n1565",
+      "rows": "11–20",
+      "occurrenceKeys": [
+        "t_d055e572dc64:0093c16:1:2", "t_133711ebf761:0107c01:1:3", "t_c8ef8a6a8ef7:0110a18:1:6",
+        "t_937f63a4fb51:0120c03:1:3", "t_fb9ab5bac0bf:0121b08:1:3", "t_fb9ab5bac0bf:0139b19:1:4",
+        "t_63ca7d059ee8:0143a10:1:6", "t_1f6124388d25:0185c15:1:3", "t_db4a932ce500:0271b06:1:2",
+        "t_e96268628f2c:0279b04:1:4"
+      ],
+      "decisions": [
+        "reviewed unnamed monk repeats Zhaozhou Congshen's instructed reply to Xuefeng Yicun for 依前",
+        "Chen Cao speaks the 玄機 verse; Muzhou Daoming candidate rejected",
+        "Yaoshan Weiyan speaks 那箇", "Jiashan Shanhui speaks 目前 and 草鞋",
+        "second unnamed old worthy speaks the second 草鞋 saying; Bodhidharma is discussed, not actor; eleven parallel files preserve anonymity",
+        "Deshan Xuanjian speaks 無語", "Guishan Lingyou points to and discusses the 燈籠",
+        "Emperor Zhuangzong asks the 大悟 question; Hyujeong responds",
+        "reviewed unnamed monk asks 萬法歸一; Baizhang Mingzhao An responds; Baizhang Huaihai candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "X80n1565",
+      "rows": "21–23",
+      "occurrenceKeys": [
+        "t_b75753d89a8f:0307a20:1:2", "t_49829f59faac:0315a15:1:5", "t_a0f2bb1de215:0346b22:1:5"
+      ],
+      "decisions": [
+        "Yunmen Wenyan speaks 金毛師子",
+        "reviewed unnamed monk asks 函蓋乾坤; Xichan Qin responds",
+        "Shaoshan Daoxin speaks 卜度; fourth-patriarch Daoxin candidate rejected"
+      ],
+      "status": "reviewed and included in applied complete source unit"
+    },
+    {
+      "source": "X82n1571",
+      "rows": "1–10",
+      "occurrenceKeys": [
+        "t_d1e06fd225fa:0001a24:1:3", "t_e4d6ebff1bb2:0001b04:1:1", "t_d926adb80feb:0001b15:1:4",
+        "t_cb3571346f22:0006b22:1:9", "t_751d6ddba1e9:0006c07:1:1", "t_57ef1bbc3a81:0009b17:1:1",
+        "t_cf0513be4012:0015c02:1:2", "t_15eac1a3b037:0023b23:1:4", "t_bf467ac18ec0:0033a08:1:1",
+        "t_57ef1bbc3a81:0040b22:1:2"
+      ],
+      "decisions": [
+        "Tianyi Yihuai is the entrant for 入室",
+        "reviewed unnamed monk asks 如何是佛; Tianyi Yihuai responds",
+        "Tianyi Yihuai performs 良久曰",
+        "reviewed unnamed monk speaks 釋迦 in a question to Caoshan Baoji Xiong; Caoshan Benji candidate rejected",
+        "Caoshan Baoji Xiong speaks 明暗; Caoshan Benji candidate rejected",
+        "Huilin Zongben speaks 山河大地",
+        "Liu Jingchen speaks 宗旨 prose; Huike is discussed recipient",
+        "Yaoshan Weiyan performs 歸方丈 inside the raised case; Xuefeng Sihui is later raiser and Xuefeng Yicun candidate rejected",
+        "Huanglong Huinan performs the 佛手 exchange",
+        "Sizushan Fayan speaks 山河大地; preceding Xuefeng candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "X82n1571",
+      "rows": "11–20",
+      "occurrenceKeys": [
+        "t_751d6ddba1e9:0041b08:1:2", "t_acbbe22bdc76:0079b05:1:5", "t_e6b94cf3dbc3:0088b22:1:3",
+        "t_937f63a4fb51:0092b05:1:4", "t_9199b9a31645:0092c14:1:3", "t_fb331b159983:0117a12:1:4",
+        "t_b0f2ccf6d140:0161b18:1:1", "t_6bc71cc88c2f:0189c04:2:2", "t_b75753d89a8f:0197a24:1:4",
+        "t_2816f418822c:0248c17:1:1"
+      ],
+      "decisions": [
+        "Jicui Yong Anzhu speaks 明暗; Huangbo Xiyun candidate rejected",
+        "Wuzu Fayan speaks 打坐", "Kaifu Daoning speaks 通身是眼", "Huqiu Shaolong speaks 目前",
+        "Xuefeng Yicun is the named original speaker of quoted 盡大地; Huqiu Shaolong responds to the later question",
+        "Fozhao Deguang speaks 死蛇", "Gaofeng Yuanmiao performs the 結制 address",
+        "Yuansou Xingduan speaks 衣鉢", "Chushi Fanqi speaks 金毛師子",
+        "Fazhou Daoji gives the 念佛是誰 saying to Yungu Fahui; Yungu candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "T51n2076",
+      "rows": "1–10",
+      "occurrenceKeys": [
+        "t_15eec715e731:0196b09:1:1", "t_77774b8724f1:0206c18:1:3", "t_5ce4bbfe682f:0233b01:1:5",
+        "t_b887bf089b98:0234c25:1:1", "t_6c58ed7a7c6c:0236b05:1:5", "t_becc0a1ea8cb:0239b04:1:1",
+        "t_438eb81f17bf:0242b12:1:1", "t_a784d81e277b:0244a21:1:1", "t_85eef19d3d3a:0264c10:1:1",
+        "t_85eef19d3d3a:0265b22:1:4"
+      ],
+      "decisions": [
+        "Yang Yi authors the 燈錄 title/preface", "Ananda speaks and performs 付法",
+        "Pizao Duo speaks 本性; Lao'an candidate rejected",
+        "Baotang Wuzhu speaks 當處; Wuxiang is lineage teacher only",
+        "Huineng defines 一行三昧; Wuxiang candidate rejected",
+        "Xinzhou Zhichang performs 方丈 in autobiographical speech; Wuxiang candidate rejected",
+        "Yongjia Xuanjue authors 心行處滅; Wuxiang candidate rejected",
+        "Nanyang Huizhong's reviewed unnamed attendant performs 應諾; Wuxiang candidate rejected",
+        "Guishan Lingyou kicks over the 淨瓶 in Baizhang's public test",
+        "Guishan Lingyou passes and withdraws the 淨瓶 with Yangshan; Baizhang candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "T51n2076",
+      "rows": "11–20",
+      "occurrenceKeys": [
+        "t_9a5dc768cbc5:0276c15:1:3", "t_f1eb87aa18ef:0287b08:1:2", "t_df3e128ab4c1:0294b03:1:1",
+        "t_223c2f6ade25:0320a07:1:3", "t_283dce854520:0320c11:1:1", "t_27e66043b271:0341a12:1:1",
+        "t_283dce854520:0344b12:1:3", "t_283dce854520:0360a27:1:5", "t_283dce854520:0362b12:1:4",
+        "t_27e66043b271:0363c20:1:2"
+      ],
+      "decisions": [
+        "Nanquan Puyuan speaks 平常心是道",
+        "Guangxiao Huijue performs the 露柱 encounter; Zhaozhou candidate rejected",
+        "Nanta Guangyong performs 竪拂; Yangshan Huiji candidate rejected",
+        "reviewed unnamed monk asks 一大事因緣 of Touzi Datong; Cuiwei candidate rejected",
+        "Shishuang Qingzhu asks 觸目菩提 of Daowu Yuanzhi",
+        "reviewed unnamed monk asks 聲前一句 of Xuanquan Yan; Yantou candidate rejected",
+        "Xuansha Shibei speaks 觸目菩提; Xuefeng candidate rejected",
+        "reviewed unnamed monk asks 觸目菩提 of Taiyuan Fu; Xuefeng candidate rejected",
+        "reviewed unnamed monk asks 觸目菩提 of Tongan Daopi; Yunju candidate rejected",
+        "reviewed unnamed monk asks 聲前一句 of Heyushan Guanghui; Caoshan candidate rejected"
+      ],
+      "status": "reviewed-in-progress; not an applied complete unit"
+    },
+    {
+      "source": "T51n2076",
+      "rows": "manifest-only real row",
+      "occurrenceKeys": ["t_2f4b60453d19:0344b27:1:2"],
+      "decisions": ["Xuansha Shibei speaks 承當 in his uninterrupted teaching-seat address"],
+      "status": "reviewed-in-progress; appended to T51 sheet; not yet an applied complete unit"
+    }
+  ],
+  "units": {
+    "X80n1565": {
+      "status": "complete",
+      "rows": 23,
+      "entries": 20,
+      "overrides": 9,
+      "occurrenceKeys": [
+        "t_cf0513be4012:0043a17:1:1", "t_d1e06fd225fa:0046a14:2:1", "t_6bc71cc88c2f:0052b12:1:1",
+        "t_395ae8fd7f32:0061c11:1:5", "t_aa25afedf184:0061c20:1:2", "t_63ca7d059ee8:0069c01:1:1",
+        "t_f56016646d8f:0071b09:1:1", "t_15eac1a3b037:0074a16:1:2", "t_133711ebf761:0077b06:1:4",
+        "t_966bc615eb6e:0089b20:1:1", "t_d055e572dc64:0093c16:1:2", "t_133711ebf761:0107c01:1:3",
+        "t_c8ef8a6a8ef7:0110a18:1:6", "t_937f63a4fb51:0120c03:1:3", "t_fb9ab5bac0bf:0121b08:1:3",
+        "t_fb9ab5bac0bf:0139b19:1:4", "t_63ca7d059ee8:0143a10:1:6", "t_1f6124388d25:0185c15:1:3",
+        "t_db4a932ce500:0271b06:1:2", "t_e96268628f2c:0279b04:1:4", "t_b75753d89a8f:0307a20:1:2",
+        "t_49829f59faac:0315a15:1:5", "t_a0f2bb1de215:0346b22:1:5"
+      ],
+      "artifacts": {
+        "override": "maintenance/source-workbooks/overrides-owner1-X80n1565.json",
+        "decisions": "maintenance/source-workbooks/decisions-owner1-X80n1565.json",
+        "baselineAudit": "maintenance/source-workbooks/baseline-owner1-X80n1565.json",
+        "dryRun": "maintenance/source-workbooks/dryrun-owner1-X80n1565.json",
+        "applyReport": "maintenance/source-workbooks/applied-owner1-X80n1565.json",
+        "afterAudit": "maintenance/source-workbooks/after-owner1-X80n1565.json"
+      },
+      "gates": {
+        "compiledRows": 23,
+        "dryRunPrepared": 23,
+        "dryRunFailures": 0,
+        "appliedRows": 23,
+        "focusedDecisionMismatches": 0,
+        "zcVerified": 23,
+        "jsonParse": "all terms entry.v2.json files parse",
+        "gitDiffCheck": "passed; unrelated CRLF conversion warnings only"
+      },
+      "auditDelta": {
+        "unresolvedActor": "85 -> 62",
+        "noteMissingSpeaker": "91 -> 68",
+        "noteMissingSource": "81 -> 63"
+      }
+    },
+    "X82n1571": {
+      "status": "complete",
+      "rows": 22,
+      "entries": 20,
+      "overrides": 8,
+      "artifacts": {
+        "override": "maintenance/source-workbooks/overrides-owner1-X82n1571.json",
+        "decisions": "maintenance/source-workbooks/decisions-owner1-X82n1571.json",
+        "baselineAudit": "maintenance/source-workbooks/baseline-owner1-X82n1571.json",
+        "dryRun": "maintenance/source-workbooks/dryrun-owner1-X82n1571.json",
+        "applyReport": "maintenance/source-workbooks/applied-owner1-X82n1571.json",
+        "afterAudit": "maintenance/source-workbooks/after-owner1-X82n1571.json"
+      },
+      "gates": {
+        "compiledRows": 22,
+        "dryRunPrepared": 22,
+        "dryRunFailures": 0,
+        "appliedRows": 22,
+        "focusedDecisionMismatches": 0,
+        "zcVerified": 22,
+        "jsonParse": "all terms entry.v2.json files parse",
+        "gitDiffCheck": "passed; unrelated CRLF conversion warnings only"
+      },
+      "auditDelta": {
+        "unresolvedActor": "87 -> 65",
+        "noteMissingSpeaker": "90 -> 69",
+        "noteMissingSource": "89 -> 68",
+        "missingAttributionNote": "5 -> 4"
+      }
+    },
+    "T51n2076": {
+      "status": "complete",
+      "rows": 21,
+      "entries": 16,
+      "overrides": 18,
+      "artifacts": {
+        "override": "maintenance/source-workbooks/overrides-owner1-T51n2076.json",
+        "decisions": "maintenance/source-workbooks/decisions-owner1-T51n2076.json",
+        "baselineAudit": "maintenance/source-workbooks/baseline-owner1-T51n2076.json",
+        "dryRun": "maintenance/source-workbooks/dryrun-owner1-T51n2076.json",
+        "applyReport": "maintenance/source-workbooks/applied-owner1-T51n2076.json",
+        "afterAudit": "maintenance/source-workbooks/after-owner1-T51n2076.json"
+      },
+      "gates": {
+        "compiledRows": 21,
+        "dryRunPrepared": 21,
+        "dryRunFailures": 0,
+        "appliedRows": 21,
+        "focusedDecisionMismatches": 0,
+        "zcVerified": 21,
+        "jsonParse": "all terms entry.v2.json files parse",
+        "gitDiffCheck": "passed; unrelated CRLF conversion warnings only"
+      },
+      "auditDelta": {
+        "unresolvedActor": "62 -> 41",
+        "noteMissingSpeaker": "67 -> 48",
+        "noteMissingSource": "63 -> 46",
+        "missingAttributionNote": "5 -> 3"
+      }
+    }
+  }
+}

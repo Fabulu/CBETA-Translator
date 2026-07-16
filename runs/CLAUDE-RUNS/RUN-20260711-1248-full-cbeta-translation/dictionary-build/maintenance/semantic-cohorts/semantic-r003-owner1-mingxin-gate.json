@@ -1,0 +1,72 @@
+{
+  "generatedUtc": "2026-07-14T14:08:27.933626+00:00",
+  "elapsedSeconds": 3.736,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_dc5f4386a0ed",
+      "term": "明心見性",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_dc5f4386a0ed/entry.v2.json",
+      "sha256": "5b185fe27ee21c4d52da7814375fb62814ea886c35dedc3de60805dbf52152b1"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 7,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_dc5f4386a0ed/entry.v2.json",
+        "id": "t_dc5f4386a0ed",
+        "term": "明心見性",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 7,
+        "actor_reviewed_unnamed": 2,
+        "context_master_links": 2,
+        "deferred_non_roster_context": 1,
+        "attribution_notes": 7,
+        "named_occurrences": 5,
+        "chinese_strings": 13,
+        "anchored_chinese": 13
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 7,\n    \"actor_reviewed_unnamed\": 2,\n    \"context_master_links\": 2,\n    \"deferred_non_roster_context\": 1,\n    \"attribution_notes\": 7,\n    \"named_occurrences\": 5,\n    \"chinese_strings\": 13,\n    \"anchored_chinese\": 13\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpaxicn_kn.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

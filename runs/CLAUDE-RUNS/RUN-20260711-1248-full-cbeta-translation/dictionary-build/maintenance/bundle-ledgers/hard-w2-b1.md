@@ -1,0 +1,59 @@
+# Bundle ledger — hard-w2-b1
+
+- Initialized for 150 exclusive occurrences across 43 sources.
+- No rows are yet marked reviewed or applied.
+- Next: `C/C077/C077n1710.xml`, row 1, full six-rung exact-turn review.
+- 2026-07-14 06:45Z resume checkpoint: 0/150 reviewed, 0/150 applied; next unit unchanged.
+- 2026-07-14 07:05Z review checkpoint: 10/150 reviewed, 0/150 applied; next is C077 row 11.
+- 2026-07-14 07:12Z review checkpoint: 20/150 reviewed, 0/150 applied; next is C077 row 21.
+- 2026-07-14 07:18Z C077 review complete: 27/150 reviewed; signed/compiled and dry-run clean (27 rows, 24 entries); apply pending.
+- 2026-07-14 07:22Z source complete: C077 applied 27/27; focused gate 27/27; all 154 occurrences across 24 touched entries passed exact zc.verify. Next: B25n0145 row 1.
+- 2026-07-14 07:27Z review checkpoint: 30/150 reviewed, 27/150 applied; next is B25n0145 row 4.
+- 2026-07-14 07:32Z B25n0145 review complete: 35/150 reviewed; sign/compile pending.
+- 2026-07-14 07:36Z source complete: B25n0145 applied 8/8; focused gate 8/8; all 47 occurrences across 8 touched entries passed exact zc.verify. Next: B25n0144 row 1.
+- 2026-07-14 07:43Z review checkpoint: 40/150 reviewed, 35/150 applied; next is B25n0144 row 6.
+- 2026-07-14 07:46Z B25n0144 review complete: 43/150 reviewed; sign/compile pending.
+- 2026-07-14 07:51Z source complete: B25n0144 applied 8/8; focused gate 8/8; all 52 occurrences across 8 touched entries passed exact zc.verify. Next: J26nB178 row 1.
+- 2026-07-14 08:00Z review checkpoint: 50/150 reviewed, 43/150 applied; J26nB178 review complete, sign/compile pending.
+- 2026-07-14 06:47Z source complete: J26nB178 applied 7/7; focused gate 7/7; all 32 occurrences across 5 touched entries passed exact zc.verify. Next: J33nB294 row 1.
+- 2026-07-14 06:55Z review checkpoint: 60/150 reviewed, 50/150 applied; J33nB294 signed/compiled and dry-run clean (10 rows, 8 entries); apply pending.
+- 2026-07-14 06:57Z source complete: J33nB294 applied 10/10; focused gate 10/10; all 44 occurrences across 8 touched entries passed exact zc.verify. Next: J28nB202 row 1.
+- 2026-07-14 07:03Z source complete: J28nB202 applied 2/2; focused gate 2/2; all 13 occurrences across 2 touched entries passed exact zc.verify. Next: C078n1720 row 1.
+- 2026-07-14 07:11Z review checkpoint: 70/150 reviewed, 62/150 applied; next is C078n1720 row 9. The ninth row was then reviewed; C078n1720 is signed/compiled and dry-run clean (9 rows, 9 entries), apply pending.
+- 2026-07-14 07:13Z source complete: C078n1720 applied 9/9; focused gate 9/9; all 55 occurrences across 9 touched entries passed exact zc.verify. Next: J25nB171 row 1.
+- 2026-07-14 07:21Z source complete: J25nB171 applied 8/8; focused gate 8/8; all 46 occurrences across 8 touched entries passed exact zc.verify. Next: J26nB187 row 1.
+- 2026-07-14 07:27Z review checkpoint: 80/150 reviewed, 79/150 applied; next was J26nB187 row 2. The source is now fully reviewed, signed/compiled, and dry-run clean (6 rows, 6 entries); apply pending.
+- 2026-07-14 07:29Z source complete: J26nB187 applied 6/6; focused gate 6/6; all 38 occurrences across 6 touched entries passed exact zc.verify. Next: J28nB208 row 1.
+- 2026-07-14 07:33Z source complete: J28nB208 applied 3/3; focused gate 3/3; all 19 occurrences across 3 touched entries passed exact zc.verify. Next: B27n0152 row 1.
+- 2026-07-14 07:05Z review checkpoint: 90/150 reviewed, 88/150 applied; next is B27n0152 row 3.
+- 2026-07-14 07:06Z source complete: B27n0152 applied 4/4; focused gate 4/4; all 28 occurrences across 4 touched entries passed exact zc.verify. Next: J10nA158 row 1.
+- 2026-07-14 07:07Z source complete: J10nA158 applied 3/3; focused gate 3/3; all 16 occurrences across 3 touched entries passed exact zc.verify. Next: D48n8939 row 1.
+- 2026-07-14 07:09Z source complete: D48n8939 applied 3/3; focused gate 3/3; all 19 occurrences across 3 touched entries passed exact zc.verify. Next: J27nB198 row 1.
+- 2026-07-14 07:10Z review checkpoint: 100/150 reviewed, 98/150 applied; J27nB198 review complete, sign/compile pending.
+- 2026-07-14 07:11Z source complete: J27nB198 applied 2/2; focused gate 2/2; all 9 occurrences across 2 touched entries passed exact zc.verify. Next: J26nB177 row 1.
+- 2026-07-14 07:12Z source complete: J26nB177 applied 3/3; focused gate 3/3; all 23 occurrences across 3 touched entries passed exact zc.verify. Next: J27nB190 row 1.
+- 2026-07-14 07:13Z source complete: J27nB190 applied 1/1; focused gate 1/1; all 7 occurrences in the touched entry passed exact zc.verify. Next: J28nB219 row 1.
+- 2026-07-14 07:15Z source complete: J28nB219 applied 5/5; focused gate 5/5; all 30 occurrences across 4 touched entries passed exact zc.verify. Next: J25nB174 row 1.
+- 2026-07-14 07:16Z review checkpoint: 110/150 reviewed, 109/150 applied; next is J25nB174 row 2.
+- 2026-07-14 07:16Z source complete: J25nB174 applied 2/2; focused gate 2/2; all 5 occurrences in the touched entry passed exact zc.verify. Next: J25nB163 row 1.
+- 2026-07-14 07:17Z source complete: J25nB163 applied 3/3; focused gate 3/3; all 13 occurrences across 2 touched entries passed exact zc.verify. Next: J26nB188 row 1.
+- 2026-07-14 07:17Z source complete: J26nB188 applied 2/2; focused gate 2/2; all 13 occurrences across 2 touched entries passed exact zc.verify. Next: J29nB244 row 1.
+- 2026-07-14 07:18Z source complete: J29nB244 applied 3/3; focused gate 3/3; all 13 occurrences across 3 touched entries passed exact zc.verify. Next: J27nB192 row 1.
+- 2026-07-14 07:19Z review checkpoint and source complete: 120/150 reviewed and applied; J27nB192 focused gate 1/1; all 6 occurrences in the touched entry passed exact zc.verify. Next: J28nB212 row 1.
+- 2026-07-14 07:19Z source complete: J28nB212 applied 2/2; focused gate 2/2; all 18 occurrences across 2 touched entries passed exact zc.verify. Next: B14n0082 row 1.
+- 2026-07-14 07:19Z source complete: B14n0082 applied 2/2; focused gate 2/2; all 13 occurrences across 2 touched entries passed exact zc.verify. Next: J20nB098 row 1.
+- 2026-07-14 07:20Z source complete: J20nB098 applied 2/2; focused gate 2/2; all 14 occurrences across 2 touched entries passed exact zc.verify. Next: J26nB185 row 1.
+- 2026-07-14 07:20Z source complete: J26nB185 applied 3/3; focused gate 3/3; all 18 occurrences across 3 touched entries passed exact zc.verify. Next: J27nB197 row 1.
+- 2026-07-14 07:21Z review checkpoint: 130/150 reviewed; next was J27nB197 row 2. Source complete: J27nB197 applied 2/2; focused gate 2/2; all 6 occurrences in the touched entry passed exact zc.verify.
+- 2026-07-14 07:21Z source complete: J32nB273 applied 2/2; focused gate 2/2; all 12 occurrences across 2 touched entries passed exact zc.verify.
+- 2026-07-14 07:22Z source complete: J33nB286 applied 2/2; focused gate 2/2; all 10 occurrences across 2 touched entries passed exact zc.verify.
+- 2026-07-14 07:22Z source complete: J26nB180 applied 2/2; focused gate 2/2; all 13 occurrences across 2 touched entries passed exact zc.verify. The second occurrence is an impersonal hall-door inscription, not a fabricated personal speaker.
+- 2026-07-14 07:22Z source complete: J28nB220 applied 1/1; focused gate 1/1; all 8 occurrences in the touched entry passed exact zc.verify.
+- 2026-07-14 07:24Z source complete: J23nB134 applied 1/1; focused gate 1/1; all 6 occurrences in the touched entry passed exact zc.verify.
+- 2026-07-14 07:24Z source complete: J25nB156 applied 1/1; focused gate 1/1; all 7 occurrences in the touched entry passed exact zc.verify.
+- 2026-07-14 07:24Z review checkpoint: 140/150 reviewed; next was J27nB189 row 1. Source complete: J27nB189 applied 1/1; focused gate 1/1; all 5 occurrences in the touched entry passed exact zc.verify.
+- 2026-07-14 07:25Z sources complete: J28nB205, J29nB233, and J33nB280 each applied 1/1 and passed focused gates; whole-entry verification passed 5/5, 5/5, and 4/4 respectively.
+- 2026-07-14 07:26Z sources complete: J25nB173, J27nB200, J29nB222, and J29nB234 each applied 1/1 and passed focused gates; whole-entry verification passed 9/9, 6/6, 7/7, and 6/6 respectively.
+- 2026-07-14 07:27Z sources complete: J29nB240 and J33nB287 each applied 1/1 and passed focused gates; whole-entry verification passed 6/6 and 9/9 respectively.
+- 2026-07-14 07:27Z bundle complete: 150/150 reviewed and applied across all 43 sources; zero failed or deferred units. Every source passed compile, dry-run, apply, focused attribution gate, and whole-entry exact zc.verify. No merge, commit, or push was performed.
+- 2026-07-14 07:27Z bundle-wide reconciliation: all 150 signed locators are unique and present; a fresh exact verification passed 506/506 stored occurrences across all 86 touched entries with zero failures.

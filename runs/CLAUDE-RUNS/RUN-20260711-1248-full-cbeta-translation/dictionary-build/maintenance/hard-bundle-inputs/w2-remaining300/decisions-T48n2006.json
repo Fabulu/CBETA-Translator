@@ -1,0 +1,127 @@
+{
+  "source": "T/T48/T48n2006.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_6b8e3b4f44bb:0304a13:1:1",
+      "entryId": "t_6b8e3b4f44bb",
+      "sourceTerm": "照用",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0304a13",
+      "Kwic": "照用同時。驅耕夫之牛。奪饑人之食。敲骨取髓。痛下針錐。照用不同時。有問有答。立主立賓",
+      "caseClusterId": "T/T48/T48n2006.xml:79141:82105",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Linji Yixuan",
+        "AttributionNote": "Eyes of Humans and Devas (人天眼目): in the section on Linji's Four Illuminations and Functions, Linji Yixuan says simultaneous illumination and function drive off the ploughman's ox and seize the hungry person's food, whereas nonsimultaneous illumination and function establish questioner and respondent, host and guest."
+      }
+    },
+    {
+      "key": "t_bf467ac18ec0:0310b12:1:3",
+      "entryId": "t_bf467ac18ec0",
+      "sourceTerm": "佛手",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0310b12",
+      "Kwic": "又問。我手何似佛手。閑云。月下弄琵琶。又問。我脚何似驢脚。閑云。鷺鷥立雪非同色。黃龍每以此三轉語。垂問學者。",
+      "caseClusterId": "T/T48/T48n2006.xml:192715:195820",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huanglong Huinan",
+        "AttributionNote": "Eyes of Humans and Devas (人天眼目): in the Three Checkpoints case, Huanglong Huinan asks Longqing Xian how his hand resembles Buddha's hand and how his foot resembles a donkey's foot; Longqing supplies the answers.",
+        "ContextMasters": [
+          {
+            "MasterName": "Longqing Xian",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_a9f422b3b249:0310c03:1:2",
+      "entryId": "t_a9f422b3b249",
+      "sourceTerm": "生緣",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0310c03",
+      "Kwic": "人人有箇生緣處。認著依然還失路。",
+      "caseClusterId": "T/T48/T48n2006.xml:198362:200837",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhenjing Kewen",
+        "AttributionNote": "Eyes of Humans and Devas (人天眼目): in his explicitly labelled verse, Zhenjing Kewen says that everyone has a place of birth-condition but recognizing it still means losing the road."
+      }
+    },
+    {
+      "key": "t_cf6aac2f936b:0312b28:1:2",
+      "entryId": "t_cf6aac2f936b",
+      "sourceTerm": "一字關",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0312b28",
+      "Kwic": "一字關一字關僧問師。如何是雲門劍。師云祖",
+      "caseClusterId": "T/T48/T48n2006.xml:223808:228078",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "anthology's One-Word Checkpoint heading",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The headword is the anthology's rubric for the collected exchange, not a spoken word inside the exchange.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Eyes of Humans and Devas (人天眼目): the anthology's One-Word Checkpoint heading introduces a sequence of questions answered by Yunmen Wenyan with single written characters, beginning with the Yunmen sword.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunmen Wenyan",
+            "Roles": [
+              "one-word-respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cf6aac2f936b:0312c12:1:1",
+      "entryId": "t_cf6aac2f936b",
+      "sourceTerm": "一字關",
+      "RelPath": "T/T48/T48n2006.xml",
+      "FromLb": "0312c12",
+      "Kwic": "故叢林目之。曰一字關云。",
+      "caseClusterId": "T/T48/T48n2006.xml:228103:228932",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "人天眼目",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "anthology's lineage-labeling statement",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The sentence is third-person documentary classification, with 叢林 as the naming community and no speech turn.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Eyes of Humans and Devas (人天眼目): the anthology's lineage-labeling statement says that because the master commonly responded to circumstances in this fashion, the Chan community called it the One-Word Checkpoint."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

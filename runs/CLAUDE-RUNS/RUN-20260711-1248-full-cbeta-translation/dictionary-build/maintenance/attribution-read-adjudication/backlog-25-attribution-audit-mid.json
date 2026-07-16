@@ -1,0 +1,224 @@
+{
+  "counts": {
+    "entries": 25,
+    "senses": 31,
+    "occurrences": 185,
+    "named_occurrences": 72,
+    "context_master_links": 218,
+    "attribution_notes": 185,
+    "actor_reviewed_unnamed": 27,
+    "actor_impersonal": 12,
+    "actor_identified_non_master": 6,
+    "identified_actor_not_named": 1,
+    "named_master_missing_structured_link": 3,
+    "deferred_non_roster_context": 78,
+    "deferred_non_roster": 25,
+    "chinese_strings": 40,
+    "anchored_chinese": 40,
+    "actor_narrated": 66,
+    "explicit_master_turn_left_anonymous": 18,
+    "action_performer_context_missing": 4,
+    "pending_roster_context_master": 39,
+    "placeholder_actor_forbidden": 1,
+    "pending_roster_master": 14,
+    "action_performer_in_utterer_field": 4,
+    "raised_old_saying_lacks_raiser": 1,
+    "vague_attributor": 1,
+    "anonymous_monk_question_assigned_to_master": 1,
+    "unnamed_master_forbidden": 2,
+    "invalid_actor_status": 2
+  },
+  "hardFailures": 38,
+  "failures": [
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_37261001c332/entry.v2.json",
+      "detail": "觀心 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_37261001c332/entry.v2.json",
+      "detail": "觀心 s1 o5: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o3: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7182bedf65d1/entry.v2.json",
+      "detail": "下語 s1 o4: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "placeholder_actor_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o3 Kind: 'anonymous capping-verse voice'"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_74c3c0e1b896/entry.v2.json",
+      "detail": "下禪床 s1 o3: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o4: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_79e00cdbc129/entry.v2.json",
+      "detail": "安心 s1 o4: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o4: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_7c5f24652dfa/entry.v2.json",
+      "detail": "法身向上事 s1 o4: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "raised_old_saying_lacks_raiser",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8060f979f21b/entry.v2.json",
+      "detail": "目前無法 s1 o7: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o3: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1 o5: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_84e490b1773f/entry.v2.json",
+      "detail": "撫掌 s1: 'another monk'"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o2: ['師竪']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o2: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_961b548d6462/entry.v2.json",
+      "detail": "言前 s1 o4: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a2c5b2af7b10/entry.v2.json",
+      "detail": "臘八 s1 o8: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bb3cdb68e388/entry.v2.json",
+      "detail": "茫然 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "anonymous_monk_question_assigned_to_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bf467ac18ec0/entry.v2.json",
+      "detail": "佛手 s2 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o1: Su Shi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c212062774f9/entry.v2.json",
+      "detail": "禪床 s1 o7: ['師問', '師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_c728f3a8e02b/entry.v2.json",
+      "detail": "家風 s1 o1: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_cbf868f557e2/entry.v2.json",
+      "detail": "陞座 s1 o5: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0a4a5271135/entry.v2.json",
+      "detail": "石人 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: every master must be named"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: ['師問']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0d82a2681a0/entry.v2.json",
+      "detail": "第一句 s1 o5: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_dc24f92ead78/entry.v2.json",
+      "detail": "問訊 s1 o6: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e17068150613/entry.v2.json",
+      "detail": "法身邊事 s1 o5: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o4: ['師問', '師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "invalid_actor_status",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5: 'named-unrostered'"
+    },
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efbed6116e24/entry.v2.json",
+      "detail": "拂袖 s1 o5: every master must be named"
+    },
+    {
+      "kind": "invalid_actor_status",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3: 'editorial'"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f74516e0ba71/entry.v2.json",
+      "detail": "藥師 s1 o3: ['師道']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_fa1b42d25280/entry.v2.json",
+      "detail": "雪山童子 s1 o1: ['師云']; read the complete case and name the exact master"
+    }
+  ]
+}

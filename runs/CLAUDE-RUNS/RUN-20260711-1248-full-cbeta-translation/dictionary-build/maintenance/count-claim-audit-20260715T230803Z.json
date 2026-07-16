@@ -1,0 +1,50 @@
+{
+  "generatedUtc": "2026-07-15T23:08:03.832214+00:00",
+  "entryCount": 5,
+  "claimCount": 2,
+  "candidatePhraseCount": 1,
+  "mismatchCount": 0,
+  "noNearCandidateCount": 2,
+  "claims": [
+    {
+      "entryId": "t_8482770fe735",
+      "sourceTerm": "象王",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 809,
+      "unit": "hits",
+      "candidatePhrase": "象王",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "象王"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "Zen-allowlist count: 809 hits in 242 texts. Family check covered the elephant k",
+      "currentHits": 893,
+      "currentFiles": 263,
+      "currentWorks": 259,
+      "expectedForUnit": 893,
+      "audit": "no-near-candidate"
+    },
+    {
+      "entryId": "t_8482770fe735",
+      "sourceTerm": "象王",
+      "senseIndex": 0,
+      "field": "Note",
+      "claimed": 242,
+      "unit": "texts",
+      "candidatePhrase": "象王",
+      "candidateDistance": null,
+      "candidatePhrases": [
+        "象王"
+      ],
+      "genericHeadwordClaim": false,
+      "context": "Zen-allowlist count: 809 hits in 242 texts. Family check covered the elephant king's stride ",
+      "currentHits": 893,
+      "currentFiles": 263,
+      "currentWorks": 259,
+      "expectedForUnit": 263,
+      "audit": "no-near-candidate"
+    }
+  ]
+}

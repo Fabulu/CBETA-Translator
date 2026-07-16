@@ -16,6 +16,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("entries", nargs="+")
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--pending-roster", type=Path)
+    parser.add_argument("--cluster-id", action="append", default=[])
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     fast_output = args.output.with_name(args.output.stem + "-fast-preflight.json")
@@ -40,10 +42,15 @@ def main() -> int:
             file=sys.stderr,
         )
         return risk.returncode
-    completed = subprocess.run([
+    cohort_command = [
         sys.executable, str(HERE / "run_cohort_gate.py"), *args.entries,
         "--skip-packets", "--output", str(args.output),
-    ], cwd=HERE)
+    ]
+    if args.pending_roster:
+        cohort_command.extend(["--pending-roster", str(args.pending_roster)])
+    for entry_id in args.cluster_id:
+        cohort_command.extend(["--cluster-id", entry_id])
+    completed = subprocess.run(cohort_command, cwd=HERE)
     if completed.returncode != 0 or not args.output.exists():
         return completed.returncode or 2
     report = json.loads(args.output.read_text(encoding="utf-8-sig"))

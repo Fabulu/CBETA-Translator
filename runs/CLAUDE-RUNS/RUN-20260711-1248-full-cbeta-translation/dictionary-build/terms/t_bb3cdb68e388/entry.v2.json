@@ -28,7 +28,7 @@
             "Status": "reviewed-unnamed",
             "Kind": "monk",
             "ActorLabel": "Unnamed monk left at a loss after Kuduo Tripitaka's question",
-            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "ActorRole": "person-described",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -41,7 +41,12 @@
             "ReviewedUtc": "2026-07-14T06:57:50.904158Z"
           },
           "ContextMasters": [
-            "Kuduo Tripitaka"
+            {
+              "MasterName": "Kuduo Tripitaka",
+              "Roles": [
+                "case-figure"
+              ]
+            }
           ]
         },
         {
@@ -55,7 +60,7 @@
             "Status": "reviewed-unnamed",
             "Kind": "assembly",
             "ActorLabel": "assembled monks",
-            "ActorRole": "collective experiencer",
+            "ActorRole": "person-described",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -97,7 +102,7 @@
             "Status": "reviewed-unnamed",
             "Kind": "monk",
             "ActorLabel": "Unnamed monk left at a loss",
-            "ActorRole": "exact headword-bearing speaker or grammatical actor",
+            "ActorRole": "person-described",
             "RungsChecked": [
               "line",
               "expanded-context",
@@ -110,7 +115,13 @@
             "ReviewedUtc": "2026-07-14T06:48:19.232189Z"
           },
           "ContextMasters": [
-            "Minxi Seng"
+            {
+              "MasterName": "Maoxi Xingsen",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
           ]
         },
         {

@@ -1,0 +1,5899 @@
+{
+  "schemaVersion": "attribution-regression-queue-v1",
+  "generatedUtc": "2026-07-15T19:50:13.953306+00:00",
+  "sourceAudit": "maintenance/fresh-attribution-ground-truth-current.json",
+  "sourceAuditSha256": "250258d5a70796b9d332d3e3c2ff5412377ba1a09a2498177631910baadb36be",
+  "cohortSize": 50,
+  "entries": 414,
+  "cohorts": 9,
+  "rows": [
+    {
+      "id": "t_93635ce58785",
+      "priority": 0,
+      "findingCount": 16,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source",
+        "note_missing_speaker",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "瓦礫 s1 o1: The named record owner utters the headword in the complete saved turn.",
+        "瓦礫 s1 o1 expected '五燈全書(第34卷-第120卷)': The named record owner utters the headword in the complete saved turn.",
+        "瓦礫 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "瓦礫 s1 o2: ['師云']; read the complete case and name the exact master",
+        "瓦礫 s1 o2 expected '古尊宿語錄': 志明禪師問 introduces Zhiming’s rubble comparison; the respondent answers after 師曰.",
+        "瓦礫 s1 o3: The named record owner utters the headword in the complete saved turn.",
+        "瓦礫 s1 o3 expected '五燈嚴統(第10卷-第25卷)': The named record owner utters the headword in the complete saved turn.",
+        "瓦礫 s1 o4: The one-word cut belongs to authored treatise prose; it is not assigned to a nearby section master.",
+        "瓦礫 s1 o4 expected '宗鏡錄': The one-word cut belongs to authored treatise prose; it is not assigned to a nearby section master.",
+        "瓦礫 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "瓦礫 s1 o5: The rubble/gold contrast lies in the current formal address; the retained heading does not safely yield a canonical name.",
+        "瓦礫 s1 o5 expected '列祖提綱錄': The rubble/gold contrast lies in the current formal address; the retained heading does not safely yield a canonical name.",
+        "瓦礫 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "瓦礫 s1 o6 expected '五燈會元': 志明禪師問 explicitly assigns the selected rubble question to Zhiming.",
+        "瓦礫 s1 o7: The bare one-word cut does not establish a human utterer and is retained only as a limited corroborating witness.",
+        "瓦礫 s1 o7 expected '宗鑑法林': The bare one-word cut does not establish a human utterer and is retained only as a limited corroborating witness."
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ef53eda6d66b",
+      "priority": 0,
+      "findingCount": 15,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "dangling_chinese",
+        "note_missing_source",
+        "note_missing_speaker",
+        "vague_attributor"
+      ],
+      "findings": [
+        "法座 s1 o1 expected '五燈全書(第1卷-第33卷)': The compiler narrates Mahakasyapa ascending the teaching seat.",
+        "法座 s1 o2: The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o2 expected '五燈嚴統(第10卷-第25卷)': The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o3: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "法座 s1 o3: explicit master action requires a named action-performer ContextMaster",
+        "法座 s1 o3: The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o3 expected '費隱禪師語錄': The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o4: The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o4 expected '圓悟佛果禪師語錄': The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o5: The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o5 expected '五燈會元': The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o6: The named record owner utters the headword in the complete saved turn.",
+        "法座 s1 o6 expected '五燈會元': The named record owner utters the headword in the complete saved turn.",
+        "法座 s1: 'a master'",
+        "法座 s1: 登座"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2b02b05d68b6",
+      "priority": 0,
+      "findingCount": 14,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source",
+        "note_missing_speaker",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "不是心不是佛不是物 s1 o1: ['師云']; read the complete case and name the exact master",
+        "不是心不是佛不是物 s1 o1: 僧云 introduces the messenger’s report of what Mazu recently said; Mazu is the quoted origin.",
+        "不是心不是佛不是物 s1 o1 expected '大慧普覺禪師普說': 僧云 introduces the messenger’s report of what Mazu recently said; Mazu is the quoted origin.",
+        "不是心不是佛不是物 s1 o2: The bare formula lacks a recoverable named turn in this saved unit and is not assigned by title proximity.",
+        "不是心不是佛不是物 s1 o2 expected '古尊宿語錄': The bare formula lacks a recoverable named turn in this saved unit and is not assigned by title proximity.",
+        "不是心不是佛不是物 s1 o3 expected '大慧普覺禪師語錄': Dahui Zonggao raises Nanquan’s formula in his public address; Nanquan Puyuan is the quoted case figure.",
+        "不是心不是佛不是物 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "不是心不是佛不是物 s1 o4: The formula is spoken inside the address before the next section begins; the selected unit does not safely expose a canonical name.",
+        "不是心不是佛不是物 s1 o4 expected '續傳燈錄': The formula is spoken inside the address before the next section begins; the selected unit does not safely expose a canonical name.",
+        "不是心不是佛不是物 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "不是心不是佛不是物 s1 o5: ['師云']; read the complete case and name the exact master",
+        "不是心不是佛不是物 s1 o5: 遂拈拄杖 assigns the formula to the current record owner, whose canonical name is not recoverable from the retained cut.",
+        "不是心不是佛不是物 s1 o5 expected '宗門統要正續集(第13卷-第20卷)': 遂拈拄杖 assigns the formula to the current record owner, whose canonical name is not recoverable from the retained cut.",
+        "不是心不是佛不是物 s1 o6 expected '禪宗頌古聯珠通集': 南泉曰 explicitly assigns the selected formula to Nanquan Puyuan."
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_873cb06ed7d1",
+      "priority": 0,
+      "findingCount": 11,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "諸佛出身處 s1 o1 expected '五燈全書(第34卷-第120卷)': 問 assigns the stock question to an unnamed monk; Nantang Yuanjing answers after 師曰.",
+        "諸佛出身處 s1 o2: ['師云']; read the complete case and name the exact master",
+        "諸佛出身處 s1 o2 expected '古尊宿語錄': 問 assigns the stock question to an unnamed monk before 師云.",
+        "諸佛出身處 s1 o3 expected '大慧普覺禪師普說': Dahui raises the inherited 僧問雲門 question; the historical unnamed monk owns the question.",
+        "諸佛出身處 s1 o4 expected '五燈嚴統(第10卷-第25卷)': 僧問 assigns the question to the unnamed monk; Jiangshan Zan Yuanjue responds.",
+        "諸佛出身處 s1 o5: The selected headword is the inherited monk’s quoted question, not compiler narration.",
+        "諸佛出身處 s1 o5 expected '密雲禪師語錄': The selected headword is the inherited monk’s quoted question, not compiler narration.",
+        "諸佛出身處 s1 o6: The selected headword is the inherited monk’s quoted question, not compiler narration.",
+        "諸佛出身處 s1 o6 expected '宗門拈古彙集': The selected headword is the inherited monk’s quoted question, not compiler narration.",
+        "諸佛出身處 s1 o7: The selected headword is the inherited monk’s quoted question, not compiler narration.",
+        "諸佛出身處 s1 o7 expected '宗鑑法林': The selected headword is the inherited monk’s quoted question, not compiler narration."
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bf71c3ba483c",
+      "priority": 0,
+      "findingCount": 8,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "道中人 s1 o1: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o5: ['師曰']; read the complete case and name the exact master",
+        "道中人 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "道中人 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8d9558f7f8a5",
+      "priority": 0,
+      "findingCount": 6,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "placeholder_actor_forbidden",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "隨他去 s1 o5 Kind: 'verse voice'",
+        "隨他去 s1 o5 ActorLabel: 'the unattributed verse voice'",
+        "隨他去 s1 o5 GrammarEvidence: 'The complete case assigns the exact clause to this quoted verse voice.'",
+        "隨他去 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "隨他去 s1 o5: ['師曰']; read the complete case and name the exact master",
+        "隨他去 s1 o5 AttributionNote: 'Source text (禪宗頌古聯珠通集). the unattributed verse voice owns the exact clause in the complete case.'"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d0e5e6e5d1ee",
+      "priority": 0,
+      "findingCount": 6,
+      "kinds": [
+        "dangling_chinese",
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source",
+        "vague_attributor"
+      ],
+      "findings": [
+        "一轉語 s1 o3: ['師云']; read the complete case and name the exact master",
+        "一轉語 s1 o4 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Xiangcheng Shun utters the exact headword in the reviewed complete case.",
+        "一轉語 s1 o6 expected '宗門統要正續集(第1卷-第12卷)': Source text (宗門統要正續集): Tianyi Huai utters the exact headword in the reviewed complete case.",
+        "一轉語 s1 o7 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): Fayan Wenyi utters the exact headword in the reviewed complete case.",
+        "一轉語 s1: 'the speaker'",
+        "一轉語 s1: 不昧因果"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f9bb8b44b32f",
+      "priority": 0,
+      "findingCount": 6,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker",
+        "unnamed_master_forbidden",
+        "vague_attributor"
+      ],
+      "findings": [
+        "延壽堂 s1 o1: Source text (禪苑清規): the compiler lists the infirmary supervisor among monastery offices.",
+        "延壽堂 s1 o1 expected '(重雕補註)禪苑清規': Source text (禪苑清規): the compiler lists the infirmary supervisor among monastery offices.",
+        "延壽堂 s1 o2: Source text (勅修百丈清規): the rule defines the infirmary supervisor's care of sick monks, medicines, and food.",
+        "延壽堂 s1 o3: Source text (禪林備用清規): the rule lists appointing the infirmary supervisor among office transitions.",
+        "延壽堂 s1 o5: every master must be named",
+        "延壽堂 s1: 'a monk'"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7f398fa1a823",
+      "priority": 0,
+      "findingCount": 5,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "識得 s1 o4: ['師云']; read the complete case and name the exact master",
+        "識得 s1 o5: ['師豎']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "識得 s1 o5: explicit master action requires a named action-performer ContextMaster",
+        "識得 s1 o6: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "識得 s1 o6: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ba4b06d70a44",
+      "priority": 0,
+      "findingCount": 5,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "坐具 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "坐具 s1 o4: ['師云']; read the complete case and name the exact master",
+        "坐具 s1 o6: ['師云']; read the complete case and name the exact master",
+        "坐具 s1 o7: ['師云']; read the complete case and name the exact master",
+        "坐具 s1 o8: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_26ea593a58e2",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "下座 s1 o6: ['師下座']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "下座 s1 o6: explicit master action requires a named action-performer ContextMaster",
+        "下座 s1 o13: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "下座 s2 o1: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4deccd09a5d0",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "棒下無生忍 s1 o1: explicit master action requires a named action-performer ContextMaster",
+        "棒下無生忍 s1 o3: ['師云', '師問']; read the complete case and name the exact master",
+        "棒下無生忍 s1 o4: ['師云']; read the complete case and name the exact master",
+        "棒下無生忍 s1 o5: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_76466e7feed6",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "拈香祝聖 s1 o1: explicit master action requires a named action-performer ContextMaster",
+        "拈香祝聖 s1 o3: ['師曰']; read the complete case and name the exact master",
+        "拈香祝聖 s1 o5: ['師云']; read the complete case and name the exact master",
+        "拈香祝聖 s1 o6: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7b7ca6f375b5",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "罔措 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "罔措 s1 o4: ['師云']; read the complete case and name the exact master",
+        "罔措 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "罔措 s1 o7: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8bd6933e6de3",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "一喝 s1 o1: ['師問']; read the complete case and name the exact master",
+        "一喝 s1 o2: ['師問']; read the complete case and name the exact master",
+        "一喝 s1 o8: ['師云']; read the complete case and name the exact master",
+        "一喝 s1 o9: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a805d0c76bbd",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "拈香 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "拈香 s1 o5: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "拈香 s1 o5: explicit master action requires a named action-performer ContextMaster",
+        "拈香 s1 o8: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_becc0a1ea8cb",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "方丈 s1 o1: Wuxiang appears in attribution prose but not in MasterName or ContextMasters",
+        "方丈 s1 o2: ['師歸方丈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "方丈 s1 o2: explicit master action requires a named action-performer ContextMaster",
+        "方丈 s2 o2: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_df3e128ab4c1",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "竪拂 s1 o1: ['師竪']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "竪拂 s1 o1: explicit master action requires a named action-performer ContextMaster",
+        "竪拂 s1 o3: ['師竪']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "竪拂 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_efa921d8f97a",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "家珍 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Zhenjing Kewen quotes the inherited contrast and himself asks what 家珍 is in an上堂 address.",
+        "家珍 s1 o4: Source text (宗鑑法林): 家珍 occurs in an unattributed compiled verse following the Linji dossier; the stored unit does not name a verse author.",
+        "家珍 s1 o6: ['師曰']; read the complete case and name the exact master",
+        "家珍 s1 o6 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): an unnamed monk utters both headword-bearing questions; Caoshan Qianghui Zhiju answers them."
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_faf30cf1fb87",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "昭昭靈靈 s1 o5: Tianru Weize appears in attribution prose but not in MasterName or ContextMasters",
+        "昭昭靈靈 s1 o6: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "昭昭靈靈 s1 o6: explicit master action requires a named action-performer ContextMaster",
+        "昭昭靈靈 s1 o6: Yulin Tongxiu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ff50c6974a36",
+      "priority": 0,
+      "findingCount": 4,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "explicit_master_turn_left_anonymous",
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "五位 s1 o1: Linji Yixuan appears in attribution prose but not in MasterName or ContextMasters",
+        "五位 s1 o4: ['師曰']; read the complete case and name the exact master",
+        "五位 s1 o7: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "五位 s2 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the immortal Gaitong'"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1d3473614976",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "禮拜 s1 o3: explicit master action requires a named action-performer ContextMaster",
+        "禮拜 s1 o5: ['師云']; read the complete case and name the exact master",
+        "禮拜 s1 o10: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4db0d950f314",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "白居易 s1 o2: ['師問', '師曰']; read the complete case and name the exact master",
+        "白居易 s1 o2: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters",
+        "白居易 s1 o4: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_68303eb8b076",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "拈拄杖 s1 o2: ['師云']; read the complete case and name the exact master",
+        "拈拄杖 s1 o8: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "拈拄杖 s1 o8: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_804dc8bdce55",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "開堂 s1 o3: ['師曰']; read the complete case and name the exact master",
+        "開堂 s1 o4: ['師云']; read the complete case and name the exact master",
+        "開堂 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_850d52f97185",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "法衣 s1 o3: ['師曰']; read the complete case and name the exact master",
+        "法衣 s1 o4: ['師曰']; read the complete case and name the exact master",
+        "法衣 s2 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_87cc840b8f33",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "拄杖子 s1 o2: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters",
+        "拄杖子 s1 o4: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters",
+        "拄杖子 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8cf244d2d802",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "拈出 s1 o5: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "拈出 s1 o5: explicit master action requires a named action-performer ContextMaster",
+        "拈出 s1 o9: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_901f410fce73",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "飯頭 s1 o1: ['師云']; read the complete case and name the exact master",
+        "飯頭 s1 o3: ['師問']; read the complete case and name the exact master",
+        "飯頭 s1 o4: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9199b9a31645",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "盡大地 s1 o2: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters",
+        "盡大地 s1 o2: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters",
+        "盡大地 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ac4749b5b609",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "無生 s1 o3: Yongjia Xuanjue appears in attribution prose but not in MasterName or ContextMasters",
+        "無生 s1 o4: Huineng appears in attribution prose but not in MasterName or ContextMasters",
+        "無生 s1 o16: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bc7bbb4299f1",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "anonymous_monk_question_assigned_to_master",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "如何是佛法大意 s1 o3: ['師云']; read the complete case and name the exact master",
+        "如何是佛法大意 s1 o4: explicit master action requires a named action-performer ContextMaster",
+        "如何是佛法大意 s1 o8: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c02887fbd979",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "祖印 s1 o2: ['師問']; read the complete case and name the exact master",
+        "祖印 s1 o6: ['師云']; read the complete case and name the exact master",
+        "祖印 s1 o7: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the rear-hall officer Supu'"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cc68e32cf1b4",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "佛法大意 s1 o3: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters",
+        "佛法大意 s1 o4: ['師云']; read the complete case and name the exact master",
+        "佛法大意 s1 o5: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d247a2ea7cc3",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "好手 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "好手 s1 o4: ['師曰']; read the complete case and name the exact master",
+        "好手 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_df2096b961c1",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "note_missing_source"
+      ],
+      "findings": [
+        "鐵牛之機 s1 o2 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Lingyan Chongque utters the formulation in his explicitly headed上堂.",
+        "鐵牛之機 s1 o5: ['師云']; read the complete case and name the exact master",
+        "鐵牛之機 s1 o6 expected '佛果圜悟禪師碧巖錄': Source text (碧巖錄): the case explicitly introduces Fengxue Yanzhao's上堂 and quotes his iron-ox formulation; Yuanwu Keqin is the later commentator."
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e84753568cda",
+      "priority": 0,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "向上事 s1 o4: ['師云']; read the complete case and name the exact master",
+        "向上事 s1 o5: ['師云']; read the complete case and name the exact master",
+        "向上事 s1 o9: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_088731c7824b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "梵王 s1 o3: ['師云']; read the complete case and name the exact master",
+        "梵王 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_09909bd0c29e",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "草賊 s1 o1: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "草賊 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0ecac939496b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "白椎 s1 o4: explicit master action requires a named action-performer ContextMaster",
+        "白椎 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0f4c2ed08d86",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "一炷香 s1 o3: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "一炷香 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0f97bfab265c",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "棒喝 s1 o4: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "棒喝 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_114bbd284d1c",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "東山水上行 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "東山水上行 s1 o8: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1403ddf1e83b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "臨濟喝 s1 o3: ['師云']; read the complete case and name the exact master",
+        "臨濟喝 s1 o7: Sansheng Huiran appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_15026800437e",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "分別 s1 o5: ['師云']; read the complete case and name the exact master",
+        "分別 s1 o8: ['師乃曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1853f433aff5",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "開山 s2 o2: ['師竪']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "開山 s2 o2: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_193632bffe7b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "喝 s1 o1: ['師問']; read the complete case and name the exact master",
+        "喝 s1 o12: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1f6124388d25",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "燈籠 s1 o3: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "燈籠 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2282e557069b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "卓拄杖 s1 o2: ['師卓']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "卓拄杖 s1 o2: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_279cf2b97244",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "佛祖 s1 o7: ['師乃云']; read the complete case and name the exact master",
+        "佛祖 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 1,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_32f0847e5d1e",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "佛向上事 s1 o1: ['師云']; read the complete case and name the exact master",
+        "佛向上事 s1 o7: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_36b1824beee5",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "園頭 s1 o5: ['師曰']; read the complete case and name the exact master",
+        "園頭 s1 o7: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_43425d70abab",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "禪客 s1 o1: explicit master action requires a named action-performer ContextMaster",
+        "禪客 s1 o6: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_47b3313788e2",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "體露金風 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "體露金風 s1 o7: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4d1513a6cd98",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "當機一句 s1 o1: ['師云']; read the complete case and name the exact master",
+        "當機一句 s1 o3: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4d4cbd834b80",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "速道 s1 o2: ['師下座']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "速道 s1 o2: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4f7bd98ad40f",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "上堂 s1 o4: ['師舉']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "上堂 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_586bc9a3f0a8",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "懸崖撒手 s1 o1: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "懸崖撒手 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_589f52acc0b0",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "答話 s1 o5: ['師答']; read the complete case and name the exact master",
+        "答話 s1 o6: ['師答']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5cade7a4f4ba",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "作禮 s1 o7: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "作禮 s1 o7: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5f6e8c98ffe7",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "情知 s1 o7: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "情知 s1 o7: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_64b296f04e9b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "將錯就錯 s1 o6: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "將錯就錯 s1 o7: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_68835cda6c3f",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "正令 s1 o3: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "正令 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_708bab84a958",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "莊主 s1 o4: ['師曰']; read the complete case and name the exact master",
+        "莊主 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7114caf4b0ec",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "木人舞 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous case-verse author in the Tongji collection'",
+        "木人舞 s1 o3: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7182bedf65d1",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "下語 s1 o3: ['師云']; read the complete case and name the exact master",
+        "下語 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_74c3c0e1b896",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "下禪床 s1 o2: ['師云']; read the complete case and name the exact master",
+        "下禪床 s1 o3: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_79e00cdbc129",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "安心 s1 o4: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "安心 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7c5f24652dfa",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "法身向上事 s1 o4: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "法身向上事 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8021c6affb97",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "漁父 s1 o4: ['師卓']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "漁父 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_802b405cbb3d",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "舍利 s1 o5: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "舍利 s1 o5: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8060f979f21b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "目前無法 s1 o4: ['師問']; read the complete case and name the exact master",
+        "目前無法 s1 o7: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8107ccae18eb",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "拈提 s1 o7: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "拈提 s1 o7: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_830700de49fb",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "三句 s6 o2: ['師舉']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "三句 s6 o2: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_84e490b1773f",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "撫掌 s1 o5: ['師云']; read the complete case and name the exact master",
+        "撫掌 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_916ec389a07d",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "香合 s1 o4: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "香合 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9571d06dd1c7",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "張公喫酒李公醉 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "張公喫酒李公醉 s1 o4: Chushi Fanqi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_961b548d6462",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "言前 s1 o2: explicit master action requires a named action-performer ContextMaster",
+        "言前 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9c0e7c40344c",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "碓嘴生花 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "碓嘴生花 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a14a883193a5",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "德山棒 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters",
+        "德山棒 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a2c5b2af7b10",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "臘八 s1 o4: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately",
+        "臘八 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a989d784dc81",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "話會 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "話會 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bb3cdb68e388",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "茫然 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "茫然 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bdc0cdca39d0",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "趙州戴草鞋 s1 o2: ['師乃云', '師云']; read the complete case and name the exact master",
+        "趙州戴草鞋 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bf467ac18ec0",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "佛手 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "佛手 s2 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c212062774f9",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "禪床 s1 o1: Su Shi appears in attribution prose but not in MasterName or ContextMasters",
+        "禪床 s1 o7: ['師問', '師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c4a694970a12",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "洗鉢盂 s1 o4: explicit master action requires a named action-performer ContextMaster",
+        "洗鉢盂 s1 o5: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c728f3a8e02b",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "家風 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "家風 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cbf868f557e2",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "陞座 s1 o3: explicit master action requires a named action-performer ContextMaster",
+        "陞座 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d0a4a5271135",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "石人 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "石人 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d0d82a2681a0",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "第一句 s1 o2: ['師云']; read the complete case and name the exact master",
+        "第一句 s1 o5: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d8868082a16c",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "代云 s1 o1: ['師示']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "代云 s1 o1: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dc24f92ead78",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "問訊 s1 o5: explicit master action requires a named action-performer ContextMaster",
+        "問訊 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e17068150613",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "法身邊事 s1 o2: ['師云', '師問']; read the complete case and name the exact master",
+        "法身邊事 s1 o5: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e21288d0fefb",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "徐六擔板 s1 o5: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "徐六擔板 s1 o5: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e2c55f8feca0",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "三寸 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "三寸 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e96268628f2c",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "萬法歸一 s1 o3: ['師曰']; read the complete case and name the exact master",
+        "萬法歸一 s1 o4: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e9847e6f41c9",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "腳跟下 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "腳跟下 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_eea2b5e58c24",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "院主 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "院主 s1 o5: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_efc6a42814ee",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "東坡居士 s1 o1: ['師曰']; read the complete case and name the exact master",
+        "東坡居士 s1 o4: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 2,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f266d9e034ea",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "主中主 s1 o2: ['師云']; read the complete case and name the exact master",
+        "主中主 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the signed preface author'"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f47e0cb15568",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "末後一著 s1 o4: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "末後一著 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f5f691fd0483",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "犀牛 s1 o3: ['師曰']; read the complete case and name the exact master",
+        "犀牛 s1 o7: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f69bf9de345e",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "漆桶 s1 o4: ['師云']; read the complete case and name the exact master",
+        "漆桶 s1 o8: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f7577f4c57c3",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "第二句 s1 o2: ['師乃云', '師云']; read the complete case and name the exact master",
+        "第二句 s1 o7: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ff3b9302050a",
+      "priority": 0,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "action_performer_in_utterer_field"
+      ],
+      "findings": [
+        "逢場作戲 s1 o3: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters",
+        "逢場作戲 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0051fc72360c",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "臨濟四喝 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_041f65670cd4",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "無心 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_04efe13911ae",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "不識 s1 o2: ['師曰', '師謂']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_073dcbf657a3",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "如何是無寒暑處 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_09ed57d56bcf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "普賢 s1 o7: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0a686fa27769",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "著語 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0c53a5a2243b",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "知客 s1 o6: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_11a4ff234f5a",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "不會 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_135a001a5b0e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "青青翠竹 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_171059a90935",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "西來意 s1 o4: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1e41b014d80e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "向上一路 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_21926ca0b92e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "頂門眼 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_22865f34533e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "兒孫 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_23d23141b4c6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "棒頭 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_24adbdf51a15",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "金佛不度爐 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_27c71a091873",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "首座 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2816f418822c",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "念佛是誰 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2b6fde4fdf58",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "壁立千仞 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2b9a5ab567cc",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "虛空粉碎 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2da0e2fc0478",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "三門 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2f4b60453d19",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "承當 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2f6dd23d26e9",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "栗棘蓬 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_32a92c635f49",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "宗乘 s1 o4: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_35cd0cccddc7",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "摩尼珠 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_3600c4babcdf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "秤錘 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_38014001726f",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "知有底人 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_3efd163c8697",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "龍女 s1 o1: ['師云', '師道']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_42839688f8c2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "君臣道合 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_43ecdacadde0",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "阿誰 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_45e1950bfe3e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "梵志 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_47cbec4da028",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "箭鋒相拄 s1 o7: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4c1448553bb6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "拍禪床 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4e30d47a452c",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "便喝 s1 o8: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4fe02da64434",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "喫棒 s1 o4: ['師云', '師問', '師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_502eeb8c9b1e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "驪珠 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5306489d35c6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "化主 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5342014cb2ee",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "土地堂 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5517bf8c66c2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "不動尊 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5854f7c24ddf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "擊禪床 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5d8f2f79dc60",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "竿頭進步 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5da65e2989a0",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "夏末 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5ed1c64c6559",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "鎮州蘿蔔 s1 o2: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_68729efe1fac",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "領話 s1 o1: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6abcff898d95",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "良久 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 3,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_708834b4cb89",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "法堂 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_712ca8b5bf06",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "後堂 s1 o6: ['師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_75a477117870",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "紫芝 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_76ee526a2b16",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "沙彌戒 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_77f89fd2c3b5",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "鷺鷥立雪 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7c1991e9eabb",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "宗風 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7ee93f6b90cf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "三要 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_81d0d434f560",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "祖師意 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_85ee3a3007c6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "家賊難防 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_85fd3b19165c",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "陞堂 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8650004bb9d7",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "兼中至 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8aa9485f0650",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "鐵饅頭 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8eeed0b7412a",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "唯嫌揀擇 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_90cca5eb04c7",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "賊是家親 s1 o1: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_91d84c849fc7",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "保任 s1 o3: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_935452e7a2c6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "觀音 s1 o4: ['師云', '師問']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_937f63a4fb51",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "目前 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9a7a00ea0cd1",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "一歸何處 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9cfec92c6982",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "鐵蛇鑽不入 s1 o1: ['師云', '師道']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a2ccc2d35ae3",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "如何是禪 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a326343ab7c3",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "日日是好日 s1 o4: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a6754d726742",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "定盤星 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_aa9e5467d247",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "十方世界是全身 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_acccac1051a4",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "衲僧 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_aced87de5b30",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "殺佛殺祖 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_adef287521cf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "平地起骨堆 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_af92172da506",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "只如 s1 o7: ['師道']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b15eaab0dc3c",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "無絃琴 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b4c37e2f25c3",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "東司 s1 o2: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b751a85ba963",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "啐啄 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b8d2633b12ef",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "敗闕 s1 o1: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bbee6625a4d5",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "赤肉團上 s1 o4: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c051d6f277af",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "佛誕 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c8f127c46d44",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "無對 s1 o1: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cb44465faa59",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "侍者 s1 o2: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ccc39a4559bf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "僧正 s1 o2: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cd69e0f9c10a",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "古佛 s1 o1: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d1ca36839312",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "全提正令 s1 o6: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d1e06fd225fa",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "入室 s1 o6: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d2c3f40d45c6",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "大通智勝佛 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d35dc9e3723e",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "無念 s2 o1: ['師復問']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d4673502b2d2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "未審 s1 o2: ['師云', '師復云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d801848213ab",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "發願 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dd5f8d8801d2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "扇子 s1 o5: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_df0ba3a57ecf",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "拄杖 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dfd1dbffe9f2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "即心即佛 s1 o2: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e1306236ba46",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "一句子 s1 o2: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e27ceae1c5ee",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "言下有省 s1 o5: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e4d6ebff1bb2",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "如何是佛 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e4dba349ae51",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "禪板 s1 o4: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 4,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e5259ce8bbf5",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "垂示 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ec09781522d8",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "丈室 s1 o8: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ecac19a083df",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "奪人不奪境 s1 o6: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ee57d3ff5e43",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "當機 s1 o3: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_eedf4100b3d7",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "師子吼 s1 o4: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_efbed6116e24",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "拂袖 s1 o4: ['師問', '師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f24a55791323",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "單傳直指 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f74516e0ba71",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "藥師 s1 o3: ['師道']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f9d90e213b23",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "頂門 s1 o1: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fa1b42d25280",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "雪山童子 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fadc60d82192",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "護法神 s1 o4: ['師曰']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fe7e2066672d",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "explicit_master_turn_left_anonymous"
+      ],
+      "findings": [
+        "薦取 s1 o7: ['師云']; read the complete case and name the exact master"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ff91d085da8d",
+      "priority": 0,
+      "findingCount": 1,
+      "kinds": [
+        "anonymous_monk_question_assigned_to_master"
+      ],
+      "findings": [
+        "道得 s1 o3: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_97b566635d6c",
+      "priority": 1,
+      "findingCount": 9,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "宗師 s1 o3: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o4: Dongshan Shouchu appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o4: Xianglin Chengyuan appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o4: Zhimen Guangzuo appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o5: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o6: Zihu Lizong appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o7: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters",
+        "宗師 s1 o7: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_37261001c332",
+      "priority": 1,
+      "findingCount": 6,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "觀心 s1 o1: Daoxin appears in attribution prose but not in MasterName or ContextMasters",
+        "觀心 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "觀心 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "觀心 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "觀心 s1 o5: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters",
+        "觀心 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_17c1d8b4f105",
+      "priority": 1,
+      "findingCount": 5,
+      "kinds": [
+        "named_master_missing_structured_link",
+        "placeholder_actor_forbidden",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "劫外 s1 o6 Kind: 'verse voice'",
+        "劫外 s1 o6 ActorLabel: 'the unattributed verse voice'",
+        "劫外 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "劫外 s1 o6 AttributionNote: 'Source text (宗鑑法林). the unattributed verse voice owns the exact clause in the complete case.'",
+        "劫外 s1 o6: Hongren appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5ce4bbfe682f",
+      "priority": 1,
+      "findingCount": 5,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "本性 s1 o1: Shenxiu appears in attribution prose but not in MasterName or ContextMasters",
+        "本性 s1 o2: Shenxiu appears in attribution prose but not in MasterName or ContextMasters",
+        "本性 s1 o3: Huineng appears in attribution prose but not in MasterName or ContextMasters",
+        "本性 s1 o5: Lao'an appears in attribution prose but not in MasterName or ContextMasters",
+        "本性 s1 o8: Hengchuan Xinggong appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7ccccfa5fe9a",
+      "priority": 1,
+      "findingCount": 5,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "嗣法 s1 o2: Yongjue Yuanxian appears in attribution prose but not in MasterName or ContextMasters",
+        "嗣法 s1 o4: Miyun Yuanwu appears in attribution prose but not in MasterName or ContextMasters",
+        "嗣法 s1 o5: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters",
+        "嗣法 s1 o7: Dayang Jingxuan appears in attribution prose but not in MasterName or ContextMasters",
+        "嗣法 s1 o7: Wansong Xingxiu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_aa45c307e9f1",
+      "priority": 1,
+      "findingCount": 5,
+      "kinds": [
+        "action_performer_context_missing",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "頭首 s1 o1: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "頭首 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "頭首 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "頭首 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "頭首 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c657778889b0",
+      "priority": 1,
+      "findingCount": 5,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "傳衣 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "傳衣 s1 o3: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters",
+        "傳衣 s1 o6: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "傳衣 s1 o6: Huineng appears in attribution prose but not in MasterName or ContextMasters",
+        "傳衣 s1 o7: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_46c30c5d57d4",
+      "priority": 1,
+      "findingCount": 4,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "不立文字 s1 o1: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "不立文字 s1 o2: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "不立文字 s1 o5: Sengcan appears in attribution prose but not in MasterName or ContextMasters",
+        "不立文字 s1 o6: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_72bcb768449d",
+      "priority": 1,
+      "findingCount": 4,
+      "kinds": [
+        "action_performer_context_missing",
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "香爐 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Jingyin Weiyue says the cold ash in an old-temple incense burner flames again.",
+        "香爐 s1 o2: explicit master action requires a named action-performer ContextMaster",
+        "香爐 s1 o2 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): the compiler narrates Daoxian pointing to an incense burner and asking whether the assembly sees it.",
+        "香爐 s1 o5: Source text (宗鑑法林): the compiler preserves a verse in which fungus grows from an old-temple incense burner."
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d11d5f0c78a5",
+      "priority": 1,
+      "findingCount": 4,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "以心傳心 s1 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters",
+        "以心傳心 s1 o2: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "以心傳心 s1 o3: Zhitong appears in attribution prose but not in MasterName or ContextMasters",
+        "以心傳心 s1 o6: Huike appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0f8c3a2073e3",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "定慧 s1 o5: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters",
+        "定慧 s1 o7: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "定慧 s1 o7: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_283dce854520",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "觸目菩提 s1 o3: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters",
+        "觸目菩提 s1 o4: Yunju Daoying appears in attribution prose but not in MasterName or ContextMasters",
+        "觸目菩提 s1 o5: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_643fab6ecc1b",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "單傳 s1 o1: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "單傳 s1 o3: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "單傳 s1 o3: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_751d6ddba1e9",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "明暗 s1 o1: Caoshan Benji appears in attribution prose but not in MasterName or ContextMasters",
+        "明暗 s1 o2: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters",
+        "明暗 s1 o2: Huanglong Huinan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "本來無一物 s1 o2: Hongren appears in attribution prose but not in MasterName or ContextMasters",
+        "本來無一物 s1 o2: Shenxiu appears in attribution prose but not in MasterName or ContextMasters",
+        "本來無一物 s1 o4: Shenxiu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b23e58454acd",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "老婆心切 s1 o1: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters",
+        "老婆心切 s1 o1: Linji Yixuan appears in attribution prose but not in MasterName or ContextMasters",
+        "老婆心切 s1 o3: Huitang Zuxin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dc5f4386a0ed",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "明心見性 s1 o3: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters",
+        "明心見性 s1 o4: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "明心見性 s1 o4: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f25cebd24730",
+      "priority": 1,
+      "findingCount": 3,
+      "kinds": [
+        "action_performer_context_missing",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "棒 s1 o1: explicit master action requires a named action-performer ContextMaster",
+        "棒 s1 o5: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters",
+        "棒 s2 o6: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0160fc00c70d",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "老婆禪 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the lay author Huang Yuangong'",
+        "老婆禪 s1 o3: Miyun Yuanwu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_10d93a67ea99",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "言句 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "言句 s1 o6: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1d1a833551a9",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "活鱍鱍 s1 o2: Danxia Zichun appears in attribution prose but not in MasterName or ContextMasters",
+        "活鱍鱍 s1 o2: Dongshan Liangjie appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_27e66043b271",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "聲前一句 s1 o1: Yantou Quanhuo appears in attribution prose but not in MasterName or ContextMasters",
+        "聲前一句 s1 o2: Caoshan Benji appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_44bf96cadfe3",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "五家 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "五家 s1 o6: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_462d9613abe9",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "鳥道 s1 o2: Fenyang Shanzhao appears in attribution prose but not in MasterName or ContextMasters",
+        "鳥道 s2 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the memorial author Shen Xun'"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4cc95950b59a",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "一句 s1 o4: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters",
+        "一句 s1 o9: Daowu Yuanzhi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4d83c364fefd",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "迷悟 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters",
+        "迷悟 s1 o5: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_51a4f3a03bd8",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "端的 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "端的 s1 o3: Touzi Yiqing appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_57ef1bbc3a81",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "山河大地 s1 o2: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters",
+        "山河大地 s1 o5: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5db4dbd2bc17",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "寶鏡三昧 s1 o2: Caoshan Benji appears in attribution prose but not in MasterName or ContextMasters",
+        "寶鏡三昧 s1 o2: Dongshan Liangjie appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_66792ea088de",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "拈古 s1 o3: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters",
+        "拈古 s1 o5: Zhongfeng Mingben appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_74390b40f658",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "坐斷天下人舌頭 s1 o1: Feiyin Tongrong appears in attribution prose but not in MasterName or ContextMasters",
+        "坐斷天下人舌頭 s1 o6: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_85eef19d3d3a",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "淨瓶 s1 o4: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters",
+        "淨瓶 s1 o4: Yangshan Huiji appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_882860247a9b",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "惺惺 s1 o3: Yongjia Xuanjue appears in attribution prose but not in MasterName or ContextMasters",
+        "惺惺 s1 o4: Yongjue Yuanxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_94ee610a30f7",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "一物 s1 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters",
+        "一物 s1 o3: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9d2a5e9aa477",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "孔子 s1 o1: Juelang Daosheng appears in attribution prose but not in MasterName or ContextMasters",
+        "孔子 s1 o3: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9dfa307c0458",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "沒蹤跡 s1 o1: Hongzhi Zhengjue appears in attribution prose but not in MasterName or ContextMasters",
+        "沒蹤跡 s1 o2: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a5408be46291",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "認奴作郎 s1 o4: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters",
+        "認奴作郎 s1 o4: Longtan Chongxin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 5,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a8b4f101d192",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "action_performer_context_missing",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "玄關 s1 o2: explicit master action requires a named action-performer ContextMaster",
+        "玄關 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b54b72a8ff12",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "殺人 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the source preface author'",
+        "殺人 s1 o4: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b6a1c449bd53",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "坐斷 s1 o3: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters",
+        "坐斷 s1 o9: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b90a5f36ec86",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "弄精魂 s1 o3: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters",
+        "弄精魂 s1 o3: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b986851dcdd8",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "父母未生已前 s1 a19: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "父母未生已前 s1 o21: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cc840e36f2da",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "且道 s1 o3: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters",
+        "且道 s1 o11: Linji Yixuan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d03aa9267f79",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "大機大用 s1 o2: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters",
+        "大機大用 s1 o2: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_df9aad1ce22d",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "芥子 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Li Bo'",
+        "芥子 s1 o5: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e156057131dc",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "本參 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Yongzheng Emperor'",
+        "本參 s1 o1: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ea2a427c7aba",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "坐禪 s1 o4: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters",
+        "坐禪 s1 o5: Songyuan Chongyue appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_eba970114dd2",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "邯鄲 s1 o1: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters",
+        "邯鄲 s1 o1: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f0cb4dcfc70c",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "掛搭 s1 o5: Fushan Fayuan appears in attribution prose but not in MasterName or ContextMasters",
+        "掛搭 s1 o5: Tianyi Yihuai appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fb23e0284d73",
+      "priority": 1,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named",
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "印可 s1 o4: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Zhang Shangying'",
+        "印可 s1 o4: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_01a355a89ba1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "當下 s1 o9: Yongzheng Emperor appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0427b79d8ba4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "衲子 s1 o5: Fengxue Yanzhao appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_057cc9ea8755",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "攝心 s1 o6: Guifeng Zongmi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_05a8e67efbf5",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "頭上安頭 s1 o5: Huqiu Shaolong appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0ad9fc2dfdda",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "向上 s1 o2: Caoshan Benji appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0bb8367edcfc",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "香象 s1 o6: Hongzhi Zhengjue appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_121b66b78c9e",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "逢佛殺佛 s1 o3: Linji Yixuan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_12f74718424d",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "堯舜 s1 o5: Furong Daokai appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_12fe3700913c",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "金翅鳥 s1 o2: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_130eccf5145c",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "重關 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_15eac1a3b037",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "歸方丈 s1 o8: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_19784084ccb4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "誌公 s1 o3: Yuanwu Keqin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1b4bf4fff6bb",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "韓愈 s1 o3: Muchen Daomin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_223c2f6ade25",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "一大事因緣 s1 o1: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_26d1f4bf3890",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "殺活 s1 o2: Damei Fachang appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_27a41c50f0c3",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "腦後見腮 s1 o5: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2d92f15fa0ab",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "雲水 s2 o1: Chuanzi Decheng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2ddd493fc9b0",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "續燈錄 s1 o4: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_30a53ee93752",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "爐鞴 s1 o7: Miyun Yuanwu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_34143e43daf4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "放下著 s1 o1: Wuming Huijing appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_37771a869b4f",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "如何是祖師西來意 s1 o9: Zhitong appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_395ae8fd7f32",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "無住 s1 o4: Wansong Xingxiu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_39fb2a2c1c9b",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "祖意 s1 o6: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_408abe2e38ca",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "現成公案 s1 o6: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_447ad9648add",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "出身處 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_495c83ba370b",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "三文買草鞋 s1 o4: Dongshan Shouchu appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4c9320095ba1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "見聞覺知 s1 o5: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4dd50050b279",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "拾得 s1 o4: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4f3cd3b1c155",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "趙州橋 s1 o5: Wuzu Fayan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_52fdda90e9ab",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "行腳 s1 o2: Nanquan Puyuan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_560356022866",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "孤明 s1 o3: Yangshan Huiji appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_61c5046b49c4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "心要 s2 o2: Foyan Qingyuan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_62044e7bbb87",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "本分事 s1 o6: Bai Juyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_627549d4c466",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "大蟲 s1 o5: Changsha Jingcen appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6293dead3bb2",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "轉身 s1 o7: Hanyue Fazang appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_62bc43101d57",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "無相 s1 o4: Wuxiang appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_652dbd8f5c83",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "西序 s1 o1: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 6,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6bc71cc88c2f",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "衣鉢 s2 o1: Huineng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6f47a97d45b0",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "序 s1 o2: Yongjue Yuanxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_77774b8724f1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "付法 s1 o1: Guifeng Zongmi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7887dc8d449f",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "尊宿 s1 o1: Huangbo Xiyun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_78d931324d99",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "張商英 s1 o3: Zhang Shangying appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7bd745af24d7",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "格外 s1 o4: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7f696f177766",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "梁武帝 s1 o3: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_81147ad4e8bf",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "四料揀 s1 o3: Fengxue Yanzhao appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8184622cecd7",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "大徹大悟 s1 o3: Dahui Zonggao appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8879b278cd83",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "便打 s1 o11: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_88de22b8a40e",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "本來人 s1 o5: Pang Yun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_898279a78ecf",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "漏逗 s1 o3: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8a016f49e5b8",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "思量 s1 o14: Yongming Yanshou appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_90e46d995978",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "參請 s1 o7: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_98c97bba590b",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "別云 s1 o7: Fayan Wenyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9a5dc768cbc5",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "平常心是道 s1 o5: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9f119d7965c2",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "拂子 s1 o9: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9fc1a9256ee4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "平常 s1 o1: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a9a874976d5b",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "提綱 s1 o5: Dahui Zonggao appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ac2e2908084d",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "見性成佛 s1 o8: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b1487d8fc8f9",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "立定腳跟 s1 o2: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b191c4fa2e9f",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "請益 s1 o2: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b33fddd5d4f1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "深深海底行 s1 o5: Deshan Xuanjian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b48fa1daa7d4",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "虛空 s1 o10: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b6da6fc1c9bf",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "安單 s1 o3: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b7fd3f3a1395",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "raised_old_saying_lacks_raiser"
+      ],
+      "findings": [
+        "蛇入竹筒 s1 o2: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_baaf8fde82d2",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "法眼宗 s1 o4: Luohan Guichen appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_baf1c6b9db60",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "如意 s1 o1: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c1af3ecba987",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "機鋒 s1 o2: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c298daf8fd94",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "秦鏡 s1 o4: Xuefeng Yicun appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c552c63de77f",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "豎拂子 s1 o5: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c698ab3d0cf9",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "拖死屍 s1 o1: Gaofeng Yuanmiao appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c968268a64d1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "心印 s1 o5: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ccae22e8375d",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "一隻眼 s1 o1: Zhaozhou Congshen appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_cd9e5485fbe1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "張三李四 s1 o3: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d926adb80feb",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "良久曰 s1 o8: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dc81acde25fd",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "那畔 s1 o4: Dongshan Liangjie appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dcd5468f5104",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "直心 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dd2b39789323",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "格外句 s1 o5: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dd3bf8dd507a",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "自性 s1 o6: Hongren appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e6eb14b6c1ca",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "活人劍 s1 o4: Xuedou Chongxian appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e7f672904614",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "心地 s1 o5: Hongzhi Zhengjue appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ea138c7335d3",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "鼻孔 s1 o7: Mazu Daoyi appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_edabab064644",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "疑情 s1 o6: Juelang Daosheng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_eeb3c71567a1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "action_performer_context_missing"
+      ],
+      "findings": [
+        "僧臘 s1 o4: explicit master action requires a named action-performer ContextMaster"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_efa1e241a7f0",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "擔荷 s1 o4: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fb43354d2aae",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "自己 s1 o4: Juelang Daosheng appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ff59d753a7b1",
+      "priority": 1,
+      "findingCount": 1,
+      "kinds": [
+        "named_master_missing_structured_link"
+      ],
+      "findings": [
+        "逍遙 s1 o2: Longtan Chongxin appears in attribution prose but not in MasterName or ContextMasters"
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e6b5cae9bd56",
+      "priority": 2,
+      "findingCount": 16,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "主賓 s1 o1: The headword occurs in the preface author’s own contrast, not compiler narration.",
+        "主賓 s1 o1 expected '宗門拈古彙集': The headword occurs in the preface author’s own contrast, not compiler narration.",
+        "主賓 s1 o2: The compiler states 主賓道異 before introducing Dagui Guo’s separate comment.",
+        "主賓 s1 o2 expected '宗鑑法林': The compiler states 主賓道異 before introducing Dagui Guo’s separate comment.",
+        "主賓 s1 o3: The named record owner utters the headword in the complete saved turn.",
+        "主賓 s1 o3 expected '五燈全書(第34卷-第120卷)': The named record owner utters the headword in the complete saved turn.",
+        "主賓 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "主賓 s1 o4: The headword occurs in authored introductory prose surveying Chan encounter structures.",
+        "主賓 s1 o4 expected '蔗菴範禪師語錄': The headword occurs in authored introductory prose surveying Chan encounter structures.",
+        "主賓 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "主賓 s1 o5: The headword lies in the formal address coordinated with 良久云; the exact container is a named master section.",
+        "主賓 s1 o5 expected '列祖提綱錄': The headword lies in the formal address coordinated with 良久云; the exact container is a named master section.",
+        "主賓 s1 o6: The named record owner utters the headword in the complete saved turn.",
+        "主賓 s1 o6 expected '雲溪俍亭挺禪師語錄': The named record owner utters the headword in the complete saved turn.",
+        "主賓 s1 o7: The named record owner utters the headword in the complete saved turn.",
+        "主賓 s1 o7 expected '百癡禪師語錄': The named record owner utters the headword in the complete saved turn."
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1f264c7d97ac",
+      "priority": 2,
+      "findingCount": 8,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "坐夏 s1 o1: The named record owner utters the headword in the complete saved turn.",
+        "坐夏 s1 o1 expected '五燈全書(第34卷-第120卷)': The named record owner utters the headword in the complete saved turn.",
+        "坐夏 s1 o2 expected '嘉泰普燈錄': 閱世八十，坐夏五十二 is compiler biography counting the described master’s summer seniority.",
+        "坐夏 s1 o3 expected '續傳燈錄': The compiler narrates a summer residence as chronology or encounter setting; no quoted speaker utters the headword.",
+        "坐夏 s1 o4 expected '指月錄': The compiler narrates a summer residence as chronology or encounter setting; no quoted speaker utters the headword.",
+        "坐夏 s1 o5 expected '五燈會元': The compiler narrates a summer residence as chronology or encounter setting; no quoted speaker utters the headword.",
+        "坐夏 s1 o6 expected '五燈嚴統(第10卷-第25卷)': The compiler narrates a summer residence as chronology or encounter setting; no quoted speaker utters the headword.",
+        "坐夏 s1 o7 expected '續燈正統': The compiler narrates lay official Feng Ji spending the summer at Jingshan."
+      ],
+      "cohort": 7,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_4e2840f46db3",
+      "priority": 2,
+      "findingCount": 5,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "寢堂 s1 o1: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "寢堂 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "寢堂 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "寢堂 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "寢堂 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_747b1f22d089",
+      "priority": 2,
+      "findingCount": 5,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "黃龍三關 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (lamp record): the compiler narrates Huanglong Huinan’s named three-barrier case.",
+        "黃龍三關 s1 o2 expected '嘉泰普燈錄': Source text (lamp record): the compiler narrates Huanglong Huinan’s named three-barrier case.",
+        "黃龍三關 s1 o5 expected '五燈會元': Source text (lamp record): the compiler narrates Huanglong Huinan’s named three-barrier case.",
+        "黃龍三關 s1 o6 expected '五燈嚴統(第10卷-第25卷)': Source text (lamp record): the compiler narrates Huanglong Huinan’s named three-barrier case.",
+        "黃龍三關 s1 o7 expected '續燈存稿': Yutang Yi utters the headword while raising Huanglong’s three-barrier case in his public address."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9a4a6df85ba0",
+      "priority": 2,
+      "findingCount": 4,
+      "kinds": [
+        "placeholder_actor_forbidden",
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "眉毛墮落 s1 a7 Kind: 'verse voice'",
+        "眉毛墮落 s1 a7 ActorLabel: 'the unattributed verse voice'",
+        "眉毛墮落 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "眉毛墮落 s1 a7 AttributionNote: 'Source text (禪宗頌古聯珠通集). the unattributed verse voice owns the exact clause in the complete case.'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_de2ade080f36",
+      "priority": 2,
+      "findingCount": 4,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "裴休 s1 o1 expected '景德傳燈錄': The compiler narrates 觀察使裴休訪之問曰; Pei’s name is the narrated subject, while his later question follows after 問曰.",
+        "裴休 s1 o2 expected '五燈全書(第1卷-第33卷)': The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token.",
+        "裴休 s1 o3 expected '五燈會元': The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token.",
+        "裴休 s1 o4 expected '五燈嚴統(第1卷-第9卷)': The compiler owns 裴休為之序曰; Pei Xiu owns the quoted preface words that follow, not the selected name token."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1095b3f1544e",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "豐干 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Guizong Huitong raises the scene of Hanshan and Shide bowing to Fenggan in an上堂 address.",
+        "豐干 s1 o5: Source text (傳燈玉英集): the compiler introduces Fenggan's Tiantai dossier, his terse replies, songs, and tiger-riding.",
+        "豐干 s1 o5 expected '傳燈玉英集（殘卷）': Source text (傳燈玉英集): the compiler introduces Fenggan's Tiantai dossier, his terse replies, songs, and tiger-riding."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2a4b0fb8318b",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "石火電光 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the later verse commentator on Guizong'",
+        "石火電光 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous verse author in the Tongji collection'",
+        "石火電光 s1 o7: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous author of the three-mysteries verse sequence'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6ce996d17a55",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "猊座 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "猊座 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed",
+        "猊座 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_7e7472becb31",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "鬼窟 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Zhongji Kezun says that even the three-thousand-great-thousand world is only a ghost cave in his上堂.",
+        "鬼窟 s1 o2: Source text (宗鑑法林): the compiler places the headword in a verse on 圓覺 that contrasts the darkest ghost cave with opening the skylight.",
+        "鬼窟 s1 o7 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): Letan Xiang says that remaining in neither coming nor going is precisely ghost-cave livelihood."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8cc557911096",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "note_missing_source",
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "鋒鋩 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Letan Yingqian utters 鋒鋩 in his explicitly introduced death verse.",
+        "鋒鋩 s1 o2: Source text (宗鑑法林): the headword occurs in an unattributed compiled verse following the Niaoke Daolin dossier.",
+        "鋒鋩 s1 o5 expected '五燈嚴統(第10卷-第25卷)': Source text (五燈嚴統): Linji Yixuan himself asks Longguang how one can win without displaying the edge."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b7fa9548f704",
+      "priority": 2,
+      "findingCount": 3,
+      "kinds": [
+        "note_missing_source",
+        "vague_attributor"
+      ],
+      "findings": [
+        "孫臏 s1 o1 expected '五燈全書(第1卷-第33卷)': Source text (五燈全書): Luopu Yuanan announces that Sun Bin has closed shop and calls for a diviner in his上堂.",
+        "孫臏 s1 o4 expected '五燈嚴統(第1卷-第9卷)': Source text (五燈嚴統): Luopu Yuanan announces that Sun Bin has closed shop in the recorded上堂.",
+        "孫臏 s1: 'a monk'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_0e49b88aecba",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "傳燈 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Yang Yi'",
+        "傳燈 s2 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Yang Yi'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_15eec715e731",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "燈錄 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the preface author Jingfu'",
+        "燈錄 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the author Wenxiu'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6275f20a3f87",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "雲門胡餅 s1 o3 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Xuefeng Sihui pairs Yunmen's flatbread with Zhaozhou's tea in an上堂.",
+        "雲門胡餅 s1 o5 expected '林泉老人評唱投子青和尚頌古空谷集': Source text (空谷集): the heading names Yunmen's flatbread and the immediately following body supplies Yunmen's original flatbread exchange."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_bfef2fc85826",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "參問 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the lamp-record biographer describing Hui’an’s visitors'",
+        "參問 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the lamp-record biographer describing Langya Huijue'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dcb8d664b64f",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "第二月 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous case-verse author in Zongjian Falin'",
+        "第二月 s1 o7: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the temple director addressing Yunyan'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f50f469aa43b",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "note_missing_speaker",
+        "vague_attributor"
+      ],
+      "findings": [
+        "聯燈會要 s1 o1: Source text (聯燈會要): the headword is the work's bibliographic title; no person utters it.",
+        "聯燈會要 s1: 'a master'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f54129a637ae",
+      "priority": 2,
+      "findingCount": 2,
+      "kinds": [
+        "note_missing_speaker"
+      ],
+      "findings": [
+        "寮元 s1 o1: Source text (禪林備用清規): the rule directs the quarters supervisor to close the common-quarters door and report attendance.",
+        "寮元 s1 o2: Source text (勅修百丈清規): the rule defines the quarters supervisor's custody and service duties."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_04994645e07a",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "不與萬法為侶 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the official Zhang Jun'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1118b9dcbc72",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "見解 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_168078a96bd7",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "明眼 s1 o9: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the unnamed layman in the encounter'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_18ec645f99f7",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "賓中主 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_1e2ad50d18fe",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "鐵樹花開 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous verse author in the Tongji collection'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_22a3963b99da",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "向上機 s1 o2 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Tonghui Gui utters the headword in a formal address, contrasting an initial mechanism with a mechanism not yet trodden."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_2852c7a978c5",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "placeholder_actor_forbidden"
+      ],
+      "findings": [
+        "卞和 s1 o5 AttributionNote: 'Source text (禪林類聚): the unattributed anthology verse voice owns the exact headword clause; all six attribution rungs leave that voice unnamed.'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_32289452a85b",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "燒指 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the named collective petitioners speaking as “we”'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_332a9a8accb6",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "主中賓 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_3ae11b4bc79f",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "無常迅速 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the named group of lay disciples'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_3eb1fd8df203",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "趙州勘婆 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the named official who invited Xuedou'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_403540d42e98",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "抱贓叫屈 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the capping-verse author'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5369e90b59b3",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "百丈野狐 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_5835e3ae094b",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "髑髏 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the verse author in the Shakyamuni section'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_601e936dc0a3",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "慧命 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_68d495f2868b",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "印板 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_6dadcc69c361",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "料揀 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_72ed81907d68",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "施為 s1 o2: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_72fd192e30c4",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "鉗鎚 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_745dde2c8711",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "三脚驢 s1 o10: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'an anonymous case-verse author in Zongjian Falin'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_757827b8d4cb",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "喪身失命 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8482770fe735",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "象王 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_8beda961c75a",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "陶淵明 s1 o1 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Baofang Jin invokes Tao Yuanming and his Return Home rhapsody in his own recorded speech."
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_97e211e4846e",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "鐵橛子 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the biographical narrator describing Yanyang'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_9d60d7613392",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "一言半句 s1 o6: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the signed preface author Hui Ming (悔明)'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a66ef543d2ea",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "善財 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a7f67b4983d9",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "日用 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the Miaoyuan layman'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_a9f422b3b249",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "生緣 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_aa56c106ef82",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "陷虎之機 s1 o1: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the commentator signing as Yilinzu'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_acaf1f7f698e",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "法臘 s1 o2: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the identified official Yue'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_b8c3ecb60618",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "啐啄同時 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_c688927b7ea1",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "placeholder_actor_forbidden"
+      ],
+      "findings": [
+        "青州布衫 s1 o6 Kind: 'named verse voice'"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d2892b1eaae0",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "立雪 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 8,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d3631f4abf25",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "紅爐片雪 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_d95b944e0749",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "透網金鱗 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_da72db7aa635",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "note_missing_source"
+      ],
+      "findings": [
+        "把斷 s1 o2 expected '五燈全書(第34卷-第120卷)': Source text (五燈全書): Baoen Tan says one who gets it directs affairs and holds the strategic crossing shut."
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_dda048ca832d",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "金鎖 s1 o9: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_e89833bb5e63",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "誓願 s1 o5: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the assembled good friends reciting after Huineng'"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_ec1241360056",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "無孔鐵鎚 s1 o5: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f3488daf27fd",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "較些子 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f41961e0e5be",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "牧牛 s1 o6: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f4c65b25832f",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "斬貓 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f56016646d8f",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "identified_actor_not_named"
+      ],
+      "findings": [
+        "吐舌 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the visitor identified only as Nian in the Ciming exchange'"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_f7c3da035832",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "金剛王寶劍 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fac9b9afebf6",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "探竿影草 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fb331b159983",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "死蛇 s1 o8: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    },
+    {
+      "id": "t_fe8d4efe588f",
+      "priority": 2,
+      "findingCount": 1,
+      "kinds": [
+        "reviewed_unnamed_label_not_explicit"
+      ],
+      "findings": [
+        "見處 s1 o7: reviewed-unnamed ActorLabel must explicitly say unnamed"
+      ],
+      "cohort": 9,
+      "state": "pending-full-case-repair"
+    }
+  ],
+  "policy": [
+    "Repair cohorts are entry-disjoint and may run in parallel.",
+    "Every affected occurrence is read as a complete case; a regex finding is a lead, not an actor decision.",
+    "Independent hash-bound rereview is required before promotion."
+  ]
+}

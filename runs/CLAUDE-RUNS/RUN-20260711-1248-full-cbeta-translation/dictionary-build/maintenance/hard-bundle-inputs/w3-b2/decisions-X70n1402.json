@@ -1,0 +1,30 @@
+{
+  "source": "X/X70/X70n1402.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_18b083a026ba:0728a13:1:7",
+      "entryId": "t_18b083a026ba",
+      "sourceTerm": "提起",
+      "RelPath": "X/X70/X70n1402.xml",
+      "FromLb": "0728a13",
+      "Kwic": "十二時中單單提起箇萬法歸一、一歸何處話，行疑坐疑，猛利無間，",
+      "caseClusterId": "X/X70/X70n1402.xml:116628:117589",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天目明本禪師雜錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhongfeng Mingben",
+        "ActorAttribution": null,
+        "AttributionNote": "天目明本禪師雜錄. Full six-rung exact-turn review identifies Zhongfeng Mingben as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_18b083a026ba:0728a13:1:7"
+  ]
+}

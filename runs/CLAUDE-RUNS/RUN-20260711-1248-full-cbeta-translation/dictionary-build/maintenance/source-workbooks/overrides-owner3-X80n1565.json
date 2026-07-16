@@ -1,0 +1,758 @@
+{
+  "source": "X/X80/X80n1565.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T06:01:35Z",
+  "rows": [
+    {
+      "key": "t_38ad422a3ce7:0040c02:1:3",
+      "entryId": "t_38ad422a3ce7",
+      "sourceTerm": "發明",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0040c02",
+      "Kwic": "因試令與二兄辨所施寶珠。發明心要。既而尊者謂曰。汝於諸法。已得通量。",
+      "caseClusterId": "X/X80/X80n1565.xml:157722:179946",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_62bc43101d57:0054c14:2:2",
+      "entryId": "t_62bc43101d57",
+      "sourceTerm": "無相",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0054c14",
+      "Kwic": "益州保唐寺無住禪師初得法於無相大師。",
+      "caseClusterId": "X/X80/X80n1565.xml:256076:260073",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Wuxiang",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_eedf4100b3d7:0061a09:1:1",
+      "entryId": "t_eedf4100b3d7",
+      "sourceTerm": "師子吼",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0061a09",
+      "Kwic": "說法有所得。斯則野干鳴。說法無所得。是名師子吼。",
+      "caseClusterId": "X/X80/X80n1565.xml:295588:300667",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanyang Huizhong",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_250794fa9636:0071c03:2:1",
+      "entryId": "t_250794fa9636",
+      "sourceTerm": "野狐",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0071c03",
+      "Kwic": "不落因果。遂五百生墮野狐身",
+      "caseClusterId": "X/X80/X80n1565.xml:369549:379193",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Baizhang Wild-Fox Elder",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. Baizhang Wild-Fox Elder, the source-attested former abbot who appears as an old man, says that his answer caused five hundred births in a wild-fox body; Baizhang Huaihai supplies the correcting response.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_2229af16905a:0073c21:1:1",
+      "entryId": "t_2229af16905a",
+      "sourceTerm": "威音王",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0073c21",
+      "Kwic": "檗曰。威音王已前。師曰。猶是王老師兒孫在。下去。",
+      "caseClusterId": "X/X80/X80n1565.xml:381960:392969",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Huangbo Xiyun",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. Huangbo Xiyun is the exact speaker of 威音王已前; Nanquan Puyuan replies that he is still Old Master Wang's descendant.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_3f7a6ab74b68:0074a06:1:3",
+      "entryId": "t_3f7a6ab74b68",
+      "sourceTerm": "僧堂",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0074a06",
+      "Kwic": "僧放下斧子。歸僧堂。師歸法堂。良久却入僧堂。見僧在衣鉢下坐。",
+      "caseClusterId": "X/X80/X80n1565.xml:384057:392969",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "actor returning to the monks' hall",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk puts down the axe and returns to the monks' hall; Nanquan Puyuan later enters and addresses him. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "observer",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_9e7c2fb12ad9:0074a08:1:1",
+      "entryId": "t_9e7c2fb12ad9",
+      "sourceTerm": "猫兒",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0074a08",
+      "Kwic": "師因東西兩堂爭猫兒。師遇之。白眾曰。道得即救取猫兒。道不得即斬却也。眾無對。師便斬之。",
+      "caseClusterId": "X/X80/X80n1565.xml:384057:392969",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_bb3cdb68e388:0079a20:1:2",
+      "entryId": "t_bb3cdb68e388",
+      "sourceTerm": "茫然",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0079a20",
+      "Kwic": "問。如何是佛。師曰。清譚對面。非佛而誰。眾皆茫然。",
+      "caseClusterId": "X/X80/X80n1565.xml:419301:427191",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Dazhu Huihai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "assembly",
+          "ActorLabel": "assembled monks",
+          "ActorRole": "collective experiencer",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. The assembled monks are the exact collective described as perplexed after Dazhu Huihai's answer. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dazhu Huihai",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_782f20a368c3:0093a20:1:1",
+      "entryId": "t_782f20a368c3",
+      "sourceTerm": "省悟",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0093a20",
+      "Kwic": "師曰。洗鉢盂去。其僧忽然省悟。上堂。纔有是非。紛然失心。",
+      "caseClusterId": "X/X80/X80n1565.xml:517870:527411",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Zhaozhou Congshen",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "person awakening",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk is the exact person who suddenly awakens after Zhaozhou Congshen tells him to wash his bowl. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_8f41e0da5a71:0094a18:1:3",
+      "entryId": "t_8f41e0da5a71",
+      "sourceTerm": "意旨如何",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0094a18",
+      "Kwic": "急水上打毬子。意旨如何。子曰。念念不停留。",
+      "caseClusterId": "X/X80/X80n1565.xml:523848:527411",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Zhaozhou Congshen",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk asks Touzi Datong for the import of Zhaozhou's rolling-ball saying. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhaozhou Congshen",
+            "Roles": [
+              "quoted speaker"
+            ]
+          },
+          {
+            "MasterName": "Touzi Datong",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_a9f422b3b249:0104b01:1:5",
+      "entryId": "t_a9f422b3b249",
+      "sourceTerm": "生緣",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0104b01",
+      "Kwic": "和尚生緣甚麼處。師曰。日出東。月落西。",
+      "caseClusterId": "X/X80/X80n1565.xml:596043:596937",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Dazhu Huihai",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk asks Dazhu Huihai about his place of birth; Dazhu answers. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dazhu Huihai",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ac2e2908084d:0109a23:1:4",
+      "entryId": "t_ac2e2908084d",
+      "sourceTerm": "見性成佛",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0109a23",
+      "Kwic": "甞聞南方直指人心。見性成佛。實未明了。",
+      "caseClusterId": "X/X80/X80n1565.xml:631436:641853",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yaoshan Weiyan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_aef7434b8470:0109b17:1:3",
+      "entryId": "t_aef7434b8470",
+      "sourceTerm": "沒交涉",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0109b17",
+      "Kwic": "後石頭垂語曰。言語動用沒交涉。師曰。非言語動用亦沒交涉。",
+      "caseClusterId": "X/X80/X80n1565.xml:631873:641853",
+      "reviewClass": "inline-named-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Shitou Xiqian",
+      "candidateBasis": "inline",
+      "Override": {
+        "MasterName": "Shitou Xiqian",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. Shitou Xiqian gives the first headword-bearing statement, 言語動用沒交涉; Yaoshan Weiyan immediately answers with a second, contrastive 沒交涉 statement.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yaoshan Weiyan",
+            "Roles": [
+              "respondent",
+              "second speaker",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_aef7434b8470:0114b20:1:4",
+      "entryId": "t_aef7434b8470",
+      "sourceTerm": "沒交涉",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0114b20",
+      "Kwic": "山曰。三千里外。且喜沒交涉。",
+      "caseClusterId": "X/X80/X80n1565.xml:665540:670648",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yunyan Tansheng",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Yaoshan Weiyan",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. Yaoshan Weiyan is the exact speaker who says 三千里外且喜沒交涉 to Yunyan Tansheng; Yunyan is the interlocutor and biography subject.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yunyan Tansheng",
+            "Roles": [
+              "interlocutor",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e2c55f8feca0:0115b23:2:1",
+      "entryId": "t_e2c55f8feca0",
+      "sourceTerm": "三寸",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0115b23",
+      "Kwic": "垂絲千尺。意在深潭。離鉤三寸。子何不道。",
+      "caseClusterId": "X/X80/X80n1565.xml:671371:674249",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Chuanzi Decheng",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_6ba271127127:0121b08:1:1",
+      "entryId": "t_6ba271127127",
+      "sourceTerm": "破草鞋",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0121b08",
+      "Kwic": "祖師玄旨是破草鞋。寧可赤脚不著最好。",
+      "caseClusterId": "X/X80/X80n1565.xml:711537:715236",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Jiashan Shanhui",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_fd1759947989:0122a23:1:1",
+      "entryId": "t_fd1759947989",
+      "sourceTerm": "大死",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0122a23",
+      "Kwic": "州問。大死底人。却活時如何。師曰。不許夜行。投明須到。",
+      "caseClusterId": "X/X80/X80n1565.xml:717476:726751",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Touzi Datong",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Zhaozhou Congshen",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. Zhaozhou Congshen is the exact questioner who asks how a person of great death is when revived; Touzi Datong gives the following answer.",
+        "ContextMasters": [
+          {
+            "MasterName": "Touzi Datong",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_7c1991e9eabb:0142c15:1:3",
+      "entryId": "t_7c1991e9eabb",
+      "sourceTerm": "宗風",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0142c15",
+      "Kwic": "大闡宗風",
+      "caseClusterId": "X/X80/X80n1565.xml:864093:870144",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Deshan Xuanjian",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_6ba271127127:0144c18:1:2",
+      "entryId": "t_6ba271127127",
+      "sourceTerm": "破草鞋",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0144c18",
+      "Kwic": "問。如何是道。師曰。破草鞋。與拋向湖裏著。",
+      "caseClusterId": "X/X80/X80n1565.xml:877170:879473",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yantou Quanhuo",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_73fb9441f4fb:0150a10:1:1",
+      "entryId": "t_73fb9441f4fb",
+      "sourceTerm": "立地",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0150a10",
+      "Kwic": "我如今立地待汝搆去。更不教汝加功煉行",
+      "caseClusterId": "X/X80/X80n1565.xml:912621:930566",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Xuansha Shibei",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_73fb9441f4fb:0151a02:2:2",
+      "entryId": "t_73fb9441f4fb",
+      "sourceTerm": "立地",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0151a02",
+      "Kwic": "三世諸佛立地聽",
+      "caseClusterId": "X/X80/X80n1565.xml:918338:930566",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Xuansha Shibei",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_1459058101b7:0153b22:1:5",
+      "entryId": "t_1459058101b7",
+      "sourceTerm": "落處",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0153b22",
+      "Kwic": "師曰。還委落處麼。",
+      "caseClusterId": "X/X80/X80n1565.xml:933416:937900",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Changqing Huileng",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_e2c55f8feca0:0156c11:1:2",
+      "entryId": "t_e2c55f8feca0",
+      "sourceTerm": "三寸",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0156c11",
+      "Kwic": "僧問。不借三寸。請師道。師曰。茶堂裏貶剝去。",
+      "caseClusterId": "X/X80/X80n1565.xml:955782:957010",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Cuiyan Lingcan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk asks without borrowing the three-inch tongue; Cuiyan Lingcan answers. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Cuiyan Lingcan",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_7c1991e9eabb:0166a03:1:5",
+      "entryId": "t_7c1991e9eabb",
+      "sourceTerm": "宗風",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0166a03",
+      "Kwic": "如何是宗風不墜底句",
+      "caseClusterId": "X/X80/X80n1565.xml:1020181:1020530",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yaoshan Weiyan",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk asks for the phrase by which the lineage style does not fall; Yaoshan Weiyan is the respondent in the cited exchange. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Yaoshan Weiyan",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_bf1399632fd6:0221c08:1:1",
+      "entryId": "t_bf1399632fd6",
+      "sourceTerm": "奪境不奪人",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0221c08",
+      "Kwic": "至晚小參。曰。有時奪人不奪境。有時奪境不奪人。有時人境兩俱奪。有時人境俱不奪。",
+      "caseClusterId": "X/X80/X80n1565.xml:1412708:1423933",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Linji Yixuan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_6b8e3b4f44bb:0222b15:1:2",
+      "entryId": "t_6b8e3b4f44bb",
+      "sourceTerm": "照用",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0222b15",
+      "Kwic": "示眾。我有時先照後用。有時先用後照。有時照用同時。有時照用不同時",
+      "caseClusterId": "X/X80/X80n1565.xml:1416908:1423933",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Linji Yixuan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_d190cf45c531:0245c20:2:3",
+      "entryId": "t_d190cf45c531",
+      "sourceTerm": "話頭",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0245c20",
+      "Kwic": "上堂。良久曰。好箇話頭。若到諸方。不得錯舉。便下座。",
+      "caseClusterId": "X/X80/X80n1565.xml:1576570:1576697",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Yunmen Wenyan",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_ddab56ede4ef:0297a04:1:4",
+      "entryId": "t_ddab56ede4ef",
+      "sourceTerm": "桶底脫",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0297a04",
+      "Kwic": "忽桶底脫。眾皆失聲。曰。可惜許。師曰。桶底脫自合歡喜。",
+      "caseClusterId": "X/X80/X80n1565.xml:1930434:1933380",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Zhenxie Qingliao",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "mechanical event",
+          "ActorLabel": "bucket-bottom detachment",
+          "ActorRole": "grammatical event or collective state",
+          "GrammarEvidence": "忽桶底脫 makes the bucket bottom the grammatical subject of the sudden detachment; no human performs the event.",
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. The bucket-bottom detachment occurs suddenly; the assembly reacts and Zhenxie Qingliao comments that this should occasion joy.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhenxie Qingliao",
+            "Roles": [
+              "commentator",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_ccd48e1c9145:0301a06:1:2",
+      "entryId": "t_ccd48e1c9145",
+      "sourceTerm": "正中來",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0301a06",
+      "Kwic": "如何是正中來。師曰。徧界絕纖埃。",
+      "caseClusterId": "X/X80/X80n1565.xml:1960021:1961064",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Xuedou Chongxian",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex source-batched exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:01:35Z"
+        },
+        "AttributionNote": "五燈會元. An unnamed monk asks 'what is coming from within the upright?'; Xuedou Chongxian answers. The line, expanded context, section header, book title, TEI header, and parallel-passage review do not supply a personal name.",
+        "ContextMasters": [
+          {
+            "MasterName": "Xuedou Chongxian",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_d190cf45c531:0318c13:2:4",
+      "entryId": "t_d190cf45c531",
+      "sourceTerm": "話頭",
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0318c13",
+      "Kwic": "僧出問。如何是佛。山答曰。麻三斤。參罷。山至寮謂師曰。我今日答這僧話。得麼。曰。恰值某淨髮。山曰。你元來作這去就。拂袖便出。師曰。這老漢將謂我明他這話頭不得。",
+      "caseClusterId": "X/X80/X80n1565.xml:2086421:2086945",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "五燈會元",
+      "defaultMasterName": "Dongshan Shouchu",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Fuyan Liangya",
+        "ActorAttribution": null,
+        "AttributionNote": "五燈會元. The governing header identifies Fuyan Liangya as Dongshan Shouchu's first-seat disciple; Fuyan Liangya is the exact speaker who says Dongshan thought he did not understand this critical phrase.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dongshan Shouchu",
+            "Roles": [
+              "interlocutor",
+              "teacher"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

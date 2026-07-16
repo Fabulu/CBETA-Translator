@@ -1,0 +1,37 @@
+{
+  "source": "J/J40/J40nB488.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_8184622cecd7:0308c23:1:2",
+      "entryId": "t_8184622cecd7",
+      "sourceTerm": "大徹大悟",
+      "RelPath": "J/J40/J40nB488.xml",
+      "FromLb": "0308c23",
+      "Kwic": "柱云：「好一堂師僧，沒箇大徹大悟的。」師云：「瞎漢！那箇不是大徹大悟的？」柱云：「瞎漢！那箇是大徹大悟的？」",
+      "caseClusterId": "J/J40/J40nB488.xml:22044:22282",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "斗南暐禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Tianzhu",
+        "ActorAttribution": null,
+        "AttributionNote": "斗南暐禪師語錄. Tianzhu is the exact actor: 柱 is the first headword-bearing co-speaker; Dounan answers and 柱 repeats 大徹大悟.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dounan Wei",
+            "Roles": [
+              "co-speaker",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

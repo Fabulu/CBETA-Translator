@@ -1,0 +1,30 @@
+{
+  "source": "J/J35/J35nB343.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_e3226b1e195a:0811a20:1:6",
+      "entryId": "t_e3226b1e195a",
+      "sourceTerm": "覷破",
+      "RelPath": "J/J35/J35nB343.xml",
+      "FromLb": "0811a20",
+      "Kwic": "便向未舉已前一覷覷破",
+      "caseClusterId": "J/J35/J35nB343.xml:19276:20164",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "廣福山勝覺寺密印禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Miyin",
+        "ActorAttribution": null,
+        "AttributionNote": "廣福山勝覺寺密印禪師語錄. Full six-rung exact-turn review identifies Miyin as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_e3226b1e195a:0811a20:1:6"
+  ]
+}

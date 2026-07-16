@@ -1,0 +1,137 @@
+{
+  "generatedUtc": "2026-07-14T12:26:08.477545+00:00",
+  "elapsedSeconds": 8.595,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_1307081cf96c",
+      "term": "不昧因果",
+      "path": "terms/t_1307081cf96c/entry.v2.json",
+      "sha256": "17f579bc6c9f951da9aff33e910c386545118bd1c229b2e0b7378603caedf873"
+    },
+    {
+      "id": "t_91d84c849fc7",
+      "term": "保任",
+      "path": "terms/t_91d84c849fc7/entry.v2.json",
+      "sha256": "af0c2c0140f439f3812e0da0558a4fd4d6c223065e59b5aedae2fae6dced5be9"
+    },
+    {
+      "id": "t_61c90d3a8edd",
+      "term": "兼中到",
+      "path": "terms/t_61c90d3a8edd/entry.v2.json",
+      "sha256": "179f844a22d96c08d39bd0ee94fa1b33aa36907d26e347fe19b210ab4f484b05"
+    },
+    {
+      "id": "t_38695d7fdbe2",
+      "term": "如何是道",
+      "path": "terms/t_38695d7fdbe2/entry.v2.json",
+      "sha256": "2677aea32814118c7624d3d1a82d299a22773ca4cc7725d309fd0ccd071f8350"
+    },
+    {
+      "id": "t_b4795244cf8e",
+      "term": "斬蛇",
+      "path": "terms/t_b4795244cf8e/entry.v2.json",
+      "sha256": "f7717461d0a81f0d23ec9c56a192d1577ef6e018665562b5776b6de143f35bbf"
+    }
+  ],
+  "exactKwic": {
+    "entries": 5,
+    "verified": 36,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "terms/t_1307081cf96c/entry.v2.json",
+        "id": "t_1307081cf96c",
+        "term": "不昧因果",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "terms/t_91d84c849fc7/entry.v2.json",
+        "id": "t_91d84c849fc7",
+        "term": "保任",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "terms/t_61c90d3a8edd/entry.v2.json",
+        "id": "t_61c90d3a8edd",
+        "term": "兼中到",
+        "verified": 7,
+        "failures": []
+      },
+      {
+        "path": "terms/t_38695d7fdbe2/entry.v2.json",
+        "id": "t_38695d7fdbe2",
+        "term": "如何是道",
+        "verified": 8,
+        "failures": []
+      },
+      {
+        "path": "terms/t_b4795244cf8e/entry.v2.json",
+        "id": "t_b4795244cf8e",
+        "term": "斬蛇",
+        "verified": 7,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 5,
+        "senses": 6,
+        "occurrences": 36,
+        "named_occurrences": 23,
+        "attribution_notes": 36,
+        "actor_reviewed_unnamed": 13,
+        "context_master_links": 24,
+        "deferred_non_roster_context": 9,
+        "deferred_non_roster": 7,
+        "chinese_strings": 30,
+        "anchored_chinese": 30,
+        "reviewed_unnamed_prose": 2,
+        "supporting_occurrences": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 5,\n    \"senses\": 6,\n    \"occurrences\": 36,\n    \"named_occurrences\": 23,\n    \"attribution_notes\": 36,\n    \"actor_reviewed_unnamed\": 13,\n    \"context_master_links\": 24,\n    \"deferred_non_roster_context\": 9,\n    \"deferred_non_roster\": 7,\n    \"chinese_strings\": 30,\n    \"anchored_chinese\": 30,\n    \"reviewed_unnamed_prose\": 2,\n    \"supporting_occurrences\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 5,
+      "passing": 5,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 5,\n  \"passing\": 5,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpsl3nq9q4.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 5,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 5,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 5,
+      "occurrences": 36,
+      "tierACandidates": 1,
+      "reviewRequired": 35
+    },
+    "output": "{\n  \"entries\": 5,\n  \"occurrences\": 36,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 35\n}\nreport: maintenance/semantic-cohorts/semantic-r002-owner2-reviewer1-repairs-a-gate-attribution-packets.json\n",
+    "report": "maintenance/semantic-cohorts/semantic-r002-owner2-reviewer1-repairs-a-gate-attribution-packets.json"
+  },
+  "semanticReviewRequired": true
+}

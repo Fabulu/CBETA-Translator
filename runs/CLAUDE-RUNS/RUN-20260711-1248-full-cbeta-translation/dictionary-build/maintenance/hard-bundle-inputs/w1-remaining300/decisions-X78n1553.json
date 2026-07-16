@@ -1,0 +1,88 @@
+{
+  "source": "X/X78/X78n1553.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_68835cda6c3f:0496c18:1:1",
+      "entryId": "t_68835cda6c3f",
+      "sourceTerm": "正令",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0496c18",
+      "Kwic": "。舉起拄杖云：速退！速退！問：如何是接初機句？師云：汝是行脚僧。進云：如何是辨衲僧句？師云：西方日出卯。進云：如何是正令行時句？師云：千里特來呈舊面。進云：如何是立乾坤句？師云：北俱盧洲長粳米，食者無貪亦不嗔。師又云：秖將此四轉語驗天下",
+      "caseClusterId": "X/X78/X78n1553.xml:632521:633904",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "天聖廣燈錄, Fenyang Shanzhao section. The exact headword-bearing speaker is an unnamed questioning monk: he asks for the phrase when the true command is carried out; Fenyang answers. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fenyang Shanzhao",
+            "Roles": [
+              "respondent",
+              "record-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_b26bfa9e399e:0550c14:1:4",
+      "entryId": "t_b26bfa9e399e",
+      "sourceTerm": "迴光返照",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0550c14",
+      "Kwic": "但自迴光返照，向自己脚根下子細推尋，看是箇什麼？",
+      "caseClusterId": "X/X78/X78n1553.xml:1065687:1066923",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Chengtian Cique",
+        "ActorAttribution": null,
+        "AttributionNote": "天聖廣燈錄, Chengtian Cique section. Chengtian Cique is the exact hall speaker who tells the assembly to turn the light around and reflect back, then investigate carefully beneath their own heels."
+      }
+    },
+    {
+      "key": "t_b26bfa9e399e:0557c16:1:5",
+      "entryId": "t_b26bfa9e399e",
+      "sourceTerm": "迴光返照",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0557c16",
+      "Kwic": "各請迴光返照，休更踟躕。",
+      "caseClusterId": "X/X78/X78n1553.xml:1125033:1125959",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "天聖廣燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jueke Xinyin",
+        "ActorAttribution": null,
+        "AttributionNote": "天聖廣燈錄, Jueke Xinyin section. Jueke Xinyin is the exact speaker who closes his mirror-and-moon address by asking everyone to turn the light around and reflect back without further hesitation."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

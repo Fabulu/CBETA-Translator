@@ -1,0 +1,254 @@
+2026-07-14T18:28:50,120954271+02:00
+{
+  "written": [
+    {
+      "id": "t_b2f05c3e4b7d",
+      "term": "合頭語"
+    },
+    {
+      "id": "t_8f7b20536cb6",
+      "term": "和尚"
+    },
+    {
+      "id": "t_f25cebd24730",
+      "term": "棒"
+    },
+    {
+      "id": "t_970c3f191929",
+      "term": "正法眼"
+    },
+    {
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物"
+    }
+  ]
+}
+{
+  "entries": 5,
+  "verified": 42,
+  "failureCount": 0,
+  "results": [
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_8f7b20536cb6/entry.v2.json",
+      "id": "t_8f7b20536cb6",
+      "term": "和尚",
+      "verified": 10,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_93ab42fecdca/entry.v2.json",
+      "id": "t_93ab42fecdca",
+      "term": "本來無一物",
+      "verified": 7,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_970c3f191929/entry.v2.json",
+      "id": "t_970c3f191929",
+      "term": "正法眼",
+      "verified": 8,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_b2f05c3e4b7d/entry.v2.json",
+      "id": "t_b2f05c3e4b7d",
+      "term": "合頭語",
+      "verified": 6,
+      "failures": []
+    },
+    {
+      "path": "maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+      "id": "t_f25cebd24730",
+      "term": "棒",
+      "verified": 11,
+      "failures": []
+    }
+  ],
+  "elapsedSeconds": 1.564
+}
+{
+  "counts": {
+    "entries": 5,
+    "senses": 6,
+    "occurrences": 41,
+    "named_occurrences": 32,
+    "context_master_links": 46,
+    "attribution_notes": 42,
+    "actor_narrated": 5,
+    "actor_identified_non_master": 1,
+    "deferred_non_roster": 4,
+    "deferred_non_roster_context": 4,
+    "claim_anchors": 1,
+    "actor_reviewed_unnamed": 4
+  },
+  "hardFailures": 0,
+  "failures": []
+}
+{
+  "counts": {
+    "entries": 5,
+    "senses": 6,
+    "multiSourceSenses": 6
+  },
+  "hardFailures": 0,
+  "failures": []
+}
+{
+  "hardFailures": 0,
+  "failures": []
+}
+{
+  "entries": 5,
+  "occurrences": 41,
+  "tierACandidates": 0,
+  "reviewRequired": 41
+}
+report: maintenance/regen-benchmark-clean/round2-attribution-packets-final.json
+{
+  "depthSense": {
+    "hardFailed": 0,
+    "results": [
+      {
+        "entryId": "t_8f7b20536cb6",
+        "sourceTerm": "和尚",
+        "entrySha256": "b8ea756c419be4a1e1c4b96608a059a3d83f319613df311a709b5fb89d67dcba",
+        "corpusHits": 61053,
+        "corpusFiles": 473,
+        "evidenceFloor": 10,
+        "occurrences": 10,
+        "totalOccurrences": 10,
+        "sourceTexts": 7,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 61053,
+            "corpusFiles": 473
+          }
+        ]
+      },
+      {
+        "entryId": "t_93ab42fecdca",
+        "sourceTerm": "本來無一物",
+        "entrySha256": "1e7d142b07dd9ec085fcc706283b9e79a0640cf2ccdfee8c1dc4eab2c54847fc",
+        "corpusHits": 263,
+        "corpusFiles": 127,
+        "evidenceFloor": 6,
+        "occurrences": 6,
+        "totalOccurrences": 6,
+        "sourceTexts": 5,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": []
+      },
+      {
+        "entryId": "t_970c3f191929",
+        "sourceTerm": "正法眼",
+        "entrySha256": "08ad2f8c0da3f703320c499dace9757a5a9d9023bb4647c08ae0768d058b11f0",
+        "corpusHits": 2597,
+        "corpusFiles": 355,
+        "evidenceFloor": 8,
+        "occurrences": 8,
+        "totalOccurrences": 8,
+        "sourceTexts": 7,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "broad-concordance-single-sense-review",
+            "corpusHits": 2597,
+            "corpusFiles": 355
+          }
+        ]
+      },
+      {
+        "entryId": "t_b2f05c3e4b7d",
+        "sourceTerm": "合頭語",
+        "entrySha256": "beba6382c6bcfe3cfe5e4148c30b016ee7f1495c66e7193053dcddb8bb5797a2",
+        "corpusHits": 143,
+        "corpusFiles": 96,
+        "evidenceFloor": 6,
+        "occurrences": 6,
+        "totalOccurrences": 6,
+        "sourceTexts": 5,
+        "senseCount": 1,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": []
+      },
+      {
+        "entryId": "t_f25cebd24730",
+        "sourceTerm": "棒",
+        "entrySha256": "e848852ca48561b9127a08891b602e0f8948699b3dc7bfb0be1b87dd39459305",
+        "corpusHits": 21118,
+        "corpusFiles": 447,
+        "evidenceFloor": 10,
+        "occurrences": 11,
+        "totalOccurrences": 11,
+        "sourceTexts": 8,
+        "senseCount": 2,
+        "hardPass": true,
+        "hardFlags": [],
+        "reviewFlags": [
+          {
+            "kind": "paraphrase-merge-review",
+            "senseIndexes": [
+              0,
+              1
+            ],
+            "targets": [
+              "staff",
+              "a blow with a staff"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "publicFeedback": {
+    "flagged": 0,
+    "results": [
+      {
+        "entryId": "t_8f7b20536cb6",
+        "sourceTerm": "和尚",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_8f7b20536cb6/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_93ab42fecdca",
+        "sourceTerm": "本來無一物",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_93ab42fecdca/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_970c3f191929",
+        "sourceTerm": "正法眼",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_970c3f191929/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_b2f05c3e4b7d",
+        "sourceTerm": "合頭語",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_b2f05c3e4b7d/entry.v2.json",
+        "flags": [],
+        "passes": true
+      },
+      {
+        "entryId": "t_f25cebd24730",
+        "sourceTerm": "棒",
+        "path": "maintenance/regen-benchmark-clean/drafts/t_f25cebd24730/entry.v2.json",
+        "flags": [],
+        "passes": true
+      }
+    ]
+  }
+}
+TOTAL_ELAPSED=58.37 CPU=62% MAXRSS=346588
+2026-07-14T18:29:48,575702964+02:00

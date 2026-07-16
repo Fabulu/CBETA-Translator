@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "independent-current-hash-rereview-v1",
+  "reviewer": "Codex attr_read_4_6_real",
+  "method": "Compared the reviewer-edited current hashes with every complete case previously read in the 116-125 packet, then reread the complete current definitions and all retained occurrences.",
+  "sourceLedger": "cohorts-1-3-116-125-independent-immediate-repair-ledger.json",
+  "results": [
+    {
+      "id": "t_24adbdf51a15",
+      "headword": "金佛不度爐",
+      "sha256": "866c7e302a74fbfc556199beb3b7a1f472c23a1fe52c0905d172704324ab8538",
+      "disposition": "KEEP",
+      "casesRead": 6,
+      "reason": "The repaired opening is no longer redundant, all quotation marks are balanced, and the definition still distinguishes Zhaozhou's four-part formula, later quotation, counter-form, and answer/instruction comparison without changing the evidence."
+    },
+    {
+      "id": "t_2816f418822c",
+      "headword": "念佛是誰",
+      "sha256": "2e7d5148f65e0474b115cd53c1a15bb04be2fe59fcb47d479922f53c9738c349",
+      "disposition": "KEEP",
+      "casesRead": 7,
+      "reason": "The malformed opening is repaired. The seven retained occurrences are distinct evidence units: Fazhou biography, Daxiao verse, Jianru verse, Wuyi instruction, unnamed interview question, Gaofeng command narration, and Juelang response. The removed item was an exact duplicate, not lost evidence."
+    }
+  ],
+  "summary": {"KEEP": 2, "REVISE": 0},
+  "promotionOrMergePerformed": false
+}

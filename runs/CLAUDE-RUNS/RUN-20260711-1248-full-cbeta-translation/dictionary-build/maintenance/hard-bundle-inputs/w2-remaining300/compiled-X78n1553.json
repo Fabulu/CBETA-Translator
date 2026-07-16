@@ -1,0 +1,47 @@
+{
+  "source": "X/X78/X78n1553.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w2-remaining300/decisions-X78n1553.json",
+  "decisions": [
+    {
+      "entryId": "t_961b548d6462",
+      "sourceTerm": "言前",
+      "RelPath": "X/X78/X78n1553.xml",
+      "FromLb": "0488a03",
+      "Kwic": "風穴下來言前事，舉似師，師云：維那！著什麼來由勸者漢？",
+      "caseClusterId": "X/X78/X78n1553.xml:563341:563878",
+      "Decision": {
+        "ActorAttribution": {
+          "Status": "impersonal",
+          "Kind": "compiler narrative",
+          "ActorLabel": "lamp compiler's narrative",
+          "ActorRole": "document voice",
+          "GrammarEvidence": "The headword occurs in third-person transmission narrative rather than a quoted turn.",
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄): the lamp compiler's narrative says that the matter before words handed down from Fengxue Yanzhao was presented to Shoukuo Shangzuo, who then replied.",
+        "ContextMasters": [
+          {
+            "MasterName": "Fengxue Yanzhao",
+            "Roles": [
+              "transmission-source"
+            ]
+          },
+          {
+            "MasterName": "Shoukuo Shangzuo",
+            "Roles": [
+              "respondent"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "天聖廣燈錄",
+      "Review": {
+        "reviewer": "Codex hard-w2-remaining300",
+        "reviewedUtc": "2026-07-14T07:45:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

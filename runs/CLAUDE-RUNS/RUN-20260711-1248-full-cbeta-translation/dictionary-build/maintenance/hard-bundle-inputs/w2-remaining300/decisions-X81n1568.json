@@ -1,0 +1,136 @@
+{
+  "source": "X/X81/X81n1568.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_57ef1bbc3a81:0001a16:1:5",
+      "entryId": "t_57ef1bbc3a81",
+      "sourceTerm": "山河大地",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0001a16",
+      "Kwic": "曰：不知最親切。又同三人舉肇論，至天地與我同根處，藏曰：山河大地與上座自己是同是別？師曰：別。藏竪起兩指，師曰：同。藏又竪",
+      "caseClusterId": "X/X81/X81n1568.xml:72121:85645",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dizang Guichen",
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)): inside Fayan Wenyi's biography, Dizang Guichen answers Fayan's statement that he does not know the business of pilgrimage by saying 'not knowing is most intimate.'",
+        "ContextMasters": [
+          {
+            "MasterName": "Fayan Wenyi",
+            "Roles": [
+              "student",
+              "biographical-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_4416ef85b3a5:0002c03:1:1",
+      "entryId": "t_4416ef85b3a5",
+      "sourceTerm": "森羅萬象",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0002c03",
+      "Kwic": "是手巧？心巧？曰：心巧。師曰：那箇是汝心？士無對。僧問：如何是第二月？師曰：森羅萬象。曰：如何是第一月？師曰：萬象森羅。上堂：盡十方世界，皎",
+      "caseClusterId": "X/X81/X81n1568.xml:81771:85645",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fayan Wenyi",
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)): inside Fayan Wenyi's explicitly headed section, Fayan answers the question about the second moon with 'the myriad phenomena' and the question about the first moon with the reversed wording 'phenomena myriad.'"
+      }
+    },
+    {
+      "key": "t_23204fbd253c:0011a17:1:3",
+      "entryId": "t_23204fbd253c",
+      "sourceTerm": "玄旨",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0011a17",
+      "Kwic": "問：如何是玄旨？師曰：玄有甚麼旨？",
+      "caseClusterId": "X/X81/X81n1568.xml:133012:134547",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w2-remaining300",
+          "ReviewedUtc": "2026-07-14T07:45:00Z"
+        },
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)): inside Zhangyi Daoqin's explicitly headed section, an unnamed monk asks what the mysterious purport is; Zhangyi Daoqin answers by asking what purport the mysterious has. The line, expanded context, section header, book title, TEI header, and parallel-passage search do not give a personal name for the unnamed questioning monk.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhangyi Daoqin",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_9e7c2fb12ad9:0020b23:1:5",
+      "entryId": "t_9e7c2fb12ad9",
+      "sourceTerm": "猫兒",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0020b23",
+      "Kwic": "昔日南泉親斬却，今朝耶舍示玄徒。而今賣與諸禪客，文契分明要也無。良久，拋下猫兒，便下座。",
+      "caseClusterId": "X/X81/X81n1568.xml:200988:201465",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Luohan Xinglin Zuyin",
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)): inside Luohan Xinglin Zuyin's explicitly headed section, Zuyin lifts a cat that has jumped onto him, contrasts Nanquan's earlier killing with his own present display, and offers the cat to the students before setting it down.",
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "earlier-case-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_549e7766dfa1:0056b20:1:2",
+      "entryId": "t_549e7766dfa1",
+      "sourceTerm": "一著",
+      "RelPath": "X/X81/X81n1568.xml",
+      "FromLb": "0056b20",
+      "Kwic": "臨濟先鋒，放過一著。德山後令，且在一邊。",
+      "caseClusterId": "X/X81/X81n1568.xml:440727:444650",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "五燈嚴統(第10卷-第25卷)",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yunfeng Wenyue",
+        "AttributionNote": "Strict Lineage of the Five Lamps, volumes 10–25 (五燈嚴統(第10卷-第25卷)): inside Yunfeng Wenyue's explicitly headed hall address, Yunfeng sets Linji's vanguard as letting one move pass and Deshan's later command aside before asking for the uniquely exposed impartial phrase."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

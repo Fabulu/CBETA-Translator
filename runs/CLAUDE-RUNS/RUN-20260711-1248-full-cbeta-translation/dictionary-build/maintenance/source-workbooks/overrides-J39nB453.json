@@ -1,0 +1,27 @@
+{
+  "source": "J/J39/J39nB453.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:37:21Z",
+  "rows": [
+    {
+      "key": "t_dc81acde25fd:0557c07:1:4",
+      "entryId": "t_dc81acde25fd",
+      "sourceTerm": "那畔",
+      "RelPath": "J/J39/J39nB453.xml",
+      "FromLb": "0557c07",
+      "Kwic": "威音那畔一句圓該，全體現前纖塵不立",
+      "caseClusterId": "J/J39/J39nB453.xml:11358:11926",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "元潔瑩禪師語錄",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Yuanjie Ying",
+        "AttributionNote": "Recorded Sayings of Chan Master Yuanjie Ying (元潔瑩禪師語錄), in Yuanjie Ying's opening hall address at Ancient Dongshan Anou Chan Monastery. Yuanjie Ying is the exact speaker who says that a phrase from beyond Awesome Sound encompasses the whole and that the complete body appears with not a mote established. Dongshan in the venue heading names the monastery; it does not make Dongshan Liangjie the speaker of this address."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

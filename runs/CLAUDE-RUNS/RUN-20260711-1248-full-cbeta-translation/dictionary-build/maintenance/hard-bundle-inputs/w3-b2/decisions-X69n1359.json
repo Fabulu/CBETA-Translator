@@ -1,0 +1,49 @@
+{
+  "source": "X/X69/X69n1359.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_74a27239e6c7:0519b06:1:1",
+      "entryId": "t_74a27239e6c7",
+      "sourceTerm": "一刀兩段",
+      "RelPath": "X/X69/X69n1359.xml",
+      "FromLb": "0519b06",
+      "Kwic": "進云：為復是神通妙用，法爾如然？師云：一刀兩段。",
+      "caseClusterId": "X/X69/X69n1359.xml:106088:106891",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "應菴曇華禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Ying'an Tanhua",
+        "ActorAttribution": null,
+        "AttributionNote": "應菴曇華禪師語錄. Full six-rung exact-turn review identifies Ying'an Tanhua as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_3414320aa87c:0533c04:1:3",
+      "entryId": "t_3414320aa87c",
+      "sourceTerm": "命根",
+      "RelPath": "X/X69/X69n1359.xml",
+      "FromLb": "0533c04",
+      "Kwic": "一日見卷簾，豁然漆桶破，命根嚗地斷，便說箇頌子",
+      "caseClusterId": "X/X69/X69n1359.xml:196087:196722",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "應菴曇華禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Ying'an Tanhua",
+        "ActorAttribution": null,
+        "AttributionNote": "應菴曇華禪師語錄. Full six-rung exact-turn review identifies Ying'an Tanhua as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_74a27239e6c7:0519b06:1:1",
+    "t_3414320aa87c:0533c04:1:3"
+  ]
+}

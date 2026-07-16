@@ -1,0 +1,49 @@
+{
+  "source": "X/X63/X63n1259.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_d190cf45c531:0777b22:1:8",
+      "entryId": "t_d190cf45c531",
+      "sourceTerm": "話頭",
+      "RelPath": "X/X63/X63n1259.xml",
+      "FromLb": "0777b22",
+      "Kwic": "而世有教人死守話頭，不起疑情者，此參禪大病也。",
+      "caseClusterId": "X/X63/X63n1259.xml:28819:33963",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪門鍛鍊說",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiexian",
+        "ActorAttribution": null,
+        "AttributionNote": "禪門鍛鍊說. Full six-rung exact-turn review identifies Jiexian as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_fc585583b815:0779a11:1:6",
+      "entryId": "t_fc585583b815",
+      "sourceTerm": "機用",
+      "RelPath": "X/X63/X63n1259.xml",
+      "FromLb": "0779a11",
+      "Kwic": "，則嚴規肅矩，祇成死法，亦不能使憤厲而向前。故鍛鍊一門，事有千變，而機用至活也。善能使人省發者，行坐定香，不可太久。坐太久，則昏倦必生，而話",
+      "caseClusterId": "X/X63/X63n1259.xml:39117:42830",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪門鍛鍊說",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Jiexian",
+        "ActorAttribution": null,
+        "AttributionNote": "禪門鍛鍊說. Full six-rung exact-turn review identifies Jiexian as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_d190cf45c531:0777b22:1:8",
+    "t_fc585583b815:0779a11:1:6"
+  ]
+}

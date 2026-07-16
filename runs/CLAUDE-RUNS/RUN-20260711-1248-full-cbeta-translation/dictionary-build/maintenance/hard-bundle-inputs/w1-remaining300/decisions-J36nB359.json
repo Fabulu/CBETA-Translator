@@ -1,0 +1,88 @@
+{
+  "source": "J/J36/J36nB359.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_43326c07f6ff:0625b05:1:4",
+      "entryId": "t_43326c07f6ff",
+      "sourceTerm": "提持",
+      "RelPath": "J/J36/J36nB359.xml",
+      "FromLb": "0625b05",
+      "Kwic": "師云：「馬師病裏竭力提持，全身為人，叵耐不遇知音。",
+      "caseClusterId": "J/J36/J36nB359.xml:54873:55271",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百愚禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baiyu Jingsi",
+        "ActorAttribution": null,
+        "AttributionNote": "百愚禪師語錄. Baiyu Jingsi is the exact actor: 師 appraises Mazu's sickbed answer as strenuous 提持.",
+        "ContextMasters": [
+          {
+            "MasterName": "Mazu Daoyi",
+            "Roles": [
+              "quoted-master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_e9847e6f41c9:0626a08:1:2",
+      "entryId": "t_e9847e6f41c9",
+      "sourceTerm": "腳跟下",
+      "RelPath": "J/J36/J36nB359.xml",
+      "FromLb": "0626a08",
+      "Kwic": "若明辨得出，洞山只在闍黎腳跟下；若明辨不出，闍黎卻在洞山腳跟下。",
+      "caseClusterId": "J/J36/J36nB359.xml:58354:59168",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百愚禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baiyu Jingsi",
+        "ActorAttribution": null,
+        "AttributionNote": "百愚禪師語錄. Baiyu Jingsi is the exact actor: he gives the reversible Dongshan/闍黎 腳跟下 verdict.",
+        "ContextMasters": [
+          {
+            "MasterName": "Dongshan Liangjie",
+            "Roles": [
+              "master-in-example"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_58099932161b:0632a21:1:5",
+      "entryId": "t_58099932161b",
+      "sourceTerm": "斷臂",
+      "RelPath": "J/J36/J36nB359.xml",
+      "FromLb": "0632a21",
+      "Kwic": "一一真常獨露，何須斷臂別求？",
+      "caseClusterId": "J/J36/J36nB359.xml:87991:88283",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "百愚禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baiyu Jingsi",
+        "ActorAttribution": null,
+        "AttributionNote": "百愚禪師語錄. Baiyu Jingsi is the exact actor: his 弁山上堂 asks 何須斷臂別求.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huike",
+            "Roles": [
+              "alluded-master"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,101 @@
+{
+  "generatedUtc": "2026-07-13T20:55:00.748927+00:00",
+  "elapsedSeconds": 1.848,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_ac4749b5b609",
+      "term": "無生",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ac4749b5b609/entry.v2.json",
+      "sha256": "68385b3d3def1eacd46a86950a6921520cce871184578f710984515f4170ca6e"
+    },
+    {
+      "id": "t_193632bffe7b",
+      "term": "喝",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+      "sha256": "30f9527a5496fc0c1d83a0af36a1bd54661bd0917f3008e35d326be698c7b842"
+    },
+    {
+      "id": "t_4cc95950b59a",
+      "term": "一句",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4cc95950b59a/entry.v2.json",
+      "sha256": "f5c4805253fd36dcaae3ea99a59e32982cc787083165ab3bd1b5901a593fb11a"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 51,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_ac4749b5b609/entry.v2.json",
+        "id": "t_ac4749b5b609",
+        "term": "無生",
+        "verified": 17,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_193632bffe7b/entry.v2.json",
+        "id": "t_193632bffe7b",
+        "term": "喝",
+        "verified": 18,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_4cc95950b59a/entry.v2.json",
+        "id": "t_4cc95950b59a",
+        "term": "一句",
+        "verified": 16,
+        "failures": []
+      }
+    ]
+  },
+  "attribution": {
+    "exitCode": 0,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 51,
+        "named_occurrences": 46,
+        "attribution_notes": 51,
+        "actor_reviewed_unnamed": 4,
+        "context_master_links": 7,
+        "actor_impersonal": 1,
+        "deferred_non_roster_context": 3,
+        "deferred_non_roster": 11,
+        "supporting_occurrences": 2,
+        "chinese_strings": 39,
+        "anchored_chinese": 39
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 51,\n    \"named_occurrences\": 46,\n    \"attribution_notes\": 51,\n    \"actor_reviewed_unnamed\": 4,\n    \"context_master_links\": 7,\n    \"actor_impersonal\": 1,\n    \"deferred_non_roster_context\": 3,\n    \"deferred_non_roster\": 11,\n    \"supporting_occurrences\": 2,\n    \"chinese_strings\": 39,\n    \"anchored_chinese\": 39\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpuhd48jcx.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 3,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 3,
+      "batchCluster": null
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 3,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 3,\n  \"batchCluster\": null\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/depth-sense-gate.json\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true
+}

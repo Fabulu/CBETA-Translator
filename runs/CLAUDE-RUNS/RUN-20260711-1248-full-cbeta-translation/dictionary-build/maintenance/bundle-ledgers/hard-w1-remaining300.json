@@ -1,0 +1,25 @@
+{
+  "bundle": "hard-w1-remaining300",
+  "status": "complete",
+  "scope": {
+    "occurrences": 300,
+    "sources": 65,
+    "input": "maintenance/hard-bundle-inputs/worker-1-remaining-300-triage.json",
+    "decisionDirectory": "maintenance/hard-bundle-inputs/w1-remaining300"
+  },
+  "progress": {
+    "reviewedOccurrences": 300,
+    "signedSources": 65,
+    "appliedSources": 65,
+    "verifiedOccurrences": 300
+  },
+  "checkpoint": {
+    "state": "Final checkpoint passed. All 300/300 occurrences across 65/65 sources are explicitly reviewed, signed, applied, focused-gated, and directly XML-replayed with exact stored FromLb/ToLb. Zero failures.",
+    "next": "None. Owner-1 remaining300 bundle complete; remaining=0."
+  },
+  "prohibitionsObserved": {
+    "merged": false,
+    "committed": false,
+    "pushed": false
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "source": "T/T48/T48n2013.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_882860247a9b:0389b29:1:2",
+      "entryId": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "RelPath": "T/T48/T48n2013.xml",
+      "FromLb": "0389b29",
+      "Kwic": "惺惺寂寂是。無記寂寂非。寂寂惺惺是。亂想惺惺非",
+      "caseClusterId": "T/T48/T48n2013.xml:13788:19119",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗永嘉集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongjia Xuanjue",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗永嘉集. Full six-rung exact-turn review identifies Yongjia Xuanjue as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_882860247a9b:0390b14:1:1",
+      "entryId": "t_882860247a9b",
+      "sourceTerm": "惺惺",
+      "RelPath": "T/T48/T48n2013.xml",
+      "FromLb": "0390b14",
+      "Kwic": "一寂寂。二惺惺。寂寂謂不念外境善惡等事。惺惺謂不生昏住無記等相",
+      "caseClusterId": "T/T48/T48n2013.xml:16910:19119",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "禪宗永嘉集",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongjia Xuanjue",
+        "ActorAttribution": null,
+        "AttributionNote": "禪宗永嘉集. Full six-rung exact-turn review identifies Yongjia Xuanjue as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_882860247a9b:0389b29:1:2",
+    "t_882860247a9b:0390b14:1:1"
+  ]
+}

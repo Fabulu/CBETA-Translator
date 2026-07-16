@@ -1,0 +1,29 @@
+{
+  "source": "X/X71/X71n1421.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_b0d4b62a9c2f:0665c06:1:4",
+      "entryId": "t_b0d4b62a9c2f",
+      "sourceTerm": "皮下有血",
+      "RelPath": "X/X71/X71n1421.xml",
+      "FromLb": "0665c06",
+      "Kwic": "師問：刈得幾个祖師頭？座云：三十個。師云：那個皮下有血？",
+      "caseClusterId": "X/X71/X71n1421.xml:39490:39687",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "愚菴智及禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yu'an Zhiji",
+        "ActorAttribution": null,
+        "AttributionNote": "Recorded Sayings of Chan Master Yu'an Zhiji (愚菴智及禪師語錄). Yu'an Zhiji is the exact speaker: after the unnamed cook says that he has cut thirty patriarchs' heads while slicing melons, Yu'an asks which one has blood beneath its skin.",
+        "ContextMasters": []
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

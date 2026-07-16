@@ -1,0 +1,70 @@
+{
+  "source": "X/X67/X67n1299.xml",
+  "compiledFrom": "maintenance/hard-bundle-inputs/w1-remaining300/decisions-X67n1299.json",
+  "decisions": [
+    {
+      "entryId": "t_e2c55f8feca0",
+      "sourceTerm": "三寸",
+      "RelPath": "X/X67/X67n1299.xml",
+      "FromLb": "0094a21",
+      "Kwic": "蘆葦蕭蕭江岸秋，長天獨月向西流。離鈎三寸無人道，笑倚蘭橈自點頭。",
+      "caseClusterId": "X/X67/X67n1299.xml:650635:651319",
+      "Decision": {
+        "MasterName": "Zhang Shangying",
+        "ActorAttribution": null,
+        "AttributionNote": "禪林類聚 explicitly marks this verse 無盡居士云. Zhang Shangying, Layman Wujin, is the exact verse author: his boat verse says that three inches from the hook no one speaks, while the boatman smiles and nods against the oar."
+      },
+      "ExpectedSourceTitle": "禪林類聚",
+      "Review": {
+        "reviewer": "Codex hard-w1-remaining300",
+        "reviewedUtc": "2026-07-14T00:00:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_ff25afe69d14",
+      "sourceTerm": "空劫",
+      "RelPath": "X/X67/X67n1299.xml",
+      "FromLb": "0095c17",
+      "Kwic": "梁山觀禪師。僧問：如何是空劫已前事？師云：擊動乾坤鼓，時人聽不聞。",
+      "caseClusterId": "X/X67/X67n1299.xml:662034:662281",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioning monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "禪林類聚, Liangshan Yuanguan case. The exact headword-bearing speaker is an unnamed questioning monk: he asks what the matter before the empty aeon is, and Liangshan answers with the unheard drum. All six rungs leave the monk unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Liangshan Yuanguan",
+            "Roles": [
+              "respondent",
+              "case-subject"
+            ]
+          }
+        ]
+      },
+      "ExpectedSourceTitle": "禪林類聚",
+      "Review": {
+        "reviewer": "Codex hard-w1-remaining300",
+        "reviewedUtc": "2026-07-14T00:00:00Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

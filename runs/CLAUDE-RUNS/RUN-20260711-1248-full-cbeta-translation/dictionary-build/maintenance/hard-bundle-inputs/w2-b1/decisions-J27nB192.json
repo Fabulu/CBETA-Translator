@@ -1,0 +1,44 @@
+{
+  "source": "J/J27/J27nB192.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_78f95517a347:0197a17:1:1",
+      "entryId": "t_78f95517a347",
+      "sourceTerm": "生死事大",
+      "RelPath": "J/J27/J27nB192.xml",
+      "FromLb": "0197a17",
+      "Kwic": "覺曰：「生死事大，無常迅速。」祖曰：「何不體取無生，",
+      "caseClusterId": "J/J27/J27nB192.xml:90448:90663",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大休珠禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Yongjia Xuanjue",
+        "AttributionNote": "Recorded Sayings of Chan Master Daxiu Zhu (大休珠禪師語錄): inside the older audience with Huineng raised in Daxiu Zhu's record, Yongjia Xuanjue says that birth-and-death is the great matter and impermanence is swift.",
+        "ContextMasters": [
+          {
+            "MasterName": "Huineng",
+            "Roles": [
+              "respondent"
+            ]
+          },
+          {
+            "MasterName": "Daxiu Zhu",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_78f95517a347:0197a17:1:1"
+  ]
+}

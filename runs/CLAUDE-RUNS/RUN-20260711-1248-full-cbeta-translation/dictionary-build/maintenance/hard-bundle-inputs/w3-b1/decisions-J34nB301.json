@@ -1,0 +1,48 @@
+{
+  "source": "J/J34/J34nB301.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_6dadcc69c361:0294b13:1:1",
+      "entryId": "t_6dadcc69c361",
+      "sourceTerm": "料揀",
+      "RelPath": "J/J34/J34nB301.xml",
+      "FromLb": "0294b13",
+      "Kwic": "兩段不同，試請料揀。",
+      "caseClusterId": "J/J34/J34nB301.xml:77876:78774",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "南嶽繼起和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "interlocutor",
+          "ActorLabel": "Unnamed interlocutor requesting a discrimination",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "南嶽繼起和尚語錄. Full six-rung exact-turn review identifies Unnamed interlocutor requesting a discrimination as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Nanyue Jiqi Hongchu"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_6dadcc69c361:0294b13:1:1"
+  ]
+}

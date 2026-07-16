@@ -1,0 +1,44 @@
+{
+  "source": "J/J39/J39nB447.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_300236cb6368:0379b25:1:1",
+      "entryId": "t_300236cb6368",
+      "sourceTerm": "當面錯過",
+      "RelPath": "J/J39/J39nB447.xml",
+      "FromLb": "0379b25",
+      "Kwic": "超群拔萃的，直下荷擔；迷頭認影的，當面錯過。",
+      "caseClusterId": "J/J39/J39nB447.xml:28049:28641",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "東山梅溪度禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Meixi Fudu",
+        "AttributionNote": "Recorded Sayings of Dongshan Meixi Du (東山梅溪度禪師語錄): in his hall address, Meixi Fudu contrasts directly shouldering it with missing it face-to-face."
+      }
+    },
+    {
+      "key": "t_300236cb6368:0412c27:1:2",
+      "entryId": "t_300236cb6368",
+      "sourceTerm": "當面錯過",
+      "RelPath": "J/J39/J39nB447.xml",
+      "FromLb": "0412c27",
+      "Kwic": "昔覯芝眉，未談西意，竟不識足下個中脫略、筆底琳琅，誠所謂當面錯過也。",
+      "caseClusterId": "J/J39/J39nB447.xml:223447:224340",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "東山梅溪度禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Meixi Fudu",
+        "AttributionNote": "Recorded Sayings of Dongshan Meixi Du (東山梅溪度禪師語錄): in his reply to layman Yuye Huang, Meixi Fudu calls his earlier failure to recognize the layman's freedom missing it face-to-face."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

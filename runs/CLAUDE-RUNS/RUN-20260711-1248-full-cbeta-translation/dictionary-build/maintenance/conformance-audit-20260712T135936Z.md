@@ -1,0 +1,60 @@
+# Final-spec conformance audit
+
+- entries: 203
+- entries_with_cjk_prose: 203
+- entries_with_hard_flags: 48
+- flag_dharma-loan: 79
+- flag_doctrine-frame: 1
+- flag_method-technique: 2
+- flag_samadhi-loan: 3
+
+## Hard-flagged entries
+
+- `t_041f65670cd4` 無心 (done): dharma-loan
+- `t_0b8912312b92` 大用現前 (done): dharma-loan
+- `t_15026800437e` 分別 (done): dharma-loan
+- `t_1a7e251bda53` 示眾 (done): dharma-loan
+- `t_1c7d25824f85` 本來面目 (done): dharma-loan
+- `t_1d3706324b0c` 打成一片 (done): dharma-loan
+- `t_1da939bf1267` 呵佛罵祖 (done): dharma-loan
+- `t_2069b9c33315` 君臣 (done): dharma-loan
+- `t_21926ca0b92e` 頂門眼 (done): dharma-loan
+- `t_2d4525b4b123` 教外別傳 (done): dharma-loan
+- `t_2facdfa49dd9` 末後牢關 (<missing>): method-technique
+- `t_33d49f4710be` 開悟 (done): dharma-loan
+- `t_358f56dbf990` 善知識 (<missing>): samadhi-loan
+- `t_49efe4fed8d4` 祖師西來意 (done): dharma-loan
+- `t_4f7bd98ad40f` 上堂 (done): dharma-loan
+- `t_51f93b6474e8` 湊泊 (done): dharma-loan
+- `t_51fe593d9ffe` 作麼生 (done): dharma-loan
+- `t_561817f02529` 放行 (done): dharma-loan
+- `t_5d6035b1e800` 露地白牛 (done): dharma-loan
+- `t_5ddde30711a4` 金鎖玄路 (done): samadhi-loan
+- `t_5f1287817ebd` 野狐禪 (<missing>): doctrine-frame
+- `t_61c90d3a8edd` 兼中到 (done): dharma-loan
+- `t_62bc43101d57` 無相 (<missing>): dharma-loan
+- `t_6da91f8ce284` 賓主 (done): dharma-loan
+- `t_6e762a1da16f` 情識 (done): dharma-loan
+- `t_7c1991e9eabb` 宗風 (done): dharma-loan
+- `t_80ea075a6c5d` 綱宗 (done): dharma-loan
+- `t_81147ad4e8bf` 四料揀 (done): dharma-loan
+- `t_831f84399d0b` 本地風光 (done): dharma-loan
+- `t_8a016f49e5b8` 思量 (done): dharma-loan
+- `t_8ece09f6b91a` 正法眼藏 (done): dharma-loan
+- `t_937f63a4fb51` 目前 (done): dharma-loan
+- `t_970c3f191929` 正法眼 (done): dharma-loan
+- `t_9f119d7965c2` 拂子 (done): dharma-loan
+- `t_ac2e2908084d` 見性成佛 (done): dharma-loan
+- `t_c945c2cc0e79` 小參 (done): dharma-loan
+- `t_ca8f7f2d5d03` 法眼 (<missing>): dharma-loan
+- `t_ccd48e1c9145` 正中來 (done): dharma-loan
+- `t_cf0513be4012` 宗旨 (done): dharma-loan
+- `t_d11d5f0c78a5` 以心傳心 (done): dharma-loan
+- `t_d35dc9e3723e` 無念 (done): dharma-loan, samadhi-loan
+- `t_d69c18a98053` 喫茶去 (done): dharma-loan
+- `t_db4a932ce500` 大悟 (done): dharma-loan
+- `t_dec67da1f076` 沈空滯寂 (<missing>): method-technique
+- `t_e4d6ebff1bb2` 如何是佛 (done): dharma-loan
+- `t_ebb0995c99fc` 頓悟 (done): dharma-loan
+- `t_efa1e241a7f0` 擔荷 (done): dharma-loan
+- `t_f2181872b682` 轉語 (done): dharma-loan

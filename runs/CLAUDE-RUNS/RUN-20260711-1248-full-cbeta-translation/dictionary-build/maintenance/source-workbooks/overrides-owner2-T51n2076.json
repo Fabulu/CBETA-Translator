@@ -1,0 +1,420 @@
+{
+  "source": "T/T51/T51n2076.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex /root/repair_bird_path",
+  "reviewedUtc": "2026-07-14T06:11:41Z",
+  "rows": [
+    {
+      "key": "t_96f468d6b843:0220a23:1:4",
+      "entryId": "t_96f468d6b843",
+      "sourceTerm": "律師",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0220a23",
+      "Kwic": "光統律師流支三藏者乃僧中之鸞鳳也。覩師演道斥相指心。每與師論議是非鋒起。",
+      "caseClusterId": "T/T51/T51n2076.xml:160464:163726",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Bodhidharma",
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Bodhidharma biography. The narration records Vinaya Master Guangtong and Bodhiruci as the two named clerics who repeatedly disputed with Bodhidharma after seeing him reject appearances and point to mind; Bodhidharma is the section subject and teaching actor.",
+        "ContextMasters": [
+          {
+            "MasterName": "Vinaya Master Guangtong",
+            "Roles": [
+              "named-disputant"
+            ]
+          },
+          {
+            "MasterName": "Bodhiruci",
+            "Roles": [
+              "named-disputant"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_9ec945311be0:0244c14:1:4",
+      "entryId": "t_9ec945311be0",
+      "sourceTerm": "還會麼",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0244c14",
+      "Kwic": "師乃起立曰。還會麼。曰不會。師曰。與老僧過淨瓶來",
+      "caseClusterId": "T/T51/T51n2076.xml:316344:319102",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Wuxiang",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_43ecdacadde0:0247a02:1:3",
+      "entryId": "t_43ecdacadde0",
+      "sourceTerm": "阿誰",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0247a02",
+      "Kwic": "師曰。此經是阿誰說。僧抗聲曰。禪師相弄。豈不知是佛說耶。",
+      "caseClusterId": "T/T51/T51n2076.xml:334803:339730",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Mazu Daoyi",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_33d49f4710be:0268a10:1:1",
+      "entryId": "t_33d49f4710be",
+      "sourceTerm": "開悟",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0268a10",
+      "Kwic": "行脚遇百丈開悟。却迴本寺。",
+      "caseClusterId": "T/T51/T51n2076.xml:477665:478982",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Baizhang Huaihai",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Guling Shenzan",
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Guling Shenzan biography. Guling Shenzan is the exact grammatical subject who, while traveling, meets Baizhang Huaihai and opens into awakening before returning to his home temple.",
+        "ContextMasters": [
+          {
+            "MasterName": "Baizhang Huaihai",
+            "Roles": [
+              "teacher-met"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_cf1445e57ef2:0272a04:1:1",
+      "entryId": "t_cf1445e57ef2",
+      "sourceTerm": "擬心即差",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0272a04",
+      "Kwic": "故修道人直下無心默契。擬心即差。以心傳心此為正見。",
+      "caseClusterId": "T/T51/T51n2076.xml:497868:502271",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_e016fb20e6da:0272a06:1:2",
+      "entryId": "t_e016fb20e6da",
+      "sourceTerm": "認賊為子",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0272a06",
+      "Kwic": "慎勿向外逐境為心。是認賊為子。為有貪瞋癡即立戒定慧。本無煩惱焉有菩提。",
+      "caseClusterId": "T/T51/T51n2076.xml:497868:502271",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "header",
+      "Override": null
+    },
+    {
+      "key": "t_707c9af5cb8e:0275a07:1:4",
+      "entryId": "t_707c9af5cb8e",
+      "sourceTerm": "恁麼則",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0275a07",
+      "Kwic": "云恁麼則音聲不入法界性也。師曰。離色求觀非正見。離聲求聽是邪聞。",
+      "caseClusterId": "T/T51/T51n2076.xml:522570:523232",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "student",
+          "ActorLabel": "unnamed student",
+          "ActorRole": "speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "lineage-context"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Nanquan-lineage exchange. An unnamed student is the exact speaker who infers, 'then sound does not enter dharma-realm nature'; the master corrects him. The six-rung ladder does not name the student."
+      }
+    },
+    {
+      "key": "t_707c9af5cb8e:0276a01:1:1",
+      "entryId": "t_707c9af5cb8e",
+      "sourceTerm": "恁麼則",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0276a01",
+      "Kwic": "云恁麼則學人無著身處也。師曰。是爾著身處。",
+      "caseClusterId": "T/T51/T51n2076.xml:527822:528360",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Nanquan Puyuan",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "student",
+          "ActorLabel": "unnamed student",
+          "ActorRole": "speaker",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Nanquan Puyuan",
+            "Roles": [
+              "lineage-context"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Nanquan-lineage exchange. An unnamed student is the exact speaker who infers, 'then I have nowhere to lodge my body'; the master immediately reverses the claim. The six-rung ladder does not name the student."
+      }
+    },
+    {
+      "key": "t_757827b8d4cb:0284b23:1:1",
+      "entryId": "t_757827b8d4cb",
+      "sourceTerm": "喪身失命",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0284b23",
+      "Kwic": "若開口答即喪身失命。若不答又違他所問。",
+      "caseClusterId": "T/T51/T51n2076.xml:598937:602131",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Guishan Lingyou",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Xiangyan Zhixian",
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Xiangyan Zhixian section. Xiangyan is the exact hall speaker who states the tree-case double bind: opening the mouth loses body and life, while not answering violates the question."
+      }
+    },
+    {
+      "key": "t_fab146271b10:0291a28:1:7",
+      "entryId": "t_fab146271b10",
+      "sourceTerm": "無事人",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0291a28",
+      "Kwic": "老僧在此住持。不曾見箇無事人到來。汝等何不近前。時有一僧方近前。師云。維那不在。汝自領出去三門外與二十棒。",
+      "caseClusterId": "T/T51/T51n2076.xml:665365:673631",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Huangbo Xiyun",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": "Muzhou Daoming",
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Muzhou Daoming section. Muzhou is the exact speaker who says that during his abbacy he has never seen a person with nothing going on arrive, calls listeners forward, and orders the advancing monk outside for twenty blows."
+      }
+    },
+    {
+      "key": "t_91d84c849fc7:0299a17:1:3",
+      "entryId": "t_91d84c849fc7",
+      "sourceTerm": "保任",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0299a17",
+      "Kwic": "問此事如何保任師曰。切忌。問如何是最初一句。師便喝。",
+      "caseClusterId": "T/T51/T51n2076.xml:722976:723196",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Sansheng Huiran",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Zizhou Shuilu Heshang",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Zizhou Shuilu Heshang section. An unnamed monk asks how to preserve this matter; Shuilu answers, 'strictly avoid it.' The six-rung ladder does not supply the monk's personal name."
+      }
+    },
+    {
+      "key": "t_3a400cdd72bb:0337a26:1:2",
+      "entryId": "t_3a400cdd72bb",
+      "sourceTerm": "破戒",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0337a26",
+      "Kwic": "問清淨行者不入涅槃。破戒比丘不入地獄如何。師曰。度盡無遺影還他越涅槃。",
+      "caseClusterId": "T/T51/T51n2076.xml:991004:991788",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Dongshan Liangjie",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Dongshan Daoquan",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Dongshan Daoquan section. An unnamed monk asks how the pure practitioner does not enter nirvana and the precept-breaking monk does not enter hell; Daoquan answers. The six-rung ladder does not name the monk."
+      }
+    },
+    {
+      "key": "t_cf1445e57ef2:0365a17:1:5",
+      "entryId": "t_cf1445e57ef2",
+      "sourceTerm": "擬心即差",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0365a17",
+      "Kwic": "問擬心即差動念即乖。學人如何進道。師曰。有人常擬為什麼不差。曰即今事如何。師曰。早成差也。",
+      "caseClusterId": "T/T51/T51n2076.xml:1183315:1183496",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Caoshan Benji",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Ca'an Fayi",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Ca'an Fayi section. An unnamed monk asks how to advance in the Way when framing the mind misses and moving thought goes astray; Fayi answers and presses the follow-up. The six-rung ladder does not name the monk."
+      }
+    },
+    {
+      "key": "t_da6965508721:0400b21:1:5",
+      "entryId": "t_da6965508721",
+      "sourceTerm": "休歇",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0400b21",
+      "Kwic": "問古人得箇什麼即便休歇去。師曰。汝得箇什麼即不休歇去。",
+      "caseClusterId": "T/T51/T51n2076.xml:1436293:1438191",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Luohan Guichen",
+      "candidateBasis": "header",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "unnamed monk",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex /root/repair_bird_path",
+          "ReviewedUtc": "2026-07-14T06:11:41Z"
+        },
+        "ContextMasters": [
+          {
+            "MasterName": "Fayan Wenyi",
+            "Roles": [
+              "respondent",
+              "section-subject"
+            ]
+          }
+        ],
+        "AttributionNote": "The Jingde Record of the Transmission of the Lamp (景德傳燈錄), Fayan Wenyi section. An unnamed monk asks what the ancients obtained that let them go to rest; Fayan answers by returning the question. The six-rung ladder does not name the monk."
+      }
+    },
+    {
+      "key": "t_b26bfa9e399e:0461c17:1:2",
+      "entryId": "t_b26bfa9e399e",
+      "sourceTerm": "迴光返照",
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0461c17",
+      "Kwic": "迴光返照便歸來。",
+      "caseClusterId": "T/T51/T51n2076.xml:1804571:1805669",
+      "reviewClass": "anthology-header-candidate",
+      "sourceTitle": "景德傳燈錄",
+      "defaultMasterName": "Shitou Xiqian",
+      "candidateBasis": "header",
+      "Override": null
+    }
+  ],
+  "candidateMissingKeys": []
+}

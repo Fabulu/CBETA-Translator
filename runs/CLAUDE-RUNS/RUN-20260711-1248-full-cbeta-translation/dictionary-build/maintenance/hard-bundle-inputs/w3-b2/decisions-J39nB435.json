@@ -1,0 +1,30 @@
+{
+  "source": "J/J39/J39nB435.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_734eadab549a:0005b29:2:2",
+      "entryId": "t_734eadab549a",
+      "sourceTerm": "本心",
+      "RelPath": "J/J39/J39nB435.xml",
+      "FromLb": "0005b29",
+      "Kwic": "我雖則繼席六載，無有契我本心者，惟明元隨我十餘年",
+      "caseClusterId": "J/J39/J39nB435.xml:41354:44486",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "伏獅義公禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fushi Yigong",
+        "ActorAttribution": null,
+        "AttributionNote": "伏獅義公禪師語錄. Full six-rung exact-turn review identifies Fushi Yigong as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_734eadab549a:0005b29:2:2"
+  ]
+}

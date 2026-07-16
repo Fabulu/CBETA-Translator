@@ -1,0 +1,115 @@
+{
+  "source": "X/X72/X72n1444.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_927d274aa0fc:0772c05:1:4",
+      "entryId": "t_927d274aa0fc",
+      "sourceTerm": "悟道",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0772c05",
+      "Kwic": "或有向古人方便語中記得兩句，謂之悟道，謂之通宗",
+      "caseClusterId": "X/X72/X72n1444.xml:47475:48695",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhanran Yuancheng",
+        "ActorAttribution": null,
+        "AttributionNote": "Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄). Zhanran Yuancheng is the exact speaker of the continuous admonition: he criticizes people who memorize two phrases from the ancients' expedient sayings and call that awakening to the Way or penetrating the lineage."
+      }
+    },
+    {
+      "key": "t_bcf65a900b7a:0814a14:1:1",
+      "entryId": "t_bcf65a900b7a",
+      "sourceTerm": "煩惱即菩提",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0814a14",
+      "Kwic": "又問：煩惱即菩提，何謂也？師曰：梵語菩提，此云知覺。",
+      "caseClusterId": "X/X72/X72n1444.xml:314918:316105",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "person",
+          "ActorLabel": "an unnamed questioner",
+          "ActorRole": "questioner",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-w1-remaining300 research-tail",
+          "ReviewedUtc": "2026-07-14T00:00:00Z"
+        },
+        "AttributionNote": "an unnamed questioner is the exact actor. Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), a question-and-answer unit. The exact headword-bearing speaker is the unnamed questioner who asks what 'afflictions are bodhi' means; Zhanran Yuancheng then answers by glossing bodhi as awareness. All six rungs leave the questioner unnamed.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhanran Yuancheng",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "t_bcf65a900b7a:0814a18:1:2",
+      "entryId": "t_bcf65a900b7a",
+      "sourceTerm": "煩惱即菩提",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0814a18",
+      "Kwic": "以菩提不異煩惱，迷菩提為煩惱。以煩惱不異菩提，知煩惱即菩提。葢知之為言，覺也。",
+      "caseClusterId": "X/X72/X72n1444.xml:314918:316105",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhanran Yuancheng",
+        "ActorAttribution": null,
+        "AttributionNote": "Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), the answer to an unnamed questioner. Zhanran Yuancheng is the exact speaker who says that because bodhi does not differ from afflictions, one recognizes afflictions as bodhi."
+      }
+    },
+    {
+      "key": "t_b437e79a4646:0816b10:1:2",
+      "entryId": "t_b437e79a4646",
+      "sourceTerm": "對機",
+      "RelPath": "X/X72/X72n1444.xml",
+      "FromLb": "0816b10",
+      "Kwic": "對機問辨之次，未能痛快，不知過在何處？",
+      "caseClusterId": "X/X72/X72n1444.xml:329776:331289",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "湛然圓澄禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Fu Shangpan",
+        "ActorAttribution": null,
+        "AttributionNote": "Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄). The source personally names Director of Education Fu Shangpan as the exact questioner: Fu says he has long exerted himself in Chan and had an awakening, but is not fluent when questioning and discriminating in response to the occasion, and asks where the fault lies. Zhanran answers him.",
+        "ContextMasters": [
+          {
+            "MasterName": "Zhanran Yuancheng",
+            "Roles": [
+              "respondent",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

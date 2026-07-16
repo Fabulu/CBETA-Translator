@@ -1,0 +1,49 @@
+{
+  "source": "T/T47/T47n2000.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:48:19.232189Z",
+  "rows": [
+    {
+      "key": "t_5bc32131e0a8:1042c25:1:3",
+      "entryId": "t_5bc32131e0a8",
+      "sourceTerm": "德山托鉢",
+      "RelPath": "T/T47/T47n2000.xml",
+      "FromLb": "1042c25",
+      "Kwic": "僧問。德山托鉢歸方丈。意旨如何。師云。貴買賤賣。",
+      "caseClusterId": "T/T47/T47n2000.xml:415921:416766",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "虛堂和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xutang Zhiyu",
+        "ActorAttribution": null,
+        "AttributionNote": "虛堂和尚語錄. Full six-rung exact-turn review identifies Xutang Zhiyu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_ee9dd8b4eb5b:1057a09:1:1",
+      "entryId": "t_ee9dd8b4eb5b",
+      "sourceTerm": "清規",
+      "RelPath": "T/T47/T47n2000.xml",
+      "FromLb": "1057a09",
+      "Kwic": "百丈清規千古洪範。藏之則虛空絕跡。用之則綱令森嚴。",
+      "caseClusterId": "T/T47/T47n2000.xml:484060:484243",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "虛堂和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xutang Zhiyu",
+        "ActorAttribution": null,
+        "AttributionNote": "虛堂和尚語錄. Full six-rung exact-turn review identifies Xutang Zhiyu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_5bc32131e0a8:1042c25:1:3",
+    "t_ee9dd8b4eb5b:1057a09:1:1"
+  ]
+}

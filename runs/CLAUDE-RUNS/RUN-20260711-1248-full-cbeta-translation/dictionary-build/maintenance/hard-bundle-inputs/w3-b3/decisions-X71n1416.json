@@ -1,0 +1,33 @@
+{
+  "source": "X/X71/X71n1416.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:58:26.309747Z",
+  "rows": [
+    {
+      "key": "t_cd14935fc028:0424c19:1:7",
+      "entryId": "t_cd14935fc028",
+      "sourceTerm": "頌古",
+      "RelPath": "X/X71/X71n1416.xml",
+      "FromLb": "0424c19",
+      "Kwic": "居雲門庵，作頌古一百一十則。",
+      "caseClusterId": "X/X71/X71n1416.xml:159632:160040",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "恕中無慍禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Dahui Zonggao",
+        "ActorAttribution": null,
+        "AttributionNote": "恕中無慍禪師語錄. Full six-rung exact-turn review identifies Dahui Zonggao as the exact headword-bearing speaker, author, or grammatical actor for this occurrence.",
+        "ContextMasters": [
+          "Shuzhong Wuyun"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_cd14935fc028:0424c19:1:7"
+  ]
+}

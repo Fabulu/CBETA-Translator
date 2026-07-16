@@ -1,0 +1,627 @@
+{
+  "counts": {
+    "entries": 6,
+    "senses": 8,
+    "occurrences": 33,
+    "unresolved_actor": 17,
+    "attribution_notes": 33,
+    "note_missing_speaker": 22,
+    "note_missing_source": 13,
+    "chinese_strings": 138,
+    "dangling_chinese": 64,
+    "named_occurrences": 16,
+    "deferred_non_roster": 4,
+    "anchored_chinese": 74,
+    "context_master_links": 3,
+    "vague_attributor": 5,
+    "deferred_non_roster_context": 1
+  },
+  "hardFailures": 121,
+  "failures": [
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o1 T/T48/T48n2006.xml:0303b09"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o1: The Eye of Humans and Gods preserves a direct guest-within-host question with the answer 'entering the market, both pupils blind.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o1 expected '人天眼目': The Eye of Humans and Gods preserves a direct guest-within-host question with the answer 'entering the market, both pupils blind.'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o2 T/T51/T51n2077.xml:0469c24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o2: A public interview asks for host-within-guest; the master answers, 'facing him, there is no companion.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1 o2 expected '續傳燈錄': A public interview asks for host-within-guest; the master answers, 'facing him, there is no companion.'"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1: 四賓主"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1: 學人有鼻孔"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s1: 賓主"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s2 o1: Dongshan asks the positional question and receives 'white clouds cover the green mountain.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s2 o1 expected '祖堂集': Dongshan asks the positional question and receives 'white clouds cover the green mountain.'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s2 o2 X/X80/X80n1565.xml:0087b15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s2 o2: A transmitted encounter gives the answer 'long years not leaving the house.'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_18ec645f99f7/entry.v2.json",
+      "detail": "賓中主 s2 o2 expected '五燈會元': A transmitted encounter gives the answer 'long years not leaving the house.'"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o2: Fengxue answers the named question with ‘the returning simurgh; the two luminaries renewed.’"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o2 expected '人天眼目': Fengxue answers the named question with ‘the returning simurgh; the two luminaries renewed.’"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o3 T/T48/T48n2006.xml:0303c03"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o3: A verse headed guest-within-host begins by describing the speaker's broad household and giving without distinction of high or low."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o3 expected '人天眼目': A verse headed guest-within-host begins by describing the speaker's broad household and giving without distinction of high or low."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o4 J/J28/J28nB212.xml:0474a29"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o4: A later public catechism asks the position and receives ‘green mountains cover white clouds.’"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o4 expected '二隱謐禪師語錄': A later public catechism asks the position and receives ‘green mountains cover white clouds.’"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o5 J/J28/J28nB212.xml:0495c12"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o5: A distinct later exchange answers the same position with ‘empty-handed, mingling with the dusty world.’"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1 o5 expected '二隱謐禪師語錄': A distinct later exchange answers the same position with ‘empty-handed, mingling with the dusty world.’"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1: 'the teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1: 'the teacher'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_332a9a8accb6/entry.v2.json",
+      "detail": "主中賓 s1: 'the teacher'"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o1: (雲門匡真禪師廣錄) (Yunmen's own Extended Record); a (示眾云) (示眾云…作麼生承當。代云。一鏃破三關). Yunmen's own record, single-speaker instruction — the primary source of the phrase. This Taisho edition reads (不涉春緣); other witnesses (T48n2006, J29nB244) read (不涉萬緣). KWIC is verbatim; it begins after (示眾云天中) — (天中) is the Taisho main-text reading (apparatus note 0563002: 天中＝大眾【明】), excluded from the KWIC."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o3 J/J29/J29nB244.xml:0718b16"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o3: (嘉興藏) text (J29nB244); (頌) (verse-commentary) on (函蓋乾坤句), following the same page's systematization (後德山圓明密禪師遂離其語為三句)：(函蓋乾坤句)、(截斷眾流句)、(隨波逐浪句) (德山圓明密 = 德山緣密). Verse-commentary → MasterName null; shows the (頌古) deployment of the phrase."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o3 expected '三山來禪師語錄': (嘉興藏) text (J29nB244); (頌) (verse-commentary) on (函蓋乾坤句), following the same page's systematization (後德山圓明密禪師遂離其語為三句)：(函蓋乾坤句)、(截斷眾流句)、(隨波逐浪句) (德山圓明密 = 德山緣密). Verse-commentary → MasterName null; shows the (頌古) deployment of the phrase."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o4 X/X80/X80n1565.xml:0373a24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o4: (五燈會元); a (上堂) raising the three (昔日雲門有三句。謂函蓋乾坤句。截斷眾流句…). Raised → MasterName null. X-canon lb ed=X 0373a24 (co-located ed=R138 0693a09 not used)."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o5 X/X80/X80n1565.xml:0315a15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1 o5: (五燈會元), (信州西禪欽禪師) section; the stock test-question deployment (如何是函蓋乾坤句) (answer 師曰。天…). Two-speaker (僧問) → MasterName null. X-canon lb ed=X (co-located ed=R138 0575… not used)."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 一色一味"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 上堂"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 不在躊躇"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 也"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 五燈會元"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 人天眼目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 函蓋乾坤體自然"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 函蓋相應"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 函蓋相稱"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 函蓋相稱故"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 則"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 則函蓋乾坤也"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 吞吐虛空"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 圓悟曰"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 圜悟克勤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 廣錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 德山圓明密"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 德山緣密"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 截斷眾流句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 日出東方夜落西"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 有時涵蓋乾坤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 有時芥子藏身"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 本真本空"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 洞然明白"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 涵蓋乾坤"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 箇中原不著毫端"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 著函"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 遂離其語為三句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 遍界黑漫漫"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 隨波逐浪"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 隨波逐浪句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 雲門三句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 雲門文偃"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_49829f59faac/entry.v2.json",
+      "detail": "函蓋乾坤 s1: 非無妙體"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o1 T/T48/T48n2006.xml:0304a13"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o1: Eye of Humans and Gods (人天眼目), section on the four illuminate-and-function modes (四照用). This is the corpus's concrete expansion of the last two modes: at once (照用同時) and at different times (照用不同時)."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o2 X/X80/X80n1565.xml:0222b15"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o2: Compendium of the Five Lamps (五燈會元), Linji section. It preserves the fourfold address: illumination first, function first, both at once, and both at different times (先照後用 / 先用後照 / 照用同時 / 照用不同時). As a lamp-record retelling, MasterName is null."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o4 J/J25/J25nB171.xml:0515b11"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1 o4: Recorded Sayings of the Monk Tianyin (天隱和尚語錄). The phrase is put as the live question 'What is illuminating and functioning at once?' (如何是照用同時), and the master answers with a shout and a blow."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1: 先照後用有人在"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1: 先用後照有法在"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1: 合水和泥應機接物"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1: 四照用"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6b8e3b4f44bb/entry.v2.json",
+      "detail": "照用 s1: 殺活"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o1 J/J34/J34nB301.xml:0294b13"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o1: A monk presents two different episodes and asks the teacher to appraise them."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o1 expected '南嶽繼起和尚語錄': A monk presents two different episodes and asks the teacher to appraise them."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o5 X/X72/X72n1444.xml:0791a01"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o5: A later record calls the paired formulas the old so-called selection sayings."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o5 expected '湛然圓澄禪師語錄': A later record calls the paired formulas the old so-called selection sayings."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o6 J/J39/J39nB454.xml:0648a30"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o6: After quoting the Four Selections question, the student asks the master to appraise it and receives an immediate verse-like answer. This anchors the act inside a later public interview."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1 o6 expected '頻吉祥禪師語錄': After quoting the Four Selections question, the student asks the master to appraise it and receives an immediate verse-like answer. This anchors the act inside a later public interview."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1: 'A monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_6dadcc69c361/entry.v2.json",
+      "detail": "料揀 s1: 'the teacher'"
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1 o3 X/X80/X80n1565.xml:0373a24"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1 o3: (五燈會元), (九頂惠泉) (上堂); a later master reciting the scheme as (雲門三句). Raised scheme → null."
+    },
+    {
+      "kind": "unresolved_actor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1 o4 T/T48/T48n2006.xml:0312b06"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1 o4: (人天眼目), (問答); the middle phrase catechized as a stock student question with turning-word answers."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 一鏃破三關"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 不涉萬緣"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 五燈會元"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 人天眼目"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 作麼生承當"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 合取狗口"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 吞盡不曾乾"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 如何是函蓋乾坤句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 如何是隨波逐浪句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 密雲禪師語錄"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 師示眾云"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 德山緣密"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 無汝開口處"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 目機銖兩"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 眾無對"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 示眾"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 自代云"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s1: 雲門三句"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2 o1: (圓悟佛果禪師語錄), (小參); contrasts the accommodating (隨波逐浪) with the seizing (截斷眾流)."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2 o2: Hongzhi's Extensive Record (宏智廣錄), an informal address (小參); the 'cutting off' function cannot be reached by formulation (詮表不及)."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2 o2 expected '宏智禪師廣錄': Hongzhi's Extensive Record (宏智廣錄), an informal address (小參); the 'cutting off' function cannot be reached by formulation (詮表不及)."
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2: 三句"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2: 圜悟"
+    },
+    {
+      "kind": "dangling_chinese",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_f7bdd2def0ec/entry.v2.json",
+      "detail": "截斷眾流 s2: 宏智"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "J/J38/J38nB418.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_358f56dbf990:0502b16:1:7",
+      "entryId": "t_358f56dbf990",
+      "sourceTerm": "善知識",
+      "RelPath": "J/J38/J38nB418.xml",
+      "FromLb": "0502b16",
+      "Kwic": "善知識！一言半句實有起死回生之力、翻窠倒臼之施",
+      "caseClusterId": "J/J38/J38nB418.xml:42592:45208",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "晦嶽旭禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huiyue Xu",
+        "ActorAttribution": null,
+        "AttributionNote": "晦嶽旭禪師語錄. Huiyue Xu is the exact actor: his public address hails the assembly 善知識."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

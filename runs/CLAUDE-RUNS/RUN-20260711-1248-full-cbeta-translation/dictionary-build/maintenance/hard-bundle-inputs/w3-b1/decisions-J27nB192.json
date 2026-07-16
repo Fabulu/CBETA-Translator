@@ -1,0 +1,49 @@
+{
+  "source": "J/J27/J27nB192.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_5ac2c5d1fc1e:0188b18:1:5",
+      "entryId": "t_5ac2c5d1fc1e",
+      "sourceTerm": "寸絲不掛",
+      "RelPath": "J/J27/J27nB192.xml",
+      "FromLb": "0188b18",
+      "Kwic": "寸絲不掛，自然赤條條；粒米不嚼，各各飽齁齁。",
+      "caseClusterId": "J/J27/J27nB192.xml:44919:45057",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大休珠禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Daxiu Zhu",
+        "ActorAttribution": null,
+        "AttributionNote": "大休珠禪師語錄. Full six-rung exact-turn review identifies Daxiu Zhu as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    },
+    {
+      "key": "t_dc854763849c:0193c04:3:1",
+      "entryId": "t_dc854763849c",
+      "sourceTerm": "聲色",
+      "RelPath": "J/J27/J27nB192.xml",
+      "FromLb": "0193c04",
+      "Kwic": "南禪師住黃龍四十年，坐鎮道場，不動聲色。",
+      "caseClusterId": "J/J27/J27nB192.xml:70922:71066",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "大休珠禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Huanglong Huinan",
+        "ActorAttribution": null,
+        "AttributionNote": "大休珠禪師語錄. Full six-rung exact-turn review identifies Huanglong Huinan as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_5ac2c5d1fc1e:0188b18:1:5",
+    "t_dc854763849c:0193c04:3:1"
+  ]
+}

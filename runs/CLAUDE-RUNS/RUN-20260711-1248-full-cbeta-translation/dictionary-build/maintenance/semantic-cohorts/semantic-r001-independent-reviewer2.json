@@ -1,0 +1,1451 @@
+{
+  "schemaVersion": 1,
+  "wave": "semantic-r001",
+  "reviewerOwner": 2,
+  "subjectOwner": 3,
+  "status": "complete",
+  "instructions": "Do not edit the subject owner's entry. Falsify the current draft against exact corpus evidence, literal controls, alternate senses and verb frames, depth, family dependencies, search probes, opening inference, quote anchors, and forbidden English. Record keep/revise/reject with evidence. A revise/reject verdict returns the row to its evidence owner; it never silently edits across ownership.",
+  "entries": [
+    {
+      "id": "t_e5259ce8bbf5",
+      "sourceTerm": "垂示",
+      "path": "terms/t_e5259ce8bbf5/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "垂示云",
+              "hits": 109,
+              "files": 21
+            },
+            {
+              "query": "請師垂示",
+              "hits": 107,
+              "files": 56
+            },
+            {
+              "query": "乞師垂示",
+              "hits": 57,
+              "files": 26
+            },
+            {
+              "query": "室中垂示",
+              "hits": 17,
+              "files": 11
+            },
+            {
+              "query": "垂示者",
+              "hits": 0,
+              "files": 0
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "T/T48/T48n2003.xml#0177b12 fixed case-preface rubric",
+            "T/T47/T47n1988.xml#0552a04 catalogued textual items",
+            "X/X78/X78n1556.xml#0500b14 requested public indication"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The fixed editorial rubric/catalogued textual unit and the requested interpersonal speaking event are distinguishable referents, not a noun/verb split of one product.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "474c2c3790b7122b49a662c95b1125f871d83208bcb459b2124f2f807f98ca08",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_e5259ce8bbf5-gate.json"
+    },
+    {
+      "id": "t_8a016f49e5b8",
+      "sourceTerm": "思量",
+      "path": "terms/t_8a016f49e5b8/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "不思量",
+              "hits": 124,
+              "files": 53
+            },
+            {
+              "query": "非思量",
+              "hits": 207,
+              "files": 112
+            },
+            {
+              "query": "思量不得",
+              "hits": 2,
+              "files": 2
+            },
+            {
+              "query": "思量不及",
+              "hits": 20,
+              "files": 16
+            },
+            {
+              "query": "思量者",
+              "hits": 11,
+              "files": 8
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "Yaoshan exchange: 思量箇不思量底 / 非思量",
+            "negation and reach-failure families"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "All tested forms predicate the same act of pondering or its negation/limit; no second object, title, or institutional referent emerged.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "63425b37385415eaf122c9f41d19136d4dddc62dade7a610d0226619225fa2af",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_8a016f49e5b8-gate.json"
+    },
+    {
+      "id": "t_0a686fa27769",
+      "sourceTerm": "著語",
+      "path": "terms/t_0a686fa27769/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 10,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "眾中謂之著語",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "此謂之著語",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "下著語",
+              "hits": 12,
+              "files": 4
+            },
+            {
+              "query": "著語者",
+              "hits": 1,
+              "files": 1
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "T/T48/T48n2003.xml direct self-definition 眾中謂之著語",
+            "Xuedou/Dahui attachment-position anchors"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The corpus directly defines an attached comment; attaching and the resulting comment are grammatical views of the same product/event, while contrasts remain separately marked.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "c06b98d8928938a4781e0e1fdcdfa224813110e25a48c0646083336e9501b2b2",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_0a686fa27769-gate.json"
+    },
+    {
+      "id": "t_efa1e241a7f0",
+      "sourceTerm": "擔荷",
+      "path": "terms/t_efa1e241a7f0/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "一肩擔荷",
+              "hits": 89,
+              "files": 53
+            },
+            {
+              "query": "全身擔荷",
+              "hits": 123,
+              "files": 80
+            },
+            {
+              "query": "擔荷得",
+              "hits": 60,
+              "files": 46
+            },
+            {
+              "query": "擔柴",
+              "hits": 70,
+              "files": 49
+            },
+            {
+              "query": "擔荷者",
+              "hits": 17,
+              "files": 16
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "physical firewood-bearing witness",
+            "responsibility/succession-bearing witnesses"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "Physical and responsibility loads preserve one shouldering/bearing verb; the targets would paraphrase rather than distinguish two lexical things, matching the explicit gloss-hygiene calibration.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "72a116536c55f580239564e0609e601db6a29f2b51091326af93dc1f3f8f8ac1",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_efa1e241a7f0-gate.json"
+    },
+    {
+      "id": "t_4cf045deab37",
+      "sourceTerm": "粥飯僧",
+      "path": "terms/t_4cf045deab37/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 7,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "長行粥飯僧",
+              "hits": 34,
+              "files": 27
+            },
+            {
+              "query": "喫粥飯僧",
+              "hits": 6,
+              "files": 3
+            },
+            {
+              "query": "參禪僧",
+              "hits": 18,
+              "files": 8
+            },
+            {
+              "query": "粥飯僧者",
+              "hits": 0,
+              "files": 0
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "C/C077/C077n1710 Fenyang self-identification 長行粥飯僧",
+            "C/C077/C077n1710 Zhenjing warning 不可作長行粥飯僧",
+            "T/T47/T47n1989 meal-eating/investigating contrast"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        },
+        {
+          "kind": "repair-recheck",
+          "result": "accepted",
+          "observations": [
+            "The former appraisal/context split is now one human-role sense.",
+            "Seven anchors preserve self-description, refusal, contrast, admonition, and vow without turning those appraisals into different referents.",
+            "The current-hash gate passes exact KWIC, attribution, public-feedback, and depth checks."
+          ]
+        }
+      ],
+      "reason": "Repair accepted. 粥飯僧 now denotes one gruel-and-rice-monk role, while the explanation preserves the corpus's opposed appraisals and institutional settings. The identical 長行粥飯僧 form no longer migrates between senses according to approval or rebuke.",
+      "reviewedUtc": "2026-07-14T09:50:28Z",
+      "subjectEntrySha256": "abcaded998813e4d316cda81ae501429f0dea85490e822110a2303a85e012985",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_4cf045deab37-gate.json"
+    },
+    {
+      "id": "t_c875e45fbb9d",
+      "sourceTerm": "世尊",
+      "path": "terms/t_c875e45fbb9d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 19,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "世尊拈花",
+              "hits": 445,
+              "files": 189
+            },
+            {
+              "query": "世尊陞座",
+              "hits": 158,
+              "files": 91
+            },
+            {
+              "query": "世尊下座",
+              "hits": 15,
+              "files": 14
+            },
+            {
+              "query": "世尊良久",
+              "hits": 153,
+              "files": 81
+            },
+            {
+              "query": "世尊默然",
+              "hits": 12,
+              "files": 10
+            },
+            {
+              "query": "諸世尊",
+              "hits": 9,
+              "files": 8
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "flower-holding and entrustment anchors",
+            "mount/leave-seat anchors",
+            "pause/silence and later-raiser anchors"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The title consistently denotes the invoked Buddha figure; plural title use does not create a new thing, and the opening is constrained to recurring Chan acts rather than outside biography.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "245bbabf21398f90a6c1e0d90fd06e48df11ca6132fa1fccdfd12f8909ef25af",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_c875e45fbb9d-gate.json"
+    },
+    {
+      "id": "t_51fe593d9ffe",
+      "sourceTerm": "作麼生",
+      "path": "terms/t_51fe593d9ffe/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 14,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "作麼生道",
+              "hits": 3336,
+              "files": 309
+            },
+            {
+              "query": "作麼生會",
+              "hits": 1570,
+              "files": 244
+            },
+            {
+              "query": "作麼生是",
+              "hits": 3080,
+              "files": 261
+            },
+            {
+              "query": "作麼生人",
+              "hits": 0,
+              "files": 0
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "Baizhang speech-demand anchor",
+            "Shitou direct interlocutor challenge",
+            "gesture/action response anchors"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "Speech, understanding, identity, and action are the questioned complements of one interrogative, not separate senses. Zero 作麼生人 supports rejecting an invented person-noun family.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "2c10519c80c5b229018683b73b02663d6f6eb1e4eb04b52b310addc42d9ed00b",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_51fe593d9ffe-gate.json"
+    },
+    {
+      "id": "t_01a355a89ba1",
+      "sourceTerm": "當下",
+      "path": "terms/t_01a355a89ba1/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 13,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "當下大悟",
+              "hits": 68,
+              "files": 47
+            },
+            {
+              "query": "當下知歸",
+              "hits": 46,
+              "files": 34
+            },
+            {
+              "query": "當下冰消",
+              "hits": 21,
+              "files": 19
+            },
+            {
+              "query": "住在當下",
+              "hits": 0,
+              "files": 0
+            },
+            {
+              "query": "安住當下",
+              "hits": 0,
+              "files": 0
+            },
+            {
+              "query": "當下者",
+              "hits": 0,
+              "files": 0
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "completion-event anchors",
+            "temporal-locative collocations"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "Positive collocations attach the adverb to events and completions; exact searches found zero stay/abide-in-the-present formulas and zero nominal 當下者, supporting the narrowed on-the-spot reading.",
+      "reviewedUtc": "2026-07-14T09:44:00Z",
+      "subjectEntrySha256": "88f0490edee81c5377d5a6d2f09735a827c464940be2e66e0ebfd58ddf54292d",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_01a355a89ba1-gate.json"
+    },
+    {
+      "id": "t_ea2a427c7aba",
+      "sourceTerm": "坐禪",
+      "path": "terms/t_ea2a427c7aba/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 12,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-2.json",
+          "queries": [
+            {
+              "query": "何名坐禪",
+              "hits": 2,
+              "files": 2
+            },
+            {
+              "query": "坐禪之要術",
+              "hits": 3,
+              "files": 3
+            },
+            {
+              "query": "坐禪禪非坐臥",
+              "hits": 2,
+              "files": 2
+            },
+            {
+              "query": "坐禪終日臥",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "不坐禪",
+              "hits": 43,
+              "files": 28
+            },
+            {
+              "query": "結加趺坐",
+              "hits": 9,
+              "files": 4
+            },
+            {
+              "query": "如尋常坐禪",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "坐禪得定",
+              "hits": 1,
+              "files": 1
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "T/T48/T48n2023.xml sequential body/breath procedure",
+            "T/T48/T48n2008.xml Huineng graph-by-graph redefinition",
+            "C/C077/C077n1710 禪非坐臥",
+            "X/X69/X69n1335 坐禪終日臥"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        },
+        {
+          "kind": "repair-recheck",
+          "result": "accepted",
+          "observations": [
+            "Nine anchors support the regulated bodily procedure and three independent anchors support the explicit non-postural redefinition.",
+            "The split turns on incompatible predicates, not noun/verb grammar, approval, or paraphrase.",
+            "The current-hash gate passes exact KWIC, attribution, public-feedback, and depth checks."
+          ]
+        }
+      ],
+      "reason": "Repair accepted. The entry now distinguishes the regulated seated body-and-breath procedure from passages that explicitly remove bodily sitting as a necessary condition. The targets are readable on their own and each sense has independent anchors.",
+      "reviewedUtc": "2026-07-14T09:50:28Z",
+      "subjectEntrySha256": "7a964bc88ad4b5b179f43a32c8c4ab76158d43abd52a48db04aa4182464f8de3",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_ea2a427c7aba-gate.json"
+    },
+    {
+      "id": "t_d35dc9e3723e",
+      "sourceTerm": "無念",
+      "path": "terms/t_d35dc9e3723e/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 12,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-3.json",
+          "queries": [
+            { "query": "何名無念", "hits": 3, "files": 3 },
+            { "query": "無念法者", "hits": 17, "files": 6 },
+            { "query": "於念而無念", "hits": 1, "files": 1 },
+            { "query": "無念禪師", "hits": 48, "files": 3 },
+            { "query": "字無念", "hits": 1, "files": 1 },
+            { "query": "無念三昧", "hits": 0, "files": 0 },
+            { "query": "無念者", "hits": 17, "files": 12 }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "T/T48/T48n2008.xml direct no-thought definitions and blankness rejection",
+            "T/T48/T48n2007.xml independent recension definition",
+            "J/J20/J20nB098.xml personal-name equation 吾師名深有，字無念",
+            "X/X84/X84n1585.xml Master Wunian public exchanges"
+          ]
+        }
+      ],
+      "reason": "KEEP. The defined no-thought term and the person Wunian Shenyou are different referents with exact anchors under each sense. Countersearches preserve the conceptual definition family and independently isolate the title/person family; no third referent or compound contamination emerged.",
+      "reviewedUtc": "2026-07-14T09:47:00Z",
+      "subjectEntrySha256": "cc7740bba5f6f1df756032e52f5469856e129f891bea0f73f60190e0e3fb7b6a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_d35dc9e3723e-gate.json"
+    },
+    {
+      "id": "t_ae34e87d493d",
+      "sourceTerm": "傅大士",
+      "path": "terms/t_ae34e87d493d/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {"kind": "owner-current-hash-gate", "hardPass": true, "exactKwicVerified": 11, "attributionHardFailures": 0, "publicFeedbackFlags": 0, "depthHardFailures": 0},
+        {"kind": "countersearch", "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-4.json", "queries": [{"query":"傅大士","hits":551,"files":173},{"query":"善慧大士","hits":65,"files":26},{"query":"傅翕","hits":1,"files":1},{"query":"傅大士講經","hits":26,"files":23}]},
+        {"kind": "falsification-tests", "tests": ["person versus title", "alternate bearer", "biography versus Zen deployment", "nested compound contamination", "opening inference", "quote/source/actor gate"]}
+      ],
+      "reason": "One invoked person survives the title/name and alternate-bearer tests. Layman Fu, Fu Dashi, and Layman Shanhui are explicitly joined in the stored record, while lecture, costume, verse, and critique are deployments of that figure rather than extra senses.",
+      "reviewedUtc": "2026-07-14T10:12:00Z",
+      "subjectEntrySha256": "6af494af5bf0f47231f171fa15c52bdb7430e777d3de955af935317168bb93bc",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_ae34e87d493d-gate.json"
+    },
+    {
+      "id": "t_ed962dfd1158",
+      "sourceTerm": "四賓主",
+      "path": "terms/t_ed962dfd1158/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {"kind": "owner-current-hash-gate", "hardPass": true, "exactKwicVerified": 11, "attributionHardFailures": 0, "publicFeedbackFlags": 0, "depthHardFailures": 0},
+        {"kind": "countersearch", "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-4.json", "queries": [{"query":"四賓主","hits":143,"files":78},{"query":"臨濟四賓主","hits":8,"files":8},{"query":"洞宗無四賓主語","hits":1,"files":1}]},
+        {"kind": "falsification-tests", "tests": ["paraphrase merge", "house-specific versus corpus-wide", "same label different system", "disputed attribution", "opening inference", "quote/source/actor gate"]}
+      ],
+      "reason": "The two targets are independently distinguishable house systems, not paraphrases: the handbook explicitly says the Caodong four differ from Linji's, enumerates a different configuration, and a Caodong record disputes that system's existence. The disagreement is preserved rather than adjudicated.",
+      "reviewedUtc": "2026-07-14T10:12:00Z",
+      "subjectEntrySha256": "b53b51713d872bb60387235d6e28136bf30b6ad1c9d41554098615c701f3f159",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_ed962dfd1158-gate.json"
+    },
+    {
+      "id": "t_6abcff898d95",
+      "sourceTerm": "良久",
+      "path": "terms/t_6abcff898d95/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {"kind": "owner-current-hash-gate", "hardPass": true, "exactKwicVerified": 11, "attributionHardFailures": 0, "publicFeedbackFlags": 0, "depthHardFailures": 0},
+        {"kind": "countersearch", "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-4.json", "queries": [{"query":"師良久","hits":656,"files":171},{"query":"僧良久","hits":83,"files":35},{"query":"良久云","hits":1403,"files":169},{"query":"良久下座","hits":3,"files":3}]},
+        {"kind": "falsification-tests", "tests": ["speaker-role variation", "silence versus elapsed duration", "action following interval", "ordinary control", "opening inference", "quote/source/actor gate"]}
+      ],
+      "reason": "One duration sense holds. Masters, monks, the Buddha, and narrative transitions can all occupy the interval, and speech, shout, gesture, descent, or later summons may follow it. Those continuations do not make different durations or encode a universal authoritative silence.",
+      "reviewedUtc": "2026-07-14T10:12:00Z",
+      "subjectEntrySha256": "f933961382da678c261fcb508f95e3619e36230cd58196222b32240d7011bc94",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_6abcff898d95-gate.json"
+    },
+    {
+      "id": "t_8bd6933e6de3",
+      "sourceTerm": "一喝",
+      "path": "terms/t_8bd6933e6de3/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {"kind": "owner-current-hash-gate", "hardPass": true, "exactKwicVerified": 10, "attributionHardFailures": 0, "publicFeedbackFlags": 0, "depthHardFailures": 0},
+        {"kind": "countersearch", "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-4.json", "queries": [{"query":"一喝","hits":12565,"files":377},{"query":"喝一喝","hits":7091,"files":320},{"query":"四喝","hits":265,"files":121},{"query":"一喝分賓主","hits":137,"files":77}]},
+        {"kind": "falsification-tests", "tests": ["counted act versus taxonomy", "one shout versus four shouts", "vocal act versus appraisal", "nested formula", "opening inference", "quote/source/actor gate"]}
+      ],
+      "reason": "A single audible shout remains one countable vocal act. Sword, lion, probing, guest-host, deafening, and non-shout classifications describe or test its use; the four-shouts family counts/classifies acts and does not turn the bare one-shout phrase into several referents.",
+      "reviewedUtc": "2026-07-14T10:12:00Z",
+      "subjectEntrySha256": "d37ad460aa3c70067ad7a0eb6533e998e67b3f9686a4b1ff3c87eb1d0ff0c15d",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_8bd6933e6de3-gate.json"
+    },
+    {
+      "id": "t_1da939bf1267",
+      "sourceTerm": "呵佛罵祖",
+      "path": "terms/t_1da939bf1267/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {"kind": "owner-current-hash-gate", "hardPass": true, "exactKwicVerified": 10, "attributionHardFailures": 0, "publicFeedbackFlags": 0, "depthHardFailures": 0},
+        {"kind": "countersearch", "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-4.json", "queries": [{"query":"呵佛罵祖","hits":232,"files":118},{"query":"訶佛罵祖","hits":33,"files":24},{"query":"呵佛","hits":261,"files":125},{"query":"罵祖","hits":311,"files":149},{"query":"不呵佛罵祖","hits":2,"files":2}]},
+        {"kind": "falsification-tests", "tests": ["graphic variant", "approval versus act", "partial-family contamination", "conduct label versus rule", "opening inference", "quote/source/actor gate"]}
+      ],
+      "reason": "One public act survives. Alternate graphs, self-description, prediction, approval, rebuke, and negation change who performs or evaluates the reviling; they do not create a second act or license a general behavioral rule.",
+      "reviewedUtc": "2026-07-14T10:12:00Z",
+      "subjectEntrySha256": "a6eb3d73860d5eb6bd22b30e4371d841745c5bb60e230ee7502334e083d9ea9a",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_1da939bf1267-gate.json"
+    },
+    {
+      "id": "t_0ed8638229a9",
+      "sourceTerm": "無位真人",
+      "path": "terms/t_0ed8638229a9/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 10,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One Linji-coined stock figure survives. Rank contrasts, later questions, and incompatible speaker-scoped glosses redeploy the same named figure; no title, ordinary person, or second referent emerged.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "68d5d98208fed742ca231911257cb144c87bbbdcb64798fc6ef1107629442b5d",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_cb3571346f22",
+      "sourceTerm": "釋迦",
+      "path": "terms/t_cb3571346f22/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 10,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One invoked figure survives. Name gloss, flower case, seat action, body question, old-man form, and hostile appraisals all refer to Śākyamuni; the entry keeps the Zen deployment without converting every occurrence into enlightenment symbolism.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "f2d072fb302ece965a0d383bd502bfad8c390b5964b164d2ed7b505ff95b4792",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_9b71e523fe10",
+      "sourceTerm": "具足",
+      "path": "terms/t_9b71e523fe10/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "Completeness remains one predicate. Being complete, originally complete, lacking nothing, and receiving the full precepts vary object and construction; the longer ordination compound does not establish a second bare-word referent.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "1165010acb0b5653eae4fad1898b017bb2d964d648f05021dfe51a8d43445cef",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_ba8066477571",
+      "sourceTerm": "喝一喝",
+      "path": "terms/t_ba8066477571/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One finite audible shouting event survives. Sequence position, count, labels, replies, and later appraisals concern the performed shout and do not encode a fixed message or second action.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "13bbd251c6036a4acdf8e24953085f3a1cb919e15645bd186212ce25e54bcf6d",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_d03aa9267f79",
+      "sourceTerm": "大機大用",
+      "path": "terms/t_d03aa9267f79/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The pair names responsive capacity together with its enacted function. Component searches show productive 大機 and 大用 families, but the stored compound evidence neither collapses to a generic compliment nor yields two independent compound senses.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "914905f6787f0279eb5c0cdc2ab5397a0443faf6283d0c9b813ddff7e846e68b",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_ab6276be6e08",
+      "sourceTerm": "末後句",
+      "path": "terms/t_ab6276be6e08/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One final-word expression survives. Stock public questions and actual death or memorial last utterances differ by event context, not by the lexical object named; the entry clearly reports both without splitting grammar from use.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "a978a45d4093efc55abde32d55b9da52298f1d79564d3c69145e6050691be3a8",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_4ccccac73fe7",
+      "sourceTerm": "牧童",
+      "path": "terms/t_4ccccac73fe7/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One cattle-tending child survives across ordinary narration, songs, pictures, and public questions. Oxherding sequences load the figure contextually but do not turn the bare person noun into a second entity.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "e2082bb2c00a1faf7b41af3884fdd952fb3e28881b8dfd679c7a7c4e126ee99c",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_c3a7862b9971",
+      "sourceTerm": "自在",
+      "path": "terms/t_c3a7862b9971/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "Freedom from constraint remains one condition across adjective, adverb, attained-result, intensifier, and negative forms. No institution, title, or incompatible action was found.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "9a452525ceb6c4fa69c6ea6e2b92d1a2bc6917c59c70d96add38f983488dfbf0",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_0427b79d8ba4",
+      "sourceTerm": "衲子",
+      "path": "terms/t_0427b79d8ba4/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 9,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One patch-robed monastic person-type survives. The direct naming formula ties robe and role; house-style praise, criticism, livelihood, and address remain deployments, while 衲僧 and 衲衣 are controlled neighboring families.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "d9e9350d77ea905178302af47a20effc17b51122f70fffe32d59c7933d62592c",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_7cddddb76d37",
+      "sourceTerm": "任運",
+      "path": "terms/t_7cddddb76d37/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The split is warranted: ordinary course-running is a predicate, while Puming's exact seventh-section title is a textual unit. Their PreferredTargets are independently readable, and no third referent emerged.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "4a1b953cd9f55e70b488a1f1f1bbc848119a629fad8963511bcdb4ad69021bbe",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_094be4e93da2",
+      "sourceTerm": "作麼生道",
+      "path": "terms/t_094be4e93da2/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One accountable wording question survives. Direct and retrospective forms, different demanded phrases, and varied responses alter turn grammar or object, not the interrogative action.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "a92710d8389e045e895438d6aff86da186bb1b85861572f62df7bbb5a633b1e9",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_d1e06fd225fa",
+      "sourceTerm": "入室",
+      "path": "terms/t_d1e06fd225fa/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "The institutional chamber interview and ordinary spatial entry are different things with incompatible continuations and independent anchors. Productive interview compounds support the first; fetching a book or entering to die supports the second.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "ac0680acecb0cee4645e74c38815b07f1de9a5c57bd7e627a9c58986769b5fb7",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_54de754ed6d3",
+      "sourceTerm": "參話頭",
+      "path": "terms/t_54de754ed6d3/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One action directed at selected recorded wording survives. Selected question, word, or conversational thread varies the object under investigation, while 看話頭 is a neighboring family rather than a second sense.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "884d2822d1674eeb0bf6cc52da38a4b654f81ede7dd6d998e846efbe10473069",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_aab4ca02ec21",
+      "sourceTerm": "呵呵大笑",
+      "path": "terms/t_aab4ca02ec21/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-final14.json",
+          "queriesReviewed": true
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus Zen-loaded referent",
+            "proper title or person",
+            "nested family contamination",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        }
+      ],
+      "reason": "One emphatic audible laughing action survives. Position in the exchange, subsequent speech, and possible appraisal do not license a universal motive or a second referent; the orthographic variant is rare and remains an alias issue.",
+      "reviewedUtc": "2026-07-14T10:44:00Z",
+      "subjectEntrySha256": "7496611da87872376b8c6995eeddb0abaacf361108c21e852147d076417a86b5",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-final14-gate.json"
+    },
+    {
+      "id": "t_627549d4c466",
+      "sourceTerm": "大蟲",
+      "path": "terms/t_627549d4c466/entry.v2.json",
+      "state": "reviewed",
+      "verdict": "keep",
+      "evidence": [
+        {
+          "kind": "owner-current-hash-gate",
+          "hardPass": true,
+          "exactKwicVerified": 8,
+          "attributionHardFailures": 0,
+          "publicFeedbackFlags": 0,
+          "depthHardFailures": 0
+        },
+        {
+          "kind": "countersearch",
+          "report": "maintenance/semantic-cohorts/semantic-r001-independent-reviewer2-countercounts-1.json",
+          "queries": [
+            {
+              "query": "岑大蟲",
+              "hits": 55,
+              "files": 37
+            },
+            {
+              "query": "大蟲看水磨",
+              "hits": 36,
+              "files": 25
+            },
+            {
+              "query": "大蟲是虎",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "遇大蟲",
+              "hits": 16,
+              "files": 13
+            },
+            {
+              "query": "大蟲者",
+              "hits": 1,
+              "files": 1
+            },
+            {
+              "query": "大蟲和尚",
+              "hits": 0,
+              "files": 0
+            }
+          ]
+        },
+        {
+          "kind": "exact-anchor-review",
+          "anchors": [
+            "J/J39/J39nB471 direct tiger equation",
+            "animal encounter/roar anchors",
+            "C/C078/C078n1720 岑大蟲 family compound"
+          ]
+        },
+        {
+          "kind": "falsification-tests",
+          "tests": [
+            "different-things sense split",
+            "noun/verb packaging",
+            "literal versus loaded referent",
+            "nested compound contamination",
+            "family contradiction",
+            "opening inference",
+            "search alias impersonation",
+            "quote/source/actor gate"
+          ]
+        },
+        {
+          "kind": "repair-recheck",
+          "result": "accepted",
+          "observations": [
+            "The bare-headword sense and lookup aliases now remain tiger only.",
+            "岑大蟲 is retained as explicitly labelled nested-family evidence and no longer buys bare-word depth or a bare lookup alias.",
+            "Seven primary bare-word anchors remain, and the current-hash gate passes."
+          ]
+        }
+      ],
+      "reason": "Repair accepted. The bare entry now defines and retrieves only the tiger; the longer personal epithet 岑大蟲 remains visible as family deployment without donating its person-name target or its occurrence to the bare headword.",
+      "reviewedUtc": "2026-07-14T09:50:28Z",
+      "subjectEntrySha256": "d8c727750088d0a3a4fa4ae46047f981b8a957d2dac700390b7bd66408310f7b",
+      "subjectGateReport": "maintenance/semantic-cohorts/semantic-r001-owner3-t_627549d4c466-gate.json"
+    }
+  ],
+  "reviewedCount": 30,
+  "waitingCount": 0,
+  "lastCheckpointUtc": "2026-07-14T10:44:00Z"
+}

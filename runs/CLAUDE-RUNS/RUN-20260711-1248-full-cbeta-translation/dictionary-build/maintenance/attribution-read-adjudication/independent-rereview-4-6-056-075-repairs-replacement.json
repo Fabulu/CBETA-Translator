@@ -1,0 +1,55 @@
+{
+  "selfReview": false,
+  "reviewer": "Codex attr_reviewer_replacement",
+  "sourceCheckpoint": "current exact repaired entries, prior independent review artifacts, repair ledgers, and complete v6 source units for cohorts 4-6 056-075; roster-only gaps deferred/nonblocking",
+  "rows": [
+    {
+      "id": "t_efbed6116e24",
+      "term": "拂袖",
+      "verdict": "REVISE",
+      "reviewedSha256": "78c414eba3e9e9e9791a0d2e43706631e5a1e9c98b09ed325add844d0a898eb0",
+      "finding": "All seven complete cases reread. The earlier missing performers/recipients and Yunmen Cheng/Dahui direct voices are now substantively repaired. The entry still stores many roles outside ACTOR_AUDIT's closed vocabulary (named-unrostered, action-performer, case-teacher, subsequent-speaker, instructor). This is non-roster structural debt, not the deferred absence of a roster record; normalize those roles while preserving the corrected exact-turn decisions.",
+      "selfReview": false
+    },
+    {
+      "id": "t_f74516e0ba71",
+      "term": "藥師",
+      "verdict": "REVISE",
+      "reviewedSha256": "638874822a488039f883da88430258e4ee25b7f5bbf184b7021bea6dbfb08456",
+      "finding": "All six complete documentary, heading, ritual, and direct-address units reread. The prior contextual enrichment is present and no title/person sense error remains. The repaired entry nevertheless uses nonclosed structured roles including ceremony-patron, address-speaker, ceremony-master, deceased-subject, text-author, and hall-speaker. Map these to the permitted vocabulary and move the finer descriptions into GrammarEvidence; roster availability itself remains deferred.",
+      "selfReview": false
+    },
+    {
+      "id": "t_fa1b42d25280",
+      "term": "雪山童子",
+      "verdict": "REVISE",
+      "reviewedSha256": "e0972b52f712acb6929988bd8bbd7ac0a7c8ea9b5488c9ce45a63037508eecfb",
+      "finding": "All three complete cases reread. Both Yexian and Shexian questions are now correctly owned by unnamed monks, with the masters only responding; Gushan's comparison is direct speech. The remaining case-teacher role on Yexian is outside the closed vocabulary and should become respondent/teacher/case-figure as warranted.",
+      "selfReview": false
+    },
+    {
+      "id": "t_fe7e2066672d",
+      "term": "薦取",
+      "verdict": "KEEP",
+      "reviewedSha256": "b2a8c76617d1113a10a1fec3c89951de0bdbb3630035961dfffa0fc1fc3cc738",
+      "finding": "All seven complete cases reread against the repair ledger. Xuedou Chongxian, Fenyang Shanzhao, Feiyin Tongrong, and the other directly marked speakers now own their exact tokens; the ordination voice remains explicitly reviewed-unnamed rather than guessed. The recognition-prompt sense and prose survive the new evidence, with no remaining non-roster semantic defect.",
+      "selfReview": false
+    },
+    {
+      "id": "t_97b566635d6c",
+      "term": "宗師",
+      "verdict": "REVISE",
+      "reviewedSha256": "41b819e27723676054365e21f509c7b6206cace6ddece1a53d60522be997f2df",
+      "finding": "All seven complete units reread. The prose now correctly gives the fundamental-matter sentence to Zhaozhou and correctly spells Deshan Yuanming; all exact headword speakers are sound. The entry still uses several roles outside the closed vocabulary (person-appraised, lineage-teacher, person-called-great-lineage-master, quoted-case-figure, acting-teacher). Preserve the repaired people but normalize their roles and put the appraisal detail in GrammarEvidence.",
+      "selfReview": false
+    },
+    {
+      "id": "t_37261001c332",
+      "term": "觀心",
+      "verdict": "REVISE",
+      "reviewedSha256": "a787eb395cbc7ece96efe350463af2590dc1dfb3766924295953a69c7ba917f7",
+      "finding": "All nine complete encounter, treatise, quotation, discourse, and verse units reread. Zhang Tingyu/Layman Chenghuai and Chaoding Yuxuan now correctly replace the earlier blanket Xuri attribution, and the explanation names all three voices accurately. The remaining structured named-unrostered role on Zhang Tingyu is outside the closed vocabulary; keep verse-author and move roster-state metadata out of Roles. Roster registration itself remains deferred/nonblocking.",
+      "selfReview": false
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "source": "J/J27/J27nB191.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-bundle six-rung exact-turn review",
+  "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+  "rows": [
+    {
+      "key": "t_c728f3a8e02b:0167b24:1:5",
+      "entryId": "t_c728f3a8e02b",
+      "sourceTerm": "家風",
+      "RelPath": "J/J27/J27nB191.xml",
+      "FromLb": "0167b24",
+      "Kwic": "因僧問：「如何是古佛家風？」師曰：「銀蟾初出海，何處不分明？」",
+      "caseClusterId": "J/J27/J27nB191.xml:72067:72183",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "象田即念禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking about the ancient Buddha's house style",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "象田即念禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking about the ancient Buddha's house style as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Xiangtian Jinian"
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_c728f3a8e02b:0167b24:1:5"
+  ]
+}

@@ -1,0 +1,65 @@
+# Hard bundle ledger — hard-w3-b2
+
+- Worker: `/root/source_x66_batch`
+- Reviewed: 150/150
+- Applied and fully gated: 150/150
+- Completed sources: 56/56
+
+## Completed sources
+
+- `X/X64/X64n1260.xml` — 15 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T51/T51n2077.xml` — 16 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T51/T51n2076.xml` — 14 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X68/X68n1319.xml` — 10 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X68/X68n1318.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T47/T47n1997.xml` — 6 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2016.xml` — 9 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X66/X66n1296.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB471.xml` — 5 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2006.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2025.xml` — 4 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2003.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB406.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB466.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB454.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2008.xml` — 3 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X69/X69n1359.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T47/T47n2000.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2004.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X67/X67n1299.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X69/X69n1333.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB425.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T47/T47n1992.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2005.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X63/X63n1245.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X63/X63n1250.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X63/X63n1259.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X67/X67n1304.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X69/X69n1357.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X70/X70n1402.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB410.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB423.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB460.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T47/T47n1999.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2013.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2015.xml` — 2 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X63/X63n1257.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X69/X69n1345.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X70/X70n1376.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X70/X70n1390.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB407.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J38/J38nB414.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB435.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB445.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB446.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J39/J39nB456.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J40/J40nB472.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `J/J40/J40nB491.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2007.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2017.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2020.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `T/T48/T48n2024.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X63/X63n1255.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X67/X67n1307.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X69/X69n1326.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.
+- `X/X70/X70n1398.xml` — 1 rows; signed compile, strict dry-run, apply, focused comparison, and exact replay passed.

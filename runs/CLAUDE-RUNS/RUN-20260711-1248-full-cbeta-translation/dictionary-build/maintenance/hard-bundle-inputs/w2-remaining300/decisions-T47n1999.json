@@ -1,0 +1,27 @@
+{
+  "source": "T/T47/T47n1999.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_ffb0ee18f1a2:0962b04:1:3",
+      "entryId": "t_ffb0ee18f1a2",
+      "sourceTerm": "牢關",
+      "RelPath": "T/T47/T47n1999.xml",
+      "FromLb": "0962b04",
+      "Kwic": "打破牢關。天寬地寬。",
+      "caseClusterId": "T/T47/T47n1999.xml:36578:36810",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "密菴和尚語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Mi'an Xianjie",
+        "AttributionNote": "Recorded Sayings of Mi'an (密菴和尚語錄): in his Jiangshan monastery discourse, Mi'an Xianjie says 'break the solid checkpoint; heaven is broad and earth is broad.'"
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

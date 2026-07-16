@@ -1,0 +1,32 @@
+{
+  "source": "X/X69/X69n1363.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex Bundle B exact-turn review",
+  "reviewedUtc": "2026-07-14T07:50:00Z",
+  "rows": [
+    {
+      "key": "t_c8ef8a6a8ef7:0650c14:1:4",
+      "entryId": "t_c8ef8a6a8ef7",
+      "sourceTerm": "那箇",
+      "RelPath": "X/X69/X69n1363.xml",
+      "FromLb": "0650c14",
+      "Kwic": "不思善、不思惡，那箇是明上座本來面目？",
+      "caseClusterId": "X/X69/X69n1363.xml:15434:16101",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "西山亮禪師語錄",
+      "defaultMasterName": "Huineng",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Huineng",
+        "ActorAttribution": null,
+        "ContextMasters": [
+          {"MasterName": "Huiming", "Roles": ["addressee in the inherited exchange"]},
+          {"MasterName": "Xishan Liang", "Roles": ["later case raiser and commentator"]}
+        ],
+        "AttributionNote": "Recorded Sayings of Chan Master Xishan Liang (西山亮禪師語錄), public case commentary. Huineng is the exact speaker of the stored question asking Huiming which is his original face when not thinking good or evil. Huiming is the named addressee and awakening respondent; Xishan Liang is the later master who raises, interjects on, and finally questions the case."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

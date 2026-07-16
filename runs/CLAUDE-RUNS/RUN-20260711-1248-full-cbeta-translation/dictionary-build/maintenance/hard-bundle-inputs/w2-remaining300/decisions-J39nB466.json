@@ -1,0 +1,44 @@
+{
+  "source": "J/J39/J39nB466.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_96255c741b17:0845a18:1:4",
+      "entryId": "t_96255c741b17",
+      "sourceTerm": "沒滋味",
+      "RelPath": "J/J39/J39nB466.xml",
+      "FromLb": "0845a18",
+      "Kwic": "一時不得放過。直捱到無下手處，沒滋味處，心死路絕處，連絕也不知。",
+      "caseClusterId": "J/J39/J39nB466.xml:63485:65044",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "山西柏山楷禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baishan Kai",
+        "AttributionNote": "Recorded Sayings of Chan Master Baishan Kai of Shanxi (山西柏山楷禪師語錄): in his small address, Baishan Kai instructs students not to let go until they reach the point with nowhere to set a hand, no flavor, and the mind-road cut off."
+      }
+    },
+    {
+      "key": "t_b90a5f36ec86:0848a25:1:1",
+      "entryId": "t_b90a5f36ec86",
+      "sourceTerm": "弄精魂",
+      "RelPath": "J/J39/J39nB466.xml",
+      "FromLb": "0848a25",
+      "Kwic": "說宗說教，也是弄精魂；說禪說道，也是弄精魂；說心說性，也是弄精魂；",
+      "caseClusterId": "J/J39/J39nB466.xml:80936:81932",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "山西柏山楷禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Baishan Kai",
+        "AttributionNote": "Recorded Sayings of Chan Master Baishan Kai of Shanxi (山西柏山楷禪師語錄): in his instruction to the assembly, Baishan Kai repeatedly classifies speaking of school or doctrine, Chan or the Way, mind or nature as toying with the spirit-soul."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

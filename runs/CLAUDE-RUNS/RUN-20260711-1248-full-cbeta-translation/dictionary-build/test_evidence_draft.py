@@ -70,6 +70,20 @@ class EvidenceDraftTests(unittest.TestCase):
             sense["Explanation"],
         )
 
+    def test_derives_link_inventories_from_structured_evidence(self):
+        payload = valid_payload()
+        sense = payload["Entry"]["Senses"][0]
+        sense["RelatedMasters"] = []
+        sense["SourceTexts"] = ["stale.xml"]
+        sense["Occurrences"][0]["ContextMasters"].append(
+            {"MasterName": "Context Master", "Roles": ["respondent"]}
+        )
+        entry, errors = compile_draft(payload)
+        self.assertEqual([], errors)
+        compiled = entry["Senses"][0]
+        self.assertEqual(["Test Master", "Context Master"], compiled["RelatedMasters"])
+        self.assertEqual(["T/test.xml"], compiled["SourceTexts"])
+
     def test_rejects_calque_first_opening(self):
         payload = valid_payload()
         payload["Entry"]["Senses"][0]["ExplanationParts"]["CorpusEarnedOpening"] = "Literally, test."

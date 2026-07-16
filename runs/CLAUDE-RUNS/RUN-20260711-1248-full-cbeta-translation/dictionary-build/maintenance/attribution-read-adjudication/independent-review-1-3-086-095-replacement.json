@@ -1,0 +1,87 @@
+{
+  "selfReview": false,
+  "reviewer": "Codex attr_reviewer_replacement",
+  "sourceCheckpoint": "current exact author-complete entries plus cohorts-1-3-v6-packets-086-095.json and author repair ledger; all 74 stored occurrences read in their complete packet source units; roster-only gaps deferred/nonblocking; ACTOR_AUDIT closed role vocabulary enforced",
+  "rows": [
+    {
+      "id": "t_c212062774f9",
+      "term": "禪床",
+      "verdict": "REVISE",
+      "reviewedSha256": "aa825825e05e21cfe9b994c1adc7249fa0f8c4bdf95cc85f3490240774d07225",
+      "finding": "All ten complete cases read against the exact current bytes. Exact action/narration distinctions are substantially sound, but eight ContextMasters assignments use forbidden roles including action-performer, hall-speaker, and case-teacher. The C078n1720 頌曰 witness also requires an identified or reviewed-unnamed verse author rather than generic compiler ownership.",
+      "selfReview": false
+    },
+    {
+      "id": "t_c4a694970a12",
+      "term": "洗鉢盂",
+      "verdict": "REVISE",
+      "reviewedSha256": "f59c403b29dc1203b2d66c9700719e6d8bcb34ba8230e9c9d1ec9f6084553571",
+      "finding": "All six complete Zhaozhou-case and later-deployment units read against the exact current bytes. Exact questioners and direct speakers hold, but seven contextual roles use forbidden labels such as instructor, case-teacher, case-source, and quoted-utterer. The X79n1559 biography also identifies a section master around the narrated room-question use while ContextMasters is empty.",
+      "selfReview": false
+    },
+    {
+      "id": "t_c728f3a8e02b",
+      "term": "家風",
+      "verdict": "REVISE",
+      "reviewedSha256": "b689fbb7bc2f50ad12cb95a63a623c9ed289a30b876174be19e205552591b33e",
+      "finding": "All eight complete questions and hall addresses read against the exact current bytes. Exact utterer ownership holds, including the monk's question in Feiyin's record, but the Feiyin contextual row still contains forbidden hall-speaker and case-teacher roles. Normalize them to the closed vocabulary without changing the exact-turn decision.",
+      "selfReview": false
+    },
+    {
+      "id": "t_cbf868f557e2",
+      "term": "陞座",
+      "verdict": "REVISE",
+      "reviewedSha256": "acdad9b565b2677bb2406ef2c58c5664cd08c71628e5a42443f3445f0117615f",
+      "finding": "All eight complete event labels, preface, biographies, and hall units read against the exact current bytes. Narrator/event ownership is correct, but twelve ContextMasters assignments use forbidden action-performer and hall-speaker roles. Replace them with warranted closed roles while retaining the event distinction.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d0a4a5271135",
+      "term": "石人",
+      "verdict": "REVISE",
+      "reviewedSha256": "a3ccbc3dd4798d39d28f527d604d5b1436bc3ea8aac5ede5e32886a94e9307ea",
+      "finding": "All seven complete addresses, exchange, commentary, and verse units read against the exact current bytes. Exact speakers hold and the C078 anthology token is correctly assigned to an exhaustively reviewed unnamed verse author rather than Nanquan. The Yongming contextual row still uses forbidden hall-speaker, however; replace it with a warranted closed role while preserving the monk's exact question ownership.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d0d82a2681a0",
+      "term": "第一句",
+      "verdict": "REVISE",
+      "reviewedSha256": "4fb37cb0de70150041dea3a030557a9e07a74d90de1a311daff80590d07a13b2",
+      "finding": "All eight complete addresses and interviews read against the exact current bytes. Yuanwu, Linji, and Hanyue own their direct uses, while the question frames correctly assign several tokens to unnamed monks. The Jingqing and Linji contextual rows still use forbidden case-teacher roles; normalize those roles and leave the exact questioner/respondent ownership intact.",
+      "selfReview": false
+    },
+    {
+      "id": "t_d8868082a16c",
+      "term": "代云",
+      "verdict": "REVISE",
+      "reviewedSha256": "d165c65b3b4d3d313c2f2a6ef300c7d54cfbd3ecad49f5d3d96cfe33e3185ef6",
+      "finding": "All eight complete substitute-answer and later-discussion units read against the exact current bytes. The substitute speaker decisions substantially hold under the then-current treatment, but six contextual assignments use forbidden substitute-answerer or hall-speaker roles, and the first occurrence stores 佛眼禪師 rather than a roster-canonical MasterName. Normalize roles and canonical identity, then recheck the reporting-verb grammar consistently.",
+      "selfReview": false
+    },
+    {
+      "id": "t_dc24f92ead78",
+      "term": "問訊",
+      "verdict": "REVISE",
+      "reviewedSha256": "0dc3710d2753e3544086e7f6c1eb859f2a10375269dd462b935417e8400acb24",
+      "finding": "All seven complete regulations, biographies, and encounters read against the exact current bytes. These are narrated formal acts, so null MasterName is correct. The Linji encounter still uses forbidden action-performer and case-teacher roles; recast them with closed contextual roles while keeping the compiler as exact owner of the narrated headword.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e17068150613",
+      "term": "法身邊事",
+      "verdict": "REVISE",
+      "reviewedSha256": "df1c3feb564656318c97bb03c4d89c779352ca40b8d06b59590287a4fa447d5f",
+      "finding": "All six complete original exchanges, later raisings, and hall commentaries read against the exact current bytes. Shushan, Yunmen, Langye, Chushi, and the reviewed unnamed hall speaker own their exact tokens, but five ContextMasters assignments use forbidden case-teacher, quoted-utterer, or case-source roles. Translate them to closed respondent/later-quoter/person-discussed/case-figure/commentator roles without moving MasterName away from the headword utterer.",
+      "selfReview": false
+    },
+    {
+      "id": "t_e21288d0fefb",
+      "term": "徐六擔板",
+      "verdict": "KEEP",
+      "reviewedSha256": "8000cd2804edddcf5fc7074e3d99e69bc55002326fb34601d289a8b00cbb4d71",
+      "finding": "All six complete hall addresses and commentarial deployments read. Dunan Zongyan, Lianfeng, Yunmen Cheng, Zixian Jue, Guishan Hui'an Guang, and Feiyin Tongrong each directly utter the headword, all stored roles are closed-vocabulary, and the explanation's one-sided-board inference is explicitly supplied by repeated 祇見一邊 or 各見一邊 corpus wording rather than imported interpretation.",
+      "selfReview": false
+    }
+  ]
+}

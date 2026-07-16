@@ -1,0 +1,65 @@
+{
+  "source": "D/D48/D48n8939.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-b1",
+  "reviewedUtc": "2026-07-14T07:30:00Z",
+  "rows": [
+    {
+      "key": "t_c3a7862b9971:0031b04:1:1",
+      "entryId": "t_c3a7862b9971",
+      "sourceTerm": "自在",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0031b04",
+      "Kwic": "各自大家堂中喫茶自由自在",
+      "caseClusterId": "D/D48/D48n8939.xml:287366:287704",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): inside the Upper-Hall Record of Foyan Qingyuan at Longmen, Foyan ends the exchange by telling everyone to drink tea freely and at ease in the hall."
+      }
+    },
+    {
+      "key": "t_84e490b1773f:0038a08:1:6",
+      "entryId": "t_84e490b1773f",
+      "sourceTerm": "撫掌",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0038a08",
+      "Kwic": "上堂撫掌大笑良久曰大眾笑箇什麼山僧笑古往今來一切人有瞥地有不瞥地",
+      "caseClusterId": "D/D48/D48n8939.xml:297906:298378",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Foyan Qingyuan",
+        "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): inside his Longmen upper-hall record, Foyan Qingyuan claps his hands, laughs loudly, pauses, and asks the assembly what they think he is laughing at."
+      }
+    },
+    {
+      "key": "t_a2612eb1f803:0416a06:1:4",
+      "entryId": "t_a2612eb1f803",
+      "sourceTerm": "本自具足",
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0416a06",
+      "Kwic": "況神通變化眾生本自具足不假外求如今人多是外求",
+      "caseClusterId": "D/D48/D48n8939.xml:955935:956759",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "古尊宿語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhenjing Kewen",
+        "AttributionNote": "Recorded Sayings of Ancient Worthies (古尊宿語錄): in the first recorded address from his residence at Jinling Baoning, Zhenjing Kewen says that sentient beings are originally complete in spiritual powers and transformations and need not seek them outside."
+      }
+    }
+  ],
+  "candidateMissingKeys": [
+    "t_c3a7862b9971:0031b04:1:1",
+    "t_84e490b1773f:0038a08:1:6",
+    "t_a2612eb1f803:0416a06:1:4"
+  ]
+}

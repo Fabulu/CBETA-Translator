@@ -1,0 +1,64 @@
+{
+  "source": "J/J36/J36nB369.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-remaining300",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_43326c07f6ff:0903b17:1:5",
+      "entryId": "t_43326c07f6ff",
+      "sourceTerm": "提持",
+      "RelPath": "J/J36/J36nB369.xml",
+      "FromLb": "0903b17",
+      "Kwic": "祖師千七百則葛藤，是祭鬼神底器具，用之則禍生。古人恁麼提持，也覺大有徑庭，不近人情。",
+      "caseClusterId": "J/J36/J36nB369.xml:77691:78030",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蔗菴範禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhean Jingfan",
+        "ActorAttribution": null,
+        "AttributionNote": "蔗菴範禪師語錄. Zhean Jingfan is the exact actor: his 資聖上堂 says 古人恁麼提持."
+      }
+    },
+    {
+      "key": "t_a38f997d9c16:0930c12:1:4",
+      "entryId": "t_a38f997d9c16",
+      "sourceTerm": "蒸砂作飯",
+      "RelPath": "J/J36/J36nB369.xml",
+      "FromLb": "0930c12",
+      "Kwic": "喝水成冰，法法森嚴，蒸砂作飯，人人可飽，非堂頭法兄，安能大暢宗猷、光斯盛業？",
+      "caseClusterId": "J/J36/J36nB369.xml:212882:213309",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蔗菴範禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhean Jingfan",
+        "ActorAttribution": null,
+        "AttributionNote": "蔗菴範禪師語錄. Zhean Jingfan is the exact actor: his 東塔 address says 蒸砂作飯，人人可飽."
+      }
+    },
+    {
+      "key": "t_35249f3cbae1:0954c11:2:2",
+      "entryId": "t_35249f3cbae1",
+      "sourceTerm": "驢腳",
+      "RelPath": "J/J36/J36nB369.xml",
+      "FromLb": "0954c11",
+      "Kwic": "驢腳馬腳，行止無拘。我手佛手，取舍自決。",
+      "caseClusterId": "J/J36/J36nB369.xml:341021:341171",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "蔗菴範禪師語錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Zhean Jingfan",
+        "ActorAttribution": null,
+        "AttributionNote": "蔗菴範禪師語錄. Zhean Jingfan is the exact actor: his 天華寺 verse says 驢腳馬腳，行止無拘."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

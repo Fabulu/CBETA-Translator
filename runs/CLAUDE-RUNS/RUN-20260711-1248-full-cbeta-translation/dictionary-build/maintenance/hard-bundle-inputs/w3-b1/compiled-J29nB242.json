@@ -1,0 +1,64 @@
+{
+  "source": "J/J29/J29nB242.xml",
+  "compiledFrom": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/hard-bundle-inputs/w3-b1/decisions-J29nB242.json",
+  "decisions": [
+    {
+      "entryId": "t_d190cf45c531",
+      "sourceTerm": "話頭",
+      "RelPath": "J/J29/J29nB242.xml",
+      "FromLb": "0681a07",
+      "Kwic": "僧問：「如何是話頭？」師云：「腳上生腳。」「如何是話尾？」師云：「如牛無角。」「如何是話腰？」師云：「你且行路。」",
+      "caseClusterId": "J/J29/J29nB242.xml:14231:14383",
+      "Decision": {
+        "MasterName": null,
+        "ActorAttribution": {
+          "Status": "reviewed-unnamed",
+          "Kind": "monk",
+          "ActorLabel": "Unnamed monk asking what the critical phrase is",
+          "ActorRole": "exact headword-bearing speaker or grammatical actor",
+          "RungsChecked": [
+            "line",
+            "expanded-context",
+            "section-header",
+            "book-title",
+            "tei-header",
+            "parallel-passage"
+          ],
+          "ReviewedBy": "Codex hard-bundle six-rung exact-turn review",
+          "ReviewedUtc": "2026-07-14T06:38:09.734372Z"
+        },
+        "AttributionNote": "鐵眉三巴掌禪師語錄. Full six-rung exact-turn review identifies Unnamed monk asking what the critical phrase is as the exact actor; all six rungs leave this non-master unnamed.",
+        "ContextMasters": [
+          "Tiemei Sanbazhang"
+        ]
+      },
+      "ExpectedSourceTitle": "鐵眉三巴掌禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    },
+    {
+      "entryId": "t_e316c767f5f9",
+      "sourceTerm": "廣額",
+      "RelPath": "J/J29/J29nB242.xml",
+      "FromLb": "0682b23",
+      "Kwic": "其人脩長，蠶眉河目，廣額豐頤，鬚如螺結。",
+      "caseClusterId": "J/J29/J29nB242.xml:25741:27245",
+      "Decision": {
+        "MasterName": "Tiemei Sanbazhang",
+        "ActorAttribution": null,
+        "AttributionNote": "鐵眉三巴掌禪師語錄. Full six-rung exact-turn review identifies Tiemei Sanbazhang as the exact headword-bearing speaker, author, or grammatical actor for this occurrence."
+      },
+      "ExpectedSourceTitle": "鐵眉三巴掌禪師語錄",
+      "Review": {
+        "reviewer": "Codex hard-bundle six-rung exact-turn review",
+        "reviewedUtc": "2026-07-14T06:38:09.734372Z",
+        "wholeCaseReviewed": true,
+        "usedDefault": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "X/X85/X85n1591.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w2-remaining300",
+  "reviewedUtc": "2026-07-14T07:45:00Z",
+  "rows": [
+    {
+      "key": "t_8253f56255ce:0230c08:1:4",
+      "entryId": "t_8253f56255ce",
+      "sourceTerm": "塵塵剎剎",
+      "RelPath": "X/X85/X85n1591.xml",
+      "FromLb": "0230c08",
+      "Kwic": "若也會得，塵塵剎剎；若也不會，當頭一蹋。",
+      "caseClusterId": "X/X85/X85n1591.xml:40067:40277",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "黔南會燈錄",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Xiangya Ting",
+        "AttributionNote": "Lamp Compendium of Qiannan (黔南會燈錄): in his Buddha-birthday hall address, Xiangya Ting says understanding means dust after dust and land after land, while not understanding earns a frontal kick."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

@@ -1,0 +1,41 @@
+{
+  "source": "J/J29/J29nB223.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:19:10Z",
+  "rows": [
+    {
+      "key": "t_77821881a767:0045a16:1:6",
+      "entryId": "t_77821881a767",
+      "sourceTerm": "釋迦老子",
+      "RelPath": "J/J29/J29nB223.xml",
+      "FromLb": "0045a16",
+      "Kwic": "釋迦老子說不到處，說取一句；達磨大師行不到處，行取一步。",
+      "caseClusterId": "J/J29/J29nB223.xml:131182:131668",
+      "reviewClass": "existing-note-canonical-candidate",
+      "sourceTitle": "山暉禪師語錄",
+      "defaultMasterName": "Bodhidharma",
+      "candidateBasis": "existing-note",
+      "Override": {
+        "MasterName": "Shanhui",
+        "AttributionNote": "Recorded Sayings of Chan Master Shanhui (山暉禪師語錄), in Shanhui's small convocation. Shanhui is the exact speaker who raises his whisk and tells the assembly to speak a sentence where Shakyamuni Buddha could not speak and take a step where Bodhidharma could not go. Shakyamuni Buddha and Bodhidharma are the two masters named as limits surpassed in Shanhui's challenge, not the speaker of the stored sentence.",
+        "ContextMasters": [
+          {
+            "MasterName": "Shakyamuni Buddha",
+            "Roles": [
+              "person-invoked"
+            ]
+          },
+          {
+            "MasterName": "Bodhidharma",
+            "Roles": [
+              "person-invoked"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

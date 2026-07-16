@@ -1,0 +1,163 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 11,
+    "occurrences": 72,
+    "named_occurrences": 45,
+    "deferred_non_roster": 22,
+    "pending_roster_master": 10,
+    "context_master_links": 81,
+    "deferred_non_roster_context": 36,
+    "pending_roster_context_master": 16,
+    "attribution_notes": 74,
+    "actor_reviewed_unnamed": 19,
+    "note_missing_source": 8,
+    "chinese_strings": 37,
+    "anchored_chinese": 37,
+    "explicit_master_turn_left_anonymous": 6,
+    "named_master_missing_structured_link": 2,
+    "reviewed_unnamed_prose": 1,
+    "claim_anchors": 2,
+    "actor_narrated": 9,
+    "actor_identified_non_master": 1,
+    "identified_actor_not_named": 1,
+    "reviewed_unnamed_label_not_explicit": 1,
+    "note_missing_speaker": 3,
+    "action_performer_in_utterer_field": 2,
+    "action_performer_context_missing": 2,
+    "vague_attributor": 1
+  },
+  "hardFailures": 26,
+  "failures": [
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e2c55f8feca0/entry.v2.json",
+      "detail": "三寸 s1 o2 expected '五燈會元': An unnamed monk asks Cuiyan Lingcan to speak without borrowing the three-inch tongue; Cuiyan answers next."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e2c55f8feca0/entry.v2.json",
+      "detail": "三寸 s1 o3 expected '五燈全書(第34卷-第120卷)': An unnamed monk calls Dahui Zonggao's three-inch tongue tightly guarded; Dahui answers next."
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e96268628f2c/entry.v2.json",
+      "detail": "萬法歸一 s1 o3: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e96268628f2c/entry.v2.json",
+      "detail": "萬法歸一 s1 o4: Baizhang Huaihai appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_e9847e6f41c9/entry.v2.json",
+      "detail": "腳跟下 s1 o6 expected '兜率不磷堅禪師語錄': An unnamed monk asks Bulin Jian about the matter right under the heels; Bulin answers 'putting a head atop the head.'"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_eea2b5e58c24/entry.v2.json",
+      "detail": "院主 s1 o1: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_eea2b5e58c24/entry.v2.json",
+      "detail": "院主 s1 o5: ['師問']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efc6a42814ee/entry.v2.json",
+      "detail": "東坡居士 s1 o1: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_efc6a42814ee/entry.v2.json",
+      "detail": "東坡居士 s1 o4: ['師曰']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f266d9e034ea/entry.v2.json",
+      "detail": "主中主 s1 o2: ['師云']; read the complete case and name the exact master"
+    },
+    {
+      "kind": "identified_actor_not_named",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f266d9e034ea/entry.v2.json",
+      "detail": "主中主 s1 o3: identified-non-master requires the actor's actual name; use reviewed-unnamed plus all six rungs when the source supplies only a role: 'the signed preface author'"
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f47e0cb15568/entry.v2.json",
+      "detail": "末後一著 s1 o3: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f47e0cb15568/entry.v2.json",
+      "detail": "末後一著 s1 o3: Recorded Sayings of Yinyuan Longqi (隱元禪師語錄): West Hall Wude asks Yinyuan to substantiate the final move; Yinyuan tells him to bow at once."
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f47e0cb15568/entry.v2.json",
+      "detail": "末後一著 s1 o4: ['師指']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f47e0cb15568/entry.v2.json",
+      "detail": "末後一著 s1 o4: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5f691fd0483/entry.v2.json",
+      "detail": "犀牛 s1 o3 expected '石雨禪師法檀': Shiyu Mingfang's record: an unnamed monk presents the verse 'Yanguan wrongly called it a rhinoceros'; Shiyu's challenge follows separately."
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f5f691fd0483/entry.v2.json",
+      "detail": "犀牛 s1 o7: Yunmen Wenyan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1 o1 expected '五燈全書(第34卷-第120卷)': Complete Compendium of the Five Lamps (五燈全書), Fachang Yiyu section: Fachang calls the monk a black-lacquer bucket after the monk draws a circle."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1 o2: Dahui's Formal Discourses (大慧普覺禪師普說): Dahui says that Yuanwu's two-line response suddenly broke open his lacquer bucket."
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1 o8: ['師打']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1 o8: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1 o8 expected '五燈嚴統(第10卷-第25卷)': Strict Lineage of the Five Lamps (五燈嚴統), Sansheng Huiran section: Sansheng strikes the head monk and directly calls him a lacquer bucket."
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f69bf9de345e/entry.v2.json",
+      "detail": "漆桶 s1: 'a monk'"
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7577f4c57c3/entry.v2.json",
+      "detail": "第二句 s1 o1 expected '五燈全書(第34卷-第120卷)': Complete Compendium of the Five Lamps (五燈全書), Yuanwu Keqin section: Yuanwu says that one who recommends in the second phrase makes humans and devas lose their nerve."
+    },
+    {
+      "kind": "note_missing_source",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7577f4c57c3/entry.v2.json",
+      "detail": "第二句 s1 o3 expected '五燈嚴統(第10卷-第25卷)': Strict Lineage of the Five Lamps (五燈嚴統), Linji Yixuan section: Linji says one who recommends within the second phrase can teach humans and devas."
+    },
+    {
+      "kind": "note_missing_speaker",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f7577f4c57c3/entry.v2.json",
+      "detail": "第二句 s1 o8: Combined Essentials of the Lamps (聯燈會要), anonymous preface: the writer asks how there could be any so-called second phrase after claiming the earlier records showed not one word."
+    }
+  ]
+}

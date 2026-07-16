@@ -1,0 +1,28 @@
+{
+  "source": "J/J27/J27nB197.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex hard-w1-b1",
+  "reviewedUtc": "2026-07-14T00:00:00Z",
+  "rows": [
+    {
+      "key": "t_e9847e6f41c9:0396a06:1:3",
+      "entryId": "t_e9847e6f41c9",
+      "sourceTerm": "腳跟下",
+      "RelPath": "J/J27/J27nB197.xml",
+      "FromLb": "0396a06",
+      "Kwic": "師云：「闍黎腳跟下水深多少？」",
+      "caseClusterId": "J/J27/J27nB197.xml:30572:30856",
+      "reviewClass": "full-ladder-or-parallel-needed",
+      "sourceTitle": "博山無異大師語錄集要",
+      "defaultMasterName": null,
+      "candidateBasis": "none",
+      "Override": {
+        "MasterName": "Wuyi Yuanlai",
+        "ActorAttribution": null,
+        "AttributionNote": "博山無異大師語錄集要, public exchange. Wuyi Yuanlai is the exact speaker of the stored answer: when an unnamed monk asks about raising waves, Wuyi asks how deep the water is beneath the monk's heels."
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

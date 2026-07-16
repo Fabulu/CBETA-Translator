@@ -1,0 +1,37 @@
+{
+  "source": "X/X72/X72n1432.xml",
+  "instructions": "Read every complete case in the paired workbook. The default is only a draft. Put a full Decision object in Override for every contradiction, then sign reviewedAllCases. The compiler refuses unsigned or candidate-less rows.",
+  "reviewedAllCases": true,
+  "reviewer": "Codex source-batched exact-turn review",
+  "reviewedUtc": "2026-07-14T05:43:46Z",
+  "rows": [
+    {
+      "key": "t_34143e43daf4:0186c07:1:1",
+      "entryId": "t_34143e43daf4",
+      "sourceTerm": "放下著",
+      "RelPath": "X/X72/X72n1432.xml",
+      "FromLb": "0186c07",
+      "Kwic": "豈不聞昔有僧問趙州：一物不將來時如何？州曰：放下著。僧曰：一物不將來，放下箇甚麼？州曰：放不下，擔取去。",
+      "caseClusterId": "X/X72/X72n1432.xml:56985:57414",
+      "reviewClass": "single-record-candidate",
+      "sourceTitle": "無明慧經禪師語錄",
+      "defaultMasterName": "Wuming Huijing",
+      "candidateBasis": "title",
+      "Override": {
+        "MasterName": "Zhaozhou Congshen",
+        "ActorAttribution": null,
+        "AttributionNote": "無明慧經禪師語錄: Zhaozhou Congshen is the exact speaker of the quoted answer ‘放下著’; Wuming Huijing later raises the Zhaozhou exchange in his own recorded sayings.",
+        "ContextMasters": [
+          {
+            "MasterName": "Wuming Huijing",
+            "Roles": [
+              "later-raiser",
+              "record-owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "candidateMissingKeys": []
+}

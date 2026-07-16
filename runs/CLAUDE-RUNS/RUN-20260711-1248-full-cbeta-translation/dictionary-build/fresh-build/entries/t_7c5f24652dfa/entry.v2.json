@@ -23,13 +23,13 @@
           "ToLb": "0718b21",
           "Kwic": "是苐一機云緊帩草鞋師在嶺中時有僧問如何是法身向上事云向上與你道即不難汝喚什麼作法",
           "Curated": true,
-          "AttributionNote": "Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Yunmen Wenyan gives the separately marked answer.",
+          "AttributionNote": "古尊宿語錄. Exact headword actor: the unnamed monk. The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
           "ContextMasters": [
             {
               "MasterName": "Yunmen Wenyan",
               "Roles": [
                 "respondent",
-                "case-teacher"
+                "teacher"
               ]
             }
           ],
@@ -58,13 +58,13 @@
           "ToLb": "0533c04",
           "Kwic": "是清淨法身？師曰：紅日照青山。曰：如何是法身向上事？師曰：風吹雪不寒。問僧：趙州",
           "Curated": true,
-          "AttributionNote": "Complete exchange: an unnamed monk asks about the matter beyond the Dharma-body; Jingqing Daofu gives the separately marked answer.",
+          "AttributionNote": "五燈全書(第1卷-第33卷). Exact headword actor: the unnamed monk. The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
           "ContextMasters": [
             {
               "MasterName": "Jingqing Daofu",
               "Roles": [
                 "respondent",
-                "case-teacher"
+                "teacher"
               ]
             }
           ],
@@ -93,8 +93,23 @@
           "ToLb": "0504c10",
           "Kwic": "問柏林，應聲便喝云：遲八刻。磬山因僧問：如何是法身邊事？師曰：黑漆桶。曰：如何是法身？師曰：爛冬瓜。曰：如何是法身向上事？師曰：三家村裏酒帘子。妙偉俊云：潭州紙貴，一狀領過。磬山因僧參，曰：久慕道風，今日得見和尚。師高聲曰：諾。曰：三乘十二分教即不問，當陽一句，請師直指",
           "Curated": true,
-          "AttributionNote": "Source text (宗鑑法林; X/X66/X66n1297.xml). Exact actor: the reviewed unnamed monastic participant. The complete unit identifies the participant role but supplies no safe canonical personal name; all six rungs were checked.",
-          "ContextMasters": [],
+          "AttributionNote": "宗鑑法林. Exact headword actor: the reviewed unnamed monastic participant. The complete unit identifies the participant role but supplies no safe canonical personal name; all six rungs were checked.",
+          "ContextMasters": [
+            {
+              "MasterName": "Qingshan",
+              "Roles": [
+                "respondent",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Miaowei Jun",
+              "Roles": [
+                "later-raiser",
+                "commentator"
+              ]
+            }
+          ],
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
@@ -117,26 +132,27 @@
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
-          "FromLb": "0175c06",
-          "ToLb": "0175c13",
-          "Kwic": "疎山云：咸通年後會得法身向上事，云門云：作麼生是法身向上事",
+          "FromLb": "0175c08",
+          "ToLb": "0175c09",
+          "Kwic": "老僧咸通年前會得法身邊事，咸通年後會得法身向上事",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Shushan Kuangren",
               "Roles": [
-                "utterer"
+                "utterer",
+                "section-subject"
               ]
             }
           ],
-          "AttributionNote": "Source text (宗門拈古彙集; X/X66/X66n1296.xml). Exact actor: Shushan Kuangren. The complete case, personal section, and uninterrupted headword clause identify this actor; embedded figures do not replace the current voice.",
+          "AttributionNote": "宗門拈古彙集. Exact headword actor: Shushan Kuangren. The complete case assigns the headword-bearing wording to Shushan Kuangren.",
           "MasterName": "Shushan Kuangren"
         },
         {
           "RelPath": "J/J25/J25nB171.xml",
-          "FromLb": "0545a17",
-          "ToLb": "0545a27",
-          "Kwic": "師問眾云：作麼生是法身向上事？",
+          "FromLb": "0545a22",
+          "ToLb": "0545a22",
+          "Kwic": "且道如何是法身向上事？",
           "MasterName": "Tianyin Yuanxiu",
           "Curated": true,
           "ContextMasters": [
@@ -147,13 +163,13 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (天隱和尚語錄; J/J25/J25nB171.xml). Exact actor: Tianyin Yuanxiu. Tianyin Yuanxiu raises the question in his own formal address and answers it by lifting the whisk."
+          "AttributionNote": "天隱和尚語錄. Exact headword actor: Tianyin Yuanxiu. The complete case assigns the headword-bearing wording to Tianyin Yuanxiu."
         },
         {
           "RelPath": "X/X71/X71n1412.xml",
-          "FromLb": "0216b04",
-          "ToLb": "0216b15",
-          "Kwic": "師是大過患，天下老和尚是大過患。玄沙問鏡清：不見一法是大過患，且道不見甚麼法？鏡清指露柱云：莫是不見者箇法麼？玄沙云：浙中清水白米許汝喫，若是佛法，未夢見在。卓主丈云：腦後見腮，莫與往來。上堂，舉：疎山云：咸通年已前會法身邊事，咸通年已後會法身向上事。雲門問云：舉：聞和尚咸通年已前會法身邊事，咸通年已後會法身向上事，是否？山云：是。門云：如何是法身邊事？山云：枯樁。門云：如何是法身向上事？山云：非枯樁。門云：還許學人說道理也無？山云：許。門云：枯樁豈不是明法身邊事？非枯樁豈不是明法身向",
+          "FromLb": "0216b09",
+          "ToLb": "0216b10",
+          "Kwic": "疎山云：咸通年已前會法身邊事，咸通年已後會法身向上事。",
           "MasterName": "Shushan Kuangren",
           "Curated": true,
           "ContextMasters": [
@@ -164,7 +180,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (古林清茂禪師語錄; X/X71/X71n1412.xml). Exact actor: Shushan Kuangren. Gulin raises Shushan's saying as a case; the explicit Shushan-said frame directly assigns the headword formula to Shushan Kuangren."
+          "AttributionNote": "古林清茂禪師語錄. Exact headword actor: Shushan Kuangren. The recut isolates Shushan’s quoted formulation and excludes Yunmen’s later repetition of it."
         }
       ],
       "ClaimAnchors": [],

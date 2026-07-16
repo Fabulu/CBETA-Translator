@@ -1,0 +1,655 @@
+# Complete-case exact-turn review workbook
+
+Generated: 2026-07-13T20:15:29.535565+00:00
+
+This is a review accelerator, not an attribution oracle. Read every complete unit, map every turn, and
+write the exact speaker/actor decision in the blanks. A title owner is only a candidate.
+
+## 金翅鳥 — `t_12fe3700913c`
+
+Corpus: **116 hits / 64 files**. Current: **1 senses / 9 occurrences**.
+
+| Sense | Preferred target | Occurrences |
+|---:|---|---:|
+| 1 | the dragon-taking golden-winged bird | 9 |
+
+### S1/O1 — headword
+
+- Source: `T/T48/T48n2016.xml` `0420b12–0420b13`
+- Current `MasterName`: **Yongming Yanshou**
+- Title: 宗鏡錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, excluded-contributor-or-document-section, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 如金翅鳥飛。烏不能及。
+
+Complete extracted `p` unit:
+
+```text
+門。假使有人以大海量墨。須彌聚筆。寫於此普眼法門。一品中一門。一門中一法。一法中一義。一義中一句。不得少分。何況能盡。又如大涅槃經中。佛言。我所覺了一切諸法。如因大地生草木等。為諸眾生所宣說者。如手中葉。只如已所說法。教溢龍宮。龍樹菩薩。暫看有一百洛叉。出在人間。於西天尚百分未及一。翻來東土。故不足言。豈況未所說法耶。斯乃無盡妙旨。非淺智所知。性起法門。何劣解能覽。燕雀焉測鴻鵠之志。井蛙寧識滄海之淵。如師子大哮吼。狸不能為。如香象所負擔。驢不能勝。如毘沙門寶。貧不能等。如金翅鳥飛。烏不能及。唯依情而起見。但逐物而意移。或說有而不涉空。或言空而不該有。或談略為多外之一。或立廣為一外之多。或離默而執言。或離言而求默。或據事外之理。或著理外之事。殊不能悟此自在圓宗。演廣非多。此是一中之多。標略非一。此是多中之一。談空不斷。斯乃即有之空。論有不常。斯乃即空之有。或有說亦得。此即默中說。或無說亦得。此即說中默。或理事相即亦得。此理是成事之理。此事是顯理之事。或理理相即亦得。以一如無二如。真性常融會。或事事相即亦得。此全理之事。一一無礙。或理事不即亦得。以全事之理非事。所依非能依。不隱真諦故。以全理之事非理。能依非所依。不壞俗諦故。斯則存泯一際。隱顯同時。如闡普眼之法門。皆是理中之義。似舒大千之經卷。非標心外之文。故經云。一法能生無量義。非聲聞緣覺之所知。不同但空孤調之詮。偏枯決定之見。今此無盡妙旨。標一法而眷屬隨生。圓滿性宗。舉一門。而諸門普會。非純非雜。不一不多。如五味和其羹。雜綵成其繡。眾寶成其藏。百藥成其丸。邊表融通。義味周足。搜微抉妙。盡宗鏡中。依正混融。因果無礙。人法無二初後同時。凡舉一門。皆能圓攝無盡法界。非內非外。不一不多。舒之則涉入重重。卷之則真門寂寂。如華嚴經中。師子座中。莊嚴具內。各出一佛世界塵數菩薩身雲。此是依正人法無礙。又如佛眉間出勝音等佛世界塵數菩薩。此是因果初後無礙。乃至剎土微塵。各各具無邊智德。毛孔身分。一一攝廣大法門。何故如是奇異難思。乃一心融即故爾。以要言之。但一切無邊差別佛事。皆不離無相真心而有。如華嚴經頌云。佛住甚深真法性。寂滅無相同虛空。而於第一實義中。示現種種所行事。所作利益眾生事。皆依法性而得有。相與無相無差別。入於究竟皆無相。又攝大乘論頌云。即諸三摩地。大師說為心。由心彩畫故。如所作事業。故知。凡聖所作。真俗緣生。此一念之心。剎那起時。即具三性三無性六義。謂一念之心。是緣起法。是依他起。情計有實。即是遍計所執。體。本空寂。即是圓成。即依三性說三無性。故六義具矣。若一念心起。具斯六義。即具一切法矣。以一切真俗萬法。不出三性三無性故。法性論云。凡在起滅。皆非性也。起無起性故。雖起而不常。滅無滅性。雖滅而不斷。如其有性。則陷於四見之網。又云。尋相以推性。見諸法之無性。尋性以求相。見諸法之無相。是以性相互推。悉皆無性。是以若執有性。墮四見之邪林。若了性空。歸一心之正道。故華嚴經云。自深入無自性真實法。亦令他入無自性真實法。心得安隱。以茲妙達。方入此宗。則物物冥真。言言契旨。若未親省。不發圓機。言之則乖宗。默之又致失。豈可以四句而取六情所知歟。但祖教並施。定慧雙照。自利利他。則無過矣。設有堅執己解。不信。佛言起自障心。絕他學路。今有十問以定紀綱。還得了了見性。如晝觀色。似文殊等不。還逢緣對境。見色聞聲。舉足下足。開眼合眼。悉得明宗。與道相應不。還覽一代時教。及從上祖師言句。聞深不怖。皆得諦了無疑不。還因差別問難。種種徵詰。能具四辯。盡決他疑不。還於一切時一切處。智照無滯。念念圓通。不見一法能為障礙。未曾一剎那中暫令間斷不。還於一切逆順好惡境界現前之時。不為間隔。盡識得破不。還於百法明門心境之內。一一得見微細體性根原起處。不為生死根塵之所惑亂不。還向四威儀中行住坐臥。欽承祗對。著衣喫飯。執作施為之時。一一辯得真實不。還聞說有佛無佛。有眾生無眾生。或讚或毀。或是或非。得一心不動不還聞差別之智。皆能明達。性相俱通。理事無滯。無有一法不鑒其原。乃至千聖出世。得不疑不。若實未得如是功。不可起過頭欺誑之心。生自許知足之意。直須廣披至教。博問先知。徹祖佛自性之原。到絕學無疑之地。此時方可歇學灰息遊心。或自辦則禪觀相應。或為他則方便開示。設不能遍參法界。廣究群經。但細看宗鏡之中。自然得入。此是諸法之要。趣道之門。如守母以識子。得本而知末。提綱而孔孔皆正。牽衣而縷縷俱來。又如以師子筋為琴絃。音聲一奏。一切餘絃悉皆斷壞。此宗鏡力。亦復如是。舉之而萬類沈光。顯之而諸門泯跡。以此一則。則破千途。何須苦涉關津。別生岐路。所以志公歌云。六賊和光同塵。無力大難推托。內發解空無相。大乘力能翻却。唯在玄覽得旨之時。可驗斯文究竟真實。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O2 — headword
+
+- Source: `X/X80/X80n1565.xml` `0275a16–0275a18`
+- Current `MasterName`: **Caoshan Guanghui**
+- Title: 五燈會元
+- Title candidate(s): —
+- Nearest-header candidate(s): Caoshan Benji
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 雪峰和尚為人。如金翅鳥入海取龍相似。僧出問。未審和尚此間如何。
+
+Complete extracted `p` unit:
+
+```text
+上堂。良久曰。雪峰和尚為人。如金翅鳥入海取龍相似。僧出問。未審和尚此間如何。師曰。甚處去來。問。如何是西來的的意。師曰。不禮拜更待何時。問。如何是密傳底心。師良久。僧曰。恁麼則徒勞側耳也。師喚。侍者來。燒香著。問。古人云。如紅鑪上一點雪。意旨如何。師曰。惜取眉毛好。問。如何指示。即得不昧去。師曰。不可雪上更加霜。曰。恁麼則全因和尚去也。師曰。因箇甚麼。問。如何是妙明真性。師曰。款款莫磕損。上堂。良久。僧出曰。為眾竭力。禍出私門。未審放過不放過。師默然。問。古人道。生也不道。死也不道。意旨如何。師良久。僧禮拜。師曰。會麼。曰。不會。師曰。也是廚寒甑足塵。上堂。舉拄杖曰。從上皆留此一路。方便接人。有僧出曰。和尚又是從頭起也。師曰。謝相委悉。問。機關不轉。請師商量。師曰。瘂得我口麼。問。路逢猛虎時如何。師曰。放憨作麼。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O3 — headword
+
+- Source: `X/X80/X80n1565.xml` `0175a22–0175a23`
+- Current `MasterName`: **Gushan Zhiyue**
+- Title: 五燈會元
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 師曰, 龍曰
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 師曰。忽遇金翅鳥來又作麼生。龍曰。性命難存。師曰。恁麼則被他吞却去也。龍曰。謝闍黎供養。
+
+Complete extracted `p` unit:
+
+```text
+本郡人也。初遊方至鄂州黃龍。問。久嚮黃龍。及乎到來。祇見赤斑蛇。龍曰。汝祇見赤斑蛇。且不識黃龍。師曰。如何是黃龍。龍曰。滔滔地。師曰。忽遇金翅鳥來又作麼生。龍曰。性命難存。師曰。恁麼則被他吞却去也。龍曰。謝闍黎供養。師便禮拜。住後。上堂。我若全舉宗乘。汝向甚麼處領會。所以道古今常露。體用無妨。不勞久立。珍重。問。虗空還解作用也無。師拈起拄杖曰。這箇師僧好打。僧無語。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O4 — headword
+
+- Source: `T/T47/T47n1997.xml` `0742c14–0742c16`
+- Current `MasterName`: **Yuanwu Keqin**
+- Title: 圓悟佛果禪師語錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 等閑如金翅鳥擘海直取龍吞。似師子兒出窟妖狐絕跡。
+
+Complete extracted `p` unit:
+
+```text
+不先。新彌勒不後。正當今日佛法委付雲居。千聖不借底機。如何提掇。師云。剔起眉毛直下行。進云。徙上來事。還有分付處也無。師云。分付闍黎。進云。爭奈有句非宗旨。無言絕聖凡。師云。還有金剛王寶劍來。進云。直下便是。更不周由。師便喝。進云。忽遇頂門具眼底出來道。箇隔身句又作麼生。師云。賊過後張弓。進云。青山不鎖長飛勢。滄海合知來處高。師云。分作兩段。進云。一舉四十九。師云確。師乃云。以祖佛為標準。興祖佛作師。以人天為梯航。與人天作眼。忽若不倚一物。孤迴迴峭巍巍。千聖莫能知。萬靈沒照鑑。截斷一切不涉廉纖。把斷世界不漏絲髮。人天眾前如何剖露。若向箇裏。上絕攀仰。下絕己躬。等閑如金翅鳥擘海直取龍吞。似師子兒出窟妖狐絕跡。當鋒略露。不免道箇山是山水是水僧是僧俗是俗。開慈悲方便門。留通途受用底。忽若轉山不是山水不是水。僧不是僧俗不是俗。到箇裏還有出身處麼。若有出身處。便可以高揖釋迦不拜彌勒。坐斷毘盧頂。不稟釋迦文。束虛空作拄杖。也打他不得。合用千萬聚雷作一喝。也驚他不動。且道。此人畢竟如何親近。只如今各各當陽不背不向。不立一絲毫頭解路。不作一纖塵機關。正當恁麼時。把斷乾坤一句作麼。生道。鵰弓已掛狼煙息。萬國歌謳賀太平。復云。龍床角頭親賜得。天上雲居古道場。安樂樹邊藏拙訥。更無佛法可商量。既無佛法。却舉箇古人公案。記得神鼎山諲禪師開堂示眾云。山僧行脚。也無正因。只待向東京城裏聽一兩本經論。於古寺閑房且恁麼過時。不謂行到汝州葉縣。被一陣業風吹到首山。曲彔木床上見箇老和尚。當時把不住。禮却他三拜。直至如今悔之不得。師云。這老漢。參到生鐵鑄就處。窮到無絲毫解路時。所以向鐵壁銀山處斬釘截鐵。若不知有向上宗乘。爭解與麼道。然雖如是。檢點將來。二祖少林也禮三拜。忽若水乳不分金鍮不辨。有條攀條無條攀例。山僧元豐末年為疑著箇祖師西來意十數載江表逢見大善知識。便投誠咨參玄妙理性。棒喝機關直是費盡工夫。終無箇休歇去處。及到海會遇見箇老和尚。被他腦後一槌。從此喪却目前機。去却胸中物。直至如今。也分疎不下。且道。與古人是同是別。還委悉麼。羚羊掛角千峯外。更有羚羊在上峯。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O5 — family
+
+- Source: `X/X82/X82n1571.xml` `0220b16–0220b17`
+- Current `MasterName`: **Hulong Taichu Qiyuan**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 金翅鳥王劈海取龍吞。因甚麼被泥鰍吞却。
+
+Complete extracted `p` unit:
+
+```text
+日本國源氏子。父官方宰。九歲送入建長寺出家。十八請旨南詢。歷三年抵福州。時元至正之丙午二月。進京朝貢。引師見上。上喜。勅見季潭泐。指令徧參。後謁烏石傑峰愚。一日愚上堂曰。雪覆千山。因甚麼孤峰不白。師出眾曰。雷聲隱隱。雨點全無。愚曰。草菴上葢瑠璃瓦。石室中藏瑪瑙瓶。師曰。大蟲騎却南山虎。愚曰。虎生七子。阿那箇無尾巴。師曰。第七箇。愚曰。且放汝三十棒。由是許師入室。後辭出山。結茅廬阜。復移石龍。出世廣度。遷羅陽三峰。再遷護龍。甞垂三關語。一曰。舜若多神。因甚麼向平地上拖泥帶水。二曰。金翅鳥王劈海取龍吞。因甚麼被泥鰍吞却。三曰。三世諸佛說不得。因甚麼狸奴白牯念摩訶。明成祖永樂丁亥三月朔。集眾說偈曰。生也銕面皮。死也銕面皮。一擊百雜碎。曰。日繞須彌。擲筆坐逝。塔於南院。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O6 — headword
+
+- Source: `X/X82/X82n1571.xml` `0340b08–0340b09`
+- Current `MasterName`: **Huangbo Rong**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 如何是金翅鳥直取龍吞？師亦進前作掀倒禪床勢而出，容遂印可。
+
+Complete extracted `p` unit:
+
+```text
+知秋，汝作麼生會？師呈坐具，容曰：是甚麼時節作如此去就？師擬開口，容又連拳打出。師歸堂，即躍然有省。適亘信關主參容，容問：如何是佛？主抵對後，容復顧師曰：汝作麼生道？師曰：破米篩。容頷之，立師為西堂。容問：寂然不動，感而遂通，汝作麼生會？師珍重便出。又問：如何是逆水之波？師進前作掀倒禪床勢。容拈拄杖，師亦出。復問：我看汝這幾時恰似傷弓之鳥，如何是金翅鳥直取龍吞？師亦進前作掀倒禪床勢而出，容遂印可。住金粟，上堂：玉將火試，金將火煅，不改尋常，光明燦爛。若是鉛汞碔砆，到這裏百雜碎了也。所以山僧數年來開爐冶、運鉗錘，挈挈波波，費盡柴炭，只要求箇精金美玉當前，爭奈土曠人稀，相逢者少？可中有不受屈抑的，往往自謂懷金無識價，抱璞枉遭刑。似則固似，是即未是。大眾既似矣，為甚麼却未是？何樓市物真和偽，到底行家不可瞞。除夕，小參。以拄杖卓一卓，曰：𪹼竹一聲，乾坤震動。山魈鼠怪，何處出頭？因思王老燒錢，太煞膽小。可笑北禪分歲，自取勾牽金粟。非是屈抑先賢，祇為門風各別。汝等諸人莫有成褫者麼？眾無對。師曰：不遇知音者，徒勞話歲寒。遂拖拄杖打散。上堂：日融融，風浩浩，華亭江畔古猶今。雲󳱬󳱬，草茸茸，金粟峰頭常顯露。不是目前法，亦非心外機。拈出自光輝，用著更痛快。與麼說話，皆諸方普請會底。山僧此者擬別行一路，算去思來總跳不出。憶得古詩有兩句頗相近，堪與一切人。脫却貼肉汗衫，未免借為流布。下嵩山兮多所思，𢹂佳人兮步遲遲。松間明月長如此，君再遊兮復何時？良久，高聲召曰：大眾！眾舉首。師曰：分明記取。上堂：一二三四五六七，七六五四三二一。縱橫逆順數將來，日日分明是好日。去却七，拈著一，八臂哪吒下手難，千眼大悲辨不出。上堂：三月屆清明，扶笻陌上行。行行興未歇，半喜半疑驚。舊塚添新塚，歌聲和哭聲。如何塵世客，不早學無生？且無生作麼生學？喝一喝，曰：相逢莫下馬，各自奔前程。開光，上堂。銅棺絕頂，突出雙睛。情與無情，煥然等現。此師翁最初之光也。踞六大剎，丕振濟宗。緇素雲屯，名傳紫閣。此師翁出世之光也。示寂通玄，峰巒變白。四方聞訃，如喪所生。此師翁末後之光也。即今若子若孫，遍天遍地，總是師翁不盡餘光所攝。更說箇飾像開光，大似佛頭屙塗污不少。是汝諸人要見師翁不盡餘光麼？山僧徹骨徹髓，普為點出去也。遂拽拄杖，下座，一齊打散。上堂。九九百百，半青半白。項短二寸，頭長三尺。相對無言獨足行，神光閃爍射衣裓。應機游戲兮，大千剎土不為寬。隨物遁藏兮，蟭螟眼裏不為窄。釋迦彌勒是他奴，臨濟德山空踧踖。試問此者是何人？擬議頂門轟霹靂。拈拄杖，卓一卓，喝一喝。上堂。無明即佛性，萬幅楊烟藏古鏡。煩惱即菩提，千畦麥浪漲前谿。也無佛性無無明，閙市紅塵信步行。也無菩提無煩惱，拈匙把筯隨緣好。隨緣好，須及早。莫言烏兔尚堪留，蹉過一生空到老。上堂。豎起拂子，曰：摩竭陀國，親行此令。萬派消聲，千差打迸。可笑飲光潦倒，末後自入坑穽。帶累幾許兒孫，到處說心說性。稱楊稱鄭金粟，贏得日長無事。倚闌干，望見角里山下秦皇廟前有一座藤裏石橋，冷與碧波相映，只是不許動著。為甚麼蔡三郎行年本命？上堂：采菱歌斷秋風起，曲檻香清翠帶殘。慙愧九旬無法說，行行坐坐暗相瞞。政當此時，解夏一句又如何道？行滿不須驗蠟人，輕包萬里任來去。上堂：古佛心，只如今。澄水浸虗碧，寒風動暮砧。明明歷歷無人會，可笑空拋境上尋。僧問：疋馬單鎗直入時如何？師曰：山僧退身三步。僧喝，師拈棒打。僧走出，師曰：何曾解恁麼來？問：如何是當陽獨露句？師曰：春鳥喃喃罵落花。問：一大藏教如何演唱？師曰：碧班邠豹剝，當滴帝都丁。曰：某甲不會。師曰：玉篇裏看取。康熈壬寅六月，師手錄法語百餘葉，增入全錄。曰：山僧從今再不說法矣。八月初，示微疾。醫來，師曰：報緣已盡，服藥無益。每日酬應如常。至十六日巳時，沐浴更衣而逝。塔于吳之鄧尉山。後有嗣法門人古門壽宗，遷回浦城。就山語錄三十卷，入楞嚴方冊流通。次年癸卯六月，師忽示現于平湖北水門外。徒眾數十人，舟楫宛然。金天生同眾親見能言之。事載行實。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O7 — family
+
+- Source: `X/X82/X82n1571.xml` `0587a13–0587a14`
+- Current `MasterName`: **Huangbo Yiwei An**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): Huangbo Xiyun
+- Risk flags: embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 拄杖子有時如金翅鳥王，直取龍吞；有時如摩尼寶珠，隨方顯色。
+
+Complete extracted `p` unit:
+
+```text
+吉州文江李氏子。上堂，拈拄杖曰：拄杖子有時如金翅鳥王，直取龍吞；有時如摩尼寶珠，隨方顯色。能斷衲子之命根，能續佛祖之慧命。妙用天然，殺活自在。所以賤壓則一任東擲西拋，貴拈則縱使千金不換。然雖如是，祇如喚作拄杖子則觸，不喚作拄杖子則背。畢竟喚作甚麼？卓一卓曰：一切現成。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O8 — headword
+
+- Source: `X/X69/X69n1352.xml` `0318b23–0318b24`
+- Current `MasterName`: **Baiyun Shouduan**
+- Title: 白雲守端禪師廣錄
+- Title candidate(s): Baiyun Shouduan
+- Nearest-header candidate(s): —
+- Risk flags: —
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 鋒刃上行，大𦦨裏走，蟭螟吞却金翅鳥。
+
+Complete extracted `p` unit:
+
+```text
+蒙君報我錯錯錯，鐵牛鼻孔曾穿却。通身作口未稱心，爭奈兀然無去著。鋒刃上行，大𦦨裏走，蟭螟吞却金翅鳥。幾人到此得從容，喝散白雲不開口。知君知，寶劒收來善護持。佛祖掃除非好手，直須刃下有針錐。有針錐，囉邏哩，得便宜是落便宜。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O9 — family
+
+- Source: `X/X82/X82n1571.xml` `0680c23–0680c24`
+- Current `MasterName`: **Ciyun Langting Jingting**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 常言道
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 大鵬金翅鳥，直取龍吞，也是饑不擇食。常言道：好事不如無。
+
+Complete extracted `p` unit:
+
+```text
+錢塘徐氏子。舉明經，棄而徧遊叢席，看泥牛入海，以居士身參雲門盂。久之，看皓布裩、匍萄棚語。一日入市，偶蹋著蚌殻，忽悟，詣雲門求正。盂問：正恁麼時如何？師曰：月照千峰白。盂曰：再道一句看。師曰：湖開兩岸明。盂曰：記得三年前宗會菴相見麼？師曰：牡丹花下玉麒麟。盂頷之，因承記莂。年至四十有六，事父母畢，方出俗。首住慈雲，次梵受，次顯聖。上堂：顛倒顛，須彌頂上浪滔天，旱地徧紅蓮。驅大象，藕絲牽，夜半騎魚過市廛，拄杖兩頭穿。還自笑，絕堪憐，波斯持密呪，舌上覆金錢。上堂：尋常道個唱和句也不容易，有般鹵莽禪和，只曉得個掀翻法座、推倒禪床，以為是當機不讓。那知同生同死、能弱能強，放出收來，却自有宛轉機絲之妙。罷！罷！罷！達磨一宗，料想無人識得。高山流水千年調，白雪陽春萬古心。不是巖頭、雪峰，誰與共賡此曲？顧左右曰：有人麼？上堂：買賤賣貴，已是鈍置煞人。有麼？啐󲣅同時，漆桶不快。上堂：大鵬金翅鳥，直取龍吞，也是饑不擇食。常言道：好事不如無。問：鳥道不逢時如何？師曰：綿絲籠碧鶴。曰：逢後如何？師曰：玉象挂紅雲。問：如何是佛？師曰：八角夜叉牽犬吠。問：即今事作麼生？師曰：石羊生乳虎。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+## 木人 — `t_16bbc5599cd2`
+
+Corpus: **940 hits / 231 files**. Current: **1 senses / 8 occurrences**.
+
+| Sense | Preferred target | Occurrences |
+|---:|---|---:|
+| 1 | wooden figure | 8 |
+
+### S1/O1 — headword
+
+- Source: `T/T48/T48n2001.xml` `0007a15–0007a16`
+- Current `MasterName`: **Hongzhi Zhengjue**
+- Title: 宏智禪師廣錄
+- Title candidate(s): Hongzhi Zhengjue
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, excluded-contributor-or-document-section
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人招手。石女點頭
+
+Complete extracted `p` unit:
+
+```text
+舉宗首座立僧。上堂云。栴檀林裡。秀出一枝。薝蔔堂中。與分半座。直得木人招手。石女點頭。度關玉線兩岐分。細看頭尾。合縫金針雙鎖密。不露鋒鋩。正恁麼時。且道。甚人辨得。良久云。還會麼。可中會有兒孫。自解傳持家法。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O2 — headword
+
+- Source: `X/X80/X80n1565.xml` `0135b11–0135b11`
+- Current `MasterName`: **Dengzhou Zhongdu**
+- Title: 五燈會元
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, excluded-contributor-or-document-section, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人常對語。有性不能言
+
+Complete extracted `p` unit:
+
+```text
+僧問。海內不逢師。如何是寰中主。師曰。金鷄常報曉。時人自不聞。問。如何是暗中明鏡。師曰。昧不得。曰。未審照何物。師曰。甚麼物不照。問。如何是實際理地不受一塵。佛事門中不捨一法。師曰。真常塵不染。海納百川流。曰。請和尚離聲色外答。師曰。木人常對語。有性不能言。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O3 — headword
+
+- Source: `X/X82/X82n1571.xml` `0115c18–0115c18`
+- Current `MasterName`: **Cian Shoujing**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 九夏炎炎大熱，木人汙流不輟。
+
+Complete extracted `p` unit:
+
+```text
+上堂：談元說妙，撒屎撒尿。行棒行喝，將鹽止渴。立主立賓，華擘宗乘。設或總不恁麼，又是鬼窟裏坐。到這裏，山僧已是打退鼓。且道諸人尋常心憤憤，口悱悱，合作麼生？莫將閒學解，埋沒祖師心。上堂：若也單明自己，不悟目前，此人有眼無足。若也祇悟目前，不明自己，此人有足無眼。直得眼足相資，如車二輪，如鳥二翼，正好勘過了。打！上堂：九夏炎炎大熱，木人汙流不輟。夜來一雨便凉，莫道山僧不說。以拂子擊禪床，下座。上堂：若欲正提綱，直須大地荒。欲來衝雪刃，未免露鋒鋩。當恁麼時，釋迦老子出頭不得即不問，你諸人祇如馬鐙裏藏身，又作麼生話會？上堂：道是常道，心是常心。汝等諸人聞山僧恁麼道，便道我會也。大盡三十日，小盡二十九。頭上是天，脚下是地。耳裏聞聲，鼻裏出氣。忽若四大海水在汝頭上，毒蛇穿你眼睛，蝦蟇入你鼻孔，又作麼生？上堂：文殊普賢談理事，臨濟德山行棒喝。東禪一覺到天明，偏愛風從凉處發。咄！上堂：善鬬者不顧其首，善戰者必獲其功。其功既獲，坐致太平。太平既致，高枕無憂。罷拈三尺劒，休弄一張弓。歸馬于華山之陽，放牛于桃林之野。風以時而雨以時，漁父歌而樵人舞。雖然如是，堯舜之君，猶有化在。爭似乾坤收不得，堯舜不知名。渾家不管興亡事，偏愛和雲占洞庭。上堂：祖佛頂𩕳上，有潑天大路。未透生死關，如何敢進步？不進步，大千沒遮護。一句絕言詮，那吒擎鍼柱。上堂，僧問：阿難問迦葉：世尊傳金襴外，別傳何物？迦葉喚阿難，阿難應諾。未審此意如何？師曰：切忌動著。曰：祇如迦葉道：倒却門前剎竿著。又作麼生？師曰：石牛橫古路。曰：祇如和尚於佛日處，還有這箇消息也無？師曰：無這箇消息。曰：爭奈定光金地遙招手，智者江陵暗點頭。師曰：莫將庭際柏，輕比路傍蒿。僧禮拜，師乃曰：定光金地遙招手，智者江陵暗點頭。已是白雲千萬里，那堪於此未知休。設或于此便休去，一場狼籍不少。還有檢點得出者麼？如無，山僧今日失利。僧問：佛佛授手，祖祖相傳。未審傳箇甚麼？師曰：速禮三拜。問：不施寸刃，請師相見。師曰：逢強即弱。曰：何得埋兵掉鬬？師曰：祇為闍黎寸刃不施。曰：未審向上還有事也無？師曰：有。曰：如何是向上事？師曰：敗將不斬。問：古佛堂前，甚麼人先到？師曰：無眼村翁。曰：未審如何趣向？師曰：楖栗橫擔。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O4 — headword
+
+- Source: `J/J26/J26nB188.xml` `0752a15–0752a15`
+- Current `MasterName`: **Ruibai Mingxue**
+- Title: 入就瑞白禪師語錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人夜半繡花冠，石女天明打破鏡
+
+Complete extracted `p` unit:
+
+```text
+雲門先和尚忌日，上堂。「此日先年，先年此日，四野冰花，朔風歷歷。正恁麼時，且道先師即今在甚麼處？」良久，云：「木人夜半繡花冠，石女天明打破鏡。」遂下座，率眾到像前頂禮，拈香云：「此一瓣香，爇在爐中，不為別事，秪要報冤雪屈。且道與先師有甚麼冤讎？」以手指像云：「當初只為路長短，今朝方覺水河多。」僧問：「生如寄，死如歸，未審先師歸於何處？」師云：「石傘峰頭雲靄靄。」進云：「幾時復來？」師云：「萬竹林中綠依依。」「恁麼多時不見先師面，依然不改舊時顏。」師云：「莫眼花。」僧拜，師回方丈。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O5 — headword
+
+- Source: `X/X72/X72n1435.xml` `0242b24–0242c01`
+- Current `MasterName`: **Wuyi Yuanlai**
+- Title: 無異元來禪師廣錄
+- Title candidate(s): Wuyi Yuanlai
+- Nearest-header candidate(s): —
+- Risk flags: excluded-contributor-or-document-section
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人起舞非奇特，石女梳頭越樣新
+
+Complete extracted `p` unit:
+
+```text
+上堂：諸禪德！見聞覺知即是佛法，佛法即是見聞覺知。根本無明即是諸佛不動智，諸佛不動智即是根本無明。婬怒癡即是戒定慧，戒定慧即是婬怒癡。若向者裏󳬇破，始知達磨大師航海而來，祇是指示人現成具足底道理。且如何是現成具足底道理？木人起舞非奇特，石女梳頭越樣新。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O6 — headword
+
+- Source: `X/X81/X81n1568.xml` `0061c20–0061c20`
+- Current `MasterName`: **Qingshan Shoulong**
+- Title: 五燈嚴統(第10卷-第25卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人把板雲中拍
+
+Complete extracted `p` unit:
+
+```text
+開堂日，僧問：知師久蘊囊中寶，今日當筵略借看。師曰：多少分明。曰：師子吼時全露現，文殊仗劒又如何？師曰：驚殺老僧。問：千佛出世，各有奇祥。和尚今日以何為驗？師曰：木人把板雲中拍。曰：意旨如何？師曰：石女拈笙水底吹。上堂：花簇簇，錦簇簇，鹽醬年來事事足。留得南泉打破鍋，分付沙彌煑晨粥。晨粥一任諸人喫，洗鉢盂一句作麼生會？多少人疑著。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O7 — headword
+
+- Source: `X/X82/X82n1571.xml` `0060c21–0060c21`
+- Current `MasterName`: **Wuyin Zijing**
+- Title: 五燈全書(第34卷-第120卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人占吉兆，夜半露龜爻。
+
+Complete extracted `p` unit:
+
+```text
+歲旦，上堂：和氣生枯枿，寒雲散遠郊。木人占吉兆，夜半露龜爻。諸禪德，龜爻露處，文彩已彰。便見一年十二月，月月如然；一日十二時，時時相似。到這裏，直似黃金之黃，白玉之白。自從曠大劫來，未嘗異色。還見麼？其或未然，且狥張三通節序，從教李四𩯭蒼浪。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O8 — contrast
+
+- Source: `J/J26/J26nB187.xml` `0730c30–0730c30`
+- Current `MasterName`: **Tian'an Sheng**
+- Title: 天岸昇禪師語錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 年來罕見仙陀客，所遇頻遭刻木人。
+
+Complete extracted `lg` unit:
+
+```text
+帶水拖泥不潑塵，一條拄杖任縱橫，門開大施無從入，路出臺山不計程。回首家山雲約約，歸途海國月沈沈，年來罕見仙陀客，所遇頻遭刻木人。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+## 石女 — `t_7653f61478aa`
+
+Corpus: **1,114 hits / 233 files**. Current: **1 senses / 7 occurrences**.
+
+| Sense | Preferred target | Occurrences |
+|---:|---|---:|
+| 1 | barren woman | 7 |
+
+### S1/O1 — headword
+
+- Source: `X/X81/X81n1568.xml` `0017b14–0017b15`
+- Current `MasterName`: **Pumen Xibian**
+- Title: 五燈嚴統(第10卷-第25卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 皆云
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 古今相承，皆云塵生井底，浪起山頭。結子空華，生兒石女。且作麼生會？
+
+Complete extracted `p` unit:
+
+```text
+去也。師曰：珠在甚麼處？僧禮拜，師曰：也是虗言。問：提綱舉領，盡立主賓。如何是主？師曰：深委此問。曰：如何是賓？師曰：適來向汝道甚麼？曰：賓主道合時如何？師曰：其令不行。問：心月孤圓，光吞萬象。如何是吞萬象底光？師曰：大眾總見汝恁麼問。曰：光吞萬象從師道，心月孤圓意若何？師曰：抖擻精神著。曰：鷺倚雪巢猶可辯，光吞萬象事難明。師曰：謹退。問：青山綠水，處處分明。和尚家風，乞垂一句。師曰：盡被汝道了也。曰：未必如斯，請師答話。師曰：不用閑言。又一僧方禮拜，師曰：問答俱備。僧擬問，師乃叱之。上堂：欲識曹溪旨，雲飛前面山。分明真實箇，不用別追攀。僧問：古德有言，井底紅塵生，山頭波浪起。未審此意如何？師曰：若到諸方，但恁麼問。曰：和尚意旨如何？師曰：適來向汝道甚麼？乃曰：古今相承，皆云塵生井底，浪起山頭。結子空華，生兒石女。且作麼生會？莫是和聲送事，就物呈心，句裏藏鋒，聲前全露麼？莫是有名無體，異唱玄譚麼？上座自會即得，古人意旨即不然。既恁麼會不得，合作麼生會？上座欲得會麼？但看泥牛行處，陽燄飜波。木馬嘶時，空華墜影。聖凡如此，道理分明。何須久立，珍重！
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O2 — headword
+
+- Source: `X/X81/X81n1568.xml` `0067b04–0067b05`
+- Current `MasterName`: **Dongshan Liangjie**
+- Title: 五燈嚴統(第10卷-第25卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): Dongshan Liangjie
+- Risk flags: not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 木人方歌，石女起舞。非情識到，寧容思慮。
+
+Complete extracted `p` unit:
+
+```text
+素。顛倒想滅，肯心自許。要合古轍，請觀前古。佛道垂成，十劫觀樹。如虎之缺，如馬之𮩴。以有下劣，寶几珍御。以有驚異，貍奴白牯。羿以巧力，射中百步。箭鋒相直，巧力何預。木人方歌，石女起舞。非情識到，寧容思慮。臣奉於君，子順於父。不順非孝，不奉非輔。潛行密用，如愚若魯。但能相續，名主中主。師又曰：末法時代，人多乾慧。若要辯驗真偽，有三種滲漏。一曰見滲漏，機不離位，墮在毒海。二曰情滲漏，滯在向背，見處偏枯。三曰語滲漏，究妙失宗，機昧終始，濁智流轉。於此三種，子宜知之。又綱要偈三首。一、敲唱俱行。偈曰：金針雙鎻備，叶路隱全該。寶印當風妙，重重錦縫開。二、金鎻玄路。偈曰：交互明中暗，功齊轉覺難。力窮忘進退，金鎻網鞔鞔。三、不墮凡聖。偈曰：事理俱不涉，回照絕幽微。背風無巧拙，電火爍難追。上堂：道無心合人，人無心合道。欲識箇中意，一老一不老。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O3 — headword
+
+- Source: `X/X81/X81n1568.xml` `0061c20–0061c21`
+- Current `MasterName`: **Qingshan Shoulong**
+- Title: 五燈嚴統(第10卷-第25卷)
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 師曰
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 師曰：木人把板雲中拍。曰：意旨如何？師曰：石女拈笙水底吹。
+
+Complete extracted `p` unit:
+
+```text
+開堂日，僧問：知師久蘊囊中寶，今日當筵略借看。師曰：多少分明。曰：師子吼時全露現，文殊仗劒又如何？師曰：驚殺老僧。問：千佛出世，各有奇祥。和尚今日以何為驗？師曰：木人把板雲中拍。曰：意旨如何？師曰：石女拈笙水底吹。上堂：花簇簇，錦簇簇，鹽醬年來事事足。留得南泉打破鍋，分付沙彌煑晨粥。晨粥一任諸人喫，洗鉢盂一句作麼生會？多少人疑著。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O4 — headword
+
+- Source: `T/T51/T51n2077.xml` `0579b27–0579b28`
+- Current `MasterName`: **Hongzhi Zhengjue**
+- Title: 續傳燈錄
+- Title candidate(s): —
+- Nearest-header candidate(s): Danxia Tianran
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 師曰
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 曰如何是不來不去底人。師曰。石女喚回三界夢。木人坐斷六門機。
+
+Complete extracted `p` unit:
+
+```text
+曰。未暇打得爾且去。霞領大洪師掌牋記。後命首眾。得法者已數人。四年過圓通。時真歇初住長蘆。遣僧邀至眾出迎。見其衣舃穿弊且易之。真歇俾侍者易以新履。師却曰。吾為鞋來邪。眾聞心服懇求說法。居第一座六年。出住泗州普照。次補太平圓通能仁。及長蘆天童屋廬湫隘。師至創闢一新衲子爭集。上堂。黃閤簾垂誰傳家信。紫羅帳合暗撒真珠。正恁麼時視聽有所不到。言詮有所不及。如何通得箇消息去。夢回夜色依稀曉。笑指家風爛熳春。上堂。心不能緣口不能議。直饒退步荷擔。切忌當頭觸諱。風月寒清古渡頭。夜船撥轉琉璃地。上堂。空劫有真宗。聲前問己躬。赤窮新活計。清白舊家風。的的三乘外。寥寥一印中。却來行異類。萬派自朝東。上堂。今日是釋迦老子降誕之辰。長蘆不解說禪與諸人畫箇樣子。秖如在摩耶胎時作麼生。以拂子畫此⊙相曰。秖如以清淨水浴金色身時又作麼生。復畫此󱐜相曰。秖如周行七步。目顧四方指天指地。成道說法神通變化。智慧辯才四十九年三百餘會。說青道黃指東畫西入般涅槃時又作麼生。乃畫此⊕相。復曰。若是具眼衲僧必也相許。其或未然一一歷過始得。上堂僧問。如何是向去底人。師曰。白雲投壑盡。青嶂倚空高。曰如何是却來底人。師曰。滿頭白髮離岩谷。半夜穿雲入市鄽。曰如何是不來不去底人。師曰。石女喚回三界夢。木人坐斷六門機。乃曰。句裏明宗則易。宗中辯的則難。良久曰。還會麼。凍雞未報家林曉。隱隱行人過雪山。僧問。一絲不著時如何。師曰。合同船子並頭行。曰其中事作麼生。師曰。快刀快斧斫不入。問布袋頭開時如何。師曰。一任填溝塞壑。問清虛之理畢竟無身時如何。師曰。文彩未痕初。消息難傳際。曰一步密移玄路轉。通身放下劫壺空。師曰。誕生就父時合體無遺照。曰理既如是事作麼生。師曰。歷歷纔回分化事。十方機應又何妨。曰恁麼則塵塵皆現本來身去也。師曰。透一切色超一切心。曰如理如事又作麼生。師曰。路逢死蛇莫打殺。無底籃子盛將歸。曰入市能長嘯。歸家著短衫。師曰。木人嶺上歌。石女溪邊舞。上堂。諸禪德。吞盡三世佛底人。為甚麼開口不得。照破四天下底人。為甚麼合眼不得。許多病痛與爾一時拈却了也。且作麼生得十成通暢去。還會麼。擘開華岳連天色。放出黃河到海聲。師住持以來受無貪而施無厭。歲艱食竭己有及瞻眾之餘賴全活者數萬。日常過午不食。紹興丁丑九月謁郡僚及檀度。次謁越帥趙公令詪與之言別。十月七日還山。翌日辰巳間沐浴更衣端坐告眾。顧侍僧索筆作書遺育王大慧禪師請主後事。仍書偈曰。夢幻空花六十七年白鳥煙沒秋水連天。擲筆而逝。龕留七日顏貌如生。奉全軀塔于東谷。諡宏智。塔名妙光。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O5 — headword
+
+- Source: `J/J36/J36nB359.xml` `0629c19–0629c21`
+- Current `MasterName`: **Baiyu Si**
+- Title: 百愚禪師語錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 今是東禪法姪特請弁山為眾說法，大似逼石女生兒，教雄雞下蛋，不免杜譔一偈，聊塞眾聽：
+
+Complete extracted `p` unit:
+
+```text
+東禪憨石和尚請上堂。「判義分科，座主見解；拈椎豎拂，衲子常情；花言巧語，乞丐生涯；掩室杜口，鬼家活計。雖則國有憲章，叵耐家無常禮。今是東禪法姪特請弁山為眾說法，大似逼石女生兒，教雄雞下蛋，不免杜譔一偈，聊塞眾聽：無孔笛中吹折柳，離腔曲裏落梅花，箇般音韻阿誰曉？體態風流出當家。」
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O6 — headword
+
+- Source: `T/T51/T51n2077.xml` `0478c05–0478c07`
+- Current `MasterName`: **Yandang Wenji**
+- Title: 續傳燈錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: anonymous-interlocutor, embedded-case-or-citation, inline-speaker-marker, not-a-verified-single-master-container, title-owner-not-unique
+- Inline speaker markers: 僧云, 師曰
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 師曰。無角鐵牛眠少室。生兒石女老黃梅。僧云。恁麼則韶陽兒孫祖峯嫡于。
+
+Complete extracted `p` unit:
+
+```text
+溫州雁蕩山靈峯文吉禪師。僧問。祖祖相傳傳祖印。師今得法嗣何人。師曰。無角鐵牛眠少室。生兒石女老黃梅。僧云。恁麼則韶陽兒孫祖峯嫡于。師曰。雁蕩天台。僧云。祖意已蒙師指示。為人一句又如何。師曰。兩重公案。問昔日靈山分半座。飲光對面被搽糊。今朝此席又如是。還有完全句也無。師曰。一步兩步。僧云。金風吹落葉玉露滴青松。師曰。緊峭草鞋。僧云。一回舉著一回新。師便打。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
+### S1/O7 — headword
+
+- Source: `X/X69/X69n1364.xml` `0653c22–0653c22`
+- Current `MasterName`: **Shu'an Fancong**
+- Title: 率菴梵琮禪師語錄
+- Title candidate(s): —
+- Nearest-header candidate(s): —
+- Risk flags: embedded-case-or-citation, title-owner-not-unique
+- Inline speaker markers: —
+- Unit contains stored KWIC: **True**
+
+Stored KWIC:
+
+> 百丈野狐，石女無夫。一回淚下，滄海乾枯。
+
+Complete extracted `p` unit:
+
+```text
+正月五日，上堂。月不過五，今日親到。知時識節，隨宜愛道。不說向上宗乘，不拋東山暗號。露柱與燈籠，撞著呵呵笑。且道笑箇甚麼？韓信放鐵󳬧。頌百丈野狐話。百丈野狐，石女無夫。一回淚下，滄海乾枯。
+```
+
+- Exact headword speaker/actor: **[REVIEW]**
+- Other roles (questioner/respondent/quoter/quoted/source owner): **[REVIEW]**
+- Keep / split actor-pure / replace: **[REVIEW]**
+- Six-rung evidence and confidence: **[REVIEW]**
+
