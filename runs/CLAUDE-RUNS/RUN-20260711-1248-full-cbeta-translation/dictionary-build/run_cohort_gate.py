@@ -101,6 +101,10 @@ def main() -> int:
     parser.add_argument("--cluster-id", action="append", default=[], help="limit quota-cluster audit to repaired IDs")
     parser.add_argument("--pending-roster", type=Path,
                         help="validated cohort-local pending-roster candidate packet")
+    parser.add_argument(
+        "--defer-roster", action="store_true",
+        help="defer roster-link completeness only; every non-roster attribution rule remains hard",
+    )
     args = parser.parse_args()
     started = time.perf_counter()
     paths = [entry_path(value) for value in args.entries]
@@ -115,7 +119,9 @@ def main() -> int:
     attribution_command = [sys.executable, "audit_attribution.py", "--json"]
     if args.pending_roster:
         attribution_command.extend(["--pending-roster", str(args.pending_roster)])
-    if args.cluster_id:
+    if args.defer_roster:
+        pass
+    elif args.cluster_id:
         for entry_id in args.cluster_id:
             attribution_command.extend(["--strict-roster-id", entry_id])
     else:
@@ -261,7 +267,8 @@ def main() -> int:
         "attributionPackets": packets,
         "semanticReviewRequired": True,
         "clusterScopeIds": args.cluster_id or ids,
-        "strictRosterScopeIds": args.cluster_id or ids,
+        "strictRosterScopeIds": [] if args.defer_roster else (args.cluster_id or ids),
+        "rosterDeferred": args.defer_roster,
     }
     output = args.output or HERE / "maintenance" / f"cohort-gate-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

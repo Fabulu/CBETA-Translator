@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -122,6 +123,24 @@ def main() -> int:
         print(audit_raw.strip(), flush=True)
     expected = approved_ids()
     expected_count = len(expected)
+    # Publication must prove live quality, not merely that ledgers, hashes and
+    # generated artifacts agree.  Roster completion is tracked separately;
+    # every other cohort rule is fail-closed here over the complete live set.
+    live_paths = [FRESH / "entries" / entry_id / "entry.v2.json" for entry_id in sorted(expected)]
+    quality_report = HERE / "maintenance" / "fresh-publication-quality-current.json"
+    run(
+        [sys.executable, str(HERE / "run_cohort_gate.py"), *map(str, live_paths),
+         "--defer-roster", "--skip-packets", "--output", str(quality_report)],
+        HERE,
+    )
+    quality = load(quality_report)
+    quality_hashes = {row["id"]: row["sha256"] for row in quality.get("entries", [])}
+    current_hashes = {
+        entry_id: __import__("hashlib").sha256((FRESH / "entries" / entry_id / "entry.v2.json").read_bytes()).hexdigest()
+        for entry_id in expected
+    }
+    if not quality.get("hardPass") or quality_hashes != current_hashes:
+        raise SystemExit("whole-tree publication quality gate did not hard-pass at current hashes")
     run(
         [
             "cmd.exe", "/c", "node", "eng/tools/merge-dict-entries.js",

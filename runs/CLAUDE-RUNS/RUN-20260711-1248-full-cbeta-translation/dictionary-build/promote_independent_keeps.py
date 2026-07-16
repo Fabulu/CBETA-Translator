@@ -11,6 +11,9 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
+import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -163,6 +166,43 @@ def main() -> int:
         if actual != expected:
             raise SystemExit(f"stale {row.get('verdict')} {entry_id}: expected {expected}, got {actual}")
         reviewed.append((entry_id, row, expected, entry_path))
+
+    # A review verdict is necessary but not sufficient.  Bind every KEEP to
+    # the executable quality bundle at the exact bytes being promoted, and
+    # prove that its worksheet still compiles to those same bytes.  This closes
+    # the former path where a plausible review JSON could bypass all gates.
+    keeps = [(entry_id, row, expected, path) for entry_id, row, expected, path in reviewed
+             if row.get("verdict") == "KEEP"]
+    for entry_id, _, expected, entry_path in keeps:
+        worksheet = entry_path.parent / "evidence.draft.json"
+        if not worksheet.exists():
+            raise SystemExit(f"KEEP lacks evidence worksheet: {entry_id}")
+        with tempfile.TemporaryDirectory(prefix="dict-compile-") as temporary:
+            compiled = Path(temporary) / "entry.v2.json"
+            report = Path(temporary) / "compile-report.json"
+            subprocess.run(
+                [sys.executable, str(HERE / "compile_evidence_draft.py"), str(worksheet),
+                 "--output", str(compiled), "--report", str(report)],
+                cwd=HERE, check=True,
+            )
+            if compiled.read_bytes() != entry_path.read_bytes():
+                raise SystemExit(f"worksheet/entry compile parity failed: {entry_id}")
+            if digest(compiled) != expected:
+                raise SystemExit(f"compiled hash differs from reviewed hash: {entry_id}")
+    if keeps:
+        gate_dir = HERE / "maintenance" / "promotion-gates"
+        gate_dir.mkdir(parents=True, exist_ok=True)
+        gate_path = gate_dir / f"{args.wave}-lane{args.lane}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"
+        subprocess.run(
+            [sys.executable, str(HERE / "run_cohort_gate.py"),
+             *[str(path) for _, _, _, path in keeps],
+             "--defer-roster", "--output", str(gate_path)],
+            cwd=HERE, check=True,
+        )
+        gate = load(gate_path)
+        gate_hashes = {row["id"]: row["sha256"] for row in gate.get("entries", [])}
+        if not gate.get("hardPass") or gate_hashes != {entry_id: expected for entry_id, _, expected, _ in keeps}:
+            raise SystemExit("promotion cohort receipt is missing, stale, or not a hard pass")
 
     root_path = FRESH / "waves" / f"{args.wave}-root-review.json"
     lane_path = FRESH / "waves" / f"{args.wave}-lane{args.lane}.json"
