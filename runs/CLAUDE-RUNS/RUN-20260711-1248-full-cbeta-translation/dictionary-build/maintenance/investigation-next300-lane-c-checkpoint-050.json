@@ -1,0 +1,2225 @@
+{
+  "schemaVersion": "investigation-next300-semantic-adjudication.v1",
+  "generatedUtc": "2026-07-17T06:57:51.207938+00:00",
+  "lane": "C",
+  "packetBinding": {
+    "path": "maintenance/investigation-next300-lane-c-packet.json",
+    "sha256": "6b5a7c02bc85267fc2a6bbb335cef2a2ea206bf66cd1afa4bdb99a73b6b1c1e5"
+  },
+  "bundleBinding": {
+    "path": "maintenance/investigation-next300-fullcase-bundle-c.json",
+    "sha256": "7d6956af1c6d0ed5b2287e49443b34159b706792928e4a6fd9615272868c56ad"
+  },
+  "entryConstructionAuthorized": false,
+  "publicationAuthorized": false,
+  "lineageRosterWritesAuthorized": false,
+  "checkpoint": 50,
+  "reviewedCount": 50,
+  "decisionCounts": {
+    "KEEP": 44,
+    "REVISE": 4,
+    "REJECT": 2
+  },
+  "rows": [
+    {
+      "lanePosition": 1,
+      "sourceRank": 256,
+      "id": "t_3ad5ae4da39d",
+      "term": "活潑潑",
+      "disposition": "KEEP",
+      "reason": "The full cases show the repeated “lively and active” appraisal in hall addresses, paired with roundness, openness, and free handling. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the repeated “lively and active” appraisal in hall addresses, paired with roundness, openness, and free handling",
+      "distinctWorkIds": [
+        "work:J27nB193",
+        "work:J26nB188",
+        "work:wudeng-quanshu"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0227b01",
+          "toLb": "0227b05",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0751a26",
+          "toLb": "0751a30",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0182b10",
+          "toLb": "0182b15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 2,
+      "sourceRank": 259,
+      "id": "t_5314ab2cc97b",
+      "term": "萬法唯識",
+      "disposition": "KEEP",
+      "reason": "The full cases show the “all things are consciousness-only” formula that a master quotes, limits, and tests against the door panel. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the “all things are consciousness-only” formula that a master quotes, limits, and tests against the door panel",
+      "distinctWorkIds": [
+        "work:T48n2016",
+        "work:guzunsu-yulu",
+        "work:X80n1565"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0423c23",
+          "toLb": "0423c28",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0635c15",
+          "toLb": "0635c21",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0102a08",
+          "toLb": "0102a12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 3,
+      "sourceRank": 262,
+      "id": "t_23995a3d2b1a",
+      "term": "結冬",
+      "disposition": "KEEP",
+      "reason": "The full cases show the institutional opening of the winter assembly or retreat period. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the institutional opening of the winter assembly or retreat period",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:J26nB183",
+        "work:J37nB383"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0243b18",
+          "toLb": "0243b22",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J26nB183",
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0487a21",
+          "toLb": "0487a25",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J37nB383",
+          "relPath": "J/J37/J37nB383.xml",
+          "fromLb": "0205a12",
+          "toLb": "0205a15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 4,
+      "sourceRank": 265,
+      "id": "t_ec232df7c009",
+      "term": "不存軌則",
+      "disposition": "KEEP",
+      "reason": "The full cases show the formula “great function appears without preserving rules,” asked and demonstrated in encounters. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the formula “great function appears without preserving rules,” asked and demonstrated in encounters",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:X80n1565",
+        "work:wudeng-yantong"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0002a24",
+          "toLb": "0002b04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0045a01",
+          "toLb": "0045a05",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0112c10",
+          "toLb": "0112c14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 5,
+      "sourceRank": 268,
+      "id": "t_413cce173e06",
+      "term": "作家宗師",
+      "disposition": "KEEP",
+      "reason": "The full cases show an appraisal naming a teacher a genuine adept and master of the school. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "an appraisal naming a teacher a genuine adept and master of the school",
+      "distinctWorkIds": [
+        "work:X78n1556",
+        "work:X66n1296",
+        "chan:zongjian-falin"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0657c22",
+          "toLb": "0658a02",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0110b03",
+          "toLb": "0110b08",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0469a24",
+          "toLb": "0469b05",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 6,
+      "sourceRank": 271,
+      "id": "t_2ff0b2e6302b",
+      "term": "粥飯氣",
+      "disposition": "KEEP",
+      "reason": "The full cases show the rebuking image of displaying or stirring up the smell of monastery gruel and rice. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the rebuking image of displaying or stirring up the smell of monastery gruel and rice",
+      "distinctWorkIds": [
+        "work:X66n1296",
+        "work:B25n0145",
+        "chan:zongjian-falin"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0054a06",
+          "toLb": "0054a12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0723b11",
+          "toLb": "0723b17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0351b10",
+          "toLb": "0351b14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 7,
+      "sourceRank": 274,
+      "id": "t_013f93f223ad",
+      "term": "大安樂",
+      "disposition": "KEEP",
+      "reason": "The full cases show the “field of great ease” promised, questioned, and bounded by death-and-revival language. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the “field of great ease” promised, questioned, and bounded by death-and-revival language",
+      "distinctWorkIds": [
+        "work:X72n1435",
+        "work:J28nB208",
+        "work:wudeng-quanshu"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0238a08",
+          "toLb": "0238a12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J28nB208",
+          "relPath": "J/J28/J28nB208.xml",
+          "fromLb": "0358a10",
+          "toLb": "0358a15",
+          "exactVerified": true,
+          "headwordSpanCount": 4
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0114a06",
+          "toLb": "0114a10",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 8,
+      "sourceRank": 277,
+      "id": "t_f25049afd1cc",
+      "term": "鐵漢",
+      "disposition": "REVISE",
+      "reason": "Split the person-epithet from the personified iron bell; they are different referents.",
+      "lexicalJobReviewed": "both a resolute “iron fellow” epithet for a person and a personified iron bell, which require distinct senses",
+      "distinctWorkIds": [
+        "work:J27nB193",
+        "work:J33nB281",
+        "work:J25nB174"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0223b10",
+          "toLb": "0223b15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J33nB281",
+          "relPath": "J/J33/J33nB281.xml",
+          "fromLb": "0338b28",
+          "toLb": "0338c02",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0708b13",
+          "toLb": "0708b17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 9,
+      "sourceRank": 280,
+      "id": "t_f2f144b238d1",
+      "term": "魯祖面壁",
+      "disposition": "KEEP",
+      "reason": "The full cases show the raised case and case-title “Luzu faces the wall,” repeatedly questioned and versified. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the raised case and case-title “Luzu faces the wall,” repeatedly questioned and versified",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:X80n1565",
+        "work:X68n1318"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0106c11",
+          "toLb": "0106c15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0194b08",
+          "toLb": "0194b11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0357a15",
+          "toLb": "0357a22",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        }
+      ]
+    },
+    {
+      "lanePosition": 10,
+      "sourceRank": 283,
+      "id": "t_e33f6dced296",
+      "term": "無生國",
+      "disposition": "KEEP",
+      "reason": "The full cases show the “country of no-arising” as a resting place that masters remove, reject, or relocate. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the “country of no-arising” as a resting place that masters remove, reject, or relocate",
+      "distinctWorkIds": [
+        "work:J38nB425",
+        "work:wudeng-quanshu",
+        "work:J28nB202"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J38nB425",
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0631b30",
+          "toLb": "0631c04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0102b17",
+          "toLb": "0102b21",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0018b10",
+          "toLb": "0018b14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 11,
+      "sourceRank": 286,
+      "id": "t_cbb6c863b171",
+      "term": "惺惺著",
+      "disposition": "KEEP",
+      "reason": "The full cases show Ruiyan’s fixed self-admonition “stay alert,” repeatedly raised and commented on. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "Ruiyan’s fixed self-admonition “stay alert,” repeatedly raised and commented on",
+      "distinctWorkIds": [
+        "chan:dahui-pushuo",
+        "work:wudeng-quanshu",
+        "work:J28nB202"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0795a19",
+          "toLb": "0795b04",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0079a02",
+          "toLb": "0079a06",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0054c20",
+          "toLb": "0054c24",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 12,
+      "sourceRank": 289,
+      "id": "t_75039519e1e0",
+      "term": "廣燈",
+      "disposition": "KEEP",
+      "reason": "The full cases show an abbreviated lamp-record title and source-citation label, not ordinary broad light. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "an abbreviated lamp-record title and source-citation label, not ordinary broad light",
+      "distinctWorkIds": [
+        "work:X78n1553",
+        "work:X79n1559",
+        "work:X78n1556"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X78n1553",
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0420a19",
+          "toLb": "0420b03",
+          "exactVerified": true,
+          "headwordSpanCount": 18
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0288c10",
+          "toLb": "0288c14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0640c18",
+          "toLb": "0641a01",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 13,
+      "sourceRank": 292,
+      "id": "t_f4ea21532182",
+      "term": "淨躶躶",
+      "disposition": "KEEP",
+      "reason": "The full cases show the “clean naked, bare and free” appraisal used in direct instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the “clean naked, bare and free” appraisal used in direct instruction",
+      "distinctWorkIds": [
+        "chan:dahui-pushuo",
+        "chan:zhiyue-lu",
+        "work:X64n1260"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0796a16",
+          "toLb": "0796b01",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0621c24",
+          "toLb": "0622a04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0017a04",
+          "toLb": "0017a08",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 14,
+      "sourceRank": 295,
+      "id": "t_bf0adfd125a6",
+      "term": "壁觀",
+      "disposition": "REVISE",
+      "reason": "Separate wall contemplation/Bodhidharma usage from the proper name Biguan; a person-name occurrence cannot buy the concept.",
+      "lexicalJobReviewed": "wall contemplation as Bodhidharma language is mixed with a monk named Biguan and must be separated",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:J26nB177",
+        "work:J37nB384"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0017b16",
+          "toLb": "0017b20",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J26nB177",
+          "relPath": "J/J26/J26nB177.xml",
+          "fromLb": "0052c06",
+          "toLb": "0052c10",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J37nB384",
+          "relPath": "J/J37/J37nB384.xml",
+          "fromLb": "0247b15",
+          "toLb": "0247b19",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 15,
+      "sourceRank": 298,
+      "id": "t_b436617c693a",
+      "term": "禪病",
+      "disposition": "KEEP",
+      "reason": "The full cases show “Chan sickness” as a named diagnostic category that masters explicitly question and discuss. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“Chan sickness” as a named diagnostic category that masters explicitly question and discuss",
+      "distinctWorkIds": [
+        "work:X63n1257",
+        "work:X72n1435",
+        "work:T47n1998A"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X63n1257",
+          "relPath": "X/X63/X63n1257.xml",
+          "fromLb": "0755a10",
+          "toLb": "0755a15",
+          "exactVerified": true,
+          "headwordSpanCount": 7
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0237b19",
+          "toLb": "0237b24",
+          "exactVerified": true,
+          "headwordSpanCount": 7
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0870a05",
+          "toLb": "0870a10",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 16,
+      "sourceRank": 301,
+      "id": "t_8bd3edf4e467",
+      "term": "面壁九年",
+      "disposition": "KEEP",
+      "reason": "The full cases show Bodhidharma’s fixed nine-years-facing-the-wall formula, praised, criticized, and turned in verse. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "Bodhidharma’s fixed nine-years-facing-the-wall formula, praised, criticized, and turned in verse",
+      "distinctWorkIds": [
+        "work:J39nB471",
+        "work:X68n1318",
+        "work:wudeng-quanshu"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J39nB471",
+          "relPath": "J/J39/J39nB471.xml",
+          "fromLb": "0951b12",
+          "toLb": "0951b17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0382c13",
+          "toLb": "0382c17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0044b22",
+          "toLb": "0044c02",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 17,
+      "sourceRank": 304,
+      "id": "t_a9c25ff38478",
+      "term": "信心銘",
+      "disposition": "KEEP",
+      "reason": "The full cases show the title Trust in Mind Inscription, repeatedly cited and discussed as a textual source. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the title Trust in Mind Inscription, repeatedly cited and discussed as a textual source",
+      "distinctWorkIds": [
+        "work:B25n0145",
+        "work:T48n2016",
+        "work:J34nB311"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0687b08",
+          "toLb": "0687b12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0420a21",
+          "toLb": "0420a25",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0631c08",
+          "toLb": "0631c11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 18,
+      "sourceRank": 307,
+      "id": "t_e389ad2233e5",
+      "term": "安穩",
+      "disposition": "KEEP",
+      "reason": "The full cases show a stable or secure condition and “secure ground,” tested against death, activity, and high peaks. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "a stable or secure condition and “secure ground,” tested against death, activity, and high peaks",
+      "distinctWorkIds": [
+        "work:X69n1357",
+        "work:J10nA158",
+        "work:T47n1997"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455b14",
+          "toLb": "0455b19",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0023c26",
+          "toLb": "0023c30",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0768b06",
+          "toLb": "0768b11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 19,
+      "sourceRank": 310,
+      "id": "t_e2b42cf99e80",
+      "term": "作家相見",
+      "disposition": "KEEP",
+      "reason": "The full cases show “adepts meeting” as an appraisal of matched encounter skill. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“adepts meeting” as an appraisal of matched encounter skill",
+      "distinctWorkIds": [
+        "chan:zongjian-falin",
+        "work:T48n2003",
+        "work:J25nB171"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0373c23",
+          "toLb": "0374a04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0143c19",
+          "toLb": "0143c23",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0542c26",
+          "toLb": "0542c30",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 20,
+      "sourceRank": 313,
+      "id": "t_d2a426d75dd7",
+      "term": "坐臥經行",
+      "disposition": "KEEP",
+      "reason": "The full cases show the fixed four-posture sequence sitting, lying, walking, and moving in instruction and appraisal. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the fixed four-posture sequence sitting, lying, walking, and moving in instruction and appraisal",
+      "distinctWorkIds": [
+        "work:J28nB203",
+        "work:J25nB163",
+        "work:J28nB202"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J28nB203",
+          "relPath": "J/J28/J28nB203.xml",
+          "fromLb": "0175a26",
+          "toLb": "0175a30",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0232a06",
+          "toLb": "0232a10",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0030b13",
+          "toLb": "0030b17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 21,
+      "sourceRank": 316,
+      "id": "t_2ca177fa2e93",
+      "term": "不思量",
+      "disposition": "KEEP",
+      "reason": "The full cases show “not thinking” explicitly contrasted with thinking and questioned in encounters. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“not thinking” explicitly contrasted with thinking and questioned in encounters",
+      "distinctWorkIds": [
+        "chan:dahui-pushuo",
+        "work:T47n1998A",
+        "work:guzunsu-yulu"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0842b17",
+          "toLb": "0843a01",
+          "exactVerified": true,
+          "headwordSpanCount": 4
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0822b07",
+          "toLb": "0822b14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0695b24",
+          "toLb": "0695c06",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 22,
+      "sourceRank": 319,
+      "id": "t_dc7f87f7bf13",
+      "term": "應酬",
+      "disposition": "REJECT",
+      "reason": "The cases use 應酬 ordinarily for social dealings, correspondence, or daily obligations. It is discussed in Chan texts but is not independently bent into a stable Chan lexical unit.",
+      "lexicalJobReviewed": "ordinary social dealings and correspondence; the passages do not establish an independent Chan lexical object",
+      "distinctWorkIds": [
+        "work:X70n1403",
+        "work:J27nB198",
+        "work:J34nB300"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X70n1403",
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0754a11",
+          "toLb": "0754a15",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J27nB198",
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0487b19",
+          "toLb": "0487b23",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J34nB300",
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0268c08",
+          "toLb": "0268c12",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        }
+      ]
+    },
+    {
+      "lanePosition": 23,
+      "sourceRank": 322,
+      "id": "t_a7bce913cc8f",
+      "term": "死法",
+      "disposition": "KEEP",
+      "reason": "The full cases show “dead teaching” as a recurring verdict on fixed words, understanding, or instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“dead teaching” as a recurring verdict on fixed words, understanding, or instruction",
+      "distinctWorkIds": [
+        "work:J34nB311",
+        "work:X63n1259",
+        "work:X70n1403"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0622b25",
+          "toLb": "0622b29",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X63n1259",
+          "relPath": "X/X63/X63n1259.xml",
+          "fromLb": "0774b22",
+          "toLb": "0774c02",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X70n1403",
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0761c24",
+          "toLb": "0762a04",
+          "exactVerified": true,
+          "headwordSpanCount": 4
+        }
+      ]
+    },
+    {
+      "lanePosition": 24,
+      "sourceRank": 325,
+      "id": "t_703e6991c669",
+      "term": "二時粥飯",
+      "disposition": "KEEP",
+      "reason": "The full cases show the two daily gruel-and-rice meals as a fixed monastic time formula in Zhaozhou material. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the two daily gruel-and-rice meals as a fixed monastic time formula in Zhaozhou material",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:X70n1400",
+        "work:J33nB294"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0138c05",
+          "toLb": "0138c09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X70n1400",
+          "relPath": "X/X70/X70n1400.xml",
+          "fromLb": "0678c15",
+          "toLb": "0678c19",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0735a02",
+          "toLb": "0735a06",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 25,
+      "sourceRank": 328,
+      "id": "t_38cc4291fe2a",
+      "term": "將心來",
+      "disposition": "KEEP",
+      "reason": "The full cases show Bodhidharma’s fixed demand “bring the mind,” preserved and raised as a public case. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "Bodhidharma’s fixed demand “bring the mind,” preserved and raised as a public case",
+      "distinctWorkIds": [
+        "work:J34nB299",
+        "chan:dahui-pushuo",
+        "work:J10nA158"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0163c22",
+          "toLb": "0163c26",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0791b10",
+          "toLb": "0791b15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0035b30",
+          "toLb": "0035c03",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 26,
+      "sourceRank": 331,
+      "id": "t_5809e2bfc65b",
+      "term": "頂天立地",
+      "disposition": "KEEP",
+      "reason": "The full cases show “supporting heaven and standing on earth” as an epithet for an unconstrained Chan person. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“supporting heaven and standing on earth” as an epithet for an unconstrained Chan person",
+      "distinctWorkIds": [
+        "work:J38nB410",
+        "work:wudeng-quanshu",
+        "work:J26nB178"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J38nB410",
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0317c11",
+          "toLb": "0317c15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0123c03",
+          "toLb": "0123c07",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0105a21",
+          "toLb": "0105a24",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 27,
+      "sourceRank": 334,
+      "id": "t_d1057a926268",
+      "term": "掃帚",
+      "disposition": "KEEP",
+      "reason": "The full cases show the broom as a concrete answering action in the Shide case and an implement in later case commentary. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the broom as a concrete answering action in the Shide case and an implement in later case commentary",
+      "distinctWorkIds": [
+        "work:X66n1296",
+        "work:X80n1565",
+        "work:C078n1720"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0065c07",
+          "toLb": "0065c11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0067c22",
+          "toLb": "0068a02",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0704a11",
+          "toLb": "0704a17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 28,
+      "sourceRank": 337,
+      "id": "t_9903612882ce",
+      "term": "衲僧本分",
+      "disposition": "KEEP",
+      "reason": "The full cases show the explicit question for a patch-robed monk’s own proper business. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the explicit question for a patch-robed monk’s own proper business",
+      "distinctWorkIds": [
+        "work:X64n1260",
+        "work:guzunsu-yulu",
+        "work:T47n1997"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0052b13",
+          "toLb": "0052b18",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:guzunsu-yulu",
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0295a04",
+          "toLb": "0295a09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0732a21",
+          "toLb": "0732a26",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 29,
+      "sourceRank": 340,
+      "id": "t_56019b9ca700",
+      "term": "拈槌竪拂",
+      "disposition": "KEEP",
+      "reason": "The full cases show taking up the mallet and raising the whisk as paired teaching-seat actions repeatedly questioned. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "taking up the mallet and raising the whisk as paired teaching-seat actions repeatedly questioned",
+      "distinctWorkIds": [
+        "work:T47n1988",
+        "work:X80n1565",
+        "work:X79n1557"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:T47n1988",
+          "relPath": "T/T47/T47n1988.xml",
+          "fromLb": "0554a29",
+          "toLb": "0554b05",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0147a18",
+          "toLb": "0147a22",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0098a03",
+          "toLb": "0098a08",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        }
+      ]
+    },
+    {
+      "lanePosition": 30,
+      "sourceRank": 343,
+      "id": "t_189fe0b68849",
+      "term": "龜毛拂子",
+      "disposition": "KEEP",
+      "reason": "The full cases show the impossible tortoise-hair whisk as a recurring case implement and verbal prize. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the impossible tortoise-hair whisk as a recurring case implement and verbal prize",
+      "distinctWorkIds": [
+        "work:J36nB369",
+        "work:wudeng-quanshu",
+        "work:J39nB447"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0947b15",
+          "toLb": "0947b19",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0159b20",
+          "toLb": "0159c01",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J39nB447",
+          "relPath": "J/J39/J39nB447.xml",
+          "fromLb": "0390c16",
+          "toLb": "0390c20",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        }
+      ]
+    },
+    {
+      "lanePosition": 31,
+      "sourceRank": 346,
+      "id": "t_f3832745ab12",
+      "term": "綿綿密密",
+      "disposition": "KEEP",
+      "reason": "The full cases show the “continuous and close” formula applied to sustained inquiry and to the relation of saying and doing. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the “continuous and close” formula applied to sustained inquiry and to the relation of saying and doing",
+      "distinctWorkIds": [
+        "work:J26nB188",
+        "work:J25nB159",
+        "work:X71n1405"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0762c19",
+          "toLb": "0762c23",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J25nB159",
+          "relPath": "J/J25/J25nB159.xml",
+          "fromLb": "0138a14",
+          "toLb": "0138a19",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X71n1405",
+          "relPath": "X/X71/X71n1405.xml",
+          "fromLb": "0024b04",
+          "toLb": "0024b09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 32,
+      "sourceRank": 349,
+      "id": "t_e412a2d268a2",
+      "term": "內紹",
+      "disposition": "KEEP",
+      "reason": "The full cases show the technical inner succession of the ruler/royal line in Five-Ranks exposition. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the technical inner succession of the ruler/royal line in Five-Ranks exposition",
+      "distinctWorkIds": [
+        "work:X72n1437",
+        "work:J33nB294",
+        "chan:zhiyue-lu"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0539b06",
+          "toLb": "0539b11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0724c09",
+          "toLb": "0724c13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0574b07",
+          "toLb": "0574b11",
+          "exactVerified": true,
+          "headwordSpanCount": 9
+        }
+      ]
+    },
+    {
+      "lanePosition": 33,
+      "sourceRank": 352,
+      "id": "t_eb31fb6945c9",
+      "term": "少室峰前",
+      "disposition": "KEEP",
+      "reason": "The full cases show Shaoshi Peak as the Bodhidharma-site image paired with Caoxi and transmission scenes. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "Shaoshi Peak as the Bodhidharma-site image paired with Caoxi and transmission scenes",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:J40nB494",
+        "work:X64n1260"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0019c05",
+          "toLb": "0019c09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J40nB494",
+          "relPath": "J/J40/J40nB494.xml",
+          "fromLb": "0529a24",
+          "toLb": "0529a28",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0020c08",
+          "toLb": "0020c12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 34,
+      "sourceRank": 355,
+      "id": "t_e8fbcc5ba72c",
+      "term": "廣長舌相",
+      "disposition": "KEEP",
+      "reason": "The full cases show the broad-long-tongue figure invoked for limitless speech and masters’ teaching. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the broad-long-tongue figure invoked for limitless speech and masters’ teaching",
+      "distinctWorkIds": [
+        "work:J39nB454",
+        "work:X72n1437",
+        "work:J26nB178"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J39nB454",
+          "relPath": "J/J39/J39nB454.xml",
+          "fromLb": "0603c17",
+          "toLb": "0603c21",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0447a23",
+          "toLb": "0447b04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0109c10",
+          "toLb": "0109c15",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 35,
+      "sourceRank": 358,
+      "id": "t_8d131304ed9a",
+      "term": "寸絲不挂",
+      "disposition": "KEEP",
+      "reason": "The full cases show “not hanging a single thread” as a fixed case saying tested by Xuefeng and Nanquan. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“not hanging a single thread” as a fixed case saying tested by Xuefeng and Nanquan",
+      "distinctWorkIds": [
+        "work:J36nB369",
+        "chan:zongjian-falin",
+        "work:X79n1557"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0958b16",
+          "toLb": "0958b19",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0407b16",
+          "toLb": "0407b21",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0040b08",
+          "toLb": "0040b13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 36,
+      "sourceRank": 361,
+      "id": "t_1cd8ff8e84e9",
+      "term": "目機銖兩",
+      "disposition": "KEEP",
+      "reason": "The full cases show the technical appraisal “observe the mechanism and weigh by the ounce” in encounter handling. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the technical appraisal “observe the mechanism and weigh by the ounce” in encounter handling",
+      "distinctWorkIds": [
+        "work:X64n1260",
+        "chan:hongjue-min-yulu",
+        "work:J26nB178"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0011a23",
+          "toLb": "0011b03",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "chan:hongjue-min-yulu",
+          "relPath": "L/L155/L155n1643.xml",
+          "fromLb": "0214b12",
+          "toLb": "0215a03",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0105a23",
+          "toLb": "0105a27",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 37,
+      "sourceRank": 364,
+      "id": "t_f6e2a3cd7770",
+      "term": "迦葉佛",
+      "disposition": "REJECT",
+      "reason": "The transported witnesses only catalog or head a list with 迦葉佛. None shows a master invoking this Buddha as an answer, verdict, question, or case figure.",
+      "lexicalJobReviewed": "Kasyapa Buddha appears only in catalogs, headings, and inherited lists here, not as a figure deployed by a master",
+      "distinctWorkIds": [
+        "chan:zhiyue-lu",
+        "chan:jiaowai-biezhuan",
+        "work:B25n0144"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0405a14",
+          "toLb": "0405a19",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "chan:jiaowai-biezhuan",
+          "relPath": "X/X84/X84n1580.xml",
+          "fromLb": "0166a12",
+          "toLb": "0166b04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:B25n0144",
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0291a11",
+          "toLb": "0291a21",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 38,
+      "sourceRank": 367,
+      "id": "t_e8059962298a",
+      "term": "皂白",
+      "disposition": "KEEP",
+      "reason": "The full cases show black and white as the technical demand to distinguish fine differences in cases and ranks. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "black and white as the technical demand to distinguish fine differences in cases and ranks",
+      "distinctWorkIds": [
+        "work:J38nB406",
+        "work:T47n1997",
+        "work:X69n1356"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J38nB406",
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0129c14",
+          "toLb": "0129c19",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0757a28",
+          "toLb": "0757b04",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X69n1356",
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0401b17",
+          "toLb": "0401b23",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 39,
+      "sourceRank": 370,
+      "id": "t_9d437dfc1719",
+      "term": "聲色言語",
+      "disposition": "KEEP",
+      "reason": "The full cases show the fixed claim that the great Way’s body is not apart from sounds, sights, and language. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the fixed claim that the great Way’s body is not apart from sounds, sights, and language",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:T47n1998A",
+        "work:X84n1583"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0015b18",
+          "toLb": "0015b22",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0812a26",
+          "toLb": "0812b02",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0411c01",
+          "toLb": "0411c06",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 40,
+      "sourceRank": 373,
+      "id": "t_e6077ed1bb67",
+      "term": "別語",
+      "disposition": "REVISE",
+      "reason": "Split technical “alternative saying” from expository “general/particular language.”",
+      "lexicalJobReviewed": "two distinct things: an alternative answer in encounter records and “general/particular language” in exposition",
+      "distinctWorkIds": [
+        "chan:zhiyue-lu",
+        "work:guzunsu-yulu",
+        "work:T51n2076"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0478c10",
+          "toLb": "0478c14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0618c11",
+          "toLb": "0618c17",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0392b07",
+          "toLb": "0392b12",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 41,
+      "sourceRank": 376,
+      "id": "t_05b3ddb5f92c",
+      "term": "語言三昧",
+      "disposition": "KEEP",
+      "reason": "The full cases show “command of language” as a named capacity and as a problem in the three-ailing-persons case. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "“command of language” as a named capacity and as a problem in the three-ailing-persons case",
+      "distinctWorkIds": [
+        "chan:dahui-pushuo",
+        "work:T47n1998A",
+        "work:X64n1260"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0932b09",
+          "toLb": "0932b14",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0824a27",
+          "toLb": "0824b03",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0060c09",
+          "toLb": "0060c13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 42,
+      "sourceRank": 379,
+      "id": "t_00cde634827e",
+      "term": "諂曲",
+      "disposition": "KEEP",
+      "reason": "The full cases show devious flattery as a named fault and the answer to Yaoshan’s question about the treasure in the Way. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "devious flattery as a named fault and the answer to Yaoshan’s question about the treasure in the Way",
+      "distinctWorkIds": [
+        "work:guzunsu-yulu",
+        "work:C078n1720",
+        "work:X78n1553"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0616a07",
+          "toLb": "0616a13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0692c10",
+          "toLb": "0692c16",
+          "exactVerified": true,
+          "headwordSpanCount": 4
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X78n1553",
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0449a01",
+          "toLb": "0449a05",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 43,
+      "sourceRank": 382,
+      "id": "t_af3d7c60cac8",
+      "term": "大體",
+      "disposition": "REVISE",
+      "reason": "Split technical essence opposed to great function from general “overall principle” and abbatial “big picture.”",
+      "lexicalJobReviewed": "distinct referents: technical essence contrasted with great function, general principle, and an abbot’s overall charge",
+      "distinctWorkIds": [
+        "work:J28nB219",
+        "work:J25nB171",
+        "work:T48n2022"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0703a15",
+          "toLb": "0703a21",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0553a09",
+          "toLb": "0553a13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T48n2022",
+          "relPath": "T/T48/T48n2022.xml",
+          "fromLb": "1026b22",
+          "toLb": "1026b27",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 44,
+      "sourceRank": 385,
+      "id": "t_38912d8a45ea",
+      "term": "偏中至",
+      "disposition": "KEEP",
+      "reason": "The full cases show the technical Five-Ranks position “arrival within the biased,” explicitly questioned and analyzed. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the technical Five-Ranks position “arrival within the biased,” explicitly questioned and analyzed",
+      "distinctWorkIds": [
+        "work:J34nB311",
+        "work:J25nB174",
+        "work:X84n1585"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0649c13",
+          "toLb": "0649c17",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0728a13",
+          "toLb": "0728a17",
+          "exactVerified": true,
+          "headwordSpanCount": 3
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X84n1585",
+          "relPath": "X/X84/X84n1585.xml",
+          "fromLb": "0717b18",
+          "toLb": "0717b22",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 45,
+      "sourceRank": 388,
+      "id": "t_150a59071656",
+      "term": "授戒",
+      "disposition": "KEEP",
+      "reason": "The full cases show conferring precepts as a concrete ordination act, ritual heading, and institutional transmission event. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "conferring precepts as a concrete ordination act, ritual heading, and institutional transmission event",
+      "distinctWorkIds": [
+        "work:J28nB219",
+        "work:J34nB311",
+        "work:T51n2076"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0701c09",
+          "toLb": "0701c14",
+          "exactVerified": true,
+          "headwordSpanCount": 4
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0621c12",
+          "toLb": "0621c16",
+          "exactVerified": true,
+          "headwordSpanCount": 2
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0208a04",
+          "toLb": "0208a09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 46,
+      "sourceRank": 391,
+      "id": "t_dc5e2bd54cfe",
+      "term": "命根斷",
+      "disposition": "KEEP",
+      "reason": "The full cases show the technical breaking of the life-root, followed by renewed functioning and freedom in circumstances. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the technical breaking of the life-root, followed by renewed functioning and freedom in circumstances",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:X71n1426",
+        "work:J25nB174"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0051c04",
+          "toLb": "0051c08",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X71n1426",
+          "relPath": "X/X71/X71n1426.xml",
+          "fromLb": "0774b19",
+          "toLb": "0774b24",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0717b22",
+          "toLb": "0717b27",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 47,
+      "sourceRank": 394,
+      "id": "t_8e59a2d1c6b2",
+      "term": "鐵蒺藜",
+      "disposition": "KEEP",
+      "reason": "The full cases show the iron caltrop as a hard verbal offering, forged implement, and emblem of difficult encounter fare. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the iron caltrop as a hard verbal offering, forged implement, and emblem of difficult encounter fare",
+      "distinctWorkIds": [
+        "work:B25n0145",
+        "work:T51n2077",
+        "work:X64n1260"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0710b17",
+          "toLb": "0711a01",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0567c17",
+          "toLb": "0567c22",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0094b06",
+          "toLb": "0094b11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 48,
+      "sourceRank": 397,
+      "id": "t_5c1dd0cfcc06",
+      "term": "單傳心印",
+      "disposition": "KEEP",
+      "reason": "The full cases show the single-transmission mind-seal formula asserted in histories and master instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the single-transmission mind-seal formula asserted in histories and master instruction",
+      "distinctWorkIds": [
+        "work:T48n2003",
+        "work:X69n1357",
+        "work:T47n1997"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0139b21",
+          "toLb": "0139b26",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455a09",
+          "toLb": "0455a13",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0777a04",
+          "toLb": "0777a09",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 49,
+      "sourceRank": 400,
+      "id": "t_c0cc3864ebd9",
+      "term": "趙州無字",
+      "disposition": "KEEP",
+      "reason": "The full cases show the named “Zhaozhou no-word” saying assigned for investigation in records. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "the named “Zhaozhou no-word” saying assigned for investigation in records",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:X84n1585",
+        "work:X84n1583"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0160c07",
+          "toLb": "0160c11",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:X84n1585",
+          "relPath": "X/X84/X84n1585.xml",
+          "fromLb": "0712b03",
+          "toLb": "0712b07",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0449b14",
+          "toLb": "0449b18",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    },
+    {
+      "lanePosition": 50,
+      "sourceRank": 403,
+      "id": "t_8e0e666cb806",
+      "term": "金牛飯",
+      "disposition": "KEEP",
+      "reason": "The full cases show Jinniu’s rice as a named monastery-case meal paired with Yunmen’s cake and Zhaozhou’s tea. This is observable Chan deployment rather than frequency or mere containment.",
+      "lexicalJobReviewed": "Jinniu’s rice as a named monastery-case meal paired with Yunmen’s cake and Zhaozhou’s tea",
+      "distinctWorkIds": [
+        "work:wudeng-quanshu",
+        "work:J34nB303",
+        "work:J33nB294"
+      ],
+      "distinctWorkCount": 3,
+      "caseReview": [
+        {
+          "evidencePosition": 1,
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0250b04",
+          "toLb": "0250b08",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 2,
+          "workId": "work:J34nB303",
+          "relPath": "J/J34/J34nB303.xml",
+          "fromLb": "0358b03",
+          "toLb": "0358b07",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        },
+        {
+          "evidencePosition": 3,
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0732a19",
+          "toLb": "0732a23",
+          "exactVerified": true,
+          "headwordSpanCount": 1
+        }
+      ]
+    }
+  ]
+}

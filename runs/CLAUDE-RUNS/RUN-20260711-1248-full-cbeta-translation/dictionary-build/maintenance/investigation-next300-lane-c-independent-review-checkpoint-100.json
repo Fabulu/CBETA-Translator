@@ -1,0 +1,4326 @@
+{
+  "schemaVersion": "investigation-next300-independent-review.v1",
+  "lane": "C",
+  "generatedUtc": "2026-07-17T07:05:11.863280+00:00",
+  "packet": "investigation-next300-lane-c-packet.json",
+  "packetSha256": "6b5a7c02bc85267fc2a6bbb335cef2a2ea206bf66cd1afa4bdb99a73b6b1c1e5",
+  "bundle": "investigation-next300-fullcase-bundle-c.json",
+  "bundleSha256": "7d6956af1c6d0ed5b2287e49443b34159b706792928e4a6fd9615272868c56ad",
+  "primaryLedger": "investigation-next300-lane-c-semantic-ledger.json",
+  "primaryLedgerSha256": "3f90c601741436195f0e1ceb26b322906387d7de4d33bd87804ed8a538728a2f",
+  "reviewedCount": 100,
+  "checkpoint": "100/100",
+  "counts": {
+    "APPROVE": 85,
+    "REVISE": 8,
+    "REJECT": 7
+  },
+  "sourceOrderPreserved": true,
+  "allFullCasesRead": true,
+  "allExactVerifyPassed": true,
+  "constructionAuthorized": false,
+  "installMergePublishAuthorized": false,
+  "lineageOrRosterTouched": false,
+  "rows": [
+    {
+      "reviewPosition": 1,
+      "sourceRank": 256,
+      "id": "t_3ad5ae4da39d",
+      "term": "活潑潑",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "活潑潑",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the repeated “lively and active” appraisal in hall addresses, paired with roundness, openness, and free handling. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0227b01",
+          "toLb": "0227b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "cdd90bb4568f9a4d800d0ced2cad8b883f7c30256b5f6f7937bcfe5a159f6010"
+        },
+        {
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0751a26",
+          "toLb": "0751a30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bf917348d5541e31a32b587bb98e341453f52bf091f39cd978597a40619e354a"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0182b10",
+          "toLb": "0182b15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "473ab7ad539956f576b218404e24e0ea4d52eb657783fee14160dcb9cef9798b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 2,
+      "sourceRank": 259,
+      "id": "t_5314ab2cc97b",
+      "term": "萬法唯識",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "萬法唯識",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “all things are consciousness-only” formula that a master quotes, limits, and tests against the door panel. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0423c23",
+          "toLb": "0423c28",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6d75aff2d06c6c7c48488a0b1c15d1a74fa67847a76da4155e3b0c0093667a6f"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0635c15",
+          "toLb": "0635c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c3453b5866c113dd49412396de3fefdbdbe2c8a9baea3bb8fce57ec1bf69a58d"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0102a08",
+          "toLb": "0102a12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ce47380e7caca2fc496b139916b69bfe1e7a8df0af0020c5014755bd82e0d2d3"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 3,
+      "sourceRank": 262,
+      "id": "t_23995a3d2b1a",
+      "term": "結冬",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "結冬",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the institutional opening of the winter assembly or retreat period. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0243b18",
+          "toLb": "0243b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8f20ca80308936261e0eabbd2b98eb76dc6df20f53cbb6655c9629d492f5e74e"
+        },
+        {
+          "workId": "work:J26nB183",
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0487a21",
+          "toLb": "0487a25",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "eca41d7384e004540def138aefaf68cceb3ef6163e012c64d4e07438b49ee3f5"
+        },
+        {
+          "workId": "work:J37nB383",
+          "relPath": "J/J37/J37nB383.xml",
+          "fromLb": "0205a12",
+          "toLb": "0205a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4e69ff9f09229ef5b13e8c400ccbe9c1a193f27e75dc36aeb76a222f01c016cb"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 4,
+      "sourceRank": 265,
+      "id": "t_ec232df7c009",
+      "term": "不存軌則",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "不存軌則",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the formula “great function appears without preserving rules,” asked and demonstrated in encounters. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0002a24",
+          "toLb": "0002b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "94550fb86864528977f4c5877122101b28cd51826134c4b344d0333047b5c64a"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0045a01",
+          "toLb": "0045a05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8c7bc2654e3db17663d011be3c05b21c73acd73e152599248d44471fd1548dba"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0112c10",
+          "toLb": "0112c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "51dcc9dd0e7188c607b7e5db66c6222bb43690496f8e6ac95ccca9d728b81825"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 5,
+      "sourceRank": 268,
+      "id": "t_413cce173e06",
+      "term": "作家宗師",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "作家宗師",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show an appraisal naming a teacher a genuine adept and master of the school. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0657c22",
+          "toLb": "0658a02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "48338bc82e1731b3ab623f0badf43f15615966b01ffbd052c7f551db3e1c8d9b"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0110b03",
+          "toLb": "0110b08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "aae1a292a8436266ab78d095fbdf7ab55594c7d03be144cd03ba38148ac982de"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0469a24",
+          "toLb": "0469b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ab70fde1915f6e9a5b367d0a310fed5fab7db41803d4bc9227be207a56bef5d6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 6,
+      "sourceRank": 271,
+      "id": "t_2ff0b2e6302b",
+      "term": "粥飯氣",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "粥飯氣",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the rebuking image of displaying or stirring up the smell of monastery gruel and rice. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0054a06",
+          "toLb": "0054a12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bb7251a6a1061136f0a088b97199aae7deca02a5be4ade529649c5433cc57530"
+        },
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0723b11",
+          "toLb": "0723b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4f41766de5c780c9a1e1c6eaee547431bf9a23ae3894b543a8caa6dcebe2c2e0"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0351b10",
+          "toLb": "0351b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8fd2e95a77bba7ae4b44fe7ddb2b445ac7cfb80a9d764153d1b1b37196279478"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 7,
+      "sourceRank": 274,
+      "id": "t_013f93f223ad",
+      "term": "大安樂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "大安樂",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “field of great ease” promised, questioned, and bounded by death-and-revival language. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0238a08",
+          "toLb": "0238a12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "cb63ced7c812648feea171401db531a64c46511c59f4e589e0ba614396936403"
+        },
+        {
+          "workId": "work:J28nB208",
+          "relPath": "J/J28/J28nB208.xml",
+          "fromLb": "0358a10",
+          "toLb": "0358a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "0a9a9ef4579925c21ca7927114aaae6019954ed97967e274980b4b8eac0723d9"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0114a06",
+          "toLb": "0114a10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "0126db4edc594cdc3c303c57c3d3b065094d865026c2653056f66850c8a875ae"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 8,
+      "sourceRank": 277,
+      "id": "t_f25049afd1cc",
+      "term": "鐵漢",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "鐵漢",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms that revision is required: Split the person-epithet from the personified iron bell; they are different referents.",
+      "evidence": [
+        {
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0223b10",
+          "toLb": "0223b15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "68a589b7d7877964f42d6a8356437379610862e7d928632d5b4eca3f879d2dd3"
+        },
+        {
+          "workId": "work:J33nB281",
+          "relPath": "J/J33/J33nB281.xml",
+          "fromLb": "0338b28",
+          "toLb": "0338c02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "411e47b1dfb72bc43c4b0b296ce96398f60c2eed9bc5d0223668a26f8be0dec3"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0708b13",
+          "toLb": "0708b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6cc50349bfc92732ad5154f8c58e1ecb8f9258cba94a80d83c280e2b67e6f81f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 9,
+      "sourceRank": 280,
+      "id": "t_f2f144b238d1",
+      "term": "魯祖面壁",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "魯祖面壁",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the raised case and case-title “Luzu faces the wall,” repeatedly questioned and versified. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0106c11",
+          "toLb": "0106c15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b5191887eba1b95b9118aeedfdf5190b29a49eaa3cba3d6c025e3ef35016ba4b"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0194b08",
+          "toLb": "0194b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "edd6dd6f6972ea5aee403a77a937ecd6455ec3396da467473099eb8bcd5b2636"
+        },
+        {
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0357a15",
+          "toLb": "0357a22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "69ed61fe9b8e5cacc146c9573002327f7ef4136c61e0f853d96f0f1eff0ddb5c"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 10,
+      "sourceRank": 283,
+      "id": "t_e33f6dced296",
+      "term": "無生國",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "無生國",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “country of no-arising” as a resting place that masters remove, reject, or relocate. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB425",
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0631b30",
+          "toLb": "0631c04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ddf1e0e1df9be035696a73642735d41c199119c12e441bf065446bf0823de68c"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0102b17",
+          "toLb": "0102b21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7357a0de88bf41579b7a9a4c58795f7858b3b72472e6231ff413d95a1da74cd8"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0018b10",
+          "toLb": "0018b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "41a69380f825c40758807a1437c5cf93b570825cf8a8e7352e929ed134b6488e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 11,
+      "sourceRank": 286,
+      "id": "t_cbb6c863b171",
+      "term": "惺惺著",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "惺惺著",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Ruiyan’s fixed self-admonition “stay alert,” repeatedly raised and commented on. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0795a19",
+          "toLb": "0795b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "938d366362885ce1717a71013dc67bdd755db0e81a1cc446233dd2866a0c8bbd"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0079a02",
+          "toLb": "0079a06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b5a8e68634e7d2c5daa11db1002aeb4aa716c4ba841af3585b409f33b0ef9657"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0054c20",
+          "toLb": "0054c24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "06ae19906e5b41a6fd278c392a412dfe52f8a61e40577f099f9dd8417891de9f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 12,
+      "sourceRank": 289,
+      "id": "t_75039519e1e0",
+      "term": "廣燈",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "天聖廣燈錄",
+      "fullCasesRead": 3,
+      "reason": "The witnesses concern the title 天聖廣燈錄; bare 廣燈 is an ambiguous clipping rather than a self-sufficient lexical unit. Build the full title and retain 廣燈 only as a citation/search alias.",
+      "evidence": [
+        {
+          "workId": "work:X78n1553",
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0420a19",
+          "toLb": "0420b03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 18,
+          "fullCaseWindowSha256": "66f00061dce49ff56998cb7716abdaf97bbe49ab9b06eedacb61eb21196f6f89"
+        },
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0288c10",
+          "toLb": "0288c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "68892decc45f3448a30bf3d9c2929473c27e4a27971ec22d03a467921ca54e54"
+        },
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0640c18",
+          "toLb": "0641a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e41ba5c234abe9a4602fac925c16c5e7b346521a6d1342049bfddbe2174e1d4d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 13,
+      "sourceRank": 292,
+      "id": "t_f4ea21532182",
+      "term": "淨躶躶",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "淨躶躶",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “clean naked, bare and free” appraisal used in direct instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0796a16",
+          "toLb": "0796b01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "0a90d94a24f53dae0791e33e25f8244003561f8b58524cfcd13a51fc0576fe47"
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0621c24",
+          "toLb": "0622a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "577b6a70d294b3a8474c9a0940fdb575a094e5576b632ff963c1a62ed8d5c34e"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0017a04",
+          "toLb": "0017a08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6685567bc2c2cb009586b8da7d7e5ce8ccbeafe92c34f421f0c55114ac9ec0e4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 14,
+      "sourceRank": 295,
+      "id": "t_bf0adfd125a6",
+      "term": "壁觀",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "壁觀",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms that revision is required: Separate wall contemplation/Bodhidharma usage from the proper name Biguan; a person-name occurrence cannot buy the concept.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0017b16",
+          "toLb": "0017b20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "063d23d374f202659b72aff8293da607c1d10e8ecbd437921f3b4ad83cb4ca1f"
+        },
+        {
+          "workId": "work:J26nB177",
+          "relPath": "J/J26/J26nB177.xml",
+          "fromLb": "0052c06",
+          "toLb": "0052c10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "cb3c0c30d46879bb7ed488975abf175b8398ffb5fddd40b95aa6452bd784c497"
+        },
+        {
+          "workId": "work:J37nB384",
+          "relPath": "J/J37/J37nB384.xml",
+          "fromLb": "0247b15",
+          "toLb": "0247b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "70b2c9f52ba5178a7074735031af2aa2664522410a4b95c9a08ce3333b5a3f89"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 15,
+      "sourceRank": 298,
+      "id": "t_b436617c693a",
+      "term": "禪病",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "禪病",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “Chan sickness” as a named diagnostic category that masters explicitly question and discuss. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X63n1257",
+          "relPath": "X/X63/X63n1257.xml",
+          "fromLb": "0755a10",
+          "toLb": "0755a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 7,
+          "fullCaseWindowSha256": "d3cf87f4ffd395073840673dcbc3e7aa4a0fff06ea2371d93e63909ed2038364"
+        },
+        {
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0237b19",
+          "toLb": "0237b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 7,
+          "fullCaseWindowSha256": "01c1ef2f23d59c17fa312312c456ed7bf2495e7be4584b12fb4874bbc754f1d3"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0870a05",
+          "toLb": "0870a10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "fdd2a5e0180001f4d2cd8b73e4dfaecf0c6b0ceb484fb97b1b9ee343a3091ea1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 16,
+      "sourceRank": 301,
+      "id": "t_8bd3edf4e467",
+      "term": "面壁九年",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "面壁九年",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Bodhidharma’s fixed nine-years-facing-the-wall formula, praised, criticized, and turned in verse. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J39nB471",
+          "relPath": "J/J39/J39nB471.xml",
+          "fromLb": "0951b12",
+          "toLb": "0951b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "07aa26611e8ca9f20a8dc6422b98096cd5fa6e3e9a05d8b5ecf3dfbdefc6adfa"
+        },
+        {
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0382c13",
+          "toLb": "0382c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c3b8f1bf26f161e05a34bc9104c96df1b2a2a6db877dda227d89c77ddfaf5033"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0044b22",
+          "toLb": "0044c02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7a329c4a6bdb2acfb26bac097b260a568eea48a059ec86105fa624ef253cc143"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 17,
+      "sourceRank": 304,
+      "id": "t_a9c25ff38478",
+      "term": "信心銘",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "信心銘",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the title Trust in Mind Inscription, repeatedly cited and discussed as a textual source. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0687b08",
+          "toLb": "0687b12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "df195328c092c691b88dfc4049fa375d3bec49a55a79fbbf4ddea9464475a868"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0420a21",
+          "toLb": "0420a25",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4745e13ad171f7fca3ec7b166de15c30a4c1db0e3d08ceb7b98151d3e4202385"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0631c08",
+          "toLb": "0631c11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1081c7ba6a39b120c255d16683f62f88b8fc5c2998ed864ef05212c81dd19a28"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 18,
+      "sourceRank": 307,
+      "id": "t_e389ad2233e5",
+      "term": "安穩",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "All three full cases use 安穩 compositionally for being secure, stable, or sitting at ease. None turns the exact word into a reproducible Chan answer, verdict, case name, or institutional term.",
+      "evidence": [
+        {
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455b14",
+          "toLb": "0455b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5694e1d031c3f868e51f9b558c3477c1937ad87b6cfe80aeb06cf93e8eb04ea0"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0023c26",
+          "toLb": "0023c30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "0eb833aed02bfefc0dbca72835f2151f27df29e98ce88e78d21c21b6946ebbe0"
+        },
+        {
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0768b06",
+          "toLb": "0768b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "08971a5cc92556512680099ead88473da1518bd9905bd63e418d296f0a92a97d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 19,
+      "sourceRank": 310,
+      "id": "t_e2b42cf99e80",
+      "term": "作家相見",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "作家相見",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “adepts meeting” as an appraisal of matched encounter skill. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0373c23",
+          "toLb": "0374a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "194a1e5c85d0ead866e1a85235644e5b3f6f423913d11fa2c08e10f38695987b"
+        },
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0143c19",
+          "toLb": "0143c23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "0508b8f37eaa1f2475b88d36889f4b9afa1d26a9690b0b260830b93a72450f0d"
+        },
+        {
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0542c26",
+          "toLb": "0542c30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "94bdb4995f9822c05bd42ff5f0aa03a76835620386dc0a097cc0be04a9470c38"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 20,
+      "sourceRank": 313,
+      "id": "t_d2a426d75dd7",
+      "term": "坐臥經行",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "坐臥經行",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed four-posture sequence sitting, lying, walking, and moving in instruction and appraisal. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J28nB203",
+          "relPath": "J/J28/J28nB203.xml",
+          "fromLb": "0175a26",
+          "toLb": "0175a30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e9a2538465524fb15cef62b6c5ef55422b052e1bdedc573199b4c9b2c0858274"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0232a06",
+          "toLb": "0232a10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a566ef81b3a58b2edd6def8b04ece2258cce292323789bd1ff872f646ae30bf5"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0030b13",
+          "toLb": "0030b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "466663ee91b45abca071a45d9c6d49657c14eae25a931b74d33a25db0acbab50"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 21,
+      "sourceRank": 316,
+      "id": "t_2ca177fa2e93",
+      "term": "不思量",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "不思量",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “not thinking” explicitly contrasted with thinking and questioned in encounters. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0842b17",
+          "toLb": "0843a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "f7c8f2ddc0a0921cdbacf02dfdc31397f341c217022b10af3f168d42208d55f9"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0822b07",
+          "toLb": "0822b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1df0ff70f6ba03365121130bc7c1bef1e17fba67a6b284f0022dc82c880e6b01"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0695b24",
+          "toLb": "0695c06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "33c4a0c41bcf5bd720f7fe9c9a4432cc93b240e20b2487e288895386d91a27d1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 22,
+      "sourceRank": 319,
+      "id": "t_dc7f87f7bf13",
+      "term": "應酬",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms rejection: The cases use 應酬 ordinarily for social dealings, correspondence, or daily obligations. It is discussed in Chan texts but is not independently bent into a stable Chan lexical unit.",
+      "evidence": [
+        {
+          "workId": "work:X70n1403",
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0754a11",
+          "toLb": "0754a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "db6faeff326b68c70400a479b5d86cd5291b30cc33e0a1816de695af125b5992"
+        },
+        {
+          "workId": "work:J27nB198",
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0487b19",
+          "toLb": "0487b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "04b7a50cc638fe14ad46c245efa6390a084717142b06605d2921e9f9f6766c60"
+        },
+        {
+          "workId": "work:J34nB300",
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0268c08",
+          "toLb": "0268c12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "2c368ec979f3ff370e69df6639bb62fd42d683e3abb73e90d6c7419351a46ce5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 23,
+      "sourceRank": 322,
+      "id": "t_a7bce913cc8f",
+      "term": "死法",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "死法",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “dead teaching” as a recurring verdict on fixed words, understanding, or instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0622b25",
+          "toLb": "0622b29",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a055dad9c04544caa519d211369c18c7a8a6db98e20b73d4cac4a8dc6993d8b9"
+        },
+        {
+          "workId": "work:X63n1259",
+          "relPath": "X/X63/X63n1259.xml",
+          "fromLb": "0774b22",
+          "toLb": "0774c02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "23f04b6a90461f0482290c7466a8f6ec428a3cabbbf0df3f044fbb20619d1247"
+        },
+        {
+          "workId": "work:X70n1403",
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0761c24",
+          "toLb": "0762a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "cff675e75b8f984f3ce1b846195aa9f0eda851d7244ca2f2b8eb7d52965befe4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 24,
+      "sourceRank": 325,
+      "id": "t_703e6991c669",
+      "term": "二時粥飯",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "二時粥飯",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the two daily gruel-and-rice meals as a fixed monastic time formula in Zhaozhou material. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0138c05",
+          "toLb": "0138c09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2229f1bbc05129311782a4dabe131a12c12d3d4d301d45706c1e350a01b0a1ba"
+        },
+        {
+          "workId": "work:X70n1400",
+          "relPath": "X/X70/X70n1400.xml",
+          "fromLb": "0678c15",
+          "toLb": "0678c19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "7d9f445c88e7924218b83ebfa76df3a84804d5f0f0780d46280b4f091f0fb5c3"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0735a02",
+          "toLb": "0735a06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6e58ed691b2136a434b6449f93da8d7f5116ae8cc9a478bbb0f14333e47ca64e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 25,
+      "sourceRank": 328,
+      "id": "t_38cc4291fe2a",
+      "term": "將心來",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "將心來",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Bodhidharma’s fixed demand “bring the mind,” preserved and raised as a public case. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0163c22",
+          "toLb": "0163c26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "10c5229d97b1e3ddea24232ef35df0c448ec8841135b034777e2cc950db03869"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0791b10",
+          "toLb": "0791b15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5641d7114d0898fa17a3885e60273163d3fe179270c4433503c37e688ceb6247"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0035b30",
+          "toLb": "0035c03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "25fdcc8c0986d530fd72271518bc2bbc995d424f5f5dfb700ac074aacea0674b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 26,
+      "sourceRank": 331,
+      "id": "t_5809e2bfc65b",
+      "term": "頂天立地",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "頂天立地",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “supporting heaven and standing on earth” as an epithet for an unconstrained Chan person. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB410",
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0317c11",
+          "toLb": "0317c15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e6df49d5bebdad21e0bd39ea20c4f3409a2e68fe1b2eaae0a024e114612cf45a"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0123c03",
+          "toLb": "0123c07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "486d9a049c32ff91a1d47c456be8d17f9d84e4769fa54b63a5fae2247517daa3"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0105a21",
+          "toLb": "0105a24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "16240fb8f41cb66c36d98a3dd5f4a0c73b17e1082c5d4e659460aabb71898606"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 27,
+      "sourceRank": 334,
+      "id": "t_d1057a926268",
+      "term": "掃帚",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "掃帚",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the broom as a concrete answering action in the Shide case and an implement in later case commentary. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0065c07",
+          "toLb": "0065c11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "79b6168d01ce2d28ac7777c7292bd3358265c433bd3ae44dd10657da1d7f11d9"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0067c22",
+          "toLb": "0068a02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "eedbf4a76016e4acff7713ce56cde4680d242040bd2f6181121f363576d053d2"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0704a11",
+          "toLb": "0704a17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7332370e64c09c9cddb0d1dd4c8c6b432be9eca305b0a28af60db4bb8912643f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 28,
+      "sourceRank": 337,
+      "id": "t_9903612882ce",
+      "term": "衲僧本分",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "衲僧本分",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the explicit question for a patch-robed monk’s own proper business. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0052b13",
+          "toLb": "0052b18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "9ab0570f17732a885b01d535e8b36e1b6d6277c867bd03374c6d24ff208fa731"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0295a04",
+          "toLb": "0295a09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f8894d5dd765d047485b1b31976cf14db306452b52227383a3476133b53c752d"
+        },
+        {
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0732a21",
+          "toLb": "0732a26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "76dbb96c276f477fb56e9d7eeefcde8583c389ac4efe0cefa70ddae1c780feb9"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 29,
+      "sourceRank": 340,
+      "id": "t_56019b9ca700",
+      "term": "拈槌竪拂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "拈槌竪拂",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show taking up the mallet and raising the whisk as paired teaching-seat actions repeatedly questioned. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1988",
+          "relPath": "T/T47/T47n1988.xml",
+          "fromLb": "0554a29",
+          "toLb": "0554b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "28d8c244b82e3ee4bc1e5e5047b6f7529ea89f558f2bb60db46004a30989a999"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0147a18",
+          "toLb": "0147a22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bd2cc4b1265acc10a5b01cf4328f5641dd04913f7203f5c65c89030847054d89"
+        },
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0098a03",
+          "toLb": "0098a08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "93904317860a932745b633dbb0b62b49eb5d71a8cbb00de968e1a1f1b0e03559"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 30,
+      "sourceRank": 343,
+      "id": "t_189fe0b68849",
+      "term": "龜毛拂子",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "龜毛拂子",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the impossible tortoise-hair whisk as a recurring case implement and verbal prize. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0947b15",
+          "toLb": "0947b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "389d0f3f89519d2aaa1fba2ccc0b390b51631457ed9d5f1aa8c00ce8731ea8d3"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0159b20",
+          "toLb": "0159c01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "17f3a1888d8f35a57049926ec4d0c2fc302fa8c2b7a7d1a227eb445767560f90"
+        },
+        {
+          "workId": "work:J39nB447",
+          "relPath": "J/J39/J39nB447.xml",
+          "fromLb": "0390c16",
+          "toLb": "0390c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "5bdd82881b9469eeadd64e2fc9f709dcf75f3814a954e74e5c6d861072c273ce"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 31,
+      "sourceRank": 346,
+      "id": "t_f3832745ab12",
+      "term": "綿綿密密",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "綿綿密密",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “continuous and close” formula applied to sustained inquiry and to the relation of saying and doing. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0762c19",
+          "toLb": "0762c23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7015b79b245969d4db07bc5a5773e98bd56ea0f674aac68c5d0a680df1475bf4"
+        },
+        {
+          "workId": "work:J25nB159",
+          "relPath": "J/J25/J25nB159.xml",
+          "fromLb": "0138a14",
+          "toLb": "0138a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "7889f77dc7fcd612eb07b5a2af3f872fd95bafd0129713b8f5b05619e07a9132"
+        },
+        {
+          "workId": "work:X71n1405",
+          "relPath": "X/X71/X71n1405.xml",
+          "fromLb": "0024b04",
+          "toLb": "0024b09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "cf9eb17374e9a11a622d1768a6f1b6b7d91e1e18490491613d9984c93ece50c3"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 32,
+      "sourceRank": 349,
+      "id": "t_e412a2d268a2",
+      "term": "內紹",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "內紹",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the technical inner succession of the ruler/royal line in Five-Ranks exposition. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0539b06",
+          "toLb": "0539b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5747d5a5536c3b23135c97805d948ac08417169e80070fc2a06a5af04745eb3a"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0724c09",
+          "toLb": "0724c13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ae4e6c08dbdacb4c5bd04932913eb370a6f108803952fe688bdbcbf796b8b503"
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0574b07",
+          "toLb": "0574b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 9,
+          "fullCaseWindowSha256": "48652dbe3ad61153371f214ec1ffd778e2ffe56967344af4e68ce6f0259950b0"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 33,
+      "sourceRank": 352,
+      "id": "t_eb31fb6945c9",
+      "term": "少室峰前",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "少室峰前",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Shaoshi Peak as the Bodhidharma-site image paired with Caoxi and transmission scenes. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0019c05",
+          "toLb": "0019c09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "72a8735e908bcb06b73987cdfe77430bdf1493241bd4de010741bc2e7269c48d"
+        },
+        {
+          "workId": "work:J40nB494",
+          "relPath": "J/J40/J40nB494.xml",
+          "fromLb": "0529a24",
+          "toLb": "0529a28",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ee391165543254c520c3617e164ee00ea88fc82bbf22555f53b22ce8e47eb71d"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0020c08",
+          "toLb": "0020c12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "efad5fc82cad8fb32ef30327f48762b0be33afa24a1d11df2fb5b84e23a3f962"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 34,
+      "sourceRank": 355,
+      "id": "t_e8fbcc5ba72c",
+      "term": "廣長舌相",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "廣長舌相",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the broad-long-tongue figure invoked for limitless speech and masters’ teaching. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J39nB454",
+          "relPath": "J/J39/J39nB454.xml",
+          "fromLb": "0603c17",
+          "toLb": "0603c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "54ee777a7e2306c7e0df0afe8787ec49b18a91a14eefddb2c13d91ff05f2fb61"
+        },
+        {
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0447a23",
+          "toLb": "0447b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "00c7fbba8994ea378932d9e4635c31c0282197640c0d5577f35240ff6adead40"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0109c10",
+          "toLb": "0109c15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b27188cac913964102a48759682060b6f76a019b4f19459813f0c20e4ae1d262"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 35,
+      "sourceRank": 358,
+      "id": "t_8d131304ed9a",
+      "term": "寸絲不挂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "寸絲不挂",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “not hanging a single thread” as a fixed case saying tested by Xuefeng and Nanquan. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0958b16",
+          "toLb": "0958b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "5e722cbe9168746212a67278c60b25c891cd1952e3189a14a40dfb9e2ecf36e6"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0407b16",
+          "toLb": "0407b21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "62959b11348cf3ada5824ff3e93e6cf5e624d79fa66b9307e509a7d1e6d9a91a"
+        },
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0040b08",
+          "toLb": "0040b13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "88cc8d87b475deef217bbb3dc9d962b346d49629723865303c73f966923c9230"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 36,
+      "sourceRank": 361,
+      "id": "t_1cd8ff8e84e9",
+      "term": "目機銖兩",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "目機銖兩",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the technical appraisal “observe the mechanism and weigh by the ounce” in encounter handling. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0011a23",
+          "toLb": "0011b03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "06b47ade79d869247fa4e8a7133e631a832896f8fc3a6142e95f4141d1089f8a"
+        },
+        {
+          "workId": "chan:hongjue-min-yulu",
+          "relPath": "L/L155/L155n1643.xml",
+          "fromLb": "0214b12",
+          "toLb": "0215a03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1999b33933987d67a0856a3eb2f6a139e4cfb7df68c07f5f897d77bd085a94b3"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0105a23",
+          "toLb": "0105a27",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ad93a9bef2ef0e9e79a568fdd8bfd8c25efa3a2e2fc84d3bf1c2f48f8db80200"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 37,
+      "sourceRank": 364,
+      "id": "t_f6e2a3cd7770",
+      "term": "迦葉佛",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms rejection: The transported witnesses only catalog or head a list with 迦葉佛. None shows a master invoking this Buddha as an answer, verdict, question, or case figure.",
+      "evidence": [
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0405a14",
+          "toLb": "0405a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "0c9cfb55ebc7a1414ee9a53badb7940112933efb89ddb07eb8e67581e5bb00e7"
+        },
+        {
+          "workId": "chan:jiaowai-biezhuan",
+          "relPath": "X/X84/X84n1580.xml",
+          "fromLb": "0166a12",
+          "toLb": "0166b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "45a47b3ae35085a88b2fb1e938aac45c3dea7a00586027fe0b793998cb0fd082"
+        },
+        {
+          "workId": "work:B25n0144",
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0291a11",
+          "toLb": "0291a21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "00c1fb6bad4a3bdcf3f81fe0cf96d7fa29785cd63e4d061a1e7eabfa7681aa78"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 38,
+      "sourceRank": 367,
+      "id": "t_e8059962298a",
+      "term": "皂白",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "皂白",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show black and white as the technical demand to distinguish fine differences in cases and ranks. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB406",
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0129c14",
+          "toLb": "0129c19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4b78bde769abf4a759838e8d62f8438e9ca8c27ebd8b588a2ada6dc12fd7f260"
+        },
+        {
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0757a28",
+          "toLb": "0757b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2d12260fe103cb697b1c6c319a43824b0cc337ae98055aa19287463557dd0de4"
+        },
+        {
+          "workId": "work:X69n1356",
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0401b17",
+          "toLb": "0401b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2a2120ec28af387e7945fb41379ab9e430179a839090211557aa5751447308b4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 39,
+      "sourceRank": 370,
+      "id": "t_9d437dfc1719",
+      "term": "聲色言語",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "聲色言語",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed claim that the great Way’s body is not apart from sounds, sights, and language. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0015b18",
+          "toLb": "0015b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f5a545db0a5f0b5c94c4c4b1e7da58c5e3931bddd9e2f0f61d617e7e0564dfcc"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0812a26",
+          "toLb": "0812b02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f4071d8711ce5ada5c19a134b2bb58751e1c6470598aac0df27856027c9d0802"
+        },
+        {
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0411c01",
+          "toLb": "0411c06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4eff6cf06fe3e4802d6a65a1ecc49f790f770e1b7c35e7e8fb6625ce75734bcc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 40,
+      "sourceRank": 373,
+      "id": "t_e6077ed1bb67",
+      "term": "別語",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "別語",
+      "fullCasesRead": 3,
+      "reason": "Keep one technical sense, ‘alternative saying.’ The apparent general/particular-language example belongs to the longer construction 總別語 and does not justify a second bare-word sense.",
+      "evidence": [
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0478c10",
+          "toLb": "0478c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "505843168807f36e348dc54cb389007c23b6110fad1f38983aedd1fc0f750dbe"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0618c11",
+          "toLb": "0618c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "53fe534d0d01d2d140cc0cf8e339b23afe0058cfda651211112f579c2ad5c1d5"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0392b07",
+          "toLb": "0392b12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "622b5a642dab80b3a2739c3306a7cf7a6a42b11231d227e6b766dafabf8569fb"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 41,
+      "sourceRank": 376,
+      "id": "t_05b3ddb5f92c",
+      "term": "語言三昧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "語言三昧",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “command of language” as a named capacity and as a problem in the three-ailing-persons case. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0932b09",
+          "toLb": "0932b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e9541b73b9c09986af78664135f6d69473e637cb52a07f36771fb44415b62fdc"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0824a27",
+          "toLb": "0824b03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f55de46474a9ce65c0ae3847146d25f48a99b9767e31a1a0b2470d74b17a422e"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0060c09",
+          "toLb": "0060c13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "d644fd4e32a96a24ccbf8ee2503adf4fb44688d7c7957db1eda7d43f84b2d954"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 42,
+      "sourceRank": 379,
+      "id": "t_00cde634827e",
+      "term": "諂曲",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "諂曲",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show devious flattery as a named fault and the answer to Yaoshan’s question about the treasure in the Way. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0616a07",
+          "toLb": "0616a13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a8adbed59fd5bc8cf503c69a84aaf41e709a89f2acf92842432200955002f65d"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0692c10",
+          "toLb": "0692c16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "842d4d60b3d25efb0909a3cacd34bd9123439cf02808bc8a1aa0e6ed3cc075e3"
+        },
+        {
+          "workId": "work:X78n1553",
+          "relPath": "X/X78/X78n1553.xml",
+          "fromLb": "0449a01",
+          "toLb": "0449a05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e8b3408112a9d29c746afa5f5bc0179481a683caa73c85ee84e3aab6722ea860"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 43,
+      "sourceRank": 382,
+      "id": "t_af3d7c60cac8",
+      "term": "大體",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "大體",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms that revision is required: Split technical essence opposed to great function from general “overall principle” and abbatial “big picture.”",
+      "evidence": [
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0703a15",
+          "toLb": "0703a21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "9bf4b195a152e26a0e3d9520df4724df517e3e293c73a17e07cfce3091c89133"
+        },
+        {
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0553a09",
+          "toLb": "0553a13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "228a10d115a5437e394d23e8df76c705d2b133bbfcbc4e51b029e65c252f7707"
+        },
+        {
+          "workId": "work:T48n2022",
+          "relPath": "T/T48/T48n2022.xml",
+          "fromLb": "1026b22",
+          "toLb": "1026b27",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "899b950a514b52f1047ccaaf817a1a2de297c169904d6a6846b97eee2a41f96d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 44,
+      "sourceRank": 385,
+      "id": "t_38912d8a45ea",
+      "term": "偏中至",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "偏中至",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the technical Five-Ranks position “arrival within the biased,” explicitly questioned and analyzed. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0649c13",
+          "toLb": "0649c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "5ba2dcf1d64bdfe7e0e71d5578f6a00d311a9aaafdf45002ec8608fd75df67e2"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0728a13",
+          "toLb": "0728a17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "5589e8eb517d9f67f604f681875c97f64cfd245fa9820e864ac54c8c0358a3b1"
+        },
+        {
+          "workId": "work:X84n1585",
+          "relPath": "X/X84/X84n1585.xml",
+          "fromLb": "0717b18",
+          "toLb": "0717b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f8bdf03cb484db61c8ea13f3b91129267f9a5baf208ecbf0d7661b9ae9e8c5ee"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 45,
+      "sourceRank": 388,
+      "id": "t_150a59071656",
+      "term": "授戒",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "授戒",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show conferring precepts as a concrete ordination act, ritual heading, and institutional transmission event. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0701c09",
+          "toLb": "0701c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "591b6cacd7c468b4ae221def3d518ac07c14dc3d4306bd75a5ce7997f0cb737a"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0621c12",
+          "toLb": "0621c16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "1c492dbf1705799be4700770f22876cba838ff90c13e9850da3fb69e32eeed01"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0208a04",
+          "toLb": "0208a09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bcb7603610af416bd4a494208bd747d83c84bd19fc39f1bfc819f49e4b5b1f5a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 46,
+      "sourceRank": 391,
+      "id": "t_dc5e2bd54cfe",
+      "term": "命根斷",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "命根斷",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the technical breaking of the life-root, followed by renewed functioning and freedom in circumstances. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0051c04",
+          "toLb": "0051c08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "22dcce3f954e03c1741a6e3dc489c884765e2af39be339034a5742ac48f86a84"
+        },
+        {
+          "workId": "work:X71n1426",
+          "relPath": "X/X71/X71n1426.xml",
+          "fromLb": "0774b19",
+          "toLb": "0774b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "95cb580a2f437bd3fb25f91892441e4d4344da4d0d501bffcdeefe3bd6d931c3"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0717b22",
+          "toLb": "0717b27",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "738501777bb137b7cf0d45f10778a6bb7db337a5623650f0373568d05249b51d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 47,
+      "sourceRank": 394,
+      "id": "t_8e59a2d1c6b2",
+      "term": "鐵蒺藜",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "鐵蒺藜",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the iron caltrop as a hard verbal offering, forged implement, and emblem of difficult encounter fare. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0710b17",
+          "toLb": "0711a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c1f4ee5e88d350cf3dc52efcad1edc8614f29c262b48ab440876e804ce1dd865"
+        },
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0567c17",
+          "toLb": "0567c22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f322ebe52cb2e7bb1690b1c285e08f35eb9726b1b3c56e10dac82c6897298314"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0094b06",
+          "toLb": "0094b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2e2b0ae1b7f6492bf731da584f726597cec72da8aba4afbfad5e840285021982"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 48,
+      "sourceRank": 397,
+      "id": "t_5c1dd0cfcc06",
+      "term": "單傳心印",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "單傳心印",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the single-transmission mind-seal formula asserted in histories and master instruction. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0139b21",
+          "toLb": "0139b26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "699ae1b2bbd17679b9969499c0a09609ab63589ad9620c9b877c23fc5839e9c3"
+        },
+        {
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455a09",
+          "toLb": "0455a13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "d9f8eb3167bcd1e109a9748ca6e73ac764e11e74b3151dd2a3df6f19dd3f745c"
+        },
+        {
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0777a04",
+          "toLb": "0777a09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e880178acdab36508c50638f08e0aa2792b202b6fdb5ce081c72e6103b45057a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 49,
+      "sourceRank": 400,
+      "id": "t_c0cc3864ebd9",
+      "term": "趙州無字",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "趙州無字",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the named “Zhaozhou no-word” saying assigned for investigation in records. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0160c07",
+          "toLb": "0160c11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "886358caac8c0788349f9b30914571dba48061573ad0ee849b3d899508fd3558"
+        },
+        {
+          "workId": "work:X84n1585",
+          "relPath": "X/X84/X84n1585.xml",
+          "fromLb": "0712b03",
+          "toLb": "0712b07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7f8c68f8cc4b62bec829e05f28ad05ef3b66cb6dc38fa083e62ebb4a42e5b24a"
+        },
+        {
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0449b14",
+          "toLb": "0449b18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1a311480c04abc8f4c7034135475a9033d550029966a92eca86efe75e770157d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 50,
+      "sourceRank": 403,
+      "id": "t_8e0e666cb806",
+      "term": "金牛飯",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "金牛飯",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Jinniu’s rice as a named monastery-case meal paired with Yunmen’s cake and Zhaozhou’s tea. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0250b04",
+          "toLb": "0250b08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6e60095911549ed81f94a1c7c5eafca32c04d81b8c0484f137f29ec5db7d1757"
+        },
+        {
+          "workId": "work:J34nB303",
+          "relPath": "J/J34/J34nB303.xml",
+          "fromLb": "0358b03",
+          "toLb": "0358b07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5f69d569624e76d15ee85a1852babb59628225d16fb4e098051d21221457f827"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0732a19",
+          "toLb": "0732a23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "dfdf770c5e0237b9917f94189c539b0c017ebf25f4e1799616ca4b294600898b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 51,
+      "sourceRank": 406,
+      "id": "t_11d23c40faf4",
+      "term": "灰頭土面",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "灰頭土面",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “ash-covered head and dirt-covered face” as an answer and a technical contrast with the lofty peak. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0471b19",
+          "toLb": "0471b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "36c7f8870ea74b0e610dc2b76de6cc463e703f845414c7c275613f06e357953d"
+        },
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0180b27",
+          "toLb": "0180c05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "16d445724cf83b61218e1a90bbc62e512bf931e4447fc9a0e9e6c74ad9a3455c"
+        },
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0719a06",
+          "toLb": "0719a13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "648b54dd825d0926f072ca1709cae8f18198063a6a6de48d018b0adde3dcb09d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 52,
+      "sourceRank": 409,
+      "id": "t_348f56178d28",
+      "term": "杜撰禪和",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "杜撰禪和",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “fabricated Chan fellow” as a recurring rebuke applied to failed encounter conduct. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0834b15",
+          "toLb": "0834b20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "72368c3daa3747acbf489adee3ae20a6fef666cce9649fb17e061b45604dd95a"
+        },
+        {
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0476b15",
+          "toLb": "0476b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bd512e492cd9f48641d86f9c30eadc8e082f02a39a8e498eb04cbc01740b9e14"
+        },
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0649b13",
+          "toLb": "0649b18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "37ccc33a7e1824c1e00e3f8716a112b1fc3259b729c430a234c1c9673f8f874f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 53,
+      "sourceRank": 412,
+      "id": "t_61f03b7b3b17",
+      "term": "大機之用",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "大機之用",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the technical “function of the great mechanism,” explicitly asked and demonstrated. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0164c09",
+          "toLb": "0164c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6a8cb2c0705a0a9237c76aa0cf682fecbad71928fb19b724b1b0e68e15821732"
+        },
+        {
+          "workId": "work:X72n1444",
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0799c16",
+          "toLb": "0799c18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 6,
+          "fullCaseWindowSha256": "ea91f6beafed4b502034e3f0145c9e4320fa1dbfd5c6e7c3a07ff1018dd1dae0"
+        },
+        {
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0244b11",
+          "toLb": "0244b15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e1e9fe8d57240723a8650cc1e1f98ecf526dd035ac67c05b162727d9732e893c"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 54,
+      "sourceRank": 415,
+      "id": "t_50865ab00f41",
+      "term": "充飢",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "充飢",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show filling hunger as a literal meal fact and a repeated verdict for inadequate substitutes such as a painted cake. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0727b05",
+          "toLb": "0727b09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6766b6481e16a8b9f64371ebcaca1dc8cf5c7328ac7e4c4a0c2303e37355e276"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0687b02",
+          "toLb": "0687b08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "872fec6fccae15d807a55c14b12a46967b155624273d9b26dd3e807b8c89ff4e"
+        },
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0557a12",
+          "toLb": "0557a16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "eb20c84108f8794ecc6677fab23cccd2d95a83b9d900b070d83993352e598d4e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 55,
+      "sourceRank": 418,
+      "id": "t_9db05c37d46c",
+      "term": "菩提本無樹",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "菩提本無樹",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Huineng’s fixed “bodhi originally has no tree” verse line, quoted and appraised by later masters. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0045c16",
+          "toLb": "0045c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "df1e5506ac00b0e384477bbd6f2734f0242db74c5275454e90d7d283449f713f"
+        },
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0164a15",
+          "toLb": "0164a20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "160fe42c28e7a8a7cd6ccf3c2010bc11b717e5e4f3cd4886d8a56cd4ad7f44e0"
+        },
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0297a16",
+          "toLb": "0297a20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "49960923a6bfbb656c18f3a7d1c4ea32952d6d37abe91ad2f6ca939bc731a285"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 56,
+      "sourceRank": 421,
+      "id": "t_8412042c8a80",
+      "term": "十五日以前",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "十五日以前",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Yunmen’s “before the fifteenth day” temporal formula, repeatedly raised and reworked. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X67n1307",
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0492c01",
+          "toLb": "0492c08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 6,
+          "fullCaseWindowSha256": "f100684105347e79be92e01576d344b89333e649b72cef1e5df39032352e438a"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0239b13",
+          "toLb": "0239b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "aae5fd41e37a8b8ab907074c941101a7a2bda9d90f33f00cb8e835146619062d"
+        },
+        {
+          "workId": "work:J28nB203",
+          "relPath": "J/J28/J28nB203.xml",
+          "fromLb": "0168a30",
+          "toLb": "0168b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c4d4e1fe5628e066f3c3f88c7d978ec93cc2d9ba4cf79f4243ad9a7d7862fb27"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 57,
+      "sourceRank": 424,
+      "id": "t_a9fb0fa1dc4f",
+      "term": "任性逍遙",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "任性逍遙",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “freely following one’s nature” as an attested formula with both endorsement and explicit corrective criticism. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0395c05",
+          "toLb": "0395c09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "cdc238de8b34b01b7332d682b4c45da33fbf1d8e258ee8e1efcb010c8848288a"
+        },
+        {
+          "workId": "work:B25n0144",
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0394a11",
+          "toLb": "0394b02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "74800fd8278ee54d30d0e14d0a008ca926c0b38fcacc43a45da569f06e412115"
+        },
+        {
+          "workId": "work:J38nB410",
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0318c28",
+          "toLb": "0319a02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "d22449ccf1063cf1b196b935d3f7bc97e5204b29307c3d53c4840819720474aa"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 58,
+      "sourceRank": 427,
+      "id": "t_2ddb041fbf96",
+      "term": "接機",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "接機",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show meeting the occasion/person as a teacher’s encounter function, including the bow-and-arrow case. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0080c24",
+          "toLb": "0081a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8d938ce60455460a99d5c39b407386e691f2b653e8f56305f3df3897473fb9ec"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X80/X80n1568.xml",
+          "fromLb": "0633c23",
+          "toLb": "0634a03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6f781b7fc0a0c4576b44417063bf8a1bc809ee4f710a48dda981039ce8ff7c00"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0248b21",
+          "toLb": "0248b26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "3a63152e34954cb64ab8e3288338bef920cf83618f9beb26aa633586a61b3dbe"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 59,
+      "sourceRank": 430,
+      "id": "t_2e78d3c0fe8e",
+      "term": "無相三昧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "無相三昧",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show formless complete command as a named state in master instruction and inherited cases. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X69n1356",
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0380b19",
+          "toLb": "0380b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6700cd60c8e79085fee450d8f4b8f5f5665d3824d3354d289a9dae639b00fa87"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0818b11",
+          "toLb": "0818b15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "7ceadff58790916aed7f173fa95a2947ed2c4f1e008342e8a805c9e1cedbd9eb"
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0429c11",
+          "toLb": "0429c15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "334ee9d32788a53c56cfdc91185e26567e0c65f20a7e966ae872403a6bc71c49"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 60,
+      "sourceRank": 433,
+      "id": "t_08e0ef30ead9",
+      "term": "鴨類",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "鵝王擇乳，素非鴨類",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms that revision is required: Revise the lexical unit to the full fixed saying 鵝王擇乳，素非鴨類; 鴨類 alone is only a contained tail.",
+      "evidence": [
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0349a04",
+          "toLb": "0349a08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c9369eb7c415bc8e4f3f65d7e6798915e34ce5b13ef31d955ece65d523aebf8a"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0856a14",
+          "toLb": "0856a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f3a5d279ec3c05b4cff8713cd869eed86b50909d0f7ca9b6ff019dfeb4e7de61"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0834b22",
+          "toLb": "0834b28",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8789b535c06f140d5b9f2bf2712f154c5c9b27d7b894908eb4f23074348f726d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 61,
+      "sourceRank": 436,
+      "id": "t_49073773ac27",
+      "term": "一頓棒",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "一頓棒",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show one full beating as a counted public-case penalty or verdict. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J29nB249",
+          "relPath": "J/J29/J29nB249.xml",
+          "fromLb": "0819a10",
+          "toLb": "0819a14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "9aaae14cda4f52a2925e57f9d7a69350ec14a0e761177d2692668aae67081a51"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0350c13",
+          "toLb": "0350c18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "873a277039c77347936e906ad5047639f16e98ee3d36be913e612fe647772ca0"
+        },
+        {
+          "workId": "chan:yuanwu-jijie-lu",
+          "relPath": "X/X67/X67n1301.xml",
+          "fromLb": "0235a21",
+          "toLb": "0235b03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "d262167fb3c54f9e6bf91004771beb1129db676d3633313415c0fc6daf21502e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 62,
+      "sourceRank": 439,
+      "id": "t_e8ab5536a3bc",
+      "term": "困來眠",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "困來眠",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed “when tired, sleep” formula paired with hunger and ordinary activity. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J36nB357",
+          "relPath": "J/J36/J36nB357.xml",
+          "fromLb": "0592c13",
+          "toLb": "0592c19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "775de4d9d86c589d43714e6848a9380c5da4fe3eac14cb70d18ef27423dd477a"
+        },
+        {
+          "workId": "work:J39nB468",
+          "relPath": "J/J39/J39nB468.xml",
+          "fromLb": "0903c29",
+          "toLb": "0904a03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e72d34b375ba228c24636137bf808b10a1620bd5c492afedb123345d5fdf9c2e"
+        },
+        {
+          "workId": "work:J40nB474",
+          "relPath": "J/J40/J40nB474.xml",
+          "fromLb": "0029c16",
+          "toLb": "0029c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a11f4b0c1d83af1efb1fc17087c989cd4eb5f6e66b599c9a9b8107df5f264320"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 63,
+      "sourceRank": 442,
+      "id": "t_b1dcb39718b8",
+      "term": "不假外求",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "不假外求",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “not relying on external seeking” both asserted and explicitly criticized when made a stopping place. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0105a07",
+          "toLb": "0105a11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "4fecabbad8126bc3a7a94b36884117c191d51f64a604bb01ccecd6d65716343b"
+        },
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0720b06",
+          "toLb": "0720b10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "d9e72e722a4badfb71938338b2c4b31ebe21120777abfa3dc8a580c50a9d620a"
+        },
+        {
+          "workId": "work:J36nB359",
+          "relPath": "J/J36/J36nB359.xml",
+          "fromLb": "0662c18",
+          "toLb": "0662c22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "954422c221407b961ce1b17581976dcb9a98bc753a9a0e08f105d4aa2868cdd5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 64,
+      "sourceRank": 445,
+      "id": "t_48c64bd08c5a",
+      "term": "真佛內裏坐",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "真佛內裏坐",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Zhaozhou’s fixed “the true buddha sits within” line, quoted and versified. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0180a24",
+          "toLb": "0180b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5be5a5b869a1656ccdf64d81124ddf4d6137d8d12825e367852d9471d9482184"
+        },
+        {
+          "workId": "work:J28nB215",
+          "relPath": "J/J28/J28nB215.xml",
+          "fromLb": "0568b26",
+          "toLb": "0568c01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "dc5f1545ad5fb5088ebab0851be45371714ffd507ebb1fb4a00abde8c524c0c5"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0133b25",
+          "toLb": "0133b29",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6f5461719281ea58d6b2f3ce3ab24e7786ea6ef693154e183f0d16d9638bbdf2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 65,
+      "sourceRank": 448,
+      "id": "t_5259bd1b6cc6",
+      "term": "離鉤三寸",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "離鉤三寸",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “three inches from the hook” as a technical encounter position from the Chuanzi case. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0142a10",
+          "toLb": "0142a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5a46675629a0dd00f244fb37cf524e7edc6cacd0945dd501a47813c15cd3a013"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0629c16",
+          "toLb": "0629c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "d054b834922d3e897061e8ab66631150b221a24eaffc8f916b1740dfd265b9c7"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0033b18",
+          "toLb": "0033b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8fed1c24cea57d93959f1f1c4d4585c68ed12ec71383e61ff92c97d9fee15be6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 66,
+      "sourceRank": 451,
+      "id": "t_441c2dfdb3c1",
+      "term": "二祖安心",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "二祖安心",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the Second Patriarch’s pacification-of-mind case as a named case label. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0358b01",
+          "toLb": "0358b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "6c7e0b67987301f3e6755f182700a01139024a7f5f707ab46d6a427ef59ccb6c"
+        },
+        {
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0405b18",
+          "toLb": "0405b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "f6f2e2ff2ea7bbe75e93fed985b3c0d9c25164b3bb1d0be29d6e2ca80f1f66d0"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0644b21",
+          "toLb": "0644b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "624a7e0feba5351ee947af6bffa6e237d5485b4b3239db006c5d3dcfae5282cc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 67,
+      "sourceRank": 454,
+      "id": "t_f226762157a8",
+      "term": "自受用三昧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "自受用三昧",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show self-enjoyment complete command as a technical term contrasted with other-enjoyment and explicitly defined. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB300",
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0254c02",
+          "toLb": "0254c06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "30edf067c3710e37d03b8ec85f5861f8f523243fa894303b05a9df7b795161a3"
+        },
+        {
+          "workId": "work:X72n1444",
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0824c08",
+          "toLb": "0824c12",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "060726228ca283eb7fab56ba8072ab0849512a936ca1aeeb56e74dc3196e8f35"
+        },
+        {
+          "workId": "work:X73n1445",
+          "relPath": "X/X73/X73n1445.xml",
+          "fromLb": "0001c02",
+          "toLb": "0001c07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "55d528872e8979a5da712640377b5efbdbb4f59fb7765d00bd3687935a6fd393"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 68,
+      "sourceRank": 457,
+      "id": "t_ffbcb21aa512",
+      "term": "小悟",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "小悟",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show small awakening as a countable category contrasted with great awakening. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J39nB471",
+          "relPath": "J/J39/J39nB471.xml",
+          "fromLb": "0943b19",
+          "toLb": "0943b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c9151110a6fba388eb1661dd12d01b7e0bf773145f34ea14c44d31275f1ced4e"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0227b20",
+          "toLb": "0227b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "c50fbe4e1c320bc74585616cdabee63726606aa93f36c6db0d6c7159de6617f2"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0740b17",
+          "toLb": "0740b21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b8aa6858a8d70fdc13f481c72988e29fbe6432ea1a28f95d2aa475a3e3c94518"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 69,
+      "sourceRank": 460,
+      "id": "t_bda863c4b948",
+      "term": "百尺竿頭進步",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "百尺竿頭進步",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed “advance from the top of the hundred-foot pole” formula asked and turned. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0361b20",
+          "toLb": "0361c01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "49d41d5d36b6cb99d838369afef15a8c94169f715bb5c9f0535997f7cc051357"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0790b13",
+          "toLb": "0790b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "98a8f310208d0bf1e900b7a12da8d65af7f7ea3e7a79e53d173b624de04ff293"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0705a13",
+          "toLb": "0705a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a610f8b49861a966f6d74ab8a1237a7ee2a74f19ed894946945ad959364dd858"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 70,
+      "sourceRank": 463,
+      "id": "t_28372e431e1e",
+      "term": "三路",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "三路",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Dongshan’s three roads of receiving people: bird path, dark road, and extending the hands. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2006",
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0319a28",
+          "toLb": "0319b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 5,
+          "fullCaseWindowSha256": "ab437f745177ceb8b2a3088c4f3bfb0f01a4f4a6de667489619346261eb139c0"
+        },
+        {
+          "workId": "work:X72n1437",
+          "relPath": "X/X72/X72n1437.xml",
+          "fromLb": "0398b12",
+          "toLb": "0398b17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "f73348178ba8ee5706919b2b4639cff1973347cee1170bdff3c7d82d57fb5cb0"
+        },
+        {
+          "workId": "work:J32nB272",
+          "relPath": "J/J32/J32nB272.xml",
+          "fromLb": "0183b02",
+          "toLb": "0183b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "2f293644601e38adc3f1dafb3359da48c068614b869f2c660f92bf32310f1fc6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 71,
+      "sourceRank": 466,
+      "id": "t_10fab4ddeebb",
+      "term": "一相三昧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "一相三昧",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show one-mark complete command, directly defined in the Platform-record passage. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0041c17",
+          "toLb": "0041c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "a59eecdfa0d0db49e2e13023dd845b46626183d1423685d20e9ea40d84d3a722"
+        },
+        {
+          "workId": "work:B25n0144",
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0346b07",
+          "toLb": "0346b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "7b1b38a2dcfe3c00bd5ed70a688a8acc10c6f4c4caf57a316312d520fcfa1c0f"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0236a29",
+          "toLb": "0236b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "765283dd5986ce7ea5443891e2c6a40c65d7e8b72c6b296e1a25f49c3c4e6638"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 72,
+      "sourceRank": 469,
+      "id": "t_1042b2b78946",
+      "term": "無造作",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "無造作",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show absence of contrivance as a predicate of sayings and responsive functioning. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0793b09",
+          "toLb": "0793b13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "0ec3990a031e273733a509b581c9625f2511af5fac17d80a88c7b1dd9693e25d"
+        },
+        {
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0967c18",
+          "toLb": "0967c22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "36acfbf87822fe4a14878b96591f14087cad7677ffbd4c839e133d57a72947dc"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0497b16",
+          "toLb": "0497b20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ad0e6b5fa943305d1bd06dd5dd99c92c5dc5b9a4674f2f56942ad0e23e321181"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 73,
+      "sourceRank": 472,
+      "id": "t_b814707d2d1f",
+      "term": "百丈清規",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "百丈清規",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Baizhang’s monastic code as a named institutional text and rule system discussed by masters. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1109c16",
+          "toLb": "1109c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 4,
+          "fullCaseWindowSha256": "9fe556287652bff7588ac655dd06e836d7dd33410b38e64af1f6114b8a2fdaa9"
+        },
+        {
+          "workId": "work:J27nB192",
+          "relPath": "J/J27/J27nB192.xml",
+          "fromLb": "0185b26",
+          "toLb": "0185c02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "30fe32359c99552ed5e55ae5f6223503a60f084b23b21181ada205c56be061a6"
+        },
+        {
+          "workId": "work:J29nB239",
+          "relPath": "J/J29/J29nB239.xml",
+          "fromLb": "0541c30",
+          "toLb": "0542a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "cfc35edfe1ef5b8d0fdac647dfc87b287cc3c59d79613dc42582d9c615c67a20"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 74,
+      "sourceRank": 475,
+      "id": "t_2c2b8024961a",
+      "term": "同一色",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms rejection: The three cases merely contain “one color” in unrelated exposition and snow imagery. They do not converge on one observable Chan lexical job.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0417a14",
+          "toLb": "0417a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8e56e0a5029af619448031eebeb70f8207f3daf0a2ae6436e2b6a0971b513bb8"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0625c11",
+          "toLb": "0625c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "758b32e84409dcdec1d057f093291fdc87a2efbb5604eea62fadbd5e1b1afea3"
+        },
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0767a14",
+          "toLb": "0767a21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "30ed15f7a4b401964fdfb44ec8dcfd1f9a05685e49fcaf4cb6bdd81f0981f9da"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 75,
+      "sourceRank": 478,
+      "id": "t_210361330b08",
+      "term": "何處惹塵埃",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "何處惹塵埃",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed “where could dust alight?” line from Huineng’s verse, repeatedly quoted and challenged. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0552b08",
+          "toLb": "0552b13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "748438b5cb9b869672748d7e8646cb297d548855218ced03232dece63f60d6f8"
+        },
+        {
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0538b03",
+          "toLb": "0538b07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "47eb3d2821b2ed4ddce8b447ace7ec9a4788767d5bb99420a449e47268713425"
+        },
+        {
+          "workId": "work:J29nB229",
+          "relPath": "J/J29/J29nB229.xml",
+          "fromLb": "0239c07",
+          "toLb": "0239c11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e87f1fb95f90f6a7e87002f7f1e5b0050d46d3cb358ebba6cc65906617e3af85"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 76,
+      "sourceRank": 481,
+      "id": "t_ca1defa3c725",
+      "term": "未生以前",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "未生以前",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the before-birth formula used to ask for or deny a prior original face. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB407",
+          "relPath": "J/J38/J38nB407.xml",
+          "fromLb": "0213c23",
+          "toLb": "0213c27",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8bc7c7b6de8a83e8af955fe1d4a6b694c3c1ff68c35c76254645474958ca95bb"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0380a09",
+          "toLb": "0380a14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b567a7365307043f0164822c4019f78148d3367d472a43e6b983ee8b352a20ee"
+        },
+        {
+          "workId": "work:X70n1397",
+          "relPath": "X/X70/X70n1397.xml",
+          "fromLb": "0631c14",
+          "toLb": "0631c18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "09a0f2c5b84ec3706fd803ebf1dc7d4f4c0fe3096d8751de853b7d5cee252a18"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 77,
+      "sourceRank": 484,
+      "id": "t_9c1e9a072976",
+      "term": "悟道頌",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "悟道頌",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “awakening verse” as a genre label attached to named masters’ verses. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0797c10",
+          "toLb": "0797c16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "900bc3445c01e7b918f218381845bd858b9cdb24a0e4ea483d5776dc830bce76"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0444b12",
+          "toLb": "0444b16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "69f9b51b60670474546bb91b39730bdc1a448eea208a60b6e849ff62aeac3ee4"
+        },
+        {
+          "workId": "work:X71n1404",
+          "relPath": "X/X71/X71n1404.xml",
+          "fromLb": "0003c20",
+          "toLb": "0004a02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b81e8484f0b7c037ded6195f3738ccc2338627ee0bf14f8691f8fa85055b6bdb"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 78,
+      "sourceRank": 487,
+      "id": "t_4288362ab28c",
+      "term": "無師自悟",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "無師自悟",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show awakening without a teacher as a disputed formula explicitly allowed before and rejected after Weiyin Buddha. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1996",
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0675c10",
+          "toLb": "0675c15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1d944a2d865f43c2c2a766f79b4103f1d279c46da9d75c8600469ddf4966de90"
+        },
+        {
+          "workId": "work:T47n1997",
+          "relPath": "T/T47/T47n1997.xml",
+          "fromLb": "0757c15",
+          "toLb": "0757c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e4fca24a91a46700dbf9676d9b6ebdab4048949fb7286592938b188ff6b4bd9d"
+        },
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0029c23",
+          "toLb": "0030a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "073936ccd717344a8557456a6e5513e2055486f312ffaac6a989059e32dc8313"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 79,
+      "sourceRank": 490,
+      "id": "t_9af938fd4f1d",
+      "term": "孤明歷歷",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "孤明歷歷",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “solitary brightness, distinct and clear” appraisal in hall speech and verse. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0107b25",
+          "toLb": "0107b29",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "76295e2b3d55ed4754c176c12634fd4fb9b12657ca218400d5871f22d821d535"
+        },
+        {
+          "workId": "work:J36nB366",
+          "relPath": "J/J36/J36nB366.xml",
+          "fromLb": "0828c30",
+          "toLb": "0829a05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "07bf19f3f914692663f7b6cf128b58abeb1be7591b9d0c0858e5638adaeafc97"
+        },
+        {
+          "workId": "work:J28nB218",
+          "relPath": "J/J28/J28nB218.xml",
+          "fromLb": "0649c13",
+          "toLb": "0649c21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e8120de885e3bf10f1a07d35742027a44770c6ac28d81c931416c8c94ce89c40"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 80,
+      "sourceRank": 493,
+      "id": "t_5ab995298e4e",
+      "term": "法嗣書",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "法嗣書",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the lineage-succession letter as a concrete document received and raised on the teaching seat. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0783c13",
+          "toLb": "0783c19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1735718cd88dee730f74486d20eb4bf78c6ad2de0d61ecc2f0d8b04c17ff433b"
+        },
+        {
+          "workId": "work:T48n2023",
+          "relPath": "T/T48/T48n2023.xml",
+          "fromLb": "1041c23",
+          "toLb": "1042a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f7dc9d9d1f547dc7ef0714e8f741aa3127716b6832ad100fa3999ed5bdd264de"
+        },
+        {
+          "workId": "work:T47n1995",
+          "relPath": "T/T47/T47n1995.xml",
+          "fromLb": "0665a02",
+          "toLb": "0665a07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7550cbd8967f353b38c4af9800ca2f258a5e609a10af4fb9288a0bf2784dadef"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 81,
+      "sourceRank": 496,
+      "id": "t_45f618bb155e",
+      "term": "過水睹影",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "過水睹影",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the Dongshan “seeing his reflection while crossing water” case as a named awakening episode. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J33nB286",
+          "relPath": "J/J33/J33nB286.xml",
+          "fromLb": "0490c16",
+          "toLb": "0490c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ecaa1a70249e93f3006c46af81678ff6c20eda63daa01d5cb5116dcd85b5344f"
+        },
+        {
+          "workId": "work:J38nB406",
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0147c05",
+          "toLb": "0147c09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "60f0739bd296330e6b6f73f5e74309073f0b13d1169f7b0823bd9367578cea45"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0637b18",
+          "toLb": "0637b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8b7e0bf5ede4d9b4c17b3a75d7b498ef335af9b62ab8db74c4afa2fb0d65b645"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 82,
+      "sourceRank": 499,
+      "id": "t_7752fd746732",
+      "term": "覷得破",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "The passages use 覷得破 compositionally as ‘see through it,’ including direct exhortation. The exact phrase is not independently stabilized as a named case, technical category, or recurrent Chan lexical object.",
+      "evidence": [
+        {
+          "workId": "work:T48n2001",
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0038c15",
+          "toLb": "0038c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7cd889223ca5054359a3e6b70891851fc42b58bd4291ff4e8f66c17d25438a63"
+        },
+        {
+          "workId": "chan:mingjue-cong-yulu",
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0051b02",
+          "toLb": "0051b08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "0252acd6aac8af44428bd0b04933aa3ed91580712eb7625cb12ae316a4ca1099"
+        },
+        {
+          "workId": "work:J27nB190",
+          "relPath": "J/J27/J27nB190.xml",
+          "fromLb": "0091a22",
+          "toLb": "0091a26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "878d48e81159329eac3b53b4c8bceed56f16a7036c0f08022f9e559cc129055a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 83,
+      "sourceRank": 502,
+      "id": "t_f7c62b695a71",
+      "term": "把關",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "把關",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms that revision is required: Split the gatekeeper/holding-the-pass expression from the named text and other gatekeeping uses.",
+      "evidence": [
+        {
+          "workId": "work:J27nB198",
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0457c26",
+          "toLb": "0457c30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "18431514a9e7f454497a82998a36003d2c7d60c1ac615c3b990cf172ad4e05bf"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0654b01",
+          "toLb": "0654b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f3d123679a02e423685c03835125c4794dbf1d0dc6a33239cdc415a8c404a7e4"
+        },
+        {
+          "workId": "work:J26nB183",
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0539c15",
+          "toLb": "0539c19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "7c9dfd2b9fff0128dd2bdcadb151dbe47113159fa5a16ba62b4b54272c1e9409"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 84,
+      "sourceRank": 505,
+      "id": "t_ece8267b0746",
+      "term": "參善知識",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "參善知識",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show visiting a good teacher as an institutional act explicitly instructed and described. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2009",
+          "relPath": "T/T48/T48n2009.xml",
+          "fromLb": "0373c09",
+          "toLb": "0373c14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "5bdee981230dfd3314002371257988c2950a900afd4cee2e7b6b00e272930a4e"
+        },
+        {
+          "workId": "work:X63n1218",
+          "relPath": "X/X63/X63n1218.xml",
+          "fromLb": "0002b20",
+          "toLb": "0002b24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "2ec459b7457b9b0b504e5d8538c9bcab361853d131b59b450f1708aa42c13375"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0205b07",
+          "toLb": "0205b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1374ad77a0075d4f7e0cc7620e8b1e807aff5b34de4268b4530bae68c673ba77"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 85,
+      "sourceRank": 508,
+      "id": "t_5ab492eefe6c",
+      "term": "大士講經竟",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "大士講經竟",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the fixed “the great worthy has finished lecturing” verdict in the Fu Dashi case. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X71n1410",
+          "relPath": "X/X71/X71n1410.xml",
+          "fromLb": "0163b13",
+          "toLb": "0163b18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "6fb44b29f046baaa245f6651658a07c220456afa06455ad67264f415ff232d7c"
+        },
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0197a24",
+          "toLb": "0197b04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "72e88f8efc01c7acffd0e4fe40779868bfb5df8d16b5fa06a6807fb1ac7972e8"
+        },
+        {
+          "workId": "work:J29nB239",
+          "relPath": "J/J29/J29nB239.xml",
+          "fromLb": "0535c24",
+          "toLb": "0535c28",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c1d6dc11126ab401f220327a6e50340572105726681263ecb0ae1ee0384d3852"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 86,
+      "sourceRank": 511,
+      "id": "t_a7caaf206d69",
+      "term": "音律",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "音律克諧",
+      "fullCasesRead": 3,
+      "reason": "Bare 音律 is ordinary musical pitch/rhythm in two witnesses. The Chan-loaded school-concord job belongs to the exact formula 音律克諧, which should be the candidate rather than forcing literal and metaphorical bare-word senses.",
+      "evidence": [
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0014b19",
+          "toLb": "0014b22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8926b4e3380a424be09acb1c1282f78bc6ab616c76d796708b902c131168173b"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0455c06",
+          "toLb": "0455c18",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "58ed032427b6319a23a796cfb9294725884f9dfab77fb2b6f805348c39fb5cc6"
+        },
+        {
+          "workId": "work:B25n0143",
+          "relPath": "B/B25/B25n0143.xml",
+          "fromLb": "0276a02",
+          "toLb": "0276a06",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f49bef1195d56fb895b37b0e8d1e4a928cf00a2f70c3e5acd9258439f0a5a4e2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 87,
+      "sourceRank": 514,
+      "id": "t_885110cd8a2c",
+      "term": "心地開通",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "心地開通",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “mind-ground opening through” formula used for awakening and asked in interviews. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0885a16",
+          "toLb": "0885a20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "f4b4df1b539a1f8099bb6a97abf9cf883eed6ae6cdec18aa97e004b368d63ba6"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0879a06",
+          "toLb": "0879a11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e69af2e57bf1d494e11a1e706953866f315472adfa99d6f578c4d9068506ad14"
+        },
+        {
+          "workId": "work:J35nB343",
+          "relPath": "J/J35/J35nB343.xml",
+          "fromLb": "0818b28",
+          "toLb": "0818c02",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "81dcbf3a0be7b7411daa53e872fba8d5059541186235071d557327037b6b0315"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 88,
+      "sourceRank": 517,
+      "id": "t_e4da0591dc89",
+      "term": "律行",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "律行",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show disciplinary conduct as something entered, violated, and used in formal case narration. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0494c13",
+          "toLb": "0494c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "52ee0794265c4705edf242a5731d5b7ce0921b98c7ae7927ff0bb9ad2ff9ab1c"
+        },
+        {
+          "workId": "work:J27nB197",
+          "relPath": "J/J27/J27nB197.xml",
+          "fromLb": "0406c23",
+          "toLb": "0407a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "fd11cf1a0662c2484e32bb93223e8a011bf72f62e7afb29a21173a3f264ecb34"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0009c05",
+          "toLb": "0009c10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "8f6a06f62f9d569c4d3168093897a5558979371a27b5684dfe4080b6ffd74fb8"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 89,
+      "sourceRank": 520,
+      "id": "t_5adb49414c5b",
+      "term": "四料簡",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "四料簡",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Linji’s four discriminations as a named technical set repeatedly enumerated. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0528b17",
+          "toLb": "0528b20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "763394a1c824215a6513bf1df411bf3efd5c1cd84cef0acb383e7a20127135bb"
+        },
+        {
+          "workId": "chan:tianyin-xiu-yulu",
+          "relPath": "L/L154/L154n1639.xml",
+          "fromLb": "0163a02",
+          "toLb": "0163a08",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "3ab69d6be298da8114935a5114997041b5e2943e743503c8cca1f2be013aebc7"
+        },
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0137a24",
+          "toLb": "0137a29",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "fd86250dd0996d78a4e5b8b45c9985c3c084364768227378441b25e14d4a8cb9"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 90,
+      "sourceRank": 523,
+      "id": "t_b97e19fa54b2",
+      "term": "坐堂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "坐堂",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show sitting in the hall as a regulated communal monastic action in rule texts. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X63n1245",
+          "relPath": "X/X63/X63n1245.xml",
+          "fromLb": "0527a12",
+          "toLb": "0527a22",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "3be5dcf9a5e970708e2bf695060304298d189330d1b40ae5dfdf4b94bb8cbcc9"
+        },
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1113a19",
+          "toLb": "1113a24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bbf0e239418d748bb7cb6662440da161033b3c099daee457747f3bfeae53adca"
+        },
+        {
+          "workId": "work:X63n1250",
+          "relPath": "X/X63/X63n1250.xml",
+          "fromLb": "0622b19",
+          "toLb": "0622b23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "1311b506257033628b0eae9ba0c66e389d57f2d1fdafefed9600eaa3b2ff26e1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 91,
+      "sourceRank": 526,
+      "id": "t_5c30c607099a",
+      "term": "狗子有佛性",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "狗子有佛性",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the exact dog-has-buddha-nature question as a public case formula repeatedly questioned and criticized. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0622a24",
+          "toLb": "0622a28",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "4e19ae2445797be28a824bb6a641d50434414e07590cd0a962f28eb1dc42b7c5"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0242b05",
+          "toLb": "0242b09",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2eadcff68eb7ef1a1cfa74b2e3d3908316a955098cc6fd3fea451b57b369412a"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0709a21",
+          "toLb": "0709a25",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "c772f65021fb3000ebabfe32c1964c09f4a514043e48327669f06b6ee85ba906"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 92,
+      "sourceRank": 529,
+      "id": "t_f1c3cec7844e",
+      "term": "請教",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms rejection: The passages use 請教 in its ordinary epistolary sense “ask for instruction.” No case raises or turns the exact compound as a Chan unit.",
+      "evidence": [
+        {
+          "workId": "work:J23nB118",
+          "relPath": "J/J23/J23nB118.xml",
+          "fromLb": "0010c02",
+          "toLb": "0010c07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "68775d0a750c88460c84912b1f944670fa9739449a3a9385cca16c5e6056aea0"
+        },
+        {
+          "workId": "work:J20nB098",
+          "relPath": "J/J20/J20nB098.xml",
+          "fromLb": "0506c24",
+          "toLb": "0506c30",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b2e3845b993eeffa4acf30c3025d39f2fc10432064a30fa21f58c72ddd8d2fd4"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0163c28",
+          "toLb": "0164a03",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a66aadaf9cb18b15a7461059b0ecbda96b63daed6fb915d21b0bbd31a359e189"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 93,
+      "sourceRank": 532,
+      "id": "t_59d9e02f68e8",
+      "term": "觸目無滯",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "觸目無滯",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Yunmen’s fixed “nothing obstructs whatever meets the eye” saying, quoted and criticized. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X71n1412",
+          "relPath": "X/X71/X71n1412.xml",
+          "fromLb": "0216c21",
+          "toLb": "0217a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "936a95b1a895b10f9c690ec4f1d38f390434279549d2f0e5a545439ce39c0a63"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0086c16",
+          "toLb": "0086c20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "89eb49200668ca6321e3bfbf14fdfa9cbc0d31899cc454b3233ad0ea6a76a689"
+        },
+        {
+          "workId": "work:X67n1307",
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0487a13",
+          "toLb": "0487a19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "fd22a385a575876e86a1fd8ef9abd0f6e8b8fd0a2b1d2576f95f86424b4b8617"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 94,
+      "sourceRank": 535,
+      "id": "t_0a25ef103724",
+      "term": "出格一句",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "出格一句",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the explicit public demand for a “phrase beyond the pattern” and its recorded answers. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB182",
+          "relPath": "J/J26/J26nB182.xml",
+          "fromLb": "0463a21",
+          "toLb": "0463a26",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "fa2d078c8fb85318835af31e54a0cce33746fb383602f0a9e836ed1596ae3217"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0214b14",
+          "toLb": "0214b19",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "5cf2e59418385fdd65188eaa1752dc180b4bab764758ab72464fa16f00f469ea"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0016b09",
+          "toLb": "0016b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "8f26a4b3ce60f94ed0ade1e74b13ac707ec26b7ae998e0762aa813063f940b6f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 95,
+      "sourceRank": 538,
+      "id": "t_de09998f2ccf",
+      "term": "三寸氣",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "三寸氣",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the three-inch breath as the recurring boundary of death in masters’ admonitions and verse. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X70n1403",
+          "relPath": "X/X70/X70n1403.xml",
+          "fromLb": "0766b17",
+          "toLb": "0766b21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "62859051486571cdaed5242fc8d89ff1e1cc6f48893472fd4af455e66a46e440"
+        },
+        {
+          "workId": "work:J28nB208",
+          "relPath": "J/J28/J28nB208.xml",
+          "fromLb": "0339c20",
+          "toLb": "0339c24",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "98833efeef8b842dd1c5613bca379041fb6477c982a1ff39d4e449c0a7006789"
+        },
+        {
+          "workId": "work:J32nB273",
+          "relPath": "J/J32/J32nB273.xml",
+          "fromLb": "0223b06",
+          "toLb": "0223b11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "2fcc76e6c76f222d60ea625e1302596814944dddbbeba9df5e3ebdbd6c7da02e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 96,
+      "sourceRank": 541,
+      "id": "t_166edcc81b84",
+      "term": "燒佛",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "燒佛",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show burning a buddha image as the Danxia case label repeatedly titled, versified, and appraised. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0566c03",
+          "toLb": "0566c07",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "645f2ca6dfd1bf4882ae31d0f536a64bed5f90813dcb1c7916fc8d0a922a14ae"
+        },
+        {
+          "workId": "work:X67n1303",
+          "relPath": "X/X67/X67n1303.xml",
+          "fromLb": "0268a08",
+          "toLb": "0268a14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a33bf7384e9abe965d3b485fc2bbb5f00eefa4932300a1a1b442699ca94c2d16"
+        },
+        {
+          "workId": "work:J37nB391",
+          "relPath": "J/J37/J37nB391.xml",
+          "fromLb": "0558c16",
+          "toLb": "0558c23",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "e5c5a350c6278433d0adbee5a7386845308d06d1489aa074626f3cc5264f55b2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 97,
+      "sourceRank": 544,
+      "id": "t_5a0b9b9224cb",
+      "term": "頓修",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent rereading confirms rejection: All three witnesses contain 頓修 inside scholastic sudden/gradual cultivation classification. None deploys the exact compound in a Chan encounter, verdict, or institutional act.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0626b15",
+          "toLb": "0626b20",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 3,
+          "fullCaseWindowSha256": "8f85f1efa458ab1bdf480185994bc65773f6970e1a7147e0a5770bed91c3f3c6"
+        },
+        {
+          "workId": "work:T48n2017",
+          "relPath": "T/T48/T48n2017.xml",
+          "fromLb": "0963a29",
+          "toLb": "0963b05",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b2f6f7206e15e59cf626f1b08f87e0bb532809992a83b2e1e57c156722cb3dcf"
+        },
+        {
+          "workId": "work:T48n2015",
+          "relPath": "T/T48/T48n2015.xml",
+          "fromLb": "0397c05",
+          "toLb": "0397c10",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "b63adfc251a1fd4b820ec8a02fb7299cb9b1288568d36eaa925db288937a5cdf"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 98,
+      "sourceRank": 547,
+      "id": "t_88a553890ec7",
+      "term": "巴陵三轉語",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "巴陵三轉語",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show Baling’s three turning sayings as a named case set raised on memorial occasions and in criticism. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0036a10",
+          "toLb": "0036a16",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "d9feef79b6475d7ff1c876960fb9223d7d043ff0ca12df307edff6b9c148ba49"
+        },
+        {
+          "workId": "work:J34nB300",
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0265c27",
+          "toLb": "0266a01",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "ee6d2ee65670f24351be4ed4ad3882861b35bf2f26fb8fd1d20cf7255fb2cc73"
+        },
+        {
+          "workId": "work:J25nB154",
+          "relPath": "J/J25/J25nB154.xml",
+          "fromLb": "0032a16",
+          "toLb": "0032a21",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "ff795960d64de3aa5349b79cdbdec1d59e70883cdf1ff83c91bf63401b2a855a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 99,
+      "sourceRank": 550,
+      "id": "t_91a7c99191ed",
+      "term": "活水龍",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "活水龍",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show the “living-water dragon” as the answer opposed to dead water and repeatedly tested. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0986a11",
+          "toLb": "0986a15",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "76d3b85c41a92843eaafb65a46e25ef2d5f2a4fbc79c38c59bfeeaec99391d36"
+        },
+        {
+          "workId": "work:J39nB453",
+          "relPath": "J/J39/J39nB453.xml",
+          "fromLb": "0584b10",
+          "toLb": "0584b14",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 2,
+          "fullCaseWindowSha256": "d767619df3a237a1740f47779f0428b74c397875abe93cd71ff114567da00377"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0318c13",
+          "toLb": "0318c17",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "e949fda70ecddfda31539cfe30da476c1e88f819cce7f87cb65a3f06ddb6478f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 100,
+      "sourceRank": 553,
+      "id": "t_709621419189",
+      "term": "擔屎漢",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": "擔屎漢",
+      "fullCasesRead": 3,
+      "reason": "Independent rereading of all three full cases confirms the primary KEEP: The full cases show “shit-carrying fellow” as a loaded insult applied to monks, buddhas, and doctrinal figures. This is observable Chan deployment rather than frequency or mere containment.",
+      "evidence": [
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0641b08",
+          "toLb": "0641b13",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "775001706ea41d400bd65c80d808e9be5f63ab2a2447a0e5929572b7e69a8074"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0045c24",
+          "toLb": "0046a04",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "a86859bd7ef974f5d93abaac9b2232044ba1a94f16966bada7f7f868a3372f92"
+        },
+        {
+          "workId": "work:X69n1360",
+          "relPath": "X/X69/X69n1360.xml",
+          "fromLb": "0572c07",
+          "toLb": "0572c11",
+          "fullCaseRead": true,
+          "exactVerifyOk": true,
+          "headwordSpanCount": 1,
+          "fullCaseWindowSha256": "bad4da5a21513bc7e3d450e3becf688e97cfafee0b4792be307c36060f5c01c0"
+        }
+      ]
+    }
+  ]
+}

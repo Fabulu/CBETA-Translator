@@ -1,0 +1,3426 @@
+{
+  "schemaVersion": "investigation-next300-independent-review.v1",
+  "lane": "A",
+  "generatedUtc": "2026-07-17T07:01:45.254958+00:00",
+  "packet": "investigation-next300-lane-a-packet.json",
+  "packetSha256": "7bcd40063819bf82c4975e0987910219438ef780f4f13720067ea7b8e7876411",
+  "bundle": "investigation-next300-fullcase-bundle-a.json",
+  "bundleSha256": "59b937c87f27afe5194acf508c04290f32e7e353e771f92529dd3a7bef79f5c2",
+  "primaryLedger": "investigation-next300-lane-a-semantic-ledger.json",
+  "primaryLedgerSha256": "48cc73f576d19b12ed8821a14e639dcc654ff5ba84088278384e4eeaf5644aae",
+  "reviewedCount": 100,
+  "checkpoint": false,
+  "counts": {
+    "APPROVE": 91,
+    "REVISE": 2,
+    "REJECT": 7
+  },
+  "sourceOrderPreserved": true,
+  "allFullCasesRead": true,
+  "allExactVerifyPassed": true,
+  "constructionAuthorized": false,
+  "installMergePublishAuthorized": false,
+  "lineageOrRosterTouched": false,
+  "rows": [
+    {
+      "reviewPosition": 1,
+      "sourceRank": 254,
+      "id": "t_d4ce9042d39f",
+      "term": "頃刻",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "All three cases use 頃刻 only as the ordinary duration ‘in a moment’; none gives the exact word an observable Chan lexical job.",
+      "evidence": [
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0527a18",
+          "toLb": "0527a23",
+          "fullCaseWindowSha256": "e597254457039f2e30618f66c2f30a84100cba3ea635694bba86d7b06770da93"
+        },
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0749b07",
+          "toLb": "0749b12",
+          "fullCaseWindowSha256": "c9109d3dd2489e04431da2861c8941c5a59716dc1e157dde20cf8532886b171e"
+        },
+        {
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0259b12",
+          "toLb": "0259b16",
+          "fullCaseWindowSha256": "2294e46f8bf1e0806aa416cb5a75826687b8ecbadd6ecb6367c11ae4999b1283"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 2,
+      "sourceRank": 257,
+      "id": "t_4d77cb50e67f",
+      "term": "破顏微笑",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 破顏微笑 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0607c27",
+          "toLb": "0608a01",
+          "fullCaseWindowSha256": "53abe0ec33d6f4b18e1117a4e5c6148cac533b2756b535022aa67c6acad57897"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0110c17",
+          "toLb": "0110c21",
+          "fullCaseWindowSha256": "1a759043a4da8394ae5da069cb50f70bb902a049a26568ab140a71dd22bc681a"
+        },
+        {
+          "workId": "work:X71n1419",
+          "relPath": "X/X71/X71n1419.xml",
+          "fromLb": "0517b03",
+          "toLb": "0517b08",
+          "fullCaseWindowSha256": "a8226655cc17f70f825ccfcf9b8afbdd7c76ee1aea42bb0aac54f4960bc264b4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 3,
+      "sourceRank": 260,
+      "id": "t_99657ae45b6f",
+      "term": "灑灑落落",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 灑灑落落 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0455c01",
+          "toLb": "0455c06",
+          "fullCaseWindowSha256": "19f31afbfd8fba7b3d831d319f2066c8397babae68bcef1ce4a2a4d5c9b2499b"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0116a14",
+          "toLb": "0116a19",
+          "fullCaseWindowSha256": "4f8bdfc08cd1eaa011b228928371ea04631a5ac3939826f5e9f4afe47e5d8f0c"
+        },
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0153b09",
+          "toLb": "0153b14",
+          "fullCaseWindowSha256": "b18838720f7106cb970a3ae23d9d32d564f2a1cbceab1a6050ea67d3de0bdc8a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 4,
+      "sourceRank": 263,
+      "id": "t_f0650f3125f5",
+      "term": "野干鳴",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 野干鳴 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0619c01",
+          "toLb": "0619c06",
+          "fullCaseWindowSha256": "2cb63d3254f9aaa532a65e9d46411d3e8dbe8a880342ca603043bab8848a0139"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0061a07",
+          "toLb": "0061a11",
+          "fullCaseWindowSha256": "e3fb3841b35f94e473c5caabd20ecf2d3eba9494a770469a5d3e0d369ee155fe"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0003c23",
+          "toLb": "0004a03",
+          "fullCaseWindowSha256": "9831bf305f2e758d617e2bbcd10e99b4c8a22e796931218425682c531943ab65"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 5,
+      "sourceRank": 266,
+      "id": "t_ccfbb930d4c4",
+      "term": "黑山",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 黑山 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0864a28",
+          "toLb": "0864b04",
+          "fullCaseWindowSha256": "15146236adbbf8529fd769a0954e2d19e5d8e156a408f62812e350717089939a"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0144b20",
+          "toLb": "0144b24",
+          "fullCaseWindowSha256": "c9425be4e68d9908e6aaa46fd21dfeeb8b227c253029c5029c5e05995d1b6fe2"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0884b06",
+          "toLb": "0884b11",
+          "fullCaseWindowSha256": "6816a0fb6bb8a3a9bc4c18072abfa6bb5b6a51978a04eb35f2bbda504df07a37"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 6,
+      "sourceRank": 269,
+      "id": "t_5e591564de28",
+      "term": "有甚交涉",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 有甚交涉 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0014c06",
+          "toLb": "0014c11",
+          "fullCaseWindowSha256": "a7647edc9a8bba29159e455a4d1b027a2561a600c19236bf2f33fe7f706561bd"
+        },
+        {
+          "workId": "work:J29nB244",
+          "relPath": "J/J29/J29nB244.xml",
+          "fromLb": "0700b30",
+          "toLb": "0700c05",
+          "fullCaseWindowSha256": "f320bf8276098bd918f4ca8f0cb6afb87136057741683cb97cd31b0e3b6968a4"
+        },
+        {
+          "workId": "work:J36nB359",
+          "relPath": "J/J36/J36nB359.xml",
+          "fromLb": "0625a25",
+          "toLb": "0625a29",
+          "fullCaseWindowSha256": "81a92f6bf2993e63f3076163f6235a67c96adacce746fb7bc17d47f8095c0624"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 7,
+      "sourceRank": 272,
+      "id": "t_9e72dd544b00",
+      "term": "踏破草鞋",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 踏破草鞋 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X67n1299",
+          "relPath": "X/X67/X67n1299.xml",
+          "fromLb": "0011b10",
+          "toLb": "0011b16",
+          "fullCaseWindowSha256": "00ce431e978a91f159d9a5e8f887bbfabc3d923e7fca8af80121b3da6dc49bc9"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0106a08",
+          "toLb": "0106a12",
+          "fullCaseWindowSha256": "d8910c73c98d89de145bc59e692fb1b7b8ace39cf8569c1745f28a001eb717f9"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0023c17",
+          "toLb": "0023c21",
+          "fullCaseWindowSha256": "68729e40ad00397d455dac54c8554ac6cab0acaef5c7d779a8af5d90af0284cf"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 8,
+      "sourceRank": 275,
+      "id": "t_771649f50694",
+      "term": "全體露",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 全體露 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0020b05",
+          "toLb": "0020b09",
+          "fullCaseWindowSha256": "ffd06fc51a1839052f935bb125c476be3ae0e37716b4dabc60cec2b5afd66194"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0007b20",
+          "toLb": "0007b24",
+          "fullCaseWindowSha256": "d9474954d774492a4187fec22d6b16ad5d39f91ac045ad1a5b1ad542f0a2330b"
+        },
+        {
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0775c06",
+          "toLb": "0775c10",
+          "fullCaseWindowSha256": "5ff7727e49b35309cfbe65c1f4ce6388a39cdfe3e6b51cdc11844a8e8181f010"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 9,
+      "sourceRank": 278,
+      "id": "t_b50e3662ac0c",
+      "term": "把捉",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 把捉 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0057c06",
+          "toLb": "0057c10",
+          "fullCaseWindowSha256": "f7b58e0019c5180d13284ae51559506680ca49b94f498df5f968835312500d3f"
+        },
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0753b08",
+          "toLb": "0753b12",
+          "fullCaseWindowSha256": "f85ce150f0b66d6ebaf7bc91d653cd8bd1fd88107fa8fbe76f3cf040d6d617b0"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0734a18",
+          "toLb": "0734a22",
+          "fullCaseWindowSha256": "036020d9c7d94c3e01afd1ac7f7f342bdb408c23c857956d99a7182e77132abd"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 10,
+      "sourceRank": 281,
+      "id": "t_d700cc6a009a",
+      "term": "沒可把",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 沒可把 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0821a19",
+          "toLb": "0821b03",
+          "fullCaseWindowSha256": "37af6e4ac727ef799a5169c1ee2c97b660d716a0eac1795e1bdefd3c77f928f5"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0719c10",
+          "toLb": "0719c16",
+          "fullCaseWindowSha256": "296da1fd25b6fb69167353ba7b276d3eab64306bdc93a5af5270218b1b44fc9e"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0375c16",
+          "toLb": "0375c23",
+          "fullCaseWindowSha256": "3cdfbd2c217483c35cdf1a48085e88693ed422e015429d09be506fde693b38d6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 11,
+      "sourceRank": 284,
+      "id": "t_1871f6691081",
+      "term": "移步",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 移步 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J36nB369",
+          "relPath": "J/J36/J36nB369.xml",
+          "fromLb": "0898b22",
+          "toLb": "0898b26",
+          "fullCaseWindowSha256": "6ff780fee6dd008a2c324726ae6c01cf8b94696b8c02794084bd6c2acb2a9eab"
+        },
+        {
+          "workId": "work:J37nB392",
+          "relPath": "J/J37/J37nB392.xml",
+          "fromLb": "0587b17",
+          "toLb": "0587b21",
+          "fullCaseWindowSha256": "e26494af3331ad1ed6c401d84956137aa66f657dfb9306325bba4e8b137b7b4a"
+        },
+        {
+          "workId": "work:T48n2001",
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0010c12",
+          "toLb": "0010c17",
+          "fullCaseWindowSha256": "15445185d9f952b59085ea06f2ae95dd3e348afe381b3c6537ec14019dcf21cc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 12,
+      "sourceRank": 287,
+      "id": "t_1c7f53f6d245",
+      "term": "相瞞",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 相瞞 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0010a17",
+          "toLb": "0010a21",
+          "fullCaseWindowSha256": "dbd1ba572f33717f392280939a8a2c922fd96970807e1e12eda05dad080f2d50"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0004a17",
+          "toLb": "0004a20",
+          "fullCaseWindowSha256": "ecd26ef0ccc68c74c2cffb51a3ea12459ce20b30734d3f4dec6ab70abd5fdd17"
+        },
+        {
+          "workId": "work:T48n2001",
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0041b17",
+          "toLb": "0041b22",
+          "fullCaseWindowSha256": "c69164426f47b72489ece31078d95f97047257fd64c1d61f1bb0aa1cb2774112"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 13,
+      "sourceRank": 290,
+      "id": "t_bf5fe3aa5122",
+      "term": "任運騰騰",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 任運騰騰 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0107c13",
+          "toLb": "0107c18",
+          "fullCaseWindowSha256": "9f2f57174bad82f08ea0dc4200df8876fdc40d49b1ca14e797231121efeb4229"
+        },
+        {
+          "workId": "work:X70n1400",
+          "relPath": "X/X70/X70n1400.xml",
+          "fromLb": "0677c03",
+          "toLb": "0677c08",
+          "fullCaseWindowSha256": "3259074aafd35eed321e70ea99388d0632a875eb76c9ab2f58bf4ab1acd68d6e"
+        },
+        {
+          "workId": "work:X70n1401",
+          "relPath": "X/X70/X70n1401.xml",
+          "fromLb": "0704a09",
+          "toLb": "0704a13",
+          "fullCaseWindowSha256": "fddd0ece976c603df3a846776b9d005bd42808a58161e307d6c9351ba3495cfb"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 14,
+      "sourceRank": 293,
+      "id": "t_d9749cb3610c",
+      "term": "豎一指",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 豎一指 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0092b09",
+          "toLb": "0092b13",
+          "fullCaseWindowSha256": "a72987ca1c3b1d1fa7c50bcd0f47c5c194832d1ac5fe67dffac547df7328d6a4"
+        },
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0591a02",
+          "toLb": "0591a07",
+          "fullCaseWindowSha256": "e247ff9653dc9cd46127d6fc4daf586adc75cbb7cea986c6ba10cad642e3c69d"
+        },
+        {
+          "workId": "work:X69n1357",
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0458c21",
+          "toLb": "0459a02",
+          "fullCaseWindowSha256": "0bb012f4e3cae63418736afe08765b916a59a75eaa65f7f7b5f0e6c11f648f70"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 15,
+      "sourceRank": 296,
+      "id": "t_3488962c5771",
+      "term": "眼根",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 眼根 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0578b19",
+          "toLb": "0578b24",
+          "fullCaseWindowSha256": "2185a2b9682eeba99727cb2e0a4a0b749bab35aea5f008289aa494a5034eb9e2"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0166b02",
+          "toLb": "0166b06",
+          "fullCaseWindowSha256": "1df0e4dbf83e8535b6a41295841eb03c24283355d96132d14684b42a4ff4e2f1"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0095c21",
+          "toLb": "0096a01",
+          "fullCaseWindowSha256": "9c2cae3b3e97ae4ede402da20a4f6b2c8d60ba18d38fd234a5d582045a2141a5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 16,
+      "sourceRank": 299,
+      "id": "t_bea7828f0923",
+      "term": "不自在",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 不自在 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0425a20",
+          "toLb": "0425a25",
+          "fullCaseWindowSha256": "9afc4eab373d62ff00cf5f180313a3fe82afcbccf5779ade92bdede9f89953c2"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0628b07",
+          "toLb": "0628b12",
+          "fullCaseWindowSha256": "ab3fb8fdff47a0b84e8f043e2eb140f0114619b48b32de5517482664b49d7917"
+        },
+        {
+          "workId": "chan:miyun-wu-yulu",
+          "relPath": "L/L154/L154n1640.xml",
+          "fromLb": "0500b05",
+          "toLb": "0500b11",
+          "fullCaseWindowSha256": "cf6d94e36613704819d2f1a237f3d39b15a3c0c2aac54a1e90403d20d47e36f0"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 17,
+      "sourceRank": 302,
+      "id": "t_5e6bf26760ae",
+      "term": "心地印",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 心地印 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB305",
+          "relPath": "J/J34/J34nB305.xml",
+          "fromLb": "0401c22",
+          "toLb": "0401c26",
+          "fullCaseWindowSha256": "35199552b6859aec54af486724886b6d2201a3c327a920552818a2e1dcfbd91f"
+        },
+        {
+          "workId": "work:X71n1414",
+          "relPath": "X/X71/X71n1414.xml",
+          "fromLb": "0301c16",
+          "toLb": "0301c20",
+          "fullCaseWindowSha256": "8f8086c67e0e9efded125064313c6f674b2662dfcd5b91423d2380905fb25dae"
+        },
+        {
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0361b09",
+          "toLb": "0361b14",
+          "fullCaseWindowSha256": "24567c92aefd9e8761c69be36018fb4a018c5b0972ad08cb5c2382358aabbac1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 18,
+      "sourceRank": 305,
+      "id": "t_65efb523e4d1",
+      "term": "擇乳",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "擇乳 recurs as the operative verb in the goose-selects-milk appraisal (鵝王擇乳 / 始能擇乳); the shorter exact unit remains intelligible and repeatedly deployed, so it need not be inflated to the whole proverb.",
+      "evidence": [
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0349a04",
+          "toLb": "0349a08",
+          "fullCaseWindowSha256": "0ef989d4ea28f57c08e3cd1b8c9472f84bfa957acea38038316b859766ae6b15"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0379c07",
+          "toLb": "0379c11",
+          "fullCaseWindowSha256": "2f354e6142afed45574ee97c9625363d643d66dd210af74e03655047f0649da6"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0026c01",
+          "toLb": "0026c06",
+          "fullCaseWindowSha256": "c6acb98c0fd223b51d55c28fe472d99a8f2e4eb738648ab0fa1bd261f60e7db7"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 19,
+      "sourceRank": 308,
+      "id": "t_f050bdd79dfe",
+      "term": "抱璞",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 抱璞 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0343c09",
+          "toLb": "0343c13",
+          "fullCaseWindowSha256": "f5cc719a0dacbaf77209358590beb67fa755057b09e4576b3ac61d94796ee759"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0448a08",
+          "toLb": "0448a11",
+          "fullCaseWindowSha256": "8dc110a97eba511eaf00e196087069f12b0883b66b4bc2ed68c638018a8327ef"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0122c18",
+          "toLb": "0122c22",
+          "fullCaseWindowSha256": "207311542f4a729e7dea33045eb190af34013d85e4f08f91d92a049914572bc9"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 20,
+      "sourceRank": 311,
+      "id": "t_11351dba572e",
+      "term": "轉身一路",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 轉身一路 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0537c11",
+          "toLb": "0537c16",
+          "fullCaseWindowSha256": "221641f6b7226b189dab1d6c7a35c5c3448608e3328e0a8ddde13e5c9094132f"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0458b11",
+          "toLb": "0458b17",
+          "fullCaseWindowSha256": "14391ec4921c40ed0915de67e4e5c4ca8cc8cf8b5a39ce9c45d2f5b5cefe14ee"
+        },
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0679b17",
+          "toLb": "0679b22",
+          "fullCaseWindowSha256": "2fa0cdaba45ed7e564c37b001b32393fb935cb89a0ca19cf2f4806c08d72f0c8"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 21,
+      "sourceRank": 314,
+      "id": "t_0635af7bea6f",
+      "term": "趙州喫茶",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 趙州喫茶 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0113b02",
+          "toLb": "0113b06",
+          "fullCaseWindowSha256": "10acbedec826517a53e32ea268e5b7f62bf6cd8fb157ed4ce0336d983a64ef0e"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0728a18",
+          "toLb": "0728a24",
+          "fullCaseWindowSha256": "b93e53dae1803cbe0800178c4a72c5e1ae0a35b3df1bf10f7868046b1adeb87c"
+        },
+        {
+          "workId": "work:J38nB410",
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0317c28",
+          "toLb": "0318a01",
+          "fullCaseWindowSha256": "169d419372b36c54e05a0097b2fb261c30016abc83d703e8001f13a231995b59"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 22,
+      "sourceRank": 317,
+      "id": "t_bf0dd63a4752",
+      "term": "舌頭無骨",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 舌頭無骨 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0258a04",
+          "toLb": "0258a09",
+          "fullCaseWindowSha256": "decbf6785caa8779a8c4b52a22cc2ede2f60af6528c4120686f75cfc53ea2111"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0235a24",
+          "toLb": "0235b04",
+          "fullCaseWindowSha256": "12a5e58042fb21c4c5d92474d1c2cba982072ffc2ef59fd8a0ef97c088ff84d0"
+        },
+        {
+          "workId": "work:T48n2001",
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0030c28",
+          "toLb": "0031a04",
+          "fullCaseWindowSha256": "d1a77dfcc313bf7385ba9f032e377f9ce1f34beb33c1ef652105628c62a2679d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 23,
+      "sourceRank": 320,
+      "id": "t_c214ce1e79ca",
+      "term": "契理",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 契理 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0498a11",
+          "toLb": "0498a16",
+          "fullCaseWindowSha256": "b2b25ded1a8c40cbf27e94581c706c0132c0d64d2a9eab53daeb8412c697c294"
+        },
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0022c22",
+          "toLb": "0023a02",
+          "fullCaseWindowSha256": "e82e467e7f8c61bb64e7ae306167a7c11ad8e0974ef84e05973ac6ecd2ee3f14"
+        },
+        {
+          "workId": "work:X64n1276",
+          "relPath": "X/X64/X64n1276.xml",
+          "fromLb": "0809b03",
+          "toLb": "0809b07",
+          "fullCaseWindowSha256": "868e55faca1b3f53fc75ffa04351fa5eb081e5f18f7aca3540284ef3d659ea63"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 24,
+      "sourceRank": 323,
+      "id": "t_8873b46d7a4e",
+      "term": "拈槌豎拂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 拈槌豎拂 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0302a02",
+          "toLb": "0302a07",
+          "fullCaseWindowSha256": "6e5ac19af3a501d82ce4d18da77db329d9dcfaae4b6e5ab57a0c267c59c2b4d4"
+        },
+        {
+          "workId": "work:wujia-yulu",
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0545c19",
+          "toLb": "0545c23",
+          "fullCaseWindowSha256": "adb85ecb2cea64ce01ea45d8027950ed2149bd36467f5c9629341d587636e56e"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X81/X81n1571.xml",
+          "fromLb": "0523b01",
+          "toLb": "0523b05",
+          "fullCaseWindowSha256": "5cc265fac41939bc4416f907031437bbb7b6f924c5acfd04d7720ee7e5b64f5d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 25,
+      "sourceRank": 326,
+      "id": "t_7c065becc98f",
+      "term": "同生同死",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "同生同死 is independently attested as a public challenge and evaluative formula; approve it as the canonical entry while treating 同死同生 as its reversed variant.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0009a24",
+          "toLb": "0009b04",
+          "fullCaseWindowSha256": "cdf6608f330fa0836fcb7512baddeb093f290ff88e421201813caf94c2b5181d"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0007c23",
+          "toLb": "0008a03",
+          "fullCaseWindowSha256": "809d5ba2dba8dd2aa928ce31b8e6d455103e97096d57cac1fe6da8b2df00023f"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0300c12",
+          "toLb": "0300c18",
+          "fullCaseWindowSha256": "5ad7712466bb65958903555c4835d31cb56d73d4e71bf95d0ac6fce0516c5477"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 26,
+      "sourceRank": 329,
+      "id": "t_ab761860367a",
+      "term": "坐脫立亡",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 坐脫立亡 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2004",
+          "relPath": "T/T48/T48n2004.xml",
+          "fromLb": "0289a28",
+          "toLb": "0289b06",
+          "fullCaseWindowSha256": "be23b0c8e8733de75efb215ed506c01f0dff870cb94808c1d219df57f15e84a8"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0245a14",
+          "toLb": "0245a19",
+          "fullCaseWindowSha256": "66f115d34361688dffe098249c6da2caf6074bf89dabea58613bb97baba2d789"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0156c23",
+          "toLb": "0157a03",
+          "fullCaseWindowSha256": "baf375110fff41e97945bed0032779c6e1bbe67a80f8a16e69cb31f8ddfd5ce6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 27,
+      "sourceRank": 332,
+      "id": "t_7ee5a99b989c",
+      "term": "提婆宗",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 提婆宗 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0153c17",
+          "toLb": "0153c23",
+          "fullCaseWindowSha256": "d2470e18e46d320eed6f83434a9af63006741830023fa39bf79d83ddea036afd"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0339b01",
+          "toLb": "0339b06",
+          "fullCaseWindowSha256": "5fe8ed2963e077c244bfb454e1dc1498e142a5787771f749e5226fbdbd607bd8"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0664c10",
+          "toLb": "0664c17",
+          "fullCaseWindowSha256": "a72e42a4a9db2b5cf40bfc47e32e6c2c29fcb0d3b4c815e934a74173f5c0c27d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 28,
+      "sourceRank": 335,
+      "id": "t_aef39de66ad7",
+      "term": "法子",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "法子 is used as a relational lineage/teaching designation in the cases, not merely as an accidental composition of 法 and 子.",
+      "evidence": [
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0669a21",
+          "toLb": "0669a26",
+          "fullCaseWindowSha256": "c18e8089d7c82006538cce7a83f8c11db75f63138dbf333417341a58205d85c2"
+        },
+        {
+          "workId": "work:J34nB299",
+          "relPath": "J/J34/J34nB299.xml",
+          "fromLb": "0150a13",
+          "toLb": "0150a17",
+          "fullCaseWindowSha256": "a1bac9c624870b02f1a1781ac0e96f01b5bd9a277e3e09b29d7effb90625e777"
+        },
+        {
+          "workId": "work:J34nB301",
+          "relPath": "J/J34/J34nB301.xml",
+          "fromLb": "0292b29",
+          "toLb": "0292c03",
+          "fullCaseWindowSha256": "65d385456ed73946c3d6aafe164e627b06f541fd0397cce041a6d774ea79dc07"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 29,
+      "sourceRank": 338,
+      "id": "t_1910ed86a5c7",
+      "term": "放下屠刀",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 放下屠刀 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0189b01",
+          "toLb": "0189b05",
+          "fullCaseWindowSha256": "123ea60c86d21ff08d98c22d99769bf4c1c25a49b8d31a3718b0c6e9935633c7"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0803a04",
+          "toLb": "0803a09",
+          "fullCaseWindowSha256": "dcdda4eccd72628ed0f96f19effa73cc841beb1e47c9e5bba39bfdfffe9864fe"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0067b16",
+          "toLb": "0067b20",
+          "fullCaseWindowSha256": "c92a61984880ba214011de2f05c14e834cfc9fba9c1472dfa8245d2f0a73cb1c"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 30,
+      "sourceRank": 341,
+      "id": "t_473cd2810ce2",
+      "term": "偏位",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 偏位 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1987A",
+          "relPath": "T/T47/T47n1987A.xml",
+          "fromLb": "0527a03",
+          "toLb": "0527a08",
+          "fullCaseWindowSha256": "a60b68a2f89f228cc11664f06d3d6db2d3516c10dcb26e6a35a2daa4ad590b9e"
+        },
+        {
+          "workId": "chan:zhiyue-lu",
+          "relPath": "X/X83/X83n1578.xml",
+          "fromLb": "0572a05",
+          "toLb": "0572a10",
+          "fullCaseWindowSha256": "1894e3637cc848fb6d3feab81dd7248af99a6d38919836cb5698c881e463267f"
+        },
+        {
+          "workId": "work:T47n1987B",
+          "relPath": "T/T47/T47n1987B.xml",
+          "fromLb": "0536c22",
+          "toLb": "0536c27",
+          "fullCaseWindowSha256": "0d03962a707bf9e306d08c3ad09bce767302f64a4308f62d11b0f328b7a7c385"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 31,
+      "sourceRank": 344,
+      "id": "t_f3454757ba06",
+      "term": "一色邊",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 一色邊 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0748b08",
+          "toLb": "0748b12",
+          "fullCaseWindowSha256": "584538ab8c9906278785f3d97a9e06817981564128e5fd0b1d94e8228d640c81"
+        },
+        {
+          "workId": "work:X70n1390",
+          "relPath": "X/X70/X70n1390.xml",
+          "fromLb": "0415c11",
+          "toLb": "0415c16",
+          "fullCaseWindowSha256": "7a62e5decdf9c134fc90cc2625b0cf97ba041854b19c4eec48391d8bcc2badd8"
+        },
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0154b05",
+          "toLb": "0154b10",
+          "fullCaseWindowSha256": "f2901beb6e836065f9caf3c1dcd53e49a42b142ea11c5525909d909b329ff14a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 32,
+      "sourceRank": 347,
+      "id": "t_6b69c60b142d",
+      "term": "全用",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 全用 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0650a07",
+          "toLb": "0650a11",
+          "fullCaseWindowSha256": "58f889cf9c3fe01edc79e5567de62722504d72dbcd435155659a1b613090ce9f"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0743b25",
+          "toLb": "0743c01",
+          "fullCaseWindowSha256": "e761dc4a14901c65e599df6ef25339e57c2ab9feb1afaa1cca9593ff775b8f23"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0009b16",
+          "toLb": "0009b20",
+          "fullCaseWindowSha256": "8e96942ef5c3abb5c2848aa18992c07cc663f8d880f917b68a8f2ccbf692805b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 33,
+      "sourceRank": 350,
+      "id": "t_28c4ca8397ca",
+      "term": "金剛王寶劒",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 金剛王寶劒 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0051c06",
+          "toLb": "0051c10",
+          "fullCaseWindowSha256": "4a30609cf1b79dd12f37508cf9b2df2bf278a9b0ab305de60ad40c8977bf0d18"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0120a20",
+          "toLb": "0120b01",
+          "fullCaseWindowSha256": "c9212cddd7b80dc20aff517b46734714b9dd6160b31eb2b499e1652d235e8c7f"
+        },
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0314c02",
+          "toLb": "0314c06",
+          "fullCaseWindowSha256": "22c3f52a64c05345c081f39364bd4f296c64c7228555131ee6bff051b59dfe38"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 34,
+      "sourceRank": 353,
+      "id": "t_2f7c6283da86",
+      "term": "牧牛頌",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 牧牛頌 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J32nB276",
+          "relPath": "J/J32/J32nB276.xml",
+          "fromLb": "0330b22",
+          "toLb": "0331a02",
+          "fullCaseWindowSha256": "6bd8fdd21cdcbf5adef1b585e75bdfd8ba6e11f22319b9051d4270b1cc7cc001"
+        },
+        {
+          "workId": "work:J29nB224",
+          "relPath": "J/J29/J29nB224.xml",
+          "fromLb": "0092a04",
+          "toLb": "0092b08",
+          "fullCaseWindowSha256": "460d01535607f8932ac6b95e26f2cec7e0ed6e6cb253f0b12c2ec03b5687f055"
+        },
+        {
+          "workId": "work:J36nB367",
+          "relPath": "J/J36/J36nB367.xml",
+          "fromLb": "0874a07",
+          "toLb": "0874a14",
+          "fullCaseWindowSha256": "10dcc259b55b62b9f3088d5f35d60883c6825925e57216dcb88df64caf1836e5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 35,
+      "sourceRank": 356,
+      "id": "t_50ebbb091a86",
+      "term": "證道歌",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 證道歌 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X69n1356",
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0371a21",
+          "toLb": "0371b01",
+          "fullCaseWindowSha256": "3c28c1931bd9a23cb417e297d508a43fb1d041eba6df7d76a9310f480be206c0"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0667b14",
+          "toLb": "0667b19",
+          "fullCaseWindowSha256": "79e0dc045f746d1e889a4d900e70be200fb8b9e3dfccd2d3141eb9e248d8d9ee"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0627b16",
+          "toLb": "0627b21",
+          "fullCaseWindowSha256": "273f1a9e080033b284278f80d1b50156c254b3397d6535a941dc4b3112d1d708"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 36,
+      "sourceRank": 359,
+      "id": "t_da2c4e4b0c84",
+      "term": "枯禪",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 枯禪 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X83n1574",
+          "relPath": "X/X83/X83n1574.xml",
+          "fromLb": "0259b11",
+          "toLb": "0259b19",
+          "fullCaseWindowSha256": "95add69269361482cd13b29b80888eb096ea629f454f4b8a11d0f248a38aaf3b"
+        },
+        {
+          "workId": "work:T48n2001",
+          "relPath": "T/T48/T48n2001.xml",
+          "fromLb": "0090b07",
+          "toLb": "0090b13",
+          "fullCaseWindowSha256": "aa2ef756e11344f50b117b440f5a3ff8383c7409595a75d6da9e9a1ba6a1b51e"
+        },
+        {
+          "workId": "work:X70n1382",
+          "relPath": "X/X70/X70n1382.xml",
+          "fromLb": "0274a13",
+          "toLb": "0274a18",
+          "fullCaseWindowSha256": "0cd67bff6f94d0cbe7a2f0becde7c8385f35c73c35ec864a7cba563970dad638"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 37,
+      "sourceRank": 362,
+      "id": "t_0921be30054e",
+      "term": "野狐話",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 野狐話 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0040b13",
+          "toLb": "0040b18",
+          "fullCaseWindowSha256": "8795b309bafded75c3f575a15e2db2579affd7ad80e247186290db87e77ed71e"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0071c11",
+          "toLb": "0071c17",
+          "fullCaseWindowSha256": "3572353e137f4221fd146ab4ae000c86c38f87bb84521658d55eb911800ebae9"
+        },
+        {
+          "workId": "work:X84n1583",
+          "relPath": "X/X84/X84n1583.xml",
+          "fromLb": "0419a16",
+          "toLb": "0419a21",
+          "fullCaseWindowSha256": "b7083f79fbb28436116ddf5dd50ce4580fa547e882ab27fd1a1e1c769f802bfd"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 38,
+      "sourceRank": 365,
+      "id": "t_404cf5324d5b",
+      "term": "糞箕",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 糞箕 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0011c07",
+          "toLb": "0011c11",
+          "fullCaseWindowSha256": "6248efdb1cef8fb6bfba6f95edaa2d3d4a89dc2af3360bbff16f23dec66b90ea"
+        },
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0514b08",
+          "toLb": "0514b13",
+          "fullCaseWindowSha256": "95643ad0d714a4c67d43ba073faed0e1c38f0ecf8e32393096064ade750ebb38"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0055c23",
+          "toLb": "0056a02",
+          "fullCaseWindowSha256": "edcca3f93ddc619b0b5e06ab8302cab82866a34f3200ad54a16e1e3dda2dbc18"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 39,
+      "sourceRank": 368,
+      "id": "t_bca3ba8ebdb5",
+      "term": "顧鑑",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "顧鑑 recurs as a named procedural/appraisal expression in Yunmen material and later handling of it.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0013a07",
+          "toLb": "0013a11",
+          "fullCaseWindowSha256": "66dfb072efab0c7052c4b13dbd46579a6848476c2809c82fb7ab2dab81e07bc5"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0588b22",
+          "toLb": "0588b27",
+          "fullCaseWindowSha256": "71c526e5c848fb80abf35e4ba39d17498bdad725a0f99829f9bdf21ff8a330c3"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0097c14",
+          "toLb": "0097c18",
+          "fullCaseWindowSha256": "a9a3a64e54f49cd973132227014be556323a7a96881424830dedd84cdd5cf8a5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 40,
+      "sourceRank": 371,
+      "id": "t_bea7c499e294",
+      "term": "旦過",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 旦過 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1131b11",
+          "toLb": "1131b16",
+          "fullCaseWindowSha256": "0fd33f7301106384aed73faf57e20d0a0270972519fd217336e08ae0b46c2933"
+        },
+        {
+          "workId": "work:X63n1245",
+          "relPath": "X/X63/X63n1245.xml",
+          "fromLb": "0523c23",
+          "toLb": "0524a05",
+          "fullCaseWindowSha256": "d2cc356001abb70ec2b20d6701c08dd71dfadba15615d78052ea55e48292526e"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0147c05",
+          "toLb": "0147c09",
+          "fullCaseWindowSha256": "77c9a5dec7e6cf2748ed7cdfc8aa01ba7122066d59dda397e11cd69805cc1925"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 41,
+      "sourceRank": 374,
+      "id": "t_4fcd5327b939",
+      "term": "表信",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "表信 is repeatedly used for an offered token or proof; its literal and transmission settings must be distinguished during sense drafting without rejecting the headword.",
+      "evidence": [
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0106b30",
+          "toLb": "0106c05",
+          "fullCaseWindowSha256": "345d85a1802efdf72be45946280ada6104440cd44db8830de33432f1d05d758b"
+        },
+        {
+          "workId": "work:J38nB425",
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0645b25",
+          "toLb": "0645b30",
+          "fullCaseWindowSha256": "08e044ca5723f4e365509ca2529c91420c53f3d3cce3530d88828705f4535427"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0011a27",
+          "toLb": "0011b01",
+          "fullCaseWindowSha256": "69915d9d940f5e865c784c5561a9c87b07e2bf06c95e74852d2ca1ff525fd655"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 42,
+      "sourceRank": 377,
+      "id": "t_4fd4cdbc25b0",
+      "term": "分別心",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 分別心 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0425a15",
+          "toLb": "0425a20",
+          "fullCaseWindowSha256": "2bb2498e33a987ae99481a3a2101e612f46b79cd18a75a4d43567dab491a9c07"
+        },
+        {
+          "workId": "chan:huanyou-chuan-yulu",
+          "relPath": "L/L153/L153n1637.xml",
+          "fromLb": "0509a08",
+          "toLb": "0509a14",
+          "fullCaseWindowSha256": "59c5f611a4d8d7e69751263403e0d93c30ff0ba9c2c90b45d3e533b1cc9b880f"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0637b03",
+          "toLb": "0637b09",
+          "fullCaseWindowSha256": "48eca8960b807b9f6e389c765472a87a0fd540108e274e52bec1db37de641ea3"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 43,
+      "sourceRank": 380,
+      "id": "t_2f97445940bc",
+      "term": "同死同生",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "同生同死",
+      "fullCasesRead": 3,
+      "reason": "The reversed order is genuinely attested, but it denotes the same fixed solidarity/test formula as 同生同死. Keep it as a searchable variant on one entry, not a duplicate concept.",
+      "evidence": [
+        {
+          "workId": "work:T48n2003",
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0155b18",
+          "toLb": "0155b27",
+          "fullCaseWindowSha256": "2c2890bfb04329d33d54903a4a2dc5046b3709cd6325a8863d4cd320829e6511"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0404b22",
+          "toLb": "0404c02",
+          "fullCaseWindowSha256": "cb63be132382500f936f9ff97fef8dbd90a30791e8b68707fde31d9ce393d5d4"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0047a09",
+          "toLb": "0047a13",
+          "fullCaseWindowSha256": "e732f23954caf8748c410bd51684281cb5c45de98624c270dc193d455ec4ffe2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 44,
+      "sourceRank": 383,
+      "id": "t_63cbd10683b5",
+      "term": "這个",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "這个 is a generic demonstrative in the transported dialogue, not a stable headword merely because masters repeatedly say ‘this.’",
+      "evidence": [
+        {
+          "workId": "chan:nian-bafang-zhuyu-ji",
+          "relPath": "X/X67/X67n1310.xml",
+          "fromLb": "0635b03",
+          "toLb": "0635b08",
+          "fullCaseWindowSha256": "09685b275239d0aebdfc57af837edea4f1fa4f350a9fa041bbfd13a31e97171f"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0157a11",
+          "toLb": "0157b04",
+          "fullCaseWindowSha256": "43ebc32485895e7f5f2f1ae0b7544aa2f4e6c2a977f8563680b59f371b72975d"
+        },
+        {
+          "workId": "chan:daguangming-zang",
+          "relPath": "X/X79/X79n1563.xml",
+          "fromLb": "0703c03",
+          "toLb": "0703c07",
+          "fullCaseWindowSha256": "7aff76a7a9ab7b974e3c9f79a37b99ab2cf0b94208b7b44881cd60ade080413b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 45,
+      "sourceRank": 386,
+      "id": "t_0477fdd0ca8e",
+      "term": "斷命根",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 斷命根 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0611c10",
+          "toLb": "0611c14",
+          "fullCaseWindowSha256": "3c45e516fb466ab1dddf12a1a064df3a7ae9620f30e04e9a1a37500721566261"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0113c23",
+          "toLb": "0114a03",
+          "fullCaseWindowSha256": "0c5215fef59da7c6ae599d2d5c85359167904a3d6f73521f0632e216c1d3a802"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0727b01",
+          "toLb": "0727b08",
+          "fullCaseWindowSha256": "fb1b0b85896b46f484ddca34b95a70b50cdcbbc1ba0f4c7f16eeb860effd7968"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 46,
+      "sourceRank": 389,
+      "id": "t_fa7913f1764d",
+      "term": "法外無心",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 法外無心 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0651c22",
+          "toLb": "0651c27",
+          "fullCaseWindowSha256": "09be7aa8a4203680ea94ed7f5e9029d710ce29188b770c4ce9b0fe7a26abe419"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0227c07",
+          "toLb": "0227c11",
+          "fullCaseWindowSha256": "6be9ae3ba7136738e244ca905e6a5ef22b8f20e968fd3fd19fa5d988d07d63c4"
+        },
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0615a05",
+          "toLb": "0615a09",
+          "fullCaseWindowSha256": "44acea9fc6f4df16d9dd6f523ad6c8319f675daa4346e90fcdd18362847bdf32"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 47,
+      "sourceRank": 392,
+      "id": "t_011d32ea606a",
+      "term": "邪解",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 邪解 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:B27n0152",
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0520b13",
+          "toLb": "0520b18",
+          "fullCaseWindowSha256": "9299b9bda9be4f8e9186c1a5d5fbcb39009d3897f1cbe4f7b6463dd737e641ce"
+        },
+        {
+          "workId": "work:X65n1286",
+          "relPath": "X/X65/X65n1286.xml",
+          "fromLb": "0381c21",
+          "toLb": "0382a01",
+          "fullCaseWindowSha256": "9bb5676dcc0c43df9cc8f3c4a171b4500bb4b995ac325f2236793c011757105a"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0869a28",
+          "toLb": "0869b04",
+          "fullCaseWindowSha256": "d7d7f994d40f82cf9d1fc575ad81a203931490f067294f6053bb7a64b666bc4a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 48,
+      "sourceRank": 395,
+      "id": "t_d6a0e2101800",
+      "term": "果位",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 果位 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0495c20",
+          "toLb": "0495c24",
+          "fullCaseWindowSha256": "48aa3a51508a2274a863b3d22b7ed9447c09f420a217fda375b2cc23599f73a4"
+        },
+        {
+          "workId": "work:X72n1435",
+          "relPath": "X/X72/X72n1435.xml",
+          "fromLb": "0281b10",
+          "toLb": "0281b15",
+          "fullCaseWindowSha256": "ca4059cf1dc9ab3972cad81f79ac2bfb5999471e3a1a7de1a514800f2e0898b6"
+        },
+        {
+          "workId": "work:J38nB425",
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0633c11",
+          "toLb": "0633c16",
+          "fullCaseWindowSha256": "fde84b7f3b6d524d87e320934c35cf643f4563ccbb3ebecc732eba53fceff61b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 49,
+      "sourceRank": 398,
+      "id": "t_46bc9d46d4e2",
+      "term": "道不屬知",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 道不屬知 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X67n1303",
+          "relPath": "X/X67/X67n1303.xml",
+          "fromLb": "0280b10",
+          "toLb": "0280b14",
+          "fullCaseWindowSha256": "22970900899582a9cfa0bac7f03f9c6e576a127e76bc5b12029028d05cf82bf9"
+        },
+        {
+          "workId": "work:J38nB406",
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0154a20",
+          "toLb": "0154a23",
+          "fullCaseWindowSha256": "6e9819b71a8f35622f6cfe0a9e977819f17cf9fd32b0b0d0721148fbf8ce3707"
+        },
+        {
+          "workId": "chan:mingjue-cong-yulu",
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0078b08",
+          "toLb": "0078b14",
+          "fullCaseWindowSha256": "a2b4518389191c45cb6f6e767aefe67f7d79d3c23f7f86559b9157f282af6221"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 50,
+      "sourceRank": 401,
+      "id": "t_aaec81055342",
+      "term": "序文",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "序文 labels an ordinary preface/section; the cases do not deploy it as a Chan term.",
+      "evidence": [
+        {
+          "workId": "work:J37nB384",
+          "relPath": "J/J37/J37nB384.xml",
+          "fromLb": "0248b09",
+          "toLb": "0248b13",
+          "fullCaseWindowSha256": "f8bd38c8dd1f5b0821ba21aee46bd5543e7f94164cf2012751f570827eb4da96"
+        },
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1110a06",
+          "toLb": "1110a11",
+          "fullCaseWindowSha256": "e40b7ebb496470492f22b3a5fd8d858918d2c603cb928a7c1a52f85245be94d0"
+        },
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0641a05",
+          "toLb": "0641a09",
+          "fullCaseWindowSha256": "bf78039f3ba3a5e04db10f4010c1546b437015e51f1998e4b79a9b1ea598f1d5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 51,
+      "sourceRank": 404,
+      "id": "t_3e5f4be93e08",
+      "term": "見跡",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "見跡 is a named oxherding stage and also occurs as ordinary trace-language. The exact headword is valid, but entry construction must split the named-stage use from any genuinely distinct ordinary use.",
+      "evidence": [
+        {
+          "workId": "work:J23nB129",
+          "relPath": "J/J23/J23nB129.xml",
+          "fromLb": "0362c26",
+          "toLb": "0363a03",
+          "fullCaseWindowSha256": "b2087b70937f8fe8988aef1d50eca4aeca169808ca2cba60918bb9c39283864b"
+        },
+        {
+          "workId": "work:J25nB156",
+          "relPath": "J/J25/J25nB156.xml",
+          "fromLb": "0060c07",
+          "toLb": "0060c14",
+          "fullCaseWindowSha256": "4f0b7f39bc38ce7b7b881c7381c2e14d77ee6311c651b953434ecd13980232de"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0225b05",
+          "toLb": "0225c03",
+          "fullCaseWindowSha256": "7347cd9cbad3d34758ff32cbb7b59677f1a0612730aacb0ff43d06fa6eccedca"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 52,
+      "sourceRank": 407,
+      "id": "t_a4141bbf2c67",
+      "term": "次序",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "次序 means ordinary sequence/order in these passages and has no distinct Chan deployment.",
+      "evidence": [
+        {
+          "workId": "work:J28nB219",
+          "relPath": "J/J28/J28nB219.xml",
+          "fromLb": "0691b25",
+          "toLb": "0691b29",
+          "fullCaseWindowSha256": "af117966e7b64adb9c24e7b80f686518518f9429338c99ae8b0f96599cae9daa"
+        },
+        {
+          "workId": "work:B25n0143",
+          "relPath": "B/B25/B25n0143.xml",
+          "fromLb": "0201a07",
+          "toLb": "0202a02",
+          "fullCaseWindowSha256": "6253dd26b131f03360a1c70fe798f3a1f01353bda943cc78a7888e0948cc77c4"
+        },
+        {
+          "workId": "work:J39nB471",
+          "relPath": "J/J39/J39nB471.xml",
+          "fromLb": "0990b29",
+          "toLb": "0990c03",
+          "fullCaseWindowSha256": "cbde422ba7602438d171beedf997eca5d4c210fb90c8cde8b089ef93340c15cc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 53,
+      "sourceRank": 410,
+      "id": "t_227099445b8c",
+      "term": "解悟",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 解悟 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0489c29",
+          "toLb": "0490a05",
+          "fullCaseWindowSha256": "d3e0047ccf7a02c1c831bd6400dc80ca7f26ee24889f22cf63d68d5e071d4a32"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0664a15",
+          "toLb": "0664a20",
+          "fullCaseWindowSha256": "ee88b92909de2d7d191693ea1cec4f5bdd641cb01e8bd9744775285a96502197"
+        },
+        {
+          "workId": "work:J25nB163",
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0238a03",
+          "toLb": "0238a07",
+          "fullCaseWindowSha256": "779ecdd0e1d8fb43b7ab0c358cd75c225c6e63349c6d7d935f3b22079fa73217"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 54,
+      "sourceRank": 413,
+      "id": "t_b25e4b96c1ad",
+      "term": "寒山詩",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 寒山詩 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0687b12",
+          "toLb": "0687b16",
+          "fullCaseWindowSha256": "9b720d66874b0b551e552a0a6e3e5be4fb5bfb837b12670f7057cf110bb621cb"
+        },
+        {
+          "workId": "work:J37nB394",
+          "relPath": "J/J37/J37nB394.xml",
+          "fromLb": "0696c16",
+          "toLb": "0697a13",
+          "fullCaseWindowSha256": "6b94bbe80bd9b2be2845fffff2b70f3112cbb3e3f5d478078bde6aaa96192036"
+        },
+        {
+          "workId": "work:J27nB198",
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0524a30",
+          "toLb": "0524b05",
+          "fullCaseWindowSha256": "05f917f48518bff15dcf20d764ca9e830227228d65c1bff6379a6d015af6ed45"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 55,
+      "sourceRank": 416,
+      "id": "t_4ee9ae2ee333",
+      "term": "十五日以後",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 十五日以後 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X67n1307",
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0492c02",
+          "toLb": "0492c08",
+          "fullCaseWindowSha256": "8003e76007e0d0fac7c9c20dc55ecf66fdaf697fb8224fdfd4175f8c2cead7d1"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0239b14",
+          "toLb": "0239b18",
+          "fullCaseWindowSha256": "589a310ae72203c47a1efd1a3a4f5b8ebd55293c389ec6a892228768a0f57177"
+        },
+        {
+          "workId": "work:J28nB203",
+          "relPath": "J/J28/J28nB203.xml",
+          "fromLb": "0168a30",
+          "toLb": "0168b05",
+          "fullCaseWindowSha256": "97e3eeaa9f5e25cbe4ba64bc0ac7a9be5a2c3801e03d20f00acca6cc7782eaa6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 56,
+      "sourceRank": 419,
+      "id": "t_059dbf01b656",
+      "term": "象王回顧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 象王回顧 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:hongjue-min-yulu",
+          "relPath": "L/L155/L155n1643.xml",
+          "fromLb": "0092a03",
+          "toLb": "0092a09",
+          "fullCaseWindowSha256": "98072584b276e58fd08f199471cbfca55b97c953faf2592be873700054b5e251"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0309a19",
+          "toLb": "0309a23",
+          "fullCaseWindowSha256": "75764df3fd944dad10f0daf689736bf0b8790d01408ed355542a1b485f5adc07"
+        },
+        {
+          "workId": "work:J26nB187",
+          "relPath": "J/J26/J26nB187.xml",
+          "fromLb": "0719a29",
+          "toLb": "0719b04",
+          "fullCaseWindowSha256": "23fbaea738038db95969e0c53263beb189d197de8b3ed7e62d8e9e088bd2e067"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 57,
+      "sourceRank": 422,
+      "id": "t_8cc2602ca8d6",
+      "term": "杜撰長老",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 杜撰長老 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0905b11",
+          "toLb": "0905b16",
+          "fullCaseWindowSha256": "9d0b3b820d770dfa9a9e34c0e83be5dc278c483ec0dd364ac96a702efc1aa339"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0861c10",
+          "toLb": "0861c15",
+          "fullCaseWindowSha256": "db19aaacf05020331b8c4813e75998bf623314d571415039a2edaa57debe0cfe"
+        },
+        {
+          "workId": "work:J34nB300",
+          "relPath": "J/J34/J34nB300.xml",
+          "fromLb": "0243c29",
+          "toLb": "0244a03",
+          "fullCaseWindowSha256": "058a35b7fddbf932310dc5b78b0fe22782de57d6c4f04c4d2414be23559447a5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 58,
+      "sourceRank": 425,
+      "id": "t_ff89053c2d46",
+      "term": "無角鐵牛",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 無角鐵牛 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0040a08",
+          "toLb": "0040a12",
+          "fullCaseWindowSha256": "e843d7e65727e57eaab9f94963ae231b467f31ae91a1c373bf5cd8efc44ce028"
+        },
+        {
+          "workId": "work:T51n2077",
+          "relPath": "T/T51/T51n2077.xml",
+          "fromLb": "0478c03",
+          "toLb": "0478c08",
+          "fullCaseWindowSha256": "00c373661b00fdc40c0eef0a0e6c841c1ea15ce468784b4a3c00ebf0fe9b199a"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0021b12",
+          "toLb": "0021b17",
+          "fullCaseWindowSha256": "5fe4837d4be7418dc060b4e470f1996e092a6d7a959bd89ac196154f63b98c91"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 59,
+      "sourceRank": 428,
+      "id": "t_88546ce14713",
+      "term": "坐參",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 坐參 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1112a25",
+          "toLb": "1112b16",
+          "fullCaseWindowSha256": "2cffeb91b3decba08a5d3934856f38b5b11373cd827ccd8aa54ea6b2bd914abd"
+        },
+        {
+          "workId": "work:X63n1250",
+          "relPath": "X/X63/X63n1250.xml",
+          "fromLb": "0620c08",
+          "toLb": "0620c22",
+          "fullCaseWindowSha256": "9c7d6e64ca6cd61649da608c896a21147f357965066649ea9694b89198245027"
+        },
+        {
+          "workId": "work:J29nB239",
+          "relPath": "J/J29/J29nB239.xml",
+          "fromLb": "0481c27",
+          "toLb": "0482a01",
+          "fullCaseWindowSha256": "1798e7c37d0c267ae28d9c8eee789b5046b061ee69b5b2a5f12291bfc22207cc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 60,
+      "sourceRank": 431,
+      "id": "t_d7495b616b55",
+      "term": "所參話",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 所參話 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X70n1402",
+          "relPath": "X/X70/X70n1402.xml",
+          "fromLb": "0714a22",
+          "toLb": "0714b02",
+          "fullCaseWindowSha256": "9a5de0afa917bf82d4e65d54cb80512328aeffd5ecf5f656d4b313ded0b51007"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0014b10",
+          "toLb": "0014b14",
+          "fullCaseWindowSha256": "5303ae847af8bf7c2b56e51b6e85f15d3943c1d94e56ee44b93cb1fab664d9f1"
+        },
+        {
+          "workId": "work:B25n0145",
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0701a16",
+          "toLb": "0701a20",
+          "fullCaseWindowSha256": "e12e86348d5c1538b48a11dc874b30b62d86359621a504693dab69ab8ff08ea1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 61,
+      "sourceRank": 434,
+      "id": "t_2c8e8ea62eef",
+      "term": "代古",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 代古 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB185",
+          "relPath": "J/J26/J26nB185.xml",
+          "fromLb": "0573c17",
+          "toLb": "0574b03",
+          "fullCaseWindowSha256": "95215a0d9783ddcbbb88ba6fedad6e85068108d2c3789bc7c9d00b9e6f6ec43c"
+        },
+        {
+          "workId": "chan:huanyou-chuan-yulu",
+          "relPath": "L/L153/L153n1637.xml",
+          "fromLb": "0458b05",
+          "toLb": "0460a01",
+          "fullCaseWindowSha256": "a0086440a09c0f5bb14b816984ce1ff32e89769a08ce9725149367b84ac218fa"
+        },
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0001c19",
+          "toLb": "0002b02",
+          "fullCaseWindowSha256": "c2d1ed27c5f85ae7c2aeb0aca11d1ec9a4af975db2aa2cd7534a93edf981c246"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 62,
+      "sourceRank": 437,
+      "id": "t_36bac52df851",
+      "term": "落空亡",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 落空亡 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0558a11",
+          "toLb": "0558a15",
+          "fullCaseWindowSha256": "0f30aa36b8812aa8c56b675688534e863557cea182df9f5061c0af246d1f581e"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0866b22",
+          "toLb": "0866b27",
+          "fullCaseWindowSha256": "59d50daea60a5c4a630f74f47c1892d0486cee1123043cf716926d68405d47b6"
+        },
+        {
+          "workId": "work:X63n1257",
+          "relPath": "X/X63/X63n1257.xml",
+          "fromLb": "0759c19",
+          "toLb": "0759c24",
+          "fullCaseWindowSha256": "3638df2152550d0ad70e64b87fd76791ce52162ba65e572b85d923ccea745ac4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 63,
+      "sourceRank": 440,
+      "id": "t_b4a96bc09ebc",
+      "term": "體露堂堂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 體露堂堂 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0061a06",
+          "toLb": "0061a10",
+          "fullCaseWindowSha256": "b0056b29530411742f7b62aca42a819fc553d6346108e1ee434fbb0cfa31a95f"
+        },
+        {
+          "workId": "work:X69n1356",
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0385b21",
+          "toLb": "0385c01",
+          "fullCaseWindowSha256": "bb5aa1e6ede62ff20a1a52ee8fa218df159be32eaa3634356738d28ee2d371eb"
+        },
+        {
+          "workId": "work:J26nB185",
+          "relPath": "J/J26/J26nB185.xml",
+          "fromLb": "0614a21",
+          "toLb": "0614a26",
+          "fullCaseWindowSha256": "5f13c711360acbb98f02c93da2be6945dae39c3a7a97956ab5f4b2dad0e6fa1b"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 64,
+      "sourceRank": 443,
+      "id": "t_33539110fc5e",
+      "term": "和尚子",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "和尚子 is a recurrent direct-address form aimed at monks/students across records; it is a stable address unit rather than a random noun phrase.",
+      "evidence": [
+        {
+          "workId": "work:X69n1333",
+          "relPath": "X/X69/X69n1333.xml",
+          "fromLb": "0072a15",
+          "toLb": "0072a19",
+          "fullCaseWindowSha256": "c543eef456f7110fe2996128e1c9ee2f5a113fc8572230d883ee4e9e9e7258d4"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0344b03",
+          "toLb": "0344b08",
+          "fullCaseWindowSha256": "d505b775a08a1b5b64b947842e6deec0662174b7b3c374a1b1177e4b70596430"
+        },
+        {
+          "workId": "work:B25n0144",
+          "relPath": "B/B25/B25n0144.xml",
+          "fromLb": "0440b12",
+          "toLb": "0441a02",
+          "fullCaseWindowSha256": "80a39b684d5d25c162f07f2a262bdcdf4014c8573c45628b321bcd98e2e66f65"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 65,
+      "sourceRank": 446,
+      "id": "t_fdf76de20234",
+      "term": "腳跟下事",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 腳跟下事 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J33nB285",
+          "relPath": "J/J33/J33nB285.xml",
+          "fromLb": "0466a26",
+          "toLb": "0466a30",
+          "fullCaseWindowSha256": "3709974431cb118a8a372d5adb37098b970bfe6ea39af0794762f379bd0f7286"
+        },
+        {
+          "workId": "work:J26nB183",
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0507b26",
+          "toLb": "0507c01",
+          "fullCaseWindowSha256": "8110bd81ab2c787cc4a9fe0e75685c534687ac891d272935ea37c598a12b52b3"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0710a17",
+          "toLb": "0710a22",
+          "fullCaseWindowSha256": "f82c407a600f43e09e92a6e5554bcf9bcf700d82f8dd397a2d320561fdaf5c30"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 66,
+      "sourceRank": 449,
+      "id": "t_5fd1f6f01c88",
+      "term": "抽顧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 抽顧 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "D/D48/D48n8939.xml",
+          "fromLb": "0299b01",
+          "toLb": "0300b04",
+          "fullCaseWindowSha256": "f87ba0875c216549b83a558d0a0852b63a42df4897adfc7b1452cd9fe2e36fbe"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0805c21",
+          "toLb": "0806a03",
+          "fullCaseWindowSha256": "8b4214c4c220722f551b7a9b0edc51c7ab790f97ec4e3356aa21d75f174df43c"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0954b08",
+          "toLb": "0954b13",
+          "fullCaseWindowSha256": "2017c8a067a9f05165a74a07330e9cee8653c035ed8ebf7579ebf50915d49acc"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 67,
+      "sourceRank": 452,
+      "id": "t_03f709199420",
+      "term": "模子",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 模子 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X71n1405",
+          "relPath": "X/X71/X71n1405.xml",
+          "fromLb": "0052c20",
+          "toLb": "0053a03",
+          "fullCaseWindowSha256": "6e8d1ee43754ba98365d4d2b02ad4e45efbfd98a97f0cc790473b202121637dd"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0001a22",
+          "toLb": "0001b02",
+          "fullCaseWindowSha256": "4ff27bbf0d273164845c59a5c64a33a1507f174bffd136710c9b9f219ed51271"
+        },
+        {
+          "workId": "work:X70n1386",
+          "relPath": "X/X70/X70n1386.xml",
+          "fromLb": "0331b14",
+          "toLb": "0331b18",
+          "fullCaseWindowSha256": "9e831819e6831d2e4186a09340bf8acf75738b95876c42b777a3d25e2469b54d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 68,
+      "sourceRank": 455,
+      "id": "t_7c22b3a70b70",
+      "term": "到家消息",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 到家消息 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB182",
+          "relPath": "J/J26/J26nB182.xml",
+          "fromLb": "0449b13",
+          "toLb": "0449b17",
+          "fullCaseWindowSha256": "a77d3444d5b97a6485de8e2e772f74901033fa75404936e38fedb847c28cf866"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0313b01",
+          "toLb": "0313b05",
+          "fullCaseWindowSha256": "a1aaae25f2023180ae19ea0be3b03dc4274573c5dd0404ceaa53ab7eb8e151e7"
+        },
+        {
+          "workId": "work:J26nB177",
+          "relPath": "J/J26/J26nB177.xml",
+          "fromLb": "0028b23",
+          "toLb": "0028b28",
+          "fullCaseWindowSha256": "9803ea6065b7b86d1c6b40d2857eb364d1abbb57a46bc65426c58349035bff83"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 69,
+      "sourceRank": 458,
+      "id": "t_554681de934a",
+      "term": "海印三昧",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 海印三昧 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0503b29",
+          "toLb": "0503c05",
+          "fullCaseWindowSha256": "cd776ac778a320364ee2a8c3befe7c99e931ec1264ce374774a5952c5cefcc04"
+        },
+        {
+          "workId": "chan:dahui-pushuo",
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0824a17",
+          "toLb": "0824b02",
+          "fullCaseWindowSha256": "90a34f198edcee5ef6b16c35aa3aac2998c11fe67e528cdb86a90e91127f46e6"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0002c20",
+          "toLb": "0002c24",
+          "fullCaseWindowSha256": "fdb1a8655a6b89043da6a6c277d419359dbf8e241096e752744cde4dee88772d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 70,
+      "sourceRank": 461,
+      "id": "t_d6ac2bbb0b70",
+      "term": "逍遙自在",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "逍遙自在 is ordinary descriptive freedom/ease in the cases, not a stable technical or case-bearing Chan unit.",
+      "evidence": [
+        {
+          "workId": "work:J25nB171",
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0516c01",
+          "toLb": "0517a01",
+          "fullCaseWindowSha256": "f83c91201d2446e1280f1feb552d3412dcab99a887d81f152e9d78f00de75051"
+        },
+        {
+          "workId": "work:B14n0082",
+          "relPath": "B/B14/B14n0082.xml",
+          "fromLb": "0325b15",
+          "toLb": "0326a05",
+          "fullCaseWindowSha256": "64c859edd8ab32d4c09c747fd3993b1463acdce849bff8fe75220a9ea7493ba2"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0792c02",
+          "toLb": "0792c08",
+          "fullCaseWindowSha256": "919cd319923521fe7ffda20a3d4a51022acb7912e1b3018c820a9f0f329acaa4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 71,
+      "sourceRank": 464,
+      "id": "t_5a24199651b4",
+      "term": "師子咬人",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 師子咬人 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0668b23",
+          "toLb": "0668c05",
+          "fullCaseWindowSha256": "db53d2122a739aaebd138e3a6dc938ce7e006439d160d71dc8f713e5ab2ca484"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0742c04",
+          "toLb": "0742c10",
+          "fullCaseWindowSha256": "dabc81bed3c998f712dcad63f3fdd3ee299df3b0135e29c22e07de44a15187db"
+        },
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0851c09",
+          "toLb": "0851c14",
+          "fullCaseWindowSha256": "82da0285e4dbe2ff6590adde8fddd9c2498707ae16604d29669c62264c6247f2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 72,
+      "sourceRank": 467,
+      "id": "t_a74430b8e7ec",
+      "term": "透重關",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 透重關 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0343b10",
+          "toLb": "0343b14",
+          "fullCaseWindowSha256": "a2beab1ce4b795c956613109e503e6f09cf0ad9fcb2581d50ede3c1e4b4f1757"
+        },
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0523c18",
+          "toLb": "0523c22",
+          "fullCaseWindowSha256": "652e0ec23dd36b69b21d7f93e9430ce8b8652095801f18d6378a727e57836812"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0704b07",
+          "toLb": "0704b11",
+          "fullCaseWindowSha256": "72ac1e573a4ae53aa9ebb773b4779ce0a2958e6393a84a93b1637a50212c0ab2"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 73,
+      "sourceRank": 470,
+      "id": "t_43353828fe73",
+      "term": "鷺鶿",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "鷺鶿 is repeatedly wielded in capping lines and teaching-seat images (snow/reeds/contrast), so the bird image has observable deployment rather than mere zoological containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB410",
+          "relPath": "J/J38/J38nB410.xml",
+          "fromLb": "0319b08",
+          "toLb": "0319b12",
+          "fullCaseWindowSha256": "9206f028acabea30b0977765034ea18990d1cd6eb47b45028b41e9bb6923eb3b"
+        },
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0321a18",
+          "toLb": "0321a22",
+          "fullCaseWindowSha256": "11241a84eb64a26f28d128d1751fb78a8e760f5175d5cf8cc843c4b77d055d48"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0250b04",
+          "toLb": "0250b08",
+          "fullCaseWindowSha256": "eedd16c96fe6c3ddc4b8a1753640531df8cbf9b2651c6909cb1785b3bde212d9"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 74,
+      "sourceRank": 473,
+      "id": "t_6d0fd1063f53",
+      "term": "定慧等學",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 定慧等學 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0257c23",
+          "toLb": "0257c28",
+          "fullCaseWindowSha256": "629d7928c95541b14cdc7d3c387f97561aefa9ef0f41c3dcf9d610b72c157f77"
+        },
+        {
+          "workId": "work:X71n1405",
+          "relPath": "X/X71/X71n1405.xml",
+          "fromLb": "0032c02",
+          "toLb": "0032c07",
+          "fullCaseWindowSha256": "deddca595a007102dbd0cf5a4ae9ce7f74de5b2ebf771029ec317f44335cb9bf"
+        },
+        {
+          "workId": "work:B14n0082",
+          "relPath": "B/B14/B14n0082.xml",
+          "fromLb": "0318b13",
+          "toLb": "0319a04",
+          "fullCaseWindowSha256": "b8c9a9aa15d2d5694272be2a62e0899094270564b19d32334dbdbe33af343e7d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 75,
+      "sourceRank": 476,
+      "id": "t_d2c796d68370",
+      "term": "枯木倚寒巖",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 枯木倚寒巖 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J38nB406",
+          "relPath": "J/J38/J38nB406.xml",
+          "fromLb": "0137a25",
+          "toLb": "0137a29",
+          "fullCaseWindowSha256": "26031b0db3d1c78d9fa889753a3ebdc7af1ea5110af868262fc8b9b3f9ee2e4a"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0173b20",
+          "toLb": "0173b24",
+          "fullCaseWindowSha256": "8f861920ac3a5d0c216eedcff53ab91cda75df08d0cd2015260155c17e48e04f"
+        },
+        {
+          "workId": "chan:xueqiao-xin-yulu",
+          "relPath": "L/L153/L153n1638.xml",
+          "fromLb": "0788a05",
+          "toLb": "0788a12",
+          "fullCaseWindowSha256": "c216deadda632614f5e5da5000ddd381f211a3716e38c6afb470d4bf3b5d6533"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 76,
+      "sourceRank": 479,
+      "id": "t_27a34ff9baba",
+      "term": "授衣",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 授衣 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0404c22",
+          "toLb": "0405a02",
+          "fullCaseWindowSha256": "e42916558eca38664f236134e5d5b7f9c44557b447ae458a991a3e25f9d92cf0"
+        },
+        {
+          "workId": "chan:daguangming-zang",
+          "relPath": "X/X79/X79n1563.xml",
+          "fromLb": "0673b07",
+          "toLb": "0673b11",
+          "fullCaseWindowSha256": "c547e8ae20ce177096b49ed0ee8c9f5097b0edd89a0f69dfd8bba4d160fef6c6"
+        },
+        {
+          "workId": "work:J28nB218",
+          "relPath": "J/J28/J28nB218.xml",
+          "fromLb": "0655b12",
+          "toLb": "0655b17",
+          "fullCaseWindowSha256": "4e3d69e6c8728266b48ed1e4023136a1807969e5c950f684b4bf413ae0f48571"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 77,
+      "sourceRank": 482,
+      "id": "t_8cf08ab2543c",
+      "term": "渠我",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 渠我 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0740b20",
+          "toLb": "0740b24",
+          "fullCaseWindowSha256": "6bfd4a8ee2f29ec393e6931f471fed936cd38e14f4c2be74cc45cce4ea5b6b3e"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0604b20",
+          "toLb": "0604b24",
+          "fullCaseWindowSha256": "34a4b55e2d2e37b0f10cde1bb14621e2d0edc71ddceb899634eada5d07bcfc4d"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0698b09",
+          "toLb": "0698b14",
+          "fullCaseWindowSha256": "6a23ef0587eeeca821414fc4ada362219dfe6d5ae27bb053a8919af1dafd3f11"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 78,
+      "sourceRank": 485,
+      "id": "t_a0471efec8ca",
+      "term": "默然良久",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "默然良久 is a recurrent recorded public response/action formula; the action itself is the case evidence, not decorative narration.",
+      "evidence": [
+        {
+          "workId": "work:J29nB239",
+          "relPath": "J/J29/J29nB239.xml",
+          "fromLb": "0479a27",
+          "toLb": "0479b01",
+          "fullCaseWindowSha256": "6b4e3acd0fdbc98e6a2965fdfd19c1aeeea7055a0b267761c7994f9a321eda6d"
+        },
+        {
+          "workId": "work:J29nB244",
+          "relPath": "J/J29/J29nB244.xml",
+          "fromLb": "0709b27",
+          "toLb": "0709c02",
+          "fullCaseWindowSha256": "6dfa34319b4c5ede407f97286b0f3e4ad69bc74125edbf9d93877e6acddd587d"
+        },
+        {
+          "workId": "work:X72n1444",
+          "relPath": "X/X72/X72n1444.xml",
+          "fromLb": "0808c05",
+          "toLb": "0808c09",
+          "fullCaseWindowSha256": "c7d2dd73edc54897dce913e203324871fc32777674c19add2867bfa7696cac2e"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 79,
+      "sourceRank": 488,
+      "id": "t_67362c9d3c3c",
+      "term": "入室弟子",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 入室弟子 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X63n1245",
+          "relPath": "X/X63/X63n1245.xml",
+          "fromLb": "0522c05",
+          "toLb": "0522c16",
+          "fullCaseWindowSha256": "e7bc3d5c01e2865b0de6c2d0a888c22bbfb97aee5a47149e24e03ad83c09ac7c"
+        },
+        {
+          "workId": "work:T51n2076",
+          "relPath": "T/T51/T51n2076.xml",
+          "fromLb": "0241a04",
+          "toLb": "0241a11",
+          "fullCaseWindowSha256": "e8c9412f934fdcaa3260564b1c2f009644558056f6697dbaba3962aec5601d30"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0615c09",
+          "toLb": "0615c15",
+          "fullCaseWindowSha256": "7b47fe6afb6bfb4ef7010839cc9afa005c835bce1418ef7df63bb8a7e8dde4d6"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 80,
+      "sourceRank": 491,
+      "id": "t_d076804616d6",
+      "term": "不污染",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 不污染 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X78n1556",
+          "relPath": "X/X78/X78n1556.xml",
+          "fromLb": "0645b12",
+          "toLb": "0645b16",
+          "fullCaseWindowSha256": "bdd4af08d0ec6d12ff4bcd6d0d9d68334dbad4b6d8bf0b201707a4df02e9dda6"
+        },
+        {
+          "workId": "chan:daguangming-zang",
+          "relPath": "X/X79/X79n1563.xml",
+          "fromLb": "0677a19",
+          "toLb": "0677a23",
+          "fullCaseWindowSha256": "cdd84432d507b35312162f959c1c7d20b58c7d192356fc0103aabf7e5aa7cba2"
+        },
+        {
+          "workId": "work:J29nB244",
+          "relPath": "J/J29/J29nB244.xml",
+          "fromLb": "0719c07",
+          "toLb": "0719c11",
+          "fullCaseWindowSha256": "f7978f9f5d40c81c706e38a2bb8e861fa367f1518da670ac86be1eed9015e701"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 81,
+      "sourceRank": 494,
+      "id": "t_92de4ae238f6",
+      "term": "喝道",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "喝道 is valid but polysemous: the Puhua material uses the road-clearing cry/action, while another case parses it as 喝 + 道 (‘shouted, saying’). The eventual entry must split those different things.",
+      "evidence": [
+        {
+          "workId": "work:X69n1361",
+          "relPath": "X/X69/X69n1361.xml",
+          "fromLb": "0607c08",
+          "toLb": "0607c13",
+          "fullCaseWindowSha256": "75b13c284999626ab407b8e32c46babb64265a21449277be3a8b28eb555b4f31"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0733b11",
+          "toLb": "0733b17",
+          "fullCaseWindowSha256": "7a704631c45a5ec6b138bb578ec08ddb9fb3a83fa7500ddc2a8bc300f60560cd"
+        },
+        {
+          "workId": "work:J34nB311",
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0638b03",
+          "toLb": "0638b09",
+          "fullCaseWindowSha256": "6d08ad35f172171c5b12f35cd9c5d383c0022c1675ac535f3a888170956fb8d0"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 82,
+      "sourceRank": 497,
+      "id": "t_56ead35d8d4e",
+      "term": "眉毛落",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 眉毛落 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0174b03",
+          "toLb": "0174b07",
+          "fullCaseWindowSha256": "c441c69b9dcf42ee1b2494e634fd1247a0fc79f07b6a4334e35b118b4305ac23"
+        },
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0694b23",
+          "toLb": "0694c06",
+          "fullCaseWindowSha256": "b33e07f20fbb5d5dd5e02f185bc12cf33bbb5c2e6a8c3635dbf74d73196aa0ca"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0073b30",
+          "toLb": "0073c04",
+          "fullCaseWindowSha256": "5aebabaad4fdaa64e056092f5571e5157343a7fcf45a144a034fac53b4c880e7"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 83,
+      "sourceRank": 500,
+      "id": "t_74be24323cc2",
+      "term": "敗闕處",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 敗闕處 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0831a17",
+          "toLb": "0831a23",
+          "fullCaseWindowSha256": "ef79ac9fc94525ef40e30dac2f91978bfe61b7bc2201ee88b5825692dfb8bee0"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0390a22",
+          "toLb": "0390b04",
+          "fullCaseWindowSha256": "63a76ecbf706ddbebd76788477e2af928c748e2a36be34f8036135be1dfd4275"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0160a04",
+          "toLb": "0160a08",
+          "fullCaseWindowSha256": "2d146b0d1ac2f2754cbb2eef6210a534781f4b7cc3d42a6942c10a63c262e60f"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 84,
+      "sourceRank": 503,
+      "id": "t_3eb87f6093cd",
+      "term": "放下布袋",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 放下布袋 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:mingdao-zhengjue-sen-yulu",
+          "relPath": "L/L155/L155n1642.xml",
+          "fromLb": "0003a12",
+          "toLb": "0004a07",
+          "fullCaseWindowSha256": "8fb23bf2de8f54d3499f8b13214c906e289f7a1bde750a4b03bf13fd722cb447"
+        },
+        {
+          "workId": "work:X68n1319",
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0547b22",
+          "toLb": "0547c01",
+          "fullCaseWindowSha256": "ddb33f9afc5f51bc3a3b2d7b14c65a53af81d3174930d435131ec761d11e8508"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0068a10",
+          "toLb": "0068a14",
+          "fullCaseWindowSha256": "19b1115c1be813a133d96b0c8967002d808cf0c033cdaf99b9162237bdf7dce1"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 85,
+      "sourceRank": 506,
+      "id": "t_e725cdbf01f4",
+      "term": "無念為宗",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 無念為宗 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2008",
+          "relPath": "T/T48/T48n2008.xml",
+          "fromLb": "0346c04",
+          "toLb": "0346c09",
+          "fullCaseWindowSha256": "46e0060bfba8b8a75329ac1a044e8223fde9760c1c2641be809ebcf65513cf05"
+        },
+        {
+          "workId": "work:T48n2007",
+          "relPath": "T/T48/T48n2007.xml",
+          "fromLb": "0338c01",
+          "toLb": "0338c06",
+          "fullCaseWindowSha256": "314721ce50fa7b2ba0f0da5b76bbeb0945e15e6c21313e890f909137ebb8fe9a"
+        },
+        {
+          "workId": "work:B27n0152",
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0491a16",
+          "toLb": "0491b01",
+          "fullCaseWindowSha256": "3c68ee42a5047b6b77ed139e9d62af084128ab845584d4148e18143e655c2d3a"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 86,
+      "sourceRank": 509,
+      "id": "t_25ed709c5ffb",
+      "term": "喝采",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "喝采 is ordinary acclaim/applause in the evidence, not a Chan lexical deployment.",
+      "evidence": [
+        {
+          "workId": "work:J40nB494",
+          "relPath": "J/J40/J40nB494.xml",
+          "fromLb": "0536c03",
+          "toLb": "0536c07",
+          "fullCaseWindowSha256": "67c726556e4d2d3f65b1c0c835e3fa342da9acc63cc645e08240e5f6590ed1d5"
+        },
+        {
+          "workId": "work:J25nB174",
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0715b16",
+          "toLb": "0715b20",
+          "fullCaseWindowSha256": "7d08b39c89d53ab2837ed425e9b4d1184b68e047f5a1d490055df6db5912ed01"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0129c25",
+          "toLb": "0129c28",
+          "fullCaseWindowSha256": "9db1fda53eaa91b7a5ba3333df5182be9e72253933df76f5cfbd53f16dd86d91"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 87,
+      "sourceRank": 512,
+      "id": "t_3f2212b6136d",
+      "term": "臨濟三玄三要",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 臨濟三玄三要 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0029c08",
+          "toLb": "0029c12",
+          "fullCaseWindowSha256": "9eae61275b49ec8e66228bf4d5740113df9dfce6b8415d80791c1653fa4d0b7e"
+        },
+        {
+          "workId": "work:J26nB178",
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0126c21",
+          "toLb": "0126c25",
+          "fullCaseWindowSha256": "4f877c01ef93fb03770edf496019df1745d82da6812ed6f90e3ab1526be29bc2"
+        },
+        {
+          "workId": "work:J28nB220",
+          "relPath": "J/J28/J28nB220.xml",
+          "fromLb": "0803a14",
+          "toLb": "0803a19",
+          "fullCaseWindowSha256": "3037b4fafcc5792747e3265796512ce97f4261a7d15e176e17ada80fb5d639f5"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 88,
+      "sourceRank": 515,
+      "id": "t_23a611455017",
+      "term": "赤肉團邊",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 赤肉團邊 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J28nB208",
+          "relPath": "J/J28/J28nB208.xml",
+          "fromLb": "0316c26",
+          "toLb": "0316c30",
+          "fullCaseWindowSha256": "3fe9a1684ae4529c28e3ee2b4bee1c45c9f92217a2b9b0adb3da6bbac6eefe77"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0146b08",
+          "toLb": "0146b12",
+          "fullCaseWindowSha256": "2137cc1b29483b75d8f40d963ad0ab13ae12cad0189a1e9edb2c66674c7a3e9e"
+        },
+        {
+          "workId": "chan:xu-zhiyue-lu",
+          "relPath": "X/X84/X84n1579.xml",
+          "fromLb": "0041b19",
+          "toLb": "0041b23",
+          "fullCaseWindowSha256": "38b5746b584073c36db995e49bc68758bdeeb4d677d0cbaf80034b5c043944be"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 89,
+      "sourceRank": 518,
+      "id": "t_1fcaa85ccf8a",
+      "term": "舉指",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "舉指 recurs as a public response/action in cases; it is not accepted merely from the compositional phrase ‘raise a finger.’",
+      "evidence": [
+        {
+          "workId": "work:X79n1557",
+          "relPath": "X/X79/X79n1557.xml",
+          "fromLb": "0114c12",
+          "toLb": "0114c16",
+          "fullCaseWindowSha256": "5f1a707a7e104c543e310d9cd5e0a7152dacd2ed46d51ab02100f85230660d93"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0308a21",
+          "toLb": "0308b01",
+          "fullCaseWindowSha256": "e2006abd23210e54faadfa4380aea36da73b9d13af6b3643973b941ae1badc4e"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0114a04",
+          "toLb": "0114a08",
+          "fullCaseWindowSha256": "1f479451943e35fe0a072188635f6e91ef8b82c05310ccf53b1d305794b6d153"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 90,
+      "sourceRank": 521,
+      "id": "t_402f5be0f730",
+      "term": "絕後再蘇",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 絕後再蘇 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X70n1376",
+          "relPath": "X/X70/X70n1376.xml",
+          "fromLb": "0058a06",
+          "toLb": "0058a10",
+          "fullCaseWindowSha256": "e599da0e6493317abb57c511851cc89ccd15e3826b4b049e6d371efffa1aadf5"
+        },
+        {
+          "workId": "work:X80n1565",
+          "relPath": "X/X80/X80n1565.xml",
+          "fromLb": "0254a01",
+          "toLb": "0254a05",
+          "fullCaseWindowSha256": "5be80132b398c2d523ae8ad5c96ee44047e2e00780ec930b28c5deebd9fdcef1"
+        },
+        {
+          "workId": "work:wudeng-yantong",
+          "relPath": "X/X81/X81n1568.xml",
+          "fromLb": "0058a01",
+          "toLb": "0058a05",
+          "fullCaseWindowSha256": "990d2403013646aa9e9dc857fd22bfa353847b2d8ffb985629292d16cdb3affb"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 91,
+      "sourceRank": 524,
+      "id": "t_5f480fb454f5",
+      "term": "三種墮",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 三種墮 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1987A",
+          "relPath": "T/T47/T47n1987A.xml",
+          "fromLb": "0533c02",
+          "toLb": "0533c08",
+          "fullCaseWindowSha256": "0e3754e4ae02c18680e083d82e4548db212802bc9f97934974bfb808fccad0ac"
+        },
+        {
+          "workId": "work:T48n2006",
+          "relPath": "T/T48/T48n2006.xml",
+          "fromLb": "0317c18",
+          "toLb": "0317c24",
+          "fullCaseWindowSha256": "4dc777e9501be0c6e938c9235cc03028b63ef12ae2520971ce287da47630551a"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0327b16",
+          "toLb": "0327b20",
+          "fullCaseWindowSha256": "3a8c21083ec34a6e97118595fc236197a3eaa416655df9e957e62713d6f5ab2d"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 92,
+      "sourceRank": 527,
+      "id": "t_ed64b7cf8a8f",
+      "term": "未詳法嗣",
+      "primaryDisposition": "REJECT",
+      "independentDisposition": "REJECT",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "未詳法嗣 is compiler/metadata wording (‘Dharma heir unknown’), not a saying or dictionary concept deployed by masters.",
+      "evidence": [
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0709a18",
+          "toLb": "0709b10",
+          "fullCaseWindowSha256": "f77d3f1e2abed8f9eee72462d518f398e1c3f04caecff449dc570c22a4b699f6"
+        },
+        {
+          "workId": "work:X66n1296",
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0003a17",
+          "toLb": "0003b14",
+          "fullCaseWindowSha256": "fc216364435feee68f06b263e6f9f32d8690fa9f8f8de14adeff89f535826ad0"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0267b03",
+          "toLb": "0267b20",
+          "fullCaseWindowSha256": "bbac949bd94fff0a8a474ab0973546f3f17b82b6339eb0b544d1b0c40c0ef186"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 93,
+      "sourceRank": 530,
+      "id": "t_df946e9687d8",
+      "term": "偏空",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 偏空 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "chan:tianyin-xiu-yulu",
+          "relPath": "L/L154/L154n1639.xml",
+          "fromLb": "0265a08",
+          "toLb": "0265a13",
+          "fullCaseWindowSha256": "4ed44d41444ace83dba29b499273de9a485d7e2b1d4a6450477ef1290f79ca9e"
+        },
+        {
+          "workId": "work:T48n2016",
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0605a27",
+          "toLb": "0605b03",
+          "fullCaseWindowSha256": "c9fe8c93eb598d1005af179c11136035b19886523f39645d1d2ac1a76607d070"
+        },
+        {
+          "workId": "work:J26nB177",
+          "relPath": "J/J26/J26nB177.xml",
+          "fromLb": "0027b24",
+          "toLb": "0027b28",
+          "fullCaseWindowSha256": "20c6bc69ffc81c05a81b36bd1be73afccea5ddee948387fd0afadcc5ef8d5ccd"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 94,
+      "sourceRank": 533,
+      "id": "t_ff57efe42230",
+      "term": "沉空滯寂",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 沉空滯寂 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J39nB453",
+          "relPath": "J/J39/J39nB453.xml",
+          "fromLb": "0575b10",
+          "toLb": "0575b14",
+          "fullCaseWindowSha256": "04ed51cd6a5b30717da6343fb970d90e20f1a66a19e174104747fc81ca2336d3"
+        },
+        {
+          "workId": "work:guzunsu-yulu",
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0616a17",
+          "toLb": "0616a23",
+          "fullCaseWindowSha256": "df82349648f5db9d17386e528bd28b519d80293d5052c50f661c6255f18c70e5"
+        },
+        {
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0759b22",
+          "toLb": "0759b26",
+          "fullCaseWindowSha256": "5979f63799a35a35ecda380e22f45601b3ab755266479ad3d1338dd41c8064e4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 95,
+      "sourceRank": 536,
+      "id": "t_133715546012",
+      "term": "明中暗",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 明中暗 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:J26nB188",
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0764c05",
+          "toLb": "0764c09",
+          "fullCaseWindowSha256": "780f9af316e608a1c14a858d8556a17e9409a8557e24fd628c9ecae000cbbec2"
+        },
+        {
+          "workId": "work:J33nB294",
+          "relPath": "J/J33/J33nB294.xml",
+          "fromLb": "0747a14",
+          "toLb": "0747a18",
+          "fullCaseWindowSha256": "aedd416cd824e97b0e8766939cea566ba0f917ae640b46bd8f2706892663ecc6"
+        },
+        {
+          "workId": "work:X67n1303",
+          "relPath": "X/X67/X67n1303.xml",
+          "fromLb": "0297a17",
+          "toLb": "0297a23",
+          "fullCaseWindowSha256": "6338f18dd045222ff4208743f40b42c1b32f94cb7371517ef106b7694c1a96e3"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 96,
+      "sourceRank": 539,
+      "id": "t_fd330dc5b01e",
+      "term": "師子爪牙",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 師子爪牙 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:X71n1414",
+          "relPath": "X/X71/X71n1414.xml",
+          "fromLb": "0299b11",
+          "toLb": "0299b15",
+          "fullCaseWindowSha256": "c2f2a31778f25766335beab61e78c3eb0d35aa263ba8fe1283ab0d0156e21533"
+        },
+        {
+          "workId": "work:X79n1559",
+          "relPath": "X/X79/X79n1559.xml",
+          "fromLb": "0296a09",
+          "toLb": "0296a13",
+          "fullCaseWindowSha256": "caf7b4cf85b930c141eafe2dfcb5b3e8e765aad37f59c6724b675cdf9859c8a6"
+        },
+        {
+          "workId": "work:wudeng-quanshu",
+          "relPath": "X/X82/X82n1571.xml",
+          "fromLb": "0044a17",
+          "toLb": "0044a21",
+          "fullCaseWindowSha256": "a25daf84f3a76b21896343d501bbe6d3b9574b05041dd6a100926ae911c2eee4"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 97,
+      "sourceRank": 542,
+      "id": "t_27bbde1bc523",
+      "term": "馬腳",
+      "primaryDisposition": "REVISE",
+      "independentDisposition": "REVISE",
+      "correctedHeadword": "驢腳馬腳",
+      "fullCasesRead": 3,
+      "reason": "The cases establish the paired expression 驢腳馬腳 (including punctuation/order variants), not an independently deployed bare 馬腳 Zen term.",
+      "evidence": [
+        {
+          "workId": "work:J10nA158",
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0036a14",
+          "toLb": "0036a17",
+          "fullCaseWindowSha256": "57e3ebb33af0e37cbe40f57583d44db2167ad79ea63cafe7587afc89b887076d"
+        },
+        {
+          "workId": "work:J27nB193",
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0233c16",
+          "toLb": "0233c20",
+          "fullCaseWindowSha256": "27dbf8fe9876986e8228db1f557ce8dbf1d796ad30a06ab6ae776bd6fce30c54"
+        },
+        {
+          "workId": "work:J28nB202",
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0035b13",
+          "toLb": "0035b16",
+          "fullCaseWindowSha256": "9bac1979d789c65e6ea4ce691db7e8f78bb0539b5f80fef6108973cb0c1df400"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 98,
+      "sourceRank": 545,
+      "id": "t_02bf03beb61d",
+      "term": "東序",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 東序 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T48n2025",
+          "relPath": "T/T48/T48n2025.xml",
+          "fromLb": "1111b19",
+          "toLb": "1112a16",
+          "fullCaseWindowSha256": "389b66cd3e97095bdac9c634bd2e39761dfa3d02ae682a29d3f3c482b54af9cb"
+        },
+        {
+          "workId": "work:X64n1260",
+          "relPath": "X/X64/X64n1260.xml",
+          "fromLb": "0004c17",
+          "toLb": "0005a07",
+          "fullCaseWindowSha256": "c9986c806006c59a64e3d359cdc45a0283ef9c8a8132f39c037017f7fdf7c1fa"
+        },
+        {
+          "workId": "work:X63n1250",
+          "relPath": "X/X63/X63n1250.xml",
+          "fromLb": "0622c15",
+          "toLb": "0622c20",
+          "fullCaseWindowSha256": "7f3b3b528627b133fdac79feff353958daac89c405d41a2f54a9cf70722112bf"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 99,
+      "sourceRank": 548,
+      "id": "t_49849d404fcb",
+      "term": "七手八脚",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 七手八脚 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:C078n1720",
+          "relPath": "C/C078/C078n1720.xml",
+          "fromLb": "0641a15",
+          "toLb": "0641a22",
+          "fullCaseWindowSha256": "78b6bd49e692690852cb0021c5e5c2138003feb419cc874c8cfd1265c4489892"
+        },
+        {
+          "workId": "work:D51n8948",
+          "relPath": "D/D51/D51n8948.xml",
+          "fromLb": "0019a05",
+          "toLb": "0019a11",
+          "fullCaseWindowSha256": "4cffd8ed48e7880f5120f753a2ed65a0b2cd04138428cd5f579c4ed5cd103dab"
+        },
+        {
+          "workId": "chan:zongjian-falin",
+          "relPath": "X/X66/X66n1297.xml",
+          "fromLb": "0292a16",
+          "toLb": "0292a21",
+          "fullCaseWindowSha256": "5db2fa6a689c6e51bd1b400959bf80fca37f828ca9808541dd0521836307bfc3"
+        }
+      ]
+    },
+    {
+      "reviewPosition": 100,
+      "sourceRank": 551,
+      "id": "t_1a24b3f39969",
+      "term": "不涉萬緣",
+      "primaryDisposition": "KEEP",
+      "independentDisposition": "APPROVE",
+      "correctedHeadword": null,
+      "fullCasesRead": 3,
+      "reason": "Independent full-case reading confirms that 不涉萬緣 is repeatedly used as an exact, observable Chan answer, verdict, case formula, title, institutional term, or teaching-seat expression across the transported evidence; it is not frequency-only containment.",
+      "evidence": [
+        {
+          "workId": "work:T47n1998A",
+          "relPath": "T/T47/T47n1998A.xml",
+          "fromLb": "0822c29",
+          "toLb": "0823a05",
+          "fullCaseWindowSha256": "7b1aa53ebe8370d0c3254b649ebb1d149a92436e0d1c8cb5eac1e4d89e55166e"
+        },
+        {
+          "workId": "work:T47n2000",
+          "relPath": "T/T47/T47n2000.xml",
+          "fromLb": "0993b03",
+          "toLb": "0993b10",
+          "fullCaseWindowSha256": "a28ee204155d9d13de1cc0fc5d012a30807ef5482cba44d5973b6dce8fc14627"
+        },
+        {
+          "workId": "work:X68n1318",
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0472c16",
+          "toLb": "0472c20",
+          "fullCaseWindowSha256": "8c7cfb093d60fce9bd93d0f9416e4dc82b9449dad5b5498ee17fef9c42105b08"
+        }
+      ]
+    }
+  ]
+}
