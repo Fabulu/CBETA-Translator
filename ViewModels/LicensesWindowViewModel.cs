@@ -81,6 +81,10 @@ public partial class LicensesWindowViewModel : ViewModelBase
             : dictHeader.Trim());
         sb.AppendLine();
 
+        sb.AppendLine("=== DILA Person Authority Database Attribution (Zen master roster) ===");
+        sb.AppendLine(DilaAttributionText);
+        sb.AppendLine();
+
         sb.AppendLine("=== Bundled Git for Windows (Windows builds only) ===");
         sb.AppendLine(gitBundleSummary);
         sb.AppendLine();
@@ -96,6 +100,31 @@ public partial class LicensesWindowViewModel : ViewModelBase
         string rootInfo = string.IsNullOrWhiteSpace(root) ? "(no text root loaded)" : root!;
         HintText = $"Text root: {rootInfo}";
     }
+
+    /// <summary>
+    /// Attribution for the DILA Person Authority Database, whose facts back the Zen master
+    /// roster. Held as a constant rather than read from a shipped file (as CC-CEDICT is)
+    /// because the app does not redistribute the DILA database — it only uses facts from it.
+    /// </summary>
+    private const string DilaAttributionText = """
+        The Zen master roster uses factual data — authority identifiers, dates, school
+        affiliations, and teacher/student relations — checked against, and in places
+        sourced from, the DILA Person Authority Database.
+
+        Buddhist Studies Person Authority Database (DILA 人名規範資料庫)
+        Dharma Drum Institute of Liberal Arts 法鼓文理學院, Jinshan, Taiwan
+        Principal: Marcus Bingenheimer 馬德偉
+        https://authority.dila.edu.tw/person/
+
+        Distributed by DILA under a Creative Commons Attribution-ShareAlike 3.0
+        Unported License: https://creativecommons.org/licenses/by-sa/3.0/
+
+        Changes: Read Zen does not redistribute the DILA database and reproduces no DILA
+        text. Biographical prose in the roster is written independently by this project;
+        only facts are used, and facts are not subject to copyright. Roster records link
+        back to the DILA record consulted. Where our reading disagrees with DILA, both are
+        recorded and the disagreement noted.
+        """;
 
     private static string SafeReadCedictHeader(string dictPath)
     {

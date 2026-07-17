@@ -69,7 +69,7 @@ public class LineageGraphBuilderTests
         Assert.Equal(roster.Count, g.Report.Masters);
         Assert.True(g.Report.Edges >= 552);
         Assert.True(g.Report.Roots >= 6);
-        // Measured on the 943-record roster: Dangling=51 (2 UnresolvedTeacherKey +
+        // Measured on the 943-record roster: Dangling=49 (0 UnresolvedTeacherKey +
         // 49 flagged teacher_dangling). "<= roster.Count" was VACUOUS -- it can only
         // ever be false if more than 100% of the roster dangles, i.e. never. Bound it
         // against FOLD_SPEC's own acceptance criterion instead: the dangling rate
@@ -84,9 +84,12 @@ public class LineageGraphBuilderTests
         Assert.True(g.Report.UnknownSchool.Count <= 60,
             $"unknown-school count rose: {g.Report.UnknownSchool.Count}/{roster.Count}");
         Assert.Empty(g.Report.UnknownTransmission);
-        // The same 2 unresolved keys as the clean 609 baseline (龍巖慧彦, teacher of
-        // two Korean masters, himself not on the roster) -- exact, not a ceiling.
-        Assert.Equal(2, g.Report.UnresolvedTeacherKey.Count);
+        // Every teacher_key resolves: 876/876. This was pinned at 2 and justified as
+        // "龍巖慧彦, teacher of two Korean masters, himself not on the roster". That
+        // was FALSE -- he was on the roster all along as 龍岩慧彦, a 岩/巖 variant, so
+        // the ordinal byName lookup missed him. Adding the variant to his `names`
+        // closed both edges. Exact, not a ceiling: a rise here means a real regression.
+        Assert.Equal(0, g.Report.UnresolvedTeacherKey.Count);
     }
 
     [Fact]

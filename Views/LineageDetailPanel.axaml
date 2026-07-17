@@ -8,6 +8,23 @@
        Bound with compiled bindings against the chart VM; content templated
        against the projected LineageDetailViewModel. Theme-aware + scrollable. -->
 
+  <UserControl.Resources>
+    <!-- The heir grade-dot inks, theme-scoped to match the chart's edge hues
+         (text hue for A/B/C, muted hue for D); the per-grade alpha is bound. -->
+    <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+          <SolidColorBrush x:Key="LineageInkText" Color="#3A332A"/>
+          <SolidColorBrush x:Key="LineageInkMuted" Color="#8A7D6A"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+          <SolidColorBrush x:Key="LineageInkText" Color="#EDE3D1"/>
+          <SolidColorBrush x:Key="LineageInkMuted" Color="#8B7B69"/>
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
   <UserControl.Styles>
     <!-- Link-style buttons (teacher / heir / external links / read-in-context) -->
     <Style Selector="Button.linklike">
@@ -251,8 +268,19 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                       <DataTemplate x:DataType="vm:LineageRefViewModel">
-                        <Button Classes="linklike" Content="{Binding Label}"
-                                Command="{Binding FocusCommand}" Margin="0,0,10,2"/>
+                        <Button Classes="linklike" Command="{Binding FocusCommand}"
+                                Margin="0,0,10,2" ToolTip.Tip="{Binding Grade}">
+                          <StackPanel Orientation="Horizontal" Spacing="5">
+                            <!-- per-heir attestation dot (A/B/C = text hue, D = muted) -->
+                            <Panel Width="7" Height="7" VerticalAlignment="Center">
+                              <Ellipse Fill="{DynamicResource LineageInkText}"
+                                       Opacity="{Binding DotOpacity}" IsVisible="{Binding DotSolid}"/>
+                              <Ellipse Fill="{DynamicResource LineageInkMuted}"
+                                       Opacity="{Binding DotOpacity}" IsVisible="{Binding DotFaint}"/>
+                            </Panel>
+                            <TextBlock Text="{Binding Label}" VerticalAlignment="Center"/>
+                          </StackPanel>
+                        </Button>
                       </DataTemplate>
                     </ItemsControl.ItemTemplate>
                   </ItemsControl>

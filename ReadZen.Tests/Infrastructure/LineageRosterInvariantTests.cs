@@ -326,13 +326,28 @@ public class LineageRosterInvariantTests
     // teacher_dangling: true. The invariant is not "nothing dangles" — it is that
     // nothing dangles SILENTLY.
 
-    /// <summary>The only teacher_key allowed to not resolve, with the reason.</summary>
+    /// <summary>
+    /// teacher_keys allowed to not resolve. EMPTY — every edge resolves (876/876).
+    ///
+    /// This list used to contain 龍巖慧彦, justified as "he is not himself on the
+    /// roster". That was FALSE, and the false premise survived five independent
+    /// fact-check passes because it was stated as settled in every brief.
+    ///
+    /// He IS on the roster — as 龍岩慧彦, with 岩 (U+5CA9). The two teacher_keys
+    /// (Yeongwol Bongyul, Gyeongheo Seongu) used 巖 (U+5DD6). LineageGraphBuilder
+    /// matches with StringComparer.Ordinal and does NOT normalise CJK variants, so
+    /// both edges silently failed to connect — and neither record was flagged
+    /// teacher_dangling. A whitelist entry turned a one-character typo into a
+    /// documented feature. Fixed by aliasing both spellings on his record, which is
+    /// the convention the rest of this very chain already follows (碧溪正心/淨心,
+    /// 喚醒/喚惺志安).
+    ///
+    /// Keep this EMPTY unless a genuinely off-roster teacher appears — and if one
+    /// does, check for a variant character FIRST. An entry here is a claim that a
+    /// person does not exist; make sure that is true before making it.
+    /// </summary>
     private static readonly string[] KnownAllowedUnresolvedTeacherKeys =
     {
-        // 龍巖慧彦 — teacher of the Korean masters Yeongwol Bongyul and Gyeongheo
-        // Seongu. He is not himself on the roster; the same 2 edges dangled in the
-        // clean 609 baseline. Deliberate, documented, and the ONLY allowed pair.
-        "龍巖慧彦",
     };
 
     [Fact]
