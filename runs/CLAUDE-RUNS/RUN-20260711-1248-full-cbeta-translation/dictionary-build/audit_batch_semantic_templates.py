@@ -16,6 +16,17 @@ from pathlib import Path
 CJK = re.compile(r"[\u3400-\u9fff]+")
 SPACE = re.compile(r"\s+")
 
+# These sentences were emitted by rejected batch helpers.  They are not
+# headword decisions: substituting a term or related-term label leaves the
+# semantic work undone.  Fail them even in a one-entry canary so an author
+# cannot rely on the cohort repeat threshold to discover the defect later.
+FORBIDDEN_STOCK = (
+    "the selected deployments retain one referent or relation; grammatical framing alone is not polysemy",
+    "the lookup probes preserve the literal components and offer ordinary english word orders without adding an interpretation",
+    "the english target preserves every meaning-bearing component of the chinese headword",
+    "related corpus term retained separately rather than collapsed into this headword",
+)
+
 
 def entry_path(value: str) -> Path:
     path = Path(value)
@@ -41,6 +52,14 @@ def semantic_strings(entry: dict):
         opening = parts.get("CorpusEarnedOpening")
         if opening:
             yield "opening", sense_index, normalize(opening, entry, sense)
+        bodies = parts.get("EvidenceBody") or []
+        if isinstance(bodies, str):
+            bodies = [bodies]
+        for body in bodies:
+            if body:
+                yield "evidence-body", sense_index, normalize(body, entry, sense)
+        if sense.get("Note"):
+            yield "note", sense_index, normalize(sense.get("Note"), entry, sense)
         draft = sense.get("DraftEvidence") or {}
         counter = draft.get("CounterexampleOrLimit")
         if counter:
@@ -53,7 +72,10 @@ def semantic_strings(entry: dict):
             yield "alias-rationale", sense_index, normalize(alias, entry, sense)
         for key in ("ModifierControls", "FamilyControls"):
             for row in draft.get(key) or []:
-                reason = row.get("reason") or row.get("Reason")
+                reason = (
+                    row.get("reason") or row.get("Reason")
+                    or row.get("finding") or row.get("Finding")
+                )
                 if reason:
                     yield key, sense_index, normalize(reason, entry, sense)
 
@@ -73,12 +95,39 @@ def main() -> int:
         except Exception as error:
             failures.append({"kind": "entry-load-failed", "path": str(path), "detail": str(error)})
             continue
+        # The canonical compiler intentionally drops author-only DraftEvidence.
+        # Rule 17 audits the decisions that produced the compiled bytes, so use
+        # the sibling evidence draft when it is present and identity-matched.
+        # Falling back to entry.v2 keeps the audit useful for legacy products.
+        draft_path = path.with_name("evidence.draft.json")
+        if draft_path.exists():
+            try:
+                draft_payload = json.loads(draft_path.read_text(encoding="utf-8-sig"))
+                draft_entry = draft_payload.get("Entry", draft_payload)
+                if isinstance(draft_entry, dict) and draft_entry.get("Id") == entry.get("Id"):
+                    entry = draft_entry
+            except Exception as error:
+                failures.append(
+                    {"kind": "evidence-draft-load-failed", "path": str(draft_path), "detail": str(error)}
+                )
         entries.append((path, entry))
 
     buckets: dict[tuple[str, str], list[dict]] = collections.defaultdict(list)
     for path, entry in entries:
         for field, sense_index, value in semantic_strings(entry):
             if value:
+                if any(stock in value for stock in FORBIDDEN_STOCK):
+                    failures.append(
+                        {
+                            "kind": "forbidden-semantic-stock",
+                            "field": field,
+                            "normalizedValue": value,
+                            "id": entry.get("Id"),
+                            "term": entry.get("SourceTerm"),
+                            "sense": sense_index,
+                            "path": str(path),
+                        }
+                    )
                 buckets[(field, value)].append(
                     {"id": entry.get("Id"), "term": entry.get("SourceTerm"), "sense": sense_index, "path": str(path)}
                 )
