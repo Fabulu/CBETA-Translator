@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "iriya-manual-focused-recheck-v1",
+  "reviewer": "d7",
+  "reviewAuthority": "iriya-manual-batch5-offset2-cross-review-c19-e8.json",
+  "reviewAuthoritySha256": "0e3c5cd85cdc942aff281de9eb54fa60b7e1c19cf3411e700be3916af6c90ce9",
+  "repairedLedger": "maintenance/iriya-manual-batch5-offset2-ledger.md",
+  "repairedLedgerSha256": "ea14dc8ec02a48e0395a57623a53be7f4c1b5e4929c99769b0618432e56e994f",
+  "repairReceipt": "maintenance/iriya-manual-batch5-offset2-repair-receipt.md",
+  "repairReceiptSha256": "19bb75a2265e08648c3c7628e452148a42ae811c859309216e7498057d23afa8",
+  "scope": "Independent focused recheck of the sole requested repair at canonical index 137, plus preservation check for the other nine reviewed rows.",
+  "rows": [
+    {
+      "canonicalIndex": 137,
+      "queueNumber": 138,
+      "id": "t_821c947ecbf5",
+      "term": "知恩者少",
+      "verdict": "PASS",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "mechanicalReview": {
+        "source": "D/D48/D48n8939.xml",
+        "lineSpan": "0023b03–0023b06",
+        "kwic": "𠀍為什麼四十九年󵘸師云你疑來多少時也進云祖師不西來少林有妙訣祖師既不西來為什麼少林有妙訣師云知恩者少負恩者多進云恁麼則一人傳虚萬人傳實師云虚處作麼生傳來進云任從滄海",
+        "zcVerify": {"ok": true, "fromLb": "0023b03", "toLb": "0023b06", "count": 1},
+        "finding": "The replacement is an exact contiguous apparatus-clean corpus span and includes the following 進云 response omitted by the defective witness. It therefore closes the sole mechanical defect identified by review 0e3c5c."
+      },
+      "semanticReview": "PASS. In this exchange 知恩者少 is the master's compact evaluative answer; 負恩者多 is its antithetical continuation. Independent corpus occurrences deploy 知恩者少 without requiring that continuation, so the existing component boundary, KEEP disposition, and deployment reason remain sound. The repair changes evidence transcription only."
+    }
+  ],
+  "unchangedRows": {
+    "canonicalIndexes": [122, 125, 128, 131, 134, 140, 143, 146, 149],
+    "verdict": "PASS",
+    "finding": "All nine rows retain the terms, IDs, queue bindings, KEEP (component) dispositions, component units, frequency and variant statements, deployment reasons, and two cited witnesses reviewed as PASS by c19-e8. No semantic or lexical-unit change is present."
+  },
+  "summary": {
+    "PASS": 10,
+    "REVISE": 0,
+    "semanticDispositionChanges": 0,
+    "lexicalUnitChanges": 0,
+    "mechanicalEvidenceRepairsAccepted": 1
+  },
+  "authorLedgerEdited": false,
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "buildRun": false
+}

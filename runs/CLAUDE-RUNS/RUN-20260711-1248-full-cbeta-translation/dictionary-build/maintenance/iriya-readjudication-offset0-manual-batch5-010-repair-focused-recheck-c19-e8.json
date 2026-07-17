@@ -1,0 +1,23 @@
+{
+  "schemaVersion":"iriya-manual-repair-focused-recheck-v1",
+  "reviewer":"c19-e8",
+  "verdict":"PASS",
+  "repairedLedger":"maintenance/iriya-readjudication-offset0-manual-batch5-010.json",
+  "repairedLedgerSha256":"28f1d61b76108edf2ada0869eb5e6b290504c193b33339ae0b410a664433a97a",
+  "repairReceipt":"maintenance/iriya-readjudication-offset0-manual-batch5-010-repair-receipt.json",
+  "repairReceiptSha256":"56b61d2b13d95973530e04cfc3575e268548f21c4d98b4089165006db4d03b89",
+  "crossReviewAuthority":"maintenance/iriya-readjudication-offset0-manual-batch5-010-cross-review-c19-e8.json",
+  "crossReviewAuthoritySha256":"a3f02f3e3eb07be105b94ec2bb8015aa583125536f6528acfb787eab4bde95d0",
+  "focusedChecks":[
+    {"canonicalIndex":198,"term":"横説竪説","verdict":"PASS","source":"X/X83/X83n1578.xml","zcVerify":{"ok":true,"fromLb":"0511b16","toLb":"0511c09","count":1}},
+    {"canonicalIndex":204,"term":"朝打三千、暮打八百","verdict":"PASS","source":"X/X66/X66n1296.xml","zcVerify":{"ok":true,"fromLb":"0185a09","toLb":"0185a22","count":1},"variantCounts":{"printedEnumerationComma":{"hits":51,"works":41},"corpusComma":{"hits":135,"works":74}},"unit":"couplet"},
+    {"canonicalIndex":207,"term":"入理深談","verdict":"PASS","source":"X/X83/X83n1578.xml","zcVerify":{"ok":true,"fromLb":"0565a09","toLb":"0565a20","count":1}},
+    {"canonicalIndex":210,"term":"龍袖拂開全體現","verdict":"PASS","source":"X/X81/X81n1568.xml","zcVerify":{"ok":true,"fromLb":"0037c11","toLb":"0037c23","count":1}}
+  ],
+  "wholeLedgerChecks":{"rows":10,"evidenceRows":20,"exactZcVerifyPass":20,"titleMatches":20,"workIdMatches":20,"twoDistinctWorksPerDecision":10,"semanticDispositionChanges":0,"lexicalUnitChanges":0},
+  "rejections":[
+    {"canonicalIndex":192,"term":"自古自今","disposition":"REJECT","verdict":"PASS","finding":"Unchanged: ordinary temporal grammar, not an independently deployed Chan lexical unit."},
+    {"canonicalIndex":216,"term":"長連牀上","disposition":"REJECT","verdict":"PASS","finding":"Unchanged: locative opening of larger predicates, not independently raised, answered, glossed, or capped."}
+  ],
+  "authorLedgerEdited":false,"entryConstructionPerformed":false,"queueAdvanced":false,"lineageTouched":false
+}

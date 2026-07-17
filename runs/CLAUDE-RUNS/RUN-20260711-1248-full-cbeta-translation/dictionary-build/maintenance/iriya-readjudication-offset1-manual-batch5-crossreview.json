@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "iriya-independent-crossreview-v1",
+  "reviewTarget": "maintenance/iriya-readjudication-offset1-manual-batch5-010.json",
+  "reviewMode": "independent manual full-case semantic and evidence review",
+  "trustedRegistrySha256AtSelection": "291df3b11953dbffbd21cb5926240337027db00fcd30fe881734baacb1f1bd8f",
+  "reviewedCount": 10,
+  "summary": {
+    "PASS": 9,
+    "REVISE": 1,
+    "dispositionChangesRequired": 0,
+    "unitChangesRequired": 0,
+    "evidenceCitationRepairsRequired": 1
+  },
+  "reviews": [
+    {
+      "canonicalIndex": 142,
+      "queueNumber": 143,
+      "id": "t_edb7956a87af",
+      "term": "六六三十六",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {"query": "六六三十六", "hits": 168, "files": 84, "distinctWorks": 82},
+      "variantAndSegmentation": "No graph variant is needed. Keep the numerical formula as a component; 九九八十一 is a contrasting answer, not a mandatory second limb.",
+      "distinctWorksVerified": ["work:X80n1565", "chan:zhiyue-lu"],
+      "reviewReason": "Both complete exchanges make the arithmetic commonplace a direct encounter answer: Baizhang contrasts before/after arrival, while Yunju uses it to answer the trackless-antelope test and explicitly turns failure to understand into the point about no trace. Deployment and component boundary are sound."
+    },
+    {
+      "canonicalIndex": 145,
+      "queueNumber": 146,
+      "id": "t_f2606bf280fb",
+      "term": "聞聲悟道、見色明心",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (couplet)",
+      "exactZc": {
+        "primary": {"query": "聞聲悟道，見色明心", "hits": 157, "files": 86, "distinctWorks": 86},
+        "printed": {"query": "聞聲悟道、見色明心", "hits": 14, "files": 10, "distinctWorks": 10}
+      },
+      "variantAndSegmentation": "Comma and enumeration-comma forms preserve the same paired syntax. Both sound/awakening and form/mind clauses are jointly raised and jointly criticized, so couplet is correct.",
+      "distinctWorksVerified": ["work:X66n1296", "work:X64n1260"],
+      "reviewReason": "Yunmen raises the whole pair before the Guanyin bread response; the independent address retains both halves while rejecting their pursuit as foam-seeking and grit in the eye. This is a stable two-clause formula, not two separable evidence units."
+    },
+    {
+      "canonicalIndex": 148,
+      "queueNumber": 149,
+      "id": "t_ecfd12c50069",
+      "term": "相隨來也",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {"query": "相隨來也", "hits": 178, "files": 99, "distinctWorks": 97},
+      "variantAndSegmentation": "No variant correction is needed. The full rejoinder is the four-character component; its preceding supposedly unsaid or extinguished referent varies by case.",
+      "distinctWorksVerified": ["work:X80n1565", "work:wudeng-quanshu"],
+      "reviewReason": "In the Yaoshan case it immediately exposes 非言說 as speech; in the tree-fallen/vine-withered case it is the decisive answer that breaks the impasse and undergoes further testing. The live rejoinder function is independently established."
+    },
+    {
+      "canonicalIndex": 301,
+      "queueNumber": 302,
+      "id": "t_94d423278847",
+      "term": "得少爲足",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {
+        "resolved": {"query": "得少為足", "hits": 102, "files": 75, "distinctWorks": 73},
+        "printed": {"query": "得少爲足", "hits": 0, "files": 0, "distinctWorks": 0}
+      },
+      "variantAndSegmentation": "Canonical 爲 must resolve to corpus 為. The four-character diagnostic is the reusable component; surrounding descriptions of the partial attainment are not fixed.",
+      "distinctWorksVerified": ["chan:zhiyue-lu", "work:X68n1319"],
+      "reviewReason": "The complete instructions use the phrase diagnostically for premature satisfaction with partial attainment, first as a poisonous obstruction and independently as refusal to take the next step after an initial breakthrough. It has a Chan discourse job beyond generic moral prose."
+    },
+    {
+      "canonicalIndex": 304,
+      "queueNumber": 305,
+      "id": "t_9160dc74b061",
+      "term": "二龍爭珠",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {"query": "二龍爭珠", "hits": 100, "files": 46, "distinctWorks": 43},
+      "variantAndSegmentation": "No graph variant is needed. 二龍爭珠 is the stable contest-image; 誰是得者 is productive test syntax and need not enter the headword.",
+      "distinctWorksVerified": ["work:T51n2076", "work:wudeng-quanshu"],
+      "reviewReason": "Both complete exchanges pose the image as a possession test and answer by undoing possession—either the getter loses and the pearl's location is questioned, or the pearl is everywhere like mud. Component deployment is justified."
+    },
+    {
+      "canonicalIndex": 307,
+      "queueNumber": 308,
+      "id": "t_8d70834f3423",
+      "term": "開口不在舌頭上",
+      "review": "REVISE",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {"query": "開口不在舌頭上", "hits": 101, "files": 47, "distinctWorks": 47},
+      "variantAndSegmentation": "No variant correction is needed. The complete paradoxical sentence is a single component, not a couplet.",
+      "distinctWorksVerifiedAsCited": ["work:X70n1377", "work:X71n1412"],
+      "reviewReason": "The disposition, deployment, segmentation, and multi-work validation all pass, but the first cited KWIC is prefatory paratext quoting 松源和尚示徒; it does not contain the 木庵–松源 exchange and later breakthrough described in the author reason. Repair the evidence citation or narrow the reason. A direct full-case replacement is available in X/X82/X82n1571.xml at 0144a03–0144a07: 木庵 answers Songyuan's claim to know a student before speech with the phrase, and Songyuan later says he finally understood it at awakening. No semantic disposition change is required."
+    },
+    {
+      "canonicalIndex": 310,
+      "queueNumber": 311,
+      "id": "t_8de8429937b0",
+      "term": "日面佛、月面佛",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (couplet)",
+      "exactZc": {
+        "primary": {"query": "日面佛，月面佛", "hits": 97, "files": 61, "distinctWorks": 59},
+        "printed": {"query": "日面佛、月面佛", "hits": 24, "files": 17, "distinctWorks": 17}
+      },
+      "variantAndSegmentation": "Punctuation variants preserve the paired Buddha names. Both halves jointly constitute Mazu's answer and must remain a couplet.",
+      "distinctWorksVerified": ["chan:zhiyue-lu", "work:wudeng-quanshu"],
+      "reviewReason": "The first complete case gives the paired answer to the illness inquiry and its repeated verse treatment; the second raises both together as Mazu's medicine and tests proper reception. Pair boundary and deployment are exact."
+    },
+    {
+      "canonicalIndex": 313,
+      "queueNumber": 314,
+      "id": "t_7a2552d7551c",
+      "term": "金剛圈、栗棘蓬",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (couplet)",
+      "exactZc": {"query": "金剛圈、栗棘蓬", "hits": 90, "files": 55, "distinctWorks": 54},
+      "variantAndSegmentation": "The enumeration comma marks a genuine paired image. Ring and burr are repeatedly coordinated as the one deliberately impassable device to swallow and penetrate.",
+      "distinctWorksVerified": ["chan:zhiyue-lu", "work:X64n1260"],
+      "reviewReason": "Dahui explicitly names both and conditions recognition of the old masters on swallowing and penetrating them; an independent formal address again presents the same pair for the whole earth to swallow through. Couplet validation is sound."
+    },
+    {
+      "canonicalIndex": 316,
+      "queueNumber": 317,
+      "id": "t_26871ba0efce",
+      "term": "大用現前、不存軌則",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (couplet)",
+      "exactZc": {
+        "primary": {"query": "大用現前，不存軌則", "hits": 89, "files": 65, "distinctWorks": 63},
+        "printed": {"query": "大用現前、不存軌則", "hits": 1, "files": 1, "distinctWorks": 1}
+      },
+      "variantAndSegmentation": "Comma and dash forms preserve one conditional proposition. The manifestation of great function and absence of fixed rules are jointly raised, so couplet is correct.",
+      "distinctWorksVerified": ["work:X66n1296", "work:X64n1260"],
+      "reviewReason": "Youxi answers the complete paired premise bodily by circling and kicking; the independent instruction announces both clauses together and then tests 大用現前 with the staff. The cited cases directly support the paired deployment."
+    },
+    {
+      "canonicalIndex": 319,
+      "queueNumber": 320,
+      "id": "t_fdcb8acec36b",
+      "term": "六耳不同謀",
+      "review": "PASS",
+      "authorDispositionConfirmed": "KEEP (component)",
+      "exactZc": {"query": "六耳不同謀", "hits": 99, "files": 64, "distinctWorks": 62},
+      "variantAndSegmentation": "No variant correction is needed. The six-ears proverb is the complete rejoinder; surrounding invitation, slap, and dismissal are case actions rather than headword limbs.",
+      "distinctWorksVerified": ["work:X80n1565", "work:T48n2003"],
+      "reviewReason": "The Mazu exchange uses the proverb as the answer/rebuke after drawing the monk close; Yuanwu independently raises and interprets the same move as Mazu's free contraction and extension in the teaching gate. Component deployment and source distinction pass."
+    }
+  ],
+  "authorLedgerModified": false,
+  "entryConstructionPerformed": false,
+  "buildPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

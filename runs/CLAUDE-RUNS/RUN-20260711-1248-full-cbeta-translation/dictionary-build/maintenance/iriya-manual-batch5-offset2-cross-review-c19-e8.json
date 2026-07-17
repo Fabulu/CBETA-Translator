@@ -1,0 +1,26 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review-v1",
+  "reviewer":"c19-e8",
+  "sourceLedger":"maintenance/iriya-manual-batch5-offset2-ledger.md",
+  "sourceLedgerSha256":"b86203e8d3c98545c42f90577865f48ace1a8aa7825416b753d9bfb019248433",
+  "method":"Independent reading of every cited full case and exact checking of each KWIC, title, work ID, count, variant, segmentation, Chan deployment, lexical unit, and disposition.",
+  "rows":[
+    {"canonicalIndex":122,"term":"不妨奇特","verdict":"PASS","review":"Both KWICs verify in distinct works and the reported 211 hits/84 works are exact. Yuanwu and the case critic use the phrase as a qualified appraisal before probing the move's limit; it performs a case verdict rather than incidental narration. KEEP (component) stands."},
+    {"canonicalIndex":125,"term":"大地無寸土","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. One master reverses the inherited formula and asks for the ultimate place; another gives it directly as the answer-image in a memorial question. The four-character impossible landscape is independently productive. KEEP (component) stands."},
+    {"canonicalIndex":128,"term":"踞地獅子","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The phrase is explicitly asked as a named lion posture and independently classifies a staff's function beside the sword and probing-grass types. The 獅/師 graph note and component boundary are sound. KEEP (component) stands."},
+    {"canonicalIndex":131,"term":"倚天長劍","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The sword is actively drawn to sever verbal entanglement and independently caps an address as a threatening, cutting image. 逼人寒 is an extension, not required for the reusable unit. KEEP (component) stands."},
+    {"canonicalIndex":134,"term":"傾湫倒嶽","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The balanced hyperbole is deployed in formal capping verse as overwhelming force and is not hydrological narration. Its objects and surrounding impossible actions vary while the four-character unit remains stable. KEEP (component) stands."},
+    {
+      "canonicalIndex":137,"term":"知恩者少","verdict":"REVISE",
+      "semanticReview":"PASS — KEEP (component). Corpus contexts include both the antithetical 知恩者少，負恩者多 formula and independent uses of 知恩者少; the shorter verdict therefore remains a valid unit. Both cited exchanges use it as the master's evaluative answer, and the work IDs are distinct.",
+      "mechanicalReview":"REVISE — the X82 witness verifies, but the D48 KWIC does not. It stops after 負恩者多 and adds a full stop, omitting the contiguous following 進云 found in the apparatus-clean source.",
+      "requiredChange":{"field":"Evidence 2 KWIC","replacement":"進云祖師不西來少林有妙訣祖師既不西來為什麼少林有妙訣師云知恩者少負恩者多進云恁麼則一人傳虚萬人傳實","replacementVerify":{"ok":true,"fromLb":"0023b03","toLb":"0023b06","count":1}}
+    },
+    {"canonicalIndex":140,"term":"三頭六臂","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The extraordinary anatomy is made the failed alternative to present recognition and independently sets the impossible threat in a direct demand for response. It is encounter-test vocabulary here, not contained mythography. KEEP (component) stands."},
+    {"canonicalIndex":143,"term":"切忌道著","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The complete imperative is questioned as a case line in one source and given directly as the answer before the sword leaves its sheath in another. The consequence 道著即頭角生却 is case-specific. KEEP (component) stands."},
+    {"canonicalIndex":146,"term":"一口呑盡","verdict":"PASS","review":"Both 吞-form KWICs verify in distinct works; the reported 168 hits/107 works and the exact absence of 呑 are correct. Different objects—ten-direction world and buddhas of the three times—show the impossible swallowing action is the stable unit. KEEP (component) stands with explicit 呑→吞 search resolution."},
+    {"canonicalIndex":149,"term":"明鏡當臺","verdict":"PASS","review":"Both KWICs verify in distinct works and counts match. The mirror-on-stand is posed as the premise of a death question and independently as Yuanwu's pointer for immediate discrimination and responsive killing/giving-life. Productive predicates vary around a stable test-image. KEEP (component) stands."}
+  ],
+  "summary":{"PASS":9,"REVISE":1,"semanticDispositionChanges":0,"lexicalUnitChanges":0,"mechanicalEvidenceChanges":1},
+  "authorLedgerEdited":false,"entryConstructionPerformed":false,"queueAdvanced":false,"lineageTouched":false
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review-v1",
+  "reviewer":"c19-e8",
+  "sourceLedger":"maintenance/iriya-readjudication-offset0-manual-batch5-010.json",
+  "sourceLedgerSha256":"ecd5e1a3cf30ca3e67e9ece75008217a1457e3be346046a41b362fcb4195bfc6",
+  "method":"Independent full-case reading plus exact zc.verify, title, work-id, variant, segmentation, lexical-unit, deployment, and disposition review.",
+  "rows":[
+    {"canonicalIndex":192,"term":"自古自今","verdict":"PASS","review":"REJECT confirmed. In both full cases the phrase only supplies ordinary temporal scope; the doctrinal or critical work is performed by freely varying following predicates. Both KWICs verify in distinct works."},
+    {"canonicalIndex":195,"term":"臘月火燒山","verdict":"PASS","review":"Both KWICs verify in distinct works. The impossible winter-fire image is Xianglin's complete answer and is independently raised, criticized, and replaced. KEEP (component) stands."},
+    {
+      "canonicalIndex":198,"term":"横説竪説","verdict":"REVISE",
+      "semanticReview":"PASS — KEEP (component), with exact glyph resolution 横説竪説→橫說竪說. Both cases use the phrase to characterize and evaluate Chan discourse.",
+      "mechanicalReview":"The X64 witness verifies, but the X83 witness does not verify as stored.",
+      "requiredChange":{"field":"evidence[0].kwic","replacement":"也？汝等既稱行脚，亦須著些精神好。還知道大唐國裏無禪師麼？時有僧問：諸方尊宿盡聚眾開化，為甚麼却道無禪師？師曰：不道無禪，祇是無師。闍黎不見，馬大師下有八十四人坐道場，得馬師正法眼者止兩三人，廬山歸宗和尚是其一。夫出家人，須知有從上來事分始得。且如四祖下牛頭，橫說竪說，猶未知向上關棙子。有此眼目，方辨得邪正宗黨。且當人事宜，不能體會得，但知學言語念，向皮袋裏安著，到處稱我會禪，還替得汝生死麼？輕忽老宿，入地獄五箭。我纔見汝入門來，便識得了也。還知麼？急須努力，莫容易事。持片衣口食，空過一生。明眼人笑汝，久後總被俗漢筭將去在"}
+    },
+    {"canonicalIndex":201,"term":"入水見長人","verdict":"PASS","review":"Both KWICs verify in distinct works. Yunmen uses the proverb as his verdict on discerning genuine ability, and a later monk explicitly turns it into an encounter test. KEEP (component) stands."},
+    {
+      "canonicalIndex":204,"term":"朝打三千、暮打八百","verdict":"REVISE",
+      "semanticReview":"PASS — KEEP (couplet). Both balanced clauses jointly deliver the repeated-punishment verdict in distinct cases.",
+      "mechanicalReview":"The X64 witness verifies, but the X66 witness does not verify as stored. The form-resolution statement is also incomplete/false if read as absence: the printed 、 form is exact-attested at 51 hits in 41 works; the comma form has 135 hits in 74 works.",
+      "requiredChanges":{"evidence[0].kwic":"？便與驀頭一摑。且道與古人相去多少？試參合看。若參合得，可以廣贊法化，輔弼真風；如或未然，新上座更有話在。乃按拂，下座。南院因一僧參，纔入方丈，便以手指曰：敗也。院拈拄杖度與，僧擬接，院便打。雲峰悅云：者僧頭上有光，不知脚下似漆，且作麼生？直饒你十字縱橫，正好朝打三千，暮打八百。天寶樞云：者僧當時纔見南院擬取拄杖，便好震威一喝，拂袖而出，縱使南院全機殺活，也只是個賊過後張弓。南院因僧問：古殿重興時如何？院曰：明堂瓦插簷。曰：與麼則莊嚴畢備也。院曰：斬草蛇頭落。昭慶庭云：貧思寶所，曲指化城。設忽遨遊，亡家失業，畢竟如何？須知泣玉人，特","formResolution":"The printed 、 form is exact-attested at 51 hits in 41 works; the comma form is more frequent at 135 hits in 74 works. Both preserve the whole couplet."}
+    },
+    {
+      "canonicalIndex":207,"term":"入理深談","verdict":"REVISE",
+      "semanticReview":"PASS — KEEP (component). Both full cases explicitly contrast this evaluative category with 門庭施設.",
+      "mechanicalReview":"The X66 witness verifies, but the X83 witness does not verify as stored.",
+      "requiredChange":{"field":"evidence[1].kwic","replacement":"人，某甲為甚麼不悟？師曰：祇為悟迷却闍黎。復示偈曰：明明無悟法，悟法却迷人。長舒兩脚睡，無偽亦無真。問：撥塵見佛時如何？師曰：直須揮劍。若不揮劍，漁父棲巢。僧後問石霜：撥塵見佛時如何？霜曰：渠無國土，甚處逢渠？僧回舉似師。師上堂，舉了乃曰：門庭施設，不如老僧。入理深談，猶較石霜百步。問：古人布髮掩泥，當為何事？師曰：九烏射盡，一翳猶存。一箭墮地，天下黯黑。師會下有一僧到石霜，入門便道：不審。霜曰：不必闍黎。僧云：與麼則珍重。又到巖頭，亦云：不審。頭乃噓兩聲。僧云：與麼則珍重。纔回步，頭云：雖是後生，亦能管帶。其僧歸，舉似師"}
+    },
+    {
+      "canonicalIndex":210,"term":"龍袖拂開全體現","verdict":"REVISE",
+      "semanticReview":"PASS — KEEP (component). The clause is the complete answer to Baizhang rolling the mat and is itself queried before the distinct sequel 象王行處絕狐蹤.",
+      "mechanicalReview":"The X83 witness verifies, but the X81 witness does not verify as stored.",
+      "requiredChange":{"field":"evidence[0].kwic","replacement":"？師曰：上東門外人無數。曰：便恁麼會時如何？師曰：天津橋上往來多。南嶽下九世南嶽下九世首山念禪師法嗣首山念禪師法嗣汾州太子院善昭禪師汾州太子院善昭禪師太原俞氏子。剃髮受具，杖策遊方，所至少留，隨機叩發，歷參知識七十一員。後到首山，問：百丈卷席，意旨如何？山曰：龍袖拂開全體現。曰：師意如何？山曰：象王行處絕狐蹤。師於言下大悟，拜起而曰：萬古碧潭空界月，再三撈摝始應知。有問者曰：見何道理，便爾自肯？師曰：正是我放身命處。後遊衡湘及襄沔間，每為郡守以名剎力致，前後八請，堅臥不答。洎首山歿，西河道俗遣僧契聰迎請住持。師閉關高枕，聰排闥而"}
+    },
+    {"canonicalIndex":213,"term":"賊身已露","verdict":"PASS","review":"Both KWICs verify in distinct works. The phrase directly exposes the student's professed non-understanding and independently caps the master's own test-question. KEEP (component) stands."},
+    {"canonicalIndex":216,"term":"長連牀上","verdict":"PASS","review":"REJECT confirmed. In both full cases the substring is only a locative opening whose predicates—任高眠, 閉眉合眼, 睡到曉鐘—carry the statement. It is not independently raised, answered, glossed, or capped. The institutional noun 長連牀 may deserve separate investigation, but that does not make this 上-locative a deployed saying. Both KWICs verify in distinct works."},
+    {"canonicalIndex":219,"term":"隨邪逐惡","verdict":"PASS","review":"Both KWICs verify in distinct works. The phrase is the explicit fault warranting blows in one case and Gaofeng's case verdict on Guiyang's participation in another. KEEP (component) stands."}
+  ],
+  "summary":{"PASS":6,"REVISE":4,"semanticDispositionChanges":0,"lexicalUnitChanges":0,"mechanicalEvidenceChanges":4,"variantResolutionChanges":1},
+  "authorLedgerEdited":false,"entryConstructionPerformed":false,"queueAdvanced":false,"lineageTouched":false
+}

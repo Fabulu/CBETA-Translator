@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-17T21:12:31Z",
+  "generatedUtc": "2026-07-17T21:36:24Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "291df3b11953dbffbd21cb5926240337027db00fcd30fe881734baacb1f1bd8f",
+  "registrySha256": "e54badee42bf1a8ed83ef4506d3a88572aa868eb0f9dfa9f51e2d322498c6d3a",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -213,12 +213,72 @@
       "role": "focused-post-repair-acceptance",
       "path": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-focused-recheck.json",
       "sha256": "8fd1edfa0183df3155c646864c4a5b0cef00b7df9a0348ede3aa3e96398ed9d2"
+    },
+    {
+      "role": "manual-batch5-authority",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch5-010.json",
+      "sha256": "28f1d61b76108edf2ada0869eb5e6b290504c193b33339ae0b410a664433a97a"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch5-010-cross-review-c19-e8.json",
+      "sha256": "a3f02f3e3eb07be105b94ec2bb8015aa583125536f6528acfb787eab4bde95d0"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch5-010-repair-receipt.json",
+      "sha256": "56b61d2b13d95973530e04cfc3575e268548f21c4d98b4089165006db4d03b89"
+    },
+    {
+      "role": "focused-post-repair-acceptance",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch5-010-repair-focused-recheck-c19-e8.json",
+      "sha256": "cdf23409f63813fdc2662ab4781fc56810f4593f00cbb611f0980d2b42d90310"
+    },
+    {
+      "role": "manual-batch5-authority",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch5-010.json",
+      "sha256": "c70fd7ed9fa536581c8a6b4c3c473d68f06012535ab32bdd9f1795eae32c386e"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch5-crossreview.json",
+      "sha256": "dd00cc74981c7f5f5034e9a4f803c603681af319b4abef53d481dd3d55535195"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch5-010-repair-receipt.json",
+      "sha256": "8a765f35d5863ad45e563ebe8d4b65c7709e83182f4a0b3d083f2a1f71f703d0"
+    },
+    {
+      "role": "focused-post-repair-acceptance",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch5-repair-focused-recheck.json",
+      "sha256": "49136dbd4d823f7a62601d3a14d6b66556e56275e0c4d35bcd291bdd5d799b0f"
+    },
+    {
+      "role": "manual-batch5-authority",
+      "path": "maintenance/iriya-manual-batch5-offset2-ledger.md",
+      "sha256": "ea14dc8ec02a48e0395a57623a53be7f4c1b5e4929c99769b0618432e56e994f"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-manual-batch5-offset2-cross-review-c19-e8.json",
+      "sha256": "0e3c5cd85cdc942aff281de9eb54fa60b7e1c19cf3411e700be3916af6c90ce9"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-manual-batch5-offset2-repair-receipt.md",
+      "sha256": "19bb75a2265e08648c3c7628e452148a42ae811c859309216e7498057d23afa8"
+    },
+    {
+      "role": "focused-post-repair-acceptance",
+      "path": "maintenance/iriya-manual-batch5-offset2-repair-focused-recheck-d7.json",
+      "sha256": "a11386f1ad8fd7ae3f9a78a5bc2d27d4eaf4fad904a1d07cf1b91cdcb7a80948"
     }
   ],
   "verification": {
-    "rowCount": 274,
-    "uniqueCanonicalIndexCount": 274,
-    "uniqueIdCount": 274,
+    "rowCount": 304,
+    "uniqueCanonicalIndexCount": 304,
+    "uniqueIdCount": 304,
     "queueNumberEqualsCanonicalIndexPlusOne": true,
     "methodAuditRows": 154,
     "independentlyAcceptedCanaryRows": 30,
@@ -229,9 +289,10 @@
     "independentlyAcceptedBatch2Rows": 30,
     "independentlyAcceptedBatch3Rows": 30,
     "independentlyAcceptedBatch4Rows": 30,
-    "preservedExistingRows": 244,
-    "keepDecisionCount": 245,
-    "rejectDecisionCount": 29,
+    "independentlyAcceptedBatch5Rows": 30,
+    "preservedExistingRows": 274,
+    "keepDecisionCount": 273,
+    "rejectDecisionCount": 31,
     "provisionalDecisionCount": 0
   },
   "exclusionRule": "Rows ruled INVALID/QUARANTINE by a method audit were excluded unless the exact row appears in one of the three fresh manual canaries and that canary has an independent PASS receipt. No older bulk/default verdict was used to fill a registry row.",
@@ -342,5 +403,52 @@
     "prior244ObjectsPreservedExactly": true,
     "quarantinedDefaultDecisionAdmitted": false,
     "provisionalRowsAdmitted": 0
+  },
+  "batch5Seal": {
+    "rowsAppended": 30,
+    "offset0Rows": 10,
+    "offset1Rows": 10,
+    "offset2Rows": 10,
+    "priorRegistrySha256": "291df3b11953dbffbd21cb5926240337027db00fcd30fe881734baacb1f1bd8f",
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch5-010.json",
+        "ledgerSha256": "28f1d61b76108edf2ada0869eb5e6b290504c193b33339ae0b410a664433a97a",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch5-010-cross-review-c19-e8.json",
+        "reviewSha256": "a3f02f3e3eb07be105b94ec2bb8015aa583125536f6528acfb787eab4bde95d0",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch5-010-repair-receipt.json",
+        "repairReceiptSha256": "56b61d2b13d95973530e04cfc3575e268548f21c4d98b4089165006db4d03b89",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch5-010-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "cdf23409f63813fdc2662ab4781fc56810f4593f00cbb611f0980d2b42d90310"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch5-010.json",
+        "ledgerSha256": "c70fd7ed9fa536581c8a6b4c3c473d68f06012535ab32bdd9f1795eae32c386e",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch5-crossreview.json",
+        "reviewSha256": "dd00cc74981c7f5f5034e9a4f803c603681af319b4abef53d481dd3d55535195",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch5-010-repair-receipt.json",
+        "repairReceiptSha256": "8a765f35d5863ad45e563ebe8d4b65c7709e83182f4a0b3d083f2a1f71f703d0",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch5-repair-focused-recheck.json",
+        "focusedRecheckSha256": "49136dbd4d823f7a62601d3a14d6b66556e56275e0c4d35bcd291bdd5d799b0f"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch5-offset2-ledger.md",
+        "ledgerSha256": "ea14dc8ec02a48e0395a57623a53be7f4c1b5e4929c99769b0618432e56e994f",
+        "review": "maintenance/iriya-manual-batch5-offset2-cross-review-c19-e8.json",
+        "reviewSha256": "0e3c5cd85cdc942aff281de9eb54fa60b7e1c19cf3411e700be3916af6c90ce9",
+        "repairReceipt": "maintenance/iriya-manual-batch5-offset2-repair-receipt.md",
+        "repairReceiptSha256": "19bb75a2265e08648c3c7628e452148a42ae811c859309216e7498057d23afa8",
+        "focusedRecheck": "maintenance/iriya-manual-batch5-offset2-repair-focused-recheck-d7.json",
+        "focusedRecheckSha256": "a11386f1ad8fd7ae3f9a78a5bc2d27d4eaf4fad904a1d07cf1b91cdcb7a80948"
+      }
+    ],
+    "identityOverlapWithPrior274": 0,
+    "prior274ObjectsPreservedExactly": true,
+    "quarantinedDefaultDecisionAdmitted": false,
+    "provisionalRowsAdmitted": 0,
+    "dispositionUnitNormalization": "Offset2 Markdown KEEP (component) labels normalized to disposition KEEP (component), unit component; meaning unchanged."
   }
 }

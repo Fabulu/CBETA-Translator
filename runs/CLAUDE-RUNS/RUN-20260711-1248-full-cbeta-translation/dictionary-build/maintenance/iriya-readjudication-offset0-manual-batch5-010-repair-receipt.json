@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "iriya-manual-repair-receipt-v1",
+  "reviewAuthority": "maintenance/iriya-readjudication-offset0-manual-batch5-010-cross-review-c19-e8.json",
+  "reviewAuthoritySha256": "a3f02f3e3eb07be105b94ec2bb8015aa583125536f6528acfb787eab4bde95d0",
+  "repairedLedger": "maintenance/iriya-readjudication-offset0-manual-batch5-010.json",
+  "repairedLedgerBeforeSha256": "ecd5e1a3cf30ca3e67e9ece75008217a1457e3be346046a41b362fcb4195bfc6",
+  "repairedLedgerAfterSha256": "28f1d61b76108edf2ada0869eb5e6b290504c193b33339ae0b410a664433a97a",
+  "repairs": [
+    {
+      "canonicalIndex": 198,
+      "term": "横説竪説",
+      "field": "evidence[0].kwic",
+      "source": "X/X83/X83n1578.xml",
+      "result": "Replaced with the exact supplied full-case recut; zc.verify PASS."
+    },
+    {
+      "canonicalIndex": 204,
+      "term": "朝打三千、暮打八百",
+      "fields": ["evidence[0].kwic", "formResolution", "exactFormResolution"],
+      "source": "X/X66/X66n1296.xml",
+      "result": "Replaced the witness with the exact supplied full-case recut; zc.verify PASS. Corrected the printed 、 form to 51 exact hits in 41 works and retained the comma form at 135 hits in 74 works. Both forms preserve the couplet."
+    },
+    {
+      "canonicalIndex": 207,
+      "term": "入理深談",
+      "field": "evidence[1].kwic",
+      "source": "X/X83/X83n1578.xml",
+      "result": "Replaced with the exact supplied full-case recut; zc.verify PASS."
+    },
+    {
+      "canonicalIndex": 210,
+      "term": "龍袖拂開全體現",
+      "field": "evidence[0].kwic",
+      "source": "X/X81/X81n1568.xml",
+      "result": "Replaced with the exact supplied full-case recut; zc.verify PASS."
+    }
+  ],
+  "verification": {
+    "allLedgerEvidence": "20/20 KWICs pass exact zc.verify after repair",
+    "printedFormCount": {"term": "朝打三千、暮打八百", "hits": 51, "distinctWorks": 41},
+    "commaFormCount": {"term": "朝打三千，暮打八百", "hits": 135, "distinctWorks": 74}
+  },
+  "preserved": "All ten dispositions and lexical units are unchanged. Canonical indexes 192 and 216 remain REJECT with their reasons and evidence unchanged; the other six unflagged rows are unchanged.",
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "buildRun": false
+}

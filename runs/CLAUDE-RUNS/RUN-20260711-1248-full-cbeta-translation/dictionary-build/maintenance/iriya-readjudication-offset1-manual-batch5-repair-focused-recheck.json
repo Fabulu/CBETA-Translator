@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "iriya-focused-repair-recheck-v1",
+  "review": "PASS",
+  "authority": {
+    "path": "maintenance/iriya-readjudication-offset1-manual-batch5-crossreview.json",
+    "sha256": "dd00cc74981c7f5f5034e9a4f803c603681af319b4abef53d481dd3d55535195"
+  },
+  "repairedLedger": {
+    "path": "maintenance/iriya-readjudication-offset1-manual-batch5-010.json",
+    "sha256": "c70fd7ed9fa536581c8a6b4c3c473d68f06012535ab32bdd9f1795eae32c386e",
+    "decisionCount": 10
+  },
+  "repairReceipt": {
+    "path": "maintenance/iriya-readjudication-offset1-manual-batch5-010-repair-receipt.json",
+    "sha256": "8a765f35d5863ad45e563ebe8d4b65c7709e83182f4a0b3d083f2a1f71f703d0",
+    "beforeLedgerSha256": "4d256bf5370ae3035afe3044a8a39c7945b574d054368b311b6689989fa70a93"
+  },
+  "focusedDecision": {
+    "canonicalIndex": 307,
+    "queueNumber": 308,
+    "id": "t_8d70834f3423",
+    "term": "開口不在舌頭上",
+    "result": "PASS",
+    "dispositionConfirmed": "KEEP (component)",
+    "unitConfirmed": "component",
+    "validationConfirmed": "multi-source",
+    "replacementWitness": {
+      "source": "X/X82/X82n1571.xml",
+      "title": "五燈全書(第34卷-第120卷)",
+      "workId": "work:wudeng-quanshu",
+      "declaredHitLine": "0144a03",
+      "zcVerify": {
+        "ok": true,
+        "fromLb": "0143c22",
+        "toLb": "0144a08",
+        "count": 1
+      },
+      "continuity": "PASS",
+      "reasonAlignment": "PASS",
+      "reasonAlignmentDetail": "The exact contiguous witness contains Songyuan's claim that testing a person before speech is easy; Muan raises his hand and corrects him with 明明向汝道：開口不在舌頭上；after later practice and breakthrough Songyuan explicitly says 今日方會木庵道：開口不在舌頭上. It therefore directly supports both factual clauses of the deployment reason that the replaced X70 prefatory witness did not show."
+    },
+    "independentSecondWitness": {
+      "source": "X/X71/X71n1412.xml",
+      "workId": "work:X71n1412",
+      "zcVerify": {
+        "ok": true,
+        "fromLb": "0208a23",
+        "toLb": "0208b08",
+        "count": 1
+      },
+      "reasonAlignment": "PASS",
+      "reasonAlignmentDetail": "Gulin places the phrase among encounter answers and immediately contrasts recognition with the arising of thought, supporting the reason's independent deployment claim."
+    }
+  },
+  "preservationCheck": {
+    "result": "PASS",
+    "otherDecisionCount": 9,
+    "unchangedFieldsChecked": [
+      "canonicalIndex",
+      "queueNumber",
+      "id",
+      "term",
+      "query",
+      "disposition",
+      "unit",
+      "validation",
+      "reason",
+      "evidence"
+    ],
+    "detail": "The nine non-target decisions match the independently reviewed pre-repair ledger content. In the target decision, disposition, unit, validation, reason, and the X71 witness remain unchanged; only the challenged X70 witness was replaced by X82, exactly as authorized and recorded by the receipt."
+  },
+  "summary": {
+    "repairPass": 1,
+    "preservedRowsPass": 9,
+    "revise": 0,
+    "semanticChanges": 0,
+    "unitChanges": 0
+  },
+  "authorLedgerModifiedByRechecker": false,
+  "buildPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

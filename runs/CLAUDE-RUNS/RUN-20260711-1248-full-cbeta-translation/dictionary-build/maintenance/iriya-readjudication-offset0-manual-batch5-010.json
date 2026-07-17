@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v1",
+  "mode": "manual full-case reading; no semantic writer, regex decision, count threshold, or default disposition",
+  "registryAtSelection": "maintenance/iriya-trusted-registry.json",
+  "registryAtSelectionSha256": "291df3b11953dbffbd21cb5926240337027db00fcd30fe881734baacb1f1bd8f",
+  "registryRowsAtSelection": 274,
+  "lane": "offset0",
+  "rows": [
+    {
+      "ordinal": 65, "canonicalIndex": 192, "queueNumber": 193, "id": "t_e9d526e91d6f", "term": "自古自今", "query": "自古自今", "disposition": "REJECT", "unit": "—", "validation": "rejected",
+      "reason": "In Wudeng Quanshu 自古自今 merely dates the ordinary continuity of cloud movement and rain-giving; the operative criticism follows in the furnace and dull-iron language. In Zhiyue Lu it again means only 'from antiquity to the present' while the surrounding predicates identify person and Buddha. Its complements vary freely, and the four characters are never independently raised, answered, glossed, or capped: recurrent temporal grammar is not a Chan lexical deployment.",
+      "evidence": [
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0004c02","kwic":"法昌小剎，路遠山遙。景物蕭疎，游人罕到。敢謂黃龍禪師曲賜光臨，不唯泉石生輝，亦乃人天欣悅。然雲行雨施，自古自今。其奈爐鞴之所，鈍銕尤多。良醫之門，病者愈甚。瘥病須求靈藥，銷頑必藉金錘。"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0481a12","kwic":"古若有今，今亦有古。古若有佛，今亦有佛。如今若得，直至未來際得。祇如今一念一念，不被一切有無等法管。自古自今，佛祇是人，人祇是佛，亦是三昧定。不用將定入定，不用將禪想禪，不用將佛覔佛。"}
+      ]
+    },
+    {
+      "ordinal": 66, "canonicalIndex": 195, "queueNumber": 196, "id": "t_7b5c463ecb67", "term": "臘月火燒山", "query": "臘月火燒山", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Xianglin gives the exact phrase as his complete answer to 如何是衲衣下事, after which several masters explicitly recite and cap it. Wudeng Quanshu independently raises the same question-and-answer and supplies both a critique and a replacement answer. The impossible winter-mountain fire is therefore a stable case answer, not incidental seasonal description.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0219b11","kwic":"香林因僧問：如何是衲衣下事？林曰：臘月火燒山。雪竇顯云：臘月火燒山，萬種千般，翹松鶴冷，踏雪人寒，達磨不會，大難大難。昭覺勤云：舉一明三，衲僧孔竅；千差一轍，本分鉗錘。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0150a13","kwic":"上堂，舉：僧問香林：如何是衲衣下事？林曰：臘月火燒山。師曰：兔子何曾離得窟？若有人問延慶：如何是衲衣下事？只對他道：就船買得魚偏美，踏雪沽來酒倍香。"}
+      ]
+    },
+    {
+      "ordinal": 67, "canonicalIndex": 198, "queueNumber": 199, "id": "t_2958b93055c4", "term": "横説竪説", "query": "橫說竪說", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "formResolution":{"printedHeadword":"横説竪説","corpusQuery":"橫說竪說","finding":"The queue's Japanese-form glyphs 横/説 resolve to corpus traditional 橫/說; the four-character unit is unchanged."},
+      "reason": "Zhiyue Lu uses 橫說竪說 as the named extent of Niutou's teaching while judging that it still did not reach the upward hinge; it performs the appraisal. In Liezu Tigang Lu the same compact expression is expanded and intensified in a formal incense address as speech rolling oceans upon the broad tongue. Across distinct works it is a recurrent discourse-characterization, not a merely compositional reference to talking in two directions.",
+      "evidence": [
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0511c03","kwic":"也？汝等既稱行脚，亦須著些精神好。還知道大唐國裏無禪師麼？時有僧問：諸方尊宿盡聚眾開化，為甚麼却道無禪師？師曰：不道無禪，祇是無師。闍黎不見，馬大師下有八十四人坐道場，得馬師正法眼者止兩三人，廬山歸宗和尚是其一。夫出家人，須知有從上來事分始得。且如四祖下牛頭，橫說竪說，猶未知向上關棙子。有此眼目，方辨得邪正宗黨。且當人事宜，不能體會得，但知學言語念，向皮袋裏安著，到處稱我會禪，還替得汝生死麼？輕忽老宿，入地獄五箭。我纔見汝入門來，便識得了也。還知麼？急須努力，莫容易事。持片衣口食，空過一生。明眼人笑汝，久後總被俗漢筭將去在"},
+        {"source":"X/X64/X64n1260.xml","title":"列祖提綱錄","workId":"work:X64n1260","line":"0039a16","kwic":"薰風南來證諸條，法身何曾夢見。橫說竪說熾然說，卷百億香水海於廣長舌本波瀾。內空外空畢竟空，攝有漏微塵國於事事無礙法界。"}
+      ]
+    },
+    {
+      "ordinal": 68, "canonicalIndex": 201, "queueNumber": 202, "id": "t_54d184eb2709", "term": "入水見長人", "query": "入水見長人", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Yunmen gives 入水見長人 as his whole verdict on how to distinguish genuine ability in the arrow case, and later masters cap that exchange. In Wudeng Quanshu a monk independently invokes the same phrase to test the master's claim about the initial sentence, receiving 秦皇擊缶. The proverb functions as a repeatable encounter test: stature is disclosed only on entering the water.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0068b13","kwic":"雲門偃問長慶：作麼生免得他道半個聖人？長慶云：若不還價，怎辨真偽？門云：入水見長人。雪竇顯云：要先抝折不難，怎奈三平中的了也。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0012a07","kwic":"問：如何是最初句？師曰：末後問將來。曰：為甚如此？師曰：先行不到。曰：入水見長人也。師曰：秦皇擊缶。上堂：君問西來意，馬師踏水潦。"}
+      ]
+    },
+    {
+      "ordinal": 69, "canonicalIndex": 204, "queueNumber": 205, "id": "t_8b30430597f1", "term": "朝打三千、暮打八百", "query": "朝打三千，暮打八百", "disposition": "KEEP (couplet)", "unit": "couplet", "validation": "multi-source",
+      "formResolution":{"printedHeadword":"朝打三千、暮打八百","printedHeadwordExactHits":51,"printedHeadwordDistinctWorks":41,"corpusQuery":"朝打三千，暮打八百","corpusQueryExactHits":135,"corpusQueryDistinctWorks":74,"finding":"The printed 、 form is exact-attested at 51 hits in 41 works; the comma form is more frequent at 135 hits in 74 works. Both preserve the whole couplet."},
+      "reason": "Yunfeng applies the complete morning/evening pair as the punishment still deserved even by someone able to maneuver freely in Nanyuan's encounter. Liezu Tigang Lu independently prescribes the same pair for a facile doctrinal chooser. The coordinated time clauses jointly express relentless repeated blows; neither half supplies the deployed verdict alone.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0185a15","kwic":"？便與驀頭一摑。且道與古人相去多少？試參合看。若參合得，可以廣贊法化，輔弼真風；如或未然，新上座更有話在。乃按拂，下座。南院因一僧參，纔入方丈，便以手指曰：敗也。院拈拄杖度與，僧擬接，院便打。雲峰悅云：者僧頭上有光，不知脚下似漆，且作麼生？直饒你十字縱橫，正好朝打三千，暮打八百。天寶樞云：者僧當時纔見南院擬取拄杖，便好震威一喝，拂袖而出，縱使南院全機殺活，也只是個賊過後張弓。南院因僧問：古殿重興時如何？院曰：明堂瓦插簷。曰：與麼則莊嚴畢備也。院曰：斬草蛇頭落。昭慶庭云：貧思寶所，曲指化城。設忽遨遊，亡家失業，畢竟如何？須知泣玉人，特"},
+        {"source":"X/X64/X64n1260.xml","title":"列祖提綱錄","workId":"work:X64n1260","line":"0030a06","kwic":"一人恁麼，一人不恁麼，同到報恩來。且道留那一箇即是？有般漢便道：功德天、黑暗女、有智主人，二俱不受。是者般的，正好捉來，朝打三千，暮打八百。何故？大海若不納，百川應倒流。"}
+      ]
+    },
+    {
+      "ordinal": 70, "canonicalIndex": 207, "queueNumber": 208, "id": "t_86c9b67ecbe5", "term": "入理深談", "query": "入理深談", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Zongjian Falin explicitly contrasts a master's distinctive 門庭施設 with 入理深談 and measures the latter as a hundred steps behind; the phrase names an evaluative category. Zhiyue Lu independently contrasts the same category with institutional presentation in a master's self-assessment. Repeated critic's terminology, rather than generic 'deep discussion,' is the lexical job.",
+      "evidence": [
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0425a09","kwic":"天童覺云：睦州用處直是長三短五、七縱八橫，攃在面前、拋向背後，不妨奇特。然則門庭施設自是一家，入理深談不啻百步。天童華云：雲峰與麼道，為復是會睦州意、明睦州語？"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0565a14","kwic":"人，某甲為甚麼不悟？師曰：祇為悟迷却闍黎。復示偈曰：明明無悟法，悟法却迷人。長舒兩脚睡，無偽亦無真。問：撥塵見佛時如何？師曰：直須揮劍。若不揮劍，漁父棲巢。僧後問石霜：撥塵見佛時如何？霜曰：渠無國土，甚處逢渠？僧回舉似師。師上堂，舉了乃曰：門庭施設，不如老僧。入理深談，猶較石霜百步。問：古人布髮掩泥，當為何事？師曰：九烏射盡，一翳猶存。一箭墮地，天下黯黑。師會下有一僧到石霜，入門便道：不審。霜曰：不必闍黎。僧云：與麼則珍重。又到巖頭，亦云：不審。頭乃噓兩聲。僧云：與麼則珍重。纔回步，頭云：雖是後生，亦能管帶。其僧歸，舉似師"}
+      ]
+    },
+    {
+      "ordinal": 71, "canonicalIndex": 210, "queueNumber": 211, "id": "t_077699f68b9e", "term": "龍袖拂開全體現", "query": "龍袖拂開全體現", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Wudeng Yantong records 龍袖拂開全體現 as the complete answer to the purport of Baizhang rolling the mat. Zhiyue Lu independently preserves the same answer in Fenyang's decisive interview, then asks its meaning before the answering sequel 象王行處絕狐蹤. Because the first clause itself answers and is further interrogated, it is independently deployable even when transmitted beside the sequel.",
+      "evidence": [
+        {"source":"X/X81/X81n1568.xml","title":"五燈嚴統(第10卷-第25卷)","workId":"work:wudeng-yantong","line":"0037c17","kwic":"？師曰：上東門外人無數。曰：便恁麼會時如何？師曰：天津橋上往來多。南嶽下九世南嶽下九世首山念禪師法嗣首山念禪師法嗣汾州太子院善昭禪師汾州太子院善昭禪師太原俞氏子。剃髮受具，杖策遊方，所至少留，隨機叩發，歷參知識七十一員。後到首山，問：百丈卷席，意旨如何？山曰：龍袖拂開全體現。曰：師意如何？山曰：象王行處絕狐蹤。師於言下大悟，拜起而曰：萬古碧潭空界月，再三撈摝始應知。有問者曰：見何道理，便爾自肯？師曰：正是我放身命處。後遊衡湘及襄沔間，每為郡守以名剎力致，前後八請，堅臥不答。洎首山歿，西河道俗遣僧契聰迎請住持。師閉關高枕，聰排闥而"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0645c20","kwic":"最後至首山，問：百丈捲簟，意旨如何？曰：龍袖拂開全體現。師曰：師意如何？曰：象王行處絕狐蹤。於是大悟。言下拜而起曰：萬古碧潭空界月，再三撈摝始應知。"}
+      ]
+    },
+    {
+      "ordinal": 72, "canonicalIndex": 213, "queueNumber": 214, "id": "t_202108980cc1", "term": "賊身已露", "query": "賊身已露", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "In Wudeng Quanshu the master answers a student's professed failure to understand with 賊身已露, exposing that very profession as disclosure. In Liezu Tigang Lu another master asks for the one place obtained without seeking, pauses, and supplies the identical phrase as the capping answer. It is a reusable disclosure-verdict, not narrative mention of a thief.",
+      "evidence": [
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0010c07","kwic":"問：東西密相付，為甚麼眾人皆知？師曰：春無三日晴。曰：特伸請益。師曰：拖泥帶水。曰：學人到這裏却不會。師曰：賊身已露。上堂：城裏喧繁，空山寂靜。"},
+        {"source":"X/X64/X64n1260.xml","title":"列祖提綱錄","workId":"work:X64n1260","line":"0074a21","kwic":"上堂：道得第一句，不被拄杖子瞞。識得拄杖子，猶是途路中事。作麼生是到地頭一句？上堂：處處覓不得，祇有一處不覓自得。且道是那一處？良久曰：賊身已露。"}
+      ]
+    },
+    {
+      "ordinal": 73, "canonicalIndex": 216, "queueNumber": 217, "id": "t_23e8963908a3", "term": "長連牀上", "query": "長連牀上", "disposition": "REJECT", "unit": "—", "validation": "rejected",
+      "reason": "In Zongmen Niangu Huiji the queried characters are only the locative beginning of the actual response 火燄不容蚊蚋泊，長連牀上任高眠; the predicate supplies its point. In Wudeng Quanshu they again merely locate the ensuing actions 閉眉合眼 and 睡到曉鐘. Other cases likewise extend the substring (for example 有粥有飯), while the bare locative is not independently raised, answered, glossed, or capped. Admitting it would cut a productive noun-location phrase out of larger deployable units.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0143a16","kwic":"道峰清云：袖頭打領，腋下剜襟，還他洞山老人揀點將來，未免向語脉裏轉却。道峰即不然，有問：如何是無寒暑處？只向道：火燄不容蚊蚋泊，長連牀上任高眠。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0153a06","kwic":"上堂：春山重重，夜雨濛濛。長連牀上，閉眉合眼。睡到曉鐘，心也空，法也空。不起第二念，坐斷主人翁。好安樂也弟兄。"}
+      ]
+    },
+    {
+      "ordinal": 74, "canonicalIndex": 219, "queueNumber": 220, "id": "t_3cc2022d9b65", "term": "隨邪逐惡", "query": "隨邪逐惡", "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Zongmen Niangu Huiji makes 不合隨邪逐惡 the stated reason for the prescribed thirty blows after Śākyamuni and Mañjuśrī's performance. Liezu Tigang Lu independently inserts the exact phrase as Gaofeng's verdict on Guiyang joining Liu Tiemo's maneuver, then caps it with 韓盧逐塊. The expression repeatedly names culpable compliance with a case's wrong momentum, rather than generically describing moral evil.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0008c13","kwic":"黃檗琦云：世尊陞座，慙惶殺人；文殊白椎，不識好惡。更道：諦觀法王法，法王法如是。好與三十拄杖，何故不合隨邪逐惡？靈巖儲云：正當恁麼時，且道世尊、文殊意在甚麼處？"},
+        {"source":"X/X64/X64n1260.xml","title":"列祖提綱錄","workId":"work:X64n1260","line":"0143b24","kwic":"高峯妙禪師妙湛無為長老至，上堂，舉：劉鐵磨來參溈山，把髻投衙，山云：老㹀牛！汝來也，引狗入寨。磨云：來日臺山大會有齋，和尚還去麼？癩兒牽伴溈山作臥勢，隨邪逐惡。磨便出。咄！直饒逴得便行，也是韓盧逐塊。"}
+      ]
+    }
+  ],
+  "reviewedCount": 10,
+  "summary": {"KEEP (component)": 7, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 2},
+  "exactFormResolution": "Eight queue headwords use the exact corpus query. 横説竪説 resolves only the Japanese-form glyphs 横/説 to traditional 橫/說. 朝打三千、暮打八百 is itself exact-attested at 51 hits in 41 works; its comma variant has 135 hits in 74 works. Both preserve the whole paired unit.",
+  "entryConstructionPerformed": false, "queueAdvanced": false, "buildRun": false, "lineageTouched": false
+}

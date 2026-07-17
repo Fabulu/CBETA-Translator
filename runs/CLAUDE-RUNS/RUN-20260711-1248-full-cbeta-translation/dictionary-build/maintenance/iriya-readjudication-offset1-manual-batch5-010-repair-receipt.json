@@ -1,0 +1,19 @@
+{
+  "schemaVersion":"iriya-manual-ledger-repair-receipt-v1",
+  "authority":"maintenance/iriya-readjudication-offset1-manual-batch5-crossreview.json",
+  "authoritySha256":"dd00cc74981c7f5f5034e9a4f803c603681af319b4abef53d481dd3d55535195",
+  "repairedLedger":"maintenance/iriya-readjudication-offset1-manual-batch5-010.json",
+  "beforeSha256":"4d256bf5370ae3035afe3044a8a39c7945b574d054368b311b6689989fa70a93",
+  "afterSha256":"c70fd7ed9fa536581c8a6b4c3c473d68f06012535ab32bdd9f1795eae32c386e",
+  "repair":{
+    "canonicalIndex":307,
+    "term":"開口不在舌頭上",
+    "change":"Replaced the prefatory X70 paratext witness with the direct X82 Muan–Songyuan exchange and Songyuan's later statement that he finally understood the phrase at breakthrough.",
+    "newSource":"X/X82/X82n1571.xml",
+    "newWorkId":"work:wudeng-quanshu",
+    "newHitLine":"0144a03",
+    "zcVerify":{"ok":true,"fromLb":"0143c22","toLb":"0144a08","count":1},
+    "semanticChange":false,"dispositionChange":false,"unitChange":false
+  },
+  "otherRowsModified":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}
