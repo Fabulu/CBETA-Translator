@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewer": "Codex independent full-case reader",
+  "sourceLedger": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+  "sourceLedgerSha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326",
+  "decision": "PASS",
+  "scope": "Independent review of all ten rows and twenty full KWICs for exact evidence, Chan deployment, lexical-unit boundary, variants, distinct-work support, and disposition.",
+  "cohortFindings": {
+    "exactEvidence": "PASS — zc.verify accepts all twenty stored KWICs at their cited loci; every title and workId matches the frozen manifest.",
+    "workIndependence": "PASS — each admitted row has evidence from two distinct workIds; none obtains multi-source status from split volumes or duplicate editions of one work.",
+    "variantHandling": "PASS — the ledger distinguishes the unattested Japanese punctuation forms 土曠人稀、相逢者少 and 一點水墨、兩處成龍 from their exact comma forms (89/56 works and 91/63 works), and the unattested 縁 graph from exact 養子之緣 (106/50 works).",
+    "semanticBoundary": "PASS — all ten strings have an observable recurring Chan job in the full cases; none is admitted merely because it occurs in narration or verse."
+  },
+  "reviews": [
+    {"canonicalIndex":305,"term":"無事生事","decision":"PASS","finding":"One case explicitly calls the exchange making trouble where none exists; another wields the same formula as a direct rebuke. It recurs as an interview verdict, not generic narration."},
+    {"canonicalIndex":308,"term":"鼓兩片皮","decision":"PASS","finding":"Both records use the two-lips image to challenge or dismiss mere verbal activity in public exchange. The whole phrase carries the diagnostic job."},
+    {"canonicalIndex":323,"term":"土曠人稀，相逢者少","decision":"PASS","confirmedDisposition":"KEEP (couplet)","confirmedUnit":"couplet","finding":"Both clauses are delivered together as the answer and then become the object of the encounter's appraisal. The exact corpus punctuation is comma, not the queue's Japanese separator."},
+    {"canonicalIndex":326,"term":"撲落非他物","decision":"PASS","finding":"The line is repeatedly raised as the case-bearing answer about what was knocked down; the phrase is quoted and tested rather than merely describing a fall."},
+    {"canonicalIndex":329,"term":"一點水墨，兩處成龍","decision":"PASS","confirmedDisposition":"KEEP (couplet)","confirmedUnit":"couplet","finding":"The paired image is deployed intact as a capping appraisal of the case in two independent works. Its two balanced clauses form the lexical unit; the corpus uses comma punctuation."},
+    {"canonicalIndex":332,"term":"知而故犯","decision":"PASS","finding":"Both witnesses use the phrase as an explicit verdict on a participant knowingly transgressing, one inside case criticism and one in a public exchange. It is a recurrent adjudicative formula."},
+    {"canonicalIndex":335,"term":"養子之緣","decision":"PASS","finding":"The exact traditional graph 緣 is used in two distinct works to classify the same case response as the device or consideration used in raising a child. The queue's 縁 graph is correctly treated as unattested rather than silently normalized."},
+    {"canonicalIndex":338,"term":"識法者懼","decision":"PASS","finding":"Dahui deploys the formula in two distinct works as an explicit warning/cap: one who recognizes the law or standard is wary. It is spoken evaluative language, not descriptive prose."},
+    {"canonicalIndex":341,"term":"一超直入如來地","decision":"PASS","finding":"Both witnesses deliberately raise the complete formula as a doctrinal claim and subject it to Chan questioning or appraisal. The component is stable across independent works."},
+    {"canonicalIndex":344,"term":"劍樹刀山","decision":"PASS","finding":"The sword-tree and knife-mountain pair is wielded in separate Chan addresses as the punitive ordeal against which the audience or practitioner is tested, not as incidental cosmological inventory."}
+  ],
+  "mechanicalReceipt": {"rowsReviewed":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"workIdMatches":20,"pass":10,"revise":0},
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

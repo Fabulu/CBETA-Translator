@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-17T21:36:24Z",
+  "generatedUtc": "2026-07-17T22:00:45Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "e54badee42bf1a8ed83ef4506d3a88572aa868eb0f9dfa9f51e2d322498c6d3a",
+  "registrySha256": "bb607f36ab9f6b4d625a868f0b6d45eddbcc1da52c0b293a0f105cb6b7a74878",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -273,12 +273,47 @@
       "role": "focused-post-repair-acceptance",
       "path": "maintenance/iriya-manual-batch5-offset2-repair-focused-recheck-d7.json",
       "sha256": "a11386f1ad8fd7ae3f9a78a5bc2d27d4eaf4fad904a1d07cf1b91cdcb7a80948"
+    },
+    {
+      "role": "manual-batch6-authority",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+      "sha256": "78eb6111219eb3a0afdd3fac43c11b830513fca03e4d1abb9cc74dcc5d6924b9"
+    },
+    {
+      "role": "selection-identity-audit",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch6-selection-identity-audit-c19-e8.json",
+      "sha256": "267743b6d57e9d4c9d2e53f9afbfabfb3fd038a5e7513ccf650007a6e7c1119c"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010-corrected-cross-review-c19-e8.json",
+      "sha256": "1fc0f953adee3cbf61a079ee6fe99090522d27395627cc7ab4e089d54db687dd"
+    },
+    {
+      "role": "manual-batch6-authority",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch6-010.json",
+      "sha256": "da7dfb7b864856bc64aa10fff7520f20b66b042eb0ee28586579385f9dbaff89"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch6-crossreview.json",
+      "sha256": "25d4990674a04f2b170f09aa0d62957870e9e1a29d586cfcde96184edc9c35c2"
+    },
+    {
+      "role": "manual-batch6-authority",
+      "path": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+      "sha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-manual-batch6-offset2-cross-review-c19-e8.json",
+      "sha256": "2144843356ee14689cd03c923fb9cac711a8d592bb626acf32ac8989c777f691"
     }
   ],
   "verification": {
-    "rowCount": 304,
-    "uniqueCanonicalIndexCount": 304,
-    "uniqueIdCount": 304,
+    "rowCount": 334,
+    "uniqueCanonicalIndexCount": 334,
+    "uniqueIdCount": 334,
     "queueNumberEqualsCanonicalIndexPlusOne": true,
     "methodAuditRows": 154,
     "independentlyAcceptedCanaryRows": 30,
@@ -290,8 +325,9 @@
     "independentlyAcceptedBatch3Rows": 30,
     "independentlyAcceptedBatch4Rows": 30,
     "independentlyAcceptedBatch5Rows": 30,
-    "preservedExistingRows": 274,
-    "keepDecisionCount": 273,
+    "independentlyAcceptedBatch6Rows": 30,
+    "preservedExistingRows": 304,
+    "keepDecisionCount": 303,
     "rejectDecisionCount": 31,
     "provisionalDecisionCount": 0
   },
@@ -450,5 +486,65 @@
     "quarantinedDefaultDecisionAdmitted": false,
     "provisionalRowsAdmitted": 0,
     "dispositionUnitNormalization": "Offset2 Markdown KEEP (component) labels normalized to disposition KEEP (component), unit component; meaning unchanged."
+  },
+  "batch6Seal": {
+    "rowsAppended": 30,
+    "offset0Rows": 10,
+    "offset1Rows": 10,
+    "offset2Rows": 10,
+    "priorRegistrySha256": "e54badee42bf1a8ed83ef4506d3a88572aa868eb0f9dfa9f51e2d322498c6d3a",
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+        "ledgerSha256": "78eb6111219eb3a0afdd3fac43c11b830513fca03e4d1abb9cc74dcc5d6924b9",
+        "identityAudit": "maintenance/iriya-readjudication-offset0-manual-batch6-selection-identity-audit-c19-e8.json",
+        "identityAuditSha256": "267743b6d57e9d4c9d2e53f9afbfabfb3fd038a5e7513ccf650007a6e7c1119c",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch6-010-corrected-cross-review-c19-e8.json",
+        "reviewSha256": "1fc0f953adee3cbf61a079ee6fe99090522d27395627cc7ab4e089d54db687dd"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch6-010.json",
+        "ledgerSha256": "da7dfb7b864856bc64aa10fff7520f20b66b042eb0ee28586579385f9dbaff89",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch6-crossreview.json",
+        "reviewSha256": "25d4990674a04f2b170f09aa0d62957870e9e1a29d586cfcde96184edc9c35c2"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+        "ledgerSha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326",
+        "review": "maintenance/iriya-manual-batch6-offset2-cross-review-c19-e8.json",
+        "reviewSha256": "2144843356ee14689cd03c923fb9cac711a8d592bb626acf32ac8989c777f691"
+      }
+    ],
+    "excludedQuarantinedOffset0Chain": [
+      {
+        "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010-invalid-selection.json",
+        "sha256": "86b88849fd796d54f203731dbf000a04d28bdeec3e56697e2d44ee6ea007bf10",
+        "status": "QUARANTINED_INVALID_IDENTITY_SELECTION"
+      },
+      {
+        "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010-cross-review-c19-e8.json",
+        "sha256": "a04949bc0afd3352a8f55db8fda485e61f9c0deab8ebf4793c9942b71400e95e",
+        "status": "QUARANTINED_REVIEW_OF_INVALID_SELECTION"
+      },
+      {
+        "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010-invalid-selection-repair-receipt.json",
+        "sha256": "0fd7986ef9497e2865a42aa2260a4b275e52af151b5606d9c51466f24ab52535",
+        "status": "QUARANTINED_SUPERSEDED_REPAIR"
+      },
+      {
+        "path": "maintenance/iriya-readjudication-offset0-manual-batch6-010-repair-cross-review-c19-e8.json",
+        "sha256": "5383b879b523f54f9509f252f0c4125e743448e38a318836d6908c624848c0ce",
+        "status": "QUARANTINED_RECHECK_OF_INVALID_SELECTION"
+      }
+    ],
+    "identityOverlapWithPrior304": 0,
+    "prior304ObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "quarantinedDefaultDecisionAdmitted": false,
+    "invalidOffset0ChainAdmitted": false,
+    "provisionalRowsAdmitted": 0
   }
 }

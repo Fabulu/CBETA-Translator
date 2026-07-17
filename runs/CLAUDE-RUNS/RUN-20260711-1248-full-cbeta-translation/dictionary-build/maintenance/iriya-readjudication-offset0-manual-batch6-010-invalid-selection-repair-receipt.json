@@ -1,0 +1,19 @@
+{
+  "schemaVersion":"iriya-manual-invalid-selection-repair-receipt-quarantine-v1",
+  "selectionStatus":"INVALID_SELECTION_QUARANTINED — receipt applies only to the invalid predecessor ledger and is not admissible",
+  "reviewAuthority":"maintenance/iriya-readjudication-offset0-manual-batch6-010-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"a04949bc0afd3352a8f55db8fda485e61f9c0deab8ebf4793c9942b71400e95e",
+  "repairedLedger":"maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+  "repairedLedgerBeforeSha256":"420f4a03a86fd7495439278ad20b4d4515b929cdab8ec6bf55e5427c219a1045",
+  "repairedLedgerAfterSha256":"4ff37c56a8c7ff3a7440410092e4e900dd627d7d3a2d69cddaaad0ef228d9dfc",
+  "scope":{"canonicalIndex":234,"queueNumber":235,"id":"t_88d66f2191a7","term":"佛法道理"},
+  "repair":{
+    "before":{"disposition":"REJECT","unit":"—","validation":"rejected"},
+    "after":{"disposition":"KEEP (component)","unit":"component","validation":"multi-source"},
+    "reason":"Rewritten to ground admission in two explicit public test-question deployments: 時節因緣與佛法道理是同是別 and 還有佛法道理也無. The distinct masters test respectively the phrase's relation to seasonal conditions and whether any such principle is present in the immediate occasion.",
+    "evidence":"Both existing exact evidence objects preserved unchanged."
+  },
+  "summaryAfter":{"KEEP (component)":8,"KEEP (couplet)":2,"PROVISIONAL":0,"REJECT":0},
+  "verification":"All 20 ledger KWICs continue to pass exact zc.verify; the other nine rows are unchanged.",
+  "entryConstructionPerformed":false,"queueAdvanced":false,"lineageTouched":false,"buildRun":false
+}

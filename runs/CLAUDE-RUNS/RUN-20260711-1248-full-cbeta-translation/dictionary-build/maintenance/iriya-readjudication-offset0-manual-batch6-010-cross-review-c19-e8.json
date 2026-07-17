@@ -1,0 +1,31 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "sourceLedger":"maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+  "sourceLedgerSha256":"420f4a03a86fd7495439278ad20b4d4515b929cdab8ec6bf55e5427c219a1045",
+  "decision":"REVISE",
+  "scope":"Independent full-case review of all ten rows for exact evidence, Chan deployment, lexical-unit boundary, punctuation resolution, and distinct-work support.",
+  "cohortFindings":{
+    "exactEvidence":"PASS — all twenty stored KWICs pass zc.verify and all cited titles and workIds match the frozen manifest.",
+    "workIndependence":"PASS — every KEEP row is supported by two distinct works; no split-volume or duplicate-edition pair supplies false independence.",
+    "punctuation":"PASS — 官不容針、私通車馬 has 1 hit/1 work against comma-form 124/70; 金屑雖貴、落眼成翳 has 0/0 against comma-form 118/83. The ledger preserves the complete couplets and reports the corpus forms honestly.",
+    "semanticBoundary":"REVISE — nine rows pass. 佛法道理 is wrongly rejected: both full cases explicitly make the phrase the variable in a master's public test-question, one asking whether it is identical with 時節因緣 and the other whether it is present at all. That is exactly the guide's observable test-question deployment."
+  },
+  "reviews":[
+    {"canonicalIndex":222,"term":"這野狐精","decision":"PASS","finding":"The phrase is a direct shouted exposure in one encounter and a direct rebuke later compared with other case caps in another; reusable denunciation, not animal description."},
+    {"canonicalIndex":225,"term":"著甚死急","decision":"PASS","finding":"Both interviews use the exact interrogative to press or challenge urgency and immediately develop that urgency through the reply. It functions as an encounter check."},
+    {"canonicalIndex":228,"term":"口是禍門","decision":"PASS","finding":"The maxim caps ornate speech in two independent works and repeatedly diagnoses the hazard of verbal display. It is neither anatomical prose nor incidental quotation."},
+    {"canonicalIndex":231,"term":"官不容針、私通車馬","decision":"PASS","confirmedDisposition":"KEEP (couplet)","confirmedUnit":"couplet","finding":"Yangshan supplies the antithesis as his whole answer and Guishan confirms it; another work deploys the complete pair to characterize transmission. Public exclusion and private passage form one paradox."},
+    {"canonicalIndex":234,"term":"佛法道理","decision":"REVISE","requiredDisposition":"KEEP (component)","requiredUnit":"component","requiredValidation":"multi-source","finding":"The rejection rationale says the phrase is not raised, but both witnesses raise it explicitly as the object of a master's test-question: 時節因緣與佛法道理是同是別 and 還有佛法道理也無. The first tests its relation to seasonal conditions; the second tests whether any such principle is present and challenges the assembly to state it. Under the adjudication guide, test-question deployment is an observable Chan job even when the noun phrase remains semantically compositional.","requiredRepair":"Change REJECT to KEEP (component), validation to multi-source, and ground the reason in these two distinct-work public test-questions. Preserve both verified evidence objects."},
+    {"canonicalIndex":237,"term":"平地上死人無數","decision":"PASS","finding":"Both addresses raise the impossible level-ground deaths as the stable diagnostic contrast to penetrating the thorn forest. The first clause is independently citable while the second supplies its recurrent contrast."},
+    {"canonicalIndex":240,"term":"應機接物","decision":"PASS","finding":"The phrase names responsive realized activity in one discourse and Yun'an's non-sticking encounter manner in another. It is a stable Chan functional category."},
+    {"canonicalIndex":243,"term":"金屑雖貴、落眼成翳","decision":"PASS","confirmedDisposition":"KEEP (couplet)","confirmedUnit":"couplet","finding":"A monk wields the full proverb as a challenge and a lay official caps Linji's claim with it. The precious gold and blinding consequence are jointly necessary to its warning."},
+    {"canonicalIndex":246,"term":"枯木裏龍吟","decision":"PASS","finding":"The image is a complete answer to what the Way is and is independently raised, queried, and interpreted. It does not require the paired skull image to function."},
+    {"canonicalIndex":249,"term":"四七二三","decision":"PASS","finding":"One work explicitly resolves the shorthand to the twenty-eight Indian and six Chinese patriarchs; another invokes it as the lineage body enacting the command. Stable lineage shorthand, not arithmetic."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"workIdMatches":20,"pass":9,"revise":1,"semanticDispositionChangesRequired":1},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

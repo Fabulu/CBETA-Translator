@@ -1,0 +1,31 @@
+{
+  "schemaVersion":"iriya-manual-repair-cross-review-v1",
+  "reviewer":"Codex independent focused repair reviewer",
+  "decision":"PASS",
+  "repairedLedger":"maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+  "repairedLedgerSha256":"4ff37c56a8c7ff3a7440410092e4e900dd627d7d3a2d69cddaaad0ef228d9dfc",
+  "repairReceipt":"maintenance/iriya-readjudication-offset0-manual-batch6-010-repair-receipt.json",
+  "repairReceiptSha256":"d387ba3851cff33c16441c04d4fc184232350afa155bf8c78ef0f3bdfe40c0f8",
+  "reviewAuthority":"maintenance/iriya-readjudication-offset0-manual-batch6-010-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"a04949bc0afd3352a8f55db8fda485e61f9c0deab8ebf4793c9942b71400e95e",
+  "focusedFinding":{
+    "canonicalIndex":234,
+    "term":"佛法道理",
+    "result":"PASS",
+    "disposition":"KEEP (component)",
+    "unit":"component",
+    "validation":"multi-source",
+    "finding":"The repaired reason accurately represents both full cases. In 五燈全書, the master explicitly asks whether 時節因緣 and 佛法道理 are the same or different, pauses, and caps the question with a verse. In 指月錄, a second master asks whether any 佛法道理 is present, demands that the assembly state it, and tests both possible answers. These are two distinct-work public test-question deployments, exactly the Chan job required by the review authority; the phrase is no longer mischaracterized as merely contained in doctrinal prose."
+  },
+  "preservationChecks":{
+    "otherNineRows":"PASS — their dispositions, units, validation states, reasons, and evidence objects remain as reviewed by the authority.",
+    "evidence":"PASS — all twenty ledger KWICs still pass exact zc.verify; the two 佛法道理 evidence objects are preserved unchanged.",
+    "summary":"PASS — summary now correctly reads 8 KEEP (component), 2 KEEP (couplet), 0 PROVISIONAL, 0 REJECT.",
+    "scope":"PASS — no entry construction, queue advancement, build, or lineage work is reported."
+  },
+  "mechanicalReceipt":{"rowsChecked":10,"focusedRepairsChecked":1,"zcVerifyPass":20,"pass":10,"revise":0},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

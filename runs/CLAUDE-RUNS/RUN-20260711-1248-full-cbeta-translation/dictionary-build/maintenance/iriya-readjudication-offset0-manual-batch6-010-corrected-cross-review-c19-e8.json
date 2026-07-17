@@ -1,0 +1,36 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "decision":"PASS",
+  "correctedAuthorLedger":"maintenance/iriya-readjudication-offset0-manual-batch6-010.json",
+  "correctedAuthorLedgerSha256":"78eb6111219eb3a0afdd3fac43c11b830513fca03e4d1abb9cc74dcc5d6924b9",
+  "identityAuthority":"maintenance/iriya-readjudication-offset0-manual-batch6-selection-identity-audit-c19-e8.json",
+  "identityAuthoritySha256":"267743b6d57e9d4c9d2e53f9afbfabfb3fd038a5e7513ccf650007a6e7c1119c",
+  "authorityBinding":"This review applies only to the corrected ten authoritative identities at canonical indexes 222–249. The earlier semantic review a04949bc0afd3352a8f55db8fda485e61f9c0deab8ebf4793c9942b71400e95e and its repair are quarantined and supply no semantic or evidentiary authority here.",
+  "scope":"Independent reading of all ten corrected rows and twenty full cases for identity, exact evidence, Chan deployment, lexical units, variants, distinct works, and disposition.",
+  "cohortFindings":{
+    "identity":"PASS — all ten canonicalIndex/queueNumber/id/term/query tuples exactly match the corrected identity authority.",
+    "exactEvidence":"PASS — all twenty KWICs pass exact zc.verify; every cited title and workId matches the frozen corpus manifest.",
+    "workIndependence":"PASS — each row's two witnesses have distinct workIds; no split-volume or duplicate-edition pairing supplies validation.",
+    "variants":"PASS — 前三三、後三三 itself is attested (24 hits/20 works) and the comma query has 125/71; both preserve the complete balanced unit. Japanese-form 光前絶後 is exact-absent while traditional 光前絕後 has 144/82, and the ledger explicitly binds evidence to the latter.",
+    "semanticBoundary":"PASS — all ten strings have observable encounter, case-appraisal, ritual-cap, lineage-question, or public-interview jobs in the cited full cases; none is admitted from ordinary containment alone."
+  },
+  "reviews":[
+    {"canonicalIndex":222,"term":"左之右之","decision":"PASS","finding":"One address uses the phrase for maneuvering freely without remaining in delusion; another uses it critically for maneuvering that still misses the first phrase. Both make the same lateral-maneuvering expression an explicit appraisal, even though its evaluation changes with context."},
+    {"canonicalIndex":225,"term":"伏惟尚饗","decision":"PASS","finding":"The mortuary formula is deliberately displaced into two direct encounter answers: the non-expository word and the location or force of an answering blow. This repeated capping deployment exceeds memorial boilerplate."},
+    {"canonicalIndex":228,"term":"好箇消息","decision":"PASS","finding":"Two masters independently give the exact favorable appraisal and immediately qualify it with the danger of mistaken understanding or ungroundedness. It is a recurring qualified case verdict, not ordinary news."},
+    {"canonicalIndex":231,"term":"同坑無異土","decision":"PASS","finding":"The phrase directly answers a same-or-different test and independently caps two monks as sharing one failure. Its stock equalizing verdict is the lexical job."},
+    {"canonicalIndex":234,"term":"急急如律令","decision":"PASS","finding":"Two formal addresses issue the ritual command performatively after staff actions—one to empower rain and one to cap penetration of the iron wall. The phrase is redeployed, not merely mentioned as an external document formula."},
+    {"canonicalIndex":237,"term":"惜取眉毛","decision":"PASS","finding":"A master warns a monk after a doctrinal assertion and explains the fault; a nun independently answers a life-and-death lodging question with the same warning, prompting a blow and recognition. The eyebrow formula repeatedly marks the cost of risky exposition."},
+    {"canonicalIndex":240,"term":"著甚來由","decision":"PASS","finding":"One critic directly caps the wind-and-banner commentary with the interrogative; a monk independently wields it as his answer and the master tests that answer bodily. It functions as a pointed challenge to a claimed basis."},
+    {"canonicalIndex":243,"term":"前三三、後三三","decision":"PASS","confirmedDisposition":"KEEP (couplet)","confirmedUnit":"couplet","finding":"The old man's balanced pair is his complete numerical answer, and later masters repeatedly raise the whole answer for testing. Xuefeng independently raises the full pair to Changqing. Both clauses form the case saying."},
+    {"canonicalIndex":246,"term":"光前絶後","decision":"PASS","confirmedCorpusQuery":"光前絕後","finding":"In distinct works the traditional-form phrase caps an exchange as unprecedented and unsurpassable, and in both cases a master immediately limits or criticizes the praise. Stable evaluative cap; glyph resolution is explicit."},
+    {"canonicalIndex":249,"term":"近離什麼處","decision":"PASS","finding":"Both records use the formula as the opening test of a new arrival, with the named place immediately converted into scrutiny of the visitor's teacher, provenance, and realization. Conventional public-interview prompt, not travel administration."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"identityMatches":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"workIdMatches":20,"pass":10,"revise":0},
+  "authorLedgerModified":false,
+  "registryModified":false,
+  "entriesBuilt":false,
+  "queueModified":false,
+  "lineageTouched":false
+}
