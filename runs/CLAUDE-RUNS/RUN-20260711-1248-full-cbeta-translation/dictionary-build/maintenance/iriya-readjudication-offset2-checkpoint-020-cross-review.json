@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "iriya-independent-cross-review-v1",
+  "reviewedLedger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+  "reviewedLedgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+  "scope": "All 10 offset-2 batch-2 decisions independently reviewed from their recorded case KWICs and independent-work witnesses.",
+  "overallDecision": "PASS",
+  "reviews": [
+    {
+      "readjudicationOrdinal": 11,
+      "term": "壓良爲賤",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The monk turns 認奴作郎 back on the master with 壓良為賤, and the 柳下惠 reply directly answers that accusation. A distinct commentary work explicitly denies the same charge while demanding a clear distinction between black and white. The phrase performs a recurrent evaluative accusation."
+    },
+    {
+      "readjudicationOrdinal": 12,
+      "term": "業識茫茫",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The address contrasts penetrating one's original life-matter with remaining lost in karmic consciousness; the independent verse applies the identical diagnosis to those missing the true Dharma wheel. The evaluative job is stable across works."
+    },
+    {
+      "readjudicationOrdinal": 13,
+      "term": "落在第二",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "放過一著，落在第二 is delivered as a compact capping judgment and independently repeated in Dahui's record. The headword is the reusable consequence clause—falling into the secondary position—not incidental ordinal narration."
+    },
+    {
+      "readjudicationOrdinal": 14,
+      "term": "照用同時",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The master explicitly maps raising, lowering, and casting down the staff to three illumination/function modes, assigning the cast-down gesture to 照用同時. The separate Linji material lists the same technical mode."
+    },
+    {
+      "readjudicationOrdinal": 15,
+      "term": "鑊湯爐炭",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The monk raises the fixed torment-pair to test whether karmic consequences can simply be blown away, and 自作自受 rejects that move. A separate formal address retains the same paired infernal image in its doctrinal inventory."
+    },
+    {
+      "readjudicationOrdinal": 16,
+      "term": "一箇半箇",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The expression selects the exceptionally rare practitioner able to lift the matter and leave; another work uses it for the scarcely one or two people fit to become Dharma vessels. It has a stable evaluative scarcity sense rather than literal fractional counting."
+    },
+    {
+      "readjudicationOrdinal": 17,
+      "term": "普天匝地",
+      "decision": "PASS",
+      "confirmedDisposition": "REJECT",
+      "finding": "普天匝地 only scopes the changing predicate 承恩力; the master's warning rejects the monk's whole line rather than lexicalizing the scope phrase. Its ability to modify unrelated predicates confirms productive ornamental grammar, not a stable Chan saying."
+    },
+    {
+      "readjudicationOrdinal": 18,
+      "term": "一場懡㦬",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The commentator closes the pig-carrying case by assigning Dizang one complete bout of embarrassment. The phrase is a compact case-ending verdict, not narrative description of an emotion arising outside adjudication."
+    },
+    {
+      "readjudicationOrdinal": 19,
+      "term": "一手指天、一手指地",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (couplet)",
+      "finding": "The two coordinated hand-actions jointly constitute the newborn Buddha's conventional gesture before 唯我獨尊, and the address judges that whole performance. Neither hand-clause carries the action alone; `couplet` is the correct indivisible multi-clause unit."
+    },
+    {
+      "readjudicationOrdinal": 20,
+      "term": "築著磕著",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "After declaring all forms contained in illumination, the master says the listeners constantly bump into it yet do not know. The paired verbs supply the sermon's diagnosis of direct contact without recognition, not a physical-collision report."
+    }
+  ],
+  "evidenceReview": {
+    "primaryCaseKwicsRead": "10/10",
+    "recordedIndependentWorkWitnessesRead": "7/7 where supplied",
+    "distinctWorkBindingsConfirmed": true,
+    "unsupportedMultiSourceClaimFound": false
+  },
+  "unitReview": {
+    "componentUnitsConfirmed": 8,
+    "coupletUnitsConfirmed": 1,
+    "rejectNoUnitConfirmed": 1
+  },
+  "methodReview": {
+    "decision": "PASS",
+    "templateOrDefaultSemanticReasonObserved": false,
+    "countOrRegexDecisionObserved": false,
+    "finding": "The ten reasons depend on different textual operations: accusation, diagnosis, consequence clause, technical mode, karmic test image, evaluative scarcity, spatial containment, embarrassment verdict, coordinated gesture, and contact-without-recognition. No common semantic slot supplies their outcomes."
+  },
+  "summary": {
+    "PASS": 10,
+    "REVISE": 0,
+    "REJECT_REVIEW_STATUS": 0,
+    "sourceLedgerModified": false,
+    "trustedCountAdvanced": false
+  },
+  "sideEffects": {
+    "buildRun": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "entryConstructionPerformed": false
+  }
+}

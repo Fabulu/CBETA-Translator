@@ -1,19 +1,24 @@
 {
   "schemaVersion": "iriya-trusted-registry.v1",
-  "generatedUtc": "2026-07-17T20:08:15.919430+00:00",
+  "generatedUtc": "2026-07-17T20:25:32.151536+00:00",
   "mode": "AUTHORITATIVE_AUDIT_ONLY_TRUSTED_DECISION_REGISTRY",
   "trustMeaning": "A trusted semantic adjudication outcome; both admitted KEEP and trusted contained/non-unit REJECT outcomes are retained.",
   "counts": {
     "methodAuditTrusted": 154,
     "acceptedManualCanary": 30,
-    "total": 184
+    "acceptedManualBatch2": 30,
+    "total": 214,
+    "KEEP": 189,
+    "REJECT": 25,
+    "PROVISIONAL": 0
   },
   "assertions": {
-    "uniqueCanonicalIndexes": 184,
-    "uniqueIds": 184,
+    "uniqueCanonicalIndexes": 214,
+    "uniqueIds": 214,
     "everyRowHasProvenanceReceipt": true,
     "quarantinedDefaultDecisionAdmitted": false,
-    "publicationOrBuildAuthorization": false
+    "publicationOrBuildAuthorization": false,
+    "preservedPriorRegistryRows": 184
   },
   "rows": [
     {
@@ -567,6 +572,25 @@
       }
     },
     {
+      "canonicalIndex": 32,
+      "queueNumber": 33,
+      "id": "t_a65be7bb5cfd",
+      "term": "壓良爲賤",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 33,
       "queueNumber": 34,
       "id": "t_2a207e0e8c96",
@@ -598,6 +622,25 @@
         "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
         "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
         "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 35,
+      "queueNumber": 36,
+      "id": "t_063b11cf09aa",
+      "term": "業識茫茫",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
       }
     },
     {
@@ -635,6 +678,25 @@
       }
     },
     {
+      "canonicalIndex": 38,
+      "queueNumber": 39,
+      "id": "t_07a5392dd6b1",
+      "term": "落在第二",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 39,
       "queueNumber": 40,
       "id": "t_20e096d853ee",
@@ -669,6 +731,25 @@
       }
     },
     {
+      "canonicalIndex": 41,
+      "queueNumber": 42,
+      "id": "t_6e42cf0059cc",
+      "term": "照用同時",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 42,
       "queueNumber": 43,
       "id": "t_28f648ab208d",
@@ -682,6 +763,48 @@
         "auditOffset": 0,
         "auditOrdinal": 15,
         "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 43,
+      "queueNumber": 44,
+      "id": "t_9491cc378231",
+      "term": "且喜沒交渉",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "canonicalIndex": 44,
+      "queueNumber": 45,
+      "id": "t_c34eef70d788",
+      "term": "鑊湯爐炭",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
       }
     },
     {
@@ -701,6 +824,48 @@
       }
     },
     {
+      "canonicalIndex": 46,
+      "queueNumber": 47,
+      "id": "t_cc97e22ff40c",
+      "term": "燈籠露柱",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "canonicalIndex": 47,
+      "queueNumber": 48,
+      "id": "t_c5274bc0d1ca",
+      "term": "一箇半箇",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 48,
       "queueNumber": 49,
       "id": "t_e2ba845177a9",
@@ -714,6 +879,48 @@
         "auditOffset": 0,
         "auditOrdinal": 17,
         "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 49,
+      "queueNumber": 50,
+      "id": "t_5fd1f5818029",
+      "term": "單刀直入",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "canonicalIndex": 50,
+      "queueNumber": 51,
+      "id": "t_abc897c09eeb",
+      "term": "普天匝地",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
       }
     },
     {
@@ -733,6 +940,48 @@
       }
     },
     {
+      "canonicalIndex": 52,
+      "queueNumber": 53,
+      "id": "t_f3d9ddb08470",
+      "term": "斬釘截鐵",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "canonicalIndex": 53,
+      "queueNumber": 54,
+      "id": "t_e7bec1c00b98",
+      "term": "一場懡㦬",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 54,
       "queueNumber": 55,
       "id": "t_df545b35b76b",
@@ -746,6 +995,48 @@
         "auditOffset": 0,
         "auditOrdinal": 19,
         "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 55,
+      "queueNumber": 56,
+      "id": "t_4f0ff92705d1",
+      "term": "風行草偃",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "canonicalIndex": 56,
+      "queueNumber": 57,
+      "id": "t_04cb84217d07",
+      "term": "一手指天、一手指地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
       }
     },
     {
@@ -782,6 +1073,25 @@
       }
     },
     {
+      "canonicalIndex": 59,
+      "queueNumber": 60,
+      "id": "t_9326c67f5502",
+      "term": "築著磕著",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
       "canonicalIndex": 60,
       "queueNumber": 61,
       "id": "t_135b07152ccc",
@@ -795,6 +1105,29 @@
         "auditOffset": 0,
         "auditOrdinal": 21,
         "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 61,
+      "queueNumber": 62,
+      "id": "t_8e3f3533034b",
+      "term": "面南看北斗",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
       }
     },
     {
@@ -816,6 +1149,29 @@
       }
     },
     {
+      "canonicalIndex": 64,
+      "queueNumber": 65,
+      "id": "t_da1951f555ad",
+      "term": "衲衣下事",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
       "canonicalIndex": 66,
       "queueNumber": 67,
       "id": "t_4a32e8631c92",
@@ -831,6 +1187,29 @@
         "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
         "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
         "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 67,
+      "queueNumber": 68,
+      "id": "t_9d5e0553f705",
+      "term": "海晏河清",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
       }
     },
     {
@@ -852,6 +1231,29 @@
       }
     },
     {
+      "canonicalIndex": 70,
+      "queueNumber": 71,
+      "id": "t_dabc78882b2f",
+      "term": "勞而無功",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
       "canonicalIndex": 72,
       "queueNumber": 73,
       "id": "t_dcf6b6fbd6f8",
@@ -867,6 +1269,29 @@
         "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
         "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
         "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 73,
+      "queueNumber": 74,
+      "id": "t_2bc9fc6a27d4",
+      "term": "水到渠成",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
       }
     },
     {
@@ -994,6 +1419,29 @@
       }
     },
     {
+      "canonicalIndex": 96,
+      "queueNumber": 97,
+      "id": "t_4b4e3643843e",
+      "term": "沒量大人",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
       "canonicalIndex": 99,
       "queueNumber": 100,
       "id": "t_073c40e49ec1",
@@ -1007,6 +1455,75 @@
         "auditOffset": 0,
         "auditOrdinal": 34,
         "basis": "explicit headword-specific exception backed by retained zc windows"
+      }
+    },
+    {
+      "canonicalIndex": 102,
+      "queueNumber": 103,
+      "id": "t_0ae28802d01f",
+      "term": "抽釘拔楔",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 105,
+      "queueNumber": 106,
+      "id": "t_0964639aecdf",
+      "term": "打一拂子",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 108,
+      "queueNumber": 109,
+      "id": "t_993ac676044b",
+      "term": "滴水滴凍",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
       }
     },
     {
@@ -1026,6 +1543,121 @@
       }
     },
     {
+      "canonicalIndex": 114,
+      "queueNumber": 115,
+      "id": "t_6e573e3a68ff",
+      "term": "粉骨碎身",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 117,
+      "queueNumber": 118,
+      "id": "t_51b21979c0e6",
+      "term": "眉鬚墮落",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 120,
+      "queueNumber": 121,
+      "id": "t_7b34a0000443",
+      "term": "自領出去",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 123,
+      "queueNumber": 124,
+      "id": "t_68d175f5d5b9",
+      "term": "住持事繁",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "canonicalIndex": 126,
+      "queueNumber": 127,
+      "id": "t_82105ff4c278",
+      "term": "新婦騎驢阿家牽",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
       "canonicalIndex": 127,
       "queueNumber": 128,
       "id": "t_a24f4c9e5cb4",
@@ -1040,6 +1672,29 @@
         "decisionPosition": 43,
         "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
         "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 129,
+      "queueNumber": 130,
+      "id": "t_0a0966458896",
+      "term": "有頭無尾",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch2 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
       }
     },
     {

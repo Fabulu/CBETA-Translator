@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "iriya-repair-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "repairedLedger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+  "repairedLedgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+  "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+  "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+  "authorityCrossReview": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+  "authorityCrossReviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+  "decision": "PASS",
+  "checks": {
+    "水到渠成ExactRecut": "PASS — the repaired KWIC now preserves the corpus punctuation and continuation `喝一喝，下座，負包而去。`; zc.verify returns one exact match spanning 0077a08–0077a16.",
+    "allEvidence": "PASS — 10/10 stored KWICs now pass zc.verify exactly, each once.",
+    "otherNine": "PASS — the other nine retain their reviewed terms, reasons, evidence bindings, KEEP (component) dispositions, and component units; no new semantic or unit change is present.",
+    "semanticPreservation": "PASS — 水到渠成 remains KEEP (component); disposition, unit, admission, reason, source, title, workId, and line are preserved. The repair is mechanical only.",
+    "receipt": "PASS — before SHA 038c…, after SHA 2138…, and authority cross-review SHA 8b92… agree with the inspected artifacts."
+  },
+  "counts": {
+    "rowsReviewed": 10,
+    "kwicsVerified": 10,
+    "mechanicalRepairsConfirmed": 1,
+    "semanticChanges": 0,
+    "unitChanges": 0,
+    "regressions": 0
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

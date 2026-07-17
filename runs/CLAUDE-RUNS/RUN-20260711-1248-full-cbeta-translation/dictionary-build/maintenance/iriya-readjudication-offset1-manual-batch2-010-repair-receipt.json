@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "iriya-evidence-repair-receipt.v1",
+  "sourceCrossReview": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+  "sourceCrossReviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+  "repairedLedger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+  "beforeSha256": "038c6cfa4aa83b4021fe6f6f173dfee3e6ba780c2c03ae50483e66d19627bf61",
+  "afterSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+  "term": "水到渠成",
+  "source": "X/X82/X82n1571.xml",
+  "title": "五燈全書(第34卷-第120卷)",
+  "workId": "work:wudeng-quanshu",
+  "line": "0077a10",
+  "repair": {
+    "type": "mechanical exact-KWIC recut only",
+    "oldEnding": "喝一喝，下座。",
+    "exactCorpusEnding": "喝一喝，下座，負包而去。",
+    "semanticDispositionChanged": false,
+    "unitChanged": false,
+    "admissionChanged": false,
+    "zcVerify": "PASS after recut"
+  },
+  "sideEffects": {
+    "buildRun": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "entryConstructionPerformed": false
+  }
+}

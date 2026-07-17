@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "sourceLedger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+  "sourceLedgerSha256": "038c6cfa4aa83b4021fe6f6f173dfee3e6ba780c2c03ae50483e66d19627bf61",
+  "decision": "REVISE",
+  "scope": "Independent full-context semantic, unit, variant, work-independence, exact-KWIC, and no-template review of all ten rows.",
+  "cohortFindings": {
+    "semanticAdmissions": "PASS — all ten phrases are observably deployed as an answer, verdict, tested question, case appraisal, or formal-address proposition rather than merely contained as ordinary prose.",
+    "units": "PASS — all ten are single lexical phrases and correctly use KEEP (component); none is a multi-clause couplet.",
+    "workIndependence": "PASS — independent-work searches found materially separate deployments for every phrase, rather than split volumes or duplicate transmission alone.",
+    "variant": "PASS — 且喜沒交渉 is correctly resolved to corpus form 且喜沒交涉; the latter has 385 exact hits across 106 works and is independently deployed in Dahui's 普說 and 指月錄 in addition to the stored Yaoshan case.",
+    "noTemplate": "PASS — every reason identifies its own speaker, surrounding question or raised case, and the specific job performed by the headword. The prose does not reduce to a term-substitution template or a count-based default.",
+    "mechanics": "REVISE — 9/10 stored KWICs verify exactly. 水到渠成 contains one editorial punctuation substitution at its end and fails zc.verify."
+  },
+  "reviews": [
+    {"term":"且喜沒交渉","decision":"PASS","reason":"Yaoshan's first verdict rejects the reported Baizhang formulation as far from the point, then reverses course only after hearing Baizhang scatter and recall the assembly. Variant resolution, component unit, admission, and independent deployment all hold."},
+    {"term":"燈籠露柱","decision":"PASS","reason":"Fanqing personifies the paired fixtures as the locus in which the buddhas turn the wheel, and other independent interviews raise the same pair as objects of direct testing. It is one paired lexical formula, not a couplet."},
+    {"term":"單刀直入","decision":"PASS","reason":"The stored opening address makes it the hearer's immediate mode of entry, while independent records use it in direct challenge and enacted response. The nonliteral Chan deployment and unit are sound."},
+    {"term":"斬釘截鐵","decision":"PASS","reason":"The stored verse appraises the Sixth Patriarch's answer as decisive and unhesitating; independent formal addresses and case comments deploy the same appraisal. It is a component, not literal metalwork."},
+    {"term":"風行草偃","decision":"PASS","reason":"Mian Jie uses it for the natural effect of the active teaching function, while independent interviews use it as an answer and contrast it with 水到渠成. Admission and work spread are sound."},
+    {"term":"面南看北斗","decision":"PASS","reason":"Cijue caps the Xuefeng/Yunmen raised case with the impossible orientation as a verdict, and independent addresses and case collections reuse it. It remains one formula."},
+    {"term":"衲衣下事","decision":"PASS","reason":"The stored interview makes it the complete question-slot for the monk's own matter, and independent master records answer that same question differently. It is neither a clothing inventory nor a multi-clause unit."},
+    {"term":"海晏河清","decision":"PASS","reason":"Yuancheng explicitly marks the phrase's peaceful order as 世間法 and tests it against 佛法; independent interviews also use it as a direct answer. That is raised/tested deployment, not incidental praise."},
+    {"term":"勞而無功","decision":"PASS","reason":"Yunju Zhuang uses it as the verdict on the messenger in the Mazu–Guoyi case, and independent masters apply it to other sayings and performances. The component admission is sound."},
+    {"term":"水到渠成","decision":"REVISE","reason":"The semantic ruling, component unit, and independent-work deployment are sound. The stored KWIC is not exact: it ends `喝一喝，下座。`, but the corpus reads `喝一喝，下座，負包而去。` Re-cut the KWIC directly from zc and re-run zc.verify; do not alter the semantic disposition."}
+  ],
+  "mechanicalReceipt": {
+    "kwicsChecked": 10,
+    "kwicsExact": 9,
+    "kwicsNeedingRecut": 1,
+    "recutTerm": "水到渠成"
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

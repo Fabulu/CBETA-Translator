@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "iriya-readjudication-offset1-manual-batch2.v1",
+  "mode": "manual-full-case",
+  "selection": "First 10 canonical offset-1 rows absent from iriya-trusted-registry.json, ascending canonicalIndex",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistrySha256": "614e3f6b6ebbbf452c67608795a2d946b0463cf9bedb2b29a15a0accb4df6e10",
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "canonicalIndex": 43,
+      "queueNumber": 44,
+      "id": "t_9491cc378231",
+      "term": "且喜沒交渉",
+      "query": "且喜沒交涉",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "variant-resolved multi-source",
+      "variantResolution": "The queue headword has Japanese-form 渉; the corpus occurrence has traditional 涉. The corpus query 且喜沒交涉 was inspected rather than claiming an exact 渉 hit.",
+      "reason": "藥山聽雲巖轉述百丈的『三句外省去，六句內會取』後，立即以『三千里外，且喜沒交涉』判它遠離要點；待雲巖轉述百丈趕散大眾又召回問『是甚麼』，藥山才說今日得見海兄。故且喜沒交涉是老師判前一說完全不相干的反諷式裁語，不是普通連接語。",
+      "evidence": {
+        "source": "X/X80/X80n1565.xml",
+        "title": "五燈會元",
+        "workId": "work:X80n1565",
+        "line": "0114b20",
+        "KWIC": "鍾陵建昌王氏子。少出家於石門。參百丈海禪師二十年。因緣不契。後造藥山。山問。甚處來。曰。百丈來。山曰。百丈有何言句示徒。師曰。尋常道。我有一句子。百味具足。山曰。鹹則鹹味。淡則淡味。不鹹不淡是常味。作麼生是百味具足底句。師無對。山曰。爭柰目前生死何。師曰。目前無生死。山曰。在百丈多少時。師曰。二十年。山曰。二十年在百丈。俗氣也不除。他日侍立次。山又問。百丈更說甚麼法。師曰。有時道。三句外省去。六句內會取。山曰。三千里外。且喜沒交涉。山又問。更說甚麼法。師曰。有時上堂。大眾立定。以拄杖一時趂散。復召大眾。眾回首。丈曰。是甚麼。山曰。何不早恁麼道。今日因子得見海兄。師於言下頓省。便禮拜。"
+      }
+    },
+    {
+      "canonicalIndex": 46,
+      "queueNumber": 47,
+      "id": "t_cc97e22ff40c",
+      "term": "燈籠露柱",
+      "query": "燈籠露柱",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "梵卿先豎拂子作為佛法命脈的流通憑據，繼而說三世諸佛正在燈籠露柱裏轉大法輪，並與六趣聞法並列。燈籠與露柱因此被成對人格化為諸佛說法的場所／媒介，是無情說法意象，不是寺院器物清單。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0046b21",
+        "KWIC": "問：象田有屠龍之劒，欲借一觀時如何？師橫按拄杖，僧便喝。師擲下拄杖，僧無語。師曰：這死蝦蟇。上堂：春已暮，落華紛紛下紅雨。南北行人歸不歸，千林萬林鳴杜宇。我無家兮何處歸，十方剎土奚相依。老夫有個真消息，昨夜三更月在池。上堂：佛法到此，命若懸絲。異目超宗，亦難承紹。豎起拂子曰：賴有這個，堪作流通。於此覰得，便見三世諸佛向燈籠露柱裏轉大法輪，六趣眾生於鐵圍山得聞法要。聞聲非聲，見色非色。隨異類四生，各得解脫。如斯舉唱，非但埋沒宗風，亦乃平沈自己。且道如何不犯令去？拍禪牀，下座。"
+      }
+    },
+    {
+      "canonicalIndex": 49,
+      "queueNumber": 50,
+      "id": "t_5fd1f5818029",
+      "term": "單刀直入",
+      "query": "單刀直入",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "本才在開堂法語中把放行、把住的效用落在聽眾身上：見者撩起便行，聞者單刀直入。此處不是持刀動作，而是聽法者不繞路、當下切入宗旨的參禪方式，且與頂門正眼、掃除佛祖見知連成教學要求。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0060a03",
+        "KWIC": "住乾元日，上堂：百千三昧門，無量福德藏。放行也，如開武庫，錯落交輝。把住也，似雪覆蘆花，通身莫辨。使見之者撩起便行，聞之者單刀直入。個個具頂門正眼，人人懸肘後靈符。掃佛祖見知，作叢林殃害。憶得寶壽開堂日，三聖推出一僧，寶壽便打。三聖曰：與麼為人，瞎却鎮州一城人眼去在。且如乾元今日開堂，或有僧出來，山僧亦打。不唯此話大行，且要開却福州一城人眼去。何也？劒為不平離寶匣，藥因救病出金缾。"
+      }
+    },
+    {
+      "canonicalIndex": 52,
+      "queueNumber": 53,
+      "id": "t_f3d9ddb08470",
+      "term": "斬釘截鐵",
+      "query": "斬釘截鐵",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "在六祖『我不會佛法』公案後，頌語以斬釘截鐵評其答話，隨即解作『一句單提，不會佛法』。詞組專門判定這一句截斷猶疑、乾脆無轉折的機用，並非真的砍釘斷鐵。",
+      "evidence": {
+        "source": "X/X66/X66n1297.xml",
+        "title": "宗鑑法林",
+        "workId": "chan:zongjian-falin",
+        "line": "0316b21",
+        "KWIC": "六祖因僧問：黃梅衣鉢什麼人得？師曰：會佛法人得。曰：和尚還得否？師曰：我不得。曰：和尚為什麼不得？師曰：我不會佛法。汾陽昭代云：方知密旨難傳。翠巖芝云：會得即二頭，不會即三首，作麼生便有出身之路？徑山杲云：還見祖師麼？若也不見，徑山與你指出蕉芭。蕉芭有葉無了，忽然一陣狂風起，恰似東京大相國寺裏三十六院東廊下壁角頭王和尚破袈裟。畢竟如何？歸堂喫茶。天寧琦云：棒打石人頭，嚗嚗論實事。雲居莊云：得與不得、會與不會即不問，祖師性命因甚落在者僧手裏？信手拈來見自殊，個中消息沒工夫，黃梅未許傳斯旨，半夜曾將付老盧。斬釘截鐵，大巧若拙。一句單提，不會佛法。儘他葉落花開，不問春寒秋熱。別別，萬古寒潭空界月。"
+      }
+    },
+    {
+      "canonicalIndex": 55,
+      "queueNumber": 56,
+      "id": "t_4f0ff92705d1",
+      "term": "風行草偃",
+      "query": "風行草偃",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "密庵在奉旨開堂中先說靈源、寶劍、威權與正眼，然後以自然風行草偃、水到渠成說當人現成受用的感應：如風一行，草即隨伏。它描述宗風施行而眾機自然響應的作用，不是氣象或植被敘寫。",
+      "evidence": {
+        "source": "X/X64/X64n1260.xml",
+        "title": "列祖提綱錄",
+        "workId": "work:X64n1260",
+        "line": "0011b04",
+        "KWIC": "密庵傑禪師奉聖旨就本寺開堂，上堂：靈源不昧，萬古徽猷，入此門來，莫存知解。知解既不生，如王寶劍，殺活臨時，舉一明三，目機銖兩，塵塵剎剎普現威權，物物頭頭全彰正眼，便見一塵含法界，一句截千差，於一毫端現寶王剎，坐微塵裏轉大法輪，高而無上，仰不可及，淵而無下，深不可測，自然風行草偃，水到渠成，不是神通妙用，亦非法爾如然。何故？乃是當人從無量劫來現成受用境界，契券分明，直饒千佛出現，各各放大寶光，也侵占一星兒不得。所以道：一切法不生，一切法不滅，若能如是解，佛法常現前。"
+      }
+    },
+    {
+      "canonicalIndex": 61,
+      "queueNumber": 62,
+      "id": "t_8e3f3533034b",
+      "term": "面南看北斗",
+      "query": "面南看北斗",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "慈覺舉雪峰展手作空王殿樣子、雲門再下一語，頌末把兩人的施設總判作面南看北斗。面向南卻看北斗的不可能方向，正用來說其用心與所求錯位；它是整則公案的收束判語。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0147b24",
+        "KWIC": "南康府雲居即菴慈覺禪師蜀人。上堂，舉雪峰因閩王問：擬欲葢一所佛殿去時如何？峰曰：大王何不葢取一所空王殿？王曰：請師樣子。峰展兩手。雲門曰：一舉四十九。師頌曰：空王殿樣子，雪峰展兩手。添得老韶陽，一舉四十九。總是面南看北斗。讚船子道影曰：三十餘年在藥山，鬼家活計豈能傳。當時不得夾山老，你且奈煩撑破船。示眾，舉葉縣省因僧問：如何是密用心處？縣曰：閙市裏輥毬子。曰：意旨如何？縣曰：普請大家看話。"
+      }
+    },
+    {
+      "canonicalIndex": 64,
+      "queueNumber": 65,
+      "id": "t_da1951f555ad",
+      "term": "衲衣下事",
+      "query": "衲衣下事",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "僧把『如何是衲衣下事』作完整問題，守卓以『天旱為民愁』應答；後續又轉入佛出世前後的問答。衲衣下事不是衣內物品，而是衲僧本分、袈裟之下切身所辦之事的提問標目。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0060c09",
+        "KWIC": "東京天寧長靈守卓禪師泉州莊氏子。上堂：三千劒客，獨許莊周。為甚麼跳不出良醫之門？多病人因甚麼不消一劄？已透關者，更請辯看。上堂：譬如眼根不自見，眼性自平等。無平等者，便恁麼去。無孔鐵鎚，聊且安置。直得入林不動草，入水不動波，也是一期方便。若也籬內竹抽籬外筍，㵎東華發㵎西紅，更待勘過了打。僧問：丹霞燒木佛，院主為甚麼眉鬚墮落？師曰：猫兒會上樹。曰：早知如是，終不如是。師曰：惜取眉毛。問：如何是衲衣下事？師曰：天旱為民愁。問：佛未出世時如何？師曰：絕毫絕釐。曰：出世後如何？師曰：填溝塞壑。曰：出與未出，相去幾何？師曰：人平不語，水平不流。"
+      }
+    },
+    {
+      "canonicalIndex": 67,
+      "queueNumber": 68,
+      "id": "t_9d5e0553f705",
+      "term": "海晏河清",
+      "query": "海晏河清",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "圓澄上堂把乾坤肅靜、海晏河清、風雨調順、四時生藏完整列作『世間法』，隨即追問與佛法的界線並以警語作答。詞組在這裏不是背景祝頌，而是被老師明標、拿來與佛法對勘的太平秩序範疇。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0017a16",
+        "KWIC": "壽州資壽院圓澄巖禪師僧問：大藏經中還有奇特事也無？師曰：祇恐汝不信。曰：如何即是？師曰：黑底是墨，黃底是紙。曰：謝師答話。師曰：領取鉤頭意，莫認定盤星。上堂：雲生谷口，月滿長川。樵父斫深雲，漁翁釣沙島。到這裏便是吳道子、張僧繇，無你下手處。良久曰：歸堂問取聖僧。參！上堂：乾坤肅靜，海晏河清。風不鳴條，雨不破塊。春生夏長，秋收冬藏。這箇是世間法，作麼生是佛法？良久曰：欲得不招無間業，莫謗如來正法輪。"
+      }
+    },
+    {
+      "canonicalIndex": 70,
+      "queueNumber": 71,
+      "id": "t_dabc78882b2f",
+      "term": "勞而無功",
+      "query": "勞而無功",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "雲居莊評馬祖遣智藏問國一的傳話公案：智藏雖善通使命，卻『要且勞而無功』，再以癡人夜裏戽塘水作形象化補判。詞組因此明確裁定使者奔走傳問而未得實效，是公案評論，不是一般勞動記錄。",
+      "evidence": {
+        "source": "X/X66/X66n1297.xml",
+        "title": "宗鑑法林",
+        "workId": "chan:zongjian-falin",
+        "line": "0318c02",
+        "KWIC": "國一因馬祖遣智藏來，問：十二時中以何為境？師曰：待汝回去時有信。藏曰：即今便回去。師曰：傳語馬大師道，却須問取曹溪。雲居莊云：馬師大似埋兵挑鬬，國一可謂遇變出奇。者僧雖善通使命，要且勞而無功。驀拈拄杖畫一畫，云：三級浪高魚化龍，癡人猶戽夜塘水。本覺一云：馬祖暗度金鍼，徑山明穿玉綫。若非者僧，怎識文彩全彰？仔細看來，姹女已歸霄漢去，獃郎猶向火邊蹲。"
+      }
+    },
+    {
+      "canonicalIndex": 73,
+      "queueNumber": 74,
+      "id": "t_2bc9fc6a27d4",
+      "term": "水到渠成",
+      "query": "水到渠成",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "守端先反駁把大悟拘在小節的說法，以針眼出龍、藕絲開世界說明突破，然後用『功多業就，水到渠成』回答何以如此。水到渠成在此是工夫積熟後悟用自然成就的因果公式，不是水利敘事。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0077a10",
+        "KWIC": "示眾：大象不遊於兔徑，大悟不拘於小節。是何言歟？承天道：針眼裏躍出獰龍，藕絲中開張世界。何謂如此？功多業就，水到渠成。師初受訥讓，住圓通時，年始二十八。自以前輩讓善叢林，責己甚重，故敬嚴臨眾，以公滅私。於是宗風大振。未幾，訥厭閒寂。郡守至，自陳客情。大守惻然目師，師笑唯唯而已。明日陞座曰：昔法眼有偈曰：難難難是遣情難，情盡圓明一顆寒。方便遣情猶不是，更除方便太無端。大眾且道情作麼生遣？喝一喝，下座，負包而去。"
+      }
+    }
+  ],
+  "summary": {
+    "KEEP_component": 10,
+    "KEEP_couplet": 0,
+    "REJECT": 0,
+    "PROVISIONAL": 0,
+    "variantResolved": 1,
+    "trustedCountAdvanced": false,
+    "crossReviewRequired": true
+  },
+  "methodAssertions": [
+    "The ten identities were selected from canonical queue order by absence from the trusted registry; selection supplied no semantic outcome.",
+    "Every decision was written after an individual full-case reading and records its own headword-specific textual job.",
+    "No semantic writer, regex, count threshold, prior quarantined verdict, or default disposition was used."
+  ],
+  "sideEffects": {
+    "buildRun": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "entryConstructionPerformed": false
+  },
+  "stopReason": "Stopped after exactly 10 rows for independent cross-review."
+}

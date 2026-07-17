@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v1",
+  "mode": "manual full-case reading; no semantic writer, regex decision, count threshold, or default disposition",
+  "registry": "maintenance/iriya-trusted-registry.json",
+  "lane": "offset0",
+  "rows": [
+    {
+      "ordinal": 33, "canonicalIndex": 96, "queueNumber": 97, "id": "t_4b4e3643843e", "term": "沒量大人",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Dahui uses 沒量大人 as the promised standing of Miaojing if he does not lose his footing in encounter, while Yunfeng turns the same evaluative title against a monk whose answers have been turned by verbal patterns. It is a Chan assessment of a person's measure or lack of measure, not merely an ornamental honorific.",
+      "evidence": [
+        {"source":"M/M59/M59n1540.xml","title":"大慧普覺禪師普說","workId":"chan:dahui-pushuo","line":"0869b14","kwic":"一條官驛路寅昏曾不禁人行渾家不是不進步無奈當門荊棘生今日因甚麼說這話蓋妙淨因聽山僧陞座有箇自信處既有自信處便搖撼他不得為他已具決定志雖然來室中卒急道不得緣他平昔不曾與衲子相酧酢未知古人淵奧處所以三昧生莫教失脚踏著便是一箇沒量大人山僧有一箇長頌為他發揚此事坐斷生死開塞却菩提路聞善不欣歡遇惡豈能怖明明不二門歷歷非行布昔日未嘗迷今日誰求悟便恁麼承當有甚麼遮護如是見得親佛亦不須做湛然常自如妙淨絕染污同德又同誠同出一門戶如水入水中似膠入膠固兩鏡闘光明若金"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0024b12","kwic":"磕著鼻。曰：意旨如何？師曰：驢駞馬載。曰：向上還有事也無？師曰：朝到西天，暮歸唐土。曰：謝師答話。師曰：大乘砑郎當。僧退，師乃曰：僧問西來意，築著額頭磕著鼻，意旨又如何？驢駞并馬載，朝到西天暮歸唐，大乘恰似砑郎當。何故？沒量大人被語脉裏轉却。遂拊掌大笑，下座。僧問：丹霞燒木佛，院主為甚麼眉鬚墮落？師曰：一人傳虗，萬人傳實。曰：恁麼則不落也。師曰：兩重公案。曰：學人未曉，特伸請益。師曰：筠袁虔吉，頭上插筆。問：德山入門便棒，意旨如何？師曰：束杖理"}
+      ]
+    },
+    {
+      "ordinal": 35, "canonicalIndex": 102, "queueNumber": 103, "id": "t_0ae28802d01f", "term": "抽釘拔楔",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Yuanwu defines Bodhidharma's work as freeing people by pulling nails and extracting wedges, and Yuanji Daomin says buddhas appear only to perform that same work, immediately glossing it as removing doubts and delusions. The phrase names a recurrent Chan job of undoing a student's fixed obstruction.",
+      "evidence": [
+        {"source":"T/T48/T48n2003.xml","title":"佛果圜悟禪師碧巖錄","workId":"work:T48n2003","line":"0141b01","kwic":"為人處。且道。廓然與不識。是一般兩般。若是了底人分上。不言而諭。若是未了底人。決定打作兩橛。諸方尋常皆道。雪竇重拈一遍。殊不知。四句頌盡公案了。後為慈悲之故。頌出事跡。因茲暗渡江。豈免生荊棘。達磨本來茲土。與人解粘去縛。抽釘拔楔。剗除荊棘。因何却道生荊棘。非止當時。諸人即今脚跟下。已深數丈。闔國人追不再來。千古萬古空相憶。可殺不丈夫。且道。達磨在什麼處。若見達磨。便見雪竇末後為人處。雪竇恐怕人逐情見。所以撥轉關捩子。出自己見解云。休相憶。清風匝"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0063b04","kwic":"潭遂喝。於是頓明大法，作拈花勢。乃曰：這回瞞旻上座不得也。潭挽曰：更道！更道！師曰：南山起雲，北山下雨。即禮拜，潭首肯。後開法灌溪，次居圓通，以符道濟之記。學者嚮臻，朝廷錫以命服，與圓機號。上堂：諸佛出世，無法與人。祇是抽釘拔楔，除疑斷惑。學道之士，不可自謾。若有一疑如芥子許，是汝真善知識。喝一喝，曰：是甚麼？切莫刺腦入膠盆。慶元府二靈知和庵主慶元府二靈知和庵主蘇臺玉峰張氏子。兒時甞習坐垂堂，堂傾，父母意其必死，師瞑目自若。因使出家，年滿得度。"}
+      ]
+    },
+    {
+      "ordinal": 36, "canonicalIndex": 105, "queueNumber": 106, "id": "t_0964639aecdf", "term": "打一拂子",
+      "disposition": "REJECT", "unit": "—", "validation": "rejected-not-lexical-unit",
+      "reason": "Both full cases use 打一拂子 compositionally as stage direction: a master strikes once with a whisk. The blow matters inside each encounter, but the full verb-object-classifier string is not raised, quoted, glossed, capped, or reused as a lexical saying. Dramatic relevance alone does not pass the lexical-unit gate; 拂子 and the encounter action remain available to their own entries.",
+      "evidence": [
+        {"source":"X/X81/X81n1568.xml","title":"五燈嚴統(第10卷-第25卷)","workId":"work:wudeng-yantong","line":"0032a14","kwic":"犯不容。師曰：三十年弄馬騎，今日被驢撲。瞎漢，參堂去！問：從上諸聖向甚麼處去？師曰：不上天堂，則入地獄。曰：和尚又作麼生？師曰：還知寶應老漢落處麼？僧擬議，師打一拂，曰：你還知喫拂子底麼？曰：不會。師曰：正令却是你行。又打一拂子。守廓侍者守廓侍者問德山曰：從上諸聖向甚麼處去？山曰：作麼，作麼？師曰：勑點飛龍馬，跛鼈出頭來。山便休去。來日浴出，師過茶與山。山於背上拊一下曰：昨日公案作麼生？師曰：這老漢今日方始瞥地。山又休去。師行脚到襄州華嚴和尚會"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0046c03","kwic":"唱，非但埋沒宗風，亦乃平沈自己。且道如何不犯令去？拍禪牀，下座。東京褒親旌德院有瑞佛海禪師東京褒親旌德院有瑞佛海禪師興化仙遊陳氏子。初參黃龍南，龍問：汝為人事來？為佛法來？師曰：為佛法來。龍曰：若為佛法來，即今便分付。遂打一拂子。師曰：和尚也不得惱亂人。龍即器之。後依照覺，深悟元奧。出世安州太平，被詔住褒親。宋哲宗賜名大覺，號佛海。上堂：有佛世界，以一塵一毛而作佛事，令見一法者而具足一切法，故權為架閣。有佛化內，以忘言寂默為大佛事，使其學者離一"}
+      ]
+    },
+    {
+      "ordinal": 37, "canonicalIndex": 108, "queueNumber": 109, "id": "t_993ac676044b", "term": "滴水滴凍",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Huanglong first states 'each drop freezes' as weather, then rejects it as not yet the monk's affair and gives the identical phrase back when asked for that affair. Yuanwu separately uses it for a teacher's own exact, sharply independent footing. The ordinary image is deliberately bent into a tested Chan formula.",
+      "evidence": [
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0032b06","kwic":"去，將謂同安無折合。隨汝顛倒所欲，南斗七，北斗八。僧歸舉似澄，澄不懌。自是泐潭舊好絕矣。僧問：儂家自有同風事，如何是同風事？師良久。僧曰：恁麼則起動和尚去也。師曰：靈利人難得。僧禮拜。示眾：江南之地，春寒秋熱。近日已來，滴水滴凍。僧問：滴水滴凍時如何？師曰：未是衲僧分上事。曰：如何是衲僧分上事？師曰：滴水滴凍。問：牛頭未見四祖時，為甚麼百鳥銜花獻？師曰：釘根桑樹，濶角水牛。曰：見後為甚麼不銜花？師曰：裩無襠，袴無口。問：無為無事人，猶是金鎖難。"},
+        {"source":"X/X69/X69n1357.xml","title":"佛果克勤禪師心要","workId":"work:X69n1357","line":"0458a09","kwic":"丈夫氣槩，要超軼上流，合下手便教羅籠不得、呼喚不回，利物應機，莫非灑灑落落，不向草窠裏輥、鬼窟裏弄情魂，將玄妙理性揚眉瞬目、舉手動脚下合頭語，以實法繫綴人家男女，一盲引眾盲，成何方便？既已據位稱師，固不可容易，只自己分上滴水滴凍、孤迥危峭，如師子兒遨遊，意氣驚群，出沒縱擒，卒難測度，驀然踞地返擲，百獸奔馳喪膽，豈非殊勝奇特耶？還是與麼人，三千里外已審端倪了也。是故巖頭道：如水上按葫蘆子相似，等閑蕩蕩地拘牽惹絆，不得觸著捺著，則蓋天蓋地長養履踐。"}
+      ]
+    },
+    {
+      "ordinal": 39, "canonicalIndex": 114, "queueNumber": 115, "id": "t_6e573e3a68ff", "term": "粉骨碎身",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Fenyang raises Yongjia's line to measure what one clear sentence exceeds, and Dahui answers Yunmen's question about the attendant's failure with 'even grinding bones and smashing the body could not repay it.' The phrase is deployed as an extreme measure of an encounter debt, not merely contained in devotional verse.",
+      "evidence": [
+        {"source":"C/C077/C077n1710.xml","title":"古尊宿語錄","workId":"work:guzunsu-yulu","line":"0683b10","kwic":"能悟却天下人亦能瞎却天下人要知闍𥟖與老僧麼拊其兩膝曰這裏是闍𥟖這裏是老僧且問諸上座老僧與闍𥟖是同是別若道是同去上座自上座老僧自老僧若道是別去又道老僧即是闍𥟖若能於此眀得去一句中有三玄三要賔主歷然平生事辦㕘尋事畢所以永嘉云粉骨碎身未足酬一句了然超百億又曰臨濟兩堂首座一日相見齊下喝僧問臨濟還有賔主也無荅云賔主歷然師作偈曰兩堂首座揔作家其中道理有紛拏賔主歷然眀似鏡宗師為點眼中花師舉揚宗乘渠渠惟以三玄三要為事臨濟宗真要訣也汾州在河東地苦寒立者往往足指墮"},
+        {"source":"M/M59/M59n1540.xml","title":"大慧普覺禪師普說","workId":"chan:dahui-pushuo","line":"0847a17","kwic":"便解騎賊馬趕賊隊借婆帔拜婆耳你道只有他一箇如此為復更有不見忠國師一日忽然喚一聲云侍者侍者應諾如是三喚侍者三度應諾國師曰將謂吾辜負汝誰知汝辜負吾侍者無對後來雲門大師道作麼生是國師辜負侍者處會得也是無端作麼生是侍者辜負國師處粉骨碎身未報得雪竇云無端無端僧問投子國師三喚侍者意旨如何子云抑逼人作甚麼雪竇云垜根漢僧問玄沙沙云却是侍者會雪竇云元來不會僧問興化化云一盲引眾盲雪竇云端的瞎惟有箇多口老和尚下得箇注脚好僧問趙州州云如人暗中書字字雖不成文彩已彰雪竇便"}
+      ]
+    },
+    {
+      "ordinal": 40, "canonicalIndex": 117, "queueNumber": 118, "id": "t_51b21979c0e6", "term": "眉鬚墮落",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "The phrase is the inherited verdict on the temple officer after Danxia burns the wooden buddha, and later masters repeatedly turn it into fresh questions about whether Danxia's own eyebrows remain and whether affirmation or hesitation makes them fall. It marks exposure to the case's consequence, not literal hair loss.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0077c09","kwic":"甘贄恁麼話了，直把化主打三十痛棒，擯出山門。鄧州丹霞天然禪師鄧州丹霞天然禪師因過慧林寺，值凝寒，乃取木佛燒火，向院主呵曰：何得燒我木佛？霞以杖撥灰曰：吾燒取舍利。院曰：木佛何有舍利？霞曰：既無舍利，更請兩尊來燒。院主自後眉鬚墮落。投子青云：不會作客，勞煩主人。大寧寬因僧問：丹霞燒木佛，為甚麼院主眉鬚墮落？寬云：賊不打貧家兒。保寧勇云：院主眉鬚墮落即且置，丹霞眉毛還在也無？若也見得，與古佛同參；若也不見，切忌撥無因果。寶峰文云：丹霞燒木佛，院主眉"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0506a08","kwic":"？師曰：石頭。祖曰：石頭路滑，還躂倒汝麼？師曰：若躂倒，即不來也。乃杖錫觀方。過慧林寺，遇天大寒，取木佛燒火向院。主訶曰：何得燒我木佛？師以杖子撥灰，曰：吾燒取舍利。主曰：木佛何有舍利？師曰：既無舍利，更取兩尊燒。主自後眉鬚墮落。保寧勇云：院主眉鬚墮落即且置，且道丹霞眉毛還在也無？若也見得，與古佛同參。若也不見，切忌撥無因果。真淨上堂云：丹霞燒木佛，院主眉鬚落。驀拈拄杖云：不是木佛。便擲下云：誰敢燒你？擬即眉鬚墮落，不擬又且如何？高聲云：行者拈"}
+      ]
+    },
+    {
+      "ordinal": 41, "canonicalIndex": 120, "queueNumber": 121, "id": "t_7b34a0000443", "term": "自領出去",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Muzhou gives 'take yourself out' as the answer to how he asks through the nose, then immediately restarts the interview on his own terms. Dahui separately uses it as the sentence on Wulong after adjudicating the disputed Sengqie exchange. It is a reusable dismissal/verdict, not routine stage direction.",
+      "evidence": [
+        {"source":"C/C077/C077n1710.xml","title":"古尊宿語錄","workId":"work:guzunsu-yulu","line":"0655b03","kwic":"一路來僧無語有座主問某甲雖講得經兼行脚不會教意時如何師云灼然實語當懺悔進云乞師指示師云你若不問老僧緘口無言你既問老僧不可緘口去也進云便請道師云心不負人面無慚色問知時者是大沙門如何是大沙門師云我向鼻孔裏問你進云作麼生問師云自領出去又云來來我共你葛藤你却問我問如何是大沙門師云觀世音菩薩會麼進云不會師云大慈悲菩薩上堂大眾雲集師云章表將來時有僧應諾師云據狀領過問佛法大意請師舉唱云我者裏不曾泥裏洗土塊你諸方作麼生道無語有大德曾講法華經來問和尚某甲雖講不會"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0421b13","kwic":"住何國？云：住何國。此意如何？龍云：大聖本不姓何，亦不是何國人。馮笑云：大聖決定姓何，住何國？往返數次，遂致書妙喜，乞斷此公案。喜云：有六十棒，將三十棒打大聖，不合道姓何；三十棒打濟川，不合道大聖決定姓何。若烏龍長老，教自領出去。宿州民賀跋氏捨宅為伽藍，師曰：此本佛宇。令掘地，果得古󳬴，云是香積寺，齊李龍建所創。又獲金像，眾謂然燈如來，師曰：普光王佛也。因以為寺額。景龍二年，詔迎住大薦福寺，中宗稱弟子。三年三月三日示滅，勅就薦福寺漆身起塔，忽臭"}
+      ]
+    },
+    {
+      "ordinal": 42, "canonicalIndex": 123, "queueNumber": 124, "id": "t_68d175f5d5b9", "term": "住持事繁",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Yaoshan uses 'the abbot's affairs are many' to close Pang's challenge and then reverses the appraisal after Pang leaves. In the raised Xuefeng–Sansheng case, Xuefeng uses the same phrase after being accused of not recognizing the saying, and Yuanwu explicitly warns against reading their exchange as victory or defeat. It is a deflecting encounter move, not an administrative excuse.",
+      "evidence": [
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0504c10","kwic":"威音已前道與諸人了，或有問：明頭合？暗頭合？只向伊道：龍遇水時添意氣，虎逢山色長威獰。師問龐居士：一乘中還著得這個事麼？士曰：某甲祇管日求升合，不知還著得麼？師曰：道居士不見石頭得麼？士曰：拈一放一，未為好手。師曰：老僧住持事繁。士珍重！便出。師曰：拈一放一，的是好手。士曰：好個一乘問宗，今日失却也。師曰：是！是！師因僧問：學人有疑，請師決。師曰：待上堂時來，與闍黎決疑。至晚上堂，眾集，師曰：今日請決疑，上座在甚麼處？其僧出眾而立，師下禪牀把住"},
+        {"source":"T/T48/T48n2003.xml","title":"佛果圜悟禪師碧巖錄","workId":"work:T48n2003","line":"0184c15","kwic":"鼓奪旗。百匝千重。瞻前顧後。踞虎頭收虎尾。未是作家。牛頭沒馬頭回。亦未為奇特。且道過量底人來時如何。試舉看。【四九】舉。三聖問雪峯。透網金鱗未審以何為食峯云。待汝出網來。向汝道聖云。一千五百人善知識。話頭也不識峯云。老僧住持事繁。雪峯三聖。雖然一出一入一挨一拶。未分勝負在。且道這二尊宿具什麼眼目。三聖自臨濟受訣。遍歷諸方。皆以高賓待之。看他致箇問端。多少人摸索不著。且不涉理性佛法。却問道。透網金鱗以何為食。且道他意作麼生。透網金鱗尋常既不食他香"}
+      ]
+    },
+    {
+      "ordinal": 43, "canonicalIndex": 126, "queueNumber": 127, "id": "t_82105ff4c278", "term": "新婦騎驢阿家牽",
+      "disposition": "KEEP (couplet)", "unit": "couplet", "validation": "multi-source",
+      "reason": "Shoushan gives the whole two-part saying — 'the bride rides the donkey; the mother-in-law leads it' — as his answer to 'what is Buddha,' refuses to contain it within the three mysteries or four propositions, and answers the request for its intent with another formula. Later verse and addresses repeatedly raise the entire linked image. Both clauses are required; this is a whole deployed couplet, not a detachable generic component.",
+      "evidence": [
+        {"source":"C/C078/C078n1720.xml","title":"禪宗頌古聯珠通集","workId":"work:C078n1720","line":"0826b02","kwic":"撩天鼻孔都穿却韶州雙峰興福竟欽禪師僧問賔頭盧應供四天下還得遍也無師曰如月入水問如何是用而不雜師曰眀月堂前垂玉露水精殿裏粲真珠。頌曰。混而不雜體常虛雪月交光類莫如應處萬端無𦊱礙片雲自在卷還舒汝州首山省念禪師僧問如何是佛師曰新婦騎驢阿家牽曰未審此語甚麼句中𭣣師曰三玄𭣣不得四句豈能該曰此意如何師曰天長地久日月齊眀。頌曰。新婦騎驢阿家牽誰後復誰先張三與李四拱手賀堯年從上諸聖捴皆然起坐忪諸沒兩般有問又須向伊道新婦騎驢阿家牽得不得傳不傳歸根得旨復何言憶昔首山曾漏"},
+        {"source":"X/X81/X81n1568.xml","title":"五燈嚴統(第10卷-第25卷)","workId":"work:wudeng-yantong","line":"0037b10","kwic":"？師曰：驢鳴狗吠。乃曰：要得親切，第一莫將問來問。還會麼？問在答處，答在問處。汝若將問來問，老僧在汝脚底。汝若擬議，即沒交涉。時有僧出禮拜，師便打。僧便問：挂錫幽巖時如何？師曰：錯。僧曰：錯。師又打。問：如何是佛？師曰：新婦騎驢阿家牽。曰：未審此語甚麼句中收？師曰：三玄收不得，四句豈能該？曰：此意如何？師曰：天長地久，日月齊明。問：曹谿一句，天下人聞。未審和尚一句，甚麼人得聞？師曰：不出三門外。曰：為甚麼不出三門外？師曰：舉似天下人。問：如何是和尚不"}
+      ]
+    },
+    {
+      "ordinal": 44, "canonicalIndex": 129, "queueNumber": 130, "id": "t_0a0966458896", "term": "有頭無尾",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Bao Ning applies 'has a head but no tail' as a critic's verdict on Kasyapa's failure to finish the Manjusri expulsion case. Zhaojue independently applies it to a monk who begins well in the Mazu fan exchange but fails to complete the encounter. The ordinary idiom is repeatedly used as a precise case-appraisal: a promising opening without a completed close.",
+      "evidence": [
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0281b17","kwic":"處過夏。迦葉欲白椎擯出，纔拈椎，乃見百千萬億文殊，盡其神力，椎不能舉。世尊曰：你擬擯那個文殊？迦葉無對。昭覺勤云：可惜放過當時，待老漢道你擬擯那個文殊，便與一椎，看他作何合煞。雲居元云：一家有事百家忙。保寧茂云：大小迦葉有頭無尾，畢竟如何？西天令嚴：久立，珍重。高峯妙云：文殊知底，迦葉不知；迦葉知底，文殊不知。彼彼不知則且置，百千萬億文殊畢竟那個是真文殊？天寧琦云：迦葉太不丈夫，莫道百千萬億文殊，便是百千萬億世尊也下一椎，始見作家。不見道：棒下"},
+        {"source":"P/P154/P154n1519.xml","title":"宗門統要正續集(第1卷-第12卷)","workId":"chan:zongmen-tongyao-zhengxu","line":"0589b09","kwic":"刀殺賊雖然如是臨濟雖是得便冝却是失便冝。師一日使扇次有僧問風性常住無處不周和尚為甚却搖扇師云你只知風性常住且不知無處不周僧云作麼生是無處不周底道理師却搖扇僧作禮師云無用處師僧著得一千箇有什麼益。續昭覺勤云這僧一期可觀可惜有頭無尾若不是麻谷作家洎合放過敢問大眾甚處是落節處撥開向上竅能有幾人知。溈山果云這僧只知腦門著地不覺當面蹉過當時若據令而行今日何處更討麻谷。師問僧甚處來僧云不審師又問甚處來僧云󳏃重師下牀擒住云這箇師僧問著便作佛法祗對僧云大似無眼"}
+      ]
+    }
+  ],
+  "reviewedCount": 10,
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopForCrossReview": true
+}

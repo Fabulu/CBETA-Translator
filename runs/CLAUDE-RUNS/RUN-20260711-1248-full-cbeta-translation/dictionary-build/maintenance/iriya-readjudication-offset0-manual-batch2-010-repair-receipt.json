@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "iriya-manual-ledger-repair-receipt-v1",
+  "authority": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+  "authoritySha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+  "repairedLedger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+  "beforeSha256": "c494fae5574dcb3b6795d751a48e4506ae2af82f4d589d44e217b0cb528ff5d7",
+  "afterSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+  "repair": {
+    "term": "打一拂子",
+    "canonicalIndex": 105,
+    "beforeDisposition": "KEEP (component)",
+    "afterDisposition": "REJECT",
+    "beforeUnit": "component",
+    "afterUnit": "—",
+    "ruling": "Compositional stage direction in both read cases; not a reusable lexical unit."
+  },
+  "otherRowsModified": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}
