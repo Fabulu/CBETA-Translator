@@ -1,0 +1,464 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-adaptive-selection.v1",
+  "batch": 5,
+  "reservoir": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "reservoirSha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "excludedPriorSemanticIdentityCount": 100,
+  "excludedPriorBatches": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "excludedZeroYieldStratum": "batch4-exposed structural/scaffold: question fragments, title/lineage headers, narrator/quotation frames, rank-boundary substrings, generic grammar, and covered-unit connector expansions",
+  "adaptiveRule": "Prefer public-interview actions, institutional transitions/rituals, stable sanctions and case-handling formulas across distinct implement/action families; preserve frequency relevance and rank spread; cap near-family repetition; freeze exactly 25 before reading.",
+  "strata": {
+    "publicInterviewAndImplementActions": 9,
+    "institutionalAndRitual": 7,
+    "stableFormulaAndSanction": 9
+  },
+  "frozenBeforeSemanticReading": true,
+  "selectedCount": 25,
+  "rows": [
+    {
+      "batchOrdinal": 1,
+      "reservoirRank": 205,
+      "reservoirBand": "3-8",
+      "term": "卓一卓",
+      "zcExactAtFreeze": {
+        "hits": 1387,
+        "files": 208,
+        "distinctWorks": 206
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 2,
+      "reservoirRank": 419,
+      "reservoirBand": "3-8",
+      "term": "舉前話",
+      "zcExactAtFreeze": {
+        "hits": 909,
+        "files": 200,
+        "distinctWorks": 196
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 3,
+      "reservoirRank": 631,
+      "reservoirBand": "3-8",
+      "term": "信手拈來",
+      "zcExactAtFreeze": {
+        "hits": 726,
+        "files": 243,
+        "distinctWorks": 241
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 4,
+      "reservoirRank": 779,
+      "reservoirBand": "3-8",
+      "term": "打圓相",
+      "zcExactAtFreeze": {
+        "hits": 627,
+        "files": 166,
+        "distinctWorks": 165
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 5,
+      "reservoirRank": 836,
+      "reservoirBand": "3-8",
+      "term": "禮三拜",
+      "zcExactAtFreeze": {
+        "hits": 601,
+        "files": 156,
+        "distinctWorks": 153
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:substring-of-covered-term"
+      ],
+      "substringParentsAtFreeze": [
+        "速禮三拜"
+      ],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 6,
+      "reservoirRank": 872,
+      "reservoirBand": "3-8",
+      "term": "點得出",
+      "zcExactAtFreeze": {
+        "hits": 586,
+        "files": 185,
+        "distinctWorks": 182
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 7,
+      "reservoirRank": 948,
+      "reservoirBand": "3-8",
+      "term": "直下承當",
+      "zcExactAtFreeze": {
+        "hits": 562,
+        "files": 211,
+        "distinctWorks": 209
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "承當",
+        "直下"
+      ]
+    },
+    {
+      "batchOrdinal": 8,
+      "reservoirRank": 1096,
+      "reservoirBand": "3-8",
+      "term": "出母胎",
+      "zcExactAtFreeze": {
+        "hits": 520,
+        "files": 219,
+        "distinctWorks": 215
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 9,
+      "reservoirRank": 1182,
+      "reservoirBand": "3-8",
+      "term": "請陞座",
+      "zcExactAtFreeze": {
+        "hits": 502,
+        "files": 138,
+        "distinctWorks": 135
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "陞座"
+      ]
+    },
+    {
+      "batchOrdinal": 10,
+      "reservoirRank": 1362,
+      "reservoirBand": "3-8",
+      "term": "喚作竹篦",
+      "zcExactAtFreeze": {
+        "hits": 473,
+        "files": 100,
+        "distinctWorks": 97
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "竹篦"
+      ]
+    },
+    {
+      "batchOrdinal": 11,
+      "reservoirRank": 1306,
+      "reservoirBand": "3-8",
+      "term": "三頓棒",
+      "zcExactAtFreeze": {
+        "hits": 480,
+        "files": 153,
+        "distinctWorks": 151
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 12,
+      "reservoirRank": 1379,
+      "reservoirBand": "3-8",
+      "term": "擊禪牀",
+      "zcExactAtFreeze": {
+        "hits": 471,
+        "files": 49,
+        "distinctWorks": 46
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 13,
+      "reservoirRank": 1501,
+      "reservoirBand": "3-8",
+      "term": "不得錯舉",
+      "zcExactAtFreeze": {
+        "hits": 444,
+        "files": 160,
+        "distinctWorks": 156
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "triage:generic-character-present",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "錯舉"
+      ]
+    },
+    {
+      "batchOrdinal": 14,
+      "reservoirRank": 1581,
+      "reservoirBand": "3-8",
+      "term": "作得主",
+      "zcExactAtFreeze": {
+        "hits": 432,
+        "files": 130,
+        "distinctWorks": 128
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 15,
+      "reservoirRank": 1643,
+      "reservoirBand": "3-8",
+      "term": "參堂去",
+      "zcExactAtFreeze": {
+        "hits": 424,
+        "files": 114,
+        "distinctWorks": 111
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "參堂"
+      ]
+    },
+    {
+      "batchOrdinal": 16,
+      "reservoirRank": 1810,
+      "reservoirBand": "3-8",
+      "term": "木上座",
+      "zcExactAtFreeze": {
+        "hits": 403,
+        "files": 160,
+        "distinctWorks": 159
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 17,
+      "reservoirRank": 1951,
+      "reservoirBand": "3-8",
+      "term": "入叢林",
+      "zcExactAtFreeze": {
+        "hits": 391,
+        "files": 144,
+        "distinctWorks": 140
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "叢林"
+      ]
+    },
+    {
+      "batchOrdinal": 18,
+      "reservoirRank": 2214,
+      "reservoirBand": "3-8",
+      "term": "指天指地",
+      "zcExactAtFreeze": {
+        "hits": 368,
+        "files": 192,
+        "distinctWorks": 189
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 19,
+      "reservoirRank": 2296,
+      "reservoirBand": "3-8",
+      "term": "展坐具",
+      "zcExactAtFreeze": {
+        "hits": 362,
+        "files": 125,
+        "distinctWorks": 120
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "坐具"
+      ]
+    },
+    {
+      "batchOrdinal": 20,
+      "reservoirRank": 2484,
+      "reservoirBand": "3-8",
+      "term": "與一掌",
+      "zcExactAtFreeze": {
+        "hits": 345,
+        "files": 132,
+        "distinctWorks": 128
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "triage:generic-character-present"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 21,
+      "reservoirRank": 2693,
+      "reservoirBand": "3-8",
+      "term": "檢點得出",
+      "zcExactAtFreeze": {
+        "hits": 329,
+        "files": 115,
+        "distinctWorks": 114
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "檢點"
+      ]
+    },
+    {
+      "batchOrdinal": 22,
+      "reservoirRank": 2766,
+      "reservoirBand": "3-8",
+      "term": "擲下拂子",
+      "zcExactAtFreeze": {
+        "hits": 324,
+        "files": 130,
+        "distinctWorks": 127
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "拂子"
+      ]
+    },
+    {
+      "batchOrdinal": 23,
+      "reservoirRank": 3542,
+      "reservoirBand": "3-8",
+      "term": "斂衣就座",
+      "zcExactAtFreeze": {
+        "hits": 283,
+        "files": 149,
+        "distinctWorks": 148
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": []
+    },
+    {
+      "batchOrdinal": 24,
+      "reservoirRank": 3754,
+      "reservoirBand": "3-8",
+      "term": "拽拄杖",
+      "zcExactAtFreeze": {
+        "hits": 274,
+        "files": 132,
+        "distinctWorks": 130
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "拄杖"
+      ]
+    },
+    {
+      "batchOrdinal": 25,
+      "reservoirRank": 4765,
+      "reservoirBand": "3-8",
+      "term": "歸堂喫茶",
+      "zcExactAtFreeze": {
+        "hits": 238,
+        "files": 80,
+        "distinctWorks": 79
+      },
+      "familyFlagsAtFreeze": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParentsAtFreeze": [],
+      "coveredChildrenAtFreeze": [
+        "歸堂"
+      ]
+    }
+  ],
+  "authorityMutation": false
+}
