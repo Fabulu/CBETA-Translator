@@ -54,9 +54,11 @@ public class LineageForestLayoutTests
     public void FullRoster_NoOverlaps_AndWorldStaysNarrow()
     {
         var roster = RealRoster();
-        // 2026-07-17 fold (RUN-20260711-1248): 609 -> 965 (researched masters
-        // folded back in after the 1012-record auto-harvest corruption was reverted).
-        Assert.Equal(965, roster.Count); // guard: this is the post-fold 965-record roster
+        // 2026-07-17 fold (RUN-20260711-1248): 609 -> 965 (researched masters folded
+        // back in after the 1012-record auto-harvest corruption was reverted), then
+        // 965 -> 943 (defect-fix pass, same date: 21 duplicate-person clusters
+        // collapsed, 22 excess records removed).
+        Assert.Equal(943, roster.Count); // guard: this is the post-fold, post-fix 943-record roster
 
         var graph = LineageGraphBuilder.Build(roster);
         var layout = LineageForestLayout.Compute(graph.Nodes, graph.Edges);
@@ -73,12 +75,14 @@ public class LineageForestLayoutTests
         Assert.True(overlaps.Ok);
 
         // World-width sanity: the SPA lands ~12,000px for 609 masters; a botched
-        // pack blows past 25,000. 2026-07-17 fold (RUN-20260711-1248) took the
-        // roster 609 -> 965 (+356 nodes, +58%), which legitimately widens a tidy
-        // forest -- the overlap-free guarantee above is the real correctness
-        // check; this is only a "did the pack blow up" ceiling, recalibrated
-        // for the new node count with headroom short of the 25,000 botched line.
-        Assert.True(layout.Width < 26000, $"world too wide: {layout.Width:F0}px (botched pack?)");
+        // pack blows past 25,000. Measured on the current 943-record roster (post
+        // fold + defect-fix): width=21912px. The prior fold-era ceiling (26000) was a
+        // defect in its own right -- it sat ABOVE the 25,000 "botched pack" line this
+        // very comment names, so a genuinely botched pack in the 25,000-26,000 range
+        // would have passed silently. 24000 keeps ~2,000px (~9%) of legitimate
+        // headroom above the measured value while staying strictly under the
+        // documented botched-pack threshold.
+        Assert.True(layout.Width < 24000, $"world too wide: {layout.Width:F0}px (botched pack?)");
         Assert.True(layout.Width > 1000, $"world implausibly narrow: {layout.Width:F0}px");
     }
 

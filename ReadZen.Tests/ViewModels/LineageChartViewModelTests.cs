@@ -11,9 +11,6 @@
 //     for bad data to render as a confident solid line.
 
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using Avalonia;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.Services;
 using ReadZen.App.ViewModels;
@@ -38,8 +35,10 @@ public class LineageChartViewModelTests
         Assert.True(vm.IsLoaded);
         // 2026-07-17 fold (RUN-20260711-1248): 609 -> 965 (researched masters
         // folded back in after the 1012-record auto-harvest corruption was
-        // reverted). See LineageGraphBuilderTests.FullRoster_ReportCountsMatchJsReference.
-        Assert.Equal(965, vm.Report.Masters);         // the post-fold 965-record roster
+        // reverted), then 965 -> 943 (defect-fix pass, same date: 21 duplicate-person
+        // clusters collapsed, 22 excess records removed). See
+        // LineageGraphBuilderTests.FullRoster_ReportCountsMatchJsReference.
+        Assert.Equal(943, vm.Report.Masters);         // the post-fold, post-fix 943-record roster
         Assert.NotEmpty(vm.Nodes);                     // masters + synthesized book sources
         Assert.NotEmpty(vm.Edges);
         Assert.True(vm.Routes.Count > 0, "layout produced no edge routes");
@@ -235,59 +234,16 @@ public class LineageChartViewModelTests
         Assert.Null(vm.SelectedEdge);
     }
 
-    // ── M1: FitAll must raise ZoomChanged so the zoom slider tracks the fitted zoom
-    //    (before the fix it set _zoom silently, leaving the slider at a stale value
-    //    that snap-jumped on first touch). ──
-
-    [Fact]
-    public void FitAll_RaisesZoomChanged_SoTheSliderTracks()
-    {
-        var vm = MakeVm();
-        // Construct the control WITHOUT its Avalonia-touching ctor (parity with the
-        // View interaction tests), inject the VM, and invoke the private FitAll.
-        var chart = (LineageChartControl)RuntimeHelpers.GetUninitializedObject(typeof(LineageChartControl));
-        SetField(typeof(LineageChartControl), chart, "_vm", vm);
-
-        double? raised = null;
-        chart.ZoomChanged += z => raised = z;
-
-        var fitAll = typeof(LineageChartControl).GetMethod("FitAll", BindingFlags.Instance | BindingFlags.NonPublic)!;
-        fitAll.Invoke(chart, new object[] { new Rect(0, 0, 800, 600) });
-
-        Assert.NotNull(raised);                       // the slider got told
-        Assert.Equal(chart.Zoom, raised!.Value, 6);   // …the actual fitted zoom
-    }
-
-    // ── M6: a book-SOURCE double-click must not activate (which would flip to the
-    //    List tab carrying a stale selection); only a real master is activatable. ──
-
-    [Fact]
-    public void BookSourceDoubleClick_DoesNotActivate_SoListSelectionIsUnchanged()
-    {
-        Assert.False(LineageChartControl.ShouldActivateOnDoubleClick(new LineageNode { IsSource = true }));
-        Assert.True(LineageChartControl.ShouldActivateOnDoubleClick(new LineageNode { IsSource = false }));
-        Assert.False(LineageChartControl.ShouldActivateOnDoubleClick(null));
-    }
-
-    // ── M6: list→chart sync must tolerate case (FindListRecord is OrdinalIgnoreCase;
-    //    the raw ByName index is ordinal). NodeByNameInsensitive bridges the gap. ──
-
-    [Fact]
-    public void NodeByNameInsensitive_MatchesRegardlessOfCase()
-    {
-        var vm = MakeVm();
-        var exact = vm.NodeByNameInsensitive("Bodhidharma");
-        Assert.NotNull(exact);
-        Assert.Same(exact, vm.NodeByNameInsensitive("BODHIDHARMA"));
-        Assert.Same(exact, vm.NodeByNameInsensitive("bodhidharma"));
-        Assert.Null(vm.NodeByNameInsensitive(null));
-        Assert.Null(vm.NodeByNameInsensitive(""));
-    }
-
-    private static void SetField(System.Type type, object target, string name, object? value)
-    {
-        var field = type.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)
-            ?? throw new System.InvalidOperationException($"Missing field {name} on {type.Name}");
-        field.SetValue(target, value);
-    }
+    // NOTE (fold-609 defect-fix, 2026-07-17): three tests previously lived here
+    // (FitAll_RaisesZoomChanged_SoTheSliderTracks, BookSourceDoubleClick_
+    // DoesNotActivate_SoListSelectionIsUnchanged, NodeByNameInsensitive_
+    // MatchesRegardlessOfCase) exercising LineageChartControl.ShouldActivateOnDoubleClick,
+    // LineageChartViewModel.NodeByNameInsensitive, and a FitAll->ZoomChanged wire-up.
+    // None of the three exists in this branch's committed source (a4d4410d) — they
+    // only compiled/passed locally because another task's uncommitted WIP
+    // (RUN-20260715-0929, chart-parity rewrite) happened to add those members to the
+    // working tree at the same time. A clean checkout of this branch fails to compile
+    // without them. Removed so the branch builds standalone; the WIP itself (in
+    // ViewModels/LineageChartViewModel.cs and Views/LineageChartControl.cs) is left
+    // untouched for RUN-20260715-0929 to land its own tests when it commits.
 }
