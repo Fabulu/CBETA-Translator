@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review.v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+  "reviewedLedgerSha256": "deb1dc428ce7b0745a710039abcc5559ef2fc1c9e488f46e779daba3f9cecbf6",
+  "reviewer": "Codex independent cross-review offset2",
+  "scope": "Read-only semantic and mechanical cross-review of exactly ten decisions; no authoring, registry, build, queue, or lineage mutation.",
+  "mechanicalChecks": {
+    "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+    "trustedRegistrySha256": "8b76dc6362207a913130666a0deaa915539c7490147e810e667a5b13591b4c43",
+    "queueIdentityAllTen": "PASS",
+    "termIdHashAllTen": "PASS",
+    "offsetModuloAllTen": "PASS",
+    "absentFromSealedRegistryAllTen": "PASS",
+    "recomputedExactHitsFilesWorksAllTen": "PASS",
+    "canonicalEvidenceWorkIdsAllTwenty": "PASS",
+    "distinctEvidenceWorksAllTen": "PASS",
+    "zcVerifyKwicAndLineBoundsAllTwenty": "PASS",
+    "variantAndPunctuationResolutions": "PASS"
+  },
+  "rows": [
+    {
+      "canonicalIndex": 413,
+      "term": "換却眼睛",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "Independent cases repeatedly use having one's eyes exchanged as a Chan appraisal of failed or reversed discernment. Both the 却 headword query and the 卻 related form reproduce at the stored counts."
+    },
+    {
+      "canonicalIndex": 416,
+      "term": "焦磚打著連底凍",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "The exact clause recurs both within its paired critic's couplet and independently as an answer or case appraisal; component treatment preserves that independently reusable unit."
+    },
+    {
+      "canonicalIndex": 419,
+      "term": "跛跛挈挈",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "The reduplicated expression is repeatedly deployed in verses and direct addresses to diagnose halting, encumbered practice and to test whether it has become responsive."
+    },
+    {
+      "canonicalIndex": 425,
+      "term": "不是冤家不聚頭",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "Multiple independent cases turn the complete proverb into an encounter cap for collision, intimacy, or unavoidable meeting; the full lexical unit is stable."
+    },
+    {
+      "canonicalIndex": 428,
+      "term": "有功者賞",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "Formal addresses repeatedly apply the reward-for-merit rule to blows, awakening, encounter responses, and public appraisal, supporting the recorded evaluative deployment."
+    },
+    {
+      "canonicalIndex": 431,
+      "term": "針芥相投",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "Independent instructional and encounter cases consistently use the needle-and-mustard image for exact teacher-student or response-condition affinity."
+    },
+    {
+      "canonicalIndex": 434,
+      "term": "一不成、二不是",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (couplet)",
+      "reason": "Both clauses repeatedly travel together as a complete compact answer or cap. The normalized comma query has 64 hits in 36 works; the printed ideographic-comma form has one exact witness, exactly as recorded."
+    },
+    {
+      "canonicalIndex": 437,
+      "term": "擎頭戴角",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "The image repeatedly challenges or characterizes a forceful practitioner who can enter differentiated conditions, shoulder the ancestral command, and respond publicly."
+    },
+    {
+      "canonicalIndex": 440,
+      "term": "蚌含明月",
+      "verdict": "PASS",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "The exact phrase is a fixed prajna-body answer and a recurrent case/verse image, with stable pairing to 兔子懷胎 and independent deployment across works."
+    },
+    {
+      "canonicalIndex": 443,
+      "term": "珠囘玉轉",
+      "verdict": "REVISE",
+      "reviewedDisposition": "KEEP (component)",
+      "reason": "Rejecting this as merely ornamental underreads the full cases. The normalized 珠回玉轉 recurs in 51 independent works to describe responsive Chan operation: retreat conduct is said to turn case by case; a lineage mechanism is paired with 電激星飛; a teacher alternates 風行草偃 with 珠回玉轉 while escaping constraint; and formal instruction contrasts tactical yielding as 珠回玉轉 with tactical taking as 瓦礫生輝. These are observable, repeated deployments of agile turning within Chan performance. Preserve the printed queue identity 珠囘玉轉, use the attested query 珠回玉轉, and revise REJECT to KEEP (component)."
+    }
+  ],
+  "summary": {
+    "PASS": 9,
+    "REVISE": 1,
+    "revisedDispositionCounts": {
+      "KEEP (component)": 9,
+      "KEEP (couplet)": 1,
+      "REJECT": 0
+    }
+  },
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

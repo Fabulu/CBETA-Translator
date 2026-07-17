@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "iriya-manual-semantic-repair-receipt-v1",
+  "reviewAuthority": "maintenance/iriya-manual-batch9-offset2-cross-review.json",
+  "reviewAuthoritySha256": "ff7db1d830673e74c8575ada39be840e5d5ffd26b9cb2ba91a676a07e6cd2dfb",
+  "repairedLedger": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+  "repairedLedgerBeforeSha256": "deb1dc428ce7b0745a710039abcc5559ef2fc1c9e488f46e779daba3f9cecbf6",
+  "repairedLedgerAfterSha256": "c2b0b631d7e33cb4e4380020b59d0e402808aebe2a911245da56e6a319ebb49f",
+  "scope": {"canonicalIndex": 443, "queueNumber": 444, "id": "t_26836137b404", "term": "珠囘玉轉"},
+  "changes": {
+    "disposition": {"before": "REJECT", "after": "KEEP (component)"},
+    "unit": {"before": null, "after": "component"},
+    "normalizedHeadword": "珠回玉轉",
+    "reason": "Rewritten to ground admission in recurrent Chan roles across 51 canonical works: case-by-case retreat conduct, lineage mechanism, responsive action, and tactical 縱/奪 functioning.",
+    "summary": {"KEEP (component)": {"before": 8, "after": 9}, "REJECT": {"before": 1, "after": 0}}
+  },
+  "preserved": "Both evidence objects and exact-count claims, all identity fields, variant count, and the other nine decisions are unchanged.",
+  "verification": {"evidenceKwicPass": 2, "canonicalWorkIdsPass": 2, "distinctWorks": 2, "exactHits": 69, "exactWorks": 51},
+  "entryConstructionPerformed": false,
+  "registryMutationPerformed": false,
+  "queueAdvanced": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "stopForFocusedRecheck": true
+}

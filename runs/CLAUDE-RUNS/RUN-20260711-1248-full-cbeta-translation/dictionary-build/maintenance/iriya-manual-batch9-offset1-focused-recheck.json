@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "iriya-manual-focused-recheck.v1",
+  "repairedLedger": "maintenance/iriya-manual-batch9-offset1-ledger.json",
+  "repairedLedgerSha256": "ad01d444c37259e5679dfbd7f54638f49d0abe647ffe515198148012abe0e415",
+  "repairReceipt": "maintenance/iriya-manual-batch9-offset1-repair-receipt.json",
+  "repairReceiptSha256": "3538a4c438afb7252bb5fafbfbcc1d522942cd0a0f3bb17a1d02d7a416042a05",
+  "reviewAuthority": "maintenance/iriya-manual-batch9-offset1-cross-review.json",
+  "reviewAuthoritySha256": "d807fad883192894daac7135f6ad0e09acd8c036a0562ec78d9b5e1fe2f67475",
+  "verdict": "PASS",
+  "checks": {
+    "repairScope": "PASS: restoring only the prior 哆哆和和 reason to the repaired JSON reconstructs exact pre-repair SHA-256 4db7bbbe95257a27f9210121c302ae42a382930f7f862a1dd766c8a70f56ca05.",
+    "disposition": "PASS: KEEP (component) unchanged",
+    "unit": "PASS: component unchanged",
+    "exactCount": {"hits": 73, "files": 39, "distinctWorks": 37, "status": "PASS"},
+    "storedEvidence": "PASS: both KWICs remain byte-identical, zc.verify exact, line bounds exact, and canonical work IDs distinct and correct.",
+    "revisedReason": "PASS: accurately preserves mixed and ambivalent deployment rather than reducing the phrase to criticism.",
+    "hongzhiNonObstruction": "PASS: 若是爾灑灑落落，不妨我哆哆和和 explicitly places the two modes beside one another without obstruction.",
+    "yuanwuSelfInvestigation": "PASS: 爾當哆哆和和，何不自家究取 turns the phrase toward the practitioner's own investigation and contrasts it with accumulated knowledge.",
+    "praiseAbuseAndAdaptiveFunction": "PASS: the independent 是贊揚、是罵詈 question is followed by unobstructed coming and going, free extension and contraction, and adaptive function when the line is understood.",
+    "otherNineRows": "PASS: unchanged",
+    "summary": "PASS: KEEP (component)=6; KEEP (couplet)=4; no provisional or reject rows"
+  },
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review.v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch9-offset1-ledger.json",
+  "reviewedLedgerSha256": "4db7bbbe95257a27f9210121c302ae42a382930f7f862a1dd766c8a70f56ca05",
+  "scope": "Independent read-only review of ten offset-1 decisions; no authoring, registry, build, queue, or lineage mutation.",
+  "mechanicalChecks": {
+    "queueIdentityAndTermIdAllTen": "PASS",
+    "canonicalIndexAndModuloAllTen": "PASS",
+    "sealedRegistryAbsenceAllTen": "PASS",
+    "recomputedHitsFilesDistinctWorksAllTen": "PASS",
+    "zcVerifyKwicAndLineBoundsAllTwenty": "PASS",
+    "canonicalWorkIdsAndIndependentEvidenceAllTen": "PASS",
+    "variantAndPunctuationResolutions": "PASS"
+  },
+  "rows": [
+    {"canonicalIndex": 412, "term": "指東劃西", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The directional image repeatedly diagnoses evasive gesture or discursive displacement instead of directly stating the fundamental matter. The more frequent 畫 variant is correctly recorded without disturbing queue identity."},
+    {"canonicalIndex": 415, "term": "隨流認得性、無喜亦無憂", "verdict": "PASS", "reviewedDisposition": "KEEP (couplet)", "reason": "The two clauses repeatedly travel together as a quoted maxim, a demand for lived demonstration, and a formal-address cap; normalized comma and zero printed-comma counts reproduce."},
+    {"canonicalIndex": 418, "term": "穿卻鼻孔", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Independent addresses repeatedly use pierced nostrils for capture and control by a whisk, staff, formula, or stated position. The more frequent 却 graph is correctly preserved as a related form."},
+    {"canonicalIndex": 421, "term": "應物現形、如水中月", "verdict": "PASS", "reviewedDisposition": "KEEP (couplet)", "reason": "The complete analogy binds responsive manifestation to the traceless water-moon image; cases both explain the Dharma-body operation and immediately test where the moon is."},
+    {"canonicalIndex": 424, "term": "鯨呑海水盡、露出珊瑚枝", "verdict": "PASS", "reviewedDisposition": "KEEP (couplet)", "reason": "Both balanced clauses jointly provide the recurring revelation image in case criticism and formal addresses. The 呑-to-吞 and punctuation normalization is explicit and exact."},
+    {"canonicalIndex": 427, "term": "哆哆和和", "verdict": "REVISE", "reviewedDisposition": "KEEP (component)", "reason": "The unit and KEEP disposition are supported, but the reason should not frame it chiefly as criticism or as simply opposed to clean functioning. Broader cases use it ambivalently for an uncontrived, rough-and-ready, socially engaged mode: Hongzhi says 'if you are 灑灑落落, it does not hinder me being 哆哆和和'; Yuanwu urges practitioners to investigate themselves while 哆哆和和; other addresses explicitly ask whether the performance is praise or abuse and connect understanding it with unobstructed adaptive function. Revise only the semantic reason to preserve this mixed, deliberately unpolished deployment."},
+    {"canonicalIndex": 430, "term": "轉轆轆地", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Independent instructions repeatedly name smoothly rolling, immediate responsiveness and contrast it with deliberation, stagnation, and second-position thought."},
+    {"canonicalIndex": 433, "term": "來年更有新條在、惱亂春風卒未休", "verdict": "PASS", "reviewedDisposition": "KEEP (couplet)", "reason": "The two spring lines repeatedly remain intact as a turning sentence and formal cap for inexhaustible continuation; punctuation normalization reproduces."},
+    {"canonicalIndex": 436, "term": "拈一放一", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The phrase is repeatedly adjudicated as taking up and dropping one side at a time—sometimes praised tactically, sometimes rejected as partial handling—so the ledger correctly preserves the unit without forcing one valuation."},
+    {"canonicalIndex": 439, "term": "本分宗師", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The corpus explicitly defines the role through the eye and functioning needed to establish the school and challenges such a master to act in case appraisal."}
+  ],
+  "summary": {"PASS": 9, "REVISE": 1, "reviewedDispositionCountsAfterRevision": {"KEEP (component)": 6, "KEEP (couplet)": 4}},
+  "revisionScope": "Reason-only revision for 哆哆和和; identity, unit, KEEP disposition, exact counts, and evidence remain valid.",
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

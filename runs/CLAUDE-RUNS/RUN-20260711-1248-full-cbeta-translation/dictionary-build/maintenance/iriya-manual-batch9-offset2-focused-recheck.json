@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "iriya-manual-focused-recheck.v1",
+  "repairedLedger": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+  "repairedLedgerSha256": "c2b0b631d7e33cb4e4380020b59d0e402808aebe2a911245da56e6a319ebb49f",
+  "repairReceipt": "maintenance/iriya-manual-batch9-offset2-repair-receipt.json",
+  "repairReceiptSha256": "7490f5ea6657a0af70082cd21f9f4fd078f061007bbe28ef35d4b21174e51ac6",
+  "reviewAuthority": "maintenance/iriya-manual-batch9-offset2-cross-review.json",
+  "reviewAuthoritySha256": "ff7db1d830673e74c8575ada39be840e5d5ffd26b9cb2ba91a676a07e6cd2dfb",
+  "verdict": "PASS",
+  "checks": {
+    "珠囘玉轉Disposition": "KEEP (component)",
+    "珠囘玉轉Unit": "component",
+    "printedQueueIdentityPreserved": "珠囘玉轉",
+    "attestedNormalizedQuery": "珠回玉轉",
+    "normalizedExactCount": {"hits": 69, "files": 52, "distinctWorks": 51},
+    "printedExactCount": {"hits": 0, "files": 0, "distinctWorks": 0},
+    "reasonTracksReview": "PASS: reason now identifies case-by-case retreat conduct, lineage mechanism, responsive action, and tactical 縱/奪 functioning rather than dismissing the phrase as ornamental.",
+    "evidenceObjectsUnchangedAndVerified": "PASS",
+    "canonicalEvidenceWorkIds": "PASS",
+    "otherNineDecisionsUnchanged": "PASS",
+    "summaryReconciled": "PASS: KEEP (component)=9; KEEP (couplet)=1; REJECT=0"
+  },
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

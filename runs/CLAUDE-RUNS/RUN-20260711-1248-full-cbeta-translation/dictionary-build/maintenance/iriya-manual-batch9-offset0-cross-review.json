@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review.v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch9-offset0-ledger.json",
+  "reviewedLedgerSha256": "ab4ed206fb1b9e8f4f02364198f4e0979b98ddf5662650ecbd7f2e77836706d9",
+  "scope": "Independent read-only review of ten offset-0 decisions; no authoring, registry, build, queue, or lineage mutation.",
+  "mechanicalChecks": {
+    "queueIdentityAndTermIdAllTen": "PASS",
+    "canonicalIndexAndModuloAllTen": "PASS",
+    "sealedRegistryAbsenceAllTen": "PASS",
+    "recomputedHitsFilesDistinctWorksAllTen": "PASS",
+    "zcVerifyKwicAndLineBoundsAllTwenty": "PASS",
+    "canonicalWorkIdsAndIndependentEvidenceAllTen": "PASS",
+    "variantAndPunctuationResolutions": "PASS"
+  },
+  "rows": [
+    {"canonicalIndex": 312, "term": "靈龜曳尾", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Independent commentaries repeatedly diagnose the residual trace by which even fast, apparently traceless functioning exposes itself."},
+    {"canonicalIndex": 315, "term": "衲被蒙頭", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Formal addresses and departure verses repeatedly use covering the head with the patchwork quilt for deliberate withdrawal from affairs, knowledge, and even the appearance of buddhas."},
+    {"canonicalIndex": 318, "term": "佛向上人", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The fixed Dongshan case and independent exposition establish a technical person-category beyond attachment to Buddha and dharmas."},
+    {"canonicalIndex": 321, "term": "氣急殺人", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The phrase repeatedly lands as an immediate verdict of exasperation after contrived, frustrating, or unanswerable encounter turns."},
+    {"canonicalIndex": 324, "term": "刺腦入膠盆", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Multiple independent cases use the head-first plunge into a glue pot to diagnose self-entrapment within an apparently enlightened response or liberation claim."},
+    {"canonicalIndex": 327, "term": "擔枷過状", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The recurring legal image identifies self-incrimination in encounter speech. Printed 状 correctly resolves to corpus-attested 狀, with zero printed-form exact hits and 98 normalized hits."},
+    {"canonicalIndex": 330, "term": "勾賊破家", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Case critics repeatedly apply summoning the thief who ruins the house to a maneuver that invites or supplies its own undoing."},
+    {"canonicalIndex": 333, "term": "脚踏實地", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "The headword is directly an answer about where to establish one's life and an instruction for grounded huatou investigation; the 腳 variant count also reproduces."},
+    {"canonicalIndex": 336, "term": "打作兩橛", "verdict": "PASS", "reviewedDisposition": "KEEP (component)", "reason": "Independent instruction and case criticism repeatedly diagnose splitting one continuous reality or teaching into two disconnected pieces."},
+    {"canonicalIndex": 339, "term": "達磨不來東土、二祖不往西天", "verdict": "PASS", "reviewedDisposition": "KEEP (couplet)", "reason": "The two balanced counterfactual clauses repeatedly travel as one formula negating dependence on lineage transmission as eastward or westward travel; normalized and printed punctuation counts reproduce."}
+  ],
+  "summary": {"PASS": 10, "REVISE": 0, "reviewedDispositionCounts": {"KEEP (component)": 9, "KEEP (couplet)": 1}},
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}
