@@ -1,8 +1,9 @@
 {
   "Id": "t_8a06e7d99b19",
   "SourceTerm": "法嗣",
-  "CreatedBy": "Codex",
-  "WrittenUtc": null,
+  "CreatedBy": "Codex fresh f001 lane B evidence-first",
+  "WrittenUtc": "2026-07-15T05:30:00Z",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "Senses": [
     {
       "SenseKey": null,
@@ -21,9 +22,8 @@
         "successor in the lineage"
       ],
       "Status": "preferred",
-      "Explanation": "A lineage heir is the person selected or recognized to continue a teaching line; Chan lamp records make this person-label a principal genealogical heading. Qianyan Yuanzhang gives the corpus's clearest selection account: from among thousands, one is picked out to make the transmission and seed the lineage, “like lamp lighting lamp, like water joining water,” and therefore there is the designation “lineage heir.” Other records count sixteen heirs of Shoushan Xingnian or one collateral heir of Daoxin, while Prajnatara recognizes Bodhidharma and Michaka predicts an heir. Tang Shiji says that only twelve people were called Miyun Yuanwu's heirs, Shunzhi Emperor asks whose heir Wunian was, and an unnamed questioner asks why Baiyun Haihui did not select one. Chuiwan Guangzhen likewise cites Muzhou's having none rather than accepting indiscriminate succession. The role is not limited to ordained monks: one catalogue names a lay successor of a lay predecessor. Across 10,572 occurrences in 168 allowlisted texts, the term is a recurrent device for making Chan genealogy public, but a lineage heading does not assign every later exchange to the person named in that heading.",
       "Validation": "multi-source",
-      "Note": "Primary person-role sense. Split from lineage succession or affiliation as a relation/status. The separate verb means “inherit the lineage” (嗣法).",
+      "Note": "Primary person-role sense. Split from lineage succession or affiliation as a relation/status. The separate verb means “inherit the lineage” (receiving the teaching).",
       "Occurrences": [
         {
           "RelPath": "T/T51/T51n2077.xml",
@@ -35,16 +35,22 @@
             "Status": "impersonal",
             "Kind": "catalogue heading",
             "ActorLabel": "editorial lineage heading",
-            "ActorRole": "genealogical classification",
+            "ActorRole": "compiler",
             "GrammarEvidence": "汝州首山念禪師法嗣一十六人 is a nominal list heading that counts sixteen heirs; it contains no speech verb, personal action, or grammatical subject performing a turn.",
-            "ReviewedBy": "Codex independent exact-actor review",
-            "ReviewedUtc": "2026-07-13T20:16:42Z"
+            "ReviewedBy": "Codex Lane B complete-case heading adjudication",
+            "ReviewedUtc": "2026-07-16T19:50:28.039674+00:00",
+            "HeadingType": "section"
           },
           "ContextMasters": [
-            {"MasterName": "Shoushan Xingnian", "Roles": ["lineage-predecessor"]}
+            {
+              "MasterName": "Shoushan Xingnian",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Continued Transmission of the Lamp (續傳燈錄), Great Mirror tenth-generation catalogue. This impersonal narrated catalogue heading counts sixteen lineage heirs of Shoushan Xingnian; its nominal grammar contains no exact personal actor."
+          "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp (續傳燈錄): Editorial or procedural text: editorial lineage heading is the exact textual actor. Continued Transmission of the Lamp (續傳燈錄), Great Mirror tenth-generation catalogue. This impersonal narrated catalogue heading counts sixteen lineage heirs of Shoushan Xingnian; its nominal grammar contains no exact personal actor."
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
@@ -53,10 +59,21 @@
           "Kwic": "祖知是法嗣。以時尚未至。",
           "MasterName": "Prajnatara",
           "ContextMasters": [
-            {"MasterName": "Bodhidharma", "Roles": ["recognized-heir", "person-discussed"]}
+            {
+              "MasterName": "Bodhidharma",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Prajnatara",
+              "Roles": [
+                "utterer"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Compendium of Five Lamps (五燈會元), section on Prajnatara. The complete unit identifies Prajnatara as the patriarch who recognizes Bodhitara, later Bodhidharma, as the lineage heir and keeps that recognition unspoken for the time being."
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Prajnatara is the exact speaker. Compendium of Five Lamps (五燈會元), section on Prajnatara. The complete unit identifies Prajnatara as the patriarch who recognizes Bodhitara, later Bodhidharma, as the lineage heir and keeps that recognition unspoken for the time being."
         },
         {
           "RelPath": "T/T51/T51n2076.xml",
@@ -65,7 +82,15 @@
           "Kwic": "必有大士為吾法嗣乃入城。",
           "MasterName": "Michaka",
           "Curated": true,
-          "AttributionNote": "Jingde Transmission of the Lamp (景德傳燈錄), section on the sixth patriarch Michaka. The complete scene names Michaka as the speaker who sees the auspicious cloud, predicts an heir, and enters the city."
+          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Michaka is the exact speaker. Jingde Transmission of the Lamp (景德傳燈錄), section on the sixth patriarch Michaka. The complete scene names Michaka as the speaker who sees the auspicious cloud, predicts an heir, and enters the city.",
+          "ContextMasters": [
+            {
+              "MasterName": "Michaka",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "J/J32/J32nB273.xml",
@@ -74,7 +99,15 @@
           "Kwic": "向千箇萬箇中點一箇出來，作靈山正傳、為少林種草，如燈照燈、如水與水，故有法嗣之說。",
           "MasterName": "Qianyan Yuanzhang",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Master Qianyan (千巖和尚語錄), reply to Elder Wuyong. Qianyan Yuanzhang says that one person is selected from among thousands to continue the transmission and gives this as the basis for the designation “lineage heir.”"
+          "AttributionNote": "Source record (J/J32/J32nB273.xml). Recorded Sayings of Monk Qianyan (千巖和尚語錄): Qianyan Yuanzhang is the exact speaker. Recorded Sayings of Master Qianyan (千巖和尚語錄), reply to Elder Wuyong. Qianyan Yuanzhang says that one person is selected from among thousands to continue the transmission and gives this as the basis for the designation “lineage heir.”",
+          "ContextMasters": [
+            {
+              "MasterName": "Qianyan Yuanzhang",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "J/J10/J10nA158.xml",
@@ -83,10 +116,21 @@
           "Kwic": "稱法嗣者止十二人",
           "MasterName": "Tang Shiji",
           "ContextMasters": [
-            {"MasterName": "Miyun Yuanwu", "Roles": ["lineage-predecessor", "person-discussed"]}
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Tang Shiji",
+              "Roles": [
+                "utterer"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Miyun (密雲禪師語錄), Inscription for the Pagoda of His Bequeathed Robe at Jinsu. The byline names Tang Shiji as author; Tang Shiji says that only twelve people were called Miyun Yuanwu's lineage heirs. Miyun is the person discussed, not the exact actor of the memorial statement."
+          "AttributionNote": "Source record (J/J10/J10nA158.xml). Recorded Sayings of Chan Master Miyun (密雲禪師語錄): Tang Shiji is the exact speaker. Recorded Sayings of Chan Master Miyun (密雲禪師語錄), Inscription for the Pagoda of His Bequeathed Robe at Jinsu. The byline names Tang Shiji as author; Tang Shiji says that only twelve people were called Miyun Yuanwu's lineage heirs. Miyun is the person discussed, not the exact actor of the memorial statement."
         },
         {
           "RelPath": "X/X83/X83n1574.xml",
@@ -99,12 +143,21 @@
             "Kind": "participant",
             "ActorLabel": "unnamed questioner",
             "ActorRole": "questioner",
-            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
             "ReviewedBy": "Codex independent exact-actor review",
-            "ReviewedUtc": "2026-07-13T20:16:42Z"
+            "ReviewedUtc": "2026-07-13T20:16:42Z",
+            "GrammarEvidence": "The full clause is narration or an impersonal textual proposition, not speech assigned to a rostered master."
           },
           "Curated": true,
-          "AttributionNote": "Expanded Collection of the Continued Transmission of the Lamp (增集續傳燈錄), Foguang Daowu biography. An unnamed questioner asks Baiyun Haihui why he did not select a lineage heir; the line, expanded context, section, title, TEI header, and corpus-wide parallel search do not name that non-master participant. Baiyun Haihui answers after the question."
+          "AttributionNote": "Source record (X/X83/X83n1574.xml). Expanded Collection: Continued Transmission of the Lamp Record (增集續傳燈錄): The questioner is unnamed: unnamed questioner is the exact textual actor. Expanded Collection of the Continued Transmission of the Lamp (增集續傳燈錄), Foguang Daowu biography. An unnamed questioner asks Baiyun Haihui why he did not select a lineage heir; the line, expanded context, section, title, TEI header, and corpus-wide parallel search do not name that non-master participant. Baiyun Haihui answers after the question.",
+          "ContextMasters": []
         },
         {
           "RelPath": "J/J26/J26nB180.xml",
@@ -113,10 +166,22 @@
           "Kwic": "上云：「無念和尚誰之法嗣？」",
           "MasterName": "Shunzhi Emperor",
           "ContextMasters": [
-            {"MasterName": "Muchen Daomin", "Roles": ["respondent", "addressee"]}
+            {
+              "MasterName": "Muchen Daomin",
+              "Roles": [
+                "respondent",
+                "addressee"
+              ]
+            },
+            {
+              "MasterName": "Shunzhi Emperor",
+              "Roles": [
+                "utterer"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Muchen Daomin's Northern Tour Collection (天童弘覺忞禪師北遊集), imperial audience. Shunzhi Emperor explicitly asks whose lineage heir Wunian was; Muchen Daomin answers only after the stored question and is the respondent, not its exact actor."
+          "AttributionNote": "Source record (J/J26/J26nB180.xml). Northern Travels Collection of Chan Master Hongjue Min of Tiantong (天童弘覺忞禪師北遊集): Shunzhi Emperor is the exact speaker. Muchen Daomin's Northern Tour Collection (天童弘覺忞禪師北遊集), imperial audience. Shunzhi Emperor explicitly asks whose lineage heir Wunian was; Muchen Daomin answers only after the stored question and is the respondent, not its exact actor."
         },
         {
           "RelPath": "J/J29/J29nB238.xml",
@@ -125,10 +190,21 @@
           "Kwic": "寧效無法嗣之睦州、不出頭之清素",
           "MasterName": "Chuiwan Guangzhen",
           "ContextMasters": [
-            {"MasterName": "Muzhou Daoming", "Roles": ["person-discussed"]}
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Chuiwan Guangzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Juyun Chuiwan Guangzhen (聚雲吹萬真禪師語錄), address-to-the-assembly section. Chuiwan Guangzhen himself urges the assembly to emulate Muzhou's having no lineage heir rather than accept indiscriminate succession."
+          "AttributionNote": "Source record (J/J29/J29nB238.xml). Recorded Sayings of Chan Master Chuiwanzhen of Juyun (聚雲吹萬真禪師語錄): Chuiwan Guangzhen is the exact speaker. Recorded Sayings of Chan Master Chuiwan Guangzhen (聚雲吹萬真禪師語錄), address-to-the-assembly section. Chuiwan Guangzhen himself urges the assembly to emulate Muzhou's having no lineage heir rather than accept indiscriminate succession."
         },
         {
           "RelPath": "X/X80/X80n1566.xml",
@@ -140,13 +216,15 @@
             "Status": "impersonal",
             "Kind": "catalogue heading",
             "ActorLabel": "editorial lineage heading",
-            "ActorRole": "genealogical classification",
+            "ActorRole": "compiler",
             "GrammarEvidence": "密菴何居士法嗣素菴田大士 is a nominal genealogy heading joining predecessor, role, and heir; it contains no speech verb or personal turn.",
-            "ReviewedBy": "Codex independent exact-actor review",
-            "ReviewedUtc": "2026-07-13T20:16:42Z"
+            "ReviewedBy": "Codex Lane B complete-case heading adjudication",
+            "ReviewedUtc": "2026-07-16T19:50:28.039800+00:00",
+            "HeadingType": "section"
           },
           "Curated": true,
-          "AttributionNote": "Abridged Continuation of the Compendium of Five Lamps (五燈會元續略), Southern Peak twenty-fifth-generation catalogue. The impersonal narrated heading names Layman Tian as Layman He's lineage heir; its nominal grammar is not a speaker turn."
+          "AttributionNote": "Source record (X/X80/X80n1566.xml). Five Lamps Compendium: Continued Abridgment (五燈會元續略): Editorial or procedural text: editorial lineage heading is the exact textual actor. Abridged Continuation of the Compendium of Five Lamps (五燈會元續略), Southern Peak twenty-fifth-generation catalogue. The impersonal narrated heading names Layman Tian as Layman He's lineage heir; its nominal grammar is not a speaker turn.",
+          "ContextMasters": []
         },
         {
           "RelPath": "X/X79/X79n1557.xml",
@@ -158,29 +236,22 @@
             "Status": "impersonal",
             "Kind": "catalogue heading",
             "ActorLabel": "editorial lineage heading",
-            "ActorRole": "genealogical classification",
+            "ActorRole": "compiler",
             "GrammarEvidence": "四祖道信大師旁出法嗣一人 is a nominal contents heading that counts one collateral heir; no person speaks or performs the heading.",
-            "ReviewedBy": "Codex independent exact-actor review",
-            "ReviewedUtc": "2026-07-13T20:16:42Z"
+            "ReviewedBy": "Codex Lane B complete-case heading adjudication",
+            "ReviewedUtc": "2026-07-16T19:50:28.039827+00:00",
+            "HeadingType": "section"
           },
           "ContextMasters": [
-            {"MasterName": "Daoxin", "Roles": ["lineage-predecessor"]}
+            {
+              "MasterName": "Daoxin",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Joint Lamp Compendium (聯燈會要), table of contents. The impersonal narrated genealogy counts one collateral lineage heir of Daoxin; this nominal catalogue line has no personal speaker."
-        },
-        {
-          "RelPath": "J/J25/J25nB175.xml",
-          "FromLb": "0757c12",
-          "ToLb": "0757c12",
-          "Kwic": "五峰禪師，嗣法於天童密雲悟和尚",
-          "MasterName": "Wufeng Ruxue",
-          "ContextMasters": [
-            {"MasterName": "Miyun Yuanwu", "Roles": ["lineage-predecessor"]}
-          ],
-          "Curated": true,
-          "EvidenceRole": "family",
-          "AttributionNote": "Recorded Sayings of Chan Master Dawei Wufeng Ruxue (大溈五峰學禪師語錄), pagoda inscription. The inscription states that Wufeng Ruxue inherited the lineage from Miyun Yuanwu; this family anchor supports the distinct verb and does not count toward the headword floor."
+          "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp (聯燈會要): Editorial or procedural text: editorial lineage heading is the exact textual actor. Joint Lamp Compendium (聯燈會要), table of contents. The impersonal narrated genealogy counts one collateral lineage heir of Daoxin; this nominal catalogue line has no personal speaker."
         }
       ],
       "SourceTexts": [
@@ -193,8 +264,7 @@
         "J/J26/J26nB180.xml",
         "J/J29/J29nB238.xml",
         "X/X80/X80n1566.xml",
-        "X/X79/X79n1557.xml",
-        "J/J25/J25nB175.xml"
+        "X/X79/X79n1557.xml"
       ],
       "RelatedMasters": [
         "Shoushan Xingnian",
@@ -215,7 +285,9 @@
         "法子",
         "法孫",
         "未詳法嗣"
-      ]
+      ],
+      "Explanation": "A lineage heir is the person selected or recognized to continue a teaching line; Chan lamp records make this person-label a principal genealogical heading. Qianyan Yuanzhang gives the corpus's clearest selection account: from among thousands, one is picked out to make the transmission and seed the lineage, “like lamp lighting lamp, like water joining water,” and therefore there is the designation “lineage heir.” Other records count sixteen heirs of Shoushan Xingnian or one collateral heir of Daoxin, while Prajnatara recognizes Bodhidharma and Michaka predicts an heir. Tang Shiji says that only twelve people were called Miyun Yuanwu's heirs, Shunzhi Emperor asks whose heir Wunian was, and an unnamed questioner asks why Baiyun Haihui did not select one. Chuiwan Guangzhen likewise cites Muzhou's having none rather than accepting indiscriminate succession. The role is not limited to ordained monks: one catalogue names a lay successor of a lay predecessor. Across 10,572 occurrences in 168 allowlisted texts, the term is a recurrent device for making Chan genealogy public, but a lineage heading does not assign every later exchange to the person named in that heading.",
+      "ClaimAnchors": []
     },
     {
       "SenseKey": null,
@@ -234,7 +306,6 @@
         "lineage status"
       ],
       "Status": "preferred",
-      "Explanation": "The succession relation or lineage affiliation itself, rather than the person who is an heir. Catalogues append people “whose lineage succession is not detailed” (未詳法嗣者); an unnamed questioner asks from whom Shexian Guisheng obtained lineage succession (師今得法嗣何人); and the messenger Wenxiang carries a written succession document (法嗣書) to Wuzu Fayan. The relation is not accepted merely because a later genealogy records it: Dahui Zonggao recounts Gaoting Jian's later succession to Deshan Xuanjian, then says that if Gaoting is to succeed Deshan, it is “not yet acceptable” because he is still separated from Deshan by the river. A single “lineage heir” gloss cannot describe an unknown affiliation, a succession document, or the predication “succeed Deshan” without changing the referent.",
       "Validation": "multi-source",
       "Note": "The recurrent question “from whom did you obtain lineage succession?” (得法嗣何人) must not be paraphrased globally as “obtain lineage heirs.” The related verbal construction is “inherit the lineage from X” (嗣法於X) in its own entry.",
       "Occurrences": [
@@ -248,13 +319,14 @@
             "Status": "impersonal",
             "Kind": "catalogue classification",
             "ActorLabel": "editorial affiliation category",
-            "ActorRole": "genealogical classification",
+            "ActorRole": "compiler",
             "GrammarEvidence": "In 未詳法嗣者，附此, the headword lies inside the nominal category ‘those whose lineage affiliation is not detailed’; it is not a person's utterance or action.",
             "ReviewedBy": "Codex independent exact-actor review",
             "ReviewedUtc": "2026-07-13T20:16:42Z"
           },
           "Curated": true,
-          "AttributionNote": "Abridged Continuation of the Compendium of Five Lamps (五燈會元續略), editorial catalogue. The impersonal narrated classification appends people whose lineage affiliation is not detailed; the headword lies inside a nominal category rather than a personal utterance."
+          "AttributionNote": "Source record (X/X80/X80n1566.xml). Five Lamps Compendium: Continued Abridgment (五燈會元續略): Editorial or procedural text: editorial affiliation category is the exact textual actor. Abridged Continuation of the Compendium of Five Lamps (五燈會元續略), editorial catalogue. The impersonal narrated classification appends people whose lineage affiliation is not detailed; the headword lies inside a nominal category rather than a personal utterance.",
+          "ContextMasters": []
         },
         {
           "RelPath": "X/X78/X78n1553.xml",
@@ -267,15 +339,29 @@
             "Kind": "monk",
             "ActorLabel": "unnamed monk",
             "ActorRole": "questioner",
-            "RungsChecked": ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"],
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
             "ReviewedBy": "Codex independent exact-actor review",
-            "ReviewedUtc": "2026-07-13T20:16:42Z"
+            "ReviewedUtc": "2026-07-13T20:16:42Z",
+            "GrammarEvidence": "The full clause is narration or an impersonal textual proposition, not speech assigned to a rostered master."
           },
           "ContextMasters": [
-            {"MasterName": "Shexian Guisheng", "Roles": ["respondent", "addressee"]}
+            {
+              "MasterName": "Shexian Guisheng",
+              "Roles": [
+                "respondent",
+                "addressee"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Tiansheng Expanded Lamp Record (天聖廣燈錄), section on Shexian Guisheng. An unnamed monk asks from whom Shexian Guisheng received lineage succession; the line, expanded context, section, title, TEI header, and parallel occurrences do not name that monk. Shexian answers afterward and is the respondent, not the exact actor of the stored question."
+          "AttributionNote": "Source record (X/X78/X78n1553.xml). Tiansheng Expanded Lamp Record (天聖廣燈錄): The monk is unnamed: unnamed monk is the exact textual actor. Tiansheng Expanded Lamp Record (天聖廣燈錄), section on Shexian Guisheng. An unnamed monk asks from whom Shexian Guisheng received lineage succession; the line, expanded context, section, title, TEI header, and parallel occurrences do not name that monk. Shexian answers afterward and is the respondent, not the exact actor of the stored question."
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
@@ -285,40 +371,45 @@
           "MasterName": "Wuzu Fayan",
           "Curated": true,
           "EvidenceRole": "family",
-          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), lower record of Wuzu Fayan. The messenger Wenxiang brings the succession document from Simian, and Wuzu Fayan receives and raises it before the teaching seat; the stored span is narrative rather than quoted speech."
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Wuzu Fayan is the exact speaker. Old Recorded Sayings of Venerable Masters (古尊宿語錄), lower record of Wuzu Fayan. The messenger Wenxiang brings the succession document from Simian, and Wuzu Fayan receives and raises it before the teaching seat; the stored span is narrative rather than quoted speech.",
+          "ContextMasters": [
+            {
+              "MasterName": "Wuzu Fayan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "T/T47/T47n1998A.xml",
-          "FromLb": "0820a15",
-          "ToLb": "0820a19",
-          "Kwic": "上堂舉。高亭初參德山。隔江問訊。德山以手招之。高亭忽然開悟。乃橫趨而去。更不回顧。後開法嗣德山。師云。高亭橫趨而去。許伊是箇靈利衲僧。若要法嗣德山。即未可。何故猶與德山隔江在。",
+          "FromLb": "0820a17",
+          "ToLb": "0820a17",
+          "Kwic": "後開法嗣德山。",
           "MasterName": "Dahui Zonggao",
           "ContextMasters": [
-            {"MasterName": "Deshan Xuanjian", "Roles": ["lineage-predecessor", "person-discussed"]}
+            {
+              "MasterName": "Deshan Xuanjian",
+              "Roles": [
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
           ],
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄), hall address. Dahui Zonggao raises Gaoting Jian's encounter with Deshan Xuanjian, records the later succession relation, and then says that accepting Gaoting as Deshan's successor is not yet permissible because he is still across the river."
-        },
-        {
-          "RelPath": "J/J25/J25nB175.xml",
-          "FromLb": "0757c12",
-          "ToLb": "0757c12",
-          "Kwic": "五峰禪師，嗣法於天童密雲悟和尚",
-          "MasterName": "Wufeng Ruxue",
-          "ContextMasters": [
-            {"MasterName": "Miyun Yuanwu", "Roles": ["lineage-predecessor"]}
-          ],
-          "Curated": true,
-          "EvidenceRole": "family",
-          "AttributionNote": "Recorded Sayings of Chan Master Dawei Wufeng Ruxue (大溈五峰學禪師語錄), pagoda inscription. The inscription states that Wufeng Ruxue inherited the lineage from Miyun Yuanwu; this anchors the related verbal construction, not the headword's depth, and the inscription's narrator is not identified in the stored unit."
+          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄): Dahui Zonggao is the exact speaker. Recorded Sayings of Chan Master Dahui Pujue (大慧普覺禪師語錄), hall address. Dahui Zonggao raises Gaoting Jian's encounter with Deshan Xuanjian, records the later succession relation, and then says that accepting Gaoting as Deshan's successor is not yet permissible because he is still across the river."
         }
       ],
       "SourceTexts": [
         "X/X80/X80n1566.xml",
         "X/X78/X78n1553.xml",
         "C/C077/C077n1710.xml",
-        "T/T47/T47n1998A.xml",
-        "J/J25/J25nB175.xml"
+        "T/T47/T47n1998A.xml"
       ],
       "RelatedMasters": [
         "Wuzu Fayan",
@@ -333,7 +424,44 @@
         "未詳法嗣",
         "法嗣書",
         "傳法"
-      ]
+      ],
+      "ClaimAnchors": [
+        {
+          "RelPath": "J/J25/J25nB175.xml",
+          "FromLb": "0757c12",
+          "ToLb": "0757c12",
+          "Kwic": "五峰禪師，嗣法於天童密雲悟和尚",
+          "ContextMasters": [
+            {
+              "MasterName": "Wufeng Ruxue",
+              "Roles": [
+                "person-described",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Miyun Yuanwu",
+              "Roles": [
+                "teacher",
+                "person-described"
+              ]
+            }
+          ],
+          "Curated": true,
+          "AttributionNote": "Source record (J/J25/J25nB175.xml). Recorded Sayings of Chan Master Wufengxue of Dawei (大溈五峰學禪師語錄): Compiler narration: the compiler narrates that Wufeng Ruxue received the teaching from Miyun Yuanwu; neither man utters the reversed verbal form (嗣法). Source title: (大溈五峰學禪師語錄).",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "biographical narration",
+            "ActorLabel": "compiler of the Recorded Sayings of Chan Master Sanyishan",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The unquoted biography has Wufeng as grammatical subject of 嗣法於 and Miyun as its lineage object.",
+            "ReviewedBy": "Codex lane-B semantic-review repair",
+            "ReviewedUtc": "2026-07-15T00:00:00Z"
+          },
+          "ClaimText": "嗣法"
+        }
+      ],
+      "Explanation": "The succession relation or lineage affiliation itself, rather than the person who is an heir. Catalogues append people “whose lineage succession is not detailed” (未詳法嗣者); an unnamed questioner asks from whom Shexian Guisheng obtained lineage succession (師今得法嗣何人); and the messenger Wenxiang carries a written succession document (法嗣書) to Wuzu Fayan. The relation is not accepted merely because a later genealogy records it: Dahui Zonggao recounts Gaoting Jian's later succession to Deshan Xuanjian, then says that if Gaoting is to succeed Deshan, it is “not yet acceptable” because he is still separated from Deshan by the river. A single “lineage heir” gloss cannot describe an unknown affiliation, a succession document, or the predication “succeed Deshan” without changing the referent."
     }
   ]
 }

@@ -1,8 +1,10 @@
 {
   "Id": "t_b90a5f36ec86",
   "SourceTerm": "弄精魂",
-  "CreatedBy": "Codex",
-  "WrittenUtc": null,
+  "CreatedBy": "Codex f002 Lane C author",
+  "WrittenUtc": "2026-07-15T01:46:58.452610+00:00",
+  "SchemaVersion": 2,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
   "Senses": [
     {
       "SenseKey": null,
@@ -10,21 +12,29 @@
       "PreferredTarget": "play with the vital spirit",
       "AlternateTargets": [
         "fiddle with the vital spirit",
-        "make a show with the vital spirit"
+        "make a show with the vital spirit",
+        "a stock rebuke for empty or fixed display"
       ],
       "Status": "preferred",
-      "Explanation": "Literally, to play with the vital spirit. The term occurs 215 times in 108 allowlisted texts as a stock Chan rebuke. A later master applies it in sequence to talking of the lineage and teachings, of Chan and the Way, and of mind and nature. Yuanwu applies it to people who misread Bodhidharma's 'vast, no holy' and to Xianglin's offering words that displayed his understanding; another collection calls such people 'fellows who play with the vital spirit.' A record also applies the phrase to people sitting woodenly and guarding a dead corpse. The targets vary—speech, presented understanding, or fixed conduct—but the phrase remains the same disparaging action. The sampled records leave the literal 'vital spirit' unglossed.",
       "Validation": "multi-source",
       "Note": "One idiomatic verbal sense. The object 'vital spirit' is retained literally because the sampled records define the rebuke by its targets. The agent noun 'a fellow who plays with the vital spirit' is a morphological deployment, not a separate person or title.",
       "Occurrences": [
         {
           "RelPath": "J/J39/J39nB466.xml",
           "FromLb": "0848a25",
-          "ToLb": "0848a26",
-          "Kwic": "說宗說教，也是弄精魂；說禪說道，也是弄精魂；說心說性，也是弄精魂；",
+          "ToLb": "0848a25",
+          "Kwic": "「說宗說教，也是弄精魂；",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Baishan Kai of Shanxi (山西柏山楷禪師語錄): in his instruction to the assembly, Baishan Kai repeatedly classifies speaking of school or doctrine, Chan or the Way, mind or nature as toying with the spirit-soul.",
-          "MasterName": "Baishan Kai"
+          "AttributionNote": "Source record (J/J39/J39nB466.xml). Recorded Sayings of Chan Master Baishan Kai of Shanxi (山西柏山楷禪師語錄): in his instruction to the assembly, Baishan Kai repeatedly classifies speaking of school or teachings, Chan or the Way, mind or nature as toying with the spirit-soul.",
+          "MasterName": "Baishan Kai",
+          "ContextMasters": [
+            {
+              "MasterName": "Baishan Kai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "T/T48/T48n2003.xml",
@@ -32,8 +42,16 @@
           "ToLb": "0140b20",
           "Kwic": "如今人多少錯會。却去弄精魂。瞠眼睛云。廓然無聖。且喜沒交涉。",
           "Curated": true,
-          "AttributionNote": "佛果圜悟禪師碧巖錄: complete-case exact-turn review identifies Yuanwu Keqin as the actor for this occurrence.",
-          "MasterName": "Yuanwu Keqin"
+          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): (佛果圜悟禪師碧巖錄): complete-case exact-turn review identifies Yuanwu Keqin as the actor for this occurrence.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "T/T48/T48n2003.xml",
@@ -41,8 +59,23 @@
           "ToLb": "0157b01",
           "Kwic": "香林當時。也下語呈見解弄精魂。終不相契。",
           "Curated": true,
-          "AttributionNote": "Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄). Yuanwu Keqin names Xianglin Chengyuan as the exact actor who offered words, displayed his understanding, and fooled with the spirit, but did not accord with Yunmen Wenyan.",
-          "MasterName": "Xianglin Chengyuan"
+          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): Blue Cliff Record of Chan Master Foguo Yuanwu (佛果圜悟禪師碧巖錄): Yuanwu Keqin says that Xianglin Chengyuan offered words, displayed his understanding, and fooled with the spirit, but did not accord with his teacher. Yuanwu, not the person described, utters the headword.",
+          "MasterName": "Yuanwu Keqin",
+          "ContextMasters": [
+            {
+              "MasterName": "Xianglin Chengyuan",
+              "Roles": [
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer",
+                "commentator"
+              ]
+            }
+          ]
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -50,13 +83,19 @@
           "ToLb": "0024c09",
           "Kwic": "天童覺，舉：誌公語畢，云：弄精魂漢有什麼限？",
           "Curated": true,
-          "AttributionNote": "Collected Old Cases Raised in the Lineage (宗門拈古彙集): in his explicitly introduced comment after raising Baozhi's words, Tiantong Hongzhi Zhengjue asks how many people there are who toy with their spirit-soul.",
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases” (宗門拈古彙集): Collected Old Cases Raised in the Lineage (宗門拈古彙集): in his explicitly introduced comment after raising Baozhi's words, Tiantong Hongzhi Zhengjue asks how many people there are who toy with their spirit-soul.",
           "MasterName": "Tiantong Hongzhi Zhengjue",
           "ContextMasters": [
             {
               "MasterName": "Baozhi",
               "Roles": [
-                "earlier-source-raised"
+                "person-discussed"
+              ]
+            },
+            {
+              "MasterName": "Tiantong Hongzhi Zhengjue",
+              "Roles": [
+                "utterer"
               ]
             }
           ]
@@ -67,15 +106,68 @@
           "ToLb": "0735a13",
           "Kwic": "祗為他一輩弄精魂漢，終日呆樁樁地守個死屍，",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Chan Master Yunxi Langting Ting (雲溪俍亭挺禪師語錄): Langting Jingting rebukes people who manipulate the conscious spirit and stand all day guarding a dead corpse.",
-          "MasterName": "Langting Jingting"
+          "AttributionNote": "Source record (J/J33/J33nB294.xml). Recorded Sayings of Chan Master Liangting Ting of Yunxi (雲溪俍亭挺禪師語錄): Recorded Sayings of Chan Master Yunxi Langting Ting (雲溪俍亭挺禪師語錄): Langting Jingting rebukes people who manipulate the conscious spirit and stand all day guarding a dead corpse.",
+          "MasterName": "Langting Jingting",
+          "ContextMasters": [
+            {
+              "MasterName": "Langting Jingting",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0303a23",
+          "ToLb": "0303b01",
+          "Kwic": "天堂覺舉誌公語云：弄精魂漢有什麼限？舉玄沙語云：奇怪！八十翁翁入場屋，真誠不是小兒戲。",
+          "Curated": true,
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Dharma Grove of the Tradition’s Mirror (宗鑑法林): Forest of Models of the Chan School (宗鑑法林) explicitly marks Tiantong Jue, Hongzhi Zhengjue, as raising Baozhi and Xuansha in turn; Hongzhi calls the first an unlimited fellow fooling with the vital spirit and sharply distinguishes the second.",
+          "MasterName": "Hongzhi Zhengjue",
+          "ContextMasters": [
+            {
+              "MasterName": "Hongzhi Zhengjue",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "X/X72/X72n1444.xml",
+          "FromLb": "0791c04",
+          "ToLb": "0791c05",
+          "Kwic": "主人公，噯！惺惺著，以後莫被人瞞。諾！諸方謂其弄精魂",
+          "Curated": true,
+          "AttributionNote": "Source record (X/X72/X72n1444.xml). Recorded Sayings of Chan Master Zhanran Yuancheng: Zhanran Yuancheng utters the headword-bearing report that masters elsewhere called this ‘playing with the vital spirit’ while raising Ruiyan Shiyan's exchange; Ruiyan is the person discussed, not the utterer of the judgment.",
+          "MasterName": "Zhanran Yuancheng",
+          "ContextMasters": [
+            {
+              "MasterName": "Ruiyan Shiyan",
+              "Roles": [
+                "person-discussed",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Zhanran Yuancheng",
+              "Roles": [
+                "utterer",
+                "record-owner",
+                "later-raiser"
+              ]
+            }
+          ]
         }
       ],
       "SourceTexts": [
         "J/J39/J39nB466.xml",
         "T/T48/T48n2003.xml",
         "X/X66/X66n1296.xml",
-        "J/J33/J33nB294.xml"
+        "J/J33/J33nB294.xml",
+        "X/X66/X66n1297.xml",
+        "X/X72/X72n1444.xml"
       ],
       "RelatedMasters": [],
       "RelatedTerms": [
@@ -84,7 +176,16 @@
         "呈見解",
         "守屍鬼",
         "昭昭靈靈"
-      ]
+      ],
+      "SearchAliases": [
+        "play with the vital spirit",
+        "fiddle with the vital spirit",
+        "make a show with the vital spirit",
+        "Zen play with the vital spirit",
+        "rebuke for empty display"
+      ],
+      "Explanation": "The term occurs 215 times in 108 allowlisted texts as a stock Chan rebuke. A later master applies it in sequence to talking of the lineage and teachings, of Chan and the Way, and of mind and nature. Yuanwu applies it to people who misread Bodhidharma's 'vast, no holy' and to Xianglin's offering words that displayed his understanding; another collection calls such people 'fellows who play with the vital spirit.' A record also applies the phrase to people sitting woodenly and guarding a dead corpse. The targets vary—speech, presented understanding, or fixed conduct—but the phrase remains the same disparaging action. The sampled records leave the literal 'vital spirit' unglossed.",
+      "ClaimAnchors": []
     }
   ]
 }

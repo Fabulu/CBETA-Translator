@@ -1,0 +1,136 @@
+{
+  "Id": "t_f6128b42282d",
+  "SourceTerm": "東家作驢西家作馬",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex fresh construction Lane C",
+  "WrittenUtc": "2026-07-17T00:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "be a donkey at the eastern house and a horse at the western",
+      "AlternateTargets": [
+        "east-house donkey, west-house horse"
+      ],
+      "SearchAliases": [
+        "be a donkey at the eastern house and a horse at the western",
+        "east-house donkey, west-house horse"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "4 exact occurrences from 4 independent works are stored.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0274b23",
+          "ToLb": "0274b23",
+          "Kwic": "東家作驢西家作馬。",
+          "Curated": true,
+          "MasterName": "Zhaozhou Congshen",
+          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp: Zhaozhou Congshen answers where Nanquan went after death: “be a donkey at the eastern house and a horse at the western,” then says to ride or dismount at will.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T51/T51n2077.xml",
+          "FromLb": "0492c08",
+          "ToLb": "0492c08",
+          "Kwic": "東家作驢西家作馬意旨如何。",
+          "Curated": true,
+          "MasterName": null,
+          "AttributionNote": "Source record (T/T51/T51n2077.xml). Continuation of the Transmission of the Lamp: The unnamed questioning monk utters the exact headword-bearing wording; the nearby master is the respondent or later commentator, not its utterer.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monastic interlocutor",
+            "ActorLabel": "the unnamed questioning monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The full case reads 僧問…古人道…東家作驢西家作馬意旨如何, followed by 師曰; the monk quotes the headword and Yuanjin answers. This is the headword-bearing question turn.",
+            "ReviewedBy": "Codex root independent current-byte review",
+            "ReviewedUtc": "2026-07-17T06:31:09.183670+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "RelPath": "B/B14/B14n0082.xml",
+          "FromLb": "0203a01",
+          "ToLb": "0203a01",
+          "Kwic": "師云東家作驢西家作馬",
+          "Curated": true,
+          "MasterName": "Zhaozhou Congshen",
+          "AttributionNote": "Source record (B/B14/B14n0082.xml). Selected Jewels from the Transmission of the Lamp: The fragment preserves the monk’s question and Zhaozhou Congshen’s complete answer with its ride-or-dismount sequel.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "C/C078/C078n1720.xml",
+          "FromLb": "0732a20",
+          "ToLb": "0732a21",
+          "Kwic": "師曰東家作驢西家作馬。",
+          "Curated": true,
+          "MasterName": "Zhaozhou Congshen",
+          "AttributionNote": "Source record (C/C078/C078n1720.xml). Combined Collection of Linked Verses on Chan Cases: The compiler explicitly attributes the quoted answer to Zhaozhou Congshen in the Nanquan-after-death case.",
+          "ContextMasters": [
+            {
+              "MasterName": "Zhaozhou Congshen",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "T/T51/T51n2076.xml",
+        "T/T51/T51n2077.xml",
+        "B/B14/B14n0082.xml",
+        "C/C078/C078n1720.xml"
+      ],
+      "RelatedMasters": [
+        "Zhaozhou Congshen",
+        "Nanquan Puyuan"
+      ],
+      "RelatedTerms": [],
+      "ClaimAnchors": [],
+      "Explanation": "Zhaozhou Congshen’s “be a donkey at the eastern house and a horse at the western” answers where Nanquan went after death; its recorded sequel says to ride when one wants and dismount when one wants. The preserved sequel says, “Ride when you want to ride; dismount when you want to dismount,” while later records raise and verse the answer as a named precedent. The stored witnesses span 4 independent works and preserve the exact headword in the quoted Chinese. The gloss reports the shared deployment and leaves each surrounding case to its own recorded exchange."
+    }
+  ]
+}

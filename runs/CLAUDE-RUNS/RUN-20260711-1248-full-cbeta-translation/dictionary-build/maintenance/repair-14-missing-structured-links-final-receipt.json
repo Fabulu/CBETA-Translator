@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "dictionary-missing-structured-links-repair.v1",
+  "scope": "Fourteen collision-free entry IDs assigned by the coordinator; no construction, installation, merge, lineage, or roster work.",
+  "sourceBindings": {
+    "groundTruthReport": {"path": "maintenance/post-construction69-done1273-ground-truth-final.json", "sha256": "c0bd9cb0ad3fb419c396ce227039f179c0b1e76b0417da9f01ae2dc3b2a6911b"},
+    "fullCasePacket": {"path": "maintenance/post-construction69-missing-structured-links-packet.json", "sha256": "8dc566d1103e1714c5cee35b8ad54a9fe50269f45454e3e6dad36ad74bd613e9"}
+  },
+  "wuxiaRecheck": {
+    "id": "t_a35c39f002c5",
+    "installedFreshSha256": "b909debc721c9107659ed40a538775a52a7d16fca2c63c756f7da23ab3f5ab69",
+    "result": "PASS",
+    "finding": "The complete case explicitly says that the monk Wuxia asked. Wuxia is identified-non-master and Baishan Kai is linked as respondent and section-subject."
+  },
+  "repairs": [
+    {"id":"t_7b7ca6f375b5","before":"1e642434288d95f8d47b05aa478f1a97863ea8b9da57dd58fe570d5062406a62","after":"d679a529d1a587e9e54f0c45e7837ab840e5b48ba4f851bf5b901bf069d44280","finding":"Danyuan Yingzhen is a later case figure, not the utterer."},
+    {"id":"t_8a06e7d99b19","before":"7db22febfd39e3821dbe7816c11f60e31dd0c81513e889e4462c4dff5a70ce28","after":"ea7ba1d3e9dc2cdc10a9a6c0c409d27253e682461cbcd46a72fe31921a69a758","finding":"Removed the false-positive expanded alias Juyun Chuiwan Guangzhen from prose; Chuiwan Guangzhen remains the exact utterer."},
+    {"id":"t_8ece09f6b91a","before":"5732577c4583ee6f1312f90b716483b7fd3553f2120b46a997dbb57f26dbbc41","after":"b9d7488a01f1151c01774222ce08763f1cc41e74bfae4e2d6faaf6d04783bf06","finding":"Zhanran Yuancheng is the containing record owner, not the actor of the editorial heading."},
+    {"id":"t_ac4749b5b609","before":"80f89f4c7fc5a05b209fd72bf7d116f454da18171ae2e0f0847786a0ef9873fe","after":"dfde6725fb904abe0804058f5458ae9db393b81d8167534a61b1c2bc751b90d8","finding":"Liangshan Yuanguan is the exact quoted utterer; Dachuan Puji is record owner and later raiser."},
+    {"id":"t_ad2c9d24126f","before":"77264e6a3e54a4f05fa467963f273805c5383142bdb6b595c969218b2494c2c5","after":"cfd93180a1f9586f1e7a351218c0710c20f3d8b64a3265c4275797dc33f427f6","finding":"Huiyue Xu personally retells the headword-bearing case in his hall address."},
+    {"id":"t_b90a5f36ec86","before":"20ba2e903a239ba0e2707f839fb6b9530f046727b54bc5d061a7a515ee110a09","after":"508a54270b4bb1f89ec1130ed4b44cfd4d1b47f31568b28f5879e1eafd0d6c36","finding":"Zhanran Yuancheng utters the reported judgment while raising Ruiyan's exchange."},
+    {"id":"t_c9f69715e823","before":"4fbf38e1c8eee5d703f1740b0244a5357a1cc18575653c53b97fe6174dc3891d","after":"01e56e0d1c5a7df01fb74175990693658c2c80a5b2784399afa5dd2e143af328","finding":"Dachuan Puji is the person described by the lamp-record compiler."},
+    {"id":"t_cd14935fc028","before":"958f6c3a213f370435e9b19b6c2f99da7386a282a6bf398b4380895cc6844285","after":"b578e39e8416e138751a2b8543c0f513e61e9ca42d32b52315ea93f0dca91ee9","finding":"Shuzhong Wuyun is the containing record owner; Dahui is the person described."},
+    {"id":"t_d9d8f344ad00","before":"e23715c3fcdbfcbc17960941094c29fedd3497460ab1fa366c806438f901a881","after":"b93780e1402a2eadd6076e41f3c1ebad8b99738a1f9df68e523913b7cc715bfc","finding":"Mingjue Cong utters the clause in the continuing hall address."},
+    {"id":"t_dbbc09ad8c5d","before":"09fcea4563674f75b3c5f39eea0f2e9b24b2e6e7c56256ff5f1d6341f03ba5af","after":"6e9450a0e851f938b822a385e14fdc263ea01a5f5d0921deac68b573bac5936f","finding":"Chongxian Qi is the utterer; Baiyan Fu is the following commentator and later raiser."},
+    {"id":"t_dc854763849c","before":"55e81c39209907d881351ef387ba2429ff0419cbf6588b05d6c18e976c1b62d8","after":"68eedd2b6ebc3a8ae9d26cfc51f56c9408975b2c628e70071a68c9f877bcc2c4","finding":"Daxiu Zhu utters the instruction; Huanglong Huinan is the person described."},
+    {"id":"t_ea905d5d7453","before":"3bcee26fb12096c07f81a4ca75b19fc7a410f6817957c5324e1ae755c56d929a","after":"2db6127e81201db35576a3cf0c5232b6a325b681d20c05e0bc46d0689e4427c7","finding":"Two narrated occasion frames now link Ruibai Mingxue and Chaozong Tongren by their exact contextual roles."},
+    {"id":"t_eb17a30eecaa","before":"773ba49dbc982a170756650c5e4620f11bf206ddc94cccce6f8a705c71118102","after":"864687ae45762a89874360c1154e6de48a010a0ae697de8126c213ea09be53ef","finding":"Huanglong Huinan is the utterer; Yuejian is the later quoter."},
+    {"id":"t_edfd0b2afa11","before":"a047130ffc29179d51614d0e5acf37e447c277259823a42d4c5cb454ad1ec1be","after":"5983f8c127ac041fdace11efd5cd424beb326f03b610f29487fccc1dce5848bb","finding":"Tianyin Yuanxiu is the utterer; Wuzhu is the person discussed."}
+  ],
+  "mirroring": {"termsFreshByteIdentical": "14/14"},
+  "gates": {
+    "attribution": {"path":"maintenance/repair-14-missing-structured-links-attribution-gate.json","sha256":"d486c59626c35222cea1dba16d7f7accb91979fc235943913770893ea6262b77","hardFailures":0,"namedMasterMissingStructuredLink":0},
+    "zcExact": {"path":"maintenance/repair-14-missing-structured-links-zc-exact-gate.json","sha256":"d9b060b901c65f82083d35ee8cf176ebe0ca3cc74810c017ba806d8f7ba3ebb0","verified":124,"failureCount":0}
+  },
+  "rosterGuard": {"path":"Assets/Data/lineage-masters.json","gitObjectIdBeforeAfter":"6e9f692fe752560c3890dea3ba5847a41874114d","worktreeOrIndexDiffObserved":false,"written":false},
+  "actionsNotTaken": ["construct", "install", "merge", "lineage write", "roster write"]
+}

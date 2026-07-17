@@ -1,37 +1,76 @@
 {
   "Id": "t_8ece09f6b91a",
   "SourceTerm": "正法眼藏",
-  "CreatedBy": "Fabulu",
-  "WrittenUtc": null,
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex legacy full rebuild Lane B",
+  "WrittenUtc": "2026-07-16T18:11:06.687012+00:00",
   "Senses": [
     {
       "SenseKey": null,
       "MasterName": null,
-      "PreferredTarget": "the lineage's treasury of the true eye of the teaching",
-      "AlternateTargets": ["the treasury of the true teaching-eye", "the true teaching-eye treasury"],
-      "SearchAliases": ["true Dharma eye", "true teaching eye", "treasury of the true Dharma eye", "storehouse of the true teaching eye", "lineage teaching treasury"],
+      "PreferredTarget": "the treasury of the true eye of the teaching",
+      "AlternateTargets": [
+        "the treasury of the true teaching eye"
+      ],
+      "SearchAliases": [
+        "treasury of the true eye of the teaching",
+        "true teaching-eye treasury",
+        "the treasury of the true eye of the teaching",
+        "the treasury of the true teaching eye"
+      ],
       "Status": "preferred",
       "Validation": "multi-source",
-      "Explanation": "The treasury of the true eye of the teaching is what the Chan record says is entrusted through the lineage. In the flower story, the Buddha says that he possesses it and entrusts it to Mahakasyapa. Buddhanandi repeats the handover as an instruction that it must not be cut off. Linji Yixuan calls it his own at death and publicly tests Sansheng Huiran's claim not to destroy it. Wumen Huikai turns the founding story back into a question: how is it transmitted? Baiyun Shouduan retells the flower exchange and says that it has passed down in succession to the present. The record therefore supplies both the inherited transmission claim and named masters' challenges to how such transmission can be said to occur.",
-      "Note": "This is the transmitted phrase, not the separately attested book title. Raw-string counts combine both referents: 1,381 occurrences in 279 allowlisted texts. The entry reports the record's deployments without ruling whether Wumen's question confirms or defeats the transmission claim.",
+      "Note": "Exact frozen-corpus count: 1,617 hits in 307 files and 301 works. Seven exact witnesses across four works meet the packet floor and cover founding entrustment, transmission challenge, continuity injunction, deathbed test, reply, reversal, and later restatement.",
       "Occurrences": [
         {
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0031a08",
           "ToLb": "0031a10",
           "Kwic": "世尊曰。吾有正法眼藏。涅槃妙心。實相無相。微妙法門。不立文字。教外別傳。付囑摩訶迦葉。",
-          "MasterName": "The Buddha",
+          "MasterName": "Shakyamuni Buddha",
           "Curated": true,
-          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), Sakyamuni Buddha section: The Buddha says that he has the treasury of the true eye of the teaching and entrusts it to Mahakasyapa."
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Mahakasyapa",
+              "Roles": [
+                "addressee",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): the founding narrative quotes Shakyamuni Buddha saying he possesses the treasury and entrusts it to Mahakasyapa."
         },
         {
           "RelPath": "T/T48/T48n2005.xml",
           "FromLb": "0293c19",
-          "ToLb": "0293c21",
-          "Kwic": "正法眼藏作麼生傳。設使迦葉不笑。正法眼藏又作麼生傳。若道正法眼藏有傳授。黃面老子誑謼閭閻。",
+          "ToLb": "0293c19",
+          "Kwic": "正法眼藏作麼生傳。",
           "MasterName": "Wumen Huikai",
           "Curated": true,
-          "AttributionNote": "The Gateless Barrier (無門關), case six: Wumen Huikai asks how the treasury is transmitted and presses both the claim that it was transmitted and the counterclaim that it was not."
+          "ContextMasters": [
+            {
+              "MasterName": "Wumen Huikai",
+              "Roles": [
+                "utterer",
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Mahakasyapa",
+              "Roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2005.xml). The Gateless Barrier (無門關): Wumen Huikai repeatedly asks how the treasury is transmitted and challenges any simple assertion of transmission."
         },
         {
           "RelPath": "T/T51/T51n2076.xml",
@@ -40,7 +79,16 @@
           "Kwic": "我今以如來正法眼藏付囑於汝勿令斷絕。",
           "MasterName": "Buddhanandi",
           "Curated": true,
-          "AttributionNote": "Jingde-era Record of the Transmission of the Lamp (景德傳燈錄), section on the eighth patriarch Buddhanandi: Buddhanandi entrusts the treasury to Buddhamitra and says not to let it be cut off."
+          "ContextMasters": [
+            {
+              "MasterName": "Buddhanandi",
+              "Roles": [
+                "utterer",
+                "teacher"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T51/T51n2076.xml). Jingde Record of the Transmission of the Lamp (景德傳燈錄): Record of the Transmission of the Lamp Published in the Jingde Era (景德傳燈錄): Buddhanandi entrusts the treasury to his successor and commands that it not be cut off."
         },
         {
           "RelPath": "T/T47/T47n1985.xml",
@@ -49,7 +97,16 @@
           "Kwic": "師臨遷化時據坐云：「吾滅後不得滅却吾正法眼藏。」",
           "MasterName": "Linji Yixuan",
           "Curated": true,
-          "AttributionNote": "The Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): at death Linji Yixuan tells the assembly not to destroy his treasury of the true eye of the teaching."
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1985.xml). Recorded Sayings of Chan Master Huizhao of Linji, Zhenzhou (鎮州臨濟慧照禪師語錄): Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): Linji Yixuan tells the assembly not to destroy his treasury after his death."
         },
         {
           "RelPath": "T/T47/T47n1985.xml",
@@ -58,7 +115,23 @@
           "Kwic": "三聖出云：「爭敢滅却和尚正法眼藏？」",
           "MasterName": "Sansheng Huiran",
           "Curated": true,
-          "AttributionNote": "The Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): Sansheng Huiran steps forward and asks how he would dare destroy his teacher's treasury of the true eye of the teaching."
+          "ContextMasters": [
+            {
+              "MasterName": "Sansheng Huiran",
+              "Roles": [
+                "utterer",
+                "student"
+              ]
+            },
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "addressee",
+                "teacher"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1985.xml). Recorded Sayings of Chan Master Huizhao of Linji, Zhenzhou (鎮州臨濟慧照禪師語錄): Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): Sansheng Huiran replies that he would not dare destroy Linji Yixuan's treasury."
         },
         {
           "RelPath": "T/T47/T47n1985.xml",
@@ -67,55 +140,188 @@
           "Kwic": "師云：「誰知吾正法眼藏向這瞎驢邊滅却。」",
           "MasterName": "Linji Yixuan",
           "Curated": true,
-          "AttributionNote": "The Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): after Sansheng Huiran answers Linji's test with a shout, Linji Yixuan gives the final verdict that his treasury will be destroyed with this blind donkey."
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Sansheng Huiran",
+              "Roles": [
+                "person-discussed",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1985.xml). Recorded Sayings of Chan Master Huizhao of Linji, Zhenzhou (鎮州臨濟慧照禪師語錄): Recorded Sayings of Chan Master Linji Huizhao of Zhenzhou (鎮州臨濟慧照禪師語錄): Linji Yixuan reverses Sansheng Huiran's assurance and says the treasury will perish with him."
         },
         {
           "RelPath": "X/X80/X80n1565.xml",
           "FromLb": "0389c06",
           "ToLb": "0389c06",
           "Kwic": "世尊道。吾有正法眼藏。分付摩訶大迦葉。",
-          "MasterName": "The Buddha",
+          "MasterName": "Shakyamuni Buddha",
           "Curated": true,
-          "AttributionNote": "Five Lamps Meeting the Source (五燈會元), section on Baiyun Shouduan: in Baiyun Shouduan's inaugural sermon, he quotes The Buddha saying that he has the treasury of the true eye of the teaching and entrusts it to Mahakasyapa; Baiyun then says that it has passed down to the present."
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "MasterName": "Mahakasyapa",
+              "Roles": [
+                "addressee",
+                "student"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Compendium of the Five Lamps (五燈會元): a later passage again quotes Shakyamuni Buddha entrusting the treasury to Mahakasyapa."
         }
       ],
-      "SourceTexts": ["X/X80/X80n1565.xml", "T/T48/T48n2005.xml", "T/T51/T51n2076.xml", "T/T47/T47n1985.xml"],
-      "RelatedMasters": ["The Buddha", "Mahakasyapa", "Buddhanandi", "Wumen Huikai", "Linji Yixuan", "Sansheng Huiran", "Baiyun Shouduan"],
-      "RelatedTerms": ["拈花", "涅槃妙心", "教外別傳"]
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X80/X80n1565.xml",
+        "T/T48/T48n2005.xml",
+        "T/T51/T51n2076.xml",
+        "T/T47/T47n1985.xml"
+      ],
+      "RelatedMasters": [
+        "Shakyamuni Buddha",
+        "Mahakasyapa",
+        "Wumen Huikai",
+        "Buddhanandi",
+        "Linji Yixuan",
+        "Sansheng Huiran"
+      ],
+      "RelatedTerms": [
+        "付囑",
+        "傳授",
+        "教外別傳",
+        "涅槃妙心"
+      ],
+      "Explanation": "The phrase names what lineage narratives claim is possessed, entrusted, preserved, or destroyed in transmission. Shakyamuni Buddha says he possesses it and entrusts it to Mahakasyapa. Wumen Huikai turns that founding claim into a challenge by repeatedly asking how it could be transmitted. Buddhanandi entrusts it to his successor with an injunction not to let it be cut off. At death Linji Yixuan tells the assembly not to destroy his treasury; Sansheng Huiran replies that he would not dare, but after Sansheng's shout Linji says it will perish with this blind donkey. Another lamp passage again quotes Shakyamuni entrusting it to Mahakasyapa. The phrase is therefore an asserted lineage possession whose transmission is both ritually declared and sharply interrogated."
     },
     {
       "SenseKey": null,
       "MasterName": null,
       "PreferredTarget": "the book Treasury of the True Eye of the Teaching",
-      "AlternateTargets": ["Treasury of the True Eye of the Teaching", "Zhengfa Yanzang"],
-      "SearchAliases": ["Treasury of the True Dharma Eye", "True Teaching Eye Treasury", "Dahui case collection", "Zhengfa Yanzang book"],
+      "AlternateTargets": [
+        "Treasury of the True Eye of the Teaching (book)"
+      ],
+      "SearchAliases": [
+        "Treasury of the True Eye of the Teaching",
+        "book title",
+        "the book Treasury of the True Eye of the Teaching",
+        "Treasury of the True Eye of the Teaching (book)"
+      ],
       "Status": "preferred",
-      "Validation": "provisional",
-      "Explanation": "The same graphs also name a book. Zhanran Yuancheng's preface calls itself the Preface to the Recut Treasury of the True Eye of the Teaching, then says that Dahui Zonggao selected material from the five houses, gathered more than one hundred masters into fascicles, and gave the resulting book this title. A work that can be compiled, recut, and prefaced is a different thing from the lineage possession named in the first sense.",
-      "Note": "This title sense remains provisional because both exact anchors belong to one independent allowlisted work. The two PreferredTargets are distinguishable without capitalization alone: one names a lineage possession; this one explicitly names a book.",
+      "Validation": "single-source-explicit",
+      "Note": "Two explicit passages in one preface establish the title sense; no multi-source claim is made.",
       "Occurrences": [
         {
           "RelPath": "X/X72/X72n1444.xml",
-          "FromLb": "0828b03",
+          "FromLb": "0828b02",
           "ToLb": "0828b03",
-          "Kwic": "重刻正法眼藏序",
-          "MasterName": "Zhanran Yuancheng",
+          "Kwic": "並伸懺悔。重刻正法眼藏序",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "In his Extensive Record (湛然圓澄禪師語錄), Zhanran Yuancheng heads the document Preface to the Recut Treasury of the True Eye of the Teaching."
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "section-subject",
+                "person-described"
+              ]
+            },
+            {
+              "MasterName": "Zhanran Yuancheng",
+              "Roles": [
+                "record-owner"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X72/X72n1444.xml). Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄): The headword appears in the impersonal preface heading to Dahui Zonggao’s work; the later quoted transmission formula does not make Shakyamuni Buddha the utterer of the heading.",
+          "ActorAttribution": {
+            "Status": "impersonal",
+            "Kind": "editorial heading",
+            "HeadingType": "section",
+            "ActorLabel": "the document’s editorial heading",
+            "ActorRole": "compiler",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword appears in the impersonal preface heading to Dahui Zonggao’s work; the later quoted transmission formula does not make Shakyamuni Buddha the utterer of the heading.",
+            "ReviewedBy": "Codex heading-hygiene Lane A complete-case review",
+            "ReviewedUtc": "2026-07-16T19:51:49.266047+00:00"
+          }
         },
         {
           "RelPath": "X/X72/X72n1444.xml",
           "FromLb": "0828b16",
           "ToLb": "0828b18",
           "Kwic": "故我大慧老人承悲願力，運無畏心，決擇五家，提挈最正者凡百餘人，裒以成帙，目曰正法眼藏。",
-          "MasterName": "Zhanran Yuancheng",
+          "MasterName": null,
           "Curated": true,
-          "AttributionNote": "In the same preface in his Extensive Record (湛然圓澄禪師語錄), Zhanran Yuancheng says that Dahui Zonggao selected more than one hundred masters, gathered the material into fascicles, and titled the book Treasury of the True Eye of the Teaching."
+          "ContextMasters": [
+            {
+              "MasterName": "Zhanran Yuancheng",
+              "Roles": [
+                "compiler"
+              ]
+            },
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X72/X72n1444.xml). Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄): Compiler narration: Recorded Sayings of Chan Master Zhanran Yuancheng (湛然圓澄禪師語錄), preface to the recut Treasury of the True Eye of the Teaching: Zhanran Yuancheng narrates Dahui Zonggao’s compilation and its title; neither is stored as exact utterer of the impersonal title string.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "preface narrative",
+            "ActorLabel": "the preface writer",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "Zhanran Yuancheng narrates that Dahui compiled and titled the book; the title itself is not an utterance by Zhanran or Dahui.",
+            "ReviewedBy": "Codex lane-A independent semantic repair; complete-case review",
+            "ReviewedUtc": "2026-07-15T04:10:00Z",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          }
         }
       ],
-      "SourceTexts": ["X/X72/X72n1444.xml"],
-      "RelatedMasters": ["Zhanran Yuancheng", "Dahui Zonggao"],
-      "RelatedTerms": ["正法眼", "拈花", "古尊宿語錄"]
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X72/X72n1444.xml"
+      ],
+      "RelatedMasters": [
+        "Zhanran Yuancheng",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [
+        "重刻",
+        "序",
+        "成帙",
+        "目曰"
+      ],
+      "Explanation": "The same graphs also name a book. Zhanran Yuancheng's heading identifies a preface to a recut edition, and his prose says Dahui Zonggao selected material from the five houses, gathered more than one hundred people into fascicles, and titled the result Treasury of the True Eye of the Teaching. Compilation, recutting, titling, and prefacing distinguish this bibliographic referent from the lineage possession in the first sense."
     }
   ]
 }

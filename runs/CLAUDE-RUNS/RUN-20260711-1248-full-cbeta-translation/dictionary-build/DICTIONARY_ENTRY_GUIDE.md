@@ -586,6 +586,13 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        `later-quoter`, `teacher`, `student`, `compiler`, `verse-author`, `case-figure`. Context never
        counts as the exact actor and never satisfies the named-actor gate. Put all finer descriptions in
        `GrammarEvidence`, never in either structured role field.
+       **Editorial-heading attribution is typed, not templated.** When an impersonal/narrated row assigns
+       the exact headword to a heading, `ActorAttribution.HeadingType` is required and is closed to exactly
+       `biography`, `poem`, `portrait`, `raised-case`, or `section`. `verse-author` is permitted as a
+       contextual role only for `poem` and `portrait`; a `biography` heading uses `section-subject` and
+       must never call its subject a verse author. Reader prose must name the same heading type and must
+       not contain generated duplication such as `poem heading heading` or `biographical section heading
+       heading`. The attribution validator enforces this before compile.
        **Full-case reviewer traps (fresh-build findings, 2026-07-14):** a KWIC containing the headword in
        two different turns is not one attributable occurrence—re-cut it to one turn or store the turns
        separately. A preface author's summary of a master belongs to the preface author, not the record's
@@ -844,6 +851,15 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       each still makes and records an independent actor/semantic decision. A hash mismatch invalidates the
       packet. Run the expensive structural `attribution_packet.py` once at the final decile gate and reuse
       its existing exact-hash cache—never regenerate it during each entry edit and again during review.
+      **New-acquisition case bundles are mandatory when a queue packet exists:** run
+      `prepare_fullcase_review_bundle.py --packet <lane-packet> --output <hash-bound-bundle>` once per lane.
+      The bundle preassembles a wide source window, exact line span, work ID, Chinese title, the current
+      published English source-label candidate, section headings, speech-marker signals, and roster-name
+      candidates for every discovery witness. This is navigation and candidate discovery only: it must set
+      `automaticActorDecision` to null, and the author still reads the displayed full case and decides the
+      utterer, context roles, sense, and prose. A missing label or ambiguous/multiple headword span remains
+      a human repair, never a template fill. Authors and reviewers reuse the same hash-bound transport so
+      corpus extraction is paid once while their judgments remain independent.
       Span refresh happens before compilation because it invalidates worksheet/output receipts. During
       drafting use fast compiler, exact-span, public-feedback, depth, and actor-distribution checks; reserve
       the complete cohort gate for the decile boundary. This changes transport and scheduling only, never
@@ -1163,6 +1179,23 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     still requiring revision, including eleven whose rejected prose survived
     substantially or verbatim. Never spend reviewer time rediscovering a defect
     that coordinate-level closure could have caught before dispatch.
+16. **⛔ ABSOLUTE LINEAGE-ROSTER WRITE PROHIBITION.** A dictionary worker may
+    read the externally maintained lineage roster solely to resolve public link
+    keys. It may **never** create, edit, normalize, regenerate, reorder, merge,
+    cherry-pick, commit, or otherwise mutate `Assets/Data/lineage-masters.json`,
+    `master-dates.json`, a website roster, lineage edges, teacher/student fields,
+    or any other lineage-chart input. This prohibition applies to authors,
+    reviewers, repair tools, installers, dashboard jobs, and coordinating agents;
+    no dictionary task, missing link, absent identity, #0g figure, or pending
+    attribution expands that authority. A corpus-attested identity absent from
+    the roster goes only into the dictionary-owned
+    `fresh-build/pending-roster.json` evidence ledger. It remains explicit link
+    debt for the separate roster owner and must never be “fixed” by inserting a
+    roster node. Before and after every dictionary wave, the coordinator must
+    prove the roster path has no worktree or index diff and record its Git object
+    ID/hash in the wave receipt. Any roster delta is a structural blocker: stop
+    installation and report it; do not repair, revert, or reinterpret it inside
+    the dictionary process.
 
 ## 9. Working durably at scale (don't lose work)
 Follow **`LEDGER_SYSTEM.md`**: orchestrator persists on every worker return; small slices (≈1 term);
