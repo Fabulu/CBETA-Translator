@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "iriya-manual-disposition-repair-receipt-v1",
+  "reviewAuthority": "maintenance/iriya-manual-batch10-offset1-cross-review.json",
+  "reviewAuthoritySha256": "92f621a8f1f1757a6d27da05060cb4b04f9d5198141649e0100dd32fd0957fbb",
+  "repairedLedger": "maintenance/iriya-manual-batch10-offset1-ledger.json",
+  "ledgerSha256Before": "2f2ff66c50355f1e7d22c202a5778743f5ea393bc152ee2e70bf27f309022250",
+  "ledgerSha256After": "a76d85f4d3f8e4175336310c5a03b9359c54d3f2ad22189875d86115d986fed6",
+  "scope": {
+    "canonicalIndex": 451,
+    "id": "t_2abe4bdede72",
+    "term": "滿面慚惶",
+    "fields": ["disposition", "unit", "reason", "summary"]
+  },
+  "repair": "REJECT/null revised to KEEP (component)/component. The reason now records the phrase's broad stock Chan-verdict deployment for an exposed or inadequate responder, teacher, or inherited position rather than incidental facial narration.",
+  "dispositionBefore": "REJECT",
+  "dispositionAfter": "KEEP (component)",
+  "unitBefore": null,
+  "unitAfter": "component",
+  "summaryBefore": {"KEEP (component)": 8, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 1},
+  "summaryAfter": {"KEEP (component)": 9, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 0},
+  "evidenceChanged": false,
+  "otherNineRowsChanged": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopForFocusedRecheck": true
+}

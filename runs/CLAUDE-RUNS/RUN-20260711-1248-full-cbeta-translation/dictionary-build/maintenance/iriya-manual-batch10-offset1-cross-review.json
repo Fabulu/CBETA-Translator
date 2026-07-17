@@ -1,0 +1,22 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1",
+  "reviewedLedger":"maintenance/iriya-manual-batch10-offset1-ledger.json",
+  "reviewedLedgerSha256":"2f2ff66c50355f1e7d22c202a5778743f5ea393bc152ee2e70bf27f309022250",
+  "scope":"Independent read-only review of ten batch10 offset-1 decisions, including broad falsification review of 滿面慚惶.",
+  "mechanicalChecks":{"queueIdentityAndId":"PASS all10","exactCounts":"PASS all10","zcEvidenceAndLineBounds":"PASS all20","canonicalDistinctWorkIds":"PASS all10","variantsAndPunctuation":"PASS"},
+  "rows":[
+    {"canonicalIndex":442,"term":"把髻投衙","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The legal surrender/self-incrimination image repeatedly appraises a participant as voluntarily submitting to the ancestral case and its judgment."},
+    {"canonicalIndex":445,"term":"解脱深坑","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The normalized 解脫深坑 is a recurrent warning that attachment to liberation itself becomes confinement; printed graph resolution is exact."},
+    {"canonicalIndex":448,"term":"一老一不老","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The old/not-old pairing repeatedly forms one answer and verse formula contrasting conditioned age with the ageless matter."},
+    {"canonicalIndex":451,"term":"滿面慚惶","verdict":"REVISE","reviewedDisposition":"KEEP (component)","reason":"The rejection underreads the full cases. Across independent works the phrase repeatedly serves as a stock Chan verdict: an inadequate responder, teacher, or inherited position is exposed, defeated, left without a place to stand, or unable to answer back. It caps critiques of the Buddha's awakening, Mazu's illness case, Linji's encounter, the shopkeeper/jewel case, and direct interview answers such as 滿面慚惶不識羞. This recurrence is an observable encounter and case-critical deployment, not merely incidental facial narration. Revise REJECT to KEEP (component)."},
+    {"canonicalIndex":454,"term":"賓主互換","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Independent Linji-style addresses explicitly name host/guest exchange as responsive role reversal, paired with whole-body taking and giving."},
+    {"canonicalIndex":457,"term":"非干我事","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The exact dismissal is fixed in the Dayu-Linji case and also used in independent interview teaching, supporting a stable encounter line."},
+    {"canonicalIndex":460,"term":"字經三寫、烏焉成馬","verdict":"PASS","reviewedDisposition":"KEEP (couplet)","reason":"Both textual-corruption clauses form one proverb repeatedly applied to distortion of ancestral words and transmission records."},
+    {"canonicalIndex":463,"term":"一物也無","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Masters repeatedly turn 'not even one thing' into a direct doctrinal answer and an immediately tested claim of residue-free emptiness."},
+    {"canonicalIndex":466,"term":"海神知貴不知價","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The sea-spirit pearl verdict repeatedly distinguishes recognizing preciousness from being able to assess or use what is recognized."},
+    {"canonicalIndex":469,"term":"絲來線去","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The thread-and-line image repeatedly appraises tightly reciprocal, continuous encounter exchange, sometimes critically as verbal ingenuity."}
+  ],
+  "summary":{"PASS":9,"REVISE":1,"reviewedDispositionCountsAfterRevision":{"KEEP (component)":9,"KEEP (couplet)":1,"REJECT":0}},
+  "revisionScope":"滿面慚惶 disposition, unit, and reason: REJECT/null to KEEP (component)/component with case-critical encounter verdict rationale.",
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1",
+  "reviewedLedger":"maintenance/iriya-manual-batch10-offset0-ledger.json",
+  "reviewedLedgerSha256":"8d4878f9de050abf29d361d60e84edd30af1c85d15c3b5684bfac43db36d1ab4",
+  "scope":"Independent read-only review of ten batch10 offset-0 decisions.",
+  "mechanicalChecks":{"queueIdentityAndId":"PASS all10","exactCounts":"PASS all10","zcEvidenceAndLineBounds":"PASS all20","canonicalDistinctWorkIds":"PASS all10","variantsAndPunctuation":"PASS"},
+  "rows":[
+    {"canonicalIndex":342,"term":"京師出大黄","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The normalized fixed answer 京師出大黃 is repeatedly raised, versified, and tested as Shushan's winter-meaning case line; the absent printed graph is explicitly resolved."},
+    {"canonicalIndex":345,"term":"還我話頭來","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Masters repeatedly demand return of the original question or speech-turn when a claimed understanding loses the point, making a stable interview reversal."},
+    {"canonicalIndex":348,"term":"夜半正明、天曉不露","verdict":"PASS","reviewedDisposition":"KEEP (couplet)","reason":"Both balanced clauses travel together as Dongshan's subtle illumination formula and are repeatedly queried in transmission contexts."},
+    {"canonicalIndex":351,"term":"結角羅紋","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Formal addresses repeatedly use the intricate knot/pattern image for the exacting point at which a case or final turn must be resolved."},
+    {"canonicalIndex":354,"term":"竿木隨身、逢場作戲","verdict":"PASS","reviewedDisposition":"KEEP (couplet)","reason":"The two theatrical clauses form one recurrent request and declaration of adaptive teaching performance whenever an occasion appears."},
+    {"canonicalIndex":357,"term":"弓折箭盡","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Independent critics repeatedly diagnose an interlocutor or case handler whose tactical resources are exhausted before completion."},
+    {"canonicalIndex":360,"term":"藥病相治","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The medicine/disease relation is a stable Chan treatment frame, centrally fixed in Yunmen's all-earth-is-medicine case and independently used for provisional teaching language."},
+    {"canonicalIndex":363,"term":"仁義道中","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"Broader cases repeatedly invoke conventional obligation within teacher-disciple action, then test, qualify, or reject it as an adequate explanation; this supports the recorded ethical-language diagnostic rather than a generic ethics article."},
+    {"canonicalIndex":366,"term":"四山相逼","verdict":"PASS","reviewedDisposition":"KEEP (component)","reason":"The four enclosing mountains form a fixed constraint/mortality question centered on Caoshan's being inside and seeking release from inside."},
+    {"canonicalIndex":369,"term":"人從橋上過、橋流水不流","verdict":"PASS","reviewedDisposition":"KEEP (couplet)","reason":"The complete Fu Dashi bridge paradox is repeatedly quoted, answered, and deliberately inverted; both clauses form one unit."}
+  ],
+  "summary":{"PASS":10,"REVISE":0,"reviewedDispositionCounts":{"KEEP (component)":7,"KEEP (couplet)":3}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}
