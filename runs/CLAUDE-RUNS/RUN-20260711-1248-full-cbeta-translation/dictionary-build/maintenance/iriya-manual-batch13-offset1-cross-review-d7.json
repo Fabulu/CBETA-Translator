@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"iriya-manual-cross-review.v1","reviewedLedger":"maintenance/iriya-manual-batch13-offset1-ledger.json","reviewedLedgerSha256":"2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e","decision":"PASS",
+  "mechanicalChecks":{"queueIdentities":"PASS 10/10 exact canonicalIndex/queueNumber/id/term bindings","liveExactCounts":"PASS 10/10","evidence":"PASS 20/20 exact zc.verify with recorded LB spans","canonicalDistinctWorks":"PASS 10/10 pairs","formResolution":"PASS punctuation variants and printed-form counts","units":"PASS 7 component + 3 couplet"},
+  "rows":[
+    {"row":1,"term":"敲骨打髓","verdict":"PASS","assessment":"Stable severe teacher-method image, distinct in attested wording from 敲骨取髓."},
+    {"row":2,"term":"百發百中","verdict":"PASS","assessment":"Repeated Chan appraisal of unerring responsive function, including a direct 玄中玄 answer."},
+    {"row":3,"term":"荷葉團團團似鏡、菱角尖尖尖似錐","verdict":"PASS","assessment":"Fixed similarity-case couplet; both contrasted shapes are required."},
+    {"row":4,"term":"惡水驀頭澆","verdict":"PASS","assessment":"Stable hostile cap stripping pious attainment or congratulation."},
+    {"row":5,"term":"馬駒踏殺天下人","verdict":"PASS","assessment":"Fixed Mazu lineage verdict rather than productive horse imagery."},
+    {"row":6,"term":"天左旋、地右轉","verdict":"PASS","assessment":"Fixed cosmological pair; printed ideographic separator and comma-query counts are both correctly recorded."},
+    {"row":7,"term":"悟了同未悟","verdict":"PASS","assessment":"Stable transmission-verse line denying awakening as an acquired state."},
+    {"row":8,"term":"牆壁瓦礫","verdict":"PASS","assessment":"Stable insentient-field answer formula in Buddha-mind/Manjusri cases."},
+    {"row":9,"term":"紅爐上一點雪","verdict":"PASS","assessment":"Stable image of immediate traceless dissolution in realization."},
+    {"row":10,"term":"天共白雲曉、水和明月流","verdict":"PASS","assessment":"Fixed accord couplet; both agents and motions form the transmitted line."}
+  ],
+  "summary":{"PASS":10,"REVISE":0,"confirmedDispositionCounts":{"KEEP (component)":7,"KEEP (couplet)":3,"PROVISIONAL":0,"REJECT":0}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

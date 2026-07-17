@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1","reviewedLedger":"maintenance/iriya-manual-batch11-offset2-ledger.json","reviewedLedgerSha256":"de363fb4d3b0a8b2269b9ecbfd5219842c641dba3fac77a8c95eeb6c77200ad1",
+  "mechanicalChecks":{"identities":"PASS all10","exactCounts":"PASS all10","zcAndLineBounds":"PASS all20","canonicalDistinctWorks":"PASS all10","variants":"PASS"},
+  "rows":[
+    {"canonicalIndex":479,"term":"頭白齒黄","verdict":"REVISE","reviewedDisposition":"KEEP (component)","reason":"Normalized 頭白齒黃 is repeatedly a stock rebuke that age and long residence have produced only stale, derivative, or inadequate Chan speech: 'head white, teeth yellow, making this kind of utterance.' Other cases use it to expose an old practitioner's lack of realization or inability to stand as a model. This is a stable encounter-critical deployment, not merely physical description. Revise REJECT/null to KEEP (component)/component."},
+    {"canonicalIndex":482,"term":"一箭落雙鵰","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":485,"term":"末後一句、始到牢關","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":488,"term":"有利無利、不離行市","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":491,"term":"君向瀟湘我向秦","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":494,"term":"猛虎當路坐","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":497,"term":"纔有是非、紛然失心","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":500,"term":"欲窮千里目、更上一層樓","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":503,"term":"因邪打正","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":506,"term":"横身當宇宙","verdict":"PASS","reviewedDisposition":"KEEP (component)"}
+  ],
+  "summary":{"PASS":9,"REVISE":1,"reviewedDispositionCountsAfterRevision":{"KEEP (component)":6,"KEEP (couplet)":4,"REJECT":0}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

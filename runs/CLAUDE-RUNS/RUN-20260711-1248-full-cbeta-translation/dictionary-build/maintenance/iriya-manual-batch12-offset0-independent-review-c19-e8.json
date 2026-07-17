@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "iriya-manual-batch-independent-review.v1",
+  "offset": 0,
+  "batch": 12,
+  "decision": "PASS",
+  "reviewedLedger": "maintenance/iriya-manual-batch12-offset0-ledger.json",
+  "checks": {
+    "authoritativeQueueIdentity": "PASS 10/10 queue number, canonical index, id, headword, and normalized query",
+    "liveExactZc": "PASS 10/10 hit/file/canonical-work triples",
+    "evidence": "PASS 20/20 exact apparatus-clean windows",
+    "canonicalWorks": "PASS two distinct work IDs per candidate; IDs match current work manifest",
+    "titles": "PASS 20/20 current English/source-title labels",
+    "variants": "PASS: three couplets route Japanese glyph/punctuation forms to the recorded traditional punctuated query without changing headword identity",
+    "fullCaseDeployment": "PASS: all evidence was reread as deployed answers, caps, verdicts, critical formulas, or quoted cases rather than mere containment"
+  },
+  "confirmedSummary": {"KEEP (component)": 7, "KEEP (couplet)": 3, "PROVISIONAL": 0, "REJECT": 0},
+  "rows": [
+    {"queueNumber":403,"term":"三段不同","verdict":"PASS","note":"independent critical/capping deployment distinguishes and then collects three propositions"},
+    {"queueNumber":406,"term":"腦門著地","verdict":"PASS","note":"recurring collapse/extreme-function verdict, not bare anatomy"},
+    {"queueNumber":409,"term":"得人一牛、還人一馬","verdict":"PASS","note":"balanced reciprocal proverb requires both clauses"},
+    {"queueNumber":412,"term":"後園驢喫草","verdict":"PASS","note":"fixed Yantou case answer independently reused as a cap"},
+    {"queueNumber":415,"term":"心月孤圓、光呑萬象","verdict":"PASS","note":"paired Panshan opening; light/object discussion depends on both clauses"},
+    {"queueNumber":418,"term":"珊瑚枝枝撐著月","verdict":"PASS","note":"fixed Baling turning word and independently wielded cap"},
+    {"queueNumber":421,"term":"通方作者","verdict":"PASS","note":"stable designation for an adept able to discriminate live sayings"},
+    {"queueNumber":424,"term":"心隨萬境轉、轉處實能幽","verdict":"PASS","note":"balanced patriarchal verse opening; second clause supplies the paradox"},
+    {"queueNumber":427,"term":"剜肉作瘡","verdict":"PASS","note":"stable rebuke for manufacturing a needless problem/explanation"},
+    {"queueNumber":430,"term":"活鱍鱍地","verdict":"PASS","note":"recurrent Chan description of vivid uncontrived responsive functioning"}
+  ],
+  "requiredRepairs": [],
+  "authorLedgerMutation": false,
+  "registryMutation": false,
+  "buildRun": false,
+  "queueMutation": false,
+  "lineageTouched": false
+}

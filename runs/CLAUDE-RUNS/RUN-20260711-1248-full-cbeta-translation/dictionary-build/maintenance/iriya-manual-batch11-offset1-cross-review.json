@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1","reviewedLedger":"maintenance/iriya-manual-batch11-offset1-ledger.json","reviewedLedgerSha256":"68a6034242d6831da719aec1b4d69f90005391e61854622badbf9ff6f97be840",
+  "mechanicalChecks":{"identities":"PASS all10","exactCounts":"PASS all10","zcAndLineBounds":"PASS all20","canonicalDistinctWorks":"PASS all10","variants":"PASS"},
+  "rows":[
+    {"canonicalIndex":472,"term":"一場漏逗","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":475,"term":"鰕跳不出斗","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":478,"term":"年老心孤","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":481,"term":"湘之南、潭之北","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":484,"term":"縁木求魚","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":487,"term":"癡人面前、不得説夢","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"},
+    {"canonicalIndex":490,"term":"一家有事百家忙","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":493,"term":"捏目生花","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":496,"term":"通身無影像","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":499,"term":"任從滄海變、終不爲君通","verdict":"PASS","reviewedDisposition":"KEEP (couplet)"}
+  ],
+  "summary":{"PASS":10,"REVISE":0,"reviewedDispositionCounts":{"KEEP (component)":7,"KEEP (couplet)":3}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

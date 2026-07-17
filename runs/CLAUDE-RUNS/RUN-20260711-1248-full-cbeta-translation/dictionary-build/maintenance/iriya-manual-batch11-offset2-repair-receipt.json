@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "iriya-manual-disposition-repair-receipt-v1",
+  "reviewAuthority": "maintenance/iriya-manual-batch11-offset2-cross-review.json",
+  "reviewAuthoritySha256": "32d7a6a452a833d72759f02afd400ebdbe09232efcd213431b285ec78ebda187",
+  "repairedLedger": "maintenance/iriya-manual-batch11-offset2-ledger.json",
+  "ledgerSha256Before": "de363fb4d3b0a8b2269b9ecbfd5219842c641dba3fac77a8c95eeb6c77200ad1",
+  "ledgerSha256After": "92ff22c9e3bee1bdcdb904f10072128950449ae148288496a1ea239ef8cb852f",
+  "scope": {
+    "canonicalIndex": 479,
+    "id": "t_0a96885869b7",
+    "term": "頭白齒黄",
+    "normalizedQuery": "頭白齒黃",
+    "fields": ["disposition", "unit", "reason", "summary"]
+  },
+  "repair": "REJECT/null revised to KEEP (component)/component. The reason now records the normalized phrase's stock Chan-rebuke deployment: age or residence yielding stale or inadequate speech and exposing lack of realization or model fitness, rather than neutral aging.",
+  "dispositionBefore": "REJECT",
+  "dispositionAfter": "KEEP (component)",
+  "unitBefore": null,
+  "unitAfter": "component",
+  "summaryBefore": {"KEEP (component)": 5, "KEEP (couplet)": 4, "PROVISIONAL": 0, "REJECT": 1},
+  "summaryAfter": {"KEEP (component)": 6, "KEEP (couplet)": 4, "PROVISIONAL": 0, "REJECT": 0},
+  "evidenceChanged": false,
+  "otherNineRowsChanged": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopForFocusedRecheck": true
+}

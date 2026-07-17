@@ -2,7 +2,7 @@
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
   "generatedUtc": "2026-07-17T23:50:56Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+  "registrySha256": "ab1b4e8e042a02529cb98b894b62d9494d753f473f531c4dbfeedb00e60ee813",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -572,42 +572,6 @@
       "path": "maintenance/iriya-manual-batch12-offset2-independent-review-c19-e8.json",
       "sha256": "28c5bded712de5f2c399d2509a94d478e0d56eb7b01546a5f7023b753985b57d",
       "offset": 2
-    },
-    {
-      "role": "batch13-ledger",
-      "path": "maintenance/iriya-manual-batch13-offset0-ledger.json",
-      "sha256": "a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce",
-      "offset": 0
-    },
-    {
-      "role": "batch13-review",
-      "path": "maintenance/iriya-manual-batch13-offset0-cross-review-d7.json",
-      "sha256": "19d9c2ff129b44d4fa5c3b962c6edad107e8b6a131eab5fea1af7cce43ae2842",
-      "offset": 0
-    },
-    {
-      "role": "batch13-ledger",
-      "path": "maintenance/iriya-manual-batch13-offset1-ledger.json",
-      "sha256": "2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e",
-      "offset": 1
-    },
-    {
-      "role": "batch13-review",
-      "path": "maintenance/iriya-manual-batch13-offset1-cross-review-d7.json",
-      "sha256": "d1ce42d27baae124e3b81ac4eb1ca861f169619f7213eba30a8370bd284f2f75",
-      "offset": 1
-    },
-    {
-      "role": "batch13-ledger",
-      "path": "maintenance/iriya-manual-batch13-offset2-ledger.json",
-      "sha256": "f12508b25d09406313909d9802e0fa95a560b16349ce3717e5ba546277d3de80",
-      "offset": 2
-    },
-    {
-      "role": "batch13-review",
-      "path": "maintenance/iriya-manual-batch13-offset2-cross-review-d7.json",
-      "sha256": "d6edfbbfeca00a0a2559aeba154e4374403e233c8742413f73b3358dabc660c8",
-      "offset": 2
     }
   ],
   "verification": {
@@ -1048,54 +1012,5 @@
         "reviewSha256": "28c5bded712de5f2c399d2509a94d478e0d56eb7b01546a5f7023b753985b57d"
       }
     ]
-  },
-  "batch13Seal": {
-    "priorReceiptSha256": "8d1fcafb128c4204f747709bbbccbc50479533ace12b92f59e4a0f8deb5eda5d",
-    "priorRegistrySha256": "ab1b4e8e042a02529cb98b894b62d9494d753f473f531c4dbfeedb00e60ee813",
-    "priorRegistryRows": 514,
-    "appendedRows": 30,
-    "finalRegistryRows": 544,
-    "offsets": [
-      0,
-      1,
-      2
-    ],
-    "identityPreflightAuthorLedgersBound": 3,
-    "independentReviewsBound": 3,
-    "prior514ObjectsPreservedExactly": true,
-    "canonicalQueueBindingsExact": true,
-    "exactEvidenceValidated": true,
-    "canonicalWorkProvenanceValidated": true,
-    "noDefaultsOrQuarantine": true,
-    "buildAuthorized": false,
-    "queueAdvanced": false,
-    "lineageTouched": false,
-    "authorityChains": [
-      {
-        "offset": 0,
-        "ledger": "maintenance/iriya-manual-batch13-offset0-ledger.json",
-        "ledgerSha256": "a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce",
-        "review": "maintenance/iriya-manual-batch13-offset0-cross-review-d7.json",
-        "reviewSha256": "19d9c2ff129b44d4fa5c3b962c6edad107e8b6a131eab5fea1af7cce43ae2842"
-      },
-      {
-        "offset": 1,
-        "ledger": "maintenance/iriya-manual-batch13-offset1-ledger.json",
-        "ledgerSha256": "2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e",
-        "review": "maintenance/iriya-manual-batch13-offset1-cross-review-d7.json",
-        "reviewSha256": "d1ce42d27baae124e3b81ac4eb1ca861f169619f7213eba30a8370bd284f2f75"
-      },
-      {
-        "offset": 2,
-        "ledger": "maintenance/iriya-manual-batch13-offset2-ledger.json",
-        "ledgerSha256": "f12508b25d09406313909d9802e0fa95a560b16349ce3717e5ba546277d3de80",
-        "review": "maintenance/iriya-manual-batch13-offset2-cross-review-d7.json",
-        "reviewSha256": "d6edfbbfeca00a0a2559aeba154e4374403e233c8742413f73b3358dabc660c8"
-      }
-    ],
-    "batch12IntermediateRegistry": "maintenance/iriya-trusted-registry-batch12-intermediate.json",
-    "batch12IntermediateRegistrySha256": "ab1b4e8e042a02529cb98b894b62d9494d753f473f531c4dbfeedb00e60ee813",
-    "batch12IntermediateReceipt": "maintenance/iriya-trusted-registry-receipt-batch12-intermediate.json",
-    "batch12IntermediateReceiptSha256": "8d1fcafb128c4204f747709bbbccbc50479533ace12b92f59e4a0f8deb5eda5d"
   }
 }

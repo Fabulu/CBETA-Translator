@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "iriya-manual-focused-recheck.v1",
+  "repairedLedger": "maintenance/iriya-manual-batch11-offset2-ledger.json",
+  "repairedLedgerSha256": "92ff22c9e3bee1bdcdb904f10072128950449ae148288496a1ea239ef8cb852f",
+  "repairReceipt": "maintenance/iriya-manual-batch11-offset2-repair-receipt.json",
+  "repairReceiptSha256": "5c15e6387e4e72fd3b4df4dbdcbf82b3a82c5ef156a32a6acdcd4bb404a8c18c",
+  "reviewAuthority": "maintenance/iriya-manual-batch11-offset2-cross-review.json",
+  "reviewAuthoritySha256": "32d7a6a452a833d72759f02afd400ebdbe09232efcd213431b285ec78ebda187",
+  "verdict": "PASS",
+  "checks": {
+    "scopeProof": "Restoring only the prior disposition, unit, reason, and summary reconstructs exact pre-repair SHA de363fb4d3b0a8b2269b9ecbfd5219842c641dba3fac77a8c95eeb6c77200ad1.",
+    "頭白齒黄": "PASS: KEEP (component), component, and the stock rebuke rationale accurately distinguish the deployed Chan verdict from a neutral description of aging.",
+    "formResolution": "PASS: the printed form 頭白齒黄 has zero exact hits; the attested query 頭白齒黃 is explicitly resolved and counted.",
+    "exactCount": "PASS 67 hits / 49 files / 48 works for 頭白齒黃; 0 / 0 / 0 for 頭白齒黄.",
+    "evidence": "PASS: both unchanged exact anchors retain canonical location/KWIC and come from distinct works (X66n1296 and X66n1297).",
+    "otherNine": "PASS unchanged",
+    "summary": "PASS 6 component + 4 couplet, zero provisional/reject"
+  },
+  "authoringPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

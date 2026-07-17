@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "iriya-manual-batch-independent-review.v1",
+  "offset": 1,
+  "batch": 12,
+  "decision": "PASS",
+  "reviewedLedger": "maintenance/iriya-manual-batch12-offset1-ledger.json",
+  "checks": {
+    "authoritativeQueueIdentity": "PASS 10/10 queue number, canonical index, id, headword, and normalized query",
+    "liveExactZc": "PASS 10/10 hit/file/canonical-work triples",
+    "evidence": "PASS 20/20 exact apparatus-clean windows",
+    "canonicalWorks": "PASS two distinct work IDs per candidate; IDs match current work manifest",
+    "titles": "PASS 20/20 current English/source-title labels",
+    "variants": "PASS: couplet punctuation and 虚→虛 query normalization preserve the authoritative identity",
+    "fullCaseDeployment": "PASS: nine retained units perform observable case/cap/diagnostic work; the rejected numeral is contained-only ordinary quantity"
+  },
+  "confirmedSummary": {"KEEP (component)": 8, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 1},
+  "rows": [
+    {"queueNumber":503,"term":"句裏呈機","verdict":"PASS","note":"names mechanism presented inside the saying and is used to assess case language"},
+    {"queueNumber":506,"term":"敲枷打鎖","verdict":"PASS","note":"stable liberation image for breaking restraints"},
+    {"queueNumber":509,"term":"胡來胡現、漢來漢現","verdict":"PASS","note":"both balanced clauses define responsive mirroring"},
+    {"queueNumber":512,"term":"冬行春令","verdict":"PASS","note":"stable out-of-season critical image with deliberate mastery contrast"},
+    {"queueNumber":515,"term":"鐵船水上浮","verdict":"PASS","note":"fixed impossible-image cap and verse proof-line"},
+    {"queueNumber":518,"term":"兔子懷胎","verdict":"PASS","note":"Zhimen fixed answer independently reused as impossible/wondrous generation"},
+    {"queueNumber":521,"term":"高低普應","verdict":"PASS","note":"multiple masters deploy it evaluatively for unrestricted all-level response, not merely as a verse fragment"},
+    {"queueNumber":524,"term":"杓卜聽虚聲","verdict":"PASS","note":"stable rebuke for treating echoes/speculative signs as evidence"},
+    {"queueNumber":527,"term":"貴耳賤目","verdict":"PASS","note":"critical proverb opposing hearsay to direct presentation"},
+    {"queueNumber":530,"term":"千千萬萬","verdict":"PASS","note":"REJECT confirmed: ordinary distributive numeral modifies varying people/repetitions without Chan-specific job"}
+  ],
+  "requiredRepairs": [],
+  "authorLedgerMutation": false,
+  "registryMutation": false,
+  "buildRun": false,
+  "queueMutation": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "iriya-manual-batch-independent-review.v1",
+  "offset": 2,
+  "batch": 12,
+  "decision": "PASS",
+  "reviewedLedger": "maintenance/iriya-manual-batch12-offset2-ledger.json",
+  "checks": {
+    "authoritativeQueueIdentity": "PASS 10/10 queue number, canonical index, id, headword, and normalized query",
+    "liveExactZc": "PASS 10/10 hit/file/canonical-work triples",
+    "evidence": "PASS 20/20 exact apparatus-clean windows",
+    "canonicalWorks": "PASS two distinct work IDs per candidate; IDs match current work manifest",
+    "titles": "PASS 20/20 current English/source-title labels",
+    "variants": "PASS: couplet punctuation plus 虚→虛 and 爲→為 query forms preserve authoritative headword identities",
+    "fullCaseDeployment": "PASS: every retained unit is deployed as answer, cap, verdict, diagnosis, proverb, or responsive-teaching image rather than merely quoted/contained"
+  },
+  "confirmedSummary": {"KEEP (component)": 9, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 0},
+  "rows": [
+    {"queueNumber":510,"term":"以己方人","verdict":"PASS","note":"stable diagnosis of projecting one's own measure onto another"},
+    {"queueNumber":513,"term":"捉敗了也","verdict":"PASS","note":"recurrent case verdict that a contestant has been caught/exposed"},
+    {"queueNumber":516,"term":"鑊湯無冷處","verdict":"PASS","note":"stable inescapable-cauldron answer and danger image"},
+    {"queueNumber":519,"term":"拍拍是令","verdict":"PASS","note":"independent answer and evaluative cap for cadence that remains command"},
+    {"queueNumber":522,"term":"機不離位、墮在毒海","verdict":"PASS","note":"fixed first leakage formula; consequence clause is required"},
+    {"queueNumber":525,"term":"目瞪口呿","verdict":"PASS","note":"stable verdict of masters/patriarchs rendered unable to answer"},
+    {"queueNumber":528,"term":"作賊人心虚","verdict":"PASS","note":"fixed guilty-thief proverb deployed to expose self-betrayal"},
+    {"queueNumber":531,"term":"大道透長安","verdict":"PASS","note":"fixed Zhaozhou answer repeatedly raised as a case"},
+    {"queueNumber":534,"term":"斬爲三段","verdict":"PASS","note":"recurrent decisive disposal cap across persons, sayings, and views"},
+    {"queueNumber":537,"term":"看風使帆","verdict":"PASS","note":"stable responsive-expediency image used both critically and affirmatively"}
+  ],
+  "requiredRepairs": [],
+  "authorLedgerMutation": false,
+  "registryMutation": false,
+  "buildRun": false,
+  "queueMutation": false,
+  "lineageTouched": false
+}

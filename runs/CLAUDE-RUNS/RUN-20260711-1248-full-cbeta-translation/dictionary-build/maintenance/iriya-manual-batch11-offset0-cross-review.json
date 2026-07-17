@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1","reviewedLedger":"maintenance/iriya-manual-batch11-offset0-ledger.json","reviewedLedgerSha256":"c882d14df8ba37f0858d5f8c27308b054a228f07f48d71e8d4f0248d5467d388",
+  "mechanicalChecks":{"identities":"PASS all10","exactCounts":"PASS all10","zcAndLineBounds":"PASS all20","canonicalDistinctWorks":"PASS all10","variants":"PASS"},
+  "rows":[
+    {"canonicalIndex":372,"term":"漆桶不會","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":375,"term":"胡言漢語","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":378,"term":"一色邊事","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":381,"term":"迷逢達磨","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":384,"term":"因行掉臂","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":387,"term":"一出一入","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":390,"term":"貴買賤賣","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":393,"term":"久立珍重","verdict":"PASS","reviewedDisposition":"REJECT","reason":"The broader pattern confirms a procedural closing formula: after exposition or exhortation, the speaker notes prolonged standing and dismisses the assembly with 珍重. Its recurrence is genre boilerplate rather than a separable Chan-loaded lexical unit; rejection is appropriate."},
+    {"canonicalIndex":396,"term":"日裏看山","verdict":"PASS","reviewedDisposition":"KEEP (component)"},
+    {"canonicalIndex":399,"term":"獨坐大雄峰","verdict":"PASS","reviewedDisposition":"KEEP (component)"}
+  ],
+  "summary":{"PASS":10,"REVISE":0,"reviewedDispositionCounts":{"KEEP (component)":9,"REJECT":1}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}
