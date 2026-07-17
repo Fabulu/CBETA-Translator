@@ -15,6 +15,12 @@ from pathlib import Path
 
 CJK = re.compile(r"[\u3400-\u9fff]+")
 SPACE = re.compile(r"\s+")
+MECHANICAL_COUNT_NOTE = re.compile(
+    r"^\s*\d[\d,]*\s+exact\s+(?:hits|occurrences|witnesses)\s+"
+    r"(?:in|across)\s+\d[\d,]*\s+independent\s+works?;\s*"
+    r"\d[\d,]*\s+(?:selected\s+)?exact\s+witnesses\s+are\s+stored\.\s*$",
+    re.IGNORECASE,
+)
 
 # These sentences were emitted by rejected batch helpers.  They are not
 # headword decisions: substituting a term or related-term label leaves the
@@ -58,8 +64,11 @@ def semantic_strings(entry: dict):
         for body in bodies:
             if body:
                 yield "evidence-body", sense_index, normalize(body, entry, sense)
-        if sense.get("Note"):
-            yield "note", sense_index, normalize(sense.get("Note"), entry, sense)
+        note = str(sense.get("Note") or "")
+        # Counts/source spreads are compiler transport, not semantic
+        # decisions.  Keep auditing every other note as reader-facing prose.
+        if note and not MECHANICAL_COUNT_NOTE.fullmatch(note):
+            yield "note", sense_index, normalize(note, entry, sense)
         draft = sense.get("DraftEvidence") or {}
         counter = draft.get("CounterexampleOrLimit")
         if counter:
