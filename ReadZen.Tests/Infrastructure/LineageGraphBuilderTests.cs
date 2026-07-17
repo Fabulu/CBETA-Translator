@@ -57,22 +57,36 @@ public class LineageGraphBuilderTests
         // CORRUPT 1012-record file (609 real + 403 auto-harvested hollow records,
         // which is what the old ">= 1009" bound guarded) back to the clean 609
         // baseline, then had ~356 individually-researched masters folded back in
-        // (367 qualified minus dedup/merges, plus rescues/dangling-teacher nodes).
-        // The correct current floor is 965, not the old corrupt-file's ~1009.
-        Assert.True(roster.Count >= 965);
+        // (367 qualified minus dedup/merges, plus rescues/dangling-teacher nodes),
+        // landing at 965. A same-day defect-fix pass then collapsed 21 duplicate-
+        // person clusters the fold had shipped (22 excess records: the same man
+        // merge-added a second or, in one case, third time), landing at 943 --
+        // the current floor.
+        Assert.True(roster.Count >= 943);
 
         var g = LineageGraphBuilder.Build(roster);
 
         Assert.Equal(roster.Count, g.Report.Masters);
         Assert.True(g.Report.Edges >= 552);
         Assert.True(g.Report.Roots >= 6);
-        Assert.True(g.Report.Dangling <= roster.Count);
+        // Measured on the 943-record roster: Dangling=51 (2 UnresolvedTeacherKey +
+        // 49 flagged teacher_dangling). "<= roster.Count" was VACUOUS -- it can only
+        // ever be false if more than 100% of the roster dangles, i.e. never. Bound it
+        // against FOLD_SPEC's own acceptance criterion instead: the dangling rate
+        // must stay at or below 7% of the roster (documented baseline: 41/593=6.9%).
+        Assert.True(g.Report.Dangling <= (int)(roster.Count * 0.07) + 5,
+            $"dangling rate rose: {g.Report.Dangling}/{roster.Count}");
         Assert.Equal(3, g.Report.BookSources);
         Assert.Equal(2, g.Report.Contested);
         Assert.Empty(g.Report.BadAttestation);
-        Assert.True(g.Report.UnknownSchool.Count <= roster.Count);
+        // Measured: 40/943 (4.2%). Also VACUOUS before ("<= roster.Count" can never
+        // fail) -- bounded with real headroom instead.
+        Assert.True(g.Report.UnknownSchool.Count <= 60,
+            $"unknown-school count rose: {g.Report.UnknownSchool.Count}/{roster.Count}");
         Assert.Empty(g.Report.UnknownTransmission);
-        Assert.True(g.Report.UnresolvedTeacherKey.Count <= 2);
+        // The same 2 unresolved keys as the clean 609 baseline (龍巖慧彦, teacher of
+        // two Korean masters, himself not on the roster) -- exact, not a ceiling.
+        Assert.Equal(2, g.Report.UnresolvedTeacherKey.Count);
     }
 
     [Fact]
