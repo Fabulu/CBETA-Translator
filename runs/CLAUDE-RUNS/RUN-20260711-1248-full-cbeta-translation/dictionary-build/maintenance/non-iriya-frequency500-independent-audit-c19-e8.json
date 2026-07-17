@@ -1,0 +1,84 @@
+{
+  "schemaVersion":"non-iriya-frequency500-independent-audit-v1",
+  "date":"2026-07-18",
+  "decision":"REVISE-BEFORE-SEMANTIC-REVIEW",
+  "scope":"Independent audit of discover_non_iriya_frequency500.py, its 2,000-row pool, 500-row navigation packet, and receipt. No authority mutation.",
+  "artifacts":{
+    "script":{"path":"discover_non_iriya_frequency500.py","sha256":"47bd64141e66895ffe9140fcd62769698bb6a85add8e593cb3484dfb438aff85"},
+    "pool":{"path":"maintenance/non-iriya-frequency-discovery-pool-20260718.json","sha256":"8f06a1f0f6c73f990f4c2df5033242ea2d31817d683d3c36eed4b98018306efd","rows":2000},
+    "top500":{"path":"maintenance/non-iriya-frequency-candidates-500-20260718.json","sha256":"d2547cb7bb892fc0c1bab8ea28a595e23c3bd5ce97d8c3be7008b83cfefc033a","rows":500},
+    "receipt":{"path":"maintenance/non-iriya-frequency-discovery-receipt-20260718.md","sha256":"e6b79509bcadcaa798c7def5e2728dd9902890b126ef1bf29b294cf597e17830"},
+    "allowlist":{"path":"Assets/Data/zen-corpus.json","sha256":"42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"}
+  },
+  "reproduction":{
+    "fullRerun":"ATTEMPTED-BUT-NOT-COMPLETED — two isolated reruns redirected to /tmp terminated before producing artifacts in the current WSL process environment. Existing deliverables were not overwritten. Byte-for-byte regeneration is therefore not independently claimed.",
+    "successfulIndependentChecks":[
+      "All four delivered hashes match the receipt for pool and selected artifacts and the current files for script/receipt.",
+      "Pool has 2,000 unique terms; selected packet equals pool rows 1-500 exactly; selectedFor500 is true for exactly the first 500.",
+      "Pool is correctly ordered by descending stored exactHits, then ascending term.",
+      "All 612 recorded authority-source hashes still match their files; installed merged-termbase hash matches.",
+      "Recomputed exclusion set has 10,944 forms and intersects the delivered pool at zero."
+    ]
+  },
+  "indexAndCorpusProvenance":{
+    "corpusFrequencyArtifact":"bin/Debug/net8.0/index/CbetaZenTexts/search.corpusfreq.bin, 35 MB, indexStamp 8dbf068e55874353b2f335e4fa67dd13",
+    "textArtifact":"bin/Debug/net8.0/index/CbetaZenTexts/search.text.bin, 779 MB; manifest has 5,012 entries, of which the script filters to the frozen allowlist",
+    "allowlist":"Current zen-corpus.json hash matches the guide baseline.",
+    "positive":"File spread is converted to distinct works through zen-corpus.json work_ids, not treated as independent-source count.",
+    "missingReceiptBinding":"The output records indexStamp but not SHA-256 hashes for corpusfreq.bin, search.text.bin, either index manifest, or zen-corpus.json. A future receipt should bind all five so 'frozen' is independently reproducible.",
+    "criticalPreselectionBias":"corpus_bigrams first selects the top 2,000 bigrams over the entire 224,493,544-character desktop index, then exact_spread filters/counts only allowlisted rows. Re-sorting cannot recover an allowlist-high-frequency bigram discarded before filtering. Therefore the pool is not the top 2,000 bigrams of the frozen Zen corpus; it is the allowlist-ranked remainder of a whole-index top-2,000 truncation.",
+    "finalEvidenceMismatch":"Stored exactHits are contiguous counts from search.text.bin, not apparatus-clean zc counts. A ten-term check showed systematic differences: 師云 102131/429 packet vs 107186/428 zc; 古人 11274/433 vs 11661/432; 虗空 4816/175 vs 5015/174; 光明 4334/401 vs 4541/402; 境界 4072/369 vs 4279/374; 見道 2584/330 vs 2675/330; 生滅 2494/304 vs 2608/307; 功德 2479/335 vs 2557/335; 修行 2382/316 vs 2488/323; 真心 1176/184 vs 1227/186. These index figures are valid discovery signals but must not be labeled final exact corpus attestation."
+  },
+  "exclusionAudit":{
+    "strength":"Installed two-character headwords/Chinese aliases and parsed authority candidates are excluded, and longer parsed queue candidates also exclude every two-character window.",
+    "missingAuthority":"NEXT500_RELATED_POOL.tsv is absent from AUTHORITY_NAMES. Its CJK windows overlap 288 delivered pool terms, proving the claimed all-queue exclusion is incomplete. Some overlaps are generic windows, but the omission must be repaired mechanically rather than hand-waved.",
+    "overExclusion":"Blanket exclusion of every two-character window inside a longer planned candidate violates the nested-term gate: a queued compound does not prove its two-character component is the same lexical object or already covered.",
+    "underOverAsymmetry":"Installed longer SourceTerms do not receive the same window exclusion, while planned longer strings do. The asymmetry is methodological rather than semantic.",
+    "historicalPacketRisk":"Every maintenance/investigation*.json file is treated as candidate authority, including historical, review, rejected, and superseded artifacts. Only bound accepted manifests/registries should exclude; invalid or rejected packets must not erase candidates.",
+    "requiredFix":"Build one canonical covered-term table from installed SourceTerms/aliases plus active accepted queue rows. Exact variants may redirect; substrings become family-review flags, never automatic exclusions. Add NEXT500_RELATED_POOL.tsv explicitly and bind every source hash."
+  },
+  "flagAudit":{
+    "selectedCounts":{"genericGrammarOrCompositional":279,"sharedCharacterCluster":258,"possibleNameTitleBibliographic":41,"unionAnyDiminishingFlag":349,"noDiminishingFlag":151},
+    "overlap":{"genericAndCluster":217,"genericAndTitle":5,"clusterAndTitle":11,"allThree":4},
+    "genericFlag":"Any occurrence of a broad character set triggers the flag. It is useful for triage but catches genuine compounds and cannot decide rejection.",
+    "clusterFlag":"The implementation counts any selected term sharing either character, not a near-duplicate, substring, variant, or same-referent relation. Calling 258 rows near-duplicate clusters is unsupported; it is a character-hub flag.",
+    "cleanIsNotClean":"The 151 unflagged rows include obvious structural/generic/name material such as 進云, 古人, 雪竇, 天童, 當時, 問曰, 卷第, numerical fragments, and scripture/school labels. Absence of a flag is not semantic quality."
+  },
+  "semanticPacketVerdict":{
+    "navigation":"YES — the 500 rows are usable as a mechanically ranked reading queue after identity/provenance correction.",
+    "expected500Entries":"NO — it is not a viable packet from which to promise 500 good entries. Even accepting all 151 unflagged rows leaves 349 required from flagged rows, and many unflagged rows are manifestly structural or generic. Frequency cannot bridge that deficit.",
+    "twoCharacterCeiling":"The packet contains only bigrams. It systematically misses the 3-8 graph formulas, objects, public-interview turns, sayings, and case names that generally have higher lexical precision and are required by the guide's flyswatter/public-interview gates."
+  },
+  "requiredStratifiedVettingOrder":[
+    {"order":0,"stratum":"regenerate correctly","action":"Rank directly inside the 494-file frozen allowlist, bind index/allowlist hashes, use zc exact/bridged figures as final count fields, and replace blanket substring exclusion with family flags."},
+    {"order":1,"stratum":"hard structural filters","action":"Set aside speaker frames (師云/師曰/僧云/進云/問曰), section/bibliographic fragments (卷第/偈曰/頌曰), number/calendar fragments, and productive grammar. Record reasons; do not spend full semantic review on unequivocal parser scaffolding."},
+    {"order":2,"stratum":"high-priority lexical classes across the whole pool","action":"Review concrete implements and ritual/institutional terms, lineage/role words, public-interview formulas, case-fixed images, precept/legal language, and ordinary words plausibly bent by Zen. Rank within class by distinct works and low single-work concentration, not raw hits alone."},
+    {"order":3,"stratum":"unflagged nonstructural candidates","action":"Review the remaining unflagged bigrams after name/title and generic-language screening. Require two full cases from distinct canonical works."},
+    {"order":4,"stratum":"grammar-character false-positive recovery","action":"Review generic-flagged compounds whose whole two-character unit is repeatedly raised or technically deployed. The presence of 無/有/不/之 cannot itself reject a term."},
+    {"order":5,"stratum":"name/title/bibliographic adjudication","action":"Cross-check master roster and titles. Separate person/title/role/ordinary-word senses; retain only dictionary-worthy deployed units."},
+    {"order":6,"stratum":"real family adjudication","action":"Replace the shared-character flag with exact variant, optional-suffix, substring DAG, same-case, and same-referent clusters. Review one family together and redirect only genuine duplicates."},
+    {"order":7,"stratum":"frequency tail","action":"Review ranks 501-2000 by lexical class, not only after every top-500 generic. Lower frequency can carry much higher Zen specificity."}
+  ],
+  "poolExpansion":{
+    "mustExpandBeyond2000":true,
+    "reason":"The current pool is whole-index-truncated, bigram-only, incompletely deduped, and semantically dominated by scaffolding. There is no defensible path to guarantee 500 accepted units from it.",
+    "minimumNextPool":"Regenerate at least 5,000 allowlist-ranked bigrams and add an independently ranked, deduplicated pool of at least 5,000 3-8 graph candidates (with 9-16 graph boundary-aware couplets sampled separately). This is a candidate reservoir, not a 10,000-entry promise.",
+    "adaptiveSizing":"Pilot 100 candidates in each substantive stratum. Let p_L be the Wilson 95% lower bound of the accepted-independent-unit rate. After A accepts, require reservoir N >= ceil((500-A)/p_L). Replenish in 500-row increments. If p_L is 0.15, roughly 3,334 reviewed candidates are needed before family redirections; a 2,000 pool is mathematically insufficient at that yield.",
+    "stopRule":"Use three consecutive 100-row blocks with acceptance below 10%, incremental weighted coverage below 0.5%, and family redundancy above 60% to shift strata; never stop all discovery because one bigram stratum saturates."
+  },
+  "requiredChangesBeforeUse":[
+    "Correct allowlist-first ranking rather than whole-index top-2,000 preselection.",
+    "Bind hashes for all index artifacts/manifests and the allowlist.",
+    "Add NEXT500_RELATED_POOL.tsv and use only active accepted authority artifacts.",
+    "Do not blanket-delete nested two-character windows; family-flag them.",
+    "Rename index counts as indexExactHits/indexExactWorks and add zcExact/zcBridged fields.",
+    "Replace shared-character 'near duplicate' flags with actual family analysis.",
+    "Add 3-8 graph and boundary-aware saying strata before promising 500 accepted terms."
+  ],
+  "scriptModified":false,
+  "deliverablesModified":false,
+  "authorityQueuesModified":false,
+  "entriesBuilt":false,
+  "registryModified":false,
+  "lineageTouched":false
+}

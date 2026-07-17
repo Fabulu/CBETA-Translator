@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "non-iriya-frequency-reservoir-v2-independent-audit.v1",
+  "date": "2026-07-18",
+  "decision": "PASS-FOR-DISCOVERY-AND-SEMANTIC-VETTING",
+  "scope": "Independent audit of the corrected frequency-v2 script and its 5,000 two-graph plus 5,000 three-to-eight-graph reservoir. This is discovery authority only, never entry or queue-admission authority.",
+  "artifacts": {
+    "script": {"path": "discover_non_iriya_frequency_reservoir_v2.py", "sha256": "59f3859351a0cbdb6eb1183ecb86d8e72ba35061603c4fede36856447d5b738a"},
+    "reservoir": {"path": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json", "sha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6"},
+    "exactCheckpoint": {"sha256": "08901ce922072c9fe29d26e7d0f073c4185ef9a10a4a487c96f0a89ea75eba3f"},
+    "shortlistCheckpoint": {"sha256": "87fc5116e79facc04805ef0ffa96e2062b1b2a70917447e3177d93d9b2a8711a"},
+    "implementationAudit": {"sha256": "20442f4abc26e3fc851da4203d9d2577c4d316d6005ec99e86abf7eef9d5c782"},
+    "receipt": {"sha256": "944b30bb33195a6562569c86016539b6990e707235f400f860167775fe2bb1f6"},
+    "methodAudit": {"sha256": "281cff9d43c12cb3c299a50b60a97f49fa9a518b027f3943e93c91b105d7f06f"},
+    "allowlist": {"path": "Assets/Data/zen-corpus.json", "sha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"}
+  },
+  "independentChecks": {
+    "allowlistFirst": "PASS: shortlist extraction filters search.text manifest rows through the frozen Zen allowlist before per-file heavy-hitter selection and exact ranking.",
+    "bandSizes": "PASS: exactly 5,000 two-graph and 5,000 three-to-eight-graph rows.",
+    "uniqueness": "PASS: 10,000 unique terms overall; disjoint band lengths prevent cross-band duplicates.",
+    "authorityExclusion": "PASS: recomputed 6,408-term exact covered set intersects the reservoir at zero.",
+    "next500Pool": "PASS: NEXT500_RELATED_POOL.tsv is explicit planned authority, SHA-256 62832d7f128a8ffea6e7699afbbb370bf41f0cccdbf932a38cc992b449c7e7be, with 3,079 parsed terms.",
+    "exactParity": "PASS: 15 independently selected head/tail/family rows reproduce stored apparatus-clean zc exact hit/file/work counts.",
+    "familyBehavior": "PASS: nested strings are retained rather than blanket-excluded; 3,841 rows expose covered parents and 1,924 expose covered children, with displayed links directionally and mechanically valid.",
+    "frozenBindings": "PASS: allowlist, reservoir dependencies, authority sources, and recorded artifact hashes match current bytes."
+  },
+  "methodAssessment": {
+    "strength": "The corrected pipeline fixes the prior whole-index preselection, missing NEXT500 authority, blanket nested-window exclusion, and final-count provenance defects.",
+    "limitation": "Per-file bounded heavy hitters make this a large deterministic candidate reservoir, not an exhaustive global frequency census. Family navigation is capped and does not establish semantic identity.",
+    "requiredUse": "Every row still requires full-case semantic vetting, identity/family adjudication, and normal admission authority before construction. Generic high-frequency scaffolding may be rejected without weakening this discovery PASS."
+  },
+  "scriptModified": false,
+  "deliverablesModified": false,
+  "authorityQueuesModified": false,
+  "entriesBuilt": false,
+  "registryModified": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "non-iriya-frequency-navigation-quarantine.v1",
+  "status": "QUARANTINED-OLD-POOL",
+  "sourcePool": "maintenance/non-iriya-frequency-candidates-500-20260718.json",
+  "sourcePoolSha256": "d2547cb7bb892fc0c1bab8ea28a595e23c3bd5ce97d8c3be7008b83cfefc033a",
+  "reason": "Discovery audit found whole-index pre-truncation and incomplete exclusions; navigation was stopped before the first 25-row checkpoint.",
+  "completedCheckpointRows": 0,
+  "navigationPacketsPersisted": 0,
+  "continuedAfterAudit": false,
+  "candidatePoolMutated": false,
+  "queueAdvanced": false,
+  "registryMutated": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "non-iriya-frequency-reservoir-v2-implementation-audit",
+  "generatedUtc": "2026-07-17T23:16:42.167634+00:00",
+  "output": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "outputSha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "counts": {
+    "two": 5000,
+    "long": 5000,
+    "total": 10000
+  },
+  "coveredExactIntersection": 0,
+  "uniqueWithinBands": true,
+  "sampleExactParity": [
+    {
+      "term": "師曰",
+      "stored": [
+        94980,
+        335,
+        330
+      ],
+      "zc": [
+        94980,
+        335,
+        330
+      ],
+      "ok": true
+    },
+    {
+      "term": "得箇",
+      "stored": [
+        2575,
+        283,
+        278
+      ],
+      "zc": [
+        2575,
+        283,
+        278
+      ],
+      "ok": true
+    },
+    {
+      "term": "龍牙",
+      "stored": [
+        894,
+        167,
+        163
+      ],
+      "zc": [
+        894,
+        167,
+        163
+      ],
+      "ok": true
+    },
+    {
+      "term": "學之",
+      "stored": [
+        530,
+        186,
+        182
+      ],
+      "zc": [
+        530,
+        186,
+        182
+      ],
+      "ok": true
+    },
+    {
+      "term": "時如何",
+      "stored": [
+        14376,
+        404,
+        399
+      ],
+      "zc": [
+        14376,
+        404,
+        399
+      ],
+      "ok": true
+    },
+    {
+      "term": "卓拄杖一",
+      "stored": [
+        829,
+        171,
+        169
+      ],
+      "zc": [
+        829,
+        171,
+        169
+      ],
+      "ok": true
+    },
+    {
+      "term": "盧頂上",
+      "stored": [
+        343,
+        164,
+        161
+      ],
+      "zc": [
+        343,
+        164,
+        161
+      ],
+      "ok": true
+    },
+    {
+      "term": "源一滴",
+      "stored": [
+        232,
+        94,
+        93
+      ],
+      "zc": [
+        232,
+        94,
+        93
+      ],
+      "ok": true
+    },
+    {
+      "term": "人人",
+      "stored": [
+        4521,
+        414,
+        408
+      ],
+      "zc": [
+        4521,
+        414,
+        408
+      ],
+      "ok": true
+    },
+    {
+      "term": "時時",
+      "stored": [
+        1479,
+        329,
+        325
+      ],
+      "zc": [
+        1479,
+        329,
+        325
+      ],
+      "ok": true
+    },
+    {
+      "term": "處處",
+      "stored": [
+        3619,
+        406,
+        401
+      ],
+      "zc": [
+        3619,
+        406,
+        401
+      ],
+      "ok": true
+    },
+    {
+      "term": "念念",
+      "stored": [
+        1861,
+        287,
+        284
+      ],
+      "zc": [
+        1861,
+        287,
+        284
+      ],
+      "ok": true
+    }
+  ],
+  "checkpointSha256": {
+    "shortlist": "87fc5116e79facc04805ef0ffa96e2062b1b2a70917447e3177d93d9b2a8711a",
+    "exact": "08901ce922072c9fe29d26e7d0f073c4185ef9a10a4a487c96f0a89ea75eba3f"
+  },
+  "limitations": [
+    "Per-file bounded heavy-hitter shortlisting is a scalable discovery reservoir, not an exhaustive ordering of every n-gram.",
+    "Every row remains discovery-only and requires adaptive full-case semantic vetting before admission."
+  ],
+  "mutations": {
+    "entries": false,
+    "queue": false,
+    "registry": false,
+    "lineage": false
+  }
+}

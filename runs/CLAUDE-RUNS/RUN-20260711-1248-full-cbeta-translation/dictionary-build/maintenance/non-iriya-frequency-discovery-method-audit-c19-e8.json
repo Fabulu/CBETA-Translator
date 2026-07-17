@@ -1,0 +1,101 @@
+{
+  "schemaVersion":"non-iriya-frequency-discovery-audit-v1",
+  "date":"2026-07-18",
+  "mode":"read-only method design plus small corpus-grounded gap sample; no construction or queue mutation",
+  "guide":"DICTIONARY_ENTRY_GUIDE.md",
+  "guideReadInFull":true,
+  "frozenCorpus":{
+    "manifest":"Assets/Data/zen-corpus.json",
+    "guideBaselineSha256":"42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "allowlistedFilesObserved":494,
+    "apparatusCleanCharactersObserved":35498617,
+    "countingUnit":"distinct canonical work_id, never file count"
+  },
+  "authoritativeTermSources":{
+    "installed":[
+      {"source":"fresh-build/entries/<id>/entry.v2.json","status":"authoritative mutable entry tree during the fresh rebuild","observedEntryFiles":1698},
+      {"source":"terms/<id>/entry.v2.json","status":"historical reference only during the fresh rebuild; never treat it as current installation authority"}
+    ],
+    "plannedAndDiscovery":[
+      {"source":"WAVE_PLAN.md","role":"original curated b001-b036 wave roster; retain for provenance and dedupe even where already installed"},
+      {"source":"REQUESTED_TERMS.md + REQUESTED_BUILD_PLAN.md","role":"user-curated requested families and their build ordering"},
+      {"source":"NEXT500_TERMS.md + NEXT500_BUILD_PLAN.md","role":"500 frequency-plus-Chan-deployment candidates and their construction order"},
+      {"source":"NEXT100_SAYINGS_CANDIDATES.md + NEXT100_BUILD_PLAN.md","role":"100 sayings, idioms, material images, and cultural notes"},
+      {"source":"RELATED_INVESTIGATION_BACKLOG.md + NEXT500_RELATED_POOL.tsv","role":"720 inherited investigation leads; candidate authority only until semantic adjudication"},
+      {"source":"maintenance/investigation-next300-*.json and bound construction manifests","role":"later manually adjudicated non-Iriya discovery lanes; use bound acceptance/registry artifacts, not raw frequency packets"},
+      {"source":"IRIYA_SAYINGS_QUEUE.md + IRIYA_FINAL_BUILD_PLAN.md + maintenance/iriya-trusted-registry.json","role":"separate final Iriya candidate source; only registry-trusted manual outcomes are admission authority"}
+    ],
+    "dedupeReceipt":"maintenance/queue-dedup-audit-20260713.md records 1,320 legacy planned rows, six definite duplicate/variant families, and 74 containment candidates. Its family rulings remain mandatory inputs, but its counts are not a current installed-entry count."
+  },
+  "recommendedFrequencyMethod":{
+    "discoveryEngine":[
+      "Primary: batch probes and candidate enumeration through web_index_kwic.mjs against the website's v3 unigram/bigram shards, frozen-allowlist filtered.",
+      "Cross-check: indexed_kwic.py against search.inverted.bin plus search.text.bin; never interpret a postings miss as absence.",
+      "Final counts: zc.bridged_count for high-recall discovery and zc.count for exact apparatus-clean attestation; every saved witness must pass zc.verify.",
+      "Environment finding: neither web_index_kwic.mjs nor indexed_kwic.py nor installed search.inverted.bin/search.text.bin was present under /mnt/c/programmieren during this audit. The small sample therefore used exact zc directly and is not represented as an index-performance test."
+    ],
+    "ngramBands":[
+      {"length":"1","use":"seeded unigram sweep only for concrete objects, role words, rule terms, and known metaphor families; unrestricted unigram frequency is overwhelmingly grammatical noise"},
+      {"length":"2-4","use":"primary lexical sweep; generate every CJK n-gram inside punctuation-bounded text and rank exact graph forms"},
+      {"length":"5-8","use":"stock formulas, interview turns, institutional commands, short proverbs, and case labels"},
+      {"length":"9-16","use":"sentence/couplet miner only, using punctuation and parallel-clause boundaries; do not exhaustively slide all long windows"}
+    ],
+    "normalization":[
+      "Extract from zc-equivalent body text with note/app/rdg excluded and whitespace removed.",
+      "Keep exact punctuation-visible and exact unpunctuated forms separate. Bridge the guide's fixed editorial punctuation only for discovery; never save a bridged witness as exact evidence.",
+      "Apply Unicode NFC/NFKC compatibility folding only to a collision-review key, never to corpus counts or display forms.",
+      "Use only curated directional Japanese-to-traditional and explicitly adjudicated graph aliases for family grouping. Never use transitive variant closure.",
+      "Preserve each exact graph form's hits/files/works and select a preferred display form only after full-case review."
+    ],
+    "ranking":{
+      "minimumFields":["exact hits","bridged hits","distinct canonical works","files","n-gram length","top work concentration","existing/planned collision","substring parents/children"],
+      "suggestedScore":"log1p(exactHits) * log1p(distinctWorks) * deploymentPrior * (1 - topWorkShare) * noveltyWeight",
+      "deploymentPrior":"1.0 for repeatedly raised answers/verdicts/institutional formulas; 0.5 for unresolved formal-address language; 0.1 for narration or boilerplate. This prior triages reading and never decides admission.",
+      "concentrationGuard":"Flag candidates where one work supplies >35% of hits or one textual family supplies >60%; frequency without work spread is not corpus-wide evidence."
+    },
+    "dedupeAndClustering":[
+      "Exact dedupe by SourceTerm and deterministic ID against fresh-build, all planned sources, and trusted registries.",
+      "Collision-key dedupe after whitespace/punctuation removal plus only curated directional graph aliases.",
+      "Build a substring DAG. For A contained in B, compute exact hits(A), hits(B), and the share of A's occurrences covered by B. Never delete A merely because B is frequent.",
+      "Cluster optional particles and object suffixes (麼, 子, 盂, 錄), punctuation variants, and known graph variants as research families, not automatic merges.",
+      "Cluster by shared full-case locus and semantic referent. One case can yield a case title, an utterance, and an object; shared provenance does not prove one lexical unit.",
+      "Within each family select the longest independently deployed unit, retain independently deployed components, and redirect only same-referent variants while preserving all inherited leads and counts."
+    ],
+    "manualAdjudication":"For every surviving candidate read at least two full cases from distinct canonical works and ask whether the headword is deployed as answer, verdict, cap, public test, institutional formula, epithet, or raised case rather than merely contained. Frequency and mechanical cleanliness never decide KEEP."
+  },
+  "diminishingReturnsDiagnostic":{
+    "batchSize":100,
+    "recordPerBatch":["candidates read","KEEP independent lexical units","redirected variants","generic/noise rejects","new families","exact token mass represented","distinct-work mass represented","review minutes"],
+    "yield":"Y_k = newly accepted independent lexical units / 100 reviewed",
+    "weightedCoverage":"C_k = sum over newly accepted terms of log1p(exactHits)*log1p(works), assigning each normalized occurrence-family only to its longest accepted unit to avoid double counting",
+    "redundancy":"R_k = (redirected variants + candidates wholly covered by an accepted same-referent family) / 100",
+    "stoppingOrShiftRule":"Shift to a new length/genre stratum when three consecutive 100-row batches have Y_k < 10%, incremental weighted coverage < 0.5% of cumulative accepted coverage, and R_k > 60%. Require all three conditions so rare but high-value terms are not suppressed by a frequency plateau.",
+    "uncertainty":"Report a Wilson 95% interval for Y_k. If its upper bound remains below 15% for three consecutive batches, the low yield is statistically credible rather than one bad batch.",
+    "unseenMassCheck":"Track accepted families appearing once versus twice in independently sampled candidate strata and report the Chao1 unseen-family estimate. A falling Chao1 remainder corroborates, but never alone triggers, stopping.",
+    "stratification":"Compute the curve separately for 1, 2-4, 5-8, and 9-16 graphs and for interview, institutional, object/metaphor, figure/title, and generic-narrative strata. A saturated short-gram stratum must not stop sayings discovery."
+  },
+  "sampleAudit":{
+    "coverageTest":"Fresh installed status was checked by deterministic ID path existence; planned status was checked across every enumerated plan source. The five rows below were absent as exact headwords from both checks at sampling time.",
+    "likelyHighValue":[
+      {"term":"參堂去","exactHits":424,"distinctWorks":111,"disposition":"INVESTIGATE-HIGH","finding":"A recurrent institutional command meaning to go join the hall; masters also wield it as an interview-closing or deliberately inadequate answer. High frequency, broad work spread, and a visible Chan procedural job justify full adjudication."},
+      {"term":"自家寶藏","exactHits":67,"distinctWorks":42,"disposition":"INVESTIGATE-HIGH","finding":"Mazu's exchange makes one's own treasury the direct answer to Dazhu Huihai's outward search, and later addresses reuse it for the resources disclosed in one's own activity. Strong flyswatter-test candidate despite moderate frequency."},
+      {"term":"真參實悟","exactHits":113,"distinctWorks":71,"disposition":"INVESTIGATE-HIGH","finding":"Late records repeatedly use the compound as a quality gate distinguishing actual inquiry and realization from blind transmission, status, or verbal claims. Broad work spread warrants testing whether this is a stable evaluative term rather than two coordinated adjectives."}
+    ],
+    "borderline":[
+      {"term":"生死心切","exactHits":36,"distinctWorks":24,"disposition":"INVESTIGATE-BORDERLINE","finding":"The phrase repeatedly names urgency about life and death as what makes inquiry continuous without external coercion. The Chan job is plausible, but full review must decide whether the four graphs form a stable term or ordinary compositional prose."}
+    ],
+    "genericOrNoise":[
+      {"term":"禮拜退","exactHits":81,"distinctWorks":53,"disposition":"REJECT-LEANING","finding":"Sampled uses are ordinary narrative stage direction: a participant bows and withdraws, after which the master speaks. No headword-specific Chan sense surfaced."},
+      {"term":"下座","exactHits":13230,"distinctWorks":401,"disposition":"GENERIC-PROCEDURAL","finding":"Extremely frequent section/event narration ('descended from the seat'). Mine surrounding caps, but raw frequency does not make the compositional action a discovery priority."},
+      {"term":"良久曰","exactHits":2184,"distinctWorks":95,"disposition":"SEGMENTATION-NOISE","finding":"A punctuation/attribution frame joining 'after a long while' to 'said'; useful for speaker parsing, not one lexical headword."},
+      {"term":"上堂","exactHits":58581,"distinctWorks":426,"disposition":"ALREADY-KNOWN-INSTITUTIONAL/STOPWORD","finding":"A real Chan institutional term, but already installed/planned and so a discovery stopword; its huge frequency must not crowd out unseen candidates."},
+      {"term":"師曰","exactHits":94980,"distinctWorks":330,"disposition":"STRUCTURAL-NOISE","finding":"Speaker-label grammar, not a dictionary discovery candidate. It belongs in parsing and attribution tooling."},
+      {"term":"今日","exactHits":23580,"distinctWorks":459,"disposition":"GENERIC-NOISE","finding":"Ordinary temporal vocabulary with near-corpus-wide spread; high frequency has no positive relationship to Zen lexical value."}
+    ]
+  },
+  "conclusion":"Frequency analysis remains useful, but only as a stratified recall mechanism. The next defensible harvest should begin with the 2-8 graph strata after subtracting the installed/planned universe, then manually adjudicate 100-row blocks while publishing yield, redundancy, and weighted-coverage curves. The observed gaps show that worthwhile institutional and metaphorical terms remain, while the highest raw counts are dominated by structural and generic language.",
+  "entriesBuilt":false,
+  "queuesModified":false,
+  "registryModified":false,
+  "lineageTouched":false
+}
