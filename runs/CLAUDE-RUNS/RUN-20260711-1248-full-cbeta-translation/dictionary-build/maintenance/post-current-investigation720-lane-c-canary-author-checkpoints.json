@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "post720-lane-c-canary-author-checkpoints.v1",
+  "decisionCount": 5,
+  "builtCount": 2,
+  "stopBeforeLanePosition": 6,
+  "checkpointPlan": {
+    "nextPositions": "6-50",
+    "nextRowCount": 45,
+    "checkpointAfterLanePosition": 50,
+    "tailPositions": "51-58"
+  },
+  "decisions": [
+    {
+      "lanePosition": 1,
+      "id": "t_75039519e1e0",
+      "headword": "廣燈",
+      "disposition": "REJECT",
+      "reason": "The complete cases resolve the form as the personal name/title 廣燈禪師 or as a shortened bibliographic reference to 天聖廣燈錄; the corpus does not deploy 廣燈 as an independent Chan expression."
+    },
+    {
+      "lanePosition": 2,
+      "id": "t_68f8f387cfd6",
+      "headword": "普燈錄",
+      "disposition": "REJECT",
+      "reason": "All complete cases are self-titles, headings, or citations of 嘉泰普燈錄. The title is contained in Chan books but is not itself deployed as a saying or technical expression."
+    },
+    {
+      "lanePosition": 3,
+      "id": "t_27bbde1bc523",
+      "headword": "馬腳",
+      "disposition": "KEEP",
+      "reason": "Two corpus-attested things: the horse's foot and, in 露出馬腳, the giveaway that exposes a flaw."
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_687709b1388b",
+      "headword": "隨人腳跟轉",
+      "disposition": "KEEP",
+      "reason": "Masters deploy the heel-following image as a verdict on derivative movement, language, and understanding."
+    },
+    {
+      "lanePosition": 5,
+      "id": "t_8072bafc41fe",
+      "headword": "貨利",
+      "disposition": "REJECT",
+      "reason": "Across the full cases 貨利 retains its ordinary sense of goods/material profit, usually in stock lists with 聲色 or 名利. Masters mention it, but do not give the compound an observable Chan-specific lexical job."
+    }
+  ],
+  "built": [
+    {
+      "lanePosition": 3,
+      "id": "t_27bbde1bc523",
+      "headword": "馬腳",
+      "entryDraftSha256": "9b271fa860e742e8ab55a595c906848edb7d422aa819fda9a51cb47e4835b7a1",
+      "workSha256": "eadd70c2592695e6fdd6e8cd884a34c49a99b472d12860804a7d99e8217e5923"
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_687709b1388b",
+      "headword": "隨人腳跟轉",
+      "entryDraftSha256": "0b383e90f0b4f886b9db153c9301cbcc136037e3753bb52bfde97b8a59bbddab",
+      "workSha256": "b661dc42ffa74d083d73f6ea0a6c36fc2d298278bfa3ace8cb7a0f5dac7bf2db"
+    }
+  ]
+}

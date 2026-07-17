@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-a-canary3-actor-link-repair-ledger.v1",
+  "reviewBinding": {
+    "path": "maintenance/post-current-investigation720-lane-a-canary5-current-byte-independent-review.json",
+    "sha256": "ba7fe4bc24dcf3d52751ee183f5321eea8af61128df917ff5d4480258369021e"
+  },
+  "scope": "Actor/link-only repair for the three Lane A canary revisions; semantic prose unchanged; no lineage edits.",
+  "entries": [
+    {
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "entrySha256": "ced88dc75f6058f5c21a2a7770360877235e24b1a03f1311ac9ec330720b93c8",
+      "repairs": [
+        "Baichi Xingyuan canonicalized",
+        "Juyun Chuiwan Guangzhen canonicalized",
+        "X68 corrected to Yulin Tongxiu",
+        "祖庵主 corrected to Hermitage Master Zu of Nanyue and evidence-bound as pending roster"
+      ]
+    },
+    {
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "entrySha256": "58fd5d33f3bd7670d7c723b321a94305124f4fe4028d8decc370509c8aa34791",
+      "repairs": ["Cheongheo Hyujeong canonicalized to Hyujeong"]
+    },
+    {
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "entrySha256": "62091aee0adff8dc923ef2140867859d4ceb828e8f35991fa6f19a6ce957afd7",
+      "repairs": ["Shishi Shandao retained as the source-attested exact speaker and evidence-bound in pending-roster; no lineage link created"]
+    }
+  ],
+  "pendingRoster": {
+    "path": "fresh-build/pending-roster.json",
+    "sha256": "a0f20cc6ab9f45cb184ad6759eca6cf38769bc76ea7de0ce3018c14f449348d5",
+    "added": ["Hermitage Master Zu of Nanyue", "Shishi Shandao"]
+  },
+  "focusedGate": {
+    "path": "maintenance/post-current-investigation720-lane-a-canary3-actor-link-repair-delta-gate.json",
+    "sha256": "8c6b8ff1d7da7253bef7dd097daf6cd3a18bad321c51d0129487971aa39eb380",
+    "entries": 3,
+    "exactOccurrences": "14/14",
+    "hardPass": true
+  },
+  "disposition": "READY_FOR_INDEPENDENT_CURRENT_BYTE_CONFIRMATION",
+  "protectedScope": {"lineageTouched": false, "queueTouched": false, "iriyaTouched": false}
+}

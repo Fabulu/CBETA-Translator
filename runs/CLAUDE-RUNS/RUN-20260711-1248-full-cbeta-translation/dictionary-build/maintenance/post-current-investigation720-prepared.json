@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "post-current-investigation720-preparation.v1",
+  "generatedUtc": "2026-07-17T13:14:11.319813+00:00",
+  "scope": "Preparation only; no entry, roster, lineage, merge, or publication writes.",
+  "source": {
+    "path": "fresh-build/queue.json",
+    "sha256": "92d80508f93bd17db4646afc98af04dc6e1d714c5cc11689032c09cc7f272112"
+  },
+  "exclusionBindings": [
+    {
+      "path": "maintenance/postpublication-construction-handoff-current.json",
+      "sha256": "04fcfaec1054a72d4f83e5e7de3dfe87b2673d7422ee1099f908e1929a940540"
+    },
+    {
+      "path": "maintenance/investigation-next300-final-semantic-admission.json",
+      "sha256": "b2aa5b7ab7098a951234ee20997ea36b4f2231b63c17045989d3cb766052a569"
+    }
+  ],
+  "treeBaseline": {
+    "entries": 1543,
+    "idTermDigest": "eb14aee87f3555b206d6a6c71d0277ab69a376386d322833a47ee276ae5718cf"
+  },
+  "canonicalInvestigationRows": 720,
+  "sourceDuplicatesRemoved": 0,
+  "excludedCount": 544,
+  "excludedReasonCounts": {
+    "current-frozen-wave": 522,
+    "current-tree": 288
+  },
+  "selectedCount": 176,
+  "ordinalRange": [
+    1523,
+    1970
+  ],
+  "laneCounts": {
+    "A": 59,
+    "B": 59,
+    "C": 58
+  },
+  "uniqueIds": true,
+  "uniqueHeadwords": true,
+  "currentWaveCollisions": 0,
+  "treeCollisions": 0,
+  "entryConstructionAuthorized": false,
+  "lineageMutationAuthorized": false,
+  "fiveCanaryContract": {
+    "size": 5,
+    "rule": "No remainder is authored until the first five outputs of each new author/compiler combination pass the full changed-cohort contract.",
+    "requiredChecks": [
+      "exact KWIC and both line anchors",
+      "actor and six-rung ambiguity closure",
+      "depth and claim anchors",
+      "public feedback",
+      "distinct work IDs",
+      "frozen corpus baseline",
+      "forbidden English",
+      "cross-entry semantic templates"
+    ]
+  },
+  "processContract": "PROCESS_SPEED_ARCHITECTURE.md stages 1–8; reuse SHA-bound dossiers and reopen XML only on mismatch, actor conflict, or sense-split signal."
+}

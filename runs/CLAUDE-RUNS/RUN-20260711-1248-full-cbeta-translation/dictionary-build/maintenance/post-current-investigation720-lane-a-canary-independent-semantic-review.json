@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-a-canary-independent-semantic-review.v1",
+  "reviewer": "Codex independent Lane A canary full-case reviewer",
+  "reviewerIndependent": true,
+  "independentQualified": true,
+  "entryWrites": 0,
+  "rosterWrites": 0,
+  "sourceManifest": {
+    "path": "maintenance/post-current-investigation720-lane-a.json",
+    "sha256": "1240085925bced5343756ec0d4a6abeee0427dc725cc935bd05cc2c38fa6b969"
+  },
+  "authorCheckpoint": {
+    "path": "maintenance/post-current-investigation720-lane-a-canary-author-checkpoints.json",
+    "sha256": "8a05409b70e4f8930bfc71d5af5141e490df21fbe147da351365c66437949a32"
+  },
+  "strictGate": {
+    "path": "maintenance/post-current-investigation720-lane-a-canary-strict-gate.json",
+    "sha256": "062b0d855031afa2c0194defbce3da1d951579d411734065216a9e4da47c1c16",
+    "mechanicalExactVerified": 22,
+    "mechanicalExactFailures": 0,
+    "hardPass": false,
+    "hardPassNote": "The saved gate is mechanically clean but intentionally remains non-passing because the five public-feedback receipts and this independent semantic decision were not yet present."
+  },
+  "fullCasePackets": {
+    "path": "maintenance/post-current-investigation720-lane-a-canary-strict-gate-attribution-packets.json",
+    "sha256": "18b5ea92f41ce1d61ba76a0c904dd0fdab1367e4ed9ca29c417835b75cb9e215",
+    "completeCasesRead": 22
+  },
+  "summary": {
+    "authorDecisionsReviewed": 6,
+    "titleOnlyRejectConfirmed": 1,
+    "builtEntriesReviewed": 5,
+    "pass": 0,
+    "revise": 5,
+    "reject": 0,
+    "approveA7Plus": false
+  },
+  "titleOnlyDecision": {
+    "lanePosition": 2,
+    "id": "t_2d8f5919247b",
+    "term": "廣燈錄",
+    "disposition": "REJECT-CONFIRMED",
+    "reason": "The three transported cases use 廣燈錄 only inside bibliographic titles or source notices: 天聖廣燈錄, 宗門廣燈錄, or 出天聖廣燈錄第十八卷. No case deploys the substring as a saying, answer, verdict, test, or independent lexical unit."
+  },
+  "rows": [
+    {
+      "lanePosition": 1,
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "reviewedCurrentEntrySha256": "2e46a1c588192a156b87ba5d9ca97600e43f6211ed9d13fac88d558e836257ce",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "accepted": false,
+      "distinctWorkIds": [
+        "work:J28nB202",
+        "work:J29nB239",
+        "work:X64n1260",
+        "work:X68n1319",
+        "work:wudeng-quanshu",
+        "work:X66n1296"
+      ],
+      "semanticRuling": "The productive construction is real across six works: copying a model, especially another speaker's answer or an inherited case-pattern. The current opening stops at the ordinary compositional meaning and misses the repeated Chan verdict that such pattern-copying can be derivative or wrong. Bare 依樣 can remain the headword because the corpus varies its object (摸一本, 畫葫蘆, 畫描, 畫貓兒), but the full idiom 依樣畫葫蘆 must remain searchable.",
+      "actorRuling": "The X68 0540c03 case lies under 御選大覺普濟能仁玉琳琇國師語錄 and is Yulin Xiuyun's late-evening address, not Zhongfeng Mingben's. The other five case actors are supported by explicit turn markers, named record ownership, or the named-but-personally-unresolved 南嶽祖庵主 verse.",
+      "requiredRepair": "Rewrite the opening to surface imitative repetition as the Chan-loaded job and its frequent rebuking force; retain the neutral limit that copying is not necessarily approved. Correct X68 from Zhongfeng Mingben to roster-canonical Yulin Xiuyun and update RelatedMasters/attribution prose."
+    },
+    {
+      "lanePosition": 3,
+      "id": "t_08e0ef30ead9",
+      "term": "鴨類",
+      "reviewedCurrentEntrySha256": "9a12db48b2d71fa2bd85095ed655fcef47329bdfff8d18b5e21ba97d13d228bb",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "accepted": false,
+      "distinctWorkIds": [
+        "chan:zongjian-falin",
+        "chan:dahui-pushuo",
+        "work:T47n1998A",
+        "work:wudeng-quanshu"
+      ],
+      "semanticRuling": "All four complete cases deploy the fixed contrast 鵝王擇乳，素非鴨類 as a verdict on discernment. The headword itself means the duck kind; negation belongs to 素非 and must not be imported into its PreferredTarget. The corpus supports ordinary duck-kind as the contrast class, not zoological classification and not an independent assertion that a duck literally attempts the separation.",
+      "actorRuling": "Yuanwu Keqin is explicitly introduced as 昭覺勤 in X66; Dahui owns both M59 and T47 addresses; Poshan Haiming owns the uninterrupted X82 hall sequence. No actor repair is required.",
+      "requiredRepair": "Change PreferredTarget to 'the duck kind' or 'ordinary ducks'; keep 'not of the duck kind' only as a search alias for the full attested formula. Recast the opening as the ordinary, non-discriminating contrast class to the milk-selecting goose king, rather than defining the headword as its own negation."
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "reviewedCurrentEntrySha256": "c88bb12fe79dca201c1fb833391d3f66698374500e27aaf5228bf8d300171984",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "accepted": false,
+      "distinctWorkIds": [
+        "work:T48n2016",
+        "work:X63n1255",
+        "work:J26nB185",
+        "work:T48n2015"
+      ],
+      "semanticRuling": "One sense is supported: the same mind or nature remains unchanged while appearing or functioning according to conditions. T48n2015 explicitly gives gold shaped into vessels and then identifies mind as the referent; T48n2016 explains the paired directions; X63 applies it to flexible verbal expedients; J26 turns the pair into a portrait verse and question.",
+      "actorRuling": "The four author/section attributions are consistent with the complete cases: Yongming Yanshou, Cheongheo Hyujeong, Fushi Tongxian, and Guifeng Zongmi.",
+      "requiredRepair": "Retain the gloss, one-sense structure, and four works. Replace the false claim that recorded sayings turn it into 'instruction': the J26 witness is a portrait verse that tests the pair with 隨緣耶？不變耶？ Describe exposition, portrait-verse deployment, and questioning exactly."
+    },
+    {
+      "lanePosition": 5,
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "reviewedCurrentEntrySha256": "7b46d70f75e90f21cabb067ee8abd3f213dc34b06046ebf30dd95c669f5b3daf",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "accepted": false,
+      "distinctWorkIds": [
+        "work:T48n2016",
+        "work:T47n1998A",
+        "work:T48n2020",
+        "chan:zhiyue-lu"
+      ],
+      "semanticRuling": "The opening is substantially sound: visiting-dust afflictions are acquired discrimination and habits that stain without constituting the originally clean mind. Jinul's complete case importantly prevents a shallow reading by saying those old habits can remain difficult to cut off after awakening.",
+      "actorRuling": "T48n2016 introduces the exact line with 持世經云; the headword is uttered by the quoted scripture, not by Yongming Yanshou. Yanshou is the quoting/context author. Dahui, Jinul, and Shishi Shandao utter their retained clauses directly in the other three cases.",
+      "requiredRepair": "Keep the sense, depth, and caution. Change the T48n2016 occurrence to a reviewed quoted-scripture actor with Yongming Yanshou in ContextMasters as quoter/commentator; do not put Yanshou in MasterName for that occurrence. Rewrite its AttributionNote accordingly."
+    },
+    {
+      "lanePosition": 6,
+      "id": "t_1ff4d467780c",
+      "term": "泯默",
+      "reviewedCurrentEntrySha256": "48c9740f6592b4f457b89aaa370c38c711ab6d65951c24db7156a7f61a93889d",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "accepted": false,
+      "distinctWorkIds": [
+        "work:X70n1376",
+        "work:X69n1359",
+        "work:X63n1259",
+        "work:T47n1997"
+      ],
+      "semanticRuling": "One sense is supported: obliteration into muteness or blank silence. X70 treats pursuing it as extraneous; X63 and T47 explicitly reject seamless muteness mistaken for complete realization; X69 says mysterious silence cannot measure the cited master's way. The negative Chan deployment and the limit concerning silence in other settings are both warranted.",
+      "actorRuling": "The T47n1997 source is 圓悟佛果禪師語錄, and the complete section 示張持滿朝奉 is Yuanwu Keqin's instruction. Dahui Zonggao is not the utterer. The other three named section owners match their cases.",
+      "requiredRepair": "Retain the single sense and explanatory limit. Correct T47n1997 from Dahui Zonggao to roster-canonical Yuanwu Keqin and update RelatedMasters/AttributionNote. Prefer 'blank muteness' over the potentially metaphysical 'silent extinction' as the opening gloss unless the latter is explicitly qualified."
+    }
+  ],
+  "boundaryDecision": {
+    "nextLanePosition": 7,
+    "approveConstruction": false,
+    "disposition": "REVISE-CANARY-AND-RERUN-BEFORE-A7",
+    "reason": "All five current entries need specific semantic or actor repairs. Three defects are process-significant: generic openings failed to surface the Chan deployment, PreferredTarget absorbed surrounding negation, and section/embedded-quotation ownership was assigned mechanically. Repair these five, independently recheck their current bytes, add public-feedback receipts, and rerun the strict gate before authorizing A7+."
+  }
+}

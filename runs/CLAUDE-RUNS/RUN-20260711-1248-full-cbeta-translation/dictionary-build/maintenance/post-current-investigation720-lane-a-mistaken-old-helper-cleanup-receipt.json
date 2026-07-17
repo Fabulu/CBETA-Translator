@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-a-mistaken-old-helper-cleanup-receipt.v1",
+  "incident": "Older investigation-next300 preparation/serialization helpers were briefly invoked while beginning post-current-investigation720 Lane A.",
+  "stoppedBeforeCompile": true,
+  "authoritativePostCurrentEntriesTouched": false,
+  "oldEntryIdsAffected": [
+    "t_013f93f223ad", "t_f25049afd1cc", "t_d700cc6a009a", "t_e11780f5ad0", "t_b5aef6159856", "t_d8ec09f04ae7", "t_70e755217736", "t_b436617c693a", "t_8bd3edf4e467", "t_a9c25ff38478", "t_f050bdd79dfe", "t_11351dba572e", "t_0635af7bea6f", "t_bf0dd63a4752", "t_20e0c7960ea1", "t_2561048ed47b", "t_c8bfb78af041", "t_83507aaf1a7f", "t_b4e2a3164353", "t_01dd3fdc4948", "t_94424c91dd2e", "t_147a2eac1cb1", "t_a66cac3a3ab0", "t_fd0bbaf622f2", "t_eb31fb6945c9", "t_e8fbcc5ba72c", "t_8d131304ed9a", "t_1cd8ff8e84e9", "t_e2651ff46df9", "t_c80c1dd2afed", "t_8cc2d1c484f9", "t_da57322c45f3", "t_a6bcae6e30b8", "t_af3d7c60cac8", "t_0477fdd0ca8e", "t_fa7913f1764d", "t_011d32ea606a", "t_d6a0e2101800", "t_46bc9d46d4e2", "t_f45e514ab8e0", "t_264890bdb0f8", "t_348f56178d28", "t_61f03b7b3b17", "t_50865ab00f41"
+  ],
+  "exactPathsPerId": ["fresh-build/entries/<id>/evidence.draft.json", "fresh-build/entries/<id>/WORK.md"],
+  "beforeState": "Every affected directory already contained entry.v2.json and was therefore pre-existing. The helper overwrote sibling evidence.draft.json and WORK.md; it did not create or modify entry.v2.json.",
+  "cleanupAction": "No affected file was removed because none could be established as newly created; removing pre-existing files would violate the scoped cleanup instruction. No compile receipt or gate was produced.",
+  "protectedScope": {"lineageTouched": false, "iriyaTouched": false, "postCurrentEntryTouched": false}
+}

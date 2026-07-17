@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-b-canary5-repair-ledger.v1",
+  "reviewBinding": "maintenance/post-current-investigation720-lane-b-canary5-independent-review.json",
+  "disposition": "READY_FOR_INDEPENDENT_CANARY_APPROVAL",
+  "accepted": [
+    {"id":"t_5f532706138e","term":"須彌盧","entrySha256":"2b3fd23fcb25cc76ccd9fdfa78d0f8c47a728ffa805097df0101b779d3b2eb54","draftSha256":"d7ceb7125ae1431b5fa19e6229676a3a191dfa4263be709d337500a412d84585"},
+    {"id":"t_2f97445940bc","term":"同死同生","entrySha256":"71abfe4c6e0d391a4a938e59aa54762fb7a2bc14e1c02cda8852315601b95345","draftSha256":"3a23235ea19464cb7a516beea46b7d3fd1c725fe7e449a5b2b4e945319d89f88"},
+    {"id":"t_2d9781afa9a0","term":"法網","entrySha256":"1c44f30f5f86a06fc4b42fab1986250b9a5acd4e4ec1224e2ace8d47f50583bb","draftSha256":"0c020c2f8e9125de753ed91742ae80d1a016ccd7a37f939eee305a00ca2b6dd8"},
+    {"id":"t_b10c9e660874","term":"生死即涅槃","entrySha256":"5428d2c5cd27e58772b684d0813cb864c7b27085373a9a9468385ae0f6a63e55","draftSha256":"e9d75a57bf94ef5226244430194389e7cbf903e292a1e98aad386505299db85e"}
+  ],
+  "rejected": {"id":"t_a7caaf206d69","term":"音律","reason":"ordinary vocabulary","entryScope":false,"quarantine":"fresh-build/quarantine/post-current-investigation720-lane-b-canary-reject-yinlv/t_a7caaf206d69"},
+  "gate": {"path":"maintenance/post-current-investigation720-lane-b-canary4-repair-delta-gate.json","hardPass":true,"exactOccurrences":"20/20"},
+  "nextAssignment": {"remainingRows":59,"rejectionExcluded":true,"checkpoint":50,"authorizedOnlyAfterIndependentApproval":true},
+  "protectedScope": {"iriyaTouched":false,"lineageTouched":false,"mergeAuthorized":false}
+}

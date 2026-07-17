@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-b-canary5-independent-review.v1",
+  "reviewer": "Codex /root/construct_next300_a3",
+  "reviewerQualified": true,
+  "independentOfAuthor": true,
+  "scope": "Lane B canary positions 1-5 current entry bytes",
+  "sourceGate": "maintenance/post-current-investigation720-lane-b-canary5-strict-gate.json",
+  "sealedFullCasePacket": "maintenance/post-current-investigation720-floor-fullcase-b.json",
+  "completeCasesRead": true,
+  "checksPerformed": [
+    "sense and opening inference",
+    "counterexample and flyswatter limits",
+    "depth and evidence-floor sufficiency",
+    "independent work identity",
+    "exact headword-bearing actor",
+    "current-byte hash binding"
+  ],
+  "collisionCheck": {
+    "reviewedIdsUnique": true,
+    "reviewedHeadwordsUnique": true,
+    "idHeadwordPairs": [
+      ["t_5f532706138e", "須彌盧"],
+      ["t_2f97445940bc", "同死同生"],
+      ["t_a7caaf206d69", "音律"],
+      ["t_2d9781afa9a0", "法網"],
+      ["t_b10c9e660874", "生死即涅槃"]
+    ]
+  },
+  "counts": {
+    "PASS": 0,
+    "REVISE": 4,
+    "REJECT": 1
+  },
+  "rows": [
+    {
+      "lanePosition": 1,
+      "id": "t_5f532706138e",
+      "headword": "須彌盧",
+      "currentEntrySha256": "fceb32bbe550aff32d07858029ed1c2a48c612987db6f97e5c51abc3932b7f70",
+      "disposition": "REVISE",
+      "senseOpeningVerdict": "PASS",
+      "flyswatterVerdict": "PASS: the opening correctly limits the evidence to scale-reversing physical deployments of Mount Sumeru and rejects an unsupported hidden-faculty sense.",
+      "depthWorkVerdict": "PASS: six retained rows represent six distinct work IDs and satisfy the sealed floor.",
+      "actorVerdict": "REVISE: the current row labels four cases as an unnamed passage voice. At minimum T47n1998A is Dahui Zonggao's own hall address; the X71 recorded-sayings sections and the X64 ritual address likewise require their recoverable section owners rather than a generic voice.",
+      "reason": "Semantic content is usable, but current exact-actor metadata is not reviewer-acceptable."
+    },
+    {
+      "lanePosition": 2,
+      "id": "t_2f97445940bc",
+      "headword": "同死同生",
+      "currentEntrySha256": "5d54215a1269138685997c3ab5e9bcce3c6df6312b484589b00867cadc6c2e83",
+      "disposition": "REVISE",
+      "senseOpeningVerdict": "PASS",
+      "flyswatterVerdict": "PASS: the entry avoids turning the paired phrase into a universal rule or technical rank.",
+      "depthWorkVerdict": "PASS: six retained rows represent six distinct work IDs and meet the floor.",
+      "actorVerdict": "REVISE: all six actors are stored as generic unnamed voices although the complete cases explicitly expose owners, including Yuanwu Keqin in the Blue Cliff Record commentary, Mingzhao Deqian after the X64 heading, and the named masters or verse owners in the remaining recorded-sayings rows.",
+      "reason": "The semantic inference survives, but wholesale anonymous attribution contradicts the full cases."
+    },
+    {
+      "lanePosition": 3,
+      "id": "t_a7caaf206d69",
+      "headword": "音律",
+      "currentEntrySha256": "63d16608a69edf2c417fd0d9d19ed5a5388c61f48d08740a2cb7f70701ff65b8",
+      "disposition": "REJECT",
+      "senseOpeningVerdict": "REJECT: the opening itself correctly concedes ordinary musical pitch and poetic meter; the complete cases do not establish a Chan-specific lexical unit beyond normal composition and harmony vocabulary.",
+      "flyswatterVerdict": "FAIL: the ordinary prosodic witness is not merely a limit—it defeats admission as a specialized entry.",
+      "depthWorkVerdict": "MECHANICAL PASS: four distinct retained works meet the numerical floor, but frequency and work diversity do not cure the lexical-unit failure.",
+      "actorVerdict": "REVISE independently: three of four current actors are generic unnamed voices even though section and verse ownership is recoverable.",
+      "reason": "Ordinary-language evidence dominates; this is not an independently earned Chan expression."
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_2d9781afa9a0",
+      "headword": "法網",
+      "currentEntrySha256": "317801c5a01d6cce3dfacd736b06b6cd475b4cfa0c725eb19a06192e10feaf09",
+      "disposition": "REVISE",
+      "senseOpeningVerdict": "REVISE: the imperial edict is plainly a judicial net, but the Shimen interview's '法網無邊' and Chan addresses can activate a Buddhist/teaching-net reading. The current single legal-net opening over-unifies distinct deployments.",
+      "flyswatterVerdict": "FAIL: the claim that all retained syntax is judicial does not survive the interview and address cases.",
+      "depthWorkVerdict": "PASS mechanically: four distinct work IDs meet the floor; semantic roles must be reassigned after the split or narrower recut.",
+      "actorVerdict": "REVISE: the imperial speaker should be identified as the issuing emperor where the edict/TEI header permits it, and the J25/J28 section or poem owners should not remain generic passage voices.",
+      "reason": "Requires a genuine sense split or a narrower legal-only evidence recut plus corrected actors."
+    },
+    {
+      "lanePosition": 5,
+      "id": "t_b10c9e660874",
+      "headword": "生死即涅槃",
+      "currentEntrySha256": "695598b41dd461b10c2e8871df3eed9b58f7324c52ffb359a086d67351addb5e",
+      "disposition": "REVISE",
+      "senseOpeningVerdict": "PASS",
+      "flyswatterVerdict": "PASS: the opening reports both the fixed equivalence and an explicit reversal/qualification without importing a larger interpretive system.",
+      "depthWorkVerdict": "PASS: four distinct work IDs meet the floor and deploy the full proposition.",
+      "actorVerdict": "REVISE: the J28 image verse has a recoverable section/poem owner and may not remain a generic unnamed passage voice.",
+      "reason": "The semantic entry is sound, but one exact actor remains unresolved despite recoverable ownership."
+    }
+  ],
+  "approveLaneB6Plus": false,
+  "authorization": "B6+ is not approved. Repair or reject the five canary decisions, recompile current bytes, and obtain an independent current-SHA rereview before continuing."
+}

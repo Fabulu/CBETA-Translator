@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-a-canary5-repair-ledger.v1",
+  "scope": "Five non-IRIYA Lane A canary entries only; title-only 廣燈錄 remains rejected; no IRIYA or lineage writes",
+  "sealedInputs": {
+    "preparationSealSha256": "c8d8bbfe2e71b27d8b69c24f60579783a2b2896a9bfabd56a79450f831c51adc",
+    "laneManifestSha256": "1240085925bced5343756ec0d4a6abeee0427dc725cc935bd05cc2c38fa6b969",
+    "independentReviewSha256": "4aa82856dad5bf734271890b968616063228e650d7de321a924969c665df620c"
+  },
+  "entries": [
+    {"id":"t_8dfac3877360","term":"依樣","entrySha256":"cd01a07562e83d3e5a276f534322d79bee2f49a4ed106807429d94c63f57be2f","workSha256":"111a1959c5aff1bcbcc68ad5a73ddbde855483c416a6497fb55b98bba727e313","revision":"Surfaced derivative pattern-copying and corrected X68 to Yulin Xiuyun."},
+    {"id":"t_08e0ef30ead9","term":"鴨類","entrySha256":"c376143af377371ba21bc3984ce47c999d1213a9db2d7b7364a752bcd2cc1c39","workSha256":"9841e047a3679255405fa73c60bedd14eb8665e9514e8613301a63256300d8a2","revision":"Restored positive noun gloss 'the duck kind'; retained negation only for full-form lookup."},
+    {"id":"t_d0419c13b037","term":"不變隨緣","entrySha256":"d437a2239f825aa31b98c9298546210cb7980d113b142b03596b6e82a84893c2","workSha256":"1a4722afc9f7848c1b24e8f2536165ffec4552f4fefc44692a07a6fe7d7c354f","revision":"Replaced false uniform-instruction claim with exposition, application, portrait verse, and question."},
+    {"id":"t_186677ffbc59","term":"客塵煩惱","entrySha256":"62091aee0adff8dc923ef2140867859d4ceb828e8f35991fa6f19a6ce957afd7","workSha256":"809e376ee1df196bb0f32608996d3fd3c4af334d6dea4bbb9b4c3276a31bda84","revision":"Assigned T48 clause to quoted scripture voice; retained Yongming as later quoter/commentator."},
+    {"id":"t_1ff4d467780c","term":"泯默","entrySha256":"b23e3bf85de818efdbaa2b8c4133b05046522e05b663f9126a68bc9ff741b1b2","workSha256":"e8a30a01cd7c1cdaea6da9568caa5a7c2f485d212bf2bdceb2282187cdb3f482","revision":"Preferred blank muteness and corrected T47 section owner to Yuanwu Keqin."}
+  ],
+  "cheapPreflight": {"entries":5,"exactOccurrences":22,"hardPass":true},
+  "deltaGate": {
+    "path":"maintenance/post-current-investigation720-lane-a-canary5-delta-gate.json",
+    "sha256":"c2526e993d463088d6ab1ec4c3ccd42668d8708ffea81779ad0f25d3bec67649",
+    "entries":5,"exactOccurrences":22,"exactFailures":0,"hardPass":true,
+    "actorExitCode":0,"publicFeedbackExitCode":0,"depthExitCode":0,"lineageUntouched":true,"rosterDeferred":true
+  },
+  "nextBoundary": "Independent current-byte canary review must be green before Lane A position 7 or later is authorized; checkpoint the 59-entry lane at position 50."
+}

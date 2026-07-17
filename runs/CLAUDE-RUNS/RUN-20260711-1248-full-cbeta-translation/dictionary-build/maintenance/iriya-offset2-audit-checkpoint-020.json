@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "iriya-adjudication-offset2-audit.v1",
+  "generatedUtc": "2026-07-17T16:52:08.359490+00:00",
+  "assignment": {
+    "canonicalZeroBasedIndexes": "2,5,8,...",
+    "mode": "audit-only"
+  },
+  "guide": "IRIYA_ADJUDICATION_GUIDE.md",
+  "queue": "IRIYA_SAYINGS_QUEUE.md",
+  "queueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "reviewedCount": 20,
+  "keepCoupletCount": 19,
+  "keepComponentCount": 0,
+  "provisionalCount": 0,
+  "rejectCount": 1,
+  "decisions": [
+    {
+      "queueNumber": 3,
+      "zeroBasedIndex": 2,
+      "id": "t_d256ba95f1c3",
+      "term": "十字街頭",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0013a18 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 266 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 1232,
+        "files": 272,
+        "distinctWorks": 266,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0013a18",
+            "window": "，如鐘待扣。於此薦得，且隨時著衣喫飯。若是德山臨濟，更須打草鞋行脚。參！臨安府佛日文祖禪師臨安府佛日文祖禪師僧問：峭峻之機，請師垂示。師曰：十字街頭八字立。曰：祇如大洋海底行船，須彌山上走馬，又作麼生？師曰：烏龜向火。曰：恁麼則能騎虎頭，善把虎尾。師以拄杖點一下，曰：禮拜著。沂州望仙山宗"
+          },
+          {
+            "relPath": "X/X81/X81n1568.xml",
+            "workId": "work:wudeng-yantong",
+            "fromLb": "0026a21",
+            "window": "糶得這箇麼？主便喝，師便打。典座至，師舉前話，座曰：院主不會和尚意。師曰：你又作麼生？座禮拜，師亦打。上堂：一人在孤峰頂上，無出身路；一人在十字街頭，亦無向背。且道那箇在前？那箇在後？不作維摩詰，不作傅大士。珍重！有一老宿參，便問：禮拜即是？不禮拜即是？師便喝，宿便拜，師曰：好箇草賊！宿"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 6,
+      "zeroBasedIndex": 5,
+      "id": "t_5acd9febd54b",
+      "term": "意作麼生",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact hits are productive question syntax ('what is the meaning?'), with arbitrary antecedents such as Bodhidharma's wall-facing or a preceding action; this is vernacular interview grammar, not a stable saying with its own Chan job.",
+      "zcEvidence": {
+        "exactHits": 1207,
+        "files": 218,
+        "distinctWorks": 214,
+        "samples": [
+          {
+            "relPath": "X/X83/X83n1578.xml",
+            "workId": "chan:zhiyue-lu",
+            "fromLb": "0473a11",
+            "window": "面壁，為訪知音。若恁麼會得，喫鐵棒有日在。又一老宿曰：祖師九年面壁，何不慚惶？若恁麼會得，更買草鞋行脚三十年。瑯琊覺云：既不然，且道祖師面壁意作麼生？良久，云：欲得不招無間業，莫謗如來正法輪。師子捉兔▲昔有一老宿，因僧問：師子捉兔亦全其力，捉象亦全其力，未審全個甚麼力？老宿曰：不欺之力。"
+          },
+          {
+            "relPath": "X/X80/X80n1565.xml",
+            "workId": "work:X80n1565",
+            "fromLb": "0062a22",
+            "window": "嗣南陽忠國師法嗣吉州耽源山應真禪師吉州耽源山應真禪師為國師侍者時。一日國師在法堂中。師入來。國師乃放下一足。師見便出。良久却回。國師曰。適來意作麼生。師曰。向阿誰說即得。國師曰。我問你。師曰。甚麼處見某甲。師又問。百年後有人問。極則事如何。國師曰。幸自可憐生。須要覔箇護身符子作麼。異日。"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 9,
+      "zeroBasedIndex": 8,
+      "id": "t_cdd1bd3196ff",
+      "term": "好與三十棒",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0011b23 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 189 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 742,
+        "files": 194,
+        "distinctWorks": 189,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0011b23",
+            "window": "：念話杜家。問：如何是本來心？師曰：拆東籬，補西壁。曰：恁麼則今日齋宴。師曰：退後著。上堂：聞佛法二字，早是污我耳目。諸人未跨法堂門，脚跟下好與三十棒。雖然如是，山僧今日也是為眾竭力。珍重！上堂：是甚麼物，得恁頑頑嚚嚚，𥈅𥈅睍睍？拊掌呵呵大笑曰：今朝巴鼻，直是黃面瞿曇。通身是口，也分疎不下"
+          },
+          {
+            "relPath": "X/X79/X79n1557.xml",
+            "workId": "work:X79n1557",
+            "fromLb": "0071b12",
+            "window": "。明日又同赴一家齋，濟云：今日供養何似昨日？師又踢倒飯床，濟云：太麤生！師云：瞎漢！佛法說甚麼麤細？濟不覺吐舌。雪竇云：兩箇老賊喫飯也不了，好與三十棒。棒雖行，且阿那箇是正賊？臨濟一日同河陽、木塔三人在僧堂地爐內坐，正說師每日在街市掣風掣顛，知他是凡是聖？師忽入堂，濟問云：儞是凡是聖？師云"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 12,
+      "zeroBasedIndex": 11,
+      "id": "t_fd597c7fa91f",
+      "term": "超佛越祖",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at C/C077/C077n1710.xml 0656b06 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 171 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 553,
+        "files": 174,
+        "distinctWorks": 171,
+        "samples": [
+          {
+            "relPath": "C/C077/C077n1710.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0656b06",
+            "window": "老僧後到佛又俗官問弟子今日開藏經乞師一句提綱藏經師云此問難得官云便請提綱師云對牛彈琴師因看經次僧問和尚看什麼經師云涅槃經茶毘品㝡在後問如何是超佛越祖之談師驀拈拄杖示眾云我喚作拄杖你喚作什麼無語師再將拄杖示之云超佛越祖之談是你問麼無語師舉黃蘗和尚語云天下老和尚一氣道在我者裏要放你也在我這裏"
+          },
+          {
+            "relPath": "D/D48/D48n8939.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0100b06",
+            "window": "得便柰何得也然發心叅禪便要會得誰不願樂秖為無箇入處又強會不得一切處不契合一切處緣差用力取不得良久云你十二時中行住坐臥折旋俯仰種種事業一切處有超佛越祖底事秖是你纔要解會時已無也󷹋箇是無也你擬湊泊已背了也所以道看見秖是不柰何莫是不擬心不起解會時得麼展轉更是不得也會尚不得豈況不會若是靈利底人纔"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 15,
+      "zeroBasedIndex": 14,
+      "id": "t_0c153f8f4824",
+      "term": "著衣喫飯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X80/X80n1565.xml 0070b12 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 157 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 505,
+        "files": 160,
+        "distinctWorks": 157,
+        "samples": [
+          {
+            "relPath": "X/X80/X80n1565.xml",
+            "workId": "work:X80n1565",
+            "fromLb": "0070b12",
+            "window": "見心。心不自心。因色故有。汝但隨時言說。即事即理。都無所礙。菩提道果。亦復如是。於心所生。即名為色。知色空故。生即不生。若了此意。乃可隨時。著衣喫飯。長養聖胎。任運過時。更有何事。汝受吾教。聽吾偈曰。心地隨時說。菩提亦祇寧。事理俱無礙。當生即不生。僧問。和尚為甚麼說即心即佛。師曰。為止小"
+          },
+          {
+            "relPath": "X/X81/X81n1568.xml",
+            "workId": "work:wudeng-yantong",
+            "fromLb": "0041c16",
+            "window": "。師曰：瞎老婆吹火。僧問：二邊純莫立，中道不須安。未審意旨如何？師曰：廣南出象牙。曰：不會，請師直指。師曰：番國皮毬八百價。上堂：寒溫冷暖，著衣喫飯，自不欠少。波波地覓箇甚麼？祇是諸人不肯承當。如今還有承當底麼？有則不得孤負山河大地。珍重！問：祖師西來，三藏東去，當明何事？師曰：佛殿部署"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 18,
+      "zeroBasedIndex": 17,
+      "id": "t_810ca6b36ae5",
+      "term": "不是心、不是佛、不是物",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0045a15 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 148 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 491,
+        "files": 150,
+        "distinctWorks": 148,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0045a15",
+            "window": "。師同胡巡檢到公安二聖，胡問：達磨對梁武帝云：廓然無聖。公安為甚麼却有二聖？師曰：一點水墨，兩處成龍。潭州道吾仲圓禪師潭州道吾仲圓禪師上堂：不是心，不是佛，不是物。古人恁麼道，譬如管中窺豹，但見一斑。設或入林不動草，入水不動波，亦如騎馬向冰凌上行。者是射鵰手，何不向蛇頭上揩癢？具正眼者試辨看。良久曰："
+          },
+          {
+            "relPath": "X/X84/X84n1583.xml",
+            "workId": "work:X84n1583",
+            "fromLb": "0410a05",
+            "window": "間歇。未審以何為舌？師拍禪牀右角一下。僧曰：世尊不說說，迦葉不聞聞也。師拍禪牀左角一下。僧曰：也知今日令不虗行。師曰：識甚好惡？師室中問僧：不是心，不是佛，不是物，你作麼生會？僧曰：領。師曰：領你屋裡七代先靈。僧便喝。師曰：適來領，而今喝，干他不是心，不是佛，不是物甚麼事？僧無語，師打出。僧請益夾山境"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 21,
+      "zeroBasedIndex": 20,
+      "id": "t_d934a14f69a6",
+      "term": "龍頭蛇尾",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X66/X66n1296.xml 0008b22 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 154 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 502,
+        "files": 158,
+        "distinctWorks": 154,
+        "samples": [
+          {
+            "relPath": "X/X66/X66n1296.xml",
+            "workId": "work:X66n1296",
+            "fromLb": "0008b22",
+            "window": "已是落四落三。直饒七佛祖師道：諦觀法王法，法王法如是。也須眼裏抽釘，腦後󳫠楔始得。天寧琦云：將謂世尊別有長處，也只懡㦬便休，致令後代兒孫個個龍頭蛇尾。獅林則云：眾中商量道：世尊入林不動草，文殊入水不動波，自然海晏河清，風行草偃。乃搖手呵呵大笑云：錯了也，錯了也。且道是何道理？掀翻海嶽求知"
+          },
+          {
+            "relPath": "X/X66/X66n1297.xml",
+            "workId": "chan:zongjian-falin",
+            "fromLb": "0315b11",
+            "window": "頭黑黑三聲鼓，萬象森羅枕子邊。六祖因法性寺風颺剎旛，有二僧對論，一曰風動，一曰旛動。師曰：不是風動，不是旛動，仁者心動。雪峰存云：大小祖師，龍頭蛇尾，好與二十棒。孚上座侍次齩齒，峰云：我與麼道，也好與二十棒。保福展云：作賊人心虗，也是蕭何置律。五祖戒云：著甚來由？巴陵鑑云：祖師道：不是風"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 24,
+      "zeroBasedIndex": 23,
+      "id": "t_bcbbaec3a214",
+      "term": "截斷衆流",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0007c05 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 157 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 417,
+        "files": 159,
+        "distinctWorks": 157,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0007c05",
+            "window": "咄！以拂子擊禪床，下座。大溈宥禪師法嗣大溈宥禪師法嗣廬山歸宗慧通禪師廬山歸宗慧通禪師僧問：如何是函葢乾坤句？師曰：口出東方夜落西。曰：如何是截斷眾流句？師曰：鐵山橫在路。曰：如何是隨波逐浪句？師曰：船子下揚州。問：如何是塵塵三昧？師曰：灰飛火亂。問：如何是佛法大意？師曰：黃河水出崑崙觜。"
+          },
+          {
+            "relPath": "X/X78/X78n1556.xml",
+            "workId": "work:X78n1556",
+            "fromLb": "0656b01",
+            "window": "曰：更有向上事也無？師云：有。僧曰：如何是向上事？師云：在舍只言為容易，臨筌方覺取魚難。問：如何是函蓋乾坤句？師云：春英紅爛熳。僧曰：如何是截斷眾流句？師云：孟女泣長城。僧曰：如何是隨波逐浪句？師云：水長船高。問：如何是祖師西來意？師云：少林空夜月。僧曰：未審意旨如何？師云：誰聽老猿啼？"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 27,
+      "zeroBasedIndex": 26,
+      "id": "t_9e8d1e11b364",
+      "term": "狸奴白牯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0043c19 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 136 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 402,
+        "files": 138,
+        "distinctWorks": 136,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0043c19",
+            "window": "堂：江月照，松風吹，永夜清宵更是誰？霧露雲霞遮不得，個中猶道不如歸。復何歸？荷葉團團團似鏡，菱角尖尖尖似錐。上堂：三世諸佛，不知有恩無重報。狸奴白牯，却知有功不浪施。明大用，曉全機。絕蹤跡，不思議。歸去好，無人知。衝開碧落松千尺，截斷紅塵水一溪。上堂：至道無難，唯嫌揀擇。但莫憎愛，洞然明"
+          },
+          {
+            "relPath": "X/X83/X83n1578.xml",
+            "workId": "chan:zhiyue-lu",
+            "fromLb": "0487b20",
+            "window": "，要且不善輪機。且道南泉還肯麼？雪竇也擬酬個價直，令南泉進且無門，退亦無地，不作貴，不作賤，作麼生買？別處容和尚不得。師云：三世諸佛不知有，狸奴白牯却知有。大溈智云：三世諸佛既不知有，狸奴白牯又何曾夢見？灼然須知向上有知有底人始得。且作麼生是知有底人？喫官酒，臥官街，當處死，當處埋，沙場"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 30,
+      "zeroBasedIndex": 29,
+      "id": "t_bc4081b67c3e",
+      "term": "入地獄如箭射",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0117a06 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 139 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 428,
+        "files": 144,
+        "distinctWorks": 139,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0117a06",
+            "window": "消。初住台之光孝，僧問：浩浩塵中，如何辨主？師曰：中峰頂上塔心尖。上堂：臨濟三遭痛棒，大愚言下知歸。興化於大覺棒頭，明得黃檗意旨。若作棒會，入地獄如箭射；若不作棒會，入地獄如箭射。眾中商量者，盡道赤心片片，恩大難酬，總是識情卜度，未出陰界。且如臨濟悟去，是得黃檗力，是得大愚力？若也見得，許你"
+          },
+          {
+            "relPath": "X/X66/X66n1296.xml",
+            "workId": "work:X66n1296",
+            "fromLb": "0013c24",
+            "window": "無所生，是中云何殺？天童傑云：為人須為徹，殺人須見血。文殊費盡腕頭氣力，要且不知此劒來處，帶累釋迦老子通身是口，分踈不下，五百比丘恁麼悟去，入地獄如箭射。忽若踏翻大海，趯倒須彌，雲門扇子𨁝跳上三十三天，築著帝釋鼻孔，東海鯉魚打一棒，雨似盆傾又作麼生？良久，云：自從舞得三臺後，拍拍元來總是歌。"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 33,
+      "zeroBasedIndex": 32,
+      "id": "t_a65be7bb5cfd",
+      "term": "壓良爲賤",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0179c23 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 158 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 393,
+        "files": 161,
+        "distinctWorks": 158,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0179c23",
+            "window": "可。初住苕之道場，繼遷育王。僧問：如何是千尺舍那之身？師曰：肥不露肉，瘦不露骨。曰：如何是丈六紫磨金色之身？師曰：切忌認奴作郎。曰：和尚且莫壓良為賤。師曰：山僧從來柳下惠。問：有句無句，如藤倚樹。此意如何？師曰：無齒大蟲當路坐。曰：疎山。曰：忽若樹倒藤枯，句歸何處？溈山呵呵大笑，又作麼生"
+          },
+          {
+            "relPath": "X/X66/X66n1296.xml",
+            "workId": "work:X66n1296",
+            "fromLb": "0017c02",
+            "window": "枯樹雲充葉，凋梅雪作花。擊筒方木響，蘸雪喫冬瓜。長天秋水，孤鶩落霞。天童傑云：釋迦老子擔得一擔，矇𥋾出來，撞著雪堂；添得一擔，顢頇祥符。不是壓良為賤，也要緇素分明。生鐵鑄牛頭，牽犂還拽耙，智者笑忻忻，愚人驚怪差。古往今來幾百年，更向鬼門重貼卦。驀拈拄杖，云：看！看！釋迦老子來也。向諸人道"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 36,
+      "zeroBasedIndex": 35,
+      "id": "t_063b11cf09aa",
+      "term": "業識茫茫",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at J/J27/J27nB193.xml 0227a01 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 144 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 389,
+        "files": 148,
+        "distinctWorks": 144,
+        "samples": [
+          {
+            "relPath": "J/J27/J27nB193.xml",
+            "workId": "work:J27nB193",
+            "fromLb": "0227a01",
+            "window": "前、陰陽未判之先，一截截斷、祖佛慶讚不及、天人瞻仰無門，求其生死，名目無有。時節因緣，何處得來？若知有者，聞與麼道，徹骨徹髓；不知有者，猶恐業識茫茫。雖然，官不容針，何妨私通車馬？」驀呈拄杖云：「赤骨𩪸，露堂堂，洗清天地一林霜。有意氣時添意氣，不風光處卻風光。」卓拄杖，下座。延生請上堂。"
+          },
+          {
+            "relPath": "C/C078/C078n1720.xml",
+            "workId": "work:C078n1720",
+            "fromLb": "0624b16",
+            "window": "落草野狐精跳出渾身是葛藤打失眼睛無處覔誑人剛道悟明星二千年前黃靣老舉頭莫是見明星茫茫宇宙人無數幾箇男兒眼有睛雪嶺崎嶇嵗月深何曾夜半見明星可怜業識茫茫者蹉過如來正法輪夜半明星出現時分明喪盡目前機若言緫具如來相也是空拳誑小兒六載隈藏在雪山灰頭土靣自慚顏今朝忽覩明星現始覺從前被眼瞞六載將身草裏"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 39,
+      "zeroBasedIndex": 38,
+      "id": "t_07a5392dd6b1",
+      "term": "落在第二",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0036a24 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 161 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 382,
+        "files": 165,
+        "distinctWorks": 161,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0036a24",
+            "window": "：寶山不易到，既到莫空迴。莫有不空迴者麼？遂擲下拄杖曰：是什麼？良久曰：不見雙林釋迦老，又聞彌勒下生來。喝一喝。開馬祖塔日，上堂：放過一著，落在第二。有利無利，不離行市。家家門外綠柳垂，不獨春風折桃李。馬祖堂開，二月初二。觸目遇緣，法門大啟。不如歸去來。良久曰：向什麼處去？馬祖堂中燒香罷"
+          },
+          {
+            "relPath": "T/T47/T47n1998A.xml",
+            "workId": "work:T47n1998A",
+            "fromLb": "0817b17",
+            "window": "俊哉。未解語言先作賦。一操便取狀元來。師云。敢問諸人還知師翁落處麼。若知落處便識得狀元。若也未知。徑山為爾指出。有利無利不離行市。放過一著。落在第二。上堂。僧問。翠巖示眾云。一夏與兄弟東說西話。看翠巖眉毛在麼。意旨如何。師云。自首者原其罪。進云。保福道。作賊人心虛。又作麼生。師云。驢揀濕"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 42,
+      "zeroBasedIndex": 41,
+      "id": "t_6e42cf0059cc",
+      "term": "照用同時",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0004b03 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 130 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 370,
+        "files": 133,
+        "distinctWorks": 130,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0004b03",
+            "window": "三十年來無處討。如今競愛摘楊花，紅香滿地無人掃。上堂，拈起拄杖曰：我若拈起，你便喚作先照後用。我若放下，你便喚作先用後照。我若擲下，你便喚作照用同時。忽然不拈不放，你向甚麼處卜度？直饒會得倜儻分明，若遇臨濟、德山，便須腦門著地。且道伊有甚麼長處？良久曰：曾經大海休誇水，除却須彌不是山。上"
+          },
+          {
+            "relPath": "C/C077/C077n1710.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0651b21",
+            "window": "捴學我喝我今問汝有一人󴌰東堂出一人󴌰西堂出兩人齊喝一聲這裏分得󰠢主麼汝且作麼生分若分不得已後不得學老僧喝。示眾我有時先照後用有時先用後照有時照用同時有時照用不同時先照後用有人在先用後照有法在照用同時駈耕夫之牛奪飢人之食敲骨取髓痛下針錐照用不同時有問有荅立󰠢立主合水和泥應機接物若是過量人向"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 45,
+      "zeroBasedIndex": 44,
+      "id": "t_c34eef70d788",
+      "term": "鑊湯爐炭",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0005b06 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 133 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 329,
+        "files": 136,
+        "distinctWorks": 133,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0005b06",
+            "window": "藏舌。曰：學人未曉。師曰：一言已出，駟馬難追。問：大修行人還入地獄也無？師曰：在裏許。曰：大作業人還上天堂也無？師曰：鰕跳不出斗。曰：恁麼則鑊湯爐炭吹教滅，劒樹刀山喝使摧。師曰：自作自受。乃曰：適來禪客出眾禮拜，各以無量珍寶布施大眾。又於面門上放大光明，照耀乾坤，令諸人普得相見。於此明得"
+          },
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0051a06",
+            "window": "，不吝慈悲；點不出來，未有參學眼在。切須辯取，要識是非，面目見在，不可久立。珍重！葉縣省禪師，上堂：宗師血脉，或凡或聖，龍樹馬鳴，天堂地獄，鑊湯爐炭，牛頭獄卒，森羅萬象，日月星辰，他方此土，有情無情。以手畫一畫，云：俱入此宗。此宗門中，亦能殺人，亦能活人，殺人須得殺人刀，活人須得活人句。"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 48,
+      "zeroBasedIndex": 47,
+      "id": "t_c5274bc0d1ca",
+      "term": "一箇半箇",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X69/X69n1359.xml 0517a01 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 133 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 314,
+        "files": 137,
+        "distinctWorks": 133,
+        "samples": [
+          {
+            "relPath": "X/X69/X69n1359.xml",
+            "workId": "work:X69n1359",
+            "fromLb": "0517a01",
+            "window": "法。一動一靜，一出一入，是非窟裏，閙布門頭，劒樹刀山，鑊湯爐炭。且道是一乘法不是一乘法？齪漢不要妄想，山是山，水是水，僧是僧，俗是俗，其間有一箇半箇撩起便行，脚跟下好與三十拄杖。豈不見雲門道：直得盡乾坤大地無纖毫過患，猶是轉句。不見一色始是半提，更須知有全提時節。大小雲門聽事不真，喚鍾作"
+          },
+          {
+            "relPath": "X/X79/X79n1557.xml",
+            "workId": "work:X79n1557",
+            "fromLb": "0047a05",
+            "window": "，不求自得，山河大地，不礙眼光，得大總持，一聞千悟，都不希求一飡之直。汝等諸人，儻不如是，祖師來至此土，非常有損有益。有益者，百千人中，撈摝一箇半箇，堪為法器。有損者，如前已明，從他依三乘教法修行，不妨却得四果三賢，有進修之分。所以先德云：了即業障本來空，未了應須還宿債。師臨示寂時，示眾"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 51,
+      "zeroBasedIndex": 50,
+      "id": "t_abc897c09eeb",
+      "term": "普天匝地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0026a12 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 139 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 270,
+        "files": 140,
+        "distinctWorks": 139,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0026a12",
+            "window": "金須是買金人。鄧州香嚴智月海印禪師鄧州香嚴智月海印禪師上堂，僧問：法雷已震，選佛場開。不昧宗乘，請師直指。師曰：三月三日時，千花萬花拆。曰：普天匝地承恩力，覺苑仙葩一夜開。師曰：切忌隨他去。乃曰：判府吏部此日命山僧開堂祝聖，紹續祖燈。祇如祖燈作麼生續？不見古者道，六街鐘鼓響鼕鼕，即處鋪金"
+          },
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0192a11",
+            "window": "，開堂日，乃拈紹覺白公香，其詞曰：一則罏鞴功精，一則磨淬極妙，二功竝著，理孰為先？不見道：本重末輕，當風可辨。此香奉為紹覺和尚爇向爐中，令教普天匝地填溝塞壑，使天下衲僧無出氣處。笑隱訢禪師開堂，拈香云：此香昔年大雄峰頂一句下承當，今日鳳凰山中五眾前拈出，奉為前住徑山、後住大仰佛智禪師、晦"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 54,
+      "zeroBasedIndex": 53,
+      "id": "t_e7bec1c00b98",
+      "term": "一場懡㦬",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X66/X66n1297.xml 0282a06 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 122 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 280,
+        "files": 124,
+        "distinctWorks": 122,
+        "samples": [
+          {
+            "relPath": "X/X66/X66n1297.xml",
+            "workId": "chan:zongjian-falin",
+            "fromLb": "0282a06",
+            "window": "佛具一切智，豬子也不識。世尊曰：也須問過。太陽玄云：不因世尊問，幾乎忘却。地藏恩云：老漢也是無端節目上更生節目，忽被二人呵呵大笑，舁豬便行，一場懡㦬。壽昌經云：君子有成人之美。萬峯藏云：舁向前過，世尊早墮了也。資福侶云：利動君子。綠雨蕉云：世尊大似勾賊破家，設使二人待問，便打豬一棒，云何"
+          },
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0006a08",
+            "window": "舉暹和尚道：寒寒地爐火，暖閒坐蒲團。說迦葉不是，談達磨無端。此也彼也，必然一般。師召大眾曰：迦葉甚處不是？達磨那裏無端？若檢點得出，彼之二老一場懡㦬。若點檢不出，三十年後莫道不被人瞞好。上堂：我有這一著，人人口裏嚼。嚼得破者，速須吐却。嚼不破者，翻成毒藥。乃召諸禪德：作甚麼滋味？試請道看"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 57,
+      "zeroBasedIndex": 56,
+      "id": "t_04cb84217d07",
+      "term": "一手指天、一手指地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0039c24 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 128 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 265,
+        "files": 130,
+        "distinctWorks": 128,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0039c24",
+            "window": "是眾中有本色衲僧聞之，實謂掩耳而回，笑破他口。大眾，且道本色衲僧門下一句作麼生道？良久曰：天際雪埋千尺石，洞門凍折數株松。上堂：釋迦老子當時一手指天，一手指地，曰：天上天下，唯我獨尊。釋迦老子旁若無人，當時若遇個明眼衲僧，直教他上天無路，入地無門。然雖如是，也須是銅沙鑼裏滿盛油始得。上堂，顧視大眾"
+          },
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0025a12",
+            "window": "失却手中珠。還知落處麼？若知落處，方為孝子順孫；苟或未然，不免重下註脚。良久，云：曰：天生伎倆能奇恠，末上輸他弄一場。圓悟勤禪師浴佛，上堂。一手指天，一手指地，末上一機，衲僧巴鼻。步步蓮華，金盆澡洗，西天東土共流傳，至今處處澆香水。良久，云：車不橫推，理無曲斷。下座。雲峯悅禪師四月八日上堂：教中道"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 60,
+      "zeroBasedIndex": 59,
+      "id": "t_9326c67f5502",
+      "term": "築著磕著",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The corpus deploys the exact phrase in a Chan discourse job, not merely as contained verse: the witness at X/X82/X82n1571.xml 0010b12 uses it in the retained address, answer, verdict, capping comment, or raised case shown in zcEvidence. Exact attestation spans 107 independent works, so the whole exact phrase clears the multi-source gate.",
+      "zcEvidence": {
+        "exactHits": 263,
+        "files": 109,
+        "distinctWorks": 107,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0010b12",
+            "window": "月，猶是建化門中事。作麼生是道人分上事？良久曰：閒來石上觀流水，欲洗禪衣未有塵。上堂：無邊義海，咸歸顧盼之中。萬象形容，盡入照臨之內。你諸人築著磕著，因甚麼却不知？良久曰：莫怪山僧太多事，光陰如箭急相催。珍重！真州長蘆應夫廣照禪師真州長蘆應夫廣照禪師滁州蔣氏子。僧問：古者道，如來禪即許你"
+          },
+          {
+            "relPath": "T/T51/T51n2077.xml",
+            "workId": "work:T51n2077",
+            "fromLb": "0513b03",
+            "window": "風明月。猶是建化門中事。作麼生是道人分上事。良久曰。間來石上觀流水。欲洗禪衣未有塵。上堂。無邊義海咸歸顧盻之中。萬象形容盡入照臨之內。爾諸人築著磕著。因甚麼却不知。良久曰。莫怪山僧太多事。光陰如箭急相催。珍重。長蘆應夫禪師真州長蘆應夫廣照禪師滁州蔣氐氏。僧問。古者道。如來禪即許老兄會。祖"
+          }
+        ]
+      }
+    }
+  ],
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

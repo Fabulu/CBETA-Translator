@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "post720-final152-shengsi-forbidden2-repair-ledger.v1",
+  "generatedUtc": "2026-07-17T19:14:48.886300+00:00",
+  "id": "t_b10c9e660874",
+  "term": "生死即涅槃",
+  "entryPath": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+  "entryBeforeSha256": "88c3d09fbd7bd03f2bcc7a9ff14e74b8ddf6c33b507ca4573044c28085013026",
+  "entryAfterSha256": "64e31c8897f8781d0231df1daa9dca45498fa933cd68b35acb8945bf485b5d91",
+  "draftPath": "fresh-build/entries/t_b10c9e660874/evidence.draft.json",
+  "draftBeforeSha256": "e146f9d95de463f8f2806cd14c35c2073dd3f66af246b9a7e3c002808b7ec73c",
+  "draftAfterSha256": "3c9d41b694fbefa0ec6b538b4c15ea40f5a039f141378df5473bfabf9f2d99d9",
+  "changedPaths": [
+    "/Senses/0/Explanation",
+    "/Senses/0/Note"
+  ],
+  "checks": {
+    "forbiddenPracticeAbsent": true,
+    "forbiddenDoctrinalAbsent": true,
+    "explanationNoteDistinct": true,
+    "entryDraftParity": true,
+    "actorsEvidencePreserved": true,
+    "publicFeedbackOpeningIsDirectEnglish": true
+  },
+  "deltaHardPass": true,
+  "installExecuted": false,
+  "otherEntriesEdited": 0,
+  "focusedGate": {
+    "path": "maintenance/post-current-investigation720-final152-shengsi-forbidden2-delta-gate.json",
+    "sha256": "ffdda5c25f1a72bfd1227dd64fa27085d6408db664106ec237708eae9cf01905",
+    "hardPass": true,
+    "exactFailures": 0,
+    "attributionHardFailures": 0,
+    "publicFeedbackFlagged": 0,
+    "depthSenseHardFailed": 0,
+    "forbiddenEnglish": []
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-b-canary5-postrepair-independent-review.v1",
+  "reviewer": "Codex /root/construct_next300_a3",
+  "independentOfAuthor": true,
+  "repairLedger": {
+    "path": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+    "sha256": "93ba9309af54fe0341cf2628030e1af2c08eb40bb26fd898aa5adf5e41ece7df"
+  },
+  "sealedFullCases": {
+    "path": "maintenance/post-current-investigation720-floor-fullcase-b.json",
+    "sha256": "5b4353711b93c502dbdddb69ed5f12bd69c13d4e819eeb12c81aa4c708f101c2",
+    "completeCasesRead": true
+  },
+  "focusedGate": {
+    "path": "maintenance/post-current-investigation720-lane-b-canary4-repair-delta-gate.json",
+    "sha256": "b96fa8059a40f14080f36695b2fe55c55a4eb0ea786da02966205eb1e70c26e9",
+    "hardPass": true,
+    "exactOccurrences": "20/20"
+  },
+  "counts": {"PASS": 5, "REVISE": 0},
+  "rows": [
+    {
+      "id": "t_5f532706138e",
+      "term": "須彌盧",
+      "currentEntrySha256": "2b3fd23fcb25cc76ccd9fdfa78d0f8c47a728ffa805097df0101b779d3b2eb54",
+      "disposition": "PASS",
+      "reason": "The scale-reversing Mount Sumeru sense remains bounded and all six complete cases now carry defensible exact actors."
+    },
+    {
+      "id": "t_2f97445940bc",
+      "term": "同死同生",
+      "currentEntrySha256": "71abfe4c6e0d391a4a938e59aa54762fb7a2bc14e1c02cda8852315601b95345",
+      "disposition": "PASS",
+      "reason": "The paired death-and-life reading remains bounded; five named owners and the genuinely unresolved verse author match the complete cases."
+    },
+    {
+      "id": "t_a7caaf206d69",
+      "term": "音律",
+      "quarantinedEntrySha256": "63d16608a69edf2c417fd0d9d19ed5a5388c61f48d08740a2cb7f70701ff65b8",
+      "disposition": "PASS",
+      "reason": "Rejection and quarantine are correct: the cases show ordinary musical/prosodic vocabulary, not an independently earned Chan lexical unit."
+    },
+    {
+      "id": "t_2d9781afa9a0",
+      "term": "法網",
+      "currentEntrySha256": "1c44f30f5f86a06fc4b42fab1986250b9a5acd4e4ec1224e2ace8d47f50583bb",
+      "disposition": "PASS",
+      "reason": "The current bytes make the required genuine split between judicial legal-net and Buddhist teaching-net deployments, with case-bound actors."
+    },
+    {
+      "id": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "currentEntrySha256": "5428d2c5cd27e58772b684d0813cb864c7b27085373a9a9468385ae0f6a63e55",
+      "disposition": "PASS",
+      "reason": "The proposition and explicit qualification remain accurately bounded, and the formerly generic J28 verse owner is corrected."
+    }
+  ],
+  "approveLaneB6Plus": true,
+  "authorization": "Lane B positions 6+ may proceed under the existing checkpoint policy.",
+  "protectedScope": {"entryEditsByReviewer": false, "lineageTouched": false, "queueTouched": false}
+}

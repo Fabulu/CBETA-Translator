@@ -37,7 +37,6 @@ FORBIDDEN_STOCK = (
     "related compounds and overlapping phrases were checked; none changes the one-thing ruling for <term>",
 )
 
-
 def entry_path(value: str) -> Path:
     path = Path(value)
     if path.is_dir():
@@ -127,6 +126,23 @@ def main() -> int:
 
     buckets: dict[tuple[str, str], list[dict]] = collections.defaultdict(list)
     for path, entry in entries:
+        source_term = str(entry.get("SourceTerm") or "").strip()
+        for sense_index, sense in enumerate(entry.get("Senses") or [], 1):
+            explanation = str(sense.get("Explanation") or "").strip()
+            note = str(sense.get("Note") or "").strip()
+            if explanation and note and explanation == note:
+                failures.append({"kind": "explanation-equals-note", "id": entry.get("Id"),
+                                 "term": source_term, "sense": sense_index, "path": str(path)})
+            elif explanation and len(note) >= 20 and explanation.endswith(note):
+                failures.append({"kind": "explanation-repeats-note", "id": entry.get("Id"),
+                                 "term": source_term, "sense": sense_index, "path": str(path)})
+            for occurrence_index, occurrence in enumerate(sense.get("Occurrences") or [], 1):
+                for field in ("Kwic", "ClaimText"):
+                    value = str(occurrence.get(field) or "").strip()
+                    if source_term and value == source_term:
+                        failures.append({"kind": f"bare-headword-{field.lower()}", "id": entry.get("Id"),
+                                         "term": source_term, "sense": sense_index,
+                                         "occurrence": occurrence_index, "path": str(path)})
         for field, sense_index, value in semantic_strings(entry):
             if value:
                 if any(stock in value for stock in FORBIDDEN_STOCK):

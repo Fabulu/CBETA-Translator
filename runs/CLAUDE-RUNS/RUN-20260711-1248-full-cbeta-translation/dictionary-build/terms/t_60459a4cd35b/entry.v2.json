@@ -1,0 +1,112 @@
+{
+  "Id": "t_60459a4cd35b",
+  "SourceTerm": "驗人關",
+  "CreatedBy": "Codex post-current-investigation720 Lane B positions 6-59",
+  "WrittenUtc": "2026-07-17T17:09:08.823288+00:00",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a barrier that tests people",
+      "AlternateTargets": [],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Only clauses assigning that testing function support the entry; a nearby master is not substituted for an unnamed questioner.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0468b18",
+          "ToLb": "0468b19",
+          "CharOffset": null,
+          "Kwic": "紙來。舉僧問東山：有驗人關、活人句，如何是驗人",
+          "ClaimText": "紙來。舉僧問東山：有驗人關、活人句，如何是驗人",
+          "ApproxDate": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Neishao Zhizhong",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps: an unnamed monk asks the exact headword-bearing question; Neishao Zhizhong is the respondent.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "unnamed monk questioner",
+            "ActorLabel": "an unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The monk’s question owns the exact headword clause; the responding master remains contextual.",
+            "ReviewedBy": "Codex post720 Lane B tail full-case review",
+            "ReviewedUtc": "2026-07-17T16:43:13.492504+00:00"
+          }
+        },
+        {
+          "RelPath": "J/J26/J26nB182.xml",
+          "FromLb": "0444a25",
+          "ToLb": "0444a26",
+          "CharOffset": null,
+          "Kwic": "縣省禪師云：『廣教有驗人關、截人機、活人句，還",
+          "ClaimText": "縣省禪師云：『廣教有驗人關、截人機、活人句，還",
+          "ApproxDate": null,
+          "Curated": true,
+          "MasterName": "Azi Jinwu",
+          "ContextMasters": [
+            {
+              "MasterName": "Azi Jinwu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J26/J26nB182.xml). Recorded Sayings of Chan Master Wanru: full-section review assigns the exact headword clause to Azi Jinwu."
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0457b11",
+          "ToLb": "0457b12",
+          "CharOffset": null,
+          "Kwic": "？葉縣，上堂：廣教有驗人關、截人機、活人句，還",
+          "ClaimText": "？葉縣，上堂：廣教有驗人關、截人機、活人句，還",
+          "ApproxDate": null,
+          "Curated": true,
+          "MasterName": "Guyin Yuncong",
+          "ContextMasters": [
+            {
+              "MasterName": "Guyin Yuncong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Teaching Grove of the Tradition’s Mirror: full-section review assigns the exact headword clause to Guyin Yuncong."
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "J/J26/J26nB182.xml",
+        "X/X66/X66n1297.xml"
+      ],
+      "RelatedMasters": [
+        "Neishao Zhizhong",
+        "Azi Jinwu",
+        "Guyin Yuncong"
+      ],
+      "RelatedTerms": [],
+      "SearchAliases": [
+        "a barrier that tests people"
+      ],
+      "Explanation": "The retained lines call a saying or encounter a barrier that tests people when it explicitly exposes whether the respondent can pass the case’s demand. Only clauses assigning that testing function support the entry; a nearby master is not substituted for an unnamed questioner.",
+      "ClaimAnchors": []
+    }
+  ]
+}

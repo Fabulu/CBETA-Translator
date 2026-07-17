@@ -1,0 +1,4063 @@
+{
+  "generatorVersion": 7,
+  "inputPacketSha256": {
+    "t_5ef05597fe69": "8e28be64045e6c6a59c4974ee972a59b03a185c3ad7ccca42c79851c23ec62f4",
+    "t_8bd390157b65": "8a63611df79cc4c1299e63094d92f74e1a0eb3ba9e1239fc389a9b67a3528025",
+    "t_6925c87bb616": "b977e782083c904fceb1310f998055fdb7f53d26de06da54502ff2d92ea186c4",
+    "t_8ee9d62081ae": "e47dbb81b8e7f2fa77f4675ba7f63f623e1a78fb7c9a00c22157455af8fa5cf1",
+    "t_4baae3dda70c": "1962c4ca19f800c8d9cf2a75b313f0ed1ad0ca10148c9943aef259d6b31cde67",
+    "t_a5a35b410079": "6e230f96e3b166389cb7a1e8c2a3b18951acb00131729609169ae4985cc6a111",
+    "t_44056632f4c6": "707919478cbf58e19df727550590d0ff0762b94e2b82d30d406cf55b587d2e07",
+    "t_06756e764d33": "49bd582a0ff8d668b1c429b56857b0d5f9583dda0596dda9f3472121fddc2f38",
+    "t_7517cee5844f": "ee33545445a3d93391d6eac4aa264d7a760e4e1bb194b1f7d71da6ebabfe2380",
+    "t_24891e88f516": "94d7abab2333e68ccb846a1216ab435b406a072d9b37c80d8832b5e690378eea",
+    "t_099bd2fda8bc": "de8666c340ae44846aeb85d0035e9df803d286f80ecb0f47a0d18014d7b72578",
+    "t_a8d80736de3b": "c2e929277d69107fd329d47a941e7d0758fcf8294d0c08bd4eb927034c09a043",
+    "t_bc9a15980b00": "8b4f7c6a6cb1c7f743febb483e65908f16ad367c1138e6f3b4184ffdce00a123"
+  },
+  "entries": 13,
+  "occurrences": 45,
+  "tierACandidates": 0,
+  "reviewRequired": 45,
+  "cache": {
+    "reusedEntries": 12,
+    "reusedOccurrences": 41,
+    "rebuiltEntries": 1,
+    "rebuiltOccurrences": 4
+  },
+  "packets": [
+    {
+      "RelPath": "X/X67/X67n1310.xml",
+      "FromLb": "0636c07",
+      "title": "拈八方珠玉集",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "No.1310-C",
+        "No.1310-B閱鍾阜二禪師拈古集",
+        "No.1310-A拈八方珠玉集序"
+      ],
+      "unitType": "p",
+      "rawStart": 35848,
+      "rawEnd": 36110,
+      "caseText": "舉：溈山與陸侍御同入僧堂，御乃問：如許多師僧，為復是喫粥飯僧？為復是參禪僧？溈云：亦不是喫粥飯僧，亦不是參禪僧。御云：在此作什麼？溈云：侍御自問他看。",
+      "storedKwic": "喫粥飯僧？為復是參禪僧？溈云：亦不是喫",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 26,
+      "storedKwicEnd": 45,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        3715
+      ],
+      "normalizedFromLbMatchStarts": [
+        3715
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 3715,
+      "inlineSpeakerMarkers": [
+        "溈云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "excluded-contributor-or-document-section",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_5ef05597fe69",
+      "sourceTerm": "參禪僧",
+      "turnProofTerm": "參禪僧",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 34,
+          "headwordEnd": 37,
+          "headwordClause": "為復是參禪僧？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 10,
+            "end": 16,
+            "text": "僧堂，御乃問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 52,
+          "headwordEnd": 55,
+          "headwordClause": "溈云：亦不是喫粥飯僧，亦不是參禪僧。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 10,
+            "end": 16,
+            "text": "僧堂，御乃問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 34,
+          "headwordEnd": 37,
+          "headwordClause": "為復是參禪僧？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 10,
+            "end": 16,
+            "text": "僧堂，御乃問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X79/X79n1559.xml",
+      "FromLb": "0453a22",
+      "title": "嘉泰普燈錄",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "太平佛鑑懃禪師六則",
+        "泐潭湛堂準禪師五則",
+        "雪峰祖燈璿禪師一則",
+        "泐潭祥禪師二則",
+        "兜率真寂悅禪師一則",
+        "黃龍死心新禪師四則",
+        "五祖演禪師六則",
+        "上方益禪師三則",
+        "智海正覺逸禪師二則",
+        "法雲圓通秀禪師二則",
+        "大溈真如喆禪師二則",
+        "泐潭真淨雲庵文禪師三則"
+      ],
+      "unitType": "p",
+      "rawStart": 1196793,
+      "rawEnd": 1197678,
+      "caseText": "舉：溈山同陸侍御入僧堂，陸問：如許多僧，為復是喫粥飯僧？為復是參禪僧？曰：亦不是喫粥飯僧，亦不是參禪僧。云：在此作甚麼？曰：侍御自問取他看。師曰：溈山元來小膽，被這俗官一問，直得手忙脚亂，閉戶開門。若是老僧即不然，大開門戶，放伊入來，此是參禪僧喫粥飯僧。向伊道：是喫粥飯了，參禪僧侍伊眼睛定動，便與木槵子換却，教伊做箇惺惺歷歷底侍御。若處廟堂之高，則致君為堯舜之君；或在江湖之上，則致民為堯舜之民，豈不快哉！乃呈起數珠，曰：諸人還見這箇麼？良久，曰：此是老僧來京師換得底，諸人各自歸堂摸索看。",
+      "storedKwic": "喫粥飯僧？為復是參禪僧？曰：亦不是喫粥",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 23,
+      "storedKwicEnd": 42,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        272760
+      ],
+      "normalizedFromLbMatchStarts": [
+        272760
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 272760,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_5ef05597fe69",
+      "sourceTerm": "參禪僧",
+      "turnProofTerm": "參禪僧",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 31,
+          "headwordEnd": 34,
+          "headwordClause": "為復是參禪僧？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 9,
+            "end": 14,
+            "text": "僧堂，陸問"
+          },
+          "nearestFollowingCue": {
+            "start": 70,
+            "end": 72,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 48,
+          "headwordEnd": 51,
+          "headwordClause": "曰：亦不是喫粥飯僧，亦不是參禪僧。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 9,
+            "end": 14,
+            "text": "僧堂，陸問"
+          },
+          "nearestFollowingCue": {
+            "start": 70,
+            "end": 72,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 119,
+          "headwordEnd": 122,
+          "headwordClause": "若是老僧即不然，大開門戶，放伊入來，此是參禪僧喫粥飯僧。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 70,
+            "end": 72,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 137,
+          "headwordEnd": 140,
+          "headwordClause": "向伊道：是喫粥飯了，參禪僧侍伊眼睛定動，便與木槵子換却，教伊做箇惺惺歷歷底侍御。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 70,
+            "end": 72,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 31,
+          "headwordEnd": 34,
+          "headwordClause": "為復是參禪僧？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 9,
+            "end": 14,
+            "text": "僧堂，陸問"
+          },
+          "nearestFollowingCue": {
+            "start": 70,
+            "end": 72,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "T/T47/T47n1989.xml",
+      "FromLb": "0581a23",
+      "title": "潭州溈山靈祐禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [
+        {
+          "MasterName": "Guishan Lingyou",
+          "matchedAliases": [
+            "溈山靈祐",
+            "溈山"
+          ]
+        }
+      ],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [],
+      "unitType": "p",
+      "rawStart": 23882,
+      "rawEnd": 24059,
+      "caseText": "師因陸侍御入僧堂。乃問。如許多師僧。為復是喫粥飯僧。為復是參禪僧。師云。亦不是喫粥飯僧。亦不是參禪僧。侍御云。在此作甚麼。師云。侍御自問他看。",
+      "storedKwic": "喫粥飯僧。為復是參禪僧。師云。亦不是喫",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 21,
+      "storedKwicEnd": 40,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        6460
+      ],
+      "normalizedFromLbMatchStarts": [
+        6460
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 6460,
+      "inlineSpeakerMarkers": [
+        "師云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_5ef05597fe69",
+      "sourceTerm": "參禪僧",
+      "turnProofTerm": "參禪僧",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": "Guishan Lingyou",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 29,
+          "headwordEnd": 32,
+          "headwordClause": "為復是參禪僧。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 33,
+            "end": 35,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 47,
+          "headwordEnd": 50,
+          "headwordClause": "亦不是參禪僧。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 33,
+            "end": 35,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 61,
+            "end": 63,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 29,
+          "headwordEnd": 32,
+          "headwordClause": "為復是參禪僧。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 33,
+            "end": 35,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "T/T51/T51n2076.xml",
+      "FromLb": "0313a02",
+      "title": "景德傳燈錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Shitou Xiqian",
+          "matchedAliases": [
+            "石頭希遷",
+            "石頭"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "前石頭希遷法嗣",
+        "行思禪師第二世",
+        "行思禪師第一世",
+        "吉州青原山行思禪師法嗣",
+        "前遂州道圓禪師法嗣",
+        "曹谿別出第五世",
+        "洛陽荷澤神會大師法嗣",
+        "前南陽慧忠國師法嗣",
+        "曹谿別出第二世",
+        "前汝州首山省念禪師法嗣",
+        "前潭州報慈歸真大師德韶法嗣",
+        "前風穴延沼禪師法嗣"
+      ],
+      "unitType": "p",
+      "rawStart": 821876,
+      "rawEnd": 823162,
+      "caseText": "來。石頭曰。元來有心何言無心。無心盡同謗。師言下大悟。異日侍立次石頭問曰。汝是參禪僧。是州縣白蹋僧。師曰。是參禪僧。石頭曰。何者是禪。師曰。揚眉動目。石頭曰。除却揚眉動目外將爾本來面目呈看。師曰。請和尚除揚眉動目外鑒某甲。石頭曰。我除竟。師曰。將呈和尚了也。石頭曰。汝既將呈。我心如何。師曰。不異和尚。石頭曰。不關汝事。師曰。本無物。石頭曰。汝亦無物。師曰。既無物即真物。石頭曰。真物不可得。汝心見量意旨如此也。大須護持。師後辭往潮州靈山隱居。學者四集。師上堂示眾曰。夫學道人須識自家本心。將心相示方可見道。多見時輩。只認揚眉動目一語一默。驀頭印可以為心要。此實未了。吾今為汝諸人分明說出。各須聽受。但除却一切妄運想念見量。即汝真心。此心與塵境及守認靜默時全無交涉。即心是佛不待修治。何以故。應機隨照冷冷自用。窮其用處了不可得。喚作妙用乃是本心。大須護持不可容易。僧問。其中人相見時如何。師曰。早不其中也。僧曰。其中者如何。師曰。不作箇問。問苦海波深以何為船筏。師曰。以木為船筏。曰恁麼即得度也。師曰。盲者依前盲。瘂者依前瘂。",
+      "storedKwic": "次石頭問曰。汝是參禪僧。是州縣白蹋僧。",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 31,
+      "storedKwicEnd": 50,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        167249
+      ],
+      "normalizedFromLbMatchStarts": [
+        167249
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 167249,
+      "inlineSpeakerMarkers": [
+        "次石頭問曰"
+      ],
+      "inlineNamedOwnerCandidates": [
+        {
+          "MasterName": "Shitou Xiqian",
+          "matchedAliases": [
+            "石頭"
+          ]
+        }
+      ],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_5ef05597fe69",
+      "sourceTerm": "參禪僧",
+      "turnProofTerm": "參禪僧",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 39,
+          "headwordEnd": 42,
+          "headwordClause": "汝是參禪僧。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 50,
+            "end": 52,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 54,
+          "headwordEnd": 57,
+          "headwordClause": "是參禪僧。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 50,
+            "end": 52,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 67,
+            "end": 69,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 39,
+          "headwordEnd": 42,
+          "headwordClause": "汝是參禪僧。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 50,
+            "end": 52,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X79/X79n1557.xml",
+      "FromLb": "0086b23",
+      "title": "聯燈會要",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Linji Yixuan",
+          "matchedAliases": [
+            "臨濟義玄",
+            "臨濟"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "鎮州臨濟義玄禪師凡四十八",
+        "相國裴公休凡三",
+        "杭州千頃楚南禪師凡一",
+        "福州烏石靈觀禪師凡六",
+        "睦州陳尊宿凡二十四",
+        "筠州黃蘗希運禪師法嗣",
+        "襄州常侍王公敬凡三",
+        "京兆米和尚凡三",
+        "元康和尚凡一",
+        "益州應天和尚凡一",
+        "襄州延慶法端禪師凡一",
+        "滁州定山神英禪師凡二"
+      ],
+      "unitType": "p",
+      "rawStart": 636483,
+      "rawEnd": 639010,
+      "caseText": "道流！儞欲得如法見解，但莫受人惑，向裏向外，逢著便殺，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。如諸方學道流，未有不依物出來底，山僧向此間從頭地打，手上出來手上打，口裏出來口裏打，眼裏出來眼裏打，未有箇獨脫出來底，皆是上他古人閑機境。山僧無一法與人，只是治病解縛。儞諸方道流試不依物出來，我要共儞商量，十年五載並無一人，皆是依草附葉、竹木精靈、野狐精魅，向一切糞塊上亂咬瞎漢，枉消他十方信施，道我是出家兒。作如是見解，向儞道：無佛無法，無修無證。秖與麼傍家，擬求甚麼物？瞎漢頭上安頭，是儞欠少甚麼？道流！是儞目前用底，與祖佛不別。祇麼不信，便向外求，莫錯！向外無法，內亦不可得。儞取山僧口裏語，不如休歇無事去，已起者莫續，未起者不要放起，便勝儞十年行脚。約山僧見處，無如許多般，祇是平常著衣喫飯，無事過時。儞諸方來者，皆是有心求佛、求法、求解脫、求出離三界癡人。儞要出離三界甚麼處去？佛祖是賞繫底名句，儞欲識三界麼？不離儞今聽法底心地。儞一念心貪是欲界，儞一念心瞋是色界，儞一念心癡是無色界，是儞屋裏家具子。三界不自道我是三界，還是道人目前靈靈地照燭萬般，酌度世界底人與三界安名。大德！四大色身是無常，乃至脾胃肝膽、髮毛爪齒，唯見諸法空相。儞一念心歇得處，喚作菩提樹；儞一念心不能歇得處，喚作無明樹。無明無住處，無明無始終。儞若念念心歇不得，便上他無明樹，便入六道四生，披毛帶角；儞若歇得，便是清淨身界；儞一念不生，便是上菩提樹。三界神通變化，意生化身，法喜禪悅，身光自照，思衣羅綺千重，思食百味具足，更無橫病。菩提無住處，是故無得者。",
+      "storedKwic": "殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 29,
+      "storedKwicEnd": 51,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        125142
+      ],
+      "normalizedFromLbMatchStarts": [
+        125142
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 125142,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8bd390157b65",
+      "sourceTerm": "逢羅漢殺羅漢",
+      "turnProofTerm": "逢羅漢殺羅漢",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 37,
+          "headwordEnd": 43,
+          "headwordClause": "儞欲得如法見解，但莫受人惑，向裏向外，逢著便殺，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 597,
+            "end": 607,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 37,
+          "headwordEnd": 43,
+          "headwordClause": "儞欲得如法見解，但莫受人惑，向裏向外，逢著便殺，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 597,
+            "end": 607,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X83/X83n1578.xml",
+      "FromLb": "0562c19",
+      "title": "指月錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Linji Yixuan",
+          "matchedAliases": [
+            "臨濟義玄",
+            "臨濟"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "▲鎮州臨濟義玄禪師",
+        "音釋卷十之十三",
+        "▲鄭十三娘",
+        "▲襄州王敬初常侍",
+        "▲元康和尚",
+        "▲京兆府米和尚",
+        "▲滁州定山神英禪師",
+        "▲杭州徑山洪諲禪師",
+        "▲鄧州香嚴智閑禪師",
+        "▲袁州仰山慧寂通智禪師",
+        "▲婺州金華山俱胝和尚",
+        "▲瑞州末山尼了然禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 1141980,
+      "rawEnd": 1145953,
+      "caseText": "是外道見解。夫如真學道人，竝不取佛，不取菩薩、羅漢，不取三界殊勝，迥然獨脫，不與物拘，乾坤倒覆，我更不疑。十方諸佛現前，無一念心喜；三塗地獄頓現，無一念心怖。緣何如此？我見諸佛空相，變即有，不變即無。三界惟心，萬法惟識。所以夢幻空華，何勞把捉？惟有道流，目前現今聽法底人，入火不燒，入水不溺，入三塗地獄如游園觀，入餓鬼、畜生而不受報。緣何如此？無嫌底法。你若愛聖憎凡，生死海裏沉浮。煩惱由心故有，無心煩惱何拘？不勞分別取相，自然得道須臾。你擬傍家波波地學得，於三祇劫中終歸生死，不如無事向叢林中牀角頭交脚坐。道流，你欲得如法，但莫生疑。展則彌綸法界，收則絲髮不立。歷歷孤明，未曾欠少。眼不見，耳不聞，喚作什麼物？古人云：說似一物則不中。你但自家看，更有什麼？說亦無盡，各自著力。珍重！道流，是你目前用處，與祖佛不別。祇麼不信，便向外求。莫錯！向外無法，內亦不可得。你取山僧口裏語，不如歇業無事去。已起者莫續，未起者不要放起，便勝你十年行脚。約山僧見處，無如許多般，祇是平常著衣喫飯，無事過時，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。你一念心歇得處，喚作菩提樹；你一念心不能歇得處，喚作無明樹。無明無住處，無明無始終。你若念念心歇不得，便上他無明樹，便入六道四生，披毛戴角。你若歇得，便是清淨身界；你一念不生，便是上菩提樹，三界神通變化，意生化身。有一般瞎禿子，喫飯飽了，便坐禪觀行，把捉念漏，不令放起，厭喧求靜，是外道法。祖師云：你若住心看靜，舉心外照，攝心內澄，凝心入定，如是之流，皆是造作。是你如今與麼聽法底人，作麼生擬修他、證他、莊嚴他？渠且不是修底物，不是莊嚴得底物。若教他莊嚴，你一切物即莊嚴得。山僧說向外無法，學人不會，即便向裏作解，便即倚壁坐，舌拄上齶，湛然不動，取此為是祖門佛法，也大錯。是你若取不動清淨境為是，你即認他無明為郎主。古人云：湛湛黑暗深坑，實可怖畏。此之是也。你若認他動者，是一切草木皆解動，應可是道否？所以動者是風大，不動者是地大。動與不動，俱無自性。你若向動處捉他，他向不動處立。你若向不動處捉他，他向動處立。譬如潛泉魚，鼓波而自躍。大德！動與不動，是二種境？還是無依道人，用動用不動？咸通八年丁亥四月十日，將示滅，說傳法偈曰：沿流不止問如何，真照無邊說似他。離相離名人不稟，吹毛用了急須磨。復謂眾曰：吾滅後，不得滅却吾正法眼藏。三聖出曰：爭敢滅却和尚正法眼藏？師曰：已後有人問你，向他道甚麼？聖便喝。師曰：誰知吾正法眼藏，向這瞎驢邊滅却。言訖，端坐而逝。塔全身于府西北隅，諡慧照。",
+      "storedKwic": "殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 448,
+      "storedKwicEnd": 470,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        260850
+      ],
+      "normalizedFromLbMatchStarts": [
+        260850
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 260850,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8bd390157b65",
+      "sourceTerm": "逢羅漢殺羅漢",
+      "turnProofTerm": "逢羅漢殺羅漢",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 456,
+          "headwordEnd": 462,
+          "headwordClause": "約山僧見處，無如許多般，祇是平常著衣喫飯，無事過時，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 544,
+            "end": 554,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 456,
+          "headwordEnd": 462,
+          "headwordClause": "約山僧見處，無如許多般，祇是平常著衣喫飯，無事過時，逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫，不與物拘，透脫自在。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 544,
+            "end": 554,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0644c19",
+      "title": "古尊宿語錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Huangbo Xiyun",
+          "matchedAliases": [
+            "黃檗"
+          ]
+        },
+        {
+          "MasterName": "Linji Yixuan",
+          "matchedAliases": [
+            "臨濟"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "臨濟禪師大鑑下四世嗣黃檗",
+        "黃檗斷際禪師宛陵錄"
+      ],
+      "unitType": "p",
+      "rawStart": 262011,
+      "rawEnd": 270386,
+      "caseText": "學人面前美前人辨得了不作主不受境惑善知識便即現半身學人便喝善知識又入一切差別語路中擺擈學人云不識好𢙣老禿奴善知識歎曰真正道流如諸方善知識不辨邪正學人來問菩提涅槃三身境智瞎老師便与他觧說被他學人罵著便把棒打他言無禮度自是你善知識無眼不得嗔他有一般不識好𢙣禿奴即指東劃西好晴好雨好燈籠露柱你看眉毛有幾莖這箇具機緣斈人不會便即心狂如是之流㹅是野狐精魅魍魎被他好學人嗌嗌微咲言瞎老禿奴惑乱他天下人道流出家兒且要斈道秪如山僧徃日曾向毗𡰱中㽞心亦曾於經論尋討後方知是濟世藥表顯之說遂乃一時拋却即訪道㕘禪後遇大善知識方乃道眼分明始識得天下老和尚知其邪正不是娘生下便會還是体究練磨一朝自省道流你欲得如法見觧但莫受人惑向裏向外逢著便殺逢佛殺佛逢祖殺祖逢羅漢殺羅漢逢父母殺父母逢親眷殺親眷始得觧脫不與物拘透脫自在如諸方學道流未有不依物出來底山僧向此間󴌰頭打手上出來手上打口裏出來口裏打眼裏出來眼裏打未有一箇獨脫出來底皆是上他古人閑機境山僧無一法与人祗是治病觧縛你諸方道流試不依物出來我要共你商量十年五嵗並無一人皆是依草附葉竹木精靈野狐精魅向一切糞塊上亂咬瞎漢枉消他十方信施道我是出家兒作如是見觧向你道無佛無法無修無證秪與麼傍家擬求什麼物瞎漢頭上安頭是你欠少什麼道流是你目前用底與祖佛不別秪麼不信便向外求莫錯向外無法內亦不可得你取山僧口裏語不如休歇無事去已起者莫續未起者不要放起便勝你十年行脚約山僧見處無如許多般秪是平常著衣吃飯無事過時你諸方來者皆是有心求佛求法求觧脫求出離三界癡人你要出三界什麼處去佛祖是賞繫底名句你欲識三界麼不離你今𦗟法𢇹心地你一念心貪是欲界你一念心嗔是色界你一念心癡是無色界是你屋裏家具子三界不自道我是三界還是道流目前靈靈地照燭萬般酌度世界底人与三界安名大德四大色身是無常乃至脾胃肝膽髮毛爪齒唯見諸法空相你一念心歇得處喚作菩提樹你一念心不能歇得處喚作無明𣗳無明無住處無明無始終你若念念心歇不得便上他無明𣗳便入六道四生披毛戴角你若歇得便是清淨身界你一念不生便是上菩提𣗳三界神通變化意生化身法喜禪恱身光自照思衣羅綺千重思食百味具足更無橫病菩提無住處是故無得者道流大丈夫漢更疑箇什麼目前用處更是阿誰把得便用莫著名字号為玄旨與麼見得勿嫌𢇹法古人云心隨萬境轉轉處實能幽隨流認得性無喜亦無憂道流如禪宗見觧死活循然叅斈之人大湏子細如主客相見便有言論往來或應物現形或全体作用或把機權喜怒或現半身或乘師子或乘象王如有真正斈人便喝先拈出一个膠盆子善知識不辨是境便上他境上作模作樣斈人便喝前人不肎放此是膏肓之病不堪醫喚作客看主或是善知識不拈出物隨斈人問處即奪斈人被奪抵死不放此是主看客或有斈人應一箇清淨境出善知識前善知識辨得是境把得拋向坑裏學人言大好善知識即云咄哉不識好𢙣學人便禮拜此喚作主看主或有斈人披枷帶鎻出善知識前善知識更與安一重枷鎻學人歡喜彼此不辨呼為客看客大德山僧如是所舉皆是辨魔揀異知其邪正道流寔情大難佛法幽玄觧得可可地山僧竟日与他說破斈者㹅不在意千徧萬徧脚底踏過黑沒焌地無一箇形𫨻歷歷孤明斈人信不及便向名句上生觧年登半百秪管傍家負死屍行檐却檐子天下走索草鞋錢有日在大德山僧說向外無法斈人不會便即向裏作觧便即倚壁坐舌拄上齶湛然不動取此為是祖門佛法也大錯是你若取不動清淨境為是你即認他無明為郎主古人云湛湛黑暗深坑寔可怖畏此之是也你若認他動者是一切草木皆觧動應可是道也所以動者是風大不動者是地大動与不動俱無自性你若向動處捉他他向不動處立你若向不動處捉他他向動處立譬如潛泉魚鼓波而自躍大德動與不動是二種境還是無依道人用動用不動如諸方斈人來山僧此間作三種根器断如中下根器來我便奪其境而不除其法或中上根器來我便境法俱奪如上上根器來我便境法人俱不奪如有出格見觧人來山僧此間便全体作用不歷根器大德到這裏斈人著力處不通風石火電光即過了也斈人若眼定動即沒交涉擬心即差動念即乖有人觧者不離目前大德你檐鉢囊屎檐子傍家走求佛求法即今与麼馳求底你還識渠麼活撥撥地秪是勿根株擁不聚撥不散求著即轉遠不求還在目前靈音属耳若人不信徒勞百年道流一剎那間便入華藏世界入毗盧遮那國土入觧脫國土入神通國土入清淨國土入法界入穢入淨入凡入聖入餓鬼畜生處處討覓尋皆不見有生有死唯有空名幻化空芲不勞把捉得失是非一時放却道流山僧佛法的的相承󴌰麻谷和尚丹霞和尚道一和尚廬山拽石頭和尚一路行徧天下無人信得盡皆起謗如道一和尚用處純一無雜斈人三百五百盡皆不見佗意如庐山和尚自在真正順𨒫用處斈人不測涯際悉皆茫然如𮯱霞和尚翫珠隱顯斈人來者皆悉被罵如麻谷用處苦如黃蘗近皆不得如石鞏用處向箭頭上覓人來者皆惧如山僧今日用處真正成壞翫美神變入一切境隨處無事境不能換但有來求者我即便出看渠渠不識我我便著𰚆般衣斈人生觧一向入我言句苦哉瞎禿子無眼人把我著底衣認青黃赤白我脫却入清淨境中斈人一見便生忻欲我又脫却學人失心茫然狂走言我無衣我即向渠道你識我著衣底人否忽尓回頭認我了也大德你莫認衣衣不能動人能著衣有箇清淨衣有个無生衣菩提衣涅槃衣有祖衣有佛衣大德但有聲名文句皆悉是衣變󴌰臍輪氣海中鼓激牙齒敲磕成其句義明知是幻化大德外發聲語業內表心所法以思有念皆悉是衣你秪麼認他著底衣為寔觧縱經塵刦秪是衣通三界循還輪囬生死不如無事相逢不相識共語不知名今時學人不得盖為認名字為觧大冊子上抄死老漢語三重五重複子褁不教人見道是玄旨以為保重大錯瞎屢生你向枯骨上覓什麼汁有一般不識好𢙣向教中取意度商量成於句義如把屎塊子向口裏含了吐過与別人猶如俗人打傳口令相佀一生虛過也道我出家被佗問着佛法便即杜口無詞眼似漆突口如楄檐如此之類逢󳇐勒出世移置佗方世界寄地獄受苦大德你波波地徃諸方覓什麼物踏你脚板闊無佛可求無道可成無法可得外求有相佛与汝不相似欲識汝本心非合亦非離道流真佛無形真道無体真法無相三法混融和合一處辨既不得喚作忙忙業識眾生問如何是真佛真法真道乞垂開示師云佛者心清淨是法者心光明是道者處處無碍淨光是三即一皆是空名而無寔有如真正作道人念念心不間断自達磨大師󴌰西土來秪是覓箇不受人惑底人後遇二祖一言便了始知󴌰前虛用功夫山僧今日見處與祖佛不別若第一句中得與祖佛為師若第二句中得與人天為師若第三句中得自救不了。",
+      "storedKwic": "逢佛殺佛逢祖殺祖逢羅漢殺羅漢逢父母殺父母逢親",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 308,
+      "storedKwicEnd": 330,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        34695
+      ],
+      "normalizedFromLbMatchStarts": [
+        34695
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 34695,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8bd390157b65",
+      "sourceTerm": "逢羅漢殺羅漢",
+      "turnProofTerm": "逢羅漢殺羅漢",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 316,
+          "headwordEnd": 322,
+          "headwordClause": "學人面前美前人辨得了不作主不受境惑善知識便即現半身學人便喝善知識又入一切差別語路中擺擈學人云不識好𢙣老禿奴善知識歎曰真正道流如諸方善知識不辨邪正學人來問菩提涅槃三身境智瞎老師便与他觧說被他學人罵著便把棒打他言無禮度自是你善知識無眼不得嗔他有一般不識好𢙣禿奴即指東劃西好晴好雨好燈籠露柱你看眉毛有幾莖這箇具機緣斈人不會便即心狂如是之流㹅是野狐精魅魍魎被他好學人嗌嗌微咲言瞎老禿奴惑乱他天下人道流出家兒且要斈道秪如山僧徃日曾向毗𡰱中㽞心亦曾於經論尋討後方知是濟世藥表顯之說遂乃一時拋却即訪道㕘禪後遇大善知識方乃道眼分明始識得天下老和尚知其邪正不是娘生下便會還是体究練磨一朝自省道流你欲得如法見觧但莫受人惑向裏向外逢著便殺逢佛殺佛逢祖殺祖逢羅漢殺羅漢逢父母殺父母逢親眷殺親眷始得觧脫不與物拘透脫自在如諸方學道流未有不依物出來底山僧向此間󴌰頭打手上出來手上打口裏出來口裏打眼裏出來眼裏打未有一箇獨脫出來底皆是上他古人閑機境山僧無一法与人祗是治病觧縛你諸方道流試不依物出來我要共你商量十年五嵗並無一人皆是依草附葉竹木精靈野狐精魅向一切糞塊上亂咬瞎漢枉消他十方信施道我是出家兒作如是見觧向你道無佛無法無修無證秪與麼傍家擬求什麼物瞎漢頭上安頭是你欠少什麼道流是你目前用底與祖佛不別秪麼不信便向外求莫錯向外無法內亦不可得你取山僧口裏語不如休歇無事去已起者莫續未起者不要放起便勝你十年行脚約山僧見處無如許多般秪是平常著衣吃飯無事過時你諸方來者皆是有心求佛求法求觧脫求出離三界癡人你要出三界什麼處去佛祖是賞繫底名句你欲識三界麼不離你今𦗟法𢇹心地你一念心貪是欲界你一念心嗔是色界你一念心癡是無色界是你屋裏家具子三界不自道我是三界還是道流目前靈靈地照燭萬般酌度世界底人与三界安名大德四大色身是無常乃至脾胃肝膽髮毛爪齒唯見諸法空相你一念心歇得處喚作菩提樹你一念心不能歇得處喚作無明𣗳無明無住處無明無始終你若念念心歇不得便上他無明𣗳便入六道四生披毛戴角你若歇得便是清淨身界你一念不生便是上菩提𣗳三界神通變化意生化身法喜禪恱身光自照思衣羅綺千重思食百味具足更無橫病菩提無住處是故無得者道流大丈夫漢更疑箇什麼目前用處更是阿誰把得便用莫著名字号為玄旨與麼見得勿嫌𢇹法古人云心隨萬境轉轉處實能幽隨流認得性無喜亦無憂道流如禪宗見觧死活循然叅斈之人大湏子細如主客相見便有言論往來或應物現形或全体作用或把機權喜怒或現半身或乘師子或乘象王如有真正斈人便喝先拈出一个膠盆子善知識不辨是境便上他境上作模作樣斈人便喝前人不肎放此是膏肓之病不堪醫喚作客看主或是善知識不拈出物隨斈人問處即奪斈人被奪抵死不放此是主看客或有斈人應一箇清淨境出善知識前善知識辨得是境把得拋向坑裏學人言大好善知識即云咄哉不識好𢙣學人便禮拜此喚作主看主或有斈人披枷帶鎻出善知識前善知識更與安一重枷鎻學人歡喜彼此不辨呼為客看客大德山僧如是所舉皆是辨魔揀異知其邪正道流寔情大難佛法幽玄觧得可可地山僧竟日与他說破斈者㹅不在意千徧萬徧脚底踏過黑沒焌地無一箇形𫨻歷歷孤明斈人信不及便向名句上生觧年登半百秪管傍家負死屍行檐却檐子天下走索草鞋錢有日在大德山僧說向外無法斈人不會便即向裏作觧便即倚壁坐舌拄上齶湛然不動取此為是祖門佛法也大錯是你若取不動清淨境為是你即認他無明為郎主古人云湛湛黑暗深坑寔可怖畏此之是也你若認他動者是一切草木皆觧動應可是道也所以動者是風大不動者是地大動与不動俱無自性你若向動處捉他他向不動處立你若向不動處捉他他向動處立譬如潛泉魚鼓波而自躍大德動與不動是二種境還是無依道人用動用不動如諸方斈人來山僧此間作三種根器断如中下根器來我便奪其境而不除其法或中上根器來我便境法俱奪如上上根器來我便境法人俱不奪如有出格見觧人來山僧此間便全体作用不歷根器大德到這裏斈人著力處不通風石火電光即過了也斈人若眼定動即沒交涉擬心即差動念即乖有人觧者不離目前大德你檐鉢囊屎檐子傍家走求佛求法即今与麼馳求底你還識渠麼活撥撥地秪是勿根株擁不聚撥不散求著即轉遠不求還在目前靈音属耳若人不信徒勞百年道流一剎那間便入華藏世界入毗盧遮那國土入觧脫國土入神通國土入清淨國土入法界入穢入淨入凡入聖入餓鬼畜生處處討覓尋皆不見有生有死唯有空名幻化空芲不勞把捉得失是非一時放却道流山僧佛法的的相承󴌰麻谷和尚丹霞和尚道一和尚廬山拽石頭和尚一路行徧天下無人信得盡皆起謗如道一和尚用處純一無雜斈人三百五百盡皆不見佗意如庐山和尚自在真正順𨒫用處斈人不測涯際悉皆茫然如𮯱霞和尚翫珠隱顯斈人來者皆悉被罵如麻谷用處苦如黃蘗近皆不得如石鞏用處向箭頭上覓人來者皆惧如山僧今日用處真正成壞翫美神變入一切境隨處無事境不能換但有來求者我即便出看渠渠不識我我便著𰚆般衣斈人生觧一向入我言句苦哉瞎禿子無眼人把我著底衣認青黃赤白我脫却入清淨境中斈人一見便生忻欲我又脫却學人失心茫然狂走言我無衣我即向渠道你識我著衣底人否忽尓回頭認我了也大德你莫認衣衣不能動人能著衣有箇清淨衣有个無生衣菩提衣涅槃衣有祖衣有佛衣大德但有聲名文句皆悉是衣變󴌰臍輪氣海中鼓激牙齒敲磕成其句義明知是幻化大德外發聲語業內表心所法以思有念皆悉是衣你秪麼認他著底衣為寔觧縱經塵刦秪是衣通三界循還輪囬生死不如無事相逢不相識共語不知名今時學人不得盖為認名字為觧大冊子上抄死老漢語三重五重複子褁不教人見道是玄旨以為保重大錯瞎屢生你向枯骨上覓什麼汁有一般不識好𢙣向教中取意度商量成於句義如把屎塊子向口裏含了吐過与別人猶如俗人打傳口令相佀一生虛過也道我出家被佗問着佛法便即杜口無詞眼似漆突口如楄檐如此之類逢󳇐勒出世移置佗方世界寄地獄受苦大德你波波地徃諸方覓什麼物踏你脚板闊無佛可求無道可成無法可得外求有相佛与汝不相似欲識汝本心非合亦非離道流真佛無形真道無体真法無相三法混融和合一處辨既不得喚作忙忙業識眾生問如何是真佛真法真道乞垂開示師云佛者心清淨是法者心光明是道者處處無碍淨光是三即一皆是空名而無寔有如真正作道人念念心不間断自達磨大師󴌰西土來秪是覓箇不受人惑底人後遇二祖一言便了始知󴌰前虛用功夫山僧今日見處與祖佛不別若第一句中得與祖佛為師若第二句中得與人天為師若第三句中得自救不了。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 316,
+          "headwordEnd": 322,
+          "headwordClause": "學人面前美前人辨得了不作主不受境惑善知識便即現半身學人便喝善知識又入一切差別語路中擺擈學人云不識好𢙣老禿奴善知識歎曰真正道流如諸方善知識不辨邪正學人來問菩提涅槃三身境智瞎老師便与他觧說被他學人罵著便把棒打他言無禮度自是你善知識無眼不得嗔他有一般不識好𢙣禿奴即指東劃西好晴好雨好燈籠露柱你看眉毛有幾莖這箇具機緣斈人不會便即心狂如是之流㹅是野狐精魅魍魎被他好學人嗌嗌微咲言瞎老禿奴惑乱他天下人道流出家兒且要斈道秪如山僧徃日曾向毗𡰱中㽞心亦曾於經論尋討後方知是濟世藥表顯之說遂乃一時拋却即訪道㕘禪後遇大善知識方乃道眼分明始識得天下老和尚知其邪正不是娘生下便會還是体究練磨一朝自省道流你欲得如法見觧但莫受人惑向裏向外逢著便殺逢佛殺佛逢祖殺祖逢羅漢殺羅漢逢父母殺父母逢親眷殺親眷始得觧脫不與物拘透脫自在如諸方學道流未有不依物出來底山僧向此間󴌰頭打手上出來手上打口裏出來口裏打眼裏出來眼裏打未有一箇獨脫出來底皆是上他古人閑機境山僧無一法与人祗是治病觧縛你諸方道流試不依物出來我要共你商量十年五嵗並無一人皆是依草附葉竹木精靈野狐精魅向一切糞塊上亂咬瞎漢枉消他十方信施道我是出家兒作如是見觧向你道無佛無法無修無證秪與麼傍家擬求什麼物瞎漢頭上安頭是你欠少什麼道流是你目前用底與祖佛不別秪麼不信便向外求莫錯向外無法內亦不可得你取山僧口裏語不如休歇無事去已起者莫續未起者不要放起便勝你十年行脚約山僧見處無如許多般秪是平常著衣吃飯無事過時你諸方來者皆是有心求佛求法求觧脫求出離三界癡人你要出三界什麼處去佛祖是賞繫底名句你欲識三界麼不離你今𦗟法𢇹心地你一念心貪是欲界你一念心嗔是色界你一念心癡是無色界是你屋裏家具子三界不自道我是三界還是道流目前靈靈地照燭萬般酌度世界底人与三界安名大德四大色身是無常乃至脾胃肝膽髮毛爪齒唯見諸法空相你一念心歇得處喚作菩提樹你一念心不能歇得處喚作無明𣗳無明無住處無明無始終你若念念心歇不得便上他無明𣗳便入六道四生披毛戴角你若歇得便是清淨身界你一念不生便是上菩提𣗳三界神通變化意生化身法喜禪恱身光自照思衣羅綺千重思食百味具足更無橫病菩提無住處是故無得者道流大丈夫漢更疑箇什麼目前用處更是阿誰把得便用莫著名字号為玄旨與麼見得勿嫌𢇹法古人云心隨萬境轉轉處實能幽隨流認得性無喜亦無憂道流如禪宗見觧死活循然叅斈之人大湏子細如主客相見便有言論往來或應物現形或全体作用或把機權喜怒或現半身或乘師子或乘象王如有真正斈人便喝先拈出一个膠盆子善知識不辨是境便上他境上作模作樣斈人便喝前人不肎放此是膏肓之病不堪醫喚作客看主或是善知識不拈出物隨斈人問處即奪斈人被奪抵死不放此是主看客或有斈人應一箇清淨境出善知識前善知識辨得是境把得拋向坑裏學人言大好善知識即云咄哉不識好𢙣學人便禮拜此喚作主看主或有斈人披枷帶鎻出善知識前善知識更與安一重枷鎻學人歡喜彼此不辨呼為客看客大德山僧如是所舉皆是辨魔揀異知其邪正道流寔情大難佛法幽玄觧得可可地山僧竟日与他說破斈者㹅不在意千徧萬徧脚底踏過黑沒焌地無一箇形𫨻歷歷孤明斈人信不及便向名句上生觧年登半百秪管傍家負死屍行檐却檐子天下走索草鞋錢有日在大德山僧說向外無法斈人不會便即向裏作觧便即倚壁坐舌拄上齶湛然不動取此為是祖門佛法也大錯是你若取不動清淨境為是你即認他無明為郎主古人云湛湛黑暗深坑寔可怖畏此之是也你若認他動者是一切草木皆觧動應可是道也所以動者是風大不動者是地大動与不動俱無自性你若向動處捉他他向不動處立你若向不動處捉他他向動處立譬如潛泉魚鼓波而自躍大德動與不動是二種境還是無依道人用動用不動如諸方斈人來山僧此間作三種根器断如中下根器來我便奪其境而不除其法或中上根器來我便境法俱奪如上上根器來我便境法人俱不奪如有出格見觧人來山僧此間便全体作用不歷根器大德到這裏斈人著力處不通風石火電光即過了也斈人若眼定動即沒交涉擬心即差動念即乖有人觧者不離目前大德你檐鉢囊屎檐子傍家走求佛求法即今与麼馳求底你還識渠麼活撥撥地秪是勿根株擁不聚撥不散求著即轉遠不求還在目前靈音属耳若人不信徒勞百年道流一剎那間便入華藏世界入毗盧遮那國土入觧脫國土入神通國土入清淨國土入法界入穢入淨入凡入聖入餓鬼畜生處處討覓尋皆不見有生有死唯有空名幻化空芲不勞把捉得失是非一時放却道流山僧佛法的的相承󴌰麻谷和尚丹霞和尚道一和尚廬山拽石頭和尚一路行徧天下無人信得盡皆起謗如道一和尚用處純一無雜斈人三百五百盡皆不見佗意如庐山和尚自在真正順𨒫用處斈人不測涯際悉皆茫然如𮯱霞和尚翫珠隱顯斈人來者皆悉被罵如麻谷用處苦如黃蘗近皆不得如石鞏用處向箭頭上覓人來者皆惧如山僧今日用處真正成壞翫美神變入一切境隨處無事境不能換但有來求者我即便出看渠渠不識我我便著𰚆般衣斈人生觧一向入我言句苦哉瞎禿子無眼人把我著底衣認青黃赤白我脫却入清淨境中斈人一見便生忻欲我又脫却學人失心茫然狂走言我無衣我即向渠道你識我著衣底人否忽尓回頭認我了也大德你莫認衣衣不能動人能著衣有箇清淨衣有个無生衣菩提衣涅槃衣有祖衣有佛衣大德但有聲名文句皆悉是衣變󴌰臍輪氣海中鼓激牙齒敲磕成其句義明知是幻化大德外發聲語業內表心所法以思有念皆悉是衣你秪麼認他著底衣為寔觧縱經塵刦秪是衣通三界循還輪囬生死不如無事相逢不相識共語不知名今時學人不得盖為認名字為觧大冊子上抄死老漢語三重五重複子褁不教人見道是玄旨以為保重大錯瞎屢生你向枯骨上覓什麼汁有一般不識好𢙣向教中取意度商量成於句義如把屎塊子向口裏含了吐過与別人猶如俗人打傳口令相佀一生虛過也道我出家被佗問着佛法便即杜口無詞眼似漆突口如楄檐如此之類逢󳇐勒出世移置佗方世界寄地獄受苦大德你波波地徃諸方覓什麼物踏你脚板闊無佛可求無道可成無法可得外求有相佛与汝不相似欲識汝本心非合亦非離道流真佛無形真道無体真法無相三法混融和合一處辨既不得喚作忙忙業識眾生問如何是真佛真法真道乞垂開示師云佛者心清淨是法者心光明是道者處處無碍淨光是三即一皆是空名而無寔有如真正作道人念念心不間断自達磨大師󴌰西土來秪是覓箇不受人惑底人後遇二祖一言便了始知󴌰前虛用功夫山僧今日見處與祖佛不別若第一句中得與祖佛為師若第二句中得與人天為師若第三句中得自救不了。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J23/J23nB134.xml",
+      "FromLb": "0525b01",
+      "title": "五家語錄（選錄）",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "上堂示眾",
+        "機緣",
+        "鎮州臨濟義玄禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 45288,
+      "rawEnd": 50888,
+      "caseText": "受人惑，向裏向外，逢著便殺。逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫。不與物拘，透脫自在。如諸方學道流，未有不依物出來底，山僧向此間從頭打，手上出來手上打，口裏出來口裏打，眼裏出來眼裏打，未有一箇獨脫出來底，皆是上他古人閑機境。山僧無一法與人，秪是治病解縛。你諸方道流，試不依物出來，我要共你商量。十年五歲並無一人，皆是依草附葉竹木精靈野狐精魅，向一切糞塊上亂咬瞎漢，枉消他十方信施。道我是出家兒，作如是見解。向你道，無佛、無法、無修、無證。秪與麼傍家，擬求什麼物？瞎漢頭上安頭，是你欠少什麼？道流！是你目前用底，與祖佛不別。秪麼不信，便向外求。莫錯，向外無法，內亦不可得。你取山僧口裏語，不如休歇無事去，已起者莫續，未起者不要放起，便勝你十年行腳。約山僧見處，無如許多般，秪是平常著衣喫飯無事過時。你諸方來者，皆是有心求佛、求法、求解脫、求出離三界。癡人！你要出三界什麼處去，佛祖是賞繫底名句。你欲識三界麼？不離你今聽法底心地，你一念心貪是欲界，你一念心嗔是色界，你一念心癡是無色界。是你屋裏家具子。三界不自道我是三界，還是道流目前靈靈地照燭萬般酌度世界底人，與三界安名。大德！四大色身是無常，乃至脾胃肝膽髮毛爪齒，唯見諸法空相。你一念心歇得處，喚作菩提樹。你一念心不能歇得處，喚作無明樹。無明無住處，無明無始終。你若念念心歇不得，便上他無明樹，便入六道四生披毛戴角。你若歇得，便是清淨身界。你一念不生，便是上菩提樹。三界神通變化意生化身，法喜禪悅身光自照，思衣羅綺千重，思食百味具足，更無橫病。菩提無住處，是故無得者。道流！大丈夫漢更疑箇什麼？目前用處更是阿誰？把得便用，莫著名字，號為玄旨。與麼見得勿嫌底法，古人云：『心隨萬境轉，轉處實能幽。隨流認得性，無喜亦無憂。』道流！如禪宗見解，死活循然。參學之人大須仔細，如主客相見，便有言論往來。或應物現形，或全體作用，或把機權喜怒，或現半身，或乘師子、或乘象王，如有真正學人便喝，先拈出一箇膠盆子，善知識不辨是境，便上他境上，作模作樣。學人便喝，前人不肯放，此是膏肓之病不堪醫，喚作客看主。或是善知識不拈出物，隨學人問處即奪，學人被奪抵死不放，此是主看客。或有學人應一箇清淨境，出善知識前，善知識辨得是境，把得拋向坑裏，學人言大好。善知識即云：『咄哉！不識好惡。』學人便禮拜，此喚作主看主。或有學人披枷帶鎖出善知識前，善知識更與安一重枷鎖，學人歡喜，彼此不辨，呼為客看客。大德！山僧如是所舉，皆是辨魔揀異，知其邪正。道流！實情大難，佛法幽玄，解得可可地。山僧竟日與他說破，學者總不在意，千遍萬遍，腳底踏過黑沒焌地，無一箇形段，歷歷孤明。學人信不及，便向名句上生解。年登半百，秪管傍家負死屍行，檐卻檐子天下走，索草鞋錢有日在。大德！山僧說：『向外無法。』學人不會，便即向裏作解。便即倚壁坐，舌拄上齶，湛然不動，取此為是祖門佛法也。大錯。是你若取不動清淨境為是，你即認他無明為郎主。古人云：『湛湛黑暗深坑，實可怖畏。』此之是也。你若認他動者是，一切草木皆解動，應可是道也。所以動者是風大，不動者是地大，動與不動俱無自性。你若向動處捉他，他向不動處立；你若向不動處捉他，它向動處立。譬如潛泉魚，鼓波而自躍。大德！動與不動是二種境，還是無依道人用動用不動。如諸方學人來，山僧此間作三種根器斷。如中下根器來，我便奪其境，而不除其法。或中上根器來，我便境法俱奪。如上上根器來，我便境法人俱不奪。如有出格見解人來，山僧此問，便全體作用，不歷根器。大德！到這裏，學人著力處不通風，石火電光即過了也。學人若眼定動，即沒交涉。擬心即差，動念即乖。有人解者，不離目前，大德！你檐缽囊屎檐子傍家走，求佛求法，即今與麼馳求底，你還識渠麼？活潑潑地，秪是勿根株，擁不聚、撥不散，求著即轉遠，不求還在目前。靈音屬耳，若人不信，徒勞百年。道流！一剎那間便入華藏世界，入毘盧遮那國土，入解脫國土，入神通國土，入清淨國土，入法界，入穢入淨，入凡入聖，入餓鬼畜生。處處討覓尋，皆不見有生有死，唯有空名。幻化空花，不勞把捉，得失是非，一時放卻。道流！山僧佛法的的相承，從麻谷和尚、丹霞和尚、道一和尚、廬山和尚、石鞏和尚，一路行遍天下，無人信得，盡皆起謗。如道一和尚用處純一無雜，學人三百五百，盡皆不見它意。如廬山和尚自在真正順逆用處，學人不測涯際，悉皆茫然。如丹霞和尚翫珠隱顯，學人來者皆悉被罵。如麻谷用處，苦如黃檗，近傍不得。如石鞏用處，向箭頭上覓人，來者皆懼。如山僧今日用處，真正成壞，翫弄神變，入一切境，隨處無事，境不能換。但有來求者，我即便出看渠，渠不識我，我便著數般衣。學人生解，一向入我言句。苦哉瞎禿子無眼人，把我著底衣，認青黃赤白；我脫卻入清淨境中；學人一見便生忻欲。我又脫卻，學人失心，茫然狂走，言我無衣。我即向渠道：『你識我著衣底人否？』忽爾回頭，認我了也。大德！你莫認衣，衣不能動。人能著衣，有箇清淨衣，有箇無生衣，菩提衣，涅槃衣，有祖衣，有佛衣。大德！但有聲名文句，皆悉是衣變。從臍輪氣海中鼓激牙齒敲磕，成其句義，明知是幻化。大德！外發聲語業，內表心所法，以思有念皆悉是衣。你秪麼認他著底衣為實解，縱經塵劫秪是衣通，三界循環輪迴生死。不如無事相逢不相識，共語不知名。今時學人不得，蓋為認名字為解，大冊子上抄死老漢語，三重五重複子裹，不教人見，道是玄旨，以為保重。大錯，瞎屢生，你向枯骨上覓什麼汁？有一般不識好惡，向教中取意度商量，成於句義，如把屎塊子向口裏含了吐過與別人，猶如俗人打傳口令相似，一生虛過也。道我出家，被他問著佛法，便即杜口無詞，眼似漆突，口如楄檐。如此之類，逢彌勒出世，移置他方世界，寄地獄受苦。大德！你波波地往諸方覓什麼物？踏你腳板闊，無佛可求，無道可成，無法可得。外求有相佛，與你不相似，欲識汝本心，非合亦非離。道流！真佛無形，真道無體，真法無相，三法混融，和合一處，辨既不得，喚作忙忙業識眾生。」",
+      "storedKwic": "殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 16,
+      "storedKwicEnd": 38,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        13914
+      ],
+      "normalizedFromLbMatchStarts": [
+        13914
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 13914,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8bd390157b65",
+      "sourceTerm": "逢羅漢殺羅漢",
+      "turnProofTerm": "逢羅漢殺羅漢",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 24,
+          "headwordEnd": 30,
+          "headwordClause": "逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 583,
+            "end": 593,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 24,
+          "headwordEnd": 30,
+          "headwordClause": "逢佛殺佛，逢祖殺祖，逢羅漢殺羅漢，逢父母殺父母，逢親眷殺親眷，始得解脫。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 583,
+            "end": 593,
+            "text": "上他無明樹，便入六道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB244.xml",
+      "FromLb": "0698c11",
+      "title": "三山來禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "上堂",
+        "上堂",
+        "三山來禪師語錄目錄",
+        "三山禪師語錄敘"
+      ],
+      "unitType": "p",
+      "rawStart": 51275,
+      "rawEnd": 51481,
+      "caseText": "上堂。「今朝臘月一，寒氣將人逼，雪落滿林花，霜凝遍地玉。兩堂雲水僧，個個赤骨歷，親切轉身異類行，更有末後那一句？」笑監院出，師云：「速道速道！」笑云：「季冬嚴寒，切忌口快。」師云：「恁麼會，又爭得？」",
+      "storedKwic": "霜凝遍地玉。兩堂雲水僧，個個赤骨歷，親",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 22,
+      "storedKwicEnd": 41,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        13805
+      ],
+      "normalizedFromLbMatchStarts": [
+        13805
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 13805,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_6925c87bb616",
+      "sourceTerm": "雲水僧",
+      "turnProofTerm": "雲水僧",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": "Sanshan Denglai",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 30,
+          "headwordEnd": 33,
+          "headwordClause": "兩堂雲水僧，個個赤骨歷，親切轉身異類行，更有末後那一句？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 62,
+            "end": 64,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 30,
+          "headwordEnd": 33,
+          "headwordClause": "兩堂雲水僧，個個赤骨歷，親切轉身異類行，更有末後那一句？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 62,
+            "end": 64,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J39/J39nB471.xml",
+      "FromLb": "1006c24",
+      "title": "空谷道澄禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "涿州弔易菴法叔",
+        "哭敏師和尚甲辰二月二十二卯時生，壬子冬月初三日亥時涅",
+        "哭雙桂破師翁丁酉年涅槃",
+        "燬百靈",
+        "佛事",
+        "五言律",
+        "山居",
+        "示長春",
+        "示挽回",
+        "示西來",
+        "示清白",
+        "示參微"
+      ],
+      "unitType": "paragraph-span",
+      "rawStart": 432079,
+      "rawEnd": 432558,
+      "caseText": "「一妄思惟十萬旬，誰知由命不由人。貪名圖利終何用，逐境生風枉費神。珍重堂中樂且貴，輕浮世外漫尤嗔。前賢三詔不輕舉，自古清高道不貧。」為雲水僧舉火為雲水僧舉火執火炬，云：「密如密如，空生浮圖，逐妄行腳，未受鉗錘。大限臨頭，一念糢糊，但知生有，不識死無。從前未學抽身法，直至而今沒倚扶。咦！向此紅爐鍛煉過，休來三界辨親疏。」",
+      "storedKwic": "清高道不貧。」為雲水僧",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 59,
+      "storedKwicEnd": 70,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        139240
+      ],
+      "normalizedFromLbMatchStarts": [
+        139240
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 139240,
+      "inlineSpeakerMarkers": [
+        "清高道"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "coarse-or-uncertain-case-boundary",
+        "embedded-case-or-citation",
+        "inline-speaker-marker",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_6925c87bb616",
+      "sourceTerm": "雲水僧",
+      "turnProofTerm": "雲水僧",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": "Konggu Daocheng",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 67,
+          "headwordEnd": 70,
+          "headwordClause": "」為雲水僧舉火為雲水僧舉火執火炬，云：「密如密如，空生浮圖，逐妄行腳，未受鉗錘。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 73,
+          "headwordEnd": 76,
+          "headwordClause": "」為雲水僧舉火為雲水僧舉火執火炬，云：「密如密如，空生浮圖，逐妄行腳，未受鉗錘。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 67,
+          "headwordEnd": 70,
+          "headwordClause": "」為雲水僧舉火為雲水僧舉火執火炬，云：「密如密如，空生浮圖，逐妄行腳，未受鉗錘。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J40/J40nB488.xml",
+      "FromLb": "0317c08",
+      "title": "斗南暐禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "為石元禪人起龕",
+        "為靈隱禪人起龕",
+        "為蓮彰禪師起龕",
+        "為梵音洞佛子捨身舉火",
+        "為園頭一念舉火",
+        "為雪松沙彌入塔",
+        "為無礙禪人舉火",
+        "為松崖禪人舉火",
+        "為火頭僧舉火",
+        "為母疾割股焚香",
+        "剃度師示寂拈香",
+        "出關"
+      ],
+      "unitType": "paragraph-span",
+      "rawStart": 89219,
+      "rawEnd": 89774,
+      "caseText": "「風和日暖，桃紅李白。趁此水漲船高，休待潮落石出。正恁麼時，樂業成家，承誰恩力？咄？船到橋門自然直。」便下骨。為雲水僧起龕為雲水僧起龕「遊遍天涯，孤峰獨宿，踏倒須彌山，忘卻來時路。」舉數珠云：「若向者裏見得，無來無去，無迷無悟；其或未然，雨後苔青，急須走過。」",
+      "storedKwic": "直。」便下骨。為雲水僧",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 48,
+      "storedKwicEnd": 59,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        18824
+      ],
+      "normalizedFromLbMatchStarts": [
+        18824
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 18824,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "coarse-or-uncertain-case-boundary",
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_6925c87bb616",
+      "sourceTerm": "雲水僧",
+      "turnProofTerm": "雲水僧",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": "Dounan Wei",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 56,
+          "headwordEnd": 59,
+          "headwordClause": "為雲水僧起龕為雲水僧起龕「遊遍天涯，孤峰獨宿，踏倒須彌山，忘卻來時路。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 62,
+          "headwordEnd": 65,
+          "headwordClause": "為雲水僧起龕為雲水僧起龕「遊遍天涯，孤峰獨宿，踏倒須彌山，忘卻來時路。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 56,
+          "headwordEnd": 59,
+          "headwordClause": "為雲水僧起龕為雲水僧起龕「遊遍天涯，孤峰獨宿，踏倒須彌山，忘卻來時路。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "T/T48/T48n2020.xml",
+      "FromLb": "1007c25",
+      "title": "高麗國普照禪師修心訣",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [],
+      "unitType": "p",
+      "rawStart": 13925,
+      "rawEnd": 14633,
+      "caseText": "「或者不知善惡性空，堅坐不動，捺伏身心，如石壓草，以為修心，是大惑矣。故云：『聲聞心心斷惑，能斷之心是賊。』但諦觀殺盜淫妄，從性而起，起即無起，當處便寂，何須更斷。所以云：『不怕念起，唯恐覺遲。』又云：『念起即覺，覺之即無。』故悟人分上，雖有客塵煩惱，俱成醍醐。但照惑無本，空華三界，如風卷煙；幻化六塵，如湯消氷。若能如是念念修習，不忘照顧定慧等持，則愛惡自然淡薄，悲智自然增明，辠業自然斷除，功行自然增進。煩惱盡時，生死即絕。若微細流注永斷，圓覺大智，朗然獨存，即現千百億化身，於十方國中，赴感應機，似月現九霄，影分萬水，應用無窮，度有緣眾生，快樂無憂，名之為大覺世尊。」",
+      "storedKwic": "念修習，不忘照顧定慧等持，則愛惡自然淡薄",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 162,
+      "storedKwicEnd": 182,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        3828
+      ],
+      "normalizedFromLbMatchStarts": [
+        3828
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 3828,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8ee9d62081ae",
+      "sourceTerm": "定慧等持",
+      "turnProofTerm": "定慧等持",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": "Chejing",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 170,
+          "headwordEnd": 174,
+          "headwordClause": "若能如是念念修習，不忘照顧定慧等持，則愛惡自然淡薄，悲智自然增明，辠業自然斷除，功行自然增進。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 170,
+          "headwordEnd": 174,
+          "headwordClause": "若能如是念念修習，不忘照顧定慧等持，則愛惡自然淡薄，悲智自然增明，辠業自然斷除，功行自然增進。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J34/J34nB300.xml",
+      "FromLb": "0240c26",
+      "title": "朝宗禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "上堂",
+        "住虔州龔公山寶華禪寺語錄",
+        "住韶州曹溪南華禪寺語錄",
+        "上堂",
+        "住莆田曹山上生禪寺語錄",
+        "住福州靈石禪院語錄",
+        "住海鹽靈祐禪寺語錄",
+        "住新安石耳山語錄",
+        "住金陵祇陀林",
+        "重刻朝宗禪師語錄目次",
+        "重刻朝宗禪師語錄緣起"
+      ],
+      "unitType": "p",
+      "rawStart": 106738,
+      "rawEnd": 107578,
+      "caseText": "上堂。舉：「法海禪師參六祖，問曰：『即心即佛，願垂指諭。』祖曰：『前念不生即心，後念不滅即佛；成一切相即心，離一切相即佛。吾若具說，窮劫不盡。聽吾偈曰：即心名慧，即佛乃定；定慧等持，意中清淨。悟此法門，繇汝習性；用本無生，雙修是正。』法海言下大悟，以偈讚曰：『即心元是佛，不悟而自屈；我知定慧因，雙修離諸物。』」師云：「前念不生，則全體寂滅；後念不滅，則了了常知。成一切相，則法法全該；離一切相，則一法不立。須知全體寂滅時，恰恰了了常知；了了常知時，恰恰全體寂滅。成一切相底，正是一法不立；離一切相底，正是法法全該。即心名慧，便非妄覺之慧；即佛乃定，便非滯寂之定。故為定慧等持。達磨西來直指人心，即心即佛之旨無過此矣。寶華亦有一偈，雖無另出手眼，不妨重為申明。」乃云：「心是本來心，佛乃當下即；一句該古今，雙修離空色。寂寂既非沉，惺惺亦非憶；脫體而現前，身心黑如墨。」下座。",
+      "storedKwic": "名慧，即佛乃定；定慧等持，意中清淨。悟此",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 78,
+      "storedKwicEnd": 98,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        42466
+      ],
+      "normalizedFromLbMatchStarts": [
+        42466
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 42466,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8ee9d62081ae",
+      "sourceTerm": "定慧等持",
+      "turnProofTerm": "定慧等持",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": "Chaozong Tongren",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 86,
+          "headwordEnd": 90,
+          "headwordClause": "定慧等持，意中清淨。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 29,
+            "end": 31,
+            "text": "祖曰"
+          },
+          "nearestFollowingCue": {
+            "start": 156,
+            "end": 158,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 284,
+          "headwordEnd": 288,
+          "headwordClause": "故為定慧等持。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 156,
+            "end": 158,
+            "text": "師云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 86,
+          "headwordEnd": 90,
+          "headwordClause": "定慧等持，意中清淨。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 29,
+            "end": 31,
+            "text": "祖曰"
+          },
+          "nearestFollowingCue": {
+            "start": 156,
+            "end": 158,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J10/J10nA158.xml",
+      "FromLb": "0023b19",
+      "title": "密雲禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "小參",
+        "上堂開示",
+        "浙江寧波天童山景德禪寺語錄",
+        "再住嘉興金粟山廣慧禪寺語錄",
+        "浙江寧波鄮山育王廣利禪寺語錄",
+        "福建福州黃檗山萬福禪寺語錄",
+        "浙江嘉興金粟山廣慧禪寺語錄",
+        "浙江台州天台山通玄禪寺語錄",
+        "住直隸嘗州龍池山禹門禪院語錄",
+        "密雲禪師語錄目錄",
+        "密雲老和尚語錄序",
+        "密雲禪師語錄序"
+      ],
+      "unitType": "p",
+      "rawStart": 130297,
+      "rawEnd": 131000,
+      "caseText": "天封寺舒安律師請小參。「世尊出世說法四十九年，談經三百餘會，至拈花教外別傳方了本懷，故教立戒、定、慧三法，曰：『因戒生定，因定發慧。』爾我既出家，當須出三界、了生死，方始事畢。若但持戒，止免三途；既兼生定，止超六欲；若其發慧，方超三界，故以發慧為主。然今時多言慧，竟不知發慧之繇。如要發慧，須是明心。六祖云：『即心名慧，即佛乃定。定慧等持，意中清淨。』是以心若苟明，意自清淨，於日用頭頭無絲毫過患。所以我笑巖師翁道：『欲無禪，禪無欲，相奪相傾，事不厭俗。』故曰：『清淨行者不上天堂，破戒比丘不入地獄。』」驀拈拄杖云：「通玄者裡又且不然。」喝一喝，云：「且道是戒耶？定耶？慧耶？是心耶？佛耶？是清淨耶？破戒耶？是上天堂、不上天堂耶？是入地獄、不入地獄耶？」又喝一喝，云：「切莫停囚長智。」便下座。",
+      "storedKwic": "名慧，即佛乃定。定慧等持，意中清淨。』是",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 157,
+      "storedKwicEnd": 177,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        44038
+      ],
+      "normalizedFromLbMatchStarts": [
+        44038
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 44038,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_8ee9d62081ae",
+      "sourceTerm": "定慧等持",
+      "turnProofTerm": "定慧等持",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 165,
+          "headwordEnd": 169,
+          "headwordClause": "定慧等持，意中清淨。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 151,
+            "end": 153,
+            "text": "祖云"
+          },
+          "nearestFollowingCue": {
+            "start": 204,
+            "end": 207,
+            "text": "師翁道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 165,
+          "headwordEnd": 169,
+          "headwordClause": "定慧等持，意中清淨。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 151,
+            "end": 153,
+            "text": "祖云"
+          },
+          "nearestFollowingCue": {
+            "start": 204,
+            "end": 207,
+            "text": "師翁道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "B/B25/B25n0144.xml",
+      "FromLb": "0462b08",
+      "title": "祖堂集",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "祖堂集序",
+        "目錄"
+      ],
+      "unitType": "p",
+      "rawStart": 467768,
+      "rawEnd": 468784,
+      "caseText": "師云：「國亂思明主，道泰則尋常。」師在京中赴內齋，他諸名公悉皆轉經，唯有師與弟子不轉經。帝問師：「師也且從不轉經，弟子為什摩不轉經？」師云：「道泰不傳天子令，時人盡唱泰平歌。」問：「王子未登九五時如何？」師云：「貪遊六宅戲，不覺國內虧。」「王子正登九五時如何？」師云：「朱簾齊卷上，四相整朝儀。」「登九五後如何？」云：「金箱排玉璽，御轝四方歸。」問：「大悟底人為什摩卻迷？」師云：「破鏡不重照，落花難上枝。」問：「師幸是後生，為什摩卻作善知識？」師云：「三歲宅家龍鳳子，百年階下老朝臣。」問：「祖意與教意同別？」師云：「不入龍宮藏，眾義豈能詮？」",
+      "storedKwic": "四方歸。」問：「大悟底人為什摩卻迷？」師",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 168,
+      "storedKwicEnd": 188,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        105750
+      ],
+      "normalizedFromLbMatchStarts": [
+        105750
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 105750,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "excluded-contributor-or-document-section",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_4baae3dda70c",
+      "sourceTerm": "大悟底人",
+      "turnProofTerm": "大悟底人",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 176,
+          "headwordEnd": 180,
+          "headwordClause": "」問：「大悟底人為什摩卻迷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 131,
+            "end": 133,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 187,
+            "end": 189,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 176,
+          "headwordEnd": 180,
+          "headwordClause": "」問：「大悟底人為什摩卻迷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 131,
+            "end": 133,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 187,
+            "end": 189,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "M/M59/M59n1540.xml",
+      "FromLb": "0858b10",
+      "title": "大慧普覺禪師普說",
+      "containerClass": "other",
+      "titleOwnerCandidates": [
+        {
+          "MasterName": "Dahui Zonggao",
+          "matchedAliases": [
+            "大慧"
+          ]
+        }
+      ],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "方外道友請普說",
+        "方敷文請普說",
+        "烏智稱同諸道友請普說",
+        "錢承務同眾道友請普說",
+        "告香普說",
+        "蘇宜人請普說",
+        "方經略請普說",
+        "姜機宜請普說",
+        "師住明州育王山入院當晚普說",
+        "沆州知府王朝議請普說",
+        "張龍學侍郎為秦國太夫人請普說",
+        "張丞相請普說"
+      ],
+      "unitType": "p",
+      "rawStart": 179688,
+      "rawEnd": 182748,
+      "caseText": "畔消息又有一種商量古人公案謂這箇下得甚麼語那箇合如何代別都不說悟門教人靜坐底故是不說悟門說心說性底也不說悟門主張顧視底也不說悟門擊石火閃電光底也不說悟門商量古今公案底也不說悟門却一時颺了悟門要求速効如斯等輩真可憐憫兄弟家既是己事未明來就師家決擇須是以悟為則宗師本無實法與人只作得箇證明主宰而已纔言有密室傳授謂此事莫教別人知決定是邪魔外道見解未說別人如真如和尚他是箇古佛據他拈提古人公案不在雪竇之下後來為見真點胸下無人却愛收拾禪子因此也不說悟門他自是大徹大悟底人却到下面幾箇早不相似了何以知之蓋山僧往年親見嗣其法者圓悟先師纔出川來便參真如當時會中有箇慶藏主曾參承大宗和尚來先師最親近之在他處理會雪竇頌古所以後來有許多擊節人多謂佛果和尚只是聰明記持由他肆意穿鑿殊不知無師承宗旨如何只恁麼胡亂說得後來因佛鑑以書責之云老兄幸自有直指底一著不當說雪竇為人先師遂己慶在溈山雖僻地裏與先師入室其真實如不曾舉他立僧一日真如問先師你去慶藏主處入室否曰未曾真如云因甚不去他古今好先師曰某待都去禪頭處入室其時會中又有箇賢蓬頭却是悟底禪先師自此俱入其室又入得真如門戶真如劇稱道之一日問曰小勤你今年幾歲答曰二十四歲真如云更過二十四年後做箇沒量大人便授記他後來先師果然四十八上出世你道他不是古佛得麼只是有愛禪子之癖先師也畫得他頂相又得禪會子有從上諸聖一人傳一人子今既得善自護持之語先師深祕之一日慶與秀大師者將欲起離說與先師意欲偕往先師又愛且住溈山慶以小話譏之曰舊有一僧不奉戒律以罪到訟庭於法當杖危急之際忽告郡將曰念某曾參圓照禪師來蓋郡將是同參遂問曰以何為驗其僧遽出圓照真子呈之乃獲免慶曰而今傳得真子者縱沒用處等閑收取或可免棒先師尀耐他口觜不中又竊怪真如所謂禪會子者既言一人傳一人何得在我下者皆有之即時和真子一時燒了乃與慶秀俱出山同到黃龍見晦堂又往東林參照覺俱打不合自此相分先師往淮甸慶入京師秀隨之慶在惠林掛搭秀在法雲一日慶有疾秀不告假且以錢賂守門者往省問之慶曰法雲規繩嚴緊何緣得出秀以實告之慶用心不臧密遣人報圓通圓通不以秀不告為非是夜小參痛罵慶曰是何用心枉披法服彼拚出院而往問疾是不忘義也敢爾陰損之必當招惡報不數日慶果吐紅而終今日因施主請普說偶然及此雖似沒緊要然亦可為無識者之誡所以道法無二法妄自愛著信知世法佛法本無差別只為近世師家差別多學者亦差別如今差別底也放下不差別底也放下只理會狗子還有佛性也無云無這箇有甚麼差別趙州道諸方難見易識我這裏易見難識喚作竹篦即觸不喚作竹篦即背不得下語不得無語此豈不是易見難識這裏一千二百衲子箇箇做工夫亦妙喜晚年之幸譬如死在瘴鄉安有今日事更望兄弟各各努力向前窮究教徹去大家續佛慧命報佛深恩此外無可言者記得僧問雲門如何是諸佛出身處門云東山水上行先師道如何是諸佛出身處熏風自南來殿閣生微凉妙喜又却不然如何是諸佛出身處落霞與孤鶩齊飛秋水共長天一色。",
+      "storedKwic": "說悟門他自是大徹大悟底人却到下面幾箇早不",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 218,
+      "storedKwicEnd": 238,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        60768
+      ],
+      "normalizedFromLbMatchStarts": [
+        60768
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 60768,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-alias-partial"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_4baae3dda70c",
+      "sourceTerm": "大悟底人",
+      "turnProofTerm": "大悟底人",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": "Huanglong Huinan",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 226,
+          "headwordEnd": 230,
+          "headwordClause": "畔消息又有一種商量古人公案謂這箇下得甚麼語那箇合如何代別都不說悟門教人靜坐底故是不說悟門說心說性底也不說悟門主張顧視底也不說悟門擊石火閃電光底也不說悟門商量古今公案底也不說悟門却一時颺了悟門要求速効如斯等輩真可憐憫兄弟家既是己事未明來就師家決擇須是以悟為則宗師本無實法與人只作得箇證明主宰而已纔言有密室傳授謂此事莫教別人知決定是邪魔外道見解未說別人如真如和尚他是箇古佛據他拈提古人公案不在雪竇之下後來為見真點胸下無人却愛收拾禪子因此也不說悟門他自是大徹大悟底人却到下面幾箇早不相似了何以知之蓋山僧往年親見嗣其法者圓悟先師纔出川來便參真如當時會中有箇慶藏主曾參承大宗和尚來先師最親近之在他處理會雪竇頌古所以後來有許多擊節人多謂佛果和尚只是聰明記持由他肆意穿鑿殊不知無師承宗旨如何只恁麼胡亂說得後來因佛鑑以書責之云老兄幸自有直指底一著不當說雪竇為人先師遂己慶在溈山雖僻地裏與先師入室其真實如不曾舉他立僧一日真如問先師你去慶藏主處入室否曰未曾真如云因甚不去他古今好先師曰某待都去禪頭處入室其時會中又有箇賢蓬頭却是悟底禪先師自此俱入其室又入得真如門戶真如劇稱道之一日問曰小勤你今年幾歲答曰二十四歲真如云更過二十四年後做箇沒量大人便授記他後來先師果然四十八上出世你道他不是古佛得麼只是有愛禪子之癖先師也畫得他頂相又得禪會子有從上諸聖一人傳一人子今既得善自護持之語先師深祕之一日慶與秀大師者將欲起離說與先師意欲偕往先師又愛且住溈山慶以小話譏之曰舊有一僧不奉戒律以罪到訟庭於法當杖危急之際忽告郡將曰念某曾參圓照禪師來蓋郡將是同參遂問曰以何為驗其僧遽出圓照真子呈之乃獲免慶曰而今傳得真子者縱沒用處等閑收取或可免棒先師尀耐他口觜不中又竊怪真如所謂禪會子者既言一人傳一人何得在我下者皆有之即時和真子一時燒了乃與慶秀俱出山同到黃龍見晦堂又往東林參照覺俱打不合自此相分先師往淮甸慶入京師秀隨之慶在惠林掛搭秀在法雲一日慶有疾秀不告假且以錢賂守門者往省問之慶曰法雲規繩嚴緊何緣得出秀以實告之慶用心不臧密遣人報圓通圓通不以秀不告為非是夜小參痛罵慶曰是何用心枉披法服彼拚出院而往問疾是不忘義也敢爾陰損之必當招惡報不數日慶果吐紅而終今日因施主請普說偶然及此雖似沒緊要然亦可為無識者之誡所以道法無二法妄自愛著信知世法佛法本無差別只為近世師家差別多學者亦差別如今差別底也放下不差別底也放下只理會狗子還有佛性也無云無這箇有甚麼差別趙州道諸方難見易識我這裏易見難識喚作竹篦即觸不喚作竹篦即背不得下語不得無語此豈不是易見難識這裏一千二百衲子箇箇做工夫亦妙喜晚年之幸譬如死在瘴鄉安有今日事更望兄弟各各努力向前窮究教徹去大家續佛慧命報佛深恩此外無可言者記得僧問雲門如何是諸佛出身處門云東山水上行先師道如何是諸佛出身處熏風自南來殿閣生微凉妙喜又却不然如何是諸佛出身處落霞與孤鶩齊飛秋水共長天一色。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 11,
+            "end": 14,
+            "text": "公案謂"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 226,
+          "headwordEnd": 230,
+          "headwordClause": "畔消息又有一種商量古人公案謂這箇下得甚麼語那箇合如何代別都不說悟門教人靜坐底故是不說悟門說心說性底也不說悟門主張顧視底也不說悟門擊石火閃電光底也不說悟門商量古今公案底也不說悟門却一時颺了悟門要求速効如斯等輩真可憐憫兄弟家既是己事未明來就師家決擇須是以悟為則宗師本無實法與人只作得箇證明主宰而已纔言有密室傳授謂此事莫教別人知決定是邪魔外道見解未說別人如真如和尚他是箇古佛據他拈提古人公案不在雪竇之下後來為見真點胸下無人却愛收拾禪子因此也不說悟門他自是大徹大悟底人却到下面幾箇早不相似了何以知之蓋山僧往年親見嗣其法者圓悟先師纔出川來便參真如當時會中有箇慶藏主曾參承大宗和尚來先師最親近之在他處理會雪竇頌古所以後來有許多擊節人多謂佛果和尚只是聰明記持由他肆意穿鑿殊不知無師承宗旨如何只恁麼胡亂說得後來因佛鑑以書責之云老兄幸自有直指底一著不當說雪竇為人先師遂己慶在溈山雖僻地裏與先師入室其真實如不曾舉他立僧一日真如問先師你去慶藏主處入室否曰未曾真如云因甚不去他古今好先師曰某待都去禪頭處入室其時會中又有箇賢蓬頭却是悟底禪先師自此俱入其室又入得真如門戶真如劇稱道之一日問曰小勤你今年幾歲答曰二十四歲真如云更過二十四年後做箇沒量大人便授記他後來先師果然四十八上出世你道他不是古佛得麼只是有愛禪子之癖先師也畫得他頂相又得禪會子有從上諸聖一人傳一人子今既得善自護持之語先師深祕之一日慶與秀大師者將欲起離說與先師意欲偕往先師又愛且住溈山慶以小話譏之曰舊有一僧不奉戒律以罪到訟庭於法當杖危急之際忽告郡將曰念某曾參圓照禪師來蓋郡將是同參遂問曰以何為驗其僧遽出圓照真子呈之乃獲免慶曰而今傳得真子者縱沒用處等閑收取或可免棒先師尀耐他口觜不中又竊怪真如所謂禪會子者既言一人傳一人何得在我下者皆有之即時和真子一時燒了乃與慶秀俱出山同到黃龍見晦堂又往東林參照覺俱打不合自此相分先師往淮甸慶入京師秀隨之慶在惠林掛搭秀在法雲一日慶有疾秀不告假且以錢賂守門者往省問之慶曰法雲規繩嚴緊何緣得出秀以實告之慶用心不臧密遣人報圓通圓通不以秀不告為非是夜小參痛罵慶曰是何用心枉披法服彼拚出院而往問疾是不忘義也敢爾陰損之必當招惡報不數日慶果吐紅而終今日因施主請普說偶然及此雖似沒緊要然亦可為無識者之誡所以道法無二法妄自愛著信知世法佛法本無差別只為近世師家差別多學者亦差別如今差別底也放下不差別底也放下只理會狗子還有佛性也無云無這箇有甚麼差別趙州道諸方難見易識我這裏易見難識喚作竹篦即觸不喚作竹篦即背不得下語不得無語此豈不是易見難識這裏一千二百衲子箇箇做工夫亦妙喜晚年之幸譬如死在瘴鄉安有今日事更望兄弟各各努力向前窮究教徹去大家續佛慧命報佛深恩此外無可言者記得僧問雲門如何是諸佛出身處門云東山水上行先師道如何是諸佛出身處熏風自南來殿閣生微凉妙喜又却不然如何是諸佛出身處落霞與孤鶩齊飛秋水共長天一色。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 11,
+            "end": 14,
+            "text": "公案謂"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X79/X79n1557.xml",
+      "FromLb": "0196a21",
+      "title": "聯燈會要",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Hyujeong",
+          "matchedAliases": [
+            "休靜"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "京兆府華嚴休靜禪師凡四",
+        "澧州欽山文䆳禪師凡十一",
+        "撫州疎山羗仁禪師凡五",
+        "襄州洞山師䖍禪師凡五",
+        "潭州龍牙居遁禪師凡九",
+        "洪州雲居道膺禪師凡二十三",
+        "撫州曹山本寂禪師凡二十三",
+        "筠州洞山良价禪師法嗣",
+        "秀才張公拙凡一",
+        "潭州文殊禪師凡一",
+        "鳳翔府石柱和尚凡一",
+        "潭州大光居誨禪師凡三"
+      ],
+      "unitType": "p",
+      "rawStart": 1401454,
+      "rawEnd": 1401565,
+      "caseText": "僧問：大悟底人為甚麼却迷？師云：破鏡不重照，落花難上枝。",
+      "storedKwic": "大悟底人為甚麼却迷？師云",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 3,
+      "storedKwicEnd": 15,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        295424
+      ],
+      "normalizedFromLbMatchStarts": [
+        295424
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 295424,
+      "inlineSpeakerMarkers": [
+        "師云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_4baae3dda70c",
+      "sourceTerm": "大悟底人",
+      "turnProofTerm": "大悟底人",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 3,
+          "headwordEnd": 7,
+          "headwordClause": "僧問：大悟底人為甚麼却迷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 0,
+            "end": 2,
+            "text": "僧問"
+          },
+          "nearestFollowingCue": {
+            "start": 13,
+            "end": 15,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 3,
+          "headwordEnd": 7,
+          "headwordClause": "僧問：大悟底人為甚麼却迷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 0,
+            "end": 2,
+            "text": "僧問"
+          },
+          "nearestFollowingCue": {
+            "start": 13,
+            "end": 15,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "D/D48/D48n8939.xml",
+      "FromLb": "0630a07",
+      "title": "古尊宿語錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "甌閩鼓山先興聖國師和尚法堂玄要廣集序",
+        "讃神力禪師",
+        "臨行示頌三首",
+        "師別時有頌",
+        "衢州子湖山定業禪院第一代神力禪師語錄序",
+        "祭文",
+        "行狀",
+        "大隋開山神照禪師語錄序",
+        "自述󷹋賛二首",
+        "次󷄩詶吳都曹",
+        "山中四威儀",
+        "送己德二禪者之長安緣幹"
+      ],
+      "unitType": "p",
+      "rawStart": 1318580,
+      "rawEnd": 1319478,
+      "caseText": "承和尚有言直下猶難會尋言轉更賖如何是直下事師云賖也學云還許學人進步也無師便喝出問學人在塵還有出身處也無師云汝即今在什麼處學云與麼即任運隨流也師云莫󷑮語問進者不明請師一撥師云近前來與汝撥學云謝和尚指示師云椀鳴聲作麼問如何是大悟底人師云不囑學云為什麼不囑師云不向悟中收問不起于座請師擊電之機師云醉作麼問如何是無價󳏃師云莫妄想問如何是不假言󵘸第一義師云放汝殘生問不辨古機如何建立師云不立學云如何即是師云是即非學云為什麼如此師云虧闍梨什麼處問生死海廣如何得渡師云汝即今在阿那邊問如何是妙旨師云如何不妙旨問如何是徑截一路師云這瞎漢學云與麼即學人得問力師云𦘕篋不曾呈。",
+      "storedKwic": "大悟底人師云不囑學云為什",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 110,
+      "storedKwicEnd": 122,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        255504
+      ],
+      "normalizedFromLbMatchStarts": [
+        255504
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 255504,
+      "inlineSpeakerMarkers": [
+        "大悟底人師云不囑學云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "excluded-contributor-or-document-section",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_4baae3dda70c",
+      "sourceTerm": "大悟底人",
+      "turnProofTerm": "大悟底人",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 110,
+          "headwordEnd": 114,
+          "headwordClause": "承和尚有言直下猶難會尋言轉更賖如何是直下事師云賖也學云還許學人進步也無師便喝出問學人在塵還有出身處也無師云汝即今在什麼處學云與麼即任運隨流也師云莫󷑮語問進者不明請師一撥師云近前來與汝撥學云謝和尚指示師云椀鳴聲作麼問如何是大悟底人師云不囑學云為什麼不囑師云不向悟中收問不起于座請師擊電之機師云醉作麼問如何是無價󳏃師云莫妄想問如何是不假言󵘸第一義師云放汝殘生問不辨古機如何建立師云不立學云如何即是師云是即非學云為什麼如此師云虧闍梨什麼處問生死海廣如何得渡師云汝即今在阿那邊問如何是妙旨師云如何不妙旨問如何是徑截一路師云這瞎漢學云與麼即學人得問力師云𦘕篋不曾呈。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 21,
+            "end": 23,
+            "text": "師云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 110,
+          "headwordEnd": 114,
+          "headwordClause": "承和尚有言直下猶難會尋言轉更賖如何是直下事師云賖也學云還許學人進步也無師便喝出問學人在塵還有出身處也無師云汝即今在什麼處學云與麼即任運隨流也師云莫󷑮語問進者不明請師一撥師云近前來與汝撥學云謝和尚指示師云椀鳴聲作麼問如何是大悟底人師云不囑學云為什麼不囑師云不向悟中收問不起于座請師擊電之機師云醉作麼問如何是無價󳏃師云莫妄想問如何是不假言󵘸第一義師云放汝殘生問不辨古機如何建立師云不立學云如何即是師云是即非學云為什麼如此師云虧闍梨什麼處問生死海廣如何得渡師云汝即今在阿那邊問如何是妙旨師云如何不妙旨問如何是徑截一路師云這瞎漢學云與麼即學人得問力師云𦘕篋不曾呈。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 21,
+            "end": 23,
+            "text": "師云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X80/X80n1565.xml",
+      "FromLb": "0123c17",
+      "title": "五燈會元",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "歙州茂源禪師",
+        "孝義性空禪師法嗣",
+        "建州白雲約禪師",
+        "安吉州道場山如訥禪師",
+        "舒州投子山大同禪師",
+        "鄂州清平山安樂院令遵禪師",
+        "翠微學禪師法嗣",
+        "澧州夾山善會禪師",
+        "船子誠禪師法嗣",
+        "幽谿和尚",
+        "潭州神山僧密禪師",
+        "𣵠州杏山鑒洪禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 728681,
+      "rawEnd": 728970,
+      "caseText": "因平田參。師欲起身。田乃把住曰。開口即失。閉口即喪。去此二途。請師速道。師以手掩耳。田放手曰。一步易。兩步難。師曰。有甚麼死急。田曰。若非此箇。師不免諸方點檢。師不對。",
+      "storedKwic": "住曰。開口即失。閉口即喪。去此二途。請師",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 13,
+      "storedKwicEnd": 33,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        161925
+      ],
+      "normalizedFromLbMatchStarts": [
+        161925
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 161925,
+      "inlineSpeakerMarkers": [
+        "住曰"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a5a35b410079",
+      "sourceTerm": "閉口即喪",
+      "turnProofTerm": "閉口即喪",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 21,
+          "headwordEnd": 25,
+          "headwordClause": "閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 32,
+            "end": 35,
+            "text": "師速道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 21,
+          "headwordEnd": 25,
+          "headwordClause": "閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 32,
+            "end": 35,
+            "text": "師速道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X81/X81n1571.xml",
+      "FromLb": "0501a18",
+      "title": "五燈全書(第1卷-第33卷)",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "歙州茂源禪師",
+        "孝義性空禪師法嗣",
+        "建州白雲約禪師",
+        "安吉州道場山如訥禪師",
+        "舒州投子山大同禪師",
+        "鄂州清平山安樂院令遵禪師",
+        "翠微學禪師法嗣",
+        "澧州夾山善會禪師",
+        "船子誠禪師法嗣",
+        "幽谿和尚",
+        "潭州神山僧密禪師",
+        "𣵠州杏山鑒洪禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 708292,
+      "rawEnd": 708580,
+      "caseText": "因平田參，師欲起身，田乃把住曰：開口即失，閉口即喪。去此二途，請師速道。師以手掩耳，田放手曰：一步易，兩步難。師曰：著甚麼死急！田曰：若非此師，不免諸方點檢。師不對。",
+      "storedKwic": "住曰：開口即失，閉口即喪。去此二途，請師",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 13,
+      "storedKwicEnd": 33,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        165458
+      ],
+      "normalizedFromLbMatchStarts": [
+        165458
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 165458,
+      "inlineSpeakerMarkers": [
+        "住曰"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a5a35b410079",
+      "sourceTerm": "閉口即喪",
+      "turnProofTerm": "閉口即喪",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 21,
+          "headwordEnd": 25,
+          "headwordClause": "因平田參，師欲起身，田乃把住曰：開口即失，閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 5,
+            "end": 15,
+            "text": "師欲起身，田乃把住曰"
+          },
+          "nearestFollowingCue": {
+            "start": 32,
+            "end": 35,
+            "text": "師速道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 21,
+          "headwordEnd": 25,
+          "headwordClause": "因平田參，師欲起身，田乃把住曰：開口即失，閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 5,
+            "end": 15,
+            "text": "師欲起身，田乃把住曰"
+          },
+          "nearestFollowingCue": {
+            "start": 32,
+            "end": 35,
+            "text": "師速道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X84/X84n1580.xml",
+      "FromLb": "0212b13",
+      "title": "教外別傳",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [
+        {
+          "MasterName": "Baizhang Huaihai",
+          "matchedAliases": [
+            "百丈"
+          ]
+        }
+      ],
+      "precedingHeadsNearestFirst": [
+        "平田普岸禪師百丈海法嗣",
+        "大慈寰中禪師百丈海法嗣",
+        "長慶大安禪師百丈海法嗣",
+        "黃檗希運禪師百丈海法嗣",
+        "南嶽下三世",
+        "龐蘊居士",
+        "龍山和尚",
+        "浮盃和尚",
+        "水潦和尚",
+        "逍遙和尚",
+        "興平和尚",
+        "草堂和尚"
+      ],
+      "unitType": "p",
+      "rawStart": 433133,
+      "rawEnd": 434468,
+      "caseText": "天台平田普岸禪師。洪州人也。於百丈門下得旨。訪茂源和尚。茂源纔起迎。師近前把住曰。開口即失。閉口即喪。去此二途。請師別道。茂源以手掩鼻。師放開曰。一步較易。兩步較難。茂源曰。著甚死急。師曰。若非是師。不免諸方點檢。○臨濟訪師。到路口。先逢一嫂在田使牛。臨濟問嫂。平田路向甚麼處去。嫂打牛一棒曰。這畜生到處走。到此路也不識。臨濟又曰。我問你。平田路向甚麼處去。嫂曰。這畜生五歲尚使不得。臨濟心語曰。欲觀前人。先觀所使。便有抽釘拔楔之意。及見師。師問。你還曾見我嫂也未。臨濟曰。已收下了也。師遂問。近離甚處。臨濟曰。江西黃檗。師曰。情知你見作家來。臨濟曰。特來禮拜和尚。師曰。已相見了也。臨濟曰。賓主之禮。合施三拜。師曰。既是賓主之禮。禮拜著",
+      "storedKwic": "住曰。開口即失。閉口即喪。去此二途。請師",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 38,
+      "storedKwicEnd": 58,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        68656
+      ],
+      "normalizedFromLbMatchStarts": [
+        68656
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 68656,
+      "inlineSpeakerMarkers": [
+        "住曰"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a5a35b410079",
+      "sourceTerm": "閉口即喪",
+      "turnProofTerm": "閉口即喪",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 46,
+          "headwordEnd": 50,
+          "headwordClause": "閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 34,
+            "end": 40,
+            "text": "師近前把住曰"
+          },
+          "nearestFollowingCue": {
+            "start": 57,
+            "end": 60,
+            "text": "師別道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 46,
+          "headwordEnd": 50,
+          "headwordClause": "閉口即喪。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 34,
+            "end": 40,
+            "text": "師近前把住曰"
+          },
+          "nearestFollowingCue": {
+            "start": 57,
+            "end": 60,
+            "text": "師別道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "C/C078/C078n1720.xml",
+      "FromLb": "0704b16",
+      "title": "禪宗頌古聯珠通集",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "通集序",
+        "本序",
+        "禪宗頌古聯珠集序雞一"
+      ],
+      "unitType": "p",
+      "rawStart": 724815,
+      "rawEnd": 725076,
+      "caseText": "台州平田普岸禪師師一日訪茂源源纔起迎師把住曰開口即失閉口即喪去此二途請師別道源以手掩鼻師放開曰一步較易兩步較難源曰著甚死急師曰若非和尚不免諸方檢點。",
+      "storedKwic": "師把住曰開口即失閉口即喪去此二途請師別道",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 18,
+      "storedKwicEnd": 38,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        90132
+      ],
+      "normalizedFromLbMatchStarts": [
+        90132
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 90132,
+      "inlineSpeakerMarkers": [
+        "口即喪去此二途請師別道",
+        "師把住曰"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "excluded-contributor-or-document-section",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a5a35b410079",
+      "sourceTerm": "閉口即喪",
+      "turnProofTerm": "閉口即喪",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 26,
+          "headwordEnd": 30,
+          "headwordClause": "台州平田普岸禪師師一日訪茂源源纔起迎師把住曰開口即失閉口即喪去此二途請師別道源以手掩鼻師放開曰一步較易兩步較難源曰著甚死急師曰若非和尚不免諸方檢點。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 8,
+            "end": 22,
+            "text": "師一日訪茂源源纔起迎師把住曰"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 26,
+          "headwordEnd": 30,
+          "headwordClause": "台州平田普岸禪師師一日訪茂源源纔起迎師把住曰開口即失閉口即喪去此二途請師別道源以手掩鼻師放開曰一步較易兩步較難源曰著甚死急師曰若非和尚不免諸方檢點。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 8,
+            "end": 22,
+            "text": "師一日訪茂源源纔起迎師把住曰"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X69/X69n1356.xml",
+      "FromLb": "0398a18",
+      "title": "普菴印肅禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "普菴風水禪",
+        "示普圓二字道友",
+        "𡎺墻",
+        "除夜示眾",
+        "與彭應求為母病請藥語",
+        "為小師圓通入涅小參",
+        "寶藏論",
+        "示眾",
+        "示眾法語",
+        "劉待詔呈頌求語",
+        "示弟子易元逸",
+        "示何󳬛美"
+      ],
+      "unitType": "p",
+      "rawStart": 210394,
+      "rawEnd": 214293,
+      "caseText": "則是空花之相。故同安大察禪師十玄談詩云：祖意如空不是空，靈機爭墮有無功。三賢尚未明斯旨，十聖那能達此宗。又云：莫謂無心便是道，無心猶隔一重關。故圓覺經云：彼知覺者，猶如虗空。知虗空者，即空花相。亦不可說無知覺性，有無俱遣，此即名為隨順覺性。以要言之，迷時以覺為空，悟時證空成覺。故圓覺經云：成道亦無得，自性圓滿故。圭峰禪師序云：成就慧身，靜極覺遍。百千世界，佛境現前。所以道信禪師為牛頭禪師說心要云：百千妙門，同歸方寸。河沙功德，總在心源。一切慧門，一切定門，一切行門，悉皆具足。凡是真正見解之人，應有言句，舉措動用，無不是道，都在裏許，不可離有為而談實相。佛祖所出，一相一言，一拳一指，拈槌竪拂，指東顧西，無不示物明心，喚作不壞假名而談實相。豈不聞六祖大師云：不是風動，不是幡動，是仁者心動。為什麼印宗法師一聞便悟，方知此是盧居士？即便禮拜，眾立為六祖大師。若有依本分真實得法之人，不似名相利養，及自稱能所接人，應無所求，應無所住，應無所無心，應物隨機方便。華嚴經云：吾觀世間，無一可樂。若聞有樂，樂是苦因，終不可愛。迷風水人不知道，了悟道人無風水。若不解道者，不如順生順死，順時順理。古人云：逆則凶，而順則吉。所謂擇卜吉地者，乃是順也。順則不逆於心，心是天地陰陽造化之源，不假外求，應有所作而隨用之。用而無用，作而無作，隨時豐儉，所以應自然之分定也，又何可逆之？逆則凶，凶則定禍生，禍生則必竟不利也。不若依道六合通明，亘古亘今，光明炬赫，不著問人求覓，本來不欠少許。古德云：有物先天地，無形本寂寥。能為萬象主，不逐四時凋。古人恁麼道，莫是相賺麼？今日普菴到這裏恰似不會，往往這箇老漢只是破一作二，教壞人家男女，平地起土堆。普菴盖為從上古人公案未了，如此敗闕一場。思之，正是破二作三，却來淨地上放屙。這兩重公案還有人斷得也無？以手指主丈，云：是佗却解斷得。驀拈主丈卓一下，云：勘破了也。歌曰：雪人通身却喫罵，兔角拄杖三十下。龜毛索子釣虗空，道理本來非晝夜。元不借□□，寶所誰知價？一道常光即我心，逼塞虗空無縫罅。且如這裏風水又作麼生斷□□？重下箇注脚，大家同受用。此且富貴，不妨普菴一穴真風水。乾坤巽，本無位，二十四向絕遮欄，非舌頭人云心地。也無賤，也無貴，眼耳鼻舌通身意。無限山人不識龍，從前總是虗勞費。千峯萬峯連不斷，左右逢源無別水。榮華富貴幾遭埋，益子蔭孫無變已。驀直下，無忌諱，司馬頭陀沒意智。隨機設化謾留名，箇箇趂獐失却麂。更迷己，寒靜清明爭掛紙？豈知空界現圓融，不顧淺深撈水底。吉凶禍福一切不問，忽遇司馬頭陀又作麼生道？彈指一聲，云：髑髏盡入黃金窟，法界全彰解脫門。伏惟珍重。",
+      "storedKwic": "應無所無心，應物隨機方便。華嚴經云：吾觀",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 417,
+      "storedKwicEnd": 437,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        48642
+      ],
+      "normalizedFromLbMatchStarts": [
+        48642
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 48642,
+      "inlineSpeakerMarkers": [
+        "華嚴經云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "inline-speaker-marker",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_44056632f4c6",
+      "sourceTerm": "隨機方便",
+      "turnProofTerm": "隨機方便",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": "Pu'an Yinsu",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 425,
+          "headwordEnd": 429,
+          "headwordClause": "若有依本分真實得法之人，不似名相利養，及自稱能所接人，應無所求，應無所住，應無所無心，應物隨機方便。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 326,
+            "end": 330,
+            "text": "祖大師云"
+          },
+          "nearestFollowingCue": {
+            "start": 767,
+            "end": 771,
+            "text": "主丈，云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 425,
+          "headwordEnd": 429,
+          "headwordClause": "若有依本分真實得法之人，不似名相利養，及自稱能所接人，應無所求，應無所住，應無所無心，應物隨機方便。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 326,
+            "end": 330,
+            "text": "祖大師云"
+          },
+          "nearestFollowingCue": {
+            "start": 767,
+            "end": 771,
+            "text": "主丈，云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB233.xml",
+      "FromLb": "0328a29",
+      "title": "介菴進禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "上堂",
+        "介菴禪師語錄目次",
+        "諸鄉紳請啟",
+        "介庵禪師語錄序",
+        "序"
+      ],
+      "unitType": "p",
+      "rawStart": 33000,
+      "rawEnd": 33585,
+      "caseText": "子瑜汪朝奉薦孫，請陞座，問：「昔日藥山久不陞座，意旨如何？」師云：「雞寒上樹。」僧云：「及至陞座，一言不吐便下座，又作麼生？」師云：「鴨寒下水。」僧云：「今日和尚被汪居士逼勒陞座，如何利生一句？」師便打，乃云：「心生則種種法生，心滅則種種法滅，這是先聖慈悲，隨機方便。若是宿有靈骨底，便能全身擔荷，即知一大藏教是個註腳；如或不然，未免被言句所轉、聲色所籠，烏能得大解脫乎？今日子瑜汪居士恭請金明舉揚般若，為拔亡孫，翼升證此不生滅地，免墮沉淪。且道作麼生薦拔？」遂拽杖，云：「空山積雪都融盡，滿目春光到處新。」下座。",
+      "storedKwic": "，這是先聖慈悲，隨機方便。若是宿有靈骨底",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 121,
+      "storedKwicEnd": 141,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        9444
+      ],
+      "normalizedFromLbMatchStarts": [
+        9444
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 9444,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_44056632f4c6",
+      "sourceTerm": "隨機方便",
+      "turnProofTerm": "隨機方便",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 129,
+          "headwordEnd": 133,
+          "headwordClause": "」師便打，乃云：「心生則種種法生，心滅則種種法滅，這是先聖慈悲，隨機方便。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 98,
+            "end": 104,
+            "text": "師便打，乃云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 129,
+          "headwordEnd": 133,
+          "headwordClause": "」師便打，乃云：「心生則種種法生，心滅則種種法滅，這是先聖慈悲，隨機方便。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 98,
+            "end": 104,
+            "text": "師便打，乃云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB239.xml",
+      "FromLb": "0554c21",
+      "title": "吹萬禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "行狀",
+        "吹萬禪師塔銘",
+        "送居士",
+        "忠南毘盧寺",
+        "慶佛誕",
+        "送文學",
+        "春聯",
+        "送王東川",
+        "送平都戴文學",
+        "佛堂",
+        "景德寺",
+        "山寺"
+      ],
+      "unitType": "p",
+      "rawStart": 518291,
+      "rawEnd": 523708,
+      "caseText": "果于萬曆四十一年癸丑七月初一日踰城入山，禮月明和尚受具。一日，明謂曰：「汝猶有一句未會。」翁即問：「是那一句？」明曰：「不用音聲色身……」默然良久，「與我現出真空來。」翁拂袖而出，自思曰：「此事不可草草，是中必有玄要。」遂辭，之佛子騫山。是山多鬼魅，翁至，寂然無聞。郡人嘗曰：「佛子山有道獸焉，見之者尟。」翁樹菴于茲，而獸恒伏于菴之右。翁與說三皈之法，乃逃于深林，復不見矣。一日，忽見井路蒙茸交道，意欲剪之。次期屆井，而左右皆刈。如此種種異徵，未可繁述。汲水伐薪，自炊自力。苦參三載，經行危坐，脅不至席。限滿，復入朱提參覲月明和尚，一見便問曰：「畢竟如何現出？」明引翁手掩其口，豁然大悟，乃曰：「縱然奇特，終是尋常。」明遂出臨濟正宗付之。逮娛戲佛華三昧，入法界品，毗目仙人執善財手，一須臾間，歷過佛剎微塵數世界，參見微塵諸佛，法法不昧，至事事無礙法界，始解圓悟，示張無盡用處。從此五宗，如臨濟玄要、主賓料揀、曹洞五位、王子三滲漏三墮、仰山圓相、雲門高古、法眼簡明句、嵒頭識句、香嵒獨腳、南泉異類、汾陽十智、浮山九帶、德山末後等句，迥出微妙，信長風之遊于太虛；頓脫無宗，若千日之洞于廣漠。時本郡翠屏寺迎翁主藏，隨機方便，接得四人：一法師、一頭陀、一優婆塞、一優婆夷，唯頭陀隱山，三人化去。仍返里中，為母說法，勸發道心。竟策杖風塵，一衲一瓢，孤雲白下，涉海入吳，過閩踵粵，旋楚至瀟湘。湖東一帶煙霞，無非搖塵析理，墨浪筆花，偶或見之，何異神鼎忽慈明，兜率藐清素？有湖東主人霜輪者，乃憨山首座，道聲甚著，見翁偉儀越格，磊落塵表，乃曰：「禪風久墜，我兩人，大家出隻手扶起。」翁但微笑。時當萬曆四十六年戊午春也。就于是月望日，請翁開法，堂中學人二百有餘，皆詩賦經論之客。忽一日上堂，因僧問顏子喟然一節，翁述以軟銕硬綿之偈，霜輪于座下高聲曰：「老和尚者話何來？奈我蒲團上乏工夫耳。」學人聞言，遂有異志。翁恐主道有妨，以慈悲喻慰，竟托他故辭之，獨攜武陵灼然澤公煙棹三峽，過夔門太平寺。寺主玄密預夢池中忽湧白蓮大花二莖，香飛檐宇，艷麗可人，逮午而翁至矣。密默默驚異，願為法屬，竟溯水忠南，逅侍御田公無無居士，挽留建剎，延翁居焉。是時海內學者馳于經論，爭傳賢首，談及斯事，何異張咸池于洞庭？翁憫學者難入幽微，首著《石室禪議》以曉之，次見士大夫每于三教至理溷而不一、偏而未圓，尟能貫徹一心、洞達無體，詆訕互興，遂著《一貫別傳》、《原易說》、《太極圖》，皆發揮三氏、傍抉諸子。古之帝王咸有衛佛之興，翁嘆曰：「國朝之初，寧無修教之說歟？」乃集大明御製，勒為三卷，進以識意，題曰《顯佛集》。至于《說樂正論》以規學解之偏、《說九辯》以刺時流之舛、《說內篇》以洞玄微之妙、《說規矩》以正僧儀之失、《說三字經》以修童稚之訓、《說古音王傳》以敕煉石之乖，復著《文字禪那》五卷、《楞嚴夢釋》二十卷、《言語紀》一卷、《恣夏草》一卷、《心經詮註》一卷、《禪林雅訓》一卷、《正觀錄》二卷、《問答錄》四卷、《居士頌》一卷、《本行錄》二卷、《維摩診脈》三卷、《圓覺解》一卷、《楞伽三昧》一卷、《金剛點眼》一卷、《宗門正眼》一卷、《正錄》二十卷。諸書既出，薦紳士夫靡不頷之。崇禎初，侍御長公素菴居士挺身衛法，復啟升堂入室，正令全提，由是四方學侶輻輳如雲，因顏其院曰聚雲，挹是義也。翁之誨人，必以徹證徹悟、行解相應者而後可。居常語曰：「諸方來者，的的會得五家宗旨，方許相見。未然，秖宜虛心求示，斷不可務一橛之機，偏行之門。石火電光，舉了便會，草草忽忽，作者般去。」又復性嗜山水，瀟灑絕塵。龍崖之左，疊嶺而下，松檜交加，即疏松嶺也。嶺間之石如龜文，每當松風晚落，蟾輝瀉影，翁嘗揮麈于中，名曰洛書。傍有小澗，雨久則瀑布作聲，羅以卷石三座，因呼為小小蓬萊。恒以古之十二龍賓，面山石而閱焉，乃著《蓬萊》、《雨花》二集。厥後四輩敦啟，有白馬之遊，鼓枻金陵。墨仙聞翁至，特訪于客舍，坐閒話及岩頭末後之語，談說不倦。仍具三衣頂禮，乃曰：「蜀中護法，願為半壁。」當軸首輔錢公、太史雪灘陳公聞之，並欲勉瞿金陵發藥。師以三巴佛法初弘，未克溥濟，竟辭所請，因著《南遊紀》一卷、《船子曲》一卷。是時鑠金之徒，多務馳逐，競浮場社，故有金陵小參。由是返棹錦江，薦紳士庶，請建千日禪期。維時會中得法悟徹者，不啻數十人，皆聞于時。慶忠則翁分席上首第一座也，其餘不可稱計。臨江參戎尹寵居士，捐金白粲，延翁住巴臺。巴臺在郡之西，近城一拘盧舍。法席既敞，道俗往來如織，眾至五千餘指。夔之萬州向文學，諱近蟾，邑之季倫也。聞翁法演巴國，乃披剃著緇，復請住雲來。繼而徙興龍，復返聚雲。參學之士，如見所親。蓋翁智德高遠，感召乎人耳。天啟間，有古戎陳子，青衿在泮，雅好紫姑，虔禱數年，感瓊華仙人徘徊于篆籀中，匪獨岷山玉壘，即三吳楚越之王侯士夫爭與之遊。陳子歸蜀，侍御田公邀于蘇莊，遣使迎翁。翁至，瓊仙卷首大書曰：「山谷前身。」詢之，則曰：「師乃宋太史黃山谷後身也。」贈其三絕，其一曰：「山容此日有山靈，我來訪客草青青。前身黃谷今猶在，一座明燈一卷經。」其二曰：「竹深雲塢樹茵苔，我得登臨山色開。一笑過溪親座處，囊收天地古今懷。」其三曰：「君栖幽地任徐徐，滿座深藏萬卷書。秘著三車開世路，千秋遺業古今圖。」坐中有嘆其異者，翁曰：「公等不聞寒、拾、豐干乎？是皆不唧溜底老古錐，將者些子為藥為病，即縛即脫，化去應來，總令堪忍中族姓子知煩惱礦內有無邊華藏也，我何與哉？」聞者莫不欽服。翁壽五十有八，僧臘三十，相好具足，和氣春溫，仁慈廓落，草木不傷，乃至遺屍腐骨咸恤憫焉。偶示疾，是月山神夜泣，樹木摧折，病中歌唱自娛，提持學倡如舊。三月前，謂侍僧曰：「我臨終須大喝而去。」于崇禎十二年己卯秋七月三十日，乃索筆書遺語及辭世偈云：「朝打三千，暮打八百。要會聚雲，眉毛出血。」擲筆危坐至午，果大喝兩聲脫去。闍維，煙至松羃，結為五彩，荷香遍地。起骨，得黃金鎖子三莖、五色舍利三百餘顆，當門二齒化為紫色，入土者無數。酆陵地藏院迎十二顆建塔，餘皆塔。",
+      "storedKwic": "翠屏寺迎翁主藏，隨機方便，接得四人：一法",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 496,
+      "storedKwicEnd": 516,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        143029
+      ],
+      "normalizedFromLbMatchStarts": [
+        143029
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 143029,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "embedded-case-or-citation",
+        "excluded-contributor-or-document-section",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_44056632f4c6",
+      "sourceTerm": "隨機方便",
+      "turnProofTerm": "隨機方便",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 504,
+          "headwordEnd": 508,
+          "headwordClause": "時本郡翠屏寺迎翁主藏，隨機方便，接得四人：一法師、一頭陀、一優婆塞、一優婆夷，唯頭陀隱山，三人化去。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 263,
+            "end": 271,
+            "text": "和尚，一見便問曰"
+          },
+          "nearestFollowingCue": {
+            "start": 631,
+            "end": 644,
+            "text": "主人霜輪者，乃憨山首座，道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 504,
+          "headwordEnd": 508,
+          "headwordClause": "時本郡翠屏寺迎翁主藏，隨機方便，接得四人：一法師、一頭陀、一優婆塞、一優婆夷，唯頭陀隱山，三人化去。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 263,
+            "end": 271,
+            "text": "和尚，一見便問曰"
+          },
+          "nearestFollowingCue": {
+            "start": 631,
+            "end": 644,
+            "text": "主人霜輪者，乃憨山首座，道"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB249.xml",
+      "FromLb": "0841b01",
+      "title": "方融璽禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "和中峰禪師懷淨土詩",
+        "行實",
+        "示澹然饒居士",
+        "示瑞卿葉居士",
+        "示葉居士祝髮",
+        "示自立行者參學",
+        "示無入燈公",
+        "示守真禪士",
+        "示雲上禪人",
+        "示本禪人參父母未生前面目",
+        "留別馬巷眾居士",
+        "示懶緣靜主"
+      ],
+      "unitType": "p",
+      "rawStart": 146578,
+      "rawEnd": 165114,
+      "caseText": "佛祖同宣淨與禪，隨機方便利人天。箇中消息無分別，直指歸真達本淵。佛說彌陀一卷經，全彰依正數難明。自須親睹慈尊面，始信剎塵是化城。淨土云何名極樂？因無惡道苦相侵。珍衣寶饌隨心至，樓閣園林地布金。樓閣層層寶所成，門窗咸放大光明。黃金座上彌陀佛，說法時時度眾生。七重行樹葉婆娑，四道金欄界網羅。晝夜經行花滿地，香風微動念彌陀。九品蓮花共一池，含輝發耀映時時。常為不退菩薩母，產育娑婆念佛兒。珠網玲瓏寶樹森，微風吹動妙多音。譬如天樂同時奏，聞者皆生念佛心。八德池中九品花，或開或合大如車。青黃赤白光交燦，底布金沙長佛芽。地布純金平似掌，六時不斷雨天花。眾生清旦盛衣裓，供養他方佛老爺。鸚鵡頻伽遶樹林，梵聲和雅悅人心。休疑異類同居此，盡是彌陀變化音。彌陀一念一蓮華，因徹珍池果不差。念到功成佛接引，一聲彈指便歸家。一心不亂是專持，名號聲聲莫暫離。打破疑團即是佛，不須重覓古阿彌。萬德洪名無量光，十方普照貌堂堂。自從無始至今日，劫數何如壽數長。洪名一舉萬緣灰，獨露娘生面本來。非色非空非背向，更從何處惹塵埃？欲尋捷徑歸家去，惟有參禪念佛門。除斯別求方便路，更無超過此為尊。參禪不外唯心土，念佛何殊直指禪？禪淨同源入處異，任伊先上那邊船。彌陀即性性唯心，生與無生絕點塵。內外不居中不住，露堂堂地一閒身。成就黃金丈六身，圓光普照日惟新。人天聞見生希慕，同種當來出世因。六方諸佛讚西方，彌覆三千舌廣長。異口同宣唯極樂，更無別處可商量。遙憶西方西復西，極西之處更難思。但將妄想心消滅，即是歸家見佛時。十六觀門門廣大，四十八願願洪深。知先發願生彼國，守約尋門歸自心。萬慮咸休坐草堂，一心不亂想西方。有時忽入那伽定，親睹彌陀無量光。願見西方佛世尊，時時送想日頭昏。彌陀知我歸心切，返放毫光灌頂門。不立一塵修淨土，還空萬象念彌陀。纖毫著意尚非是，何況心中妄想多。一盞清燈一炷煙，光明常照於龕前。殷勤念禮彌陀佛，徹骨冰寒尚未眠。自性彌陀莫外尋，外尋空費草鞋金。迴光返照能尋底，不出當人一點心。腳踏今世門頭地，頂放威音那畔光。究竟此心元洞徹，七通八達有何妨？事窮理極獨惟心，妄想浮塵不敢侵。識得此心無寸土，拈來瓦礫盡黃金。眉毛豎起眼橫睜，念一聲兮問一聲。千聖至斯無覓處，箇中誰敢強安名。威音那畔絕消息，今世門中覓亦無。妙有真空常湛寂，彌陀即是古毘盧。六根六識六塵情，內外中分界處生。無位真人都不住，頭頭法法放光明。視也無形呼有聲，有無呼視甚分明。及乎尋箇分明旨，卻被空花翳眼睛。案頭常秉般若炬，爐內頻燃解脫香。一句了然超百億，寂光三昧遍十方。往生捷徑在人心，切莫徒勞向外尋。辦自肯心念自佛，本無差別路頭侵。萬象之中獨露身，遠無疏闊近無親。現今若要知端的，但向塵中作主人。六根都攝念彌陀，淨土唯嫌揀擇多。深入一門一切入，百千方便盡包羅。六根恰似劫財賊，六識猶如引盜郎。縱有心王無用處，彌陀一舉盡投降。我與彌陀夙有緣，彌陀為我用心堅。嬰兒憶母情親切，母念嬰兒最可憐。念佛念到最親切，寒暑飢虛總不知。只待因緣時節至，彌陀一見更無疑。佛法本無權與實，眾生根器有聰愚。彌陀化主心平等，同指西方一路途。彌陀為甚皺雙眉？堪嘆人生大似癡。面赤髮烏不念佛，齒黃頭白悔應遲。萬行莊嚴清淨土，圓滿福慧紫金身。眾生非是全無分，只要居塵不染塵。三界無安如火宅，四生輪轉認為家。彌陀苦口與人說，勸往西方九品花。信力堅強行願真，往生因果不虛陳。若能念念心無退，即是蓮花國裏人。無量劫來生死業，彌陀一念盡蠲除。命終還仗洪名力，上品蓮臺定可圖。八萬四千入道路，箇中捷近是何門？十方三世佛同贊，淨土彌陀第一尊。清旦鐘聲法喜時，盈堂僧眾念阿彌。缽盂應量一般飽，但往西方有速遲。年來想念佛心堅，聖境時時現目前。昨夜繩床一夢覺，全身猶在寶池蓮。一心不亂那伽定，名號專持般若禪。寂照圓融真淨土，十方世界亦如然。晝夜彌陀十萬聲，也無欠少也無零。是中有箇難瞞底，字句分明計得清。彌陀佛是我親爺，棄捨伶俜去路賒。三十餘年空眷戀，至今發念要歸家。自家屋裏彌陀佛，日夜何嘗須臾離。若去將心向外覓，世人豈不太愚癡。喝棒如雷氣似王，問渠著甚急顛狂。自心不把彌陀念，只恐臨終手腳忙。佛是眾生慈父母，叮嚀苦勸早歸家。莫教兩鬢生霜雪，擬欲還時路恐差。勸念彌陀不得閒，將心日用苦攀緣。滿堂金玉雖為貴，難保人生有百年。功名蓋世日無多，覷破猶同水上波。話到無常空嘆息，何如趁早念彌陀。人生富貴植前因，布施齋僧發意真。若肯今生思念佛，當來又是果中人。貧窮念佛正相當，跣足提巾上藕航。若問歸帆何太急，因無財寶挂心腸。既作人間大丈夫，莫將財色把身誅。阿彌陀佛隨心念，托質蓮胎應不無。女流念佛信繁難，忙裏偷閒要數完。若想臨終生淨土，莫愁家富與家寒。鉗鎚拈起響叮噹，打鐵爐中選佛場。久煉純鋼成一片，功成時至往西方。鸚鵡舌巧被人籠，念佛無心卻有功。脫下皮毛生淨土，靈明托化藕花中。十善咸明感上天，不持名號總徒然。縱能修到非非想，難比西方下品蓮。人人盡道念彌陀，借問彌陀是甚麼？眼似銅鈴心似漆，口吧吧地只圖多。娑婆五濁未能清，耑念彌陀願往生。感應道交佛接引，剎那間悉頓圓成。庶鳥珍禽同念佛，茅堂寶閣共為家。若將清濁分優劣，平等光中見自差。百千方便皆權說，唯有念佛一事真。但看古今賢與聖，阿誰不把此門陳。因該果海膠中漆，果徹因源錦上花。流水光中知念佛，夕陽影裏解歸家。廣陳依正從今日，備載修行利後人。舉約該餘成捷徑，去繁崇簡早歸真。想相為塵垢是情，出塵雖淨垢還生。要將漆器掀翻底，但念彌陀六字名。應無所住安心竟，心若有生所住非，降伏其心唯念佛，西方淨土是真歸。一身四大為墻壁，五蘊三毒當作家。圓洞六根皆戶牖，心佛出入總無遮。芭蕉好似世人心，剝盡方知惜寸陰。若肯從前思念佛，且無霜雪把頭侵。千林花鳥音和雅，萬壑松濤聲韻佳。無限風光無限意，念佛念法念僧伽。魔強法弱路千差，一念無為似斬麻。坐斷兩頭生淨土，念佛還仗佛冥加。自心有病自心醫，病差醫忘心亦離。若問此方真妙訣，阿彌陀佛是吾師。蓮池海會佛如來，勢至觀音坐寶臺。垂手娑婆同接引，眾生箇箇離塵埃。想見西方九品蓮，至誠歸命禮金仙。道交感應忘能所，心地花開現佛前。蜂房蟻穴光明藏，柳巷花街功德林。法界等觀皆淨土，原來無處不惟心。說是說非人不解，譚玄談妙有誰知。依稀彷彿難分辨，一舉彌陀盡決疑。既念彌陀願往生，休疑心地理難明。觀音勢至為朋友，佛道何愁不速成？萬樹春風入院溫，寒涼消盡熱心存。花香水暖蓮臺淨，直往西方面世尊。夏日炎炎似火流，陽光燒白世人頭。彌陀常住清涼國，接引眾生向彼遊。一念彌陀萬事休，長空雁過語悲秋。歸心恰似離弦箭，端向西峰看日頭。冬至風寒雨雪飛，飄零稚子欲誰依？婆心切切倚門望，臘盡年窮不見歸。四時八節如旋火，萬死千生若轉輪。只有此心無動靜，耑持名號日惟新。西方風景最清涼，心地無塵熱惱忘。諸上善人同會處，經行坐臥悉安詳。即是即非還更遠，離名離相處猶疑。多方善誘都難信，親見歸來始得知。茶煙消盡五更初，除想西方一事無。鐘鼓聲傳空劫外，一門深入法王都。勿論冤兮勿論親，逢人一味語頻頻。口空非是說空話，勸念彌陀果是真。自從親入遠公社，善友難逢是箇中。不遇中峰懷淨土，青山逾遠雲彌豐。最上參禪惟念佛，祖師公案漫疑猜。不須待悟拈花旨，且仗彌陀歸去來。或曰西方或謂禪，聖凡沙界總同圓。舌頭非是無觔骨，遍覆三千出自然。詩成百八口親宣，雖讚西方不礙禪。識得自心無定法，但隨機便利人天。菩薩戒弟子劉興孝捐資敬刊",
+      "storedKwic": "佛祖同宣淨與禪，隨機方便利人天。箇中消息",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 0,
+      "storedKwicEnd": 20,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        47446
+      ],
+      "normalizedFromLbMatchStarts": [
+        47446
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 47446,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_44056632f4c6",
+      "sourceTerm": "隨機方便",
+      "turnProofTerm": "隨機方便",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 8,
+          "headwordEnd": 12,
+          "headwordClause": "佛祖同宣淨與禪，隨機方便利人天。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 1670,
+            "end": 1673,
+            "text": "王，問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 8,
+          "headwordEnd": 12,
+          "headwordClause": "佛祖同宣淨與禪，隨機方便利人天。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 1670,
+            "end": 1673,
+            "text": "王，問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "T/T47/T47n1998A.xml",
+      "FromLb": "0864b01",
+      "title": "大慧普覺禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [
+        {
+          "MasterName": "Dahui Zonggao",
+          "matchedAliases": [
+            "大慧"
+          ]
+        }
+      ],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "為益照二禪人入塔",
+        "為月禪人入塔",
+        "為超禪人下火",
+        "為法燈監寺下火",
+        "為充禪人下火充平日唯頂一大笠",
+        "為彥維那下火",
+        "禪人求讚四",
+        "師玿長老求讚",
+        "雪峯空長老求讚",
+        "若懷首座求讚歸洋嶼菴",
+        "德光禪人求讚",
+        "法宏禪人求讚"
+      ],
+      "unitType": "p",
+      "rawStart": 340543,
+      "rawEnd": 341520,
+      "caseText": "認何曾解方便。既不識方便語。便向燃燈佛肚裏座。黑山下鬼窟裏不動坐得骨臀生胝口裏水漉漉地肚裏依前黑漫漫地驢年夢見麼。雲門今夜對人天眾前合諸聖說話。各自記取。言多去道轉遠。適來真歇有一段公案未了。雲門為他結絕却。昔有一老宿訪臨濟。纔相見提起坐具云。禮拜即是。不禮拜即是。臨濟喝。宿便禮拜。濟云。這賊。宿云。賊賊便出。濟云。莫道無事好。首座侍立次。濟云。還有過也無。座云有。濟云。賓家有過。主家有過。座云。二俱有過。濟云。過在甚麼處。座便出。濟云。莫道無事好。師云。臨濟暗中輸了一籌。却向明中贏得一著。雖然有輸有贏有明有暗。爭奈傍觀者醜。且道。誰是傍觀者。良久云。若到諸方。不得錯舉。",
+      "storedKwic": "向燃燈佛肚裏座。黑山下鬼窟裏不動坐得骨臀生胝",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 15,
+      "storedKwicEnd": 37,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        82507
+      ],
+      "normalizedFromLbMatchStarts": [
+        82507
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 82507,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-alias-partial"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_06756e764d33",
+      "sourceTerm": "黑山下鬼窟裏",
+      "turnProofTerm": "黑山下鬼窟裏",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": "Huanglong Huinan",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 23,
+          "headwordEnd": 29,
+          "headwordClause": "黑山下鬼窟裏不動坐得骨臀生胝口裏水漉漉地肚裏依前黑漫漫地驢年夢見麼。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 227,
+            "end": 229,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 23,
+          "headwordEnd": 29,
+          "headwordClause": "黑山下鬼窟裏不動坐得骨臀生胝口裏水漉漉地肚裏依前黑漫漫地驢年夢見麼。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": {
+            "start": 227,
+            "end": 229,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "M/M59/M59n1540.xml",
+      "FromLb": "0905b14",
+      "title": "大慧普覺禪師普說",
+      "containerClass": "other",
+      "titleOwnerCandidates": [
+        {
+          "MasterName": "Dahui Zonggao",
+          "matchedAliases": [
+            "大慧"
+          ]
+        }
+      ],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "陳氏法空請普說",
+        "上官承務請普說",
+        "智通居士請普說",
+        "照起二大師請普說",
+        "淨達道人請普說",
+        "劉士隆再請普說",
+        "建陽劉士隆請普說",
+        "尼慈明大師請普說",
+        "行者德新請普說",
+        "方敷文請普說",
+        "安靜道人李氏請普說",
+        "永大師請普說"
+      ],
+      "unitType": "p",
+      "rawStart": 291512,
+      "rawEnd": 293682,
+      "caseText": "盡公家與之相見無盡愛其德性靜重每稱道之一生留心此道雖未能脫然噴地一發然這一箇消息只在縱今生參不得後世出來亦不失為佛法中人何故却為此生不在別處用心然般若上亦無用心處譬如太末虫在處能泊而不能泊於火焰之上蓋火焰上是他喪身失命處眾生心識在處能緣而不能緣於般若智焰之上蓋般若智焰之上無你捿泊處楞伽經云眾生心識熠熠清擾無少休息躁動如猿猴樂不淨如飛蠅無厭足如風火直如此可畏爭如把箇一念來這裏看狗子還有佛性也無無忽然會得如貧得寶如暗得燈士大夫家博極群書九經十七史裏面興亡治亂無不通曉先聖所讚者依而行之所訶者不敢違犯只有禪一件未會在也要會則箇縱使真實為道而不遇本分宗師與解粘去縛撞著一般杜撰長老教休去歇去須是靜不得閙知道士大夫平昔多閙遂教去黑山下鬼窟裏作活計更言悟是建立間有信其說者終日閉眉合眼乍覺身心寧貼便喚作禪又謂纔開口便落今時教人向空劫已前無言無說處會取既不信有妙悟遂成謗大般若所謂雖是善因而招惡果且如士君子學先王之道若無省發處則不能窮理盡性座主家於教乘裏面無瞥地處則被文字語言纏縛不知動轉以至世間種種技術若無所得則不能盡其妙況學無上佛果菩提若無悟處何以出三界輪迴兄弟家須是晝三夜三如救頭然向石火電光中快著精彩窮究這一片田地教知下落先德道我立地待汝究取又道我坐地待汝究取雪峯和尚又道若起一念承當即是相瞞信之無心功德不可思議文殊般若經說佛與眾生平等何以故三世諸佛無心眾生亦無心故由其一念無心功德緣起無生所以陳氏法空夙有善根種性今生知有此段大事因緣故能於火宅塵勞之中撥置諸緣念念為道報答四恩三有誓求無上佛果菩提真女流中大丈夫智通居士以法空之故在此隨喜聽法願一言之下頓悟佛之知見法華經云隨喜功德無量無邊若有人聞是法華經一句一偈聞知隨喜復行轉教餘人聞已亦隨喜轉教如是展轉至第五十乃至布施象馬七寶宮殿樓閣更令證於須陀洹乃至得阿羅漢果所得功德不如是第五十人聞法華經一句一偈隨喜功德你且道七卷經盡是說法華經功德畢竟何者是經要會麼狗子還有佛性也無無若向這裏會得功德無較量處其或未然聽取一頌。",
+      "storedKwic": "夫平昔多閙遂教去黑山下鬼窟裏作活計更言悟是建",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 303,
+      "storedKwicEnd": 325,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        102074
+      ],
+      "normalizedFromLbMatchStarts": [
+        102074
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 102074,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-alias-partial"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_06756e764d33",
+      "sourceTerm": "黑山下鬼窟裏",
+      "turnProofTerm": "黑山下鬼窟裏",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": "Huanglong Huinan",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 311,
+          "headwordEnd": 317,
+          "headwordClause": "盡公家與之相見無盡愛其德性靜重每稱道之一生留心此道雖未能脫然噴地一發然這一箇消息只在縱今生參不得後世出來亦不失為佛法中人何故却為此生不在別處用心然般若上亦無用心處譬如太末虫在處能泊而不能泊於火焰之上蓋火焰上是他喪身失命處眾生心識在處能緣而不能緣於般若智焰之上蓋般若智焰之上無你捿泊處楞伽經云眾生心識熠熠清擾無少休息躁動如猿猴樂不淨如飛蠅無厭足如風火直如此可畏爭如把箇一念來這裏看狗子還有佛性也無無忽然會得如貧得寶如暗得燈士大夫家博極群書九經十七史裏面興亡治亂無不通曉先聖所讚者依而行之所訶者不敢違犯只有禪一件未會在也要會則箇縱使真實為道而不遇本分宗師與解粘去縛撞著一般杜撰長老教休去歇去須是靜不得閙知道士大夫平昔多閙遂教去黑山下鬼窟裏作活計更言悟是建立間有信其說者終日閉眉合眼乍覺身心寧貼便喚作禪又謂纔開口便落今時教人向空劫已前無言無說處會取既不信有妙悟遂成謗大般若所謂雖是善因而招惡果且如士君子學先王之道若無省發處則不能窮理盡性座主家於教乘裏面無瞥地處則被文字語言纏縛不知動轉以至世間種種技術若無所得則不能盡其妙況學無上佛果菩提若無悟處何以出三界輪迴兄弟家須是晝三夜三如救頭然向石火電光中快著精彩窮究這一片田地教知下落先德道我立地待汝究取又道我坐地待汝究取雪峯和尚又道若起一念承當即是相瞞信之無心功德不可思議文殊般若經說佛與眾生平等何以故三世諸佛無心眾生亦無心故由其一念無心功德緣起無生所以陳氏法空夙有善根種性今生知有此段大事因緣故能於火宅塵勞之中撥置諸緣念念為道報答四恩三有誓求無上佛果菩提真女流中大丈夫智通居士以法空之故在此隨喜聽法願一言之下頓悟佛之知見法華經云隨喜功德無量無邊若有人聞是法華經一句一偈聞知隨喜復行轉教餘人聞已亦隨喜轉教如是展轉至第五十乃至布施象馬七寶宮殿樓閣更令證於須陀洹乃至得阿羅漢果所得功德不如是第五十人聞法華經一句一偈隨喜功德你且道七卷經盡是說法華經功德畢竟何者是經要會麼狗子還有佛性也無無若向這裏會得功德無較量處其或未然聽取一頌。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 311,
+          "headwordEnd": 317,
+          "headwordClause": "盡公家與之相見無盡愛其德性靜重每稱道之一生留心此道雖未能脫然噴地一發然這一箇消息只在縱今生參不得後世出來亦不失為佛法中人何故却為此生不在別處用心然般若上亦無用心處譬如太末虫在處能泊而不能泊於火焰之上蓋火焰上是他喪身失命處眾生心識在處能緣而不能緣於般若智焰之上蓋般若智焰之上無你捿泊處楞伽經云眾生心識熠熠清擾無少休息躁動如猿猴樂不淨如飛蠅無厭足如風火直如此可畏爭如把箇一念來這裏看狗子還有佛性也無無忽然會得如貧得寶如暗得燈士大夫家博極群書九經十七史裏面興亡治亂無不通曉先聖所讚者依而行之所訶者不敢違犯只有禪一件未會在也要會則箇縱使真實為道而不遇本分宗師與解粘去縛撞著一般杜撰長老教休去歇去須是靜不得閙知道士大夫平昔多閙遂教去黑山下鬼窟裏作活計更言悟是建立間有信其說者終日閉眉合眼乍覺身心寧貼便喚作禪又謂纔開口便落今時教人向空劫已前無言無說處會取既不信有妙悟遂成謗大般若所謂雖是善因而招惡果且如士君子學先王之道若無省發處則不能窮理盡性座主家於教乘裏面無瞥地處則被文字語言纏縛不知動轉以至世間種種技術若無所得則不能盡其妙況學無上佛果菩提若無悟處何以出三界輪迴兄弟家須是晝三夜三如救頭然向石火電光中快著精彩窮究這一片田地教知下落先德道我立地待汝究取又道我坐地待汝究取雪峯和尚又道若起一念承當即是相瞞信之無心功德不可思議文殊般若經說佛與眾生平等何以故三世諸佛無心眾生亦無心故由其一念無心功德緣起無生所以陳氏法空夙有善根種性今生知有此段大事因緣故能於火宅塵勞之中撥置諸緣念念為道報答四恩三有誓求無上佛果菩提真女流中大丈夫智通居士以法空之故在此隨喜聽法願一言之下頓悟佛之知見法華經云隨喜功德無量無邊若有人聞是法華經一句一偈聞知隨喜復行轉教餘人聞已亦隨喜轉教如是展轉至第五十乃至布施象馬七寶宮殿樓閣更令證於須陀洹乃至得阿羅漢果所得功德不如是第五十人聞法華經一句一偈隨喜功德你且道七卷經盡是說法華經功德畢竟何者是經要會麼狗子還有佛性也無無若向這裏會得功德無較量處其或未然聽取一頌。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "T/T51/T51n2077.xml",
+      "FromLb": "0651c22",
+      "title": "續傳燈錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "昭覺圓悟克勤禪師法嗣",
+        "大鑑下第十六世",
+        "昭覺圓悟勤禪師法嗣上十六人",
+        "大鑑下第十六世",
+        "續傳燈錄卷第二十七目錄",
+        "慧力可昌禪師法嗣",
+        "圓通僊禪師法嗣",
+        "開先瑛禪師法嗣",
+        "泐潭乾禪師法嗣",
+        "饒州薦福英禪師法嗣",
+        "大溈瑃禪師法嗣",
+        "昭覺純白禪師法嗣"
+      ],
+      "unitType": "p",
+      "rawStart": 1031589,
+      "rawEnd": 1041292,
+      "caseText": "不得無語。不得良久。不得卜度。不得作女人拜遶禪床。不得拂袖便行。一切總不得。爾便奪却竹篦。我且許爾奪却。我喚作拳頭則觸。不喚作拳頭則背。爾又如何奪。更饒爾道箇請和尚放下著。我且放下著。我喚作露柱則觸。不喚作露柱則背。爾又如何奪。我喚作山河大地則觸。不喚作山河大地則背。爾又如何奪。時有舟峯長老云。某甲看和尚竹篦子話。如籍沒却人家財產了。更要人納物事。師曰。爾譬喻得極妙。我真箇要爾納物事。爾無所從出。便須討死路去也。或投河或赴火。󱁲得命方始死。得死了却緩緩地再活起來。喚爾作菩薩便歡喜。喚爾作賊漢便惡發。依前只是舊時人。所以古人道。懸崖撒手自肯承當。絕後再蘇欺君不得。到這裏始契得竹篦子話。復說偈曰。佛之一字尚不喜。有何生死可相關。當機覿面無回互。說甚楞嚴義八還。師闡揚宗教時。有同時號稱宗師說法以寂照靜默為本者。見士大夫為塵勞所障方寸不寧便為言。令寒灰枯木去。一條白練去。古廟香爐去。冷湫湫地去。謂此法門可休歇人身心。師以為如此見解墮在黑山下鬼窟裏。教中謂之昏沈。殊不知這箇猢猻子不死。如何得休歇。來為先鋒去為殿後底不死。如何得休歇。故師每力排之。謂之邪師寂照禪斷佛慧命。千佛出世不通懺悔。一日室中坐。有鄭昂尚明者。持一辦香來怒氣可掬。聲色俱厲云。昂有一片香未燒在。欲與和尚理會一件事。只如默然無言。是法門中第一等休歇處。和尚肆意詆訶。昂心疑和尚不到這田地所以信不及。且如釋迦老子在摩竭提國。三七日中掩室不作聲。豈不是佛默然。毘耶離城三十二菩薩各說不二法門。末後維摩無語文殊讚善。豈不是菩薩默然。須菩提在巖中宴坐無言無說。豈不是聲聞默然。天帝釋見須菩提在巖中宴坐。乃雨花供養亦無言說。豈不是凡夫默然。達磨游梁歷魏少林冷坐九年。豈不是祖師默然。魯祖見僧便面壁。豈不是宗師默然。和尚因什麼却力排默照以為邪非。師曰。爾曾讀莊子麼。云是何不讀。師曰。莊子云言而足終日言而盡道。言而不足終日言而盡物。道物之極。言默不足以載。非言非默義有所極。我也不曾看郭象解并諸家注解。只據我杜撰說破爾這默然。豈不見孔子一日大驚小怪道。參乎吾道一以貫之。曾子曰。唯。爾措大家纔聞箇唯字。便來這裏惡口。却云這一唯與天地同根萬物一體。致君於堯舜之上。成家立國出將入相。以至啟手足時不出這一唯。且喜沒交涉。殊不知這箇道理。便是曾子言而足。孔子言而足。其徒不會却問何謂也。曾子見他理會不得。却向第二頭答他話。謂夫子之道不可無言。所以云。夫子之道忠恕而已矣。要之道與物至極處不在言語上。不在默然處。言也載不得。默也載不得。公之所說尚不契莊子意。何況要契釋迦老子達磨大師意耶。爾要理會得莊子非言非默義有所極麼。便是雲門大師拈起扇子云。扇子𨁝跳上三十三天築著帝釋鼻孔東海鯉魚打一棒雨似傾盆。爾若會得雲門這箇說話。便是莊子說底。曾子說底孔子說底一般。昂遂無語。師曰。爾雖不語心猶未伏在。然古人決定不在默然處坐地明矣。爾適來舉釋迦掩室維摩默然。且看舊時有箇坐主喚作肇法師。把那無言說處。說出來與人云。釋迦掩室於摩竭。淨名杜口於毘耶。須菩提唱無說以顯道。釋梵絕聽而雨花。斯皆理為神御。故口以之而默。豈曰無辯辯所不能言也。這箇是理與神忽然相撞著。不覺到說不得處雖然不語其聲如雷。故曰。豈曰無辯辯所不能言也。這裏世間聰明辯才用一點不得。到得恁麼田地方始是放身捨命處。這般境界須是當人自證自悟始得。所以華嚴經云。如來宮殿無有邊。自然覺者處其中。此是從上諸聖大解脫法門。無邊無量無得無失無默無語無去無來。塵塵爾剎剎爾念念爾法法爾。只為眾生根性狹劣。不到三教聖人境界。所以分彼分此。殊不知境界如此廣大。却向黑山下鬼窟裏默然坐地。故先聖訶為解脫深坑。是可怖畏之處。以道眼觀之。則是刀山劍樹鑊湯鑪炭裏坐地。一般坐主家尚不滯在默然處。況祖師門下客。却道纔開口便落今時。且喜沒交涉。昂不覺作禮。師曰公雖作禮然更有事在。至晚來入室。師問曰。今年幾歲。云六十四。又問。爾六十四前從什麼處來。昂又無語。師遂以竹篦打出次日又來室中云。六十四年前尚未有昂在。如何和尚却問昂從什麼處來。師曰。爾六十四年前不可元在福州鄭家。只今這聽法說法一段歷歷孤明底未生已前畢竟在什麼處。云不知。師曰。爾若不知便是生大今生且限百歲。百歲後爾待要飛出三千大千世界外去。須是與他入棺材始得。當爾之時四大五蘊一時解散。有眼不見物。有耳不聞聲。有箇肉團心分別不行。有箇身火燒刀斫都不覺痛。到這裏歷歷孤明底却向什麼處去。云昂也不知師曰。爾既不知便是死大。故曰。無常迅速生死事大。便是這箇道理。這裏使聰明也不得。記持也不得。我更問。爾平生做許多之乎者也。臘月三十日將那一句敵他生死。須是知得生來死去處分曉始得。若不知即是愚人。昂方心伏始知無言無說處一切非是。因別參請未幾頓有所得。時有祥雲長老曇懿與禪者遵璞二人為同伴。初侍圓悟於蔣山已有入處。後又隸真歇了坐下點胸自許謂世莫有過之者。師知其未徹業已開法慮其誤後學。以書致懿令告假暫來。懿恥之遲遲其行。師遂由小參痛抵其非。揭榜于門以告四眾。懿聞之不得已乃破夏來抵師會下。師詰其所證語之曰。汝恁麼見解何嘗夢見圓悟老人果欲究竟此事。且退却院子來。懿從之遂歸。既散夏果與璞偕至。二人同到室中。師問璞。三聖道。我逢人則出。出則不為人。興化道。我逢人則不出。出則便為人。爾道這兩箇老漢還有出身處也無。璞於師膝上打一拳。師曰。汝這一拳為三聖出氣。為興化出氣。速道速道。璞擬議。師劈脊便打。仍謂之曰。汝第一不得忘了這一棒遂出。久之未得入門。一日因別僧入室。二人聽之。師問僧曰。德山見僧入門便棒。臨濟見僧入門便喝。雪峯見僧入門便道是什麼。睦州見僧入門便道見成公案放爾三十棒。爾道這四箇老漢還有為人處也無。僧云有。師曰劄。僧擬議。師便喝出。璞聞之忽然有省。懿亦相繼於一言之下大有省發。從前惡知惡解當下氷消。後皆承嗣師。師嘗為眾入室。見僧才入門便問。諸佛菩薩畜生驢馬庭前柏樹子麻三斤乾屎橛。爾是一枚無狀賊漢。僧云。久知和尚有此機要。師曰。我已無端入荒草。是爾屎臭氣也不知。僧拂袖便出。師曰。苦哉佛陀耶。又僧才入門。師便曰。不是出去。僧便出。師曰。沒量大人被語脈裏轉却。次一僧入。師曰。不是出去。僧却近前。師曰。向爾道不是。又却近前覓箇什麼。便打出。又一僧入云。適來兩僧不會和尚意。師低頭噓一聲。僧罔措。師便打曰。却是爾會老僧意。又僧才入。師曰。爾不會出去。僧亦出。復一僧入。師曰。適來兩箇上坐。一人解收不解放。一人解放不解收。爾還辨得麼。僧云。一狀領過。師曰。領過後別有甚好消息。僧拍手一下便出。師曰。三十年後悟去在。又問僧云。道不用修但莫染污。如何是不染污底道。僧云。某甲不敢道。師曰。爾為什麼不敢道。僧云。恐染污。師高聲叫曰。行者將糞箕掃󰆠來。僧茫然。師便打出。又僧才入。師曰。釋迦老子來也。僧近前。師曰。元來不是便打。次一僧入。師亦曰。釋迦老子來也。僧當面問訊便出。師曰。却似真箇。又問僧。不是心不是佛不是物爾作麼生。僧云領。師曰。領爾屋裏七代先靈。僧便喝。師曰。適來領如今喝。干他不是心不是佛不是物什麼事。僧無語。師便打。又問僧。路逢達道人不將語默對時如何。僧珍重便行。師呵呵大笑。次一僧來。師曰。我適來問這僧路逢達道人不將語默對時如何。他珍重便行。爾道他會不會。僧擬問訊。師便打出。又問僧。不與萬法為侶者是什麼人。云無面目漢。師曰。適來有箇師僧如此道。打出去也。僧擬議。師便打。又問僧。馬大師道。自從胡亂後三十年不曾少鹽醬意作麼。云隨家豐儉。師曰。好箇隨家豐儉。只是爾不會。僧擬議。師便喝出。又問僧。香嚴上樹話爾作麼生。僧云。好對春風唱鷓鴣。師曰。虎頭上座道。樹上即不問。未上樹請和尚道。又作麼生。僧云。適來向和尚道了也。師曰。好對春風唱鷓鴣。是樹上語樹下語。僧無對。師便打。又問侍者曰。許多人入室。幾人道得著。幾人道不著。侍者云。某甲只管看。師忽展手曰。我手何似佛手。侍者云。天寒且請和尚通袖行。師打一竹篦曰。且道是賞爾是罰爾。侍者無對。有僧請益。不知某甲死向什麼處去。師曰。爾只今是生耶死耶。僧云。生也不道死也不道。師曰。爾做得漸源奴。僧擬議。師便打出。又一僧來。師曰。適來這僧衲一場敗闕。爾還知麼。僧云知。師亦打出。又僧請益夾山境話。聲未絕師便喝。僧茫然。師曰。爾問什麼。僧擬舉。師連打喝出。又僧請益。某甲參禪不得病在什麼處。師曰。病在這裏。云某甲為什麼參不得。師曰。開眼尿床漢我打爾去。師室中機緣渦旋辨肆不可把翫。自非上上根器不可湊泊。師住徑山時名重一時。如侍郎張公子韶狀元汪公聖錫少卿憑公濟川俱問道。自餘皆一時名士大夫。師隨機開悟無所回互。而當時秉鈞軸者。以其議己惡之。遂遭捃拾毀衣。屏去衡州凡十年。又徙梅州。梅州瘴癘寂莫之地。而衲子裏糧從之雖死不悔。又八年高宗特恩放還。明年復僧衣。四方虛席以邀率不就。最後以朝旨住育王。聚眾多食不繼。築塗田凡數十頃。詔賜其庄名般若。又二年詔復移徑山。師之再住徑山。道俗歆慕如見其所親。雖老接引後學不少倦。退居明月堂。先是孝宗皇帝為普安郡王時聞師名。嘗遣內都監至徑山謁師。師作偈以獻曰。大根大器大力量。荷擔大事不尋常。一毛頭上通消息。遍界明明不覆藏。王甚悅。及在建邸復遣內知客請師山中為眾說法。親書妙喜庵大字。及製真讚賜師曰。生滅不滅。常住不住。圓覺空明。隨物現處。師演成四偈以獻。王覽之尤喜。又二年王即位。遂賜號大慧禪師。復取向所賜宸翰以御寶識之。恩寵加厚欲召對。而師已病矣。以隆興元年八月十日於徑山明月堂示寂。上聞之嘆惜不已。詔以明月堂為妙喜庵。賜諡普覺。將示寂親書遺奏封畢。侍僧請留頌。師厲聲曰。無頌便死不得也。索筆大書曰。生也只恁麼。死也只恁麼。有偈與無偈。是什麼熱大。投筆而逝。俗壽七十五。坐五十八夏。諸弟子以師全身葬於庵之後。賜塔名寶光。僧俗從師得法悟徹者。不啻數十人。皆有名于世。鼎需思嶽彌光悟本守淨道謙遵璞祖元冲密等九人皆契悟廣大。先師而歿其餘皆道化一方。臨濟宗旨益振焉。",
+      "storedKwic": "以為如此見解墮在黑山下鬼窟裏。教中謂之昏沈。",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 411,
+      "storedKwicEnd": 433,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        284154
+      ],
+      "normalizedFromLbMatchStarts": [
+        284154
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 284154,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "embedded-case-or-citation",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_06756e764d33",
+      "sourceTerm": "黑山下鬼窟裏",
+      "turnProofTerm": "黑山下鬼窟裏",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 419,
+          "headwordEnd": 425,
+          "headwordClause": "師以為如此見解墮在黑山下鬼窟裏。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 175,
+            "end": 177,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 753,
+            "end": 755,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        },
+        {
+          "headwordStart": 1476,
+          "headwordEnd": 1482,
+          "headwordClause": "却向黑山下鬼窟裏默然坐地。",
+          "overlapsStoredKwic": false,
+          "nearestPrecedingCue": {
+            "start": 1160,
+            "end": 1162,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 1566,
+            "end": 1568,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 419,
+          "headwordEnd": 425,
+          "headwordClause": "師以為如此見解墮在黑山下鬼窟裏。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 175,
+            "end": 177,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 753,
+            "end": 755,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X79/X79n1563.xml",
+      "FromLb": "0689a10",
+      "title": "大光明藏",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "大陽和尚",
+        "洪州西山亮座主",
+        "磁州馬頭峯神藏禪師",
+        "潭州石霜大善禪師",
+        "烏臼禪師",
+        "五臺山鄧隱峰禪師",
+        "池州南泉普願禪師",
+        "汾州無業禪師",
+        "廬山歸宗寺智常禪師",
+        "湖南東寺如會禪師",
+        "明州大梅山法常禪師",
+        "杭州鹽官鎮國海昌院齊安禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 243228,
+      "rawEnd": 244085,
+      "caseText": "寶曇曰：文彩未兆時事，今人推墮滉漾，而甘心寂默窈冥之中，更與安名曰威音王已前空劫郍畔，殊不知正是黑山下鬼窟裏。所謂文彩未兆時，三生六十劫也未夢見在。伊曰：擬向者裏致一問，問取和尚，不知得否？陽曰：答汝已了，莫道得否，謂之目前事可乎？文彩未兆時，決定悟了方見，見後和悟併却，方始一如大陽。伊禪共用此事。今人不是弄潮手，勸汝莫入洪濤中。洪濤無情，壞汝性命。",
+      "storedKwic": "郍畔，殊不知正是黑山下鬼窟裏。所謂文彩未兆時",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 40,
+      "storedKwicEnd": 62,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        48651
+      ],
+      "normalizedFromLbMatchStarts": [
+        48651
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 48651,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_06756e764d33",
+      "sourceTerm": "黑山下鬼窟裏",
+      "turnProofTerm": "黑山下鬼窟裏",
+      "sense": 1,
+      "occurrence": 4,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 48,
+          "headwordEnd": 54,
+          "headwordClause": "寶曇曰：文彩未兆時事，今人推墮滉漾，而甘心寂默窈冥之中，更與安名曰威音王已前空劫郍畔，殊不知正是黑山下鬼窟裏。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 48,
+          "headwordEnd": 54,
+          "headwordClause": "寶曇曰：文彩未兆時事，今人推墮滉漾，而甘心寂默窈冥之中，更與安名曰威音王已前空劫郍畔，殊不知正是黑山下鬼窟裏。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X67/X67n1307.xml",
+      "FromLb": "0474c02",
+      "title": "萬松老人評唱天童覺和尚拈古請益錄",
+      "containerClass": "other",
+      "titleOwnerCandidates": [
+        {
+          "MasterName": "Wansong Xingxiu",
+          "matchedAliases": [
+            "萬松老人"
+          ]
+        }
+      ],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "第二十八則楞嚴推心",
+        "第二十七則溈仰摘茶",
+        "第二十六則雲門佛法",
+        "第二十五則洞山賓主",
+        "第二十四則臨濟賓主",
+        "第二十三則趙州有無",
+        "第二十二則溈山問仰",
+        "第二十一則乾峯三病",
+        "第二十則保福光境",
+        "第十九則漸源捲簾",
+        "第十八則雪峯普請",
+        "第十七則廣德靈利"
+      ],
+      "unitType": "p",
+      "rawStart": 124363,
+      "rawEnd": 124811,
+      "caseText": "舉：楞嚴會上，世尊告眾云：若能推底是汝心，則認賊為子。修山主云：若能推底不是汝心，則認子為賊。天童拈云：如今推也是子是賊，買帽相頭，食魚去骨。",
+      "storedKwic": "推底不是汝心，則認子為賊。天童拈云：如今",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 34,
+      "storedKwicEnd": 54,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        20384
+      ],
+      "normalizedFromLbMatchStarts": [
+        20384
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 20384,
+      "inlineSpeakerMarkers": [
+        "天童拈云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-alias-partial"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_7517cee5844f",
+      "sourceTerm": "認子為賊",
+      "turnProofTerm": "認子為賊",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": "Wansong Xingxiu",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 42,
+          "headwordEnd": 46,
+          "headwordClause": "修山主云：若能推底不是汝心，則認子為賊。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 29,
+            "end": 31,
+            "text": "主云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 42,
+          "headwordEnd": 46,
+          "headwordClause": "修山主云：若能推底不是汝心，則認子為賊。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 29,
+            "end": 31,
+            "text": "主云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X66/X66n1297.xml",
+      "FromLb": "0286c10",
+      "title": "宗鑑法林",
+      "containerClass": "other",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "楞嚴",
+        "經首",
+        "諸經",
+        "釋迦文佛",
+        "宗鑑法林目錄",
+        "凡例"
+      ],
+      "unitType": "p",
+      "rawStart": 232831,
+      "rawEnd": 233182,
+      "caseText": "脩山主別云：若能推底不是汝心，則是認子為賊。天童覺云：如今推也是子是賊，買帽相頭，食魚去骨。寶壽新云：世尊祇知其一，不知其二；龍濟祇知其二，不知其一。者裏則不然，能推底是心也得，不是心也得。何故？朝朝正月半，夜夜是元宵。",
+      "storedKwic": "底不是汝心，則是認子為賊。天童覺云：如今",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 9,
+      "storedKwicEnd": 29,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        19802
+      ],
+      "normalizedFromLbMatchStarts": [
+        19802
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 19802,
+      "inlineSpeakerMarkers": [
+        "天童覺云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_7517cee5844f",
+      "sourceTerm": "認子為賊",
+      "turnProofTerm": "認子為賊",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 17,
+          "headwordEnd": 21,
+          "headwordClause": "脩山主別云：若能推底不是汝心，則是認子為賊。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 2,
+            "end": 5,
+            "text": "主別云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 17,
+          "headwordEnd": 21,
+          "headwordClause": "脩山主別云：若能推底不是汝心，則是認子為賊。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 2,
+            "end": 5,
+            "text": "主別云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J10/J10nA158.xml",
+      "FromLb": "0040c10",
+      "title": "密雲禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "答雲怡陳居士十七問",
+        "復紫垣居士",
+        "復存義上人",
+        "復半眼居士",
+        "復子復史居士",
+        "復愚溪陶居士",
+        "復金如王居士",
+        "復石車乘上座",
+        "復子元劉居士",
+        "復清都史居士",
+        "復明復史居士",
+        "書問上"
+      ],
+      "unitType": "paragraph-span",
+      "rawStart": 232101,
+      "rawEnd": 232271,
+      "caseText": "問：「黑夜中，認賊為子、認子為賊，作何判斷？」答：「各打三十棒。」",
+      "storedKwic": "夜中，認賊為子、認子為賊，作何判斷？」答",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 4,
+      "storedKwicEnd": 24,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        79015
+      ],
+      "normalizedFromLbMatchStarts": [
+        79015
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 79015,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "coarse-or-uncertain-case-boundary",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_7517cee5844f",
+      "sourceTerm": "認子為賊",
+      "turnProofTerm": "認子為賊",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 12,
+          "headwordEnd": 16,
+          "headwordClause": "問：「黑夜中，認賊為子、認子為賊，作何判斷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 12,
+          "headwordEnd": 16,
+          "headwordClause": "問：「黑夜中，認賊為子、認子為賊，作何判斷？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J28/J28nB202.xml",
+      "FromLb": "0072a10",
+      "title": "百癡禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "示眾",
+        "福建興化蓮山國懽崇福禪寺語錄",
+        "松江明發禪院語錄",
+        "再住松江明發禪院語錄",
+        "松江超果禪寺語錄",
+        "江南松江明發禪院語錄",
+        "嘉興梵勝禪院語錄",
+        "嘉興金粟山廣慧禪寺語錄",
+        "嘉興金粟山廣慧禪寺語錄",
+        "嘉興金粟山廣慧禪寺語錄",
+        "嘉興金粟山廣慧禪寺語錄",
+        "嘉興金粟山廣慧禪寺語錄"
+      ],
+      "unitType": "p",
+      "rawStart": 444045,
+      "rawEnd": 444338,
+      "caseText": "冬至，示眾。「冬至月頭賣被買牛，冬至月尾賣牛買被，今年冬至十八，還是賣被買牛耶？還是賣牛買被耶？試請斷看。如無，山僧自斷去也。被不賣，牛不買，夜寒留在腳邊擺；被不買，牛不賣，天明牽出日頭曬。放放收收得自由，木人石女咸稱快，為甚如此？且喜頂門陽復生，孤根償盡群陰債。」喝一喝。",
+      "storedKwic": "放放收收得自由，木人石女咸稱快，為甚如此",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 95,
+      "storedKwicEnd": 115,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        145750
+      ],
+      "normalizedFromLbMatchStarts": [
+        145750
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 145750,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_24891e88f516",
+      "sourceTerm": "木人石女",
+      "turnProofTerm": "木人石女",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 103,
+          "headwordEnd": 107,
+          "headwordClause": "放放收收得自由，木人石女咸稱快，為甚如此？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 103,
+          "headwordEnd": 107,
+          "headwordClause": "放放收收得自由，木人石女咸稱快，為甚如此？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB237.xml",
+      "FromLb": "0458c04",
+      "title": "月幢了禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "起信歌",
+        "法派",
+        "山居",
+        "壽海岸居士",
+        "復馮夫人",
+        "復司李馮檀越步來韻",
+        "示達佛居士",
+        "示達綱居士",
+        "示九有錢文學",
+        "示任庸趙居士",
+        "示中玄禪人",
+        "復達權陶居士次來韻"
+      ],
+      "unitType": "p",
+      "rawStart": 104369,
+      "rawEnd": 105076,
+      "caseText": "佛即心，何異鼠咬鐵釘。更云直指見性，奚啻背面捉影。屋裏老爺好快樂，休對癡人呈家活。指南掉北有來由，極談概不落沉浮。鳥啼花發玄中玄，雨雪交加復誰瞻。夜半怒雷聲海外，木人石女化機解。未萌已前逞神通，逗到空空空不空。莫挂一縷及一絲，識取根源豈外事。無陰陽地盡掀翻，師子窟中沒野干。休休休處更休休，打起精神直到頭。於中略有些微念，無量影子一時現。現此影子有何功，但恐落在坑塹中。轉得頭來有甚面，辛苦萬端方矢願。願有願無始終誤，可憐回互不回互。出入須知不自瞞，自瞞尤失信之端。從來箇事勿移易，要顯如來第一義。削乖心，除障弊，聖凡一體夫何忌。中外打徹最全備，地獄天堂任游戲。人讚仰，鬼神懼，佛祖龍天密符契，不可思議功德而護衛。",
+      "storedKwic": "夜半怒雷聲海外，木人石女化機解。未萌已前",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 73,
+      "storedKwicEnd": 93,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        25546
+      ],
+      "normalizedFromLbMatchStarts": [
+        25546
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 25546,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_24891e88f516",
+      "sourceTerm": "木人石女",
+      "turnProofTerm": "木人石女",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": "Yuechuang Liao",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 81,
+          "headwordEnd": 85,
+          "headwordClause": "夜半怒雷聲海外，木人石女化機解。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 81,
+          "headwordEnd": 85,
+          "headwordClause": "夜半怒雷聲海外，木人石女化機解。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J29/J29nB239.xml",
+      "FromLb": "0505b29",
+      "title": "吹萬禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "惺學人十八偈",
+        "五蘊十二因緣偈",
+        "盂蘭盆偈",
+        "識楞嚴傳命",
+        "偈",
+        "美首座西堂秉拂問答",
+        "惺幼學",
+        "示蔚西堂",
+        "雙開竹二首并引",
+        "問答",
+        "看經",
+        "垂簾吉祥"
+      ],
+      "unitType": "p",
+      "rawStart": 210170,
+      "rawEnd": 234505,
+      "caseText": "堅溼暖動物，本來無覺知，何故雜識陰，而起諸妄想？妄想一生矣，潤業不能了，幸得無位人，幻我真三昧。一入性海中，灼爾紅輪現，卓越出蒼穹，上下何殊別？浩浩碧流波，輪轉何曾已，誰在不已中，攪成三昧水？苦海石蜜甜，火燄寒冰冷，說與觸途人，不可謂無作。一自華嚴藏，脫出香海印，花落閒鳥啼，風清明月墜。有時林禽飛，有時林禽宿，飛宿不同時，問取枝在否？客身離枝久，本來昧卻無，白出而青入，莫怪家犬吠。我來開一徑，再不得亡羊，岐路令人迷，佛法障人眼。荷葉灑清香，松花食可飽，不入功德林，生相倩誰棄？所以無行作，覺法自性性，出自獅子絃，一彈驚百獸。恁麼而行腳，隨波適智用，把柁生滅中，何常有生滅？有情無情咸一器，誰是綱維有無者？百花春到黃鸝飛，萬卉陽回白魚戲。飛躍不同上下殊，問取青山並綠水，一器空隨一器空，一一器中空何別。六箇門頭一樹花，根蒂無知任分別，互用串成潤業生，淪入五趣教誰替。多羅義了肖豹文，播迦空處如虎變，鬱鬱蔥蔥難自知，舉似人前只者是。落花流水亂春風，路上行人抱明月，花如明月景一如，多足蜈蚣不並得。火燄說法佛佇思，鼓聲傳語天帝聽，日用尋常不可量，一性之中無物捨。取捨在境不在心，兩足安能離大塊，水到成渠明月投，隙開有空清風至。清風明月不曾來，渠水隙空亦不去，見聞覺知本無生，善用頭頭觀自在。音聲不在語言中，形色何曾四大裏，百萬塵勞隨好生，掉臂原來度無極。扁舟夜火秋煙冷，空潭霜樹蘆花白，淺水歸來傍月眠，誰是漁人休歇處。忘心除境靜何曾，識浪遷流非是動，陶輪在手我空行，維摩世界難分別。問取木人石女聽，駕起泥牛鐵蛇走，活鱍機關孰比倫，珠在盤中隨便轉。問余日用用何事，饔飧行住及坐臥，太空本是無事人，鳥啼花笑又流水。頑石偏能識至人，不是生公不相識，應憐蛙聲苦且輕，未明者箇苦無量。冬日寒風秋日霜，雪上烏雞誰使然，智者不隨變態遷，終日變化而無用。性中有覺海中漚，山河大地從此起，果然得箇好兒孫，頭頭觸著金銀庫。薄梵仙陀何處尋，只在老僧拄杖下，東打西敲總不知，又是阿誰來聽響。凡夫早已敷華座，聖賢猶自苦婆心，所謂知事煩惱多，不知事者瞞頇過。示眾偈示眾偈一心一切心，一法一切法，因法故說心，無法心何有。是心亦非有，是心亦非無，非有非無中，法法從此起。是法亦非真，是法亦非妄，非真非妄中，心心從此住。是心不是心，是法不是法，五陰十二入，十八積聚義。有無俱幻對，真妄同影合，打破有無關，真妄隨緣露。妄現密菩提，妄現真如佛，八萬四千門，塵塵琉璃地。真現生死根，真現煩惱本，百億須彌山，事事皆無礙。煩惱煉真如，菩提銷生死，以相填道路，敲冰來煮水。鑽甚金剛圈，吞甚栗棘蓬，恁麼會得來，一碗閒茶飯。凡聖猶如戲幕人，事事物物直如此，扯斷繩索趯倒臺，一一從頭假透底。禱雨有應禱雨有應天不雨珠，為我心珠，天不雨玉，為我心玉。男兒若有淨肝腸，可是聖賢諸佛具。時節到來漏一些，十方法界彌真氣。化作風雷惺四生，化作甘霖潤九地。不然徒為賤丈夫，絕倒人間何所似。物我偈物我偈一籠竹，一卷山，榕樹小，石臺寬，不向你道，又說吾慳，分明直是者些兒，南北東西任往還。坐禪坐禪喜坐禪，來坐禪，兩輪燈影照，四壁月初圓。開口成外道，揚眉落二三，要知吾家真消息，日上三竿猶更眠。閱寒山詩數偈閱寒山詩數偈我愛寒山子，拈語不粘唇，因風吹野火，喚惺眾生心。又愛拾得子，言麤而理真，言麤令人怕，理真令人欽。豐干太饒舌，寒山太做作。拾得雖風狂，去後無蹤跡。好箇呂臺州，眼中添三屑。打鼓弄琵琶，還須吹萬訣。寒巖三貧士，卻也愛風流。在在捏空花，處處泛虛舟。一朝被人破，只得向石遊。問取均提兒，金毛豈是牛？廚下洗器者，解泛火中波。不吹離騷韻，便唱紫芝歌。衲衣披破雲，木履登愛河。相看只一笑，吾莫如之何。丈中獨無事，寒山傍雪飛。謂我閒些箇，勞他相似危。出錫煙霞捲，歸來泉石輝。不是愛如此，身心已離微。老人怕我笑，我怕老人哭。哭非陵行婆，笑是彌勒佛。一箇肚皮大，兩眼光如燭。手裏把豬頭，舌上青蓮出。窮子不就父，含飴枉弄孫。箇裏須知機，可中自有人。何以樂吾趣，笑指松柏新。吩咐善財兒，無勞過百城。紅塵飛野馬，朽御莫可把。擬欲烹小鮮，誰是陶漁者。不然化人居，虛心不肯下。歸之塞上翁，得失無生也。野里有人家，輕煙深樹杪。溪鳧岸上飛，停停落箇小。園翁不厭貧，山叟豈辭老。我去喜相逢，笑殺芝蘭草。郭外羊腸路，灣灣曲轉斜。薄暮馬蹄輕，行人不耐些。綠火山頭出，驚心入鬼家。回向月輪孤，滿地灑銀沙。示學人示學人樓子道人逐巷求，誰知彌勒醉高秋，一聲唱惺西來意，你若無心我也休。亡僧感寓亡僧感寓漚生漚滅原在海，設無生滅漚何從？我身浮遊天地間，且有大覺在其中。誰信空生大覺裏，四海又向空中起。何如覺破此幻身，幻與非幻同生死。誰同生？落花啼鳥嘯陽春。誰同死？翠柏蒼松溼秋雨。日用尋常是甚麼，昧卻依舊從頭數。病中受藥偈似羽霄居士病中受藥偈似羽霄居士泡幻雖不實，卻在泡幻中，隨流固不礙，痛癢豈無蹤？既是痛即我，癢處孰非儂？古者四事供，藥石可為功。牛乳曾潤佛，詎敢執其空？所以居士巧，能調四大通。藥還非藥本，病全非病容，為報知音者，雪火一爐紅。飛流天鼓偈飛流天鼓偈初夏既念日，我佛長男生。余以受請故，率眾臨菊隱。菊隱雖曰庵，其崖號和尚。不知自何代，相傳及于此。庵中有主人，歷然融然者，天親與無著，皆出陳氏族。久來親函丈，所以重復延。入院纔三朝，經行于溪岸。其日已崦嵫，流光橫飛度。政于絕頂間，化而為兩輪。光則內虛明，外而旋火焰。眾見斯瑞已，各贊為希有。畏愛猶未卒，忽聲如天鼓。一椎再不擊，于地皆震動。繼而揭周易，離為火，變以六二爻，曰黃離元吉，辭謂擔大業，文明于後世，上治及下澤，普利無不到。我觀法器根，唯有誠與信。天垂象以示，策進無愈此。天鼓尚說法，心性尚文明。得到中虛已，事事真無礙。我以如是說，領荷天中教。勿謂余饒舌，自有證盟者。靜坐聞鳩聲靜坐聞鳩聲靜坐獨無事，誰參五味禪。一聲鳩喚語，呱呱是真傳。即此物，非他物，鼯鼠曾指逍遙窟。淫雨淫雨天公不見過，總為肚皮大。誰有分別心，雨暘各其所。既是大慈悲，法堂當剖決。多處不須霪，少處如意落。山中煙雨有感山中煙雨有感入山住得四十日，十日寒兮一日暴。不覺深夜煙雨中，慧光靈靈忘損益。閒來無事讀莊周，多羨山人老白頭。金闕銀宮不足貴，義臺路寢卻成憂。兩臂已知輕天下，況復吾身先之秋。清冷稠木及廬水，卞隨務光北人矣。早知珠林別有春，怏怏徒勞速其死。雲山偈雲山偈天上雲似山，地下山似雲。不識雲山旨，勞勞虛實分。積氣以成塊，蒸塊復成雲。無何而上下，不分而有分。我已見佛性，性地非空形。水火及見識，七大全而真。以此方知幻，知幻知佛身。圓通非有隔，無生無不生。簡古人書字偈簡古人書字偈余獨偏愛書，又復偏愛字。非是性偏愛，古人亦如是。晦堂無餘金，卻有閒書史。擔囊兩竹籠，妙喜稱之至。所以讀古書，則與古人居。所以頌古詩，則與古人期。孔氏之家訓，學者亦可師。唯有坐禪箴，又不當如此。見山不是山，見水不是水。但得透過來，依舊是山水。幻人寫幻字，幻人作幻書。遺與幻人讀，讀之成幻佛。幻佛既屬真，法王大地身。五千四十八，則則是傳心。眉毛原來直，鼻孔亦非橫。風流自不得，何關萬象形。示蔚西堂四偈示蔚西堂四偈秋風凄，冬風吹，木葉飄飄亂如雨。為是葉來風上飛，為是風從葉邊起。有時葉落風歇腳，山色寥寥誰是你。愛日清，山色寒，野老何曾斷火煙。閣底煨爐烹芋粒，鐺中煎水入龍團。從他李泌汪若水，到此旋知世界寬。樹葉黃，霜風燒，唯留楓色似春桃。不知根性自然紅，不知時令逞其嬌。夜來細問玄冥使，遍照光中不動搖。何似松，何似柏，柳綠桃紅，不是久顏色。冰聲萬木凍，雲黃天下雪，澗底溪邊骨力強，嘗伴芝蘭相俊潔，禪和子，聽余說。示行腳僧示行腳僧薰風香，蒲劍綠，白雲煙裏夢初足，下榻扶笻問遠人，欲之白下橋頭否？詢道行腳事如何，月影蘆灣浪花續。實行偈實行偈學道不離心，離心不見道，認得真心處，豁然通三要。無非即是戒，無亂即是定，無癡慧日生，何必尋經論？是心亦非一，是心亦非三，心尚不可得，阿誰心外參？參與不參等，心與非心一，端的在其中，畢竟無巴鼻。呵呵逐影人，馳馳徒勞力，誰知草鞋裏，是渠真面目？示明寰禪人刺血寫法華經示明寰禪人刺血寫法華經四大相聚，造色圍空，空中幽隱，上徹下通。積熱成氣，積陰成血，順則鮮紅，逆則潔白。所以禪人，效普賢願，書血成字，微塵中現。微塵有經，不離一色，多寶全身，恁麼乃得。示東旭禪人二首示東旭禪人二首追尋者箇義如何，觸處逢渠秪恁麼，尊貴尚嫌千口少，貧窮猶恨一身多。鏡花燦影非唯識，水月幽清豈末那？沙界有情雙眼底，等閒泛動湧金波。一尺龜毛十寸深，無端月下自成陰，隨緣到處皆稱拄，方便由人話作心。熱鐵不離泉裏凍，寒冰直在火中尋，能將沒手拋天地，戶戶門前觀世音。觀桃花十首觀桃花十首籬邊香細暖風來，小樹銀紅花自開，消息已到靈雲手，摑動須彌把賦裁。靈英點就芙蓉色，不犯枝頭也大奇，覿面相呈來意好，香風穿過綠楊絲。因緣乍結胭脂嫩，謹守香唇不敢開，為報單傳關捩子，輕身才後落梅來。嬌顏露出非干色，葉上輕紅豈是煙，開卸尋常人不訝，都來昧卻粉牆邊。動口無言笑滿腮，幾回香自樹邊來，一枝折向窗前過，惹得遊蜂上講臺。野情恰好東林玩，夾竹紅花帶笑開，問取宗門一句子，春前不昧臘梅來。花神窈窕弄陽春，朵朵含煙樹上新，輕薄不隨流水去，落殘猶傍老山親。春到林園暖日遲，門前花萼忽橫枝，拈來道破東風意，萬紫千紅一笑時。經行未到東山徑，滿目繁英已照人，老衲不妨花葉墮，翩翩蝴蝶賞芳辰。花鳥和人一樣紅，秪緣人在此花中，翻身不怕風流礙，雲月溪山到處同。觀雪觀雪冽風陣陣鼓寒霜，玉甲無端落歲狂，多少行人看是雪，不知春水賴渠藏。輕綿乍落黃雲下，山色層層帳白羅，野衲閒時雖似雪，何如親向雪中過。觀竹觀竹竹葉青，竹葉綠，青青綠綠觀不足。風舞動，敲我耳，梵音海潮和煙起。揆其根本節節空，卻也隨緣知箇裏。老僧竹，竹老僧，何須更問情無情？一顆圓明只者是，任運瀟灑四時新。觀蘭觀蘭蘭花香，蘭花清，清清氣息香滿亭。我過階前若不識，無端鼻孔又通神。怪來莫訝老湛堂，巖桂曾傳太史黃。喚作吾無隱乎爾，撒手回頭歸故鄉。觀杏觀杏杏花紅，杏花白，春風粧就好顏色，不因時節喜相逢，歲歲風流何處洩。老僧冷眼直一看，昨日纔濃今日淡，還我根底一枝來，明年又鬥春風亂。浪花浪花傍石隨江任意裁，幾回風浪代春催，一枝帶雪纔驚放，滿架墻薇鬥月開。示燈世示燈世指窮薪火不相遺，金粟和光雅順時，遍照此身心是慧，佛華甘露世中飴。無我為偈無我為偈依他門戶總成癡，脫盡簾纖我自為，只須頭尾都埋縮，一任顛狂似不知。問我生涯無箇事，隨緣放曠匪膨脝，作用眼聾鼻又啞，笑殺寒松隊隊蒼。野老家常只自覺，粥飯饒餐米不殘，臥得雪林寒似火，噴鼻梅花香滿川。有舌無口難說話，燈籠露柱各自知，還他一味相應草，流水行雲在處奇。三十年來覓此難，誰人弄得巧成憨，于今變作金剛手，搖動虛空徹骨寒。擬金粟老人不離山偈擬金粟老人不離山偈從今一日不離山，指掌崑崙任我攀，玉線抽牽空匣裏，鴛鴦飛舞野雲間。坐中日月燈前影，眼底人天鏡上斑，縱臥渾無兜率夢，鼾聲震得老僧閒。天雨天晴天雨天晴細雨瀟瀟山色秋，深林閒殺老陀頭。上堂無事頻敲唱，半偈天花滿四洲。乾殼輕輕舊夢裏，彩雲閃閃畫圖中，試將扇影方樵鹿，到處人天海日紅。閒偈閒偈陶潛冒雨增豪趣，茂叔簽文更述奇，知他原是隱君子，招引同儕把韻推。如用之四偈如用之四偈當年漏逗幾多時，此日門開只自知，問取者般何所有，不拈拄杖便揚眉。昔時解醉寂寥酒，那識頭頭自縛纏，不是一覺如紛碎，幾乎昧卻掣顛仙。野馬紅塵事有無，都來著眼不成麤，遍地黃金開佛面，癡人猶礙笑浮圖。拈椎豎拂尋常事，心境繇人會我機，錐下莫能知痛癢，白雲依舊滿柴扉。示學人示學人春來花雨亂飛忙，幾度人情殆可傷，幸得枝頭無箇事，逢人敲打漫商量。三三兩兩沒來繇，到底還他事未休，我若無情雄一棒，淡煙籠竹便生愁。昨夜樓前看放花，今宵燈火在誰家？未明者箇徒瀟灑，昧卻黃金覓浪沙。乍寒乍熱乍寒乍熱昨日晴如火，今朝雨如冰，火時日氣太熱煞，冰時雨氣太寒生。深山獨無事，寒熱也著侵，侵時老僧不回避，隨他寒熱露全真。全真露，卻如何？正恁麼時不恁麼，蓋色騎聲天地外，風行草偃奈渠何。山童採得木子…山童採得木子，味若胡椒，每烹蔬調湯，深足予意，遂成四偈。人道肥甘濟市朝，壤餘何處不成驕，豈如草舍雲峰上，木子烹芹味最饒。當年行腳楚荊來，入坐荷香滿袖開，野蔬鼎調誰作味，山椒一粒勝鹽梅。坐臥雲霞況逸多，逢原左右採樵歌，一枝摘向行廚裏，碧影清光六味和。萬錢一食箸猶難，誰向肥濃把味寬，菊隱山頭清素雅，菜羹無恙是身安。吹萬禪師語錄卷之九吹萬禪師語錄卷之十嗣法孫燈來重編佛事佛事慧祖忌日拈香。「問著牯牛幾箇，今日親見相公，說道東山水行，四十九轉不通。為甚參成黃楊木，相隨來也始跳出，血濺梵天妙如何，八地文開真面目。此是大慧老祖家醜，無奈殃及兒孫，不免徹底吐來，權作供養。且道老祖還來鑑臨也無？煙裊玉爐飛白鶴，風舞袈裟動紫衣。」",
+      "storedKwic": "世界難分別。問取木人石女聽，駕起泥牛鐵蛇",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 634,
+      "storedKwicEnd": 654,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        57466
+      ],
+      "normalizedFromLbMatchStarts": [
+        57466
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 57466,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_24891e88f516",
+      "sourceTerm": "木人石女",
+      "turnProofTerm": "木人石女",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 642,
+          "headwordEnd": 646,
+          "headwordClause": "問取木人石女聽，駕起泥牛鐵蛇走，活鱍機關孰比倫，珠在盤中隨便轉。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 324,
+            "end": 329,
+            "text": "上下殊，問"
+          },
+          "nearestFollowingCue": {
+            "start": 3984,
+            "end": 3995,
+            "text": "僧竹，竹老僧，何須更問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 642,
+          "headwordEnd": 646,
+          "headwordClause": "問取木人石女聽，駕起泥牛鐵蛇走，活鱍機關孰比倫，珠在盤中隨便轉。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 324,
+            "end": 329,
+            "text": "上下殊，問"
+          },
+          "nearestFollowingCue": {
+            "start": 3984,
+            "end": 3995,
+            "text": "僧竹，竹老僧，何須更問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "L/L154/L154n1639.xml",
+      "FromLb": "0143b09",
+      "title": "天隱修禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "示眾",
+        "音釋",
+        "示眾",
+        "音釋",
+        "示眾",
+        "音釋",
+        "示眾",
+        "上堂",
+        "天隱禪師語錄目錄秉一"
+      ],
+      "unitType": "p",
+      "rawStart": 137241,
+      "rawEnd": 137658,
+      "caseText": "示眾舉忠國師問座主講什麼經主云惟識論國師云作麼生會惟識論主云三界惟心萬法惟識國師指簾云者個是什麼法主云色法國師云大師簾前賜紫對御譚經何得五戒不持師云座主講得千經萬論到者裏開口便錯法濟當時若作座主待國師指簾問者個是什麼只對他道國師老老大大簾子也不識眾中有不甘者出來道你也只識得個簾子法濟向他道國師問什麼來待他擬議即便喝出。",
+      "storedKwic": "得千經萬論到者裏開口便錯法濟當時若作座主",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 77,
+      "storedKwicEnd": 97,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        27541
+      ],
+      "normalizedFromLbMatchStarts": [
+        27541
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 27541,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_099bd2fda8bc",
+      "sourceTerm": "開口便錯",
+      "turnProofTerm": "開口便錯",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 85,
+          "headwordEnd": 89,
+          "headwordClause": "示眾舉忠國師問座主講什麼經主云惟識論國師云作麼生會惟識論主云三界惟心萬法惟識國師指簾云者個是什麼法主云色法國師云大師簾前賜紫對御譚經何得五戒不持師云座主講得千經萬論到者裏開口便錯法濟當時若作座主待國師指簾問者個是什麼只對他道國師老老大大簾子也不識眾中有不甘者出來道你也只識得個簾子法濟向他道國師問什麼來待他擬議即便喝出。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 4,
+            "end": 7,
+            "text": "國師問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 85,
+          "headwordEnd": 89,
+          "headwordClause": "示眾舉忠國師問座主講什麼經主云惟識論國師云作麼生會惟識論主云三界惟心萬法惟識國師指簾云者個是什麼法主云色法國師云大師簾前賜紫對御譚經何得五戒不持師云座主講得千經萬論到者裏開口便錯法濟當時若作座主待國師指簾問者個是什麼只對他道國師老老大大簾子也不識眾中有不甘者出來道你也只識得個簾子法濟向他道國師問什麼來待他擬議即便喝出。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 4,
+            "end": 7,
+            "text": "國師問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J25/J25nB171.xml",
+      "FromLb": "0521b16",
+      "title": "天隱和尚語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "烏瞻山法濟禪院語錄",
+        "湖州府上柏山報恩禪院語錄",
+        "天隱和尚語錄總目",
+        "天隱和尚語錄序"
+      ],
+      "unitType": "p",
+      "rawStart": 64266,
+      "rawEnd": 64693,
+      "caseText": "舉：「忠國師問：『座主！講什麼經？』主云：『《惟識論》。』國師云：『作麼生會《惟識論》？』主云：『三界惟心，萬法惟識。』國師指簾云：『這箇是什麼法？』主云：『色法。』國師云：『大師簾前賜紫，對御譚經，何得五戒不持？』」師云：「座主講得千經萬論，到這裏開口便錯。法濟當時若作座主，待國師指簾問：『這箇是什麼？』只對他道：『國師老老大大，簾子也不識。』眾中有不甘者出來道：『你也只識得箇簾子。』法濟向他道：『國師問什麼來？』待他擬議，即便喝出。」",
+      "storedKwic": "千經萬論，到這裏開口便錯。法濟當時若作座",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 117,
+      "storedKwicEnd": 137,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        21240
+      ],
+      "normalizedFromLbMatchStarts": [
+        21240
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 21240,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_099bd2fda8bc",
+      "sourceTerm": "開口便錯",
+      "turnProofTerm": "開口便錯",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 125,
+          "headwordEnd": 129,
+          "headwordClause": "』」師云：「座主講得千經萬論，到這裏開口便錯。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 109,
+            "end": 111,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 136,
+            "end": 145,
+            "text": "座主，待國師指簾問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 125,
+          "headwordEnd": 129,
+          "headwordClause": "』」師云：「座主講得千經萬論，到這裏開口便錯。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 109,
+            "end": 111,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 136,
+            "end": 145,
+            "text": "座主，待國師指簾問"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J38/J38nB428.xml",
+      "FromLb": "0904a17",
+      "title": "密行忍禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "密行忍禪師目錄次",
+        "密行禪師語錄序"
+      ],
+      "unitType": "p",
+      "rawStart": 8420,
+      "rawEnd": 9444,
+      "caseText": "師丁酉年行化至四川敘州府，眾乞授戒，文武紳衿請就喜獄禪院陞座。拈香云：「此香根盤大地之下，葉敷九天之上，爇向爐中，端為祝延今上皇帝萬歲、太子千秋、文武官僚及諸檀護高培祿算。」次拈云：「此香威音那畔結就，華藏世界長成，爇向爐中，供養三世諸佛、歷代祖師、古今天下三宗大善知識，伏願常存悲濟之心，普起寂光之上。」再拈云：「此香逢火不燒、遇水不溺，刀斫不入、斧劈不開，初年懷抱行腳至梁山界內，遇個毒手老賊，不分皂白當頭擊碎，直是合不得、離不得，今日向人天眾前一回拈出，爇向爐中，供養現住梁山縣雙桂堂上傳曹溪正脈第三十五世本師破山老和尚，用酬法乳。」整衣就座。上首白椎云：「法筵龍象眾，當觀第一義。」師云：「第一義諦開口道著、信步蹋著，為甚諸人開口便錯、動步即乖？還知利害處麼？秖緣諸人見威則畏、見恩則喜，墮在二邊，山僧即今在裏許求一點畏喜之心如芥子許了不可得，不是神通妙用，亦非法爾如然。若也會得，諸人得山僧戒者不上天堂，不得山僧戒者不墮地獄，其或尚留觀聽……」拈拄杖卓一下云：「鳥啼花笑分明事，也落時人第二機。」下座。上首結槌云：「諦觀法王法，法王法如是。」",
+      "storedKwic": "步蹋著，為甚諸人開口便錯、動步即乖？還知",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 309,
+      "storedKwicEnd": 329,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        731
+      ],
+      "normalizedFromLbMatchStarts": [
+        731
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 731,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "excluded-contributor-or-document-section",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_099bd2fda8bc",
+      "sourceTerm": "開口便錯",
+      "turnProofTerm": "開口便錯",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": "Mixing Jiren",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 317,
+          "headwordEnd": 321,
+          "headwordClause": "」師云：「第一義諦開口道著、信步蹋著，為甚諸人開口便錯、動步即乖？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 295,
+            "end": 297,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 456,
+            "end": 461,
+            "text": "上首結槌云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 317,
+          "headwordEnd": 321,
+          "headwordClause": "」師云：「第一義諦開口道著、信步蹋著，為甚諸人開口便錯、動步即乖？",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 295,
+            "end": 297,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 456,
+            "end": 461,
+            "text": "上首結槌云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0407c20",
+      "title": "五燈全書(第34卷-第120卷)",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "潤州勝果肅堂濬禪師",
+        "吳陵三塘乾乾湜禪師",
+        "崑山佛林雪門漣禪師",
+        "松江崇福鶴汀浦禪師",
+        "虎丘湧泉青印法禪師",
+        "吳陵祇樹竺堂溥禪師",
+        "荊南開聖山暉澣禪師",
+        "京都西林彌壑澧禪師",
+        "登州千佛頑衲準禪師",
+        "杭州吳山雲居羽尊鵬禪師",
+        "蘇州靈澱履冰汶禪師",
+        "太平澄心寄菴澯禪師"
+      ],
+      "unitType": "p",
+      "rawStart": 2815841,
+      "rawEnd": 2818762,
+      "caseText": "震也，法雨既傾也，諸人為甚猶然瞌睡？若教容易得，便作等閒看。卓一卓。示眾。古者道：西天一段事，總被今時人埋沒，却覓箇出頭處不得。眾兄弟！箇箇睜一雙眼，橫兩道眉，巍巍堂堂，遭古人與麼屈辱。眾中還有不甘者麼？良久，曰：設有，也是抑而為之。示眾。言無展事，語不投機。承言者喪，滯句者迷。且壁立萬仞一句作麼生道？蟬鳴深樹裏，花發白雲中。參。示眾。世尊拈花，正是第三。迦葉微笑，落在第四。直饒向未拈未笑已前薦得，猶落第二。且作麼生是第一？良久，曰：待山僧計較成，向汝諸人道。示眾。吾有一機，未敢輕提。若人會得，脫骨換皮。眼目定動，差池差池。示眾。見聞覺知，是生冤家。知覺見聞，是真佛祖。一舉四十九，任君顛倒數。大地黑漫漫，日輪正卓午。示眾。上單摸著枕，下床蹋著鞋。開門便作揖，原是故人來。若作平實商量，入地獄如箭射。不作平實商量，眉鬚墮落，却怪山僧不得。晚參。眾纔集，師曰，呵呵呵，好箇西來祖意，不得撒沙撒土。侍者曰，和尚已兩把也。師曰，却是山僧罪過。便下座。小參。以手拍一拍曰，一手不獨拍，兩手鳴摑摑。還有佛法道理也無？若道有，世諦流布。若道無，覿面錯過。誵訛在甚麼處？復拍一下曰，長安夜夜家家月，幾處笙歌幾處愁。問，如何是佛向上人？師曰，猶落數量在。曰，如何是無情說法？師曰，鐘無鼓嚮，鼓無磬聲。曰，如何是奇特事？師曰，舌頭無骨。問，古人道，不合一切，不共一切時如何？師曰，無人識得渠。問，如何是大同之道？師曰，五里一牌，十里一舖。曰，不問者箇道。師曰，甚麼道？曰，妙道。師曰，頭戴七星冠。問，如何是提婆宗？師曰，截耳臥街。僧擬進語，師打出。問，如何是賓中賓？師曰，直須買草鞋。曰，如何是賓中主？師曰，三十年後看。曰，如何是主中賓？師曰，山僧今日失利。曰，如何是主中主？師便起去。僧禮拜，師便踏。問，學人不問，請師不答時如何？師曰，好箇話墮衲僧。曰，恁麼則帶累和尚也。師曰，接竹點天。僧便喝，師便打出。",
+      "storedKwic": "諦流布。若道無，覿面錯過。誵訛在甚麼處？",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 461,
+      "storedKwicEnd": 481,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        678115
+      ],
+      "normalizedFromLbMatchStarts": [
+        678115
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 678115,
+      "inlineSpeakerMarkers": [
+        "若道"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a8d80736de3b",
+      "sourceTerm": "覿面錯過",
+      "turnProofTerm": "覿面錯過",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 469,
+          "headwordEnd": 473,
+          "headwordClause": "若道無，覿面錯過。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 411,
+            "end": 413,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 513,
+            "end": 515,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 469,
+          "headwordEnd": 473,
+          "headwordClause": "若道無，覿面錯過。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 411,
+            "end": 413,
+            "text": "師曰"
+          },
+          "nearestFollowingCue": {
+            "start": 513,
+            "end": 515,
+            "text": "師曰"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J37/J37nB383.xml",
+      "FromLb": "0207a10",
+      "title": "憨休禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "住涇陽清福禪院語錄",
+        "住西安府咸陽縣廣教禪寺語錄",
+        "住陝西西安府涇陽縣興福禪寺語錄",
+        "憨休乾禪師語錄目錄",
+        "序",
+        "序"
+      ],
+      "unitType": "p",
+      "rawStart": 47421,
+      "rawEnd": 48068,
+      "caseText": "上堂。僧問：「那吒太子析骨還父、析肉還母，然後現本身為父母說法。骨肉既還父母，又向甚麼處現身？」師云：「雲捲青天露。」進云：「還有報恩分也無？」師云：「竹篩日影斜。」僧便喝，師云：「你這一喝未有主在。」僧佇思，師云：「果然。」乃云：「薩陀波崙賣心肝而求般若，怛答阿羯為半偈而捨全身，少室斷臂安心，雲門推門折足。這一隊不唧溜漢，雖是醫得眼前瘡、剜卻心頭肉，殊不知朔風凜冽、紫柏凝霜，翠舞晴軒，竹響千竿之玉；雲連村墅，寒炊萬井之煙。一一天真、一一明妙，若作境致解會，覿面錯過當人；若作佛法商量，管入地獄如箭；若道境法雙忘，猶是墮坑落塹。到這裏，汝等諸人作麼生會？直饒倜儻分明，正好喫山僧拄杖子在。何故？假雞聲韻難瞞我，未肯糢糊放過關。」",
+      "storedKwic": "，若作境致解會，覿面錯過當人；若作佛法商",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 223,
+      "storedKwicEnd": 243,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        14946
+      ],
+      "normalizedFromLbMatchStarts": [
+        14946
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 14946,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a8d80736de3b",
+      "sourceTerm": "覿面錯過",
+      "turnProofTerm": "覿面錯過",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 231,
+          "headwordEnd": 235,
+          "headwordClause": "一一天真、一一明妙，若作境致解會，覿面錯過當人；",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 101,
+            "end": 107,
+            "text": "僧佇思，師云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 231,
+          "headwordEnd": 235,
+          "headwordClause": "一一天真、一一明妙，若作境致解會，覿面錯過當人；",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 101,
+            "end": 107,
+            "text": "僧佇思，師云"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J37/J37nB392.xml",
+      "FromLb": "0570c26",
+      "title": "寒松操禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "再住松江青龍隆福寺語錄",
+        "住松江青龍隆福禪寺語錄",
+        "弁山開堂疏",
+        "禮菴上梁開堂疏",
+        "安樂院開堂疏",
+        "白雲寶嚴開堂疏",
+        "國山開堂疏",
+        "青龍開堂疏",
+        "寒松操禪師語錄目錄",
+        "寒松操禪師語錄序",
+        "寒松操禪師語錄序",
+        "贊"
+      ],
+      "unitType": "p",
+      "rawStart": 61842,
+      "rawEnd": 62095,
+      "caseText": "罷爐，上堂。「開爐時，眉橫眼上；罷爐日，眼上橫眉。謾云十地功圓，贏得一肚妄想。知有者，達磨不來東土、二祖不往西天；不知有者，頭頭覿面錯過，迢迢十萬餘程。縱向途中薦得，倘遇前關把住，要討公驗，如何解結？苟措手不及，青龍有箇方便。」拈拄杖一齊打散。",
+      "storedKwic": "；不知有者，頭頭覿面錯過，迢迢十萬餘程。",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 56,
+      "storedKwicEnd": 76,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        18658
+      ],
+      "normalizedFromLbMatchStarts": [
+        18658
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 18658,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_a8d80736de3b",
+      "sourceTerm": "覿面錯過",
+      "turnProofTerm": "覿面錯過",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 64,
+          "headwordEnd": 68,
+          "headwordClause": "不知有者，頭頭覿面錯過，迢迢十萬餘程。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 64,
+          "headwordEnd": 68,
+          "headwordClause": "不知有者，頭頭覿面錯過，迢迢十萬餘程。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "C/C077/C077n1710.xml",
+      "FromLb": "0671b17",
+      "title": "古尊宿語錄",
+      "containerClass": "collection",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "首山禪師大鑑下八世風穴法嗣",
+        "重刊古尊宿語序",
+        "睦州禪師大鑑下四世嗣黃檗",
+        "臨濟慧照禪師餘錄",
+        "勘辨",
+        "臨濟禪師大鑑下四世嗣黃檗",
+        "黃檗斷際禪師宛陵錄"
+      ],
+      "unitType": "p",
+      "rawStart": 360639,
+      "rawEnd": 364572,
+      "caseText": "師出鏡清十二問荅洎翠岩代語師於一語下代三轉問時至草庵無一物為什麼却有盈餘清云要道何難岩云適來道什麼師代云自不知又云洎成忘却又云共語不知音問盡乹坤不出一剎郍今時人向什麼處辨明清云共語商量岩云向你道什麼處辨明師代云不問他別人又云明眼人笑你又云用辨即非問無神通菩薩為什麼蹤跡難尋清云波斯眼黑岩云莫鬼語師代云不是用心處又云被他捉著又云不勞舉步問辨得親踈底人為什麼却被親踈不肯清云不平按劒岩云當得也無師代云莫守閑又云大有人不解恁麼問又云不可辨親踈問明知生是不生之相為什麼却被生之所流清云明知無力岩云不關老兄事師代云自領過又云喚什麼作生死又云爭得不知有問人人具眼逢訪道人道即是不道即是清云頭上仙陁岩云莫道乞辨明師代云分明舉似他又云莫道乞荅話又云若不是寶應洎合遭他毒手問體本無瑕翳為什麼坐施良藥清云却正道著岩云且放老僧過師代云知過人難得又云更教誰喫棒又云今日草賊大敗問達者同遊一路行為什麼不行清云已到平頭岩云老兄還達也未師云不爭先又云到了不知又云但請先行問盡令提綱為什麼不塞時人口清云自還得岩云老兄還知明州米價麼師代云還曾失麼又云須知老兄又云爭知今日問無形本寂寥為什麼有物先天地清云寶公曲尺誌公剪刀岩云領過得也未師代云欺他作什麼又云阿誰與麼道又云不是闍棃置問問十方薄伽梵為什麼一路涅槃門清云家無二主岩云怪得人麼師代云到者方知又云一尚不可得又云常防此問問同氣連枝為什麼却根莖有異清云邵案迸彩岩云阿誰道有異師代云紹得麼又云見有前後又云今朝二十五師出風󲈺四賔主語僧云如何是賔中賔󲈺云攢眉看白雲師別云去來長自在不與白雲齊問如何是賔中主󲈺云入市雙瞳瞽師別云高聲唱呌遶街行問如何是主中賔󲈺云回鑾兩耀新師別云定國安邦賀太平問如何是主中主󲈺云磨礱三尺劒待斬不平人師別云收番猛將寸草不留師出四種照用語問如何是先照後用師云南岳嶺頭雲太行山下賊問如何是先用後照師云太行山下賊南岳嶺頭雲問如何是照用同時師云收下南岳嶺頭雲捉得太行山下賊問如何是照用不同時師云昨日有雨今日晴師出四賔主語問如何是賔中賔師云青山綠水分問如何是賔中主師云棒下耴分眀問如何主中賔師云退己讓人問如何是主中主師云斬盡不留身師出四料簡語問如何是奪人不奪境師云人前把出遠送千峯問如何是奪境不奪人師云打了不曾嗔冤家難解免問如何是人境兩俱奪師云萬人作一塚時人盡帶悲問如何是人境俱不奪師云問處分眀荅處親師出德山三轉語於一句中各下三轉問如何是凾盖乹坤句師云大地雪漫漫又云普天匝地又云海底紅塵起如何是截断眾流句師云不通凡聖又云洎合放過又云橫身三界外問如何是隨波逐浪句師云要道便道又云有問有荅又云此去西天十萬八千師舉僧問禾山如何是道山云耕人田不種僧云如何是道中人云禾熟不臨塲因僧問師出語云耕人田不種意旨如何師云大勛不竪賞僧云禾熟不臨塲意旨如何師云任從風雨爛師出盤龍和尚問行者接待不易行者云開心椀子盛將來無縫合兒合將去師云橫檐拄杖登霄漢使煞農夫煑粥人師出僧問如何是祖師西來意荅云風吹日𬉹師又云多年塵土無人佛一身常在鎮天涯。",
+      "storedKwic": "捉著又云不勞舉步問辨得親踈底人為什麼",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 159,
+      "storedKwicEnd": 177,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        63736
+      ],
+      "normalizedFromLbMatchStarts": [
+        63736
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 63736,
+      "inlineSpeakerMarkers": [
+        "捉著又云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "anonymous-interlocutor",
+        "embedded-case-or-citation",
+        "excluded-contributor-or-document-section",
+        "inline-speaker-marker",
+        "not-a-verified-single-master-container",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_bc9a15980b00",
+      "sourceTerm": "問辨",
+      "turnProofTerm": "問辨",
+      "sense": 1,
+      "occurrence": 1,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 167,
+          "headwordEnd": 169,
+          "headwordClause": "師出鏡清十二問荅洎翠岩代語師於一語下代三轉問時至草庵無一物為什麼却有盈餘清云要道何難岩云適來道什麼師代云自不知又云洎成忘却又云共語不知音問盡乹坤不出一剎郍今時人向什麼處辨明清云共語商量岩云向你道什麼處辨明師代云不問他別人又云明眼人笑你又云用辨即非問無神通菩薩為什麼蹤跡難尋清云波斯眼黑岩云莫鬼語師代云不是用心處又云被他捉著又云不勞舉步問辨得親踈底人為什麼却被親踈不肯清云不平按劒岩云當得也無師代云莫守閑又云大有人不解恁麼問又云不可辨親踈問明知生是不生之相為什麼却被生之所流清云明知無力岩云不關老兄事師代云自領過又云喚什麼作生死又云爭得不知有問人人具眼逢訪道人道即是不道即是清云頭上仙陁岩云莫道乞辨明師代云分明舉似他又云莫道乞荅話又云若不是寶應洎合遭他毒手問體本無瑕翳為什麼坐施良藥清云却正道著岩云且放老僧過師代云知過人難得又云更教誰喫棒又云今日草賊大敗問達者同遊一路行為什麼不行清云已到平頭岩云老兄還達也未師云不爭先又云到了不知又云但請先行問盡令提綱為什麼不塞時人口清云自還得岩云老兄還知明州米價麼師代云還曾失麼又云須知老兄又云爭知今日問無形本寂寥為什麼有物先天地清云寶公曲尺誌公剪刀岩云領過得也未師代云欺他作什麼又云阿誰與麼道又云不是闍棃置問問十方薄伽梵為什麼一路涅槃門清云家無二主岩云怪得人麼師代云到者方知又云一尚不可得又云常防此問問同氣連枝為什麼却根莖有異清云邵案迸彩岩云阿誰道有異師代云紹得麼又云見有前後又云今朝二十五師出風󲈺四賔主語僧云如何是賔中賔󲈺云攢眉看白雲師別云去來長自在不與白雲齊問如何是賔中主󲈺云入市雙瞳瞽師別云高聲唱呌遶街行問如何是主中賔󲈺云回鑾兩耀新師別云定國安邦賀太平問如何是主中主󲈺云磨礱三尺劒待斬不平人師別云收番猛將寸草不留師出四種照用語問如何是先照後用師云南岳嶺頭雲太行山下賊問如何是先用後照師云太行山下賊南岳嶺頭雲問如何是照用同時師云收下南岳嶺頭雲捉得太行山下賊問如何是照用不同時師云昨日有雨今日晴師出四賔主語問如何是賔中賔師云青山綠水分問如何是賔中主師云棒下耴分眀問如何主中賔師云退己讓人問如何是主中主師云斬盡不留身師出四料簡語問如何是奪人不奪境師云人前把出遠送千峯問如何是奪境不奪人師云打了不曾嗔冤家難解免問如何是人境兩俱奪師云萬人作一塚時人盡帶悲問如何是人境俱不奪師云問處分眀荅處親師出德山三轉語於一句中各下三轉問如何是凾盖乹坤句師云大地雪漫漫又云普天匝地又云海底紅塵起如何是截断眾流句師云不通凡聖又云洎合放過又云橫身三界外問如何是隨波逐浪句師云要道便道又云有問有荅又云此去西天十萬八千師舉僧問禾山如何是道山云耕人田不種僧云如何是道中人云禾熟不臨塲因僧問師出語云耕人田不種意旨如何師云大勛不竪賞僧云禾熟不臨塲意旨如何師云任從風雨爛師出盤龍和尚問行者接待不易行者云開心椀子盛將來無縫合兒合將去師云橫檐拄杖登霄漢使煞農夫煑粥人師出僧問如何是祖師西來意荅云風吹日𬉹師又云多年塵土無人佛一身常在鎮天涯。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 0,
+            "end": 7,
+            "text": "師出鏡清十二問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 167,
+          "headwordEnd": 169,
+          "headwordClause": "師出鏡清十二問荅洎翠岩代語師於一語下代三轉問時至草庵無一物為什麼却有盈餘清云要道何難岩云適來道什麼師代云自不知又云洎成忘却又云共語不知音問盡乹坤不出一剎郍今時人向什麼處辨明清云共語商量岩云向你道什麼處辨明師代云不問他別人又云明眼人笑你又云用辨即非問無神通菩薩為什麼蹤跡難尋清云波斯眼黑岩云莫鬼語師代云不是用心處又云被他捉著又云不勞舉步問辨得親踈底人為什麼却被親踈不肯清云不平按劒岩云當得也無師代云莫守閑又云大有人不解恁麼問又云不可辨親踈問明知生是不生之相為什麼却被生之所流清云明知無力岩云不關老兄事師代云自領過又云喚什麼作生死又云爭得不知有問人人具眼逢訪道人道即是不道即是清云頭上仙陁岩云莫道乞辨明師代云分明舉似他又云莫道乞荅話又云若不是寶應洎合遭他毒手問體本無瑕翳為什麼坐施良藥清云却正道著岩云且放老僧過師代云知過人難得又云更教誰喫棒又云今日草賊大敗問達者同遊一路行為什麼不行清云已到平頭岩云老兄還達也未師云不爭先又云到了不知又云但請先行問盡令提綱為什麼不塞時人口清云自還得岩云老兄還知明州米價麼師代云還曾失麼又云須知老兄又云爭知今日問無形本寂寥為什麼有物先天地清云寶公曲尺誌公剪刀岩云領過得也未師代云欺他作什麼又云阿誰與麼道又云不是闍棃置問問十方薄伽梵為什麼一路涅槃門清云家無二主岩云怪得人麼師代云到者方知又云一尚不可得又云常防此問問同氣連枝為什麼却根莖有異清云邵案迸彩岩云阿誰道有異師代云紹得麼又云見有前後又云今朝二十五師出風󲈺四賔主語僧云如何是賔中賔󲈺云攢眉看白雲師別云去來長自在不與白雲齊問如何是賔中主󲈺云入市雙瞳瞽師別云高聲唱呌遶街行問如何是主中賔󲈺云回鑾兩耀新師別云定國安邦賀太平問如何是主中主󲈺云磨礱三尺劒待斬不平人師別云收番猛將寸草不留師出四種照用語問如何是先照後用師云南岳嶺頭雲太行山下賊問如何是先用後照師云太行山下賊南岳嶺頭雲問如何是照用同時師云收下南岳嶺頭雲捉得太行山下賊問如何是照用不同時師云昨日有雨今日晴師出四賔主語問如何是賔中賔師云青山綠水分問如何是賔中主師云棒下耴分眀問如何主中賔師云退己讓人問如何是主中主師云斬盡不留身師出四料簡語問如何是奪人不奪境師云人前把出遠送千峯問如何是奪境不奪人師云打了不曾嗔冤家難解免問如何是人境兩俱奪師云萬人作一塚時人盡帶悲問如何是人境俱不奪師云問處分眀荅處親師出德山三轉語於一句中各下三轉問如何是凾盖乹坤句師云大地雪漫漫又云普天匝地又云海底紅塵起如何是截断眾流句師云不通凡聖又云洎合放過又云橫身三界外問如何是隨波逐浪句師云要道便道又云有問有荅又云此去西天十萬八千師舉僧問禾山如何是道山云耕人田不種僧云如何是道中人云禾熟不臨塲因僧問師出語云耕人田不種意旨如何師云大勛不竪賞僧云禾熟不臨塲意旨如何師云任從風雨爛師出盤龍和尚問行者接待不易行者云開心椀子盛將來無縫合兒合將去師云橫檐拄杖登霄漢使煞農夫煑粥人師出僧問如何是祖師西來意荅云風吹日𬉹師又云多年塵土無人佛一身常在鎮天涯。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 0,
+            "end": 7,
+            "text": "師出鏡清十二問"
+          },
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J26/J26nB186.xml",
+      "FromLb": "0651b01",
+      "title": "林野奇禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "問答機緣",
+        "附天童西堂寮應答機緣",
+        "入室勘辨",
+        "與北嵩巖謐書記",
+        "與佛古聞長老",
+        "復益城姚中丞附來書",
+        "書問",
+        "行實",
+        "拈頌",
+        "誡勉",
+        "警策",
+        "普說"
+      ],
+      "unitType": "p",
+      "rawStart": 150458,
+      "rawEnd": 150725,
+      "caseText": "能解，士便問：「如何辨？」師云：「問辨即乖。」士云：「不辨時如何？」師云：「呆了也。」士云：「辨與不辨且止，即今一句作麼生道？」師云：「速禮三拜。」士便禮拜。師云：「隨人腳跟轉。」士云：「早晚禮拜何妨？」師云：「是則也是，是則未是。」",
+      "storedKwic": "問辨即乖。」士云：「",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 17,
+      "storedKwicEnd": 27,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        49448
+      ],
+      "normalizedFromLbMatchStarts": [
+        49448
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 49448,
+      "inlineSpeakerMarkers": [
+        "士云"
+      ],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "inline-speaker-marker",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_bc9a15980b00",
+      "sourceTerm": "問辨",
+      "turnProofTerm": "問辨",
+      "sense": 1,
+      "occurrence": 2,
+      "currentMasterName": null,
+      "turnProofCandidates": [
+        {
+          "headwordStart": 17,
+          "headwordEnd": 19,
+          "headwordClause": "」師云：「問辨即乖。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 13,
+            "end": 15,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 34,
+            "end": 36,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 17,
+          "headwordEnd": 19,
+          "headwordClause": "」師云：「問辨即乖。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": {
+            "start": 13,
+            "end": 15,
+            "text": "師云"
+          },
+          "nearestFollowingCue": {
+            "start": 34,
+            "end": 36,
+            "text": "師云"
+          },
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    },
+    {
+      "RelPath": "J/J28/J28nB211.xml",
+      "FromLb": "0469c24",
+      "title": "季總徹禪師語錄",
+      "containerClass": "single-record-candidate",
+      "titleOwnerCandidates": [],
+      "nearestHeadOwnerCandidates": [],
+      "precedingHeadsNearestFirst": [
+        "喃喃語",
+        "悼祖風辭",
+        "雜著",
+        "與周雲卿居士",
+        "與黃樵雲居士",
+        "寄衡陽劉氏兄弟",
+        "與式玉王居士",
+        "與李四夫人",
+        "與李三夫人",
+        "寄興化沈居士",
+        "書問",
+        "倪伯屏居士像贊"
+      ],
+      "unitType": "p",
+      "rawStart": 195716,
+      "rawEnd": 198292,
+      "caseText": "當知學道，如牧牛法。慎勿縱緩，犯人苗稼。生死心當切，世緣殊可罷。看箇話頭，心心無間。當離憒鬧，安處寂靜。宜遠雜遝，志圖見性。宜寡言詞，多語者賤。宜省緣慮，多事者亂。無見小利壞良心，無因小害損善念。毋見人非，退己善根。毋自作孽，退人道意。毋以微善而不作，毋以小惡而不禁。聞善言當拱聽，臨禍患當安詳。見不平毋動氣，遇侮慢毋動嗔。處友必須乎澹，絕交毋出惡聲。聞過莫憚改，聞諫當自醒。非切己事莫往，有益善者當行。人家無伴，慎勿久坐。在處逢人，不宜戲論。當大事毋急卒，遇小事毋輕忽。無要緊事莫舉，無利益事莫談。好事宜先人後己，過失宜責己恕人。無訐露人隱事，無障昧人美行。毋為事難而辭，毋為患難而退。毋以妄身作業，不可縱性壞事。口不宜傳人非，耳不宜聽人短。見諍宜息，見難急救。重義疏財，損己利物。出言須和氣，行事宜誠實。問辨當虛己，論事須達理。捨戲玩具，遠惡律儀。莫親邪辟人，莫習惡知解。貧乏無苟求，從容無妄費。理不可自是，事不可固執。凡事宜方便，為人無刻薄。語默宜尊重，舉止貴安詳。當親良友，宜擇明師。見人須謙遜，交易宜平穩。奉己宜約，待老宜寬。在下者宜慈愛，不慈愛同廢物。在上者須孝敬，不孝敬類犬馬。當患道德不充，毋以聲利自累。當治心於未萌，毋順情以致亂。究道研真，老病應當益壯。親師擇友，曉夕不可憚勞。切忌胸中存物，虛室自然生白。切莫意下染塵，鏡清斷不匿髮。當觀此身不久，腐爛應不移時。自心因塵而有，無塵體亦無依。觀身量等虛空，則不見有身而為生死，而生死亦同虛空。安心還同法界，則不見有心而為起滅，而起滅亦同法界。當信悟道在剎那，不費纖毫力。若假纖毫力，即同有作。意慢則心輕，信微則志弱。夙障深厚，實難湊泊。天下無愚人，不納言者愚。天下無真病，不受藥者病。病愈而藥不除，其病轉深也。言納而愚猶在，其言不聖也。然則余固非聖，其言皆私淑諸聖也。有心當世者，不以人廢言可也。",
+      "storedKwic": "氣，行事宜誠實。問辨當虛己，論事須達",
+      "storedKwicContainedInUnit": true,
+      "storedKwicStart": 346,
+      "storedKwicEnd": 364,
+      "storedKwicOffsetBound": true,
+      "kwicMatchCountInSource": 1,
+      "kwicFromLbMatchCount": 1,
+      "normalizedMatchStarts": [
+        50385
+      ],
+      "normalizedFromLbMatchStarts": [
+        50385
+      ],
+      "occurrenceIdentityStatus": "unique-kwic-fromlb",
+      "selectedNormalizedStart": 50385,
+      "inlineSpeakerMarkers": [],
+      "inlineNamedOwnerCandidates": [],
+      "riskFlags": [
+        "embedded-case-or-citation",
+        "title-owner-not-unique"
+      ],
+      "tier": "B-review",
+      "rule": "Read the whole case and map exact turns; title identifies the record owner, not necessarily this line's speaker.",
+      "entryId": "t_bc9a15980b00",
+      "sourceTerm": "問辨",
+      "turnProofTerm": "問辨",
+      "sense": 1,
+      "occurrence": 3,
+      "currentMasterName": "Jizong Che",
+      "turnProofCandidates": [
+        {
+          "headwordStart": 354,
+          "headwordEnd": 356,
+          "headwordClause": "問辨當虛己，論事須達理。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ],
+      "boundTurnProofCandidates": [
+        {
+          "headwordStart": 354,
+          "headwordEnd": 356,
+          "headwordClause": "問辨當虛己，論事須達理。",
+          "overlapsStoredKwic": true,
+          "nearestPrecedingCue": null,
+          "nearestFollowingCue": null,
+          "reviewInstruction": "Name only the utterer of the headword-bearing clause. A cue after the clause usually begins the response and must not be assigned backward."
+        }
+      ]
+    }
+  ]
+}

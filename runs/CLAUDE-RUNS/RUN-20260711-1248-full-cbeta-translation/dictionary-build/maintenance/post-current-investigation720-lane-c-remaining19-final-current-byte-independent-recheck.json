@@ -1,0 +1,545 @@
+{
+  "schemaVersion": "post720-lane-c-remaining19-final-current-byte-independent-recheck.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "generatedUtc": "2026-07-17T17:34:02.352352+00:00",
+  "scope": "Lane C remaining 19 actor-repair entries, reviewed from actual current bytes",
+  "repairLedger": "maintenance/post-current-investigation720-lane-c-remaining19-exact-actor-repair-ledger.json",
+  "repairLedgerSha256": "c4951fb58e8f9813cc9d5924b40a73f116d6eafa25fc454f37fbf166bd13f5f2",
+  "originalAll51Review": "maintenance/post-current-investigation720-lane-c-all51-current-byte-independent-recheck.json",
+  "originalAll51ReviewSha256": "13f882bbb970593a86d60a73ee944489b7adfc79fed67ec01266e88e483910b2",
+  "postRepairGate": "maintenance/post-current-investigation720-lane-c-remaining19-postrepair-gate-v3.json",
+  "postRepairGateSha256": "71a2d9625dd67c0d37d76e27d234fc036139419671bcbf4b82353651466e2ca9",
+  "gateExactKwicVerified": 59,
+  "gateAttributionHardFailures": 0,
+  "gateOverallHardPass": false,
+  "gateOverallNote": "Overall false is due to inherited depth/prose review flags; exact KWIC and attribution gates are green.",
+  "reviewedCount": 19,
+  "passCount": 19,
+  "reviseCount": 0,
+  "rejectCount": 0,
+  "allCurrentShasMatchRepairLedger": true,
+  "entriesEdited": false,
+  "buildPerformed": false,
+  "lineageTouched": false,
+  "decisions": [
+    {
+      "lanePosition": 11,
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "currentEntrySha256": "1fcbd5dd84fdc9ae1fcf2a39cc3f81b9795cb3eefd5ee97fa14bdc3f9df92e21",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 4,
+        "repairedOccurrenceIndexes": [
+          0
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 13,
+      "id": "t_7acb482cb5ac",
+      "term": "紫芝歌",
+      "currentEntrySha256": "01e1b83c3a00451b8f8205256a448a42cfaf42d8eac656964b327eaedbbf4618",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 4,
+        "repairedOccurrenceIndexes": [
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 30,
+      "id": "t_c1b5b57bf7bf",
+      "term": "忌晨",
+      "currentEntrySha256": "174e6b0969e228459b1e29745c86043404aefcd5f1d5de8678c78e68c69bf466",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 3,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 35,
+      "id": "t_024dc48ed8c8",
+      "term": "尋香逐氣",
+      "currentEntrySha256": "3ced225dee06435a46d5d248f1bbc45b8b079ba5e041096d684f313637988ec3",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 38,
+      "id": "t_09e6c3b9fda9",
+      "term": "枯木禪",
+      "currentEntrySha256": "50d4090e4dca427465ca3bfd2276bdbddfaf429fed3ea435cb0c9eabb895c579",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 40,
+      "id": "t_8fb41216ea2d",
+      "term": "吹網欲滿",
+      "currentEntrySha256": "e98d151c45aae2c627c3bda3f5495b53398d4c466861836de7397efe6e8ae5ca",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          1
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 41,
+      "id": "t_17a7fbf49855",
+      "term": "卞和三獻",
+      "currentEntrySha256": "6494249944ecd52d9bbaa27b3adde396620a1a1a163df55d5f3ed318af8d6952",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 42,
+      "id": "t_232fb680eed8",
+      "term": "觸目是道",
+      "currentEntrySha256": "0e2e70bdc484996c2ea4b369780775c2b9bf803161558b50f52ef78f3f4dd0ca",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 3,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 43,
+      "id": "t_78c9686a321b",
+      "term": "不休不歇",
+      "currentEntrySha256": "117c37f5d89d275cc0c2101d407c8d2e3c1084c585b81873e81feba31f499e95",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 44,
+      "id": "t_d591a2f6612e",
+      "term": "南頓北漸",
+      "currentEntrySha256": "acc039b828082606983adde189f4caebb3a7325f1010dca1f5bccfc30ab5c95b",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 3,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 46,
+      "id": "t_e3d34a8ece55",
+      "term": "斷滅空",
+      "currentEntrySha256": "aeccf2f29086bbedd1bfaff9cf567a270b922f8d1d43c31f1a51366c76eae6f8",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 47,
+      "id": "t_82aae3d9af41",
+      "term": "無明即大智",
+      "currentEntrySha256": "7cb98b314c177825f4cdc43feca0c4ee4036362797ff170fea60d32a48af72fa",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 3,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 48,
+      "id": "t_8734518253a0",
+      "term": "見有遲疾",
+      "currentEntrySha256": "c24b5718318c18b8b94fcde47e8d07d1424a8bf33e2474dc340e1f9b80e596b1",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 51,
+      "id": "t_5af5d6fbe243",
+      "term": "淨灑灑",
+      "currentEntrySha256": "d4127a978b8e1f256b97c09387fb554202ea272e8e5d3cbc963093f1ee9d5e88",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 53,
+      "id": "t_e03b722cdb4a",
+      "term": "呵佛叱祖",
+      "currentEntrySha256": "7da4ae019ca3dd1c3fabb6c88a4fb8b2fe22c43d6b9a8428c03cb55c9173435f",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 54,
+      "id": "t_b9499eef244a",
+      "term": "泥牛入海公案",
+      "currentEntrySha256": "268e3c5d2866f66cecc1a3ee57aadef61796d05d8bf7d97d7f0ca564573bf601",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 0,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 55,
+      "id": "t_72d150e8483a",
+      "term": "豆爆寒灰",
+      "currentEntrySha256": "99743b45323d970282f019dd2b80593e788556c1e220af39028bd1a5a3e7ff52",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          0,
+          1
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 56,
+      "id": "t_d3ab00825235",
+      "term": "觀心無心",
+      "currentEntrySha256": "8c1bde81b0fcb060a24863e5d2bf001663e501fcd8f299e40cf8035247f9f20b",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 3,
+        "exactActorBindingNoteCount": 2,
+        "repairedOccurrenceIndexes": [
+          0,
+          1
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    },
+    {
+      "lanePosition": 58,
+      "id": "t_c21a3b78ecb3",
+      "term": "敲冰覓火",
+      "currentEntrySha256": "05e59490cf94c846a787055ae024602c614d94b8b4bbc8ebfb465a5df5d73930",
+      "matchesRepairLedgerAfterSha256": true,
+      "decision": "PASS",
+      "checks": {
+        "originalIndependentRulingResolved": true,
+        "semanticOverreachRemoved": true,
+        "exactActorRulingPresentInActualBytes": true,
+        "quotedOriginCurrentVoiceSeparatedWhereRequired": true,
+        "exactKwicGate": true,
+        "attributionGate": true,
+        "depthAndProseGateFlags": "inherited-review-flags-not-regressions-from-actor-repair"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "structuredActorAttributionCount": 1,
+        "exactActorBindingNoteCount": 3,
+        "repairedOccurrenceIndexes": [
+          1,
+          2
+        ]
+      },
+      "finding": "The current entry bytes preserve the already accepted semantic narrowing and now implement the outstanding exact-actor ruling. Problematic narrator, heading, quoted-source, questioner, commentator, or authored-preface cases have explicit ActorAttribution with grammar evidence; unambiguous marked turns retain exact named-utterer bindings in their occurrence notes. The current SHA matches the repair ledger, and the cohort gate verifies the exact 59/59 occurrences and attribution. Remaining gate review flags are inherited depth/prose flags, not failures of this actor repair."
+    }
+  ]
+}

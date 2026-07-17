@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "post720-lane-a-canary-author-checkpoints.v1",
+  "decisionCount": 6,
+  "builtCount": 5,
+  "stopBeforeLanePosition": 7,
+  "decisions": [
+    {
+      "lanePosition": 1,
+      "id": "t_8dfac3877360",
+      "headword": "依樣",
+      "disposition": "KEEP",
+      "reason": "The phrase marks doing or depicting something after an existing model."
+    },
+    {
+      "lanePosition": 2,
+      "id": "t_2d8f5919247b",
+      "headword": "廣燈錄",
+      "disposition": "REJECT",
+      "reason": "All sealed cases use 廣燈錄 as part of the bibliographic title 天聖廣燈錄 or 宗門廣燈錄; none deploy it as an independent Chan expression."
+    },
+    {
+      "lanePosition": 3,
+      "id": "t_08e0ef30ead9",
+      "headword": "鴨類",
+      "disposition": "KEEP",
+      "reason": "Within the recurring goose-and-duck comparison, the term names those unable to separate milk from water."
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_d0419c13b037",
+      "headword": "不變隨緣",
+      "disposition": "KEEP",
+      "reason": "The formula joins an unchanged nature with responsive manifestation under conditions."
+    },
+    {
+      "lanePosition": 5,
+      "id": "t_186677ffbc59",
+      "headword": "客塵煩惱",
+      "disposition": "KEEP",
+      "reason": "The phrase treats afflictions as visiting dust that stains but is not the mind’s original nature."
+    },
+    {
+      "lanePosition": 6,
+      "id": "t_1ff4d467780c",
+      "headword": "泯默",
+      "disposition": "KEEP",
+      "reason": "The term marks a silent, blank, or extinguished condition that Chan teachers distinguish from realization."
+    }
+  ],
+  "built": [
+    {
+      "lanePosition": 1,
+      "id": "t_8dfac3877360",
+      "headword": "依樣",
+      "disposition": "KEEP",
+      "entryDraftSha256": "f8f9024d48fb1b13f253a84e418310cc5c33291cb9cc9c3808235428a52054ee",
+      "workSha256": "4c01ccde8c5ef70115c41ce4e9ede1f13608ad6ef46ade675ba592c3d2ce4615",
+      "independentWorkIds": [
+        "work:J28nB202",
+        "work:J29nB239",
+        "work:X64n1260",
+        "work:X68n1319",
+        "work:wudeng-quanshu",
+        "work:X66n1296"
+      ]
+    },
+    {
+      "lanePosition": 3,
+      "id": "t_08e0ef30ead9",
+      "headword": "鴨類",
+      "disposition": "KEEP",
+      "entryDraftSha256": "ff7572fe25ad00a3563e122875e664f603975d91354e3f96e68d4c1b8468dea5",
+      "workSha256": "3dfdad54057d79d5b19476e88db3808af602e504844fe1dc861ac921147cb1f1",
+      "independentWorkIds": [
+        "chan:zongjian-falin",
+        "chan:dahui-pushuo",
+        "work:T47n1998A",
+        "work:wudeng-quanshu"
+      ]
+    },
+    {
+      "lanePosition": 4,
+      "id": "t_d0419c13b037",
+      "headword": "不變隨緣",
+      "disposition": "KEEP",
+      "entryDraftSha256": "e14a9235ddc72c8a83d914c4815f6183c5f5eb380257b3caf151b0b95baae265",
+      "workSha256": "a928f0637c75d0bdcefbe983d2331850696f6f71b64ccfc494ef5ed2913625b2",
+      "independentWorkIds": [
+        "work:T48n2016",
+        "work:X63n1255",
+        "work:J26nB185",
+        "work:T48n2015"
+      ]
+    },
+    {
+      "lanePosition": 5,
+      "id": "t_186677ffbc59",
+      "headword": "客塵煩惱",
+      "disposition": "KEEP",
+      "entryDraftSha256": "67e24868b7d1288ff84680ff987b729341cff8ca2c8f747114881c6ac6b36315",
+      "workSha256": "4df760e60e5ff602820eaf9551c6fe10ec6928d2061920170af7777ce0873653",
+      "independentWorkIds": [
+        "work:T48n2016",
+        "work:T47n1998A",
+        "work:T48n2020",
+        "chan:zhiyue-lu"
+      ]
+    },
+    {
+      "lanePosition": 6,
+      "id": "t_1ff4d467780c",
+      "headword": "泯默",
+      "disposition": "KEEP",
+      "entryDraftSha256": "7d79436a0c3e2ac0f102610802fe65afbada0ba38becaf71d283d3aa17a65e36",
+      "workSha256": "0c78df2ae9fb4312c5b6b8a9f7ab3d0596fed788c067eb9d92fb0ec5f4fae76e",
+      "independentWorkIds": [
+        "work:X70n1376",
+        "work:X69n1359",
+        "work:X63n1259",
+        "work:T47n1997"
+      ]
+    }
+  ]
+}

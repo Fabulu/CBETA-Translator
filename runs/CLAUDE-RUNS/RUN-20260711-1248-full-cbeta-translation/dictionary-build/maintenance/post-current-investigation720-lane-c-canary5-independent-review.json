@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-c-canary5-independent-review.v1",
+  "reviewedAuthorLedger": {"path":"maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json","sha256":"2d4c554038ce15fcdf61c5d3b775b297c61433ed9a663abd56552d80220c05e5"},
+  "fullCasePacket": "maintenance/post-current-investigation720-floor-fullcase-c.json",
+  "reviewMode": "independent-current-byte-full-case-no-edit",
+  "hardPass": true,
+  "decisions": [
+    {"id":"t_75039519e1e0","term":"廣燈","authorDecision":"REJECT","reviewDecision":"PASS","entryAbsent":true,"reason":"The reviewed occurrences resolve as the personal title/name 廣燈禪師 or the bibliographic title 天聖廣燈錄, not an independently deployed Chan expression."},
+    {"id":"t_68f8f387cfd6","term":"普燈錄","authorDecision":"REJECT","reviewDecision":"PASS","entryAbsent":true,"reason":"The full cases use the string only as the title/citation 嘉泰普燈錄; no lexical Chan deployment survives the title boundary."},
+    {"id":"t_27bbde1bc523","term":"馬腳","authorDecision":"KEEP","reviewDecision":"PASS","entrySha256":"fdddfded405d4a63a6f7837ae8d1db3b2639400fc94a3b951f08f5eb9a35610e","reason":"Six current-byte occurrences support the corpus-attested split between a horse’s foot and the fixed 露出馬腳 giveaway idiom, with three independent works per sense."},
+    {"id":"t_687709b1388b","term":"隨人腳跟轉","authorDecision":"KEEP","reviewDecision":"PASS","entrySha256":"a663879a882032ea96e74ff339501a24085729ad8894f254c3d80c8a2004cdc9","reason":"Four independent full cases use heel-following as an explicit rebuke for derivative bodily, verbal, or conceptual movement."},
+    {"id":"t_8072bafc41fe","term":"貨利","authorDecision":"REJECT","reviewDecision":"PASS","entryAbsent":true,"reason":"The reviewed letters and instructions retain the ordinary goods/material-profit sense, commonly coordinated with 聲色 or 名利; no distinct Chan lexical job is evidenced."}
+  ],
+  "disposition": "APPROVE_LANE_C_POSITIONS_6_58",
+  "writesToReviewedEntries": false
+}

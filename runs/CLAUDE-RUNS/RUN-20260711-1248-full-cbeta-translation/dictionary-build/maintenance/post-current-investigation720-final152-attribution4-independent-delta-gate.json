@@ -1,0 +1,270 @@
+{
+  "generatedUtc": "2026-07-17T18:53:12.491137+00:00",
+  "elapsedSeconds": 4.355,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "path": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "sha256": "1221ff5a4e3f199f3c6804dba5a9d0a3b3702c2f6bd2534047b403e827a79c7c"
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "path": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "sha256": "fccd9a67c9231976084312595967139ae1d22c79d357fd36da15a2ba6c9a49d2"
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "path": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "sha256": "f7d3f25c1e48b59427f8e163ed131832e84f16cea470985dd24fcdced48e85cb"
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "path": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "sha256": "10a9a29e34b1bf31f1a1ac0750c5c8211272164cf21bbc0537af9c85f5f71666"
+    }
+  ],
+  "exactKwic": {
+    "entries": 4,
+    "verified": 12,
+    "occurrenceVerified": 12,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+        "id": "t_10eee640a50b",
+        "term": "先師末後句",
+        "verified": 3,
+        "occurrenceVerified": 3,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+        "id": "t_63ededf0ee19",
+        "term": "呈解問",
+        "verified": 3,
+        "occurrenceVerified": 3,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+        "id": "t_d61b2bb1964b",
+        "term": "本無動搖",
+        "verified": 3,
+        "occurrenceVerified": 3,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+        "id": "t_f738f6209a61",
+        "term": "兜率三關",
+        "verified": 3,
+        "occurrenceVerified": 3,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.088,
+    "attribution": 4.135,
+    "publicFeedback": 0.924,
+    "depthSense": 2.887,
+    "countClaims": 0.668,
+    "workSourceValidation": 0.559,
+    "corpusBaseline": 0.559,
+    "frozenHistoricalTerms": 1.343,
+    "lineageRosterUntouched": 3.344,
+    "batchSemanticTemplates": 0.615,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 4.135,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "occurrences": 12,
+        "actor_impersonal": 1,
+        "context_master_links": 13,
+        "attribution_notes": 12,
+        "named_occurrences": 7,
+        "deferred_non_roster": 2,
+        "pending_roster_master": 2,
+        "deferred_non_roster_context": 2,
+        "pending_roster_context_master": 2,
+        "actor_identified_non_master": 1,
+        "actor_reviewed_unnamed": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"occurrences\": 12,\n    \"actor_impersonal\": 1,\n    \"context_master_links\": 13,\n    \"attribution_notes\": 12,\n    \"named_occurrences\": 7,\n    \"deferred_non_roster\": 2,\n    \"pending_roster_master\": 2,\n    \"deferred_non_roster_context\": 2,\n    \"pending_roster_context_master\": 2,\n    \"actor_identified_non_master\": 1,\n    \"actor_reviewed_unnamed\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.924,
+    "payload": {
+      "entries": 4,
+      "passing": 3,
+      "flagged": 1,
+      "flagsByKind": {
+        "opening-interpretation-needs-review": 1
+      }
+    },
+    "output": "{\n  \"entries\": 4,\n  \"passing\": 3,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"opening-interpretation-needs-review\": 1\n  }\n}\nreport: /tmp/tmpdebpgz3v.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 2.887,
+    "payload": {
+      "audited": 4,
+      "hardFailed": 3,
+      "reviewFlagged": 1,
+      "singleSense": 4,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_10eee640a50b",
+        "t_63ededf0ee19",
+        "t_d61b2bb1964b",
+        "t_f738f6209a61"
+      ]
+    },
+    "output": "{\n  \"audited\": 4,\n  \"hardFailed\": 3,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 4,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_10eee640a50b\",\n    \"t_63ededf0ee19\",\n    \"t_d61b2bb1964b\",\n    \"t_f738f6209a61\"\n  ]\n}\nreport: /tmp/tmpjyxbzfrw-depth.json\n",
+    "report": "/tmp/tmpjyxbzfrw-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.668,
+    "payload": {
+      "entryCount": 4,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 4,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.559,
+    "payload": {
+      "counts": {
+        "entries": 4,
+        "senses": 4,
+        "multiSourceSenses": 4
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 4,\n    \"senses\": 4,\n    \"multiSourceSenses\": 4\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.559,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.343,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "lineageRosterUntouched": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.344,
+    "payload": {
+      "schemaVersion": "dictionary-lineage-write-prohibition.v2",
+      "mode": "wave-baseline",
+      "hardPass": true,
+      "protected": [
+        {
+          "path": "Assets/Data/lineage-masters.json",
+          "worktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "headObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "semanticBytesSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+          "clean": true,
+          "baselineWorktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "unchangedFromBaseline": true
+        },
+        {
+          "path": "Assets/Data/master-dates.json",
+          "worktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "headObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "semanticBytesSha256": "7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0",
+          "clean": true,
+          "baselineWorktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "unchangedFromBaseline": true
+        }
+      ],
+      "failures": []
+    },
+    "output": "{\n  \"schemaVersion\": \"dictionary-lineage-write-prohibition.v2\",\n  \"mode\": \"wave-baseline\",\n  \"hardPass\": true,\n  \"protected\": [\n    {\n      \"path\": \"Assets/Data/lineage-masters.json\",\n      \"worktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"headObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"semanticBytesSha256\": \"33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"unchangedFromBaseline\": true\n    },\n    {\n      \"path\": \"Assets/Data/master-dates.json\",\n      \"worktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"headObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"semanticBytesSha256\": \"7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"unchangedFromBaseline\": true\n    }\n  ],\n  \"failures\": []\n}\n"
+  },
+  "batchSemanticTemplates": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.615,
+    "payload": {
+      "schemaVersion": "batch-semantic-template-audit.v1",
+      "entries": 4,
+      "repeatFloor": 5,
+      "hardPass": true,
+      "failureCount": 0,
+      "failures": [],
+      "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+    },
+    "output": "{\n  \"schemaVersion\": \"batch-semantic-template-audit.v1\",\n  \"entries\": 4,\n  \"repeatFloor\": 5,\n  \"hardPass\": true,\n  \"failureCount\": 0,\n  \"failures\": [],\n  \"rule\": \"Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.\"\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 0,
+    "payload": {
+      "entries": 4,
+      "occurrences": 12,
+      "tierACandidates": 0,
+      "reviewRequired": 12
+    },
+    "output": "reused hash-exact attribution packet\n",
+    "cacheHit": true,
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-final152-attribution4-independent-delta-gate-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_10eee640a50b",
+    "t_63ededf0ee19",
+    "t_d61b2bb1964b",
+    "t_f738f6209a61"
+  ],
+  "strictRosterScopeIds": [
+    "t_10eee640a50b",
+    "t_63ededf0ee19",
+    "t_d61b2bb1964b",
+    "t_f738f6209a61"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/1707e07235d36f7c6e7647ead6d93f5ffc89c126becc536d80984882fe9aa7ae.lock"
+}

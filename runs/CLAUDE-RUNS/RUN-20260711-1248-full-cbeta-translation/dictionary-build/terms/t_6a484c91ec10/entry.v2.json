@@ -1,0 +1,136 @@
+{
+  "Id": "t_6a484c91ec10",
+  "SourceTerm": "衣鉢侍者",
+  "CreatedBy": "Codex post-current-investigation720 Lane B positions 6-59",
+  "WrittenUtc": "2026-07-17T17:09:08.823288+00:00",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the robe-and-bowl attendant",
+      "AlternateTargets": [],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Institutional narration is not converted into personal speech merely because Baizhang or Dahui is the person described.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1119a13",
+          "ToLb": "1119a15",
+          "CharOffset": null,
+          "Kwic": "持入堂燒香展拜歸位。衣鉢侍者行䞋齋畢就座點茶燒香",
+          "ClaimText": "持入堂燒香展拜歸位。衣鉢侍者行䞋齋畢就座點茶燒香",
+          "ApproxDate": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2025.xml). Imperially Commissioned Baizhang Monastic Regulations: full-section review assigns the exact headword clause to Baizhang Huaihai.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "institutional office narration",
+            "ActorLabel": "Baizhang Huaihai",
+            "ActorRole": "person-described",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact clause narrates the office and the named figure’s institutional relation; it is not a speech turn.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:07:40.203377+00:00"
+          }
+        },
+        {
+          "RelPath": "X/X63/X63n1250.xml",
+          "FromLb": "0637a20",
+          "ToLb": "0637a20",
+          "CharOffset": null,
+          "Kwic": "訖，就狀。打印過，付衣鉢侍者收，知事全班列前上首",
+          "ClaimText": "訖，就狀。打印過，付衣鉢侍者收，知事全班列前上首",
+          "ApproxDate": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "衣鉢侍者 source author unresolved",
+            "ActorLabel": "the unnamed reviewed author of 禪林備用清規",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The full authored section contains the exact 衣鉢侍者 clause, but the supplied case packet does not safely bind it to a canonical personal name.",
+            "ReviewedBy": "Codex post720 Lane B tail full-case review",
+            "ReviewedUtc": "2026-07-17T16:43:13.492504+00:00"
+          },
+          "AttributionNote": "Source record (X/X63/X63n1250.xml). Chan Grove Ready-Reference Pure Regulations: The source author remains unnamed after the six-rung review and owns the exact headword-bearing wording."
+        },
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0042c06",
+          "ToLb": "0042c07",
+          "CharOffset": null,
+          "Kwic": "他樣不借他樣？曹溪守衣鉢侍者，因僧到，乃提起衣曰",
+          "ClaimText": "他樣不借他樣？曹溪守衣鉢侍者，因僧到，乃提起衣曰",
+          "ApproxDate": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "person-described"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases”: full-section review assigns the exact headword clause to Dahui Zonggao.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "institutional office narration",
+            "ActorLabel": "Dahui Zonggao",
+            "ActorRole": "person-described",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The exact clause narrates the office and the named figure’s institutional relation; it is not a speech turn.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:07:40.203377+00:00"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2025.xml",
+        "X/X63/X63n1250.xml",
+        "X/X66/X66n1296.xml"
+      ],
+      "RelatedMasters": [
+        "Baizhang Huaihai",
+        "Dahui Zonggao"
+      ],
+      "RelatedTerms": [],
+      "SearchAliases": [
+        "the robe-and-bowl attendant"
+      ],
+      "Explanation": "The robe-and-bowl attendant is the monastic office charged with custody or service connected to a senior’s robe and bowl; regulations and biographies describe appointment and duty. Institutional narration is not converted into personal speech merely because Baizhang or Dahui is the person described.",
+      "ClaimAnchors": []
+    }
+  ]
+}

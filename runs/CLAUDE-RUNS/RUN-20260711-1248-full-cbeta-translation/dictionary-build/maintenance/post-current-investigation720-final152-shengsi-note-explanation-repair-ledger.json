@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "post720-final152-shengsi-note-explanation-repair-ledger.v1",
+  "generatedUtc": "2026-07-17T19:11:33.663306+00:00",
+  "id": "t_b10c9e660874",
+  "term": "生死即涅槃",
+  "scope": "sole v2 Explanation==Note repair",
+  "entryPath": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+  "entryBeforeSha256": "72cdd518980dc54435d870622aad4ee91cfefdedcda9a86c68335bf2e32c2c1e",
+  "entryAfterSha256": "88c3d09fbd7bd03f2bcc7a9ff14e74b8ddf6c33b507ca4573044c28085013026",
+  "draftPath": "fresh-build/entries/t_b10c9e660874/evidence.draft.json",
+  "draftBeforeSha256": "ad65514a81a2a053c1690464b07ed7fe0dc795bcc36200e26f58b72b35792457",
+  "draftAfterSha256": "e146f9d95de463f8f2806cd14c35c2073dd3f66af246b9a7e3c002808b7ec73c",
+  "changedPaths": [
+    "/Senses/0/Explanation",
+    "/Senses/0/Note"
+  ],
+  "checks": {
+    "explanationEnglishFirst": true,
+    "explanationDistinctFromNote": true,
+    "noteIsLimitingEditorialBoundary": true,
+    "entryDraftParity": true,
+    "approvedActorsEvidencePreserved": true
+  },
+  "protectedActorsEvidenceBeforeSha256": "5cb75b87154af38ef9e398250cd9a908586243acf210bf45539c0943419301fd",
+  "protectedActorsEvidenceAfterSha256": "5cb75b87154af38ef9e398250cd9a908586243acf210bf45539c0943419301fd",
+  "lineageWrites": 0,
+  "installExecuted": false,
+  "deltaHardPass": true,
+  "focusedGate": {
+    "path": "maintenance/post-current-investigation720-final152-shengsi-note-explanation-delta-gate.json",
+    "sha256": "2de1c32f171ba7830241818bfc67ceec105ad31ff88c85ca93f8ea0a65aac4e0",
+    "exactKwicFailures": 0,
+    "attributionHardFailures": 0,
+    "attributionPacketsHardPass": true,
+    "workSourceHardFailures": 0,
+    "wholeGateHardPass": false,
+    "separatePreexistingDebt": {
+      "publicFeedbackFlagged": 1,
+      "depthSenseHardFailed": 1
+    }
+  }
+}

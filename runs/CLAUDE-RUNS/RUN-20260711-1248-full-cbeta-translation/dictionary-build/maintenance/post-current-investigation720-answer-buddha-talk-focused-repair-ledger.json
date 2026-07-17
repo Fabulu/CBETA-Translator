@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "answer-buddha-talk-focused-repair.v1",
+  "generatedUtc": "2026-07-17T18:25:12.407907+00:00",
+  "id": "t_9045c8e22a26",
+  "term": "答佛話會",
+  "beforeSha256": "6fbf723507e481e668084ce8f83583578f31c669e271e8173d2b050a75c36217",
+  "afterSha256": "90260c44ff85b757726f64f68cfabfcbea811e1ddf64bf9854e8d7aeefdb4af3",
+  "draftSha256": "a1b14b47f7a04794b0d541f2f77d9fb642ab98896582fe5ab4610990958deb10",
+  "semanticCorrection": "Removed the invented institutional gathering. The phrase now records the criticized construal of a reply as an answer about Buddha, with 會 functioning as understanding or taking it that way.",
+  "gate": {
+    "path": "maintenance/post-current-investigation720-lane-a-answer-buddha-talk-delta-gate-v2.json",
+    "sha256": "30c7701a58a8e9531313becaf5463ea80890aaa62a0662c8f5834c9199f295ba",
+    "mechanicalPass": true
+  },
+  "independentReview": {
+    "path": "maintenance/post-current-investigation720-dafuhuawei-final-independent-recheck.json",
+    "sha256": "56ae0c01042f35ed36351ae1e4731088dd22f86a037c71f26971f18f28a47609",
+    "decision": "PASS"
+  },
+  "baselineReconciliation": {
+    "path": "maintenance/post-current-investigation720-installed-baseline-1542-reconciliation.json",
+    "sha256": "794aad2bab6997ce83958ae948e830410a75fdb085281b80493d31a486045501",
+    "installedCount": 1542
+  },
+  "mutations": {
+    "installed": false,
+    "status": false,
+    "lineage": false
+  }
+}

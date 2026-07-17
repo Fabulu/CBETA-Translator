@@ -354,9 +354,11 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
      cannot be required to have more anchors than hits. Passing the floor does **not** prove adequate depth: every
      unique definition, deployment, contrast, family relation, and period/genre use still requires representation.
      Entries with 100+ hits must span at least four source texts when four exist. A batch clustering at its floors
-     is a review failure even if each article individually passes. Every sense must have its own occurrence.
-     The cluster rejection applies to worker batches of five as well as full waves: four or five entries sharing one
-     floor-bound count is a hard failure. Agents may not evade the wave guard by auditing only their own small batch.
+     is a **mandatory review signal, not proof of failure**: inspect the deployment inventories and record whether
+     the shared count reflects quota drafting or several honestly complete evidence sets. Never add quotations merely
+     to alter a histogram. Every sense must have its own occurrence. A cluster may be rejected only when that review
+     identifies an omitted distinct deployment, unsupported prose claim, or other entry-level defect; the numerical
+     pattern alone cannot invalidate an entry. Agents may not evade the review by auditing only a convenient subset.
      Single-sense entries with 500+ hits and single-sense targets containing a semicolon are automatically queued
      for item-8 adjudication; the flag means “inspect for different things,” not “split automatically.”
      The same hash-aware gate also re-runs every occurrence through `zc.verify`, requires exact `FromLb`/`ToLb`,
@@ -611,6 +613,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        `teacher`, or an equivalent escape label. If the exact actor is a master, work the container and
        ladder until his roster-exact name is established or reject the occurrence; the anonymous branch is
        only for actors whom the source itself presents as non-master participants.
+       This applies to euphemisms as well: `record voice`, `room-instruction author`, `hall author`, or
+       `case-specific unnamed voice` cannot hide an unresolved master. A `reviewed-unnamed` row whose
+       `ActorRole` is `utterer` must carry concrete grammatical evidence that the source presents a
+       non-master actor (for example 僧, 客, 居士, 官, 婆, 童, 侍者, or another explicit participant role).
+       Otherwise resolve the master through the ladder or replace the occurrence. The validator checks
+       both `Kind` and `ActorLabel`, not one field alone.
      - Never invent a name. A speaker you cannot attest stays unattested.
      - **⛔ ANCHOR DANGLING QUOTES; DO NOT CLEAN THEM AWAY (user, 2026-07-13).** During the
        attribution remediation, every Chinese string used as evidence in `Explanation` or `Note` must
@@ -1075,10 +1083,11 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
    the headword's character sequence.  A substring hit is a candidate to read,
    never evidence by itself.  Contents pages, catalogues, titles, and adjacent
    compounds receive the same veto before compilation.
-6. The depth and English-first audits run on every author checkpoint, not only
-   after fifty entries.  A batch clustered mechanically at the exact evidence
-   floor is a failed authoring process; add only genuinely different evidence,
-   never padding.
+6. The cheap depth-floor and English-first audits run per entry; cohort audits
+   run at durable checkpoints. A batch clustered mechanically at the exact
+   evidence floor requires a recorded qualitative review, but is not itself a
+   failed authoring process. Add only genuinely different evidence, never
+   padding, and quarantine only entries with an actual entry-level defect.
    For a mixed repair cohort, run the full gate over repaired entries plus
    immutable prior KEEPs, but pass every repaired ID as `--cluster-id`. The
    quota-cluster histogram then measures the author's actual batch rather than
@@ -1222,6 +1231,62 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     written. This gate was added after a Lane-C worker nearly rebuilt Lane-A's
     `拈花示眾`; the assertion caught the correct Lane-C row as `同生同死`
     before any colliding file was created.
+    **Do not repeat completed research merely because construction is a later
+    phase.** SHA-bound `discoveryTransportEvidence` that was explicitly read in
+    full case by both admission reviewers against the unchanged frozen corpus
+    may be reused after a batched `zc.verify` pass. Construction must reread the
+    transported full cases while writing its semantic fields, but need not find
+    those same witnesses again. Run fresh concordance research only where the
+    transported set does not meet the entry's individual depth/source floor,
+    leaves a sense or utterer unresolved, or fails to test a material
+    counterexample. Admission prose such as `independentReason` is routing
+    evidence, never a template to copy into the public entry.
+    Transport packets normally contain three admission witnesses; **three is
+    not a construction quota and does not override the frequency floor.** Before
+    calling any entry or checkpoint mechanically green, run
+    `audit_depth_sense.py --paths` on the actual staged `entry.v2.json` files
+    and retain its invocation-specific report. A focused exact, attribution, or
+    template check is not a depth check and may not be summarized as “all
+    mechanical gates green.” A depth hard failure requires fresh full-case
+    research and a definition cross-check before construction moves on. This
+    wording was added after a speed canary serialized three transported
+    witnesses for 24 entries with 66–100 exact hits while its narrower checks
+    incorrectly described them as sealed.
+    **One full-case read may serve several gates; do not reopen the same XML by
+    ceremony.** A SHA-bound packet that contains the complete case, exact KWIC,
+    work identity, line anchors, title, and an explicit human/model adjudication
+    may be the shared evidence record for construction, attribution review, and
+    independent semantic review while those bytes remain unchanged. Every
+    reviewer must still actually read the complete case and make the decision
+    required by their gate; independence concerns the judgment, not redundant
+    file retrieval. Reopen the source XML only when the packet is truncated,
+    ambiguous, mismatched, exposes an actor or sense conflict, or changes hash.
+    Run cheap syntax and changed-entry checks continuously, one changed-cohort
+    depth/attribution/template gate at a checkpoint, and the expensive whole-tree
+    gate once at final merge. Do not repeatedly launch overlapping full-tree or
+    per-entry validators while a lane is still authoring. This changes no final
+    output or quality gate; it removes duplicate I/O and duplicate reading.
+    The first five outputs of every new worker/compiler combination must pass the
+    complete construction contract—not merely compile—before mass authoring:
+    exact turn, actor ladder, depth and claim anchors, public-feedback receipt,
+    work identity, corpus binding, forbidden English, and cross-entry template
+    checks. A systemic omission may reach five canary drafts, never the rest of
+    the cohort. Resolve packet-level actor ambiguity before public prose is
+    authored. See `PROCESS_SPEED_ARCHITECTURE.md` for the end-to-end stage
+    contract and scheduling rules.
+    **The canary and every checkpoint must reject hollow serialization before
+    independent review.** `Kwic` and `ClaimText` may not equal the bare
+    headword; they must retain enough of the verified full case to show the
+    asserted discourse job and marked turn. `Explanation` may not equal `Note`,
+    and neither may merely restate an admission-ledger reason or a process claim
+    such as “full-section review assigns.” Named turns may use the exact
+    roster-linked `MasterName`; ambiguous, narrated, quoted-origin, heading, or
+    non-master turns require structured `ActorAttribution` with headword-specific
+    grammar evidence. The author must run the batch semantic-template audit on
+    the five-entry canary and each changed checkpoint. This was made explicit
+    after two investigation lanes compiled 45 plausible admissions with bare
+    headword evidence or duplicated process prose, forcing an avoidable full
+    repair pass.
 18. **⛔ NO READZEN PRODUCTION PUBLICATION BEFORE FINAL AUTHORIZATION.** During
     construction, workers may generate local `termbase.v2.json`, search indexes,
     and shards so merge/reconciliation gates can test the exact website payload;

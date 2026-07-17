@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "post720-final152-attribution4-independent-current-byte-recheck.v1",
+  "generatedUtc": "2026-07-17T18:54:49.403621+00:00",
+  "repairLedger": "maintenance/post-current-investigation720-final152-attribution4-independent-repair-ledger.json",
+  "repairLedgerSha256": "4771da2889b0d2f4056f244922f94fc30e77fd7d8a29b795b9ed8a166979beb5",
+  "deltaGate": "maintenance/post-current-investigation720-final152-attribution4-independent-delta-gate.json",
+  "deltaGateSha256": "94238027fbdfd79bfeadcf0948ee8aeec92293deb58a093e7ce0e82b6352de28",
+  "expectedDeltaGateSha256": "94238027fbdfd79bfeadcf0948ee8aeec92293deb58a093e7ce0e82b6352de28",
+  "mechanicalGateObservation": {
+    "exactKwic": "12/12 green",
+    "attributionHardFailures": 0
+  },
+  "verdictCounts": {
+    "PASS": 4,
+    "REVISE": 0
+  },
+  "reviews": [
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "currentByteSha256": "9243f82e49c4e782cf119be072e58168a313bf9a1280be396fadb5c1c2b953ac",
+      "findings": [
+        "PASS: occurrence 1 now separates Zixian Jue as address voice/later raiser from the personified Santao Pavilion governed by 三到亭…聲聲道.",
+        "PASS: occurrence 3 follows 蘄州龍華道初禪師 and 召眾曰, using Longhua Daochu as named utterer with the absent-roster identity deferred rather than silently editing lineage."
+      ]
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "currentByteSha256": "fccd9a67c9231976084312595967139ae1d22c79d357fd36da15a2ba6c9a49d2",
+      "findings": [
+        "PASS: 淨慧居士問 introduces the sequence and 士云 continues it; Jinghui Jushi is retained as identified non-master questioner and Liangting Jingting as respondent."
+      ]
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "currentByteSha256": "f7d3f25c1e48b59427f8e163ed131832e84f16cea470985dd24fcdced48e85cb",
+      "findings": [
+        "PASS: all three occurrences name Huineng as quoted utterer; occurrence 1 separately retains Yulin Tongxiu as later raiser/record owner, while occurrences 2–3 keep the present compiler/speaker only in raiser notes."
+      ]
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "currentByteSha256": "10a9a29e34b1bf31f1a1ac0750c5c8211272164cf21bbc0537af9c85f5f71666",
+      "findings": [
+        "PASS: occurrence 2 identifies the continuing unnamed questioner by the explicit 進云 cue, retains Ruibai Mingxue as respondent, and Doushuai Congyue as person discussed.",
+        "PASS: occurrence 3 keeps the compiler as present raiser and adds Doushuai Congyue as the named source context of 兜率三關."
+      ]
+    }
+  ],
+  "entryEditsPerformed": false,
+  "lineageEditsPerformed": false
+}

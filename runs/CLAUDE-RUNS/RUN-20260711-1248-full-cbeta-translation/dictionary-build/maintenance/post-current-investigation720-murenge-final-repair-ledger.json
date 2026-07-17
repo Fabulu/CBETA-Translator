@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-17T17:57:25.659299+00:00",
+  "scope": "single-entry current-byte semantic repair; no promotion",
+  "id": "t_7b7576f60959",
+  "term": "木人歌",
+  "lane": "A",
+  "lanePosition": 9,
+  "entryPath": "fresh-build/entries/t_7b7576f60959/entry.v2.json",
+  "beforeSha256": "275382ad8475af972f10483ad825da2cb37dd25391ed0da9e99ea259697250ad",
+  "afterSha256": "e45e1f62f32c616d485b23b41a39441702f18e5fc2042ef8280d779f84d21127",
+  "changedPaths": [
+    "/Senses/0/PreferredTarget",
+    "/Senses/0/Explanation"
+  ],
+  "preferredTargetBefore": "the Song of the Wooden Man",
+  "preferredTargetAfter": "the wooden person sings",
+  "deltaGate": {
+    "pass": true,
+    "checks": {
+      "sourceTermUnchanged": true,
+      "preferredTargetIsPredicate": true,
+      "preferredTargetNotTitle": true,
+      "explanationNotTitle": true,
+      "entryJsonRoundTrips": true
+    }
+  },
+  "promotionAuthorized": false
+}

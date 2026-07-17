@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "post720-final57-depth9-independent-current-byte-recheck.v1",
+  "generatedUtc": "2026-07-17T19:02:51.676252+00:00",
+  "repairLedger": "maintenance/post-current-investigation720-final152-release-transport-repair-ledger.json",
+  "repairLedgerSha256": "a86bee7ebfa70fb347730ba956bb2fa6f6ee6e6709e1ee455276f6e8ff015ff8",
+  "deltaGate": "maintenance/post-current-investigation720-final152-release-transport-delta-gate-v6.json",
+  "deltaGateSha256": "d016eea54cfae9e14d1c16eeb0e3458d5c7acf26e226042ec188b4bd600eae75",
+  "mechanicalGateObservation": {
+    "exactFailures": 0,
+    "attributionFailures": 0,
+    "publicFailures": 0,
+    "depthFailures": 0,
+    "templateFailures": 0
+  },
+  "transportSummary": {
+    "entries": 57,
+    "claims": 199,
+    "claimTextFullKwicFailures": 0,
+    "currentShaMismatches": 0,
+    "draftProjectionParityFailures": 0
+  },
+  "verdictCounts": {
+    "PASS": 56,
+    "REVISE": 1
+  },
+  "entries": [
+    {
+      "id": "t_024dc48ed8c8",
+      "term": "尋香逐氣",
+      "status": "PASS",
+      "currentByteSha256": "bd3ea3f38a56578ad8affd7fe25fbd45fd30d97a5c045d26bf13db94c5561a9e",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_060848c06b3f",
+      "term": "回途復妙",
+      "status": "PASS",
+      "currentByteSha256": "e5dc6af8d44829613c3f2c22228f9b1e9293a0e91f68d2c0b1113e33b5b4910a",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_074762d3985c",
+      "term": "夢蝶",
+      "status": "PASS",
+      "currentByteSha256": "1b8784e545b49975f1a8c04b839ee8a56d74c2f9687ab0a37fd196f166ad1d01",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_08e0ef30ead9",
+      "term": "鴨類",
+      "status": "PASS",
+      "currentByteSha256": "e93bc5b03fa7fef0512f3c1428ff11ef22af14e2d15646ba26c8d3f4968bdc90",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_09e6c3b9fda9",
+      "term": "枯木禪",
+      "status": "PASS",
+      "currentByteSha256": "25b1aec48b2989d75777836acc8a49836e5f06f7e27d5ec7ba54dee408537bcb",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "status": "PASS",
+      "currentByteSha256": "9243f82e49c4e782cf119be072e58168a313bf9a1280be396fadb5c1c2b953ac",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_17a7fbf49855",
+      "term": "卞和三獻",
+      "status": "PASS",
+      "currentByteSha256": "ffeec950df40430457a4e828abd153c5f803d6907ff66e4b679a0771a0489b0a",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "status": "PASS",
+      "currentByteSha256": "effae4aa6db584ee75e12a6ea6bb5756dfccf3b83f2a0c105d423789713f1e1a",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_1ff4d467780c",
+      "term": "泯默",
+      "status": "PASS",
+      "currentByteSha256": "7adfe9de1fc25dc6560055aa8c2318da56d55e7cdb0f82b312800e4a6f38df75",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_232fb680eed8",
+      "term": "觸目是道",
+      "status": "PASS",
+      "currentByteSha256": "9591af11cbf559c46aec234f9c95d6ee08ec1ad10532441360ccaf48e737e0fd",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_23ddb347e907",
+      "term": "無相為體",
+      "status": "PASS",
+      "currentByteSha256": "36f46811d9a15ae3340d960ce12b09a5aa271cddc2b45faa8be7b367ffa30f75",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_27bbde1bc523",
+      "term": "馬腳",
+      "status": "PASS",
+      "currentByteSha256": "975798f9df355f7985defcac50152ef5acd2424be005df0e5a539e51aff9cee8",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 6,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_2a0be2582f40",
+      "term": "活語",
+      "status": "PASS",
+      "currentByteSha256": "73407bd7523da03ef5d7997277986bd9473f727a3cc4f62bc0f87021631ad2b3",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_3d5f072d255c",
+      "term": "頓悟漸修",
+      "status": "PASS",
+      "currentByteSha256": "9c6d7a4d4a6d49bc3545a10049f6804c8b7acc5dcb6d507eb9796a5d03281e2f",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_4c7e22eb50db",
+      "term": "粥飯主人",
+      "status": "PASS",
+      "currentByteSha256": "9fd15540e65c120193507b5fdb458a861e09595317c3cdfc036b783d669cb45a",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_58f345ef2f1c",
+      "term": "半隻眼",
+      "status": "PASS",
+      "currentByteSha256": "29895a99eb8f2184b98246dc699323fdd3209ec9b03efa88e3630719154b5fb2",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_5af5d6fbe243",
+      "term": "淨灑灑",
+      "status": "PASS",
+      "currentByteSha256": "95b05dd4bd7971245983a7bce2314277b75c354296c986b9803bd15f95be40b5",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_6086992a6aaa",
+      "term": "功勳五位",
+      "status": "PASS",
+      "currentByteSha256": "3a7092b0762fcf26dfc83fcddce7540dc1b896eee762dc76bbba4611a7909885",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "status": "PASS",
+      "currentByteSha256": "6fd8e0fd14994ce358ec83635ef59ec914c6a4ba48e418a9ac56b61a68d17708",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_687709b1388b",
+      "term": "隨人腳跟轉",
+      "status": "PASS",
+      "currentByteSha256": "7d73fc0d714639037924aed9b0a68ca5d16e5ae900655772f915b01e7a7822e9",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_6fc0d3e31539",
+      "term": "臨終示眾",
+      "status": "PASS",
+      "currentByteSha256": "8c8e563368b6f6f770463231b86dc6faeba5f92b3d0f8636c11a7c261de8e489",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_707234da7e73",
+      "term": "老尊宿",
+      "status": "PASS",
+      "currentByteSha256": "f93970cce214d59e42736f8ee7119fa59cdb136d3be65c9f6b09be52ded0d2d3",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_72d150e8483a",
+      "term": "豆爆寒灰",
+      "status": "PASS",
+      "currentByteSha256": "961ba276a9bde2804c7254363300fdb8db1c19c395c855af668507db82591723",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_78c9686a321b",
+      "term": "不休不歇",
+      "status": "PASS",
+      "currentByteSha256": "9412b57f51314d173a5ddba35d792f50c8cbd723ccc8c159311b97f90ad2443d",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_7acb482cb5ac",
+      "term": "紫芝歌",
+      "status": "PASS",
+      "currentByteSha256": "be4b64924cc437f4f1e157d70b94bcab4ad9aefdeed9176cbcbf5028954e3572",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_7b213bef1d62",
+      "term": "大用之機",
+      "status": "PASS",
+      "currentByteSha256": "2cd518ab73cfb0db48ede425b632b8e94742fffc25f3a2fd612b2be3effc6b9f",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_80284a71ec1b",
+      "term": "不死不活句",
+      "status": "PASS",
+      "currentByteSha256": "0908a6df56de0b35d0654c5b311c889faba2198af2d547b775e0eb9caf2e6973",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_82aae3d9af41",
+      "term": "無明即大智",
+      "status": "PASS",
+      "currentByteSha256": "a2433f1db9654bdc9c49a61bc08d0000829da36539d330cff5749c261394bbf4",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8728ba5741e8",
+      "term": "漸修頓悟",
+      "status": "PASS",
+      "currentByteSha256": "239b532723a9bdc3b02ebc385baa6f7bc7e792a2c44c1f2dcd18cfebe6f8a09e",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8734518253a0",
+      "term": "見有遲疾",
+      "status": "PASS",
+      "currentByteSha256": "a15f8e403915020005c439920eca6061d8a28e0e25a4ff7def3918bca309a50c",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "status": "REVISE",
+      "currentByteSha256": "fde5c11982f9fc0562000675d74e4ac2bfe4811d3a06e375e6387295d420bb04",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "status": "PASS",
+      "currentByteSha256": "ec3f3bbeeff1e2f55a49f39e084b9e3400891ea16e2b72b82710b6ba138e1ace",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 6,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8e4b85dfb005",
+      "term": "磨甎作鏡",
+      "status": "PASS",
+      "currentByteSha256": "cbd88a495e1d51f775c626613c46717df3dfdd2a8fe02ceddc06e7827578f3f1",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_8fb41216ea2d",
+      "term": "吹網欲滿",
+      "status": "PASS",
+      "currentByteSha256": "35cdfbad90be8314fceb533811b10ad0aaa10d9c248218e4f963afc8378cb421",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_9fa88ce8ff8a",
+      "term": "斬斷葛藤",
+      "status": "PASS",
+      "currentByteSha256": "8facad09ab2711a0481e7fd8f93b6627e8378e8669a9b1231bcfbc97feded37a",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_a18cfea5f471",
+      "term": "枯木開花",
+      "status": "PASS",
+      "currentByteSha256": "5f7a3e08ab4e907244ac4012aaef1e0af49b0c06710872596c6c10dba73acffd",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_a5b9424f88b6",
+      "term": "不動聲色",
+      "status": "PASS",
+      "currentByteSha256": "1b1d4822306c3a60807c0ee284263420bf11962dbe5bbdf8995f7905805c1b1f",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_b9499eef244a",
+      "term": "泥牛入海公案",
+      "status": "PASS",
+      "currentByteSha256": "83f42f0b902b1fb6179316939e246ad714ab335e57a9c0f0bc3f766efa7ab686",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_ba6cdc968127",
+      "term": "法身用",
+      "status": "PASS",
+      "currentByteSha256": "4ff4ae76f00627894c809bd74ac1df96a819711f3f4ead0349fb0133f67e0d3d",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_bd8725d0ed31",
+      "term": "師子奮迅",
+      "status": "PASS",
+      "currentByteSha256": "61c7bf90d79c7d8ced19c9213872a3d2f0df15898b3fde58f70dcd15ca101abc",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_c1b5b57bf7bf",
+      "term": "忌晨",
+      "status": "PASS",
+      "currentByteSha256": "ae8cc87545a0bd5b83d1b3968a3d63ad4bd827d83ba035839f8e29aef0b61cbb",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_c21a3b78ecb3",
+      "term": "敲冰覓火",
+      "status": "PASS",
+      "currentByteSha256": "b425e2b3fcc64ff173aa3afffc7b6472677f0307c5a49d1006e7d47f453e9cf0",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_c9a353f07d89",
+      "term": "法性三昧",
+      "status": "PASS",
+      "currentByteSha256": "c13ffc33285e8e91fa8a53eaf4dd5e4530355bfc6daae1cfc5e7677dea9359b1",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_cbf3f6eeda71",
+      "term": "無空可落",
+      "status": "PASS",
+      "currentByteSha256": "cb05d6a0a3d7fc62576661aae754b2122975f9b87a2163ba77eae66fcc1b4305",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "status": "PASS",
+      "currentByteSha256": "b4a424145a78cc53e54ec5f4f80ab2aaf6f0f721d162f6c88cbb189332470ef2",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_d3ab00825235",
+      "term": "觀心無心",
+      "status": "PASS",
+      "currentByteSha256": "78bd15267aff47281a0a8637d5949d49a2a28b0d50e8536fadb8f043bf46ca16",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_d591a2f6612e",
+      "term": "南頓北漸",
+      "status": "PASS",
+      "currentByteSha256": "2084fd409927d06339fd5add7405eaacbff5d501f18c39b9c9928e2e840653ee",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "status": "PASS",
+      "currentByteSha256": "6315693577a08e2813e0df933dfaf6a6991a493a9a2d43507eae3297adac44be",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_d9f9537de0f7",
+      "term": "返照回光",
+      "status": "PASS",
+      "currentByteSha256": "80481d990b907f47704830a8ab247b74a6079475acb0fb2b0bc0303542a39c48",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_e03b722cdb4a",
+      "term": "呵佛叱祖",
+      "status": "PASS",
+      "currentByteSha256": "1230eba13a272fd1be16105a26ae589ee7863a6cc81039c72e7fd272647b4add",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_e34846b9f2c1",
+      "term": "信心不二",
+      "status": "PASS",
+      "currentByteSha256": "82d5cda9f0663d10d9c782ec52df56bb81c1ac1b2784217c2fd541e161c3494c",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_e3d34a8ece55",
+      "term": "斷滅空",
+      "status": "PASS",
+      "currentByteSha256": "4af83e025b7551e8a34d4654f9363eb5392f2b183dcacfcc0790c5a16f9ee0e1",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_e9a69a04e845",
+      "term": "百千手眼",
+      "status": "PASS",
+      "currentByteSha256": "6f147ca719b810a16e22801421b3339bd52d173a5bb1b9e5a9f8bd41058cd652",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_ec4e928e8468",
+      "term": "商山四皓",
+      "status": "PASS",
+      "currentByteSha256": "9a4be8ece909fa32cf9d77059b84d375e8ea532f0276e34502040597ffc1c121",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_f6bdcf284663",
+      "term": "現成句子",
+      "status": "PASS",
+      "currentByteSha256": "d17f6ee08e776b89091a4753fc59f5c0408dba5ecae485ba13174cb2e8cf3c34",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "status": "PASS",
+      "currentByteSha256": "1089b0e1a0ae94e1115d7fa97f3ccb37c9747e29feac5d3f390944601ecad545",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 3,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    },
+    {
+      "id": "t_fd2f9010baca",
+      "term": "四皓",
+      "status": "PASS",
+      "currentByteSha256": "bdd0023c99fd40a11c766a92ee6a5553dd012401f9ea4cffe6248106677b1896",
+      "matchesRepairLedgerAfterSha256": true,
+      "claimCount": 4,
+      "allClaimTextEqualsFullKwic": true,
+      "draftProjectionParity": true
+    }
+  ],
+  "depthReviews": [
+    {
+      "id": "t_232fb680eed8",
+      "term": "觸目是道",
+      "status": "PASS",
+      "PreferredTarget": "whatever meets the eye is the Way",
+      "Explanation": "'Whatever meets the eye is the Way,' a formula raised in questions and the sauce-jar exchange. The records preserve the quotation, question, and reply as separate turns.",
+      "Note": "The entry reports the exchange without assigning it an unstated psychological test.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_82aae3d9af41",
+      "term": "無明即大智",
+      "status": "PASS",
+      "PreferredTarget": "ignorance itself is great wisdom",
+      "Explanation": "The equation 'ignorance itself is great wisdom' occurs inside quoted argument and commentary. Surrounding speakers challenge or qualify it in their own words.",
+      "Note": "The dictionary does not label the equation dangerous or invent missing consequences.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_8734518253a0",
+      "term": "見有遲疾",
+      "status": "PASS",
+      "PreferredTarget": "seeing may be slow or swift",
+      "Explanation": "Seeing has slowness and swiftness: the Platform Record contrasts people's differing delusion and awakening with a teaching that has no two forms. Later texts reproduce the Platform Record line as quotation.",
+      "Note": "The full contrast is retained, and quoted origin is separated from current utterer.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "status": "REVISE",
+      "PreferredTarget": "brightness within darkness",
+      "Explanation": "An interview expression paired with 'darkness within brightness. ' Asked for brightness within darkness, one retained address answers, 'white clouds envelop the moonlight'; asked for the reverse, he answers, 'green bamboo dances in the clear wind.' Parallel interviews give different paired answers and then ask how far brightness and darkness are apart.",
+      "Note": "The corpus supplies a paired question, not the abstract label 'interpenetrating pair.'",
+      "finding": "REVISE: Explanation contains malformed English punctuation and an unmatched quotation boundary: `paired with 'darkness within brightness. ' Asked...`. Repair to `paired with 'darkness within brightness.' Asked...` (or equivalent) in both entry and draft. Attribution itself remains stable."
+    },
+    {
+      "id": "t_c1b5b57bf7bf",
+      "term": "忌晨",
+      "status": "PASS",
+      "PreferredTarget": "the morning of a death anniversary",
+      "Explanation": "A heading for observances held on the morning of a named master's death anniversary. One heading introduces an address on the anniversary morning of Dongshan; another labels incense offered on an anniversary morning. A third announces offerings on the anniversary morning of the old master Gaofeng at Fayusi.",
+      "Note": "Each occurrence is an event heading or narrative label, not speech by the memorialized master.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_c21a3b78ecb3",
+      "term": "敲冰覓火",
+      "status": "PASS",
+      "PreferredTarget": "strike ice seeking fire",
+      "Explanation": "To strike ice looking for fire, an impossible action. Verses and comments place the action in different explicit comparisons.",
+      "Note": "Those comparisons remain separate instead of becoming generalized editorial categories.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_d3ab00825235",
+      "term": "觀心無心",
+      "status": "PASS",
+      "PreferredTarget": "observe mind as no-mind",
+      "Explanation": "'Observe mind: no mind,' a formula in exposition and instruction. The complete clauses explain their own sequence in each retained context.",
+      "Note": "Two occurrences in one work count as one work, and no philosophical object-theory is added.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_d591a2f6612e",
+      "term": "南頓北漸",
+      "status": "PASS",
+      "PreferredTarget": "southern suddenness and northern gradualness",
+      "Explanation": "'Southern sudden, northern gradual,' a geographic label discussed and challenged in the sources. The same discussions say the teaching itself has no sudden or gradual division; differences are assigned to people.",
+      "Note": "The phrase is a historical label, not two geographic essences.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    },
+    {
+      "id": "t_e3d34a8ece55",
+      "term": "斷滅空",
+      "status": "PASS",
+      "PreferredTarget": "annihilationist emptiness",
+      "Explanation": "An annihilationist emptiness explicitly condemned in the retained expositions. Each source's own contrast is reported separately instead of merging several interpretive consequences into one menu.",
+      "Note": "The gloss remains the condemned kind of emptiness actually named.",
+      "finding": "English-first explanation/note is specific to retained contexts, banned editorial framing is absent, and actor states remain contextually coherent."
+    }
+  ],
+  "actorRegressionObserved": false,
+  "entryEditsPerformed": false
+}

@@ -1,0 +1,211 @@
+{
+  "generatedUtc": "2026-07-17T19:15:58.523675+00:00",
+  "elapsedSeconds": 1.196,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "path": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+      "sha256": "64e31c8897f8781d0231df1daa9dca45498fa933cd68b35acb8945bf485b5d91"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 4,
+    "occurrenceVerified": 4,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+        "id": "t_b10c9e660874",
+        "term": "生死即涅槃",
+        "verified": 4,
+        "occurrenceVerified": 4,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.021,
+    "attribution": 1.143,
+    "publicFeedback": 0.243,
+    "depthSense": 0.733,
+    "countClaims": 0.244,
+    "workSourceValidation": 0.199,
+    "corpusBaseline": 0.207,
+    "frozenHistoricalTerms": 0.516,
+    "lineageRosterUntouched": 0.939,
+    "batchSemanticTemplates": 0.198,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.143,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 4,
+        "named_occurrences": 4,
+        "context_master_links": 4,
+        "attribution_notes": 4,
+        "deferred_non_roster": 1,
+        "pending_roster_master": 1,
+        "deferred_non_roster_context": 1,
+        "pending_roster_context_master": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 4,\n    \"named_occurrences\": 4,\n    \"context_master_links\": 4,\n    \"attribution_notes\": 4,\n    \"deferred_non_roster\": 1,\n    \"pending_roster_master\": 1,\n    \"deferred_non_roster_context\": 1,\n    \"pending_roster_context_master\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.243,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpf13zo0lv.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.733,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_b10c9e660874"
+      ]
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_b10c9e660874\"\n  ]\n}\nreport: /tmp/tmpn_7u6n5_-depth.json\n",
+    "report": "/tmp/tmpn_7u6n5_-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.244,
+    "payload": {
+      "entryCount": 1,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 1,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.199,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.207,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.516,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "lineageRosterUntouched": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.939,
+    "payload": {
+      "schemaVersion": "dictionary-lineage-write-prohibition.v2",
+      "mode": "wave-baseline",
+      "hardPass": true,
+      "protected": [
+        {
+          "path": "Assets/Data/lineage-masters.json",
+          "worktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "headObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "semanticBytesSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+          "clean": true,
+          "baselineWorktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "unchangedFromBaseline": true
+        },
+        {
+          "path": "Assets/Data/master-dates.json",
+          "worktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "headObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "semanticBytesSha256": "7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0",
+          "clean": true,
+          "baselineWorktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "unchangedFromBaseline": true
+        }
+      ],
+      "failures": []
+    },
+    "output": "{\n  \"schemaVersion\": \"dictionary-lineage-write-prohibition.v2\",\n  \"mode\": \"wave-baseline\",\n  \"hardPass\": true,\n  \"protected\": [\n    {\n      \"path\": \"Assets/Data/lineage-masters.json\",\n      \"worktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"headObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"semanticBytesSha256\": \"33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"unchangedFromBaseline\": true\n    },\n    {\n      \"path\": \"Assets/Data/master-dates.json\",\n      \"worktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"headObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"semanticBytesSha256\": \"7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"unchangedFromBaseline\": true\n    }\n  ],\n  \"failures\": []\n}\n"
+  },
+  "batchSemanticTemplates": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.198,
+    "payload": {
+      "schemaVersion": "batch-semantic-template-audit.v1",
+      "entries": 1,
+      "repeatFloor": 5,
+      "hardPass": true,
+      "failureCount": 0,
+      "failures": [],
+      "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+    },
+    "output": "{\n  \"schemaVersion\": \"batch-semantic-template-audit.v1\",\n  \"entries\": 1,\n  \"repeatFloor\": 5,\n  \"hardPass\": true,\n  \"failureCount\": 0,\n  \"failures\": [],\n  \"rule\": \"Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.\"\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 4,
+      "tierACandidates": 0,
+      "reviewRequired": 4
+    },
+    "output": "reused hash-exact attribution packet\n",
+    "cacheHit": true,
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-final152-shengsi-forbidden2-delta-gate-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_b10c9e660874"
+  ],
+  "strictRosterScopeIds": [
+    "t_b10c9e660874"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/95165138c80979826455eaa613a9ef0f699ccac74db7e86b8af7bada88a4f691.lock"
+}

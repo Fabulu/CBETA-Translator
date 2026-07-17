@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "construction-authoring-preflight.v2",
+  "entryCount": 4,
+  "failedEntries": 4,
+  "manifestFailures": [
+    {
+      "kind": "manifest-handoff-source-binding-missing"
+    },
+    {
+      "kind": "manifest-corpusManifestSha256-mismatch",
+      "expected": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+      "actual": null
+    },
+    {
+      "kind": "manifest-rosterSha256-mismatch",
+      "expected": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+      "actual": null
+    },
+    {
+      "kind": "manifest-pendingRosterSha256-mismatch",
+      "expected": "a77dfe61ba87353c60b65cfb2929dc2e22cc49d6765f19fc7a1c87548e0e1943",
+      "actual": null
+    }
+  ],
+  "failureCount": 20,
+  "elapsedSeconds": 13.783,
+  "entriesPerSecond": 0.29,
+  "results": [
+    {
+      "entryId": "t_5f532706138e",
+      "term": "須彌盧",
+      "entryDir": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_5f532706138e",
+      "failures": [
+        {
+          "kind": "manifest-entry-content-binding-missing"
+        },
+        {
+          "kind": "worksheet-entry-compile-drift",
+          "worksheetSha256": "d7ceb7125ae1431b5fa19e6229676a3a191dfa4263be709d337500a412d84585",
+          "compiledSha256": "2b3fd23fcb25cc76ccd9fdfa78d0f8c47a728ffa805097df0101b779d3b2eb54",
+          "productSha256": "b1349c7f4271727664105104ed03de73cc840f06a83b447978cc571de2c437b6"
+        }
+      ]
+    },
+    {
+      "entryId": "t_2f97445940bc",
+      "term": "同死同生",
+      "entryDir": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f97445940bc",
+      "failures": [
+        {
+          "kind": "manifest-entry-content-binding-missing"
+        },
+        {
+          "kind": "attribution-note-source-opening-defect",
+          "sense": 1,
+          "occurrence": 4,
+          "relPath": "C/C078/C078n1720.xml"
+        },
+        {
+          "kind": "worksheet-entry-compile-drift",
+          "worksheetSha256": "1d29e38c77d5b3e5d1be2089d9e871406e5b43532a1e6a67df5029aa88243f21",
+          "compiledSha256": "838131acd10f46e84082ed2b2119819932c3a78d8abbc02dd1c192c5fc3bde5e",
+          "productSha256": "9f7c684a8f3cf99d28e1bfc0cc8e32c066b4f2ade3c35c1a9b4df3bf13677846"
+        },
+        {
+          "kind": "attribution_note_prose_hygiene",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f97445940bc/entry.v2.json",
+          "detail": "同死同生 s1 o4 noncanonical-source-opening: 'Source record (C/C078/C078n1711.xml). A verse author whose name is unresolved in the full section owns the exact headword-bearing verse line.'"
+        },
+        {
+          "kind": "note_missing_english_source_label",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f97445940bc/entry.v2.json",
+          "detail": "同死同生 s1 o4: name the source in English between RelPath and actor: 'Source record (C/C078/C078n1711.xml). A verse author whose name is unresolved in the full section owns the exact headword-bearing verse line.'"
+        },
+        {
+          "kind": "note_missing_speaker",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f97445940bc/entry.v2.json",
+          "detail": "同死同生 s1 o4: Source record (C/C078/C078n1711.xml). A verse author whose name is unresolved in the full section owns the exact headword-bearing verse line."
+        },
+        {
+          "kind": "note_missing_source",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2f97445940bc/entry.v2.json",
+          "detail": "同死同生 s1 o4 expected exact RelPath 'C/C078/C078n1720.xml' (preferred) or legacy title '禪宗頌古聯珠通集': Source record (C/C078/C078n1711.xml). A verse author whose name is unresolved in the full section owns the exact headword-bearing verse line."
+        }
+      ]
+    },
+    {
+      "entryId": "t_2d9781afa9a0",
+      "term": "法網",
+      "entryDir": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2d9781afa9a0",
+      "failures": [
+        {
+          "kind": "manifest-entry-content-binding-missing"
+        },
+        {
+          "kind": "canonical-compile-failure",
+          "detail": "{\n  \"hardPass\": false,\n  \"worksheet\": \"/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_2d9781afa9a0/evidence.draft.json\",\n  \"worksheetSha256\": \"ae7ca70fecbaaa50c7803ec606a5c1492b7eea2f262fe69414d45e1b727cc99a\",\n  \"output\": \"/tmp/dict-preflight-xrzqshhu/entry.v2.json\",\n  \"outputSha256\": null,\n  \"errors\": [\n    \"sense 1.DifferentThingTest.Decision: use one-thing or different-thing\",\n    \"sense 2.DifferentThingTest.Decision: use one-thing or different-thing\"\n  ]\n}\n"
+        }
+      ]
+    },
+    {
+      "entryId": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "entryDir": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b10c9e660874",
+      "failures": [
+        {
+          "kind": "manifest-entry-content-binding-missing"
+        },
+        {
+          "kind": "worksheet-entry-compile-drift",
+          "worksheetSha256": "5cedcd39d004dd82b0f49078aefb585a8297e5f1a0b4e5abb442e1cdf808b517",
+          "compiledSha256": "14b1181dc35b370f88fe235a9db69c8f37c57bfe649982c197649b18a3c43547",
+          "productSha256": "676fec935b84f7cee8e352e6d0f08adecca6d3faa467975f5703559fd0bc7b13"
+        },
+        {
+          "kind": "noncanonical_related_master",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b10c9e660874/entry.v2.json",
+          "detail": "生死即涅槃 s1: RelatedMasters value 'Xiangtian Jinian' is not roster-canonical"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b10c9e660874/entry.v2.json",
+          "detail": "生死即涅槃 s1 o3: 'Xiangtian Jinian' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b10c9e660874/entry.v2.json",
+          "detail": "生死即涅槃 s1 o3 c1: 'Xiangtian Jinian' is not roster names[0]"
+        }
+      ]
+    }
+  ]
+}

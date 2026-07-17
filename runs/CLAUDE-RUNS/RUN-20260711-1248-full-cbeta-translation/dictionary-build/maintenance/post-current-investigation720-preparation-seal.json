@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "post-current-investigation720-preparation-seal.v1",
+  "generatedUtc": "2026-07-17T13:20:05.334809+00:00",
+  "preparation": {
+    "path": "maintenance/post-current-investigation720-prepared.json",
+    "sha256": "ef666562f8eb9e277b5ec68da159b4be05e3ce1a85a87b7adcd510f6ecda951b"
+  },
+  "laneBundles": {
+    "a": {
+      "path": "maintenance/post-current-investigation720-floor-fullcase-a.json",
+      "sha256": "80899f2c02a5e6e27e58aa6c99bf15feb29b8a21bfeb4303f398326c1a9768c2"
+    },
+    "b": {
+      "path": "maintenance/post-current-investigation720-floor-fullcase-b.json",
+      "sha256": "5b4353711b93c502dbdddb69ed5f12bd69c13d4e819eeb12c81aa4c708f101c2"
+    },
+    "c": {
+      "path": "maintenance/post-current-investigation720-floor-fullcase-c.json",
+      "sha256": "c1dd8b9a505a1fb1ab23d8cf55421b4360cc231a939fd754ad1d5940e6cf3d9c"
+    }
+  },
+  "canaryBundles": {
+    "a": {
+      "path": "maintenance/post-current-investigation720-canary5-a.json",
+      "sha256": "1a64ee18e961f62895d310fd420fa706cba0d6ff3a6d483ff1d0f93a64a81835"
+    },
+    "b": {
+      "path": "maintenance/post-current-investigation720-canary5-b.json",
+      "sha256": "85dc2e24c91ce268bb090cfade93e8e0e85161729e937fff4574859d95b8ac39"
+    },
+    "c": {
+      "path": "maintenance/post-current-investigation720-canary5-c.json",
+      "sha256": "d7c7dcb514ef9a14f1e7fea3670b25a84233513840f4ece8dbf35d810975a257"
+    }
+  },
+  "candidateCount": 176,
+  "checkpointPaths": [
+    "maintenance/post-current-investigation720-checkpoint-050.json",
+    "maintenance/post-current-investigation720-checkpoint-100.json",
+    "maintenance/post-current-investigation720-checkpoint-150.json",
+    "maintenance/post-current-investigation720-checkpoint-176.json"
+  ],
+  "uniqueIds": true,
+  "uniqueHeadwords": true,
+  "entryConstructionAuthorized": false,
+  "mergeAuthorized": false,
+  "rosterMutationAuthorized": false,
+  "iriyaAdvancementAuthorized": false
+}

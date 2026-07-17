@@ -1,0 +1,669 @@
+{
+  "schemaVersion": "post720-lane-a-007-032-independent-current-byte-review.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "generatedUtc": "2026-07-17T17:26:04.395132+00:00",
+  "scope": "Lane A positions 007-032; actual entry.v2 bytes independently compared with author ledger and full-case bundle",
+  "authorLedger": "maintenance/post-current-investigation720-lane-a-007-032-author-ledger.json",
+  "authorLedgerSha256": "bf140fcb06eceb6716ff1383c4be0bb0d35cf467f5e324393d0c4be55df82c4e",
+  "fullCaseSource": "maintenance/post-current-investigation720-fullcase-a.json",
+  "fullCaseSourceSha256": "66e0653108c04871181233a666bbed7146a472294f41cb1e8ac76d860b130bba",
+  "reviewedCount": 26,
+  "passCount": 0,
+  "reviseCount": 26,
+  "rejectCount": 0,
+  "entriesEdited": false,
+  "buildPerformed": false,
+  "lineageTouched": false,
+  "decisions": [
+    {
+      "lanePosition": 7,
+      "id": "t_baaf641ad292",
+      "term": "無義路",
+      "currentEntrySha256": "ad428335692af0a53c04984055f8f4a5718193ec05e271e617ac6872a9389fb3",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 1,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 無義路 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 8,
+      "id": "t_7fe6e194e576",
+      "term": "弄死蛇",
+      "currentEntrySha256": "d5a50e10d1b1ba520cde9ba723b7c0b7e20c03c29efcbfad5ef623ce2e1c0c97",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 弄死蛇 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 9,
+      "id": "t_7b7576f60959",
+      "term": "木人歌",
+      "currentEntrySha256": "4e2e04784fa349b7f4e75a6b63e056d38836dc9e0feb2c09a8e5856fc6bf1f74",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 木人歌 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 10,
+      "id": "t_de5e2668bc5e",
+      "term": "絕言絕慮",
+      "currentEntrySha256": "b02b0347c63dbeaf0a01f73acd26191da1c8930605e1b2c13db34a96df6f3d6e",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 絕言絕慮 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 11,
+      "id": "t_8695699c9329",
+      "term": "兩堂爭猫",
+      "currentEntrySha256": "425a3f75033c43e5c03b0375e87355db48e23c2a78a552173cc5d5406a994578",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 1,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 兩堂爭猫 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 12,
+      "id": "t_b4733a98e43d",
+      "term": "殺活同時",
+      "currentEntrySha256": "25e0834e37e67ac0b714befd0b85ee92af336c00cc820b90194216d575bed378",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 殺活同時 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 13,
+      "id": "t_8eeddc0520bb",
+      "term": "行腳人",
+      "currentEntrySha256": "36ae101e0a2714f4008112ba16a79f4adaabe68287a5cca383ad09271c58017f",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 行腳人 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 14,
+      "id": "t_378f4b5f338f",
+      "term": "一塵不染",
+      "currentEntrySha256": "d699154cfe4fa7c289619662960f85fa5a1ddfeecf5aaedc90468ccaf624aed4",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 一塵不染 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 15,
+      "id": "t_42323f09261e",
+      "term": "本自清淨",
+      "currentEntrySha256": "e99161ac96e26f52849028ea3f8541bbe9b92722bfbd80d57412a48d67a47adb",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 本自清淨 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 16,
+      "id": "t_c07d4c1204f4",
+      "term": "無言可說",
+      "currentEntrySha256": "edafcc2ac813fff7958cb569f236989315f4aaa57158db55ba3902a34bf848af",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 無言可說 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 17,
+      "id": "t_372cf334c464",
+      "term": "立處即真",
+      "currentEntrySha256": "fff61cd11d802644a1c650da4f9efa1bc8e629c16255a2c194a88f02a8613a72",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 立處即真 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 18,
+      "id": "t_abe3c59c0ed8",
+      "term": "本分大事",
+      "currentEntrySha256": "7bf2ec476a01c11eaf4086226c390fd9a184e28520c22037a30d201959a8cf22",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 1,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 本分大事 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 19,
+      "id": "t_cb70f4c9eef8",
+      "term": "十牛圖",
+      "currentEntrySha256": "cdc5cf5976463d2587364aab4b98a2970993dbdf43590df4f6a6c821b6b08637",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 十牛圖 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 20,
+      "id": "t_5ef05597fe69",
+      "term": "參禪僧",
+      "currentEntrySha256": "3fca396559baa0c6927b246375cd1bb73af9518d3a98acc8f67b7b2920d70db9",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 參禪僧 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 21,
+      "id": "t_8bd390157b65",
+      "term": "逢羅漢殺羅漢",
+      "currentEntrySha256": "b3cb0f21da6e9a7fb8b0bb87b8d1eea9b4001135b15908bd93c41182ef8e91f4",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 4,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 逢羅漢殺羅漢 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 22,
+      "id": "t_6925c87bb616",
+      "term": "雲水僧",
+      "currentEntrySha256": "d4ce4dbe273d3fe7bc5a9080e5342f63fde766ed543c11304b80207343486616",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 0,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 雲水僧 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 23,
+      "id": "t_8ee9d62081ae",
+      "term": "定慧等持",
+      "currentEntrySha256": "ed30f4702606550addd34fc48dff47ebce567a864c97bdf114f1a335a6aa2635",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 1,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 定慧等持 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 24,
+      "id": "t_4baae3dda70c",
+      "term": "大悟底人",
+      "currentEntrySha256": "8c0891e72dc3b5cb970c0e99e38b842d1b975c056b746869df8aa8ea63785b9e",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 大悟底人 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 25,
+      "id": "t_a5a35b410079",
+      "term": "閉口即喪",
+      "currentEntrySha256": "561d77e8f668c951c95bfeef79b14566c29a49b08beb32b5d5de9ffafb2c4e1e",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 4,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 閉口即喪 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 26,
+      "id": "t_44056632f4c6",
+      "term": "隨機方便",
+      "currentEntrySha256": "43ca3d4096216a6016ec5f6804f2c178a2bb03c131d2520ee9ef199d117d7d4d",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 隨機方便 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 27,
+      "id": "t_06756e764d33",
+      "term": "黑山下鬼窟裏",
+      "currentEntrySha256": "3800b2f185b8da2b98470ebdf00ee1edfd00ff512605039c6f58b0b8ac51d00d",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "bareHeadwordOnlyClaimTextCount": 4,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 4,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 黑山下鬼窟裏 bytes do not carry the full cases needed to support the authored ruling. All 4 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 28,
+      "id": "t_7517cee5844f",
+      "term": "認子為賊",
+      "currentEntrySha256": "72e0ac8c59a585f093b64668cb4ce9640b73f6716be73d706549b18c50be9d53",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 認子為賊 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 29,
+      "id": "t_24891e88f516",
+      "term": "木人石女",
+      "currentEntrySha256": "b551ec9cd8afa34d89caf2088dd135f314755e42ea6d1e979f3726c9fe7d6265",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 木人石女 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 30,
+      "id": "t_099bd2fda8bc",
+      "term": "開口便錯",
+      "currentEntrySha256": "d60a1c863568ef0afc71dbd7e65e33a894bab7fa5dd181e27bcebe0b9a5b41bf",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 開口便錯 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 31,
+      "id": "t_a8d80736de3b",
+      "term": "覿面錯過",
+      "currentEntrySha256": "98517677bf8d0600d782a54f299eb8fa9f5d432b1a574982b1630e4bd792bf93",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 3,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 覿面錯過 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    },
+    {
+      "lanePosition": 32,
+      "id": "t_bc9a15980b00",
+      "term": "問辨",
+      "currentEntrySha256": "6099735ff93f49e028a7963d35bf27eaa54c3b67afca58e6acf228fe5dde5951",
+      "decision": "REVISE",
+      "checks": {
+        "admission": "plausible-but-not-demonstrated-in-entry",
+        "definitionAgainstEveryOccurrence": "fail-full-case-not-retained",
+        "senseBoundary": "revise",
+        "zenBend": "plausible",
+        "exactActorHeadwordUtterer": "fail-generic-assertion-without-turn-evidence",
+        "distinctWorks": "pass-structural",
+        "exactKwic": "pass-token-only-but-insufficient-for-semantic-review"
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "bareHeadwordOnlyClaimTextCount": 3,
+        "bareHeadwordOnlyKwicCount": 0,
+        "genericCompleteCaseAttributionNoteCount": 3,
+        "unnamedCompilerFallbackCount": 2,
+        "availableFullCaseCount": 3
+      },
+      "finding": "The current 問辨 bytes do not carry the full cases needed to support the authored ruling. All 3 retained ClaimText/Kwic values are only the bare headword, while the actual full-case bundle contains 3 expanded cases. Explanation mechanically repeats the author-ledger reason and Note restates it, rather than showing what each question, answer, verse, criticism, or institutional use does. Attribution notes merely assert that 'the complete case assigns' the phrase; named owners and unnamed-compiler fallbacks are not demonstrated from an exact marked turn in the entry bytes. Preserve the plausible admission, but retain translated full clauses and bind the actual headword utterer/narrator/quoted origin case by case before acceptance."
+    }
+  ]
+}

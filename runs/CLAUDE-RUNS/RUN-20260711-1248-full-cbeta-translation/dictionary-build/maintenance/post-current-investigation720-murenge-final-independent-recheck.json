@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "post720-murenge-final-independent-recheck.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "scope": "Focused current-byte recheck of 木人歌 after the sole remaining semantic repair",
+  "repairLedger": "maintenance/post-current-investigation720-murenge-final-repair-ledger.json",
+  "repairLedgerSha256": "c4345f429f1f5688fd4df97044dac41e5fca4acca84a109c408610f35e2cbfee",
+  "id": "t_7b7576f60959",
+  "term": "木人歌",
+  "currentEntrySha256": "e45e1f62f32c616d485b23b41a39441702f18e5fc2042ef8280d779f84d21127",
+  "matchesRepairLedgerAfterSha256": true,
+  "decision": "PASS",
+  "checks": {
+    "preferredTargetIsPredicate": true,
+    "preferredTargetNotTitle": true,
+    "explanationMatchesPredicate": true,
+    "noteRejectsTitleReading": true,
+    "fullExcerptsPreserved": true,
+    "actorRulingsPreserved": true
+  },
+  "finding": "The current bytes resolve the sole outstanding ruling. PreferredTarget is now 'the wooden person sings'; Explanation gives the same predicate; Note explicitly states that 木人 is the grammatical subject and 歌 the verb and rejects a work-title reading. The four repaired excerpts and actor bindings remain intact.",
+  "entriesEditedByReviewer": false,
+  "buildPerformedByReviewer": false,
+  "lineageTouchedByReviewer": false
+}

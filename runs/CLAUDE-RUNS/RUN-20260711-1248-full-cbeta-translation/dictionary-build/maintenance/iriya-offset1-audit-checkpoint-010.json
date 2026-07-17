@@ -1,0 +1,322 @@
+{
+  "schemaVersion": "iriya-adjudication-offset1-audit.v1",
+  "generatedUtc": "2026-07-17T16:56:26.004577+00:00",
+  "assignment": {
+    "canonicalZeroBasedIndexes": "1,4,7,...",
+    "mode": "audit-only"
+  },
+  "guide": "IRIYA_ADJUDICATION_GUIDE.md",
+  "queue": "IRIYA_SAYINGS_QUEUE.md",
+  "queueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "reviewedCount": 10,
+  "keepCoupletCount": 6,
+  "keepComponentCount": 0,
+  "provisionalCount": 0,
+  "rejectCount": 4,
+  "decisions": [
+    {
+      "queueNumber": 2,
+      "zeroBasedIndex": 1,
+      "id": "t_4017c22b1cd5",
+      "term": "在什麼處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Productive location-question grammar with a changing antecedent ('where is the fire?', 'where is home?', and many unrelated objects); the string has no stable Chan lexical job of its own.",
+      "zcEvidence": {
+        "exactHits": 2775,
+        "files": 261,
+        "distinctWorks": 258,
+        "samples": [
+          {
+            "relPath": "C/C077/C077n1710.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0618c03",
+            "window": "自宗通溈山云如是如是。黃檗問從上古人以何法施人師良久黃檗云後代兒孫將何傳授師云將謂你者漢是箇人便歸方丈師與溈山作務次師問有火也無溈山云有師云在什麼處溈山把一莖柴吹過與師師接云如䖝蝕木因普請鋤地次有僧聞鼓聲舉起鋤頭大咲歸去師云俊哉此是觀音入理之門後喚其僧問你今日見甚道理云某甲早辰未喫粥聞鼓"
+          },
+          {
+            "relPath": "D/D48/D48n8939.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0022a01",
+            "window": "坐也曾臥如今欲鎸作佛不知還得否南泉曰得莫不得麼不得有人明得此󳋩也無南泉道得龍門云好个佛南泉道不得龍門云好片石還見否是他道弟子家中作麼生󵘸家家在什麼處諸仁者親從家裏來家中何所有持此一片石廣大堅且久靈山曾獻佛帝釋聊舉手心中出何物安樂并長壽下座。聖節上堂皇帝以天下為家兆民為子父子一體天下一家王"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 5,
+      "zeroBasedIndex": 4,
+      "id": "t_0e7f1765bcc5",
+      "term": "三十年後",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at X/X82/X82n1571.xml 0002a24; it is not merely contained as ordinary running prose. Fresh zc evidence spans 215 independent works.",
+      "zcEvidence": {
+        "exactHits": 1120,
+        "files": 220,
+        "distinctWorks": 215,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0002a24",
+            "window": "杖曰：拄杖是緣，那箇是佛種？拄杖是一乘法，那箇是緣？這裏參見釋迦老子了，却買草鞋行脚不得，向衲僧門下過，打折汝腰。且道衲僧據箇甚麼？良久曰：三十年後莫孤負人。卓拄杖，下座。泉州承天傳宗禪師泉州承天傳宗禪師僧問：大用現前，不存軌則時如何？師曰：承天今日，高豎降旗。僧便喝，師曰：臨濟兒孫。僧"
+          },
+          {
+            "relPath": "X/X66/X66n1297.xml",
+            "workId": "chan:zongjian-falin",
+            "fromLb": "0277b03",
+            "window": "難問外道有何所證，亦和聲便打。殺人須是殺人刀，活人須是活人劍。徑山杲舉雪竇語畢云：邪正兩分，正猶鞭影。磬山修云：二老恰在鞭影裏批判。良久云：三十年後，此話大行。南磵問云：瞿曇鈍置太煞，若是山僧，便與和座掀倒。雖然，知我者少，笑我者多。佛日晳云：雪竇、妙喜二尊宿，氣吞佛祖，名振古今，檢點將"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 8,
+      "zeroBasedIndex": 7,
+      "id": "t_eea303b5993b",
+      "term": "近離甚處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "A routine arrival/interview question ('where have you recently come from?') whose answer supplies a place; this is productive vernacular interview grammar rather than a saying.",
+      "zcEvidence": {
+        "exactHits": 859,
+        "files": 148,
+        "distinctWorks": 144,
+        "samples": [
+          {
+            "relPath": "X/X79/X79n1557.xml",
+            "workId": "work:X79n1557",
+            "fromLb": "0054b13",
+            "window": "作頌寄之云：當機覿面提，覿面當機疾。報汝凌行婆，哭聲何得失？婆答頌云：哭聲師已曉，已曉復誰知？當時摩竭國，幾喪目前機。洞安和尚洞安和尚問僧：近離甚處？云：東川。師云：雙㵎孤松，煙清月白，那箇是上座主人？公云：始屆洞安，便遭此問。師云：記劒刻舟，破珠求影，豈不是闍梨境界？僧却問：那箇是洞安"
+          },
+          {
+            "relPath": "X/X80/X80n1565.xml",
+            "workId": "work:X80n1565",
+            "fromLb": "0061a12",
+            "window": "矣。所以道。說法有所得。斯則野干鳴。說法無所得。是名師子吼。上堂。青蘿夤緣。直上寒松之頂。白雲淡泞。出沒太虗之中。萬法本閑而人自閙。師問僧。近離甚處。曰。南方。師曰。南方知識以何法示人。曰。南方知識。秖道一朝風火散後。如蛇退皮。如龍換骨。本爾真性。宛然無壞。師曰。苦哉。苦哉。南方知識說法"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 11,
+      "zeroBasedIndex": 10,
+      "id": "t_6d5176acfd0a",
+      "term": "天下太平",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at X/X82/X82n1571.xml 0070c17; it is not merely contained as ordinary running prose. Fresh zc evidence spans 217 independent works.",
+      "zcEvidence": {
+        "exactHits": 543,
+        "files": 219,
+        "distinctWorks": 217,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0070c17",
+            "window": "範禪師上堂：塵劫已前事，堂堂無背面。動靜莫能該，舒卷快如電。莫道凡不知，佛也󳬇不見。決定在何處，合取這兩片。薦不薦，更為諸人通一線。良久曰：天下太平，皇風永扇。上堂，舉：僧問趙州：至道無難，唯嫌揀擇。是時人窠窟否？州曰：曾有人問老僧，直得五年分疎不下。師召眾曰：趙州具頂門眼，向擊石火裏分"
+          },
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0007c16",
+            "window": "，冥應眾緣而無忒。從上以來，推尊此位。且全身奉重一句如何舉唱？妙叶羣機齊入貢，從教諸道自分權。楚石琦禪師聖節，上堂，舉無著與外道論義，著云：天下太平，國王長壽。外道杜口不能破。師頌云：義有河沙數，不出者一句。蚊子上鐵牛，無你下嘴處。無用寬禪師天壽聖節，上堂：威音王佛，今朝示現。德被蒼生，"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 14,
+      "zeroBasedIndex": 13,
+      "id": "t_128bee5fc853",
+      "term": "忍俊不禁",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The samples use the ordinary narrative idiom 'unable to hold back laughter' to introduce what a record owner next says or does. It is not itself an answer, verdict, capping phrase, test-question, epithet, or raised case.",
+      "zcEvidence": {
+        "exactHits": 508,
+        "files": 191,
+        "distinctWorks": 188,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0049c02",
+            "window": "曰：大眾，寶峰何似孔夫子？良久曰：酒逢知己飲，詩向會人吟。卓拄杖，下座。上堂：劄！久雨不晴，直得五老峰頭黑雲靉靆，洞庭湖裏白浪滔天。雲門大師忍俊不禁，向佛殿裏燒香，三門頭合掌，禱祝呪願：願黃梅石女生兒，子母團圓；少室無角鐵牛，常甘水草。喝一喝：有甚麼交涉？顧眾曰：不因楊得意，爭見馬相如？"
+          },
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0014b23",
+            "window": "。且淨意如虗空，置之不問，還識佛境界麼？如一香一華、一旛一幢，非佛境界；官殿樓閣、園林浴池，非佛境界；乃至光明殊勝等，俱非佛境界。本上座今日忍俊不禁，指似去也。山高水深，是佛境界；日上月下、雲騰鳥飛，是佛境界；明暗色空、壞空成住、三途六趣、九有四生、爐炭鑊湯、諸惡苦趣，是佛境界。諸仁者，"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 17,
+      "zeroBasedIndex": 16,
+      "id": "t_815b544b2081",
+      "term": "不識好惡",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at X/X79/X79n1557.xml 0078c14; it is not merely contained as ordinary running prose. Fresh zc evidence spans 163 independent works.",
+      "zcEvidence": {
+        "exactHits": 495,
+        "files": 167,
+        "distinctWorks": 163,
+        "samples": [
+          {
+            "relPath": "X/X79/X79n1557.xml",
+            "workId": "work:X79n1557",
+            "fromLb": "0078c14",
+            "window": "眾居開元寺房，織蒲鞋養其母。挹世高蹈，為時所慕。凡應接來者，機辨峭絕，無容竚思。指臨濟參黃蘗，接雲門嗣雪峰，皆師之力也。示眾云：我見百丈和尚不識好惡。上堂，大眾纔集，以拄杖一時打下，復召大眾，眾回首，丈云：是甚麼？師云：有甚共語處？黃蘗亦然。復召大眾，眾回首，蘗云：月似彎弓，少雨多風。師"
+          },
+          {
+            "relPath": "X/X81/X81n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0478b23",
+            "window": "三十棒教誰喫？問：高揖釋迦，不拜彌勒時如何？師曰：昨日有人問，趂出了也。曰：和尚恐某甲不實耶？師曰：拄杖不在，苕󰆠柄聊與三十。上堂：我見百丈不識好惡。大眾纔集，以拄杖一時打下。復召大眾，眾回首。乃曰：是甚麼？有甚共語處？又黃檗亦然。復召大眾，眾回首。乃曰：月似彎弓，少雨多風，猶較些子。問"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 20,
+      "zeroBasedIndex": 19,
+      "id": "t_ede52b261c8c",
+      "term": "揚眉瞬目",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at C/C077/C077n1710.xml 0675c24; it is not merely contained as ordinary running prose. Fresh zc evidence spans 134 independent works.",
+      "zcEvidence": {
+        "exactHits": 481,
+        "files": 137,
+        "distinctWorks": 134,
+        "samples": [
+          {
+            "relPath": "C/C077/C077n1710.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0675c24",
+            "window": "不落聲色即是師云問從何來。問瞻之在前忽然在後復是何物師云築著鼻孔問若能轉物即同如來萬象是物如何轉得師云喫了飯無些子意智問拈槌竪拂皆是止啼之說揚眉瞬目未為作者之機如何是見前受用師云早衙放過晚後出來問寸絲不挂法網無邊為什麼却分迷悟師云兩桶一擔問心隨境轉境逐心生心境兩忘甚處即是師云待你悟始得問"
+          },
+          {
+            "relPath": "X/X80/X80n1565.xml",
+            "workId": "work:X80n1565",
+            "fromLb": "0109b03",
+            "window": "恁麼也不得。不恁麼也不得。恁麼不恁麼總不得。子作麼生。師罔措。頭曰。子因緣不在此。且往馬大師處去。師稟命恭禮馬祖。仍伸前問。祖曰。我有時教伊揚眉瞬目。有時不教伊揚眉瞬目。有時揚眉瞬目者是。有時揚眉瞬目者不是。子作麼生。師於言下契悟。便禮拜。祖曰。你見甚麼道理便禮拜。師曰。某甲在石頭處。如"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 23,
+      "zeroBasedIndex": 22,
+      "id": "t_79bfd4b7137e",
+      "term": "八字打開",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at X/X64/X64n1260.xml 0011a10; it is not merely contained as ordinary running prose. Fresh zc evidence spans 182 independent works.",
+      "zcEvidence": {
+        "exactHits": 401,
+        "files": 183,
+        "distinctWorks": 182,
+        "samples": [
+          {
+            "relPath": "X/X64/X64n1260.xml",
+            "workId": "work:X64n1260",
+            "fromLb": "0011a10",
+            "window": "一場佛事耀古騰今，判府旌斾光臨，羣賢車葢畢集，四眾瞻仰，萬姓歌謠，為國開堂，舉揚宗教，山僧不敢囊藏被葢，其有諸佛說不盡底、祖師提不起處，對眾八字打開去也。遂舉拂子，云：大眾還見麼？擊禪床，云：還見麼？見處透脫，聞處精明，一念返本還源，即具頂門三眼，萬里更無纖翳，千聖齊立下風，坐斷報化佛頭"
+          },
+          {
+            "relPath": "T/T47/T47n1997.xml",
+            "workId": "work:T47n1997",
+            "fromLb": "0717a24",
+            "window": "。一場佛事。耀古騰今。判府旌旆光臨。群賢車蓋畢集。四眾矚仰萬姓歌謠。為國開堂舉揚宗教。山僧不敢囊藏被蓋。其有諸佛說不盡底。祖師提不起處。對眾八字打開去也。遂舉拂子云。大眾還見麼。擊禪床云。還聞麼。見處透脫聞處精明。一念返本還源。即具頂門三眼。萬里更無纖翳。千聖齊立下風。坐斷報化佛頭。直得"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 26,
+      "zeroBasedIndex": 25,
+      "id": "t_c6323c68f3d8",
+      "term": "七縱八横",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact phrase is deployed in the retained Chan exchange/address as a formula, verdict, capping phrase, or tested action at X/X82/X82n1571.xml 0033c05; it is not merely contained as ordinary running prose. Fresh zc evidence spans 157 independent works.",
+      "zcEvidence": {
+        "exactHits": 390,
+        "files": 160,
+        "distinctWorks": 157,
+        "samples": [
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0033c05",
+            "window": "羅帳裏撤真珠，未必善因而招惡果。上堂：有句無句，如藤倚樹，且任諸人點頭。及乎樹倒藤枯，上無衝天之計，下無入地之謀。靈利漢這裏著得一隻眼，便見七縱八橫。舉拂子曰：看！太陽溢目，萬里不挂片雲。若是覆盆之下，又爭怪得老僧？上堂：若也單明自己，不悟目前，此人有眼無足。若悟目前，不明自己，此人有足"
+          },
+          {
+            "relPath": "C/C077/C077n1710.xml",
+            "workId": "work:guzunsu-yulu",
+            "fromLb": "0629b21",
+            "window": "一人居何國土泉云可惜許。師上堂大眾纔集師拈拄杖一時打散復召大眾眾回首師云月似彎弓少雨多風。師一日捏拳謂眾云天下老和尚緫在這裏我若放一線道從汝七縱八橫若不放過不消一捏時有僧問放一線道何師云七縱八橫云不放過時如何師云普裴相國一日請師至郡以所觧一編示師師接置於座略不披󲰥良久曰會麼裴曰未測師曰若"
+          }
+        ]
+      }
+    },
+    {
+      "queueNumber": 29,
+      "zeroBasedIndex": 28,
+      "id": "t_ceee2c8e54b0",
+      "term": "千里萬里",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "The exact string functions as the ordinary distance/intensity adverb 'a thousand leagues, ten thousand leagues' inside larger prose and verse. The sampled clauses do not deploy the bare phrase as an independent Chan saying.",
+      "zcEvidence": {
+        "exactHits": 391,
+        "files": 149,
+        "distinctWorks": 146,
+        "samples": [
+          {
+            "relPath": "T/T47/T47n1997.xml",
+            "workId": "work:T47n1997",
+            "fromLb": "0741a07",
+            "window": "不離水。耿左丞請。上堂云。無佛世界是般若光。百千聖賢是般若用。金剛正體是般若根。摧魔城壘是般若力。有如是自在威神。得如是解脫知見。用一絲毫。千里萬里盡光輝。拈一絲毫。無邊世界無變易。全體承當。如如不動。所以乃佛乃祖。提持此事。令一切人各各於根脚下洞明正見。得其光顯其用。證其根獲其力。正當"
+          },
+          {
+            "relPath": "X/X82/X82n1571.xml",
+            "workId": "work:wudeng-quanshu",
+            "fromLb": "0084c07",
+            "window": "，千牛拽不回。十五日已後，俊鶻趂不及。正當十五日，天平地平，同明同暗，大千沙界不出，當處可以含吐十虗。進一步，超越不可說香水海。退一步，坐斷千里萬里白雲。不進不退，莫道闍黎，老僧也無開口處。舉拂子曰：正當恁麼時如何？有時拈在千峰上，劃斷秋雲不放高。上堂：十方同聚會，本來身不昧。個個學無為"
+          }
+        ]
+      }
+    }
+  ],
+  "pauseReason": "higher-priority Lane B first10 current-byte recheck became ready",
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

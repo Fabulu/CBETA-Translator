@@ -1,0 +1,111 @@
+{
+  "Id": "t_8ee9d62081ae",
+  "SourceTerm": "定慧等持",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex post720 Lane A positions 007-032",
+  "WrittenUtc": "2026-07-17T17:48:39.440462+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "maintaining concentration and insight equally",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "holding concentration and insight equally"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Concentration and insight must remain coequal in the paired expression.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2020.xml",
+          "FromLb": "1007c25",
+          "ToLb": "1007c26",
+          "Kwic": "念修習，不忘照顧定慧等持，則愛惡自然淡薄",
+          "ClaimText": "念修習，不忘照顧定慧等持，則愛惡自然淡薄",
+          "MasterName": "Chejing",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Chejing",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Chejing",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2020.xml). Corpus witness at 1007c25: Chejing owns the exact clause under its visible narrative predicate."
+        },
+        {
+          "RelPath": "J/J34/J34nB300.xml",
+          "FromLb": "0240c26",
+          "ToLb": "0240c26",
+          "Kwic": "名慧，即佛乃定；定慧等持，意中清淨。悟此",
+          "ClaimText": "名慧，即佛乃定；定慧等持，意中清淨。悟此",
+          "MasterName": "Chaozong Tongren",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Chaozong Tongren",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Chaozong Tongren",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J34/J34nB300.xml). Corpus witness at 0240c26: Chaozong Tongren owns the exact clause under its visible verse frame."
+        },
+        {
+          "RelPath": "J/J10/J10nA158.xml",
+          "FromLb": "0023b19",
+          "ToLb": "0023b20",
+          "Kwic": "名慧，即佛乃定。定慧等持，意中清淨。』是",
+          "ClaimText": "名慧，即佛乃定。定慧等持，意中清淨。』是",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (J/J10/J10nA158.xml). Corpus witness at 0023b19: the unnamed current record voice owns the exact clause under its visible narrative predicate.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "narrative predicate owner",
+            "ActorLabel": "the unnamed current record voice",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "At 0023b19, the visible narrative predicate governs the exact headword span; no named contextual figure is inserted.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:48:39.440462+00:00"
+          }
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2020.xml",
+        "J/J34/J34nB300.xml",
+        "J/J10/J10nA158.xml"
+      ],
+      "RelatedMasters": [
+        "Chejing",
+        "Chaozong Tongren"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Maintaining concentration and insight equally. The paired faculties are explicitly held in balance rather than ranked or handled separately. Concentration and insight must remain coequal in the paired expression."
+    }
+  ]
+}

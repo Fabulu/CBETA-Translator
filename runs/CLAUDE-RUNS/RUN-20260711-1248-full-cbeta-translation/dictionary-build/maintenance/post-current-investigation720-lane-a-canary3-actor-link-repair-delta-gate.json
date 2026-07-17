@@ -1,0 +1,254 @@
+{
+  "generatedUtc": "2026-07-17T16:03:07.562777+00:00",
+  "elapsedSeconds": 24.32,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8dfac3877360/entry.v2.json",
+      "sha256": "ced88dc75f6058f5c21a2a7770360877235e24b1a03f1311ac9ec330720b93c8"
+    },
+    {
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0419c13b037/entry.v2.json",
+      "sha256": "58fd5d33f3bd7670d7c723b321a94305124f4fe4028d8decc370509c8aa34791"
+    },
+    {
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_186677ffbc59/entry.v2.json",
+      "sha256": "62091aee0adff8dc923ef2140867859d4ceb828e8f35991fa6f19a6ce957afd7"
+    }
+  ],
+  "exactKwic": {
+    "entries": 3,
+    "verified": 14,
+    "occurrenceVerified": 14,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8dfac3877360/entry.v2.json",
+        "id": "t_8dfac3877360",
+        "term": "依樣",
+        "verified": 6,
+        "occurrenceVerified": 6,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d0419c13b037/entry.v2.json",
+        "id": "t_d0419c13b037",
+        "term": "不變隨緣",
+        "verified": 4,
+        "occurrenceVerified": 4,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_186677ffbc59/entry.v2.json",
+        "id": "t_186677ffbc59",
+        "term": "客塵煩惱",
+        "verified": 4,
+        "occurrenceVerified": 4,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.558,
+    "attribution": 7.887,
+    "publicFeedback": 2.182,
+    "depthSense": 5.294,
+    "countClaims": 1.709,
+    "workSourceValidation": 1.48,
+    "corpusBaseline": 1.457,
+    "frozenHistoricalTerms": 1.691,
+    "lineageRosterUntouched": 11.95,
+    "batchSemanticTemplates": 1.563,
+    "attributionPackets": 10.757
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 7.887,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "occurrences": 14,
+        "actor_impersonal": 1,
+        "context_master_links": 14,
+        "attribution_notes": 14,
+        "named_occurrences": 13,
+        "deferred_non_roster": 2,
+        "pending_roster_master": 2,
+        "deferred_non_roster_context": 2,
+        "pending_roster_context_master": 2
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"occurrences\": 14,\n    \"actor_impersonal\": 1,\n    \"context_master_links\": 14,\n    \"attribution_notes\": 14,\n    \"named_occurrences\": 13,\n    \"deferred_non_roster\": 2,\n    \"pending_roster_master\": 2,\n    \"deferred_non_roster_context\": 2,\n    \"pending_roster_context_master\": 2\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.182,
+    "payload": {
+      "entries": 3,
+      "passing": 3,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 3,\n  \"passing\": 3,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmp113xr8ye.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 5.294,
+    "payload": {
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 1,
+      "singleSense": 3,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_186677ffbc59",
+        "t_8dfac3877360",
+        "t_d0419c13b037"
+      ]
+    },
+    "output": "{\n  \"audited\": 3,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 3,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_186677ffbc59\",\n    \"t_8dfac3877360\",\n    \"t_d0419c13b037\"\n  ]\n}\nreport: /tmp/tmp7h04i4im-depth.json\n",
+    "report": "/tmp/tmp7h04i4im-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.709,
+    "payload": {
+      "entryCount": 3,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 3,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.48,
+    "payload": {
+      "counts": {
+        "entries": 3,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 3,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.457,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.691,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "lineageRosterUntouched": {
+    "exitCode": 0,
+    "elapsedSeconds": 11.95,
+    "payload": {
+      "schemaVersion": "dictionary-lineage-write-prohibition.v2",
+      "mode": "wave-baseline",
+      "hardPass": true,
+      "protected": [
+        {
+          "path": "Assets/Data/lineage-masters.json",
+          "worktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "headObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "semanticBytesSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+          "clean": true,
+          "baselineWorktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "unchangedFromBaseline": true
+        },
+        {
+          "path": "Assets/Data/master-dates.json",
+          "worktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "headObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "semanticBytesSha256": "7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0",
+          "clean": true,
+          "baselineWorktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "unchangedFromBaseline": true
+        }
+      ],
+      "failures": []
+    },
+    "output": "{\n  \"schemaVersion\": \"dictionary-lineage-write-prohibition.v2\",\n  \"mode\": \"wave-baseline\",\n  \"hardPass\": true,\n  \"protected\": [\n    {\n      \"path\": \"Assets/Data/lineage-masters.json\",\n      \"worktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"headObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"semanticBytesSha256\": \"33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"unchangedFromBaseline\": true\n    },\n    {\n      \"path\": \"Assets/Data/master-dates.json\",\n      \"worktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"headObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"semanticBytesSha256\": \"7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"unchangedFromBaseline\": true\n    }\n  ],\n  \"failures\": []\n}\n"
+  },
+  "batchSemanticTemplates": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.563,
+    "payload": {
+      "schemaVersion": "batch-semantic-template-audit.v1",
+      "entries": 3,
+      "repeatFloor": 5,
+      "hardPass": true,
+      "failureCount": 0,
+      "failures": [],
+      "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+    },
+    "output": "{\n  \"schemaVersion\": \"batch-semantic-template-audit.v1\",\n  \"entries\": 3,\n  \"repeatFloor\": 5,\n  \"hardPass\": true,\n  \"failureCount\": 0,\n  \"failures\": [],\n  \"rule\": \"Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.\"\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 10.757,
+    "payload": {
+      "entries": 3,
+      "occurrences": 14,
+      "tierACandidates": 0,
+      "reviewRequired": 14,
+      "cache": {
+        "reusedEntries": 2,
+        "reusedOccurrences": 8,
+        "rebuiltEntries": 1,
+        "rebuiltOccurrences": 6
+      }
+    },
+    "output": "{\n  \"entries\": 3,\n  \"occurrences\": 14,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 14,\n  \"cache\": {\n    \"reusedEntries\": 2,\n    \"reusedOccurrences\": 8,\n    \"rebuiltEntries\": 1,\n    \"rebuiltOccurrences\": 6\n  }\n}\nreport: /mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-lane-a-canary3-actor-link-repair-delta-gate-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-lane-a-canary3-actor-link-repair-delta-gate-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_8dfac3877360",
+    "t_d0419c13b037",
+    "t_186677ffbc59"
+  ],
+  "strictRosterScopeIds": [
+    "t_8dfac3877360",
+    "t_d0419c13b037",
+    "t_186677ffbc59"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/b022875844f73302947d0d379c24bb7d0ab34fde777ea84f2a0bb92990718a6d.lock"
+}

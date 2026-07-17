@@ -1,0 +1,114 @@
+{
+  "Id": "t_099bd2fda8bc",
+  "SourceTerm": "開口便錯",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex post720 Lane A positions 007-032",
+  "WrittenUtc": "2026-07-17T17:48:39.440462+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the moment one opens the mouth, it is wrong",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "open the mouth and immediately be wrong"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Error coincides with beginning speech and is bounded by that dilemma.",
+      "Occurrences": [
+        {
+          "RelPath": "L/L154/L154n1639.xml",
+          "FromLb": "0143b09",
+          "ToLb": "0143b10",
+          "Kwic": "得千經萬論到者裏開口便錯法濟當時若作座主",
+          "ClaimText": "得千經萬論到者裏開口便錯法濟當時若作座主",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (L/L154/L154n1639.xml). Corpus witness at 0143b09: the unnamed current record voice owns the exact clause under its visible answer marker.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "answer marker owner",
+            "ActorLabel": "the unnamed current record voice",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "At 0143b09, the visible answer marker governs the exact headword span; no named contextual figure is inserted.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:48:39.440462+00:00"
+          }
+        },
+        {
+          "RelPath": "J/J25/J25nB171.xml",
+          "FromLb": "0521b16",
+          "ToLb": "0521b17",
+          "Kwic": "千經萬論，到這裏開口便錯。法濟當時若作座",
+          "ClaimText": "千經萬論，到這裏開口便錯。法濟當時若作座",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (J/J25/J25nB171.xml). Corpus witness at 0521b16: the unnamed current record voice owns the exact clause under its visible answer marker.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "answer marker owner",
+            "ActorLabel": "the unnamed current record voice",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "At 0521b16, the visible answer marker governs the exact headword span; no named contextual figure is inserted.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:48:39.440462+00:00"
+          }
+        },
+        {
+          "RelPath": "J/J38/J38nB428.xml",
+          "FromLb": "0904a17",
+          "ToLb": "0904a18",
+          "Kwic": "步蹋著，為甚諸人開口便錯、動步即乖？還知",
+          "ClaimText": "步蹋著，為甚諸人開口便錯、動步即乖？還知",
+          "MasterName": "Mixing Jiren",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Mixing Jiren",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Mixing Jiren",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J38/J38nB428.xml). Corpus witness at 0904a17: Mixing Jiren owns the exact clause under its visible answer marker."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "L/L154/L154n1639.xml",
+        "J/J25/J25nB171.xml",
+        "J/J38/J38nB428.xml"
+      ],
+      "RelatedMasters": [
+        "Mixing Jiren"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "The moment one opens the mouth, it is wrong. The complete sayings make error coincide with beginning to speak, often paired with loss through silence. Error coincides with beginning speech and is bounded by that dilemma."
+    }
+  ]
+}

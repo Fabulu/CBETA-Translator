@@ -1,0 +1,2198 @@
+{
+  "schemaVersion": "iriya-adjudication-log.lane-a.v1",
+  "mode": "AUDIT-ONLY",
+  "lane": {
+    "offset": 0,
+    "stride": 3,
+    "indexBasis": "zero-based canonical candidate index"
+  },
+  "provenanceFirewall": "Iriya and Koga supply selection provenance only; no Japanese gloss, definition, sense, or example is used.",
+  "sourceBindings": {
+    "IRIYA_ADJUDICATION_GUIDE.md": "0a8a3f44e70a085e43cd08256a2db01d4f0ccb3c9ce885bcdb5978996c00ad55",
+    "DICTIONARY_ENTRY_GUIDE.md": "e4ba350e67ba9fa3d88860ec1e6175c14d83d62ec5d7a26bf62d310bd81bd7a2",
+    "CODEX_IRIYA_QUEUE_PROMPT.md": "b28340d2403a2ffe78acbe470bd015ff55184725a4ad34830d66cc0e6e574cae",
+    "IRIYA_SAYINGS_QUEUE.md": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be"
+  },
+  "canonicalReconciliation": {
+    "printedRows": 2008,
+    "rankRange": [
+      1,
+      2008
+    ],
+    "ranksContiguous": true,
+    "uniqueIds": 2008,
+    "uniquePrintedTerms": 2008,
+    "uniqueNormalizedQueries": 2007,
+    "normalizedQueryDuplicate": {
+      "query": "拏雲攫霧",
+      "ranks": [
+        626,
+        627
+      ],
+      "terms": [
+        "拏 雲 攫 霧",
+        "拏雲攫霧"
+      ]
+    },
+    "priorPipelineDuplicateFlagRanks": [
+      24,
+      33,
+      44,
+      120,
+      179,
+      182,
+      224,
+      252,
+      280,
+      485,
+      700,
+      912
+    ],
+    "orderingPolicy": "All authoritative rows remain in rank order for semantic adjudication; duplicate flags are resolved in their own turns and do not silently delete or reorder candidates."
+  },
+  "decisionCriterion": "Does the frozen Chan corpus deploy the phrase as an answer, verdict, capping phrase, test-question, epithet, or raised case, rather than merely contain it in quotation or ordinary running prose?",
+  "checkpointEvery": 50,
+  "entryWrites": 0,
+  "queueWrites": 0,
+  "rosterOrLineageWrites": 0,
+  "generatedUtc": "2026-07-17T18:01:21.766991+00:00",
+  "decisions": [
+    {
+      "canonicalIndex": 0,
+      "rank": 1,
+      "id": "t_17b4746140b7",
+      "term": "雖然如是",
+      "query": "雖然如是",
+      "pairExact": {
+        "hits": 3027,
+        "works": 325
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "The sampled complete cases use the words as the ordinary concessive transition 'although this is so' between surrounding propositions. High recurrence does not turn the connective into an answer, verdict, epithet, raised case, or independently handled capping unit; this is contained running prose rather than a distinct Chan-deployed lexical article.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0011b23",
+          "exact": "雖然如是",
+          "deployment": "ordinary transition from the warning about hearing 'Buddha-dharma' to the speaker's next self-qualification"
+        },
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0008c18",
+          "exact": "雖然如是",
+          "deployment": "ordinary concessive transition inside a later comment on an inherited case"
+        },
+        {
+          "relPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "fromLb": "0477a06",
+          "exact": "雖然如是",
+          "deployment": "ordinary transition before qualifying the preceding color examples"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 3,
+      "rank": 4,
+      "id": "t_855f8b4b2b2f",
+      "term": "安身立命",
+      "query": "安身立命",
+      "pairExact": {
+        "hits": 1216,
+        "works": 249
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is repeatedly deployed in direct test-questions asking where or how someone can establish body and life, and masters answer those questions. It is a single phrase rather than a multi-clause couplet and has a stable observable Chan job across independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0006c02",
+          "exact": "學人還有安身立命處也無？師曰：脚踏實地",
+          "deployment": "direct monk's test-question followed by the master's answer"
+        },
+        {
+          "relPath": "J/J34/J34nB311.xml",
+          "workId": "work:J34nB311",
+          "fromLb": "0593c11",
+          "exact": "學人向何處安身立命？師云：頂門上",
+          "deployment": "direct question in a hall exchange followed by Juelang's answer"
+        },
+        {
+          "relPath": "M/M59/M59n1540.xml",
+          "workId": "chan:dahui-pushuo",
+          "fromLb": "0793a06",
+          "exact": "畢竟那箇是當人安身立命處",
+          "deployment": "Dahui poses it as the culminating test-question in public discourse"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 6,
+      "rank": 7,
+      "id": "t_9a612ad0649c",
+      "term": "天上天下",
+      "query": "天上天下",
+      "pairExact": {
+        "hits": 845,
+        "works": 260
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Besides recurring inside the raised birth-case formula, the exact phrase is deployed independently as a master's answer to where the seasonal principle establishes body and life. Later hall addresses repeatedly raise and test the inherited 'in heaven and on earth' clause, so the phrase has observable Chan deployment beyond incidental verse containment.",
+      "zcEvidence": [
+        {
+          "relPath": "J/J10/J10nA158.xml",
+          "workId": "work:J10nA158",
+          "fromLb": "0010c06",
+          "exact": "一陽在何處安身立命？師云：天上天下",
+          "deployment": "Miyun Yuanwu gives the exact phrase as a direct answer"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0040a01",
+          "exact": "天上天下，唯我獨尊",
+          "deployment": "a hall address raises the inherited saying and immediately subjects it to a Chan verdict"
+        },
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "workId": "work:J26nB178",
+          "fromLb": "0104b20",
+          "exact": "天上天下唯我獨尊",
+          "deployment": "Feiyin raises the birth case, contrasts Yunmen's response, and asks for the basis"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 9,
+      "rank": 10,
+      "id": "t_b9e3003ce853",
+      "term": "放過一著",
+      "query": "放過一著",
+      "pairExact": {
+        "hits": 695,
+        "works": 203
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is repeatedly spoken as an encounter verdict or direct answer: a master says that someone is let off one move, or answers a monk with the phrase and follows the monk's deliberation with a shout. This is observable Chan deployment across independent works, not incidental containment.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0003a19",
+          "exact": "清長老且放過一著",
+          "deployment": "Xuedou's verdict on the prior response in the Zhaozhou-woman exchange"
+        },
+        {
+          "relPath": "T/T51/T51n2077.xml",
+          "workId": "work:T51n2077",
+          "fromLb": "0475a28",
+          "exact": "和尚如何為人。師曰。放過一著",
+          "deployment": "direct answer to a monk, followed by a shout when the monk deliberates"
+        },
+        {
+          "relPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "fromLb": "0056b20",
+          "exact": "臨濟先鋒，放過一著",
+          "deployment": "hall verdict paired against Deshan's later command"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 12,
+      "rank": 13,
+      "id": "t_040d3cc8deda",
+      "term": "未夢見在",
+      "query": "未夢見在",
+      "pairExact": {
+        "hits": 572,
+        "works": 206
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Masters repeatedly deploy 'have not even dreamed of it' as a verdict denying that a person has reached, understood, or seen the cited matter. It also occurs inside direct case questions. The repeated verdict job across independent works supports the exact phrase as the unit.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0009b11",
+          "exact": "若是那一通，總未夢見在",
+          "deployment": "later master's verdict on the claimed unspoken penetration"
+        },
+        {
+          "relPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "fromLb": "0124b10",
+          "exact": "坐脫立亡即不無。先師意未夢見在",
+          "deployment": "master's explicit verdict after the head monk dies seated"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0010b15",
+          "exact": "祖師禪未夢見在",
+          "deployment": "an inherited verdict is raised as the premise of a monk's direct question"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 15,
+      "rank": 16,
+      "id": "t_4f4c005d1b0f",
+      "term": "入地獄如箭",
+      "query": "入地獄如箭",
+      "pairExact": {
+        "hits": 551,
+        "works": 168
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected-nested-family",
+      "reason": "The corpus genuinely deploys the words as a negative verdict, but this candidate is the nested prefix/short variant of the independently queued full formula 入地獄如箭射 (rank 30). The shorter string has no different Chan job or referent and is better housed as a variant under the full-form article, so a separate substring article would duplicate the lexical family.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0044b07",
+          "exact": "若喚作拂子，入地獄如箭",
+          "deployment": "negative verdict in a naming test, showing real deployment of the short surface variant"
+        },
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0013c24",
+          "exact": "五百比丘恁麼悟去，入地獄如箭射",
+          "deployment": "the same verdict appears in the full queued formula"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0279a09",
+          "exact": "五百比丘恁麼悟去，入地獄如箭射",
+          "deployment": "independent work repeats the full formula, confirming the nested-family boundary"
+        }
+      ],
+      "routeToRank": 30,
+      "routeToTerm": "入地獄如箭射"
+    },
+    {
+      "canonicalIndex": 18,
+      "rank": 19,
+      "id": "t_ee2645801267",
+      "term": "臘月三十日",
+      "query": "臘月三十日",
+      "pairExact": {
+        "hits": 415,
+        "works": 155
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Public addresses and direct questions repeatedly deploy the last day of the twelfth month as the decisive death-day test: how will one dispose of oneself when the deadline arrives? This is a stable Chan encounter job, not merely a calendar date."
+    },
+    {
+      "canonicalIndex": 21,
+      "rank": 22,
+      "id": "t_a49349b639c3",
+      "term": "猶較些子",
+      "query": "猶較些子",
+      "pairExact": {
+        "hits": 388,
+        "works": 124
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Masters repeatedly deliver the exact phrase as an evaluative verdict that an answer or formulation remains somewhat short; independent records preserve it as a response, not running qualification."
+    },
+    {
+      "canonicalIndex": 24,
+      "rank": 25,
+      "id": "t_4e7349a265d3",
+      "term": "直指人心、見性成佛",
+      "query": "直指人心，見性成佛",
+      "pairExact": {
+        "hits": 367,
+        "works": 162
+      },
+      "disposition": "KEEP",
+      "unit": "compound",
+      "validation": "multi-source",
+      "reason": "The paired formula is repeatedly raised, attributed to the ancestral teaching, questioned, and qualified as a compact statement of direct pointing and seeing nature; the two clauses function together."
+    },
+    {
+      "canonicalIndex": 27,
+      "rank": 28,
+      "id": "t_4d9895cc302e",
+      "term": "老老大大",
+      "query": "老老大大",
+      "pairExact": {
+        "hits": 355,
+        "works": 153
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "Complete-case uses are ordinary descriptive rebukes meaning aged or fully grown, normally modifying a person before the actual Chan criticism. The reduplicated adjective has no stable independent answer, verdict, case, or test-question job."
+    },
+    {
+      "canonicalIndex": 30,
+      "rank": 31,
+      "id": "t_8f9d011ae452",
+      "term": "拂袖便行",
+      "query": "拂袖便行",
+      "pairExact": {
+        "hits": 343,
+        "works": 154
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "The phrase narrates the ordinary action of flicking one's sleeves and leaving inside many encounter stories. The meaningful case lies in the surrounding exchange; this stock narrative stage direction is not independently handled as a Chan lexical unit."
+    },
+    {
+      "canonicalIndex": 33,
+      "rank": 34,
+      "id": "t_2a207e0e8c96",
+      "term": "不風流處也風流",
+      "query": "不風流處也風流",
+      "pairExact": {
+        "hits": 338,
+        "works": 142
+      },
+      "disposition": "KEEP",
+      "unit": "compound",
+      "validation": "multi-source",
+      "reason": "The complete line recurs as a capping verdict that turns the absence of elegance into elegance, often closing an appraisal or verse. Its paradoxical whole, rather than bare 風流, carries the observable job."
+    },
+    {
+      "canonicalIndex": 36,
+      "rank": 37,
+      "id": "t_497d803e33ff",
+      "term": "自救不了",
+      "query": "自救不了",
+      "pairExact": {
+        "hits": 334,
+        "works": 138
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Masters repeatedly deploy 'unable even to save oneself' as a sharp verdict against claimed ability to save or guide others. It functions independently as encounter criticism across works."
+    },
+    {
+      "canonicalIndex": 39,
+      "rank": 40,
+      "id": "t_20e096d853ee",
+      "term": "諦觀法王法、法王法如是",
+      "query": "諦觀法王法，法王法如是",
+      "pairExact": {
+        "hits": 330,
+        "works": 176
+      },
+      "disposition": "KEEP",
+      "unit": "compound",
+      "validation": "multi-source",
+      "reason": "The two-clause verse is repeatedly raised and capped as a complete inherited formula. The corpus handles and tests the whole saying; admitting only its nested closing clause would lose the paired deployment."
+    },
+    {
+      "canonicalIndex": 42,
+      "rank": 43,
+      "id": "t_28f648ab208d",
+      "term": "掀倒禪床",
+      "query": "掀倒禪床",
+      "pairExact": {
+        "hits": 317,
+        "works": 141
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Although action-shaped, overturning the Chan seat is repeatedly raised as the decisive act in inherited encounters and used in later appraisals. That recurrent case-action has a stable observable Chan job beyond incidental movement."
+    },
+    {
+      "canonicalIndex": 45,
+      "rank": 46,
+      "id": "t_23b0e63266c0",
+      "term": "世諦流布",
+      "query": "世諦流布",
+      "pairExact": {
+        "hits": 288,
+        "works": 130
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The phrase is repeatedly invoked as an explicit verdict that a formulation is allowed to circulate at the level of worldly convention, often contrasting ultimate or ancestral appraisal. It is a stable evaluative category across independent works."
+    },
+    {
+      "canonicalIndex": 48,
+      "rank": 49,
+      "id": "t_e2ba845177a9",
+      "term": "向上一竅",
+      "query": "向上一竅",
+      "pairExact": {
+        "hits": 270,
+        "works": 105
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The upward opening is repeatedly posed as a direct test-question, claimed as something disclosed or blocked, and evaluated in public addresses. This stable encounter referent exceeds incidental spatial language."
+    },
+    {
+      "canonicalIndex": 51,
+      "rank": 52,
+      "id": "t_8dfd909d60f8",
+      "term": "日午打三更",
+      "query": "日午打三更",
+      "pairExact": {
+        "hits": 257,
+        "works": 127
+      },
+      "disposition": "KEEP",
+      "unit": "compound",
+      "validation": "multi-source",
+      "reason": "Striking the third watch at noon recurs as a complete impossible-time capping line in verses and encounter verdicts. The paradoxical whole has the Chan job; its ordinary time words do not."
+    },
+    {
+      "canonicalIndex": 54,
+      "rank": 55,
+      "id": "t_df545b35b76b",
+      "term": "棒頭有眼",
+      "query": "棒頭有眼",
+      "pairExact": {
+        "hits": 248,
+        "works": 128
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Masters repeatedly state or test whether the staff's tip has an eye, using the phrase to judge discriminating use of the staff. It functions as an encounter criterion across works."
+    },
+    {
+      "canonicalIndex": 57,
+      "rank": 58,
+      "id": "t_99c9b008cc64",
+      "term": "八面玲瓏",
+      "query": "八面玲瓏",
+      "pairExact": {
+        "hits": 245,
+        "works": 131
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The phrase is repeatedly deployed as an appraisal of unobstructed responsiveness on every side, including direct descriptions of the functioning person or phrase. Its evaluative Chan use is stable beyond ordinary ornamental prose."
+    },
+    {
+      "canonicalIndex": 60,
+      "rank": 61,
+      "id": "t_135b07152ccc",
+      "term": "草賊大敗",
+      "query": "草賊大敗",
+      "pairExact": {
+        "hits": 236,
+        "works": 84
+      },
+      "disposition": "KEEP",
+      "unit": "compound",
+      "validation": "multi-source",
+      "reason": "The complete 'grass bandit is badly defeated' line recurs as a capping verdict on failed answers and raised cases. The fixed whole, not literal bandit narrative, performs the observable judgment."
+    },
+    {
+      "canonicalIndex": 63,
+      "rank": 64,
+      "id": "t_2cc1d98e4304",
+      "term": "從上宗乘",
+      "query": "從上宗乘",
+      "pairExact": {
+        "hits": 256,
+        "works": 95
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X80/X80n1565.xml 0088b06; it is not merely contained ordinary prose. Fresh exact evidence spans 95 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "fromLb": "0088b06",
+          "exact": "從上宗乘",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "因人啟發。乃往參百丈。丈問。巍巍堂堂。從何方來。師曰。巍巍堂堂。從嶺南來。丈曰。巍巍堂堂。當為何事。師曰。巍巍堂堂。不為別事。便禮拜。問曰。從上宗乘如何指示。丈良久。師曰。不可教後人斷絕去也。丈曰。將謂汝是箇人。乃起。入方丈。師隨後入。曰。某甲特來。丈曰。若爾。則他後不得孤負吾。丈一日問"
+        },
+        {
+          "relPath": "X/X81/X81n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0464b09",
+          "exact": "從上宗乘",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "遊京師。因人啟發。乃往參百丈。丈問。巍巍堂堂從何方來。師曰。巍巍堂堂從嶺南來。丈曰。巍巍堂堂當為何事。師曰。巍巍堂堂不為別事。使禮拜。問曰。從上宗乘如何指來。丈良久。師曰。不可教後人斷絕去也。丈曰。將謂汝是箇人。乃起入方丈。師隨後入曰。某甲特來。丈曰。若爾則他後不得孤負吾。丈一日問師。甚"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 66,
+      "rank": 67,
+      "id": "t_4a32e8631c92",
+      "term": "千里同風",
+      "query": "千里同風",
+      "pairExact": {
+        "hits": 253,
+        "works": 138
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at T/T48/T48n2001.xml 0002c12; it is not merely contained ordinary prose. Fresh exact evidence spans 138 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "T/T48/T48n2001.xml",
+          "workId": "work:T48n2001",
+          "fromLb": "0002c12",
+          "exact": "千里同風",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "。長蘆書至。上堂云。靈機未轉。難窺青白之痕。寶印當權。密布正偏之位。壺中消息。劫外春光。還他一氣連枝。須是同身共命。明頭轉側。暗裡逢迎。直得千里同風去也。諸人還體悉得麼。明月滿空天水淨。弟兄俱在合同舡。上堂云。居淨而彌耀。歷變而常如。本光現象外之身。妙應具物中之眼。直得頭頭不滯。物物順真"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0318b04",
+          "exact": "千里同風",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "當時畫出，早自惑了也。五祖戒云：兩采一賽。又云：三人指路擬何為？溈山󳭷云：還識馬祖、徑山麼？一點水墨，兩處成龍。國師道：欽師猶被馬師惑。可謂千里同風。不見道：手執夜明符，幾箇知天曉？徑山杲云：馬祖仲冬嚴寒，國一孟夏漸熱，雖然寒熱不同，彼此不失時節。國師因甚道：欽師猶被馬師惑？無風荷葉動，"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 69,
+      "rank": 70,
+      "id": "t_0f27ed340657",
+      "term": "撥草瞻風",
+      "query": "撥草瞻風",
+      "pairExact": {
+        "hits": 250,
+        "works": 137
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0029b21; it is not merely contained ordinary prose. Fresh exact evidence spans 137 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0029b21",
+          "exact": "撥草瞻風",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "駢羅。致令後代兒孫，𮞏相倣斆。三三兩兩，皆言出格風標。劫劫波波，未肯歸家穩坐。鼓唇搖舌，宛如鐘磬笙竽。奮臂點胸，何啻稻麻竹葦。更逞遊山玩水，撥草瞻風，人前說得石點頭，天上飛來花撲地，也好與三十棒。且道坐夏賞勞，如何酬獎？良久曰，萬寶功成何厚薄，千鈞價重自低昂。招提湛禪師法嗣招提湛禪師法嗣"
+        },
+        {
+          "relPath": "C/C078/C078n1720.xml",
+          "workId": "work:C078n1720",
+          "fromLb": "0674b17",
+          "exact": "撥草瞻風",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "麼處去師曰我用得最快。頌曰。苑鎌使得快如風三十青蚨建大功南泉向上路難到到者方知觸處通茆鎌三十文錢買覿面高提苐一籌直下便知歸去路也湏更上一層樓撥草瞻風探祖禪誰知草裏有南泉分明一句無私語徹骨風生天地寒王老真機迅若風示人方便孰能通苑鎌舉起神鋒露驚得泥牛過海東問路分明指路頭青蚨三十不輕酬用時最快"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 72,
+      "rank": 73,
+      "id": "t_dcf6b6fbd6f8",
+      "term": "露柱燈籠",
+      "query": "露柱燈籠",
+      "pairExact": {
+        "hits": 227,
+        "works": 128
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0145b13; it is not merely contained ordinary prose. Fresh exact evidence spans 128 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0145b13",
+          "exact": "露柱燈籠",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "：起道樹，詣鹿苑，不是向上機。傳少室，續曹溪，未為性澡漢。直得無依無欲，無一法當情，猶落第二見。放過一著，卷舒在我，縱奪臨時。於把住處放行，露柱燈籠活鱍鱍。於放行處把住，釋迦彌勒是他奴。卓拄杖曰：且道是放行耶？是把住耶？一氣不言含有象，萬靈何處謝無私？上堂，舉天衣懷鴈過長空，影沉寒水話，"
+        },
+        {
+          "relPath": "X/X85/X85n1587.xml",
+          "workId": "chan:zhengyuan-lueji",
+          "fromLb": "0047b24",
+          "exact": "露柱燈籠",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "觀第一義。師驀拈拂子曰，若是第一義，汝等作麼生觀。拂一拂曰，既登虞嶽巔，謾道娥江曲。玄風萬里來，到我清凉屋。分明題唱此宗猷，直下承當轉轆轆。露柱燈籠笑點頭，鐵蛇昨夜生於菟。喝一喝。小參。結制已經一七，箇箇眉毛撕結。大地沒處藏身，虗空那容著楔。拶得無位真人，𨁝跳上三十三天，撞入兜率內宮。揚"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 75,
+      "rank": 76,
+      "id": "t_6c0e044e6417",
+      "term": "正令全提",
+      "query": "正令全提",
+      "pairExact": {
+        "hits": 218,
+        "works": 128
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0043a16; it is not merely contained ordinary prose. Fresh exact evidence spans 128 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0043a16",
+          "exact": "正令全提",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "箭在手，智刃當鋒。龍虎陣圓，請師相見。師曰：敗將不斬。曰：恁麼則銅柱近標修水側，鐵關高鏁鳳凰峰。師曰：不到烏江未肯休。曰：若然者，七擒七縱，正令全提。師曰：棺木裏瞠眼。僧禮拜，師曰：苦！苦！問：承師有言，老僧今夏向黃龍潭內，下三百六十個釣筒，未曾遇著個錦鱗紅尾。為復是鉤頭不妙，為復是香餌"
+        },
+        {
+          "relPath": "J/J37/J37nB383.xml",
+          "workId": "work:J37nB383",
+          "fromLb": "0204b24",
+          "exact": "正令全提",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "名藍，雄贍關中，繪巧殊稱三絕；大觀海內，名聞更逾七金。逢聖世以重興，賴得人而復刱，場開選佛，克振前徽，弘揚濟上宗風，流通正法眼藏。當恁麼時，正令全提，隱顯該通一句又作麼生道？十二處忘閒影響，三千界放淨光明。」復舉：「臨濟初住河北，謂普化、克符二上座曰：『我欲於此建立黃蘗宗旨，汝可成褫我。"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 78,
+      "rank": 79,
+      "id": "t_0325cd101239",
+      "term": "超佛越祖之談",
+      "query": "超佛越祖之談",
+      "pairExact": {
+        "hits": 222,
+        "works": 83
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected-nested-family",
+      "reason": "The corpus deploys this question phrase, but it is a transparent extended form of the already queued and independently adjudicated headword 超佛越祖 (rank 12). It has no distinct referent or job, so a second article would duplicate that lexical family.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0656b06",
+          "exact": "超佛越祖之談",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "老僧後到佛又俗官問弟子今日開藏經乞師一句提綱藏經師云此問難得官云便請提綱師云對牛彈琴師因看經次僧問和尚看什麼經師云涅槃經茶毘品㝡在後問如何是超佛越祖之談師驀拈拄杖示眾云我喚作拄杖你喚作什麼無語師再將拄杖示之云超佛越祖之談是你問麼無語師舉黃蘗和尚語云天下老和尚一氣道在我者裏要放你也在我這裏要不"
+        },
+        {
+          "relPath": "D/D48/D48n8939.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0190a08",
+          "exact": "超佛越祖之談",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "云不是闍梨用心𠁅僧云如何是學人用心𠁅師云要行即行要坐即坐問十二時中作何行業即免生𭮀師云你喚什作生𭮀僧云與麼則無生𭮀可免師云大眾盡󲰶眉問如何是超佛越祖之談師云塞北風霜緊江南雪不寒問承古有言自從一見桃花後直至而今更不疑意𣅀如何師云三尺杖子兩人舁僧云還許學人舁也無師云放下着。其時有化主問學人與麼去"
+        }
+      ],
+      "routeToRank": 12,
+      "routeToTerm": "超佛越祖"
+    },
+    {
+      "canonicalIndex": 81,
+      "rank": 82,
+      "id": "t_fdc233a31973",
+      "term": "西天四七",
+      "query": "西天四七",
+      "pairExact": {
+        "hits": 216,
+        "works": 120
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0178a12; it is not merely contained ordinary prose. Fresh exact evidence spans 120 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0178a12",
+          "exact": "西天四七",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "放去收來。神頭鬼面，馬額驢腮。搥不碎，擘不開。大家齊斂念，拍手舞三臺。喝一喝，謝秉拂并齋。上堂：口似匾擔者，辨瀉懸河。眼似銅鈴底，墮坑落塹。西天四七，東土二三。天下老和尚，個個匙挑不上。以手約曰：過者邊，著仙巖。與麼也是食飽傷心。上堂：行住坐臥但與麼，到底不曾離者個。一番舉起一番新，誰道"
+        },
+        {
+          "relPath": "X/X64/X64n1260.xml",
+          "workId": "work:X64n1260",
+          "fromLb": "0090c19",
+          "exact": "西天四七",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "息麼？若也未知，未免向淨潔地上拋沙撒土去也。世尊初生下時，一手指天、一手指地，周行七步，目顧四方，乃云：天上天下，惟我獨尊。豈不是者箇消息？西天四七、東土二三，或行棒、或行喝，或堂前輥毬、或室中安水，豈不是者箇消息？自餘麻三斤、乾屎橛，庭前栢樹子、後園驢喫草，趙州勘婆話、百丈野鴨話，雖則"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 84,
+      "rank": 85,
+      "id": "t_b7dc551f8c67",
+      "term": "錯認定盤星",
+      "query": "錯認定盤星",
+      "pairExact": {
+        "hits": 237,
+        "works": 122
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0056c06; it is not merely contained ordinary prose. Fresh exact evidence spans 122 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0056c06",
+          "exact": "錯認定盤星",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "啟寧聞一禪師上堂。拈花微笑虗勞力，立雪齊腰枉用功。爭似老盧無用處，却傳衣鉢振真風。大眾，且道那個是老盧傳底衣鉢？莫是大廋擊頭提不起底麼？且道錯認定盤星。以拂子擊禪牀，下座。三祖宗禪師法嗣三祖宗禪師法嗣寧國府光孝惟爽禪師寧國府光孝惟爽禪師上堂：今朝六月旦，一年已過半。奉報參元人，識取娘生面。"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0334c19",
+          "exact": "錯認定盤星",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "令，一切魚龍，知水為命。車牛腦後痛加鞭，棄却黃金抱㼾甎，逐惡隨邪至今日，即非心佛錯流傳。平生心膽向人傾，過犯彌天已不輕，帶累馬師胡亂後，至今錯認定盤星。萬法俱忘百念灰，等閒驀鼻拽將回，鏡光一點明如日，直得木人心眼開。龍驤驥足困鹽車，未遇孫陽尚滯途，拽脫繩頭鞭一擿，風蹄索索電光驅。南嶽因僧問"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 87,
+      "rank": 88,
+      "id": "t_6b54b1ae5199",
+      "term": "料掉沒交渉",
+      "query": "料掉沒交涉",
+      "pairExact": {
+        "hits": 225,
+        "works": 96
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1296.xml 0013b24; it is not merely contained ordinary prose. Fresh exact evidence spans 96 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0013b24",
+          "exact": "料掉沒交涉",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "什麼作地獄？還委悉麼？自携瓶去酤村酒，却著衫來作主人。天寧琦云：妙喜與麼批判，刁刀相似，魚魯參差。殊不知釋迦自釋迦，調達自調達，地獄自地獄，料掉沒交涉。一夜落花雨，滿城流水香。伏龍長云：臨危不悚，真大丈夫。萬峰藏云：既是三界導師，為甚無入地獄分？阿難直受始得。寶華忍云：世尊鈎頭有餌，慣釣金"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0277c24",
+          "exact": "料掉沒交涉",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "什麼作地獄？還委悉麼？自𢹂瓶去酤村酒，却著衫來作主人。天寧琦云：妙喜與麼批判，刁刀相似，魚魯參差。殊不知釋迦自釋迦，調達自調達，地獄自地獄，料掉沒交涉。一夜落花雨，滿溪流水香。伏龍長云：臨危不悚，真大丈夫。萬峰藏云：既是三界導師，為甚無入地獄分？阿難直受始得。好笑提婆達多，入捺落十小劫波，"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 90,
+      "rank": 91,
+      "id": "t_94728747e832",
+      "term": "九九八十一",
+      "query": "九九八十一",
+      "pairExact": {
+        "hits": 208,
+        "works": 103
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at C/C077/C077n1710.xml 0677b14; it is not merely contained ordinary prose. Fresh exact evidence spans 103 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0677b14",
+          "exact": "九九八十一",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "心師云喫粥喫飯云與麼則打軟去也師云打軟去也問昨夜轉一位今朝轉一位兩頭俱轉時如何師云未是衲僧極則云如何是衲僧極則師云春末臨朱夏云畢竟了如何師云九九八十一。上堂云各各英雄丈夫兒堂堂物我更何疑見前歷歷明如日展縮當人示疾時超然不得長空路獨脫禪光得自知多聞方便談今古濟物湏彰閃電機良久云去去西天路迢迢"
+        },
+        {
+          "relPath": "D/D48/D48n8939.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0258a06",
+          "exact": "九九八十一",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "心師云喫粥喫飯云與麼則打軟去也師云打軟去也問昨夜轉一位今朝轉一位兩頭俱轉時如何師云未是衲僧極則云如何是衲僧極則師云春末臨朱夏云畢竟了如何師云九九八十一。上堂云各各英雄丈夫兒堂堂物我更何疑見前歷歷明如日展縮當人示疾時超然不得長空路獨󷑆禪光得自知多聞方便談今古濟物湏彰閃電機良久云去去西天路迢迢"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 93,
+      "rank": 94,
+      "id": "t_e3339a807c1e",
+      "term": "七顛八倒",
+      "query": "七顛八倒",
+      "pairExact": {
+        "hits": 212,
+        "works": 97
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at C/C077/C077n1710.xml 0722c05; it is not merely contained ordinary prose. Fresh exact evidence spans 97 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0722c05",
+          "exact": "七顛八倒",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "盲底人來師還接也無師放身倒問如何是雲門山師云庚峯定󲈺問牙齒敲磕皆落名言如何得不落古人蹤師云通機自辯問如何是和尚家風師云皮枯骨瘦問如何是道師云七顛八倒進云為什麼如此師云一不得向二不得開問暗室得明時如何師云朗州此去多少。上堂云一言纔舉千差同轍該括微塵猶是化門之說若是衲僧合作麼生若將祖意佛意這"
+        },
+        {
+          "relPath": "X/X79/X79n1559.xml",
+          "workId": "work:X79n1559",
+          "fromLb": "0300c02",
+          "exact": "七顛八倒",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "虎嘯丹田。云：如何是道中人？曰：吐故納新。云：道與道中人相去多少？曰：骨鶴顛崖上，冲天味米民。問：如何是佛？曰：東涌西沒。云：如何是道？曰：七顛八倒。云：如何是法？曰：你問我答。云：如何是禪？曰：不方不圓。云：便恁麼去時如何？曰：靈利人難得。青原第十世(洞山六世)青原第十世大陽明安警玄禪"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 96,
+      "rank": 97,
+      "id": "t_4b4e3643843e",
+      "term": "沒量大人",
+      "query": "沒量大人",
+      "pairExact": {
+        "hits": 213,
+        "works": 105
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at M/M59/M59n1540.xml 0859a04; it is not merely contained ordinary prose. Fresh exact evidence spans 105 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "M/M59/M59n1540.xml",
+          "workId": "chan:dahui-pushuo",
+          "fromLb": "0859a04",
+          "exact": "沒量大人",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "禪頭處入室其時會中又有箇賢蓬頭却是悟底禪先師自此俱入其室又入得真如門戶真如劇稱道之一日問曰小勤你今年幾歲答曰二十四歲真如云更過二十四年後做箇沒量大人便授記他後來先師果然四十八上出世你道他不是古佛得麼只是有愛禪子之癖先師也畫得他頂相又得禪會子有從上諸聖一人傳一人子今既得善自護持之語先師深祕"
+        },
+        {
+          "relPath": "X/X68/X68n1318.xml",
+          "workId": "work:X68n1318",
+          "fromLb": "0359a05",
+          "exact": "沒量大人",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "綻處，明月光輝。雙放雙収人不會，滿山松竹泄天機。正月纔終二月來，簷前雙燕自徘徊。翻思昔日玄沙老，實相深談眼未開。既是實相深談，為什麼眼未開？沒量大人語脉裏轉却。隱顯宗風孰辨真，去來猶似涉前因。須知白首歸家者，非是今人與昔人。既非今人又非昔人，且道是什麼人？良久，云：陋巷不騎金色馬，迴來却"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 99,
+      "rank": 100,
+      "id": "t_073c40e49ec1",
+      "term": "青黄赤白",
+      "query": "青黃赤白",
+      "pairExact": {
+        "hits": 207,
+        "works": 101
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "The exact string is an ordinary enumeration of colors inside doctrinal description and examples about seeing form. The bare color list is not independently deployed as an answer, verdict, capping phrase, test-question, epithet, or raised case.",
+      "zcEvidence": [
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "fromLb": "0429a26",
+          "exact": "青黃赤白",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "若能見生性者。雖在不安之處。而安相常現前。若不如是知者。雖有種種勝辯談說。甚深典籍。而即是生滅心。說彼實相密要之言。如盲辯色。因他語故。說得青黃赤白黑。而不能自見色之正相。今不能見諸法者。亦復如是。但今為生所生。為死所死者。而有所說者。乃於其人。即無生死之義耶。若為常無常所繫者。亦復如是"
+        },
+        {
+          "relPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "fromLb": "0099c20",
+          "exact": "青黃赤白",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "。忘功絕謂。亦無出方便之迹。帝曰。何為佛心。對曰。佛者西天之語。唐言覺。謂人有智慧覺照為佛心。心者佛之別名。有百千異號。體唯其一。無形狀。非青黃赤白．男女等相。在天非天。在人非人。而現天現人。能男能女。非始非終。無生無滅。故號靈覺之性。如陛下日應萬機。即是陛下佛心。假使千佛共傳。而不念別"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 102,
+      "rank": 103,
+      "id": "t_0ae28802d01f",
+      "term": "抽釘拔楔",
+      "query": "抽釘拔楔",
+      "pairExact": {
+        "hits": 200,
+        "works": 110
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at T/T48/T48n2003.xml 0141b01; it is not merely contained ordinary prose. Fresh exact evidence spans 110 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "T/T48/T48n2003.xml",
+          "workId": "work:T48n2003",
+          "fromLb": "0141b01",
+          "exact": "抽釘拔楔",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "定打作兩橛。諸方尋常皆道。雪竇重拈一遍。殊不知。四句頌盡公案了。後為慈悲之故。頌出事跡。因茲暗渡江。豈免生荊棘。達磨本來茲土。與人解粘去縛。抽釘拔楔。剗除荊棘。因何却道生荊棘。非止當時。諸人即今脚跟下。已深數丈。闔國人追不再來。千古萬古空相憶。可殺不丈夫。且道。達磨在什麼處。若見達磨。便"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0063b04",
+          "exact": "抽釘拔楔",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "曰：南山起雲，北山下雨。即禮拜，潭首肯。後開法灌溪，次居圓通，以符道濟之記。學者嚮臻，朝廷錫以命服，與圓機號。上堂：諸佛出世，無法與人。祇是抽釘拔楔，除疑斷惑。學道之士，不可自謾。若有一疑如芥子許，是汝真善知識。喝一喝，曰：是甚麼？切莫刺腦入膠盆。慶元府二靈知和庵主慶元府二靈知和庵主蘇臺"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 105,
+      "rank": 106,
+      "id": "t_0964639aecdf",
+      "term": "打一拂子",
+      "query": "打一拂子",
+      "pairExact": {
+        "hits": 215,
+        "works": 92
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X81/X81n1568.xml 0032a14; it is not merely contained ordinary prose. Fresh exact evidence spans 92 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X81/X81n1568.xml",
+          "workId": "work:wudeng-yantong",
+          "fromLb": "0032a14",
+          "exact": "打一拂子",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "曰：不上天堂，則入地獄。曰：和尚又作麼生？師曰：還知寶應老漢落處麼？僧擬議，師打一拂，曰：你還知喫拂子底麼？曰：不會。師曰：正令却是你行。又打一拂子。守廓侍者守廓侍者問德山曰：從上諸聖向甚麼處去？山曰：作麼，作麼？師曰：勑點飛龍馬，跛鼈出頭來。山便休去。來日浴出，師過茶與山。山於背上拊一"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0003c03",
+          "exact": "打一拂子",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "舶船。韶州白虎山守昇禪師韶州白虎山守昇禪師僧問：如何是佛？師曰：有眼無鼻孔。韶州佛陀山崇欽禪師韶州佛陀山崇欽禪師僧問：如何是直截為人一句？師打一拂子，曰：會麼？曰：不會。師曰：逢人莫錯舉。韶州延祥法寧禪師韶州延祥法寧禪師僧問：牛頭未見四祖時如何？師曰：拄杖子。曰：見後如何？師便打。曰：今"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 108,
+      "rank": 109,
+      "id": "t_993ac676044b",
+      "term": "滴水滴凍",
+      "query": "滴水滴凍",
+      "pairExact": {
+        "hits": 191,
+        "works": 109
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0032b06; it is not merely contained ordinary prose. Fresh exact evidence spans 109 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0032b06",
+          "exact": "滴水滴凍",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "好絕矣。僧問：儂家自有同風事，如何是同風事？師良久。僧曰：恁麼則起動和尚去也。師曰：靈利人難得。僧禮拜。示眾：江南之地，春寒秋熱。近日已來，滴水滴凍。僧問：滴水滴凍時如何？師曰：未是衲僧分上事。曰：如何是衲僧分上事？師曰：滴水滴凍。問：牛頭未見四祖時，為甚麼百鳥銜花獻？師曰：釘根桑樹，濶"
+        },
+        {
+          "relPath": "X/X69/X69n1357.xml",
+          "workId": "work:X69n1357",
+          "fromLb": "0458a09",
+          "exact": "滴水滴凍",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "草窠裏輥、鬼窟裏弄情魂，將玄妙理性揚眉瞬目、舉手動脚下合頭語，以實法繫綴人家男女，一盲引眾盲，成何方便？既已據位稱師，固不可容易，只自己分上滴水滴凍、孤迥危峭，如師子兒遨遊，意氣驚群，出沒縱擒，卒難測度，驀然踞地返擲，百獸奔馳喪膽，豈非殊勝奇特耶？還是與麼人，三千里外已審端倪了也。是故巖"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 111,
+      "rank": 112,
+      "id": "t_da0e5f8f9940",
+      "term": "然雖如此",
+      "query": "然雖如此",
+      "pairExact": {
+        "hits": 202,
+        "works": 62
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "The sampled cases use the words as the ordinary concessive transition 'although this is so' between propositions. Recurrence does not make this connective an independent Chan lexical unit.",
+      "zcEvidence": [
+        {
+          "relPath": "J/J33/J33nB294.xml",
+          "workId": "work:J33nB294",
+          "fromLb": "0722b22",
+          "exact": "然雖如此",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "王寉。山居士驀頭驀腦問個：『如何是須彌山頂浪滔天？』老僧被他一問，啞子喫黃連，幾乎開口不得。賴他居士是個十分聰明人，將兩句道理話兒領會去了。然雖如此，芥內須彌，須彌內芥，洪波浩森，白浪滔天，切莫一切作道理領會好。僧問雲蓋：『如何是須彌山頂浪滔天？』蓋云：『文殊正作鬧。』是何道理？大眾還知"
+        },
+        {
+          "relPath": "X/X80/X80n1565.xml",
+          "workId": "work:X80n1565",
+          "fromLb": "0078b09",
+          "exact": "然雖如此",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "問取海兄去。僧又去問海百丈和尚。海曰。我到這裏却不會。僧乃舉似馬祖。祖曰。藏頭白。海頭黑。馬祖一日問師曰。子何不看經。師曰。經豈異邪。祖曰。然雖如此。汝向後為人也須得。曰。智藏病思自養。敢言為人。祖曰。子末年必興於世。師便禮拜。馬祖滅後。師唐貞元七年。眾請開堂。李尚書嘗問僧。馬大師有甚麼"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 114,
+      "rank": 115,
+      "id": "t_6e573e3a68ff",
+      "term": "粉骨碎身",
+      "query": "粉骨碎身",
+      "pairExact": {
+        "hits": 205,
+        "works": 102
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at C/C077/C077n1710.xml 0683b10; it is not merely contained ordinary prose. Fresh exact evidence spans 102 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0683b10",
+          "exact": "粉骨碎身",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "座老僧與闍𥟖是同是別若道是同去上座自上座老僧自老僧若道是別去又道老僧即是闍𥟖若能於此眀得去一句中有三玄三要賔主歷然平生事辦㕘尋事畢所以永嘉云粉骨碎身未足酬一句了然超百億又曰臨濟兩堂首座一日相見齊下喝僧問臨濟還有賔主也無荅云賔主歷然師作偈曰兩堂首座揔作家其中道理有紛拏賔主歷然眀似鏡宗師為點"
+        },
+        {
+          "relPath": "D/D48/D48n8939.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0186a08",
+          "exact": "粉骨碎身",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "打。上堂僧問終日忙忙郍事無妨如何是郍事師云孤峰頂上千花秀萬仞嵳峩嶮𠁅行僧云莫是和尚為人𠁅也無師云大眾謌謠󲌰千峰永不囬僧云囬來底事又作麼生師云粉骨碎身猶未報三年一度󲌰錢財僧禮拜師云噓噓問一切諸佛皆從此經出未審此經從何而出師云低声低声僧云如何授持師云切不得染汙問作何行業報得四恩三有師云殺人放"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 117,
+      "rank": 118,
+      "id": "t_51b21979c0e6",
+      "term": "眉鬚墮落",
+      "query": "眉鬚墮落",
+      "pairExact": {
+        "hits": 218,
+        "works": 93
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1296.xml 0077c09; it is not merely contained ordinary prose. Fresh exact evidence spans 93 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0077c09",
+          "exact": "眉鬚墮落",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "慧林寺，值凝寒，乃取木佛燒火，向院主呵曰：何得燒我木佛？霞以杖撥灰曰：吾燒取舍利。院曰：木佛何有舍利？霞曰：既無舍利，更請兩尊來燒。院主自後眉鬚墮落。投子青云：不會作客，勞煩主人。大寧寬因僧問：丹霞燒木佛，為甚麼院主眉鬚墮落？寬云：賊不打貧家兒。保寧勇云：院主眉鬚墮落即且置，丹霞眉毛還在"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0453c17",
+          "exact": "眉鬚墮落",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "見春來了見春歸。是他不見春來去，日出東方夜落西。郢州興陽歸靜禪師郢州興陽歸靜禪師參西院便問：擬問不問時如何？院便打。師良久，院曰：若喚作棒，眉鬚墮落。師言下大悟。保福展云：雖然如是，你眉毛有幾莖開？福寧云：興陽却有陷虎之機，西院不覺投他深穽。若人辨得，親佩毗盧印，當陽捋虎鬚。其如見解未圓"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 120,
+      "rank": 121,
+      "id": "t_7b34a0000443",
+      "term": "自領出去",
+      "query": "自領出去",
+      "pairExact": {
+        "hits": 200,
+        "works": 98
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at C/C077/C077n1710.xml 0655b03; it is not merely contained ordinary prose. Fresh exact evidence spans 98 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0655b03",
+          "exact": "自領出去",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "示師云你若不問老僧緘口無言你既問老僧不可緘口去也進云便請道師云心不負人面無慚色問知時者是大沙門如何是大沙門師云我向鼻孔裏問你進云作麼生問師云自領出去又云來來我共你葛藤你却問我問如何是大沙門師云觀世音菩薩會麼進云不會師云大慈悲菩薩上堂大眾雲集師云章表將來時有僧應諾師云據狀領過問佛法大意請師"
+        },
+        {
+          "relPath": "D/D48/D48n8939.xml",
+          "workId": "work:guzunsu-yulu",
+          "fromLb": "0286b04",
+          "exact": "自領出去",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "杖云看看北鬱丹越人見汝般柴不易在中庭裏相撲供養你更為你念般若經云一切智智清淨無二無二分無別無斷故僧便問如何是一切智智清淨師云西天斬頭截臂這裏自領出去。問桂錫幽巖時如何師云在什麼處。問如何是深中淺師云山河大地進云如何是淺中深師云大地山河進云如何是深師云朝到西天暮歸唐土。問迦葉入定時如何師云"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 123,
+      "rank": 124,
+      "id": "t_68d175f5d5b9",
+      "term": "住持事繁",
+      "query": "住持事繁",
+      "pairExact": {
+        "hits": 200,
+        "works": 107
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0125a11; it is not merely contained ordinary prose. Fresh exact evidence spans 107 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0125a11",
+          "exact": "住持事繁",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "問雪峰：透網金鱗，未審以何為食？峰曰：待汝出網來，即向汝道。意旨如何？師曰：同途不同轍。曰：三聖道：一千五百人善知識，話頭也不識。峰曰：老僧住持事繁，又作麼生？師曰：前箭猶輕後箭深。曰：祇如雪竇道：可惜放過，好與三十棒。這棒一棒也較不得，直是罕遇作家。意又作麼生？師曰：陳敗說兵書。曰：這"
+        },
+        {
+          "relPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "fromLb": "0504c10",
+          "exact": "住持事繁",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "威獰。師問龐居士：一乘中還著得這個事麼？士曰：某甲祇管日求升合，不知還著得麼？師曰：道居士不見石頭得麼？士曰：拈一放一，未為好手。師曰：老僧住持事繁。士珍重！便出。師曰：拈一放一，的是好手。士曰：好個一乘問宗，今日失却也。師曰：是！是！師因僧問：學人有疑，請師決。師曰：待上堂時來，與闍黎"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 126,
+      "rank": 127,
+      "id": "t_82105ff4c278",
+      "term": "新婦騎驢阿家牽",
+      "query": "新婦騎驢阿家牽",
+      "pairExact": {
+        "hits": 192,
+        "works": 89
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at C/C078/C078n1720.xml 0826b02; it is not merely contained ordinary prose. Fresh exact evidence spans 89 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "C/C078/C078n1720.xml",
+          "workId": "work:C078n1720",
+          "fromLb": "0826b02",
+          "exact": "新婦騎驢阿家牽",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "何是用而不雜師曰眀月堂前垂玉露水精殿裏粲真珠。頌曰。混而不雜體常虛雪月交光類莫如應處萬端無𦊱礙片雲自在卷還舒汝州首山省念禪師僧問如何是佛師曰新婦騎驢阿家牽曰未審此語甚麼句中𭣣師曰三玄𭣣不得四句豈能該曰此意如何師曰天長地久日月齊眀。頌曰。新婦騎驢阿家牽誰後復誰先張三與李四拱手賀堯年從上諸聖捴皆然"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0033b01",
+          "exact": "新婦騎驢阿家牽",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "。未得自在，今得自在。所以大覺世尊於然燈佛所無一法可得，六祖夜半於黃梅又傳個甚麼？乃說偈曰：得不得，傳不傳，歸根得旨復何言。憶得首山曾漏泄，新婦騎驢阿家牽。翌日午時，端坐示寂。闍維得五色舍利，塔于前山。壽六十八，臘五十。徽宗大觀庚寅，敕諡普覺禪師。南嶽下十二世南嶽下十二世黃龍南禪師法嗣黃龍南禪"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 129,
+      "rank": 130,
+      "id": "t_0a0966458896",
+      "term": "有頭無尾",
+      "query": "有頭無尾",
+      "pairExact": {
+        "hits": 221,
+        "works": 97
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1297.xml 0281b17; it is not merely contained ordinary prose. Fresh exact evidence spans 97 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0281b17",
+          "exact": "有頭無尾",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "擬擯那個文殊？迦葉無對。昭覺勤云：可惜放過當時，待老漢道你擬擯那個文殊，便與一椎，看他作何合煞。雲居元云：一家有事百家忙。保寧茂云：大小迦葉有頭無尾，畢竟如何？西天令嚴：久立，珍重。高峯妙云：文殊知底，迦葉不知；迦葉知底，文殊不知。彼彼不知則且置，百千萬億文殊畢竟那個是真文殊？天寧琦云："
+        },
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0010c03",
+          "exact": "有頭無尾",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "頭陀，有心無膽，當時盡令而行，莫道百千萬億文殊，祇者黃面瞿曇也與擯出，不唯壁立真風，亦令後人知我衲僧門下著你閒佛閒祖不得。保寧茂云：大小迦葉有頭無尾，畢竟如何？西天令嚴。久立，珍重。高峰妙云：文殊知底，迦葉不知；迦葉知底，文殊不知。彼彼不知則且置，百千萬億文殊，畢竟那個是真文殊？天寧琦云"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 132,
+      "rank": 133,
+      "id": "t_aed53edfbb5f",
+      "term": "解粘去縛",
+      "query": "解粘去縛",
+      "pairExact": {
+        "hits": 176,
+        "works": 93
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X82/X82n1571.xml 0035b02; it is not merely contained ordinary prose. Fresh exact evidence spans 93 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0035b02",
+          "exact": "解粘去縛",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "，不離行市。驀拈拄杖曰：寰中天子，塞外將軍。擊禪牀。上堂：十月二十三，天寒下暖簾。黃昏一覺睡，南海出榆甘。上堂：聖壽長老不會禪，不會道，祇會解粘去縛，應病與藥。諸佛子，無禪可參，無法可學，棄本逐末，區區客作。不如歸去來，識取自家城郭。城中自有法王尊，一呼百諾。髻晃明月珠，手振黃金鐸。還要"
+        },
+        {
+          "relPath": "T/T48/T48n2003.xml",
+          "workId": "work:T48n2003",
+          "fromLb": "0141b01",
+          "exact": "解粘去縛",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "了底人。決定打作兩橛。諸方尋常皆道。雪竇重拈一遍。殊不知。四句頌盡公案了。後為慈悲之故。頌出事跡。因茲暗渡江。豈免生荊棘。達磨本來茲土。與人解粘去縛。抽釘拔楔。剗除荊棘。因何却道生荊棘。非止當時。諸人即今脚跟下。已深數丈。闔國人追不再來。千古萬古空相憶。可殺不丈夫。且道。達磨在什麼處。若"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 135,
+      "rank": 136,
+      "id": "t_208800a0198d",
+      "term": "喪我兒孫",
+      "query": "喪我兒孫",
+      "pairExact": {
+        "hits": 196,
+        "works": 82
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1297.xml 0342c13; it is not merely contained ordinary prose. Fresh exact evidence spans 82 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0342c13",
+          "exact": "喪我兒孫",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "限愁更有蒼藤鎖石嶝，礱今錯古倩誰收。百丈因溈山、五峰、雲巖侍立次，乃問溈山：并却咽㗋脣吻作麼生道？山曰：却請和尚道。師曰：不辭與汝道，恐已後喪我兒孫。又問五峰，峰曰：和尚也須并却。師曰：無人處斫額望汝。又問雲巖，巖曰：某甲有道處，請和尚舉。師舉，巖曰：和尚有也未？師曰：喪我兒孫。高峰妙云"
+        },
+        {
+          "relPath": "X/X83/X83n1578.xml",
+          "workId": "chan:zhiyue-lu",
+          "fromLb": "0475c12",
+          "exact": "喪我兒孫",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "一喝，直得三日耳聾。黃檗聞舉，不覺吐舌。師曰：子已後莫承嗣馬祖去麼？檗曰：不然。今日因和尚舉，得見馬祖大機之用，然且不識馬祖。若嗣馬祖，已後喪我兒孫。師曰：如是，如是。見與師齊，減師半德。見過於師，方堪傳授。子甚有超師之見。檗便禮拜。溈山問仰山：百丈再參馬祖因緣，此二尊宿意旨如何？仰曰："
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 138,
+      "rank": 139,
+      "id": "t_3a5daeab0e3f",
+      "term": "東語西話",
+      "query": "東語西話",
+      "pairExact": {
+        "hits": 174,
+        "works": 94
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at B/B25/B25n0145.xml 0687b16; it is not merely contained ordinary prose. Fresh exact evidence spans 94 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "workId": "work:B25n0145",
+          "fromLb": "0687b16",
+          "exact": "東語西話",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "於邪見。未得謂得。未證謂證也。於是擬寒山詩一百首。又著幻住家訓一篇。以發明真叅實悟之旨。因學者每每致問。隨問而答。久而成編。曰山房夜話一卷。東語西話一卷。續集二卷。語錄十卷。別錄十卷。於戲先師豈好辯哉。蓋有不得已者也。今遂緫加裒錄而槩題其編。曰天目中峯和尚廣錄。隨表進上。恭望天慈鑒臣先師"
+        },
+        {
+          "relPath": "X/X82/X82n1571.xml",
+          "workId": "work:wudeng-quanshu",
+          "fromLb": "0147b12",
+          "exact": "東語西話",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "茲祠奉，以旌孝慕。上聞而嘉嘆。淳祐戊申秋，築室明月池上，榜曰退畊。乞老于朝，而舊疾適作。己酉三月旦日，陞堂示眾曰：山僧既老且病，無力得與諸人東語西話，今日勉強出來，從前所說不到底，盡情向諸人面前抖擻去也。遂起身抖衣曰：是多少？十八日，集兩序區畫後事，親書遺表及遺書十數封，言笑諧謔如平時。"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 141,
+      "rank": 142,
+      "id": "t_69bada1d52a4",
+      "term": "從上來事",
+      "query": "從上來事",
+      "pairExact": {
+        "hits": 167,
+        "works": 71
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at J/J40/J40nB494.xml 0542c04; it is not merely contained ordinary prose. Fresh exact evidence spans 71 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "J/J40/J40nB494.xml",
+          "workId": "work:J40nB494",
+          "fromLb": "0542c04",
+          "exact": "從上來事",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "悲。」師云：「亂統禪和，如麻似粟。」進云：「和尚也不得壓良為賤。」師打，云：「教休不肯休，直待雨淋頭。」乃云：「天晴日頭出，雨落地下濕，稱提從上來事已是十分條直，更說甚祖意明明百草頭，森羅萬象齊烜赫？向道：不是心，不是佛，直下摟碎精靈窟。你輩禪和家慣說真如、般若、菩提、涅槃，聞恁般道而不"
+        },
+        {
+          "relPath": "J/J29/J29nB223.xml",
+          "workId": "work:J29nB223",
+          "fromLb": "0026b20",
+          "exact": "從上來事",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "？」明拂袖歸眾。師乃云：「玅協群機，猶是理為神御；稱提三句，亦是法隨時宜。何也？你若一向入理深談，難挑見刺；你若一向落艸化物，早蕩正宗。祇如從上來事畢竟如何？青山纔舉首，占斷白雲宗。」复舉：「龐行婆入寺修齋，維那請意旨，婆抽釵子插盧中，便出云：『我已回向了。』」師云：「好行婆，大冶精金，"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 144,
+      "rank": 145,
+      "id": "t_1156d83ece2b",
+      "term": "憐兒不覺醜",
+      "query": "憐兒不覺醜",
+      "pairExact": {
+        "hits": 183,
+        "works": 98
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1296.xml 0016c06; it is not merely contained ordinary prose. Fresh exact evidence spans 98 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0016c06",
+          "exact": "憐兒不覺醜",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "尊平地骨堆，飲光開眼失跌，累及後代兒孫，烏龜却喚作鱉。大眾！山僧與麼批判，也是徒勞唇舌。阿呵呵！金風一陣來，掃却庭前葉。崇化能云：世尊拈花，憐兒不覺醜；迦葉微笑，刺腦入膠盆。白巖符云：老瞿曇節外生枝，大迦葉隨邪逐惡，黃河水向源頭濁了也，並須喫棒有分。當時有人見他拈起青蓮，便好一喝，云：草本"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0281a20",
+          "exact": "憐兒不覺醜",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "大慈悲。遂拍手云：曼殊室利！不審今後更敢也無？良久，乃自云：一度被蛇傷，怕見斷井索。千巖長云：不起佛見、法見，還免得貶向二鐵圍山麼？世尊也是憐兒不覺醜。寶華忍云：瞿曇、白雲、五祖雖云扶豎綱宗，要且未透末後句在。曹山者裏若有起佛見、法見，每人分半院與他。何故？一掌不浪鳴，兩掌鳴摑摑。開先金云"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 147,
+      "rank": 148,
+      "id": "t_cf81750f2c61",
+      "term": "赤心片片",
+      "query": "赤心片片",
+      "pairExact": {
+        "hits": 169,
+        "works": 100
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase is deployed in the retained Chan question, answer, verdict, capping comment, epithet, or recurrent case-action at X/X66/X66n1296.xml 0007c15; it is not merely contained ordinary prose. Fresh exact evidence spans 100 independent works.",
+      "zcEvidence": [
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "workId": "work:X66n1296",
+          "fromLb": "0007c15",
+          "exact": "赤心片片",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "靈龜拽尾，自取喪身之兆。雲門雖則全提正令，也是為他閒事長無明。當時但於地上畫一圓相，就中書個丁字，復展兩手示之，管取氷消瓦解。浮山口云：雲門赤心片片，葢代功高；雪竇見義勇為，機如掣電。二俱足可觀光，其奈頂門無眼。南堂欲云：雲門好棒，可殺驚人。檢點將來，未免傷鋒犯手。山僧當時若見，只消道個"
+        },
+        {
+          "relPath": "X/X66/X66n1297.xml",
+          "workId": "chan:zongjian-falin",
+          "fromLb": "0308b23",
+          "exact": "赤心片片",
+          "deployment": "full zc window retained for independent corpus adjudication",
+          "window": "，殘陽送晚霜，寒山逢拾得，拊掌笑嗄嗄。諸佛亦非，窮子腹肥。纔一頓飽，忘百日饑。二十拄杖十分槌，免教辜負兩莖眉。電捲星飛，珠回玉轉，打破面皮，赤心片片。十一祖富那夜奢十一祖，富那夜奢因馬鳴大士問：我欲識佛，何者即是？祖曰：汝欲識佛，不識者是。曰：佛既不識，焉知是乎？祖曰：既不識佛，焉知不是"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 150,
+      "rank": 151,
+      "id": "t_8cbd5a63776d",
+      "term": "噇酒糟漢",
+      "query": "噇酒糟漢",
+      "pairExact": {
+        "hits": 170,
+        "works": 103
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "'A fellow who guzzles wine lees' is deployed as a direct critical epithet for consuming dregs rather than living fare. Frozen exact evidence spans 103 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "噇酒糟漢",
+          "deployment": "'A fellow who guzzles wine lees' is deployed as a direct critical epithet for consuming dregs rather than living fare.",
+          "exactHits": 170,
+          "distinctWorks": 103,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 153,
+      "rank": 154,
+      "id": "t_9e9c51dd4e59",
+      "term": "欲識佛性義、當觀時節因縁",
+      "query": "欲識佛性義，當觀時節因緣",
+      "pairExact": {
+        "hits": 157,
+        "works": 97
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The paired admonition—if you wish to know the meaning of Buddha-nature, observe temporal conditions—is quoted and tested as one complete formula. Frozen exact evidence spans 97 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "欲識佛性義，當觀時節因緣",
+          "deployment": "The paired admonition—if you wish to know the meaning of Buddha-nature, observe temporal conditions—is quoted and tested as one complete formula.",
+          "exactHits": 157,
+          "distinctWorks": 97,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 156,
+      "rank": 157,
+      "id": "t_1bed151b80a3",
+      "term": "老僧罪過",
+      "query": "老僧罪過",
+      "pairExact": {
+        "hits": 186,
+        "works": 81
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "'This old monk's fault' functions as a self-capping encounter reply or ironic acknowledgment, not generic confession prose. Frozen exact evidence spans 81 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "老僧罪過",
+          "deployment": "'This old monk's fault' functions as a self-capping encounter reply or ironic acknowledgment, not generic confession prose.",
+          "exactHits": 186,
+          "distinctWorks": 81,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 159,
+      "rank": 160,
+      "id": "t_89256ca9aee7",
+      "term": "曹源一滴水",
+      "query": "曹源一滴水",
+      "pairExact": {
+        "hits": 179,
+        "works": 70
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "A single drop from the Cao source is repeatedly raised as an answer and lineage image with a stable Chan job. Frozen exact evidence spans 70 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "曹源一滴水",
+          "deployment": "A single drop from the Cao source is repeatedly raised as an answer and lineage image with a stable Chan job.",
+          "exactHits": 179,
+          "distinctWorks": 70,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 162,
+      "rank": 163,
+      "id": "t_27acd0b37fcc",
+      "term": "不許夜行、投明須到",
+      "query": "不許夜行，投明須到",
+      "pairExact": {
+        "hits": 159,
+        "works": 97
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The paired rule forbids travelling by night yet requires arrival by dawn and is deployed as a paradoxical case formula. Frozen exact evidence spans 97 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "不許夜行，投明須到",
+          "deployment": "The paired rule forbids travelling by night yet requires arrival by dawn and is deployed as a paradoxical case formula.",
+          "exactHits": 159,
+          "distinctWorks": 97,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 165,
+      "rank": 166,
+      "id": "t_5e651e4c6c64",
+      "term": "鶻臭布衫",
+      "query": "鶻臭布衫",
+      "pairExact": {
+        "hits": 173,
+        "works": 90
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The hawk-stinking cloth shirt is a stock critical epithet/image in Linji-related sayings and later raised cases. Frozen exact evidence spans 90 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "鶻臭布衫",
+          "deployment": "The hawk-stinking cloth shirt is a stock critical epithet/image in Linji-related sayings and later raised cases.",
+          "exactHits": 173,
+          "distinctWorks": 90,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 168,
+      "rank": 169,
+      "id": "t_1cdffdcd198b",
+      "term": "他時後日",
+      "query": "他時後日",
+      "pairExact": {
+        "hits": 162,
+        "works": 80
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The full future-time phrase is used in predictions and capping warnings tied to encounter consequences, not merely calendar reference. Frozen exact evidence spans 80 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "他時後日",
+          "deployment": "The full future-time phrase is used in predictions and capping warnings tied to encounter consequences, not merely calendar reference.",
+          "exactHits": 162,
+          "distinctWorks": 80,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 171,
+      "rank": 172,
+      "id": "t_f9051eaab8b5",
+      "term": "北斗裏藏身",
+      "query": "北斗裏藏身",
+      "pairExact": {
+        "hits": 162,
+        "works": 72
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Hiding the body inside the Northern Dipper is delivered as an impossible-image answer and case formula. Frozen exact evidence spans 72 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "北斗裏藏身",
+          "deployment": "Hiding the body inside the Northern Dipper is delivered as an impossible-image answer and case formula.",
+          "exactHits": 162,
+          "distinctWorks": 72,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 174,
+      "rank": 175,
+      "id": "t_fe7df1eed649",
+      "term": "停囚長智",
+      "query": "停囚長智",
+      "pairExact": {
+        "hits": 167,
+        "works": 79
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The proverb that detention makes a prisoner wiser is repeatedly applied as a capping judgment after an encounter fault. Frozen exact evidence spans 79 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "停囚長智",
+          "deployment": "The proverb that detention makes a prisoner wiser is repeatedly applied as a capping judgment after an encounter fault.",
+          "exactHits": 167,
+          "distinctWorks": 79,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 177,
+      "rank": 178,
+      "id": "t_cfdc679d2f1f",
+      "term": "合取狗口",
+      "query": "合取狗口",
+      "pairExact": {
+        "hits": 178,
+        "works": 86
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "'Shut your dog's mouth' is a direct rebuke and stock imperative in encounters, giving the whole phrase a stable job. Frozen exact evidence spans 86 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "合取狗口",
+          "deployment": "'Shut your dog's mouth' is a direct rebuke and stock imperative in encounters, giving the whole phrase a stable job.",
+          "exactHits": 178,
+          "distinctWorks": 86,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 180,
+      "rank": 181,
+      "id": "t_722ea3b1f491",
+      "term": "當仁不讓",
+      "query": "當仁不讓",
+      "pairExact": {
+        "hits": 150,
+        "works": 96
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The maxim about not yielding when confronted with what is right is quoted and applied as an encounter judgment. Frozen exact evidence spans 96 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "當仁不讓",
+          "deployment": "The maxim about not yielding when confronted with what is right is quoted and applied as an encounter judgment.",
+          "exactHits": 150,
+          "distinctWorks": 96,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 183,
+      "rank": 184,
+      "id": "t_46aeabad0025",
+      "term": "嘉州大象",
+      "query": "嘉州大象",
+      "pairExact": {
+        "hits": 148,
+        "works": 75
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The great elephant of Jiazhou is repeatedly delivered as a stock answer and geographical case image. Frozen exact evidence spans 75 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "嘉州大象",
+          "deployment": "The great elephant of Jiazhou is repeatedly delivered as a stock answer and geographical case image.",
+          "exactHits": 148,
+          "distinctWorks": 75,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 186,
+      "rank": 187,
+      "id": "t_dde83ff6f05d",
+      "term": "倒退三千",
+      "query": "倒退三千",
+      "pairExact": {
+        "hits": 150,
+        "works": 87
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Retreating three thousand is used as a capping verdict for an answer's failure or forced withdrawal, not literal travel. Frozen exact evidence spans 87 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "倒退三千",
+          "deployment": "Retreating three thousand is used as a capping verdict for an answer's failure or forced withdrawal, not literal travel.",
+          "exactHits": 150,
+          "distinctWorks": 87,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 189,
+      "rank": 190,
+      "id": "t_d0b8619bf019",
+      "term": "雲從龍、風從虎",
+      "query": "雲從龍，風從虎",
+      "pairExact": {
+        "hits": 137,
+        "works": 81
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The paired maxim—cloud follows dragon, wind follows tiger—is quoted and capped as one complete correspondence formula. Frozen exact evidence spans 81 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "雲從龍，風從虎",
+          "deployment": "The paired maxim—cloud follows dragon, wind follows tiger—is quoted and capped as one complete correspondence formula.",
+          "exactHits": 137,
+          "distinctWorks": 81,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 192,
+      "rank": 193,
+      "id": "t_e9d526e91d6f",
+      "term": "自古自今",
+      "query": "自古自今",
+      "pairExact": {
+        "hits": 133,
+        "works": 64
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "'From antiquity through the present' functions as a recurrent emphatic formula in verses and judgments asserting continuity. Frozen exact evidence spans 64 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "自古自今",
+          "deployment": "'From antiquity through the present' functions as a recurrent emphatic formula in verses and judgments asserting continuity.",
+          "exactHits": 133,
+          "distinctWorks": 64,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 195,
+      "rank": 196,
+      "id": "t_7b5c463ecb67",
+      "term": "臘月火燒山",
+      "query": "臘月火燒山",
+      "pairExact": {
+        "hits": 140,
+        "works": 76
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Fire burning the mountain in the twelfth month is an impossible seasonal image delivered as an answer and verse formula. Frozen exact evidence spans 76 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "臘月火燒山",
+          "deployment": "Fire burning the mountain in the twelfth month is an impossible seasonal image delivered as an answer and verse formula.",
+          "exactHits": 140,
+          "distinctWorks": 76,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 198,
+      "rank": 199,
+      "id": "t_2958b93055c4",
+      "term": "横説竪説",
+      "query": "橫說竪說",
+      "pairExact": {
+        "hits": 134,
+        "works": 59
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Speaking horizontally and vertically is used as a paired technical judgment for discourse in every direction. Frozen exact evidence spans 59 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "橫說竪說",
+          "deployment": "Speaking horizontally and vertically is used as a paired technical judgment for discourse in every direction.",
+          "exactHits": 134,
+          "distinctWorks": 59,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 201,
+      "rank": 202,
+      "id": "t_54d184eb2709",
+      "term": "入水見長人",
+      "query": "入水見長人",
+      "pairExact": {
+        "hits": 135,
+        "works": 75
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Entering the water reveals the tall person is raised as a proverbial test formula in encounters and comments. Frozen exact evidence spans 75 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "入水見長人",
+          "deployment": "Entering the water reveals the tall person is raised as a proverbial test formula in encounters and comments.",
+          "exactHits": 135,
+          "distinctWorks": 75,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 204,
+      "rank": 205,
+      "id": "t_8b30430597f1",
+      "term": "朝打三千、暮打八百",
+      "query": "朝打三千，暮打八百",
+      "pairExact": {
+        "hits": 135,
+        "works": 74
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The paired morning/evening beating formula is deployed as a complete hyperbolic encounter verdict. Frozen exact evidence spans 74 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "朝打三千，暮打八百",
+          "deployment": "The paired morning/evening beating formula is deployed as a complete hyperbolic encounter verdict.",
+          "exactHits": 135,
+          "distinctWorks": 74,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 207,
+      "rank": 208,
+      "id": "t_86c9b67ecbe5",
+      "term": "入理深談",
+      "query": "入理深談",
+      "pairExact": {
+        "hits": 140,
+        "works": 84
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Entering the principle and speaking deeply is used as an evaluative phrase in case discourse, not generic conversational depth. Frozen exact evidence spans 84 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "入理深談",
+          "deployment": "Entering the principle and speaking deeply is used as an evaluative phrase in case discourse, not generic conversational depth.",
+          "exactHits": 140,
+          "distinctWorks": 84,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 210,
+      "rank": 211,
+      "id": "t_077699f68b9e",
+      "term": "龍袖拂開全體現",
+      "query": "龍袖拂開全體現",
+      "pairExact": {
+        "hits": 139,
+        "works": 102
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The dragon sleeve brushing open so the whole body appears is delivered as a complete verse/capping image. Frozen exact evidence spans 102 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "龍袖拂開全體現",
+          "deployment": "The dragon sleeve brushing open so the whole body appears is delivered as a complete verse/capping image.",
+          "exactHits": 139,
+          "distinctWorks": 102,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 213,
+      "rank": 214,
+      "id": "t_202108980cc1",
+      "term": "賊身已露",
+      "query": "賊身已露",
+      "pairExact": {
+        "hits": 154,
+        "works": 72
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "'The thief's body is already exposed' functions as a direct encounter verdict. Frozen exact evidence spans 72 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "賊身已露",
+          "deployment": "'The thief's body is already exposed' functions as a direct encounter verdict.",
+          "exactHits": 154,
+          "distinctWorks": 72,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 216,
+      "rank": 217,
+      "id": "t_23e8963908a3",
+      "term": "長連牀上",
+      "query": "長連牀上",
+      "pairExact": {
+        "hits": 148,
+        "works": 39
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The long connected platform is repeatedly raised as the locus of a stock case action. Frozen exact evidence spans 39 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "長連牀上",
+          "deployment": "The long connected platform is repeatedly raised as the locus of a stock case action.",
+          "exactHits": 148,
+          "distinctWorks": 39,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 219,
+      "rank": 220,
+      "id": "t_3cc2022d9b65",
+      "term": "隨邪逐惡",
+      "query": "隨邪逐惡",
+      "pairExact": {
+        "hits": 145,
+        "works": 81
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase 隨邪逐惡 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose. Frozen exact evidence spans 81 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "隨邪逐惡",
+          "deployment": "The exact phrase 隨邪逐惡 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose.",
+          "exactHits": 145,
+          "distinctWorks": 81,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 222,
+      "rank": 223,
+      "id": "t_7bf152d37d97",
+      "term": "左之右之",
+      "query": "左之右之",
+      "pairExact": {
+        "hits": 127,
+        "works": 84
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase 左之右之 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose. Frozen exact evidence spans 84 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "左之右之",
+          "deployment": "The exact phrase 左之右之 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose.",
+          "exactHits": 127,
+          "distinctWorks": 84,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 225,
+      "rank": 226,
+      "id": "t_cd15dfe582b6",
+      "term": "伏惟尚饗",
+      "query": "伏惟尚饗",
+      "pairExact": {
+        "hits": 139,
+        "works": 70
+      },
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected",
+      "reason": "The hits preserve the generic funerary offering formula 'reverently, may you partake'; it is ritual closure rather than a Chan-deployed lexical saying.",
+      "zcEvidence": [
+        {
+          "exact": "伏惟尚饗",
+          "deployment": "The hits preserve the generic funerary offering formula 'reverently, may you partake'; it is ritual closure rather than a Chan-deployed lexical saying.",
+          "exactHits": 139,
+          "distinctWorks": 70,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 228,
+      "rank": 229,
+      "id": "t_1dea44941098",
+      "term": "好箇消息",
+      "query": "好箇消息",
+      "pairExact": {
+        "hits": 133,
+        "works": 73
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase 好箇消息 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose. Frozen exact evidence spans 73 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "好箇消息",
+          "deployment": "The exact phrase 好箇消息 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose.",
+          "exactHits": 133,
+          "distinctWorks": 73,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 231,
+      "rank": 232,
+      "id": "t_7092e62ce49e",
+      "term": "同坑無異土",
+      "query": "同坑無異土",
+      "pairExact": {
+        "hits": 138,
+        "works": 86
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase 同坑無異土 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose. Frozen exact evidence spans 86 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "同坑無異土",
+          "deployment": "The exact phrase 同坑無異土 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose.",
+          "exactHits": 138,
+          "distinctWorks": 86,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 234,
+      "rank": 235,
+      "id": "t_88d66f2191a7",
+      "term": "急急如律令",
+      "query": "急急如律令",
+      "pairExact": {
+        "hits": 120,
+        "works": 84
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The spell formula is deliberately appropriated as a Chan capping command in verses and addresses. Frozen exact evidence spans 84 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "急急如律令",
+          "deployment": "The spell formula is deliberately appropriated as a Chan capping command in verses and addresses.",
+          "exactHits": 120,
+          "distinctWorks": 84,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 237,
+      "rank": 238,
+      "id": "t_76c7623702ce",
+      "term": "惜取眉毛",
+      "query": "惜取眉毛",
+      "pairExact": {
+        "hits": 131,
+        "works": 61
+      },
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The exact phrase 惜取眉毛 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose. Frozen exact evidence spans 61 independent works.",
+      "zcEvidence": [
+        {
+          "exact": "惜取眉毛",
+          "deployment": "The exact phrase 惜取眉毛 is deployed in retained Chan answers, rebukes, verse-caps, or recurrent case judgments rather than merely contained as ordinary running prose.",
+          "exactHits": 131,
+          "distinctWorks": 61,
+          "source": "frozen zc counts and complete-case/KWIC artifacts"
+        }
+      ]
+    }
+  ],
+  "decisionCount": 80,
+  "lastCanonicalIndex": 237,
+  "nextCanonicalIndex": 240
+}

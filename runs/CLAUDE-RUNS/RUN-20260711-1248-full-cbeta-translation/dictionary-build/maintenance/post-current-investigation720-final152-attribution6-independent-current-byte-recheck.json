@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "post720-final152-attribution6-independent-current-byte-recheck.v1",
+  "generatedUtc": "2026-07-17T18:44:02.453483+00:00",
+  "repairLedger": "maintenance/post-current-investigation720-final152-attribution6-repair-ledger.json",
+  "repairLedgerSha256": "b2133576517171ca9044d297b706a2ba898d8bdab2f8874347702bf6a789ae5d",
+  "deltaGate": "maintenance/post-current-investigation720-final152-attribution6-delta-gate.json",
+  "deltaGateSha256": "72b48c82cc4e14526b779a0223e157fb065437dab33815998787ddb75cf6e0f3",
+  "expectedDeltaGateSha256": "72b48c82cc4e14526b779a0223e157fb065437dab33815998787ddb75cf6e0f3",
+  "mechanicalGateObservation": {
+    "exactKwic": "19/19 green",
+    "attributionHardFailures": 0
+  },
+  "verdictCounts": {
+    "PASS": 2,
+    "REVISE": 4
+  },
+  "reviews": [
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "status": "REVISE",
+      "entryPath": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "currentByteSha256": "c0b59fc27df9d24559124bda4fdca4aa988271c7f1de4dd05ba03d63c6c21e68",
+      "findings": [
+        "Occurrence 3 is explicitly spoken by 蘄州龍華道初禪師: 一日謂眾曰 ... 召眾曰「此是先師末後句」. Calling the exact headword-bearing actor an unnamed record compiler contradicts the bounded case.",
+        "Occurrence 1 also contains the internal cue 三到亭如如鞠躬聲聲道 immediately governing 願聞先師末後句; the ledger must distinguish Zixian as record/address voice from the explicitly cued embedded utterer."
+      ]
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "status": "REVISE",
+      "entryPath": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "currentByteSha256": "0579899841e8aa5f514dec7f2a474a9fcbdea86c8ab5a4467a640d61b4801454",
+      "findings": [
+        "Occurrence 3 names 淨慧居士 before the question sequence and then continues 士云; “unnamed lay questioner” is false. Preserve Jinghui layman as the named textual actor (even if non-roster) and Liangting Jingting as respondent."
+      ]
+    },
+    {
+      "id": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+      "currentByteSha256": "72cdd518980dc54435d870622aad4ee91cfefdedcda9a86c68335bf2e32c2c1e",
+      "findings": [
+        "All four canonical names are internally consistent and have no named/ActorAttribution conflict; the retained contexts support the record voice or authorial raiser attribution. The noncanonical short Xiangtian alias is gone."
+      ]
+    },
+    {
+      "id": "t_cbf3f6eeda71",
+      "term": "無空可落",
+      "status": "PASS",
+      "entryPath": "fresh-build/entries/t_cbf3f6eeda71/entry.v2.json",
+      "currentByteSha256": "cb05d6a0a3d7fc62576661aae754b2122975f9b87a2163ba77eae66fcc1b4305",
+      "findings": [
+        "All three parallel passages explicitly cue 國師曰 immediately before 無空可落; Nanyang Huizhong is the canonical utterer and no anonymous ActorAttribution remains."
+      ]
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "status": "REVISE",
+      "entryPath": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "currentByteSha256": "da90730239d21f195476e2e8892479202c4bf3d4ae30b3083e261666deb5cc92",
+      "findings": [
+        "Occurrence 1 correctly distinguishes Yulin Tongxiu as present raiser/record owner from Huineng as quoted utterer.",
+        "Occurrences 2 and 3 fail the same distinction: 能即大悟 ... 曰 and the later report 復徵 ... 乃云 grammatically attribute the quoted declaration to Huineng. The unnamed compiler/current speaker is the raiser, not the exact headword utterer; Huineng should be MasterName/utterer, with raiser context separately recorded."
+      ]
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "status": "REVISE",
+      "entryPath": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "currentByteSha256": "381bf79de1c2fd573d74e97552d5d917c58756b113ed0aca74661b3ab6f82b6a",
+      "findings": [
+        "Occurrence 2 is not safely anonymous: the bounded exchange repeatedly marks the questioner 進云 around the headword-bearing turn. “Unnamed questioning monk” erases an explicit source label and requires expansion to resolve 進.",
+        "Occurrence 3 introduces the attributed formula 兜率三關，其一曰; an unnamed compiler may be the present raiser, but the quoted three barriers require the named Doushuai source/utterer context rather than an empty ContextMasters array."
+      ]
+    }
+  ],
+  "entryEditsPerformed": false
+}

@@ -1,0 +1,3091 @@
+{
+  "schemaVersion": "post-current-investigation720-final176-reconciliation.v2",
+  "generatedUtc": "2026-07-17T19:23:16.039981+00:00",
+  "mode": "INSTALL-AUTHORIZED",
+  "sealedCohort": {
+    "path": "maintenance/post-current-investigation720-preparation-seal.json",
+    "sha256": "c8d8bbfe2e71b27d8b69c24f60579783a2b2896a9bfabd56a79450f831c51adc",
+    "candidateCount": 176,
+    "laneCounts": {
+      "A": 59,
+      "B": 59,
+      "C": 58
+    }
+  },
+  "dispositionSources": [
+    {
+      "path": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "sha256": "9d2c7606d7e82371098568f12e3ab334289b4a21bd48f8d2cb8162ac08164837"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-a-canary-author-checkpoints.json",
+      "sha256": "8a05409b70e4f8930bfc71d5af5141e490df21fbe147da351365c66437949a32"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "sha256": "987cfee412d9036edf0d4ffeb7558c8091de558f59e4c3f1c2e1bb823e68d956"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "sha256": "5ffd491dc9243469dc06b3c667f7c4bb91edc9873d8d4853fb414b32dbf6823d"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+      "sha256": "93ba9309af54fe0341cf2628030e1af2c08eb40bb26fd898aa5adf5e41ece7df"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "sha256": "604c53c0c25c80af54c21dfe90f7995519cb5b4c3bd4d3cda1ac75de395d3ef5"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json",
+      "sha256": "2d4c554038ce15fcdf61c5d3b775b297c61433ed9a663abd56552d80220c05e5"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "sha256": "09d2211ac49ae2546215a9b62515e6e8d8432b9bd026e962d0c96525088a9681"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "sha256": "c145f65f06447320ee5f51717ce524b7b5a03a0dccf8879945ab74634f46486a"
+    },
+    {
+      "path": "maintenance/post-current-investigation720-poet-rejection.json",
+      "sha256": "2c764cc723e2cea9aac8effeb5c3111f196502d3fb77f20c099603ce7a00c324"
+    }
+  ],
+  "totals": {
+    "candidates": 176,
+    "accepted": 152,
+    "rejected": 24,
+    "byLane": {
+      "A": {
+        "candidates": 59,
+        "accepted": 49,
+        "rejected": 10
+      },
+      "B": {
+        "candidates": 59,
+        "accepted": 51,
+        "rejected": 8
+      },
+      "C": {
+        "candidates": 58,
+        "accepted": 52,
+        "rejected": 6
+      }
+    }
+  },
+  "assertions": {
+    "candidateTotal176": true,
+    "everyCandidateExactlyOnce": true,
+    "uniqueIds": true,
+    "uniqueHeadwords": true,
+    "allHaveDisposition": true,
+    "acceptedEntriesPresentAndShaBound": true,
+    "rejectedHaveNoEntryBinding": true,
+    "installedBaselineDefinition": "STATUS=done IDs matched to the installed external termbase artifact",
+    "installedEntryCount": 1542,
+    "installedCollisionCount": 0,
+    "noInstalledIdOrHeadwordCollisions": true,
+    "installedCollisions": [],
+    "newRejectsReflected": {
+      "詩客": true,
+      "問辨": true
+    },
+    "allAcceptedBoundToIndependentPass": true,
+    "allAcceptedCurrentHashesRefreshed": true,
+    "allAcceptedCurrentShaBoundToIndependentPass": true
+  },
+  "candidates": [
+    {
+      "ordinal": 1523,
+      "lane": "A",
+      "lanePosition": 1,
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "disposition": "ACCEPTED",
+      "reason": "Surfaced derivative pattern-copying and corrected X68 to Yulin Xiuyun.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_8dfac3877360/entry.v2.json",
+      "currentEntrySha256": "ec3f3bbeeff1e2f55a49f39e084b9e3400891ea16e2b72b82710b6ba138e1ace",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "ec3f3bbeeff1e2f55a49f39e084b9e3400891ea16e2b72b82710b6ba138e1ace"
+      }
+    },
+    {
+      "ordinal": 1601,
+      "lane": "A",
+      "lanePosition": 2,
+      "id": "t_2d8f5919247b",
+      "term": "廣燈錄",
+      "disposition": "REJECTED",
+      "reason": "All sealed cases use 廣燈錄 as part of the bibliographic title 天聖廣燈錄 or 宗門廣燈錄; none deploy it as an independent Chan expression.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary-author-checkpoints.json"
+    },
+    {
+      "ordinal": 1683,
+      "lane": "A",
+      "lanePosition": 3,
+      "id": "t_08e0ef30ead9",
+      "term": "鴨類",
+      "disposition": "ACCEPTED",
+      "reason": "Restored positive noun gloss 'the duck kind'; retained negation only for full-form lookup.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_08e0ef30ead9/entry.v2.json",
+      "currentEntrySha256": "e93bc5b03fa7fef0512f3c1428ff11ef22af14e2d15646ba26c8d3f4968bdc90",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e93bc5b03fa7fef0512f3c1428ff11ef22af14e2d15646ba26c8d3f4968bdc90"
+      }
+    },
+    {
+      "ordinal": 1804,
+      "lane": "A",
+      "lanePosition": 4,
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "disposition": "ACCEPTED",
+      "reason": "Replaced false uniform-instruction claim with exposition, application, portrait verse, and question.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_d0419c13b037/entry.v2.json",
+      "currentEntrySha256": "b4a424145a78cc53e54ec5f4f80ab2aaf6f0f721d162f6c88cbb189332470ef2",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "b4a424145a78cc53e54ec5f4f80ab2aaf6f0f721d162f6c88cbb189332470ef2"
+      }
+    },
+    {
+      "ordinal": 1807,
+      "lane": "A",
+      "lanePosition": 5,
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "disposition": "ACCEPTED",
+      "reason": "Assigned T48 clause to quoted scripture voice; retained Yongming as later quoter/commentator.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_186677ffbc59/entry.v2.json",
+      "currentEntrySha256": "effae4aa6db584ee75e12a6ea6bb5756dfccf3b83f2a0c105d423789713f1e1a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "effae4aa6db584ee75e12a6ea6bb5756dfccf3b83f2a0c105d423789713f1e1a"
+      }
+    },
+    {
+      "ordinal": 1810,
+      "lane": "A",
+      "lanePosition": 6,
+      "id": "t_1ff4d467780c",
+      "term": "泯默",
+      "disposition": "ACCEPTED",
+      "reason": "Preferred blank muteness and corrected T47 section owner to Yuanwu Keqin.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_1ff4d467780c/entry.v2.json",
+      "currentEntrySha256": "7adfe9de1fc25dc6560055aa8c2318da56d55e7cdb0f82b312800e4a6f38df75",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "7adfe9de1fc25dc6560055aa8c2318da56d55e7cdb0f82b312800e4a6f38df75"
+      }
+    },
+    {
+      "ordinal": 1813,
+      "lane": "A",
+      "lanePosition": 7,
+      "id": "t_baaf641ad292",
+      "term": "無義路",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_baaf641ad292/entry.v2.json",
+      "currentEntrySha256": "c8147400640e09e9c1b01e9e743e244af5b408333e927880fc56fa3770e75a97",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c8147400640e09e9c1b01e9e743e244af5b408333e927880fc56fa3770e75a97"
+      }
+    },
+    {
+      "ordinal": 1816,
+      "lane": "A",
+      "lanePosition": 8,
+      "id": "t_7fe6e194e576",
+      "term": "弄死蛇",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_7fe6e194e576/entry.v2.json",
+      "currentEntrySha256": "b19580426ed2df02dd446d4754194d208f33d189860cf1e98aa0430b7fb3827d",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "b19580426ed2df02dd446d4754194d208f33d189860cf1e98aa0430b7fb3827d"
+      }
+    },
+    {
+      "ordinal": 1819,
+      "lane": "A",
+      "lanePosition": 9,
+      "id": "t_7b7576f60959",
+      "term": "木人歌",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_7b7576f60959/entry.v2.json",
+      "currentEntrySha256": "e45e1f62f32c616d485b23b41a39441702f18e5fc2042ef8280d779f84d21127",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-murenge-final-independent-recheck.json",
+        "sha256": "fdbe520d9b92367352210469944c14e6114e428233dc05e2ccb39e178cbd7b78",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e45e1f62f32c616d485b23b41a39441702f18e5fc2042ef8280d779f84d21127"
+      }
+    },
+    {
+      "ordinal": 1822,
+      "lane": "A",
+      "lanePosition": 10,
+      "id": "t_de5e2668bc5e",
+      "term": "絕言絕慮",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_de5e2668bc5e/entry.v2.json",
+      "currentEntrySha256": "ee1091fd1b38aa8aa6260d64695ff41dc6008ea8c2fa300c892b1eec23b452ed",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "ee1091fd1b38aa8aa6260d64695ff41dc6008ea8c2fa300c892b1eec23b452ed"
+      }
+    },
+    {
+      "ordinal": 1825,
+      "lane": "A",
+      "lanePosition": 11,
+      "id": "t_8695699c9329",
+      "term": "兩堂爭猫",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_8695699c9329/entry.v2.json",
+      "currentEntrySha256": "13290e13f26d12e12eae8f91e67860b67b8b820bdfc4dc47af61f099f716824f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "13290e13f26d12e12eae8f91e67860b67b8b820bdfc4dc47af61f099f716824f"
+      }
+    },
+    {
+      "ordinal": 1828,
+      "lane": "A",
+      "lanePosition": 12,
+      "id": "t_b4733a98e43d",
+      "term": "殺活同時",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_b4733a98e43d/entry.v2.json",
+      "currentEntrySha256": "f5fd34d80e3b5e22453d853057ac2ef8389e0cb311613880c6ded8e9e96fa765",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "f5fd34d80e3b5e22453d853057ac2ef8389e0cb311613880c6ded8e9e96fa765"
+      }
+    },
+    {
+      "ordinal": 1831,
+      "lane": "A",
+      "lanePosition": 13,
+      "id": "t_8eeddc0520bb",
+      "term": "行腳人",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_8eeddc0520bb/entry.v2.json",
+      "currentEntrySha256": "0d11c956920e5e3640c0cd398650875a3277a6f8848a03b79f217cf980df0874",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "0d11c956920e5e3640c0cd398650875a3277a6f8848a03b79f217cf980df0874"
+      }
+    },
+    {
+      "ordinal": 1834,
+      "lane": "A",
+      "lanePosition": 14,
+      "id": "t_378f4b5f338f",
+      "term": "一塵不染",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_378f4b5f338f/entry.v2.json",
+      "currentEntrySha256": "d88a93a39e440a95226ccb4a2b71749af287f73e20b4d70965e162177c80a170",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d88a93a39e440a95226ccb4a2b71749af287f73e20b4d70965e162177c80a170"
+      }
+    },
+    {
+      "ordinal": 1837,
+      "lane": "A",
+      "lanePosition": 15,
+      "id": "t_42323f09261e",
+      "term": "本自清淨",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_42323f09261e/entry.v2.json",
+      "currentEntrySha256": "c0ed5b5332f5b95a59b936325afc78bc05e28b44af5a317665b8489f2b63041b",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c0ed5b5332f5b95a59b936325afc78bc05e28b44af5a317665b8489f2b63041b"
+      }
+    },
+    {
+      "ordinal": 1840,
+      "lane": "A",
+      "lanePosition": 16,
+      "id": "t_c07d4c1204f4",
+      "term": "無言可說",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_c07d4c1204f4/entry.v2.json",
+      "currentEntrySha256": "9296bb137305614d7b5bcd2ceb94ab2e1c619bb549cc35af55658ab13f7683e8",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9296bb137305614d7b5bcd2ceb94ab2e1c619bb549cc35af55658ab13f7683e8"
+      }
+    },
+    {
+      "ordinal": 1843,
+      "lane": "A",
+      "lanePosition": 17,
+      "id": "t_372cf334c464",
+      "term": "立處即真",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_372cf334c464/entry.v2.json",
+      "currentEntrySha256": "b9b8789445523ce5cdddad083ff3f9a2c553073967d0059da12abca38758b57b",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "b9b8789445523ce5cdddad083ff3f9a2c553073967d0059da12abca38758b57b"
+      }
+    },
+    {
+      "ordinal": 1846,
+      "lane": "A",
+      "lanePosition": 18,
+      "id": "t_abe3c59c0ed8",
+      "term": "本分大事",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_abe3c59c0ed8/entry.v2.json",
+      "currentEntrySha256": "87d34f0abbead174e497460996b2b438d734588f214921e96372b1cceaf65d3e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "87d34f0abbead174e497460996b2b438d734588f214921e96372b1cceaf65d3e"
+      }
+    },
+    {
+      "ordinal": 1849,
+      "lane": "A",
+      "lanePosition": 19,
+      "id": "t_cb70f4c9eef8",
+      "term": "十牛圖",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_cb70f4c9eef8/entry.v2.json",
+      "currentEntrySha256": "981d5b80baeaccb2274ac2d8c7e9da32ac9b6dddce702633ef264a3263433b9c",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "981d5b80baeaccb2274ac2d8c7e9da32ac9b6dddce702633ef264a3263433b9c"
+      }
+    },
+    {
+      "ordinal": 1852,
+      "lane": "A",
+      "lanePosition": 20,
+      "id": "t_5ef05597fe69",
+      "term": "參禪僧",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_5ef05597fe69/entry.v2.json",
+      "currentEntrySha256": "77c9dd4e203ac14b8bdd7db6c14b58636bda1e7e0dbddc4ed2565240feb2e9b8",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "77c9dd4e203ac14b8bdd7db6c14b58636bda1e7e0dbddc4ed2565240feb2e9b8"
+      }
+    },
+    {
+      "ordinal": 1855,
+      "lane": "A",
+      "lanePosition": 21,
+      "id": "t_8bd390157b65",
+      "term": "逢羅漢殺羅漢",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_8bd390157b65/entry.v2.json",
+      "currentEntrySha256": "a6b3e1a381afcf8e2e62c33d0745e00cb58c01b42323ecb2fba01590d705e640",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "a6b3e1a381afcf8e2e62c33d0745e00cb58c01b42323ecb2fba01590d705e640"
+      }
+    },
+    {
+      "ordinal": 1858,
+      "lane": "A",
+      "lanePosition": 22,
+      "id": "t_6925c87bb616",
+      "term": "雲水僧",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_6925c87bb616/entry.v2.json",
+      "currentEntrySha256": "b3a90e1f49dc092da8de4d54e25fafb922946990440e9730d3297a7524e6a336",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "b3a90e1f49dc092da8de4d54e25fafb922946990440e9730d3297a7524e6a336"
+      }
+    },
+    {
+      "ordinal": 1861,
+      "lane": "A",
+      "lanePosition": 23,
+      "id": "t_8ee9d62081ae",
+      "term": "定慧等持",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_8ee9d62081ae/entry.v2.json",
+      "currentEntrySha256": "5f4b2ddb89206fdcaad08d4ab5b3b3406a959f8d2df8aaf1057e2e69a6a6ca54",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "5f4b2ddb89206fdcaad08d4ab5b3b3406a959f8d2df8aaf1057e2e69a6a6ca54"
+      }
+    },
+    {
+      "ordinal": 1864,
+      "lane": "A",
+      "lanePosition": 24,
+      "id": "t_4baae3dda70c",
+      "term": "大悟底人",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_4baae3dda70c/entry.v2.json",
+      "currentEntrySha256": "1029a136f0b93cfd62f8a919512932d375f9eb95b73ff14e0260575733ca2c4f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1029a136f0b93cfd62f8a919512932d375f9eb95b73ff14e0260575733ca2c4f"
+      }
+    },
+    {
+      "ordinal": 1867,
+      "lane": "A",
+      "lanePosition": 25,
+      "id": "t_a5a35b410079",
+      "term": "閉口即喪",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_a5a35b410079/entry.v2.json",
+      "currentEntrySha256": "2ff052fceea6dd1d53e44105b77843a9c8bb237374ca9fa43f1b4b1fb8f3d682",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "2ff052fceea6dd1d53e44105b77843a9c8bb237374ca9fa43f1b4b1fb8f3d682"
+      }
+    },
+    {
+      "ordinal": 1870,
+      "lane": "A",
+      "lanePosition": 26,
+      "id": "t_44056632f4c6",
+      "term": "隨機方便",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_44056632f4c6/entry.v2.json",
+      "currentEntrySha256": "13aa396b55741681086d8ef6a170dc45560c0b754e0103a058125536ac92ba35",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "13aa396b55741681086d8ef6a170dc45560c0b754e0103a058125536ac92ba35"
+      }
+    },
+    {
+      "ordinal": 1873,
+      "lane": "A",
+      "lanePosition": 27,
+      "id": "t_06756e764d33",
+      "term": "黑山下鬼窟裏",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_06756e764d33/entry.v2.json",
+      "currentEntrySha256": "5cd480bf5b0de86ade2285f05b9fd56cd8bc759774a3feb224269b31518b045f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "5cd480bf5b0de86ade2285f05b9fd56cd8bc759774a3feb224269b31518b045f"
+      }
+    },
+    {
+      "ordinal": 1876,
+      "lane": "A",
+      "lanePosition": 28,
+      "id": "t_7517cee5844f",
+      "term": "認子為賊",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_7517cee5844f/entry.v2.json",
+      "currentEntrySha256": "6eecf7c7eef4b19f6f548dec706468d78c304ab32ac5d0530d70d917ff8c886e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6eecf7c7eef4b19f6f548dec706468d78c304ab32ac5d0530d70d917ff8c886e"
+      }
+    },
+    {
+      "ordinal": 1879,
+      "lane": "A",
+      "lanePosition": 29,
+      "id": "t_24891e88f516",
+      "term": "木人石女",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_24891e88f516/entry.v2.json",
+      "currentEntrySha256": "f4ec63d4c8987838370321032e71061f4463d8ca887ebb2af7ee7650916a8ccb",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "f4ec63d4c8987838370321032e71061f4463d8ca887ebb2af7ee7650916a8ccb"
+      }
+    },
+    {
+      "ordinal": 1882,
+      "lane": "A",
+      "lanePosition": 30,
+      "id": "t_099bd2fda8bc",
+      "term": "開口便錯",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_099bd2fda8bc/entry.v2.json",
+      "currentEntrySha256": "1a4d7adc0f104a569fb7c0c0d70aaf15d1045b43b7d024860e1dcb1af486a298",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1a4d7adc0f104a569fb7c0c0d70aaf15d1045b43b7d024860e1dcb1af486a298"
+      }
+    },
+    {
+      "ordinal": 1885,
+      "lane": "A",
+      "lanePosition": 31,
+      "id": "t_a8d80736de3b",
+      "term": "覿面錯過",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and current-byte repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_a8d80736de3b/entry.v2.json",
+      "currentEntrySha256": "e0ca4127fee481d4572f8c73133117901d66ff1b70d2106e3ad1b43906477d2e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-007-032-final-current-byte-independent-recheck.json",
+        "sha256": "dc2c29c134d5a424a6f7e4667675868f2074015aec6274b397b20a71a9efbd9d",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e0ca4127fee481d4572f8c73133117901d66ff1b70d2106e3ad1b43906477d2e"
+      }
+    },
+    {
+      "ordinal": 1888,
+      "lane": "A",
+      "lanePosition": 32,
+      "id": "t_bc9a15980b00",
+      "term": "問辨",
+      "disposition": "REJECTED",
+      "reason": "fresh full-case review found ordinary advisory wording (問辨當虛己) rather than a stable technical deployment shared across the witnesses",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-007-032-current-byte-repair-ledger.json"
+    },
+    {
+      "ordinal": 1891,
+      "lane": "A",
+      "lanePosition": 33,
+      "id": "t_9d9e87f5ce7f",
+      "term": "十牛頌",
+      "disposition": "REJECTED",
+      "reason": "title-label for the Ten Oxherding Verses rather than an independently deployed expression",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1894,
+      "lane": "A",
+      "lanePosition": 34,
+      "id": "t_e036c72faa94",
+      "term": "因位",
+      "disposition": "REJECTED",
+      "reason": "general doctrinal stage terminology without a distinct Chan lexical job",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1897,
+      "lane": "A",
+      "lanePosition": 35,
+      "id": "t_50ddb6b72219",
+      "term": "付衣鉢",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_50ddb6b72219/entry.v2.json",
+      "currentEntrySha256": "74b17d6ebad7e306240f0bde5fe809ca48192f69f683b6d40971a98b87b49610",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "74b17d6ebad7e306240f0bde5fe809ca48192f69f683b6d40971a98b87b49610"
+      }
+    },
+    {
+      "ordinal": 1900,
+      "lane": "A",
+      "lanePosition": 36,
+      "id": "t_0dddfc044717",
+      "term": "驗人眼",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_0dddfc044717/entry.v2.json",
+      "currentEntrySha256": "849d7830481b569dbca207c6d1ab0380a099b8370c6273c10c31d4b5e850b1fb",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "849d7830481b569dbca207c6d1ab0380a099b8370c6273c10c31d4b5e850b1fb"
+      }
+    },
+    {
+      "ordinal": 1903,
+      "lane": "A",
+      "lanePosition": 37,
+      "id": "t_dafd7ba7bcf4",
+      "term": "得戒和尚",
+      "disposition": "REJECTED",
+      "reason": "generic ordination-preceptor role label",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1906,
+      "lane": "A",
+      "lanePosition": 38,
+      "id": "t_09e0cde07800",
+      "term": "放曠逍遙",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_09e0cde07800/entry.v2.json",
+      "currentEntrySha256": "be702429d05e1dbc6fe48679080d463c611dedb13b2b12154fbc0d73492ea617",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "be702429d05e1dbc6fe48679080d463c611dedb13b2b12154fbc0d73492ea617"
+      }
+    },
+    {
+      "ordinal": 1909,
+      "lane": "A",
+      "lanePosition": 39,
+      "id": "t_b4b271574a28",
+      "term": "空劫自己",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_b4b271574a28/entry.v2.json",
+      "currentEntrySha256": "c87f22c52d4d25d5cb50d9a1b9348a71a023734607a7766ee0aaad41dbd6e636",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c87f22c52d4d25d5cb50d9a1b9348a71a023734607a7766ee0aaad41dbd6e636"
+      }
+    },
+    {
+      "ordinal": 1912,
+      "lane": "A",
+      "lanePosition": 40,
+      "id": "t_c444a900eeea",
+      "term": "斬蛇手",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_c444a900eeea/entry.v2.json",
+      "currentEntrySha256": "395b9dace2d7b30a16f3182c954e00df4ae7add7c6e07890a6dbf1a5ba30bd39",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "395b9dace2d7b30a16f3182c954e00df4ae7add7c6e07890a6dbf1a5ba30bd39"
+      }
+    },
+    {
+      "ordinal": 1915,
+      "lane": "A",
+      "lanePosition": 41,
+      "id": "t_ba8b9ef2c963",
+      "term": "磨磚成鏡",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_ba8b9ef2c963/entry.v2.json",
+      "currentEntrySha256": "87722dd00f7fbad92accf2a3ce5b524e285580bb7c20a266f2cfded076b75963",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "87722dd00f7fbad92accf2a3ce5b524e285580bb7c20a266f2cfded076b75963"
+      }
+    },
+    {
+      "ordinal": 1918,
+      "lane": "A",
+      "lanePosition": 42,
+      "id": "t_5b647f5f704c",
+      "term": "水米無交",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_5b647f5f704c/entry.v2.json",
+      "currentEntrySha256": "1b694d8d772f7b5e9f871e6f19201d56f10543d90d11106fca71eb130a437532",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1b694d8d772f7b5e9f871e6f19201d56f10543d90d11106fca71eb130a437532"
+      }
+    },
+    {
+      "ordinal": 1921,
+      "lane": "A",
+      "lanePosition": 43,
+      "id": "t_f97ca7f9ac1a",
+      "term": "末後關",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_f97ca7f9ac1a/entry.v2.json",
+      "currentEntrySha256": "c8b1054db59bb014c0c16cd3a98845f93ce20342a396400490dbeaa5d5eaa796",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c8b1054db59bb014c0c16cd3a98845f93ce20342a396400490dbeaa5d5eaa796"
+      }
+    },
+    {
+      "ordinal": 1924,
+      "lane": "A",
+      "lanePosition": 44,
+      "id": "t_fb079b2542e4",
+      "term": "活撥撥",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_fb079b2542e4/entry.v2.json",
+      "currentEntrySha256": "681139503d9034e7f4981e8f9dc0ae5b80144d9b31db0e2c88fa5468000d3580",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "681139503d9034e7f4981e8f9dc0ae5b80144d9b31db0e2c88fa5468000d3580"
+      }
+    },
+    {
+      "ordinal": 1927,
+      "lane": "A",
+      "lanePosition": 45,
+      "id": "t_a17e5d307be4",
+      "term": "喝罵",
+      "disposition": "REJECTED",
+      "reason": "ordinary paired verbs for shouting and scolding",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1930,
+      "lane": "A",
+      "lanePosition": 46,
+      "id": "t_9045c8e22a26",
+      "term": "答佛話會",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_9045c8e22a26/entry.v2.json",
+      "currentEntrySha256": "90260c44ff85b757726f64f68cfabfcbea811e1ddf64bf9854e8d7aeefdb4af3",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-dafuhuawei-final-independent-recheck.json",
+        "sha256": "56ae0c01042f35ed36351ae1e4731088dd22f86a037c71f26971f18f28a47609",
+        "decision": "PASS",
+        "reviewedEntrySha256": "90260c44ff85b757726f64f68cfabfcbea811e1ddf64bf9854e8d7aeefdb4af3"
+      }
+    },
+    {
+      "ordinal": 1933,
+      "lane": "A",
+      "lanePosition": 47,
+      "id": "t_bfbc65010735",
+      "term": "機關盡",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_bfbc65010735/entry.v2.json",
+      "currentEntrySha256": "588da9c2ffbc7413c151b8c585c1539390f53374b72f84167ff5c3e144962632",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "588da9c2ffbc7413c151b8c585c1539390f53374b72f84167ff5c3e144962632"
+      }
+    },
+    {
+      "ordinal": 1936,
+      "lane": "A",
+      "lanePosition": 48,
+      "id": "t_e54894084a47",
+      "term": "印藏經",
+      "disposition": "REJECTED",
+      "reason": "ordinary activity of printing the Buddhist canon",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1939,
+      "lane": "A",
+      "lanePosition": 49,
+      "id": "t_21f12e70ea28",
+      "term": "不瞞人底句",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_21f12e70ea28/entry.v2.json",
+      "currentEntrySha256": "87f3b0207d3c372737f450ec555643ca6761f7fe3c3844c0d8f88d08b51d51e4",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "87f3b0207d3c372737f450ec555643ca6761f7fe3c3844c0d8f88d08b51d51e4"
+      }
+    },
+    {
+      "ordinal": 1942,
+      "lane": "A",
+      "lanePosition": 50,
+      "id": "t_ab11c53b2546",
+      "term": "野狐公案",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_ab11c53b2546/entry.v2.json",
+      "currentEntrySha256": "95bdd32ce813fba790fb74ff200c01c5110cbf74a91426d3c544e592aeb78ef9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "95bdd32ce813fba790fb74ff200c01c5110cbf74a91426d3c544e592aeb78ef9"
+      }
+    },
+    {
+      "ordinal": 1945,
+      "lane": "A",
+      "lanePosition": 51,
+      "id": "t_4fd0dc319cc4",
+      "term": "孤明獨照",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_4fd0dc319cc4/entry.v2.json",
+      "currentEntrySha256": "8d10126bb7dda4bfb020d32c2966e0b76dfe8d46e33eedb423a27227a01b6cb3",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8d10126bb7dda4bfb020d32c2966e0b76dfe8d46e33eedb423a27227a01b6cb3"
+      }
+    },
+    {
+      "ordinal": 1948,
+      "lane": "A",
+      "lanePosition": 52,
+      "id": "t_679f1414a488",
+      "term": "赤裸裸",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_679f1414a488/entry.v2.json",
+      "currentEntrySha256": "cf0819260439dda1f68f998f79877518bed3a26a7f34f5cdd2b8ea7e863bc59e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "cf0819260439dda1f68f998f79877518bed3a26a7f34f5cdd2b8ea7e863bc59e"
+      }
+    },
+    {
+      "ordinal": 1951,
+      "lane": "A",
+      "lanePosition": 53,
+      "id": "t_420df915a2bb",
+      "term": "普說牌",
+      "disposition": "REJECTED",
+      "reason": "administrative notice-board label rather than a deployed saying",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1954,
+      "lane": "A",
+      "lanePosition": 54,
+      "id": "t_5c881015a74e",
+      "term": "墮負",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_5c881015a74e/entry.v2.json",
+      "currentEntrySha256": "410f71eb8e30b4dd618f4f176e01a757baae6bde3824ab71556c4331d0600f5e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "410f71eb8e30b4dd618f4f176e01a757baae6bde3824ab71556c4331d0600f5e"
+      }
+    },
+    {
+      "ordinal": 1957,
+      "lane": "A",
+      "lanePosition": 55,
+      "id": "t_3806f5bcb309",
+      "term": "畫餅充飢",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_3806f5bcb309/entry.v2.json",
+      "currentEntrySha256": "02a493f598935a8a5f8b013bbe1864860f0429c34e4005b19e6c6ad1c7869994",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "02a493f598935a8a5f8b013bbe1864860f0429c34e4005b19e6c6ad1c7869994"
+      }
+    },
+    {
+      "ordinal": 1960,
+      "lane": "A",
+      "lanePosition": 56,
+      "id": "t_5d9c4461663d",
+      "term": "印板禪",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_5d9c4461663d/entry.v2.json",
+      "currentEntrySha256": "450b5d27b87d42260f95fe1503557fe94651af7948835795660577fe78d3fa5e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "450b5d27b87d42260f95fe1503557fe94651af7948835795660577fe78d3fa5e"
+      }
+    },
+    {
+      "ordinal": 1963,
+      "lane": "A",
+      "lanePosition": 57,
+      "id": "t_044e5044d024",
+      "term": "失命喪身",
+      "disposition": "REJECTED",
+      "reason": "ordinary loss-of-life idiom without a stable Chan-specific deployment",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1966,
+      "lane": "A",
+      "lanePosition": 58,
+      "id": "t_21ca0c84eade",
+      "term": "眼前錯過",
+      "disposition": "REJECTED",
+      "reason": "ordinary phrase for missing what is before one",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json"
+    },
+    {
+      "ordinal": 1969,
+      "lane": "A",
+      "lanePosition": 59,
+      "id": "t_0d55d47dbecd",
+      "term": "知痛知痒",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-A full-case adjudication and author gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-a-33-59-final-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_0d55d47dbecd/entry.v2.json",
+      "currentEntrySha256": "cb5d7a073562babe9f4690a45cd30874d79744d4c3db619d24c2a6c236f874d3",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-a-33-59-final-current-byte-independent-recheck.json",
+        "sha256": "6a5d41e6543c30a2d47889def206c83b4805e11b6ba4388cd51fdc3c634242f3",
+        "decision": "PASS",
+        "reviewedEntrySha256": "cb5d7a073562babe9f4690a45cd30874d79744d4c3db619d24c2a6c236f874d3"
+      }
+    },
+    {
+      "ordinal": 1529,
+      "lane": "B",
+      "lanePosition": 1,
+      "id": "t_5f532706138e",
+      "term": "須彌盧",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B canary adjudication and repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_5f532706138e/entry.v2.json",
+      "currentEntrySha256": "2b3fd23fcb25cc76ccd9fdfa78d0f8c47a728ffa805097df0101b779d3b2eb54",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-canary5-postrepair-independent-review.json",
+        "sha256": "78843825c46cc58de1f8f19f293fd5c7bf42b1fbc38d93791cb81edd212d4531",
+        "decision": "PASS",
+        "reviewedEntrySha256": "2b3fd23fcb25cc76ccd9fdfa78d0f8c47a728ffa805097df0101b779d3b2eb54"
+      }
+    },
+    {
+      "ordinal": 1630,
+      "lane": "B",
+      "lanePosition": 2,
+      "id": "t_2f97445940bc",
+      "term": "同死同生",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B canary adjudication and repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_2f97445940bc/entry.v2.json",
+      "currentEntrySha256": "71abfe4c6e0d391a4a938e59aa54762fb7a2bc14e1c02cda8852315601b95345",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-canary5-postrepair-independent-review.json",
+        "sha256": "78843825c46cc58de1f8f19f293fd5c7bf42b1fbc38d93791cb81edd212d4531",
+        "decision": "PASS",
+        "reviewedEntrySha256": "71abfe4c6e0d391a4a938e59aa54762fb7a2bc14e1c02cda8852315601b95345"
+      }
+    },
+    {
+      "ordinal": 1761,
+      "lane": "B",
+      "lanePosition": 3,
+      "id": "t_a7caaf206d69",
+      "term": "音律",
+      "disposition": "REJECTED",
+      "reason": "ordinary vocabulary",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json"
+    },
+    {
+      "ordinal": 1805,
+      "lane": "B",
+      "lanePosition": 4,
+      "id": "t_2d9781afa9a0",
+      "term": "法網",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B canary adjudication and repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_2d9781afa9a0/entry.v2.json",
+      "currentEntrySha256": "1c44f30f5f86a06fc4b42fab1986250b9a5acd4e4ec1224e2ace8d47f50583bb",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-canary5-postrepair-independent-review.json",
+        "sha256": "78843825c46cc58de1f8f19f293fd5c7bf42b1fbc38d93791cb81edd212d4531",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1c44f30f5f86a06fc4b42fab1986250b9a5acd4e4ec1224e2ace8d47f50583bb"
+      }
+    },
+    {
+      "ordinal": 1808,
+      "lane": "B",
+      "lanePosition": 5,
+      "id": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B canary adjudication and repair gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-canary5-repair-ledger.json",
+      "entryPath": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+      "currentEntrySha256": "e8d72e4d04d2e56abf5c70faeeea4457d4b849dd6624406f66401fb5dc584d30",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final152-shengsi-note-grammar-independent-current-byte-recheck.json",
+        "sha256": "d2d2c937d64166df6e3bb7b2ebad735d1868be390e0ce15812003287b6b37614",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e8d72e4d04d2e56abf5c70faeeea4457d4b849dd6624406f66401fb5dc584d30"
+      }
+    },
+    {
+      "ordinal": 1811,
+      "lane": "B",
+      "lanePosition": 6,
+      "id": "t_86bfc715f764",
+      "term": "打車打牛",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_86bfc715f764/entry.v2.json",
+      "currentEntrySha256": "e7bdbc792107fc9354473bee0b8c0a8b8e8ec9a3342562257ce17726818f52cf",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e7bdbc792107fc9354473bee0b8c0a8b8e8ec9a3342562257ce17726818f52cf"
+      }
+    },
+    {
+      "ordinal": 1814,
+      "lane": "B",
+      "lanePosition": 7,
+      "id": "t_d1038793890c",
+      "term": "能生萬法",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_d1038793890c/entry.v2.json",
+      "currentEntrySha256": "51aa8242530e55c3029b5ee6b47954dff92a8709b725db9e21ee09a8ed5a9c77",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "51aa8242530e55c3029b5ee6b47954dff92a8709b725db9e21ee09a8ed5a9c77"
+      }
+    },
+    {
+      "ordinal": 1817,
+      "lane": "B",
+      "lanePosition": 8,
+      "id": "t_615bd82e9cab",
+      "term": "本無一法",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_615bd82e9cab/entry.v2.json",
+      "currentEntrySha256": "72dc05b8b16fb75b05188e6ba447d3cc37deb5213095f9581626bc8202e982dd",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "72dc05b8b16fb75b05188e6ba447d3cc37deb5213095f9581626bc8202e982dd"
+      }
+    },
+    {
+      "ordinal": 1820,
+      "lane": "B",
+      "lanePosition": 9,
+      "id": "t_a4fd51a693b0",
+      "term": "葛藤禪",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_a4fd51a693b0/entry.v2.json",
+      "currentEntrySha256": "9880dc905eab018c9c576fb9447ca5aed72e33073a80c695088e942e2ec9bd2d",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9880dc905eab018c9c576fb9447ca5aed72e33073a80c695088e942e2ec9bd2d"
+      }
+    },
+    {
+      "ordinal": 1823,
+      "lane": "B",
+      "lanePosition": 10,
+      "id": "t_9d3e3cf7fe72",
+      "term": "直心直行",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_9d3e3cf7fe72/entry.v2.json",
+      "currentEntrySha256": "c06f47f3eb5a364a9402c156fdd0644abfeba33646fbc9c2f1db53ccd7910d60",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c06f47f3eb5a364a9402c156fdd0644abfeba33646fbc9c2f1db53ccd7910d60"
+      }
+    },
+    {
+      "ordinal": 1826,
+      "lane": "B",
+      "lanePosition": 11,
+      "id": "t_449aa6373ec1",
+      "term": "粥飯因緣",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_449aa6373ec1/entry.v2.json",
+      "currentEntrySha256": "09e9126175ef5b02d8c0bcedaa86e397c6fd048eee3b05b507fc68e377d23f53",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "09e9126175ef5b02d8c0bcedaa86e397c6fd048eee3b05b507fc68e377d23f53"
+      }
+    },
+    {
+      "ordinal": 1829,
+      "lane": "B",
+      "lanePosition": 12,
+      "id": "t_9038cda8d6b2",
+      "term": "寒來向火",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_9038cda8d6b2/entry.v2.json",
+      "currentEntrySha256": "30ee76cef7af369d298f6cf2f30b64b4387ecb91654a55f65c7e20a8bb81c1a9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "30ee76cef7af369d298f6cf2f30b64b4387ecb91654a55f65c7e20a8bb81c1a9"
+      }
+    },
+    {
+      "ordinal": 1832,
+      "lane": "B",
+      "lanePosition": 13,
+      "id": "t_c2f5d21d8018",
+      "term": "單位",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_c2f5d21d8018/entry.v2.json",
+      "currentEntrySha256": "3451f50422916429c88bb60b5b5223f072356f26e6feb152301bebf3c8bca1f6",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "3451f50422916429c88bb60b5b5223f072356f26e6feb152301bebf3c8bca1f6"
+      }
+    },
+    {
+      "ordinal": 1835,
+      "lane": "B",
+      "lanePosition": 14,
+      "id": "t_77f5785e2426",
+      "term": "教外單傳",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_77f5785e2426/entry.v2.json",
+      "currentEntrySha256": "4d468cbb90cbab3584a7e1b0c808dba47293a84297ecd2747f229dc2e00b2671",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "4d468cbb90cbab3584a7e1b0c808dba47293a84297ecd2747f229dc2e00b2671"
+      }
+    },
+    {
+      "ordinal": 1838,
+      "lane": "B",
+      "lanePosition": 15,
+      "id": "t_e23b1d630111",
+      "term": "畫餅充饑",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_e23b1d630111/entry.v2.json",
+      "currentEntrySha256": "d57e6de59d326664d37f098d8e9151ecc87520726620734e34ba414cd50ca943",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d57e6de59d326664d37f098d8e9151ecc87520726620734e34ba414cd50ca943"
+      }
+    },
+    {
+      "ordinal": 1841,
+      "lane": "B",
+      "lanePosition": 16,
+      "id": "t_e2f2e14c7aaf",
+      "term": "萬法唯心",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_e2f2e14c7aaf/entry.v2.json",
+      "currentEntrySha256": "5dc070d63ebf59893d65456548ceef9b772e8f6b26e286215950119257357ab9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "5dc070d63ebf59893d65456548ceef9b772e8f6b26e286215950119257357ab9"
+      }
+    },
+    {
+      "ordinal": 1844,
+      "lane": "B",
+      "lanePosition": 17,
+      "id": "t_cb67e04b96a6",
+      "term": "擊竹篦",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_cb67e04b96a6/entry.v2.json",
+      "currentEntrySha256": "8f83fa68fde5282354fc751e13be8a8e5c1f3192c227ee4241a4bfc3b3d9ca05",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8f83fa68fde5282354fc751e13be8a8e5c1f3192c227ee4241a4bfc3b3d9ca05"
+      }
+    },
+    {
+      "ordinal": 1847,
+      "lane": "B",
+      "lanePosition": 18,
+      "id": "t_e6372a6d61cf",
+      "term": "單單提起",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_e6372a6d61cf/entry.v2.json",
+      "currentEntrySha256": "d838a151c6f679364c585f80f4ebc3c49c1fe917a8088c4f3530bea03653a1a9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d838a151c6f679364c585f80f4ebc3c49c1fe917a8088c4f3530bea03653a1a9"
+      }
+    },
+    {
+      "ordinal": 1850,
+      "lane": "B",
+      "lanePosition": 19,
+      "id": "t_67a11f732b8f",
+      "term": "住心觀靜",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_67a11f732b8f/entry.v2.json",
+      "currentEntrySha256": "55447b37ea74fe30ed0df713110de7ffcf146b3029d7adf45ccd019998f11e57",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "55447b37ea74fe30ed0df713110de7ffcf146b3029d7adf45ccd019998f11e57"
+      }
+    },
+    {
+      "ordinal": 1853,
+      "lane": "B",
+      "lanePosition": 20,
+      "id": "t_6fe6fe866944",
+      "term": "聲色名字",
+      "disposition": "REJECTED",
+      "reason": "generic list of sensory objects and names",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1856,
+      "lane": "B",
+      "lanePosition": 21,
+      "id": "t_b1d19d209657",
+      "term": "道不用修",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_b1d19d209657/entry.v2.json",
+      "currentEntrySha256": "e0bbe01c338f6fab0a1474830164f174556c2885f958499cf12983ea2381f41f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e0bbe01c338f6fab0a1474830164f174556c2885f958499cf12983ea2381f41f"
+      }
+    },
+    {
+      "ordinal": 1859,
+      "lane": "B",
+      "lanePosition": 22,
+      "id": "t_2e92e16a4261",
+      "term": "不擬不動",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_2e92e16a4261/entry.v2.json",
+      "currentEntrySha256": "bdf4448cfac6a3414093597a9e1878ccfbc0799ee0c741549a89be3bcf657f76",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "bdf4448cfac6a3414093597a9e1878ccfbc0799ee0c741549a89be3bcf657f76"
+      }
+    },
+    {
+      "ordinal": 1862,
+      "lane": "B",
+      "lanePosition": 23,
+      "id": "t_b6fe0355215f",
+      "term": "徵古",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_b6fe0355215f/entry.v2.json",
+      "currentEntrySha256": "159c97eca0a583cc9b24e70fc51a8c5d95e4c5fa4e0b00b0c02c50a771ce42ec",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "159c97eca0a583cc9b24e70fc51a8c5d95e4c5fa4e0b00b0c02c50a771ce42ec"
+      }
+    },
+    {
+      "ordinal": 1865,
+      "lane": "B",
+      "lanePosition": 24,
+      "id": "t_f237f4aa61c4",
+      "term": "身心寂滅",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_f237f4aa61c4/entry.v2.json",
+      "currentEntrySha256": "73068f51284caec564560169d959b71ef2adb31bbb6c2f6c0029f391f4320cdd",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "73068f51284caec564560169d959b71ef2adb31bbb6c2f6c0029f391f4320cdd"
+      }
+    },
+    {
+      "ordinal": 1868,
+      "lane": "B",
+      "lanePosition": 25,
+      "id": "t_7d64adf06e83",
+      "term": "世嗣",
+      "disposition": "REJECTED",
+      "reason": "genealogical succession label rather than a deployed saying",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1871,
+      "lane": "B",
+      "lanePosition": 26,
+      "id": "t_22dbda7bc229",
+      "term": "行腳衲僧",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_22dbda7bc229/entry.v2.json",
+      "currentEntrySha256": "9d24148fe57656b789292df2d456012a8093d5eff59dfc5cdbae57027d9389c8",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9d24148fe57656b789292df2d456012a8093d5eff59dfc5cdbae57027d9389c8"
+      }
+    },
+    {
+      "ordinal": 1874,
+      "lane": "B",
+      "lanePosition": 27,
+      "id": "t_7531ff13b2d3",
+      "term": "不掛寸絲",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_7531ff13b2d3/entry.v2.json",
+      "currentEntrySha256": "218f88cab3a23cae48a2f40bf7ceb98a122212ded3a67fca2b6f248b1a7c7b8e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "218f88cab3a23cae48a2f40bf7ceb98a122212ded3a67fca2b6f248b1a7c7b8e"
+      }
+    },
+    {
+      "ordinal": 1877,
+      "lane": "B",
+      "lanePosition": 28,
+      "id": "t_58b708f84962",
+      "term": "異類中事",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_58b708f84962/entry.v2.json",
+      "currentEntrySha256": "0c26e329ff922b49ea488da22e68945ee87857bc5ba51bcce895aaa0fe18714f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "0c26e329ff922b49ea488da22e68945ee87857bc5ba51bcce895aaa0fe18714f"
+      }
+    },
+    {
+      "ordinal": 1880,
+      "lane": "B",
+      "lanePosition": 29,
+      "id": "t_94c0efef9a92",
+      "term": "直心是道場",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_94c0efef9a92/entry.v2.json",
+      "currentEntrySha256": "d3da2ad4db4767b2fb79b3b5c6153a38bfb628f9c1d02112c59f67f18eff9e68",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d3da2ad4db4767b2fb79b3b5c6153a38bfb628f9c1d02112c59f67f18eff9e68"
+      }
+    },
+    {
+      "ordinal": 1883,
+      "lane": "B",
+      "lanePosition": 30,
+      "id": "t_39d4dad94330",
+      "term": "食不消",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_39d4dad94330/entry.v2.json",
+      "currentEntrySha256": "64d14f997cd5f496b237bbd8aad834a021c2aae1971d82db43b913d3f0068b6e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "64d14f997cd5f496b237bbd8aad834a021c2aae1971d82db43b913d3f0068b6e"
+      }
+    },
+    {
+      "ordinal": 1886,
+      "lane": "B",
+      "lanePosition": 31,
+      "id": "t_fd3e1822b424",
+      "term": "豐頤",
+      "disposition": "REJECTED",
+      "reason": "ordinary physical-description vocabulary",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1889,
+      "lane": "B",
+      "lanePosition": 32,
+      "id": "t_8cb6de9f3821",
+      "term": "望梅止渴",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_8cb6de9f3821/entry.v2.json",
+      "currentEntrySha256": "be8954c7f3c32aed9b3f92ea3b476910f4fdd3b4de5e0c96936b22e4abfb0736",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "be8954c7f3c32aed9b3f92ea3b476910f4fdd3b4de5e0c96936b22e4abfb0736"
+      }
+    },
+    {
+      "ordinal": 1892,
+      "lane": "B",
+      "lanePosition": 33,
+      "id": "t_60459a4cd35b",
+      "term": "驗人關",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_60459a4cd35b/entry.v2.json",
+      "currentEntrySha256": "44202537154460f1bf00424d4897c02a048d371ebc22fe26b44c8df174d6790e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "44202537154460f1bf00424d4897c02a048d371ebc22fe26b44c8df174d6790e"
+      }
+    },
+    {
+      "ordinal": 1895,
+      "lane": "B",
+      "lanePosition": 34,
+      "id": "t_de69e48f3c92",
+      "term": "飢則喫飯",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_de69e48f3c92/entry.v2.json",
+      "currentEntrySha256": "8490742c68e8e422cea45b25e5ab8bd706630328dd1f6d09f83b7cf74ef65baa",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8490742c68e8e422cea45b25e5ab8bd706630328dd1f6d09f83b7cf74ef65baa"
+      }
+    },
+    {
+      "ordinal": 1898,
+      "lane": "B",
+      "lanePosition": 35,
+      "id": "t_d35eafea11f4",
+      "term": "前輩尊宿",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_d35eafea11f4/entry.v2.json",
+      "currentEntrySha256": "c9e6f750fabedeb8f3c266e6c255deba3e5bbcd6d6f87522b60f9c874bdf8927",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c9e6f750fabedeb8f3c266e6c255deba3e5bbcd6d6f87522b60f9c874bdf8927"
+      }
+    },
+    {
+      "ordinal": 1901,
+      "lane": "B",
+      "lanePosition": 36,
+      "id": "t_782d669e40b7",
+      "term": "乾坤未剖",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_782d669e40b7/entry.v2.json",
+      "currentEntrySha256": "868fb9f2f7590c645e3b6c7893d5e0995745b7698bdf84b4d05f603bfd2236a8",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "868fb9f2f7590c645e3b6c7893d5e0995745b7698bdf84b4d05f603bfd2236a8"
+      }
+    },
+    {
+      "ordinal": 1904,
+      "lane": "B",
+      "lanePosition": 37,
+      "id": "t_ca87f2e679b5",
+      "term": "謝掛搭",
+      "disposition": "REJECTED",
+      "reason": "single-work ceremonial wording without an independently supported lexical deployment",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1907,
+      "lane": "B",
+      "lanePosition": 38,
+      "id": "t_cff08e760e0e",
+      "term": "枯木眾",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_cff08e760e0e/entry.v2.json",
+      "currentEntrySha256": "a89f7668e14c09b627f54dbde4e42ef15973110ff8864e29d0f8ccc597ab9e68",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "a89f7668e14c09b627f54dbde4e42ef15973110ff8864e29d0f8ccc597ab9e68"
+      }
+    },
+    {
+      "ordinal": 1910,
+      "lane": "B",
+      "lanePosition": 39,
+      "id": "t_6a484c91ec10",
+      "term": "衣鉢侍者",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_6a484c91ec10/entry.v2.json",
+      "currentEntrySha256": "6058f9b02d33f82ceb4d38f81ed2b344b6acbf7b019bdf31c149fe55cf2cb0d7",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6058f9b02d33f82ceb4d38f81ed2b344b6acbf7b019bdf31c149fe55cf2cb0d7"
+      }
+    },
+    {
+      "ordinal": 1913,
+      "lane": "B",
+      "lanePosition": 40,
+      "id": "t_f61487cb5ad3",
+      "term": "邯鄲學步",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_f61487cb5ad3/entry.v2.json",
+      "currentEntrySha256": "caf90cf52eee69cc6d36e6a536882bedf2960fe33761d98c3a5af01c096e7d02",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "caf90cf52eee69cc6d36e6a536882bedf2960fe33761d98c3a5af01c096e7d02"
+      }
+    },
+    {
+      "ordinal": 1916,
+      "lane": "B",
+      "lanePosition": 41,
+      "id": "t_b9c8b6432f69",
+      "term": "末後一關",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_b9c8b6432f69/entry.v2.json",
+      "currentEntrySha256": "2164321c7ac693426cb291dc1a94e81169001e3acc01f9c80e778120730f4032",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "2164321c7ac693426cb291dc1a94e81169001e3acc01f9c80e778120730f4032"
+      }
+    },
+    {
+      "ordinal": 1919,
+      "lane": "B",
+      "lanePosition": 42,
+      "id": "t_e88454f1a896",
+      "term": "添瓶",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_e88454f1a896/entry.v2.json",
+      "currentEntrySha256": "356d2f2f1e60c901046cea0b332a84a4b677149a17d6958585c1d740d5c4059c",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "356d2f2f1e60c901046cea0b332a84a4b677149a17d6958585c1d740d5c4059c"
+      }
+    },
+    {
+      "ordinal": 1922,
+      "lane": "B",
+      "lanePosition": 43,
+      "id": "t_f710fe543504",
+      "term": "轉身歸父",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_f710fe543504/entry.v2.json",
+      "currentEntrySha256": "61eb2103bb755c6930095b9daa78377135977ec2d11df0d1a96b04487a6511e9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "61eb2103bb755c6930095b9daa78377135977ec2d11df0d1a96b04487a6511e9"
+      }
+    },
+    {
+      "ordinal": 1925,
+      "lane": "B",
+      "lanePosition": 44,
+      "id": "t_136585c0a460",
+      "term": "舉拂示眾",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_136585c0a460/entry.v2.json",
+      "currentEntrySha256": "6056157b57600c29c9cca8740028b8858c96083ccac08ab52b719836fe43285b",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6056157b57600c29c9cca8740028b8858c96083ccac08ab52b719836fe43285b"
+      }
+    },
+    {
+      "ordinal": 1928,
+      "lane": "B",
+      "lanePosition": 45,
+      "id": "t_ea11326c54ed",
+      "term": "打作一片",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_ea11326c54ed/entry.v2.json",
+      "currentEntrySha256": "1b3206dd56f9deb4033571cb2f380714202a300a8918773b1c1cd2ed9eeb705a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1b3206dd56f9deb4033571cb2f380714202a300a8918773b1c1cd2ed9eeb705a"
+      }
+    },
+    {
+      "ordinal": 1931,
+      "lane": "B",
+      "lanePosition": 46,
+      "id": "t_9fcb8e908ffd",
+      "term": "身心客塵",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_9fcb8e908ffd/entry.v2.json",
+      "currentEntrySha256": "427f606edb5b9f63f36bca7474abdd67d6edaad26fc695d0bb674f2485ab1526",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "427f606edb5b9f63f36bca7474abdd67d6edaad26fc695d0bb674f2485ab1526"
+      }
+    },
+    {
+      "ordinal": 1934,
+      "lane": "B",
+      "lanePosition": 47,
+      "id": "t_d691a251053d",
+      "term": "本分機",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_d691a251053d/entry.v2.json",
+      "currentEntrySha256": "e429ececa4704ba0a92d6dd095b7c2e152c1d33dd55d0f6a7342fbc407b72db0",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e429ececa4704ba0a92d6dd095b7c2e152c1d33dd55d0f6a7342fbc407b72db0"
+      }
+    },
+    {
+      "ordinal": 1937,
+      "lane": "B",
+      "lanePosition": 48,
+      "id": "t_5b036ec3c4a2",
+      "term": "徑要一路",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_5b036ec3c4a2/entry.v2.json",
+      "currentEntrySha256": "42b9179fa95a8c18958102548f434726a10f5bb22087ff3c6461be1496a0c24b",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "42b9179fa95a8c18958102548f434726a10f5bb22087ff3c6461be1496a0c24b"
+      }
+    },
+    {
+      "ordinal": 1940,
+      "lane": "B",
+      "lanePosition": 49,
+      "id": "t_bdad3daa2fd7",
+      "term": "枯木死灰",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_bdad3daa2fd7/entry.v2.json",
+      "currentEntrySha256": "60e389bc93c94911406f1be5a8f0567a50229e72086af14d3b168a94c01f9b96",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "60e389bc93c94911406f1be5a8f0567a50229e72086af14d3b168a94c01f9b96"
+      }
+    },
+    {
+      "ordinal": 1943,
+      "lane": "B",
+      "lanePosition": 50,
+      "id": "t_affa9f8afb51",
+      "term": "雲門顧鑑咦",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_affa9f8afb51/entry.v2.json",
+      "currentEntrySha256": "d737b38e7e4594c6518720c3f42f20dec440df30b6007c6a536fd9dbfc8e79d4",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d737b38e7e4594c6518720c3f42f20dec440df30b6007c6a536fd9dbfc8e79d4"
+      }
+    },
+    {
+      "ordinal": 1946,
+      "lane": "B",
+      "lanePosition": 51,
+      "id": "t_4aa80a3dccf8",
+      "term": "法無頓漸",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_4aa80a3dccf8/entry.v2.json",
+      "currentEntrySha256": "84c6c7cb1f50b9bbd74a1ebd250887b793d9ecb8541763aeef003c32b3fc983f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "84c6c7cb1f50b9bbd74a1ebd250887b793d9ecb8541763aeef003c32b3fc983f"
+      }
+    },
+    {
+      "ordinal": 1949,
+      "lane": "B",
+      "lanePosition": 52,
+      "id": "t_2a986ac5198e",
+      "term": "五宗綱要",
+      "disposition": "REJECTED",
+      "reason": "book or doctrinal-outline title rather than a deployed expression",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1952,
+      "lane": "B",
+      "lanePosition": 53,
+      "id": "t_5e3e1c6e7b6a",
+      "term": "五家七宗",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_5e3e1c6e7b6a/entry.v2.json",
+      "currentEntrySha256": "66125be8d93f0220073cfd48c5211f03c1932d4eff38964927fa74780782dde2",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "66125be8d93f0220073cfd48c5211f03c1932d4eff38964927fa74780782dde2"
+      }
+    },
+    {
+      "ordinal": 1955,
+      "lane": "B",
+      "lanePosition": 54,
+      "id": "t_b86fe073dc58",
+      "term": "死蛇弄得活",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_b86fe073dc58/entry.v2.json",
+      "currentEntrySha256": "0d12ebc2d722362fa155da862ba45ef2820650907692cadec67944423a1ecaee",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "0d12ebc2d722362fa155da862ba45ef2820650907692cadec67944423a1ecaee"
+      }
+    },
+    {
+      "ordinal": 1958,
+      "lane": "B",
+      "lanePosition": 55,
+      "id": "t_0be2af78b61b",
+      "term": "誑欺",
+      "disposition": "REJECTED",
+      "reason": "ordinary deception vocabulary",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1961,
+      "lane": "B",
+      "lanePosition": 56,
+      "id": "t_7d7e886403b4",
+      "term": "大死大活",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_7d7e886403b4/entry.v2.json",
+      "currentEntrySha256": "fc9dddc6ffe05cecea5e5137f67eb2f3d10b7bc3760d6b268b1359f7b9b91e79",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "fc9dddc6ffe05cecea5e5137f67eb2f3d10b7bc3760d6b268b1359f7b9b91e79"
+      }
+    },
+    {
+      "ordinal": 1964,
+      "lane": "B",
+      "lanePosition": 57,
+      "id": "t_8480c8913b68",
+      "term": "活中得死",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_8480c8913b68/entry.v2.json",
+      "currentEntrySha256": "3e752b6186c7176c66b5080e4f5579c3387580f8e5079dec94f13735c62b247c",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "3e752b6186c7176c66b5080e4f5579c3387580f8e5079dec94f13735c62b247c"
+      }
+    },
+    {
+      "ordinal": 1967,
+      "lane": "B",
+      "lanePosition": 58,
+      "id": "t_ca30d8b41560",
+      "term": "不與取戒",
+      "disposition": "REJECTED",
+      "reason": "general Buddhist precept name without a distinct Chan lexical job",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json"
+    },
+    {
+      "ordinal": 1970,
+      "lane": "B",
+      "lanePosition": 59,
+      "id": "t_71cb6a169238",
+      "term": "菩提即煩惱",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-B full-case adjudication and final gate",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-b-positions-006-059-final-ledger.json",
+      "entryPath": "fresh-build/entries/t_71cb6a169238/entry.v2.json",
+      "currentEntrySha256": "8d11d1f6d87106110c519338dfba090ff3e058eade89384028f038882ac7e514",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-lane-b-all47-final-current-byte-independent-recheck.json",
+        "sha256": "267dd19b745d49916b1855dbe768c63669aafcea8d09e3a60415f0dedf9a423a",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8d11d1f6d87106110c519338dfba090ff3e058eade89384028f038882ac7e514"
+      }
+    },
+    {
+      "ordinal": 1539,
+      "lane": "C",
+      "lanePosition": 1,
+      "id": "t_75039519e1e0",
+      "term": "廣燈",
+      "disposition": "REJECTED",
+      "reason": "The complete cases resolve the form as the personal name/title 廣燈禪師 or as a shortened bibliographic reference to 天聖廣燈錄; the corpus does not deploy 廣燈 as an independent Chan expression.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json"
+    },
+    {
+      "ordinal": 1643,
+      "lane": "C",
+      "lanePosition": 2,
+      "id": "t_68f8f387cfd6",
+      "term": "普燈錄",
+      "disposition": "REJECTED",
+      "reason": "All complete cases are self-titles, headings, or citations of 嘉泰普燈錄. The title is contained in Chan books but is not itself deployed as a saying or technical expression.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json"
+    },
+    {
+      "ordinal": 1792,
+      "lane": "C",
+      "lanePosition": 3,
+      "id": "t_27bbde1bc523",
+      "term": "馬腳",
+      "disposition": "ACCEPTED",
+      "reason": "Two corpus-attested things: the horse's foot and, in 露出馬腳, the giveaway that exposes a flaw.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json",
+      "entryPath": "fresh-build/entries/t_27bbde1bc523/entry.v2.json",
+      "currentEntrySha256": "975798f9df355f7985defcac50152ef5acd2424be005df0e5a539e51aff9cee8",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "975798f9df355f7985defcac50152ef5acd2424be005df0e5a539e51aff9cee8"
+      }
+    },
+    {
+      "ordinal": 1806,
+      "lane": "C",
+      "lanePosition": 4,
+      "id": "t_687709b1388b",
+      "term": "隨人腳跟轉",
+      "disposition": "ACCEPTED",
+      "reason": "Masters deploy the heel-following image as a verdict on derivative movement, language, and understanding.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json",
+      "entryPath": "fresh-build/entries/t_687709b1388b/entry.v2.json",
+      "currentEntrySha256": "7d73fc0d714639037924aed9b0a68ca5d16e5ae900655772f915b01e7a7822e9",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "7d73fc0d714639037924aed9b0a68ca5d16e5ae900655772f915b01e7a7822e9"
+      }
+    },
+    {
+      "ordinal": 1809,
+      "lane": "C",
+      "lanePosition": 5,
+      "id": "t_8072bafc41fe",
+      "term": "貨利",
+      "disposition": "REJECTED",
+      "reason": "Across the full cases 貨利 retains its ordinary sense of goods/material profit, usually in stock lists with 聲色 or 名利. Masters mention it, but do not give the compound an observable Chan-specific lexical job.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json"
+    },
+    {
+      "ordinal": 1812,
+      "lane": "C",
+      "lanePosition": 6,
+      "id": "t_ba6cdc968127",
+      "term": "法身用",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_ba6cdc968127/entry.v2.json",
+      "currentEntrySha256": "4ff4ae76f00627894c809bd74ac1df96a819711f3f4ead0349fb0133f67e0d3d",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "4ff4ae76f00627894c809bd74ac1df96a819711f3f4ead0349fb0133f67e0d3d"
+      }
+    },
+    {
+      "ordinal": 1815,
+      "lane": "C",
+      "lanePosition": 7,
+      "id": "t_bd8725d0ed31",
+      "term": "師子奮迅",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_bd8725d0ed31/entry.v2.json",
+      "currentEntrySha256": "61c7bf90d79c7d8ced19c9213872a3d2f0df15898b3fde58f70dcd15ca101abc",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "61c7bf90d79c7d8ced19c9213872a3d2f0df15898b3fde58f70dcd15ca101abc"
+      }
+    },
+    {
+      "ordinal": 1818,
+      "lane": "C",
+      "lanePosition": 8,
+      "id": "t_707234da7e73",
+      "term": "老尊宿",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_707234da7e73/entry.v2.json",
+      "currentEntrySha256": "f93970cce214d59e42736f8ee7119fa59cdb136d3be65c9f6b09be52ded0d2d3",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "f93970cce214d59e42736f8ee7119fa59cdb136d3be65c9f6b09be52ded0d2d3"
+      }
+    },
+    {
+      "ordinal": 1821,
+      "lane": "C",
+      "lanePosition": 9,
+      "id": "t_e34846b9f2c1",
+      "term": "信心不二",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_e34846b9f2c1/entry.v2.json",
+      "currentEntrySha256": "82d5cda9f0663d10d9c782ec52df56bb81c1ac1b2784217c2fd541e161c3494c",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "82d5cda9f0663d10d9c782ec52df56bb81c1ac1b2784217c2fd541e161c3494c"
+      }
+    },
+    {
+      "ordinal": 1824,
+      "lane": "C",
+      "lanePosition": 10,
+      "id": "t_f6bdcf284663",
+      "term": "現成句子",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_f6bdcf284663/entry.v2.json",
+      "currentEntrySha256": "d17f6ee08e776b89091a4753fc59f5c0408dba5ecae485ba13174cb2e8cf3c34",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "d17f6ee08e776b89091a4753fc59f5c0408dba5ecae485ba13174cb2e8cf3c34"
+      }
+    },
+    {
+      "ordinal": 1827,
+      "lane": "C",
+      "lanePosition": 11,
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_8a4cd6d00874/entry.v2.json",
+      "currentEntrySha256": "5a82b52e4786ecc0c70bfe5a28ebffbd4d4d0e62ebea3553ecb1d480c56add8a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-dark-within-bright-punctuation-independent-current-byte-recheck.json",
+        "sha256": "c5c655f1f23c027ec76294de8914d6018be9c4eee118a815362e78f8e68c3a66",
+        "decision": "PASS",
+        "reviewedEntrySha256": "5a82b52e4786ecc0c70bfe5a28ebffbd4d4d0e62ebea3553ecb1d480c56add8a"
+      }
+    },
+    {
+      "ordinal": 1830,
+      "lane": "C",
+      "lanePosition": 12,
+      "id": "t_074762d3985c",
+      "term": "夢蝶",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_074762d3985c/entry.v2.json",
+      "currentEntrySha256": "1b8784e545b49975f1a8c04b839ee8a56d74c2f9687ab0a37fd196f166ad1d01",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1b8784e545b49975f1a8c04b839ee8a56d74c2f9687ab0a37fd196f166ad1d01"
+      }
+    },
+    {
+      "ordinal": 1833,
+      "lane": "C",
+      "lanePosition": 13,
+      "id": "t_7acb482cb5ac",
+      "term": "紫芝歌",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_7acb482cb5ac/entry.v2.json",
+      "currentEntrySha256": "be4b64924cc437f4f1e157d70b94bcab4ad9aefdeed9176cbcbf5028954e3572",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "be4b64924cc437f4f1e157d70b94bcab4ad9aefdeed9176cbcbf5028954e3572"
+      }
+    },
+    {
+      "ordinal": 1836,
+      "lane": "C",
+      "lanePosition": 14,
+      "id": "t_a5b9424f88b6",
+      "term": "不動聲色",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_a5b9424f88b6/entry.v2.json",
+      "currentEntrySha256": "1b1d4822306c3a60807c0ee284263420bf11962dbe5bbdf8995f7905805c1b1f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1b1d4822306c3a60807c0ee284263420bf11962dbe5bbdf8995f7905805c1b1f"
+      }
+    },
+    {
+      "ordinal": 1839,
+      "lane": "C",
+      "lanePosition": 15,
+      "id": "t_060848c06b3f",
+      "term": "回途復妙",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_060848c06b3f/entry.v2.json",
+      "currentEntrySha256": "e5dc6af8d44829613c3f2c22228f9b1e9293a0e91f68d2c0b1113e33b5b4910a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "e5dc6af8d44829613c3f2c22228f9b1e9293a0e91f68d2c0b1113e33b5b4910a"
+      }
+    },
+    {
+      "ordinal": 1842,
+      "lane": "C",
+      "lanePosition": 16,
+      "id": "t_fd2f9010baca",
+      "term": "四皓",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_fd2f9010baca/entry.v2.json",
+      "currentEntrySha256": "bdd0023c99fd40a11c766a92ee6a5553dd012401f9ea4cffe6248106677b1896",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "bdd0023c99fd40a11c766a92ee6a5553dd012401f9ea4cffe6248106677b1896"
+      }
+    },
+    {
+      "ordinal": 1845,
+      "lane": "C",
+      "lanePosition": 17,
+      "id": "t_8e4b85dfb005",
+      "term": "磨甎作鏡",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_8e4b85dfb005/entry.v2.json",
+      "currentEntrySha256": "cbd88a495e1d51f775c626613c46717df3dfdd2a8fe02ceddc06e7827578f3f1",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "cbd88a495e1d51f775c626613c46717df3dfdd2a8fe02ceddc06e7827578f3f1"
+      }
+    },
+    {
+      "ordinal": 1848,
+      "lane": "C",
+      "lanePosition": 18,
+      "id": "t_80284a71ec1b",
+      "term": "不死不活句",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_80284a71ec1b/entry.v2.json",
+      "currentEntrySha256": "0908a6df56de0b35d0654c5b311c889faba2198af2d547b775e0eb9caf2e6973",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "0908a6df56de0b35d0654c5b311c889faba2198af2d547b775e0eb9caf2e6973"
+      }
+    },
+    {
+      "ordinal": 1851,
+      "lane": "C",
+      "lanePosition": 19,
+      "id": "t_6086992a6aaa",
+      "term": "功勳五位",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_6086992a6aaa/entry.v2.json",
+      "currentEntrySha256": "3a7092b0762fcf26dfc83fcddce7540dc1b896eee762dc76bbba4611a7909885",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "3a7092b0762fcf26dfc83fcddce7540dc1b896eee762dc76bbba4611a7909885"
+      }
+    },
+    {
+      "ordinal": 1854,
+      "lane": "C",
+      "lanePosition": 20,
+      "id": "t_4c7e22eb50db",
+      "term": "粥飯主人",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_4c7e22eb50db/entry.v2.json",
+      "currentEntrySha256": "9fd15540e65c120193507b5fdb458a861e09595317c3cdfc036b783d669cb45a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9fd15540e65c120193507b5fdb458a861e09595317c3cdfc036b783d669cb45a"
+      }
+    },
+    {
+      "ordinal": 1857,
+      "lane": "C",
+      "lanePosition": 21,
+      "id": "t_6fc0d3e31539",
+      "term": "臨終示眾",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_6fc0d3e31539/entry.v2.json",
+      "currentEntrySha256": "8c8e563368b6f6f770463231b86dc6faeba5f92b3d0f8636c11a7c261de8e489",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8c8e563368b6f6f770463231b86dc6faeba5f92b3d0f8636c11a7c261de8e489"
+      }
+    },
+    {
+      "ordinal": 1860,
+      "lane": "C",
+      "lanePosition": 22,
+      "id": "t_58f345ef2f1c",
+      "term": "半隻眼",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_58f345ef2f1c/entry.v2.json",
+      "currentEntrySha256": "29895a99eb8f2184b98246dc699323fdd3209ec9b03efa88e3630719154b5fb2",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "29895a99eb8f2184b98246dc699323fdd3209ec9b03efa88e3630719154b5fb2"
+      }
+    },
+    {
+      "ordinal": 1863,
+      "lane": "C",
+      "lanePosition": 23,
+      "id": "t_9fa88ce8ff8a",
+      "term": "斬斷葛藤",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_9fa88ce8ff8a/entry.v2.json",
+      "currentEntrySha256": "8facad09ab2711a0481e7fd8f93b6627e8378e8669a9b1231bcfbc97feded37a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "8facad09ab2711a0481e7fd8f93b6627e8378e8669a9b1231bcfbc97feded37a"
+      }
+    },
+    {
+      "ordinal": 1866,
+      "lane": "C",
+      "lanePosition": 24,
+      "id": "t_d9f9537de0f7",
+      "term": "返照回光",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_d9f9537de0f7/entry.v2.json",
+      "currentEntrySha256": "80481d990b907f47704830a8ab247b74a6079475acb0fb2b0bc0303542a39c48",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "80481d990b907f47704830a8ab247b74a6079475acb0fb2b0bc0303542a39c48"
+      }
+    },
+    {
+      "ordinal": 1869,
+      "lane": "C",
+      "lanePosition": 25,
+      "id": "t_c9a353f07d89",
+      "term": "法性三昧",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_c9a353f07d89/entry.v2.json",
+      "currentEntrySha256": "c13ffc33285e8e91fa8a53eaf4dd5e4530355bfc6daae1cfc5e7677dea9359b1",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "c13ffc33285e8e91fa8a53eaf4dd5e4530355bfc6daae1cfc5e7677dea9359b1"
+      }
+    },
+    {
+      "ordinal": 1872,
+      "lane": "C",
+      "lanePosition": 26,
+      "id": "t_3d5f072d255c",
+      "term": "頓悟漸修",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_3d5f072d255c/entry.v2.json",
+      "currentEntrySha256": "9c6d7a4d4a6d49bc3545a10049f6804c8b7acc5dcb6d507eb9796a5d03281e2f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9c6d7a4d4a6d49bc3545a10049f6804c8b7acc5dcb6d507eb9796a5d03281e2f"
+      }
+    },
+    {
+      "ordinal": 1875,
+      "lane": "C",
+      "lanePosition": 27,
+      "id": "t_2ce98158d7f4",
+      "term": "詩客",
+      "disposition": "REJECTED",
+      "reason": "The retained corpus uses the compound as ordinary vocabulary for a poet. One contextual verdict in an exchange does not establish a distinct corpus-wide Chan lexical unit.",
+      "dispositionSource": "maintenance/post-current-investigation720-poet-rejection.json"
+    },
+    {
+      "ordinal": 1878,
+      "lane": "C",
+      "lanePosition": 28,
+      "id": "t_3e8bb9a4f48f",
+      "term": "刊板",
+      "disposition": "REJECTED",
+      "reason": "All reviewed cases use the ordinary publishing action 'cut printing blocks' in edicts, prefaces, or fundraising notices. Chan books are being printed, but the compound itself receives no observable Chan-specific lexical job.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json"
+    },
+    {
+      "ordinal": 1881,
+      "lane": "C",
+      "lanePosition": 29,
+      "id": "t_7b213bef1d62",
+      "term": "大用之機",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_7b213bef1d62/entry.v2.json",
+      "currentEntrySha256": "2cd518ab73cfb0db48ede425b632b8e94742fffc25f3a2fd612b2be3effc6b9f",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "2cd518ab73cfb0db48ede425b632b8e94742fffc25f3a2fd612b2be3effc6b9f"
+      }
+    },
+    {
+      "ordinal": 1884,
+      "lane": "C",
+      "lanePosition": 30,
+      "id": "t_c1b5b57bf7bf",
+      "term": "忌晨",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_c1b5b57bf7bf/entry.v2.json",
+      "currentEntrySha256": "ae8cc87545a0bd5b83d1b3968a3d63ad4bd827d83ba035839f8e29aef0b61cbb",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "ae8cc87545a0bd5b83d1b3968a3d63ad4bd827d83ba035839f8e29aef0b61cbb"
+      }
+    },
+    {
+      "ordinal": 1887,
+      "lane": "C",
+      "lanePosition": 31,
+      "id": "t_e9a69a04e845",
+      "term": "百千手眼",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_e9a69a04e845/entry.v2.json",
+      "currentEntrySha256": "6f147ca719b810a16e22801421b3339bd52d173a5bb1b9e5a9f8bd41058cd652",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6f147ca719b810a16e22801421b3339bd52d173a5bb1b9e5a9f8bd41058cd652"
+      }
+    },
+    {
+      "ordinal": 1890,
+      "lane": "C",
+      "lanePosition": 32,
+      "id": "t_a18cfea5f471",
+      "term": "枯木開花",
+      "disposition": "ACCEPTED",
+      "reason": "accepted by lane-C full-case semantic adjudication",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-006-032-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_a18cfea5f471/entry.v2.json",
+      "currentEntrySha256": "5f7a3e08ab4e907244ac4012aaef1e0af49b0c06710872596c6c10dba73acffd",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "5f7a3e08ab4e907244ac4012aaef1e0af49b0c06710872596c6c10dba73acffd"
+      }
+    },
+    {
+      "ordinal": 1893,
+      "lane": "C",
+      "lanePosition": 33,
+      "id": "t_23ddb347e907",
+      "term": "無相為體",
+      "disposition": "ACCEPTED",
+      "reason": "Huineng's three-part formula makes formlessness the basis beside non-thought and non-abiding; later teachers raise the triad publicly and ask which line carries life and death.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_23ddb347e907/entry.v2.json",
+      "currentEntrySha256": "36f46811d9a15ae3340d960ce12b09a5aa271cddc2b45faa8be7b367ffa30f75",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "36f46811d9a15ae3340d960ce12b09a5aa271cddc2b45faa8be7b367ffa30f75"
+      }
+    },
+    {
+      "ordinal": 1896,
+      "lane": "C",
+      "lanePosition": 34,
+      "id": "t_2a0be2582f40",
+      "term": "活語",
+      "disposition": "ACCEPTED",
+      "reason": "A live saying can turn without colliding with the named taboo; teachers contrast that responsive freedom with a dead saying and test whether death itself can open into life.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_2a0be2582f40/entry.v2.json",
+      "currentEntrySha256": "73407bd7523da03ef5d7997277986bd9473f727a3cc4f62bc0f87021631ad2b3",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "73407bd7523da03ef5d7997277986bd9473f727a3cc4f62bc0f87021631ad2b3"
+      }
+    },
+    {
+      "ordinal": 1899,
+      "lane": "C",
+      "lanePosition": 35,
+      "id": "t_024dc48ed8c8",
+      "term": "尋香逐氣",
+      "disposition": "ACCEPTED",
+      "reason": "Following scent and chasing breath names derivative pursuit of verbal traces; masters use the tracking image to expose people running after cases while missing what stands underfoot.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_024dc48ed8c8/entry.v2.json",
+      "currentEntrySha256": "bd3ea3f38a56578ad8affd7fe25fbd45fd30d97a5c045d26bf13db94c5561a9e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "bd3ea3f38a56578ad8affd7fe25fbd45fd30d97a5c045d26bf13db94c5561a9e"
+      }
+    },
+    {
+      "ordinal": 1902,
+      "lane": "C",
+      "lanePosition": 36,
+      "id": "t_ef87385f9b66",
+      "term": "古則",
+      "disposition": "REJECTED",
+      "reason": "Ten of eleven exact hits are accidental segmentation or ordinary contrast; the old-case reading occurs only as a suffix in one work, so the string does not clear the lexical-unit and independent-deployment gates.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json"
+    },
+    {
+      "ordinal": 1905,
+      "lane": "C",
+      "lanePosition": 37,
+      "id": "t_ec4e928e8468",
+      "term": "商山四皓",
+      "disposition": "ACCEPTED",
+      "reason": "The Four Hoaryheads of Mount Shang are the recluses invoked in verses and public answers as a compact image of withdrawal, height, and the four appearing as one.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_ec4e928e8468/entry.v2.json",
+      "currentEntrySha256": "9a4be8ece909fa32cf9d77059b84d375e8ea532f0276e34502040597ffc1c121",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9a4be8ece909fa32cf9d77059b84d375e8ea532f0276e34502040597ffc1c121"
+      }
+    },
+    {
+      "ordinal": 1908,
+      "lane": "C",
+      "lanePosition": 38,
+      "id": "t_09e6c3b9fda9",
+      "term": "枯木禪",
+      "disposition": "ACCEPTED",
+      "reason": "Dead-tree teaching names still, lifeless quietism; masters invoke Shishuang's withered-tree line and then attack fixation on that condition as a difficult dead-water disease.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_09e6c3b9fda9/entry.v2.json",
+      "currentEntrySha256": "25b1aec48b2989d75777836acc8a49836e5f06f7e27d5ec7ba54dee408537bcb",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "25b1aec48b2989d75777836acc8a49836e5f06f7e27d5ec7ba54dee408537bcb"
+      }
+    },
+    {
+      "ordinal": 1911,
+      "lane": "C",
+      "lanePosition": 39,
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "disposition": "ACCEPTED",
+      "reason": "The late teacher's final saying is a predecessor's deathbed line preserved, requested, or pointed out by heirs; its force comes from named transmission at the edge of death.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "currentEntrySha256": "9243f82e49c4e782cf119be072e58168a313bf9a1280be396fadb5c1c2b953ac",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final152-attribution4-independent-current-byte-recheck.json",
+        "sha256": "59c5d5b55eb1e7d31fe46ae159b1f0b8cf3a5e53ee2819a73021e991469c94cd",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9243f82e49c4e782cf119be072e58168a313bf9a1280be396fadb5c1c2b953ac"
+      }
+    },
+    {
+      "ordinal": 1914,
+      "lane": "C",
+      "lanePosition": 40,
+      "id": "t_8fb41216ea2d",
+      "term": "吹網欲滿",
+      "disposition": "ACCEPTED",
+      "reason": "Trying to fill a net by blowing into it is the corpus's image for an impossible effort, especially trying to obtain life-and-death understanding by collecting or inflating words.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_8fb41216ea2d/entry.v2.json",
+      "currentEntrySha256": "35cdfbad90be8314fceb533811b10ad0aaa10d9c248218e4f963afc8378cb421",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "35cdfbad90be8314fceb533811b10ad0aaa10d9c248218e4f963afc8378cb421"
+      }
+    },
+    {
+      "ordinal": 1917,
+      "lane": "C",
+      "lanePosition": 41,
+      "id": "t_17a7fbf49855",
+      "term": "卞和三獻",
+      "disposition": "ACCEPTED",
+      "reason": "Bian He's three presentations recall the loyal offer of jade that cost him both feet; Chan verses turn the allusion into a measure of presenting what is precious despite repeated rejection.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_17a7fbf49855/entry.v2.json",
+      "currentEntrySha256": "ffeec950df40430457a4e828abd153c5f803d6907ff66e4b679a0771a0489b0a",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "ffeec950df40430457a4e828abd153c5f803d6907ff66e4b679a0771a0489b0a"
+      }
+    },
+    {
+      "ordinal": 1920,
+      "lane": "C",
+      "lanePosition": 42,
+      "id": "t_232fb680eed8",
+      "term": "觸目是道",
+      "disposition": "ACCEPTED",
+      "reason": "Whatever meets the eye is the Way is not left as a slogan: teachers remove the sauce jar, demand what then is the Way, and use the formula to test unselective seeing.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_232fb680eed8/entry.v2.json",
+      "currentEntrySha256": "9591af11cbf559c46aec234f9c95d6ee08ec1ad10532441360ccaf48e737e0fd",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9591af11cbf559c46aec234f9c95d6ee08ec1ad10532441360ccaf48e737e0fd"
+      }
+    },
+    {
+      "ordinal": 1923,
+      "lane": "C",
+      "lanePosition": 43,
+      "id": "t_78c9686a321b",
+      "term": "不休不歇",
+      "disposition": "ACCEPTED",
+      "reason": "Without resting or stopping is Yunfeng's counter-formula to Shishuang's rest-and-cease language, sending activity through crowded streets, thorns, blades, and fire instead of settling in cold stillness.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_78c9686a321b/entry.v2.json",
+      "currentEntrySha256": "9412b57f51314d173a5ddba35d792f50c8cbd723ccc8c159311b97f90ad2443d",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "9412b57f51314d173a5ddba35d792f50c8cbd723ccc8c159311b97f90ad2443d"
+      }
+    },
+    {
+      "ordinal": 1926,
+      "lane": "C",
+      "lanePosition": 44,
+      "id": "t_d591a2f6612e",
+      "term": "南頓北漸",
+      "disposition": "ACCEPTED",
+      "reason": "Southern suddenness and northern gradualness names the historical contrast drawn between Huineng's southern teaching and Shenxiu's northern instruction while explicitly denying that the lineage itself has two geographic essences.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_d591a2f6612e/entry.v2.json",
+      "currentEntrySha256": "2084fd409927d06339fd5add7405eaacbff5d501f18c39b9c9928e2e840653ee",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "2084fd409927d06339fd5add7405eaacbff5d501f18c39b9c9928e2e840653ee"
+      }
+    },
+    {
+      "ordinal": 1929,
+      "lane": "C",
+      "lanePosition": 45,
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "disposition": "ACCEPTED",
+      "reason": "Originally unmoving belongs to Huineng's awakening declaration about self-nature; later teachers quote it and turn it back into a question against claims that mind moves.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "currentEntrySha256": "6315693577a08e2813e0df933dfaf6a6991a493a9a2d43507eae3297adac44be",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6315693577a08e2813e0df933dfaf6a6991a493a9a2d43507eae3297adac44be"
+      }
+    },
+    {
+      "ordinal": 1932,
+      "lane": "C",
+      "lanePosition": 46,
+      "id": "t_e3d34a8ece55",
+      "term": "斷滅空",
+      "disposition": "ACCEPTED",
+      "reason": "Annihilationist emptiness is the condemned blank that erases causation, moral difference, or responsive functioning; the records distinguish it from emptiness that does not destroy consequences.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_e3d34a8ece55/entry.v2.json",
+      "currentEntrySha256": "4af83e025b7551e8a34d4654f9363eb5392f2b183dcacfcc0790c5a16f9ee0e1",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "4af83e025b7551e8a34d4654f9363eb5392f2b183dcacfcc0790c5a16f9ee0e1"
+      }
+    },
+    {
+      "ordinal": 1935,
+      "lane": "C",
+      "lanePosition": 47,
+      "id": "t_82aae3d9af41",
+      "term": "無明即大智",
+      "disposition": "ACCEPTED",
+      "reason": "Ignorance itself is great wisdom is repeatedly quoted as a dangerous slogan when used to excuse conduct; masters preserve the equation while attacking the inference that restraint and consequences therefore vanish.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_82aae3d9af41/entry.v2.json",
+      "currentEntrySha256": "a2433f1db9654bdc9c49a61bc08d0000829da36539d330cff5749c261394bbf4",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "a2433f1db9654bdc9c49a61bc08d0000829da36539d330cff5749c261394bbf4"
+      }
+    },
+    {
+      "ordinal": 1938,
+      "lane": "C",
+      "lanePosition": 48,
+      "id": "t_8734518253a0",
+      "term": "見有遲疾",
+      "disposition": "ACCEPTED",
+      "reason": "Seeing may be slow or swift is Huineng's distinction: the teaching is not divided, but people differ in how quickly they see, a line transmitted in several independent records.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_8734518253a0/entry.v2.json",
+      "currentEntrySha256": "a15f8e403915020005c439920eca6061d8a28e0e25a4ff7def3918bca309a50c",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "a15f8e403915020005c439920eca6061d8a28e0e25a4ff7def3918bca309a50c"
+      }
+    },
+    {
+      "ordinal": 1941,
+      "lane": "C",
+      "lanePosition": 49,
+      "id": "t_8728ba5741e8",
+      "term": "漸修頓悟",
+      "disposition": "ACCEPTED",
+      "reason": "Gradual cultivation and sudden awakening names one ordered relation in the fourfold gradual/sudden taxonomy; Chan texts also test whether either ordering substitutes for personally arriving.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_8728ba5741e8/entry.v2.json",
+      "currentEntrySha256": "239b532723a9bdc3b02ebc385baa6f7bc7e792a2c44c1f2dcd18cfebe6f8a09e",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "239b532723a9bdc3b02ebc385baa6f7bc7e792a2c44c1f2dcd18cfebe6f8a09e"
+      }
+    },
+    {
+      "ordinal": 1944,
+      "lane": "C",
+      "lanePosition": 50,
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "disposition": "ACCEPTED",
+      "reason": "A question presenting one's understanding is a public-interview category in which the questioner displays an attained formulation for the teacher to inspect, answer, or overturn.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "currentEntrySha256": "6fd8e0fd14994ce358ec83635ef59ec914c6a4ba48e418a9ac56b61a68d17708",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "6fd8e0fd14994ce358ec83635ef59ec914c6a4ba48e418a9ac56b61a68d17708"
+      }
+    },
+    {
+      "ordinal": 1947,
+      "lane": "C",
+      "lanePosition": 51,
+      "id": "t_5af5d6fbe243",
+      "term": "淨灑灑",
+      "disposition": "ACCEPTED",
+      "reason": "Clean and utterly bare describes having shed every attachment until nothing can be grasped; funeral and assembly uses retain the stripped, exposed image rather than a cleanliness ritual.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_5af5d6fbe243/entry.v2.json",
+      "currentEntrySha256": "95b05dd4bd7971245983a7bce2314277b75c354296c986b9803bd15f95be40b5",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "95b05dd4bd7971245983a7bce2314277b75c354296c986b9803bd15f95be40b5"
+      }
+    },
+    {
+      "ordinal": 1950,
+      "lane": "C",
+      "lanePosition": 52,
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "disposition": "ACCEPTED",
+      "reason": "Doushuai's three barriers are the named sequence asking where one's nature is, how one escapes birth and death after seeing it, and where one goes when the elements disperse.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "currentEntrySha256": "1089b0e1a0ae94e1115d7fa97f3ccb37c9747e29feac5d3f390944601ecad545",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1089b0e1a0ae94e1115d7fa97f3ccb37c9747e29feac5d3f390944601ecad545"
+      }
+    },
+    {
+      "ordinal": 1953,
+      "lane": "C",
+      "lanePosition": 53,
+      "id": "t_e03b722cdb4a",
+      "term": "呵佛叱祖",
+      "disposition": "ACCEPTED",
+      "reason": "To scold the Buddha and berate the patriarchs is a boast of uncompromising Chan speech, but Yangqi immediately warns that the line must not be raised wrongly before clear-eyed people.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_e03b722cdb4a/entry.v2.json",
+      "currentEntrySha256": "1230eba13a272fd1be16105a26ae589ee7863a6cc81039c72e7fd272647b4add",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "1230eba13a272fd1be16105a26ae589ee7863a6cc81039c72e7fd272647b4add"
+      }
+    },
+    {
+      "ordinal": 1956,
+      "lane": "C",
+      "lanePosition": 54,
+      "id": "t_b9499eef244a",
+      "term": "泥牛入海公案",
+      "disposition": "ACCEPTED",
+      "reason": "The case of the mud ox entering the sea is a named raised case whose thunderous presentation precipitates a recorded breakthrough; the title identifies the case, not every free occurrence of the image.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_b9499eef244a/entry.v2.json",
+      "currentEntrySha256": "83f42f0b902b1fb6179316939e246ad714ab335e57a9c0f0bc3f766efa7ab686",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "83f42f0b902b1fb6179316939e246ad714ab335e57a9c0f0bc3f766efa7ab686"
+      }
+    },
+    {
+      "ordinal": 1959,
+      "lane": "C",
+      "lanePosition": 55,
+      "id": "t_72d150e8483a",
+      "term": "豆爆寒灰",
+      "disposition": "ACCEPTED",
+      "reason": "Beans bursting in cold ashes images sudden living response where only spent coldness seemed to remain; verses pair the burst with iron trees flowering and an encounter's startling word.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_72d150e8483a/entry.v2.json",
+      "currentEntrySha256": "961ba276a9bde2804c7254363300fdb8db1c19c395c855af668507db82591723",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "961ba276a9bde2804c7254363300fdb8db1c19c395c855af668507db82591723"
+      }
+    },
+    {
+      "ordinal": 1962,
+      "lane": "C",
+      "lanePosition": 56,
+      "id": "t_d3ab00825235",
+      "term": "觀心無心",
+      "disposition": "ACCEPTED",
+      "reason": "Observe mind as no-mind directs attention to mind without establishing a mind-object; one exposition quotes the formula and one encounter gives it as instruction to a ruler.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_d3ab00825235/entry.v2.json",
+      "currentEntrySha256": "78bd15267aff47281a0a8637d5949d49a2a28b0d50e8536fadb8f043bf46ca16",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "78bd15267aff47281a0a8637d5949d49a2a28b0d50e8536fadb8f043bf46ca16"
+      }
+    },
+    {
+      "ordinal": 1965,
+      "lane": "C",
+      "lanePosition": 57,
+      "id": "t_cbf3f6eeda71",
+      "term": "無空可落",
+      "disposition": "ACCEPTED",
+      "reason": "No emptiness to fall into is the National Teacher's answer when pressed whether no-mind collapses into blankness: if emptiness itself is absent, there is nowhere for a fall to stand.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_cbf3f6eeda71/entry.v2.json",
+      "currentEntrySha256": "cb05d6a0a3d7fc62576661aae754b2122975f9b87a2163ba77eae66fcc1b4305",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "cb05d6a0a3d7fc62576661aae754b2122975f9b87a2163ba77eae66fcc1b4305"
+      }
+    },
+    {
+      "ordinal": 1968,
+      "lane": "C",
+      "lanePosition": 58,
+      "id": "t_c21a3b78ecb3",
+      "term": "敲冰覓火",
+      "disposition": "ACCEPTED",
+      "reason": "To strike ice seeking fire is to use means incapable of producing the sought result; masters apply it to conceptual explanation, strained case handling, and the effort abandoned at breakthrough.",
+      "dispositionSource": "maintenance/post-current-investigation720-lane-c-033-058-author-ledger.json",
+      "entryPath": "fresh-build/entries/t_c21a3b78ecb3/entry.v2.json",
+      "currentEntrySha256": "b425e2b3fcc64ff173aa3afffc7b6472677f0307c5a49d1006e7d47f453e9cf0",
+      "independentPassReceipt": {
+        "path": "maintenance/post-current-investigation720-final57-depth9-independent-current-byte-recheck.json",
+        "sha256": "94481c5e602a4f7cc3a6a6d2ec891a5e2c9439e33ab92ca297e96e7281cf920f",
+        "decision": "PASS",
+        "reviewedEntrySha256": "b425e2b3fcc64ff173aa3afffc7b6472677f0307c5a49d1006e7d47f453e9cf0"
+      }
+    }
+  ],
+  "authorization": {
+    "install": true,
+    "merge": true,
+    "statusMutation": true,
+    "lineageMutation": false,
+    "publication": true
+  },
+  "baselineReconciliation": {
+    "path": "maintenance/post-current-investigation720-installed-baseline-1542-reconciliation.json",
+    "sha256": "c1dbbcd1f2a776f8fc3fbf2f153864e1807e5a35fce5c057472db010e964f32f",
+    "count": 1542
+  },
+  "publicationReady": true
+}

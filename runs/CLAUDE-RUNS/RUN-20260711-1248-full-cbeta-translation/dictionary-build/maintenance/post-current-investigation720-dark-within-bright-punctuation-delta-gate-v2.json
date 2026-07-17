@@ -1,0 +1,214 @@
+{
+  "generatedUtc": "2026-07-17T19:06:31.281999+00:00",
+  "elapsedSeconds": 1.971,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8a4cd6d00874/entry.v2.json",
+      "sha256": "5a82b52e4786ecc0c70bfe5a28ebffbd4d4d0e62ebea3553ecb1d480c56add8a"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 4,
+    "occurrenceVerified": 4,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_8a4cd6d00874/entry.v2.json",
+        "id": "t_8a4cd6d00874",
+        "term": "暗中明",
+        "verified": 4,
+        "occurrenceVerified": 4,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.028,
+    "attribution": 1.057,
+    "publicFeedback": 0.2,
+    "depthSense": 0.659,
+    "countClaims": 0.199,
+    "workSourceValidation": 0.174,
+    "corpusBaseline": 0.181,
+    "frozenHistoricalTerms": 0.47,
+    "lineageRosterUntouched": 0.873,
+    "batchSemanticTemplates": 0.159,
+    "attributionPackets": 0.857
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.057,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 4,
+        "actor_reviewed_unnamed": 1,
+        "context_master_links": 4,
+        "attribution_notes": 4,
+        "named_occurrences": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 4,\n    \"actor_reviewed_unnamed\": 1,\n    \"context_master_links\": 4,\n    \"attribution_notes\": 4,\n    \"named_occurrences\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.2,
+    "payload": {
+      "entries": 1,
+      "passing": 1,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 1,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpvraqem8h.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.659,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_8a4cd6d00874"
+      ]
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_8a4cd6d00874\"\n  ]\n}\nreport: /tmp/tmp0rvuhtgr-depth.json\n",
+    "report": "/tmp/tmp0rvuhtgr-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.199,
+    "payload": {
+      "entryCount": 1,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 1,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.174,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.181,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.47,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "lineageRosterUntouched": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.873,
+    "payload": {
+      "schemaVersion": "dictionary-lineage-write-prohibition.v2",
+      "mode": "wave-baseline",
+      "hardPass": true,
+      "protected": [
+        {
+          "path": "Assets/Data/lineage-masters.json",
+          "worktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "headObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "semanticBytesSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+          "clean": true,
+          "baselineWorktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "unchangedFromBaseline": true
+        },
+        {
+          "path": "Assets/Data/master-dates.json",
+          "worktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "headObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "semanticBytesSha256": "7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0",
+          "clean": true,
+          "baselineWorktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "unchangedFromBaseline": true
+        }
+      ],
+      "failures": []
+    },
+    "output": "{\n  \"schemaVersion\": \"dictionary-lineage-write-prohibition.v2\",\n  \"mode\": \"wave-baseline\",\n  \"hardPass\": true,\n  \"protected\": [\n    {\n      \"path\": \"Assets/Data/lineage-masters.json\",\n      \"worktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"headObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"semanticBytesSha256\": \"33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"unchangedFromBaseline\": true\n    },\n    {\n      \"path\": \"Assets/Data/master-dates.json\",\n      \"worktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"headObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"semanticBytesSha256\": \"7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"unchangedFromBaseline\": true\n    }\n  ],\n  \"failures\": []\n}\n"
+  },
+  "batchSemanticTemplates": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.159,
+    "payload": {
+      "schemaVersion": "batch-semantic-template-audit.v1",
+      "entries": 1,
+      "repeatFloor": 5,
+      "hardPass": true,
+      "failureCount": 0,
+      "failures": [],
+      "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+    },
+    "output": "{\n  \"schemaVersion\": \"batch-semantic-template-audit.v1\",\n  \"entries\": 1,\n  \"repeatFloor\": 5,\n  \"hardPass\": true,\n  \"failureCount\": 0,\n  \"failures\": [],\n  \"rule\": \"Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.\"\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.857,
+    "payload": {
+      "entries": 1,
+      "occurrences": 4,
+      "tierACandidates": 0,
+      "reviewRequired": 4,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 1,
+        "rebuiltOccurrences": 4
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 4,\n  \"tierACandidates\": 0,\n  \"reviewRequired\": 4,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 1,\n    \"rebuiltOccurrences\": 4\n  }\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-dark-within-bright-punctuation-delta-gate-v2-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/post-current-investigation720-dark-within-bright-punctuation-delta-gate-v2-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_8a4cd6d00874"
+  ],
+  "strictRosterScopeIds": [
+    "t_8a4cd6d00874"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/e82594af12bfcf4e178a2752363dd2e515d23ca6c592ac0eb0d0902860923ff3.lock"
+}

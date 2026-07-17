@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "post720-final152-attribution4-independent-repair-ledger.v1",
+  "generatedUtc": "2026-07-17T18:49:26.352217+00:00",
+  "independentRuling": {
+    "path": "maintenance/post-current-investigation720-final152-attribution6-independent-current-byte-recheck.json",
+    "sha256": "55df6aa763d57c11ff2cf9a353b6cf6b311944410eeb740b6812778806a8ad25"
+  },
+  "entryCount": 4,
+  "lineageWrites": 0,
+  "installExecuted": false,
+  "pendingRoster": [
+    {
+      "name": "Longhua Daochu",
+      "sourceLabel": "蘄州龍華道初禪師",
+      "reason": "named Chan master absent from protected lineage roster; entry uses pending-roster actor state only",
+      "pendingRosterPath": "fresh-build/pending-roster.json",
+      "pendingRosterSha256": "28aafdfff6a1d90fe52619e726667f8bd66b83dd9b94cc6cae3fb989291bd194"
+    }
+  ],
+  "deltaGate": {
+    "entryDraftParity": true,
+    "gatePath": "maintenance/post-current-investigation720-final152-attribution4-independent-delta-gate.json",
+    "gateSha256": "94238027fbdfd79bfeadcf0948ee8aeec92293deb58a093e7ce0e82b6352de28",
+    "exactKwicFailures": 0,
+    "attributionHardFailures": 0,
+    "attributionPacketsHardPass": true,
+    "attributionDeltaHardPass": true,
+    "wholeGateHardPass": false,
+    "wholeGateNonAttributionDebt": {
+      "depthSenseHardFailed": 3
+    }
+  },
+  "entries": [
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "entryPath": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "entryBeforeSha256": "c0b59fc27df9d24559124bda4fdca4aa988271c7f1de4dd05ba03d63c6c21e68",
+      "entryAfterSha256": "1221ff5a4e3f199f3c6804dba5a9d0a3b3702c2f6bd2534047b403e827a79c7c",
+      "draftPath": "fresh-build/entries/t_10eee640a50b/evidence.draft.json",
+      "draftBeforeSha256": "63898b3cb59b050f2313c153fbb0ffaac878de4afec2cf1aee6324b2394fece3",
+      "draftAfterSha256": "c95909c527d31b6f4873258bb76585f2693bdf15ce13a94da4f561e153e5d1a2",
+      "entryDraftParity": true,
+      "actions": [
+        "separated Zixian address voice from embedded personified Santao Pavilion request",
+        "resolved occurrence 3 as Longhua Daochu via 召眾曰",
+        "deferred absent Longhua identity to pending roster"
+      ]
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "entryPath": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "entryBeforeSha256": "0579899841e8aa5f514dec7f2a474a9fcbdea86c8ab5a4467a640d61b4801454",
+      "entryAfterSha256": "fccd9a67c9231976084312595967139ae1d22c79d357fd36da15a2ba6c9a49d2",
+      "draftPath": "fresh-build/entries/t_63ededf0ee19/evidence.draft.json",
+      "draftBeforeSha256": "f82c830018f8bf2e8a6562b35d230ce38ba3d9220bcec3b3492579b1528d5497",
+      "draftAfterSha256": "31a2b2e88900d2453e39ce384be2acaa80260587a5355450a34634ab8941db03",
+      "entryDraftParity": true,
+      "actions": [
+        "resolved occurrence 3 as named lay questioner Jinghui Jushi via 淨慧居士問/士云",
+        "retained Liangting Jingting as respondent"
+      ]
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "entryPath": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "entryBeforeSha256": "da90730239d21f195476e2e8892479202c4bf3d4ae30b3083e261666deb5cc92",
+      "entryAfterSha256": "f7d3f25c1e48b59427f8e163ed131832e84f16cea470985dd24fcdced48e85cb",
+      "draftPath": "fresh-build/entries/t_d61b2bb1964b/evidence.draft.json",
+      "draftBeforeSha256": "aae6d87fded665a45bd1ba231a393de29d2a84d56c6032f6a2979e166481be51",
+      "draftAfterSha256": "0543c6a21fc4609b77f866aee8785f5d5fa548e97c8dec223ebfae1ca8b4bc9d",
+      "entryDraftParity": true,
+      "actions": [
+        "resolved occurrence 2 曰 as quoted Huineng utterance",
+        "resolved occurrence 3 乃云 as quoted Huineng utterance",
+        "kept compiler/current speaker only as raiser in notes"
+      ]
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "entryPath": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "entryBeforeSha256": "381bf79de1c2fd573d74e97552d5d917c58756b113ed0aca74661b3ab6f82b6a",
+      "entryAfterSha256": "10a9a29e34b1bf31f1a1ac0750c5c8211272164cf21bbc0537af9c85f5f71666",
+      "draftPath": "fresh-build/entries/t_f738f6209a61/evidence.draft.json",
+      "draftBeforeSha256": "66c04b3e78dac4eb736140fb329a0ed77b81ee527914c80ce6942f0ebefebdc8",
+      "draftAfterSha256": "05ce41e810af9fba9edc099703e232dabe32f0e007977596c2a31913f351156f",
+      "entryDraftParity": true,
+      "actions": [
+        "resolved occurrence 2 as the questioner explicitly marked 進云",
+        "added Doushuai Congyue as named source context for occurrence 3"
+      ]
+    }
+  ]
+}

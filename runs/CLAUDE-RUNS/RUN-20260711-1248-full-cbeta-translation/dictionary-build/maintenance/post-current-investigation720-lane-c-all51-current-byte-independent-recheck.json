@@ -1,0 +1,540 @@
+{
+  "schemaVersion": "post720-c-all51-current-byte-independent-recheck.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "generatedUtc": "2026-07-17T17:04:38.427164+00:00",
+  "reviewSources": [
+    "maintenance/post-current-investigation720-lane-c-006-032-independent-review-checkpoint-026.json",
+    "maintenance/post-current-investigation720-lane-c-033-058-independent-review-checkpoint-025.json"
+  ],
+  "repairGates": [
+    {
+      "path": "maintenance/post-current-investigation720-lane-c-006-032-postreview-repair-gate.json",
+      "sha256": "ed4b9b6fc5c6bf54865e6055ea21025d9970df06ce9cc0f0e7d9978e9e38f2bf",
+      "hardPass": false
+    },
+    {
+      "path": "maintenance/post-current-investigation720-lane-c-033-058-postreview-repair-gate.json",
+      "sha256": "528f97db0ad476df63b835c15fcbd9654c800e68f0b87b60acb694f96ed2f3b7",
+      "hardPass": false
+    }
+  ],
+  "fullCaseSource": "maintenance/post-current-investigation720-fullcase-c.json",
+  "reviewedCount": 51,
+  "passCount": 28,
+  "reviseCount": 23,
+  "allEntryBytesChanged": true,
+  "decisions": [
+    {
+      "lanePosition": 6,
+      "id": "t_ba6cdc968127",
+      "term": "法身用",
+      "previousRejectedEntrySha256": "c5819a81767bb83e7b2528f86be5d05ea93407d24121e2ea7b0df1d30e72acbf",
+      "currentEntrySha256": "a53c86a96433de7026c993a52df3af32b18b732bf108bd0d41414fde16f3a0ae",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 7,
+      "id": "t_bd8725d0ed31",
+      "term": "師子奮迅",
+      "previousRejectedEntrySha256": "b54b59a16bb35b40e7e4d8adfaff47dd4a0f1ebe41ac54e99b6dba69cf079d24",
+      "currentEntrySha256": "b3fcf64a738bc90e576522958451416d2eb02dbdc505d1d384e50606fa07f96b",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The animal-image sense is repaired, but the second sense is unchanged: it still asserts a 'collected state identified with unwavering resolve,' the precise unlicensed psychological/state gloss rejected in the original review."
+    },
+    {
+      "lanePosition": 8,
+      "id": "t_707234da7e73",
+      "term": "老尊宿",
+      "previousRejectedEntrySha256": "10b116e110f4e47736ec20e0f5383c0dd8cbc87ee6eb4369bc0e1e49c4c550a0",
+      "currentEntrySha256": "38dc9c70044b0a1befa32fd2b91d7e78cc23300c4f9e136770389c2eb45e87a5",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 9,
+      "id": "t_e34846b9f2c1",
+      "term": "信心不二",
+      "previousRejectedEntrySha256": "4fe1be78a1213f8cdb9cab7ac8e5a753d20a6eabdecc51172dfd995363cf96e4",
+      "currentEntrySha256": "2dfa6e07db996041760786ff8ad7d4fc4031156877ff8b6dca6384b903a64fb1",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 10,
+      "id": "t_f6bdcf284663",
+      "term": "現成句子",
+      "previousRejectedEntrySha256": "d1f41abf4c78e86895c4dc886d6e97bbc0fdca5ec48b64c84eeba9ad38e464aa",
+      "currentEntrySha256": "78ce1c7f8159fd59a444bb16eb7c3b05a527b2ace57862d9a116ebdba1d31e3f",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 11,
+      "id": "t_8a4cd6d00874",
+      "term": "暗中明",
+      "previousRejectedEntrySha256": "050a4be5732fa39dd10d60fa1c4197604658e7881a5e93bb2b792dd8ea2299e1",
+      "currentEntrySha256": "95cd9cea0ae13960629f6e819198acfda242dd7356c12d9df1a28f1ba2790582",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The semantic interpenetration claim is removed, but J26 remains attributed only to 'the unnamed compiler' with compiler-narrative kind. The required exact question/quotation actor classification was not applied."
+    },
+    {
+      "lanePosition": 12,
+      "id": "t_074762d3985c",
+      "term": "夢蝶",
+      "previousRejectedEntrySha256": "9184736bcddb9b414a24c33960ba323650095f8c5938e1050ff7065d3700e744",
+      "currentEntrySha256": "7261b528685dba0fcdded134383414f8cb4698eb58f5e8f93b1ee7b6646a8a02",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 13,
+      "id": "t_7acb482cb5ac",
+      "term": "紫芝歌",
+      "previousRejectedEntrySha256": "d14106676bf3707604d569db5aaa4cada47d7c9facfa7cf351be78d1e653068d",
+      "currentEntrySha256": "00a5f8b3afb1541a093ca1d568d865babb0c0fa8869be2aa9b8bd1ca78fd16e1",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The allusion is now explained, but J28 remains only 'the unnamed verse author.' The original ruling required binding the exact titled verse authorship rather than retaining a generic placeholder."
+    },
+    {
+      "lanePosition": 14,
+      "id": "t_a5b9424f88b6",
+      "term": "不動聲色",
+      "previousRejectedEntrySha256": "1152d21747ffa5caa187cf5ed8d45e69a25a43e4f1d881b8ca1f68920e9083c7",
+      "currentEntrySha256": "0c7bb8ddda0829adc17ddb1b6014f2ea76b9751480701741cb9d657f6ffafc22",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 15,
+      "id": "t_060848c06b3f",
+      "term": "回途復妙",
+      "previousRejectedEntrySha256": "ec170a13a51a1fbf06edb42ecd0ff7b0d527c7f6724eb0e2b323f9ab2dbcee14",
+      "currentEntrySha256": "4417ee37b854aa53f2c7afe07f1968e2ba6c2fd125ba1af29a4cc701908ddc9c",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 16,
+      "id": "t_fd2f9010baca",
+      "term": "四皓",
+      "previousRejectedEntrySha256": "eb3eff1eb7fd4392478d22b9b23f3ded77359b34b9cffe94450f1c9a167e7c56",
+      "currentEntrySha256": "6dc885015233d59c1b943df591aad25f369052d0659f64da99bd6623bff83858",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 17,
+      "id": "t_8e4b85dfb005",
+      "term": "磨甎作鏡",
+      "previousRejectedEntrySha256": "7a11d30ff5b560a4c7476f4839f98256cfecea7ea6b77134594d74d9898deb56",
+      "currentEntrySha256": "cbef58c509c1501b4a629923a0e1abd76d12b608a722932145e93f658615c4cc",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 18,
+      "id": "t_80284a71ec1b",
+      "term": "不死不活句",
+      "previousRejectedEntrySha256": "9f246607de2c98f42e0c2c9a723b008d9c20ee715242585baa845481b35463a5",
+      "currentEntrySha256": "3ba7bf965fff0b9ad59ad94e0b0a1bc205b9e96d78a73e0279f8dd02474216dc",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 19,
+      "id": "t_6086992a6aaa",
+      "term": "功勳五位",
+      "previousRejectedEntrySha256": "c6fcc4626214a1d2fbc4187aca6e28a88988a1f9d215e52ac7dc7918bd27ef41",
+      "currentEntrySha256": "53db25e83fdba901771ddc1355db11036ce2bfd22b1e547fea30cd545e602dae",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The unsupported distinction from another five-rank scheme was removed, but the entry still does not enumerate the five retained positions or quote the textual sequence; it merely says the discussions enumerate it."
+    },
+    {
+      "lanePosition": 20,
+      "id": "t_4c7e22eb50db",
+      "term": "粥飯主人",
+      "previousRejectedEntrySha256": "c5207835188b6986169abba349170b1d30c2af795f366e60a1ede720ac277ac5",
+      "currentEntrySha256": "c48fc01cc574ffbeec972e2e5f34bb8b0f9f89125b3dbe5c2654462cf34ed20d",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 21,
+      "id": "t_6fc0d3e31539",
+      "term": "臨終示眾",
+      "previousRejectedEntrySha256": "646431496b6943edc0702a14b247e91c5b6f6b2df187be6dd99cc7df4488c634",
+      "currentEntrySha256": "36cbbfd363be2f67c2a159ddbed3f25775767a844c5a2c3b7c22b8a5a58ba12c",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 22,
+      "id": "t_58f345ef2f1c",
+      "term": "半隻眼",
+      "previousRejectedEntrySha256": "2669feabf6be44f68e504ebdd321d4f342ad3ed54cf7e81e8a403f6db9fb3644",
+      "currentEntrySha256": "d39aab32939b826fc0872eae0a00268997a5aa7cd0b6c85392f472ab2f3847cc",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 23,
+      "id": "t_9fa88ce8ff8a",
+      "term": "斬斷葛藤",
+      "previousRejectedEntrySha256": "191c2cf2435b2c75b12db27f7342d63379c0031174fad8ddebd63e293c0abe96",
+      "currentEntrySha256": "5cc2a7dd6a57dd3b01b002cf6302584460b07a6fcb8841dc0a1db11c32315440",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 24,
+      "id": "t_d9f9537de0f7",
+      "term": "返照回光",
+      "previousRejectedEntrySha256": "181f46f000bfca228d6e7f4e0d3c87c9636d42bd6f5c42334367dc8bf73f8449",
+      "currentEntrySha256": "b28477faa4916120d7601eff7090864ae9d2cca7c211d69364e7d45dd3e0b6a6",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 25,
+      "id": "t_c9a353f07d89",
+      "term": "法性三昧",
+      "previousRejectedEntrySha256": "ec70c5dcf1e57084095f1de9d7c71ea34ed71c48fb8e2226d58d747d7297cebc",
+      "currentEntrySha256": "93293bad221fd2b3db9fd72a7197b5f97b7b5be21859f715df74ceddd4303701",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 26,
+      "id": "t_3d5f072d255c",
+      "term": "頓悟漸修",
+      "previousRejectedEntrySha256": "9af2f2e009896818b3699109373afe10e27a7c268f47004ae2cc5377974c5bcf",
+      "currentEntrySha256": "cac8e8c6506d607725d14bc613440a0f1e276006033f167b5f264f70d7a70418",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 27,
+      "id": "t_2ce98158d7f4",
+      "term": "詩客",
+      "previousRejectedEntrySha256": "c4f60e5d4a383befce025b1490aad3ca810ee67bf0550a06a89ebcbecc732567",
+      "currentEntrySha256": "1474efd3a3cf64fcf209c0aeaa0c0fa39cd9125433ada9aa034003621fd9e633",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The entry now candidly admits that the word is ordinary and only one exchange is Chan-specific. That confirms the unresolved admission defect: a generic word plus one contextual verdict does not establish a separate corpus-wide Chan lexical article."
+    },
+    {
+      "lanePosition": 29,
+      "id": "t_7b213bef1d62",
+      "term": "大用之機",
+      "previousRejectedEntrySha256": "7274b0659252786d1b55c5854bdfb25588a0200aa273fe59f8580b3ebe7e5847",
+      "currentEntrySha256": "2eab24052ef80936f3153d4e997e53949c6c95c98600929aa41b8dcfc351ec06",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 30,
+      "id": "t_c1b5b57bf7bf",
+      "term": "忌晨",
+      "previousRejectedEntrySha256": "88252b04f9f4bda7ba70d6ae1d3d09816bf9cce56947b63dda9fe8f91209ab55",
+      "currentEntrySha256": "548362efb2b24741678f91728e5791686155277777b6d703f5762dcd17ca1270",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The event-heading semantics are repaired, but the occurrences still assign Foyan, Zhikong, and Zhufeng as MasterName without ActorAttribution for heading/editor/narrator. The required exact textual-role repair is absent."
+    },
+    {
+      "lanePosition": 31,
+      "id": "t_e9a69a04e845",
+      "term": "百千手眼",
+      "previousRejectedEntrySha256": "7eeb60264b57a94d275e2f7eda5cc7c31194f9158d55d39342393228f412cdd7",
+      "currentEntrySha256": "ecc4e33dadbb9cbd867fe0a001b0ea92242901a05a79bbefe308324979058331",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 32,
+      "id": "t_a18cfea5f471",
+      "term": "枯木開花",
+      "previousRejectedEntrySha256": "6cab539ecfeedc11ce3cddff4a88ea88ebad7c823685d6ee66d1716a2e8dac0a",
+      "currentEntrySha256": "e35f8ab7da117677395f387cc60569cc60e0052793978613dd7d5bd2eb201911",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 33,
+      "id": "t_23ddb347e907",
+      "term": "無相為體",
+      "previousRejectedEntrySha256": "bcd057af20640dedf67ed93acfb8b11079ab8519d80b87ad6586ea285dc34c8f",
+      "currentEntrySha256": "f655ee9409071fcebd99685a4421122389088d6c580fb0b96ed7106da5d87fc6",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 34,
+      "id": "t_2a0be2582f40",
+      "term": "活語",
+      "previousRejectedEntrySha256": "9baa0585b29f2ee90626ef0aa1909309b5366efc193bc6a9c5352d84c0a45fd6",
+      "currentEntrySha256": "db899ef094da87d491e9d6d17655ceb89747a8a23671cb4a7c308e049de442e4",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 35,
+      "id": "t_024dc48ed8c8",
+      "term": "尋香逐氣",
+      "previousRejectedEntrySha256": "b88381dce86b368f35cead1523a0ce743d8567fbeed5996e9a8906ebd97764cc",
+      "currentEntrySha256": "74d75cc1851cf0a0791776435f0aa1307b472ec618b151274eab2a24bd9fb493",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The semantic overreach is removed, but C078 remains an unnamed compiler with compiler-narrative kind rather than the required exact verse/comment author binding."
+    },
+    {
+      "lanePosition": 37,
+      "id": "t_ec4e928e8468",
+      "term": "商山四皓",
+      "previousRejectedEntrySha256": "d1e6bd43abd748520697a31a249b1a7db283ab3908429bab47ae1c2c83790146",
+      "currentEntrySha256": "738b3ce191c2df683b7807f1ead59862e12791107c61948c04fa9049a8ea8bba",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 38,
+      "id": "t_09e6c3b9fda9",
+      "term": "枯木禪",
+      "previousRejectedEntrySha256": "1fd3b8f740757920d3e9e0172e4c934a5adb228d2584a166bd991b9554c28b9d",
+      "currentEntrySha256": "fcd486bff7cbbafe87edc46d7899efee97a7f1912512c6cee9c47f127c407bb0",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The quietism psychology is removed, but both J26 occurrences remain generic unnamed compiler narratives instead of exact narrator or quoted-speaker roles."
+    },
+    {
+      "lanePosition": 39,
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "previousRejectedEntrySha256": "ef74e3345d04b92fb54f1ee56691eaf5c9ea37522717b243bd15a87d428e2d4a",
+      "currentEntrySha256": "11d1b7e23b389b394db252c0f49114f9a1c374eb12f3cf5a091cf106a7f3a524",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 40,
+      "id": "t_8fb41216ea2d",
+      "term": "吹網欲滿",
+      "previousRejectedEntrySha256": "469523e27fd61eeb81e9c56162c13ec4dc4e294c57f364da0f5b3440c30a0d88",
+      "currentEntrySha256": "ffd93294f18925c05e9c03b025750093c2a29fd5490f80086220c9e66be80135",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The specialized word-accumulation theory is removed, but L153 remains a generic unnamed compiler narrative; the required exact headword actor was not resolved."
+    },
+    {
+      "lanePosition": 41,
+      "id": "t_17a7fbf49855",
+      "term": "卞和三獻",
+      "previousRejectedEntrySha256": "a2eefe73354c6080fea4db2272702bc8ee3b864689664f377b6a17068d806579",
+      "currentEntrySha256": "fbee52844a066ee015ba05cb72fdd97b1e1c485c40a49a06c132733fc06e0bf0",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The allusion is repaired semantically, but all three occurrences remain generic unnamed compiler narratives despite the original requirement to bind authored verse/commentary contexts."
+    },
+    {
+      "lanePosition": 42,
+      "id": "t_232fb680eed8",
+      "term": "觸目是道",
+      "previousRejectedEntrySha256": "a26f58c6ad39096a9747485faeffe25ec86810d385f4dbf6edd9f383f53a3b4c",
+      "currentEntrySha256": "e602ca59619f843475fe958e339c4f6ac8e480bc64d2e705084611a4ef834ff4",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The psychological-purpose claim is removed, but C077 and J23 remain generic unnamed compiler narratives rather than distinct raised-quotation/question/response actors."
+    },
+    {
+      "lanePosition": 43,
+      "id": "t_78c9686a321b",
+      "term": "不休不歇",
+      "previousRejectedEntrySha256": "9c26cdc327b7a0f498923053d9a9c55ddd45f9c002c68b5d36654fca60ad533a",
+      "currentEntrySha256": "3ab580e98162ab6d557aa3f932d627b082f7b6bb3ab881b25b224bb687298bd0",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The semantic inference is removed, but X68 and J25 remain generic unnamed compiler narratives; exact quoted/compiled speaker roles are still unresolved."
+    },
+    {
+      "lanePosition": 44,
+      "id": "t_d591a2f6612e",
+      "term": "南頓北漸",
+      "previousRejectedEntrySha256": "95ab1ad330328d3d1aac628a625fd1c9a31bce3f1b45cf13ecde97105b2e8eb7",
+      "currentEntrySha256": "70f64bfbc07970ffaee2d9ac42c75e31ee09f2353f535f6a0c4e76f208702bbf",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The geographic-essence abstraction is removed, but all three occurrences remain generic unnamed compiler narratives rather than the quoted statement's exact speaker or narrator."
+    },
+    {
+      "lanePosition": 45,
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "previousRejectedEntrySha256": "7a72da7ad6953c97d09eeae73fb002626ad8833a5a835fef57e8a61719f37d03",
+      "currentEntrySha256": "cfbcfe1224c75ce0b414fd8dd0a8f5fb522b1a7b912b4ba9ecf3e5d61aa75a1b",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 46,
+      "id": "t_e3d34a8ece55",
+      "term": "斷滅空",
+      "previousRejectedEntrySha256": "a50e982a2e79ea504bfce905324666a13b42e98391d4a94249198262be88fdab",
+      "currentEntrySha256": "8860d51ee49592c2579b26a5653dab69474b75068a58106f696e1eea00c44867",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The merged doctrinal menu is removed, but all three occurrences remain generic unnamed compiler narratives; authored exposition and quotation roles are still obscured."
+    },
+    {
+      "lanePosition": 47,
+      "id": "t_82aae3d9af41",
+      "term": "無明即大智",
+      "previousRejectedEntrySha256": "f81b1e9068094708e4f6aba003481c7da64b4aad30aa384b2741b0b018b3f0fb",
+      "currentEntrySha256": "d450b6ff35f28efc4e058db8da5bf6b720bfd264125bb77e93b26b20f938b2aa",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The editorial danger/consequence gloss is removed, but X83 and X86 remain generic unnamed compiler narratives and the Huanglong raised-material/current-turn distinction is still absent."
+    },
+    {
+      "lanePosition": 48,
+      "id": "t_8734518253a0",
+      "term": "見有遲疾",
+      "previousRejectedEntrySha256": "c69b782f535efa89fc41969fd3b2a442c4fc126474de797b47c21fa179586a9e",
+      "currentEntrySha256": "e6be55a081362f8fe634de400be9416e334b22715d1a9c3df4ebf91b93ec1369",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The full contrast is now explained, but T48n2007 and T48n2008 label Huineng as the current textual actor even while the Note says later texts reproduce his line as quotation. Quoted origin and current utterer remain conflated."
+    },
+    {
+      "lanePosition": 49,
+      "id": "t_8728ba5741e8",
+      "term": "漸修頓悟",
+      "previousRejectedEntrySha256": "ffe32b49724f8754ad60c4f8dc9d553999fb25b030647bf0490349e9552011db",
+      "currentEntrySha256": "6b4eb12ecd93392f25170aa575fea40b33e17ebd1133e7db0b57a31a5ed8baa9",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "Explanation uses 'refinement,' but PreferredTarget still says 'gradual cultivation and sudden awakening,' retaining the banned generalized cultivation frame that the original ruling required removing."
+    },
+    {
+      "lanePosition": 50,
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "previousRejectedEntrySha256": "eed4e26046a46344bddaebda29da8b767e90afa75ecfd66b9272953681e5c712",
+      "currentEntrySha256": "7413504ee726c07e9ad50ee1d618ce7357b728a86ad9cc8e7274a1a3e900ce14",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 51,
+      "id": "t_5af5d6fbe243",
+      "term": "淨灑灑",
+      "previousRejectedEntrySha256": "e164f43da497c08010730781998c8cfddb0070e30d6bcee2e61811a548a39a33",
+      "currentEntrySha256": "aef85b4053512fb3171e06958d7df359f37ea4366962db39ef9ce5ec90b30fe9",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The interior-process interpretation is removed, but both J27 and J26 remain generic unnamed compiler narratives instead of exact verse/narrative actors."
+    },
+    {
+      "lanePosition": 52,
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "previousRejectedEntrySha256": "5b2a77bd9a6d1c231f7606a173d604bf9efac38479c1d4e3c96e01e31b51748c",
+      "currentEntrySha256": "8b3cf42ca07e46f1a6658c1c509fcc1ec8edf7517a2a85276af90642781e4312",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 53,
+      "id": "t_e03b722cdb4a",
+      "term": "呵佛叱祖",
+      "previousRejectedEntrySha256": "3ef80bd5357b0c9e0823c647e0438c7a6b1559c40351208e7c6a25c90a899c82",
+      "currentEntrySha256": "bcfe37d60323135cc0a64377df13ae665879639a02d488dcd360356b83eff4b4",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The boast characterization is removed, but C077 and X78 remain generic unnamed compiler narratives rather than exact raised-line or verse speakers/authors."
+    },
+    {
+      "lanePosition": 54,
+      "id": "t_b9499eef244a",
+      "term": "泥牛入海公案",
+      "previousRejectedEntrySha256": "8b53815af44b1a565043b3fc65089da650b8e6eba428671947c6f4daa41d4a01",
+      "currentEntrySha256": "6c3843c03f1b8f8835ab24ba0f6ad4ea777f04c34f5892ba60b19d0ba6cee029",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The causal breakthrough claim is removed, but all three case-title occurrences remain generic unnamed compiler narratives; who names/raises the case versus who appears in the awakening narrative is not encoded."
+    },
+    {
+      "lanePosition": 55,
+      "id": "t_72d150e8483a",
+      "term": "豆爆寒灰",
+      "previousRejectedEntrySha256": "46565d6f290836fa30216ee991687878c815169fcbbdea8d2c3155d9d04412dd",
+      "currentEntrySha256": "ca39fb7b01e8ccae79c8e9e2d363057a3ed63aebeb8851267f9cb9fa8542c94d",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The living-response interpretation is removed, but J37 and J27 remain generic unnamed compiler narratives rather than exact verse-author/commentator roles."
+    },
+    {
+      "lanePosition": 56,
+      "id": "t_d3ab00825235",
+      "term": "觀心無心",
+      "previousRejectedEntrySha256": "afc427f9b77435cf4cc9430f2f672464ede7e97ac82c4d96adf0e94ebff9b840",
+      "currentEntrySha256": "e3a8b60a64798485d1b749a6decb070bd0fa2f0e715e05ea0fb850a31aec6c4d",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The philosophical object-theory is removed and two-work counting is acknowledged, but all three occurrences remain generic unnamed compiler narratives, including two distinct contexts in the same T48 work."
+    },
+    {
+      "lanePosition": 57,
+      "id": "t_cbf3f6eeda71",
+      "term": "無空可落",
+      "previousRejectedEntrySha256": "1921401e52ad6e629ef0d793c18313d42f060ccd49230310a029cb31bf05e15b",
+      "currentEntrySha256": "8229c147b06bda70398199a17335db5fa74bef17ed754d24070bbaa11de914fc",
+      "bytesChanged": true,
+      "decision": "PASS",
+      "finding": "The live entry bytes changed from the rejected version and now implement the original semantic/prose and exact-actor ruling in entry.v2.json; the repaired explanation is full-case-derived, the rejected inference/scaffold is absent, and occurrence roles are consistent with the required ruling."
+    },
+    {
+      "lanePosition": 58,
+      "id": "t_c21a3b78ecb3",
+      "term": "敲冰覓火",
+      "previousRejectedEntrySha256": "68ee0a221e391bcab9021b801eacc82d9c5f90501987020b1bd78e267555cdf3",
+      "currentEntrySha256": "805086f87b919b84b4923f131181d0673e4fb7e6b0bea693f3ab119df5df2c00",
+      "bytesChanged": true,
+      "decision": "REVISE",
+      "finding": "The editorial application menu is removed, but X66 and X67 remain generic unnamed compiler narratives rather than the named commentator or record-owner roles required by the ruling."
+    }
+  ],
+  "entriesEditedByReviewer": false,
+  "lineageTouchedByReviewer": false
+}

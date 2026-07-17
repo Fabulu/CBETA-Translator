@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-c-canary-independent-review.v1",
+  "reviewerIndependent": true,
+  "entryWrites": 0,
+  "sourceBindings": {
+    "laneManifest": {"path":"maintenance/post-current-investigation720-lane-c.json","sha256":"655e2fa1c7049abc8840da4f87e1419a66214ef332e6a06d2e7ff1d2303a1c19"},
+    "authorCheckpoint": {"path":"maintenance/post-current-investigation720-lane-c-canary-author-checkpoints.json","sha256":"2d4c554038ce15fcdf61c5d3b775b297c61433ed9a663abd56552d80220c05e5"}
+  },
+  "summary": {"reviewed":5,"pass":5,"revise":0,"independentQualified":true,"approveLaneCPosition6Plus":true},
+  "rows": [
+    {
+      "lanePosition":1,"id":"t_75039519e1e0","term":"廣燈","disposition":"PASS-REJECT",
+      "reason":"The complete cases contain either the bibliographic title 天聖廣燈錄, the shortened citation 廣燈曰 referring to that record, or title-history prose about the Tian­sheng compilation. None deploys 廣燈 independently as an answer, verdict, test, epithet, or Chan lexical unit.",
+      "evidence":[
+        {"relPath":"X/X78/X78n1553.xml","fromLb":"0420a11","finding":"table of contents and repeated full title 天聖廣燈錄"},
+        {"relPath":"X/X79/X79n1559.xml","fromLb":"0288c12","finding":"bibliographic source citation 廣燈曰 in 嘉泰普燈錄"},
+        {"relPath":"X/X78/X78n1556.xml","fromLb":"0640c23","finding":"imperial preface pairs reign and lamp-record titles: 永昭廣燈於天聖"}
+      ]
+    },
+    {
+      "lanePosition":2,"id":"t_68f8f387cfd6","term":"普燈錄","disposition":"PASS-REJECT",
+      "reason":"All three cases are bibliographic: the self-title 嘉泰普燈錄, a citation label 普燈錄, and an appended note explicitly citing volume ten. Containment in Chan books does not create an independently deployed saying.",
+      "evidence":[
+        {"relPath":"X/X79/X79n1559.xml","fromLb":"0288c06","finding":"work title 嘉泰普燈錄"},
+        {"relPath":"X/X64/X64n1276.xml","fromLb":"0807c11","finding":"source label 普燈錄 before a quoted passage"},
+        {"relPath":"X/X69/X69n1347.xml","fromLb":"0272a05","finding":"附記 explicitly says 普燈錄第十卷曰"}
+      ]
+    },
+    {
+      "lanePosition":3,"id":"t_27bbde1bc523","term":"馬腳","disposition":"PASS",
+      "reviewedEntrySha256":"fdddfded405d4a63a6f7837ae8d1db3b2639400fc94a3b951f08f5eb9a35610e",
+      "reason":"The two-sense split is supported by different referents and syntax. Three works use 馬腳 as a horse-foot category, commonly paired with 驢腳 and once in the direct question 'donkey foot or horse foot?' Three other works use the fixed predicate 露出馬腳 for a remark, answer, or forced explanation exposing its telltale flaw. The latter is not anatomy and the former does not itself mean disclosure.",
+      "exactVerification":{"occurrences":6,"failures":0,"distinctWorkIds":6},
+      "fullCaseWindowSha256":["02149b10bb449aa2d67f4d779ae621cc674cc02399f99122eb649204ba029481","90f0907e7633a49d98722cbd459e7830e5e68ecfabad29006c02384924be80a2","9275b1fbd08d331493e4dadfd92fab4e53bb9b27612db1a67e6066ff68b696e6","ab6cce5721d301097e3a3b86b756b4e277f6bc9db235cf8d9d966e36336f4eeb","64396a536c208700dafc6d262081529068ac4128835187356584e152a52f3517","5a9b0c31b0bb03f627d8a17a95b40f85cf632de20fb57df399564e8e79f203fb"]
+    },
+    {
+      "lanePosition":4,"id":"t_687709b1388b","term":"隨人腳跟轉","disposition":"PASS",
+      "reviewedEntrySha256":"a663879a882032ea96e74ff339501a24085729ad8894f254c3d80c8a2004cdc9",
+      "reason":"All four complete cases deploy the heel-following phrase as a public charge of derivative movement or judgment. Tian'an applies it to a monk literally crossing after another; Chuiwan and Tianyin apply it to inherited evaluations of earlier exchanges; the unnamed J10 questioner uses it in a charge that Miyun immediately turns back as forming understanding from another person's words. One sense accommodates these attested deployment shapes without converting ordinary bodily following into a second referent.",
+      "exactVerification":{"occurrences":4,"failures":0,"distinctWorkIds":4},
+      "fullCaseWindowSha256":["55005b0a2da96d7ff834e7162c03db53f17d0ff281088eeab751adf9c03e2278","880fcd6a85f4dff3344e9b5f5cd4aafc3ff66065c87ec88a3694fc852fa74768","cb8ed0cf21351ab881b407a63397f42528fe4947f971a83b9961769867350fba","458837b11a52826a77a86cbf9aa3f999f09ae5b59d9e4f435ffba534ee5d7cdb"]
+    },
+    {
+      "lanePosition":5,"id":"t_8072bafc41fe","term":"貨利","disposition":"PASS-REJECT",
+      "reason":"The full cases use 貨利 in ordinary lists of worldly goods or profit, especially 聲色貨利, alongside rank, pleasure, buildings, vehicles, hunting, or entertainment. Although masters criticize being occupied by these things, the compound itself receives no distinct Chan job, contrast definition, answer, verdict, or specialized referent.",
+      "evidence":[
+        {"relPath":"J/J28/J28nB202.xml","fromLb":"0082b20","finding":"聲色貨利 are likened with worldly glory to floating bubbles"},
+        {"relPath":"J/J38/J38nB406.xml","fromLb":"0190a03","finding":"ordinary list of worldly pursuits in authored prose"},
+        {"relPath":"J/J27/J27nB190.xml","fromLb":"0103c07","finding":"聲色貨利役汝心慮, ordinary goods/profit as objects occupying thought"}
+      ]
+    }
+  ],
+  "boundaryDecision":"Independent canary is green. The three rejects correctly exclude contained-only titles or ordinary vocabulary, and both built entries have supported sense boundaries, Chan deployment, exact evidence, and independent work depth."
+}

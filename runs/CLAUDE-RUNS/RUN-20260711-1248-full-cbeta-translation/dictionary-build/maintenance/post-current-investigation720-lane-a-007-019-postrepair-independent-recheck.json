@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "post720-lane-a-007-019-postrepair-independent-recheck.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "generatedUtc": "2026-07-17T17:45:01.446073+00:00",
+  "scope": "First 13 Lane A positions 007-019, actual current bytes after repair",
+  "priorIndependentReview": "maintenance/post-current-investigation720-lane-a-007-032-independent-review.json",
+  "priorIndependentReviewSha256": "a65baee6c5a59a1e357d90072b3acafb5a43b565d0cd79647c6b99cc4670e1b7",
+  "repairGate": "maintenance/post-current-investigation720-lane-a-007-032-first13-repair-delta-gate.json",
+  "repairGateSha256": "9862d8e8cc6841c770ec2ea6ad719220911bc4e22efa5c82b9f8ef3d1f1588c2",
+  "repairGateHardPass": true,
+  "reviewedCount": 13,
+  "passCount": 0,
+  "reviseCount": 13,
+  "rejectCount": 0,
+  "entriesEdited": false,
+  "buildPerformed": false,
+  "lineageTouched": false,
+  "decisions": [
+    {
+      "lanePosition": 7,
+      "id": "t_baaf641ad292",
+      "term": "無義路",
+      "currentEntrySha256": "5775c75eb1ea09c3e6db35e91e49e738653b100704d0a15de2046cafceada1e3",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 1,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 8,
+      "id": "t_7fe6e194e576",
+      "term": "弄死蛇",
+      "currentEntrySha256": "0464ec248d68e8fc3f3816f7aa92bdd317f3020add4e379ba52664bb88d9f0fb",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 9,
+      "id": "t_7b7576f60959",
+      "term": "木人歌",
+      "currentEntrySha256": "57b9f67f711d61b1da42bc3da397ea00d421e977f8b598b25d35d4358366783c",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "fail",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes. The repaired target recasts the headword as the title 'Song of the Wooden Man,' but the retained clauses predominantly use 木人 as subject and 歌 as the verb 'the wooden person sings' (for example 泥牛解吼木人歌); title and predicate evidence are conflated."
+    },
+    {
+      "lanePosition": 10,
+      "id": "t_de5e2668bc5e",
+      "term": "絕言絕慮",
+      "currentEntrySha256": "87f1c4d6d0d404395d9592ba5b8db3c608fa2ffaa6f1ea24d07578aaba09859c",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 11,
+      "id": "t_8695699c9329",
+      "term": "兩堂爭猫",
+      "currentEntrySha256": "600fd3a16efaeccbc747e614c059f504454f4b62a38fa0997ca5c23e785c7fee",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "fail",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 1,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes. The retained lines narrate or raise Nanquan's cat case, but the bytes do not structurally distinguish narrator/current case-raiser from the historical actors; named assignment is asserted only in a generic note."
+    },
+    {
+      "lanePosition": 12,
+      "id": "t_b4733a98e43d",
+      "term": "殺活同時",
+      "currentEntrySha256": "6730de9668e93189cc1ca51c38313ef784c62153cd92ccbe93f746b0d3e476b2",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 13,
+      "id": "t_8eeddc0520bb",
+      "term": "行腳人",
+      "currentEntrySha256": "54e50eb1e559e83d505bfbe65a210397ee6e0f1c9ec2b3700ba36ebeee4fe242",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 14,
+      "id": "t_378f4b5f338f",
+      "term": "一塵不染",
+      "currentEntrySha256": "9f0eba36b3c356e1c262f896c04fd8d7b6d467e22f528093189a23a6b84e7d5b",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "fail",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes. Several retained fragments visibly contain encounter questions (一塵不染底人來時如何; 一塵不染？師曰…), yet their actors remain asserted as an unnamed compiler rather than binding the unnamed questioning monk/current turn."
+    },
+    {
+      "lanePosition": 15,
+      "id": "t_42323f09261e",
+      "term": "本自清淨",
+      "currentEntrySha256": "18c22100e76d2b6e3789bd7f25a808790b0b981f697ef5b0d66ad4b57c7e9d36",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 16,
+      "id": "t_c07d4c1204f4",
+      "term": "無言可說",
+      "currentEntrySha256": "529f43454a849ecb5df27a86d1f1ac90dc34d2e20fa7272339afa44beb163d75",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 17,
+      "id": "t_372cf334c464",
+      "term": "立處即真",
+      "currentEntrySha256": "213d171fab7e50c65ff4e42ab17f306ee52ce221bfd27805842d55ace3cc4545",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 18,
+      "id": "t_abe3c59c0ed8",
+      "term": "本分大事",
+      "currentEntrySha256": "464011db776624729fda4e4cf1c39476ecbdec8e8e31be4be55d86248011039a",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 1,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    },
+    {
+      "lanePosition": 19,
+      "id": "t_cb70f4c9eef8",
+      "term": "十牛圖",
+      "currentEntrySha256": "15e5b1bcdbbb5a5ede4f4789c278483badaea3fd0430b0e6891e32cdb2fc4eef",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The bare-token defect is partly repaired because current ClaimText now includes a surrounding clause fragment. However, Explanation still mechanically repeats its second sentence in Note, and occurrence notes uniformly claim that an 'expanded exact clause binds' a marked turn without retaining the grammatical turn evidence. Generic unnamed-compiler ActorAttribution still says only that all six rungs were checked, while named cases generally have no structured ActorAttribution at all. The exact utterer/narrator/quoted-origin ruling therefore remains unprovable from current bytes."
+    }
+  ]
+}

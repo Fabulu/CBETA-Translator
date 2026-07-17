@@ -1,0 +1,140 @@
+{
+  "Id": "t_de5e2668bc5e",
+  "SourceTerm": "絕言絕慮",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex post720 Lane A positions 007-032",
+  "WrittenUtc": "2026-07-17T17:48:39.440462+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "cut off from speech and deliberation",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "cut off words and cut off thought"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "This excludes mere quietness and requires both speech and deliberation to be absent.",
+      "Occurrences": [
+        {
+          "RelPath": "B/B25/B25n0145.xml",
+          "FromLb": "0827b01",
+          "ToLb": "0827b03",
+          "Kwic": "外虛空無口解談禪絕言絕慮無處不通道吾舞笏",
+          "ClaimText": "外虛空無口解談禪絕言絕慮無處不通道吾舞笏",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (B/B25/B25n0145.xml). Corpus witness at 0827b01: the unnamed current record voice owns the exact clause under its visible narrative predicate.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "narrative predicate owner",
+            "ActorLabel": "the unnamed current record voice",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "At 0827b01, the visible narrative predicate governs the exact headword span; no named contextual figure is inserted.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:48:39.440462+00:00"
+          }
+        },
+        {
+          "RelPath": "J/J36/J36nB362.xml",
+          "FromLb": "0747b23",
+          "ToLb": "0747b23",
+          "Kwic": "多慮，轉弗相應。絕言絕慮，無處不通。前途",
+          "ClaimText": "多慮，轉弗相應。絕言絕慮，無處不通。前途",
+          "MasterName": "Guantao Daqi",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Guantao Daqi",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Guantao Daqi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J36/J36nB362.xml). Corpus witness at 0747b23: Guantao Daqi owns the exact clause under its visible narrative predicate."
+        },
+        {
+          "RelPath": "X/X71/X71n1426.xml",
+          "FromLb": "0782a22",
+          "ToLb": "0782a23",
+          "Kwic": "雨，滿城流水香。絕言絕慮",
+          "ClaimText": "雨，滿城流水香。絕言絕慮",
+          "MasterName": "Zhenxie Qingliao",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Zhenxie Qingliao",
+              "Roles": [
+                "record-owner"
+              ]
+            },
+            {
+              "MasterName": "Zhenxie Qingliao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X71/X71n1426.xml). Corpus witness at 0782a22: Zhenxie Qingliao owns the exact clause under its visible narrative predicate."
+        },
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0251b10",
+          "ToLb": "0251b11",
+          "Kwic": "多慮，轉不相應；絕言絕慮，無處不通。拈起",
+          "ClaimText": "多慮，轉不相應；絕言絕慮，無處不通。拈起",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X79/X79n1557.xml). Corpus witness at 0251b10: the unnamed current record voice owns the exact clause under its visible narrative predicate.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "narrative predicate owner",
+            "ActorLabel": "the unnamed current record voice",
+            "ActorRole": "record-owner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "At 0251b10, the visible narrative predicate governs the exact headword span; no named contextual figure is inserted.",
+            "ReviewedBy": "Codex bound independent-review repair",
+            "ReviewedUtc": "2026-07-17T17:48:39.440462+00:00"
+          }
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "B/B25/B25n0145.xml",
+        "J/J36/J36nB362.xml",
+        "X/X71/X71n1426.xml",
+        "X/X79/X79n1557.xml"
+      ],
+      "RelatedMasters": [
+        "Guantao Daqi",
+        "Zhenxie Qingliao"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Cut off from speech and deliberation. The paired predicates deny both verbal formulation and calculating thought in the complete assertions. This excludes mere quietness and requires both speech and deliberation to be absent."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "post720-final152-attribution6-repair-ledger.v1",
+  "generatedUtc": "2026-07-17T18:37:55.800789+00:00",
+  "sourceGate": "maintenance/post-current-investigation720-final152-release-gate.json",
+  "sourceGateSha256": "010d3c252b04f35593d9014d154392317cc18623470ecf574286411920f38639",
+  "entryCount": 6,
+  "findingCountResolved": 18,
+  "lineageWrites": 0,
+  "installExecuted": false,
+  "pendingRoster": [],
+  "deltaGate": {
+    "hardPass": true,
+    "entryDraftParity": true,
+    "gatePath": "maintenance/post-current-investigation720-final152-attribution6-delta-gate.json",
+    "gateSha256": "72b48c82cc4e14526b779a0223e157fb065437dab33815998787ddb75cf6e0f3",
+    "exactKwicFailures": 0,
+    "attributionHardFailures": 0,
+    "attributionPacketsHardPass": true,
+    "attributionDeltaHardPass": true,
+    "wholeGateHardPass": false,
+    "wholeGateNonAttributionDebt": {
+      "depthSenseHardFailed": 1
+    }
+  },
+  "entries": [
+    {
+      "id": "t_10eee640a50b",
+      "term": "先師末後句",
+      "entryPath": "fresh-build/entries/t_10eee640a50b/entry.v2.json",
+      "entryBeforeSha256": "11d1b7e23b389b394db252c0f49114f9a1c374eb12f3cf5a091cf106a7f3a524",
+      "entryAfterSha256": "10f2512980362daa65c04c6d933459a06d15cebee28e0c589a0ab8a02ac0ec03",
+      "draftPath": "fresh-build/entries/t_10eee640a50b/evidence.draft.json",
+      "draftBeforeSha256": "f7786b72d8d905b4c7bada64f09fd46efed8a4e61d83316d8568d25d1b7a399c",
+      "draftAfterSha256": "baed898f04ed947845cd00cce3c5c2d90d7f25941c95d5586b03fa20e255a1d0",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "canonicalized Liangting Jingting",
+        "removed named-vs-ActorAttribution conflict",
+        "added canonical utterer context",
+        "finalized strict-gate English source label and/or canonical utterer role"
+      ]
+    },
+    {
+      "id": "t_63ededf0ee19",
+      "term": "呈解問",
+      "entryPath": "fresh-build/entries/t_63ededf0ee19/entry.v2.json",
+      "entryBeforeSha256": "7413504ee726c07e9ad50ee1d618ce7357b728a86ad9cc8e7274a1a3e900ce14",
+      "entryAfterSha256": "311914611e31d78cdb02cc849d13f0f0a493a7286ff6a7ff48a5a8e145fd25f9",
+      "draftPath": "fresh-build/entries/t_63ededf0ee19/evidence.draft.json",
+      "draftBeforeSha256": "681da3f819a5d2e3b7bc77f24fa884976774ddc821314cf3ff0ab68d7d4d7fcc",
+      "draftAfterSha256": "c082d4a15d7288da62433d801f99812768e3a1e7abe9eb00f2d7637e05cd5a1b",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "canonicalized Liangting Jingting",
+        "removed two named-vs-ActorAttribution conflicts",
+        "added named actor contexts",
+        "made vague prose explicit",
+        "finalized strict-gate English source label and/or canonical utterer role"
+      ]
+    },
+    {
+      "id": "t_b10c9e660874",
+      "term": "生死即涅槃",
+      "entryPath": "fresh-build/entries/t_b10c9e660874/entry.v2.json",
+      "entryBeforeSha256": "5428d2c5cd27e58772b684d0813cb864c7b27085373a9a9468385ae0f6a63e55",
+      "entryAfterSha256": "72cdd518980dc54435d870622aad4ee91cfefdedcda9a86c68335bf2e32c2c1e",
+      "draftPath": "fresh-build/entries/t_b10c9e660874/evidence.draft.json",
+      "draftBeforeSha256": "e9d75a57bf94ef5226244430194389e7cbf903e292a1e98aad386505299db85e",
+      "draftAfterSha256": "ad65514a81a2a053c1690464b07ed7fe0dc795bcc36200e26f58b72b35792457",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "removed noncanonical Xiangtian Jinian duplicate alias; retained Xiangtian Jinian Jingxian"
+      ]
+    },
+    {
+      "id": "t_cbf3f6eeda71",
+      "term": "無空可落",
+      "entryPath": "fresh-build/entries/t_cbf3f6eeda71/entry.v2.json",
+      "entryBeforeSha256": "8229c147b06bda70398199a17335db5fa74bef17ed754d24070bbaa11de914fc",
+      "entryAfterSha256": "90d3722736498a69671a5db5d583ec3c816d8695e7e2ae514a875fda5cb1cf53",
+      "draftPath": "fresh-build/entries/t_cbf3f6eeda71/evidence.draft.json",
+      "draftBeforeSha256": "bf4faac8b583830ab3ae5405c60189cd28ffb1fbfda1c9c8f84303ae430ff254",
+      "draftAfterSha256": "441ce0f3f045009a7549f17848dbe6e928250c79b6016953cbc3a36a5944f4a8",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "made unnamed questioning monk explicit"
+      ]
+    },
+    {
+      "id": "t_d61b2bb1964b",
+      "term": "本無動搖",
+      "entryPath": "fresh-build/entries/t_d61b2bb1964b/entry.v2.json",
+      "entryBeforeSha256": "cfbcfe1224c75ce0b414fd8dd0a8f5fb522b1a7b912b4ba9ecf3e5d61aa75a1b",
+      "entryAfterSha256": "fb43248b3922826288d3af681275e2384c7d367503d5e0fa6177bc6f33b6e434",
+      "draftPath": "fresh-build/entries/t_d61b2bb1964b/evidence.draft.json",
+      "draftBeforeSha256": "ac13f966a39b3ca0e04e7fd743c66c7498af2ea23da849e74d4c1d59e769bf12",
+      "draftAfterSha256": "4770ff0d22fe89073fbb556d114c5dfb5e4d60d7c560f2c4c90c2f4301b53c83",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "distinguished present raiser Yulin Tongxiu from quoted utterer Huineng",
+        "removed anonymous actor state",
+        "finalized strict-gate English source label and/or canonical utterer role"
+      ]
+    },
+    {
+      "id": "t_f738f6209a61",
+      "term": "兜率三關",
+      "entryPath": "fresh-build/entries/t_f738f6209a61/entry.v2.json",
+      "entryBeforeSha256": "8b3cf42ca07e46f1a6658c1c509fcc1ec8edf7517a2a85276af90642781e4312",
+      "entryAfterSha256": "d7b759a2c2ce8365cf454338323bd0e3da8992f864e97ce0e3115edf228ef659",
+      "draftPath": "fresh-build/entries/t_f738f6209a61/evidence.draft.json",
+      "draftBeforeSha256": "69cb6bbb7b231b018b494f480e556507e9e8493daf0d44c4e929ec59e701698a",
+      "draftAfterSha256": "44036202288c892b8b5a7f6372684daea7d291795183353e4862b257955db3e8",
+      "compiledEntryEqualsDraftEntry": true,
+      "actions": [
+        "made unnamed questioning monk explicit"
+      ]
+    }
+  ]
+}

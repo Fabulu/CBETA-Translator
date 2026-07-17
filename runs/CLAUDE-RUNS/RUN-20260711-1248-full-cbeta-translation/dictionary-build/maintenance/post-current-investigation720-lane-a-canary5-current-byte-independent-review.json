@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "post-current-investigation720-lane-a-canary5-current-byte-independent-review.v1",
+  "reviewer": "Codex Lane C independent reviewer",
+  "sourceLedger": "maintenance/post-current-investigation720-lane-a-canary5-repair-ledger.json",
+  "sourceLedgerSha256": "9d2c7606d7e82371098568f12e3ab334289b4a21bd48f8d2cb8162ac08164837",
+  "scope": "Current-byte semantic, exact-actor, independent-work, and rejected-candidate review. No entry or lineage edits.",
+  "summary": {
+    "reviewedEntries": 5,
+    "pass": 2,
+    "revise": 3,
+    "rejectedCandidateReviewed": 1,
+    "rejectedCandidatePass": 1,
+    "laneA7PlusAuthorized": false
+  },
+  "entries": [
+    {
+      "id": "t_8dfac3877360",
+      "term": "依樣",
+      "entrySha256": "cd01a07562e83d3e5a276f534322d79bee2f49a4ed106807429d94c63f57be2f",
+      "verdict": "REVISE",
+      "semanticVerdict": "PASS",
+      "workSpreadVerdict": "PASS: six retained occurrences represent six independent works.",
+      "actorVerdict": "REVISE",
+      "findings": [
+        "J/J28/J28nB202.xml is the record of Baichi Xingyuan; MasterName uses the noncanonical alias Baichi Yuanshuo instead of roster names[0].",
+        "J/J29/J29nB239.xml uses Chuiwan Guangzhen instead of roster names[0], Juyun Chuiwan Guangzhen.",
+        "X/X68/X68n1319.xml is explicitly inside the Imperially Selected Recorded Sayings of National Preceptor Yulin Tongxiu (大覺普濟能仁玉琳琇國師); Yulin Xiuyun is the wrong identity and does not resolve on the roster.",
+        "X/X82/X82n1571.xml identifies 衡州南嶽祖庵主: Hermitage Master Zu of Nanyue. The current 'Ancestor An' label mis-segments 祖庵主 and must be corrected without inventing a personal name."
+      ]
+    },
+    {
+      "id": "t_08e0ef30ead9",
+      "term": "鴨類",
+      "entrySha256": "c376143af377371ba21bc3984ce47c999d1213a9db2d7b7364a752bcd2cc1c39",
+      "verdict": "PASS",
+      "semanticVerdict": "PASS: the positive noun 'duck kind' is correctly separated from the negation in the full goose-king formula.",
+      "workSpreadVerdict": "PASS: four occurrences across four independent works.",
+      "actorVerdict": "PASS: all four exact utterers agree with their full speech frames and use roster-resolving canonical names."
+    },
+    {
+      "id": "t_d0419c13b037",
+      "term": "不變隨緣",
+      "entrySha256": "d437a2239f825aa31b98c9298546210cb7980d113b142b03596b6e82a84893c2",
+      "verdict": "REVISE",
+      "semanticVerdict": "PASS: the prose accurately distinguishes exposition, application, portrait verse, and question rather than claiming uniform instruction.",
+      "workSpreadVerdict": "PASS: four occurrences across four independent works.",
+      "actorVerdict": "REVISE",
+      "findings": [
+        "X/X63/X63n1255.xml is correctly attributed to the record's author 休靜, but MasterName Cheongheo Hyujeong does not equal roster names[0]. The resolving canonical value is Hyujeong."
+      ]
+    },
+    {
+      "id": "t_186677ffbc59",
+      "term": "客塵煩惱",
+      "entrySha256": "62091aee0adff8dc923ef2140867859d4ceb828e8f35991fa6f19a6ce957afd7",
+      "verdict": "REVISE",
+      "semanticVerdict": "PASS: the visiting-dust definition, scripture/quoter distinction, and entrenched-habit limit are supported by the four cases.",
+      "workSpreadVerdict": "PASS: four occurrences across four independent works.",
+      "actorVerdict": "REVISE",
+      "findings": [
+        "The scripture voice in T/T48/T48n2016.xml is correctly left out of MasterName and Yongming is correctly retained only as context.",
+        "X/X83/X83n1578.xml is spoken by 潭州石室善道禪師, but MasterName Shishi Shandao does not resolve to any current roster names[0]. Preserve the exact identified master in the attribution evidence, but do not ship a broken master link; use the project's pending-roster/unlinked-master treatment without editing lineage here."
+      ]
+    },
+    {
+      "id": "t_1ff4d467780c",
+      "term": "泯默",
+      "entrySha256": "b23e3bf85de818efdbaa2b8c4133b05046522e05b663f9126a68bc9ff741b1b2",
+      "verdict": "PASS",
+      "semanticVerdict": "PASS: all four cases negatively deploy mute obliteration or reject its use as a measure of realization; the limit against condemning all silence is retained.",
+      "workSpreadVerdict": "PASS: four occurrences across four independent works.",
+      "actorVerdict": "PASS: the T47 instruction is Yuanwu Keqin's, and the other three complete cases support their named utterers."
+    }
+  ],
+  "rejectedCandidate": {
+    "id": "t_2d8f5919247b",
+    "term": "廣燈錄",
+    "verdict": "PASS-REJECT",
+    "reason": "The full cases are titles, self-headings, or bibliographic references to 天聖廣燈錄/宗門廣燈錄. They contain the string but do not deploy 廣燈錄 as an independent Chan expression."
+  },
+  "nextAction": "Repair only the actor/link fields identified above, recompile, rerun the compact delta gate, and obtain current-byte confirmation before authorizing Lane A position 7 or later."
+}

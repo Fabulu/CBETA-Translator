@@ -1,0 +1,210 @@
+{
+  "generatedUtc": "2026-07-17T15:43:53.846590+00:00",
+  "elapsedSeconds": 5.817,
+  "hardPass": true,
+  "entries": [
+    {
+      "id": "t_27bbde1bc523",
+      "term": "馬腳",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_27bbde1bc523/entry.v2.json",
+      "sha256": "fdddfded405d4a63a6f7837ae8d1db3b2639400fc94a3b951f08f5eb9a35610e"
+    },
+    {
+      "id": "t_687709b1388b",
+      "term": "隨人腳跟轉",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_687709b1388b/entry.v2.json",
+      "sha256": "a663879a882032ea96e74ff339501a24085729ad8894f254c3d80c8a2004cdc9"
+    }
+  ],
+  "exactKwic": {
+    "entries": 2,
+    "verified": 10,
+    "occurrenceVerified": 10,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_27bbde1bc523/entry.v2.json",
+        "id": "t_27bbde1bc523",
+        "term": "馬腳",
+        "verified": 6,
+        "occurrenceVerified": 6,
+        "claimAnchorVerified": 0,
+        "failures": []
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_687709b1388b/entry.v2.json",
+        "id": "t_687709b1388b",
+        "term": "隨人腳跟轉",
+        "verified": 4,
+        "occurrenceVerified": 4,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.2,
+    "attribution": 5.516,
+    "publicFeedback": 1.088,
+    "depthSense": 2.71,
+    "countClaims": 1.064,
+    "workSourceValidation": 0.872,
+    "corpusBaseline": 0.912,
+    "frozenHistoricalTerms": 1.81,
+    "lineageRosterUntouched": 5.313,
+    "batchSemanticTemplates": 0.818,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 0,
+    "elapsedSeconds": 5.516,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 3,
+        "occurrences": 10,
+        "named_occurrences": 9,
+        "context_master_links": 9,
+        "attribution_notes": 10,
+        "actor_reviewed_unnamed": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 3,\n    \"occurrences\": 10,\n    \"named_occurrences\": 9,\n    \"context_master_links\": 9,\n    \"attribution_notes\": 10,\n    \"actor_reviewed_unnamed\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.088,
+    "payload": {
+      "entries": 2,
+      "passing": 2,
+      "flagged": 0,
+      "flagsByKind": {}
+    },
+    "output": "{\n  \"entries\": 2,\n  \"passing\": 2,\n  \"flagged\": 0,\n  \"flagsByKind\": {}\n}\nreport: /tmp/tmpvb2j7jc0.json\n"
+  },
+  "depthSense": {
+    "exitCode": 0,
+    "elapsedSeconds": 2.71,
+    "payload": {
+      "audited": 2,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_27bbde1bc523",
+        "t_687709b1388b"
+      ]
+    },
+    "output": "{\n  \"audited\": 2,\n  \"hardFailed\": 0,\n  \"reviewFlagged\": 0,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_27bbde1bc523\",\n    \"t_687709b1388b\"\n  ]\n}\nreport: /tmp/tmplr532mne-depth.json\n",
+    "report": "/tmp/tmplr532mne-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.064,
+    "payload": {
+      "entryCount": 2,
+      "claimCount": 0,
+      "candidatePhraseCount": 0,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 0,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 2,\n  \"claimCount\": 0,\n  \"candidatePhraseCount\": 0,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 0,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.872,
+    "payload": {
+      "counts": {
+        "entries": 2,
+        "senses": 3,
+        "multiSourceSenses": 3
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 2,\n    \"senses\": 3,\n    \"multiSourceSenses\": 3\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.912,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.81,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "lineageRosterUntouched": {
+    "exitCode": 0,
+    "elapsedSeconds": 5.313,
+    "payload": {
+      "schemaVersion": "dictionary-lineage-write-prohibition.v2",
+      "mode": "wave-baseline",
+      "hardPass": true,
+      "protected": [
+        {
+          "path": "Assets/Data/lineage-masters.json",
+          "worktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "headObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "semanticBytesSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+          "clean": true,
+          "baselineWorktreeObject": "491cea2b7df6cc7d3b32e544586a0481eb235a09",
+          "unchangedFromBaseline": true
+        },
+        {
+          "path": "Assets/Data/master-dates.json",
+          "worktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "headObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "semanticBytesSha256": "7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0",
+          "clean": true,
+          "baselineWorktreeObject": "a9b3ddf936b052a699101fa783aec64442deb18d",
+          "unchangedFromBaseline": true
+        }
+      ],
+      "failures": []
+    },
+    "output": "{\n  \"schemaVersion\": \"dictionary-lineage-write-prohibition.v2\",\n  \"mode\": \"wave-baseline\",\n  \"hardPass\": true,\n  \"protected\": [\n    {\n      \"path\": \"Assets/Data/lineage-masters.json\",\n      \"worktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"headObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"semanticBytesSha256\": \"33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"491cea2b7df6cc7d3b32e544586a0481eb235a09\",\n      \"unchangedFromBaseline\": true\n    },\n    {\n      \"path\": \"Assets/Data/master-dates.json\",\n      \"worktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"headObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"semanticBytesSha256\": \"7336a969a49837c2c1ef87cffada34aec7cce8b109d4918bf3a0165c8805a5e0\",\n      \"clean\": true,\n      \"baselineWorktreeObject\": \"a9b3ddf936b052a699101fa783aec64442deb18d\",\n      \"unchangedFromBaseline\": true\n    }\n  ],\n  \"failures\": []\n}\n"
+  },
+  "batchSemanticTemplates": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.818,
+    "payload": {
+      "schemaVersion": "batch-semantic-template-audit.v1",
+      "entries": 2,
+      "repeatFloor": 5,
+      "hardPass": true,
+      "failureCount": 0,
+      "failures": [],
+      "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+    },
+    "output": "{\n  \"schemaVersion\": \"batch-semantic-template-audit.v1\",\n  \"entries\": 2,\n  \"repeatFloor\": 5,\n  \"hardPass\": true,\n  \"failureCount\": 0,\n  \"failures\": [],\n  \"rule\": \"Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.\"\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": null,
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_27bbde1bc523",
+    "t_687709b1388b"
+  ],
+  "strictRosterScopeIds": [
+    "t_27bbde1bc523",
+    "t_687709b1388b"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/791347567c336536ddbbcf71192e065a6e5e362196f580ed5309ecee55e72a4f.lock"
+}

@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "post720-lane-a-020-032-postrepair-independent-recheck.v1",
+  "reviewer": "Codex independent reviewer D7",
+  "generatedUtc": "2026-07-17T17:46:25.354222+00:00",
+  "scope": "Second 13 Lane A positions 020-032, actual current bytes after repair",
+  "priorIndependentReview": "maintenance/post-current-investigation720-lane-a-007-032-independent-review.json",
+  "priorIndependentReviewSha256": "a65baee6c5a59a1e357d90072b3acafb5a43b565d0cd79647c6b99cc4670e1b7",
+  "repairGate": "maintenance/post-current-investigation720-lane-a-007-032-second13-repair-delta-gate.json",
+  "repairGateSha256": "fa6a3ebd3ee82af4433cd9168b5101d28eafc311ede6ba7e223c81466fe9ef00",
+  "repairGateHardPass": true,
+  "reviewedCount": 13,
+  "passCount": 0,
+  "reviseCount": 13,
+  "rejectCount": 0,
+  "entriesEdited": false,
+  "buildPerformed": false,
+  "lineageTouched": false,
+  "decisions": [
+    {
+      "lanePosition": 20,
+      "id": "t_5ef05597fe69",
+      "term": "參禪僧",
+      "currentEntrySha256": "014cf767b25efa41b82da039cec105cfdada85870cc6528fb0e1c9ba4493a34e",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "revise",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling. The retained parallel questions are spoken turns (喫粥飯僧？為復是參禪僧？), yet later witnesses are assigned to an unnamed compiler rather than the questioner/quoted speaker."
+    },
+    {
+      "lanePosition": 21,
+      "id": "t_8bd390157b65",
+      "term": "逢羅漢殺羅漢",
+      "currentEntrySha256": "afc181fbcf9f451b05a26d7dab24db2ef4610a4e498bbea8a62274581ebcca57",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "revise",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 4,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling. All four occurrences reproduce Linji's escalating formula, but current bytes assign them to an unnamed compiler instead of separating Linji as quoted origin from each transmitting voice."
+    },
+    {
+      "lanePosition": 22,
+      "id": "t_6925c87bb616",
+      "term": "雲水僧",
+      "currentEntrySha256": "2ffa5656427f4352871b86008d1cecb0975c5b3456a514f602bba8b5f7b543b4",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 0,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 23,
+      "id": "t_8ee9d62081ae",
+      "term": "定慧等持",
+      "currentEntrySha256": "73d7b601bd55935427529c8e002f4455a7ac8b30b753e16eeee50456068e1128",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 1,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 24,
+      "id": "t_4baae3dda70c",
+      "term": "大悟底人",
+      "currentEntrySha256": "10ffcb9757f65faac4617cd3efa538f60c8b1b7b1622d9a444f9e0c76e474126",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "revise",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling. Visible fragments contain direct questions (大悟底人為什麼卻迷), but the headword is assigned to a compiler rather than the unnamed questioning monk/current speaker."
+    },
+    {
+      "lanePosition": 25,
+      "id": "t_a5a35b410079",
+      "term": "閉口即喪",
+      "currentEntrySha256": "b48fb25da3d7b85b3770f12326f18735af1526e8d64b206c1af05fea8b02a9f7",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 4,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 26,
+      "id": "t_44056632f4c6",
+      "term": "隨機方便",
+      "currentEntrySha256": "7360a1ab76fc7cc11cb9fca55261d712917ff05b32dea575036f58e4b165286a",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 27,
+      "id": "t_06756e764d33",
+      "term": "黑山下鬼窟裏",
+      "currentEntrySha256": "a5fe310646ec3d003622feb2ca2791443fca9a3cd0b943160e048067a1b7fd5f",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 4,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 4
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 28,
+      "id": "t_7517cee5844f",
+      "term": "認子為賊",
+      "currentEntrySha256": "a0a944572fec469d3d6eabf16f6b34d35695f02656644c6df302159436f530f4",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 29,
+      "id": "t_24891e88f516",
+      "term": "木人石女",
+      "currentEntrySha256": "90b25b199c65edfb3abf73bcb01a0efc98d6cea6da7989687c95d052973b824c",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 30,
+      "id": "t_099bd2fda8bc",
+      "term": "開口便錯",
+      "currentEntrySha256": "2e812f240b254fc8548b1c315c7bf79e90632473e04895ebe486c8b1305b2b55",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 31,
+      "id": "t_a8d80736de3b",
+      "term": "覿面錯過",
+      "currentEntrySha256": "4dec34d9a951084939104e12cc6013ebbb98e1bd7eee6d9dcd5e66976017f971",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "plausible",
+        "semanticBoundary": "plausible-needs-actor-proof",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 3,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling."
+    },
+    {
+      "lanePosition": 32,
+      "id": "t_bc9a15980b00",
+      "term": "問辨",
+      "currentEntrySha256": "a4f7d093b66d44882420349226dc05be75d7ad49a93355b893cbb493de8e48ff",
+      "decision": "REVISE",
+      "checks": {
+        "fullExcerpt": "partial-pass-clause-fragment-now-retained",
+        "prose": "fail-explanation-note-duplication-and-template",
+        "exactActor": "fail-asserted-not-demonstrated",
+        "admission": "revise",
+        "semanticBoundary": "revise",
+        "gateHardPass": true
+      },
+      "evidence": {
+        "occurrenceCount": 3,
+        "explanationEndsWithNote": true,
+        "structuredActorCount": 2,
+        "genericExpandedClauseNoteCount": 3
+      },
+      "finding": "The repair replaces bare tokens with surrounding clause fragments, but Explanation still mechanically repeats Note and does not distinguish what each retained case does. Attribution remains asserted rather than proved: every note uses the same 'expanded exact clause binds' formula, generic compiler actors provide no marked-turn grammar, and named cases lack structured exact-actor evidence. Current bytes therefore do not resolve the original exact utterer/narrator/quoted-origin ruling. The third witness is ordinary advisory prose (問辨當虛己) and does not share the proposed technical sense 'questioning used to discriminate'; admission/sense boundaries need fresh case-level review."
+    }
+  ]
+}
