@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "iriya-independent-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "sourceLedger": "maintenance/iriya-readjudication-offset2-manual-batch3-010.json",
+  "sourceLedgerSha256": "9740a05ac17a58be651b4af19062cbe388ad42953b1839dc716fc7be59de60d2",
+  "overallDecision": "REVISE",
+  "scope": "All ten cited cases independently read; exact evidence, speaker/deployment, lexical unit, work independence, variants, and disposition checked under IRIYA_ADJUDICATION_GUIDE.md.",
+  "cohortFindings": {
+    "semanticAdmission": "PASS 10/10. Each retained phrase is independently deployed as an answer, verdict, test, raised saying, case appraisal, or controlled interview formula.",
+    "lexicalUnits": "PASS 10/10. All are single phrase-level components; none is merely a compositional action string or an improperly fused couplet.",
+    "distinctWorks": "PASS 10/10. Independent searches found distinct workIds and materially separate deployments for every row. The multi-source rulings do not depend solely on split volumes or duplicate editions.",
+    "exactEvidence": "REVISE. Five stored KWICs pass zc.verify and five fail because their manually bounded text is not an exact corpus substring.",
+    "variantHandling": "PASS with one enrichment note. 一状領過 correctly resolves the unattested simplified head form to corpus 一狀領過 (246 hits / 115 works). 亘古亘今 is itself attested (234 / 61), while the additional corpus spelling 亙古亙今 is also substantial (198 / 95) and should be recorded as a search variant when the evidence is recut."
+  },
+  "reviews": [
+    {
+      "term": "弄巧成拙",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Qixia Cheng applies it as the verdict on Budai's attempted display; a distinct work applies it to the elder's arrangement in another case. The stored KWIC verifies exactly and the phrase is a reusable case appraisal."
+    },
+    {
+      "term": "亘古亘今",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the stored T47n1997 witness directly from zc.find and require zc.verify; do not change its semantic ruling or unit. Record 亙古亙今 as an additional corpus spelling/search variant.",
+      "finding": "The phrase is used in Yuanwu's address and independently as a direct answer to 'what is the master's house style.' The admission is sound, but the stored KWIC is not an exact source string."
+    },
+    {
+      "term": "白浪滔天",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Replace the stored Blue Cliff KWIC with an exact zc.find window around 0157a17 and re-run zc.verify; preserve disposition and unit.",
+      "finding": "The Blue Cliff pointer explicitly asks what happens when white waves tower to the sky, and independent addresses use the same scene as an encounter test. The semantic ruling holds; the stored KWIC does not verify exactly."
+    },
+    {
+      "term": "功不浪施",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Danhu caps his two-sided Buddha-bathing judgment with the phrase; Yangqi and other independent masters use it as a conditional verdict that the work has landed. Stored evidence verifies exactly."
+    },
+    {
+      "term": "七穿八穴",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the X82n1571 evidence at 0031a24 from zc.find and re-run zc.verify; preserve semantic disposition and unit.",
+      "finding": "The phrase is deployed in the street-crossing address, as an appraisal of Xuedou's vision, and as a separate direct answer to 'after treading the Way, what then?' Its admission is sound, but the stored KWIC is not exact."
+    },
+    {
+      "term": "且坐喫茶",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the C077n1710 witness from the normalized corpus and re-run zc.verify; preserve disposition and unit.",
+      "finding": "Shoushan repeatedly uses the complete formula to suspend, dismiss, or reset interviews, and distinct masters use it in separate encounters. It is a reusable control formula rather than ordinary tea service, but the stored KWIC fails exact verification."
+    },
+    {
+      "term": "萬象之中獨露身",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "The complete line is recited and immediately approved in Feng Ji's awakening account, is separately presented as Changqing's saying, and receives sustained commentary in another work. Stored evidence verifies exactly."
+    },
+    {
+      "term": "轉凡成聖",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "A direct interview raises the proposition that one ultimate word turns ordinary into sage and asks for that word; separate addresses assert and test the same claimed function. This exceeds generic doctrinal containment. The stored KWIC verifies."
+    },
+    {
+      "term": "千差萬別",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the X83n1578 witness at 0452b14 from zc.find and re-run zc.verify; preserve disposition and unit.",
+      "finding": "Independent reading does not support rejection as a merely generic quantity phrase: one master makes 'the myriad differences are just one kind' the criterion for meeting attacks from all sides, another answers 'how does wordless principle communicate?' with 千差萬別, and another raises 千差萬別，一以貫之 as a test. The semantic admission holds, but the stored KWIC is not exact."
+    },
+    {
+      "term": "一状領過",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Variant handling is explicit and correct: admission rests on traditional 一狀領過, not a fabricated 状 hit. Wuzu sentences the Buddha through Ananda's questioning; Baiyan and other distinct cases reuse the legal metaphor to assign responsibility. The stored traditional-form KWIC verifies exactly."
+    }
+  ],
+  "mechanicalCounts": {
+    "rowsReviewed": 10,
+    "storedKwicsVerified": 5,
+    "storedKwicsNeedingRecut": 5,
+    "recutTerms": ["亘古亘今", "白浪滔天", "七穿八穴", "且坐喫茶", "千差萬別"],
+    "semanticDispositionChanges": 0,
+    "unitChanges": 0
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

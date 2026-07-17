@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "iriya-manual-ledger-repair-receipt-v1",
+  "authority": "maintenance/iriya-readjudication-offset0-manual-batch3-010-cross-review-c19-e8.json",
+  "authoritySha256": "1f65efb4aa7b0c6a5a166ddc8807c0ff433e54b2d04f3b616f8262268dcdd5f4",
+  "focusedRepairAuthority": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-focused-cross-review.json",
+  "focusedRepairAuthoritySha256": "d883cd54e632554584510cc24c6a69faf005da1b6600addf4575d3746ab827b9",
+  "repairedLedger": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+  "beforeSha256": "f7fdbec6f9eef7a53305daa63084058c598358e78b74be2d4639311d4e128e49",
+  "afterSha256": "b5a1b7cc39ace6701f85f9662cc44b970a558627fd07dce7dd35539b85d58e11",
+  "repairs": [
+    {
+      "term": "赤心片片",
+      "canonicalIndex": 147,
+      "change": "Replaced the abbreviated second witness text with an exact source recut from X82n1571 at 0049a05.",
+      "semanticChange": false
+    },
+    {
+      "term": "噇酒糟漢",
+      "canonicalIndex": 150,
+      "change": "Replaced the second witness with an exact recut from the explicitly distinct work T47n2000 at 0995a29; corrected its title to 虛堂和尚語錄.",
+      "semanticChange": false
+    },
+    {
+      "term": "欲識佛性義、當觀時節因縁",
+      "canonicalIndex": 153,
+      "change": "Added explicit normalization: printed 、 to corpus ， and printed 縁 to corpus 緣; recorded printed-head exact count 0 and normalized-query count 157 across 97 works; corrected the batch-level false claim that every printed headword was exact-attested.",
+      "semanticChange": false
+    },
+    {
+      "term": "曹源一滴水",
+      "canonicalIndex": 159,
+      "change": "Replaced the overextended second witness with the exact containing address-and-verse recut from X84n1585 at 0669c03.",
+      "semanticChange": false
+    },
+    {
+      "term": "噇酒糟漢",
+      "canonicalIndex": 150,
+      "change": "Replaced the stale description of the removed Wudeng Quanshu witness with the focused review's evidence-bound description of Xutang raising and commenting on Huangbo's address in T47n2000.",
+      "semanticChange": false
+    }
+  ],
+  "dispositionsModified": false,
+  "unitsModified": false,
+  "otherRowsModified": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

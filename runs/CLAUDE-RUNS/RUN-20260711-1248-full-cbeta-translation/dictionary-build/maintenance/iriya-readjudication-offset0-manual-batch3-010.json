@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v1",
+  "mode": "manual full-case reading; no semantic writer, regex decision, count threshold, or default disposition",
+  "registryAtSelection": "maintenance/iriya-trusted-registry.json",
+  "registryAtSelectionSha256": "29c56efc696f8beb88b6d6dfdb4c6a7abfdce821c684dec607ac1857db8799f3",
+  "excludedCompletedBatch2": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+  "excludedCompletedBatch2Sha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+  "lane": "offset0",
+  "rows": [
+    {
+      "ordinal": 45, "canonicalIndex": 132, "queueNumber": 133, "id": "t_aed53edfbb5f", "term": "解粘去縛", "query": "解粘去縛",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "The Shengshou master says that the only thing he knows how to do is 解粘去縛, paired with prescribing medicine according to illness; the phrase names his stated work rather than narrating an incidental action. Yuanwu independently says Bodhidharma came to do this for people and immediately coordinates it with pulling nails and wedges. The headword is a recurrent pedagogical operation in both formal address and case commentary.",
+      "evidence": [
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0035b02","kwic":"，不離行市。驀拈拄杖曰：寰中天子，塞外將軍。擊禪牀。上堂：十月二十三，天寒下暖簾。黃昏一覺睡，南海出榆甘。上堂：聖壽長老不會禪，不會道，祇會解粘去縛，應病與藥。諸佛子，無禪可參，無法可學，棄本逐末，區區客作。不如歸去來，識取自家城郭。城中自有法王尊，一呼百諾。髻晃明月珠，手振黃金鐸。還要"},
+        {"source":"T/T48/T48n2003.xml","title":"佛果圜悟禪師碧巖錄","workId":"work:T48n2003","line":"0141b01","kwic":"了底人。決定打作兩橛。諸方尋常皆道。雪竇重拈一遍。殊不知。四句頌盡公案了。後為慈悲之故。頌出事跡。因茲暗渡江。豈免生荊棘。達磨本來茲土。與人解粘去縛。抽釘拔楔。剗除荊棘。因何却道生荊棘。非止當時。諸人即今脚跟下。已深數丈。闔國人追不再來。千古萬古空相憶。可殺不丈夫。且道。達磨在什麼處。若"}
+      ]
+    },
+    {
+      "ordinal": 46, "canonicalIndex": 135, "queueNumber": 136, "id": "t_208800a0198d", "term": "喪我兒孫", "query": "喪我兒孫",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Baizhang refuses to supply a formulation because doing so would 'lose my descendants,' then uses the same sentence to judge Yunyan's counter-question. In the separate Mazu succession exchange, Huangbo says that claiming Mazu without recognizing his operation would likewise lose Baizhang's descendants, and Baizhang confirms the appraisal. The phrase repeatedly caps a lineage test by naming the consequence of transmitting an inadequate response.",
+      "evidence": [
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0342c13","kwic":"限愁更有蒼藤鎖石嶝，礱今錯古倩誰收。百丈因溈山、五峰、雲巖侍立次，乃問溈山：并却咽㗋脣吻作麼生道？山曰：却請和尚道。師曰：不辭與汝道，恐已後喪我兒孫。又問五峰，峰曰：和尚也須并却。師曰：無人處斫額望汝。又問雲巖，巖曰：某甲有道處，請和尚舉。師舉，巖曰：和尚有也未？師曰：喪我兒孫。高峰妙云"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0475c12","kwic":"一喝，直得三日耳聾。黃檗聞舉，不覺吐舌。師曰：子已後莫承嗣馬祖去麼？檗曰：不然。今日因和尚舉，得見馬祖大機之用，然且不識馬祖。若嗣馬祖，已後喪我兒孫。師曰：如是，如是。見與師齊，減師半德。見過於師，方堪傳授。子甚有超師之見。檗便禮拜。溈山問仰山：百丈再參馬祖因緣，此二尊宿意旨如何？仰曰："}
+      ]
+    },
+    {
+      "ordinal": 47, "canonicalIndex": 138, "queueNumber": 139, "id": "t_3a5daeab0e3f", "term": "東語西話", "query": "東語西話",
+      "disposition": "REJECT", "unit": "—", "validation": "rejected",
+      "reason": "One witness lists 東語西話 as the title of a volume among Zhongfeng's writings; it does not deploy the four graphs as a saying. The other says the aged master no longer has strength to 'talk this way and that' with the assembly, where the phrase is ordinary descriptive speech whose content is supplied by the following sentence. Neither witness raises, answers with, glosses, or adjudicates the headword, so corpus containment does not establish a Chan lexical job.",
+      "evidence": [
+        {"source":"B/B25/B25n0145.xml","title":"天目中峰廣錄","workId":"work:B25n0145","line":"0687b16","kwic":"於邪見。未得謂得。未證謂證也。於是擬寒山詩一百首。又著幻住家訓一篇。以發明真叅實悟之旨。因學者每每致問。隨問而答。久而成編。曰山房夜話一卷。東語西話一卷。續集二卷。語錄十卷。別錄十卷。於戲先師豈好辯哉。蓋有不得已者也。今遂緫加裒錄而槩題其編。曰天目中峯和尚廣錄。隨表進上。恭望天慈鑒臣先師"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0147b12","kwic":"茲祠奉，以旌孝慕。上聞而嘉嘆。淳祐戊申秋，築室明月池上，榜曰退畊。乞老于朝，而舊疾適作。己酉三月旦日，陞堂示眾曰：山僧既老且病，無力得與諸人東語西話，今日勉強出來，從前所說不到底，盡情向諸人面前抖擻去也。遂起身抖衣曰：是多少？十八日，集兩序區畫後事，親書遺表及遺書十數封，言笑諧謔如平時。"}
+      ]
+    },
+    {
+      "ordinal": 48, "canonicalIndex": 141, "queueNumber": 142, "id": "t_69bada1d52a4", "term": "從上來事", "query": "從上來事",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Yushan explicitly says that bringing up 從上來事 is already perfectly direct before rejecting doctrinal elaboration. Shanhui independently frames the identical words as the object of a test-question—'what, finally, is the matter handed down from before?'—and answers with a capping line. The headword recurrently names the inherited matter being raised and tested, not merely chronological prose.",
+      "evidence": [
+        {"source":"J/J40/J40nB494.xml","title":"雨山和尚語錄","workId":"work:J40nB494","line":"0542c04","kwic":"悲。」師云：「亂統禪和，如麻似粟。」進云：「和尚也不得壓良為賤。」師打，云：「教休不肯休，直待雨淋頭。」乃云：「天晴日頭出，雨落地下濕，稱提從上來事已是十分條直，更說甚祖意明明百草頭，森羅萬象齊烜赫？向道：不是心，不是佛，直下摟碎精靈窟。你輩禪和家慣說真如、般若、菩提、涅槃，聞恁般道而不"},
+        {"source":"J/J29/J29nB223.xml","title":"山暉禪師語錄","workId":"work:J29nB223","line":"0026b20","kwic":"？」明拂袖歸眾。師乃云：「玅協群機，猶是理為神御；稱提三句，亦是法隨時宜。何也？你若一向入理深談，難挑見刺；你若一向落艸化物，早蕩正宗。祇如從上來事畢竟如何？青山纔舉首，占斷白雲宗。」复舉：「龐行婆入寺修齋，維那請意旨，婆抽釵子插盧中，便出云：『我已回向了。』」師云：「好行婆，大冶精金，"}
+      ]
+    },
+    {
+      "ordinal": 49, "canonicalIndex": 144, "queueNumber": 145, "id": "t_1156d83ece2b", "term": "憐兒不覺醜", "query": "憐兒不覺醜",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Chonghua directly caps the flower case by judging Śākyamuni 'fond of the child and unaware of the ugliness,' paired with a separate judgment on Kāśyapa. Zongjian Falin preserves another master applying the same complete verdict to Śākyamuni after a different chain of comments. The proverb is repeatedly wielded as a critic's case-appraisal, not quoted as free-standing moral verse.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0016c06","kwic":"尊平地骨堆，飲光開眼失跌，累及後代兒孫，烏龜却喚作鱉。大眾！山僧與麼批判，也是徒勞唇舌。阿呵呵！金風一陣來，掃却庭前葉。崇化能云：世尊拈花，憐兒不覺醜；迦葉微笑，刺腦入膠盆。白巖符云：老瞿曇節外生枝，大迦葉隨邪逐惡，黃河水向源頭濁了也，並須喫棒有分。當時有人見他拈起青蓮，便好一喝，云：草本"},
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0281a20","kwic":"大慈悲。遂拍手云：曼殊室利！不審今後更敢也無？良久，乃自云：一度被蛇傷，怕見斷井索。千巖長云：不起佛見、法見，還免得貶向二鐵圍山麼？世尊也是憐兒不覺醜。寶華忍云：瞿曇、白雲、五祖雖云扶豎綱宗，要且未透末後句在。曹山者裏若有起佛見、法見，每人分半院與他。何故？一掌不浪鳴，兩掌鳴摑摑。開先金云"}
+      ]
+    },
+    {
+      "ordinal": 50, "canonicalIndex": 147, "queueNumber": 148, "id": "t_cf81750f2c61", "term": "赤心片片", "query": "赤心片片",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Fushan uses 赤心片片 as a direct appraisal of Yunmen before contrasting Xuedou's action. In the independent Wudeng Quanshu exchange, the phrase itself is the master's answer when asked the purport of 'hiding the body in the Big Dipper.' These distinct verdict and answer deployments establish a live evaluative formula; the decision does not depend on occurrences merely contained in verse.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0007c15","kwic":"靈龜拽尾，自取喪身之兆。雲門雖則全提正令，也是為他閒事長無明。當時但於地上畫一圓相，就中書個丁字，復展兩手示之，管取氷消瓦解。浮山口云：雲門赤心片片，葢代功高；雪竇見義勇為，機如掣電。二俱足可觀光，其奈頂門無眼。南堂欲云：雲門好棒，可殺驚人。檢點將來，未免傷鋒犯手。山僧當時若見，只消道個"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0049a05","kwic":"空界，示等虗空法。證得虗空時，無是無非法。豁然大悟。每謂人曰：我於紹聖三年十一月二十一曰，悟得方寸禪。出住歸宗，詔居淨因。僧問：達磨西來，傳個甚麼？師曰：周秦漢魏。問：昔日僧問雲門：如何是透法身句？門曰：北斗裏藏身。意旨如何？師曰：赤心片片。曰：若是學人即不然。師曰：汝又作麼生？曰：昨夜擡頭看北斗，依稀却似點糖糕。師曰：但念水草，餘無所知。上堂：西來祖意，教外別傳。非大根器，不能證入。其證入者，不被文字語言所轉，聲色是非所迷。亦無雲門臨濟之殊，趙州德山之異。所以唱道，須明有語中無語，無語中有語。若向這裏薦得，可謂終日著衣，未甞挂一縷絲。終日喫飯，未甞齩一粒米。直是呵佛罵祖，有甚麼過？雖然如是，欲得不招無間業，莫謗如來正法輪。喝一喝，下座。"}
+      ]
+    },
+    {
+      "ordinal": 51, "canonicalIndex": 150, "queueNumber": 151, "id": "t_8cbd5a63776d", "term": "噇酒糟漢", "query": "噇酒糟漢",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "Huangbo directly calls the gathered students 噇酒糟漢 and immediately specifies their conduct: chasing large noisy assemblies, storing learned words, and claiming to understand Chan. Xutang independently raises Huangbo's address, comments on why readers miss it, and warns against understanding it merely at the phrase 噇酒糟漢. The headword is a recurrent person-appraisal, not literal biographical reporting that someone drank lees.",
+      "evidence": [
+        {"source":"X/X81/X81n1571.xml","title":"五燈全書(第1卷-第33卷)","workId":"work:wudeng-quanshu","line":"0465a01","kwic":"一日上堂，大眾雲集，乃曰：汝等諸人欲何所求？以拄杖趂之，大眾不散。師却復坐，曰：汝等諸人盡是噇酒糟漢，恁麼行脚，取笑於人。但見八百一千人處便去，不可圖他熱閙也。老漢行脚時，或遇草根下有一箇漢，便從頂門上一錐。看他若知痛痒，可以布袋盛米供養他。總似汝如此容易，何處更有今日事也？汝等既稱行脚，亦須著些精神好。還知道大唐國內無禪師麼？時有僧問：諸方尊宿盡聚眾開化，為甚麼却道無禪師？師曰：不道無禪，祇是無師。"},
+        {"source":"T/T47/T47n2000.xml","title":"虛堂和尚語錄","workId":"work:T47n2000","line":"0995a29","kwic":"上堂。舉。黃檗示眾。汝等諸人。甚是噇酒糟漢。與麼行脚。何處有今日。還知大唐國裏無禪師麼。時有僧出云。只如諸方𭅕徒領眾。又作麼生。檗云。不道無禪。只是無師。師云。箇些子說話。蹉過者多。真點胸道。霧豹澤毛。未甞下食。庭禽養勇。終待驚人也。只知其養士之心。而不知死灰裏火蛇燒面。透得親見黃檗。不然切忌。向噇酒糟漢處。會去。"}
+      ]
+    },
+    {
+      "ordinal": 52, "canonicalIndex": 153, "queueNumber": 154, "id": "t_9e9c51dd4e59", "term": "欲識佛性義、當觀時節因縁", "query": "欲識佛性義，當觀時節因緣",
+      "disposition": "KEEP (couplet)", "unit": "couplet", "validation": "multi-source",
+      "reason": "The whole two-clause formula is raised intact before a monk asks what the 時節因緣 are; the master answers by leaving the seat, so both the wish to know and the instruction to observe conditions organize the test. Dahui independently raises both clauses, adds 時節若至，其理自彰, and tests the assembly with seeing and hearing. The linked admonition, not either clause alone, is the repeated unit.",
+      "formResolution": {"printedHeadword": "欲識佛性義、當觀時節因縁", "printedHeadwordExactHits": 0, "corpusQuery": "欲識佛性義，當觀時節因緣", "corpusQueryExactHits": 157, "corpusQueryDistinctWorks": 97, "changes": ["Iriya separator 、 resolves to corpus punctuation ，", "Iriya glyph 縁 resolves to corpus glyph 緣"], "finding": "The printed headword is exact-absent, but the normalized two-clause corpus form is exact-attested and deployed intact; this is punctuation/glyph resolution, not evidence that the printed string occurs verbatim."},
+      "evidence": [
+        {"source":"X/X81/X81n1568.xml","title":"五燈嚴統(第10卷-第25卷)","workId":"work:wudeng-yantong","line":"0049a13","kwic":"上堂，大眾集定，有僧纔出禮拜，師曰：欲識佛性義，當觀時節因緣。僧便問：如何是時節因緣？師便下座。問：如何是向去底人？師曰：從歸青嶂裏，不出白雲來。曰：如何是却來底人？師曰：自從遊紫陌，誰肯隱青山？問：如何是奪人不奪境？師曰：家裏已無回日信，路邊空有望鄉牌。"},
+        {"source":"X/X84/X84n1583.xml","title":"續燈正統","workId":"work:X84n1583","line":"0408b12","kwic":"上堂。欲識佛性義，當觀時節因緣。時節若至，其理自彰。舉起拂子曰，還見麼。擊禪牀曰，還聞麼。聞見分明是箇甚麼。若向這裡提得去，皇恩佛恩一時報足。其或未然，徑山打葛藤去也。復舉起拂子曰，看看。無量壽世尊在徑山拂子頭上放大光明，照不可說不可說又不可說佛剎微塵數世界中轉大法輪，作無量無邊廣大佛事。"}
+      ]
+    },
+    {
+      "ordinal": 53, "canonicalIndex": 156, "queueNumber": 157, "id": "t_1bed151b80a3", "term": "老僧罪過", "query": "老僧罪過",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "After Baizhang says he would report a person to Mazu if he met one, Mazu returns the supposed fault to himself with 却是老僧罪過; the phrase closes their exchange rather than confessing an enumerated offense. In the National Teacher's stone-lion case, 老僧罪過 is itself the requested turning phrase, after which the attendant reopens its adequacy. Those distinct encounters establish a reusable self-capping reply.",
+      "evidence": [
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0048a21","kwic":"馬祖一日問百丈：甚處來？曰：山後來。祖曰：逢着一人麼？曰：不逢着。祖曰：為甚麼不逢着？曰：若逢着，即舉似和尚。祖曰：甚麼處得這消息來？曰：懷海罪過。祖曰：却是老僧罪過。國清英云：人既不見，因甚各各擔一擔罪過？獅峰遜云：逢着不逢着則且置，未審是什麼人？若識得此人，馬祖、百丈與他挈草鞵有分。"},
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0322c23","kwic":"國師同肅宗到宮前，乃指石獅子曰：陛下，者石獅子奇特，下取一轉語。帝曰：朕下語不得，請師下語。師曰：老僧罪過。後耽源問師曰：皇帝還會麼？師曰：皇帝會且置，你作麼生會？玄沙備云：大小國師被侍者勘破。頤石圓云：言中有響，句裏藏鋒。國師、肅宗可謂得人一牛，還人一馬，美則美矣，善則未善。"}
+      ]
+    },
+    {
+      "ordinal": 54, "canonicalIndex": 159, "queueNumber": 160, "id": "t_89256ca9aee7", "term": "曹源一滴水", "query": "曹源一滴水",
+      "disposition": "KEEP (component)", "unit": "component", "validation": "multi-source",
+      "reason": "A monk raises 曹源一滴水 as the object of a direct 'what is it?' question; Fayan answers by repeating the exact headword, and Tiantai Deshao's response to that answer is then recorded. A separate lamp work raises the same question-answer as a case and caps it with a verse beginning with the headword. The complete four-graph image is therefore a recurrent raised case and answer, not generic water imagery.",
+      "evidence": [
+        {"source":"X/X81/X81n1568.xml","title":"五燈嚴統(第10卷-第25卷)","workId":"work:wudeng-yantong","line":"0003b12","kwic":"最後至臨川謁法眼，眼一見深器之。師以徧涉叢林，亦倦於參問，但隨眾而已。一日，法眼上堂，僧問：如何是曹源一滴水？眼曰：是曹源一滴水。僧惘然而退。師於坐側豁然開悟，平生凝滯，渙若冰釋。遂以所悟聞於法眼，眼曰：汝向後當為國王所師，致祖道光大，吾不如也。自是諸方異唱，古今玄鍵，與之決擇，不留微迹。"},
+        {"source":"X/X84/X84n1585.xml","title":"續燈存稿","workId":"work:X84n1585","line":"0669c03","kwic":"上堂，舉天台韶國師初參法眼，因僧問法眼：如何是曹源一滴水？眼曰：是曹源一滴水。韶聞豁然開悟。師頌曰：曹源一滴水，相罵饒接𭪿。鷃󳭋空啾啾，驊騮已千里。"}
+      ]
+    }
+  ],
+  "reviewedCount": 10,
+  "summary": {"KEEP (component)": 8, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 1},
+  "exactFormResolution": "Nine printed headwords are exact-attested. The printed form 欲識佛性義、當觀時節因縁 is exact-absent (0); its punctuation/glyph-resolved corpus query 欲識佛性義，當觀時節因緣 is exact-attested in 157 hits across 97 works and was read as a two-clause unit in two independent works.",
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

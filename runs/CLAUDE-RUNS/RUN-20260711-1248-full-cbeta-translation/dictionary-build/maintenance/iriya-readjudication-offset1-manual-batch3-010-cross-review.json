@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewer": "Codex independent full-case reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset1-manual-batch3-010.json",
+  "sourceLedgerSha256": "327457950a05654bb0340a8524295ca91a100517513e349881f4f008a2ef8e4c",
+  "decision": "PASS",
+  "scope": "Independent reading of every cited full KWIC for exact headword evidence, turn and speaker deployment, lexical boundary, distinct-work support, variant handling, and disposition under IRIYA_ADJUDICATION_GUIDE.",
+  "cohortFindings": {
+    "exactEvidence": "PASS — all 20 cited KWICs contain the exact query string at the claimed line context; no supplied evidence depends on a normalized or substituted spelling.",
+    "speakerAndDeployment": "PASS — each row is anchored in an observable sermon, interview answer, challenge, or case verdict. Speaker claims are limited to what the cited case supports.",
+    "units": "PASS — all ten headwords are single idiomatic or technical components. None crosses a question-answer turn or combines independently reusable clauses, so KEEP (component) is the correct unit treatment throughout.",
+    "workIndependence": "PASS — each row cites two different workIds. The two Yuanwu sources for 蓋天蓋地 are distinct works and independently deploy the expression; the remaining rows also have materially separate cases rather than duplicated KWICs or split-volume witnesses.",
+    "variantHandling": "PASS — term and query are identical in all ten rows and every cited occurrence uses that exact form. No row requires a variant rewrite or a separate-sense split.",
+    "dispositions": "PASS — every KEEP decision is justified by observable Chan deployment in both cited works, not merely by frequency or occurrence counts."
+  },
+  "reviews": [
+    {
+      "canonicalIndex": 76,
+      "term": "蓋天蓋地",
+      "decision": "PASS",
+      "reason": "The Blue Cliff pointer predicates the expression of 大用現前, while 佛果圜悟禪師心要 makes it the range of 長養履踐. The exact four-character unit occurs in both distinct works; both are functional doctrinal deployments, not literal geography. No repair."
+    },
+    {
+      "canonicalIndex": 79,
+      "term": "兩重公案",
+      "decision": "PASS",
+      "reason": "Muzhou utters the term as an immediate appraisal of the old master's shout and is challenged for the fault; Yunfeng uses it to reject the monk's attempted resolution of the Danxia eyebrow case. The same intact lexical label performs a case-diagnostic job in two distinct works. No repair."
+    },
+    {
+      "canonicalIndex": 82,
+      "term": "好事不如無",
+      "decision": "PASS",
+      "reason": "One formal address ends with the exact maxim before descent from the seat; Zhaozhou gives it directly against Wenyuan's claim that bowing is a good act. It is a complete recurring corrective formula, but not a two-clause couplet requiring split treatment. No repair."
+    },
+    {
+      "canonicalIndex": 85,
+      "term": "填溝塞壑",
+      "decision": "PASS",
+      "reason": "In 五燈全書 it is the master's exact answer to where Sudhana has landed. In 列祖提綱錄 it is part of Mi'an Jie's snow address and feeds the explicit test 誰辨別. The second image remains literally snowy, but its deployment is not incidental narrative description: the address makes the undifferentiated filling itself the test. This supports KEEP without overstating a single fixed gloss. No repair."
+    },
+    {
+      "canonicalIndex": 88,
+      "term": "碧眼胡僧",
+      "decision": "PASS",
+      "reason": "Huayan Yong pairs the exact epithet with the Shaoshi setting and an opened eye; Ziguo Yuanjin makes that figure's smiling nod answer the cypress-case question. The contexts identify the Chan figure Bodhidharma rather than a generic ethnic description, and the component boundary is exact. No repair."
+    },
+    {
+      "canonicalIndex": 91,
+      "term": "放一線道",
+      "decision": "PASS",
+      "reason": "Huangbo contrasts allowing this opening with refusing passage and then answers the direct 放一線道時如何 question. 建中靖國續燈錄 independently gives the same exact phrase as the answer describing the master's speaking mouth. Both are controlled interview deployments of one lexical unit. No repair."
+    },
+    {
+      "canonicalIndex": 94,
+      "term": "久雨不晴",
+      "decision": "PASS",
+      "reason": "五燈全書 uses the phrase as the shouted cap to a formal address; 古尊宿語錄 gives it as the answer for the master's house style and immediately reopens it for explanation. The weather wording is therefore raised and tested in distinct works, not merely used in a weather report. No repair."
+    },
+    {
+      "canonicalIndex": 97,
+      "term": "無風起浪",
+      "decision": "PASS",
+      "reason": "Yunju Zhuang applies the exact expression as a verdict on Mazu's handling, and the 續傳燈錄 master applies it to Deshan's staff and Linji's phrase before exposing his own address to review. Both are explicit appraisals of manufactured disturbance. No repair."
+    },
+    {
+      "canonicalIndex": 100,
+      "term": "坐斷十方",
+      "decision": "PASS",
+      "reason": "Hongzhi makes the exact phrase the question-pivot of a memorial address. In Yuanwu's interview it is the monk's proposed reading of the sword response, which Yuanwu tests with 七縱八橫 rather than simply endorsing. Raised-and-tested deployment qualifies; the unit remains the four-character component. No repair."
+    },
+    {
+      "canonicalIndex": 103,
+      "term": "日用而不知",
+      "decision": "PASS",
+      "reason": "Although inherited from the Changes, the phrase is not admitted here as a bare quotation: Emperor Suzong asks the National Teacher to demonstrate it, and Yunmen asks a scholar what precisely is not known and challenges the answer 道. The exact formula functions as an interview test in both distinct works. No repair."
+    }
+  ],
+  "mechanicalReceipt": {
+    "rowsReviewed": 10,
+    "citedKwicsRead": 20,
+    "exactHeadwordSpansConfirmed": 20,
+    "pass": 10,
+    "revise": 0,
+    "repairsRequired": []
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

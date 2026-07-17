@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "iriya-independent-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "sourceLedger": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+  "sourceLedgerSha256": "265b2f4d1c0d7d5dd41f604ad1db14381a6efac9d2c9a76471245174af796a48",
+  "overallDecision": "REVISE",
+  "scope": "All ten decisions and twenty cited cases independently read; exact zc evidence, utterer/deployment, lexical unit, work independence, variants, and disposition checked under IRIYA_ADJUDICATION_GUIDE.md.",
+  "cohortFindings": {
+    "semanticAdmission": "PASS 10/10, counting the corpus-grounded REJECT for 東語西話 as a correct semantic outcome.",
+    "lexicalUnits": "PASS 10/10. Eight retained components are phrase-level units, the retained 佛性 formula is a genuine two-clause couplet, and 東語西話 correctly has no admitted unit.",
+    "exactEvidence": "REVISE — 17/20 stored KWICs verify exactly. The second witnesses for 赤心片片, 噇酒糟漢, and 曹源一滴水 must be recut.",
+    "workIndependence": "REVISE one row — 噇酒糟漢 cites X81n1571 and X82n1571, which are two volumes of the single work 五燈全書 (`work:wudeng-quanshu`), not two independent works. Independent witnesses exist and must replace the second citation.",
+    "variantHandling": "REVISE one row — the printed headword 欲識佛性義、當觀時節因縁 has zero exact hits. Its admitted corpus query 欲識佛性義，當觀時節因緣 has 157 hits in 97 works. The ledger notes the comma-form pair but must explicitly record both the separator resolution `、→，` and glyph resolution `縁→緣`; it must not claim all ten headword forms were exact-attested."
+  },
+  "reviews": [
+    {
+      "term": "解粘去縛",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Shengshou names it as the only work he knows, paired with medicine according to illness; Yuanwu independently makes it Bodhidharma's work and coordinates it with pulling nails and wedges. Both distinct-work KWICs verify exactly."
+    },
+    {
+      "term": "喪我兒孫",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Baizhang uses it to withhold an inadequate formulation and Huangbo uses it in the separate Mazu succession test, with Baizhang confirming the appraisal. Both evidence bindings are exact and independent."
+    },
+    {
+      "term": "東語西話",
+      "decision": "PASS",
+      "confirmedDisposition": "REJECT",
+      "finding": "One occurrence is only a book title; the other compositionally says the aged master lacks strength to talk this way and that before stating his actual message. Neither raises, answers with, glosses, or adjudicates the string. Both negative witnesses verify exactly."
+    },
+    {
+      "term": "從上來事",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Yushan explicitly appraises raising the inherited matter, while Shanhui makes the same phrase the object of a direct test-question and caps it with an answer. Exact evidence and work independence pass."
+    },
+    {
+      "term": "憐兒不覺醜",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Distinct critics apply the complete proverb to the Buddha's handling of cases. It functions as a case verdict, not free-standing moral verse; both witnesses verify and have distinct workIds."
+    },
+    {
+      "term": "赤心片片",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the X82n1571 witness at 0049a05 directly from zc.find and require zc.verify; preserve the direct-answer evidence, disposition, unit, and multi-source ruling.",
+      "finding": "Fushan uses the phrase to appraise Yunmen, and the independent Wudeng Quanshu interview gives it directly as the answer to the purport of hiding the body in the Big Dipper. The semantic ruling holds; only the second stored KWIC is non-exact."
+    },
+    {
+      "term": "噇酒糟漢",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Replace the non-exact X82 witness with an exact witness from a genuinely distinct work and re-run zc.verify. Suitable independently read evidence includes C078n1720 (`work:C078n1720`, 0703c13), which raises Huangbo's address and verses the epithet, or T47n2000 (`work:T47n2000`, 0995a22), which raises and comments on the case. Do not count X81n1571 plus X82n1571 as two works.",
+      "finding": "The epithet is a live person-appraisal for students who collect noisy assemblies and learned sayings rather than literal drinking. Admission and unit pass, but the cited source pair is one work and the second KWIC fails exact verification."
+    },
+    {
+      "term": "欲識佛性義、當觀時節因縁",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (couplet)",
+      "repair": "Add explicit variantResolution recording printed `欲識佛性義、當觀時節因縁` → corpus `欲識佛性義，當觀時節因緣` (`、→，`; `縁→緣`) and correct the cohort exact-form statement. Preserve both exact KWICs, couplet unit, and disposition.",
+      "finding": "The whole linked formula organizes the question about 時節因緣 in one work and the see/hear test in another; neither clause alone captures the recurrent unit. Both stored corpus-form witnesses verify exactly and are independent."
+    },
+    {
+      "term": "老僧罪過",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "finding": "Mazu and Baizhang exchange the self-capping phrase, while the National Teacher supplies it as the requested turning word in a distinct case. Both exact KWICs and work bindings pass."
+    },
+    {
+      "term": "曹源一滴水",
+      "decision": "REVISE",
+      "confirmedDisposition": "KEEP (component)",
+      "repair": "Re-cut the X84n1585 witness at 0669c03 directly from zc.find and require zc.verify; preserve its raised-case-and-verse evidence, disposition, unit, and work independence.",
+      "finding": "Fayan repeats the exact phrase as answer to the direct question, and a distinct lamp work raises the case and begins its verse with the phrase. Admission is sound; only the second stored KWIC is non-exact."
+    }
+  ],
+  "counts": {
+    "rowsReviewed": 10,
+    "passAsWritten": 6,
+    "revise": 4,
+    "semanticDispositionChanges": 0,
+    "unitChanges": 0,
+    "storedKwicsVerified": 17,
+    "storedKwicsNeedingRecut": 3,
+    "workIndependenceRepairs": 1,
+    "variantMetadataRepairs": 1
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

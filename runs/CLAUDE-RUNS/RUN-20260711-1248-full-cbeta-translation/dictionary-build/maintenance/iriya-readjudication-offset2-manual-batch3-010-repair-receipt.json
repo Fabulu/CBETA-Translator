@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "iriya-manual-ledger-repair-receipt-v1",
+  "ledger": "maintenance/iriya-readjudication-offset2-manual-batch3-010.json",
+  "review": "maintenance/iriya-readjudication-offset2-manual-batch3-010-cross-review-c19-e8.json",
+  "reviewedLedgerSha256": "9740a05ac17a58be651b4af19062cbe388ad42953b1839dc716fc7be59de60d2",
+  "repairedLedgerSha256": "72c599f3b49c5061f4256ef11b36d1b9ef11f0d53a19181df37b86d6eeb305a8",
+  "decision": "REPAIRED",
+  "repairs": [
+    {
+      "term": "亘古亘今",
+      "field": "evidence.KWIC",
+      "source": "T/T47/T47n1997.xml",
+      "zcVerify": {"ok": true, "fromLb": "0728c11", "toLb": "0728c20", "count": 1},
+      "additionalChange": "Recorded 亙古亙今 in searchVariants."
+    },
+    {
+      "term": "白浪滔天",
+      "field": "evidence.KWIC",
+      "source": "T/T48/T48n2003.xml",
+      "zcVerify": {"ok": true, "fromLb": "0157a13", "toLb": "0157a24", "count": 1}
+    },
+    {
+      "term": "七穿八穴",
+      "field": "evidence.KWIC",
+      "source": "X/X82/X82n1571.xml",
+      "zcVerify": {"ok": true, "fromLb": "0031a20", "toLb": "0031b04", "count": 1}
+    },
+    {
+      "term": "且坐喫茶",
+      "field": "evidence.KWIC",
+      "source": "C/C077/C077n1710.xml",
+      "zcVerify": {"ok": true, "fromLb": "0672c09", "toLb": "0672c19", "count": 1}
+    },
+    {
+      "term": "千差萬別",
+      "field": "evidence.KWIC",
+      "source": "X/X83/X83n1578.xml",
+      "zcVerify": {"ok": true, "fromLb": "0452b11", "toLb": "0452b18", "count": 1}
+    }
+  ],
+  "semanticDispositionChanges": 0,
+  "unitChanges": 0,
+  "buildTouched": false,
+  "queueTouched": false,
+  "lineageTouched": false
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-17T20:25:32.151536+00:00",
+  "generatedUtc": "2026-07-17T20:44:55Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "29c56efc696f8beb88b6d6dfdb4c6a7abfdce821c684dec607ac1857db8799f3",
+  "registrySha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -108,12 +108,67 @@
       "role": "independent-review",
       "path": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
       "sha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+    },
+    {
+      "role": "manual-batch3-authority",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+      "sha256": "b5a1b7cc39ace6701f85f9662cc44b970a558627fd07dce7dd35539b85d58e11"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch3-010-cross-review-c19-e8.json",
+      "sha256": "1f65efb4aa7b0c6a5a166ddc8807c0ff433e54b2d04f3b616f8262268dcdd5f4"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-receipt.json",
+      "sha256": "66ef89e9bc5cdf4c5475bc28765661ad83b545d2f7db5ab571eda4cf0ecc8a00"
+    },
+    {
+      "role": "focused-recheck",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-focused-cross-review.json",
+      "sha256": "d883cd54e632554584510cc24c6a69faf005da1b6600addf4575d3746ab827b9"
+    },
+    {
+      "role": "final-focused-acceptance",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-final-focused-cross-review.json",
+      "sha256": "f9fd2ad3c478996add0b7e4de56f308914ed684998550a4a2ab385213338b15c"
+    },
+    {
+      "role": "manual-batch3-authority",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch3-010.json",
+      "sha256": "327457950a05654bb0340a8524295ca91a100517513e349881f4f008a2ef8e4c"
+    },
+    {
+      "role": "independent-acceptance",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch3-010-cross-review.json",
+      "sha256": "33a0e529cae7be977104040308afbfa885811eae1200a3da2f2c02ac8eacaf5e"
+    },
+    {
+      "role": "manual-batch3-authority",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch3-010.json",
+      "sha256": "72c599f3b49c5061f4256ef11b36d1b9ef11f0d53a19181df37b86d6eeb305a8"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch3-010-cross-review-c19-e8.json",
+      "sha256": "8fde145b42f422c5f2089f85bcebda1bbdaea6bcb89ee279e9e59e67eb3dcdbf"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-receipt.json",
+      "sha256": "c45cdb46852f0b0df73e984d5d0974a5866ec9862884bbfae9fd2e6094bdf89f"
+    },
+    {
+      "role": "post-repair-acceptance",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-cross-review-c19-e8.json",
+      "sha256": "78b0317b7be028ef61307a67b447e8363fda16751c11dfcd854ca684e5612458"
     }
   ],
   "verification": {
-    "rowCount": 214,
-    "uniqueCanonicalIndexCount": 214,
-    "uniqueIdCount": 214,
+    "rowCount": 244,
+    "uniqueCanonicalIndexCount": 244,
+    "uniqueIdCount": 244,
     "queueNumberEqualsCanonicalIndexPlusOne": true,
     "methodAuditRows": 154,
     "independentlyAcceptedCanaryRows": 30,
@@ -122,9 +177,10 @@
     "noQuarantinedDefaultDecisionAdmitted": true,
     "allRowsCarryExactAuthorityOrIndependentAcceptanceBinding": true,
     "independentlyAcceptedBatch2Rows": 30,
-    "preservedExistingRows": 184,
-    "keepDecisionCount": 189,
-    "rejectDecisionCount": 25,
+    "independentlyAcceptedBatch3Rows": 30,
+    "preservedExistingRows": 214,
+    "keepDecisionCount": 218,
+    "rejectDecisionCount": 26,
     "provisionalDecisionCount": 0
   },
   "exclusionRule": "Rows ruled INVALID/QUARANTINE by a method audit were excluded unless the exact row appears in one of the three fresh manual canaries and that canary has an independent PASS receipt. No older bulk/default verdict was used to fill a registry row.",
@@ -134,7 +190,7 @@
     "lineageTouched": false,
     "entryConstructionPerformed": false
   },
-  "priorRegistrySha256": "614e3f6b6ebbbf452c67608795a2d946b0463cf9bedb2b29a15a0accb4df6e10",
+  "priorRegistrySha256": "29c56efc696f8beb88b6d6dfdb4c6a7abfdce821c684dec607ac1857db8799f3",
   "batch2Seal": {
     "rowsAppended": 30,
     "offset0Rows": 10,
@@ -166,5 +222,40 @@
     ],
     "identityOverlapWithPrior184": 0,
     "prior184ObjectsPreservedExactly": true
+  },
+  "batch3Seal": {
+    "rowsAppended": 30,
+    "offset0Rows": 10,
+    "offset1Rows": 10,
+    "offset2Rows": 10,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+        "rowsKey": "rows",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch3-010-cross-review-c19-e8.json",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-receipt.json",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-focused-cross-review.json",
+        "finalFocusedAcceptance": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-final-focused-cross-review.json"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch3-010.json",
+        "rowsKey": "decisions",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch3-010-cross-review.json"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-readjudication-offset2-manual-batch3-010.json",
+        "rowsKey": "decisions",
+        "review": "maintenance/iriya-readjudication-offset2-manual-batch3-010-cross-review-c19-e8.json",
+        "repairReceipt": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-receipt.json",
+        "postRepairAcceptance": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-cross-review-c19-e8.json"
+      }
+    ],
+    "identityOverlapWithPrior214": 0,
+    "prior214ObjectsPreservedExactly": true,
+    "quarantinedDefaultDecisionAdmitted": false,
+    "provisionalRowsAdmitted": 0
   }
 }

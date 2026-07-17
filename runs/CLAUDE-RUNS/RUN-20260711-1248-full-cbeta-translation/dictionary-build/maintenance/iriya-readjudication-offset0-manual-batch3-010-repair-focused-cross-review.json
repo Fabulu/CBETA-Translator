@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-cross-review-v1",
+  "reviewer": "Codex independent focused repair reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+  "sourceLedgerSha256": "be19801acebef9017b4fb7c98af7b1a052d3c81b2b00edd663701e5e50302365",
+  "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-receipt.json",
+  "repairReceiptSha256": "baf74e839386d01a40dd27d198917a0f3fc5e72e9eb4dbbd82ba8f8418b55a39",
+  "authorityReview": "maintenance/iriya-readjudication-offset0-manual-batch3-010-cross-review-c19-e8.json",
+  "authorityReviewSha256": "1f65efb4aa7b0c6a5a166ddc8807c0ff433e54b2d04f3b616f8262268dcdd5f4",
+  "overallDecision": "REVISE",
+  "scope": "Focused independent recheck of the three exact recuts, the distinct-work replacement for 噇酒糟漢, and the punctuation/glyph resolution and exact-form claim for 欲識佛性義、當觀時節因縁. Other semantic dispositions and units were checked for unintended change only.",
+  "reviews": [
+    {
+      "term": "赤心片片",
+      "decision": "PASS",
+      "finding": "The replacement X82n1571 KWIC is an exact contiguous corpus string: zc.verify returns ok=true at 0049a01–0049a14, and it contains the direct-answer deployment at the claimed case. The KEEP (component) ruling is unchanged."
+    },
+    {
+      "term": "噇酒糟漢",
+      "decision": "REVISE",
+      "finding": "The evidence repair itself passes. X81n1571 verifies at 0464c23–0465a08; the new T47n2000 witness verifies at 0995a22–0995a29; their workIds work:wudeng-quanshu and work:T47n2000 are genuinely distinct; and the corrected title 虛堂和尚語錄 is accurate. However, the row's reason still says `A later Wudeng Quanshu master independently applies the same epithet`, which describes the removed X82 witness and is false for the new T47 witness. The new passage is Xutang raising Huangbo's address and warning against understanding it merely at 噇酒糟漢處.",
+      "requiredRepair": "Replace the stale second sentence of reason with evidence-bound prose, for example: `Xutang independently raises Huangbo's address, comments on why readers miss it, and warns against understanding it merely at the phrase 噇酒糟漢.` Preserve KEEP (component), the two exact witnesses, and their workIds."
+    },
+    {
+      "term": "欲識佛性義、當觀時節因縁",
+      "decision": "PASS",
+      "finding": "The formResolution explicitly records both required changes (`、→，` and `縁→緣`), states that the printed headword is exact-absent, and distinguishes it from the exact-attested corpus query. Independent zc.count reproduces 0 hits/0 works for the printed form and 157 hits/97 works for 欲識佛性義，當觀時節因緣. Both stored corpus-form KWICs verify exactly, and the batch-level exactFormResolution now correctly says nine printed headwords are exact-attested. KEEP (couplet) is unchanged."
+    },
+    {
+      "term": "曹源一滴水",
+      "decision": "PASS",
+      "finding": "The replacement X84n1585 address-and-verse KWIC is exact: zc.verify returns ok=true at 0669c02–0669c05 and the headword is present in the raised case and verse. Its workId remains distinct from the first witness, and KEEP (component) is unchanged."
+    }
+  ],
+  "mechanicalReceipt": {
+    "recutKwicsChecked": 3,
+    "recutKwicsExact": 3,
+    "distinctReplacementWork": true,
+    "printedFormCountConfirmed": {"hits": 0, "works": 0},
+    "resolvedCorpusFormCountConfirmed": {"hits": 157, "works": 97},
+    "semanticDispositionChangesFound": 0,
+    "unitChangesFound": 0,
+    "remainingRepairs": 1
+  },
+  "sourceModified": false,
+  "buildTouched": false,
+  "queueTouched": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "iriya-readjudication-offset2.manual-batch3.v1",
+  "mode": "MANUAL-FULL-CASE-ADJUDICATION-ONLY",
+  "offset": 2,
+  "stride": 3,
+  "selection": "Exactly the next ten canonical offset-2 candidates absent from the sealed 214-row trusted registry, ascending canonicalIndex",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistrySha256": "29c56efc696f8beb88b6d6dfdb4c6a7abfdce821c684dec607ac1857db8799f3",
+  "reviewedCount": 10,
+  "method": "Each exact form and enclosing case was read individually. All ten exact forms were present, so no variant or split-clause reconstruction was required. Independent support is counted by workId, never by XML file count. No semantic writer, regex, count threshold, prior quarantined verdict, or default disposition supplied a decision.",
+  "decisions": [
+    {
+      "canonicalIndex": 62,
+      "queueNumber": 63,
+      "id": "t_a07929170232",
+      "term": "弄巧成拙",
+      "query": "弄巧成拙",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 121,
+      "reason": "棲霞成評論布袋與僧的橘子交鋒，先說他遇人便賣弄，隨即以弄巧成拙判其本欲顯巧反而顯出失敗；另一公案評論也用同語判長者的安排反成障礙。詞組是對公案操作結果的裁語，不是手工技巧敘述。",
+      "evidence": {
+        "source": "X/X66/X66n1297.xml",
+        "title": "宗鑑法林",
+        "workId": "chan:zongjian-falin",
+        "line": "0304b15",
+        "KWIC": "布袋逢人便賣弄，若不得個橘子，幾被者僧賺却，汝不是者個人賊。過後張弓。拈起而行，放下便歇。瞌睡阿師，弄巧成拙。佛意祖意寧知？裙子褊衫百結。有時獨立兮誰是知音？歸去來兮一天明月。咄者憨布袋，眉麤兼眼大，終日在街頭，市行無買賣。阿呵呵！歸去來，典錢却債。"
+      },
+      "independentWitness": {
+        "source": "X/X66/X66n1296.xml",
+        "title": "宗門拈古彙集",
+        "workId": "work:X66n1296",
+        "line": "0020b07",
+        "KWIC": "百丈泐云：長者弄巧成拙，世尊相席，打令殃崛刺腦入膠盆。"
+      }
+    },
+    {
+      "canonicalIndex": 65,
+      "queueNumber": 66,
+      "id": "t_49100bcb7049",
+      "term": "亘古亘今",
+      "query": "亘古亘今",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "searchVariants": ["亙古亙今"],
+      "exactWorks": 61,
+      "reason": "圓悟上堂把不滅不生與亘古亘今並舉，接著說其圓融、應用與佛祖人天的發現；另一位老師直接以亘古亘今回答『如何是和尚家風』。它在一處作宗風答語、一處作教示中的時間判定，並非年代敘事。",
+      "evidence": {
+        "source": "T/T47/T47n1997.xml",
+        "title": "圓悟佛果禪師語錄",
+        "workId": "work:T47n1997",
+        "line": "0728c16",
+        "KWIC": "示去。遂拈起拄杖云。還見麼。諸佛搆不著。祖師提不起。千日並照萬鏡臨臺。不隔纖毫當陽薦取。且不涉諸緣一句作麼生道。八方霢霂無為化。萬國歌謠樂太平。上堂云。不滅不生亘古亘今。圓融無際應用無差。佛祖由茲圓成。人天因其發現。至於千聖萬聖出來。移易一絲毫不得。要識文殊普賢釋迦彌勒觀音勢至。盡在這裏。不起纖毫凡聖情念。不拘得失是非境界。直"
+      },
+      "independentWitness": {
+        "source": "X/X81/X81n1568.xml",
+        "title": "五燈嚴統(第10卷-第25卷)",
+        "workId": "work:wudeng-yantong",
+        "line": "0007b19",
+        "KWIC": "問：如何是和尚家風？師曰：亘古亘今。問：不問不答時如何？師曰：寐語作麼？"
+      }
+    },
+    {
+      "canonicalIndex": 68,
+      "queueNumber": 69,
+      "id": "t_eac452f29102",
+      "term": "白浪滔天",
+      "query": "白浪滔天",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 114,
+      "reason": "《碧巖錄》垂示把『白浪滔天時如何』直接立作考驗老師手段的問題，與斬釘截鐵、避箭隈刀對勘；另一上堂又用湘江白浪滔天與門前地平如掌相對，區分知有者與未然者。詞組被部署為險境／大波動的測驗場景，不只是江景。",
+      "evidence": {
+        "source": "T/T48/T48n2003.xml",
+        "title": "佛果圜悟禪師碧巖錄",
+        "workId": "work:T48n2003",
+        "line": "0157a17",
+        "KWIC": "雪竇自名邈不出。却更累他天下衲僧。且道鏡清作麼生是為這僧處。天下衲僧跳不出。17垂示云。斬釘截鐵。始可為本分宗師。避箭隈刀。焉能為通方作者。針劄不入處。則且置。白浪滔天時如何。試舉看。【一七】舉。僧問香林。如何是祖師西來意林云。坐久成勞。香林道。坐久成勞。還會麼。若會得。百草頭上。罷却干戈。若也不會。伏聽處分。古人行脚。結交擇"
+      },
+      "independentWitness": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0020a15",
+        "KWIC": "上堂：雲收嶽面，日上扶桑。颯颯寒風，紛紛敗葉。滿湘江內，白浪滔天。廣慧門前，地平如掌。若是知有底衲僧，穩坐太平；其或未然，不免撈天摸地。"
+      }
+    },
+    {
+      "canonicalIndex": 71,
+      "queueNumber": 72,
+      "id": "t_9d69c767787a",
+      "term": "功不浪施",
+      "query": "功不浪施",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 116,
+      "reason": "澹湖評兩位浴佛的差別後，說自己把兩邊都澆一杓惡水，並用『何故？功不浪施』作結；楊岐另以會得／不會分岔，說會得便功不浪施。它是判定所作之功不白費、確有著落的收束語。",
+      "evidence": {
+        "source": "X/X64/X64n1260.xml",
+        "title": "列祖提綱錄",
+        "workId": "work:X64n1260",
+        "line": "0027c02",
+        "KWIC": "檢點將來，一人浴得者箇、不浴得那箇，一人浴得那箇、不浴得者箇。澹湖即不然，者箇、那箇總與一杓惡水。何故？功不浪施。元叟端禪師浴佛，上堂：雲門當時一棒，中峯今朝一杓。只此報德酬恩，一任諸方貶剝。下座。"
+      },
+      "independentWitness": {
+        "source": "X/X79/X79n1559.xml",
+        "title": "嘉泰普燈錄",
+        "workId": "work:X79n1559",
+        "line": "0303b13",
+        "KWIC": "上堂曰：霧鎖長空，風生大野。百草枯木，作師子吼，演說摩訶大般若。三世諸佛在你諸人脚跟下轉大法輪。若也會得，功不浪施；若也不會，莫道楊岐山勢嶮，前頭更有最高峰。"
+      }
+    },
+    {
+      "canonicalIndex": 74,
+      "queueNumber": 75,
+      "id": "t_e4bf88ebbf2d",
+      "term": "七穿八穴",
+      "query": "七穿八穴",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 107,
+      "reason": "𡺸山寧把孤峰、大海與十字街頭三種出沒並列，說在街頭七穿八穴後反問眾人是否明白；《碧巖錄》又以『雪竇見處，七穿八穴』評其頌古眼目。詞組專作能在多方穿透出入的機用評語，不是孔洞數目。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0031a24",
+        "KWIC": "西禪大似不遇知音。南嶽下十五世南嶽下十五世雪竇明禪師法嗣雪竇明禪師法嗣密州𡺸山寧禪師密州𡺸山寧禪師上堂。有時孤峰頂上嘯月眠雲，有時大洋海中翻波走浪，有時十字街頭七穿八穴。諸人還相委悉麼？樟樹花開盛，芭蕉葉最多。後朱諤迎主佘山昭慶而逝，塔于寺之東。淨慈昌禪師法嗣淨慈昌禪師法嗣臨安府五雲悟禪師臨安府五雲悟禪師苕溪人。上堂：月堂老漢"
+      },
+      "independentWitness": {
+        "source": "T/T48/T48n2003.xml",
+        "title": "佛果圜悟禪師碧巖錄",
+        "workId": "work:T48n2003",
+        "line": "0175b09",
+        "KWIC": "若向無言處言得，行不得處行得，謂之轉身處。三界無法，何處求心？爾若作情解，只在他言下死却。雪竇見處，七穿八穴，所以頌出。"
+      }
+    },
+    {
+      "canonicalIndex": 77,
+      "queueNumber": 78,
+      "id": "t_ac59adf52af2",
+      "term": "且坐喫茶",
+      "query": "且坐喫茶",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 80,
+      "reason": "首山在使者不能答洞上宗乘／雪嶺家風的追問後，以且坐喫茶終止當下盤詰；稍後又對被判驢前馬後的僧重用同一句，坐下後立即續問過夏處。它是老師控制訪談節奏的完整安置語，不是茶事記錄。",
+      "evidence": {
+        "source": "C/C077/C077n1710.xml",
+        "title": "古尊宿語錄",
+        "workId": "work:guzunsu-yulu",
+        "line": "0672c14",
+        "KWIC": "乃名振四方遠近學者承風而湊初住汝州首山為第一世也石門遣使馳開堂書至師乃集眾於法堂上使纔近前人事師約住云是洞上宗乘是雪嶺家風使云書中已載師云一不成二不是使無語師云且坐喫茶一日師問僧近離甚處僧云襄州師云路上曾逢達磨也無僧近前不審師云這箇是驢前馬後底僧云和尚又如何師云非公境界且坐喫茶僧纔坐師又問在什麼處過夏僧云石門師云水牯牛安樂麼僧"
+      },
+      "independentWitness": {
+        "source": "X/X79/X79n1557.xml",
+        "title": "聯燈會要",
+        "workId": "work:X79n1557",
+        "line": "0082a19",
+        "KWIC": "平云：此語太高生。師云：龍生金鳳子，衝破碧琉璃。平云：且坐喫茶。師到襄州華嚴，嚴見來，橫按拄杖作瞌睡勢。"
+      }
+    },
+    {
+      "canonicalIndex": 80,
+      "queueNumber": 81,
+      "id": "t_487731daecf9",
+      "term": "萬象之中獨露身",
+      "query": "萬象之中獨露身",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 90,
+      "reason": "童子在法堂吟出萬象之中獨露身，佛眼遠當場拍馮楫背說『好聻』，馮因此契入；《請益錄》另把長慶整句連同『唯人自肯乃方親』明確舉作古語並評論。這一整句被引用、認可和講評，是可獨立部署的句子。",
+      "evidence": {
+        "source": "X/X82/X82n1571.xml",
+        "title": "五燈全書(第34卷-第120卷)",
+        "workId": "work:wudeng-quanshu",
+        "line": "0110a10",
+        "KWIC": "給事馮楫濟川居士自壯扣諸名宿，最後居龍門，從佛眼遠再歲。一日，同遠經行法堂，偶童子趨庭吟曰：萬象之中獨露身。遠拊公背曰：好聻。公於是契入。宋高宗紹興丁巳，除給事。會大慧就明慶開堂，慧下座，公挽之曰：和尚嘗言不作這蟲豸，今日因甚却納敗缺？"
+      },
+      "independentWitness": {
+        "source": "T/T48/T48n2004.xml",
+        "title": "萬松老人評唱天童覺和尚拈古請益錄",
+        "workId": "work:T48n2004",
+        "line": "0239c07",
+        "KWIC": "不見長慶道：萬象之中獨露身，唯人自肯乃方親。天童頌，到這裏大有含蓄功夫。爾若擬議不來，千里萬里仰望不及。"
+      }
+    },
+    {
+      "canonicalIndex": 83,
+      "queueNumber": 84,
+      "id": "t_dd30a8e2fe5c",
+      "term": "轉凡成聖",
+      "query": "轉凡成聖",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 119,
+      "reason": "提綱說先佛頂上一機、祖師末後一句可以轉凡成聖，隨即要求在不犯舊語下當眾舉唱；另一問答把『至理一言轉凡成聖』作前提，直接追問那一句。詞組在兩處都標示一句話被主張具有的轉變作用，是被測試的宗門命題。",
+      "evidence": {
+        "source": "X/X64/X64n1260.xml",
+        "title": "列祖提綱錄",
+        "workId": "work:X64n1260",
+        "line": "0018c02",
+        "KWIC": "大眾！先佛有頂𩕳一機，如擊石火，似閃電光；祖師有末後一句，吞栗棘蓬，跳金剛圈。可以敵勝驚群，可以轉凡成聖，騰今現古，葢色騎聲。如今對眾拈來，不犯從前露布。還委悉麼？洪鈞妙力先天地，覆載恩歸大聖人。"
+      },
+      "independentWitness": {
+        "source": "C/C077/C077n1710.xml",
+        "title": "古尊宿語錄",
+        "workId": "work:guzunsu-yulu",
+        "line": "0669a22",
+        "KWIC": "問：靈丹一粒，點鐵成金；至理一言，轉凡成聖。如何是至理一言？師云：更舉一徧。僧云：與麼則退身三步。師云：笑破大眾口。"
+      }
+    },
+    {
+      "canonicalIndex": 86,
+      "queueNumber": 87,
+      "id": "t_df1c060dfb63",
+      "term": "千差萬別",
+      "query": "千差萬別",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactWorks": 105,
+      "reason": "《指月錄》的老師把一棒一喝等異樣答語提出比較，說若知千差萬別只是一般，便能八面受敵；雲門又把尋言逐句、廣設問難所生的千差萬別列為離道轉遠的結果。詞組在兩處都成為老師明確評斷的『眾多差別』類別，而非散文中的泛指數量。",
+      "evidence": {
+        "source": "X/X83/X83n1578.xml",
+        "title": "指月錄",
+        "workId": "chan:zhiyue-lu",
+        "line": "0452b14",
+        "KWIC": "如當門按一口劒相似，擬議則喪身失命。又道：譬如擲劍揮空，莫論及之不及，但向八面玲瓏處會取。不見古人道：這漆桶，或云野狐精，或云瞎漢。且道與一棒一喝是同是別？若知千差萬別只是一般，自然八面受敵。要會藏頭白海頭黑麼？五祖先師道：封后先生問：如何是西來意？師曰：只今是甚麼意？龐居士問：不昧本來人，請師高著眼。師直下覰。士曰：一種沒弦"
+      },
+      "independentWitness": {
+        "source": "X/X64/X64n1260.xml",
+        "title": "列祖提綱錄",
+        "workId": "work:X64n1260",
+        "line": "0075b08",
+        "KWIC": "雲門偃禪師上堂：我事不獲已，向你諸人道，直下無事，早是相埋沒了也。更欲踏步向前，尋言逐句，求覓解會，千差萬別，廣設問難，贏得一場口滑，去道轉遠，有甚麼休歇時？"
+      }
+    },
+    {
+      "canonicalIndex": 89,
+      "queueNumber": 90,
+      "id": "t_aace10e1b323",
+      "term": "一状領過",
+      "query": "一狀領過",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "variant-resolved multi-source",
+      "variantResolution": "The Iriya-form headword uses 状; the corpus query and both inspected witnesses use traditional 狀. Admission is based on 一狀領過, not a claimed exact 状 hit.",
+      "exactWorks": 115,
+      "reason": "五祖戒評論世尊與外道、阿難的問答，說世尊被阿難一狀領過，把阿難的追問寫成一紙罪狀由世尊承領；白巖符另把如來在蓮花色比丘尼公案中的二見判作也該一狀領過。它是反覆用來定罪／歸責的法律譬喻判語。",
+      "evidence": {
+        "source": "X/X66/X66n1297.xml",
+        "title": "宗鑑法林",
+        "workId": "chan:zongjian-falin",
+        "line": "0277a09",
+        "KWIC": "外道讚曰：世尊大慈大悲，開我迷雲，令我得入。作禮而去。阿難問外道：有何所證，而言得入？世尊曰：如世良馬，見鞭影而行。五祖戒云：大小世尊被阿難一狀領過。又出語云：汝何所問？法眼益因僧請益，敘語未終，眼云：住！住！你擬向世尊良久處會那？僧從此悟入。"
+      },
+      "independentWitness": {
+        "source": "X/X66/X66n1296.xml",
+        "title": "宗門拈古彙集",
+        "workId": "work:X66n1296",
+        "line": "0009c24",
+        "KWIC": "薦福懷云：蓮花色比丘尼被熱瞞則且置，還知瞿曇老漢性命在別人手裏麼？白巖符云：大小瞿曇，二見不除，好與蓮花色一狀領過。"
+      }
+    }
+  ],
+  "summary": {
+    "KEEP_component": 10,
+    "KEEP_couplet": 0,
+    "REJECT": 0,
+    "PROVISIONAL": 0,
+    "exactAbsent": 0,
+    "variantResolved": 1,
+    "trustedRegistryModified": false,
+    "crossReviewRequired": true
+  },
+  "methodAssertions": [
+    "Canonical selection was mechanical and supplied no semantic outcome.",
+    "Every disposition follows an individual full-case reading and a headword-specific deployment/containment judgment.",
+    "All multi-source validations use distinct workId values, not file counts.",
+    "Every stored KWIC is intended as exact corpus text for zc.verify; no bridged punctuation match is used as attestation."
+  ],
+  "sideEffects": {
+    "buildRun": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "entryConstructionPerformed": false
+  },
+  "stopReason": "Stopped after exactly ten rows for independent cross-review."
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-repair-final-focused-cross-review-v1",
+  "reviewer": "Codex independent final focused reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset0-manual-batch3-010.json",
+  "sourceLedgerSha256": "b5a1b7cc39ace6701f85f9662cc44b970a558627fd07dce7dd35539b85d58e11",
+  "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-receipt.json",
+  "repairReceiptSha256": "66ef89e9bc5cdf4c5475bc28765661ad83b545d2f7db5ab571eda4cf0ecc8a00",
+  "focusedAuthority": "maintenance/iriya-readjudication-offset0-manual-batch3-010-repair-focused-cross-review.json",
+  "focusedAuthoritySha256": "d883cd54e632554584510cc24c6a69faf005da1b6600addf4575d3746ab827b9",
+  "overallDecision": "PASS",
+  "scope": "Final focused recheck of the sole residual 噇酒糟漢 reason repair, with regression checks on the prior exact recuts, work independence, form resolution, dispositions, and units.",
+  "findings": {
+    "residualReason": "PASS — the reason now accurately says that Xutang raises Huangbo's address, comments on why readers miss it, and warns against understanding it at 噇酒糟漢處. Each claim is directly visible in the T47n2000 passage; no removed Wudeng witness is still described.",
+    "distinctWork": "PASS — the 噇酒糟漢 witnesses remain work:wudeng-quanshu and work:T47n2000, with the latter correctly titled 虛堂和尚語錄. Both exact KWICs pass zc.verify.",
+    "priorRecuts": "PASS — the repaired witnesses for 赤心片片, 噇酒糟漢, and 曹源一滴水 still pass zc.verify at their prior line spans and contain their exact queries.",
+    "formResolution": "PASS — 欲識佛性義、當觀時節因縁 still explicitly resolves `、→，` and `縁→緣`, distinguishes the exact-absent printed form from the 157-hit/97-work corpus query, and retains two exact corpus-form witnesses.",
+    "rulings": "PASS — the four repaired rows retain their prior dispositions and units: three KEEP (component) rows and one KEEP (couplet) row. The batch summary remains 8 component KEEP, 1 couplet KEEP, 0 provisional, and 1 reject.",
+    "receipt": "PASS — the updated receipt names the focused authority SHA, records the residual prose repair as non-semantic, and continues to state that dispositions, units, other rows, build, queue, and lineage were untouched."
+  },
+  "mechanicalReceipt": {
+    "focusedResidualsChecked": 1,
+    "focusedResidualsPassed": 1,
+    "regressionKwicsVerified": 8,
+    "regressionKwicFailures": 0,
+    "remainingRepairs": 0
+  },
+  "sourceModified": false,
+  "buildTouched": false,
+  "queueTouched": false,
+  "lineageTouched": false
+}

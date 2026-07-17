@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "iriya-repair-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "repairedLedger": "maintenance/iriya-readjudication-offset2-manual-batch3-010.json",
+  "repairedLedgerSha256": "72c599f3b49c5061f4256ef11b36d1b9ef11f0d53a19181df37b86d6eeb305a8",
+  "repairReceipt": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-receipt.json",
+  "repairReceiptSha256": "c45cdb46852f0b0df73e984d5d0974a5866ec9862884bbfae9fd2e6094bdf89f",
+  "authorityReview": "maintenance/iriya-readjudication-offset2-manual-batch3-010-cross-review-c19-e8.json",
+  "authorityReviewSha256": "8fde145b42f422c5f2089f85bcebda1bbdaea6bcb89ee279e9e59e67eb3dcdbf",
+  "decision": "PASS",
+  "checks": {
+    "fiveRecuts": "PASS — 亘古亘今, 白浪滔天, 七穿八穴, 且坐喫茶, and 千差萬別 now each pass zc.verify exactly once at the source and line family recorded in the receipt.",
+    "allEvidence": "PASS — all 10/10 stored KWICs now verify exactly once.",
+    "otherFive": "PASS — 弄巧成拙, 功不浪施, 萬象之中獨露身, 轉凡成聖, and 一状領過 retain their reviewed evidence, reasons, KEEP (component) dispositions, and component units.",
+    "semanticAndUnitPreservation": "PASS — all ten remain KEEP (component); the repair receipt records zero semantic-disposition and zero unit changes, matching the inspected ledger.",
+    "variant亘古亘今": "PASS — exact head form 亘古亘今 remains attested at 234 hits / 61 works, and searchVariants now records the independently attested spelling 亙古亙今 at 198 hits / 95 works.",
+    "variant一状領過": "PASS — the ledger still states that printed 状 is unattested and admission uses corpus 一狀領過; current counts are 0 works for 一状領過 and 246 hits / 115 works for 一狀領過.",
+    "regression": "None observed."
+  },
+  "counts": {
+    "rowsReviewed": 10,
+    "kwicsVerified": 10,
+    "recutsConfirmed": 5,
+    "unchangedRowsConfirmed": 5,
+    "semanticChanges": 0,
+    "unitChanges": 0,
+    "regressions": 0
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}
