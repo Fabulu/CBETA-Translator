@@ -145,6 +145,17 @@ public sealed class LineageChartControl : Control
     private const double MID_GLYPH_ZOOM = 0.5;  // transmission glyphs appear at/above this zoom
     private const double STUB_LABEL_ZOOM = 0.4; // the ⊣ cap appears at/above this zoom
 
+    // ── Level-of-detail zoom ladder (parity with lineage-graph.js drawNode z-gates,
+    //    lines 492-506). Below LOD_DOT a node is a bare dot (NO text) — this is what
+    //    kills the fit-zoom smudge (~2500 sub-pixel glyph draws) and the draw-call
+    //    storm. Below LOD_NAME only the single romanized name line reads; below
+    //    LOD_DATES the two name lines but no dates; the dates line joins at/above
+    //    LOD_DATES. The ladder gates node TEXT only — it NEVER changes which edge
+    //    gets which ink (the four evidence channels are untouched). ──
+    private const double LOD_DOT = 0.28;
+    private const double LOD_NAME = 0.5;
+    private const double LOD_DATES = 1.2;
+
     private LineageChartViewModel? _vm;
 
     // ── view transform (screen = world * zoom + offset) ──
@@ -158,6 +169,10 @@ public sealed class LineageChartControl : Control
     private ThemeVariant? _builtVariant;
     private readonly Dictionary<string, IPen> _edgePens = new(StringComparer.Ordinal); // "A".."D"
     private readonly Dictionary<LineageNode, NodeVisual> _nodeVisuals = new();
+    // Per-edge strand geometry — routes are STATIC per layout, so each edge's
+    // polyline is built ONCE (BuildCaches) and reused every frame; Render allocates
+    // no edge geometry. Rebuilt only when the layout (new VM) or theme changes.
+    private readonly Dictionary<LineageEdge, EdgeGeometry> _edgeGeometries = new();
     private IPen? _selectionPen;
     private IBrush _background = Brushes.Transparent;
 
@@ -166,7 +181,8 @@ public sealed class LineageChartControl : Control
     private IPen _glyphPenText = null!;   // 遙嗣/代囑 outline on a non-faint edge (text hue)
     private IPen _glyphPenMuted = null!;  // …on a faint (D) edge (muted hue)
     private FormattedText? _bookGlyph;    // 冊, the book-transmission mark
-    private FormattedText? _stubGlyph;    // ⊣, the off-chart-teacher cap
+    private FormattedText? _stubGlyph;    // ⊣, the off-chart-teacher marker (LEGEND key only)
+    private FormattedText? _stubCapGlyph; // …, the on-chart cap above the fade (parity: drawStub)
     private IPen _stubPen = null!;        // dashed drop for the off-chart stub
     private IBrush _sealFill = Brushes.Transparent; // contested: vermilion @0.18
     private IPen _sealStroke = null!;               // contested: vermilion @1.0, w1.5
@@ -195,9 +211,18 @@ public sealed class LineageChartControl : Control
     {
         public IBrush Fill = Brushes.Transparent;
         public IPen Stroke = null!;
+        public IBrush Dot = Brushes.Transparent;  // the LOD dot (stroke hue) drawn below LOD_DOT
         public FormattedText? Hanja;   // top line (13px)
         public FormattedText? Roman;   // bottom line (11px) — always present, never hanja-only
         public FormattedText? Dates;   // (9px)
+    }
+
+    // Cached per-edge strand geometry (see <see cref="_edgeGeometries"/>). A
+    // disputed edge carries twin parallel strands — a fork that never resolves.
+    private sealed class EdgeGeometry
+    {
+        public Geometry Main = null!;
+        public Geometry? Second;   // disputed twin strand (else null)
     }
 
     public LineageChartControl()
@@ -206,14 +231,22 @@ public sealed class LineageChartControl : Control
         Focusable = true;
         Cursor = new Cursor(StandardCursorType.Hand);
 
-        // Double-click activates a node (L6 host mirrors it to the List tab).
+        // Double-click activates a node (L6 host mirrors it to the List tab). A
+        // book SOURCE is not a List-tab record, so a source double-click is ignored
+        // (parity with the SPA) — otherwise it would flip to the List tab carrying a
+        // stale selection.
         DoubleTapped += (_, e) =>
         {
             var pos = e.GetPosition(this);
             var hit = HitTest(pos.X, pos.Y);
-            if (hit != null) NodeActivated?.Invoke(hit);
+            if (ShouldActivateOnDoubleClick(hit)) NodeActivated?.Invoke(hit!);
         };
     }
+
+    /// <summary>True when a double-click on this node should activate it (open in the
+    /// List tab). A book source has no List-tab record, so it is NOT activatable —
+    /// double-clicking one must not switch tabs with a stale selection (SPA parity).</summary>
+    public static bool ShouldActivateOnDoubleClick(LineageNode? n) => n != null && !n.IsSource;
 
     /// <summary>Current zoom (read by an external zoom control / L6).</summary>
     public double Zoom => _zoom;
@@ -346,29 +379,33 @@ public sealed class LineageChartControl : Control
 
     // One edge = attestation INK (channel 1) + transmission GEOMETRY (channel 2),
     // kept strictly independent: the ink is chosen only by StyleFor(attestation),
-    // the marker only by MarkerFor(transmission); neither reads the other.
+    // the marker only by MarkerFor(transmission); neither reads the other. The
+    // strand polyline is a cached geometry (built once per layout) — Render strokes
+    // it, never rebuilds it.
     private void DrawOneEdge(DrawingContext ctx, LineageEdge e, IReadOnlyList<LayoutPoint> pts)
     {
+        if (!_edgeGeometries.TryGetValue(e, out var geom)) return;
+
         // channel 1 — ink: the edge carries the STUDENT's attestation; fail-safe applies.
         var pen = _edgePens[Canon(e.Attestation)];
         // channel 2 — geometry: the transmission mode.
         var marker = MarkerFor(e.Transmission);
 
-        if (marker == TransmissionMarker.Disputed)
+        if (marker == TransmissionMarker.Disputed && geom.Second != null)
         {
             // a fork that never resolves: twin parallel strands, no midpoint glyph.
-            DrawStrand(ctx, pts, pen, -1.5);
-            DrawStrand(ctx, pts, pen, 1.5);
+            ctx.DrawGeometry(null, pen, geom.Main);
+            ctx.DrawGeometry(null, pen, geom.Second);
             return;
         }
 
-        DrawStrand(ctx, pts, pen, 0);
+        ctx.DrawGeometry(null, pen, geom.Main);
 
         if (_zoom >= MID_GLYPH_ZOOM && marker != TransmissionMarker.None)
             DrawMidGlyph(ctx, pts, marker, e.Attestation);
     }
 
-    private static void DrawStrand(DrawingContext ctx, IReadOnlyList<LayoutPoint> pts, IPen pen, double dx)
+    private static Geometry BuildStrandGeometry(IReadOnlyList<LayoutPoint> pts, double dx)
     {
         var geo = new StreamGeometry();
         using (var gc = geo.Open())
@@ -378,7 +415,7 @@ public sealed class LineageChartControl : Control
                 gc.LineTo(new Point(pts[i].X + dx, pts[i].Y));
             gc.EndFigure(false);
         }
-        ctx.DrawGeometry(null, pen, geo);
+        return geo;
     }
 
     // The 遙嗣 circle / 代囑 diamond / book 冊 sit ON the edge at its midpoint. Their
@@ -387,11 +424,17 @@ public sealed class LineageChartControl : Control
     private void DrawMidGlyph(DrawingContext ctx, IReadOnlyList<LayoutPoint> pts, TransmissionMarker marker, string? att)
     {
         var mp = Midpoint(pts);
-        var outline = StyleFor(att).Faint ? _glyphPenMuted : _glyphPenText;
+        var style = StyleFor(att);
+        var outline = style.Faint ? _glyphPenMuted : _glyphPenText;
+        // The circle/diamond inherit the EDGE's attestation opacity (× the focus-dim
+        // already pushed by DrawEdges), so a faint D-grade proxy edge's diamond is no
+        // louder than its line — the marker carries no grade MEANING, just the ink
+        // alpha (parity with the SPA, which draws the glyph at the edge's globalAlpha).
         switch (marker)
         {
             case TransmissionMarker.RemoteCircle:
-                ctx.DrawEllipse(_background, outline, new Point(mp.X, mp.Y), 4.5, 4.5);
+                using (ctx.PushOpacity(style.Opacity))
+                    ctx.DrawEllipse(_background, outline, new Point(mp.X, mp.Y), 4.5, 4.5);
                 break;
             case TransmissionMarker.ProxyDiamond:
                 var geo = new StreamGeometry();
@@ -403,9 +446,12 @@ public sealed class LineageChartControl : Control
                     gc.LineTo(new Point(mp.X - 5, mp.Y));
                     gc.EndFigure(true);
                 }
-                ctx.DrawGeometry(_background, outline, geo);
+                using (ctx.PushOpacity(style.Opacity))
+                    ctx.DrawGeometry(_background, outline, geo);
                 break;
             case TransmissionMarker.Book:
+                // The 冊 mark carries its own ~0.7 alpha (SPA forces globalAlpha 0.7
+                // regardless of edge grade), so it is NOT dimmed by the edge opacity.
                 if (_bookGlyph != null)
                     ctx.DrawText(_bookGlyph, new Point(mp.X - _bookGlyph.Width / 2, mp.Y - _bookGlyph.Height / 2));
                 break;
@@ -506,9 +552,20 @@ public sealed class LineageChartControl : Control
         var rect = new Rect(n.X - hw, n.Y - hNode / 2, hw * 2, hNode);
         ctx.DrawRectangle(vis.Fill, active ? _selectionPen : vis.Stroke, rect, 5, 5);
 
+        // ── LOD: below LOD_DOT the node is a bare dot — NO text. This is the fix for
+        //    the fit-zoom smudge/draw-storm (all 600+ nodes on screen at once). ──
+        if (_zoom < LOD_DOT)
+        {
+            ctx.DrawEllipse(vis.Dot, null, new Point(n.X, n.Y), 4, 4);
+            return;
+        }
+
+        bool showHanja = _zoom >= LOD_NAME;   // second (hanja) name line joins here
+        bool showDates = _zoom >= LOD_DATES;  // dates only at the closest tier
+
         // ── bilingual label: the romanized/English line ALWAYS renders, so a node
         //    is never hanja-only. ──
-        if (vis.Hanja != null && vis.Roman != null)
+        if (showHanja && vis.Hanja != null && vis.Roman != null)
         {
             DrawCentered(ctx, vis.Hanja, n.X, n.Y - hNode / 2 + 2);
             DrawCentered(ctx, vis.Roman, n.X, n.Y + 1);
@@ -517,7 +574,11 @@ public sealed class LineageChartControl : Control
         {
             DrawCentered(ctx, vis.Roman, n.X, n.Y - vis.Roman.Height / 2);
         }
-        if (vis.Dates != null)
+        else if (vis.Hanja != null)
+        {
+            DrawCentered(ctx, vis.Hanja, n.X, n.Y - vis.Hanja.Height / 2);
+        }
+        if (showDates && vis.Dates != null)
             DrawCentered(ctx, vis.Dates, n.X, n.Y + hNode / 2 - vis.Dates.Height - 1);
     }
 
@@ -534,6 +595,10 @@ public sealed class LineageChartControl : Control
         for (int i = 1; i <= 3; i++)                                                    // three ribs
             ctx.DrawLine(_sourceLinePen, new Point(x + 9, y + i * 7), new Point(x + wpx - 3, y + i * 7));
 
+        // LOD: below LOD_DOT the folded-sutra glyph stands alone (no title text),
+        // so a fitted view of the whole forest draws no sub-pixel label smudge.
+        if (_zoom < LOD_DOT) return;
+
         double ly = y + hpx + 3;
         if (vis.Roman != null) { DrawCentered(ctx, vis.Roman, n.X, ly); ly += vis.Roman.Height + 1; }
         if (vis.Hanja != null) DrawCentered(ctx, vis.Hanja, n.X, ly);
@@ -546,8 +611,10 @@ public sealed class LineageChartControl : Control
     {
         double topY = n.Y - LineageForestLayout.NODE_H / 2;
         ctx.DrawLine(_stubPen, new Point(n.X, topY - 24), new Point(n.X, topY));
-        if (_zoom >= STUB_LABEL_ZOOM && _stubGlyph != null)
-            ctx.DrawText(_stubGlyph, new Point(n.X - _stubGlyph.Width / 2, topY - 26 - _stubGlyph.Height / 2));
+        // Cap the fade with "…" (parity: drawStub fillText('…')) — the teacher trails
+        // off-chart. The legend key shows the "⊣" marker for the same concept (⊣…).
+        if (_zoom >= STUB_LABEL_ZOOM && _stubCapGlyph != null)
+            ctx.DrawText(_stubCapGlyph, new Point(n.X - _stubCapGlyph.Width / 2, topY - 26 - _stubCapGlyph.Height / 2));
     }
 
     private static void DrawCentered(DrawingContext ctx, FormattedText ft, double cx, double top)
@@ -603,6 +670,8 @@ public sealed class LineageChartControl : Control
         { DashStyle = new DashStyle(new List<double> { 2, 3 }, 0) };
         _stubGlyph = new FormattedText("⊣", CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
             new Typeface("Segoe UI, system-ui, sans-serif"), 10, mutedBrush);
+        _stubCapGlyph = new FormattedText("…", CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+            new Typeface("Segoe UI, system-ui, sans-serif"), 10, mutedBrush);
 
         // channel 3 (contested): vermilion seal + rival arcs (accent hue only).
         _sealFill = new SolidColorBrush(Color.FromArgb((byte)Math.Round(0.18 * 255), accent.R, accent.G, accent.B));
@@ -618,9 +687,28 @@ public sealed class LineageChartControl : Control
 
         // node visuals: fill/stroke/label brushes + cached FormattedText per node.
         _nodeVisuals.Clear();
+        _edgeGeometries.Clear();
         if (_vm == null) { _legend = null; return; }
         foreach (var n in _vm.Nodes)
             _nodeVisuals[n] = BuildNodeVisual(n, dark, muted);
+
+        // edge strand geometry — built ONCE here (routes are static per layout), so
+        // Render allocates no geometry across the ~550 edges.
+        foreach (var e in _vm.Edges)
+        {
+            if (!_vm.Routes.TryGetValue(e, out var route) || route.Points.Count < 2) continue;
+            var eg = new EdgeGeometry();
+            if (MarkerFor(e.Transmission) == TransmissionMarker.Disputed)
+            {
+                eg.Main = BuildStrandGeometry(route.Points, -1.5);
+                eg.Second = BuildStrandGeometry(route.Points, 1.5);
+            }
+            else
+            {
+                eg.Main = BuildStrandGeometry(route.Points, 0);
+            }
+            _edgeGeometries[e] = eg;
+        }
 
         _legend = BuildLegend(text, muted, accent);
         ComputeWorldBounds();
@@ -633,6 +721,7 @@ public sealed class LineageChartControl : Control
         {
             Fill = new SolidColorBrush(fill),
             Stroke = new Pen(new SolidColorBrush(stroke), 1),
+            Dot = new SolidColorBrush(stroke),   // LOD dot uses the stroke hue (parity: c.stroke)
         };
         var labelBrush = new SolidColorBrush(label);
         // Source labels sit BELOW the folded-sutra capsule (not inside the narrow
@@ -889,6 +978,10 @@ public sealed class LineageChartControl : Control
         _zoom = Math.Clamp(z, ZOOM_MIN, ZOOM_MAX);
         _offsetX = bounds.Width / 2 - (_minX + _maxX) / 2 * _zoom;
         _offsetY = 40 - _minY * _zoom;
+        // Programmatic zoom change: tell the world (the L6 slider) so it tracks the
+        // fitted zoom instead of showing a stale value. The host guards its slider
+        // write against feedback, so this raises no loop.
+        ZoomChanged?.Invoke(_zoom);
     }
 
     // ── helpers ──

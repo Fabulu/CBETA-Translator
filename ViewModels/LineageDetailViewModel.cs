@@ -40,8 +40,10 @@ public sealed class LineageDetailContext
     public Action<LineageNode>? Focus { get; init; }
     /// <summary>Open an external URL in the system browser.</summary>
     public Action<string>? OpenUrl { get; init; }
-    /// <summary>Navigate the corpus reader to a TEI path (a stele / in-corpus book).</summary>
-    public Action<string>? NavigateCorpus { get; init; }
+    /// <summary>Navigate the corpus reader to a TEI path (a stele / in-corpus book).
+    /// The second argument is the TEI &lt;lb&gt; line anchor (the SPA's <c>?pos=</c>)
+    /// so the reader lands on the quoted stele line, not the top; null for a book.</summary>
+    public Action<string, string?>? NavigateCorpus { get; init; }
     /// <summary>Open the full master profile (List tab).</summary>
     public Action<LineageNode>? OpenProfile { get; init; }
     /// <summary>Open the corpus-appearances view for this master (Corpus tab).</summary>
@@ -57,10 +59,28 @@ public sealed class LineageRefViewModel
     public string Label { get; }
     public ICommand FocusCommand { get; }
 
+    /// <summary>The target's fail-safed attestation grade (A/B/C/D) — for a HEIR this
+    /// drives the little grade dot (parity with lineage-panel.js lin-heir-dot). Only
+    /// the exact strings A/B/C earn their grade; everything else falls to D.</summary>
+    public string Grade { get; }
+    /// <summary>Dot ink alpha, reusing the SAME per-grade opacity the edges use
+    /// (ATT_STYLES: A .85 / B .60 / C .50 / D .40).</summary>
+    public double DotOpacity { get; }
+    /// <summary>True for D — the dot is drawn in the muted hue, not the text hue
+    /// (again mirroring the edge ink: D is the only faint grade).</summary>
+    public bool DotFaint { get; }
+    /// <summary>Convenience for the XAML: draw the dot in the text hue (A/B/C).</summary>
+    public bool DotSolid => !DotFaint;
+
     public LineageRefViewModel(LineageNode target, LineageDetailContext ctx)
     {
         Label = !string.IsNullOrEmpty(target.Cjk) ? target.Cjk : target.Primary;
         FocusCommand = new RelayCommand(() => ctx.Focus?.Invoke(target));
+
+        var att = target.Attestation;
+        Grade = att is "A" or "B" or "C" or "D" ? att : "D";   // fail-safe (parity: /^[ABCD]$/ ?? D)
+        DotOpacity = Grade switch { "A" => 0.85, "B" => 0.60, "C" => 0.50, _ => 0.40 };
+        DotFaint = Grade == "D";
     }
 }
 
@@ -148,9 +168,10 @@ public sealed class LineageSteleViewModel
         Quote = s.Quote;
         Note = s.Note;
         var path = s.Path;
+        var lb = s.Lb;   // carry the stele line anchor so the reader lands on the quoted line
         if (LineageDetailViewModel.HasWorkId(path))
             Read = new LineageReadLinkViewModel("Read in context →",
-                () => ctx.NavigateCorpus?.Invoke(path!));
+                () => ctx.NavigateCorpus?.Invoke(path!, lb));
     }
 }
 
@@ -385,7 +406,7 @@ public sealed class LineageDetailViewModel
         if (!m.Success) return null;
         var workId = m.Groups[1].Value;
         if (n.SourceInCorpus)
-            return new LineageReadLinkViewModel("Read in context →", () => ctx.NavigateCorpus?.Invoke(path!));
+            return new LineageReadLinkViewModel("Read in context →", () => ctx.NavigateCorpus?.Invoke(path!, null));
         var url = "https://cbetaonline.dila.edu.tw/zh/" + workId;
         return new LineageReadLinkViewModel("Read on CBETA →", () => ctx.OpenUrl?.Invoke(url));
     }
@@ -427,6 +448,10 @@ public sealed class LineageDetailViewModel
 
     private static string SchoolLabelFor(LineageNode n)
     {
+        // The PANEL drops the 禪 suffix on Korean Seon (parity with lineage-panel.js's
+        // own schoolLabel map, which differs from the global SCHOOL_LABELS here). The
+        // shared SchoolLabels dict keeps "Korean Seon 禪" for the chart legend.
+        if (n.SchoolKey == "korean-seon") return "Korean Seon";
         if (n.SchoolKey != "other" && LineageGraphBuilder.SchoolLabels.TryGetValue(n.SchoolKey, out var label))
             return label;
         var raw = n.SchoolRaw ?? "";

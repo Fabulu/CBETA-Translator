@@ -96,8 +96,9 @@ public partial class LineageChartViewModel : ViewModelBase
 
     /// <summary>Open an external URL in the system browser.</summary>
     public Action<string>? OpenUrlHandler { get; set; }
-    /// <summary>Navigate the corpus reader to a TEI path (stele / in-corpus book).</summary>
-    public Action<string>? NavigateCorpusHandler { get; set; }
+    /// <summary>Navigate the corpus reader to a TEI path (stele / in-corpus book).
+    /// The second argument is the TEI &lt;lb&gt; line anchor (null for a book).</summary>
+    public Action<string, string?>? NavigateCorpusHandler { get; set; }
     /// <summary>Open the full master profile (List tab) for a node.</summary>
     public Action<LineageNode>? OpenProfileHandler { get; set; }
     /// <summary>Open the corpus-appearances view (Corpus tab) for a node.</summary>
@@ -166,7 +167,7 @@ public partial class LineageChartViewModel : ViewModelBase
         {
             Focus = FocusNode,
             OpenUrl = url => OpenUrlHandler?.Invoke(url),
-            NavigateCorpus = path => NavigateCorpusHandler?.Invoke(path),
+            NavigateCorpus = (path, lb) => NavigateCorpusHandler?.Invoke(path, lb),
             OpenProfile = n => OpenProfileHandler?.Invoke(n),
             OpenCorpusSearch = n => OpenCorpusSearchHandler?.Invoke(n),
         };
@@ -180,6 +181,19 @@ public partial class LineageChartViewModel : ViewModelBase
         SelectedEdge = null;
         SelectedNode = node;
         NodeFocusRequested?.Invoke(node);
+    }
+
+    /// <summary>Case-insensitive name/alias → node lookup. The graph's ByName index is
+    /// ordinal (case-sensitive); the List tab's record match is OrdinalIgnoreCase, so
+    /// list→chart sync must tolerate case the same way (parity with FindListRecord).</summary>
+    public LineageNode? NodeByNameInsensitive(string? name)
+    {
+        if (string.IsNullOrEmpty(name)) return null;
+        if (Graph.ByName.TryGetValue(name!, out var exact)) return exact;   // fast path
+        foreach (var kv in Graph.ByName)
+            if (string.Equals(kv.Key, name, StringComparison.OrdinalIgnoreCase))
+                return kv.Value;
+        return null;
     }
 
     /// <summary>Focus a node by its id or any name/alias (used by list-selection sync).</summary>

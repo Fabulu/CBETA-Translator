@@ -284,6 +284,21 @@ public partial class ZenMasterManagerWindow : Window
             {
                 chart.InvalidateVisual();
                 if (!_syncingSelection) SyncListToNode(vm.SelectedNode);
+                // In fullscreen the detail panel is hidden until a master is selected (SPA parity).
+                if (_lineageFullscreen) SetLineagePanelCollapsed(vm.SelectedNode == null);
+            }
+        };
+
+        // ── fullscreen toggle (SPA parity: chart fills the screen, Esc exits) ──
+        var btnFull = this.FindControl<Button>("BtnLineageFullscreen");
+        if (btnFull != null)
+            btnFull.Click += (_, _) => SetLineageFullscreen(!_lineageFullscreen, chart);
+        this.KeyDown += (_, e) =>
+        {
+            if (_lineageFullscreen && e.Key == Key.Escape)
+            {
+                SetLineageFullscreen(false, chart);
+                e.Handled = true;
             }
         };
 
@@ -296,6 +311,68 @@ public partial class ZenMasterManagerWindow : Window
     }
 
     private bool _syncingZoom;
+    private bool _lineageFullscreen;
+    private WindowState _prevWindowState = WindowState.Normal;
+    private GridLength _savedLineageSplitterW = new GridLength(8);
+    private GridLength _savedLineagePanelW = new GridLength(340);
+
+    /// <summary>Enter/exit fullscreen for the Lineage Web chart (SPA parity: the chart fills the
+    /// screen, Esc exits, the search/zoom toolbar stays on top; the detail panel collapses out of
+    /// the way unless a master is selected).</summary>
+    private void SetLineageFullscreen(bool on, LineageChartControl chart)
+    {
+        if (on == _lineageFullscreen) return;
+
+        if (on)
+        {
+            SelectTab(2);                       // ensure the Lineage tab is the visible one
+            _prevWindowState = WindowState;
+            WindowState = WindowState.FullScreen;
+            _lineageFullscreen = true;
+            SetLineagePanelCollapsed(_chartVm?.SelectedNode == null);
+        }
+        else
+        {
+            _lineageFullscreen = false;
+            SetLineagePanelCollapsed(false);
+            WindowState = _prevWindowState;
+        }
+
+        var btnFull = this.FindControl<Button>("BtnLineageFullscreen");
+        if (btnFull != null) btnFull.Content = on ? "Exit Fullscreen" : "Fullscreen";
+
+        chart.FitToView();                      // re-fit once the new surface size settles
+    }
+
+    /// <summary>Collapse or restore the lineage detail side-panel (used in fullscreen to give the
+    /// chart the whole surface), preserving any user-resized panel width.</summary>
+    private void SetLineagePanelCollapsed(bool collapsed)
+    {
+        var grid = this.FindControl<Grid>("LineageBodyGrid");
+        if (grid == null || grid.ColumnDefinitions.Count < 3) return;
+        var splitter = this.FindControl<GridSplitter>("LineageSplitter");
+        var panel = this.FindControl<LineageDetailPanel>("LineagePanel");
+
+        if (collapsed)
+        {
+            if (grid.ColumnDefinitions[2].Width.Value > 0)   // remember a real (un-collapsed) width
+            {
+                _savedLineageSplitterW = grid.ColumnDefinitions[1].Width;
+                _savedLineagePanelW = grid.ColumnDefinitions[2].Width;
+            }
+            grid.ColumnDefinitions[1].Width = new GridLength(0);
+            grid.ColumnDefinitions[2].Width = new GridLength(0);
+            if (splitter != null) splitter.IsVisible = false;
+            if (panel != null) panel.IsVisible = false;
+        }
+        else
+        {
+            grid.ColumnDefinitions[1].Width = _savedLineageSplitterW;
+            grid.ColumnDefinitions[2].Width = _savedLineagePanelW;
+            if (splitter != null) splitter.IsVisible = true;
+            if (panel != null) panel.IsVisible = true;
+        }
+    }
 
     private void SelectTab(int index)
     {
@@ -309,13 +386,16 @@ public partial class ZenMasterManagerWindow : Window
         catch { /* a bad link must never crash the window */ }
     }
 
-    private void NavigateCorpusPath(string teiPath)
+    private void NavigateCorpusPath(string teiPath, string? lb)
     {
         if (string.IsNullOrWhiteSpace(teiPath)) return;
         CorpusNavigationRequested?.Invoke(this, new NavigationRequest
         {
             RelPath = teiPath,
             Side = SearchSide.Original,
+            // Carry the stele line anchor (the SPA's ?pos=<lb>) so the reader lands on
+            // the quoted line via segment-key lookup, not the top of the document.
+            FromLb = string.IsNullOrWhiteSpace(lb) ? null : lb,
         });
     }
 
@@ -359,12 +439,15 @@ public partial class ZenMasterManagerWindow : Window
     private LineageNode? FindChartNode(ZenMasterRecord master)
     {
         if (_chartVm == null) return null;
-        if (!string.IsNullOrEmpty(master.CanonicalName) &&
-            _chartVm.Graph.ByName.TryGetValue(master.CanonicalName, out var byCanon))
-            return byCanon;
+        // Case-INSENSITIVE, to match FindListRecord's OrdinalIgnoreCase tolerance —
+        // otherwise list→chart sync silently misses on a casing difference.
+        var byCanon = _chartVm.NodeByNameInsensitive(master.CanonicalName);
+        if (byCanon != null) return byCanon;
         foreach (var alias in master.Aliases)
-            if (!string.IsNullOrEmpty(alias) && _chartVm.Graph.ByName.TryGetValue(alias, out var byAlias))
-                return byAlias;
+        {
+            var hit = _chartVm.NodeByNameInsensitive(alias);
+            if (hit != null) return hit;
+        }
         return null;
     }
 

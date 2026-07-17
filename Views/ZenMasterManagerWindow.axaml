@@ -303,12 +303,14 @@
           <TextBlock Grid.Column="3" Text="Zoom" VerticalAlignment="Center" FontSize="11"
                      Opacity="0.5" Margin="8,0,4,0"/>
           <Slider Grid.Column="4" Name="SliderLineageZoom"
-                  Minimum="10" Maximum="300" Value="80"
+                  Minimum="5" Maximum="300" Value="80"
                   Width="120" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <Button Grid.Column="5" Name="BtnLineageFullscreen" Content="Fullscreen" Padding="8,4"
+                  ToolTip.Tip="Fill the screen with the lineage chart (Esc to exit)"/>
         </Grid>
-        <Grid Grid.Row="1" ColumnDefinitions="*,8,340">
+        <Grid Grid.Row="1" Name="LineageBodyGrid" ColumnDefinitions="*,8,340">
           <local:LineageChartControl Grid.Column="0" Name="LineageGraph"/>
-          <GridSplitter Grid.Column="1" Width="8" ResizeDirection="Columns" Background="Transparent"/>
+          <GridSplitter Grid.Column="1" Name="LineageSplitter" Width="8" ResizeDirection="Columns" Background="Transparent"/>
           <local:LineageDetailPanel Grid.Column="2" Name="LineagePanel"/>
         </Grid>
       </Grid>
