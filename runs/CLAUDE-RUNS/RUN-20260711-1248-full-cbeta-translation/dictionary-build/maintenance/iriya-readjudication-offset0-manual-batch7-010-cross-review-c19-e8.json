@@ -1,0 +1,33 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "sourceLedger":"maintenance/iriya-readjudication-offset0-manual-batch7-010.json",
+  "sourceLedgerSha256":"93a050740f61342b8aceeb54d17f69ff48f20ce45c3b84a0a7b0027b1213fa40",
+  "authoritativeQueueSha256":"162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "decision":"PASS",
+  "scope":"Independent queue-identity verification followed by reading all ten rows and twenty full cases for exact evidence, Chan deployment, lexical units, variants, distinct works, and dispositions.",
+  "cohortFindings":{
+    "identity":"PASS — all ten canonicalIndex/queueNumber/id/term/query tuples exactly match their authoritative queue rows.",
+    "exactEvidence":"PASS — all twenty stored KWICs pass zc.verify; all titles and workIds match the frozen corpus manifest.",
+    "workIndependence":"PASS — every admitted row has two distinct workIds; no split volume or duplicate edition supplies false multi-source validation.",
+    "variants":"PASS — printed 説似一物即不中 and 守株待兎 are both exact-absent, while the explicitly recorded traditional queries 說似一物即不中 and 守株待兔 have 119/84 and 102/67 hits/works respectively.",
+    "semanticBoundary":"PASS — every phrase is spoken, raised, interpreted, or applied as an encounter answer, case verdict, formal-address warning, or tested formula; none rests on ordinary containment alone."
+  },
+  "reviews":[
+    {"canonicalIndex":252,"term":"失錢遭罪","decision":"PASS","finding":"The phrase directly caps Shenhui's response and is independently raised repeatedly as the disputed verdict in the Cuiyan eyebrow case. It is a stable critic's formula for adding punishment to loss."},
+    {"canonicalIndex":255,"term":"説似一物即不中","decision":"PASS","confirmedCorpusQuery":"說似一物即不中","finding":"Huairang gives it as the complete answer to the Sixth Patriarch; another monk explicitly raises the saying and is tested with a fist and blow. Case-fixed answer, with glyph resolution stated honestly."},
+    {"canonicalIndex":258,"term":"金不博金","decision":"PASS","finding":"It is a direct recognized answer in one record and independently isolated as a sentence the assembly must state in another. The component has its own testable deployment despite its frequent water-line partner."},
+    {"canonicalIndex":261,"term":"眼空四海","decision":"PASS","finding":"Two formal appraisals use it to type a lofty, sweeping vision and immediately expose or contrast its remaining fault. Critical Chan characterization, not scenic description."},
+    {"canonicalIndex":264,"term":"鈍置殺人","decision":"PASS","finding":"One discourse explicitly condemns proof by blows with the phrase; a monk independently answers a case question with it and is struck. It is a severe encounter verdict, not literal homicide."},
+    {"canonicalIndex":267,"term":"穿過髑髏","decision":"PASS","finding":"One exchange explicitly asks for the phrase beyond two excluded alternatives; another gives it as the complete answer to the opportune phrase. Independently raised skull-penetration image."},
+    {"canonicalIndex":270,"term":"迷己逐物","decision":"PASS","finding":"Jingqing gives the formula as his direct rain-sound verdict and the case commentary analyzes it; another master deliberately quotes and applies it while contrasting being turned by things with turning them. Stable diagnostic deployment."},
+    {"canonicalIndex":273,"term":"東涌西沒","decision":"PASS","finding":"It is the direct answer describing the monk's transformation and independently a named sentence set aside before a harder demand. Reusable case image, not weather narration."},
+    {"canonicalIndex":276,"term":"忘前失後","decision":"PASS","finding":"Two critics independently apply it to specific case handling and identify the earlier/later move whose coherence was lost. It is a recurrent adjudicative verdict."},
+    {"canonicalIndex":279,"term":"守株待兎","decision":"PASS","confirmedCorpusQuery":"守株待兔","finding":"Two formal addresses redeploy the proverb to reject fixation, passive waiting, or failure to act as a true-colour monk. The traditional glyph query and counts are explicit."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"identityMatches":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"workIdMatches":20,"pass":10,"revise":0},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

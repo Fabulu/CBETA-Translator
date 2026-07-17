@@ -1,0 +1,27 @@
+{
+  "schemaVersion":"iriya-manual-repair-cross-review-v1",
+  "reviewer":"Codex independent focused metadata-repair reviewer",
+  "decision":"PASS",
+  "repairedLedger":"maintenance/iriya-manual-batch7-offset2-ledger.json",
+  "repairedLedgerSha256":"72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625",
+  "repairReceipt":"maintenance/iriya-manual-batch7-offset2-metadata-repair-receipt.json",
+  "repairReceiptSha256":"325a84aed4680f81eb012d1afaee6f92c7e0815eccfbe85525da7f77a7f1b86b",
+  "reviewAuthority":"maintenance/iriya-manual-batch7-offset2-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"aa3a2757e15d8763ec7a82fa1f920e9ecc5fe213fccbc4b524ab94994b16d253",
+  "repairChecks":[
+    {"canonicalIndex":356,"source":"L/L153/L153n1637.xml","result":"PASS","canonicalWorkId":"chan:huanyou-chuan-yulu","finding":"The repaired workId exactly matches zc.work_id for the source."},
+    {"canonicalIndex":359,"source":"X/X84/X84n1580.xml","result":"PASS","canonicalWorkId":"chan:jiaowai-biezhuan","finding":"The repaired workId exactly matches zc.work_id for the source."}
+  ],
+  "preservationChecks":{
+    "byteIdentity":"PASS — replacing only the two repaired canonical workId strings with their recorded prior values reconstructs the exact pre-repair ledger SHA 3d028a8e10b1e65b3b51d3951cb5e6295793eb64bd75875c4bc03e5025fbe0f5. Therefore no other ledger byte changed.",
+    "identity":"PASS — all ten queue identity tuples remain authoritative matches.",
+    "evidence":"PASS — all twenty KWICs still pass exact zc.verify and all twenty workIds now match their canonical manifest values.",
+    "distinctWorks":"PASS — every row retains two distinct canonical workIds.",
+    "semantics":"PASS — dispositions, units, reasons, evidence text, variants, counts, and summary are unchanged."
+  },
+  "mechanicalReceipt":{"repairsChecked":2,"canonicalWorkIdMatches":2,"identityMatches":10,"zcVerifyPass":20,"distinctWorkPairs":10,"pass":10,"revise":0},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

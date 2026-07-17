@@ -1,0 +1,461 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v2",
+  "mode": "manual full-case reading only; no semantic automation, regex decision, threshold, cached identity packet, or default disposition",
+  "selection": "Exactly the next ten canonicalIndex % 3 == 2 candidates absent from the 334-row trusted registry, ascending canonical index.",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256AtSelection": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsAtSelection": 334,
+  "trustedRegistrySha256AtSelection": "bb607f36ab9f6b4d625a868f0b6d45eddbcc1da52c0b293a0f105cb6b7a74878",
+  "identityPreflight": {
+    "source": "authoritative queue rows read directly before corpus research; no cached packet identities consulted",
+    "assertions": {
+      "copiedDirectly": true,
+      "canonicalIndexEqualsQueueNumberMinusOne": true,
+      "canonicalIndexModulo3Equals2": true,
+      "canonicalIndexAbsentFromRegistry": true,
+      "idAbsentFromRegistry": true,
+      "strictlyAscending": true,
+      "exactlyTen": true
+    }
+  },
+  "offset": 2,
+  "batch": 7,
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "batchOrdinal": 1,
+      "canonicalIndex": 347,
+      "queueNumber": 348,
+      "id": "t_d7deed0ba57c",
+      "term": "天上有星皆拱北、人間無水不朝東",
+      "query": "天上有星皆拱北，人間無水不朝東",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "The balanced cosmic image repeatedly caps a challenge about the fundamental basis or an exceptional matter. Both clauses jointly state universal orientation toward one source; neither is incidental scene description.",
+      "variantAndSegmentation": "Retain both clauses as one couplet. The queue's 、 form has 0 exact hits; the comma form is the attested search form.",
+      "zcExact": {
+        "hits": 81,
+        "files": 59,
+        "distinctWorks": 59
+      },
+      "formResolution": {
+        "printedQuery": "天上有星皆拱北、人間無水不朝東",
+        "printedExact": {
+          "hits": 0,
+          "files": 0,
+          "distinctWorks": 0
+        }
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0011b09",
+          "hitToLb": "0011b13",
+          "verified": true,
+          "kwic": "以此保國安民；以此康福天下。殊勝中殊勝，奇特中奇特，畢竟結角羅紋在什麼處？天上有星皆拱北，人間無水不朝東。復舉：僧問百丈大智禪師：如何是奇特事？百丈云：獨坐大雄峰。"
+        },
+        {
+          "source": "J/J26/J26nB178.xml",
+          "title": "費隱禪師語錄",
+          "workId": "work:J26nB178",
+          "hitFromLb": "0104b23",
+          "hitToLb": "0104b24",
+          "verified": true,
+          "fullCaseExcerpt": "世尊衍鐵牛機，雲門明格外句，雖則各露風規，要且未合本據。且道如何是本據底意？天上有星皆拱北，人間無水不朝東。以拄杖卓一卓。",
+          "kwic": "天上有星皆拱北，人間無水不朝東"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 2,
+      "canonicalIndex": 350,
+      "queueNumber": 351,
+      "id": "t_bdda6dabaf31",
+      "term": "松直棘曲",
+      "query": "松直棘曲",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The contrast of straight pine and crooked thorn is repeatedly coordinated with crane-long/duck-short and white/black to assert each thing's own suchness or natural differentiation. It functions as a compact doctrinal image.",
+      "variantAndSegmentation": "Keep the four-character contrast; parallel natural contrasts vary.",
+      "zcExact": {
+        "hits": 88,
+        "files": 67,
+        "distinctWorks": 66
+      },
+      "evidence": [
+        {
+          "source": "J/J26/J26nB178.xml",
+          "title": "費隱禪師語錄",
+          "workId": "work:J26nB178",
+          "hitFromLb": "0121c05",
+          "hitToLb": "0121c05",
+          "verified": true,
+          "fullCaseExcerpt": "實際地上據本，還他鶴長鳧短、松直棘曲，各居方位、任適自性，故曰：是法住法位，世間相常住。",
+          "kwic": "松直棘曲"
+        },
+        {
+          "source": "J/J29/J29nB224.xml",
+          "title": "嵩山野竹禪師語錄",
+          "workId": "work:J29nB224",
+          "hitFromLb": "0095a28",
+          "hitToLb": "0095a28",
+          "verified": true,
+          "fullCaseExcerpt": "上堂。山青水綠，松直棘曲，喚作自然，孤負先佛。所以道：語帶玄而無路，舌頭談而不談。",
+          "kwic": "松直棘曲"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 3,
+      "canonicalIndex": 353,
+      "queueNumber": 354,
+      "id": "t_0d058cec87cd",
+      "term": "把斷要津、不通凡聖",
+      "query": "把斷要津，不通凡聖",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "The paired line defines the final barrier: seize the strategic crossing and allow neither ordinary nor holy through. It recurs as a quoted Chan maxim and as an opening assertion tested by the return of spring.",
+      "variantAndSegmentation": "Retain both clauses. Comma form has 81 hits/55 works; printed 、 form independently has 11 hits/8 works.",
+      "zcExact": {
+        "hits": 81,
+        "files": 55,
+        "distinctWorks": 55
+      },
+      "formResolution": {
+        "printedQuery": "把斷要津、不通凡聖",
+        "printedExact": {
+          "hits": 11,
+          "files": 8,
+          "distinctWorks": 8
+        }
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0089c09",
+          "hitToLb": "0089c12",
+          "verified": true,
+          "kwic": "當知此事不從他處得來，我王庫內無此刀，此刀不離王庫內，末後一句始到牢關，把斷要津，不通凡聖。九十日末後句作麼生道？"
+        },
+        {
+          "source": "J/J26/J26nB187.xml",
+          "title": "天岸昇禪師語錄",
+          "workId": "work:J26nB187",
+          "hitFromLb": "0678b25",
+          "hitToLb": "0678b25",
+          "verified": true,
+          "fullCaseExcerpt": "上堂。把斷要津，不通凡聖，春色緣何入得來？天地合其德，四時同其序，何思也？何慮也？寂然不動，感而遂通。",
+          "kwic": "把斷要津，不通凡聖"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 4,
+      "canonicalIndex": 356,
+      "queueNumber": 357,
+      "id": "t_e1d1c95932b3",
+      "term": "左右逢源",
+      "query": "左右逢源",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "multi-source full-case rejection",
+      "reason": "Across independent cases the idiom simply praises adaptable, unobstructed facility: it is explicitly paired with 隨機應變 or 縱橫無礙. Chan subject matter does not turn this ordinary descriptive idiom into a headword-specific encounter formula.",
+      "variantAndSegmentation": "No narrower recurrent Chan unit is carried by the four graphs.",
+      "zcExact": {
+        "hits": 85,
+        "files": 57,
+        "distinctWorks": 57
+      },
+      "evidence": [
+        {
+          "source": "J/J28/J28nB212.xml",
+          "title": "二隱謐禪師語錄",
+          "workId": "work:J28nB212",
+          "hitFromLb": "0475c10",
+          "hitToLb": "0475c10",
+          "verified": true,
+          "fullCaseExcerpt": "諸佛至道，要假人弘，歷祖玄機，須深辨識。若深辨識，便乃左右逢源、隨機應變，或上或下、或放或收。",
+          "kwic": "左右逢源"
+        },
+        {
+          "source": "L/L153/L153n1637.xml",
+          "title": "幻有傳禪師語錄",
+          "workId": "chan:huanyou-chuan-yulu",
+          "hitFromLb": "0484b15",
+          "hitToLb": "0485a03",
+          "verified": true,
+          "kwic": "古人纔掉得個源頭到手便歸家穩坐自在安閒縱橫無礙左右逢源所謂行亦禪坐亦禪語默動靜體安然矣"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 5,
+      "canonicalIndex": 359,
+      "queueNumber": 360,
+      "id": "t_18bdf5e6e474",
+      "term": "猶有這箇在",
+      "query": "猶有這箇在",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "In the Daoxin-Farong encounter the same retort exposes residual fear first in Farong and then residual attachment when Daoxin writes 佛. Its reversal within one complete case makes it a diagnostic encounter refrain.",
+      "variantAndSegmentation": "Keep the five-character retort; its referent changes with the test.",
+      "zcExact": {
+        "hits": 85,
+        "files": 33,
+        "distinctWorks": 30
+      },
+      "evidence": [
+        {
+          "source": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "workId": "work:X80n1565",
+          "hitFromLb": "0048a22",
+          "hitToLb": "0048a22",
+          "verified": true,
+          "fullCaseExcerpt": "遶庵唯見虎狼之類。祖乃舉兩手作怖勢。師曰：猶有這箇在。祖曰：這箇是甚麼。師無語。少選，祖却於師宴坐石上書一佛字，師覩之竦然。祖曰：猶有這箇在。",
+          "kwic": "猶有這箇在"
+        },
+        {
+          "source": "X/X84/X84n1580.xml",
+          "title": "教外別傳",
+          "workId": "chan:jiaowai-biezhuan",
+          "hitFromLb": "0187a07",
+          "hitToLb": "0187a10",
+          "verified": true,
+          "kwic": "遶庵唯見虎狼之類。祖乃舉兩手作怖勢。師曰：猶有這箇在。祖曰：這箇是甚麼？師無語。少選，祖却於師宴坐石上書一佛字。師覩之竦然。祖曰：猶有這箇在。"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 6,
+      "canonicalIndex": 365,
+      "queueNumber": 366,
+      "id": "t_c617534d41bd",
+      "term": "經有經師、論有論師",
+      "query": "經有經師，論有論師",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "Yakusan's refusal to lecture sends sutras and treatises back to their specialist teachers, marking Chan's non-expository role. Later masters quote and reenact the line as a complete public-teaching case.",
+      "variantAndSegmentation": "Retain the balanced pair. Comma form has 83 hits/61 works; printed 、 form has 8 hits/8 works.",
+      "zcExact": {
+        "hits": 83,
+        "files": 63,
+        "distinctWorks": 61
+      },
+      "formResolution": {
+        "printedQuery": "經有經師、論有論師",
+        "printedExact": {
+          "hits": 8,
+          "files": 8,
+          "distinctWorks": 8
+        }
+      },
+      "evidence": [
+        {
+          "source": "J/J37/J37nB386.xml",
+          "title": "遠菴僼禪師語錄",
+          "workId": "work:J37nB386",
+          "hitFromLb": "0341a24",
+          "hitToLb": "0341a25",
+          "verified": true,
+          "fullCaseExcerpt": "藥山久不上堂，院主請陞座，藥山云：打鐘著。大眾纔集，藥山便歸方丈，院主隨後白云：大眾久思清誨，因甚一言不措？藥山云：經有經師，論有論師。",
+          "kwic": "經有經師，論有論師"
+        },
+        {
+          "source": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "workId": "work:X84n1583",
+          "hitFromLb": "0492b24",
+          "hitToLb": "0492c02",
+          "verified": true,
+          "kwic": "上堂：經有經師，論有論師。龍河今日放一綫道，分科列段去也。拈拄杖卓一下，曰：且道是何章句？"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 7,
+      "canonicalIndex": 371,
+      "queueNumber": 372,
+      "id": "t_11f6257f8bc4",
+      "term": "改頭換面",
+      "query": "改頭換面",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "multi-source full-case rejection",
+      "reason": "The witnesses use the ordinary idiom for looking renewed or assuming another embodiment in rebirth. Those referents vary without a stable encounter action, doctrinal punch line, or headword-specific Chan sense.",
+      "variantAndSegmentation": "No narrower stable Chan unit; ordinary transformation idiom.",
+      "zcExact": {
+        "hits": 79,
+        "files": 59,
+        "distinctWorks": 59
+      },
+      "evidence": [
+        {
+          "source": "J/J36/J36nB369.xml",
+          "title": "蔗菴範禪師語錄",
+          "workId": "work:J36nB369",
+          "hitFromLb": "0954c22",
+          "hitToLb": "0954c24",
+          "verified": true,
+          "kwic": "我有一雲一雨，普澍大千，種類若干，名色各異。承受得者，改頭換面，轉見精神，乃我常分，不借餘力。"
+        },
+        {
+          "source": "X/X69/X69n1356.xml",
+          "title": "普菴印肅禪師語錄",
+          "workId": "work:X69n1356",
+          "hitFromLb": "0372b22",
+          "hitToLb": "0372b24",
+          "verified": true,
+          "kwic": "出生入死幾時休？汩沒輪迴何日了？相殺㗖為苦報種，相愛婬為生死根。改頭換面親非親，戴角披毛滅不滅？"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 8,
+      "canonicalIndex": 374,
+      "queueNumber": 375,
+      "id": "t_c46d8516c206",
+      "term": "尿床鬼子",
+      "query": "尿床鬼子",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The insulting child-image is a recurrent master's rebuke for immature or merely derivative understanding. In the Linji case it accompanies the demand to state the realized principle; elsewhere it disqualifies seeing color as awakening.",
+      "variantAndSegmentation": "Keep the four-character rebuke; demonstratives and targets vary.",
+      "zcExact": {
+        "hits": 77,
+        "files": 56,
+        "distinctWorks": 55
+      },
+      "evidence": [
+        {
+          "source": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "workId": "work:X79n1557",
+          "hitFromLb": "0081a23",
+          "hitToLb": "0081b01",
+          "verified": true,
+          "kwic": "師於言下大悟，不覺失聲云：噁！元來黃檗佛法無多子。大愚搊住云：這尿床鬼子！適來問有過無過，如今却道黃檗佛法與多子，汝見箇甚麼道理？速道！速道！"
+        },
+        {
+          "source": "J/J36/J36nB359.xml",
+          "title": "百愚禪師語錄",
+          "workId": "work:J36nB359",
+          "hitFromLb": "0649a05",
+          "hitToLb": "0649a05",
+          "verified": true,
+          "fullCaseExcerpt": "結制，上堂。聞聲悟道，何異臺盤乞兒？見色明心，大似尿床鬼子。若是傑出丈夫，不受囊藏被蓋，便乃掀翻世界、別立乾坤。",
+          "kwic": "尿床鬼子"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 9,
+      "canonicalIndex": 377,
+      "queueNumber": 378,
+      "id": "t_0ed27342ce15",
+      "term": "大盡三十日、小盡二十九",
+      "query": "大盡三十日，小盡二十九",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "The calendrical truism repeatedly answers questions about what does not flow, the present teaching, or the immediately given fact. Its two halves operate together as a matter-of-fact Chan cap.",
+      "variantAndSegmentation": "Retain both clauses. Comma form has 77 hits/54 works; printed 、 form has 10 hits/9 works.",
+      "zcExact": {
+        "hits": 77,
+        "files": 54,
+        "distinctWorks": 54
+      },
+      "formResolution": {
+        "printedQuery": "大盡三十日、小盡二十九",
+        "printedExact": {
+          "hits": 10,
+          "files": 9,
+          "distinctWorks": 9
+        }
+      },
+      "evidence": [
+        {
+          "source": "X/X68/X68n1318.xml",
+          "title": "續古尊宿語要",
+          "workId": "work:X68n1318",
+          "hitFromLb": "0401b24",
+          "hitToLb": "0401c02",
+          "verified": true,
+          "kwic": "生死交謝，寒暑迭遷，有物流動，人之常情。肇法師剛然不知，有不為物之流動者。作麼生是不流動者？良久，云：大盡三十日，小盡二十九。"
+        },
+        {
+          "source": "J/J26/J26nB183.xml",
+          "title": "雪竇石奇禪師語錄",
+          "workId": "work:J26nB183",
+          "hitFromLb": "0501b14",
+          "hitToLb": "0501b14",
+          "verified": true,
+          "fullCaseExcerpt": "鹽城眾信請陞座。大盡三十日，小盡二十九，舉示甚現成，衲僧笑破口。召大眾，云：舉示現成，又笑個甚麼？",
+          "kwic": "大盡三十日，小盡二十九"
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 10,
+      "canonicalIndex": 380,
+      "queueNumber": 381,
+      "id": "t_fe88cb3b4cd9",
+      "term": "屙屎送尿",
+      "query": "屙屎送尿",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "The blunt bodily pair is repeatedly placed beside dressing and eating to locate Buddha-dharma in unembellished daily activity. It is a stable Chan everyday-practice formula, not incidental bodily narration.",
+      "variantAndSegmentation": "Keep the coordinated bodily pair; ordering relative to 著衣喫飯 varies.",
+      "zcExact": {
+        "hits": 84,
+        "files": 48,
+        "distinctWorks": 46
+      },
+      "evidence": [
+        {
+          "source": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "workId": "work:X79n1557",
+          "hitFromLb": "0084a15",
+          "hitToLb": "0084a16",
+          "verified": true,
+          "kwic": "示眾云：佛法無用功處，祇是平常無事，著衣喫飯，屙屎送尿，困來即臥，愚人笑我，智乃知焉。"
+        },
+        {
+          "source": "X/X83/X83n1574.xml",
+          "title": "增集續傳燈錄",
+          "workId": "work:X83n1574",
+          "hitFromLb": "0269a13",
+          "hitToLb": "0269a15",
+          "verified": true,
+          "kwic": "上堂：佛法在你日用處，在你著衣喫飯處，在你語言酧酢處，在你行住坐臥處，在你屙屎送尿處，擬心思量便不是也。"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "KEEP (component)": 4,
+    "KEEP (couplet)": 4,
+    "PROVISIONAL": 0,
+    "REJECT": 2
+  },
+  "entryConstructionPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopAfterExactlyTen": true,
+  "stopForCrossReview": true
+}

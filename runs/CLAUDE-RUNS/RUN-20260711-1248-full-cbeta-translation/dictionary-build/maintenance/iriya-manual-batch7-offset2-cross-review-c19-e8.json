@@ -1,0 +1,33 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "sourceLedger":"maintenance/iriya-manual-batch7-offset2-ledger.json",
+  "sourceLedgerSha256":"3d028a8e10b1e65b3b51d3951cb5e6295793eb64bd75875c4bc03e5025fbe0f5",
+  "decision":"REVISE",
+  "scope":"Authoritative queue-identity verification followed by independent review of all ten rows and twenty full cases for exact evidence, deployment, units, variants, distinct works, and dispositions.",
+  "cohortFindings":{
+    "identity":"PASS — all ten canonicalIndex/queueNumber/id/term/query tuples match the authoritative queue.",
+    "exactEvidence":"PASS — all twenty KWICs pass exact zc.verify and all twenty titles match.",
+    "workMetadata":"REVISE — eighteen workIds match. L/L153/L153n1637.xml must be chan:huanyou-chuan-yulu, not work:L153n1637; X/X84/X84n1580.xml must be chan:jiaowai-biezhuan, not work:X84n1580.",
+    "workIndependence":"PASS after the two metadata corrections — every row still has two distinct canonical workIds; neither correction collapses a pair.",
+    "variants":"PASS — the three printed/comma couplet resolutions and their counts are accurate, including the independently attested 、 forms where reported.",
+    "semanticBoundary":"PASS — eight KEEP decisions have observable Chan deployments. 左右逢源 and 改頭換面 are correctly rejected as ordinary descriptive idioms whose cited uses do not establish a stable headword-specific Chan job."
+  },
+  "reviews":[
+    {"canonicalIndex":347,"term":"天上有星皆拱北、人間無水不朝東","decision":"PASS","finding":"Both formal addresses use the whole cosmic pair as the direct cap to a question about the fundamental basis. The balanced clauses form one deployed unit."},
+    {"canonicalIndex":350,"term":"松直棘曲","decision":"PASS","finding":"Two masters deliberately coordinate the contrast with other natural differentiations while making and testing claims about each thing's own position. Compact doctrinal image, not landscape description."},
+    {"canonicalIndex":353,"term":"把斷要津、不通凡聖","decision":"PASS","finding":"The complete pair defines the final barrier in one address and is independently raised before a spring challenge in another. Both clauses jointly state the closure."},
+    {"canonicalIndex":356,"term":"左右逢源","decision":"REVISE","confirmedDisposition":"REJECT","finding":"The semantic rejection stands: both cases use the ordinary idiom descriptively for adaptable facility, paired transparently with 隨機應變 or 縱橫無礙; neither raises or tests the headword. Only the second evidence workId is wrong.","requiredRepair":"Change evidence[1].workId from work:L153n1637 to chan:huanyou-chuan-yulu. Preserve disposition, reason, evidence text, and all other fields."},
+    {"canonicalIndex":359,"term":"猶有這箇在","decision":"REVISE","confirmedDisposition":"KEEP (component)","finding":"The phrase is the repeated diagnostic retort within the Daoxin–Farong case, first exposing fear and then attachment to the written 佛. Semantic admission stands; only the second evidence workId is wrong.","requiredRepair":"Change evidence[1].workId from work:X84n1580 to chan:jiaowai-biezhuan. Preserve disposition, reason, evidence text, and all other fields."},
+    {"canonicalIndex":365,"term":"經有經師、論有論師","decision":"PASS","finding":"Yakusan's balanced refusal is preserved as a complete case answer and independently reenacted in a formal address. The two clauses are one public-teaching formula."},
+    {"canonicalIndex":371,"term":"改頭換面","decision":"PASS","confirmedDisposition":"REJECT","finding":"One sermon uses the ordinary idiom for looking renewed after receiving teaching; another uses it for taking a changed embodiment in rebirth. The referents diverge and neither makes the phrase a raised encounter object or stable Chan-loaded sense."},
+    {"canonicalIndex":374,"term":"尿床鬼子","decision":"PASS","finding":"It is a direct master's rebuke demanding the realized principle in the Linji case and independently disqualifies derivative seeing in a formal address. Stable insulting encounter image."},
+    {"canonicalIndex":377,"term":"大盡三十日、小盡二十九","decision":"PASS","finding":"The calendrical pair directly answers what does not flow and is independently raised as the completely present fact. Both clauses function together as the matter-of-fact cap."},
+    {"canonicalIndex":380,"term":"屙屎送尿","decision":"PASS","finding":"Two masters explicitly place the bodily pair in statements locating the teaching in ordinary daily activity, alongside dressing and eating. Recurrent formula rather than incidental bodily narration."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"identityMatches":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"workIdMatches":18,"pass":8,"revise":2,"semanticDispositionChangesRequired":0,"metadataCorrectionsRequired":2},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

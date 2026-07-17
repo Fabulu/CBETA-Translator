@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "iriya-manual-ledger-metadata-repair-receipt-v1",
+  "scope": "offset2 batch7 metadata-only repair requested by C review",
+  "reviewSha256": "aa3a27...",
+  "ledger": "maintenance/iriya-manual-batch7-offset2-ledger.json",
+  "ledgerSha256Before": "3d028a8e10b1e65b3b51d3951cb5e6295793eb64bd75875c4bc03e5025fbe0f5",
+  "ledgerSha256After": "72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625",
+  "repairs": [
+    {
+      "canonicalIndex": 356,
+      "evidenceIndex": 1,
+      "source": "L/L153/L153n1637.xml",
+      "field": "workId",
+      "before": "work:L153n1637",
+      "after": "chan:huanyou-chuan-yulu"
+    },
+    {
+      "canonicalIndex": 359,
+      "evidenceIndex": 1,
+      "source": "X/X84/X84n1580.xml",
+      "field": "workId",
+      "before": "work:X84n1580",
+      "after": "chan:jiaowai-biezhuan"
+    }
+  ],
+  "changedFieldCount": 2,
+  "evidenceTextChanged": false,
+  "semanticsChanged": false,
+  "unitsChanged": false,
+  "dispositionsChanged": false,
+  "registryChanged": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

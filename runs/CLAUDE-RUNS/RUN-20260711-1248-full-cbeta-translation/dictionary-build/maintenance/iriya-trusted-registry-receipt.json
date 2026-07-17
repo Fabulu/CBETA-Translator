@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-17T22:00:45Z",
+  "generatedUtc": "2026-07-17T22:19:30Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "bb607f36ab9f6b4d625a868f0b6d45eddbcc1da52c0b293a0f105cb6b7a74878",
+  "registrySha256": "2f20bffd05f6c038e9f5d7f89488d7646ba7e5db4223376f46456b5151d8d15e",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -308,6 +308,46 @@
       "role": "independent-review",
       "path": "maintenance/iriya-manual-batch6-offset2-cross-review-c19-e8.json",
       "sha256": "2144843356ee14689cd03c923fb9cac711a8d592bb626acf32ac8989c777f691"
+    },
+    {
+      "role": "batch7-identity-preflight-author-ledger",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch7-010.json",
+      "sha256": "93a050740f61342b8aceeb54d17f69ff48f20ce45c3b84a0a7b0027b1213fa40"
+    },
+    {
+      "role": "batch7-independent-review",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch7-010-cross-review-c19-e8.json",
+      "sha256": "ecd061e18c00d3f8b27832040f024593c3c0bcf1c7190313947cda56c5cc5eaf"
+    },
+    {
+      "role": "batch7-identity-preflight-author-ledger",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch7-010.json",
+      "sha256": "ad482161aeca28310c4883a0a6e4c7cf86238d0b9d056e840954d1f6caef6349"
+    },
+    {
+      "role": "batch7-independent-review",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch7-010-cross-review-d7.json",
+      "sha256": "a9ebc40889a6b3fac17a252837713c817fba95ab78572449b613a6c74636b4d3"
+    },
+    {
+      "role": "batch7-identity-preflight-author-ledger",
+      "path": "maintenance/iriya-manual-batch7-offset2-ledger.json",
+      "sha256": "72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625"
+    },
+    {
+      "role": "batch7-independent-review",
+      "path": "maintenance/iriya-manual-batch7-offset2-cross-review-c19-e8.json",
+      "sha256": "aa3a2757e15d8763ec7a82fa1f920e9ecc5fe213fccbc4b524ab94994b16d253"
+    },
+    {
+      "role": "batch7-offset2-metadata-repair-receipt",
+      "path": "maintenance/iriya-manual-batch7-offset2-metadata-repair-receipt.json",
+      "sha256": "325a84aed4680f81eb012d1afaee6f92c7e0815eccfbe85525da7f77a7f1b86b"
+    },
+    {
+      "role": "batch7-offset2-focused-repair-review",
+      "path": "maintenance/iriya-manual-batch7-offset2-metadata-repair-cross-review-c19-e8.json",
+      "sha256": "6e067cd30d25e3371261fb1ff4d7990b8c3508cd3e4cbef7502bc7709cf5d642"
     }
   ],
   "verification": {
@@ -329,16 +369,25 @@
     "preservedExistingRows": 304,
     "keepDecisionCount": 303,
     "rejectDecisionCount": 31,
-    "provisionalDecisionCount": 0
+    "provisionalDecisionCount": 0,
+    "registryRows": 364,
+    "uniqueCanonicalIndexes": 364,
+    "uniqueIds": 364,
+    "prior334RowsByteEquivalent": true,
+    "batch7RowsAppended": 30,
+    "batch7QueueTuplesExact": 30,
+    "batch7FinalDispositionsValidated": 30,
+    "batch7ProvisionalOrDefaultAdmitted": 0
   },
   "exclusionRule": "Rows ruled INVALID/QUARANTINE by a method audit were excluded unless the exact row appears in one of the three fresh manual canaries and that canary has an independent PASS receipt. No older bulk/default verdict was used to fill a registry row.",
   "sideEffects": {
     "queueAdvanced": false,
     "buildRun": false,
     "lineageTouched": false,
-    "entryConstructionPerformed": false
+    "entryConstructionPerformed": false,
+    "entryBuildRun": false
   },
-  "priorRegistrySha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
+  "priorRegistrySha256": "bb607f36ab9f6b4d625a868f0b6d45eddbcc1da52c0b293a0f105cb6b7a74878",
   "batch2Seal": {
     "rowsAppended": 30,
     "offset0Rows": 10,
@@ -546,5 +595,21 @@
     "quarantinedDefaultDecisionAdmitted": false,
     "invalidOffset0ChainAdmitted": false,
     "provisionalRowsAdmitted": 0
+  },
+  "batch7Seal": {
+    "priorReceiptSha256": "996223944c2e6e67dc5064899a2ee70406c219d310612ead86f2bd567c575ce9",
+    "priorRegistryRows": 334,
+    "appendedRows": 30,
+    "finalRegistryRows": 364,
+    "offsets": [
+      0,
+      1,
+      2
+    ],
+    "identityPreflightAuthorLedgersBound": 3,
+    "independentReviewsBound": 3,
+    "offset2MetadataRepairReceiptBound": true,
+    "offset2FocusedRepairReviewBound": true,
+    "noDefaultsOrQuarantine": true
   }
 }

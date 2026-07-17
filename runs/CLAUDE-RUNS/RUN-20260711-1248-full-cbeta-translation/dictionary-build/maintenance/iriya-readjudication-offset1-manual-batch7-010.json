@@ -1,0 +1,382 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v1",
+  "mode": "manual full-case reading after hard identity preflight; no cached packet identities, semantic automation, count threshold, or default disposition",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "registryAtSelection": "maintenance/iriya-trusted-registry.json",
+  "registryAtSelectionSha256": "bb607f36ab9f6b4d625a868f0b6d45eddbcc1da52c0b293a0f105cb6b7a74878",
+  "registryRowsAtSelection": 334,
+  "lane": "offset1",
+  "identityPreflight": {
+    "status": "PASS",
+    "rule": "first ten ascending authoritative queue rows absent from the frozen registry where canonicalIndex % 3 == 1",
+    "canonicalIndexes": [
+      352,
+      355,
+      358,
+      361,
+      364,
+      367,
+      370,
+      373,
+      376,
+      379
+    ],
+    "queueNumbers": [
+      353,
+      356,
+      359,
+      362,
+      365,
+      368,
+      371,
+      374,
+      377,
+      380
+    ],
+    "assertion": "Every canonicalIndex, queueNumber, id, term, and query was copied directly from the authoritative queue and checked before corpus research."
+  },
+  "rows": [
+    {
+      "ordinal": 85,
+      "canonicalIndex": 352,
+      "queueNumber": 353,
+      "id": "t_f220f22e7964",
+      "term": "鐵眼銅睛",
+      "query": "鐵眼銅睛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Iron-and-bronze eyes are invoked in two formal case appraisals as exceptionally penetrating discernment that nevertheless cannot measure or break through the matter being raised. The phrase is a recurrent Chan image for formidable but still defeated seeing, not anatomical description.",
+      "exact": {
+        "hits": 89,
+        "works": 54
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0041a22",
+          "kwic": "，云：妙舞會須誇徧拍，三臺須是大家催。古雪喆禪師掃馬大師塔，上堂：甎鏡臺前，打失孃生鼻孔；滕王閣畔，宏開選佛壇場。蹋殺天下英靈，喚回空中野鴨。掀翻窠堀，截斷葛藤。明大用，顯大機，電光石火較猶遲。藏頭白，海頭黑，鐵眼銅睛皆罔測。燈傳三十二葉，道播四海九州。脚下不肖兒孫，昔日親遭毒手。源遠流長則且置，到者裡作麼生與祖師相見？喝一喝，云：無縫塔中藏不得，森羅景裏見全身。受業師忌拈香受業師忌拈香箬庵問：禪師先受業法雨大師，忌拈香。過"
+        },
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "line": "0308a22",
+          "kwic": "：父母非我親，誰是最親者？諸佛非我道，誰是最道者？雲蓋本云：父母非我親，無有不親者。諸佛非我道，無有不道者。祖師得第一句，雲蓋得第二句。有人添得一句，許伊鼎足三分。密菴傑云：父母非我親，眼裏絕纖塵。諸佛非我道，鐵眼銅睛覰不破。汝言與心親，蚊子齩鐵釘。汝行與道合，上下四維俱匌帀。祇將此語報深恩，朵朵紅蓮火裏發。伏龍長云：父母非我親，我亦非親者。諸佛非我道，道亦非我者。祖師也不得第一句，雲蓋也不得第二句。千巖碎身如微塵，何止頭破"
+        }
+      ]
+    },
+    {
+      "ordinal": 86,
+      "canonicalIndex": 355,
+      "queueNumber": 356,
+      "id": "t_7b21cb2725ec",
+      "term": "護生須是殺、殺盡始安居",
+      "query": "護生須是殺，殺盡始安居",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "A formal address raises the entire verse and explicitly asks what is killed while excluding literal killing, doctrinal killing of defilements, and killing buddhas or patriarchs. Another master raises both clauses, calls understanding them only halfway, and demands the home-reaching sentence. The paradoxical premise and consequence are one repeatedly tested couplet.",
+      "exact": {
+        "hits": 81,
+        "works": 56
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0088b08",
+          "kwic": "動靜底麼？且喜沒交涉。若向者裏承當得去，何翅白衣拜相、善財入樓閣、香巖聞擊竹、靈雲見桃花？總不出者箇時節。阿呵呵！一即三，三即一，牧羊海畔女貞花，拒馬河邊望夫石。石擊赤，赤土畫，簸箕從教眼𥉌𭿇。復舉：古德偈云：護生須是殺，殺盡始安居，會得箇中意，鐵船水上浮。圓悟老祖云：且道殺箇甚麼？殺眾生物命是凡夫見解，殺六賊煩惱是座主見解，殺佛、殺祖是大闡提人見解。衲僧分上畢竟殺箇什麼？只知開口易，不覺舌頭長。解制提綱解制提綱真淨文禪師解夏，小參。有問"
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0111b10",
+          "kwic": "，敢與佛祖為師。若不到恁麼田地，祇一向虗頭，他時異日閻老子未放你在。間有學者，各門頌出呈師。師以頌示曰：十門綱要掌中施，機會來時自有為。作者不須排位次，大都首末是根基。簡州南巖勝禪師簡州南巖勝禪師上堂，召眾曰：護生須是殺，殺盡始安居。會得箇中意，分明在半途。且道到家一句又作麼生？釋迦彌勒沒量大，看來猶祇是他奴。僧問：放行五位即不問，把定三關事若何？師曰：橫按鏌鎁全正令。曰：把定三關蒙指示，放行五位事如何？師曰：太平寰宇斬癡頑。曰：恁麼則南"
+        }
+      ]
+    },
+    {
+      "ordinal": 87,
+      "canonicalIndex": 358,
+      "queueNumber": 359,
+      "id": "t_4b2972cf341e",
+      "term": "扶籬摸壁",
+      "query": "扶籬摸壁",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "One master warns that descendants who miss the case go home in the dark holding fences and feeling walls; another classifies reaching action without reaching speech by the same image. The phrase repeatedly diagnoses blind, dependent groping rather than describing literal movement.",
+      "exact": {
+        "hits": 81,
+        "works": 49
+      },
+      "evidence": [
+        {
+          "source": "X/X69/X69n1356.xml",
+          "title": "普菴印肅禪師語錄",
+          "workId": "work:X69n1356",
+          "line": "0437c20",
+          "kwic": "有火也無？溈山云：有。師云：在什麼處？溈山把一枝柴吹三兩氣過與師，師云：如虫蝕木。師謂眾云：有一人長不喫飯不道飢，有一人終日喫飯不道飽。眾皆無對。拈云：百丈老漢拗直作曲，十二時中更不幹當別事，只怕兒孫暗歸夜去，扶籬摸壁，賴得溈山念念相應，所以百丈開口道：合口得。而況大眾豈知有不喫飯者常常飽，常喫飯者度日飢？普菴則不然，將拄杖一時趂散，恐得一箇趂不動者，請做粥飯主人也。要知老僧拄杖頭具一隻眼。百丈澄潭徹底，妙高峰湧洪波，溈山應"
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0134a13",
+          "kwic": "上堂：一箇葫蘆纔倒地，滿地葫蘆盡傾倒。欲識單傳直指禪，今日鬬湊得恰好。上堂，舉僧問巖頭：路逢猛虗時如何？頭曰：拶。師曰：巖頭眼觀東南，意在西北。好一拶，性命落在別人手裏。上堂：說到行不到，好肉剜瘡。行到說不到，扶籬摸壁。行說俱到，石笋抽條。行說俱不到，擔雪填井。離四句絕百非即不問，諸人且道，文殊問不二法門，維摩因什麼默然？喝一喝曰：貪他一粒粟，失却半年糧。上堂，舉僧問雲門：不起一念，還有過也無？雲門對他道：須彌山。師曰：大小"
+        }
+      ]
+    },
+    {
+      "ordinal": 88,
+      "canonicalIndex": 361,
+      "queueNumber": 362,
+      "id": "t_e77c48557164",
+      "term": "相識滿天下、知心能幾人",
+      "query": "相識滿天下，知心能幾人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "Two independent formal commentaries wield the complete acquaintance/heart-knowing contrast as a case cap, one after judging competing responses and one before testing what lies beyond two elders methods. The two balanced clauses jointly distinguish wide recognition from rare intimate understanding.",
+      "exact": {
+        "hits": 78,
+        "works": 62
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "line": "0012b18",
+          "kwic": "，若人檢點得出，許你具衲僧眼。東禪觀云：怪哉！淺草撥著一箇大蟲，上門上戶，咬人火急，可惜當時放過。我若作世尊，待道眾生界空，無有眾生名字，我乃發菩提心。只消道個擔板漢，非唯塞斷咽㗋，亦乃教伊轉動不得。雖然如是，相識滿天下，知心能幾人？天寧琦云：澤廣藏山，理能伏豹，二大老何用多言？當時只消對他道：魔王！魔王！你認那個作菩提心，還識也未？設使一切眾生成佛，盡眾生界空，無有眾生名字，你要發菩提心，却未許你在，管取拱手歸降。龍池傳徵云：且道者個魔"
+        },
+        {
+          "source": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "workId": "work:X84n1583",
+          "line": "0469b19",
+          "kwic": "八成。或問徑山：如何是展演之言？即向他道，問十答百，有甚麼難？如何是不展演之言？喝一喝曰：且莫屎窖沸。寧波府育王秀巖師瑞禪師寧波府育王秀巖師瑞禪師上堂，舉道吾曰：高不在絕頂，富不在福嚴，樂不在天堂，苦不在地獄。相識滿天下，知心能幾人？妙喜曰：高在絕頂，富在福嚴，樂在天堂，苦在地獄。誰知蓆帽下，元是舊時人。大眾，二老隨機應用即不無，若是衲僧門下，未夢見在。且道衲僧門下作麼生？良久曰：不是知音者，徒勞話歲寒。上堂，舉灌溪參臨濟，濟下禪牀搊住，"
+        }
+      ]
+    },
+    {
+      "ordinal": 89,
+      "canonicalIndex": 364,
+      "queueNumber": 365,
+      "id": "t_2402e574069f",
+      "term": "眼睛突出",
+      "query": "眼睛突出",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "A master asks what follows after the decisive shout and supplies protruding eyes as the pointed result; another gives the exact phrase as his complete answer to what Buddha is. It is an impossible encounter image/answer, not a medical observation.",
+      "exact": {
+        "hits": 90,
+        "works": 54
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0031b18",
+          "kwic": "曰：匝地普天。曰：如何是隨波逐浪句？師曰：有時入荒草，有時上孤峰。上堂：黃昏雞報曉，半夜日頭明。驚起雪師子，瞠開紅眼睛。上堂：去年梅，今歲柳，顏色馨香。喝一喝，良久曰：若不得這一喝，幾乎道著依舊。且道道著後如何眼睛突出？圓覺曇禪師法嗣圓覺曇禪師法嗣撫州靈巖圓日禪師撫州靈巖圓日禪師上堂：悟無不悟，得無不得，九年面壁空勞力。三脚驢兒跳上天，泥牛入海無蹤跡。為甚如此？九九八十一揑跳。嶽麓海禪師法嗣嶽麓海禪師法嗣荊門軍玉泉思達磨師荊"
+        },
+        {
+          "source": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "workId": "work:T51n2077",
+          "line": "0610a11",
+          "kwic": "。又曰離四句。絕百非。便恁麼。息狂機。不恁麼。轉狐疑。離此憑何旨。趙州東院西。還委悉麼。頭戴天脚踏地。動用之中論不二。一字妙門著眼看。鎮州蘿蔔知滋味。喝一喝。南臺允恭禪師南嶽南臺允恭禪師。僧問。如何是佛。師曰。眼睛突出。問祖意教意是同是別。師曰。阿難合掌迦葉擎拳。乃曰。稀逢難遇正在此時。何謂也。釋迦已滅彌勒未生。舉起拂子曰。正當今日佛法盡在這箇拂子上。放行把住。一切臨時。放行也風行草偃瓦礫生光。拾得寒山點頭拊掌。把住也水洩不"
+        }
+      ]
+    },
+    {
+      "ordinal": 90,
+      "canonicalIndex": 367,
+      "queueNumber": 368,
+      "id": "t_9e52fbe81355",
+      "term": "生鐵鑄就",
+      "query": "生鐵鑄就",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Yuanwu contrasts shallow hearing with deep understanding against deep hearing without understanding, calling the latter cast from raw iron. A separate formal address applies the same image to Juzhis one-finger activity as solid through and through. It is a recurring appraisal of unyielding, undifferentiated solidity.",
+      "exact": {
+        "hits": 89,
+        "works": 53
+      },
+      "evidence": [
+        {
+          "source": "T/T47/T47n1997.xml",
+          "title": "圓悟佛果禪師語錄",
+          "workId": "work:T47n1997",
+          "line": "0724a20",
+          "kwic": "。八萬四千毛端。頭頭彰寶王剎海。不是神通妙用。亦非法爾如然。苟能千眼頓開。直下十方坐斷。且超然獨脫一句作麼生道。試玉須經火。求珠不離泥。上堂云。風吹風動無二種。水洗水濕豈兩般。淺聞深悟底。錦上鋪華。深聞不悟底。生鐵鑄就。春盡群芳已歇。夏初百穀方滋。時節不相饒。乾坤得自在。且不涉迷悟一句作麼生道。薰風自南來。殿閣生微涼。王待制生日請上堂。示眾云。當陽一句直截根源。不昧時機出眾相見。師云。靈機廓爾。豈有階梯。智照洞然本無迷暗。一"
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0153a22",
+          "kwic": "道：言無展事，語不投機，承言者喪，滯句者迷。不落語言，不立機關，布漫天網，打衝浪魚，垂萬里鈎，駐千里烏騅，也須還他大達之士始得。所以，趙州勘破處為方便，玄沙蹉過處驗作家，雪峰輥毬，雲門顧鑑，睦州見成，俱胝一指如生鐵鑄就，通上徹下只要箇本分人。忽若總不恁麼，又作麼生？委悉麼？了取平常心是道，饑來喫󰕖困來眠。復頌云：即心即佛開心印，非佛非心蹈大方，當處分身千百億，普光明殿放毫光。大慧杲禪師，陳知縣請陞座，云：祖師道：通達本法心，"
+        }
+      ]
+    },
+    {
+      "ordinal": 91,
+      "canonicalIndex": 370,
+      "queueNumber": 371,
+      "id": "t_158c6af7cd05",
+      "term": "按牛頭喫草",
+      "query": "按牛頭喫草",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "One master rejects an inherited recitation as like forcing an oxs head down to eat grass and substitutes his own verse; another explicitly says he has never received people that way. The stock image repeatedly condemns coercing a response or understanding.",
+      "exact": {
+        "hits": 83,
+        "works": 47
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0180b13",
+          "kwic": "？忽然齩破一個銕餕餡，方知帝釋鼻孔即是憍梵鉢提舌頭，憍梵鉢提舌頭即是帝釋鼻孔。不見道，一切智智清淨，無二無二分，無別無斷故。喝一喝。請頭首，上堂。善哉三下板，知識盡來參。既善知時節，吾今不再三。古人與麼道，大似按牛頭喫草。雲峰則不然，善哉三下板，收足上蒲團。脊梁生銕鑄，透過祖師關。一氣轉一大藏教，背手拈却須彌山。七處徵心，無心可覓。八還辨見，無見可還。夢入天台猶未醒，金雞啼上玉闌干。行化歸，上堂：有佛處不得住，無佛處急走過。三"
+        },
+        {
+          "source": "X/X84/X84n1583.xml",
+          "title": "續燈正統",
+          "workId": "work:X84n1583",
+          "line": "0472b05",
+          "kwic": "肖像寄師曰：妙峰孤頂草離離，橫按竹篦三尺鐵。只許佛頂龍濟知，父子不傳真秘訣。師甞榜門曰：除却眼耳鼻舌身意，那箇是你自己？若也道得，許你親見龍濟。其或未然，且居門外。雪巖甞對曰：和尚曾接得幾人？師曰：山僧從來不曾按牛頭喫草。歲暮，僧問：臘月三十日到來時如何？師曰：門前無索債人。元至元丁亥七月二十七日，忽示疾，集眾囑後事。彈指一聲曰：只此是別眾語也。將二鼓，眾請偈。師索筆書曰：一燈在望，更無言說。大地平沈，虗空迸裂。書畢，泊然而寂"
+        }
+      ]
+    },
+    {
+      "ordinal": 92,
+      "canonicalIndex": 373,
+      "queueNumber": 374,
+      "id": "t_8ec62db0c8b5",
+      "term": "十方無壁落、四面亦無門",
+      "query": "十方無壁落，四面亦無門",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "reason": "Guanxi delivers both clauses together in a formal address and later critics quote and test the whole statement, explicitly asking what its two-part no-wall/no-gate claim concerns. The balanced spatial negations form one raised case saying.",
+      "exact": {
+        "hits": 86,
+        "works": 51
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "line": "0155c20",
+          "kwic": "半杓，末山孃孃處得半杓，共成一杓喫了，直至如今飽不饑。天童覺云：灌溪恁麼說話，且道是臨濟處得底？末山處得底？雖然一箭落雙鵰，怎奈有時走殺，有時坐殺？且作麼生得恰好去？揑聚放開全在我，拈來拋去更由誰？灌溪，上堂。十方無壁落，四面亦無門。露裸裸，赤灑灑，沒可把。便下座。崇覺空云：灌溪老漢向十字街頭逞風流，賣惺惺，道我解穿珍珠，解玉版，濄亂絲，卷筒絹，婬坊酒肆，瓦合輿臺，虎穴魔宮，那吒忿怒，遇文王興禮樂，逢桀紂逞干戈，今日被崇覺覰見，一場懡㦬。"
+        },
+        {
+          "source": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "workId": "work:wudeng-yantong",
+          "line": "0113a19",
+          "kwic": "在此住，頭白齒黃，作這箇語話。曰：上座又作麼生？師曰：要道即得，見即便見。若不見，莫亂道。曰：祇如道浮逼逼地，又作麼生？師曰：頭上著枷，脚下著杻。曰：與麼則無佛法也。師曰：此是文殊普賢大人境界。僧舉灌溪上堂曰：十方無壁落，四面亦無門。淨躶躶，赤灑灑，沒可把。師曰：舉即易，出也大難。曰：上座不肯和尚與麼道那？師曰：你適來與麼舉那？曰：是。師曰：你驢年夢見灌溪。曰：某甲話在。師曰：我問你，十方無壁落，四面亦無門。你道大梵天王與帝釋天商量甚處事"
+        }
+      ]
+    },
+    {
+      "ordinal": 93,
+      "canonicalIndex": 376,
+      "queueNumber": 377,
+      "id": "t_210493e4f2e2",
+      "term": "萬里一條鐵",
+      "query": "萬里一條鐵",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "One address raises Dongshans ten-thousand-mile bar of iron before contrasting its shattering; another directly instructs the assembly to become one bar of iron rather than flexible willows. The image is a recurring demand/appraisal of uninterrupted total solidity.",
+      "exact": {
+        "hits": 80,
+        "works": 52
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0096a23",
+          "kwic": "上一路，千聖不然。師曰：不傳不然，海口難宣。須彌頂上，駕起鐵船。示眾，拈拄杖卓一下，曰：細不通風，大通車馬。突出當陽，孰辨真假？虗空有󰚁柄，無手人能把。跛驢蹋倒摘茶輪，草庵銜下瑠璃瓦。又卓一下。解夏，示眾：洞山萬里一條鐵，瀏陽一擊百雜碎。雲門關字常現前，翠巖眉毛在不在？乃舉拂子，曰：雲門大師來也，還見麼？擊禪牀，曰：一彩兩賽。示眾：入水不避蛟龍，漁父之勇也。陸行不避虎兕，獵夫之勇也。白刃臨前，視死若生者，將軍之勇也。作麼生是衲"
+        },
+        {
+          "source": "X/X72/X72n1437.xml",
+          "title": "永覺元賢禪師廣錄",
+          "workId": "work:X72n1437",
+          "line": "0393b17",
+          "kwic": "各具通方正眼，但未免落在同異窠臼裏，俱未知有向上關棙子。若有人問山僧：祖意、教意是同是別？山僧劈面便打。何故？為人須為徹，殺人須見血。結制，上堂。今朝結期煆鍊，大家各宜抖擻。步步緊把芒繩頭，時時牢守布袋口。直須萬里一條鐵，莫學苕谿隄畔柳。大地山河成片雪，忽然變作獅子吼。頓使虗空亦腦裂，驚得須彌顛倒走。三世諸佛古塚精，千七百則棄芻狗。只如恁麼，還當得衲衣下事麼？笑云：也是蝦跳不出斗。至于跳出一句作麼生道？良久，云：醜。下座。于潤"
+        }
+      ]
+    },
+    {
+      "ordinal": 94,
+      "canonicalIndex": 379,
+      "queueNumber": 380,
+      "id": "t_4e67464f2a25",
+      "term": "坐久成勞",
+      "query": "坐久成勞",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "reason": "Xianglins phrase is the complete answer to the ancestral teachers meaning and is then repeatedly raised, interrogated, and commented upon in independent case collections. Its ordinary words are case-fixed by that answer deployment.",
+      "exact": {
+        "hits": 82,
+        "works": 48
+      },
+      "evidence": [
+        {
+          "source": "X/X67/X67n1307.xml",
+          "title": "萬松老人評唱天童覺和尚拈古請益錄",
+          "workId": "work:X67n1307",
+          "line": "0495c24",
+          "kwic": "中，經行及坐臥。天童拈利害示人道：有智無智較三十里。可謂楊修見幼婦，一覽便知妙。第七十八則龍牙烏龜第七十八則龍牙烏龜舉：僧問龍牙：如何是祖師西來意？牙云：待石烏龜解語即向汝道。僧問香林：如何是祖師西來意？林云：坐久成勞。天童拈云：一句子仰之彌高，一句子鑽之彌竪，一句子瞻之在前，一句子忽焉在後。還辨得麼？赤心片片知人少，覿面堆堆覩者稀。師云：龍牙參翠微、臨濟，皆問祖師西來意。二師索禪板蒲團，龍牙過與，二師便打。牙云：打即任打，"
+        },
+        {
+          "source": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "workId": "work:T48n2003",
+          "line": "0157a19",
+          "kwic": "更累他天下衲僧。且道鏡清作麼生是為這僧處。天下衲僧跳不出。17垂示云。斬釘截鐵。始可為本分宗師。避箭隈刀。焉能為通方作者。針劄不入處。則且置。白浪滔天時如何。試舉看。【一七】舉。僧問香林。如何是祖師西來意林云。坐久成勞。香林道。坐久成勞。還會麼。若會得。百草頭上。罷却干戈。若也不會。伏聽處分。古人行脚。結交擇友。為同行道伴。撥草瞻風。是時雲門旺化廣南。香林得得出蜀。與鵝湖鏡清同時。先參湖南報慈。後方至雲門會下。作侍者十八年。"
+        }
+      ]
+    }
+  ],
+  "reviewedCount": 10,
+  "summary": {
+    "KEEP (component)": 7,
+    "KEEP (couplet)": 3,
+    "PROVISIONAL": 0,
+    "REJECT": 0
+  },
+  "formResolution": {
+    "護生須是殺、殺盡始安居": "printed separator is exact-absent (0 hits/0 works); comma query has 81 hits/56 works and retains both clauses",
+    "相識滿天下、知心能幾人": "printed separator is exact-absent (0 hits/0 works); comma query has 78 hits/62 works and retains both clauses",
+    "十方無壁落、四面亦無門": "printed separator has 2 hits/2 works; comma query has 86 hits/51 works; both preserve the same complete couplet"
+  },
+  "verification": {
+    "zcVerifyPass": 20,
+    "distinctWorkPairs": 10,
+    "identityMatches": 10
+  },
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
