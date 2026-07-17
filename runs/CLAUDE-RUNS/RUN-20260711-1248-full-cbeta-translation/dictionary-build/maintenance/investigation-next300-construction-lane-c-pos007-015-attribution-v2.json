@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "entries": 9,
+    "senses": 9,
+    "occurrences": 66,
+    "named_occurrences": 42,
+    "context_master_links": 69,
+    "attribution_notes": 66,
+    "actor_narrated": 13,
+    "vague_attributor": 2,
+    "deferred_non_roster": 4,
+    "pending_roster_master": 4,
+    "deferred_non_roster_context": 4,
+    "pending_roster_context_master": 4,
+    "chinese_strings": 8,
+    "anchored_chinese": 8,
+    "actor_reviewed_unnamed": 11
+  },
+  "hardFailures": 2,
+  "failures": [
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1: 'a speaker'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1: 'the speaker'"
+    }
+  ]
+}

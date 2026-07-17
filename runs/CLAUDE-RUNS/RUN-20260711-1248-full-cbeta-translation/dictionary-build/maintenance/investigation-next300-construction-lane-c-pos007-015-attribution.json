@@ -1,0 +1,565 @@
+{
+  "counts": {
+    "entries": 9,
+    "senses": 9,
+    "occurrences": 66,
+    "named_occurrences": 42,
+    "context_master_links": 43,
+    "attribution_notes": 66,
+    "actor_narrated": 13,
+    "incomplete_actor_attribution": 72,
+    "vague_attributor": 8,
+    "deferred_non_roster": 5,
+    "pending_roster_master": 4,
+    "deferred_non_roster_context": 5,
+    "pending_roster_context_master": 4,
+    "anonymous_monk_question_assigned_to_master": 1,
+    "chinese_strings": 8,
+    "anchored_chinese": 8,
+    "noncanonical_related_master": 1,
+    "actor_reviewed_unnamed": 11,
+    "incomplete_actor_rungs": 11,
+    "noncanonical_master_name": 1,
+    "noncanonical_context_master_name": 1,
+    "named_master_missing_structured_link": 11,
+    "invalid_context_roles": 1
+  },
+  "hardFailures": 107,
+  "failures": [
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o6: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o6: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1 o6: missing ReviewedUtc"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1871f6691081/entry.v2.json",
+      "detail": "移步 s1: 'a speaker'"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "anonymous_monk_question_assigned_to_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1 o5: 僧問 owns the headword-bearing question; the responding master belongs in ContextMasters"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1c7f53f6d245/entry.v2.json",
+      "detail": "相瞞 s1: 'the speaker'"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o1: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o1: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o1: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "noncanonical_related_master",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1: RelatedMasters value 'Zongxian' is not roster-canonical"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o1: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o1: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o1: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o1: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o2: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o2: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o2: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o2: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o3: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o3: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o3: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o3: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o4: expected all six ordered rungs"
+    },
+    {
+      "kind": "noncanonical_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o5: 'Zongxian' is not roster names[0]"
+    },
+    {
+      "kind": "noncanonical_context_master_name",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o5 c1: 'Zongxian' is not roster names[0]"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1 o5: Wuzu Fayan appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1: 'one master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1: 'a monk'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1: 'the master'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_36eedd2f3a5d/entry.v2.json",
+      "detail": "關棙子 s1: 'the monk'"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o5: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o5: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o5: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o8: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o8: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1 o8: missing ReviewedUtc"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_502d0367263f/entry.v2.json",
+      "detail": "指鹿為馬 s1: 'Another master'"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o1: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o1: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o1: missing ReviewedUtc"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o1: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o2: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o2: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o2: missing ReviewedUtc"
+    },
+    {
+      "kind": "invalid_context_roles",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o2 c1: ['action-performer']"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o3: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o3: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o3: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o3: expected all six ordered rungs"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o3: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_b0560f82b7c6/entry.v2.json",
+      "detail": "竪指 s1 o4: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bf5fe3aa5122/entry.v2.json",
+      "detail": "任運騰騰 s1 o6: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bf5fe3aa5122/entry.v2.json",
+      "detail": "任運騰騰 s1 o6: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_bf5fe3aa5122/entry.v2.json",
+      "detail": "任運騰騰 s1 o6: missing ReviewedUtc"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o1: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o2: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o2: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o2: missing ReviewedUtc"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o2: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o6: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o7: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o7: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o7: missing ReviewedUtc"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o7: Juzhi appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_d9749cb3610c/entry.v2.json",
+      "detail": "豎一指 s1 o7: Tianlong appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o1: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o1: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o1: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o1: expected all six ordered rungs"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o1: Luzu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o2: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o2: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o2: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o2: expected all six ordered rungs"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o2: Luzu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o3: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o3: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o3: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o4: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o4: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o4: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o4: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o5: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o5: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o5: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o5: expected all six ordered rungs"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o6: missing ActorRole"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o6: missing ReviewedBy"
+    },
+    {
+      "kind": "incomplete_actor_attribution",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o6: missing ReviewedUtc"
+    },
+    {
+      "kind": "incomplete_actor_rungs",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o6: expected all six ordered rungs"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o6: Luzu appears in attribution prose but not in MasterName or ContextMasters"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1: 'another master'"
+    }
+  ]
+}

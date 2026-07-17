@@ -1,0 +1,33 @@
+{
+  "counts": {
+    "entries": 9,
+    "senses": 9,
+    "occurrences": 66,
+    "named_occurrences": 42,
+    "context_master_links": 69,
+    "attribution_notes": 66,
+    "actor_narrated": 13,
+    "deferred_non_roster": 4,
+    "pending_roster_master": 4,
+    "deferred_non_roster_context": 4,
+    "pending_roster_context_master": 4,
+    "chinese_strings": 8,
+    "anchored_chinese": 8,
+    "note_missing_english_source_label": 1,
+    "actor_reviewed_unnamed": 11,
+    "named_master_missing_structured_link": 1
+  },
+  "hardFailures": 2,
+  "failures": [
+    {
+      "kind": "note_missing_english_source_label",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_3488962c5771/entry.v2.json",
+      "detail": "眼根 s1 o4: name the source in English between RelPath and actor: 'Source record (B/B25/B25n0144.xml). Zutang Ji (祖堂集): The occurrence is expository record prose about the eye faculty, with no human utterer of the headword. Headword actor: the Zutang ji compiler.'"
+    },
+    {
+      "kind": "named_master_missing_structured_link",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_f2f144b238d1/entry.v2.json",
+      "detail": "魯祖面壁 s1 o7: Bodhidharma appears in attribution prose but not in MasterName or ContextMasters"
+    }
+  ]
+}
