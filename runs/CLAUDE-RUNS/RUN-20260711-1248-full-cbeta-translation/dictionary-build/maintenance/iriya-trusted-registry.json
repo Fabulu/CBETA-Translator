@@ -1,0 +1,3150 @@
+{
+  "schemaVersion": "iriya-trusted-registry.v1",
+  "generatedUtc": "2026-07-17T20:08:15.919430+00:00",
+  "mode": "AUTHORITATIVE_AUDIT_ONLY_TRUSTED_DECISION_REGISTRY",
+  "trustMeaning": "A trusted semantic adjudication outcome; both admitted KEEP and trusted contained/non-unit REJECT outcomes are retained.",
+  "counts": {
+    "methodAuditTrusted": 154,
+    "acceptedManualCanary": 30,
+    "total": 184
+  },
+  "assertions": {
+    "uniqueCanonicalIndexes": 184,
+    "uniqueIds": 184,
+    "everyRowHasProvenanceReceipt": true,
+    "quarantinedDefaultDecisionAdmitted": false,
+    "publicationOrBuildAuthorization": false
+  },
+  "rows": [
+    {
+      "canonicalIndex": 0,
+      "queueNumber": 1,
+      "id": "t_17b4746140b7",
+      "term": "雖然如是",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 1,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 1,
+      "queueNumber": 2,
+      "id": "t_4017c22b1cd5",
+      "term": "在什麼處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 1,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 2,
+      "queueNumber": 3,
+      "id": "t_d256ba95f1c3",
+      "term": "十字街頭",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 3,
+      "queueNumber": 4,
+      "id": "t_855f8b4b2b2f",
+      "term": "安身立命",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 2,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 4,
+      "queueNumber": 5,
+      "id": "t_0e7f1765bcc5",
+      "term": "三十年後",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 5,
+      "queueNumber": 6,
+      "id": "t_5acd9febd54b",
+      "term": "意作麼生",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 2,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 6,
+      "queueNumber": 7,
+      "id": "t_9a612ad0649c",
+      "term": "天上天下",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 3,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 7,
+      "queueNumber": 8,
+      "id": "t_eea303b5993b",
+      "term": "近離甚處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 3,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 8,
+      "queueNumber": 9,
+      "id": "t_cdd1bd3196ff",
+      "term": "好與三十棒",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 9,
+      "queueNumber": 10,
+      "id": "t_b9e3003ce853",
+      "term": "放過一著",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 4,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 10,
+      "queueNumber": 11,
+      "id": "t_6d5176acfd0a",
+      "term": "天下太平",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 2,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 11,
+      "queueNumber": 12,
+      "id": "t_fd597c7fa91f",
+      "term": "超佛越祖",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 12,
+      "queueNumber": 13,
+      "id": "t_040d3cc8deda",
+      "term": "未夢見在",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 5,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 13,
+      "queueNumber": 14,
+      "id": "t_128bee5fc853",
+      "term": "忍俊不禁",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 5,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 14,
+      "queueNumber": 15,
+      "id": "t_0c153f8f4824",
+      "term": "著衣喫飯",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 15,
+      "queueNumber": 16,
+      "id": "t_4f4c005d1b0f",
+      "term": "入地獄如箭",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 6,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 16,
+      "queueNumber": 17,
+      "id": "t_815b544b2081",
+      "term": "不識好惡",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 17,
+      "queueNumber": 18,
+      "id": "t_810ca6b36ae5",
+      "term": "不是心、不是佛、不是物",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 18,
+      "queueNumber": 19,
+      "id": "t_ee2645801267",
+      "term": "臘月三十日",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 7,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 19,
+      "queueNumber": 20,
+      "id": "t_ede52b261c8c",
+      "term": "揚眉瞬目",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 20,
+      "queueNumber": 21,
+      "id": "t_d934a14f69a6",
+      "term": "龍頭蛇尾",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 21,
+      "queueNumber": 22,
+      "id": "t_a49349b639c3",
+      "term": "猶較些子",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 8,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 22,
+      "queueNumber": 23,
+      "id": "t_79bfd4b7137e",
+      "term": "八字打開",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 23,
+      "queueNumber": 24,
+      "id": "t_bcbbaec3a214",
+      "term": "截斷衆流",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 24,
+      "queueNumber": 25,
+      "id": "t_4e7349a265d3",
+      "term": "直指人心、見性成佛",
+      "disposition": "KEEP",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 9,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 25,
+      "queueNumber": 26,
+      "id": "t_c6323c68f3d8",
+      "term": "七縱八横",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 26,
+      "queueNumber": 27,
+      "id": "t_9e8d1e11b364",
+      "term": "狸奴白牯",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 27,
+      "queueNumber": 28,
+      "id": "t_4d9895cc302e",
+      "term": "老老大大",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 10,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 28,
+      "queueNumber": 29,
+      "id": "t_ceee2c8e54b0",
+      "term": "千里萬里",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 10,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 29,
+      "queueNumber": 30,
+      "id": "t_bc4081b67c3e",
+      "term": "入地獄如箭射",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 30,
+      "queueNumber": 31,
+      "id": "t_8f9d011ae452",
+      "term": "拂袖便行",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 11,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 31,
+      "queueNumber": 32,
+      "id": "t_e193d21b8732",
+      "term": "學人自己",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 33,
+      "queueNumber": 34,
+      "id": "t_2a207e0e8c96",
+      "term": "不風流處也風流",
+      "disposition": "KEEP",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 12,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 34,
+      "queueNumber": 35,
+      "id": "t_8a08c0e4d272",
+      "term": "今日失利",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 36,
+      "queueNumber": 37,
+      "id": "t_497d803e33ff",
+      "term": "自救不了",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 13,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 37,
+      "queueNumber": 38,
+      "id": "t_3dfb21bb4879",
+      "term": "不惜眉毛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 39,
+      "queueNumber": 40,
+      "id": "t_20e096d853ee",
+      "term": "諦觀法王法、法王法如是",
+      "disposition": "KEEP",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 14,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 40,
+      "queueNumber": 41,
+      "id": "t_358628575afd",
+      "term": "佛法無多子",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 42,
+      "queueNumber": 43,
+      "id": "t_28f648ab208d",
+      "term": "掀倒禪床",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 15,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 45,
+      "queueNumber": 46,
+      "id": "t_23b0e63266c0",
+      "term": "世諦流布",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 16,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 48,
+      "queueNumber": 49,
+      "id": "t_e2ba845177a9",
+      "term": "向上一竅",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 17,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 51,
+      "queueNumber": 52,
+      "id": "t_8dfd909d60f8",
+      "term": "日午打三更",
+      "disposition": "KEEP",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 18,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 54,
+      "queueNumber": 55,
+      "id": "t_df545b35b76b",
+      "term": "棒頭有眼",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 19,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 57,
+      "queueNumber": 58,
+      "id": "t_99c9b008cc64",
+      "term": "八面玲瓏",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 20,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 58,
+      "queueNumber": 59,
+      "id": "t_e0963d3803b4",
+      "term": "無有是處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 20,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 60,
+      "queueNumber": 61,
+      "id": "t_135b07152ccc",
+      "term": "草賊大敗",
+      "disposition": "KEEP",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 21,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "canonicalIndex": 63,
+      "queueNumber": 64,
+      "id": "t_2cc1d98e4304",
+      "term": "從上宗乘",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 66,
+      "queueNumber": 67,
+      "id": "t_4a32e8631c92",
+      "term": "千里同風",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 2,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 69,
+      "queueNumber": 70,
+      "id": "t_0f27ed340657",
+      "term": "撥草瞻風",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 72,
+      "queueNumber": 73,
+      "id": "t_dcf6b6fbd6f8",
+      "term": "露柱燈籠",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 75,
+      "queueNumber": 76,
+      "id": "t_6c0e044e6417",
+      "term": "正令全提",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 78,
+      "queueNumber": 79,
+      "id": "t_0325cd101239",
+      "term": "超佛越祖之談",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 27,
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      }
+    },
+    {
+      "canonicalIndex": 81,
+      "queueNumber": 82,
+      "id": "t_fdc233a31973",
+      "term": "西天四七",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 84,
+      "queueNumber": 85,
+      "id": "t_b7dc551f8c67",
+      "term": "錯認定盤星",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 87,
+      "queueNumber": 88,
+      "id": "t_6b54b1ae5199",
+      "term": "料掉沒交渉",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 90,
+      "queueNumber": 91,
+      "id": "t_94728747e832",
+      "term": "九九八十一",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 93,
+      "queueNumber": 94,
+      "id": "t_e3339a807c1e",
+      "term": "七顛八倒",
+      "disposition": "KEEP",
+      "unit": "component",
+      "trustClass": "independently accepted fresh manual semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "canonicalIndex": 99,
+      "queueNumber": 100,
+      "id": "t_073c40e49ec1",
+      "term": "青黄赤白",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 34,
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      }
+    },
+    {
+      "canonicalIndex": 111,
+      "queueNumber": 112,
+      "id": "t_da0e5f8f9940",
+      "term": "然雖如此",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 38,
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      }
+    },
+    {
+      "canonicalIndex": 127,
+      "queueNumber": 128,
+      "id": "t_a24f4c9e5cb4",
+      "term": "第一不得",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 43,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 133,
+      "queueNumber": 134,
+      "id": "t_04784047315b",
+      "term": "清風明月",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 45,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 151,
+      "queueNumber": 152,
+      "id": "t_78e8ae120b7e",
+      "term": "萬古碧潭空界月、再三撈摝始應知",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 51,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 152,
+      "queueNumber": 153,
+      "id": "t_4e1657870dbb",
+      "term": "十方薄伽梵、一路涅槃門",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 51,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 154,
+      "queueNumber": 155,
+      "id": "t_0dd4496f65f3",
+      "term": "因風吹火",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 52,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 155,
+      "queueNumber": 156,
+      "id": "t_e6511b8f124c",
+      "term": "矢上加尖",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 52,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 157,
+      "queueNumber": 158,
+      "id": "t_9f8363f61c12",
+      "term": "此是選佛場、心空及第歸",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 53,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 158,
+      "queueNumber": 159,
+      "id": "t_7897f16f7a6f",
+      "term": "再犯不容",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 53,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 160,
+      "queueNumber": 161,
+      "id": "t_4990e3323ea8",
+      "term": "速禮三拜",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 54,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 161,
+      "queueNumber": 162,
+      "id": "t_aff94216f541",
+      "term": "途中受用",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 54,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 163,
+      "queueNumber": 164,
+      "id": "t_37988bb0060a",
+      "term": "放過一著、落在第二",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 55,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 164,
+      "queueNumber": 165,
+      "id": "t_1f2952865d30",
+      "term": "據款結案",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 55,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 166,
+      "queueNumber": 167,
+      "id": "t_07acab5c78e9",
+      "term": "目前無法、意在目前",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 56,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 167,
+      "queueNumber": 168,
+      "id": "t_9d1f4db03b3f",
+      "term": "一機一境",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 56,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 169,
+      "queueNumber": 170,
+      "id": "t_98a6f3b1f926",
+      "term": "文彩已彰",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 57,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 170,
+      "queueNumber": 171,
+      "id": "t_86cc63a38f2b",
+      "term": "隨家豐儉",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 57,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 172,
+      "queueNumber": 173,
+      "id": "t_d3bb6342fbd3",
+      "term": "觸途成滯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 58,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 173,
+      "queueNumber": 174,
+      "id": "t_292307d015f1",
+      "term": "七花八裂",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 58,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 175,
+      "queueNumber": 176,
+      "id": "t_c7c80ebd1e13",
+      "term": "傷鋒犯手",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 59,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 176,
+      "queueNumber": 177,
+      "id": "t_c72069ad2b45",
+      "term": "劍去久矣",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 59,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 178,
+      "queueNumber": 179,
+      "id": "t_ef075c6664ef",
+      "term": "指鹿爲馬",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 60,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 179,
+      "queueNumber": 180,
+      "id": "t_744799df0748",
+      "term": "照天照地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 60,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 181,
+      "queueNumber": 182,
+      "id": "t_d42de1441e4e",
+      "term": "認賊爲子",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 61,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 182,
+      "queueNumber": 183,
+      "id": "t_6a36bf01ea70",
+      "term": "喝散大衆",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 61,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 184,
+      "queueNumber": 185,
+      "id": "t_ff3bc00436ea",
+      "term": "擧一明三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 62,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 185,
+      "queueNumber": 186,
+      "id": "t_7c404920d206",
+      "term": "滯句者迷",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 62,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 187,
+      "queueNumber": 188,
+      "id": "t_8b0f58efdaf5",
+      "term": "抖擻精神",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 63,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 188,
+      "queueNumber": 189,
+      "id": "t_dea7e97fa45e",
+      "term": "南山起雲、北山下雨",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 63,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 190,
+      "queueNumber": 191,
+      "id": "t_0a46e5168808",
+      "term": "正令當行",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 64,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 191,
+      "queueNumber": 192,
+      "id": "t_3a5385fcf1eb",
+      "term": "殘羹餿飯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 64,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 193,
+      "queueNumber": 194,
+      "id": "t_61f3e9258d3e",
+      "term": "血濺梵天",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 65,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 194,
+      "queueNumber": 195,
+      "id": "t_66355fb62c29",
+      "term": "八角磨盤空裏走",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 65,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 196,
+      "queueNumber": 197,
+      "id": "t_5b0b816ee306",
+      "term": "不落階級",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 66,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 197,
+      "queueNumber": 198,
+      "id": "t_e8af9ec07226",
+      "term": "堪作什麼",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 66,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 199,
+      "queueNumber": 200,
+      "id": "t_aad133038248",
+      "term": "落二落三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 67,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 200,
+      "queueNumber": 201,
+      "id": "t_5683300fdb8b",
+      "term": "一二三四五六七",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 67,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 202,
+      "queueNumber": 203,
+      "id": "t_4a94f93601be",
+      "term": "殺人不眨眼",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 68,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 203,
+      "queueNumber": 204,
+      "id": "t_0220a83c7f9c",
+      "term": "有佛處不得住、無佛處急走過",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 68,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 205,
+      "queueNumber": 206,
+      "id": "t_4236ac78ec14",
+      "term": "動容揚古路、不墮悄然機",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 69,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 206,
+      "queueNumber": 207,
+      "id": "t_15866bfa3d82",
+      "term": "傍觀者哂",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 69,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 208,
+      "queueNumber": 209,
+      "id": "t_205a1d1331ae",
+      "term": "東村王老夜燒錢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 70,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 209,
+      "queueNumber": 210,
+      "id": "t_a07cb5197549",
+      "term": "水不洗水",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 70,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 211,
+      "queueNumber": 212,
+      "id": "t_0ab9f8a0ffb2",
+      "term": "應病與藥",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 71,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 212,
+      "queueNumber": 213,
+      "id": "t_809ec2e31de2",
+      "term": "言中有響",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 71,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 214,
+      "queueNumber": 215,
+      "id": "t_3479a511a100",
+      "term": "疑殺天下人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 72,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 215,
+      "queueNumber": 216,
+      "id": "t_45f6855e7e48",
+      "term": "破家散宅",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 72,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 217,
+      "queueNumber": 218,
+      "id": "t_22241e355dc9",
+      "term": "見成公案",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 73,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 218,
+      "queueNumber": 219,
+      "id": "t_b9bbb81addc8",
+      "term": "隨語生解",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 73,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 220,
+      "queueNumber": 221,
+      "id": "t_20dfbe1264e7",
+      "term": "承虚接響",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 74,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 221,
+      "queueNumber": 222,
+      "id": "t_ba43cb4f37a1",
+      "term": "這野狐精",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 74,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 223,
+      "queueNumber": 224,
+      "id": "t_0c5d50c1892d",
+      "term": "坐脱立亡",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 75,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 224,
+      "queueNumber": 225,
+      "id": "t_72c5d962d41c",
+      "term": "著甚死急",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 75,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 226,
+      "queueNumber": 227,
+      "id": "t_e1569640966d",
+      "term": "分疎不下",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 76,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 227,
+      "queueNumber": 228,
+      "id": "t_d7e6cf1e217e",
+      "term": "口是禍門",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 76,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 229,
+      "queueNumber": 230,
+      "id": "t_4116d081b406",
+      "term": "棒頭有眼明如日",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 77,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 230,
+      "queueNumber": 231,
+      "id": "t_6025ede5c90b",
+      "term": "官不容針、私通車馬",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 77,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 232,
+      "queueNumber": 233,
+      "id": "t_aee63c4f06b3",
+      "term": "心不是佛、智不是道",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 78,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 233,
+      "queueNumber": 234,
+      "id": "t_a115fe3873f4",
+      "term": "佛法道理",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 78,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 235,
+      "queueNumber": 236,
+      "id": "t_ca1d0dfd87b4",
+      "term": "擧足下足",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 79,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 236,
+      "queueNumber": 237,
+      "id": "t_110873037740",
+      "term": "平地上死人無數",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 79,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 238,
+      "queueNumber": 239,
+      "id": "t_ee635860e9e8",
+      "term": "眼横鼻直",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 80,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 239,
+      "queueNumber": 240,
+      "id": "t_394c40afb263",
+      "term": "應機接物",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 80,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 241,
+      "queueNumber": 242,
+      "id": "t_1da40dd9e3ba",
+      "term": "向鬼窟裏作活計",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 81,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 242,
+      "queueNumber": 243,
+      "id": "t_af0d88a192a4",
+      "term": "金屑雖貴、落眼成翳",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 81,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 244,
+      "queueNumber": 245,
+      "id": "t_de5160d44487",
+      "term": "放你三十棒",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 82,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 245,
+      "queueNumber": 246,
+      "id": "t_e4dadbe3ef3e",
+      "term": "枯木裏龍吟",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 82,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 247,
+      "queueNumber": 248,
+      "id": "t_0b391ecb2d3b",
+      "term": "之乎者也",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 83,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 248,
+      "queueNumber": 249,
+      "id": "t_8a237bf26419",
+      "term": "四七二三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 83,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 250,
+      "queueNumber": 251,
+      "id": "t_cdb97cd8e462",
+      "term": "鷂子過新羅",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 84,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 251,
+      "queueNumber": 252,
+      "id": "t_622e53ddc22c",
+      "term": "一盲引衆盲",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 84,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 253,
+      "queueNumber": 254,
+      "id": "t_c7bd17aa7f07",
+      "term": "打破漆桶",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 85,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 254,
+      "queueNumber": 255,
+      "id": "t_d1c41c5d2c81",
+      "term": "落七落八",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 85,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 256,
+      "queueNumber": 257,
+      "id": "t_52d97cd526b5",
+      "term": "道得八成",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 86,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 257,
+      "queueNumber": 258,
+      "id": "t_fe1d0bd491b4",
+      "term": "土上加泥",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 86,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 259,
+      "queueNumber": 260,
+      "id": "t_907a14e2ce02",
+      "term": "一切聲是佛聲",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 87,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 260,
+      "queueNumber": 261,
+      "id": "t_d50af7a6ee41",
+      "term": "宗乘中事",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 87,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 262,
+      "queueNumber": 263,
+      "id": "t_fff32dda4d4d",
+      "term": "胡喝亂喝",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 88,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 263,
+      "queueNumber": 264,
+      "id": "t_a11d92a1ca57",
+      "term": "當機覿面",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 88,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 265,
+      "queueNumber": 266,
+      "id": "t_3004770fcd63",
+      "term": "掉棒打月",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 89,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 266,
+      "queueNumber": 267,
+      "id": "t_2efb0890460b",
+      "term": "特地一場愁",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 89,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 268,
+      "queueNumber": 269,
+      "id": "t_762428e0fe71",
+      "term": "大死底人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 90,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 269,
+      "queueNumber": 270,
+      "id": "t_b8898d16641e",
+      "term": "我王庫内無如是刀",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 90,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 271,
+      "queueNumber": 272,
+      "id": "t_19f7c88b911e",
+      "term": "天地與我同根、萬物與我一體",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 91,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 272,
+      "queueNumber": 273,
+      "id": "t_4a1158f5134a",
+      "term": "幻化空身即法身",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 91,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 274,
+      "queueNumber": 275,
+      "id": "t_ab9762a0c94a",
+      "term": "熟處難忘",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 92,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 275,
+      "queueNumber": 276,
+      "id": "t_57a0c6bab647",
+      "term": "我爲法王、於法自在",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 92,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 277,
+      "queueNumber": 278,
+      "id": "t_47bdde28483d",
+      "term": "落草之談",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 93,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 278,
+      "queueNumber": 279,
+      "id": "t_51e63d743604",
+      "term": "懷州牛喫禾、益州馬腹脹",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 93,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 280,
+      "queueNumber": 281,
+      "id": "t_ad8a02882a91",
+      "term": "慣得其便",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 94,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 281,
+      "queueNumber": 282,
+      "id": "t_265cd5bfa476",
+      "term": "瓦解氷消",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 94,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 283,
+      "queueNumber": 284,
+      "id": "t_e44ed8dfa032",
+      "term": "道遠乎哉",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 95,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 284,
+      "queueNumber": 285,
+      "id": "t_b58163ab5e3f",
+      "term": "不是苦心人不知",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 95,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 286,
+      "queueNumber": 287,
+      "id": "t_07d077538ef9",
+      "term": "大事了畢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 96,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 287,
+      "queueNumber": 288,
+      "id": "t_ea8ac6cb33ee",
+      "term": "弄泥團漢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 96,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 289,
+      "queueNumber": 290,
+      "id": "t_2ee6771dbd7a",
+      "term": "量才補職",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 97,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 290,
+      "queueNumber": 291,
+      "id": "t_4070f81b4e43",
+      "term": "只具一隻眼",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 97,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 292,
+      "queueNumber": 293,
+      "id": "t_c16649666fbf",
+      "term": "多口阿師",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 98,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 293,
+      "queueNumber": 294,
+      "id": "t_44e5b621ba57",
+      "term": "攙行奪市",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 98,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 295,
+      "queueNumber": 296,
+      "id": "t_65c455ac479a",
+      "term": "古佛過去久矣",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 99,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 296,
+      "queueNumber": 297,
+      "id": "t_9626cb41d91d",
+      "term": "家常茶飯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 99,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 298,
+      "queueNumber": 299,
+      "id": "t_129e0d1c9b04",
+      "term": "撞著露柱",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 100,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 299,
+      "queueNumber": 300,
+      "id": "t_ce7c91eb5adf",
+      "term": "落第二頭",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 100,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 302,
+      "queueNumber": 303,
+      "id": "t_d7d6be0d2cea",
+      "term": "萬里崖州",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 101,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 311,
+      "queueNumber": 312,
+      "id": "t_9216a6fa5b77",
+      "term": "打破蔡州",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 104,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 314,
+      "queueNumber": 315,
+      "id": "t_39a7ca5e1d6a",
+      "term": "明月蘆花",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 105,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 317,
+      "queueNumber": 318,
+      "id": "t_f80bc22529ad",
+      "term": "生死事大、無常迅速",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 106,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 320,
+      "queueNumber": 321,
+      "id": "t_3757d9f8798f",
+      "term": "山是山、水是水",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 107,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 362,
+      "queueNumber": 363,
+      "id": "t_668fe3d431c8",
+      "term": "丙丁童子來求火",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 121,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 368,
+      "queueNumber": 369,
+      "id": "t_a6eb202e7653",
+      "term": "一花開五葉、結果自然成",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 123,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 422,
+      "queueNumber": 423,
+      "id": "t_42a037ad033e",
+      "term": "佛之一字、吾不喜聞",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 141,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 446,
+      "queueNumber": 447,
+      "id": "t_bd4c468d164b",
+      "term": "參須實參、悟須實悟",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 149,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "canonicalIndex": 901,
+      "queueNumber": 902,
+      "id": "t_4d0d72a6b526",
+      "term": "一鏃遼空",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 301,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 904,
+      "queueNumber": 905,
+      "id": "t_c86c7171133a",
+      "term": "千古萬古與人看",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 302,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 907,
+      "queueNumber": 908,
+      "id": "t_ca232f91b7ac",
+      "term": "慣戰作家",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 303,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 910,
+      "queueNumber": 911,
+      "id": "t_92eacc3c7f28",
+      "term": "牛皮也須穿",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 304,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 913,
+      "queueNumber": 914,
+      "id": "t_68a67ab4c92a",
+      "term": "臥月眠雲",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 305,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 916,
+      "queueNumber": 917,
+      "id": "t_e1b2595e7496",
+      "term": "遊州獵縣",
+      "disposition": "REJECT",
+      "unit": "—",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 306,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 919,
+      "queueNumber": 920,
+      "id": "t_b640c04af092",
+      "term": "黠兒落節",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 307,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 922,
+      "queueNumber": 923,
+      "id": "t_dba86aae7aaa",
+      "term": "無風荷葉動、決定有魚行",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 308,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 925,
+      "queueNumber": 926,
+      "id": "t_965f42d94d99",
+      "term": "若不登樓望、焉知滄海深",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 309,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 928,
+      "queueNumber": 929,
+      "id": "t_b20a51371b3a",
+      "term": "好心不得好報",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 310,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "canonicalIndex": 1098,
+      "queueNumber": 1099,
+      "id": "t_60d8065ea7b7",
+      "term": "羽毛相似",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 367,
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    },
+    {
+      "canonicalIndex": 1128,
+      "queueNumber": 1129,
+      "id": "t_6f852835b5f3",
+      "term": "本源清淨心",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 377,
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    },
+    {
+      "canonicalIndex": 1293,
+      "queueNumber": 1294,
+      "id": "t_78de89b1369a",
+      "term": "臍輪氣海",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 432,
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    },
+    {
+      "canonicalIndex": 1404,
+      "queueNumber": 1405,
+      "id": "t_605788fa7154",
+      "term": "青春不再來",
+      "disposition": "REJECT",
+      "unit": null,
+      "trustClass": "trusted semantic decision (KEEP or REJECT as recorded)",
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 469,
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    }
+  ]
+}

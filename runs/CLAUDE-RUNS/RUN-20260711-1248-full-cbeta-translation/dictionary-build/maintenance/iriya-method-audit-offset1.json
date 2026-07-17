@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "iriya-method-audit-offset1.v1",
+  "scope": "offset1 decisions 1-310 only",
+  "status": "METHOD FAILURE: PARTIAL TRUST ONLY",
+  "guideBasis": {
+    "path": "IRIYA_ADJUDICATION_GUIDE.md",
+    "line17Criterion": "For each candidate, answer the deployment-versus-containment question from the corpus, not from intuition.",
+    "lines9To13": "Mechanical cleanliness, counts, and validator flags are not semantic acceptance; each disposition must be grounded in corpus use checked with zc.",
+    "lines101To103": "Each decision must record candidate-specific zc evidence: the deployment found or confirmed absence."
+  },
+  "methodFinding": "A frozen hit/work count plus a generated assertion that every phrase is deployed does not establish that an adjudicator read the candidate's complete cases. Such rows are invalid for semantic acceptance even when their strings, counts, indexes, and checkpoint JSON are mechanically correct.",
+  "latestCheckpoint": {
+    "path": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+    "decisionCount": 310,
+    "lastZeroBasedIndex": 928
+  },
+  "trusted": {
+    "decisionCount": 67,
+    "ranges": [
+      {
+        "decisionPositions": "51-100",
+        "zeroBasedIndexes": "151-298 stride 3",
+        "basis": "Each row has a separately authored, term-specific semantic deployment ruling rather than the later default template. The checkpoint writers explicitly bind those rulings to previously generated complete-case/KWIC artifacts."
+      },
+      {
+        "decisionPositions": "301-310",
+        "zeroBasedIndexes": "901-928 stride 3",
+        "basis": "Checkpoint310 supplies an individually authored zc/full-case ruling, source path, line reference, and KWIC excerpt for every candidate. This is also the explicitly represented individual-zc-read B checkpoint range."
+      }
+    ],
+    "individualExceptionsInOtherwiseInvalidRanges": [
+      {
+        "decisionPosition": 1,
+        "zeroBasedIndex": 1,
+        "term": "在什麼處",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 3,
+        "zeroBasedIndex": 7,
+        "term": "近離甚處",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 5,
+        "zeroBasedIndex": 13,
+        "term": "忍俊不禁",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 10,
+        "zeroBasedIndex": 28,
+        "term": "千里萬里",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 20,
+        "zeroBasedIndex": 58,
+        "term": "無有是處",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 43,
+        "zeroBasedIndex": 127,
+        "term": "第一不得",
+        "disposition": "REJECT"
+      },
+      {
+        "decisionPosition": 45,
+        "zeroBasedIndex": 133,
+        "term": "清風明月",
+        "disposition": "REJECT"
+      }
+    ],
+    "exceptionBasis": "These seven rows contain candidate-specific negative semantic readings explaining the changing grammar, ordinary narrative/poetic use, or lack of a stable Chan job, with retained samples. They are not products of the KEEP default."
+  },
+  "invalidPendingFreshSemanticRead": {
+    "decisionCount": 243,
+    "segments": [
+      {
+        "decisionPositions": "1-50 except 1,3,5,10,20,43,45",
+        "count": 43,
+        "zeroBasedIndexes": "offset1 indexes 1-148 stride 3, excluding the seven trusted rejection indexes",
+        "writers": [
+          "maintenance/write_iriya_offset1_checkpoint10.py",
+          "maintenance/write_iriya_offset1_checkpoint20.py",
+          "maintenance/write_iriya_offset1_checkpoints30_50.py"
+        ],
+        "failure": "All KEEP rows are assigned by the same default branch after loading a temporary evidence list. The program selects samples[0] and emits a generic claim that the phrase is deployed, but preserves no candidate-specific full-case reading or explanation of how the cited clause performs a Chan job. The temporary /tmp evidence source is not durable provenance."
+      },
+      {
+        "decisionPositions": "101-150",
+        "count": 50,
+        "zeroBasedIndexes": "301-448 stride 3",
+        "writers": [],
+        "failure": "The five checkpoints were generated together and every row uses the same interpolated deployment sentence plus frozen counts. No offset1 writer or individual full-case/KWIC ruling survives for this range."
+      },
+      {
+        "decisionPositions": "151-200",
+        "count": 50,
+        "zeroBasedIndexes": "451-598 stride 3",
+        "writers": [
+          "maintenance/write_iriya_offset1_checkpoints160_200.py"
+        ],
+        "failure": "Positions 151-200, including the first ten additions captured in checkpoint160 and the subsequently generated additions, use a single default KEEP template driven only by frozen hits/files/works. No row-specific case reading is encoded."
+      },
+      {
+        "decisionPositions": "201-250",
+        "count": 50,
+        "zeroBasedIndexes": "601-748 stride 3",
+        "writers": [
+          "maintenance/write_iriya_offset1_checkpoints210_250.py"
+        ],
+        "failure": "The loop assigns KEEP (couplet) unconditionally and substitutes only term/count values into identical deployment prose."
+      },
+      {
+        "decisionPositions": "251-300",
+        "count": 50,
+        "zeroBasedIndexes": "751-898 stride 3",
+        "writers": [
+          "maintenance/write_iriya_offset1_checkpoints260_300.py"
+        ],
+        "failure": "The loop assigns KEEP (couplet) unconditionally and substitutes only term/count values into identical deployment prose."
+      }
+    ]
+  },
+  "checkpointInterpretation": {
+    "mechanicallyValidDoesNotMeanSemanticallyTrusted": true,
+    "checkpointFilesPreserved": true,
+    "invalidRowsMustNotAdvanceToBuild": true,
+    "requiredRemediation": "Re-read every invalid candidate's full case(s) with zc under the guide, decide deployment versus containment individually, preserve candidate-specific evidence, and supersede rather than silently bless the generated rows."
+  },
+  "mutations": {
+    "checkpointRewritten": false,
+    "checkpointDeleted": false,
+    "entryBuildPerformed": false,
+    "queueAdvanced": false,
+    "lineageTouched": false
+  }
+}

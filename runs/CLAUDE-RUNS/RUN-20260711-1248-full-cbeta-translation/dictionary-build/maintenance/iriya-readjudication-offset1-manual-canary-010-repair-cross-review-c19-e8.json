@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "iriya-repair-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "reviewedLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+  "reviewedLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+  "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-receipt.json",
+  "repairReceiptSha256": "5a1806d81b94d11944eba6cd692f0e26cd2fb288cba65c1edc0049efff508964",
+  "decision": "PASS",
+  "scope": "Focused recheck of the repaired ten-row offset-1 manual canary only.",
+  "checks": {
+    "componentUnits": "10/10 rows now use disposition KEEP (component) and unit component.",
+    "exactEvidence": "22/22 stored KWICs pass zc.verify; every recorded workId resolves exactly from the frozen manifest.",
+    "independentWitnessFor不識好惡": "PASS — X83n1578 指月錄 is a distinct address: after expounding body and purification claims, the speaker rebukes that discourse as 和泥合水，撒屎撒尿，不識好惡. It is not another transmission of Muzhou's Baizhang case.",
+    "independentWitnessFor八字打開": "PASS — X82n1571 五燈全書 records a separate address by 卍庵道顏: 圓通門戶，八字打開, followed by the test of entering the gateless gate. It is not Yuanwu's enthronement address.",
+    "semanticRegression": "None. The original full-context reasons remain supported, and the added witnesses strengthen rather than alter the admitted Chan deployments.",
+    "methodRegression": "None. The cohort-wide couplet default is removed; no new templated semantic claim was introduced."
+  },
+  "counts": {
+    "rowsReviewed": 10,
+    "componentRows": 10,
+    "kwicsVerified": 22,
+    "independentWitnessesConfirmed": 2,
+    "regressions": 0
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

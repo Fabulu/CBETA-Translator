@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "iriya-trusted-registry-receipt.v1",
+  "generatedUtc": "2026-07-17T20:08:15.919430+00:00",
+  "registry": "maintenance/iriya-trusted-registry.json",
+  "registrySha256": "614e3f6b6ebbbf452c67608795a2d946b0463cf9bedb2b29a15a0accb4df6e10",
+  "sourceInputs": [
+    {
+      "role": "method-audit",
+      "path": "maintenance/iriya-method-audit-offset0.json",
+      "sha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668"
+    },
+    {
+      "role": "method-audit",
+      "path": "maintenance/iriya-method-audit-offset1.json",
+      "sha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325"
+    },
+    {
+      "role": "identity-evidence",
+      "path": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+      "sha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+    },
+    {
+      "role": "method-audit",
+      "path": "maintenance/iriya-method-audit-offset2.json",
+      "sha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1"
+    },
+    {
+      "role": "identity-evidence",
+      "path": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+      "sha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+    },
+    {
+      "role": "manual-canary",
+      "path": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+      "sha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b"
+    },
+    {
+      "role": "independent-acceptance",
+      "path": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+      "sha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3"
+    },
+    {
+      "role": "manual-canary",
+      "path": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+      "sha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33"
+    },
+    {
+      "role": "independent-acceptance",
+      "path": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+      "sha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab"
+    },
+    {
+      "role": "manual-canary",
+      "path": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+      "sha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f"
+    },
+    {
+      "role": "independent-acceptance",
+      "path": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+      "sha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d"
+    }
+  ],
+  "verification": {
+    "rowCount": 184,
+    "uniqueCanonicalIndexCount": 184,
+    "uniqueIdCount": 184,
+    "queueNumberEqualsCanonicalIndexPlusOne": true,
+    "methodAuditRows": 154,
+    "independentlyAcceptedCanaryRows": 30,
+    "offset1RepairedLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+    "offset1RepairCrossReviewSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+    "noQuarantinedDefaultDecisionAdmitted": true,
+    "allRowsCarryExactAuthorityOrIndependentAcceptanceBinding": true
+  },
+  "exclusionRule": "Rows ruled INVALID/QUARANTINE by a method audit were excluded unless the exact row appears in one of the three fresh manual canaries and that canary has an independent PASS receipt. No older bulk/default verdict was used to fill a registry row.",
+  "sideEffects": {
+    "queueAdvanced": false,
+    "buildRun": false,
+    "lineageTouched": false,
+    "entryConstructionPerformed": false
+  }
+}

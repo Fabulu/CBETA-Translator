@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-readjudication-method-self-audit.v1",
+  "mode": "STOPPED-QUARANTINED-BEFORE-SERIALIZATION",
+  "scope": "offset2 first100 quarantined candidates",
+  "finding": "The transport packet is mechanical and reusable, but the unexecuted semantic writer is not trustworthy. Although it contains headword-specific prose rather than one repeated string, decisions for part of the cohort were composed from term familiarity and compact excerpts without individually reading every complete-case window. This violates DICTIONARY_ENTRY_GUIDE.md item 17 and the parent instruction requiring individual full-case adjudication.",
+  "sharedCueOrDefault": {
+    "present": true,
+    "detail": "Several dispositions and unit choices were carried by a common high-frequency/obvious-case expectation after only partial context inspection. Unique wording does not cure a shared semantic shortcut."
+  },
+  "exactAbsentHandling": {
+    "violationObserved": false,
+    "detail": "The packet was regenerated using each IRIYA_PREBUILD_AUDIT query rather than the printed term, after which all 100 rows had exact witnesses. No exact-absent row was rejected without variant/component searches."
+  },
+  "artifacts": [
+    {
+      "path": "maintenance/prepare_iriya_readjudication_offset2_first100.py",
+      "sha256": "4816bdc455a2a54f66ea7cfa07f99a2e053093439a92fd2c83cfac45ee5da575",
+      "ruling": "TRANSPORT-ONLY-REUSABLE"
+    },
+    {
+      "path": "maintenance/iriya-readjudication-offset2-first100-fullcase-packet.json",
+      "sha256": "a22d8247f987a502ccccd0f6367a31c7e4dacc3f58e860e15255cb75a5b1b46b",
+      "ruling": "TRANSPORT-ONLY-REUSABLE"
+    },
+    {
+      "path": "maintenance/write_iriya_readjudication_offset2_first100.py",
+      "sha256": "47c1f2b0286ff22be5b862380c66fe530466127e1f93983c3ec7207d87d6a702",
+      "ruling": "QUARANTINED-DO-NOT-RUN-DO-NOT-TRUST"
+    }
+  ],
+  "outputs": {
+    "checkpointFilesWritten": 0,
+    "decisionsPromoted": 0,
+    "trustedCountAdvanced": false,
+    "builds": 0,
+    "queueWrites": 0,
+    "lineageWrites": 0
+  },
+  "requiredRestart": "Use the reusable packet only as navigation. Read and record each full case individually, including the actual discourse turn and unit boundary, before writing that candidate's semantic decision. Do not execute or copy from the quarantined writer."
+}

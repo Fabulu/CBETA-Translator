@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "iriya-independent-cross-review-v1",
+  "reviewer": "repair-c19-e8",
+  "source": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+  "sourceSha256": "864d9953c1ac8088f88f3c14dde7c91e70bf85d750050b65062357fcce35d065",
+  "reviewScope": "All 10 candidates and all 20 cited KWICs independently read in their case/address contexts; no source edits, entry construction, queue movement, or lineage work.",
+  "overallDecision": "REVISE",
+  "methodNoTemplate": {
+    "termSpecificProse": "PASS",
+    "independentFullCaseReading": "PASS",
+    "mechanicalEvidence": "PASS",
+    "semanticUnitChoice": "REVISE",
+    "finding": "The reasons are genuinely term-specific and track the surrounding cases. However, every one of the ten standalone, single-clause candidates was assigned unit=couplet. IRIYA_ADJUDICATION_GUIDE.md defines KEEP(couplet) as a whole multi-clause phrase and KEEP(component) as a clause-level lexical unit. This universal couplet assignment is a cohort-level default and must not pass the manual canary. Preserve the semantic KEEP findings but change each unit/disposition to component."
+  },
+  "mechanicalChecks": {
+    "kwicsVerified": "20/20 zc.verify ok",
+    "sourceTitlesAndWorkIds": "20/20 resolved",
+    "variantCheck": "七縱八横 exact printed form: 0 hits; corpus form 七縱八橫: 390 hits in 160 files / 157 works. Variant handling is correct."
+  },
+  "reviews": [
+    {
+      "term": "三十年後",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Both full contexts deploy the temporal phrase as a later-case warning or verdict after a pause. It is Chan-deployed, but it is one clause, not a multi-clause couplet."
+    },
+    {
+      "term": "天下太平",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "The phrase caps Liangfan's address and bears the proposition in the Wuzhu outsider case. It is a standalone formula, not a multi-clause couplet."
+    },
+    {
+      "term": "不識好惡",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Muzhou deploys it as a pointed verdict on Baizhang. The two displayed witnesses transmit substantially the same Muzhou/Baizhang case, so they must not by themselves prove independent multi-work deployment; add a genuinely independent witness or mark provisional. The unit is also a single component, not a couplet."
+    },
+    {
+      "term": "揚眉瞬目",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Mazu explicitly tests the paired gesture and a separate interview contrasts it with the author's mechanism. This is a lexical phrase, not a multi-clause couplet."
+    },
+    {
+      "term": "八字打開",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Yuanwu enacts disclosure with the phrase, whisk, and see/hear questions. The two displayed witnesses are the same Yuanwu address in separate transmissions and cannot alone establish independent works; the source already notes that additional independent evidence must be reconfirmed. It is also a single component, not a couplet."
+    },
+    {
+      "term": "七縱八横",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "The required variant research is sound: the corpus form 七縱八橫 is strongly deployed by Huangbo and Huanglong in independent contexts. The four-character coordinated idiom is one lexical phrase, not a multi-clause couplet."
+    },
+    {
+      "term": "學人自己",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "It occupies a recurring encounter-question slot in the Dasui and Yunmen materials. It is a single nominal phrase, not a couplet."
+    },
+    {
+      "term": "今日失利",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Caoshan and Jingqing independently reuse it as an ironic encounter self-verdict. It is a single formula, not a couplet."
+    },
+    {
+      "term": "不惜眉毛",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "Two masters use it performatively before disclosing or explaining. It is a single verbal formula, not a couplet."
+    },
+    {
+      "term": "佛法無多子",
+      "decision": "REVISE",
+      "semanticAdmission": "PASS",
+      "requiredDisposition": "KEEP (component)",
+      "reason": "The phrase is repeatedly raised, qualified, and tested in formal addresses. It is one proposition, not a multi-clause couplet."
+    }
+  ],
+  "counts": {
+    "reviewed": 10,
+    "passAsWritten": 0,
+    "revise": 10,
+    "reject": 0,
+    "semanticKeep": 10,
+    "unitCorrections": 10,
+    "independentSourceCorrections": 2
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

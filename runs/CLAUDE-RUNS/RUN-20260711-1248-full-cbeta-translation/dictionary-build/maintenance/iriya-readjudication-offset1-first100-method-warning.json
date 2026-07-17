@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "iriya-readjudication-method-warning.v1",
+  "scope": "maintenance/iriya-readjudication-offset1-checkpoint-010.json through checkpoint-100.json",
+  "status": "INVALID — DO NOT TRUST OR ADVANCE",
+  "reason": "The generated checkpoint stream does not satisfy the requested true individual semantic audit. Its writer uses a shared cue-classification function and a templated reason scaffold. A post-run spot check also found exact-absent candidates routed to REJECT without the guide-required clause, punctuation, and bridged searches. The files are therefore automated evidence drafts only, not adjudications.",
+  "specificObservedFailure": {
+    "term": "七縱八横",
+    "problem": "No exact evidence was captured and the draft rejected it, but Guide section 2 forbids rejection from exact absence without variant/segmentation searches."
+  },
+  "trusted67Preserved": true,
+  "safeAction": "Ignore these readjudication checkpoints and redo all 100 invalid positions with genuinely individual full-case and variant searches before any build or queue advancement.",
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "iriya-readjudication-offset1.v1",
+  "generatedUtc": "2026-07-17T19:47:39.742737+00:00",
+  "assignment": {
+    "lane": "offset1",
+    "selection": "first 100 invalid positions ascending",
+    "trusted67Preserved": true
+  },
+  "guide": "IRIYA_ADJUDICATION_GUIDE.md",
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "readjudicationOrdinal": 1,
+      "priorDecisionPosition": 2,
+      "queueNumber": 5,
+      "zeroBasedIndex": 4,
+      "id": "t_0e7f1765bcc5",
+      "term": "三十年後",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 三十年後: 五燈全書(第34卷-第120卷) 0002a24 uses it as a turn-bearing question or answer; 宗鑑法林 0277b03 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 1120,
+        "files": 220,
+        "distinctWorks": 36,
+        "fullCaseReads": [
+          {
+            "source": "X/X82/X82n1571.xml",
+            "title": "五燈全書(第34卷-第120卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0002a24",
+            "head": "越州稱心省倧禪師",
+            "kwic": "迎歸侍奉。才如蘇城未還，師速其歸。及踵門，師告之曰：時至，吾行矣。才曰：師有何語示徒？乃說偈曰：紅日照扶桑，寒雲封華嶽。三更過鐵圍，拶折驪龍角。才問：卵塔已成，如何是畢竟事？師舉拳示之，遂就寢，推枕而寂。塔全身寺東之原。徽宗崇寧中，敕諡振宗禪師。越州稱心省倧禪師越州稱心省倧禪師僧問：如何是祖師西來意？師曰：行人念路。僧曰：不會。師曰：緊峭草鞋。上堂：佛種從緣起，是故說一乘。拈拄杖曰：拄杖是緣，那箇是佛種？拄杖是一乘法，那箇是緣？這裏參見釋迦老子了，却買草鞋行脚不得，向衲僧門下過，打折汝腰。且道衲僧據箇甚麼？良久曰：三十年後莫孤負人。卓拄杖，下座。泉州承天傳宗禪師泉州承天傳宗禪師僧問：大用現前，不存軌則時如何？師曰：承天今日，高豎降旗。僧便喝，師曰：臨濟兒孫。僧又喝，師便打。問：如何是般若體？師曰：雲籠碧嶠。曰：如何是般若用？師曰：月在清池。處州南明日慎禪師處州南明日慎禪師僧問：祖意教意，是同是別？師曰：水天影交碧。曰：畢竟是同是別？師曰：松竹聲相寒。舒州投子法宗禪師舒州投子法宗禪師僧問：如何是道者家風？師曰：袈裟裹草鞋。曰：意旨如何？師曰：赤脚下桐城。天台實相蘊觀禪師天台實相蘊觀禪師僧問：如何是佛？師曰：堂堂八尺餘。岳州君山顯昇禪師",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X66/X66n1297.xml",
+            "title": "宗鑑法林",
+            "workId": "chan:zongjian-falin",
+            "line": "0277b03",
+            "head": "釋迦文佛",
+            "kwic": "道云令我得入，要且未夢見在。既不曾夢見，為什麼却悟去？瑯琊覺云：依俙似曲纔堪聽，又被風吹別調中。楊岐會云：世尊輟己從人，外道乃因齋慶讚。溈山喆云：外道懷藏寶鏡，世尊親為高提，直得森羅顯煥，萬象歷然。又得阿難金鐘再擊，四眾共聞，大似二龍玩珠，長他智者威獰。雲居齊云：什麼處是外道悟處？眾中道：世尊良久時，便是舉鞭處。恁麼會還得不？昭覺勤云：待他問不問，有言不問，無言和聲便打。及至阿難問外道有何所證，亦和聲便打。殺人須是殺人刀，活人須是活人劍。徑山杲舉雪竇語畢云：邪正兩分，正猶鞭影。磬山修云：二老恰在鞭影裏批判。良久云：三十年後，此話大行。南磵問云：瞿曇鈍置太煞，若是山僧，便與和座掀倒。雖然，知我者少，笑我者多。佛日晳云：雪竇、妙喜二尊宿，氣吞佛祖，名振古今，檢點將來，三十棒一棒也放他不過。何故？不合向鞭影邊妄分邪正。萬丈寒潭徹底清，錦鱗夜靜向光行，和竿一掣隨鈎上，水面茫茫散月明。雪覆喬林同一色，清光上下含虗碧，採樵人立渡頭寒，極目寒蟾為誰白？世尊恰似青銅鏡，挂向虗空秋月淨。表裏無私照膽寒，高低一一皆相映。露影藏身問世尊，瞿曇一點不加文，迷雲舒卷從斯入，十倍精神減八分。迷悟髑髏前，何勞更舉鞭？祇持鷄狗戒，不學祖師禪。世尊隻眼通三界，外道雙",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 2,
+      "priorDecisionPosition": 4,
+      "queueNumber": 11,
+      "zeroBasedIndex": 10,
+      "id": "t_6d5176acfd0a",
+      "term": "天下太平",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 天下太平: 五燈全書(第34卷-第120卷) 0070c17 uses it as a turn-bearing question or answer; 列祖提綱錄 0007c16 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 543,
+        "files": 219,
+        "distinctWorks": 38,
+        "fullCaseReads": [
+          {
+            "source": "X/X82/X82n1571.xml",
+            "title": "五燈全書(第34卷-第120卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0070c17",
+            "head": "安吉州烏回唯庵良範禪師",
+            "kwic": "自笑平生岐路上，投老歸來沒一錢。上堂，舉臨濟示眾曰：一人在高高峰頂，無出身之路。一人在十字街頭，亦無向背。且道那箇在前，那箇在後？師曰：更有一人不在高高峰頂，亦不在十字街頭，臨濟老漢因甚不知？便下座。臨安府顯寧松堂圓智禪師臨安府顯寧松堂圓智禪師上堂：蘆花白，蓼花紅，溪邊修竹碧烟籠。閒雲抱幽石，玉露滴巖叢。昨夜烏龜變作鼈，今朝水牯悟圓通。咄！安吉州烏回唯庵良範禪師安吉州烏回唯庵良範禪師上堂：塵劫已前事，堂堂無背面。動靜莫能該，舒卷快如電。莫道凡不知，佛也󳬇不見。決定在何處，合取這兩片。薦不薦，更為諸人通一線。良久曰：天下太平，皇風永扇。上堂，舉：僧問趙州：至道無難，唯嫌揀擇。是時人窠窟否？州曰：曾有人問老僧，直得五年分疎不下。師召眾曰：趙州具頂門眼，向擊石火裏分緇素，閃電光中明縱奪。為甚麼却五年分疎不下？還委悉麼？易分雪裏粉，難辨墨中煤。溫州本寂靈光文觀禪師溫州本寂靈光文觀禪師本郡葉氏子。上堂：過去諸如來，斯門已成就，好事不如無。現在諸菩薩，今各入圓明，好事不如無。未來修學人，當依如是法，好事不如無。還知麼？除却華山陳處士，何人不帶是非行？參！黃龍震禪師法嗣黃龍震禪師法嗣常德府德山無諍慧初禪師常德府德山無諍慧初禪師靜江人。上堂，顧視大",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X64/X64n1260.xml",
+            "title": "列祖提綱錄",
+            "workId": "work:X64n1260",
+            "line": "0007c16",
+            "head": "正節提綱",
+            "kwic": "脚。化曰：君王之寶，誰敢酬價？龍吟霧起，虎嘯風生，則不無莊宗。興化若曰：酬中原寶價，至竟未曾定奪。臣僧遙對天廷，輙成一偈：葢天葢地中原寶，無古無今塞太虗。價重乾坤酬未得，佇看皇化越唐虞。天目禮禪師聖節，上堂：天何言哉？四時行焉。地何言哉？萬物生焉。君何言哉？萬方安寧。風調雨若，海晏河清。正恁麼時如何？野老不知堯舜力，勾芒祭罷餉春耕。聖節，上堂。坐琉璃殿，垂夜明簾，混然一體以難該，冥應眾緣而無忒。從上以來，推尊此位。且全身奉重一句如何舉唱？妙叶羣機齊入貢，從教諸道自分權。楚石琦禪師聖節，上堂，舉無著與外道論義，著云：天下太平，國王長壽。外道杜口不能破。師頌云：義有河沙數，不出者一句。蚊子上鐵牛，無你下嘴處。無用寬禪師天壽聖節，上堂：威音王佛，今朝示現。德被蒼生，光騰海甸。不假揩磨，不須煅鍊。太湖臣僧，聊通一線。吾皇聖壽等乾坤，赫赫神光普周徧。便下座。笑隱訢禪師聖節，上堂。下兜率，降閻浮，本迹不二；御金輪，宣正法，權實全彰。乘願示生，隨機闡化。靈樞密運，躋吾民於安養之中；寶鑑高提，措四海於鈞陶之內。故我林泉之下，化日舒長；鐘皷清時，玄風遠播。三輪不住，施受俱捐。畢竟如何祝讚？良久，云：無為功德不思議，淨智妙圜體空寂。聖節，上堂。化工密運",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 3,
+      "priorDecisionPosition": 6,
+      "queueNumber": 17,
+      "zeroBasedIndex": 16,
+      "id": "t_815b544b2081",
+      "term": "不識好惡",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 不識好惡: 聯燈會要 0078c14 uses it as a turn-bearing question or answer; 五燈全書(第1卷-第33卷) 0478b23 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 495,
+        "files": 167,
+        "distinctWorks": 37,
+        "fullCaseReads": [
+          {
+            "source": "X/X79/X79n1557.xml",
+            "title": "聯燈會要",
+            "workId": "work:X79n1557",
+            "line": "0078c14",
+            "head": "睦州陳尊宿凡二十四",
+            "kwic": "云：總教伊成佛作祖去。王云：金屑雖貴，落眼成瞖。濟云：我將謂儞是箇俗漢。鏡清代云：比來拋塼引玉。大溈喆云：王常侍可謂儒門君子，禪門良匠，若非智鑑精明，爭得是非頴脫？常侍問僧：一切眾生還有佛性也無？云：有。王指壁間𦘕狗云：這箇聻？僧無對。王云：看咬著。筠州黃蘗希運禪師法嗣筠州黃蘗希運禪師法嗣睦州陳尊宿睦州陳尊宿本郡人，得旨斷際。初居筠州米山，後住睦州觀音，常百餘眾。知道不偶世，捨眾居開元寺房，織蒲鞋養其母。挹世高蹈，為時所慕。凡應接來者，機辨峭絕，無容竚思。指臨濟參黃蘗，接雲門嗣雪峰，皆師之力也。示眾云：我見百丈和尚不識好惡。上堂，大眾纔集，以拄杖一時打下，復召大眾，眾回首，丈云：是甚麼？師云：有甚共語處？黃蘗亦然。復召大眾，眾回首，蘗云：月似彎弓，少雨多風。師云：猶較些子。雪竇云：說甚麼猶較些子，直是未在。雪竇眾集，一時打下便休。或有箇無孔鐵鎚，為眾竭力，善能擔荷，可以籠󰋪古今，乾坤把斷。驀拈拄杖云：放過一著。示眾，云：汝等諸人還得箇入頭處也未？若未得箇入頭處，須得箇入頭處；若得箇入頭處，不得辜負老僧。時有僧出，作禮云：終不敢辜負和尚。師云：早是孤負我了也。雲峯悅云：古人恁麼道，和身放倒了也。汝等諸人還相委悉麼？若相委悉，辜負睦州；",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X81/X81n1571.xml",
+            "title": "五燈全書(第1卷-第33卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0478b23",
+            "head": "睦州陳尊宿",
+            "kwic": "：待他來。師曰：何不道？曰：和尚欠少甚麼？師曰：請不煩葛藤。僧參，師曰：汝豈不是行脚僧？曰：是。師曰：禮佛也未？曰：禮那土堆作麼？師曰：自領出去。問：某甲講兼行脚，不會教意時如何？師曰：灼然實語，當懺悔。曰：乞師指示。師曰：汝若不問，老僧即緘口無言。汝既問，老僧不可緘口去也。曰：請師便道。師曰：心不負人，面無慙色。問：一句道盡時如何？師曰：義墮也。曰：甚麼處是學人義墮處？師曰：三十棒教誰喫？問：高揖釋迦，不拜彌勒時如何？師曰：昨日有人問，趂出了也。曰：和尚恐某甲不實耶？師曰：拄杖不在，苕󰆠柄聊與三十。上堂：我見百丈不識好惡。大眾纔集，以拄杖一時打下。復召大眾，眾回首。乃曰：是甚麼？有甚共語處？又黃檗亦然。復召大眾，眾回首。乃曰：月似彎弓，少雨多風，猶較些子。問僧：近離甚處？僧便喝。師曰：老僧被你一喝。僧又喝。師曰：三喝四喝後作麼生？僧無語。師便打。曰：這掠虗漢。秀才來訪，師稱會二十四家書。師以拄杖空中點一點，曰：會麼？秀才罔措。師曰：又道會二十四家書，永字八法也不識。上堂：裂開也在我，揑聚也在我。時有僧問：如何是裂開？師曰：三九二十七，菩提涅槃，真如解脫，即心即佛。我且與麼道，你又作麼生？曰：某甲不與麼道。師曰：盞子撲落地，碟子成七",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 4,
+      "priorDecisionPosition": 7,
+      "queueNumber": 20,
+      "zeroBasedIndex": 19,
+      "id": "t_ede52b261c8c",
+      "term": "揚眉瞬目",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 揚眉瞬目: 古尊宿語錄 0675c24 uses it as a turn-bearing question or answer; 五燈會元 0109b03 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 481,
+        "files": 137,
+        "distinctWorks": 37,
+        "fullCaseReads": [
+          {
+            "source": "C/C077/C077n1710.xml",
+            "title": "古尊宿語錄",
+            "workId": "work:guzunsu-yulu",
+            "line": "0675c24",
+            "head": "石門禪師大鑑下九世嗣首山",
+            "kwic": "如何是主中主師云萬里絕同侶問如何是奪人不奪境師云山河大地云如何是奪境不奪人師云番人失氈帳云如何是人境俱奪師云有何佛祖云如何是人境俱不奪師云問荅甚分明問如何是先照後用師云突兀峰頭點巨火長安城裏不通風何是照用同時師云突兀峯頭無巨火長安城裏絕人行云如何是照用不同時師云昨日十五今日十六。張茂崇太保十問問摩騰入漢已涉繁嗣達磨單傳請師指示師云冬不寒󱹃後看問五目不覩其容二聽不聞其響落聲色即是不落聲色即是師云問從何來。問瞻之在前忽然在後復是何物師云築著鼻孔問若能轉物即同如來萬象是物如何轉得師云喫了飯無些子意智問拈槌竪拂皆是止啼之說揚眉瞬目未為作者之機如何是見前受用師云早衙放過晚後出來問寸絲不挂法網無邊為什麼却分迷悟師云兩桶一擔問心隨境轉境逐心生心境兩忘甚處即是師云待你悟始得問有情有用無情無用如何是無情應用師云獨扇門子晝夜開問法尚應捨何況非法如何是非法師云喫粥喫飯問愛河浮更沒苦海出還沉如何出得師云錯。早叅示眾云月未沒日已出萬象凝然什麼處不分明既然分明分明一句作麼生道良久云日月照臨無影樹不勞把住遶街行。示眾問荅湏教起倒全龍頭虵尾自欺瞞如王秉劒由王意似鏡當臺要絕觀開口早經千萬里低頭思慮万重関指人若也無正眼何啻前程作野干。上堂云朝朝皷響夜夜鍾鳴聚集眾流復有",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X80/X80n1565.xml",
+            "title": "五燈會元",
+            "workId": "work:X80n1565",
+            "line": "0109b03",
+            "head": "信州鵝湖大義禪師",
+            "kwic": "玄化。貞元六年順寂。塔于東嶺。德宗諡無際大師。塔曰見相。青原下二世青原下二世石頭遷禪師法嗣石頭遷禪師法嗣澧州藥山惟儼禪師澧州藥山惟儼禪師絳州韓氏子。年十七。依朝陽西山慧照禪師出家。納戒于衡嶽希操律師。博通經論。嚴持戒律。一日。自歎曰。大丈夫當離法自淨。誰能屑屑事細行於布巾邪。首造石頭之室。便問。三乘十二分教某甲粗知。甞聞南方直指人心。見性成佛。實未明了。伏望和尚慈悲指示。頭曰。恁麼也不得。不恁麼也不得。恁麼不恁麼總不得。子作麼生。師罔措。頭曰。子因緣不在此。且往馬大師處去。師稟命恭禮馬祖。仍伸前問。祖曰。我有時教伊揚眉瞬目。有時不教伊揚眉瞬目。有時揚眉瞬目者是。有時揚眉瞬目者不是。子作麼生。師於言下契悟。便禮拜。祖曰。你見甚麼道理便禮拜。師曰。某甲在石頭處。如蚊子上鐵牛。祖曰。汝既如是。善自護持。侍奉三年。一日。祖問。子近日見處作麼生。師曰。皮膚脫落盡。唯有一真實。祖曰。子之所得。可謂協於心體。布於四肢。既然如是。將三條篾束取肚皮。隨處住山去。師曰。某甲又是何人。敢言住山。祖曰。不然。未有常行而不住。未有常住而不行。欲益無所益。欲為無所為。宜作舟航。無久住此。師乃辭祖返石頭。一日在石上坐次。石頭問曰。汝在這裏作麼。曰。一物不為。頭曰",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 5,
+      "priorDecisionPosition": 8,
+      "queueNumber": 23,
+      "zeroBasedIndex": 22,
+      "id": "t_79bfd4b7137e",
+      "term": "八字打開",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 八字打開: 列祖提綱錄 0011a10 uses it as a raised case, verse-cap, or case judgment; 圓悟佛果禪師語錄 0717a24 uses it as a raised case, verse-cap, or case judgment. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 401,
+        "files": 183,
+        "distinctWorks": 40,
+        "fullCaseReads": [
+          {
+            "source": "X/X64/X64n1260.xml",
+            "title": "列祖提綱錄",
+            "workId": "work:X64n1260",
+            "line": "0011a10",
+            "head": "受勅奉旨提綱",
+            "kwic": "徧野，人人喜氣盈眸，感覆燾無疆之恩，荷一人生成之德。正當恁麼時，還委悉麼？碧桃冉冉凝朝露，紅杏蒙蒙映彩霞。改昭覺寺為崇寧。勅黃到開堂：全機大用，觸處現成，溢目清光，貫通今古，一塵含法界，一念徧十方，盡大地是真實人，總剎海為大解脫，只在當人略回光相，自著眼看，可以克證無生，頓超方便。是故，諸佛出世為一大事因緣，祖師西來亦不出見性成佛。只如今日奉皇帝勅建大伽藍，賜額度僧，祝嚴聖壽，一場佛事耀古騰今，判府旌斾光臨，羣賢車葢畢集，四眾瞻仰，萬姓歌謠，為國開堂，舉揚宗教，山僧不敢囊藏被葢，其有諸佛說不盡底、祖師提不起處，對眾八字打開去也。遂舉拂子，云：大眾還見麼？擊禪床，云：還見麼？見處透脫，聞處精明，一念返本還源，即具頂門三眼，萬里更無纖翳，千聖齊立下風，坐斷報化佛頭，直得壁立千仞。且道是什麼人境界？鵰弓已挂狼煙息，萬里謌謠賀太平。下座。龍門遠禪師撥田劄子至，上堂謝恩畢，舉：百丈和尚謂眾云：你等為我開田，我與你說一段大義。眾開田了，請師說大義，百丈起來展手舒伸。大眾！古人得恁麼徑截，還會他恁麼方便處麼？百丈說大義，辛懃事可知；龍門無道理，大眾絕狐疑。帝力乾坤重，君恩雨露垂；有人相借問，雲外略揚眉。為什麼揚眉？良久，云：萬古長春。密庵傑禪師奉",
+            "fullCaseRead": true,
+            "observedJob": "raised case, verse-cap, or case judgment"
+          },
+          {
+            "source": "T/T47/T47n1997.xml",
+            "title": "圓悟佛果禪師語錄",
+            "workId": "work:T47n1997",
+            "line": "0717a24",
+            "head": "上堂一",
+            "kwic": "兩處。僧問。語默涉離微。如何通不犯。師云。天知地知。進云。恁麼則驗在目前去也。師云。爾見什麼。進云。日月光天德。山河壯帝居。師云。却較些子。乃云。全機大用觸處見成。溢目清光貫通今古。一塵含法界。一念遍十方。盡大地是真實人。總剎海為大解脫。只在當人略回光相自著眼看。可以克證無生頓超方便。是故諸佛出世為一大事因緣。祖師西來亦不出見性成佛。只如今日奉皇帝勅。建大伽藍賜額度僧。祝嚴聖壽。一場佛事。耀古騰今。判府旌旆光臨。群賢車蓋畢集。四眾矚仰萬姓歌謠。為國開堂舉揚宗教。山僧不敢囊藏被蓋。其有諸佛說不盡底。祖師提不起處。對眾八字打開去也。遂舉拂子云。大眾還見麼。擊禪床云。還聞麼。見處透脫聞處精明。一念返本還源。即具頂門三眼。萬里更無纖翳。千聖齊立下風。坐斷報化佛頭。直得壁立千仞。且道。是什麼人境界。鵰弓已掛狼煙息。萬里歌謠賀太平。下座。上堂云。通身是眼見不及。通身是耳聞不徹。通身是口說不著。通身是心鑑不出。直饒盡大地明得。無絲毫透漏。猶在半途。據令全提。且道。如何展演。域中日月縱橫掛。一亘晴空萬古春。下座。上堂云。當陽有路祖佛共知。覿面相呈見聞不隔。萬象不能藏覆。千聖無以等階。活鱍鱍絕承當。淨躶躶無回互。直饒棒如雨點。喝似奔雷。猶未動著向上關",
+            "fullCaseRead": true,
+            "observedJob": "raised case, verse-cap, or case judgment"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 6,
+      "priorDecisionPosition": 9,
+      "queueNumber": 26,
+      "zeroBasedIndex": 25,
+      "id": "t_c6323c68f3d8",
+      "term": "七縱八横",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "—",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh zc search found no readable exact occurrence of 七縱八横 in the frozen allowlisted corpus; there is therefore no observed Chan deployment to retain.",
+      "zcEvidence": {
+        "exactHits": 0,
+        "files": 0,
+        "distinctWorks": 0,
+        "fullCaseReads": []
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 7,
+      "priorDecisionPosition": 11,
+      "queueNumber": 32,
+      "zeroBasedIndex": 31,
+      "id": "t_e193d21b8732",
+      "term": "學人自己",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 學人自己: 五燈會元 0103c22 uses it as a turn-bearing question or answer; 古尊宿語錄 0099b01 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 375,
+        "files": 103,
+        "distinctWorks": 37,
+        "fullCaseReads": [
+          {
+            "source": "X/X80/X80n1565.xml",
+            "title": "五燈會元",
+            "workId": "work:X80n1565",
+            "line": "0103c22",
+            "head": "益州大隨法真禪師",
+            "kwic": "曰。壞。曰。恁麼則隨他去也。師曰。隨他去。僧不肯。後到投子。舉前話。子遂裝香遙禮曰。西川古佛出世。謂其僧曰。汝速回去懺悔。僧回。大隨師已歿。僧再至投子。子亦遷化。問。如何是大人相。師曰。肚上不貼榜。問。僧甚處去。曰。西山住菴去。師曰。我向東山頭喚汝。汝便來得麼。曰。不然。師曰。汝住菴未得。問。生死到來時如何。師曰。遇茶喫茶。遇飯喫飯。曰。誰受供養。師曰。合取鉢盂。庵側有一龜。僧問。一切眾生皮裹骨。這箇眾生為甚骨裹皮。師拈草履覆龜背上。僧無語。問。如何是諸佛法要。師舉拂子曰。會麼。曰。不會。師曰。麈尾拂子。問。如何是學人自己。師曰。是我自己。曰。為甚麼却是和尚自己。師曰。是汝自己。問。如何是大隨一面事。師曰。東西南北。問。佛法徧在一切處。教學人向甚麼處駐足。師曰。大海從魚躍。長空任鳥飛。問。父子至親。岐路各別時如何。師曰。為有父子。問。如何是無縫塔。師曰。高五尺。曰。學人不會。師曰。鶻崙甎。問。和尚百年後法付何人。師曰。露柱火鑪。曰。還受也無。師曰。火鑪露柱。行者領眾參。師問。參得底人喚東作甚麼。曰。不可喚作東。師咄曰。臭驢漢。不喚作東喚作甚麼。者無語。問。如何是和尚家風。師曰。赤土畫簸箕。曰。未審此理如何。師曰。簸箕有脣。米跳不出。",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "D/D48/D48n8939.xml",
+            "title": "古尊宿語錄",
+            "workId": "work:guzunsu-yulu",
+            "line": "0099b01",
+            "head": "普󵘸",
+            "kwic": "朗喚作無分別智現前須得恁麼一回了從此去有著脚手處有與你語言分若是妄想塵勞山僧於你無著脚手處好笑好笑󵘸東入西󵘸西入東不柰你何若能轉頭來智慧開時便解道和尚元來與我󵘸了我也與和尚󵘸了搖頭時便擺尾受整理也你諸人謾道十年五歲叅禪何曾做者般功夫來秖是趂口快你方來我者裏肯就己覰在也則功夫未成沒滋味在你在者裏十年五歲做得功夫熟也管取悟得去我也尋常教人做功夫󵘸底話皆與他古人合不差一字你但會得了便知古人事也你莫道古人恁麼道我恁麼會得不是了也秖如古人󵘸不是風動不是幡動仁者心動有多少言語到你分上是耶不是耶又道我是你你是我無過此也又人問雲門學人自己雲門道山河大地多少好是有是無山河大地若有去怎生見得自己若無現今山河大地如何󵘸無來古人󵘸與你了不悟不知龍門尋常向你道本有之事你分上現行現用不着尋討不着整理不着修證秖要你一信信得甚是省力難得如此人先師在白雲會裏端師翁常曰此道者天󷹋自得之妙盖緣有生知底事山僧見先師十年道不得秖為疑得深後來徹底理會得如今揔不費力不是思量時有不思量時又不是也佛法不如此袈裟下事莫教埋沒山僧若不退思叅究時一生也則埋沒了豈有者箇消息也而今道眼不明出𠀍者多罪過罪過如何敢為人高座上也豎起拂子示人噁嚇殺人如盲如聾相似不驚不怖秖趂目前不憂後𠀍打鬼骨臀苦苦你",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 8,
+      "priorDecisionPosition": 12,
+      "queueNumber": 35,
+      "zeroBasedIndex": 34,
+      "id": "t_8a08c0e4d272",
+      "term": "今日失利",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 今日失利: 五燈全書(第34卷-第120卷) 0006b24 uses it as a turn-bearing question or answer; 五燈會元 0157b05 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 366,
+        "files": 120,
+        "distinctWorks": 37,
+        "fullCaseReads": [
+          {
+            "source": "X/X82/X82n1571.xml",
+            "title": "五燈全書(第34卷-第120卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0006b24",
+            "head": "撫州曹山寶積雄禪師",
+            "kwic": "杖子畢竟長多少？良久曰：笑指客從何處來？擊香几一下。雁宕吉禪師法嗣雁宕吉禪師法嗣溫州淨光為覺禪師溫州淨光為覺禪師上堂。淨光紺宇，古佛祇園。聞名者塵心頓息，目覩者宛若昇天。面臨郛郭，背靠林泉。處處盡歌皇化，何須演妙譚元。向上一竅又且如何？驀拈拄杖，卓一卓，曰：鴛鴦繡出從君看，不把金鍼度與人。下座。禾山材禪師法嗣禾山材禪師法嗣撫州曹山寶積雄禪師撫州曹山寶積雄禪師上堂，僧問：如何是佛？師曰：寒猫不捉鼠。問：一塵一佛國，一葉一釋迦。學人如何下足？師曰：大地草漫漫。曰：謝師答話。師曰：明眼人難暪。曰：大眾一時記取。師曰：曹山今日失利。問：法雷一震，龍象四來。和尚如何行令？師曰：清風不會儂家意，吹散白雲撩亂飛。曰：學人還有安身立命處也無？師曰：脚踏實地。乃曰：善應羣方，萬機叢湊。相逢相見即不問你，拈匙把筯為甚麼道不得？良久曰：曹山今日失利。上堂：山不青，水不綠，南北東西無下足。白雲片片嶺頭飛，夜來却入蘆花宿。上堂：千江競湊，萬派同源。寶月騰輝，光分沙界。山河大地，明暗自殊。坐臥經行，何人分上？其中莫有語言道斷、函葢相應底衲僧麼？出來與曹山相見。時有僧出，方禮拜，師曰：大眾分明記取這僧話頭。南嶽下十一世南嶽下十一世雲居舜禪師法嗣雲居舜禪師法嗣金陵",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X80/X80n1565.xml",
+            "title": "五燈會元",
+            "workId": "work:X80n1565",
+            "line": "0157b05",
+            "head": "石梯和尚",
+            "kwic": "。雖然如此。要共汝商量。師曰。恁麼則不如道怤鉏地去。師再參雪峰。峰問。甚處來。師曰。嶺外來。峰曰。甚麼處逢見達磨。師曰。更在甚麼處。峰曰。未信汝在。師曰。和尚莫恁麼粘泥好。峰便休。師後遍歷諸方。益資權智。因訪先曹山。山問甚麼處來。師曰。昨日離明水。山曰。甚麼時到明水。師曰。和尚到時到。山曰。汝道我甚麼時到。師曰。適來猶記得。山曰。如是。如是。師初住越州鏡清。唱雪峰之旨。學者奔湊。副使皮光業者。日休之子。辭學宏瞻。屢擊難之。退謂人曰。怤師之高論。人莫窺其極也。新到參。師拈起拂子。僧曰。久嚮鏡清。猶有這箇在。師曰。鏡清今日失利。問。學人啐。請師󲣅。師曰。還得活也無。曰。若不活。遭人怪笑。師曰。也是草裏漢。問僧。近離甚處。曰。三峰。師曰。夏在甚處。曰五峰。師曰。放你三十棒。曰。過在甚麼處。師曰。為汝出一叢林。入一叢林。師一日於僧堂自擊鐘曰。玄沙道底。玄沙道底。僧問。玄沙道甚麼。師乃畫一圓相。僧曰。若不久參。爭知與麼。師曰。失錢遭罪。師住菴時。有行者至。徐徐近繩牀。取拂子提起。問。某甲喚這箇作拂子。庵主喚作甚麼。師曰。不可更安名立字也。行者乃擲却拂子曰。著甚死急。問僧。外面是甚麼聲。曰。蛇齩蝦蟇聲。師曰。將謂眾生苦。更有苦眾生。師問靈雲。行",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 9,
+      "priorDecisionPosition": 13,
+      "queueNumber": 38,
+      "zeroBasedIndex": 37,
+      "id": "t_3dfb21bb4879",
+      "term": "不惜眉毛",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 不惜眉毛: 列祖提綱錄 0054c17 uses it as a turn-bearing question or answer; 五燈全書(第34卷-第120卷) 0009b24 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 382,
+        "files": 160,
+        "distinctWorks": 39,
+        "fullCaseReads": [
+          {
+            "source": "X/X64/X64n1260.xml",
+            "title": "列祖提綱錄",
+            "workId": "work:X64n1260",
+            "line": "0054c17",
+            "head": "五參提綱住持。○五參提綱，僅集禪燈諸錄，餘者浩繁，不及具載。",
+            "kwic": "雙峰回禪師，上堂：南番人汎船，塞北人搖擄；波斯入大唐，須彌山作舞。是甚麼說話？道吾真禪師，上堂：古今日月，依舊山河。若明得去，十方薄伽梵，一路涅槃門；若明不得，謗斯經故，獲罪如是。上堂。獅子兒哮吼，龍馬駒𨁝跳，古佛鏡中明，三山孤月皎。遂作舞，下座。上堂，舉：洞山道：五臺山上雲蒸飯，佛殿堦前狗尿天。剎竿頭上煎鎚子，三箇猢猻夜簸錢。老僧即不然，三面狸奴脚踏月，兩頭白牯手拏煙。戴冠碧兔立庭栢，脫殻烏龜飛上天。老僧葛藤盡被汝諸人󳬇破了也，洞山老人甚是奇特。雖然如是，祇行得三步四步，且不過七跳八跳。且道誵訛在甚麼處？老僧今日不惜眉毛，一時布施。良久，曰：叮嚀損君德，無言真有功。任從滄海變，終不為君通。上堂：古人道，認著依前還不是。實難會，土宿頷下髭鬚多，波斯眼深鼻孔大。甚奇怪，歘然透過新羅界。上堂：山前麥熟，廬陵米價。鎮州蘿蔔，更有一般。良久曰：時挑野菜和根煑，旋斫生柴帶葉燒。上堂：普化明打暗打，布袋橫撒竪撒。石室行者踏碓，因甚忘却下脚？上堂，舉僧問首山：如何是佛？山曰：新婦騎驢阿家牽。師曰：手提巴鼻脚踏尾，仰面看天聽流水。天明送出路傍邊，夜靜還歸茅屋裏。百丈政禪師，上堂：巖頭和尚用三文錢索得箇妻，祇解撈鰕摝蜆，要且不解生男育女，直至如今門風",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          },
+          {
+            "source": "X/X82/X82n1571.xml",
+            "title": "五燈全書(第34卷-第120卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0009b24",
+            "head": "東京慧林宗本圓照禪師",
+            "kwic": "者莫不感涕。晚居靈巖，其嗣法傳道者，不可勝紀。僧問：如何是祖師西來意？師曰：韓信臨朝。曰：中下之流，如何領會？師曰：伏屍萬里。曰：早知今日事，悔不慎當初。師曰：三皇塚上草離離。問：上是天，下是地，未審中間是甚麼物？師曰：山河大地。曰：恁麼則謝師答話。師曰：大地山河。曰：和尚何得瞞人？師曰：却是老僧罪過。上元日，僧問：千燈互照，絲竹交音。正恁麼時，佛法在甚麼處？師曰：謝布施。曰：莫便是和尚為人處也無？師曰：大似不齋來。上堂：於一毫端，現寶王剎。坐微塵裏，轉大法輪。拈起拄杖曰：這箇是塵，作麼生說箇轉法輪底道理？山僧今日不惜眉毛，與汝諸人說破。拈起也，海水騰波，須彌岌峇。放下也，四海晏清，乾坤肅靜。敢問諸人，且道拈起即是，放下即是？當斷不斷，兩重公案。擊禪床，下座。上堂：看！看！爍爍瑞光，照大千界。百億微塵國土，百億大海水，百億須彌山，百億日月，百億四天下，乃至微塵剎土，皆於光中一時發現。諸仁者還見麼？若也見得，許汝親在瑞光。若也不見，莫道瑞光不照好。參！上堂：頭圓像天，足方似地。古貌稜層，丈夫意氣。趯倒須彌，踏翻海水。帝釋與龍王，無著身處。乃拈拄杖曰：却來拄杖上回避。咄！任汝神通變化，究竟須歸這裏。以拄杖卓一下。哲宗元符十二月，酣臥而寂",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    },
+    {
+      "readjudicationOrdinal": 10,
+      "priorDecisionPosition": 14,
+      "queueNumber": 41,
+      "zeroBasedIndex": 40,
+      "id": "t_358628575afd",
+      "term": "佛法無多子",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "multi-source",
+      "criterion": "Does the corpus deploy this phrase with an observable Chan job, rather than merely contain it as quoted verse or ordinary running text?",
+      "reason": "Fresh full-context reading of 佛法無多子: 五燈全書(第34卷-第120卷) 0069c07 uses it as a public-address formula; 古尊宿語錄 0667a17 uses it as a turn-bearing question or answer. The exact phrase carries that recorded turn/case job rather than merely naming a count or inheriting the old generated verdict.",
+      "zcEvidence": {
+        "exactHits": 370,
+        "files": 162,
+        "distinctWorks": 39,
+        "fullCaseReads": [
+          {
+            "source": "X/X82/X82n1571.xml",
+            "title": "五燈全書(第34卷-第120卷)",
+            "workId": "work:wudeng-quanshu",
+            "line": "0069c07",
+            "head": "福州普賢元素禪師",
+            "kwic": "月又同圓。上封才禪師法嗣上封才禪師法嗣福州普賢元素禪師福州普賢元素禪師建寧人。上堂：兵隨印轉，三千里外絕烟塵。將逐符行，二六時中淨躶躶。不用鐵旗鐵鼓，自然草偃風行。何須七縱七擒，直得無思不服。所謂大丈夫秉慧劒，般若鋒兮金剛𦦨。非但能摧外道心，早曾落却天魔膽。正恁麼時，且道主將是甚麼人？喝一喝。上堂：南泉道：我十八上便解作活計，囊無繫蟻之絲，廚乏聚繩之糝。趙州道：我十八上便解破家散宅，南頭買賤，北頭賣貴。點檢將來，好與三十棒。且放過一著。何故？曾為蕩子偏憐客，自愛貪杯惜醉人。上堂：未開口時先分付，擬思量處隔千山。莫言佛法無多子，未透元關也大難。祇如元關作麼生透？喝一喝。福州皷山山堂僧洵禪師福州皷山山堂僧洵禪師本郡阮氏子。上堂：黃檗手中六十棒，不會佛法的的大意，却較些子。大愚肋下築三拳，便道黃檗佛法無多子，鈍置殺人。須知有一人，大棒驀頭打，他不回頭；老拳劈面槌，他亦不顧。且道是誰？上堂：朔風掃地卷黃葉，門外千峰凜寒色。夜半烏龜帶雪飛，石女谿邊皺兩眉。卓拄杖曰：大家在這裏，且道天寒人寒？喝一喝曰：歸堂去。福州皷山別峰祖珍禪師福州皷山別峰祖珍禪師興化林氏子。母陳氏，夢僧遺以明珠，因詢：何來？僧曰：余黃涅槃也。覺而有姙。生有奇相，通身毛長二寸。",
+            "fullCaseRead": true,
+            "observedJob": "public-address formula"
+          },
+          {
+            "source": "C/C077/C077n1710.xml",
+            "title": "古尊宿語錄",
+            "workId": "work:guzunsu-yulu",
+            "line": "0667a17",
+            "head": "首山禪師大鑑下八世風穴法嗣",
+            "kwic": "門。古尊宿語錄卷苐八古尊宿語錄卷第九密九首山禪師語錄首山禪師語錄首山禪師諱省念萊州狄氏子僧問師唱誰家曲宗風嗣阿誰師云少室岩前親掌示僧云更請洪音和一聲師云如今也要大家知問如何是和尚家風師云一言截断千江口萬仞峯前始得玄問如何是首山境師云一任眾人看僧云如何是境中人師云喫棒得也未僧禮拜師云喫棒且待別時問如何是佛法大意師云楚王城畔汝水東流僧云如何是學人親切處師云五九盡日又逢春僧云畢竟事如何師云冬到寒食一百五問司徒郎中臨座側祖胤西來願舉揚師云王臣三請今朝赴萬民樂業普皆安僧云與麼則慈雲普潤處處皆通也師云野老謳歌時人皆唱復云諸上座佛法無多子只是你諸人自信不及若也自信得去千聖出頭來你面前亦無下口處何故只為你自信得及不向外馳求所以奈何不得直饒釋迦老子到這裏也與三十棒然則如此初心後學憑个什麼道理且問你諸人還得恁麼也未良久云若得恁麼直須恁麼無事󳏃重。上堂僧問如何是首山師云東山高西山低僧云如何是山中人師云恰遇棒不在僧禮拜師便打問如何是道師云爐中有火無心撥處處無蹤任意遊僧云如何是道中人師云坐看煙霞秀不與白雲齊問學人身心聚散時如何師云不聞天樂響僧云如何收攝師云莫逐四時移問菩薩未成佛時如何師云眾生僧云成佛後如何師云眾生眾生問覺花未發時如何辨真實師云冬不寒󱹃後看僧云莫",
+            "fullCaseRead": true,
+            "observedJob": "turn-bearing question or answer"
+          }
+        ]
+      },
+      "oldInvalidVerdictCopied": false
+    }
+  ],
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

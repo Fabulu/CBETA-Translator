@@ -1,0 +1,519 @@
+{
+  "schemaVersion": "iriya-method-audit-offset0.v1",
+  "generatedUtc": "2026-07-17T19:43:26.148315+00:00",
+  "scope": {
+    "lane": "offset0 / canonical indexes 0,3,6,...",
+    "checkpoint": "maintenance/IRIYA_ADJUDICATION_LOG-lane-A-checkpoint-500.json",
+    "checkpointSha256": "b6f3634e0087dfcec41ab212ad29211aac008794b54613eacc6402962696adf1",
+    "decisions": 500
+  },
+  "guideRuling": {
+    "guide": "IRIYA_ADJUDICATION_GUIDE.md",
+    "guideSha256": "0a8a3f44e70a085e43cd08256a2db01d4f0ccb3c9ce885bcdb5978996c00ad55",
+    "governingRule": "DICTIONARY_ENTRY_GUIDE.md §8c item 17: no semantic decision by regex, row number, count threshold, fixed-position default, or term-substituted prose template.",
+    "auditOnly": true
+  },
+  "writerSources": [
+    {
+      "path": "maintenance/write_iriya_lane_a_checkpoints30_50.py",
+      "sha256": "4d458623c60972eb47673dfce1ad2a12cf86c63435230aacf7d5ae011316258a"
+    },
+    {
+      "path": "maintenance/write_iriya_lane_a_resume30_to50.py",
+      "sha256": "db379f2ddf02bac0075dbd92905dd377ee3eaf4856b49c6311a7dc8c9614554a"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoint60.py",
+      "sha256": "440bf9e66b60742787a7344c51501724150827397c3922ad52a7e2210161790e"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoint70.py",
+      "sha256": "a18b4153ba53cce38500f9a5f28c9907fc479fbd889d734b64a011a736859313"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoints80_100.py",
+      "sha256": "3d38c0320197c37ed079d553d3193dd09cdbed7ac1dd7973b4e8343db7585d6b"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoints210_250.py",
+      "sha256": "3920ea322999390b25951fba05daf5e2193257b6ae2309b06b89c65eaa0b3797"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoints260_300.py",
+      "sha256": "8e639479b9252dee32d7fefdf561cbcdfba3ce71d03a2fe4f35976d63b831f02"
+    },
+    {
+      "path": "maintenance/write_iriya_offset0_checkpoints310_500.py",
+      "sha256": "9f2bf5c338a306ec1dcd99afbdcae344bb4cce8b9721d6207aecfa6c789c70bf"
+    }
+  ],
+  "trusted": {
+    "contiguousRanges": [
+      {
+        "ordinals": [
+          1,
+          21
+        ],
+        "canonicalIndexes": [
+          0,
+          60
+        ],
+        "count": 21,
+        "ruling": "TRUSTED: initial checkpoint decisions have distinct headword-specific reasons that resolve deployment or containment; they are not products of any located bulk default writer."
+      }
+    ],
+    "individualOverrides": [
+      {
+        "ordinal": 27,
+        "canonicalIndex": 78,
+        "queueNumber": 79,
+        "id": "t_0325cd101239",
+        "term": "超佛越祖之談",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 34,
+        "canonicalIndex": 99,
+        "queueNumber": 100,
+        "id": "t_073c40e49ec1",
+        "term": "青黄赤白",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 38,
+        "canonicalIndex": 111,
+        "queueNumber": 112,
+        "id": "t_da0e5f8f9940",
+        "term": "然雖如此",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 367,
+        "canonicalIndex": 1098,
+        "queueNumber": 1099,
+        "id": "t_60d8065ea7b7",
+        "term": "羽毛相似",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 377,
+        "canonicalIndex": 1128,
+        "queueNumber": 1129,
+        "id": "t_6f852835b5f3",
+        "term": "本源清淨心",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 432,
+        "canonicalIndex": 1293,
+        "queueNumber": 1294,
+        "id": "t_78de89b1369a",
+        "term": "臍輪氣海",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 469,
+        "canonicalIndex": 1404,
+        "queueNumber": 1405,
+        "id": "t_605788fa7154",
+        "term": "青春不再來",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    ],
+    "count": 28,
+    "allTrustedRows": [
+      {
+        "ordinal": 1,
+        "canonicalIndex": 0,
+        "queueNumber": 1,
+        "id": "t_17b4746140b7",
+        "term": "雖然如是",
+        "disposition": "REJECT",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 2,
+        "canonicalIndex": 3,
+        "queueNumber": 4,
+        "id": "t_855f8b4b2b2f",
+        "term": "安身立命",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 3,
+        "canonicalIndex": 6,
+        "queueNumber": 7,
+        "id": "t_9a612ad0649c",
+        "term": "天上天下",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 4,
+        "canonicalIndex": 9,
+        "queueNumber": 10,
+        "id": "t_b9e3003ce853",
+        "term": "放過一著",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 5,
+        "canonicalIndex": 12,
+        "queueNumber": 13,
+        "id": "t_040d3cc8deda",
+        "term": "未夢見在",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 6,
+        "canonicalIndex": 15,
+        "queueNumber": 16,
+        "id": "t_4f4c005d1b0f",
+        "term": "入地獄如箭",
+        "disposition": "REJECT",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 7,
+        "canonicalIndex": 18,
+        "queueNumber": 19,
+        "id": "t_ee2645801267",
+        "term": "臘月三十日",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 8,
+        "canonicalIndex": 21,
+        "queueNumber": 22,
+        "id": "t_a49349b639c3",
+        "term": "猶較些子",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 9,
+        "canonicalIndex": 24,
+        "queueNumber": 25,
+        "id": "t_4e7349a265d3",
+        "term": "直指人心、見性成佛",
+        "disposition": "KEEP",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 10,
+        "canonicalIndex": 27,
+        "queueNumber": 28,
+        "id": "t_4d9895cc302e",
+        "term": "老老大大",
+        "disposition": "REJECT",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 11,
+        "canonicalIndex": 30,
+        "queueNumber": 31,
+        "id": "t_8f9d011ae452",
+        "term": "拂袖便行",
+        "disposition": "REJECT",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 12,
+        "canonicalIndex": 33,
+        "queueNumber": 34,
+        "id": "t_2a207e0e8c96",
+        "term": "不風流處也風流",
+        "disposition": "KEEP",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 13,
+        "canonicalIndex": 36,
+        "queueNumber": 37,
+        "id": "t_497d803e33ff",
+        "term": "自救不了",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 14,
+        "canonicalIndex": 39,
+        "queueNumber": 40,
+        "id": "t_20e096d853ee",
+        "term": "諦觀法王法、法王法如是",
+        "disposition": "KEEP",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 15,
+        "canonicalIndex": 42,
+        "queueNumber": 43,
+        "id": "t_28f648ab208d",
+        "term": "掀倒禪床",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 16,
+        "canonicalIndex": 45,
+        "queueNumber": 46,
+        "id": "t_23b0e63266c0",
+        "term": "世諦流布",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 17,
+        "canonicalIndex": 48,
+        "queueNumber": 49,
+        "id": "t_e2ba845177a9",
+        "term": "向上一竅",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 18,
+        "canonicalIndex": 51,
+        "queueNumber": 52,
+        "id": "t_8dfd909d60f8",
+        "term": "日午打三更",
+        "disposition": "KEEP",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 19,
+        "canonicalIndex": 54,
+        "queueNumber": 55,
+        "id": "t_df545b35b76b",
+        "term": "棒頭有眼",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 20,
+        "canonicalIndex": 57,
+        "queueNumber": 58,
+        "id": "t_99c9b008cc64",
+        "term": "八面玲瓏",
+        "disposition": "KEEP (component)",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 21,
+        "canonicalIndex": 60,
+        "queueNumber": 61,
+        "id": "t_135b07152ccc",
+        "term": "草賊大敗",
+        "disposition": "KEEP",
+        "basis": "individually written headword-specific full-case ruling"
+      },
+      {
+        "ordinal": 27,
+        "canonicalIndex": 78,
+        "queueNumber": 79,
+        "id": "t_0325cd101239",
+        "term": "超佛越祖之談",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 34,
+        "canonicalIndex": 99,
+        "queueNumber": 100,
+        "id": "t_073c40e49ec1",
+        "term": "青黄赤白",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 38,
+        "canonicalIndex": 111,
+        "queueNumber": 112,
+        "id": "t_da0e5f8f9940",
+        "term": "然雖如此",
+        "disposition": "REJECT",
+        "basis": "explicit headword-specific exception backed by retained zc windows"
+      },
+      {
+        "ordinal": 367,
+        "canonicalIndex": 1098,
+        "queueNumber": 1099,
+        "id": "t_60d8065ea7b7",
+        "term": "羽毛相似",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 377,
+        "canonicalIndex": 1128,
+        "queueNumber": 1129,
+        "id": "t_6f852835b5f3",
+        "term": "本源清淨心",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 432,
+        "canonicalIndex": 1293,
+        "queueNumber": 1294,
+        "id": "t_78de89b1369a",
+        "term": "臍輪氣海",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      },
+      {
+        "ordinal": 469,
+        "canonicalIndex": 1404,
+        "queueNumber": 1405,
+        "id": "t_605788fa7154",
+        "term": "青春不再來",
+        "disposition": "REJECT",
+        "basis": "explicit manually enumerated contained-only ruling with retained semantic-packet witness"
+      }
+    ]
+  },
+  "invalid": {
+    "ranges": [
+      {
+        "ordinals": [
+          22,
+          26
+        ],
+        "count": 5
+      },
+      {
+        "ordinals": [
+          28,
+          33
+        ],
+        "count": 6
+      },
+      {
+        "ordinals": [
+          35,
+          37
+        ],
+        "count": 3
+      },
+      {
+        "ordinals": [
+          39,
+          366
+        ],
+        "count": 328
+      },
+      {
+        "ordinals": [
+          368,
+          376
+        ],
+        "count": 9
+      },
+      {
+        "ordinals": [
+          378,
+          431
+        ],
+        "count": 54
+      },
+      {
+        "ordinals": [
+          433,
+          468
+        ],
+        "count": 36
+      },
+      {
+        "ordinals": [
+          470,
+          500
+        ],
+        "count": 31
+      }
+    ],
+    "count": 472,
+    "ruling": "INVALID FOR ADMISSION until individually reread; bytes remain preserved. These decisions were produced by default KEEP branches, count/work thresholds, regex-derived discourse jobs, or unbound claims of complete-case/KWIC artifacts.",
+    "methodFindings": [
+      {
+        "ordinals": [
+          22,
+          50
+        ],
+        "writers": [
+          "write_iriya_lane_a_checkpoints30_50.py",
+          "write_iriya_lane_a_resume30_to50.py"
+        ],
+        "finding": "All non-exception rows take an automatic KEEP(component) branch from the first /tmp evidence sample; a window is retained, but no per-headword semantic decision is made."
+      },
+      {
+        "ordinals": [
+          51,
+          70
+        ],
+        "writers": [
+          "write_iriya_offset0_checkpoint60.py",
+          "write_iriya_offset0_checkpoint70.py"
+        ],
+        "finding": "Headword-specific prose is hard-coded, but no case window/source binding is retained and every row is forced KEEP(component); full-case reading is not provenance-verifiable."
+      },
+      {
+        "ordinals": [
+          71,
+          100
+        ],
+        "writers": [
+          "write_iriya_offset0_checkpoints80_100.py"
+        ],
+        "finding": "Only a small fixed dictionary of terms receives specific prose; every other row receives a term-substituted deployment sentence and automatic KEEP(component). Even the specific rows lack bound case windows, so this range is not full-case-proven."
+      },
+      {
+        "ordinals": [
+          101,
+          200
+        ],
+        "writers": [],
+        "finding": "No matching offset0 writer is present. Decisions use repeated count-only “frozen zc counts plus complete-case/KWIC artifacts” prose without retained windows; provenance cannot establish individual full-case reads."
+      },
+      {
+        "ordinals": [
+          201,
+          300
+        ],
+        "writers": [
+          "write_iriya_offset0_checkpoints210_250.py",
+          "write_iriya_offset0_checkpoints260_300.py"
+        ],
+        "finding": "Loop assigns every row KEEP(component), multi-source, with one term-substituted deployment template and frozen counts; no semantic case read occurs in code."
+      },
+      {
+        "ordinals": [
+          301,
+          500
+        ],
+        "writers": [
+          "write_iriya_offset0_checkpoints310_500.py"
+        ],
+        "finding": "Disposition/unit are assigned by regex over one compact window plus work count: job() maps cue tokens to a discourse class, punctuation selects couplet/component, and all non-fixed rejects default KEEP/PROVISIONAL. This is exactly prohibited semantic-template authoring. Four explicit reject overrides are separately trusted."
+      }
+    ]
+  },
+  "assertions": {
+    "trustedPlusInvalidEquals500": true,
+    "checkpointOrDecisionFilesRewritten": false,
+    "entriesBuilt": false,
+    "queueMutated": false,
+    "lineageMutated": false
+  },
+  "requiredNextAction": "Quarantine invalid decisions from admission authority and individually reread them from zc-bound complete cases; do not delete or rewrite the preserved historical checkpoints during this audit."
+}

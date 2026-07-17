@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-readjudication-offset1-canary-repair-receipt.v1",
+  "sourceReview": "maintenance/iriya-readjudication-offset1-manual-canary-010-independent-review-repair-c19-e8.json",
+  "sourceReviewSha256": "a452539168b751fc29cfacd5364cca871f003f0e7b371f75495878f61b2f4581",
+  "repairedLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+  "beforeSha256": "864d9953c1ac8088f88f3c14dde7c91e70bf85d750050b65062357fcce35d065",
+  "afterSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+  "unitRepairs": {
+    "count": 10,
+    "disposition": "KEEP (component)",
+    "unit": "component"
+  },
+  "independentWitnessRepairs": [
+    {
+      "term": "不識好惡",
+      "source": "X/X83/X83n1578.xml",
+      "title": "指月錄",
+      "workId": "chan:zhiyue-lu",
+      "line": "0467a13",
+      "independenceFinding": "This is not another transmission of Muzhou's Baizhang case; it applies the phrase independently as a rebuke of elaborate body/purification claims.",
+      "kwicVerified": true,
+      "validation": "multi-source"
+    },
+    {
+      "term": "八字打開",
+      "source": "X/X82/X82n1571.xml",
+      "title": "五燈全書(第34卷-第120卷)",
+      "workId": "work:wudeng-quanshu",
+      "line": "0114b15",
+      "independenceFinding": "This is a different address from Yuanwu's enthronement text; it deploys the phrase for the open 圓通 gateway and the gateless gate.",
+      "kwicVerified": true,
+      "validation": "multi-source"
+    }
+  ],
+  "allEvidenceKwicsVerified": true,
+  "provisionalRows": 0,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

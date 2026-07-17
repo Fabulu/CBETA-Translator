@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "iriya-method-audit-offset2.v1",
+  "generatedUtc": "2026-07-17T19:43:27.215754+00:00",
+  "mode": "PROVENANCE-AUDIT-ONLY",
+  "scope": {
+    "offset": 2,
+    "stride": 3,
+    "decisionCount": 669,
+    "zeroBasedIndexRange": [
+      2,
+      2006
+    ]
+  },
+  "guideGate": {
+    "source": "DICTIONARY_ENTRY_GUIDE.md item 17",
+    "rule": "Batch tools may serialize decisions but may not make semantic decisions by counts, regex, defaults, fixed lists, or term-substituted templates; every trusted semantic field must follow a complete-case read."
+  },
+  "finalCheckpoint": {
+    "path": "maintenance/iriya-offset2-audit-checkpoint-669.json",
+    "sha256": "ec1a546a4a69f2cf32b46bb2feda84a985c5bb82717b0eaa7368695db8239bf0"
+  },
+  "summary": {
+    "trustedDecisionCount": 59,
+    "quarantinedDecisionCount": 610,
+    "trustedDecisionOrdinals": [
+      51,
+      100
+    ],
+    "additionalTrustedOrdinals": [
+      101,
+      104,
+      105,
+      106,
+      107,
+      121,
+      123,
+      141,
+      149
+    ],
+    "publicationOrBuildUseAuthorized": false,
+    "requiredNextAction": "Re-adjudicate quarantined rows from complete cases; preserve the 59 trusted decisions by exact ordinal/ID unless a later independent semantic review overturns them."
+  },
+  "rangeRulings": [
+    {
+      "decisionOrdinals": [
+        1,
+        50
+      ],
+      "zeroBasedIndexes": [
+        2,
+        149
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 50,
+      "evidence": "write_iriya_offset2_audit.py uses one generic KEEP reason for 47/50 rows and a fixed KEEP(couplet) default. The three individualized rejects at ordinals 2, 31, and 32 have sampled KWIC/full-clause language but no recorded complete-case read, so Guide item 17 does not permit treating them as trusted.",
+      "explicitButNotFullCaseProven": [
+        {
+          "ordinal": 2,
+          "term": "意作麼生"
+        },
+        {
+          "ordinal": 31,
+          "term": "落在什麼處"
+        },
+        {
+          "ordinal": 32,
+          "term": "拂袖而出"
+        }
+      ]
+    },
+    {
+      "decisionOrdinals": [
+        51,
+        100
+      ],
+      "zeroBasedIndexes": [
+        152,
+        299
+      ],
+      "ruling": "TRUST",
+      "trustedCount": 50,
+      "invalidCount": 0,
+      "evidence": "Five ten-row writers contain exhaustive per-term maps rather than fallback prose. Each map states the particular complete interview, answer, verdict, case action, maxim, or productive-grammar finding examined; no semantic default branch exists in these writers."
+    },
+    {
+      "decisionOrdinals": [
+        101,
+        150
+      ],
+      "zeroBasedIndexes": [
+        302,
+        449
+      ],
+      "ruling": "MIXED",
+      "trustedCount": 9,
+      "invalidCount": 41,
+      "evidence": "write_iriya_offset2_checkpoints110_150.py has a nine-term special map, then special.get(term, generic_template). Only the mapped decisions retain individualized read evidence; every fallback decision is a term-substituted default KEEP.",
+      "trustedDecisions": [
+        {
+          "ordinal": 101,
+          "zeroBasedIndex": 302,
+          "term": "萬里崖州"
+        },
+        {
+          "ordinal": 104,
+          "zeroBasedIndex": 311,
+          "term": "打破蔡州"
+        },
+        {
+          "ordinal": 105,
+          "zeroBasedIndex": 314,
+          "term": "明月蘆花"
+        },
+        {
+          "ordinal": 106,
+          "zeroBasedIndex": 317,
+          "term": "生死事大、無常迅速"
+        },
+        {
+          "ordinal": 107,
+          "zeroBasedIndex": 320,
+          "term": "山是山、水是水"
+        },
+        {
+          "ordinal": 121,
+          "zeroBasedIndex": 362,
+          "term": "丙丁童子來求火"
+        },
+        {
+          "ordinal": 123,
+          "zeroBasedIndex": 368,
+          "term": "一花開五葉、結果自然成"
+        },
+        {
+          "ordinal": 141,
+          "zeroBasedIndex": 422,
+          "term": "佛之一字、吾不喜聞"
+        },
+        {
+          "ordinal": 149,
+          "zeroBasedIndex": 446,
+          "term": "參須實參、悟須實悟"
+        }
+      ]
+    },
+    {
+      "decisionOrdinals": [
+        151,
+        250
+      ],
+      "zeroBasedIndexes": [
+        452,
+        749
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 100,
+      "evidence": "No write_iriya_offset2 source exists for these checkpoint deltas. Every stored reason has the exact same term-substituted default sentence and universal KEEP(couplet)/multi-source shape. Missing writer provenance plus the template fingerprint fails item 17."
+    },
+    {
+      "decisionOrdinals": [
+        251,
+        300
+      ],
+      "zeroBasedIndexes": [
+        752,
+        899
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 50,
+      "evidence": "write_iriya_offset2_checkpoints260_300.py makes the semantic decision inside a loop from counts and a term-substituted sentence; no per-headword read data exists."
+    },
+    {
+      "decisionOrdinals": [
+        301,
+        350
+      ],
+      "zeroBasedIndexes": [
+        902,
+        1049
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 50,
+      "evidence": "write_iriya_offset2_checkpoints310_350.py makes the semantic decision inside a loop from counts and a term-substituted sentence; no per-headword read data exists."
+    },
+    {
+      "decisionOrdinals": [
+        351,
+        500
+      ],
+      "zeroBasedIndexes": [
+        1052,
+        1499
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 150,
+      "evidence": "write_iriya_offset2_checkpoints360_500.py applies one universal KEEP(couplet)/multi-source template to all 150 rows."
+    },
+    {
+      "decisionOrdinals": [
+        501,
+        669
+      ],
+      "zeroBasedIndexes": [
+        1502,
+        2006
+      ],
+      "ruling": "QUARANTINE",
+      "trustedCount": 0,
+      "invalidCount": 169,
+      "evidence": "write_iriya_offset2_checkpoints510_669.py applies one universal KEEP(couplet)/multi-source template even when frozenWorks is zero or one; claims such as 'clearing the multi-source gate' at zero works prove count/default generation rather than adjudication."
+    }
+  ],
+  "scriptInventory": [
+    {
+      "path": "maintenance/write_iriya_offset2_audit.py",
+      "sha256": "e31cd938938ae94c1f8e37b481c6769400bb57bcc31af2fda1a3e03c3636312b",
+      "decisionOrdinals": [
+        1,
+        50
+      ],
+      "ruling": "QUARANTINE",
+      "evidence": "A single reason() default assigns KEEP(couplet) to every term except three hard-coded rejects; its /tmp evidence consists of samples, not recorded complete-case reads."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoint100.py",
+      "sha256": "34cb87151ac0fbc8e36e5af00cf4ddec4f73238aa8b95d8e0d0e7d7bc1d1a87e",
+      "decisionOrdinals": [
+        91,
+        100
+      ],
+      "ruling": "TRUST",
+      "evidence": "Ten separate term-keyed deployment statements record the specific proposition, formula, epithet, or verdict examined."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoint60.py",
+      "sha256": "02ac1720000db8962a3ae73ab694b238ec1370b4107efbc2399fe00e284ee7df",
+      "decisionOrdinals": [
+        51,
+        60
+      ],
+      "ruling": "TRUST",
+      "evidence": "Ten separate term-keyed deployment statements record the particular interview, answer, verdict, or case use read for each headword."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoint70.py",
+      "sha256": "2a75d5a2b53d4112351eebdab54ef9977b3d17739e8755901f9392ab6faebd37",
+      "decisionOrdinals": [
+        61,
+        70
+      ],
+      "ruling": "TRUST",
+      "evidence": "Ten separate term-keyed deployment statements, including an individualized productive-grammar rejection, record per-headword semantic decisions."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoint80.py",
+      "sha256": "e2fa33e43bfc170573460fdb909ffcb78522329fca361796885351a1c290a594",
+      "decisionOrdinals": [
+        71,
+        80
+      ],
+      "ruling": "TRUST",
+      "evidence": "Ten separate term-keyed deployment statements, including two individualized rejections, record per-headword semantic decisions."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoint90.py",
+      "sha256": "aa8dbc43041ae107212f08c2fde84ec8ffb1fa31435241ad5fb2c6e3e0d840ea",
+      "decisionOrdinals": [
+        81,
+        90
+      ],
+      "ruling": "TRUST",
+      "evidence": "Ten separate term-keyed deployment statements record the specific maxim, case, criticism, or encounter formula examined."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoints110_150.py",
+      "sha256": "d961ea79d5b061ad9f92693f326cc21b9d2dfe90a52f299cd32402197d10344a",
+      "decisionOrdinals": [
+        101,
+        150
+      ],
+      "ruling": "MIXED",
+      "evidence": "Only nine entries use the explicit term-keyed special map; the other forty-one are assigned the same term-substituted KEEP/couplet prose template."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoints260_300.py",
+      "sha256": "9110f6d58ab0f3682529c693305633ff819c411d3a6d02d9657ba5753dd4e2bd",
+      "decisionOrdinals": [
+        251,
+        300
+      ],
+      "ruling": "QUARANTINE",
+      "evidence": "Loop assigns universal KEEP(couplet), multi-source, and term-substituted deployment prose from frozen counts."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoints310_350.py",
+      "sha256": "99b9347bada9c0435d8261cb880e52b4033d17480d47e79534337406d4e5a1bc",
+      "decisionOrdinals": [
+        301,
+        350
+      ],
+      "ruling": "QUARANTINE",
+      "evidence": "Loop assigns universal KEEP(couplet), multi-source, and term-substituted deployment prose from frozen counts."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoints360_500.py",
+      "sha256": "ceed0ffcba78ddbbcf194a9fcebafae9b0ad5abc0f7885a18f25c2251d993fba",
+      "decisionOrdinals": [
+        351,
+        500
+      ],
+      "ruling": "QUARANTINE",
+      "evidence": "Loop assigns universal KEEP(couplet), multi-source, and term-substituted deployment prose from frozen counts."
+    },
+    {
+      "path": "maintenance/write_iriya_offset2_checkpoints510_669.py",
+      "sha256": "38462db8bbfc9417d62407adfbed9ed3d1412ebc2683cca3a6a42d55be471b84",
+      "decisionOrdinals": [
+        501,
+        669
+      ],
+      "ruling": "QUARANTINE",
+      "evidence": "Loop assigns universal KEEP(couplet), including zero- and one-work rows, from term-substituted prose and frozen counts."
+    }
+  ],
+  "checkpointInventory": [
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-010.json",
+      "sha256": "668ccc1df560fa1ab2b8013941547fe8b5a1ec829f42b9acc1e1f963f96aee1e",
+      "reviewedCount": 10,
+      "decisionCount": 10,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 29
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-020.json",
+      "sha256": "82be950f617722827a1df70106c343270358f72ea18d0750e8d93b097f2cdc72",
+      "reviewedCount": 20,
+      "decisionCount": 20,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 59
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-030.json",
+      "sha256": "200a88c812daf010f48b581fde44a584788bc1fb72e99a3ff57f84f2b2e0ffd2",
+      "reviewedCount": 30,
+      "decisionCount": 30,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 89
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-040.json",
+      "sha256": "f000bff2376a783de8a6c17d16e9fd72ae568dc2cd1a2d92950776ae86d1adcf",
+      "reviewedCount": 40,
+      "decisionCount": 40,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 119
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-050.json",
+      "sha256": "58fa86fb805b4532c7c67fb925db4a06b459e878bd4c518a0440efdd5f8141dc",
+      "reviewedCount": 50,
+      "decisionCount": 50,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 149
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-060.json",
+      "sha256": "87328981c3b14cd64c35a4f02f64617783b8d2d43c738e63b7478c0390587449",
+      "reviewedCount": 60,
+      "decisionCount": 60,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 179
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-070.json",
+      "sha256": "0c55da40df25b11e7a60dec9be9d5114f2b37ab530763fe27ff49209e32d4470",
+      "reviewedCount": 70,
+      "decisionCount": 70,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 209
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-080.json",
+      "sha256": "fa281b622c2d732f167e51efedbc8d00aa9865ec2f46c04698d8c9347b3752f1",
+      "reviewedCount": 80,
+      "decisionCount": 80,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 239
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-090.json",
+      "sha256": "8ed72900a9279daff35bd39446e46b36565e3cc20ffb493b0715a7f41b4226e9",
+      "reviewedCount": 90,
+      "decisionCount": 90,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 269
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-100.json",
+      "sha256": "58c1277ca30b9dda79930d67229db4a02f0ea2392bbc464d9505e8bbc1ac57b1",
+      "reviewedCount": 100,
+      "decisionCount": 100,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 299
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-110.json",
+      "sha256": "2d708dd0a3df4c9a706a12fa536e8990a62de708bd4f4da937bf282785ec18dd",
+      "reviewedCount": 110,
+      "decisionCount": 110,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 329
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-120.json",
+      "sha256": "667fb22ac3cfda4cda1d7bd431f10782f067a2a82227289492583bd3b2105eab",
+      "reviewedCount": 120,
+      "decisionCount": 120,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 359
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-130.json",
+      "sha256": "c6fed654f5515f6c575cbaaf05b776192053221017de003e5ab8d1055256d0e5",
+      "reviewedCount": 130,
+      "decisionCount": 130,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 389
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-140.json",
+      "sha256": "4d4b3873e43f491b6829057f6d54f39e68d4118f0cad607b979d802b454c1594",
+      "reviewedCount": 140,
+      "decisionCount": 140,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 419
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+      "sha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3",
+      "reviewedCount": 150,
+      "decisionCount": 150,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 449
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-160.json",
+      "sha256": "af2f7b6b5c31d6a164113f062b5b274585192fead43f825c065017dfab150f7c",
+      "reviewedCount": 160,
+      "decisionCount": 160,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 479
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-170.json",
+      "sha256": "047871de3f0995b8c35b434f5f0348c3f77c51719492799f81e73b268fbc04b6",
+      "reviewedCount": 170,
+      "decisionCount": 170,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 509
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-180.json",
+      "sha256": "f3154a445ed392e03848e35de7bd6538a171e3dc42dbd87767ad9305ec441e3a",
+      "reviewedCount": 180,
+      "decisionCount": 180,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 539
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-190.json",
+      "sha256": "e909476b1423302a22492f4133c5be5f4f4c79f62eaf0ba3c019fc0b95f34197",
+      "reviewedCount": 190,
+      "decisionCount": 190,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 569
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-200.json",
+      "sha256": "fbaadd6898a04db6b26c7c8e0ececa07e0586ba7d239f39897b31a8b2ab1239c",
+      "reviewedCount": 200,
+      "decisionCount": 200,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 599
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-210.json",
+      "sha256": "6fbbaafda41990931ae257e72f7c97fe1824b8a04c44a193b014f80aed5d7721",
+      "reviewedCount": 210,
+      "decisionCount": 210,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 629
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-220.json",
+      "sha256": "01b87118aa22bcacbb37ac9ba9d68b801c8cbaa7ca9f699a77d7658bb6eefb40",
+      "reviewedCount": 220,
+      "decisionCount": 220,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 659
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-230.json",
+      "sha256": "aecc347547b35adc4c7c7229e9ac9332b2f2af4a56a47323a148cb5617d279f4",
+      "reviewedCount": 230,
+      "decisionCount": 230,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 689
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-240.json",
+      "sha256": "cec2a102104390911e6370a6ea05d8bfcc8acbaebee8039028eb0ae6711530e0",
+      "reviewedCount": 240,
+      "decisionCount": 240,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 719
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-250.json",
+      "sha256": "d4b875fa576d3410f7c9ce55aec4a5f26ef7ca9863ae91089e5c9c3c93062ed3",
+      "reviewedCount": 250,
+      "decisionCount": 250,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 749
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-260.json",
+      "sha256": "821b2e3fbf4a7f1c733556dd4a2fdd7a0bf7e523d2a3ffd5e980886badbc4e28",
+      "reviewedCount": 260,
+      "decisionCount": 260,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 779
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-270.json",
+      "sha256": "520c3a6a6f825d25807614a5371472a01ae62709743a23f650869131a45c50e7",
+      "reviewedCount": 270,
+      "decisionCount": 270,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 809
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-280.json",
+      "sha256": "9a7af6818fc3612a0844ef402b63fb5252fc532426f077f89adb3c6c7151bf9c",
+      "reviewedCount": 280,
+      "decisionCount": 280,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 839
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-290.json",
+      "sha256": "e4921184a173cd10523d8a628a941f0b64cdb60170249d382b435ad728fd162b",
+      "reviewedCount": 290,
+      "decisionCount": 290,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 869
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-300.json",
+      "sha256": "6daaf10203a8caedf31452cf99867b91a28acc3facc6d9d667e167ff9ac5971b",
+      "reviewedCount": 300,
+      "decisionCount": 300,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 899
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-310.json",
+      "sha256": "ec14218fa2e0ecd16d8d86c06011d3cc9c965747c953cd52b4ff70fe57f6c446",
+      "reviewedCount": 310,
+      "decisionCount": 310,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 929
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-320.json",
+      "sha256": "9a4e1c2f069c7b35b468a5428d969b79c4e8357f812a7a303951ed961c489c79",
+      "reviewedCount": 320,
+      "decisionCount": 320,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 959
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-330.json",
+      "sha256": "14974236be7a9166f8b1b7c10aa1cd1552b26b9138904525d7ad3852d5b67efe",
+      "reviewedCount": 330,
+      "decisionCount": 330,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 989
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-340.json",
+      "sha256": "809847dda7da9c6a34db32b988c2f18e7084ac6da2827acb74229a7e564df4c6",
+      "reviewedCount": 340,
+      "decisionCount": 340,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1019
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-350.json",
+      "sha256": "38282da4e5b838a4f8ebb8c200e20636c67aae068eee031cca61979a1e95bb65",
+      "reviewedCount": 350,
+      "decisionCount": 350,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1049
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-360.json",
+      "sha256": "962d7642c58d67dec60bc7b396e458a53a8fa6d6c0ecc8b61a5047a130e3daed",
+      "reviewedCount": 360,
+      "decisionCount": 360,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1079
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-370.json",
+      "sha256": "303243be7091ab2fe47d9c7fa7917aaacc7703954cb47ea8d14504c6df55fd61",
+      "reviewedCount": 370,
+      "decisionCount": 370,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1109
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-380.json",
+      "sha256": "a6e6ab5e897764aab318e2082e2140477e5b69e56dbbfcdd6dba7cb591eb281c",
+      "reviewedCount": 380,
+      "decisionCount": 380,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1139
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-390.json",
+      "sha256": "6d89f4580db97245f576d7545f0493611e8f0b3787f3ac75ac5356c91d4698be",
+      "reviewedCount": 390,
+      "decisionCount": 390,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1169
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-400.json",
+      "sha256": "cbd171c864fd451d17446712e85c3e8c55eb3a96d9e85f25363bf1c881e90395",
+      "reviewedCount": 400,
+      "decisionCount": 400,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1199
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-410.json",
+      "sha256": "083a407257aa55c7ef5baf0a5c987d2fef13b88b9eeda73250a8c1ecb9637c0c",
+      "reviewedCount": 410,
+      "decisionCount": 410,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1229
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-420.json",
+      "sha256": "676a9efb8f9bedccb7bc9e16cdbd0966373db3f49c60f5668303b777ccbeaa88",
+      "reviewedCount": 420,
+      "decisionCount": 420,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1259
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-430.json",
+      "sha256": "bd2b525adb29dc8b588ad7632a436ac18410ac43d74599b4420e43ece4d3b324",
+      "reviewedCount": 430,
+      "decisionCount": 430,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1289
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-440.json",
+      "sha256": "c169122f7c621d0663a02508016ac8592beffd040c973a99ae497ea9db21437a",
+      "reviewedCount": 440,
+      "decisionCount": 440,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1319
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-450.json",
+      "sha256": "83b787b1ed79421be1d5d099605a6e4bb53c20a64f7a2ccc85cc11fe31e3aac2",
+      "reviewedCount": 450,
+      "decisionCount": 450,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1349
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-460.json",
+      "sha256": "200ceb74fc607b86994bb9dc51e2dfe570fe5ffd7c26263a7acfc2285d8f1be9",
+      "reviewedCount": 460,
+      "decisionCount": 460,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1379
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-470.json",
+      "sha256": "19922d2153a3bc5784d0cbcb79c5982d55be0f74232505a89269d2d8b81f42c3",
+      "reviewedCount": 470,
+      "decisionCount": 470,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1409
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-480.json",
+      "sha256": "a6c8c621826502ea6e1bab557c0e84b85c9eacf30947e82160b6d4856d18d004",
+      "reviewedCount": 480,
+      "decisionCount": 480,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1439
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-490.json",
+      "sha256": "e4aaac1a698f6397b121f59beb501867f65e8d5c16e1be0100023bdef710d19d",
+      "reviewedCount": 490,
+      "decisionCount": 490,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1469
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-500.json",
+      "sha256": "4c268d3af6e98861a23953781d91e6736b6666e8fd155fc41b54f5408404ffee",
+      "reviewedCount": 500,
+      "decisionCount": 500,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1499
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-510.json",
+      "sha256": "162a85a04cdc38dcc3b54bde9ab5ee5701b26b66d7a6606fa7d99be3ad717758",
+      "reviewedCount": 510,
+      "decisionCount": 510,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1529
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-520.json",
+      "sha256": "9bf8cf91910b51e042ceb81ae4cfe7e022c2f441547c5954b0279a57058b7138",
+      "reviewedCount": 520,
+      "decisionCount": 520,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1559
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-530.json",
+      "sha256": "3ae084d42cc2318ef3637cac1644e7bb457ae9cd79d2c9bd3dc6ff7e4bfdc6b2",
+      "reviewedCount": 530,
+      "decisionCount": 530,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1589
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-540.json",
+      "sha256": "4398b43b0d54ae895e61acd0839bc9a4fb272c89c8ab0d134797f67cc2136212",
+      "reviewedCount": 540,
+      "decisionCount": 540,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1619
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-550.json",
+      "sha256": "fb0e77321b40d35ca6a0923ff9a477432fbe1c6f76240653c88acd0c1af07059",
+      "reviewedCount": 550,
+      "decisionCount": 550,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1649
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-560.json",
+      "sha256": "84ece0ffa1544237c653e10111d0a6f44c9c55d531aba2baa013d7c62caf10aa",
+      "reviewedCount": 560,
+      "decisionCount": 560,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1679
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-570.json",
+      "sha256": "52917d7e0a762c7008a765fcd60c90de50e9f72a25098f864df0ae8ba032c40b",
+      "reviewedCount": 570,
+      "decisionCount": 570,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1709
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-580.json",
+      "sha256": "8add72144e28d178e93fbed366032475e8b19056a39419d6611a623fd50ef3c8",
+      "reviewedCount": 580,
+      "decisionCount": 580,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1739
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-590.json",
+      "sha256": "e8d348574891f4d2d82db15577565a73dee5535233b31ce44bda17fd76e54a8b",
+      "reviewedCount": 590,
+      "decisionCount": 590,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1769
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-600.json",
+      "sha256": "61de7c257797a66e9975f73371b497a9a486f60cf23d01323d07567c72737f41",
+      "reviewedCount": 600,
+      "decisionCount": 600,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1799
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-610.json",
+      "sha256": "0b2e6fa32ffbf13720f59e2964eaeefeebc3b0972fc5feda8b9acfd714bd830c",
+      "reviewedCount": 610,
+      "decisionCount": 610,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1829
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-620.json",
+      "sha256": "bb253aea13056f7d5f37b158d0e267a4c07d16126aaf7f6b2e629a3c392953bf",
+      "reviewedCount": 620,
+      "decisionCount": 620,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1859
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-630.json",
+      "sha256": "de5086bdeb390682a71dce3912d3f9ff1cbd7e1d4c57d75843be049c4eaaa7d6",
+      "reviewedCount": 630,
+      "decisionCount": 630,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1889
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-640.json",
+      "sha256": "944220dbbdf9c8763607f777a15c93586ead85bc695e89da6c8d69fa18af783e",
+      "reviewedCount": 640,
+      "decisionCount": 640,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1919
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-650.json",
+      "sha256": "2a39eac2a2e91f6b399582cde8acb4f8f7b8e9dae2b74eaa3acf06115e5237be",
+      "reviewedCount": 650,
+      "decisionCount": 650,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1949
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-660.json",
+      "sha256": "09103682fbd82d6d3416fd6db194407291a44748138613a52856ca5fd5df62c4",
+      "reviewedCount": 660,
+      "decisionCount": 660,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 1979
+    },
+    {
+      "path": "maintenance/iriya-offset2-audit-checkpoint-669.json",
+      "sha256": "ec1a546a4a69f2cf32b46bb2feda84a985c5bb82717b0eaa7368695db8239bf0",
+      "reviewedCount": 669,
+      "decisionCount": 669,
+      "appendOnlyFromPrior": true,
+      "firstIndex": 2,
+      "lastIndex": 2006
+    }
+  ],
+  "integrity": {
+    "allCheckpointsAppendOnly": true,
+    "finalDecisionCountMatches": true,
+    "offsetStrideValid": true,
+    "noCheckpointRewrittenByThisAudit": true,
+    "entryWrites": 0,
+    "queueWrites": 0,
+    "lineageWrites": 0
+  }
+}
