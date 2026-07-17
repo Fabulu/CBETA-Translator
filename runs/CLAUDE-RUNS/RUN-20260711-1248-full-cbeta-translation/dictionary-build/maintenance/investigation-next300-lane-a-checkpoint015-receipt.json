@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "lane-construction-checkpoint.v1",
+  "lane": "A",
+  "checkpoint": 15,
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "entries": 15,
+  "senses": 16,
+  "occurrences": 107,
+  "exactVerified": 107,
+  "hardPass": true,
+  "repairs": {
+    "sixOccurrenceFloorCluster": "cleared by one additional independently read full case for each of the nine affected entries",
+    "englishFirstProse": "cleared for the provisional iron-bell sense of 鐵漢",
+    "bannedFraming": "replaced the imported framing word in the added 轉身句 attribution with the corpus-nearer wording 'not two'"
+  },
+  "reports": [
+    {
+      "path": "maintenance/investigation-next300-lane-a-checkpoint015-exact.json",
+      "sha256": "8e8476e9f431a95052f15a883fc929e0272aebbd3a3cb6a6dccde4a829ffcaf0"
+    },
+    {
+      "path": "maintenance/investigation-next300-lane-a-checkpoint015-attribution.json",
+      "sha256": "bfb81cbe2de0253da5430114f67f187ee4b4ec9e4d7e3b6c600aee028d7a8a1a"
+    },
+    {
+      "path": "maintenance/investigation-next300-lane-a-checkpoint015-template-audit.json",
+      "sha256": "19cc14e3d69cd94d424e141db2abfc581449451d9280416ec5310ef663f9c9f2"
+    },
+    {
+      "path": "maintenance/investigation-next300-lane-a-checkpoint015-depth-v3.json",
+      "sha256": "d71b6b1c2f295cee1d5433a08362c0bd70ae2883028a8fe7655a61da81bfc830"
+    }
+  ],
+  "lineageMutation": false,
+  "pendingDictionaryIdentityAdded": "Yuetang Daochang"
+}
