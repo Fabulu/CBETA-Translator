@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -44,6 +45,32 @@ def public_feedback_hard_pass(result: dict) -> bool:
         and payload.get("flagged") == 0
     )
 PACKET_GENERATOR_VERSION = 7
+
+
+def acquire_cohort_lock(entry_ids: list[str]) -> tuple[int, Path]:
+    """Fail fast when the same cohort is already being gated."""
+    key = hashlib.sha256("\n".join(sorted(entry_ids)).encode("utf-8")).hexdigest()
+    directory = Path(os.environ.get("COHORT_GATE_LOCK_DIR", "/tmp/cbeta-cohort-gates"))
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / f"{key}.lock"
+    descriptor = os.open(path, os.O_RDWR | os.O_CREAT, 0o600)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        os.lseek(descriptor, 0, os.SEEK_SET)
+        owner = os.read(descriptor, 4096).decode("utf-8", errors="replace").strip()
+        os.close(descriptor)
+        raise RuntimeError(f"cohort gate already running ({owner or path})")
+    metadata = json.dumps({
+        "pid": os.getpid(),
+        "startedUtc": datetime.now(timezone.utc).isoformat(),
+        "entryCount": len(entry_ids),
+        "entryIdsSha256": key,
+    }, ensure_ascii=False)
+    os.ftruncate(descriptor, 0)
+    os.write(descriptor, metadata.encode("utf-8"))
+    os.fsync(descriptor)
+    return descriptor, path
 
 
 def command(arguments: list[str]) -> dict:
@@ -110,6 +137,10 @@ def main() -> int:
     paths = [entry_path(value) for value in args.entries]
     entries = [json.loads(path.read_text(encoding="utf-8-sig")) for path in paths]
     ids = [entry["Id"] for entry in entries]
+    try:
+        cohort_lock, cohort_lock_path = acquire_cohort_lock(ids)
+    except RuntimeError as error:
+        parser.error(str(error))
     entry_hashes = {entry["Id"]: hashlib.sha256(path.read_bytes()).hexdigest() for path, entry in zip(paths, entries)}
     packet_hashes = {entry["Id"]: packet_input_sha256(entry) for entry in entries}
     exact_started = time.perf_counter()
@@ -150,6 +181,10 @@ def main() -> int:
         "cmd.exe", "/d", "/c", "node", windows_frozen_auditor,
         f"--build-dir={windows_build}",
     ]
+    lineage_roster_guard_command = [sys.executable, "assert_lineage_roster_untouched.py"]
+    semantic_template_command = [
+        sys.executable, "audit_batch_semantic_templates.py", *map(str, paths)
+    ]
 
     # These audits are read-only and operate on the same immutable entry cohort.
     # Running them serially made process startup and repeated WSL filesystem reads
@@ -163,6 +198,8 @@ def main() -> int:
         "workSourceValidation": work_sources_command,
         "corpusBaseline": corpus_baseline_command,
         "frozenHistoricalTerms": frozen_historical_command,
+        "lineageRosterUntouched": lineage_roster_guard_command,
+        "batchSemanticTemplates": semantic_template_command,
     }
     with ThreadPoolExecutor(max_workers=len(audit_commands)) as executor:
         futures = {name: executor.submit(command, argv) for name, argv in audit_commands.items()}
@@ -175,6 +212,8 @@ def main() -> int:
     work_sources = audit_results["workSourceValidation"]
     corpus_baseline = audit_results["corpusBaseline"]
     frozen_historical_terms = audit_results["frozenHistoricalTerms"]
+    lineage_roster_untouched = audit_results["lineageRosterUntouched"]
+    batch_semantic_templates = audit_results["batchSemanticTemplates"]
 
     forbidden = []
     for path, entry in zip(paths, entries):
@@ -184,7 +223,16 @@ def main() -> int:
 
     packets = None
     if not args.skip_packets:
-        packet_output = (args.output.parent / (args.output.stem + "-attribution-packets.json")) if args.output else Path(tempfile.mktemp(suffix="-packets.json"))
+        # Child auditors run with cwd=HERE.  A caller commonly supplies an
+        # output path relative to the repository root; passing that relative
+        # path through made attribution_packet.py write into HERE/runs/...,
+        # while this parent looked for the cache at repo-root/runs/....  Resolve
+        # once so repeated gates actually hit the documented entry-atomic
+        # fingerprint cache.
+        packet_output = (
+            args.output.resolve().parent / (args.output.stem + "-attribution-packets.json")
+            if args.output else Path(tempfile.mktemp(suffix="-packets.json"))
+        )
         cached = load_cached_packet(packet_output, packet_hashes)
         if cached is not None:
             packets = {
@@ -228,6 +276,8 @@ def main() -> int:
         and work_sources["exitCode"] == 0
         and corpus_baseline["exitCode"] == 0
         and frozen_historical_terms["exitCode"] == 0
+        and lineage_roster_untouched["exitCode"] == 0
+        and batch_semantic_templates["exitCode"] == 0
         and not forbidden
         and (packets is None or packets["hardPass"])
     )
@@ -254,6 +304,8 @@ def main() -> int:
             "workSourceValidation": work_sources["elapsedSeconds"],
             "corpusBaseline": corpus_baseline["elapsedSeconds"],
             "frozenHistoricalTerms": frozen_historical_terms["elapsedSeconds"],
+            "lineageRosterUntouched": lineage_roster_untouched["elapsedSeconds"],
+            "batchSemanticTemplates": batch_semantic_templates["elapsedSeconds"],
             "attributionPackets": packets["elapsedSeconds"] if packets else 0,
         },
         "attribution": attribution,
@@ -263,12 +315,15 @@ def main() -> int:
         "workSourceValidation": work_sources,
         "corpusBaseline": corpus_baseline,
         "frozenHistoricalTerms": frozen_historical_terms,
+        "lineageRosterUntouched": lineage_roster_untouched,
+        "batchSemanticTemplates": batch_semantic_templates,
         "forbiddenEnglish": forbidden,
         "attributionPackets": packets,
         "semanticReviewRequired": True,
         "clusterScopeIds": args.cluster_id or ids,
         "strictRosterScopeIds": [] if args.defer_roster else (args.cluster_id or ids),
         "rosterDeferred": args.defer_roster,
+        "cohortLock": str(cohort_lock_path),
     }
     output = args.output or HERE / "maintenance" / f"cohort-gate-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -282,6 +337,8 @@ def main() -> int:
         "elapsedSeconds": payload["elapsedSeconds"],
     }, ensure_ascii=False, indent=2))
     print(f"report: {output}")
+    fcntl.flock(cohort_lock, fcntl.LOCK_UN)
+    os.close(cohort_lock)
     return 0 if hard_pass else 1
 
 

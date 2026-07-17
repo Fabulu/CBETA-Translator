@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+"""Fail a construction cohort that repeats semantic decisions as templates.
+
+Serialization may be mechanical; semantic decisions may not.  This audit is
+cohort-scoped because term substitution can make individually plausible prose
+look unique while the underlying sentence and controls are identical.
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import json
+import re
+from pathlib import Path
+
+CJK = re.compile(r"[\u3400-\u9fff]+")
+SPACE = re.compile(r"\s+")
+
+
+def entry_path(value: str) -> Path:
+    path = Path(value)
+    if path.is_dir():
+        path = path / "entry.v2.json"
+    return path
+
+
+def normalize(text: str, entry: dict, sense: dict) -> str:
+    value = str(text or "").lower()
+    replacements = [entry.get("SourceTerm"), sense.get("PreferredTarget")]
+    replacements.extend(sense.get("SearchAliases") or [])
+    for token in sorted({str(x) for x in replacements if x}, key=len, reverse=True):
+        value = value.replace(token.lower(), "<term>")
+    value = CJK.sub("<cjk>", value)
+    value = re.sub(r"\b\d+\b", "<n>", value)
+    return SPACE.sub(" ", value).strip()
+
+
+def semantic_strings(entry: dict):
+    for sense_index, sense in enumerate(entry.get("Senses") or [], 1):
+        parts = sense.get("ExplanationParts") or {}
+        opening = parts.get("CorpusEarnedOpening")
+        if opening:
+            yield "opening", sense_index, normalize(opening, entry, sense)
+        draft = sense.get("DraftEvidence") or {}
+        counter = draft.get("CounterexampleOrLimit")
+        if counter:
+            yield "counterexample", sense_index, normalize(counter, entry, sense)
+        split = (draft.get("DifferentThingTest") or {}).get("Reason")
+        if split:
+            yield "different-thing", sense_index, normalize(split, entry, sense)
+        alias = draft.get("AliasRationale")
+        if alias:
+            yield "alias-rationale", sense_index, normalize(alias, entry, sense)
+        for key in ("ModifierControls", "FamilyControls"):
+            for row in draft.get(key) or []:
+                reason = row.get("reason") or row.get("Reason")
+                if reason:
+                    yield key, sense_index, normalize(reason, entry, sense)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("paths", nargs="+")
+    parser.add_argument("--report", type=Path)
+    parser.add_argument("--repeat-floor", type=int, default=5)
+    args = parser.parse_args()
+    entries = []
+    failures = []
+    for value in args.paths:
+        path = entry_path(value)
+        try:
+            entry = json.loads(path.read_text(encoding="utf-8-sig"))
+        except Exception as error:
+            failures.append({"kind": "entry-load-failed", "path": str(path), "detail": str(error)})
+            continue
+        entries.append((path, entry))
+
+    buckets: dict[tuple[str, str], list[dict]] = collections.defaultdict(list)
+    for path, entry in entries:
+        for field, sense_index, value in semantic_strings(entry):
+            if value:
+                buckets[(field, value)].append(
+                    {"id": entry.get("Id"), "term": entry.get("SourceTerm"), "sense": sense_index, "path": str(path)}
+                )
+    for (field, value), occurrences in buckets.items():
+        if len({row["id"] for row in occurrences}) >= args.repeat_floor:
+            failures.append(
+                {
+                    "kind": "cross-entry-semantic-template",
+                    "field": field,
+                    "normalizedValue": value,
+                    "entryCount": len({row["id"] for row in occurrences}),
+                    "occurrences": occurrences,
+                }
+            )
+    result = {
+        "schemaVersion": "batch-semantic-template-audit.v1",
+        "entries": len(entries),
+        "repeatFloor": args.repeat_floor,
+        "hardPass": not failures,
+        "failureCount": len(failures),
+        "failures": failures,
+        "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions.",
+    }
+    rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+    if args.report:
+        args.report.write_text(rendered, encoding="utf-8")
+    print(rendered, end="")
+    return 0 if result["hardPass"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

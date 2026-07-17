@@ -1196,6 +1196,37 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     ID/hash in the wave receipt. Any roster delta is a structural blocker: stop
     installation and report it; do not repair, revert, or reinterpret it inside
     the dictionary process.
+17. **⛔ NO SEMANTIC TEMPLATE AUTHORING.** Batch tools may transport corpus
+    windows, serialize already-made decisions, invoke the canonical compiler,
+    and verify exact bytes. They may never *make* an actor, sense, definition,
+    opening, Zen-bend, source-role, modifier/family-control, or claim-anchor
+    decision by regex, row number, source-owner fallback, fixed position list,
+    default one-sense assumption, or term-substituted prose template. In
+    particular, a helper may not assign `impersonal` to selected ordinals,
+    infer the utterer from the nearest `師曰`, force every candidate into one
+    sense, or repeat generic “ordinary containment was excluded” controls
+    without recording what was actually examined for that headword. Each
+    production field must come from explicit per-entry data written after the
+    complete case was read; programmatic transformation may then preserve that
+    decision in the unchanged schema. Before any mass-authoring helper runs,
+    inspect its source and compile one five-entry canary. If it contains a
+    semantic default or automated attribution decision, quarantine the helper
+    and every product it wrote. A compiler pass does not rehabilitate those
+    products. This gate was added after an investigation-wave helper attempted
+    regex/row-position attribution and universal one-sense output; it was
+    stopped after one canary and no such artifact may enter `terms/`.
+18. **⛔ NO READZEN PRODUCTION PUBLICATION BEFORE FINAL AUTHORIZATION.** During
+    construction, workers may generate local `termbase.v2.json`, search indexes,
+    and shards so merge/reconciliation gates can test the exact website payload;
+    they may also create local backup commits. They may **not** push the
+    dictionary data repository, deploy the ReadZen SPA or its production data,
+    trigger a production build hook, or otherwise make a partial dictionary
+    publicly visible. Publication requires both (a) verified completion of the
+    entire documented dictionary program and (b) the project owner's explicit
+    authorization at that time. The separate progress dashboard is the only
+    site that may be deployed while work remains. Reports must say “local
+    publication artifacts generated” rather than “published” unless the live
+    production deployment was actually authorized and verified.
 
 ## 9. Working durably at scale (don't lose work)
 Follow **`LEDGER_SYSTEM.md`**: orchestrator persists on every worker return; small slices (≈1 term);

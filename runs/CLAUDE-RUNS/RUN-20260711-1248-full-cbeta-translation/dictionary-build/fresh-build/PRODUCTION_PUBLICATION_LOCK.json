@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "dictionary-production-publication-lock.v1",
+  "locked": true,
+  "scope": [
+    "ReadZen SPA deployment",
+    "dictionary data repository push",
+    "production build hook",
+    "public termbase/index/shard upload"
+  ],
+  "allowedWhileLocked": [
+    "local termbase/index/shard generation for verification",
+    "local backup commits",
+    "progress dashboard deployment"
+  ],
+  "unlockRequirements": [
+    "the entire documented dictionary program is verified complete",
+    "the project owner explicitly authorizes production publication at that time"
+  ],
+  "note": "The 1,273-entry data-repository commit fc33ed5 is local only and must not be pushed while this lock is true."
+}
