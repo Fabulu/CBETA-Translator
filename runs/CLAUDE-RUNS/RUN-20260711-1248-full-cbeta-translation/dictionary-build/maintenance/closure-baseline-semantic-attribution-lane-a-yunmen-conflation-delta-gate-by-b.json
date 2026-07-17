@@ -1,0 +1,206 @@
+{
+  "generatedUtc": "2026-07-16T21:45:09.036453+00:00",
+  "elapsedSeconds": 11.816,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_368268e023e3",
+      "term": "塵勞",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+      "sha256": "a016049e1257eca5a910b27467610eef36f6e8bff5de3e4749d342b768324676"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 8,
+    "occurrenceVerified": 8,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+        "id": "t_368268e023e3",
+        "term": "塵勞",
+        "verified": 8,
+        "occurrenceVerified": 8,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.132,
+    "attribution": 4.368,
+    "publicFeedback": 0.819,
+    "depthSense": 4.241,
+    "countClaims": 3.796,
+    "workSourceValidation": 0.769,
+    "corpusBaseline": 0.869,
+    "frozenHistoricalTerms": 1.355,
+    "attributionPackets": 7.222
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 4.368,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "noncanonical_related_master": 2,
+        "occurrences": 8,
+        "named_occurrences": 8,
+        "context_master_links": 8,
+        "attribution_notes": 8,
+        "deferred_non_roster": 5,
+        "pending_roster_master": 3,
+        "deferred_non_roster_context": 5,
+        "pending_roster_context_master": 3,
+        "noncanonical_master_name": 2,
+        "noncanonical_context_master_name": 2
+      },
+      "hardFailures": 6,
+      "failures": [
+        {
+          "kind": "noncanonical_related_master",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1: RelatedMasters value 'Yuanhu Miaoyong' is not roster-canonical"
+        },
+        {
+          "kind": "noncanonical_related_master",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1: RelatedMasters value 'Dufeng Benshan' is not roster-canonical"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1 o4: 'Yuanhu Miaoyong' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1 o4 c1: 'Yuanhu Miaoyong' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1 o5: 'Dufeng Benshan' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+          "detail": "塵勞 s1 o5 c1: 'Dufeng Benshan' is not roster names[0]"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"noncanonical_related_master\": 2,\n    \"occurrences\": 8,\n    \"named_occurrences\": 8,\n    \"context_master_links\": 8,\n    \"attribution_notes\": 8,\n    \"deferred_non_roster\": 5,\n    \"pending_roster_master\": 3,\n    \"deferred_non_roster_context\": 5,\n    \"pending_roster_context_master\": 3,\n    \"noncanonical_master_name\": 2,\n    \"noncanonical_context_master_name\": 2\n  },\n  \"hardFailures\": 6,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_related_master\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1: RelatedMasters value 'Yuanhu Miaoyong' is not roster-canonical\"\n    },\n    {\n      \"kind\": \"noncanonical_related_master\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1: RelatedMasters value 'Dufeng Benshan' is not roster-canonical\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1 o4: 'Yuanhu Miaoyong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1 o4 c1: 'Yuanhu Miaoyong' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1 o5: 'Dufeng Benshan' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json\",\n      \"detail\": \"塵勞 s1 o5 c1: 'Dufeng Benshan' is not roster names[0]\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.819,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmpmeokw630.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 4.241,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 1,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_368268e023e3"
+      ]
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 1,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_368268e023e3\"\n  ]\n}\nreport: /tmp/tmp_v9rl3um-depth.json\n",
+    "report": "/tmp/tmp_v9rl3um-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.796,
+    "payload": {
+      "entryCount": 1,
+      "claimCount": 1,
+      "candidatePhraseCount": 1,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 1,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 1,\n  \"claimCount\": 1,\n  \"candidatePhraseCount\": 1,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 1,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.769,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.869,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.355,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 7.222,
+    "payload": {
+      "entries": 1,
+      "occurrences": 8,
+      "tierACandidates": 1,
+      "reviewRequired": 7,
+      "cache": {
+        "reusedEntries": 0,
+        "reusedOccurrences": 0,
+        "rebuiltEntries": 1,
+        "rebuiltOccurrences": 8
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"occurrences\": 8,\n  \"tierACandidates\": 1,\n  \"reviewRequired\": 7,\n  \"cache\": {\n    \"reusedEntries\": 0,\n    \"reusedOccurrences\": 0,\n    \"rebuiltEntries\": 1,\n    \"rebuiltOccurrences\": 8\n  }\n}\nreport: /mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-semantic-attribution-lane-a-yunmen-conflation-delta-gate-by-b-attribution-packets.json\n",
+    "cacheHit": false,
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-semantic-attribution-lane-a-yunmen-conflation-delta-gate-by-b-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_368268e023e3"
+  ],
+  "strictRosterScopeIds": [
+    "t_368268e023e3"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/5e7bdac8b32a8b8d2f17c6dce705db5e8311e5e965117b6897cffbf2c8399835.lock"
+}

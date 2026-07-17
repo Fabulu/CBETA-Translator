@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "closure-rollback-corruption-selftest.v1",
+  "test": "corrupted backup must be rejected before mutation",
+  "sourceBackup": "maintenance/closure-accepted-189-worksheet-install-backup/t_183033130cb7/evidence.draft.json",
+  "expectedSha256": "fb3925552edb1f3c4e018b9ece3d8e692595d019c37b17622297a2b69a4dcae6",
+  "corruptedSha256": "0582094b35372d376616a268dfa97d6190123f327d7eb206affa48ccb1da68a6",
+  "rejected": true,
+  "mutations": 0
+}

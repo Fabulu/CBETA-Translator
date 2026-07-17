@@ -1,0 +1,2107 @@
+{
+  "schemaVersion": "closure-roundtrip-sync-independent-audit.v1",
+  "generatedUtc": "2026-07-16T22:33:09.095115+00:00",
+  "verdict": "REVISE",
+  "tool": "maintenance/roundtrip_sync_unresolved_worksheets.py",
+  "toolSha256": "af5738940f1d0991a7e98c047c8addde2dbaa87a23f03bef64b0f15a5ef8f2f7",
+  "sourceLedger": "maintenance/closure-unresolved-worksheet-roundtrip-sync-by-b-20260717.json",
+  "sourceLedgerSha256": "faa0636ad48e649f83115e121adbc022736703d744eb777e35080ce7cd955657",
+  "counts": {
+    "ROUNDTRIP_BYTE_EXACT": 231,
+    "REJECTED_BYTE_MISMATCH": 77,
+    "REJECTED_COMPILER": 13
+  },
+  "sourceHashesVerified": 321,
+  "roundtripByteExactReverified": 231,
+  "syntheticResearchFieldCounts": {
+    "differentThingDecision": 251,
+    "firstWordOpening": 251,
+    "wholeKwicAsExactClause": 1130,
+    "noteAsFullCaseDecision": 1498
+  },
+  "findings": [
+    "Reader-facing byte preservation succeeds for the ROUNDTRIP_BYTE_EXACT subset.",
+    "The projected worksheets are not semantically lossless: required Draft* research decisions are manufactured from reader fields or fixed placeholders.",
+    "DifferentThingTest=one-thing is asserted without adjudication; the whole KWIC is used as ExactHeadwordClause; AttributionNote is reused as FullCaseDecision; the first word of Explanation becomes CorpusEarnedOpening.",
+    "These fields are stripped by compilation, so compiler byte parity cannot certify their truth. The worksheets must remain non-authoritative or carry forward prior Draft* evidence by exact identity and fail closed when that evidence is unavailable."
+  ],
+  "mechanicalTaxonomy": {
+    "worksheetMissing": 305,
+    "worksheetPresentSenseDelta": 16,
+    "presentDeltaBreakdown": {
+      "derivedRelatedMastersOnly": 11,
+      "derivedRelatedMastersAndSourceTexts": 1,
+      "majorActorOrProseDelta": 2,
+      "stagedResearchFieldPollution": 2
+    }
+  },
+  "rows": [
+    {
+      "id": "t_00432de3d4ed",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0229ebe0b9e7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_04a3e3d24a1d",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_04c265211035",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_05fe9a440eef",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_06c19d3bdafe",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_084fac11e2ac",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_085b87d75535",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_086985319a5b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_08c0c321eb2a",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_09cbe12e4c36",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0a686fa27769",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0ad6dd1a4717",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0b8912312b92",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0bb8367edcfc",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0ddba944df75",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0e981298ab8f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_0f97bfab265c",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_0fb794f515bd",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_10b63ac74f61",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_10d93a67ea99",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_114bbd284d1c",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_11a4ff234f5a",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_11c14d7191f1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_127d59c584e2",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_12f74718424d",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_12fe3700913c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_13845fbed3f0",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_13bb32cabd43",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1446abf489c0",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_14545d88d530",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_15026800437e",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_166e179e928c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_168078a96bd7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_16c61f8e00b4",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_179e443ac255",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_183033130cb7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_18a76480bf9b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_18ec645f99f7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_19635cfe9de8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_19abeb747d6d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_19f9e99d5304",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1a430d68c189",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1b3edad858f5",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1b4bf4fff6bb",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1b62ec7f731e",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_1bde390a5df1",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_1c236703f164",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1c5d1a873155",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1ea46ebaccf0",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_1f0937136948",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_202ca9c2b59f",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_207efae5f6bd",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_20cc4b0bc96e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_223c2f6ade25",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_240ea0594a5f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_27a41c50f0c3",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_27a6c937c485",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_27e66043b271",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_2912e6e38b48",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_2b657c0d219b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_2bae929ad4db",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_2dbefddd6938",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_2dd4fec35455",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_2ec9304d8b61",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_2fc96041b856",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_2fe5c4171ea6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_300236cb6368",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_30a53ee93752",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_31868aaf18a5",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_32076ca13bb7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_321a547de25f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3279df87a9f1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_32b7255009f7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_33d49f4710be",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_346bf81c474e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3724979e2abc",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_374b329bb686",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_376913189794",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_376ef2ce3d11",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3787be72597f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_37cd9bfc3e67",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_37f647192584",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3837799ac07c",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_393fa137a46b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_398a33955019",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_39d88e8cc533",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_39fb2a2c1c9b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3b3034d1731f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3bf26be0cd43",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3dd73fb3b40d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_3f62599f5960",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_403540d42e98",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_40bcab45a004",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_40cfbcc5f859",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_41476f956295",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_427fa502a11b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_428d6c64e37c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_4308ebc0471c",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_432d8c4f7579",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_44de1ff0a008",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_453e3c35baa6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_454f6f606450",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_46c30c5d57d4",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_47e7132eb361",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_495c83ba370b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_4bce88a70659",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_4ccccac73fe7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_4da199fae933",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_4dd50050b279",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_4e2840f46db3",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_4f3ee4e28283",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_5105a2174a19",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_51a4f3a03bd8",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_53d86caa85c2",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_55471c55400c",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_5639a42e1e5d",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_564a5efaf79e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_590004996a4d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5b39f18f89ff",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5b4dd0205486",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_5cbe43e323cc",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5cde0218375f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5d84cccab8df",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5f08e925c83d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_5f1287817ebd",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_602a0b760189",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_60dcb199a5e1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_612a2e5cbf5d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_61c5046b49c4",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6214dc704b24",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_627549d4c466",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6293dead3bb2",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_62bc43101d57",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_64109b94980d",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_641de814fd8a",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_654e2e9bef8d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_663eefaa4ad7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_66792ea088de",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_67383fd43bf4",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_67bf0bf87ebe",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6826a1090c3c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_68d495f2868b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6a67fc1bf04c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6ac3f9f0a2d2",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6bc71cc88c2f",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_6c1c2a42b736",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6c9d50dc8f55",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6e4cd27922bd",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6e57aada2121",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_6e63e9087add",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_6f138f2956d8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_71f85cf94e5d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_727945764d55",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_72ba0d559d5a",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_74390b40f658",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_746f990fba78",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_74a27239e6c7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_75348ebe8a2d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_75c43f48c74c",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_76ee526a2b16",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_78bd967fdcd6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_78d931324d99",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_7ac77d7c6f06",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7c69e364232c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7cfca0e9fe18",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7e735921071e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7ede0e195d2b",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_7efdfe4296c6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7f17cf4947f8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_7f696f177766",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_802b405cbb3d",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_8184622cecd7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_819923484655",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_81eab49e3ba9",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_824cfb1434b1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8253f56255ce",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_84406e0eca53",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_84d17d7dba46",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_850150792745",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_86aac65d51b5",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_87ad33788c8e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8a016f49e5b8",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_8a06e7d99b19",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_8bbc811be86e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8be916b51109",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_8cdd914f095d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8d1415ab86a5",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_8f4d81d0fe45",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8f4ef1246821",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8f76148e713f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_8f91a9f06c79",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9069cc8f2c62",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_937f63a4fb51",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_93edb4403f03",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_94f424853f5b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_96473172e857",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_98c97bba590b",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_98d9b1ed8cac",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_9a5dc768cbc5",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9b56e29eddb6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9b760056ea15",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9ba3c079d044",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9be973a866fc",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_9bed34b40eac",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9e98cbf9596b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9f3c195d3834",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_9fc1a9256ee4",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a0634fecce83",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_a14bd52beff8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a2612eb1f803",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a301d1290a7a",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_a38f997d9c16",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a5408be46291",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a60b47e59680",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a842c76ef637",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a9babbddf1a8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_a9d2cef71f2e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_aa7b526258cc",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ab2fa6e04154",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ac2e2908084d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_acccac1051a4",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ad54a629dff9",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_adf7ef73f910",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ae34e87d493d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_afade752976d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b016f513be3d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b03032c64a13",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b0d4b62a9c2f",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b1487d8fc8f9",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b1c32bd93e66",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_b336769aabdf",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b33fddd5d4f1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b4367c692c8a",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b49a2783af81",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b4b6091cf9cb",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b4d4e5d50e6f",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_b4fa3b34ec90",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_b6a1c449bd53",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b751a85ba963",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_b7fd3f3a1395",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_b90a5f36ec86",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_b986851dcdd8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ba4b06d70a44",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_bd0ba96ae735",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_bd6a1e9054a5",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_bd6fe823c9dc",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_c06edf8c18f1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c193d5b26854",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c298daf8fd94",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c36b200052a0",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c3a7862b9971",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c513dc22845c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c5ff2fdc37ca",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c625645e445c",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c698ab3d0cf9",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c70fe8855f4b",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_c825600386b2",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_c86b1e91c7b5",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_c9940cc4ef80",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ca501ea3b013",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ca8f7f2d5d03",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_caf826491397",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cb09819b2297",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cb2205148690",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cb44465faa59",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_cbabe9217935",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cc16eea66287",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cc840e36f2da",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_cd9e5485fbe1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d1aa91b2b347",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d26799ff3ae1",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_d27432779ce8",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d2c3f40d45c6",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_d3dbc300bfac",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d400e8468267",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d4560fb0c07b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d4df8bc75ad7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_d5d6b9fb1613",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_d7c62e900a42",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_d8641f5a5751",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_da967fbd07da",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_dbbc09ad8c5d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_dcd5468f5104",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_dd3bf8dd507a",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ddab56ede4ef",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_df4e71aa0bc5",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e016fb20e6da",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e1b4c379b919",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e1eda88159c6",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e251ef5cbc12",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e2c93283de6e",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e316c767f5f9",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e3231052e685",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e4864973c156",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e7ad5446610c",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e7c65905ecb5",
+      "status": "REJECTED_COMPILER",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e84753568cda",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_e8b797e26758",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_e95ea628d5dd",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_eba970114dd2",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ed44feb90bc1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_edfd0b2afa11",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ee77766b424b",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ef5beb628603",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f0fac372131b",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_f1b933473387",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f28429436009",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_f3554afe74df",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f64be5dcbc89",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f7a9bcbfc089",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f9747521d3d7",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_f9be0a6314a0",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_fa19bfa0d109",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_faf30cf1fb87",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_fb43354d2aae",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_fdb573411ab1",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_fe7e2066672d",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ff59d753a7b1",
+      "status": "REJECTED_BYTE_MISMATCH",
+      "sourceHashBound": true
+    },
+    {
+      "id": "t_ffcb7e6e8d52",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    },
+    {
+      "id": "t_ffd0328fb3da",
+      "status": "ROUNDTRIP_BYTE_EXACT",
+      "sourceHashBound": true,
+      "compilerByteExact": true,
+      "compilerErrors": []
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "post-install-depth-lane-working-ledger.v2",
+  "lane": "A",
+  "assignmentPacket": "maintenance/post-install-current-depth-lane-a.json",
+  "assignmentPacketSha256": "3454fb5ecfc1b8c56b5f278f106da6c0179d29bdcbba75b1295fbebc85f4a9e0",
+  "corpusManifestSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "assigned": 162,
+  "accepted": 144,
+  "revised": 18,
+  "blocked": 0,
+  "checkpointEvery": 50,
+  "governingContract": "Author and validate fresh-build/entries/<id>/WORK.md and compile to the sibling entry.v2.json. Keep terms/ untouched until independently accepted wave promotion.",
+  "baselinePreflight": {
+    "freshEntriesPresent": 162,
+    "freshWorkFilesPresent": 162,
+    "freshInstalledHashMatches": 162,
+    "packetInstalledHashMatches": 162,
+    "hashMismatches": 0,
+    "pass": true
+  },
+  "checkpoints": [
+    {"boundary": 50, "accepted": 32, "revised": 18, "blocked": 0, "ledger": "maintenance/post-install-depth-lane-a-checkpoint-050-ledger.json"},
+    {"boundary": 100, "accepted": 82, "revised": 18, "blocked": 0, "ledger": "maintenance/post-install-depth-lane-a-checkpoint-100-ledger.json"},
+    {"boundary": 162, "accepted": 144, "revised": 18, "blocked": 0, "ledger": "maintenance/post-install-depth-lane-a-checkpoint-162-ledger.json"}
+  ],
+  "verification": {
+    "exactEvidenceVerified": 1295,
+    "exactEvidenceFailures": 0,
+    "depthHardFailures": 0,
+    "changedClusterScope": 18,
+    "changedClusterFailure": null
+  },
+  "actorReview": {
+    "actorFullCaseReviewedEntries": 162,
+    "actorFullCaseReviewedOccurrences": 1273,
+    "proofFieldMismatchCandidatesAdjudicated": 72,
+    "genuineActorFieldRepairs": 0,
+    "disposition": "Current manual full-case decisions retained. Candidate differences were stale generic worksheet proofs, actor-label wording, or romanization/roster-link variants; detailed current turn notes and visible speech/action frames controlled.",
+    "rosterCanonicalizationDeferred": true,
+    "rosterCanonicalizationDeferredRows": 1145
+  },
+  "blockers": []
+}

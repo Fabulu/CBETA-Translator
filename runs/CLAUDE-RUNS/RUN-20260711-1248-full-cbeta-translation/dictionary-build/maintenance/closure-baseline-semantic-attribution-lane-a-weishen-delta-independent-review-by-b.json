@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-17T00:15:00+00:00",
+  "reviewer": "Lane B independent reviewer",
+  "scope": "Lane A 未審 t_d4673502b2d2 revisions s1.o3 and s1.o8 only",
+  "verdict": "ACCEPT_CURRENT",
+  "boundCurrentStaging": {
+    "entryPath": "maintenance/closure-baseline-staging-20260716/entries/t_d4673502b2d2/entry.v2.json",
+    "entrySha256": "4ca3659954c8fe367a7b7b2a8d4a7345e3ae31f29f526dde8930f740e5f4e6a3",
+    "worksheetPath": "maintenance/closure-baseline-staging-20260716/entries/t_d4673502b2d2/evidence.draft.json",
+    "worksheetSha256": "4ca5988923ca16abfa137ef67ded4695eb519b0753a4b9f37ebc66bcf148055c",
+    "laneAFinalLedgerSha256": "3b46e5445ed6071e5f6528cf5a54507f39dd506d75d5946376899d983be9ca4d"
+  },
+  "entryWorksheetSemanticParity": true,
+  "completeCasesReadInFull": 2,
+  "decisions": [
+    {
+      "coordinate": "s1.o3",
+      "verdict": "ACCEPT_CURRENT",
+      "completeCaseSha256": "5a31d4486507dc2f684f64181558e746c3726132f0e883cf9b3399dc5d4cf306",
+      "storedKwicSha256": "76b724c2d87777bf974b89a20a9220944e7b5670732bde65372b262c53b670e3",
+      "Kwic": "未審如何是太子身？",
+      "MasterName": null,
+      "ActorLabel": "an unnamed monastic questioner",
+      "ContextMasters": [{"MasterName": "Nanyang Huizhong", "Roles": ["respondent", "record-owner"]}],
+      "finding": "The full case says 問 before the retained question and 師曰 before the answer. The unnamed monk utters 未審; Nanyang Huizhong responds afterward."
+    },
+    {
+      "coordinate": "s1.o8",
+      "verdict": "ACCEPT_CURRENT",
+      "completeCaseSha256": "9fa7b7b9ac74ec6f7c2ea943c0cb141280bf6c04fbcd39e5142dedb5b12c1afd",
+      "storedKwicSha256": "59d596c24c8bb5267c88103b9241eb1e2dc06428a70f3923573cc70febe85ec3",
+      "Kwic": "未審不見箇甚麼過。",
+      "MasterName": null,
+      "ActorLabel": "an unnamed monastic questioner",
+      "ContextMasters": [{"MasterName": "Shoushan Xingnian", "Roles": ["respondent", "record-owner"]}],
+      "finding": "The full case marks the retained wording inside 僧問 and begins the response with 師曰. The unnamed monk utters 未審; Shoushan Xingnian responds afterward."
+    }
+  ],
+  "focusedGate": {
+    "path": "maintenance/closure-baseline-semantic-attribution-lane-a-weishen-delta-gate-by-b.json",
+    "sha256": "eecc80d3e9df3b16f3b13a6f69fcfe0fab7ec0e2e66bc2a15e2a0d2fd976d789",
+    "exactVerified": 8,
+    "exactFailures": 0,
+    "packetHardPass": true,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "attributionSemanticHardFailures": 0,
+    "strictRosterFailuresDeferredToRosterOwner": 0,
+    "overallHardPassBoundary": "Overall gate false only for the inherited depth/sense gate; exact and attribution-packet gates pass, and attribution has zero hard failures."
+  },
+  "filesChangedByReview": 0,
+  "liveTouched": false,
+  "lineageTouched": false
+}

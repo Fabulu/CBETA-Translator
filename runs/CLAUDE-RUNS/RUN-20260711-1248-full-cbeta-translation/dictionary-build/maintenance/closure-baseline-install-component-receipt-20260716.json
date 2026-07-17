@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "closure-baseline-install-component-receipt.v1",
+  "installAuthorized": false,
+  "reason": "Worksheet parity remains unresolved; full content gate also reports depth and repeated-prose residuals.",
+  "entryCount": 1204,
+  "gate": {
+    "path": "maintenance/closure-baseline-final-install-gate-20260716-v4.json",
+    "sha256": "1c229942b10a5404d088732a8131d02b03ddb0e1767e9377851b245a8bdd2538",
+    "hardPass": false,
+    "exactVerified": 8543,
+    "exactFailures": 0,
+    "attributionHardFailures": 0,
+    "packetHardPass": true,
+    "packetTurnProofMissing": 0,
+    "packetIdentityFailures": 0,
+    "countMismatches": 0,
+    "workSourceHardFailures": 0,
+    "corpusHardFailures": 0,
+    "historicalHardFailures": 0,
+    "forbiddenEnglish": 0,
+    "publicFeedbackFlagged": 8,
+    "depthHardFailed": 54,
+    "depthReviewFlagged": 455
+  },
+  "worksheetParity": {
+    "path": "maintenance/closure-baseline-staging-worksheet-parity-20260716.json",
+    "sha256": "5f9d5f822787b6abfb19dce2382fa4597afdb17d1b221b3b93a71f659f90f005",
+    "currentParity": 186,
+    "recoveredHashExact": 697,
+    "unresolved": 321,
+    "taxonomyPath": "maintenance/closure-baseline-staging-worksheet-parity-unresolved-taxonomy-20260716.json",
+    "taxonomySha256": "b537ddcb932d358cf9ec5bb13791a66b736b1cec3a4c3dca63c6c48cd90cb4e4",
+    "taxonomy": {
+      "worksheet-missing": 305,
+      "sense-content-delta": 16
+    }
+  },
+  "installLock": "DO NOT INSTALL until all 1,204 staged entries have canonical worksheet byte parity and a superseding clean install receipt is published."
+}

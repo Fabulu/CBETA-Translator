@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-16T23:55:00+00:00",
+  "reviewer": "Lane B independent reviewer",
+  "scope": "Lane A second REVISE: 塵勞 t_368268e023e3 s1.o2 Yunmen Lingkan/Yunmen Wenyan conflation only",
+  "verdict": "ACCEPT_CURRENT",
+  "boundCurrentStaging": {
+    "entryPath": "maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/entry.v2.json",
+    "entrySha256": "a016049e1257eca5a910b27467610eef36f6e8bff5de3e4749d342b768324676",
+    "worksheetPath": "maintenance/closure-baseline-staging-20260716/entries/t_368268e023e3/evidence.draft.json",
+    "worksheetSha256": "f1c1cff3ae8cc71d8527ea444c11544f43a9db53ee4e7c00c733e1e25e2da269"
+  },
+  "entryWorksheetSemanticParity": true,
+  "completeCaseReadInFull": true,
+  "completeCaseSha256": "98b761c43cc59fa972164cdfc7ce51ec5fd452e80f6801850ad04968c87569c5",
+  "storedKwicSha256": "b305798d1cb2cf17d99e143702773f2f70f2352347b01afab21f5c3088e3acbc",
+  "occurrenceIdentityStatus": "unique-kwic-fromlb",
+  "finding": "The complete case is governed by the immediately preceding section heading 越州雲門靈侃禪師. Within that section, 上堂 begins the section master's hall address and 塵勞未破 is its opening clause. Yunmen Lingkan is therefore the exact utterer. The packet's nearest-head alias matcher conflated the place-name 雲門 with Yunmen Wenyan; the full heading's personal name 靈侃 resolves the ambiguity.",
+  "acceptedOccurrence": {
+    "coordinate": "s1.o2",
+    "RelPath": "X/X82/X82n1571.xml",
+    "FromLb": "0013a07",
+    "ToLb": "0013a10",
+    "Kwic": "師曰：佛殿裏燒香。曰：學人不會。師曰：三門頭合掌。上堂：塵勞未破，觸境千差。心鑑圓明，絲毫不立。靈光皎皎，獨露現前。今古",
+    "exactHeadwordClause": "上堂：塵勞未破，觸境千差。",
+    "MasterName": "Yunmen Lingkan",
+    "ContextMasters": [
+      {
+        "MasterName": "Yunmen Lingkan",
+        "Roles": [
+          "utterer"
+        ]
+      }
+    ],
+    "worksheetProof": "Yunmen Lingkan, not Yunmen Wenyan, owns the exact headword-bearing turn."
+  },
+  "focusedGate": {
+    "path": "maintenance/closure-baseline-semantic-attribution-lane-a-yunmen-conflation-delta-gate-by-b.json",
+    "sha256": "bc2aa926664cf6bc561805bc15846ab3aab41df30860f3727a00505ffc522b1b",
+    "exactVerified": 8,
+    "exactFailures": 0,
+    "packetHardPass": true,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "attributionSemanticHardFailures": 0,
+    "strictRosterFailuresDeferredToRosterOwner": 6,
+    "overallHardPassBoundary": "Overall gate false only for strict roster-canonicality findings and the inherited depth/sense gate; exact and attribution-packet gates pass."
+  },
+  "filesChangedByReview": 0,
+  "liveTouched": false,
+  "lineageTouched": false
+}

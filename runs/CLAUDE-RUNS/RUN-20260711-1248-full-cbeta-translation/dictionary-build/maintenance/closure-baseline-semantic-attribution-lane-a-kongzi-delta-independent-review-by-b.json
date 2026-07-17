@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-17T00:05:00+00:00",
+  "reviewer": "Lane B independent reviewer",
+  "scope": "Lane A 孔子 t_9d2a5e9aa477 revisions s1.o3 and s1.o7 only",
+  "verdict": "ACCEPT_CURRENT",
+  "boundCurrentStaging": {
+    "entryPath": "maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+    "entrySha256": "21557a419799343d90d8fd3998a6052dc80d78dd8e4f52d57cf6fd4489be9b8e",
+    "worksheetPath": "maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/evidence.draft.json",
+    "worksheetSha256": "e98cf8765714d4c025eeaea1c34d34a09a7de6fb21c89afcd15af31c7f1cbebb"
+  },
+  "entryWorksheetSemanticParity": true,
+  "completeCasesReadInFull": 2,
+  "decisions": [
+    {
+      "coordinate": "s1.o3",
+      "verdict": "ACCEPT_CURRENT",
+      "completeCaseSha256": "3fa7e65d4315a01a4993e43cf51cb3421e8a3685bbd37698d8571b4774618e13",
+      "storedKwicSha256": "e8ac301de75d748e74226779ac7522a2c9e470bc63021bc547314947c2c1b4fd",
+      "RelPath": "X/X82/X82n1571.xml",
+      "FromLb": "0444c21",
+      "ToLb": "0444c22",
+      "Kwic": "孔子不識字，達磨不會禪，人却不信。",
+      "MasterName": "Haiyue Tianyan Qi",
+      "ContextMasters": [
+        {
+          "MasterName": "Haiyue Tianyan Qi",
+          "Roles": ["utterer"]
+        },
+        {
+          "MasterName": "Bodhidharma",
+          "Roles": ["person-discussed"]
+        }
+      ],
+      "finding": "The governing heading is 廣陵海月天岩啟禪師. 小參 begins Haiyue Tianyan Qi's address, and the case itself later says 海月與麼說. Tianfeng Xing belongs to the preceding 蘄州三角天峰性禪師 section and cannot own this turn."
+    },
+    {
+      "coordinate": "s1.o7",
+      "verdict": "ACCEPT_CURRENT",
+      "completeCaseSha256": "7ed04ef178ece3725119700d05b21308a8a1f771e30d9e3902a27d4fb918ac3d",
+      "storedKwicSha256": "22134bd0d585a3a65814a4f0f685fe57ec97a726fa0d2eb078f67a7404870589",
+      "RelPath": "T/T51/T51n2077.xml",
+      "FromLb": "0567b21",
+      "ToLb": "0567b22",
+      "Kwic": "居士言。龍潭見天皇時節冥合孔子。師驚問。何以驗之。",
+      "MasterName": null,
+      "ActorAttribution": {
+        "Status": "identified-non-master",
+        "Kind": "lay person",
+        "ActorLabel": "Nanchang layman Pan",
+        "ActorRole": "utterer"
+      },
+      "ContextMasters": [
+        {
+          "MasterName": "Letan Hongying",
+          "Roles": ["respondent"]
+        }
+      ],
+      "finding": "The biography first names 南昌潘居士. 居士言 explicitly introduces Pan's Confucius comparison; 師驚問 then begins Letan Hongying's response. Pan is the exact non-master utterer and Letan is contextual respondent only."
+    }
+  ],
+  "focusedGate": {
+    "path": "maintenance/closure-baseline-semantic-attribution-lane-a-kongzi-delta-gate-by-b.json",
+    "sha256": "ed10a4ffed485bed6705bb1a5713b6d625b480ae6ca8792531b0e07ed10bed63",
+    "exactVerified": 9,
+    "exactFailures": 0,
+    "packetHardPass": true,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "attributionSemanticHardFailures": 0,
+    "strictRosterFailuresDeferredToRosterOwner": 7,
+    "overallHardPassBoundary": "Overall gate false only for strict roster-canonicality findings and the inherited depth/sense gate; exact and attribution-packet gates pass."
+  },
+  "filesChangedByReview": 0,
+  "liveTouched": false,
+  "lineageTouched": false
+}

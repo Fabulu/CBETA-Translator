@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "closure-accepted-189-worksheet-install-independent-audit.v1",
+  "verdict": "KEEP",
+  "scope": "closure staging worksheets only",
+  "sealedDonorLedgerSha256": "5af6cf0af712b46834bec9bc5e9508ab8f5d83f10e51ad229cad0f03750242a6",
+  "independentDonorAuditSha256": "a29270aa5af19066b3f79e4bcdacac5ff27248c39609f809b34aa97b163b4b43",
+  "installerSha256": "e907fed1fb2508fad9cdd2c084c801d6cf544272179cd00f0adbbdd9e5356933",
+  "installLedgerSha256": "f06a9cc2230df02c3d5357f593aeb8c74736ca5facc3b7995bf08743c6e0bd55",
+  "backupManifestSha256": "2ead067ea8797e9715e4438a5e97334085fbd9c019a7dd89441c615a2add400a",
+  "rollbackCorruptionSelftestSha256": "371f76669f0d0ac1c95971062a47737fbacf1a534a1f749e1bdacdb8eb3a55ab",
+  "checks": {
+    "acceptedTargetCount": 189,
+    "targetSetExact": true,
+    "currentEntryHashPass": 189,
+    "installedWorksheetHashPass": 189,
+    "canonicalCompileByteParityPass": 189,
+    "entryWrites": 0,
+    "backupHashesVerified": 12,
+    "absentPreimagesRecorded": 177,
+    "rollbackPreflightChecked": 189,
+    "rollbackPreflightMutations": 0,
+    "corruptedBackupRejectedBeforeMutation": true,
+    "pathConfinedToClosureStagingWorksheets": true
+  },
+  "notes": [
+    "The first installer revision was not sealed because it lacked an executable rollback path.",
+    "The second revision was not sealed because rollback checked backup existence but not backup bytes.",
+    "The final revision binds rollback to the sealed backup manifest and current install ledger, preflights all installed and backup hashes before mutation, and never writes entry.v2.json.",
+    "Rollback was not executed; its real-state preflight-only mode passed 189/189 with zero mutations."
+  ],
+  "hardPass": true
+}

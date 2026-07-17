@@ -30,62 +30,45 @@
             "ToLb": "0004c09",
             "Kwic": "僧遂作一圓相，師便打曰：這漆桶，碌甎也不識。",
             "Curated": true,
-            "AttributionNote": "Source text (五燈全書(第34卷-第120卷)): the compiler preserves the exact headword-bearing narration or formula.",
-            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Fachang Yiyu strikes and says “this lacquer bucket” in his own section.",
+            "ContextMasters": [
+              {
+                "MasterName": "Fachang Yiyu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
             "DraftActorProof": {
               "ExactHeadwordClause": "僧遂作一圓相，師便打曰：這漆桶，碌甎也不識。",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (五燈全書(第34卷-第120卷)): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (五燈全書(第34卷-第120卷)): the compiler preserves the exact headword-bearing narration or formula."
+              "GrammaticalSubject": "Fachang Yiyu",
+              "SpeechFrame": "The complete section header and 上堂 frame govern the exact headword-bearing turn.",
+              "FullCaseDecision": "Fachang Yiyu utters the headword in the continuous assembly address."
             },
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+            "MasterName": "Fachang Yiyu"
           },
           {
             "RelPath": "M/M59/M59n1540.xml",
             "FromLb": "0791a10",
             "ToLb": "0791a17",
             "Kwic": "作玄妙提撕領略老和尚云若是天寧則不然或有人問只對他道薰風自南來殿閣生微凉只念這兩句詩此是唐柳公權與文宗聯句自家忽然在這一聯詩上打破漆桶當時如貧得寶如暗得燈如病得醫如子得母平生千疑萬慮如一把亂絲將利刀一截截斷從前許多無明煩惱一時斷了當下寂滅如斬一綟絲一斬一切斬證法時亦然一證一切證一了一切了一悟一切悟更無前",
+            "MasterName": "Dahui Zonggao",
             "Curated": true,
-            "AttributionNote": "Source text (大慧普覺禪師普說): an unnamed interlocutor owns the exact headword-bearing question.",
-            "ContextMasters": [],
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue (大慧普覺禪師普說): In his own discourse, Dahui Zonggao says that while reciting the paired verse he suddenly ‘broke open the lacquer bucket’ (打破漆桶).",
             "DraftActorProof": {
               "ExactHeadwordClause": "作玄妙提撕領略老和尚云若是天寧則不然或有人問只對他道薰風自南來殿閣生微凉只念這兩句詩此是唐柳公權與文宗聯句自家忽然在這一聯詩上打破漆桶當時如貧得寶如暗得燈如病得醫如子得母平生千疑萬慮如一把亂絲將利刀一截截斷從前許多無明煩惱一時斷了當下寂滅如斬一綟絲一斬一切斬證法時亦然一證一切證一了一切了一悟一切悟更無前",
-              "GrammaticalSubject": "the unnamed questioner asking with 漆桶",
-              "SpeechFrame": "Source text (大慧普覺禪師普說): an unnamed interlocutor owns the exact headword-bearing question.",
-              "FullCaseDecision": "Source text (大慧普覺禪師普說): an unnamed interlocutor owns the exact headword-bearing question."
-            },
-            "ActorAttribution": {
-              "Status": "reviewed-unnamed",
-              "Kind": "monastic questioner",
-              "ActorLabel": "the unnamed questioner asking with 漆桶",
-              "ActorRole": "questioner",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The 問 frame assigns the exact 漆桶-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
+              "GrammaticalSubject": "Dahui Zonggao",
+              "SpeechFrame": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue (大慧普覺禪師普說): In his own discourse, Dahui Zonggao says that while reciting the paired verse he suddenly ‘broke open the lacquer bucket’ (打破漆桶).",
+              "FullCaseDecision": "Dahui Zonggao owns the autobiographical headword-bearing clause in his own discourse."
             }
           },
           {
@@ -94,19 +77,19 @@
             "ToLb": "0294b11",
             "Kwic": "陝府鐵牛白癩，嘉州大象耳聵，兩個病痛一般，咄哉漆桶不快。",
             "Curated": true,
-            "AttributionNote": "Source text (宗鑑法林): the compiler preserves the exact headword-bearing narration or formula.",
+            "AttributionNote": "Source record (X/X66/X66n1297.xml). Teaching Grove of the Tradition’s Mirror (宗鑑法林): The verse author is unnamed: Teaching Grove of the Tradition’s Mirror (宗鑑法林): After all six attribution rungs, the exact verse author remains unnamed; that verse author utters the headword.",
             "ContextMasters": [],
             "DraftActorProof": {
               "ExactHeadwordClause": "陝府鐵牛白癩，嘉州大象耳聵，兩個病痛一般，咄哉漆桶不快。",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (宗鑑法林): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (宗鑑法林): the compiler preserves the exact headword-bearing narration or formula."
+              "GrammaticalSubject": "the unnamed verse author",
+              "SpeechFrame": "The wording belongs to an authored comment or verse, not generic compiler narration.",
+              "FullCaseDecision": "The exact voice was read in full context and remains reviewed-unnamed or roster-pending."
             },
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
+              "Status": "reviewed-unnamed",
+              "Kind": "verse author",
+              "ActorLabel": "the unnamed verse author",
+              "ActorRole": "verse-author",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -115,42 +98,36 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+              "ReviewedBy": "Codex Lane-A current-hash repair",
+              "ReviewedUtc": "2026-07-16T20:00:00Z",
+              "AuthoredVoiceRiskReviewed": true,
+              "GrammarEvidence": "Full-case and parallel-text reading identifies an authored comment but no current roster-canonical English name for the exact voice."
+            },
+            "MasterName": null
           },
           {
             "RelPath": "C/C077/C077n1710.xml",
-            "FromLb": "0662b03",
-            "ToLb": "0662b12",
-            "Kwic": "如何師云賊首頭犯問寶劒未出匣時如何師云泥乾跌宕僧云出匣後如何師云天魔唱快問楊朱泣岐時如何師云白狗臨刑莫怨天問人逢碧眼時如何師云鬼爭漆桶問獨步青霄時如何師云四眾圍遶僧云四眾圍遶時如何師云梵音絕處行問寂寂無聲時如何師云打了拖聲勢問鳳栖不到處時如何師云忽聞󲊷前撲煞老鴟梟問如何是歸宗理事絕師云納孺處錯問如何是日",
+            "FromLb": "0662b07",
+            "ToLb": "0662b07",
+            "Kwic": "師云鬼爭漆桶",
             "Curated": true,
-            "AttributionNote": "Source text (古尊宿語錄): the compiler preserves the exact headword-bearing narration or formula.",
-            "ContextMasters": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Nanyuan Huiyong answers the question about meeting a blue-eyed person with ‘ghosts fighting over a lacquer bucket.’",
+            "ContextMasters": [
+              {
+                "MasterName": "Nanyuan Huiyong",
+                "Roles": [
+                  "utterer",
+                  "section-subject"
+                ]
+              }
+            ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "如何師云賊首頭犯問寶劒未出匣時如何師云泥乾跌宕僧云出匣後如何師云天魔唱快問楊朱泣岐時如何師云白狗臨刑莫怨天問人逢碧眼時如何師云鬼爭漆桶問獨步青霄時如何師云四眾圍遶僧云四眾圍遶時如何師云梵音絕處行問寂寂無聲時如何師云打了拖聲勢問鳳栖不到處時如何師云忽聞󲊷前撲煞老鴟梟問如何是歸宗理事絕師云納孺處錯問如何是日",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (古尊宿語錄): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (古尊宿語錄): the compiler preserves the exact headword-bearing narration or formula."
+              "ExactHeadwordClause": "師云鬼爭漆桶",
+              "GrammaticalSubject": "Nanyuan Huiyong",
+              "SpeechFrame": "師云 in Nanyuan Huiyong's explicitly headed record governs the answer.",
+              "FullCaseDecision": "Nanyuan Huiyong utters the headword-bearing reply."
             },
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+            "MasterName": "Nanyuan Huiyong"
           },
           {
             "RelPath": "X/X66/X66n1296.xml",
@@ -158,31 +135,22 @@
             "ToLb": "0030b06",
             "Kwic": "若是新長老，待伊一夥黑漆桶呈了如何若何，便各與劈頭一棒，不特使伊各得勦絕葛藤，管取他一個個轉轆轆地，且免後人向皮髓邊著倒。",
             "Curated": true,
-            "AttributionNote": "Source text (宗門拈古彙集): the compiler preserves the exact headword-bearing narration or formula.",
-            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases” (宗門拈古彙集): Xin Zhanglao names the lacquer buckets in his own first-person comment; his roster-canonical identity remains pending.",
+            "ContextMasters": [
+              {
+                "MasterName": "Xin Zhanglao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
             "DraftActorProof": {
               "ExactHeadwordClause": "若是新長老，待伊一夥黑漆桶呈了如何若何，便各與劈頭一棒，不特使伊各得勦絕葛藤，管取他一個個轉轆轆地，且免後人向皮髓邊著倒。",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (宗門拈古彙集): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (宗門拈古彙集): the compiler preserves the exact headword-bearing narration or formula."
+              "GrammaticalSubject": "Xin Zhanglao",
+              "SpeechFrame": "The complete section header and 上堂 frame govern the exact headword-bearing turn.",
+              "FullCaseDecision": "Xin Zhanglao utters the headword in the continuous assembly address."
             },
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+            "MasterName": "Xin Zhanglao"
           },
           {
             "RelPath": "X/X69/X69n1359.xml",
@@ -190,31 +158,22 @@
             "ToLb": "0509b09",
             "Kwic": "恁麼說話，要稱為達磨兒孫，大遠在漆桶。",
             "Curated": true,
-            "AttributionNote": "Source text (應菴曇華禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X69/X69n1359.xml). Recorded Sayings of Chan Master Ying’an Tanhua (應菴曇華禪師語錄): Tongshan Mingguo says the exact phrase in the continuous record of his hall speech.",
+            "ContextMasters": [
+              {
+                "MasterName": "Tongshan Mingguo",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
             "DraftActorProof": {
               "ExactHeadwordClause": "恁麼說話，要稱為達磨兒孫，大遠在漆桶。",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (應菴曇華禪師語錄): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (應菴曇華禪師語錄): the compiler preserves the exact headword-bearing narration or formula."
+              "GrammaticalSubject": "Tongshan Mingguo",
+              "SpeechFrame": "The complete section header and 上堂 frame govern the exact headword-bearing turn.",
+              "FullCaseDecision": "Tongshan Mingguo utters the headword in the continuous assembly address."
             },
-            "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+            "MasterName": "Tongshan Mingguo"
           },
           {
             "RelPath": "X/X83/X83n1578.xml",
@@ -222,19 +181,19 @@
             "ToLb": "0411b23",
             "Kwic": "兩個病痛一般，咄哉漆桶不快。",
             "Curated": true,
-            "AttributionNote": "Source text (指月錄): the compiler preserves the exact headword-bearing narration or formula.",
+            "AttributionNote": "Source record (X/X83/X83n1578.xml). Record Pointing at the Moon (指月錄): The parallel verse author is unnamed: Record Pointing at the Moon (指月錄): After all six attribution rungs and parallel comparison, the exact verse author remains unnamed; that verse author utters the headword.",
             "ContextMasters": [],
             "DraftActorProof": {
               "ExactHeadwordClause": "兩個病痛一般，咄哉漆桶不快。",
-              "GrammaticalSubject": "the compiler narrating the 漆桶-bearing event",
-              "SpeechFrame": "Source text (指月錄): the compiler preserves the exact headword-bearing narration or formula.",
-              "FullCaseDecision": "Source text (指月錄): the compiler preserves the exact headword-bearing narration or formula."
+              "GrammaticalSubject": "the unnamed parallel verse author",
+              "SpeechFrame": "The wording belongs to an authored comment or verse, not generic compiler narration.",
+              "FullCaseDecision": "The exact voice was read in full context and remains reviewed-unnamed or roster-pending."
             },
             "ActorAttribution": {
-              "Status": "narrated",
-              "Kind": "compiler narrative",
-              "ActorLabel": "the compiler narrating the 漆桶-bearing event",
-              "ActorRole": "compiler",
+              "Status": "reviewed-unnamed",
+              "Kind": "verse author",
+              "ActorLabel": "the unnamed parallel verse author",
+              "ActorRole": "verse-author",
               "RungsChecked": [
                 "line",
                 "expanded-context",
@@ -243,42 +202,36 @@
                 "tei-header",
                 "parallel-passage"
               ],
-              "GrammarEvidence": "The selected span presents 漆桶 in third-person record narration or an editorially preserved formula without a safely isolated named speaker turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+              "ReviewedBy": "Codex Lane-A current-hash repair",
+              "ReviewedUtc": "2026-07-16T20:00:00Z",
+              "AuthoredVoiceRiskReviewed": true,
+              "GrammarEvidence": "Full-case and parallel-text reading identifies an authored comment but no current roster-canonical English name for the exact voice."
+            },
+            "MasterName": null
           },
           {
             "RelPath": "X/X81/X81n1568.xml",
             "FromLb": "0028c09",
             "ToLb": "0028c10",
-            "Kwic": "座再問，師打一坐具，曰：這漆桶前後觸忤多少賢良！",
+            "Kwic": "曰：這漆桶前後觸忤多少賢良！",
             "Curated": true,
-            "AttributionNote": "Source text (五燈嚴統(第10卷-第25卷)): an unnamed interlocutor owns the exact headword-bearing question.",
-            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Sansheng Huiran strikes with his sitting cloth and calls the head monk a lacquer bucket that has offended many worthies.",
+            "ContextMasters": [
+              {
+                "MasterName": "Sansheng Huiran",
+                "Roles": [
+                  "utterer",
+                  "section-subject"
+                ]
+              }
+            ],
             "DraftActorProof": {
-              "ExactHeadwordClause": "座再問，師打一坐具，曰：這漆桶前後觸忤多少賢良！",
-              "GrammaticalSubject": "the unnamed questioner asking with 漆桶",
-              "SpeechFrame": "Source text (五燈嚴統(第10卷-第25卷)): an unnamed interlocutor owns the exact headword-bearing question.",
-              "FullCaseDecision": "Source text (五燈嚴統(第10卷-第25卷)): an unnamed interlocutor owns the exact headword-bearing question."
+              "ExactHeadwordClause": "曰：這漆桶前後觸忤多少賢良！",
+              "GrammaticalSubject": "Sansheng Huiran",
+              "SpeechFrame": "師 in Sansheng Huiran's explicitly headed section governs the verdict.",
+              "FullCaseDecision": "Sansheng Huiran utters the headword-bearing verdict."
             },
-            "ActorAttribution": {
-              "Status": "reviewed-unnamed",
-              "Kind": "monastic questioner",
-              "ActorLabel": "the unnamed questioner asking with 漆桶",
-              "ActorRole": "questioner",
-              "RungsChecked": [
-                "line",
-                "expanded-context",
-                "section-header",
-                "book-title",
-                "tei-header",
-                "parallel-passage"
-              ],
-              "GrammarEvidence": "The 問 frame assigns the exact 漆桶-bearing question to an unnamed interlocutor; the marked teacher response is a separate turn.",
-              "ReviewedBy": "Codex f003 Lane C full-turn author",
-              "ReviewedUtc": "2026-07-15T04:31:02.627217+00:00"
-            }
+            "MasterName": "Sansheng Huiran"
           }
         ],
         "ClaimAnchors": [],

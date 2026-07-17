@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "closure-roundtrip-donor-independent-audit.v1",
+  "verdict": "ACCEPT_DONOR_ONLY_SUBSET",
+  "tool": "maintenance/roundtrip_sync_unresolved_worksheets.py",
+  "toolSha256": "c738aede4f611b1e295527b1d3c50a28fc17d8aa0b97afdba2950b99e6c93070",
+  "sealedLedger": "maintenance/closure-unresolved-worksheet-roundtrip-sync-by-b-20260717-final.json",
+  "sealedLedgerSha256": "5af6cf0af712b46834bec9bc5e9508ab8f5d83f10e51ad229cad0f03750242a6",
+  "scope": 321,
+  "acceptedDonorExact": 189,
+  "rejectedFailClosed": 132,
+  "checks": {
+    "stagedSourceHashesBound": "189/189",
+    "canonicalCompilerByteExact": "189/189",
+    "realDonorHashesBound": "189/189",
+    "draftEvidenceCopiedExactlyFromDonor": "189/189",
+    "explanationPartsCopiedExactlyFromDonor": "189/189",
+    "actorProofCopiedByExactOccurrenceIdentity": "all accepted evidence rows",
+    "syntheticScaffoldDetected": 0,
+    "canonicalOrStagingWritesByAuditor": 0
+  },
+  "acceptanceBasis": "For every accepted row, the current compiler product of the donor worksheet equals the staged production sense except the explicitly derived SourceTexts and RelatedMasters lists. Full prose, occurrence and claim-anchor content, actor attribution, context roles, attribution notes, KWICs, and anchors therefore match. Research-only DraftEvidence, ExplanationParts, and DraftActorProof are copied unchanged from SHA-bound real worksheets; none is inferred from reader-facing bytes.",
+  "rejectionPolicy": "The remaining 132 rows have no complete compiler-valid donor with identical production semantics and stay unresolved. No generated worksheet from the earlier synthetic diagnostic is admissible.",
+  "nonblockingHardening": "Future runs should require a new or empty temp root so stale files from a prior diagnostic cannot be mistaken for rows accepted by the current ledger. Consumers must use only SHA-bound rows named in the sealed ledger.",
+  "priorDiagnosticAudit": "maintenance/closure-unresolved-worksheet-roundtrip-independent-audit-by-c.json",
+  "priorDiagnosticAuditSha256": "1e9ad2e0338509a2b87e38987b255ea629203ad2bdbe0642204adb1e984730b8"
+}

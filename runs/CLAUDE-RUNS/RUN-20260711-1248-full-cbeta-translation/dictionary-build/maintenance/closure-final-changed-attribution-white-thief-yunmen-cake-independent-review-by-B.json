@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "closure-final-attribution-hygiene-independent-review.v1",
+  "verdict": "KEEP",
+  "reviewedLedgerSha256": "368b99006156603a2e79d6f8c95930b992690467c134d64ff7734a63bf8af1bb",
+  "stagingOnly": true,
+  "writesToEntriesOrWorksheets": 0,
+  "rows": [
+    {
+      "id": "t_bd6a1e9054a5",
+      "sourceTerm": "白拈賊",
+      "entrySha256": "9948ff699247edc622281e225f2d18711e6bb41391c2aab7ee6b92fca30bda6f",
+      "worksheetSha256": "07455e0863288d0e9693e0c4e89cf53a2f26565c1a5d373c17830d88a7ec7f8d",
+      "occurrences": 6,
+      "kwicExact": 6,
+      "canonicalSourceOpening": 6,
+      "actorSemanticsPreserved": true,
+      "compilerByteParity": true
+    },
+    {
+      "id": "t_c70fe8855f4b",
+      "sourceTerm": "雲門餅",
+      "entrySha256": "c4a2fa021048c251371881fb545be1e3754679a4245bfd2afe35893e595ec631",
+      "worksheetSha256": "707f93e2b2969d21e564707950766bed1c7eba2a02bd13f15eb2cba165176292",
+      "occurrences": 7,
+      "kwicExact": 7,
+      "canonicalSourceOpening": 7,
+      "actorSemanticsPreserved": true,
+      "compilerByteParity": true
+    }
+  ],
+  "review": "Each stored occurrence was rebound to its current full-case window. Attribution notes begin with canonical Source record (RelPath) plus an English source title, name the accepted exact utterer or accepted authored/narrated voice, and contain none of the forbidden bare speaker placeholders. The current worksheets canonically reproduce the current products byte-for-byte.",
+  "hardPass": true
+}

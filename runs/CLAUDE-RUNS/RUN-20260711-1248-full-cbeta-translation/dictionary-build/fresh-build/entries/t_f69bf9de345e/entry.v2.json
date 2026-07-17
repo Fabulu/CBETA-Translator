@@ -28,13 +28,12 @@
           "ToLb": "0004c09",
           "Kwic": "僧遂作一圓相，師便打曰：這漆桶，碌甎也不識。",
           "Curated": true,
-          "AttributionNote": "Complete Compendium of the Five Lamps (五燈全書(第34卷-第120卷)), Fachang Yiyu section: Fachang Yiyu calls the monk a black-lacquer bucket after the monk draws a circle.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Fachang Yiyu strikes and says “this lacquer bucket” in his own section.",
           "ContextMasters": [
             {
               "MasterName": "Fachang Yiyu",
               "Roles": [
-                "utterer",
-                "record-owner"
+                "utterer"
               ]
             }
           ],
@@ -45,8 +44,8 @@
           "FromLb": "0791a10",
           "ToLb": "0791a17",
           "Kwic": "作玄妙提撕領略老和尚云若是天寧則不然或有人問只對他道薰風自南來殿閣生微凉只念這兩句詩此是唐柳公權與文宗聯句自家忽然在這一聯詩上打破漆桶當時如貧得寶如暗得燈如病得醫如子得母平生千疑萬慮如一把亂絲將利刀一截截斷從前許多無明煩惱一時斷了當下寂滅如斬一綟絲一斬一切斬證法時亦然一證一切證一了一切了一悟一切悟更無前",
+          "MasterName": "Dahui Zonggao",
           "Curated": true,
-          "AttributionNote": "Dahui Zonggao's Formal Discourses (大慧普覺禪師普說): Dahui Zonggao says that Yuanwu Keqin's two-line response suddenly broke open his lacquer bucket.",
           "ContextMasters": [
             {
               "MasterName": "Dahui Zonggao",
@@ -54,16 +53,9 @@
                 "utterer",
                 "record-owner"
               ]
-            },
-            {
-              "MasterName": "Yuanwu Keqin",
-              "Roles": [
-                "teacher",
-                "case-figure"
-              ]
             }
           ],
-          "MasterName": "Dahui Zonggao"
+          "AttributionNote": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue (大慧普覺禪師普說): In his own discourse, Dahui Zonggao says that while reciting the paired verse he suddenly ‘broke open the lacquer bucket’ (打破漆桶)."
         },
         {
           "RelPath": "X/X66/X66n1297.xml",
@@ -71,35 +63,45 @@
           "ToLb": "0294b11",
           "Kwic": "陝府鐵牛白癩，嘉州大象耳聵，兩個病痛一般，咄哉漆桶不快。",
           "Curated": true,
-          "AttributionNote": "Mirror of the Lineage Dharma Grove (宗鑑法林) preserves Dahui Zonggao's verse ending 'bah, this lacquer bucket is not quick.'",
-          "ContextMasters": [
-            {
-              "MasterName": "Dahui Zonggao",
-              "Roles": [
-                "utterer",
-                "verse-author"
-              ]
-            }
-          ],
-          "MasterName": "Dahui Zonggao"
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Teaching Grove of the Tradition’s Mirror (宗鑑法林): The verse author is unnamed: Teaching Grove of the Tradition’s Mirror (宗鑑法林): After all six attribution rungs, the exact verse author remains unnamed; that verse author utters the headword.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "verse author",
+            "ActorLabel": "the unnamed verse author",
+            "ActorRole": "verse-author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex Lane-A current-hash repair",
+            "ReviewedUtc": "2026-07-16T20:00:00Z",
+            "AuthoredVoiceRiskReviewed": true,
+            "GrammarEvidence": "Full-case and parallel-text reading identifies an authored comment but no current roster-canonical English name for the exact voice."
+          },
+          "MasterName": null
         },
         {
           "RelPath": "C/C077/C077n1710.xml",
-          "FromLb": "0662b03",
-          "ToLb": "0662b12",
-          "Kwic": "如何師云賊首頭犯問寶劒未出匣時如何師云泥乾跌宕僧云出匣後如何師云天魔唱快問楊朱泣岐時如何師云白狗臨刑莫怨天問人逢碧眼時如何師云鬼爭漆桶問獨步青霄時如何師云四眾圍遶僧云四眾圍遶時如何師云梵音絕處行問寂寂無聲時如何師云打了拖聲勢問鳳栖不到處時如何師云忽聞󲊷前撲煞老鴟梟問如何是歸宗理事絕師云納孺處錯問如何是日",
+          "FromLb": "0662b07",
+          "ToLb": "0662b07",
+          "Kwic": "師云鬼爭漆桶",
           "Curated": true,
-          "AttributionNote": "Old Recorded Sayings of Venerable Masters (古尊宿語錄), Muzhou Daoming section: Muzhou answers the question about meeting a blue-eyed man with 'a ghost fighting a lacquer bucket.'",
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): Nanyuan Huiyong answers the question about meeting a blue-eyed person with ‘ghosts fighting over a lacquer bucket.’",
           "ContextMasters": [
             {
-              "MasterName": "Muzhou Daoming",
+              "MasterName": "Nanyuan Huiyong",
               "Roles": [
                 "utterer",
                 "section-subject"
               ]
             }
           ],
-          "MasterName": "Muzhou Daoming"
+          "MasterName": "Nanyuan Huiyong"
         },
         {
           "RelPath": "X/X66/X66n1296.xml",
@@ -107,24 +109,16 @@
           "ToLb": "0030b06",
           "Kwic": "若是新長老，待伊一夥黑漆桶呈了如何若何，便各與劈頭一棒，不特使伊各得勦絕葛藤，管取他一個個轉轆轆地，且免後人向皮髓邊著倒。",
           "Curated": true,
-          "AttributionNote": "Collected Ancient Cases of the Chan Gate (宗門拈古彙集): Baoshou Xin calls the participants a gang of black-lacquer buckets while commenting on Bodhidharma's skin-and-marrow case.",
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases” (宗門拈古彙集): Xin Zhanglao names the lacquer buckets in his own first-person comment; his roster-canonical identity remains pending.",
           "ContextMasters": [
             {
-              "MasterName": "Baoshou Xin",
+              "MasterName": "Xin Zhanglao",
               "Roles": [
-                "utterer",
-                "commentator"
-              ]
-            },
-            {
-              "MasterName": "Bodhidharma",
-              "Roles": [
-                "case-figure",
-                "person-discussed"
+                "utterer"
               ]
             }
           ],
-          "MasterName": "Baoshou Xin"
+          "MasterName": "Xin Zhanglao"
         },
         {
           "RelPath": "X/X69/X69n1359.xml",
@@ -132,17 +126,16 @@
           "ToLb": "0509b09",
           "Kwic": "恁麼說話，要稱為達磨兒孫，大遠在漆桶。",
           "Curated": true,
-          "AttributionNote": "Recorded Sayings of Yingan Tanhua (應菴曇華禪師語錄): Yingan ends his criticism of stock responses with 'far away, lacquer bucket.'",
+          "AttributionNote": "Source record (X/X69/X69n1359.xml). Recorded Sayings of Chan Master Ying’an Tanhua (應菴曇華禪師語錄): Tongshan Mingguo says the exact phrase in the continuous record of his hall speech.",
           "ContextMasters": [
             {
-              "MasterName": "Yingan Tanhua",
+              "MasterName": "Tongshan Mingguo",
               "Roles": [
-                "utterer",
-                "record-owner"
+                "utterer"
               ]
             }
           ],
-          "MasterName": "Yingan Tanhua"
+          "MasterName": "Tongshan Mingguo"
         },
         {
           "RelPath": "X/X83/X83n1578.xml",
@@ -150,17 +143,27 @@
           "ToLb": "0411b23",
           "Kwic": "兩個病痛一般，咄哉漆桶不快。",
           "Curated": true,
-          "AttributionNote": "Record Pointing at the Moon (指月錄) explicitly introduces this as a verse by Jingshan Gao, Dahui Zonggao.",
-          "ContextMasters": [
-            {
-              "MasterName": "Dahui Zonggao",
-              "Roles": [
-                "utterer",
-                "verse-author"
-              ]
-            }
-          ],
-          "MasterName": "Dahui Zonggao"
+          "AttributionNote": "Source record (X/X83/X83n1578.xml). Record Pointing at the Moon (指月錄): The parallel verse author is unnamed: Record Pointing at the Moon (指月錄): After all six attribution rungs and parallel comparison, the exact verse author remains unnamed; that verse author utters the headword.",
+          "ContextMasters": [],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "verse author",
+            "ActorLabel": "the unnamed parallel verse author",
+            "ActorRole": "verse-author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex Lane-A current-hash repair",
+            "ReviewedUtc": "2026-07-16T20:00:00Z",
+            "AuthoredVoiceRiskReviewed": true,
+            "GrammarEvidence": "Full-case and parallel-text reading identifies an authored comment but no current roster-canonical English name for the exact voice."
+          },
+          "MasterName": null
         },
         {
           "RelPath": "X/X81/X81n1568.xml",
@@ -168,7 +171,7 @@
           "ToLb": "0028c10",
           "Kwic": "曰：這漆桶前後觸忤多少賢良！",
           "Curated": true,
-          "AttributionNote": "Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)), Sansheng Huiran section: Sansheng Huiran directly calls the head monk a lacquer bucket.",
+          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)): Sansheng Huiran strikes with his sitting cloth and calls the head monk a lacquer bucket that has offended many worthies.",
           "ContextMasters": [
             {
               "MasterName": "Sansheng Huiran",
@@ -192,9 +195,16 @@
         "X/X83/X83n1578.xml",
         "X/X81/X81n1568.xml"
       ],
-      "RelatedMasters": [],
+      "RelatedMasters": [
+        "Fachang Yiyu",
+        "Dahui Zonggao",
+        "Nanyuan Huiyong",
+        "Xin Zhanglao",
+        "Tongshan Mingguo",
+        "Sansheng Huiran"
+      ],
       "RelatedTerms": [],
-      "Explanation": "A black-lacquer bucket is a blunt address for someone presented as unable to distinguish what is directly before them. Fachang Yiyu applies it after an unnamed questioner draws a circle; Sansheng Huiran applies it to a head monk; Muzhou Daoming and Yingan Tanhua use it in direct replies and rebukes. Dahui Zonggao also speaks of his own 'lacquer bucket' being broken open and repeats the phrase in verse. The concrete vessel supplies the insult's opaque, sealed image; the records themselves establish the recurrent public rebuke without assigning it a further doctrinal gloss."
+      "Explanation": "A black-lacquer bucket is a blunt address for someone presented as unable to distinguish what is directly before them. Teachers apply it after failed recognitions, circular signs, or answers, and later commentators repeat it as an encounter verdict."
     }
   ]
 }

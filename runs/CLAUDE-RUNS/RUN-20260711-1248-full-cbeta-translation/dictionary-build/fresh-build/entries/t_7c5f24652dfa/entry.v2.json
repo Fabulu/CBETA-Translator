@@ -23,21 +23,21 @@
           "ToLb": "0718b21",
           "Kwic": "是苐一機云緊帩草鞋師在嶺中時有僧問如何是法身向上事云向上與你道即不難汝喚什麼作法",
           "Curated": true,
-          "AttributionNote": "古尊宿語錄. Exact headword actor: the unnamed monk. The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters (古尊宿語錄): The monk asking Longya is unnamed and owns the exact headword-bearing questioner turn.",
           "ContextMasters": [
             {
-              "MasterName": "Yunmen Wenyan",
+              "MasterName": "Longya Judun",
               "Roles": [
                 "respondent",
-                "teacher"
+                "case-figure"
               ]
             }
           ],
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed monk",
+            "Kind": "the unnamed monk asking Longya",
+            "ActorLabel": "the unnamed monk asking Longya",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -47,9 +47,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
-            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
-            "ReviewedUtc": "2026-07-16T12:00:00Z"
+            "GrammarEvidence": "The headword is inside the monk’s question; Longya’s answer follows it, so the respondent is not assigned backward.",
+            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
+            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {
@@ -58,21 +59,21 @@
           "ToLb": "0533c04",
           "Kwic": "是清淨法身？師曰：紅日照青山。曰：如何是法身向上事？師曰：風吹雪不寒。問僧：趙州",
           "Curated": true,
-          "AttributionNote": "五燈全書(第1卷-第33卷). Exact headword actor: the unnamed monk. The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
+          "AttributionNote": "Source record (X/X81/X81n1571.xml). Complete Five Lamps (Vols. 1–33) (五燈全書(第1卷-第33卷)): The monk asking Jingqing is unnamed and owns the exact headword-bearing questioner turn.",
           "ContextMasters": [
             {
               "MasterName": "Jingqing Daofu",
               "Roles": [
                 "respondent",
-                "teacher"
+                "case-figure"
               ]
             }
           ],
           "MasterName": null,
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
-            "Kind": "monastic questioner",
-            "ActorLabel": "the unnamed monk",
+            "Kind": "the unnamed monk asking Jingqing",
+            "ActorLabel": "the unnamed monk asking Jingqing",
             "ActorRole": "questioner",
             "RungsChecked": [
               "line",
@@ -82,9 +83,10 @@
               "tei-header",
               "parallel-passage"
             ],
-            "GrammarEvidence": "The explicit monk-question frame assigns the headword-bearing question to an unnamed monk; the named master's answer follows in a separate turn.",
-            "ReviewedBy": "Codex cohorts 1-3 v6 full-unit READ-AND-FIX",
-            "ReviewedUtc": "2026-07-16T12:00:00Z"
+            "GrammarEvidence": "The headword is inside the monk’s follow-up question; Jingqing’s answer follows it, so the respondent is not assigned backward.",
+            "ReviewedBy": "Codex f004 cohort1 round4 delta repair",
+            "ReviewedUtc": "2026-07-15T18:33:34.032430+00:00",
+            "AuthoredVoiceRiskReviewed": true
           }
         },
         {
@@ -93,20 +95,13 @@
           "ToLb": "0504c10",
           "Kwic": "問柏林，應聲便喝云：遲八刻。磬山因僧問：如何是法身邊事？師曰：黑漆桶。曰：如何是法身？師曰：爛冬瓜。曰：如何是法身向上事？師曰：三家村裏酒帘子。妙偉俊云：潭州紙貴，一狀領過。磬山因僧參，曰：久慕道風，今日得見和尚。師高聲曰：諾。曰：三乘十二分教即不問，當陽一句，請師直指",
           "Curated": true,
-          "AttributionNote": "宗鑑法林. Exact headword actor: the reviewed unnamed monastic participant. The complete unit identifies the participant role but supplies no safe canonical personal name; all six rungs were checked.",
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Teaching Grove of the Tradition’s Mirror (宗鑑法林): The actor is unnamed: Teaching Grove of the Tradition’s Mirror (宗鑑法林): The reviewed monastic participant is unnamed and owns the exact headword-bearing questioner turn.",
           "ContextMasters": [
             {
-              "MasterName": "Qingshan",
+              "MasterName": "Qingshan Shoulong",
               "Roles": [
                 "respondent",
                 "case-figure"
-              ]
-            },
-            {
-              "MasterName": "Miaowei Jun",
-              "Roles": [
-                "later-raiser",
-                "commentator"
               ]
             }
           ],
@@ -134,25 +129,24 @@
           "RelPath": "X/X66/X66n1296.xml",
           "FromLb": "0175c08",
           "ToLb": "0175c09",
-          "Kwic": "老僧咸通年前會得法身邊事，咸通年後會得法身向上事",
+          "Kwic": "老僧咸通年前會得法身邊事，咸通年後會得法身向上事。",
           "Curated": true,
           "ContextMasters": [
             {
               "MasterName": "Shushan Kuangren",
               "Roles": [
-                "utterer",
-                "section-subject"
+                "utterer"
               ]
             }
           ],
-          "AttributionNote": "宗門拈古彙集. Exact headword actor: Shushan Kuangren. The complete case assigns the headword-bearing wording to Shushan Kuangren.",
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases” (宗門拈古彙集): Shushan Kuangren owns the exact headword-bearing wording in the complete source unit.",
           "MasterName": "Shushan Kuangren"
         },
         {
           "RelPath": "J/J25/J25nB171.xml",
-          "FromLb": "0545a22",
-          "ToLb": "0545a22",
-          "Kwic": "且道如何是法身向上事？",
+          "FromLb": "0545a17",
+          "ToLb": "0545a27",
+          "Kwic": "：「僧問雲門：『如何是清淨法身？』門云：『六不收。』道林和尚拈云：『只道得一半。若問道林，只對他道：「一不立。」』乃頌云：『一不立，六不收，突然那更有蹤由？無限青山留不住，落花流水太悠悠。』」師拈云：「還知二大老鼻孔落在什麼處？然雖不負來機，盡力道將來，秪道得法身邊事。且道如何是法身向上事？」豎起拂子云：「龍得水時添意氣，虎逢山勢長威獰。」舉：「僧問歸宗：『如何是玄旨？』云：『無人能會。』僧云：『向者如何？』云：『有向即乖。』僧云：『不向者如何？』云：『誰求玄旨？』又云：『去！無汝用心處。』僧云：『豈無方便門令學人得入？』云：『觀音妙智力，能救世間苦。』僧云：『如",
           "MasterName": "Tianyin Yuanxiu",
           "Curated": true,
           "ContextMasters": [
@@ -163,13 +157,13 @@
               ]
             }
           ],
-          "AttributionNote": "天隱和尚語錄. Exact headword actor: Tianyin Yuanxiu. The complete case assigns the headword-bearing wording to Tianyin Yuanxiu."
+          "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu owns the exact headword-bearing wording in the complete source unit."
         },
         {
           "RelPath": "X/X71/X71n1412.xml",
           "FromLb": "0216b09",
           "ToLb": "0216b10",
-          "Kwic": "疎山云：咸通年已前會法身邊事，咸通年已後會法身向上事。",
+          "Kwic": "上堂，舉：疎山云：咸通年已前會法身邊事，咸通年已後會法身向上事。",
           "MasterName": "Shushan Kuangren",
           "Curated": true,
           "ContextMasters": [
@@ -180,7 +174,7 @@
               ]
             }
           ],
-          "AttributionNote": "古林清茂禪師語錄. Exact headword actor: Shushan Kuangren. The recut isolates Shushan’s quoted formulation and excludes Yunmen’s later repetition of it."
+          "AttributionNote": "Source record (X/X71/X71n1412.xml). Recorded Sayings of Chan Master Gulin Qingmao (古林清茂禪師語錄): Shushan Kuangren owns the exact headword-bearing wording in the complete source unit."
         }
       ],
       "ClaimAnchors": [],
@@ -195,7 +189,9 @@
       "RelatedMasters": [
         "Jingqing Daofu",
         "Shushan Kuangren",
-        "Tianyin Yuanxiu"
+        "Tianyin Yuanxiu",
+        "Longya Judun",
+        "Qingshan Shoulong"
       ],
       "RelatedTerms": [],
       "OpeningClaimEvidenceKeys": [

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "closure-english-first-attribution-independent-audit.v1",
+  "verdict": "KEEP",
+  "reviewedLedger": "maintenance/closure-final-depth-regression-8-ledger.json",
+  "reviewedLedgerSha256": "ca21ef643d2c51252c872b98f05acdd09da67ca25fa4eb07d951edc00defec70",
+  "scopeEntries": 8,
+  "scopeTranslatedNotes": 11,
+  "readOnly": true,
+  "entryOrWorksheetWrites": 0,
+  "checks": {
+    "currentEntryHashesMatchLedger": "8/8",
+    "currentWorksheetHashesMatchLedger": "8/8",
+    "canonicalCompilerByteParity": "8/8",
+    "targetedKwicExactWithLineBounds": "11/11",
+    "fullContextActorSemanticsPreserved": "11/11",
+    "englishFirstWording": "11/11",
+    "unsupportedInterpretationIntroduced": 0
+  },
+  "findings": [
+    "無繩自縛 preserves Baizhang Huaihai as utterer inside the continuous master-said/further-said discourse.",
+    "禪人 correctly distinguishes Liu Chongqing's signed preface, Yinyuan Longqi's formal address, and two duplicated editorial headings from the following authored texts.",
+    "剎竿 and 白拈賊 translate the explicit verse-says frame while retaining reviewed-unnamed verse authors rather than assigning the verses to the compiler.",
+    "立定腳跟 preserves Zhean Jingfan as speaker and correctly treats Yunmen in the closing warning as monastery deixis, not Yunmen Wenyan.",
+    "護生 preserves the unnamed ancient verse author as utterer and Nanshi Wenxiu as later raiser.",
+    "長老 preserves the five hundred unnamed immortals as collective utterers and Ananda as addressee.",
+    "無縫塔 preserves Fahai Li as utterer under the explicit mounting-the-seat and addressing-the-assembly frame."
+  ],
+  "hardPass": true
+}

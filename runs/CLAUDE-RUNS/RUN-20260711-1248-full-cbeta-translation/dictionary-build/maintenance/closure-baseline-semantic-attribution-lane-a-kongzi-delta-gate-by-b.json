@@ -1,0 +1,206 @@
+{
+  "generatedUtc": "2026-07-16T21:54:05.494461+00:00",
+  "elapsedSeconds": 4.593,
+  "hardPass": false,
+  "entries": [
+    {
+      "id": "t_9d2a5e9aa477",
+      "term": "孔子",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+      "sha256": "21557a419799343d90d8fd3998a6052dc80d78dd8e4f52d57cf6fd4489be9b8e"
+    }
+  ],
+  "exactKwic": {
+    "entries": 1,
+    "verified": 9,
+    "occurrenceVerified": 9,
+    "claimAnchorVerified": 0,
+    "failureCount": 0,
+    "results": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+        "id": "t_9d2a5e9aa477",
+        "term": "孔子",
+        "verified": 9,
+        "occurrenceVerified": 9,
+        "claimAnchorVerified": 0,
+        "failures": []
+      }
+    ]
+  },
+  "phaseTimings": {
+    "exactKwic": 0.332,
+    "attribution": 3.732,
+    "publicFeedback": 1.006,
+    "depthSense": 3.59,
+    "countClaims": 3.666,
+    "workSourceValidation": 0.957,
+    "corpusBaseline": 0.921,
+    "frozenHistoricalTerms": 1.76,
+    "attributionPackets": 0
+  },
+  "attribution": {
+    "exitCode": 1,
+    "elapsedSeconds": 3.732,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "occurrences": 9,
+        "named_occurrences": 7,
+        "deferred_non_roster": 4,
+        "noncanonical_master_name": 3,
+        "context_master_links": 11,
+        "deferred_non_roster_context": 5,
+        "noncanonical_context_master_name": 4,
+        "attribution_notes": 9,
+        "actor_reviewed_unnamed": 1,
+        "actor_identified_non_master": 1,
+        "pending_roster_master": 1,
+        "pending_roster_context_master": 1
+      },
+      "hardFailures": 7,
+      "failures": [
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o1: 'Li Changgeng' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o1 c1: 'Li Changgeng' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o3: 'Haiyue Tianyan Qi' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o3 c1: 'Haiyue Tianyan Qi' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o7 c1: 'Letan Hongying' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o9: 'Liu Jingchen' is not roster names[0]"
+        },
+        {
+          "kind": "noncanonical_context_master_name",
+          "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json",
+          "detail": "孔子 s1 o9 c1: 'Liu Jingchen' is not roster names[0]"
+        }
+      ]
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"occurrences\": 9,\n    \"named_occurrences\": 7,\n    \"deferred_non_roster\": 4,\n    \"noncanonical_master_name\": 3,\n    \"context_master_links\": 11,\n    \"deferred_non_roster_context\": 5,\n    \"noncanonical_context_master_name\": 4,\n    \"attribution_notes\": 9,\n    \"actor_reviewed_unnamed\": 1,\n    \"actor_identified_non_master\": 1,\n    \"pending_roster_master\": 1,\n    \"pending_roster_context_master\": 1\n  },\n  \"hardFailures\": 7,\n  \"failures\": [\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o1: 'Li Changgeng' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o1 c1: 'Li Changgeng' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o3: 'Haiyue Tianyan Qi' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o3 c1: 'Haiyue Tianyan Qi' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o7 c1: 'Letan Hongying' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o9: 'Liu Jingchen' is not roster names[0]\"\n    },\n    {\n      \"kind\": \"noncanonical_context_master_name\",\n      \"entry\": \"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-staging-20260716/entries/t_9d2a5e9aa477/entry.v2.json\",\n      \"detail\": \"孔子 s1 o9 c1: 'Liu Jingchen' is not roster names[0]\"\n    }\n  ]\n}\n"
+  },
+  "publicFeedback": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.006,
+    "payload": {
+      "entries": 1,
+      "passing": 0,
+      "flagged": 1,
+      "flagsByKind": {
+        "public-feedback-ledger-missing": 1
+      }
+    },
+    "output": "{\n  \"entries\": 1,\n  \"passing\": 0,\n  \"flagged\": 1,\n  \"flagsByKind\": {\n    \"public-feedback-ledger-missing\": 1\n  }\n}\nreport: /tmp/tmp_3jfl519.json\n"
+  },
+  "depthSense": {
+    "exitCode": 2,
+    "elapsedSeconds": 3.59,
+    "payload": {
+      "audited": 1,
+      "hardFailed": 1,
+      "reviewFlagged": 1,
+      "singleSense": 1,
+      "tenOrMoreOccurrences": 0,
+      "batchCluster": null,
+      "clusterScopeIds": [
+        "t_9d2a5e9aa477"
+      ]
+    },
+    "output": "{\n  \"audited\": 1,\n  \"hardFailed\": 1,\n  \"reviewFlagged\": 1,\n  \"singleSense\": 1,\n  \"tenOrMoreOccurrences\": 0,\n  \"batchCluster\": null,\n  \"clusterScopeIds\": [\n    \"t_9d2a5e9aa477\"\n  ]\n}\nreport: /tmp/tmpazidc77n-depth.json\n",
+    "report": "/tmp/tmpazidc77n-depth.json"
+  },
+  "countClaims": {
+    "exitCode": 0,
+    "elapsedSeconds": 3.666,
+    "payload": {
+      "entryCount": 1,
+      "claimCount": 1,
+      "candidatePhraseCount": 1,
+      "mismatchCount": 0,
+      "noNearCandidateCount": 1,
+      "mismatches": []
+    },
+    "output": "{\n  \"entryCount\": 1,\n  \"claimCount\": 1,\n  \"candidatePhraseCount\": 1,\n  \"mismatchCount\": 0,\n  \"noNearCandidateCount\": 1,\n  \"mismatches\": []\n}\n"
+  },
+  "workSourceValidation": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.957,
+    "payload": {
+      "counts": {
+        "entries": 1,
+        "senses": 1,
+        "multiSourceSenses": 1
+      },
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"counts\": {\n    \"entries\": 1,\n    \"senses\": 1,\n    \"multiSourceSenses\": 1\n  },\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "corpusBaseline": {
+    "exitCode": 0,
+    "elapsedSeconds": 0.921,
+    "payload": {
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "frozenHistoricalTerms": {
+    "exitCode": 0,
+    "elapsedSeconds": 1.76,
+    "payload": {
+      "checked": 641,
+      "hardFailures": 0,
+      "failures": []
+    },
+    "output": "{\n  \"checked\": 641,\n  \"hardFailures\": 0,\n  \"failures\": []\n}\n"
+  },
+  "forbiddenEnglish": [],
+  "attributionPackets": {
+    "exitCode": 0,
+    "elapsedSeconds": 0,
+    "payload": {
+      "entries": 1,
+      "occurrences": 9,
+      "tierACandidates": 0,
+      "reviewRequired": 9
+    },
+    "output": "reused hash-exact attribution packet\n",
+    "cacheHit": true,
+    "report": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/closure-baseline-semantic-attribution-lane-a-kongzi-delta-gate-by-b-attribution-packets.json",
+    "generatorVersion": 7,
+    "turnProofMissing": 0,
+    "occurrenceIdentityFailures": 0,
+    "hardPass": true
+  },
+  "semanticReviewRequired": true,
+  "clusterScopeIds": [
+    "t_9d2a5e9aa477"
+  ],
+  "strictRosterScopeIds": [
+    "t_9d2a5e9aa477"
+  ],
+  "rosterDeferred": false,
+  "cohortLock": "/tmp/cbeta-cohort-gates/72e5bf7d5e6ca43be45331315685efbf932744077a72ce9e23061493c240574f.lock"
+}

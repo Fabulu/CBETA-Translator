@@ -36,7 +36,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (列祖提綱錄): Mian Xianjie delivers the imperial-opening上堂 and utters the iron-ox formulation.",
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): Mian Xianjie delivers the imperial-opening(上堂) and utters the iron-ox formulation.",
           "MasterName": "Mian Xianjie"
         },
         {
@@ -53,7 +53,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (五燈全書): Lingyan Chongque utters the formulation in his explicitly headed上堂.",
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)): Lingyan Chongque utters the formulation in his explicitly headed hall address.",
           "MasterName": "Lingyan Chongque"
         },
         {
@@ -71,7 +71,7 @@
             }
           ],
           "MasterName": "Yuanwu Keqin",
-          "AttributionNote": "Source text (圓悟佛果禪師語錄): Yuanwu Keqin says the iron-ox mechanism cannot be caged."
+          "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄): Yuanwu Keqin says the iron-ox mechanism cannot be caged."
         },
         {
           "RelPath": "J/J26/J26nB187.xml",
@@ -81,23 +81,23 @@
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Tian'an Sheng",
+              "MasterName": "Fengxue Yanzhao",
               "Roles": [
                 "utterer",
-                "record-owner",
-                "later-raiser"
+                "case-figure"
               ]
             },
             {
-              "MasterName": "Fengxue Yanzhao",
+              "MasterName": "Tian'an Sheng",
               "Roles": [
-                "quoted-source",
-                "case-figure"
+                "later-raiser",
+                "commentator",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Recorded Sayings of Tian'an Sheng, complete hall address: Tian'an raises and comments on Fengxue Yanzhao's iron-ox mechanism case. Tian'an utters the stored wording; Fengxue is the quoted source.",
-          "MasterName": "Tian'an Sheng"
+          "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng (天岸昇禪師語錄): Tian'an Sheng raises Fengxue Yanzhao's old case; the embedded iron-ox-mechanism clause belongs to Fengxue.",
+          "MasterName": "Fengxue Yanzhao"
         },
         {
           "RelPath": "L/L155/L155n1643.xml",
@@ -119,7 +119,7 @@
               ]
             }
           ],
-          "AttributionNote": "Source text (弘覺忞禪師語錄): an unnamed monk quotes Fengxue's line while asking its meaning; Hongjue Min answers.",
+          "AttributionNote": "Source record (L/L155/L155n1643.xml). Recorded Sayings of Chan Master Hongjue Min (弘覺忞禪師語錄): The actor is unnamed: an unnamed monk quotes Fengxue's line while asking its meaning; Hongjue Min answers.",
           "ActorAttribution": {
             "Status": "reviewed-unnamed",
             "Kind": "unnamed participant",
@@ -147,23 +147,23 @@
           "Curated": true,
           "ContextMasters": [
             {
-              "MasterName": "Yuanwu Keqin",
+              "MasterName": "Fengxue Yanzhao",
               "Roles": [
                 "utterer",
-                "commentator",
-                "later-raiser"
+                "case-figure"
               ]
             },
             {
-              "MasterName": "Fengxue Yanzhao",
+              "MasterName": "Yuanwu Keqin",
               "Roles": [
-                "quoted-source",
-                "case-figure"
+                "later-raiser",
+                "commentator",
+                "record-owner"
               ]
             }
           ],
-          "AttributionNote": "Blue Cliff Record, complete case introduction: Yuanwu Keqin raises Fengxue Yanzhao's iron-ox mechanism case. Yuanwu utters the stored wording; Fengxue is the quoted source.",
-          "MasterName": "Yuanwu Keqin"
+          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄): Yuanwu Keqin raises Fengxue Yanzhao's old case; the embedded iron-ox-mechanism clause belongs to Fengxue.",
+          "MasterName": "Fengxue Yanzhao"
         }
       ],
       "ClaimAnchors": [],
@@ -177,10 +177,14 @@
       ],
       "RelatedMasters": [
         "Hongjue Min",
-        "Yuanwu Keqin"
+        "Yuanwu Keqin",
+        "Mian Xianjie",
+        "Lingyan Chongque",
+        "Tian'an Sheng",
+        "Fengxue Yanzhao"
       ],
       "RelatedTerms": [],
-      "Explanation": "The mechanism of the iron ox is Fengxue Yanzhao's image for the ancestral seal as a working that cannot be handled by choosing motion or rest. His case says that when it goes the seal holds fast, when it stays the seal breaks, and then asks what happens when it neither goes nor stays. Yuanwu Keqin calls this mechanism impossible to cage; later masters quote the case in public interviews and demand an answer beyond merely repeating its terms. The iron ox supplies apparent immovability, while 機 makes that image an active test rather than a static object."
+      "Explanation": "The mechanism of the iron ox is Fengxue Yanzhao's image for the ancestral seal as a working that cannot be handled by choosing motion or rest. His case says that when it goes the seal holds fast, when it stays the seal breaks, and then asks what happens when it neither goes nor stays. Yuanwu Keqin calls this mechanism impossible to cage; later masters quote the case in public interviews and demand an answer beyond merely repeating its terms. The iron ox supplies apparent immovability, while (機) makes that image an active test rather than a static object."
     }
   ]
 }
