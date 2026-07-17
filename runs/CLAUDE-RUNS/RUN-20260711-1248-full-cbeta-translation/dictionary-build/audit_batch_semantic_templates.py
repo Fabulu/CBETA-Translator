@@ -31,6 +31,10 @@ FORBIDDEN_STOCK = (
     "the lookup probes preserve the literal components and offer ordinary english word orders without adding an interpretation",
     "the english target preserves every meaning-bearing component of the chinese headword",
     "related corpus term retained separately rather than collapsed into this headword",
+    "the complete cases retain one referent or lexical action; changing speaker, appraisal, grammatical frame, or deployment does not create a second thing",
+    "the aliases expose literal wording and corpus-attested retrieval language specific to <term>, without adding an interpretation menu",
+    "the complete cases were checked for substring and modifier capture; the stored rows attest <term> as the lexical unit",
+    "related compounds and overlapping phrases were checked; none changes the one-thing ruling for <term>",
 )
 
 

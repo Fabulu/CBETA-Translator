@@ -1215,6 +1215,13 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     products. This gate was added after an investigation-wave helper attempted
     regex/row-position attribution and universal one-sense output; it was
     stopped after one canary and no such artifact may enter `terms/`.
+    Before any authoring write, run `assert_construction_lane_assignment.py`
+    with the lane, lane position, ID, and term. The frozen lane manifest is the
+    authority; never infer the next row from a global backlog ordinal, a prior
+    report, or memory. A mismatch is a collision blocker and no draft may be
+    written. This gate was added after a Lane-C worker nearly rebuilt Lane-A's
+    `拈花示眾`; the assertion caught the correct Lane-C row as `同生同死`
+    before any colliding file was created.
 18. **⛔ NO READZEN PRODUCTION PUBLICATION BEFORE FINAL AUTHORIZATION.** During
     construction, workers may generate local `termbase.v2.json`, search indexes,
     and shards so merge/reconciliation gates can test the exact website payload;
