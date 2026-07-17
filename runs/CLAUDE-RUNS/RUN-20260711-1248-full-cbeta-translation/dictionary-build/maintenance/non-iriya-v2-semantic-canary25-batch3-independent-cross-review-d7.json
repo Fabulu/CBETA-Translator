@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-canary25-batch3-independent-cross-review.v1",
+  "decision": "REVISE",
+  "scope": "Independent review of all 25 frozen batch-3 identities, counts, full cases, evidence, canonical work identity, family boundaries, and semantic decisions. No authority mutation.",
+  "reviewedSelection": "maintenance/non-iriya-v2-semantic-canary25-batch3-selection.md",
+  "reviewedSelectionSha256": "89c8b89a3a3fd5a61e8d2dd18357340edf0c2e47d7e99885f087f9ebbcdb7cea",
+  "reviewedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch3-ledger.md",
+  "reviewedLedgerSha256": "2b695ae5c0f7a977a0bc1a2684676f7fb236e654c30fb4b90dc97010cd2ec038",
+  "sourceReservoir": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "sourceReservoirSha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "mechanicalChecks": {
+    "selection": "PASS: exactly 25 unique 3-8-graph identities; all ranks and stored reservoir identities match.",
+    "exactCounts": "PASS: all 25 live zc hit/file/distinct-work triples reproduce.",
+    "freshFullCases": "PASS: 50 independently retrieved exact windows, two canonical-distinct works per term, were reviewed.",
+    "coveredOrPlannedExactOverlap": "PASS: zero intersection with the frozen 6,408-term covered/planned set and zero with the current 454-row Iriya registry.",
+    "nestedFamilies": "PASS except row 5 semantic boundary: covered-child relations were treated as navigation and assessed under the different-job test.",
+    "displayedEvidence": "REVISE rows 3, 7, 14, 16, 19, 21, and 24: the displayed backtick strings fail exact zc.verify as written (editorial ellipsis, punctuation/wording mismatch, or non-contiguous shorthand). The underlying term attestations and live counts remain valid; replace them with contiguous exact windows.",
+    "canonicalWorkIdentity": "PASS: every fresh pair is allowlisted and uses two distinct canonical work IDs."
+  },
+  "semanticSummary": {
+    "semanticPASS": 24,
+    "semanticREVISE": 1,
+    "correctedDispositions": {"KEEP": 13, "REJECT": 12, "PROVISIONAL": 0},
+    "evidenceRepairRows": [3, 7, 14, 16, 19, 21, 24]
+  },
+  "rows": [
+    {"row":1,"rank":308,"term":"拂子曰","author":"REJECT","semanticVerdict":"PASS","reason":"Boundary tail after variable whisk actions; 拂子 does not speak."},
+    {"row":2,"rank":339,"term":"舉拂子","author":"KEEP","semanticVerdict":"PASS","reason":"Complete recurring whisk-presentation gesture distinct from the implement noun."},
+    {"row":3,"rank":358,"term":"拄杖頭","author":"KEEP","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Stable staff-tip locus in Chan deployment; replace the non-exact displayed window."},
+    {"row":4,"rank":585,"term":"師良久","author":"REJECT","semanticVerdict":"PASS","reason":"Actor wrapper around covered 良久."},
+    {"row":5,"rank":691,"term":"以拂子擊","author":"KEEP","semanticVerdict":"REVISE","requiredDisposition":"REJECT","reason":"Incomplete argument frame: the variable object (禪床, 香臺, etc.) completes 擊. The string is instrumental syntax, not a stable action unit distinct from its occurrences."},
+    {"row":6,"rank":736,"term":"展兩手","author":"KEEP","semanticVerdict":"PASS","reason":"Complete recurring embodied response with no covered nested identity."},
+    {"row":7,"rank":852,"term":"豎起拂子","author":"KEEP","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Complete whisk-raising test; replace displayed non-exact shorthand."},
+    {"row":8,"rank":964,"term":"擲拄杖","author":"KEEP","semanticVerdict":"PASS","reason":"Complete recurrent decisive staff action."},
+    {"row":9,"rank":997,"term":"出禮拜","author":"REJECT","semanticVerdict":"PASS","reason":"Boundary join between coming forward and covered 禮拜."},
+    {"row":10,"rank":1303,"term":"召大眾云","author":"REJECT","semanticVerdict":"PASS","reason":"Productive assembly-calling plus speech frame."},
+    {"row":11,"rank":1406,"term":"覿面相呈","author":"KEEP","semanticVerdict":"PASS","reason":"Stable face-to-face presentation formula, not reducible to covered 覿面."},
+    {"row":12,"rank":1418,"term":"呈偈曰","author":"REJECT","semanticVerdict":"PASS","reason":"Narrative submission plus quotation marker."},
+    {"row":13,"rank":1455,"term":"一棒打殺","author":"KEEP","semanticVerdict":"PASS","reason":"Stable sanction image with a job beyond the blow-count child 一棒."},
+    {"row":14,"rank":1487,"term":"拄杖打","author":"REJECT","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Boundary slice with unstable object/argument structure; replace displayed non-exact evidence."},
+    {"row":15,"rank":1620,"term":"禮拜起","author":"REJECT","semanticVerdict":"PASS","reason":"Covered bow followed by rising or the next action."},
+    {"row":16,"rank":1743,"term":"拈起拄杖云","author":"REJECT","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Redundant overcombination of action and speech-frame families; replace displayed non-exact evidence."},
+    {"row":17,"rank":2055,"term":"侍者請","author":"REJECT","semanticVerdict":"PASS","reason":"Role plus generic request with variable object."},
+    {"row":18,"rank":2110,"term":"喚作拄杖","author":"KEEP","semanticVerdict":"PASS","reason":"Stable naming-test clause contrasting calling/not calling the object a staff."},
+    {"row":19,"rank":2232,"term":"揮拂子","author":"KEEP","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Complete recurring whisk gesture; replace displayed non-exact evidence."},
+    {"row":20,"rank":2295,"term":"放汝三十棒","author":"KEEP","semanticVerdict":"PASS","reason":"Stable paradoxical adjudicative formula distinct from the sanction noun 三十棒."},
+    {"row":21,"rank":2428,"term":"指法座","author":"KEEP","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Complete formal installation action; replace displayed non-exact evidence."},
+    {"row":22,"rank":2477,"term":"驀豎拂子","author":"REJECT","semanticVerdict":"PASS","reason":"Adverb-only variant of covered 豎拂子 family."},
+    {"row":23,"rank":2659,"term":"不禮拜","author":"REJECT","semanticVerdict":"PASS","reason":"Productive negation of covered 禮拜."},
+    {"row":24,"rank":3257,"term":"豎起拳","author":"KEEP","semanticVerdict":"PASS","evidenceVerdict":"REVISE","reason":"Complete embodied fist-raising test; replace displayed non-exact evidence."},
+    {"row":25,"rank":3805,"term":"出方丈","author":"KEEP","semanticVerdict":"PASS","reason":"Complete institutional movement/action counterpart to 入方丈, beyond the place noun 方丈."}
+  ],
+  "requiredRepairs": [
+    "Change row 5 以拂子擊 from KEEP to REJECT and update the summary to 13 KEEP / 12 REJECT / 0 PROVISIONAL.",
+    "Replace displayed evidence for rows 3, 7, 14, 16, 19, 21, and 24 with contiguous exact zc.verify-passing windows.",
+    "Obtain a focused independent recheck of the repaired ledger before admission use."
+  ],
+  "authoringPerformed": false,
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

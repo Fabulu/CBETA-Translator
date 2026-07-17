@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-canary25-batch2-independent-cross-review.v1",
+  "decision": "REVISE",
+  "scope": "Independent row-by-row review of the frozen batch-2 selection and adjudication ledger. No authority mutation.",
+  "reviewedSelection": "maintenance/non-iriya-v2-semantic-canary25-batch2-selection.md",
+  "reviewedSelectionSha256": "ec7ca39f89342ceeee8bb13642ad77dd1b183acc5089cba3c485470df8f63ddc",
+  "reviewedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch2-ledger.md",
+  "reviewedLedgerSha256": "8444711b20dcf5263e5bae964123eac0c2bd7785a380f58adade2fbe42382734",
+  "sourceReservoir": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "sourceReservoirSha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "mechanicalChecks": {
+    "selectionSizeAndUniqueness": "PASS: exactly 25 unique 3-8-graph identities.",
+    "reservoirIdentityAndRank": "PASS all 25.",
+    "liveExactCounts": "PASS all 25 hit/file/distinct-work triples against zc.batch_count.",
+    "freshFullCases": "PASS: 50 fresh exact windows, two canonical-distinct works per row, were independently read and verified.",
+    "coveredOrPlannedExactOverlap": "PASS: zero intersection with the frozen 6,408-term authority set and zero with the current 454-row Iriya registry.",
+    "displayedEvidence": "REVISE rows 6, 8, and 13: their displayed backtick strings use an ellipsis as editorial shorthand and fail exact zc.verify as written; replace with contiguous exact windows. Remaining displayed anchors are exact, with rows 2/3 sharing the declared source.",
+    "canonicalWorkIdentity": "PASS: fresh evidence pairs have distinct work IDs and every cited file is allowlisted."
+  },
+  "semanticSummary": {
+    "rowVerdicts": {"PASS": 16, "REVISE": 9},
+    "correctedDispositions": {"KEEP": 5, "REJECT": 20, "PROVISIONAL": 0},
+    "basis": "The ledger correctly rejects boundary fragments but inconsistently admits several nested expansions whose only increment is an adverb, aspect marker, speech verb, temporal suffix, or marked modifier. Covered children and covered parents are navigation evidence, not automatic rejection, but these nine rows do not pass the different-job test."
+  },
+  "rows": [
+    {"row":1,"rank":60,"term":"上堂云","author":"REJECT","verdict":"PASS","reason":"Productive section/action plus speech verb; route to covered 上堂 and the utterance."},
+    {"row":2,"rank":79,"term":"師西來意","author":"REJECT","verdict":"PASS","reason":"Boundary substring inside 祖師西來意."},
+    {"row":3,"rank":101,"term":"是祖師西來意","author":"REJECT","verdict":"PASS","reason":"Question-tail substring of 如何是祖師西來意."},
+    {"row":4,"rank":167,"term":"驀拈拄杖","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"驀 only marks suddenness; covered 拈拄杖 already names the same staff-taking action."},
+    {"row":5,"rank":184,"term":"便禮拜","author":"REJECT","verdict":"PASS","reason":"Sequential 便 does not create a unit distinct from covered 禮拜."},
+    {"row":6,"rank":220,"term":"拈拄杖云","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"Like rejected 上堂云, this is covered 拈拄杖 followed by productive speech framing; the displayed ellipsis evidence also needs an exact replacement."},
+    {"row":7,"rank":274,"term":"便歸方丈","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"Covered 歸方丈 already supplies the action; 便 only sequences it."},
+    {"row":8,"rank":326,"term":"天下老和尚","author":"KEEP","verdict":"PASS","reason":"A stable collective authority/foil expression distinct from generic 和尚; replace the displayed ellipsis shorthand with exact evidence."},
+    {"row":9,"rank":354,"term":"與三十棒","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"Covered 三十棒 names the sanction and covered parent 好與三十棒 confirms this is a variable sentence frame, not an independent unit."},
+    {"row":10,"rank":356,"term":"拈起拄杖","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"No stable different job from covered 拈拄杖; 起 is a result/directional complement within the same implement action."},
+    {"row":11,"rank":547,"term":"喚侍者","author":"KEEP","verdict":"PASS","reason":"Complete recurring exchange-opening/test action; not identical with the role 侍者 or the named 三喚侍者 case."},
+    {"row":12,"rank":566,"term":"上堂舉","author":"KEEP","verdict":"PASS","reason":"Stable formal-address operator for raising a prior case or verse, beyond the covered event label 上堂."},
+    {"row":13,"rank":823,"term":"震威一喝","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"The action remains covered 一喝; 震威 marks manner/force without establishing a different lexical job. Displayed ellipsis evidence is also non-exact."},
+    {"row":14,"rank":829,"term":"竪起拂","author":"REJECT","verdict":"PASS","reason":"Truncates the object 拂子 in covered parent 竪起拂子."},
+    {"row":15,"rank":946,"term":"入方丈","author":"KEEP","verdict":"PASS","reason":"Complete institutional access/movement action distinct from the place term 方丈."},
+    {"row":16,"rank":1048,"term":"開堂日","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"Ordinary temporal specialization of covered 開堂; 日 does not create another institutional act."},
+    {"row":17,"rank":1326,"term":"拄杖下座","author":"REJECT","verdict":"PASS","reason":"Boundary collision across variable staff action plus covered 下座."},
+    {"row":18,"rank":1538,"term":"居士請上堂","author":"REJECT","verdict":"PASS","reason":"Actor specialization of 請上堂; sponsor belongs in occurrence context."},
+    {"row":19,"rank":1767,"term":"勘破了","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"Covered 勘破 already names the adversarial verdict; 了 is productive aspect and adds no different job."},
+    {"row":20,"rank":2471,"term":"叉手而立","author":"KEEP","verdict":"PASS","reason":"Complete recurring embodied response with no covered nested identity."},
+    {"row":21,"rank":2489,"term":"賓主歷","author":"REJECT","verdict":"PASS","reason":"Truncation of covered parent 賓主歷然."},
+    {"row":22,"rank":2592,"term":"維那白","author":"REJECT","verdict":"PASS","reason":"Role-plus-productive-verb boundary across 白椎/白云 formulas."},
+    {"row":23,"rank":2135,"term":"法堂前","author":"REJECT","verdict":"PASS","reason":"Ordinary locative expansion of covered 法堂."},
+    {"row":24,"rank":3874,"term":"眾請上堂","author":"REJECT","verdict":"PASS","reason":"Subject specialization of 請上堂."},
+    {"row":25,"rank":4015,"term":"無賓主","author":"KEEP","verdict":"REVISE","requiredDisposition":"REJECT","reason":"The named saying is covered parent 無賓主話; the shorter string is also a productive negation of covered 賓主 and lacks an independent boundary/job."}
+  ],
+  "requiredRepairs": [
+    "Change rows 4, 6, 7, 9, 10, 13, 16, 19, and 25 from KEEP to REJECT and update totals/reasons.",
+    "Replace the non-contiguous displayed evidence strings for rows 6, 8, and 13 with exact contiguous zc.verify-passing windows.",
+    "Reissue the ledger and obtain a focused recheck before any admission use."
+  ],
+  "authoringPerformed": false,
+  "authorityQueueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

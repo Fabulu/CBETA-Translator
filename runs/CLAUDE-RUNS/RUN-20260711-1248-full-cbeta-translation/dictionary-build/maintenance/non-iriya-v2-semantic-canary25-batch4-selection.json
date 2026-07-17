@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-batch-selection.v1",
+  "batch": 4,
+  "selectionRule": "exactly packet ordinals 1-25 from validated next100 navigation packet; no substitutions",
+  "navigationPacket": "maintenance/non-iriya-v2-next100-navigation-packet.json",
+  "navigationPacketSha256": "f078ec41bd0cd6a8e9cb9e7c1692bf24d91604351c3f1f225383ac2d06892ee8",
+  "navigationCheckpoint": {
+    "checkpoint": 1,
+    "path": "maintenance/non-iriya-v2-next100-navigation-checkpoint01.json",
+    "sha256": "4ddba84c77d40eabb20bf9ba6be6cf291490afff62823497ed6721efebfefdd9",
+    "rows": 25
+  },
+  "excludedPriorSemanticIdentityCount": 75,
+  "frozenBeforeSemanticReading": true,
+  "selectedCount": 25,
+  "rows": [
+    {
+      "batchOrdinal": 1,
+      "packetOrdinal": 1,
+      "reservoirRank": 1,
+      "reservoirBand": "3-8",
+      "term": "時如何",
+      "zcExactAtFreeze": {
+        "hits": 14376,
+        "files": 404,
+        "distinctWorks": 399
+      }
+    },
+    {
+      "batchOrdinal": 2,
+      "packetOrdinal": 2,
+      "reservoirRank": 2,
+      "reservoirBand": "3-8",
+      "term": "禪師法",
+      "zcExactAtFreeze": {
+        "hits": 10275,
+        "files": 70,
+        "distinctWorks": 66
+      }
+    },
+    {
+      "batchOrdinal": 3,
+      "packetOrdinal": 3,
+      "reservoirRank": 3,
+      "reservoirBand": "3-8",
+      "term": "師法嗣",
+      "zcExactAtFreeze": {
+        "hits": 10114,
+        "files": 45,
+        "distinctWorks": 41
+      }
+    },
+    {
+      "batchOrdinal": 4,
+      "packetOrdinal": 4,
+      "reservoirRank": 4,
+      "reservoirBand": "3-8",
+      "term": "禪師法嗣",
+      "zcExactAtFreeze": {
+        "hits": 9982,
+        "files": 30,
+        "distinctWorks": 27
+      }
+    },
+    {
+      "batchOrdinal": 5,
+      "packetOrdinal": 5,
+      "reservoirRank": 5,
+      "reservoirBand": "3-8",
+      "term": "甚麼處",
+      "zcExactAtFreeze": {
+        "hits": 8408,
+        "files": 369,
+        "distinctWorks": 364
+      }
+    },
+    {
+      "batchOrdinal": 6,
+      "packetOrdinal": 6,
+      "reservoirRank": 6,
+      "reservoirBand": "3-8",
+      "term": "又作麼",
+      "zcExactAtFreeze": {
+        "hits": 6714,
+        "files": 401,
+        "distinctWorks": 395
+      }
+    },
+    {
+      "batchOrdinal": 7,
+      "packetOrdinal": 7,
+      "reservoirRank": 7,
+      "reservoirBand": "3-8",
+      "term": "又作麼生",
+      "zcExactAtFreeze": {
+        "hits": 6667,
+        "files": 400,
+        "distinctWorks": 394
+      }
+    },
+    {
+      "batchOrdinal": 8,
+      "packetOrdinal": 8,
+      "reservoirRank": 8,
+      "reservoirBand": "3-8",
+      "term": "什麼處",
+      "zcExactAtFreeze": {
+        "hits": 5969,
+        "files": 292,
+        "distinctWorks": 289
+      }
+    },
+    {
+      "batchOrdinal": 9,
+      "packetOrdinal": 9,
+      "reservoirRank": 9,
+      "reservoirBand": "3-8",
+      "term": "為甚麼",
+      "zcExactAtFreeze": {
+        "hits": 5373,
+        "files": 293,
+        "distinctWorks": 288
+      }
+    },
+    {
+      "batchOrdinal": 10,
+      "packetOrdinal": 10,
+      "reservoirRank": 11,
+      "reservoirBand": "3-8",
+      "term": "問如何",
+      "zcExactAtFreeze": {
+        "hits": 5197,
+        "files": 232,
+        "distinctWorks": 226
+      }
+    },
+    {
+      "batchOrdinal": 11,
+      "packetOrdinal": 11,
+      "reservoirRank": 251,
+      "reservoirBand": "3-8",
+      "term": "禪師因",
+      "zcExactAtFreeze": {
+        "hits": 1230,
+        "files": 142,
+        "distinctWorks": 139
+      }
+    },
+    {
+      "batchOrdinal": 12,
+      "packetOrdinal": 12,
+      "reservoirRank": 252,
+      "reservoirBand": "3-8",
+      "term": "身立命",
+      "zcExactAtFreeze": {
+        "hits": 1220,
+        "files": 256,
+        "distinctWorks": 250
+      }
+    },
+    {
+      "batchOrdinal": 13,
+      "packetOrdinal": 13,
+      "reservoirRank": 253,
+      "reservoirBand": "3-8",
+      "term": "安身立",
+      "zcExactAtFreeze": {
+        "hits": 1218,
+        "files": 255,
+        "distinctWorks": 249
+      }
+    },
+    {
+      "batchOrdinal": 14,
+      "packetOrdinal": 14,
+      "reservoirRank": 254,
+      "reservoirBand": "3-8",
+      "term": "意作麼",
+      "zcExactAtFreeze": {
+        "hits": 1218,
+        "files": 219,
+        "distinctWorks": 215
+      }
+    },
+    {
+      "batchOrdinal": 15,
+      "packetOrdinal": 15,
+      "reservoirRank": 255,
+      "reservoirBand": "3-8",
+      "term": "是第一",
+      "zcExactAtFreeze": {
+        "hits": 1216,
+        "files": 257,
+        "distinctWorks": 252
+      }
+    },
+    {
+      "batchOrdinal": 16,
+      "packetOrdinal": 16,
+      "reservoirRank": 256,
+      "reservoirBand": "3-8",
+      "term": "未生前",
+      "zcExactAtFreeze": {
+        "hits": 1211,
+        "files": 259,
+        "distinctWorks": 255
+      }
+    },
+    {
+      "batchOrdinal": 17,
+      "packetOrdinal": 17,
+      "reservoirRank": 257,
+      "reservoirBand": "3-8",
+      "term": "何是佛法",
+      "zcExactAtFreeze": {
+        "hits": 1209,
+        "files": 207,
+        "distinctWorks": 203
+      }
+    },
+    {
+      "batchOrdinal": 18,
+      "packetOrdinal": 18,
+      "reservoirRank": 1001,
+      "reservoirBand": "3-8",
+      "term": "吸盡西江",
+      "zcExactAtFreeze": {
+        "hits": 544,
+        "files": 191,
+        "distinctWorks": 187
+      }
+    },
+    {
+      "batchOrdinal": 19,
+      "packetOrdinal": 19,
+      "reservoirRank": 1002,
+      "reservoirBand": "3-8",
+      "term": "恁麼時如何",
+      "zcExactAtFreeze": {
+        "hits": 544,
+        "files": 180,
+        "distinctWorks": 177
+      }
+    },
+    {
+      "batchOrdinal": 20,
+      "packetOrdinal": 20,
+      "reservoirRank": 1003,
+      "reservoirBand": "3-8",
+      "term": "恁麼時如",
+      "zcExactAtFreeze": {
+        "hits": 544,
+        "files": 180,
+        "distinctWorks": 177
+      }
+    },
+    {
+      "batchOrdinal": 21,
+      "packetOrdinal": 21,
+      "reservoirRank": 1004,
+      "reservoirBand": "3-8",
+      "term": "一喝云",
+      "zcExactAtFreeze": {
+        "hits": 544,
+        "files": 133,
+        "distinctWorks": 130
+      }
+    },
+    {
+      "batchOrdinal": 22,
+      "packetOrdinal": 22,
+      "reservoirRank": 1005,
+      "reservoirBand": "3-8",
+      "term": "圓禪師",
+      "zcExactAtFreeze": {
+        "hits": 544,
+        "files": 76,
+        "distinctWorks": 73
+      }
+    },
+    {
+      "batchOrdinal": 23,
+      "packetOrdinal": 23,
+      "reservoirRank": 2501,
+      "reservoirBand": "3-8",
+      "term": "笑呵呵",
+      "zcExactAtFreeze": {
+        "hits": 343,
+        "files": 152,
+        "distinctWorks": 148
+      }
+    },
+    {
+      "batchOrdinal": 24,
+      "packetOrdinal": 24,
+      "reservoirRank": 2502,
+      "reservoirBand": "3-8",
+      "term": "起一念",
+      "zcExactAtFreeze": {
+        "hits": 343,
+        "files": 142,
+        "distinctWorks": 139
+      }
+    },
+    {
+      "batchOrdinal": 25,
+      "packetOrdinal": 25,
+      "reservoirRank": 2503,
+      "reservoirBand": "3-8",
+      "term": "何為人",
+      "zcExactAtFreeze": {
+        "hits": 343,
+        "files": 136,
+        "distinctWorks": 132
+      }
+    }
+  ],
+  "semanticDispositionIncluded": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

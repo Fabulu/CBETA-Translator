@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-canary25-batch3-repair-focused-recheck.v1",
+  "decision": "PASS",
+  "repairedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch3-ledger.md",
+  "repairedLedgerSha256": "cc058ac94c1e7aebfc453bc62c7695e240f2dda279575e738e8ac239cb3be2d2",
+  "repairReceipt": "maintenance/non-iriya-v2-semantic-canary25-batch3-repair-receipt.md",
+  "repairReceiptSha256": "fd488fe7aa754ece50ecc73fdf27d13b3fc23b38fffb93397f2f0bac7e6b2c24",
+  "reviewAuthority": "maintenance/non-iriya-v2-semantic-canary25-batch3-independent-cross-review-d7.json",
+  "reviewAuthoritySha256": "0a78763bf4002abbe53471b7ebec17d4b2ecd2b71a2c8750d2f64f43b796adcf",
+  "preRepairLedgerSha256": "2b695ae5c0f7a977a0bc1a2684676f7fb236e654c30fb4b90dc97010cd2ec038",
+  "checks": {
+    "repairScope": "PASS: row 5 alone changed semantic disposition/reason; seven authorized evidence displays changed to contiguous exact windows; totals and heading were updated consistently.",
+    "row5": "PASS: 以拂子擊 is REJECT because its variable object completes 擊, making it an instrumental argument frame rather than a stable independent action unit.",
+    "replacementEvidence": {
+      "3 拄杖頭": "PASS exact count 1, X/X64/X64n1260.xml, LB 0033a11-0033a12.",
+      "7 豎起拂子": "PASS exact count 1, X/X82/X82n1571.xml, LB 0044b07.",
+      "14 拄杖打": "PASS exact count 1, C/C077/C077n1710.xml, LB 0650a15-0650a16.",
+      "16 拈起拄杖云": "PASS exact count 1, C/C077/C077n1710.xml, LB 0660b12.",
+      "19 揮拂子": "PASS exact count 1, J/J40/J40nB494.xml, LB 0528c11.",
+      "21 指法座": "PASS exact count 1, T/T47/T47n1997.xml, LB 0714b24-0714b25.",
+      "24 豎起拳": "PASS exact count 1, X/X82/X82n1571.xml, LB 0027b16."
+    },
+    "allDisplayedEvidence": "PASS: all 25 current displayed source windows pass exact zc.verify as written.",
+    "otherTwentyFour": "PASS: all other semantic dispositions and reasons remain unchanged. All evidence remains unchanged except the seven explicitly authorized evidence-only replacements.",
+    "identitiesRanksCounts": "PASS: all frozen identities/ranks and hit/file/work triples remain unchanged.",
+    "totals": "PASS 13 KEEP / 12 REJECT / 0 PROVISIONAL.",
+    "authorityEffects": "PASS none: no queue, build, registry, or lineage mutation."
+  },
+  "requiredFurtherRepair": false,
+  "authoringPerformed": false,
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}
