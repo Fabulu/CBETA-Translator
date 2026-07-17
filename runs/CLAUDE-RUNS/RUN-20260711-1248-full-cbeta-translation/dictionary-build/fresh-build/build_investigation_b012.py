@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+"""Explicit evidence-first article for Lane B position 012: 淨躶躶."""
+import datetime,json,subprocess,sys
+from pathlib import Path
+DB=Path(__file__).resolve().parent.parent;ROOT=DB/'fresh-build';sys.path.insert(0,str(DB));import zc
+TERM='淨躶躶';BASE='42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a';NOW=datetime.datetime.now(datetime.timezone.utc).isoformat();M=json.loads((DB/'maintenance/investigation-next300-construction-lane-b.json').read_text());ID=next(x['id'] for x in M['rows'] if x['headword']==TERM)
+ROWS=[
+('M/M59/M59n1540.xml','chan:dahui-pushuo','一切凡聖與伊作主宰不得淨躶躶絕承當赤洒洒沒窠臼','General Discourses of Chan Master Dahui Pujue','Dahui Zonggao','Dahui Zonggao says that neither ordinary nor holy figures can rule it: cleanly naked, it admits no taking-on; bare and unconfined, it has no nest.'),
+('M/M59/M59n1540.xml','chan:dahui-pushuo','安排也安排不得鬪湊也鬪湊不著全體恁麼來全體恁麼去淨躶躶絕承當赤洒洒沒窠窟','General Discourses of Chan Master Dahui Pujue','Dahui Zonggao','Dahui Zonggao says it cannot be arranged or pieced together; wholly coming and going thus, it is cleanly naked and admits no taking-on.'),
+('X/X83/X83n1578.xml','chan:zhiyue-lu','此事不在眼上，亦不在境上，須是絕知見忘得失，淨躶躶赤灑灑，各各當人分上究取始得。','Record Pointing at the Moon','Yuanwu Keqin','The compilation quotes Yuanwu Keqin saying the matter is neither on the eyes nor on objects; knowledge and gain and loss must end, cleanly naked and bare, and each person must investigate it personally.'),
+('T/T47/T47n1997.xml','work:T47n1997','活鱍鱍絕承當。淨躶躶無回互。直饒棒如雨點。喝似奔雷。猶未動著向上關捩在。','Recorded Sayings of Chan Master Yuanwu Foguo','Yuanwu Keqin','Yuanwu Keqin calls it lively and beyond taking-on, cleanly naked and without turning aside, yet says even blows and shouts have not touched the higher pivot.'),
+('T/T47/T47n1997.xml','work:T47n1997','淨躶躶絕思惟。赤灑灑沒可把。猶未離這邊事在。','Recorded Sayings of Chan Master Yuanwu Foguo','Yuanwu Keqin','Yuanwu Keqin says cleanly naked is beyond thought and bare has nothing to grasp, then explicitly warns that this still has not left this side.'),
+('B/B25/B25n0145.xml','work:B25n0145','設使屏打得箇昏沉散亂去。面前淨躶躶地。錯之又錯者也','Extended Record of Zhongfeng','Zhongfeng Mingben','Zhongfeng Mingben says that even if drowsiness and distraction are driven away and what is before one is cleanly naked, this is error piled upon error.'),
+('B/B25/B25n0145.xml','work:B25n0145','人定亥淨躶躶兮赤洒洒取性長伸兩脚眠誰管桑田變滄海','Extended Record of Zhongfeng','Zhongfeng Mingben','In a verse for the hour of the boar, Zhongfeng Mingben pairs cleanly naked and bare with stretching out both legs to sleep while mulberry fields change into seas.'),
+]
+def main():
+ occ=[]
+ for rel,work,kwic,label,master,decision in ROWS:
+  v=zc.verify(rel,kwic);assert v.get('ok'),(rel,v)
+  occ.append({'RelPath':rel,'FromLb':v['fromLb'],'ToLb':v['toLb'],'Kwic':kwic,'MasterName':master,'Curated':True,'AttributionNote':f'Source record ({rel}). {label}: {decision}','ContextMasters':[{'MasterName':master,'Roles':['utterer']}],'DraftActorProof':{'ExactHeadwordClause':kwic,'GrammaticalSubject':master,'SpeechFrame':decision,'FullCaseDecision':decision}})
+ s={'SenseKey':None,'MasterName':None,'PreferredTarget':'cleanly naked','AlternateTargets':['completely stripped bare','clean bare through and through'],'SearchAliases':['cleanly naked','stripped bare','completely bare','nothing concealed','bare through and through'],'Status':'preferred','Validation':'multi-source','Note':'Fresh concordance: 201 exact hits in 68 files representing 67 works. Seven complete turns across four works preserve affirmative, critical, verse, paired-formula, and explicit still-on-this-side controls.','Occurrences':occ,'ClaimAnchors':[],'SourceTexts':list(dict.fromkeys(x[0] for x in ROWS)),'RelatedMasters':['Dahui Zonggao','Yuanwu Keqin','Zhongfeng Mingben'],'RelatedTerms':['赤灑灑','沒可把','絕承當'],'ExplanationParts':{'CorpusEarnedOpening':'Cleanly naked pictures something stripped of every covering, arrangement, or available handhold. Chan records repeatedly pair it with “bare and unconfined,” but they also warn that resting in this exposed condition is still an error or remains “on this side.”','EvidenceBody':['Dahui Zonggao says the condition cannot be arranged or pieced together and pairs cleanly naked with admitting no taking-on and having no nest. Yuanwu Keqin similarly pairs it with nothing to grasp and the ending of thought.','The phrase is not an automatically approved endpoint. Yuanwu immediately says it still has not left this side, and Zhongfeng Mingben calls a cleanly naked scene obtained by driving away drowsiness and distraction error piled upon error.','Zhongfeng also uses the pair in a verse beside stretching out both legs to sleep, while Dahui uses it beside unrestricted coming and going. These predicates keep the image bodily and exposed rather than converting it into an imported abstraction.','The Chan bend lies in the tension the corpus itself supplies: complete bareness names a recurrent condition, yet masters publicly reject taking that condition as sufficient or final.']},'DraftEvidence':{'OpeningClaimEvidenceKeys':['o1','o2','o3','o4','o5','o6','o7'],'ZenBend':'An ordinary image of nakedness becomes a recurrent formula for total exposure without arrangement or handhold, while masters explicitly criticize lodging in that very condition.','CounterexampleOrLimit':'The phrase does not by itself establish purity, attainment, or approval; Yuanwu and Zhongfeng supply direct negative controls.','DifferentThingTest':{'Decision':'one-thing','ComparedThings':['exposed condition praised or described','same exposed condition criticized as insufficient'],'Reason':'Approval and criticism are readings of one pictured condition, not different referents.'},'AliasRationale':'Naked, bare, stripped, and unconcealed retrieve the exposed physical image without importing a doctrinal category.','ModifierControls':[{'finding':'checked','reason':'淨 qualifies the reduplicated naked image as clean; no material object is claimed.'}],'FamilyControls':[{'finding':'checked','reason':'赤灑灑, 沒可把, and 絕承當 are stable paired predicates but remain separate terms.'}],'IndependentWorkIds':['chan:dahui-pushuo','chan:zhiyue-lu','work:T47n1997','work:B25n0145']}}
+ data={'SchemaVersion':1,'Entry':{'Id':ID,'SourceTerm':TERM,'CorpusBaselineSha256':BASE,'CreatedBy':'Codex investigation-next300 Lane B explicit author','WrittenUtc':NOW,'Senses':[s]}};out=ROOT/'entries'/ID;out.mkdir(parents=True,exist_ok=True);d=out/'evidence.draft.json';d.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+ (out/'WORK.md').write_text('''# 淨躶躶 — construction Lane B position 012
+
+- Fresh count: 201 hits, 68 files, 67 works; seven full turns across four works.
+- Positive exposure and explicit “still on this side” / “error piled on error” controls retained together.
+- One pictured condition under opposed appraisals; no reading-menu split.
+
+feedback-inference-verdict: A completely stripped-bare condition whose insufficiency the records explicitly test.
+feedback-observations: no arrangement; no handhold; no nest; still this side; error upon error; unrestricted movement.
+feedback-falsification-searches: literal naked bodies; purity claims; approval-only readings; paired 赤灑灑; 沒可把.
+feedback-counterexamples: masters explicitly reject resting in the condition.
+feedback-scope: corpus-wide descriptive formula.
+lookup-probes: cleanly naked; stripped bare; completely bare; nothing concealed; bare through and through.
+opening-interpretation-verdict: image and tension are directly established by stored predicates.
+sense-target-distinguishability: one exposed condition; opposed appraisals do not split it.
+''')
+ p=subprocess.run([sys.executable,str(DB/'compile_evidence_draft.py'),str(d),'--output',str(out/'entry.v2.json'),'--report',str(out/'evidence-compile-report.json')],text=True,capture_output=True);assert p.returncode==0,p.stdout+p.stderr
+if __name__=='__main__':main()
