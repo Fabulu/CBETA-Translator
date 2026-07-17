@@ -1,0 +1,186 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_5f480fb454f5",
+    "SourceTerm": "三種墮",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex construction worker B; manifestLane=B",
+    "WrittenUtc": "2026-07-17T13:08:20.904647+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the three kinds of falling",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "the three kinds of falling"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The retained records either quote the list or ask for its members; later answers differ without changing the three names.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1987A.xml",
+            "FromLb": "0533c06",
+            "ToLb": "0533c08",
+            "Kwic": "夫取正命食者。須具三種墮。水牯牛。不受食。不斷聲色只墮去。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1987A.xml). Complete source review leaves the source author unnamed after all six attribution rungs; the record owner is not substituted.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "source author not identified after complete review",
+              "ActorLabel": "the unnamed source author",
+              "ActorRole": "case-figure",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete source and all six attribution rungs leave this exact authorial clause without a recoverable personal name; the record owner is not substituted.",
+              "ReviewedBy": "Codex construction tail B6 direct complete-case review",
+              "ReviewedUtc": "2026-07-17T13:08:19.415648+00:00"
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2006.xml",
+            "FromLb": "0317c22",
+            "ToLb": "0317c24",
+            "Kwic": "夫取正命食者。須具三種墮。一者披毛戴角。二者不斷聲色。三者不受食。",
+            "MasterName": "Caoshan Benji",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T48/T48n2006.xml). The exact headword clause explicitly attributes the words to Caoshan Benji.",
+            "ContextMasters": [
+              {
+                "MasterName": "Caoshan Benji",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0327b16",
+            "ToLb": "0327b20",
+            "Kwic": "句？師曰：綠玉遶峰千箇竹，蒼鱗滿壑萬株松。問：如何是祖師西來意？師曰：達磨脚下踏蘆花。問：曹山有三種墮，如何是類墮？師曰：飽齁齁地。曰：如何是隨墮？師曰：東去西去。曰：如何是尊貴墮？師曰：露眠芳草。",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Recorded exchange: the unnamed questioning monk speaks the exact headword before the master answers.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "anonymous monk question",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs after the explicit monk-question marker and before the master’s answer; all six attribution rungs were checked.",
+              "ReviewedBy": "Codex construction tail B6 direct complete-case review",
+              "ReviewedUtc": "2026-07-17T13:08:19.415648+00:00"
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB198.xml",
+            "FromLb": "0458c30",
+            "ToLb": "0459a01",
+            "Kwic": "如何是三種墮？披毛戴角是類墮；不斷聲色是隨墮；不受食是尊貴墮。",
+            "MasterName": "Caoshan Benji",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J27/J27nB198.xml). The exact headword clause explicitly attributes the words to Caoshan Benji.",
+            "ContextMasters": [
+              {
+                "MasterName": "Caoshan Benji",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ]
+          }
+        ],
+        "ClaimAnchors": [
+          {
+            "RelPath": "J/J27/J27nB198.xml",
+            "FromLb": "0458c30",
+            "ToLb": "0459a01",
+            "Kwic": "如何是三種墮？披毛戴角是類墮；不斷聲色是隨墮；不受食是尊貴墮。",
+            "MasterName": "Caoshan Benji",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J27/J27nB198.xml). The exact headword clause explicitly attributes the words to Caoshan Benji.",
+            "ContextMasters": [
+              {
+                "MasterName": "Caoshan Benji",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ClaimText": "披毛戴角是類墮；不斷聲色是隨墮；不受食是尊貴墮"
+          }
+        ],
+        "SourceTexts": [
+          "T/T47/T47n1987A.xml",
+          "T/T48/T48n2006.xml",
+          "X/X82/X82n1571.xml",
+          "J/J27/J27nB198.xml"
+        ],
+        "RelatedMasters": [],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Caoshan's statement enumerates the three: category-falling, following-falling, and honored-rank falling, with questions defining each member.",
+          "EvidenceBody": [
+            "This entry reports the corpus's own three-part list and does not generalize it beyond the cited Caodong discussion."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "Caoshan's statement enumerates the three: category-falling, following-falling, and honored-rank falling, with questions defining each member.",
+          "CounterexampleOrLimit": "This entry reports the corpus's own three-part list and does not generalize it beyond the cited Caodong discussion.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the three kinds of falling",
+              "the cited case deployments"
+            ],
+            "Reason": "This entry reports the corpus's own three-part list and does not generalize it beyond the cited Caodong discussion."
+          },
+          "AliasRationale": "The probes three kinds of falling; category-falling; following-falling; honored-rank falling retrieve only the article’s attested phrase and explicit collocations.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "The three kinds of falling are Caoshan's three-item list: category-falling is wearing fur and horns, following-falling is not cutting off sounds and forms, and honored-rank falling is not accepting food."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The retained records either quote the list or ask for its members; later answers differ without changing the three names."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1987A",
+            "work:T48n2006",
+            "work:wudeng-quanshu",
+            "work:J27nB198"
+          ]
+        },
+        "Explanation": "The three kinds of falling are Caoshan's three-item list: category-falling is wearing fur and horns, following-falling is not cutting off sounds and forms, and honored-rank falling is not accepting food. The retained records either quote the list or ask for its members; later answers differ without changing the three names."
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "current-byte-sensitive7-repair-ledger.v1",
+  "review": {
+    "path": "maintenance/current-byte-semantic-cross-review-bc-sensitive7.md",
+    "sha256": "d0a074434445bb0c70104a7f68047d5ded9a9c29184600b9dbaf066cc18e0368"
+  },
+  "scope": "exactly seven REVISE rulings; lineage files were not edited",
+  "entries": [
+    {"id":"t_410c5d822ad1","headword":"相似語","entrySha256":"32df79a94917a9e5ac993b4ae7be0c7756f818a9ca2a805501235dcde43a291c","ruling":"recursive attribution boilerplate removed"},
+    {"id":"t_28c4ca8397ca","headword":"金剛王寶劒","entrySha256":"111070e5485dd737ffcdcb6c639f1a37c3d68b6ae82c95f8e773d62ca9a2cf6a","ruling":"Dahui marked later quoter; Linji retained as quoted case figure/person discussed"},
+    {"id":"t_1910ed86a5c7","headword":"放下屠刀","entrySha256":"438a871f9ad2d32fa63a73afc3704bea1e73413facc6dfef2af61b0eda397e4c","ruling":"Jin Zhengxi assigned exact named non-master question; Juelang retained as respondent"},
+    {"id":"t_da2c4e4b0c84","headword":"枯禪","entrySha256":"c6e6026327036c3b8cb8885a5734c6e6017ce414987ae3d75d4c873f2ae0c7d3","ruling":"context-dependent appraisal restored; Shiyu Mingfang assigned authored answer"},
+    {"id":"t_05b3ddb5f92c","headword":"語言三昧","entrySha256":"bbb38c3662187178bab07156b380fce2c64f45d72eebcdff01ed090dbe21005f","ruling":"Xuansha assigned quoted utterance; Dahui assigned later quotation/commentary; prose compressed"},
+    {"id":"t_50ebbb091a86","headword":"證道歌","entrySha256":"5765e6a0b0cff82831bbd2fa482c56d46f4d795101010b77bf7e71aa5cc2d7d4","ruling":"Pu'an work excluded; exact J28 Yongjia-specific sixth witness added"},
+    {"id":"t_e6077ed1bb67","headword":"別語","entrySha256":"be760c025e9b7fabf0d172d7225f868adc0c85bdbaef58257583f5f5640ac0a0","ruling":"direct unnamed requesters and Touzi response restored; embedded teacher and anonymous verse authorship re-adjudicated"}
+  ],
+  "focusedGate": {
+    "path": "maintenance/current-byte-sensitive7-focused-gate.json",
+    "sha256": "e344596730b5a3350f850e6a568aeb6e0301e760ff817dcda099e8dc0db7a201",
+    "hardPass": true,
+    "entries": 7,
+    "exactOccurrences": 42,
+    "exactFailures": 0,
+    "actorExitCode": 0,
+    "publicFeedbackExitCode": 0,
+    "depthExitCode": 0,
+    "rosterDeferred": true,
+    "note": "Roster-link completeness was deferred because the task forbids lineage edits; all non-roster attribution rules remained hard."
+  }
+}

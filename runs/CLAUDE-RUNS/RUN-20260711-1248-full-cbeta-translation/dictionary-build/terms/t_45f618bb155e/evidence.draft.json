@@ -1,0 +1,192 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_45f618bb155e",
+    "SourceTerm": "過水睹影",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex investigation-next300 Lane A",
+    "WrittenUtc": "2026-07-17T16:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "crossing water and seeing the reflection",
+        "AlternateTargets": [
+          "see the image while crossing water"
+        ],
+        "SearchAliases": [
+          "crossing water and seeing the reflection",
+          "see the image while crossing water"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The headword names the recorded event, not every mention of a mirror.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J33/J33nB286.xml",
+            "FromLb": "0490c18",
+            "ToLb": "0490c20",
+            "Kwic": "』山因過水睹影，徹見雲巖骨髓，頓翻舊日所蘊，以後建立家聲，高提密印，剪異見邪途，破野狐窟宅。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Liangjie",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J33/J33nB286.xml). Reviewed source: the lineage-record compiler is the exact headword-clause actor. The compiler narrates Dongshan crossing water and seeing his reflection; Dongshan is the person described, not the narrator.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "』山因過水睹影，徹見雲巖骨髓，頓翻舊日所蘊，以後建立家聲，高提密印，剪異見邪途，破野狐窟宅。",
+              "GrammaticalSubject": "the lineage-record compiler",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The compiler narrates Dongshan crossing water and seeing his reflection; Dongshan is the person described, not the narrator."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "biographical case narration",
+              "ActorLabel": "the lineage-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The compiler narrates Dongshan crossing water and seeing his reflection; Dongshan is the person described, not the narrator.",
+              "ReviewedBy": "Codex root-ruling repair",
+              "ReviewedUtc": "2026-07-17T16:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J38/J38nB406.xml",
+            "FromLb": "0147c07",
+            "ToLb": "0147c08",
+            "Kwic": "在价祖過水睹影偈：『渠今正是我，我今不是渠。",
+            "MasterName": "Tianran Hanshi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tianran Hanshi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J38/J38nB406.xml). The complete supplied case, nearest section heading, and record title were read; Tianran Hanshi supplies the headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "在价祖過水睹影偈：『渠今正是我，我今不是渠。",
+              "GrammaticalSubject": "Tianran Hanshi",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The complete supplied case, nearest section heading, and record title were read; Tianran Hanshi supplies the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB311.xml",
+            "FromLb": "0637b20",
+            "ToLb": "0637b21",
+            "Kwic": "洞山邈一箇雲嚴『秪遮是』，於過水睹影，始悟得箇『切忌從他覓，迢迢與我疏』。",
+            "MasterName": "Hanyue Fazang",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Hanyue Fazang",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J34/J34nB311.xml). The complete supplied case, nearest section heading, and record title were read; Hanyue Fazang supplies the headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "洞山邈一箇雲嚴『秪遮是』，於過水睹影，始悟得箇『切忌從他覓，迢迢與我疏』。",
+              "GrammaticalSubject": "Hanyue Fazang",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The complete supplied case, nearest section heading, and record title were read; Hanyue Fazang supplies the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB174.xml",
+            "FromLb": "0719a04",
+            "ToLb": "0719a05",
+            "Kwic": "洞山邈一個雲巖秪者是，於過水睹影始悟得個「切忌從他覓，迢迢與我疏」。",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J25/J25nB174.xml). The complete supplied case, nearest section heading, and record title were read; Juelang Daosheng supplies the headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "洞山邈一個雲巖秪者是，於過水睹影始悟得個「切忌從他覓，迢迢與我疏」。",
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The complete supplied case, nearest section heading, and record title were read; Juelang Daosheng supplies the headword-bearing clause."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J33/J33nB286.xml",
+          "J/J38/J38nB406.xml",
+          "J/J34/J34nB311.xml",
+          "J/J25/J25nB174.xml"
+        ],
+        "RelatedMasters": [],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Dongshan’s inherited scene of seeing his reflection while crossing water.",
+          "EvidenceBody": [
+            "Later records quote, title, and appraise the scene together with its verse about not seeking from another.",
+            "The headword names the recorded event, not every mention of a mirror."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "Later records quote, title, and appraise the scene together with its verse about not seeking from another.",
+          "CounterexampleOrLimit": "The headword names the recorded event, not every mention of a mirror.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "crossing water and seeing the reflection",
+              "see the image while crossing water"
+            ],
+            "Reason": "“crossing water and seeing the reflection” and “see the image while crossing water” name the same Dongshan’s inherited scene of seeing his reflection while crossing water; the case predicates do not create another object."
+          },
+          "AliasRationale": "The alternate retains the referent because Dongshan’s inherited scene of seeing his reflection while crossing water; it does not expand the entry beyond that attested use.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "The compound is controlled by this observed deployment: Later records quote, title, and appraise the scene together with its verse about not seeking from another."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The boundary follows this entry’s limit: The headword names the recorded event, not every mention of a mirror."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J33nB286",
+            "work:J38nB406",
+            "work:J34nB311",
+            "work:J25nB174"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "zhengdaoge-occurrence3-xueguan-repair-ledger.v1",
+  "scope": "Only 證道歌 occurrence 3 in t_50ebbb091a86; no other entry or lineage edit",
+  "review": {
+    "path": "maintenance/current-byte-sensitive7-followup3-independent-recheck.json",
+    "sha256": "433fddc3ed59818ad908dcc76e643b7e3aac83de13569edbbd10174af80f89ac"
+  },
+  "entry": {
+    "id": "t_50ebbb091a86",
+    "headword": "證道歌",
+    "entrySha256": "0387437cd6abe2664f481ef3af764bf691ca1c017eaf24cea430e83a8fde0252",
+    "occurrence": 3,
+    "source": "J/J27/J27nB198.xml",
+    "revision": "Assigned the authored answer to Xueguan Zhiyin, removed the erroneous Shiyu Mingfang identity, retained Yongjia Xuanjue as person discussed, and corrected source-title and section prose."
+  },
+  "focusedGate": {
+    "path": "maintenance/zhengdaoge-occurrence3-xueguan-focused-gate.json",
+    "sha256": "3bfdb72c7e59bad0e8baef129c8d7ff46d9c8c6e187474ad89ae08121ffe1d69",
+    "hardPass": true,
+    "exactOccurrences": 6,
+    "exactFailures": 0,
+    "actorExitCode": 0,
+    "lineageUntouched": true,
+    "rosterDeferred": true,
+    "note": "Only roster-link completeness was deferred; all non-roster actor checks remained hard."
+  }
+}

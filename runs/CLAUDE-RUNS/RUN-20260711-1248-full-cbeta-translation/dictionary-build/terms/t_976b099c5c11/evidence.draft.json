@@ -1,0 +1,98 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_976b099c5c11",
+    "SourceTerm": "音律克諧",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Lane B exact anomaly adjudication",
+    "WrittenUtc": "2026-07-17T11:41:32.964076+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": "Baichi Xingyuan",
+        "PreferredTarget": "the musical measures harmonize",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "musical measures harmonize",
+          "notes accord",
+          "harmonious measure",
+          "Guiyang house answer"
+        ],
+        "Status": "preferred",
+        "Validation": "provisional",
+        "Note": "The musical measures harmonize is Baichi Xingyuan’s answer when asked for the distinctive matter of the Guiyang house.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J28/J28nB202.xml",
+            "FromLb": "0014b20",
+            "ToLb": "0014b20",
+            "Kwic": "師云：「音律克諧。」",
+            "MasterName": "Baichi Xingyuan",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi: Baichi Xingyuan directly answers the question about the Guiyang house with the exact four-character phrase.",
+            "ContextMasters": [
+              {
+                "MasterName": "Baichi Xingyuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師云：「音律克諧。」",
+              "GrammaticalSubject": "Baichi Xingyuan",
+              "SpeechFrame": "Baichi Xingyuan directly answers the question about the Guiyang house with the exact four-character phrase.",
+              "FullCaseDecision": "Baichi Xingyuan directly answers the question about the Guiyang house with the exact four-character phrase."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J28/J28nB202.xml"
+        ],
+        "RelatedMasters": [
+          "Baichi Xingyuan"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The musical measures harmonize is Baichi Xingyuan’s answer when asked for the distinctive matter of the Guiyang house.",
+          "EvidenceBody": [
+            "A phrase for concordant music becomes a direct public-interview answer naming how the Guiyang house sounds or fits together.",
+            "The frozen corpus has one exact occurrence in one work. It licenses this speaker-specific answer, not a corpus-wide equation between harmony and the Guiyang school."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1"
+          ],
+          "ZenBend": "A phrase for concordant music becomes a direct public-interview answer naming how the Guiyang house sounds or fits together.",
+          "CounterexampleOrLimit": "The frozen corpus has one exact occurrence in one work. It licenses this speaker-specific answer, not a corpus-wide equation between harmony and the Guiyang school.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "musical concord",
+              "Baichi’s interview answer"
+            ],
+            "Reason": "The sole exact case applies the musical-concord phrase as one answer; it supplies no second referent."
+          },
+          "AliasRationale": "The English aliases preserve concord and musical measure while exposing the attested Guiyang interview context.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "The full four-character phrase is exact; the packet’s two other rows contain only neighboring words and do not attest it."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "音律 alone and 音律不差 are related music language but are not counted as the exact headword."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J28nB202"
+          ]
+        }
+      }
+    ]
+  }
+}

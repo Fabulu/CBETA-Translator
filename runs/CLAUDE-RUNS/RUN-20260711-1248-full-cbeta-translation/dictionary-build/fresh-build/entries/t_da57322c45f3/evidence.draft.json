@@ -1,0 +1,297 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_da57322c45f3",
+    "SourceTerm": "古曲",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Lane A evidence-first calibration",
+    "WrittenUtc": "2026-07-17T10:46:10.540319+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the ancient tune",
+        "AlternateTargets": [
+          "an old tune",
+          "the old melody"
+        ],
+        "SearchAliases": [
+          "ancient tune",
+          "old song",
+          "tune with no pitch",
+          "Fengxue ancient tune"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "101 exact hits in 46 independent works; 6 selected exact witnesses are stored.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X67/X67n1303.xml",
+            "FromLb": "0268a14",
+            "ToLb": "0268a15",
+            "Kwic": "風穴古曲三十三",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X67/X67n1303.xml). Elder Linquan’s Commentary and Chanted Remarks on Master Touzi Qing’s Verses on Ancient Cases: Empty Valley Collection (林泉老人評唱投子青和尚頌古空谷集): The catalogue gives Fengxue's Ancient Tune as a case title. Full-case actor review leaves the headword voice unnamed after all six attribution rungs. Full-case actor review leaves the headword voice unnamed after all six attribution rungs.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the catalogue compiler",
+              "FullCaseDecision": "The catalogue gives Fengxue's Ancient Tune as a case title.",
+              "SpeechFrame": "The phrase occurs in the table of contents, not an utterance.",
+              "ExactHeadwordClause": "風穴古曲三十三"
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "catalogue voice",
+              "ActorLabel": "the unnamed catalogue compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The phrase is an impersonal case title in a table of contents, not a recoverable personal utterance.",
+              "ReviewedBy": "Codex Lane A36-40 scoped attribution repair",
+              "ReviewedUtc": "2026-07-17T13:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "X/X64/X64n1260.xml",
+            "FromLb": "0072c08",
+            "ToLb": "0072c08",
+            "Kwic": "太陽路上，古曲玄音",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄): A quoted hall address places the ancient tune's mysterious sound on the Taiyang road. Full-case actor review leaves the headword voice unnamed after all six attribution rungs. Full-case actor review leaves the headword voice unnamed after all six attribution rungs.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the named quoted master in the compilation",
+              "FullCaseDecision": "A quoted hall address places the ancient tune's mysterious sound on the Taiyang road.",
+              "SpeechFrame": "The compilation introduces the named master's hall address immediately before the clause.",
+              "ExactHeadwordClause": "太陽路上，古曲玄音"
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "quoted hall voice",
+              "ActorLabel": "the unnamed quoted hall speaker",
+              "ActorRole": "utterer",
+              "GrammarEvidence": "The compilation introduces a hall address, but the supplied transport does not safely preserve the speaker's personal name.",
+              "ReviewedBy": "Codex Lane A36-40 scoped attribution repair",
+              "ReviewedUtc": "2026-07-17T13:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0161c14",
+            "ToLb": "0161c15",
+            "Kwic": "古曲發聲雄。今時韻亦同",
+            "MasterName": "Ruti",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Ruti",
+                "Roles": [
+                  "utterer",
+                  "respondent",
+                  "verse-author"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium (五燈會元): Ruti answers through silence and then verses that the ancient tune sounds powerfully and today's rhythm is the same.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "Ruti",
+              "FullCaseDecision": "Ruti answers through silence and then verses that the ancient tune sounds powerfully and today's rhythm is the same.",
+              "SpeechFrame": "師示頌曰 assigns the verse to Ruti.",
+              "ExactHeadwordClause": "古曲發聲雄。今時韻亦同"
+            }
+          },
+          {
+            "RelPath": "B/B25/B25n0144.xml",
+            "FromLb": "0502b05",
+            "ToLb": "0502b05",
+            "Kwic": "因舉體師叔《古曲偈》",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (B/B25/B25n0144.xml). Zutang Ji (Anthology from the Patriarchs’ Hall) (祖堂集): A master raises Ruti's ancient-tune verse and asks what its final line accomplishes. Full-case actor review leaves the headword voice unnamed after all six attribution rungs. Full-case actor review leaves the headword voice unnamed after all six attribution rungs.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the record's named later raiser",
+              "FullCaseDecision": "A master raises Ruti's ancient-tune verse and asks what its final line accomplishes.",
+              "SpeechFrame": "因舉 marks a raised older verse before the later question.",
+              "ExactHeadwordClause": "因舉體師叔《古曲偈》"
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "later-raising voice",
+              "ActorLabel": "the unnamed later raiser",
+              "ActorRole": "later-raiser",
+              "GrammarEvidence": "The raising frame is clear, but the reviewed case window does not safely recover the later raiser's personal name.",
+              "ReviewedBy": "Codex Lane A36-40 scoped attribution repair",
+              "ReviewedUtc": "2026-07-17T13:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "C/C078/C078n1720.xml",
+            "FromLb": "0780a12",
+            "ToLb": "0780a13",
+            "Kwic": "古曲非音律",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (C/C078/C078n1720.xml). Chan School: Comprehensive Linked-Pearls Collection of Verse Commentaries on Old Cases (禪宗頌古聯珠通集): A verse states that the ancient tune is not musical pitch or rule. Full-case actor review leaves the headword voice unnamed after all six attribution rungs. Full-case actor review leaves the headword voice unnamed after all six attribution rungs.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "the identified verse voice",
+              "FullCaseDecision": "A verse states that the ancient tune is not musical pitch or rule.",
+              "SpeechFrame": "The headword occurs within a verse unit.",
+              "ExactHeadwordClause": "古曲非音律"
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "stanza composer",
+              "ActorLabel": "the unnamed composer of the stanza",
+              "ActorRole": "verse-author",
+              "GrammarEvidence": "The headword occurs within a verse unit whose personal author is not safely recoverable from the supplied transport.",
+              "ReviewedBy": "Codex Lane A36-40 scoped attribution repair",
+              "ReviewedUtc": "2026-07-17T13:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB171.xml",
+            "FromLb": "0538a04",
+            "ToLb": "0538a04",
+            "Kwic": "古曲無音韻，如何和得齊",
+            "MasterName": "Tianyin Yuanxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tianyin Yuanxiu",
+                "Roles": [
+                  "utterer",
+                  "later-raiser",
+                  "record-owner"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin (天隱和尚語錄): Tianyin Yuanxiu raises the question how an ancient tune without pitch can be harmonized.",
+            "DraftActorProof": {
+              "GrammaticalSubject": "Tianyin Yuanxiu",
+              "FullCaseDecision": "Tianyin Yuanxiu raises the question how an ancient tune without pitch can be harmonized.",
+              "SpeechFrame": "示眾舉 marks Tianyin Yuanxiu's later raising and comment.",
+              "ExactHeadwordClause": "古曲無音韻，如何和得齊"
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X67/X67n1303.xml",
+          "X/X64/X64n1260.xml",
+          "X/X80/X80n1565.xml",
+          "B/B25/B25n0144.xml",
+          "C/C078/C078n1720.xml",
+          "J/J25/J25nB171.xml"
+        ],
+        "RelatedMasters": [
+          "Ruti",
+          "Tianyin Yuanxiu"
+        ],
+        "RelatedTerms": [
+          "無音韻",
+          "知音"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The ancient tune is an inherited song-image that masters test through silence, present-day resonance, responsive singing, and the claim that it is not musical pitch at all.",
+          "EvidenceBody": [
+            "Ruti answers a question about the old tuning by remaining silent, then verses that the ancient tune sounds powerfully and its present rhythm is the same. Zhongfeng Mingben places its mysterious sound on the Taiyang road; the Patriarchs' Hall raises Ruti's verse and asks what the line about buddhas losing the trail accomplishes.",
+            "Later records ask how a tune without pitch can be harmonized and criticize inherited answers. Another verse states directly that the ancient tune is not musical pitch. The title 'Fengxue's Ancient Tune' indexes this same case family rather than a second lexical meaning."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "ZenBend": "An old melody becomes public interview material: silence can answer it, present rhythm can match it, and masters ask how a pitchless tune could be harmonized.",
+          "CounterexampleOrLimit": "No single musical or doctrinal content is supplied; one source directly says the ancient tune is not pitch or musical rule.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the inherited ancient-tune image",
+              "the named Fengxue ancient-tune case"
+            ],
+            "Reason": "The title indexes a case that deploys the same tune-image; capitalization or title use alone does not create another thing."
+          },
+          "AliasRationale": "The forms cover natural English, the no-pitch formula, and the named case family.",
+          "ModifierControls": [
+            {
+              "Control": "古 marks the tune as inherited or old",
+              "Finding": "Present-day resonance is explicitly said to remain the same."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "無音韻",
+              "Finding": "Having no pitch is the recurrent paradoxical predicate."
+            },
+            {
+              "Term": "知音",
+              "Finding": "The knowing listener is related but separately denoted."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X67n1303",
+            "work:X64n1260",
+            "work:X80n1565",
+            "work:B25n0144",
+            "work:C078n1720",
+            "work:J25nB171"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X67/X67n1303.xml",
+            "X/X64/X64n1260.xml",
+            "X/X80/X80n1565.xml",
+            "B/B25/B25n0144.xml",
+            "C/C078/C078n1720.xml",
+            "J/J25/J25nB171.xml"
+          ],
+          "RelatedMasters": [
+            "Ruti",
+            "Tianyin Yuanxiu"
+          ]
+        }
+      }
+    ]
+  }
+}

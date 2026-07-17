@@ -16,6 +16,7 @@ import tempfile
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
+from functools import lru_cache
 from pathlib import Path
 
 import zc
@@ -29,6 +30,7 @@ MAINT = BUILD / "maintenance"
 EPHEMERAL = os.environ.get("AUDIT_DEPTH_EPHEMERAL", "").lower() in {"1", "true", "yes"}
 REPORT_HOME = Path(tempfile.gettempdir()) / "cbeta-depth-gate" if EPHEMERAL else MAINT
 CACHE = REPORT_HOME / "corpus-count-cache.json"
+ENTRY_AUDIT_CACHE = REPORT_HOME / "entry-depth-audit-cache.json"
 GATE = REPORT_HOME / "depth-sense-gate.json"
 SEMANTIC_REGRESSIONS = BUILD / "fresh-build" / "semantic-regressions.json"
 SOURCE_LABEL_MANIFEST = MAINT / "quality-debt-source-label-manifest.json"
@@ -79,14 +81,27 @@ TERM_WORK_GATES = {
 }
 
 CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+")
+ENTRY_AUDIT_CACHE_VERSION = 1
 
 
+@lru_cache(maxsize=1)
 def source_labels() -> dict[str, str]:
     payload = load_json(SOURCE_LABEL_MANIFEST, {})
-    return {
+    labels = {
         row["relPath"]: f'{row["englishLabel"]} ({row["chineseTitle"]})'
         for row in payload.get("rows") or []
     }
+    # The scoped quality-debt manifest is only a cache. Later cohorts may cite
+    # valid frozen-corpus paths absent from that older repair scope, so consult
+    # the same authoritative titles registry used by entry authoring.
+    registry = Path(payload.get("authoritativeRegistry") or "")
+    if registry.is_file():
+        for line in registry.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            labels.setdefault(row["path"], f'{row["en"]} ({row["zh"]})')
+    return labels
 
 
 def without_authoritative_source_label(text: str, labels: dict[str, str] | None = None) -> str:
@@ -176,6 +191,38 @@ def entry_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def optional_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else "missing"
+
+
+@lru_cache(maxsize=1)
+def audit_cache_dependencies() -> dict[str, str]:
+    """Hash shared rule inputs once, not once per entry."""
+    source_manifest = load_json(SOURCE_LABEL_MANIFEST, {})
+    registry = Path(source_manifest.get("authoritativeRegistry") or "")
+    return {
+        "semanticRegressionsSha256": optional_hash(SEMANTIC_REGRESSIONS),
+        "sourceLabelManifestSha256": optional_hash(SOURCE_LABEL_MANIFEST),
+        "authoritativeTitleRegistrySha256": optional_hash(registry),
+    }
+
+
+def audit_cache_key_from_sha(entry_sha: str, count_info: dict, manifest_sha: str) -> str:
+    """Bind reusable depth results to every input that can affect them."""
+    payload = {
+        "version": ENTRY_AUDIT_CACHE_VERSION,
+        "entrySha256": entry_sha,
+        "countInfo": count_info,
+        "corpusManifestSha256": manifest_sha,
+        **audit_cache_dependencies(),
+    }
+    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+def audit_cache_key(path: Path, count_info: dict, manifest_sha: str) -> str:
+    return audit_cache_key_from_sha(entry_hash(path), count_info, manifest_sha)
+
+
 def evidence_floor(hits: int) -> int:
     """Minimum rejection floor; unique evidence may require substantially more."""
     if hits >= 10_000:
@@ -223,14 +270,21 @@ def audit_entry(path: Path, count_info: dict) -> dict:
     senses = entry.get("Senses") or []
     occurrences = [occ for sense in senses for occ in (sense.get("Occurrences") or [])]
     source_term = str(entry.get("SourceTerm") or "")
-    # ClaimAnchors and depth are separate obligations. Only exact headword
-    # occurrences satisfy depth; governed graphic variants do not.
+    # ClaimAnchors and depth are separate obligations. Graphic variants do not
+    # satisfy depth. Editorial punctuation surfaces of the same canonical
+    # ideograph string do: punctuation placement is not lexical variation.
     headword_occurrences = [
         occ
         for occ in occurrences
-        if source_term
-        and source_term in str(occ.get("Kwic") or "")
-        and occurrence_role(occ) == "headword"
+        if source_term and (
+            (source_term in str(occ.get("Kwic") or "") and occurrence_role(occ) == "headword")
+            or (
+                occurrence_role(occ) == "variant"
+                and occ.get("VariantKind") == "editorial-punctuation"
+                and str(occ.get("VariantForm") or "") in str(occ.get("Kwic") or "")
+                and re.sub(r"[、。！，：；？（）《》〈〉「」『』【】—…·・]", "", str(occ.get("VariantForm") or "")) == source_term
+            )
+        )
     ]
     hits = int(count_info.get("hits") or 0)
     files = int(count_info.get("files") or 0)
@@ -537,6 +591,9 @@ def main() -> None:
     if cache.get("_manifestSha256") != manifest_sha:
         cache = {"_manifestSha256": manifest_sha}
     results = load_json(report_path, {}).get("results", {})
+    entry_cache = load_json(ENTRY_AUDIT_CACHE, {})
+    if entry_cache.get("_version") != ENTRY_AUDIT_CACHE_VERSION:
+        entry_cache = {"_version": ENTRY_AUDIT_CACHE_VERSION}
     audited = []
     for path in sorted(paths):
         entry = load_json(path, {})
@@ -545,17 +602,21 @@ def main() -> None:
         if counted_term not in cache:
             count = zc.count(counted_term)
             cache[counted_term] = {"hits": count["hits"], "files": count["files"], "works": count["works"]}
-        item = audit_entry(path, cache[counted_term])
+        result_key = audit_cache_key(path, cache[counted_term], manifest_sha)
+        cached_item = entry_cache.get(result_key)
+        item = cached_item if isinstance(cached_item, dict) else audit_entry(path, cache[counted_term])
+        if cached_item is None:
+            entry_cache[result_key] = item
         if counted_term != term:
             item["countedFamilyForm"] = counted_term
         results[item["entryId"]] = item
         audited.append(item)
 
-    # A new-wave batch concentrated at one numerical floor is the quota smell
-    # this gate exists to prevent. Flag the clustered entries themselves so a
-    # registrar cannot accept their hashes until distinct evidence changes the
-    # distribution. Full-termbase audits report the histogram but do not apply
-    # a batch-local failure to hundreds of historical entries at once.
+    # A new-wave batch concentrated at one numerical floor is a quota smell,
+    # not proof that any individual entry is thin.  Surface it for mandatory
+    # human review, but do not force authors to pad otherwise complete entries
+    # merely to change a histogram.  Individual evidence floors and qualitative
+    # deployment coverage remain hard gates.
     batch_cluster = None
     cluster_scope = [item for item in audited if not args.cluster_id or item["entryId"] in set(args.cluster_id)]
     missing_cluster_ids = sorted(set(args.cluster_id) - {item["entryId"] for item in audited})
@@ -575,10 +636,10 @@ def main() -> None:
                 "occurrenceCount": mode_count,
                 "entries": mode_size,
                 "batchSize": len(cluster_scope),
+                "severity": "review",
             }
             for item in clustered:
-                item["hardFlags"].append(batch_cluster)
-                item["hardPass"] = False
+                item["reviewFlags"].append(batch_cluster)
                 results[item["entryId"]] = item
 
     # Re-read and merge immediately before the atomic replacement so concurrent
@@ -589,6 +650,11 @@ def main() -> None:
             latest_cache = {"_manifestSha256": manifest_sha}
         latest_cache.update(cache)
         atomic_write_json(CACHE, latest_cache)
+        latest_entry_cache = load_json(ENTRY_AUDIT_CACHE, {})
+        if latest_entry_cache.get("_version") != ENTRY_AUDIT_CACHE_VERSION:
+            latest_entry_cache = {"_version": ENTRY_AUDIT_CACHE_VERSION}
+        latest_entry_cache.update(entry_cache)
+        atomic_write_json(ENTRY_AUDIT_CACHE, latest_entry_cache)
     report = {
         "generatedUtc": datetime.now(timezone.utc).isoformat(),
         "results": results,

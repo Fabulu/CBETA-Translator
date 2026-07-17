@@ -1,0 +1,139 @@
+{
+  "Id": "t_e4da0591dc89",
+  "SourceTerm": "律行",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex investigation-next300 Lane A",
+  "WrittenUtc": "2026-07-17T16:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "enter through disciplinary conduct",
+      "AlternateTargets": [
+        "enter by rule-governed conduct"
+      ],
+      "SearchAliases": [
+        "enter through disciplinary conduct",
+        "enter by rule-governed conduct"
+      ],
+      "Status": "preferred",
+      "Validation": "provisional",
+      "Note": "It is not generic cultivation, and praise in one biography does not define every rule.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2016.xml",
+          "FromLb": "0494c15",
+          "ToLb": "0494c15",
+          "Kwic": "皆入律行。",
+          "MasterName": "Yongming Yanshou",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yongming Yanshou",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2016.xml). The complete supplied case, nearest section heading, and record title were read; Yongming Yanshou supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "J/J27/J27nB197.xml",
+          "FromLb": "0406c25",
+          "ToLb": "0406c27",
+          "Kwic": "眾香世界以香飯入律行、娑婆世界以文字語言而入律行，此悉是菩薩導機動善，應權化物，亦非實事也。",
+          "MasterName": "Wuyi Yuanlai",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Wuyi Yuanlai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J27/J27nB197.xml). The complete supplied case, nearest section heading, and record title were read; Wuyi Yuanlai supplies the headword-bearing clause.",
+          "HeadwordSpanReview": {
+            "Count": 2,
+            "Disposition": "single-actor-single-turn-repetition",
+            "GrammarEvidence": "The complete supplied case, nearest section heading, and record title were read; Wuyi Yuanlai supplies the headword-bearing clause."
+          }
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2016.xml",
+        "J/J27/J27nB197.xml"
+      ],
+      "RelatedMasters": [
+        "Yongming Yanshou",
+        "Wuyi Yuanlai"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Entering through disciplinary conduct is named as one mode of entry alongside fragrant rice or words. The two clauses use “enter” with disciplinary conduct and belong to the same inherited comparison. They do not describe a violation of rules."
+    },
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "violate rule-governed conduct",
+      "AlternateTargets": [
+        "offend against the rules"
+      ],
+      "SearchAliases": [
+        "violate rule-governed conduct",
+        "offend against the rules"
+      ],
+      "Status": "preferred",
+      "Validation": "provisional",
+      "Note": "It is not generic cultivation, and praise in one biography does not define every rule.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0009c08",
+          "ToLb": "0009c08",
+          "Kwic": "世尊曰：會中有二比丘犯律行，我故不說法。",
+          "MasterName": "Shakyamuni Buddha",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Quoted Shakyamuni statement: Shakyamuni Buddha is the exact embedded speaker of the violation clause."
+        },
+        {
+          "RelPath": "X/X70/X70n1391.xml",
+          "FromLb": "0489a11",
+          "ToLb": "0489a12",
+          "Kwic": "世尊云：會中有二比丘犯律行，我故不說法。",
+          "MasterName": "Shakyamuni Buddha",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shakyamuni Buddha",
+              "Roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X70/X70n1391.xml). Quoted Shakyamuni statement: Shakyamuni Buddha is the exact embedded speaker of the violation clause."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X66/X66n1296.xml",
+        "X/X70/X70n1391.xml"
+      ],
+      "RelatedMasters": [
+        "Shakyamuni Buddha"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "Violating rule-governed conduct is the offense attributed to two monks in Shakyamuni Buddha’s quoted statement. The quoted speaker says he does not teach because two monks in the assembly have violated the rules. The duplicated transmission supports one inherited statement."
+    }
+  ]
+}

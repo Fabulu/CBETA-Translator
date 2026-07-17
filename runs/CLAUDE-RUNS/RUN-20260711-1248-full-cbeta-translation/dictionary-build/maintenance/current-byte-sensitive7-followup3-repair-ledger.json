@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "current-byte-sensitive7-followup3-repair-ledger.v1",
+  "scope": "exactly the three REVISE rows in the independent review; no lineage or other entry edits",
+  "review": {
+    "path": "maintenance/current-byte-sensitive7-independent-review.json",
+    "sha256": "c1c8bc7a6367f9c33ccd7821d6bdfe6d1b959f01ff73b6edaa6d64483b825c6b"
+  },
+  "entries": [
+    {
+      "id": "t_1910ed86a5c7",
+      "headword": "放下屠刀",
+      "entrySha256": "7e0ae478d4b657baff5f6ccf4fb606fea9aab7b670bef601ba04319ed3cf2f2b",
+      "revision": "Baichi Xingyuan is now used consistently in the structured respondent link, attribution evidence, note, and explanation."
+    },
+    {
+      "id": "t_50ebbb091a86",
+      "headword": "證道歌",
+      "entrySha256": "6a920c7493e8366f3ac0d35b61ad8b0d953688dc6ffb44fa4fa34975ce5d7a28",
+      "revision": "All six retained spans explicitly bind the title to Yongjia; weak M59, X82, and T48 spans were replaced, and J28 is correctly labeled as Zhuanyu Guanheng's signed preface in his recorded sayings."
+    },
+    {
+      "id": "t_410c5d822ad1",
+      "headword": "相似語",
+      "entrySha256": "86f0894f118721955b48b73783c4d88e17c882c122793410268d335e52662097",
+      "revision": "Occurrences five and six now contain one unambiguous named-utterer statement each, for Yunju Daoying and Deshan Xuanjian respectively."
+    }
+  ],
+  "focusedGate": {
+    "path": "maintenance/current-byte-sensitive7-followup3-focused-gate.json",
+    "sha256": "e29130db647cc8ab7c3fb3caf7aa1202fff5d663f70bd9eb15b50c7ae44ba467",
+    "hardPass": true,
+    "entries": 3,
+    "exactOccurrences": 18,
+    "exactFailures": 0,
+    "actorExitCode": 0,
+    "publicFeedbackExitCode": 0,
+    "depthExitCode": 0,
+    "lineageUntouched": true,
+    "rosterDeferred": true,
+    "note": "Only roster-link completeness was deferred; every non-roster attribution rule remained hard."
+  }
+}

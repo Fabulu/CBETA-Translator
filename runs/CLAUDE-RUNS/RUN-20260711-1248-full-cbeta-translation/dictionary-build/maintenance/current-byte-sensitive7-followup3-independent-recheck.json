@@ -1,0 +1,53 @@
+{
+  "reviewKind": "independent current-byte complete-case recheck after followup3 repair",
+  "entriesEdited": false,
+  "rows": [
+    {
+      "id": "t_1910ed86a5c7",
+      "sourceTerm": "放下屠刀",
+      "reviewedCurrentEntrySha256": "7e0ae478d4b657baff5f6ccf4fb606fea9aab7b670bef601ba04319ed3cf2f2b",
+      "disposition": "PASS",
+      "independentQualified": true,
+      "reason": "All six complete cases preserve Guang'e's public knife-dropping action while differing over its force. The revised J28 identity is correct: 百癡禪師語錄 and the roster identify the respondent as Baichi Xingyuan (百癡行元), while 問 assigns the headword-bearing turn to an unnamed monk. The entry correctly refuses to infer an automatic moral mechanism from the recurrent case formula.",
+      "evidence": [
+        "Dahui's M59 public discourse narrates the butcher's knife-dropping and emphasizes the final responsive thought; his T47 letter contrasts it with manufactured quiet.",
+        "J28nB202 is 百癡禪師語錄. Its marked exchange reads 問：放下屠刀，立地成佛是如何？師云：須是鐵漢始得. Baichi Xingyuan is therefore respondent, not utterer of the headword.",
+        "The lineage roster's canonical record is Baichi Xingyuan, with Chinese aliases 百癡元, 百癡行元, and 行元; the repaired structured name and prose agree.",
+        "Hanxiu Qian raises the case and asks what Guang'e saw; Jin Zhengxi asks Juelang how to reproduce it; Chushi Fanqi calls the accompanying declaration inept. These cases justify the entry's non-uniform-appraisal boundary.",
+        "zc.verify passed all 6 KWICs uniquely, and the six paths resolve to six distinct frozen work IDs."
+      ]
+    },
+    {
+      "id": "t_50ebbb091a86",
+      "sourceTerm": "證道歌",
+      "reviewedCurrentEntrySha256": "6a920c7493e8366f3ac0d35b61ad8b0d953688dc6ffb44fa4fa34975ce5d7a28",
+      "disposition": "REVISE",
+      "independentQualified": true,
+      "reason": "The semantic repair succeeds: every retained span explicitly binds this title to Yongjia Xuanjue/True Awakening Master, and the distinct Pu'an Yinsu title is excluded. Five actor states pass, including Zhuanyu Guanheng's signed J28 reprint preface. One actor state remains wrong: J27nB198 is 雪關禪師語錄, and the headword occurs in Xueguan Zhiyin's authored answer to a layman, not in Shiyu Mingfang's record or voice.",
+      "evidence": [
+        "T51 explicitly identifies 溫州永嘉玄覺禪師 and says 著證道歌一首; compiler narration is correct.",
+        "X66 prints 永嘉證道歌 before quoting and commenting on its lines; compiler narration is correct.",
+        "J27nB198's title is 雪關禪師語錄 and the governing head is 答聞子將居士問. The authored answer recommends 〈永嘉證道歌〉. The correct utterer is Xueguan Zhiyin (雪關智誾), whose roster evidence itself points to J27nB198; current MasterName Shiyu Mingfang is a different master associated with J27nB190.",
+        "J34's 重刻證道歌註頌序 explicitly lists 永嘉《證道歌》 in Juelang Daosheng's authored preface.",
+        "X67 has Linquan Conglun explicitly introduce 永嘉證道歌云 before quotation.",
+        "J28nB219's head is 《永嘉禪師證道歌註頌》重刊序. The signed prose says 真覺大師 ... 名《證道歌》; Zhuanyu Guanheng is correctly the exact prose author and Yongjia the person discussed.",
+        "zc.verify passed all 6 KWICs uniquely, and all six paths are distinct frozen works. The required revision is actor/prose correction for occurrence 3 only, not a semantic or title-binding replacement."
+      ]
+    },
+    {
+      "id": "t_410c5d822ad1",
+      "sourceTerm": "相似語",
+      "reviewedCurrentEntrySha256": "86f0894f118721955b48b73783c4d88e17c882c122793410268d335e52662097",
+      "disposition": "PASS",
+      "independentQualified": true,
+      "reason": "All six complete cases support the bounded sense of resembling language sought, stored, traded, or used as borrowed proof. The repaired final two rows now state one unambiguous exact utterer each: Yunju Daoying in the Yunju section of 列祖提綱錄 and Deshan Xuanjian in the explicit Deshan section of 指月錄.",
+      "evidence": [
+        "Zhongfeng's two authored records condemn extracting resembling language from books and refuse to use it to lead people into weeds.",
+        "Foyan criticizes seeking similar phrases for mutual certification; Yunwai Xingze criticizes storing them and receiving false certification.",
+        "X64n1260 places the uninterrupted hall address under 雲居膺禪師 and the clause 到處覓相似語 belongs to Yunju Daoying. Occurrence 5's note and structured actor now agree without a second competing speaker claim.",
+        "X83n1578's explicit head is 鼎州德山宣鑒禪師; the uninterrupted admonition includes 只欲將相似語勘當解處. Occurrence 6 correctly names Deshan Xuanjian once as exact utterer.",
+        "zc.verify passed all 6 KWICs uniquely, and the six paths resolve to six distinct frozen work IDs."
+      ]
+    }
+  ]
+}

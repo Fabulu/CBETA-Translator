@@ -1,0 +1,210 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_3eb87f6093cd",
+    "SourceTerm": "放下布袋",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex investigation-next300 Lane A",
+    "WrittenUtc": "2026-07-17T16:00:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "put down the cloth bag",
+        "AlternateTargets": [
+          "lay down the sack"
+        ],
+        "SearchAliases": [
+          "put down the cloth bag",
+          "lay down the sack"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The entry names the concrete case-action and does not convert it into general advice.",
+        "Occurrences": [
+          {
+            "RelPath": "L/L155/L155n1642.xml",
+            "FromLb": "0003a12",
+            "ToLb": "0004a07",
+            "Kwic": "機緣垂問書問讚偈佛事雜著塔銘明道正覺䒢溪森禪師語錄卷上嗣法門人超德等編上堂上堂結制陞座問答畢師云放下布袋快活無匹閒看猢猻偷喫生鐵阿呵呵的的的問甚生前靣目誰論梨花笑日齋堂有粥有飯禪和要喫便喫喫即不無飽後",
+            "MasterName": "Maoxi Xingsen",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Maoxi Xingsen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (L/L155/L155n1642.xml). The complete supplied case, nearest section heading, and record title were read; Maoxi Xingsen supplies the headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "機緣垂問書問讚偈佛事雜著塔銘明道正覺䒢溪森禪師語錄卷上嗣法門人超德等編上堂上堂結制陞座問答畢師云放下布袋快活無匹閒看猢猻偷喫生鐵阿呵呵的的的問甚生前靣目誰論梨花笑日齋堂有粥有飯禪和要喫便喫喫即不無飽後",
+              "GrammaticalSubject": "Maoxi Xingsen",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The complete supplied case, nearest section heading, and record title were read; Maoxi Xingsen supplies the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X68/X68n1319.xml",
+            "FromLb": "0547b23",
+            "ToLb": "0547b24",
+            "Kwic": "問答畢，師云：放下布袋，快活無匹，閒看猢猻，偷喫生鐵。",
+            "MasterName": "Maoxi Xingsen",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Maoxi Xingsen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X68/X68n1319.xml). The complete supplied case, nearest section heading, and record title were read; Maoxi Xingsen supplies the headword-bearing clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問答畢，師云：放下布袋，快活無匹，閒看猢猻，偷喫生鐵。",
+              "GrammaticalSubject": "Maoxi Xingsen",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The complete supplied case, nearest section heading, and record title were read; Maoxi Xingsen supplies the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0068a12",
+            "ToLb": "0068a12",
+            "Kwic": "師放下布袋。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Budai",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Reviewed source: the case-record compiler is the exact headword-clause actor. The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師放下布袋。",
+              "GrammaticalSubject": "the case-record compiler",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "embedded Budai case narration",
+              "ActorLabel": "the case-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause.",
+              "ReviewedBy": "Codex root-ruling repair",
+              "ReviewedUtc": "2026-07-17T16:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1568.xml",
+            "FromLb": "0621a12",
+            "ToLb": "0621a13",
+            "Kwic": "師放下布袋，叉手而立。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Budai",
+                "Roles": [
+                  "person-described",
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X80/X80n1568.xml). Reviewed source: the case-record compiler is the exact headword-clause actor. The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師放下布袋，叉手而立。",
+              "GrammaticalSubject": "the case-record compiler",
+              "SpeechFrame": "The supplied section heading and complete case were reviewed together.",
+              "FullCaseDecision": "The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "embedded Budai case narration",
+              "ActorLabel": "the case-record compiler",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "The compiler narrates Budai putting down the cloth bag; Budai performs the action but does not utter the narrative clause.",
+              "ReviewedBy": "Codex root-ruling repair",
+              "ReviewedUtc": "2026-07-17T16:30:00Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "L/L155/L155n1642.xml",
+          "X/X68/X68n1319.xml",
+          "X/X80/X80n1565.xml",
+          "X/X80/X80n1568.xml"
+        ],
+        "RelatedMasters": [],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Budai’s recorded act of setting down his bag when questioned.",
+          "EvidenceBody": [
+            "The act is narrated and reenacted as an answer; subsequent lifting or carrying remains a separate turn.",
+            "The entry names the concrete case-action and does not convert it into general advice."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "The act is narrated and reenacted as an answer; subsequent lifting or carrying remains a separate turn.",
+          "CounterexampleOrLimit": "The entry names the concrete case-action and does not convert it into general advice.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "put down the cloth bag",
+              "lay down the sack"
+            ],
+            "Reason": "“put down the cloth bag” and “lay down the sack” name the same Budai’s recorded act of setting down his bag when questioned; the case predicates do not create another object."
+          },
+          "AliasRationale": "The alternate retains the referent because Budai’s recorded act of setting down his bag when questioned; it does not expand the entry beyond that attested use.",
+          "ModifierControls": [
+            {
+              "finding": "checked",
+              "reason": "The compound is controlled by this observed deployment: The act is narrated and reenacted as an answer; subsequent lifting or carrying remains a separate turn."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The boundary follows this entry’s limit: The entry names the concrete case-action and does not convert it into general advice."
+            }
+          ],
+          "IndependentWorkIds": [
+            "chan:mingdao-zhengjue-sen-yulu",
+            "work:X68n1319",
+            "work:X80n1565",
+            "work:wudeng-yantong"
+          ]
+        }
+      }
+    ]
+  }
+}

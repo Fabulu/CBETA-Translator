@@ -1,0 +1,132 @@
+{
+  "Id": "t_b814707d2d1f",
+  "SourceTerm": "百丈清規",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex investigation-next300 Lane A",
+  "WrittenUtc": "2026-07-17T16:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Baizhang’s monastic regulations",
+      "AlternateTargets": [
+        "the Baizhang code"
+      ],
+      "SearchAliases": [
+        "Baizhang’s monastic regulations",
+        "the Baizhang code"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "References to later revised editions remain citations of the named regulatory lineage, not proof of one unchanged text.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2025.xml",
+          "FromLb": "1109c16",
+          "ToLb": "1109c20",
+          "Kwic": "No.2025勅修百丈清規勅修百丈清規禮部尚書臣胡濙等謹題為重刊清規事禮科抄出。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (T/T48/T48n2025.xml). Reviewed source: the regulatory-text compiler is the exact headword-clause actor. The exact headword names or cites Baizhang’s regulations in documentary prose; it is not an anonymous spoken turn.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "document title or institutional narration",
+            "ActorLabel": "the regulatory-text compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The exact headword names or cites Baizhang’s regulations in documentary prose; it is not an anonymous spoken turn.",
+            "ReviewedBy": "Codex root-ruling repair",
+            "ReviewedUtc": "2026-07-17T16:30:00Z",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "HeadwordSpanReview": {
+            "Count": 2,
+            "Disposition": "single-actor-single-turn-repetition",
+            "GrammarEvidence": "The complete supplied case, nearest section heading, and record title were read; the reviewed unnamed textual actor is the headword-clause actor; the source does not securely give a personal name, so none is invented."
+          }
+        },
+        {
+          "RelPath": "J/J27/J27nB192.xml",
+          "FromLb": "0185b29",
+          "ToLb": "0185b29",
+          "Kwic": "舉木椎，師云：「百丈清規埋沒久矣。",
+          "MasterName": "Daxiu Zhu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Daxiu Zhu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J27/J27nB192.xml). The complete supplied case, nearest section heading, and record title were read; Daxiu Zhu supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "J/J29/J29nB239.xml",
+          "FromLb": "0542a02",
+          "ToLb": "0542a04",
+          "Kwic": "故百丈清規有知藏之職，謂以佛之所說所行為教律，而僧有不遵佛之言行乎？",
+          "MasterName": "Juyun Chuiwan Guangzhen",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Juyun Chuiwan Guangzhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J29/J29nB239.xml). The complete supplied case, nearest section heading, and record title were read; Juyun Chuiwan Guangzhen supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "X/X63/X63n1250.xml",
+          "FromLb": "0620b01",
+          "ToLb": "0620b02",
+          "Kwic": "且吾聖人以波羅提木叉為壽命，而百丈清規由是而出，此固藂林禮法之大經也。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X63/X63n1250.xml). Reviewed source: the regulatory-text compiler is the exact headword-clause actor. The exact headword names or cites Baizhang’s regulations in documentary prose; it is not an anonymous spoken turn.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "document title or institutional narration",
+            "ActorLabel": "the regulatory-text compiler",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The exact headword names or cites Baizhang’s regulations in documentary prose; it is not an anonymous spoken turn.",
+            "ReviewedBy": "Codex root-ruling repair",
+            "ReviewedUtc": "2026-07-17T16:30:00Z",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          }
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T48/T48n2025.xml",
+        "J/J27/J27nB192.xml",
+        "J/J29/J29nB239.xml",
+        "X/X63/X63n1250.xml"
+      ],
+      "RelatedMasters": [
+        "Daxiu Zhu",
+        "Juyun Chuiwan Guangzhen"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "The monastic regulations attributed to Baizhang Huaihai. The title names a book and institutional standard cited for monastery offices, schedules, and communal rules. References to later revised editions remain citations of the named regulatory lineage, not proof of one unchanged text."
+    }
+  ]
+}

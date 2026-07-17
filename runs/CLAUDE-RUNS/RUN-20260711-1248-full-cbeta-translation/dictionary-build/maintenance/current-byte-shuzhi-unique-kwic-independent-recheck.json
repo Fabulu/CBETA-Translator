@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "current-byte-independent-occurrence-recheck.v1",
+  "generatedUtc": "2026-07-17T14:34:12.968021+00:00",
+  "entriesEdited": false,
+  "rows": [
+    {
+      "id": "t_b0560f82b7c6",
+      "sourceTerm": "竪指",
+      "reviewedCurrentEntrySha256": "f383cec4f64823805dfd47e9ab5a2a35b3240828a37d8f327e0718892e9f7105",
+      "disposition": "PASS",
+      "independentQualified": true,
+      "reason": "The recut X71 occurrence is a unique exact span crossing from the compiler-supplied case heading “Juzhi raises a finger” into the first words of Liao’an Qingyu’s verse. The headword belongs to the heading; the verse itself begins “Juzhi’s one finger...” and does not utter 竪指. The current entry therefore correctly assigns the surface headword to the record compiler, retains Liao’an only as record owner/verse author in context, and retains Juzhi only as the discussed case figure.",
+      "evidence": [
+        "zc.verify(X/X71/X71n1414.xml, 俱胝竪指俱胝一指閙浩浩) returned ok=true, fromLb=0346a11, toLb=0346a12, count=1.",
+        "The complete case sequence is a run of compiler headings followed by their verses: the repeated heading 俱胝竪指 is followed by the verse opening 俱胝一指閙浩浩，十方剎海俱掀倒.",
+        "The source title is Recorded Sayings of Chan Master Liao’an Qingyu; title ownership licenses Liao’an’s verse authorship but does not transfer the editorial case heading to him.",
+        "The current occurrence has MasterName=null, ActorAttribution Status=narrated, ActorRole=compiler, ActorLabel=the record compiler, with Liao’an Qingyu and Juzhi separated in ContextMasters.",
+        "The current reader KWIC contains one exact 竪指 span, so the prior ambiguous occurrence identity is resolved."
+      ]
+    }
+  ]
+}

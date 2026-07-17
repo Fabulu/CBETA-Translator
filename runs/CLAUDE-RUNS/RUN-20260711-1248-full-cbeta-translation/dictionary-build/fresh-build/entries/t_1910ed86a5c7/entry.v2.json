@@ -1,0 +1,188 @@
+{
+  "Id": "t_1910ed86a5c7",
+  "SourceTerm": "放下屠刀",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Lane C 26 full-case author",
+  "WrittenUtc": "2026-07-17T10:06:40.739303+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "to drop the butcher’s knife",
+      "AlternateTargets": [
+        "lay down the butcher knife",
+        "put down the slaughtering knife"
+      ],
+      "SearchAliases": [
+        "drop the knife",
+        "lay down the butcher knife",
+        "Guang’e butcher",
+        "butcher becomes Buddha"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Six exact occurrences from 6 works.",
+      "Occurrences": [
+        {
+          "RelPath": "M/M59/M59n1540.xml",
+          "FromLb": "0803a06",
+          "ToLb": "0803a07",
+          "Kwic": "渠本是箇屠兒放下屠刀即便成佛",
+          "Curated": true,
+          "AttributionNote": "Source record (M/M59/M59n1540.xml). Dahui retells Guang’e’s abrupt turn at the Nirvana assembly and stresses the final responsive thought. Exact headword-bearing actor: Dahui Zonggao.",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "T/T47/T47n1998A.xml",
+          "FromLb": "0922a20",
+          "ToLb": "0922a21",
+          "Kwic": "涅槃會上廣額屠兒。放下屠刀便成佛。",
+          "Curated": true,
+          "AttributionNote": "Source record (T/T47/T47n1998A.xml). Dahui contrasts the butcher’s immediate knife-dropping with attempts to manufacture quietude. Exact headword-bearing actor: Dahui Zonggao.",
+          "MasterName": "Dahui Zonggao",
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J28/J28nB202.xml",
+          "FromLb": "0067b18",
+          "ToLb": "0067b18",
+          "Kwic": "放下屠刀，立地成佛是如何？",
+          "Curated": true,
+          "AttributionNote": "Source record (J/J28/J28nB202.xml). An unnamed monk asks Baichi Xingyuan how dropping the butcher knife and becoming Buddha on the spot works; Baichi answers that it requires an iron man. Exact headword-bearing actor: an unnamed monk.",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Baichi Xingyuan",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic questioner",
+            "ActorLabel": "an unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "問 assigns the headword-bearing question to an unnamed monk; 師云 assigns the answer to Baichi Xingyuan. The source explicitly presents this unnamed non-master participant in the marked speech turn rather than as a section-owning master.",
+            "ReviewedBy": "Codex Lane C 26",
+            "ReviewedUtc": "2026-07-17T10:06:40.739303+00:00"
+          }
+        },
+        {
+          "RelPath": "J/J37/J37nB383.xml",
+          "FromLb": "0221a23",
+          "ToLb": "0221a24",
+          "Kwic": "昔涅槃會上廣額屠兒放下屠刀，立地成佛",
+          "Curated": true,
+          "AttributionNote": "Source record (J/J37/J37nB383.xml). Hanxiu raises Guang’e’s case, asks what was seen on dropping the knife, and demands an answer from the assembly. Exact headword-bearing actor: Hanxiu Qian.",
+          "MasterName": "Hanxiu Qian",
+          "ContextMasters": [
+            {
+              "MasterName": "Hanxiu Qian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        },
+        {
+          "RelPath": "J/J34/J34nB311.xml",
+          "FromLb": "0655b20",
+          "ToLb": "0655b20",
+          "Kwic": "如何能使弟子如廣額屠兒放下屠刀",
+          "Curated": true,
+          "AttributionNote": "Source record (J/J34/J34nB311.xml). Recorded Sayings of Juelang Daosheng: Jin Zhengxi is the exact questioner who invokes Guang'e's dropping of the butcher's knife; Juelang Daosheng is the respondent.",
+          "MasterName": null,
+          "ContextMasters": [
+            {
+              "MasterName": "Juelang Daosheng",
+              "Roles": [
+                "respondent"
+              ]
+            }
+          ],
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "named lay official",
+            "ActorLabel": "Jin Zhengxi",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The named lay official Jin Zhengxi directly asks the headword-bearing question; Juelang Daosheng supplies the response.",
+            "ReviewedBy": "Codex current-byte sensitive-seven semantic repair",
+            "ReviewedUtc": "2026-07-17T14:28:00.173838+00:00"
+          }
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0095a17",
+          "ToLb": "0095a17",
+          "Kwic": "廣額屠兒放下屠刀，道：我是千佛一數。",
+          "Curated": true,
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Chushi raises Guang’e beside another oversized claim and calls the knife-dropping declaration already inept. Exact headword-bearing actor: Chushi Fanqi.",
+          "MasterName": "Chushi Fanqi",
+          "ContextMasters": [
+            {
+              "MasterName": "Chushi Fanqi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ]
+        }
+      ],
+      "SourceTexts": [
+        "M/M59/M59n1540.xml",
+        "T/T47/T47n1998A.xml",
+        "J/J28/J28nB202.xml",
+        "J/J37/J37nB383.xml",
+        "J/J34/J34nB311.xml",
+        "X/X64/X64n1260.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "Baichi Xingyuan",
+        "Hanxiu Qian",
+        "Juelang Daosheng",
+        "Chushi Fanqi",
+        "Guang’e"
+      ],
+      "RelatedTerms": [
+        "廣額",
+        "立地成佛",
+        "千佛一數"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "To drop the butcher’s knife names Guang’e’s decisive action in the Nirvana-assembly case, immediately followed by his claim to stand among the thousand buddhas. Chan masters repeatedly raise that action while disagreeing about what may be claimed from it. Dahui Zonggao presents the knife-dropping as an abrupt turn and contrasts it with manufactured quiet. Baichi Xingyuan answers a direct question about the formula by saying an iron man is required. Hanxiu Qian asks what Guang’e saw when he dropped the knife. Juelang Daosheng prescribes thirty blows when a layman asks how to reproduce Guang’e’s act, and refuses the bare declaration “I am Buddha.” Chushi Fanqi calls the famous claim already inept. The stable referent is the public case action; approval is not stable. The phrase is not generalized into “ceasing violence causes awakening.” These witnesses invoke one butcher case and openly conflict over its force, so the entry records the turn without supplying a moral mechanism or automatic result."
+    }
+  ]
+}

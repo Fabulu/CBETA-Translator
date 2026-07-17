@@ -1,0 +1,107 @@
+{
+  "Id": "t_33539110fc5e",
+  "SourceTerm": "和尚子",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex investigation-next300 Lane A",
+  "WrittenUtc": "2026-07-17T16:00:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "young monk",
+      "AlternateTargets": [
+        "monk-child"
+      ],
+      "SearchAliases": [
+        "young monk",
+        "monk-child"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Separate occurrences of “reverend” and “child” do not support this compound.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X69/X69n1333.xml",
+          "FromLb": "0072a17",
+          "ToLb": "0072a17",
+          "Kwic": "上堂，眾立久，師云：諸和尚子！",
+          "MasterName": "Xuefeng Yicun",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X69/X69n1333.xml). The complete supplied case, nearest section heading, and record title were read; Xuefeng Yicun supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "T/T51/T51n2076.xml",
+          "FromLb": "0344b05",
+          "ToLb": "0344b06",
+          "Kwic": "和尚子虛空猶從迷妄幻生。",
+          "MasterName": "Xuefeng Yicun",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T51/T51n2076.xml). The complete supplied case, nearest section heading, and record title were read; Xuefeng Yicun supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "B/B25/B25n0144.xml",
+          "FromLb": "0440b14",
+          "ToLb": "0441a01",
+          "Kwic": "和尚子若實未得悟入，直須悟入始得，不虛度時光，莫只是傍家相徼，掠虛嫌說。",
+          "MasterName": "Xuefeng Yicun",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuefeng Yicun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (B/B25/B25n0144.xml). The complete supplied case, nearest section heading, and record title were read; Xuefeng Yicun supplies the headword-bearing clause."
+        },
+        {
+          "RelPath": "T/T47/T47n1988.xml",
+          "FromLb": "0547c11",
+          "ToLb": "0547c11",
+          "Kwic": "諸和尚子莫妄想。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1988.xml). The complete supplied case, nearest section heading, and record title were read; Yunmen Wenyan supplies the headword-bearing clause."
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "X/X69/X69n1333.xml",
+        "T/T51/T51n2076.xml",
+        "B/B25/B25n0144.xml",
+        "T/T47/T47n1988.xml"
+      ],
+      "RelatedMasters": [
+        "Xuefeng Yicun",
+        "Yunmen Wenyan"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "A direct form of address to members of the monastic assembly. Masters use the complete headword before questioning or warning assembled monks; it is vocative speech, not a lineage title. Separate occurrences of “reverend” and “child” do not support this compound."
+    }
+  ]
+}

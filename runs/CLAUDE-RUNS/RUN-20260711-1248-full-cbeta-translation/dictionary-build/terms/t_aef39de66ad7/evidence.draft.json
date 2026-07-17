@@ -1,0 +1,354 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_aef39de66ad7",
+    "SourceTerm": "法子",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Lane C position 25 explicit full-case author",
+    "WrittenUtc": "2026-07-17T10:39:10.433513+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a lineage son or heir",
+        "AlternateTargets": [
+          "a teaching heir",
+          "a recognized lineage heir"
+        ],
+        "SearchAliases": [
+          "lineage child",
+          "teaching heir",
+          "teacher’s recognized son"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Three exact occurrences from 3 independent works anchor this sense.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J28/J28nB219.xml",
+            "FromLb": "0669a25",
+            "ToLb": "0669a25",
+            "Kwic": "西意法子，諱法誦",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhuanyu Guanheng",
+                "Roles": [
+                  "record-owner"
+                ]
+              }
+            ],
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "section heading / record narrator",
+              "ActorLabel": "the record compiler",
+              "ActorRole": "compiler",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The headword occurs in a section label and third-person identification, not in quoted speech.",
+              "ReviewedBy": "Codex Lane C position 25 full-case author",
+              "ReviewedUtc": "2026-07-17T10:39:10.433513+00:00"
+            },
+            "AttributionNote": "Source record (J/J28/J28nB219.xml). Recorded Sayings of Zhuanyu Guanheng: The compiler labels the section for lineage-son Xiyi and immediately identifies Xiyi as Fasong, a long-term interlocutor of Zhuanyu Guanheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "西意法子，諱法誦",
+              "GrammaticalSubject": "record compiler",
+              "SpeechFrame": "The section heading and following identification were read together.",
+              "FullCaseDecision": "The compiler labels the section for lineage-son Xiyi and immediately identifies Xiyi as Fasong, a long-term interlocutor of Zhuanyu Guanheng."
+            }
+          },
+          {
+            "RelPath": "J/J29/J29nB239.xml",
+            "FromLb": "0483c22",
+            "ToLb": "0483c23",
+            "Kwic": "始為法子。",
+            "MasterName": "Chuiwan Guangzhen",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Chuiwan Guangzhen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J29/J29nB239.xml). Recorded Sayings of Chan Master Chuiwan: Chuiwan Guangzhen says Mazu became a lineage son only after prolonged service and testing, using the title for recognized teacher-disciple succession.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "始為法子。",
+              "GrammaticalSubject": "Chuiwan Guangzhen",
+              "SpeechFrame": "The full address or discourse was read around the clause.",
+              "FullCaseDecision": "Chuiwan Guangzhen says Mazu became a lineage son only after prolonged service and testing, using the title for recognized teacher-disciple succession."
+            }
+          },
+          {
+            "RelPath": "J/J28/J28nB220.xml",
+            "FromLb": "0822c06",
+            "ToLb": "0822c06",
+            "Kwic": "慟惟新寂法子顯微元侍者",
+            "MasterName": "Faxi Yin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Faxi Yin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J28/J28nB220.xml). Recorded Sayings of Chan Master Faxi Yin: In a funeral address Faxi Yin calls the deceased attendant Xianweiyuan his newly departed lineage son and recalls the transmission placed in his hands.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "慟惟新寂法子顯微元侍者",
+              "GrammaticalSubject": "Faxi Yin",
+              "SpeechFrame": "The full address or discourse was read around the clause.",
+              "FullCaseDecision": "In a funeral address Faxi Yin calls the deceased attendant Xianweiyuan his newly departed lineage son and recalls the transmission placed in his hands."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "J/J28/J28nB219.xml",
+          "J/J29/J29nB239.xml",
+          "J/J28/J28nB220.xml"
+        ],
+        "RelatedMasters": [
+          "Chuiwan Guangzhen",
+          "Faxi Yin"
+        ],
+        "RelatedTerms": [
+          "法嗣",
+          "師資",
+          "付囑"
+        ],
+        "ClaimAnchors": [],
+        "Explanation": "A lineage son or heir is a person placed in a teacher’s transmitted family, not an ordinary child and not merely someone who studies nearby. Zhuanyu Guanheng’s record titles Xiyi as his lineage son; Chuiwan Guangzhen uses the title for Mazu after service and testing; Faxi Yin addresses the deceased Xianweiyuan as his lineage son while recalling a handed-down house style. The title does not by itself prove every historical lineage claim outside the stored passages.",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A lineage son or heir is a person placed in a teacher’s transmitted family, not an ordinary child and not merely someone who studies nearby.",
+          "EvidenceBody": [
+            "Zhuanyu Guanheng’s record titles Xiyi as his lineage son; Chuiwan Guangzhen uses the title for Mazu after service and testing; Faxi Yin addresses the deceased Xianweiyuan as his lineage son while recalling a handed-down house style.",
+            "The title does not by itself prove every historical lineage claim outside the stored passages."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "ZenBend": "The kinship word becomes a transmission-family relation, publicly naming who stands as a teacher’s recognized child.",
+          "CounterexampleOrLimit": "The title does not by itself prove every historical lineage claim outside the stored passages.",
+          "DifferentThingTest": {
+            "Decision": "different-thing",
+            "ComparedThings": [
+              "a person in a teacher’s transmitted family",
+              "a means used to accomplish something"
+            ],
+            "Reason": "This sense names people in titles, biographies, and a funeral address; the other sense occurs as an instrument that is devised or relied on."
+          },
+          "AliasRationale": "Aliases use ordinary English lookup language while keeping this sense distinct from the other attested referent.",
+          "ModifierControls": [
+            {
+              "Control": "法 modifies 子 differently in the two productive constructions",
+              "Finding": "Person-identifying possessive/title frames and instrumental “use/find/devise” frames are separated."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "法嗣",
+              "Finding": "Lineage successor overlaps the person sense but does not cover the means sense."
+            },
+            {
+              "Term": "方便",
+              "Finding": "Expedient means overlaps some instrumental contexts but is not interchangeable with every occurrence of this headword."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J28nB219",
+            "work:J29nB239",
+            "work:J28nB220"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J28/J28nB219.xml",
+            "J/J29/J29nB239.xml",
+            "J/J28/J28nB220.xml"
+          ],
+          "RelatedMasters": [
+            "Chuiwan Guangzhen",
+            "Faxi Yin"
+          ]
+        }
+      },
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a means",
+        "AlternateTargets": [
+          "a way of doing it",
+          "a practical expedient"
+        ],
+        "SearchAliases": [
+          "means",
+          "way to do it",
+          "device or expedient",
+          "way to accomplish something"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Three exact occurrences from 3 independent works anchor this sense.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J34/J34nB301.xml",
+            "FromLb": "0304b11",
+            "ToLb": "0304b11",
+            "Kwic": "要知省事法子，一切處看。",
+            "MasterName": "Nanyue Jiqi Hongchu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Nanyue Jiqi Hongchu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J34/J34nB301.xml). Recorded Sayings of Chan Master Nanyue Jiqi: Nanyue Jiqi Hongchu says that if one wants to know the means for simplifying matters, one should look in every circumstance.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "要知省事法子，一切處看。",
+              "GrammaticalSubject": "Nanyue Jiqi Hongchu",
+              "SpeechFrame": "The full address or discourse was read around the clause.",
+              "FullCaseDecision": "Nanyue Jiqi Hongchu says that if one wants to know the means for simplifying matters, one should look in every circumstance."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB194.xml",
+            "FromLb": "0312b25",
+            "ToLb": "0312b25",
+            "Kwic": "百計千方設盡法子",
+            "MasterName": "Zhangxue Zui",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhangxue Zui",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J27/J27nB194.xml). Recorded Sayings of Chan Master Zhangxue Zui: Zhangxue Zui says earlier worthies exhausted hundreds of plans and every kind of means to make people take hold before a thought arises.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "百計千方設盡法子",
+              "GrammaticalSubject": "Zhangxue Zui",
+              "SpeechFrame": "The full address or discourse was read around the clause.",
+              "FullCaseDecision": "Zhangxue Zui says earlier worthies exhausted hundreds of plans and every kind of means to make people take hold before a thought arises."
+            }
+          },
+          {
+            "RelPath": "J/J29/J29nB239.xml",
+            "FromLb": "0485c08",
+            "ToLb": "0485c08",
+            "Kwic": "也得箇撐持家道底法子。",
+            "MasterName": "Chuiwan Guangzhen",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Chuiwan Guangzhen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J29/J29nB239.xml). Recorded Sayings of Chan Master Chuiwan: Chuiwan Guangzhen criticizes learned gestures that may provide a means to prop up the house style but fail at death.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "也得箇撐持家道底法子。",
+              "GrammaticalSubject": "Chuiwan Guangzhen",
+              "SpeechFrame": "The full address or discourse was read around the clause.",
+              "FullCaseDecision": "Chuiwan Guangzhen criticizes learned gestures that may provide a means to prop up the house style but fail at death."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "J/J34/J34nB301.xml",
+          "J/J27/J27nB194.xml",
+          "J/J29/J29nB239.xml"
+        ],
+        "RelatedMasters": [
+          "Nanyue Jiqi Hongchu",
+          "Zhangxue Zui",
+          "Chuiwan Guangzhen"
+        ],
+        "RelatedTerms": [
+          "方便",
+          "手段",
+          "省事"
+        ],
+        "ClaimAnchors": [],
+        "Explanation": "A means is a way devised or relied on to accomplish something; in these Chan addresses the word names an instrument of action, not a disciple. Nanyue Jiqi Hongchu names a “means for simplifying matters.” Zhangxue Zui says earlier worthies exhausted every means, while Chuiwan Guangzhen calls a stock performance a means for propping up a house style and then attacks its limits. No stored occurrence makes a particular means universally valid; Chuiwan’s example is explicitly inadequate.",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A means is a way devised or relied on to accomplish something; in these Chan addresses the word names an instrument of action, not a disciple.",
+          "EvidenceBody": [
+            "Nanyue Jiqi Hongchu names a “means for simplifying matters.” Zhangxue Zui says earlier worthies exhausted every means, while Chuiwan Guangzhen calls a stock performance a means for propping up a house style and then attacks its limits.",
+            "No stored occurrence makes a particular means universally valid; Chuiwan’s example is explicitly inadequate."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "ZenBend": "The word is tested by what the proposed means actually does in a live address—simplify, induce recognition, or merely prop up appearances.",
+          "CounterexampleOrLimit": "No stored occurrence makes a particular means universally valid; Chuiwan’s example is explicitly inadequate.",
+          "DifferentThingTest": {
+            "Decision": "different-thing",
+            "ComparedThings": [
+              "a practical means that can be devised or used",
+              "a person recognized as a lineage son or heir"
+            ],
+            "Reason": "Instrumental predicates and purpose phrases make this a usable means; person titles and kinship relations make the other sense a human role."
+          },
+          "AliasRationale": "Aliases use ordinary English lookup language while keeping this sense distinct from the other attested referent.",
+          "ModifierControls": [
+            {
+              "Control": "法 modifies 子 differently in the two productive constructions",
+              "Finding": "Person-identifying possessive/title frames and instrumental “use/find/devise” frames are separated."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "法嗣",
+              "Finding": "Lineage successor overlaps the person sense but does not cover the means sense."
+            },
+            {
+              "Term": "方便",
+              "Finding": "Expedient means overlaps some instrumental contexts but is not interchangeable with every occurrence of this headword."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J34nB301",
+            "work:J27nB194",
+            "work:J29nB239"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J34/J34nB301.xml",
+            "J/J27/J27nB194.xml",
+            "J/J29/J29nB239.xml"
+          ],
+          "RelatedMasters": [
+            "Nanyue Jiqi Hongchu",
+            "Zhangxue Zui",
+            "Chuiwan Guangzhen"
+          ]
+        }
+      }
+    ]
+  }
+}
