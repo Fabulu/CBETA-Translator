@@ -1,0 +1,554 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-canary25-focused-recheck.v1",
+  "decision": "PASS",
+  "scope": "Focused independent recheck of seven evidence-display repairs required by review 00bb4d; semantic content and all other bytes audited for invariance.",
+  "authorityReview": "maintenance/non-iriya-v2-semantic-canary25-independent-cross-review-b6.json",
+  "authorityReviewSha256": "00bb4d8a8925e7cb7b8c86539fa38dbd27938ffca525a909ee319d8e9d8f48d9",
+  "repairReceipt": "maintenance/non-iriya-v2-semantic-canary25-evidence-repair-receipt.md",
+  "repairReceiptSha256": "5ccc9825879d36a369cf55bd94a3c4a8b617a335be0bdadc0f0f3988d7259a06",
+  "repairedLedger": "maintenance/non-iriya-v2-semantic-canary25-ledger.md",
+  "repairedLedgerSha256": "8e1ca7cc39302d0fc82dc7b69461f7d4725f11be0c9cea06f3b13176dbb66415",
+  "preRepairLedgerSha256Reconstructed": "70f2ac23a0b7ce35cab62b9415a3dbc83b1e9ca7fe2b487fa59f3ac7d520e4ad",
+  "checks": {
+    "sevenExactReplacementsMatchAuthorityReview": "PASS",
+    "sevenReplacementWindowsZcVerify": "PASS 7/7",
+    "allDisplayedEvidenceZcVerify": "PASS 25/25",
+    "allLiveExactCounts": "PASS 25/25",
+    "allSemanticDispositionsUnchanged": "PASS 25/25",
+    "allSemanticReasonsUnchanged": "PASS 25/25",
+    "onlySevenEvidenceCellsChanged": "PASS: substituting the seven original snippets reconstructs the exact pre-repair ledger SHA",
+    "dispositionTotals": "PASS 13 KEEP / 12 REJECT / 0 PROVISIONAL"
+  },
+  "rows": [
+    {
+      "canary": 1,
+      "term": "請上堂",
+      "disposition": "KEEP",
+      "semanticReason": "Institutional act distinct from 上堂 itself: a patron, official, resident, or commemorative occasion requests the formal teaching-seat address. The request determines why the address occurs.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 5259,
+        "files": 268,
+        "distinctWorks": 264
+      },
+      "displayedEvidence": {
+        "source": "J/J36/J36nB359.xml",
+        "workId": "work:J36nB359",
+        "kwic": "至南翔白鶴寺，請上堂",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 2,
+      "term": "問如何是",
+      "disposition": "REJECT",
+      "semanticReason": "Not a lexical formula beyond covered 如何是. It is the narrator's 問 plus the opening of innumerable different questions; retaining it would index punctuation/quotation syntax, not a Chan thing.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 4543,
+        "files": 112,
+        "distinctWorks": 108
+      },
+      "displayedEvidence": {
+        "source": "C/C077/C077n1710.xml",
+        "workId": "work:guzunsu-yulu",
+        "kwic": "問如何是修道師云道不属修",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 3,
+      "term": "僧禮拜",
+      "disposition": "REJECT",
+      "semanticReason": "Actor plus covered 禮拜. The monk's bow has many conversational consequences, but 僧 does not create a new kind of bow or stable formula.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 3513,
+        "files": 329,
+        "distinctWorks": 323
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "。長沙龍興智傳禪師長沙龍興智傳禪師僧問：久處湖湘，擬伸一問，師還答否？師曰：何得拖泥帶水？僧便喝。師曰：一陣雨，一陣凉。僧禮拜。師曰：有頭無尾。宋英宗治平中，示寂。平生行住坐臥之處，悉涌舍利。禪徒唱得衣物者，舍利日生。有於真前至誠求者，隨念示應。",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 4,
+      "term": "禪師上堂",
+      "disposition": "REJECT",
+      "semanticReason": "Biographical title plus covered 上堂. The string commonly joins a section identity to its first action and is especially vulnerable to header boundaries.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 3174,
+        "files": 101,
+        "distinctWorks": 97
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "旨如何？師曰：赤脚下桐城。天台實相蘊觀禪師天台實相蘊觀禪師僧問：如何是佛？師曰：堂堂八尺餘。岳州君山顯昇禪師岳州君山顯昇禪師上堂：大方無外，含裹十虗。至理不形，圓融三際。高超名相，妙體全彰。迥出古今，真機獨露。握驪珠而鑑物，物物流輝。擲寶以劒揮空，",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 5,
+      "term": "第一義",
+      "disposition": "KEEP",
+      "semanticReason": "Stable object of public questioning and explicit verdicts: masters are asked for the “first/ultimate principle” and answer by overturning the requested abstraction (for example 百雜碎). This is not merely ordinal grammar.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 2118,
+        "files": 360,
+        "distinctWorks": 354
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "如何是第一義諦？師曰：百雜碎",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 6,
+      "term": "有僧問",
+      "disposition": "REJECT",
+      "semanticReason": "Narrative wrapper around covered 僧問: “there was a monk who asked.” 有 records introduction of an episode, not a distinct interview move.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 2114,
+        "files": 280,
+        "distinctWorks": 275
+      },
+      "displayedEvidence": {
+        "source": "X/X78/X78n1553.xml",
+        "workId": "work:X78n1553",
+        "kwic": "乃再請師開堂。上堂，云：汝等諸人盡是噇酒糟漢，與麼行脚，笑殺他人。總似與麼容易，何處更有今日？汝還知大唐國裏無禪師麼？時有僧問：秖如諸方匡徒領眾，為什麼却道無禪師？師云：不道無禪，秖道無師。後溈山舉此因緣問仰山云：意作麼生？仰山云：鵝王擇乳，素非",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 7,
+      "term": "僧擬議",
+      "disposition": "REJECT",
+      "semanticReason": "Actor plus covered 擬議. The relevant move is hesitation/deliberation; limiting it to monks creates no new sense and loses cases with other actors.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 2035,
+        "files": 278,
+        "distinctWorks": 275
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "僧擬議，師便喝",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 8,
+      "term": "起拂子",
+      "disposition": "REJECT",
+      "semanticReason": "Unstable nested slice. The corpus supplies distinct verbs before it—竪起、拈起、舉起—and the reservoir string often drops that verb's first graph. Covered 拂子 and full action formulas carry the evidence.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1781,
+        "files": 256,
+        "distinctWorks": 252
+      },
+      "displayedEvidence": {
+        "source": "X/X80/X80n1565.xml",
+        "workId": "work:X80n1565",
+        "kwic": "行。師曰。經入藏。禪歸海。唯有普願。獨超物外。百丈問。如何是佛法旨趣。師曰。正是汝放身命處。師問百丈。汝以何法示人。丈竪起拂子。師曰。祇這箇。為當別有。丈拋下拂子。僧問。如何得合道。師曰。我早不合道。問。如何是西來意。師便打曰。我若不打汝。諸方笑",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 9,
+      "term": "正恁麼時",
+      "disposition": "KEEP",
+      "semanticReason": "Stable test pivot: “precisely at such a time” fixes the conditions just posed and demands the respondent show what follows there, often with 作麼生／如何／甚麼處. It has a job beyond generic 恁麼.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1779,
+        "files": 286,
+        "distinctWorks": 280
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "正恁麼時，佛法在甚麼處？師曰：謝布施",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 10,
+      "term": "拄杖卓",
+      "disposition": "REJECT",
+      "semanticReason": "Boundary fragment, normally `拈拄杖，卓一下` or a related inflection. It incorrectly fuses the object of 拈 with the following verb; 卓拄杖/拈拄杖 action units should carry it.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1059,
+        "files": 201,
+        "distinctWorks": 197
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "拈拄杖卓一下，曰",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 11,
+      "term": "舉僧問",
+      "disposition": "KEEP",
+      "semanticReason": "Raised-case operator: a master/commentator introduces an earlier monk's question as the case now being handled. That metadiscursive job differs from the original covered 僧問.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1038,
+        "files": 125,
+        "distinctWorks": 123
+      },
+      "displayedEvidence": {
+        "source": "T/T48/T48n2001.xml",
+        "workId": "work:T48n2001",
+        "kwic": "。別時來向爾道。師乃云。山雲冉冉。江水茫茫。正不居位。偏不涉傍。顯而不露。隱而彌彰。猿啼古木音聲急。鶴宿枯松夢寐長。上堂舉僧問洛浦。供養百千諸佛。不如供養一無心道人。未審。百千諸佛有何過。無心道人有何德。浦云。一片白雲橫谷口。幾多歸鳥盡迷巢。師云",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 12,
+      "term": "大藏教",
+      "disposition": "KEEP",
+      "semanticReason": "Stable designation for the great canon/body of scriptural teaching, repeatedly weighed against or put to work from the teaching seat. It is the object being characterized, not an accidental 大藏+教 join.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1043,
+        "files": 220,
+        "distinctWorks": 217
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "一大藏教，是拭不淨故紙",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 13,
+      "term": "信得及",
+      "disposition": "KEEP",
+      "semanticReason": "Public challenge of whether one's trust/confidence actually reaches the matter. Masters contrast 信得及 with 信不及 and demand a present answer, so the complement construction has a recurring test function.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 1024,
+        "files": 235,
+        "distinctWorks": 231
+      },
+      "displayedEvidence": {
+        "source": "T/T47/T47n1998A.xml",
+        "workId": "work:T47n1998A",
+        "kwic": "日。於臨安府明慶院開堂。拈疏示眾云。留守相公。入善知眾藝三昧。向毛錐子上放大光明。不動舌頭演說四十二般若波羅蜜門已竟。還信得及麼。若信不及。却請表白。重新拈出。令未聞者聞未信者信。宣疏了指法座召大眾云。還見麼。坐斷古佛路頭。潛竄千妖百怪。任是須彌",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 14,
+      "term": "一棒打",
+      "disposition": "REJECT",
+      "semanticReason": "Unstable slice across numeral/object and verb: `一棒打殺`, `打一棒`, and other completions do different grammatical work. Covered 一棒 and 棒's blow sense avoid manufacturing a truncated phrase.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 681,
+        "files": 229,
+        "distinctWorks": 225
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "便好一棒打殺",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 15,
+      "term": "衲僧門",
+      "disposition": "REJECT",
+      "semanticReason": "Diminishing-return fragment of covered 衲僧門下 in the dominant use; other continuations such as 門風 do not establish bare 衲僧門 as a separate thing.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 674,
+        "files": 156,
+        "distinctWorks": 152
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "向衲僧門下過，打折汝腰",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 16,
+      "term": "十二分教",
+      "disposition": "KEEP",
+      "semanticReason": "Stable name for the twelvefold teaching/canonical divisions. Masters explicitly classify it as sound, call it provisional naming, or contrast it with the matter under examination.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 674,
+        "files": 150,
+        "distinctWorks": 146
+      },
+      "displayedEvidence": {
+        "source": "C/C077/C077n1710.xml",
+        "workId": "work:guzunsu-yulu",
+        "kwic": "十二分教属聲",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 17,
+      "term": "成一片",
+      "disposition": "REJECT",
+      "semanticReason": "Result complement shared by many subjects; the dictionary already covers the stable Chan formula 打成一片. Bare 成一片 often depends on the immediately preceding nouns and does not preserve that formula's specific work.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 670,
+        "files": 236,
+        "distinctWorks": 234
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "有無成一片",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 18,
+      "term": "三千里外",
+      "disposition": "KEEP",
+      "semanticReason": "Corpus uses the literal distance and bends it into a verdict of radical removal/missing the point (`三千里外`, `隔三千里`). The distance phrase itself recurs as the evaluative image across works.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 671,
+        "files": 223,
+        "distinctWorks": 218
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "兵隨印轉，三千里外絕烟塵",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 19,
+      "term": "趙州勘",
+      "disposition": "REJECT",
+      "semanticReason": "Truncated proper-name family member: occurrences overwhelmingly begin 趙州勘婆／勘婆子, the named case already represented by the longer covered form. It is not a reusable verb phrase “Zhaozhou examines.”",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 441,
+        "files": 140,
+        "distinctWorks": 138
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "趙州勘婆子話",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 20,
+      "term": "問話者",
+      "disposition": "KEEP",
+      "semanticReason": "Stable public-interview role, “the one who asks a question.” It is directly legislated and tested—most famously `今夜不答話，問話者三十棒`—rather than merely narrating that someone asked.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 310,
+        "files": 141,
+        "distinctWorks": 136
+      },
+      "displayedEvidence": {
+        "source": "D/D48/D48n8939.xml",
+        "workId": "work:guzunsu-yulu",
+        "kwic": "今夜不荅話問話者三十棒",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 21,
+      "term": "剛王寶劍",
+      "disposition": "REJECT",
+      "semanticReason": "False nested form inside 金剛王寶劍. Dropping 金 does not name another sword; all sampled deployments retain the complete compound.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 309,
+        "files": 121,
+        "distinctWorks": 121
+      },
+      "displayedEvidence": {
+        "source": "T/T47/T47n1997.xml",
+        "workId": "work:T47n1997",
+        "kwic": "向上一機金剛王寶劍",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 22,
+      "term": "光明藏",
+      "disposition": "KEEP",
+      "semanticReason": "Despite title contamination from 大光明藏, independent discourse occurrences deploy it as the “luminous treasury” into which encountered worlds and appearances are gathered. Title and corpus phrase will require separate senses at build time.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 308,
+        "files": 137,
+        "distinctWorks": 136
+      },
+      "displayedEvidence": {
+        "source": "J/J28/J28nB219.xml",
+        "workId": "work:J28nB219",
+        "kwic": "一一分明收入光明藏中",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 23,
+      "term": "眾下語",
+      "disposition": "KEEP",
+      "semanticReason": "Observable group interview act: the assembly supplies capping/turning phrases to a posed case, after which the master accepts, rejects, or substitutes. This is not simply generic 下語 with a disposable subject.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 320,
+        "files": 113,
+        "distinctWorks": 110
+      },
+      "displayedEvidence": {
+        "source": "J/J39/J39nB452.xml",
+        "workId": "work:J39nB452",
+        "kwic": "即落七落八。」師云：「你不妨伶俐，如何是最初一步？」進云：「不勞彈指力，當下已圓成。」師云：「若起無事心，棒了趁出院。」眾下語畢，師云：「汝等要會最初一步麼？」乃高聲云：「看腳下。」問眾：「古者道：『善財參遍處，黑豆未生芽。』各各向黑豆未生芽時道",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": true,
+      "matchesReviewSuppliedReplacement": true
+    },
+    {
+      "canary": 24,
+      "term": "請普說",
+      "disposition": "KEEP",
+      "semanticReason": "Institutional request for a 普說, followed by questioning and the general discourse. It records how this public mode is convened and is distinct from the discourse label alone.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 266,
+        "files": 33,
+        "distinctWorks": 32
+      },
+      "displayedEvidence": {
+        "source": "M/M59/M59n1540.xml",
+        "workId": "chan:dahui-pushuo",
+        "kwic": "妙圓居士張檢點祖燈請普說",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    },
+    {
+      "canary": 25,
+      "term": "三喚侍者",
+      "disposition": "KEEP",
+      "semanticReason": "Stable name/formula for the National Teacher's “three calls to the attendant” case, repeatedly raised and independently commented upon. The numeral and participants identify the case rather than an incidental event.",
+      "semanticDispositionUnchanged": "PASS",
+      "semanticReasonUnchanged": "PASS via byte reconstruction of pre-repair ledger",
+      "exactCounts": {
+        "hits": 240,
+        "files": 102,
+        "distinctWorks": 98
+      },
+      "displayedEvidence": {
+        "source": "X/X82/X82n1571.xml",
+        "workId": "work:wudeng-quanshu",
+        "kwic": "舉國師三喚侍者因緣",
+        "verified": true
+      },
+      "wasOneOfSevenRepairs": false,
+      "matchesReviewSuppliedReplacement": null
+    }
+  ],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}
