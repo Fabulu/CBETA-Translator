@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review-v1",
+  "reviewer": "c19-e8",
+  "sourceLedger": "maintenance/iriya-readjudication-offset0-manual-batch4-010.json",
+  "reviewMethod": "Independent full-case reading of every cited occurrence; exact zc.verify, zc.title, zc.work_id, lexical-unit, punctuation-form, Chan-deployment, and disposition review. No count threshold or inherited semantic default.",
+  "rows": [
+    {
+      "canonicalIndex": 162,
+      "term": "不許夜行、投明須到",
+      "verdict": "REVISE",
+      "semanticDispositionReview": "PASS — KEEP (couplet). Both clauses are raised together as the question in one work and supplied together as Touzi's answer to Zhaozhou in another. The complete paired rule, not either isolated clause, is the deployed unit.",
+      "mechanicalReview": "REVISE — the first KWIC verifies, titles and work IDs are correct and distinct, and the punctuation resolution 、→， is correct. The second stored KWIC does not verify because it silently omits the intervening bread exchange between 油！油！ and the headword-bearing question.",
+      "requiredChange": {
+        "field": "evidence[1].kwic",
+        "replacement": "鹽錢布施我。州先歸菴中坐，師後携一瓶油歸。州曰：久嚮投子，及乎到來，祇見個賣油翁。師曰：汝祇識賣油翁，且不識投子。州曰：如何是投子？師提起油瓶曰：油！油！師自過胡餅與州，州不管。師令侍者過胡餅，州禮侍者三拜。州問：大死底人却活時如何？師曰：不許夜行，投明須到。州曰：我早侯白，伊更侯黑。雪竇頌云：活中有眼還同死，藥忌何須驗作家。古佛尚言曾未到，不知誰解撒泥沙。徑山杲頌：禾黍不陽艶，競栽桃李春。翻令力耕者，半作賣花人。雪峰到，師指菴前一片石謂雪峰曰：三世諸佛總在裏許。峰曰：須知有不在裏許者。師曰：",
+        "replacementVerify": {"ok": true, "fromLb": "0566a18", "toLb": "0566b05", "count": 1}
+      }
+    },
+    {
+      "canonicalIndex": 165,
+      "term": "鶻臭布衫",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. Gaofeng makes removing the garment the operative critical image for undoing bondage; the layman's verse declares that same garment removed and is immediately tested by Foyin. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 168,
+      "term": "他時後日",
+      "verdict": "PASS",
+      "review": "REJECT is correct. Both full cases use the phrase only as an ordinary future-time adverb: one dates possible later boasting, the other dates Yantou's prediction about Xuefeng. It is neither answer, verdict, raised case, test-question, nor cap; the Chan weight belongs to the surrounding predicates. Both KWICs verify in distinct works."
+    },
+    {
+      "canonicalIndex": 171,
+      "term": "北斗裏藏身",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. Yunmen gives the entire image as the answer to the phrase penetrating the Dharma body, and a later master raises and examines that answer. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 174,
+      "term": "停囚長智",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. Longhua uses it as the compact fault assigned to Xuedou; another master applies it as the cap on his own delayed explanation. It performs a recurrent case-critical job. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 177,
+      "term": "合取狗口",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. The whole imperative is independently supplied as a replacement reply and as the respondent's direct rebuke in an interview. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 180,
+      "term": "當仁不讓",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. Baiyan explicitly makes the maxim his appraisal of encounter conduct beyond ordinary service; the separate biography uses it specifically to characterize arrowpoint-to-arrowpoint question-and-answer. The inherited maxim is observably deployed as a Chan encounter criterion. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 183,
+      "term": "嘉州大象",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. One capping sequence pairs and diagnoses the Jiazhou elephant with the Shaanfu iron ox; another formal address deploys the same pair in an impossible image and demands a response. This is a recurrent named case-image, not zoological description. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 186,
+      "term": "倒退三千",
+      "verdict": "PASS",
+      "review": "Both exact KWICs verify in distinct works. Independent critics use it as their measure of Vimalakirti's and Nanyue Huisi's forced withdrawal under an encounter. The optional 里 in one occurrence does not change the lexical unit. KEEP (component) and multi-source stand."
+    },
+    {
+      "canonicalIndex": 189,
+      "term": "雲從龍、風從虎",
+      "verdict": "REVISE",
+      "semanticDispositionReview": "PASS — KEEP (couplet). The coordinated dragon/tiger clauses are deployed together as a capping pair and as the direct answer to the matter beyond ordinary question-and-answer; the whole pair is the unit.",
+      "mechanicalReview": "REVISE — both stored comma-form KWICs verify, titles and work IDs are correct and distinct, and the comma form has 137 hits in 81 works. But the claim printedHeadwordExactHits=0 is false: zc.count('雲從龍、風從虎') returns 15 hits in 15 files / 15 works.",
+      "requiredChange": {
+        "formResolution.printedHeadwordExactHits": 15,
+        "formResolution.printedHeadwordDistinctWorks": 15,
+        "replacementFinding": "The Iriya 、 form is exact-attested at 15 hits in 15 works; the corpus comma variant 雲從龍，風從虎 is more frequent at 137 hits in 81 works. Both preserve the same two-clause unit, so the corpus query may use the comma form without calling the printed form absent."
+      }
+    }
+  ],
+  "summary": {
+    "PASS": 8,
+    "REVISE": 2,
+    "semanticDispositionChanges": 0,
+    "lexicalUnitChanges": 0,
+    "mechanicalEvidenceChanges": 1,
+    "punctuationResolutionChanges": 1
+  },
+  "authorLedgerEdited": false,
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

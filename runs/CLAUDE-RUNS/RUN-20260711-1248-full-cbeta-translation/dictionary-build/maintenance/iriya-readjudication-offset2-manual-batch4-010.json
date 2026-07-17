@@ -1,0 +1,338 @@
+{
+  "schemaVersion": "iriya-readjudication-offset2.manual-batch4.v1",
+  "mode": "manual full-case reading only; no semantic writer, regex disposition, default, or count-threshold decision",
+  "selectionRegistry": "maintenance/iriya-trusted-registry.json",
+  "selectionRegistrySha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
+  "selection": "Exactly the next ten canonical offset-2 candidates absent from the sealed 244-row trusted registry, ascending canonicalIndex.",
+  "decisions": [
+    {
+      "canonicalIndex": 92,
+      "queueNumber": 93,
+      "id": "t_28935a341ab2",
+      "term": "落在什麼處",
+      "query": "落在什麼處",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "negative full-case",
+      "exactHits": 215,
+      "exactWorks": 84,
+      "bridgedHits": 215,
+      "bridgedWorks": 84,
+      "reason": "The complete cases show a productive question frame, not a stable saying. Yuanwu asks where the intent of Xuedou's changing comment lands, while Linji asks a monk where the monk thinks Linji's probe lands; the grammatical subject and disputed referent are supplied afresh by each surrounding turn. Neither passage raises, answers with, glosses, or appraises 落在什麼處 as a reusable lexical object. Its high count therefore does not override the boundary failure.",
+      "evidence": [
+        {
+          "source": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "workId": "work:T48n2003",
+          "line": "0142c01",
+          "KWIC": "這難難。也須透過始得。何故。百丈道一切語言。山河大地。一一轉歸自己。雪竇凡是一拈一掇。到末後須歸自己。且道。什麼處是雪竇為人處。揀擇明白君自看。既是打葛藤頌了。因何却道。君自看。好彩教爾自看。且道。意落在什麼處。莫道諸人理會不得。設使山僧到這裏。也只是理會不得。3垂示云。一機一境。一言一句。且圖有箇入處。好肉上剜瘡。成窠成窟。大用現前不存軌則。且圖知有向上事。蓋天蓋地又摸索不著。恁麼也得。不恁麼也得。太廉纖"
+        },
+        {
+          "source": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "line": "0640b13",
+          "KWIC": "便下座。上堂云赤肉團上有一無位真人常󴌰汝等諸人面門出入未證據者看看時有僧出問如何是無位真人師下禪林把住云道道其僧擬議師托開云無位真人是什麼乹屎橛便歸方丈。上堂有僧出禮拜師便喝僧云老和尚莫探頭好師云你道落在什麼處僧便喝又有僧問如何是佛法大意師便喝僧禮拜師云你道好喝也無僧云草賊大敗師云過在什麼處僧云再犯不容師便喝是日兩堂首座相見同時下喝僧問師還有󰠢主也無師云󰠢主歷然師云大眾要會臨濟󰠢主句問取堂中二首座便下座。上"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 95,
+      "queueNumber": 96,
+      "id": "t_6526101d5798",
+      "term": "拂袖而出",
+      "query": "拂袖而出",
+      "disposition": "REJECT",
+      "unit": "—",
+      "validation": "rejected-nonlexical",
+      "exactHits": 231,
+      "exactWorks": 100,
+      "bridgedHits": 231,
+      "bridgedWorks": 100,
+      "reason": "Both complete cases use 拂袖而出 only as compositional narrator wording for an actor flicking his sleeves and leaving. In the Yanguan case it reports the dissatisfied monk's exit before Yanguan strikes him; in Faju's visit to Langye it reports Faju's departure after his rebuke. Neither case raises, answers with, quotes, glosses, or appraises the four graphs as a lexical object. The action matters to each encounter, but the wording remains narrative stage direction, so it is rejected under the same boundary applied to 打一拂子.",
+      "evidence": [
+        {
+          "source": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "workId": "work:X79n1557",
+          "line": "0040a22",
+          "KWIC": "子問，直得通身汗流。有座主辭，師問：甚麼處去？云：山下去。師云：第一不得謗王老。師云：爭敢？師噴啑云：是多少？主無對。僧問：百尺竿頭如何進步？師云：更進一步。復問鹽官，官云：百尺竿頭用進作麼？僧不肯，拂袖而出，官便打。承天宗云：若參南泉，須進一步；若參鹽官，須退一步。明眼底辨取。陸亘大夫問師：肇法師也甚奇怪，解道：天地與我同根，萬物與我一體。師指庭前花云：大夫！時人見此一株花，如夢相似。師與大夫見人雙陸，"
+        },
+        {
+          "source": "X/X81/X81n1568.xml",
+          "title": "五燈嚴統(第10卷-第25卷)",
+          "workId": "work:wudeng-yantong",
+          "line": "0046b04",
+          "KWIC": "曰：却是。師曰：樓閣凌雲勢，峰巒疊翠層。到琅邪覺和尚處，邪問：近離甚處？師曰：兩浙。曰：船來陸來？師曰：船來。曰：船在甚處？師曰：步下。曰：不涉程途一句作麼生道？師以坐具摵一摵曰：杜撰長老，如麻似粟。拂袖而出。邪問侍者：此是甚麼人？者曰：舉上座。邪曰：莫是舉師叔麼？先師教我尋見伊。遂下。旦過問：上座莫是舉師叔麼？莫怪適來相觸忤。師便喝。復問：長老何時到汾陽？邪曰：某時到。師曰：我在浙江早聞你名，元來見解祇"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 98,
+      "queueNumber": 99,
+      "id": "t_fdc5563de476",
+      "term": "白日青天",
+      "query": "白日青天",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 197,
+      "exactWorks": 102,
+      "bridgedHits": 197,
+      "bridgedWorks": 102,
+      "reason": "Zhongfeng Mingben turns broad daylight and blue sky into the rebuke 白日青天莫寐語好 after contrasting Shakyamuni's hardship with comfortable complaint. In a separate formal address, Gulin Qingmao asks 白日青天有甚麼事 before raising Damei's case. The daylight image is thus a recurring challenge against adding dream-talk or further business when nothing is hidden, not merely a weather description.",
+      "evidence": [
+        {
+          "source": "B/B25/B25n0145.xml",
+          "title": "天目中峰廣錄",
+          "workId": "work:B25n0145",
+          "line": "0715a10",
+          "KWIC": "年外所悟之道。未甞有毫髮異。儞還知。黃面老漢棄萬乘之尊榮如棄弊屣。受六年之飢凍如處宮室。及至四十九年轉法輪時。惟棲身樹下丐食檀門而已。豈似今日安居暇食指顧如意猶自生嫌。要與釋迦同證同入。未知其可也。咄白日青天莫寐語好。珍重。吳江州太湖簡村順心禪菴高峯和尚愍忌拈香。順心菴裏太湖中央。俄然逢愍忌。世相未能忘。大眾高峯老和尚來也。雨蒸苗葉綠。風撼稻花香。師子巖東岡幻住菴中秋示眾。天上月水中月。光漾漾與誰說。今宵"
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0108c24",
+          "KWIC": "能葢，地不能載，日月不能照臨，虗空不能包裹，萬象不能覆藏，通上徹下是箇大解脫人，何處更有許多名字？所以道：處處真，處處真，塵塵盡是本來人。真實說時人不識，正體堂堂沒却身。與麼說話，還得相應也無？兄弟，白日青天有甚麼事？從上佛祖立機立境，千差萬別，隱顯殊途，只要你實證實悟。於實證實悟處靠者一著子，直是乾嚗嚗地，所謂上無攀仰，下絕己躳，常光現前，壁立萬仞。豈不見大梅常禪師問馬大師：如何是佛？大師云：即心是佛。"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 101,
+      "queueNumber": 102,
+      "id": "t_c077c845b9e8",
+      "term": "威音王已前",
+      "query": "威音王已前",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 212,
+      "exactWorks": 105,
+      "bridgedHits": 216,
+      "bridgedWorks": 105,
+      "reason": "Huangbo gives 威音王已前 directly when Nanquan asks in what year he carried out the Way, and Nanquan tests the answer by still calling him Old Wang's descendant. Huguo Yuan separately contrasts the people before King Awesome Sound, those after him, and the people now standing present, then asks the assembly to decide among the three. The phrase is a recurrent tested temporal position in encounters and addresses.",
+      "evidence": [
+        {
+          "source": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "line": "0635b07",
+          "KWIC": "老禮拜當何所求師云不着佛求不著法求不著眾求常禮如是事沙󳇐云用禮何為師便掌沙󳇐云太麄生師云者裏是什麼所在說麄說細隨後又掌沙󳇐便走。師行脚時到南泉一日齋時捧鉢向南泉位上坐南泉下來見便問長老什麼年中行道師云威音王已前南泉云猶是王老師孫在師便下去師一日在茶堂內坐南泉下來問定惠等學眀見佛性此理如何師云十二時中不依倚一物泉云莫便是長老見處麼師云不敢泉云漿水錢且置草鞋錢教什麼人還師便休後溈山舉此因緣問仰山莫是黃檗構它南泉"
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0066c16",
+          "KWIC": "宇宙中，氣岸高突兀，如是三十年，用之為準則。而今年老矣，一物知何物？擲下金剛鎚，擊碎千聖骨，拋向四衢道，不能更惜得。任意過浮生，指南將作北，呼龜以為鼈，喚豆以為粟，從他明眼人，笑我無繩墨。護國元禪師。威音王已前者一隊漢，錯七錯八。威音王已後者一隊漢，落二落三。而今者一隊漢，坐立儼然。且道是錯七錯八，落二落三。還定當得出麼。舉拂子曰，吽吽。上堂：野干鳴，獅子吼，張得眼，開得口，動南星，蹉北斗。大眾還知落處麼？"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 104,
+      "queueNumber": 105,
+      "id": "t_7eb912de96ac",
+      "term": "三條椽下",
+      "query": "三條椽下",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 194,
+      "exactWorks": 126,
+      "bridgedHits": 194,
+      "bridgedWorks": 126,
+      "reason": "Donglin Guzhi places 三條椽下 beside 七尺單前 and warns the assembly not to form an understanding by relying on that place. Shuzhong Yun independently assigns the same under-the-three-rafters place as where the summer assembly may lie down, eat, and drink, while warning that anyone retaining measures will later owe for the food. The phrase recurrently names the monk's narrow sitting-place as the site of direct testing, not rafters in architectural description.",
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0206a23",
+          "KWIC": "起惑亡。黑牛臥死水，癩馬繫枯樁。何似東村黑王老，黃昏伸脚睡，一覺到天光。山僧與麼道，切忌錯承當。上堂：盡令提綱，聖凡罔測。放開綫道，普請同參。薰風自南來，殿閣生微涼。上堂：祖師道，圓同太虗，無欠無餘。三條椽下，七尺單前，切忌依他作解。莫有向天外出頭底麼？乃曰：巡堂喫茶。禮暹道者塔偈曰：髑髏元自有靈光，雪竇何曾抖尿腸。截斷婆婆三寸舌，至今雙劒倚天長。送萬禪人參徑山虗谷偈曰：萬轍千途同一車，參方眼正不曾差。一"
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0086a02",
+          "KWIC": "上不銷一錐。古今天地、古今日月、古今人倫，好不增一毫，醜不減一毫，以大圓覺為我伽藍，畫地為牢，刑名斯著，身心安居，平等性智，沉埋鬼窟，塵慮尤多。靈巖寺裏明日結夏，今夜小參：亦不說妙談玄，亦不設期立限，三條椽下、七尺單前，一任諸人橫眠倒臥、渴飲饑餐，管取心華發明，照十方剎。其或情存限量，墮在見聞，他時後日有人索飯錢在，莫言不道。復舉：世尊在摩竭陀國說法，是時白夏，乃謂阿難曰：諸大弟子、人天四眾，我常說法，不"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 107,
+      "queueNumber": 108,
+      "id": "t_a0d16980d700",
+      "term": "話作兩橛",
+      "query": "話作兩橛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 215,
+      "exactWorks": 110,
+      "bridgedHits": 215,
+      "bridgedWorks": 110,
+      "reason": "Yunmen Cheng appraises Shakyamuni's contrast between wisdom and deluded attachment with 瞿曇話作兩橛, saying the speech has been made into two chunks. In a separate address, a monk's anticipated 長老話作兩橛 exposes the speaker's conflict between declaring the Way impartial and then ranking three masters. The phrase is a recurring case verdict for dividing one's own statement into incompatible sides.",
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "line": "0008b04",
+          "KWIC": "執着而不證得。雲居莊云：我要問釋迦老子：喚什麼作智慧德相？喚什麼作妄想執着？擬議不來，劈脊便掊。還有為瞿曇出氣者麼？拈拄杖云：不敢望汝與釋迦老子出氣，只是將自己鼻孔摸索得着也好。靠拄杖。雲門澄云：瞿曇話作兩橛，雲居菽麥不分，真個徐六擔板只見一邊。徑山今日要各與他二十烏滕，還有不甘者麼？出來為二老雪屈。博山來云：根本無明即是諸佛不動智，不動智即是根本無明，者裏別具一隻眼，老瞿曇氷消瓦解。廣教玉云：大小釋迦話"
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "line": "0071a09",
+          "KWIC": "顛。大眾！道無橫徑，立處孤危。此三大老行聲前活路，用劫外靈機，若以衲僧正眼檢點將來，不無優劣：一人如張良入陣，一人如項羽用兵，一人如孔明料敵。若人辨白得，可與佛祖齊肩。雖然如是，忽有箇衲僧出來道：長老話作兩橛也。適來道：道無橫徑，無黨無偏。而今又却分許多優劣，且作麼生祇對？還委悉麼？把手上山齊著力，咽喉出氣自家知。大溈鑑禪師，上堂：木落霜空，天寒水冷。釋迦老子無處藏身，拆東籬，補西壁，撞著不空見菩薩，請示"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 110,
+      "queueNumber": 111,
+      "id": "t_19623a02920d",
+      "term": "天上天下、唯我獨尊",
+      "query": "天上天下，唯我獨尊",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "variant-resolved multi-source",
+      "variantResolution": "The printed Iriya separator 、 has zero exact corpus hits. The admitted corpus form uses ， and has 181 exact hits across 88 works; the unpunctuated joined form 天上天下唯我獨尊 has 88 exact hits across 35 works. High-recall punctuation bridging finds 286 hits across 115 works, but admission rests on exact zc-verified corpus-form cases.",
+      "exactHits": 181,
+      "exactWorks": 88,
+      "bridgedHits": 286,
+      "bridgedWorks": 115,
+      "reason": "A monk raises the complete two-clause declaration to Jiufeng as Shakyamuni's speech and asks why Shakyamuni is still only a transmitter; Jiufeng answers from the pointing to heaven and earth, and Lingyuan then asks whose words the declaration transmits. Yangqi independently reenacts the birth scene and challenges monks who merely copy its full declaration. Both clauses travel and are tested together, so the linked saying—not either half alone—is the admitted unit.",
+      "evidence": [
+        {
+          "source": "X/X68/X68n1318.xml",
+          "title": "續古尊宿語要",
+          "workId": "work:X68n1318",
+          "line": "0364b04",
+          "KWIC": "界本無何用免？舉：僧問九峯云：諸聖間出盡是傳語底人，是否？峰云：是。僧云：只如釋迦出來道：天上天下，唯我獨尊。為甚却成傳語底人？峯云：只為他指天指地，所以喚作傳語底人。師云：明眼漢瞞他一點也不得。然"
+        },
+        {
+          "source": "X/X79/X79n1559.xml",
+          "title": "嘉泰普燈錄",
+          "workId": "work:X79n1559",
+          "line": "0303c02",
+          "KWIC": "息，偷向楊岐說夢看。參！上堂：薄福住楊岐，年來氣力衰。寒風凋敗葉，猶喜故人歸。囉唻哩！拈上死柴頭，且向無煙火。上堂：釋迦老子初生時，周行七步，目顧四方，一手指天，一手指地。今時衲僧盡皆打模𦘕樣，便道：天上天下，唯我獨尊。雲蓋不惜性命，亦為諸人打箇樣子。遂曰：陽氣發時無硬地。晚參。示眾：一切智通無障礙。拈起拄杖曰：向汝諸人面前逞神通去也。擲下曰：直得乾坤震裂，山岳搖動。會麼？不見道：一切智智清淨。拍禪床曰：三十年後，"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 113,
+      "queueNumber": 114,
+      "id": "t_be8d96824a15",
+      "term": "事無一向",
+      "query": "事無一向",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 176,
+      "exactWorks": 88,
+      "bridgedHits": 182,
+      "bridgedWorks": 92,
+      "reason": "Jianfu Chenggu first rejects talking Chan and question-answer as harmful, then uses 事無一向 together with 理出百途 to open questions for those present. Xingyang Qingpou independently denies that words reach the matter, then uses the same formula to open one line within the teaching gate for public exchange. The phrase is a recurrent formal pivot that refuses a one-way rule while permitting the address or interview to proceed.",
+      "evidence": [
+        {
+          "source": "X/X78/X78n1556.xml",
+          "title": "建中靖國續燈錄",
+          "workId": "work:X78n1556",
+          "line": "0649a06",
+          "KWIC": "罷，師云：適來如是咨白大眾，還甘也無？若據大眾分上，假饒諸佛出世，猶是自謾；祖師西來，誑惑庸小；自餘之輩，不在形言。若也談禪說要，大似含血噀人；問答往來，如同魔嬈。禪德！大眾面前作麼生下口？雖然如是，事無一向，理出百途，曲為下機，有疑請問。問：如何是薦福境？師云：莫。僧曰：如何是境中人？師云：莫。問：知師久蘊囊中寶，今日當筵略借看。師云：莫。僧曰：和尚豈無方便？師云：莫。問：大善知識！將何為人？師云：莫。"
+        },
+        {
+          "source": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "workId": "work:T51n2077",
+          "line": "0500b22",
+          "KWIC": "來。師曰。與甚麼人喫。曰不入園者。師曰。未審不入園者還喫也無。曰汝還識伊麼。師曰。雖然不識不得不與。陽笑而去。住後上堂。西來大道理絕百非。句裏投機全乖妙旨。不已而已有屈祖宗。豈況忉忉有何所益。雖然如是事無一向。且於唱教門中。通一線道大家商量。僧問。娑竭出海乾坤震。覿面相呈事若何。師曰。金翅鳥王當宇宙。箇中誰是出頭人。曰忽遇出頭時又作麼生。師曰。似鶻提鳩君不信。髑髏前驗始知真。曰恁麼則叉手當胸退身三步也。師"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 116,
+      "queueNumber": 117,
+      "id": "t_4ab9b991927b",
+      "term": "可知禮也",
+      "query": "可知禮也",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "multi-source",
+      "exactHits": 210,
+      "exactWorks": 107,
+      "bridgedHits": 211,
+      "bridgedWorks": 107,
+      "reason": "Dahui gives 可知禮也 as his direct reply when a monk praises the meeting as adding spirit where spirit is present; the monk immediately treats it as permission to step forward and praise, and Dahui overturns him. In a separate address, the master inserts the same primer phrase after a chain of classical lines, asks how Baofeng compares with Confucius, and caps the test with 'a poem is spoken to one who understands.' The school-primer wording is thus reused as a pointed interview reply and learned-speech cap.",
+      "evidence": [
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "line": "0867b06",
+          "KWIC": "來也著師云十字街頭石幢子進云雖然如是未審他還受也無師云受與不受總不干他事進云既不干他事畢竟他是阿誰師云遮欄不住進云忽遇千了百當底人來還落諸聖階級也無師云列在下風進云可謂有意氣時添意氣不風流處也風流師云可知禮也進云恁麼則學人踏步向前讚歎有分師云墮坑落壍進云王老師門下也不為分外師云何不分外上更道進云某甲若道和尚却須退後始得師云我不辭退後只是你依前道不得進云和尚未免賊過後張弓師云爭奈穿却你鼻孔換却你眼睛進云不妨"
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "line": "0049b21",
+          "KWIC": "傳？師曰：家家有路透長安。曰：祇如衲僧門下，畢竟作麼生？師曰：放你三十棒。上堂：五九四十五，聖人作而萬物覩。秦時𨍏轢鑽頭尖，漢祖殿前樊噲怒。曾聞黃鶴樓，崔顥題詩在上頭。晴川歷歷漢陽樹，芳草萋萋鸚鵡洲。可知禮也。君子務本，本立而道生。道生一，一生二，二生三，三生萬物。驀拈拄杖，起身曰：大眾，寶峰何似孔夫子？良久曰：酒逢知己飲，詩向會人吟。卓拄杖，下座。上堂：劄！久雨不晴，直得五老峰頭黑雲靉靆，洞庭湖裏白浪滔"
+        }
+      ]
+    },
+    {
+      "canonicalIndex": 119,
+      "queueNumber": 120,
+      "id": "t_bfafea75bcc6",
+      "term": "囘光返照",
+      "query": "回光返照",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "variant-resolved multi-source",
+      "variantResolution": "The printed headword 囘光返照 is exact-absent. The admitted corpus query 回光返照 has 192 exact hits across 94 works. Related corpus spellings include 迴光返照 (54 hits across 36 works) and 回光反照 (6 hits across 5 works); evidence below preserves the exact 回…返… form rather than rewriting source graphs.",
+      "exactHits": 192,
+      "exactWorks": 94,
+      "bridgedHits": 192,
+      "bridgedWorks": 94,
+      "reason": "Zhongfeng Mingben explicitly names the four characters 回光返照, breaks them into questions about how light can be turned and illumination returned, and rejects the quiet withdrawal that some people call by the phrase. Guishan independently tells Yangshan to turn the light back on himself and immediately tests the account Yangshan offers. The exact unit is therefore directly discussed, instructed, and corrected across distinct works.",
+      "evidence": [
+        {
+          "source": "X/X70/X70n1402.xml",
+          "title": "天目明本禪師雜錄",
+          "workId": "work:X70n1402",
+          "line": "0732b22",
+          "KWIC": "無一法為了、為不了。故教中謂：森羅萬象，一法之所印。只箇一法亦無討處，其何話頭之有哉？但辨肯心，決不相賺。海東淵禪人日居僧堂中，因看話頭處未通，出紙求指示，乃直筆以此答之云爾。示無地立禪人示無地立禪人回光返照四字，是獨脫凡情，超入大悟之域底境界。你工夫未到此箇田地，且光作麼生回？照作麼生返？你若未到真正悟明之地，但有可回可返之理，皆是自瞞。以其悟得徹處，則其心光不待回而回，覺照不待返而返矣，以無所待故也。"
+        },
+        {
+          "source": "X/X79/X79n1557.xml",
+          "title": "聯燈會要",
+          "workId": "work:X79n1557",
+          "line": "0073b11",
+          "KWIC": "遭喝，師垂淚云：先師道：儞須遇人始得。今日便是遇人也。遂發心牧牛三年。一日，溈入山，見師在磐石上坐禪，溈以拄杖點師背云：寂子道得也未？師云：雖道不得，要且不借別人口。溈云：寂子會也。溈山謂師云：汝須自回光返照，別人不知汝解處，汝試將實解獻老僧看。師云：若教某甲自看，到這裏無圓位，亦無一物一解得獻和尚。溈云：無圓位處，元是汝作解處，未離心境在。師云：既無圓位，何處有法？把何物作境？溈云：適來是汝作恁麼解，是"
+        }
+      ]
+    }
+  ],
+  "reviewedCount": 10,
+  "summary": {
+    "KEEP (component)": 7,
+    "KEEP (couplet)": 1,
+    "PROVISIONAL": 0,
+    "REJECT": 2
+  },
+  "mechanicalReceipt": {
+    "exactKwicsVerified": 20,
+    "distinctWorkIdsPerKeptRow": true,
+    "queueNumberEqualsCanonicalIndexPlusOne": true,
+    "selectionOverlapWithTrustedRegistry": 0
+  },
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

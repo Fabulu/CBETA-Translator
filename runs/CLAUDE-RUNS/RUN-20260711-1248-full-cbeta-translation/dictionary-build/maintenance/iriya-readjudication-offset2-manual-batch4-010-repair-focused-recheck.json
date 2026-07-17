@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "iriya-repair-focused-recheck-v1",
+  "reviewedLedger": "maintenance/iriya-readjudication-offset2-manual-batch4-010.json",
+  "reviewedLedgerSha256": "954977a2b80af2e5883d01dc2b1850ab404ced8888c4abf093caa77cbfe2edc9",
+  "repairReceipt": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-receipt.json",
+  "repairReceiptSha256": "ec06a511314f41946dd6a48c11ef047ccd4fdef710dabc4babd90373d3e2e31f",
+  "authority": "maintenance/iriya-readjudication-offset2-manual-batch4-010-cross-review.json",
+  "authoritySha256": "a2372e1695c38754722e2b239b687e7765172efc4fce703c968b54ec0287d801",
+  "decision": "PASS",
+  "scope": "Focused post-repair audit of the required 拂袖而出 rejection, preservation of its evidence, cohort-summary reconciliation, and preservation of the other nine reviewed rulings.",
+  "requiredRepair": {
+    "canonicalIndex": 95,
+    "term": "拂袖而出",
+    "observedDisposition": "REJECT",
+    "observedUnit": "—",
+    "observedValidation": "rejected-nonlexical",
+    "evidenceObjectsRetained": 2,
+    "evidenceWorkIds": ["work:X79n1557", "work:wudeng-yantong"],
+    "finding": "PASS — the repaired reason accurately limits both cases to compositional narrator wording for flicking the sleeve and leaving, applies the same boundary as 打一拂子, and does not alter either exact evidence object."
+  },
+  "summaryReview": {
+    "observed": {"KEEP (component)": 7, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 2},
+    "expectedAfterRepair": {"KEEP (component)": 7, "KEEP (couplet)": 1, "PROVISIONAL": 0, "REJECT": 2},
+    "decision": "PASS"
+  },
+  "otherNineRulings": [
+    {"canonicalIndex":92,"term":"落在什麼處","disposition":"REJECT","unit":"—","finding":"unchanged and matches authority"},
+    {"canonicalIndex":98,"term":"白日青天","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":101,"term":"威音王已前","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":104,"term":"三條椽下","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":107,"term":"話作兩橛","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":110,"term":"天上天下、唯我獨尊","disposition":"KEEP (couplet)","unit":"couplet","finding":"unchanged and matches authority"},
+    {"canonicalIndex":113,"term":"事無一向","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":116,"term":"可知禮也","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"},
+    {"canonicalIndex":119,"term":"囘光返照","disposition":"KEEP (component)","unit":"component","finding":"unchanged and matches authority"}
+  ],
+  "integrity": {
+    "ledgerRows": 10,
+    "ledgerEvidenceObjects": 20,
+    "receiptAuthorityHashMatchesFile": true,
+    "receiptAfterHashMatchesLedger": true,
+    "receiptBeforeHashMatchesAuthorityReviewedSourceHash": true,
+    "otherNineDispositionAndUnitPairsMatchAuthority": true
+  },
+  "sideEffects": {
+    "authorLedgerModifiedByRecheck": false,
+    "buildRun": false,
+    "queueAdvanced": false,
+    "lineageTouched": false
+  }
+}

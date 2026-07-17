@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewer": "Codex independent full-case reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset1-manual-batch4-010.json",
+  "sourceLedgerSha256": "d85194eacc843149954f1d537db6efd606ced7b6f79f288d78bf615cc6b943d4",
+  "decision": "PASS",
+  "scope": "Independent reading of all ten rows and all twenty stored KWICs for exact headword evidence, speaker and deployment, lexical boundary, distinct-work support, printed-form normalization, and disposition under the Iriya and dictionary-entry guides.",
+  "cohortFindings": {
+    "exactEvidence": "PASS — every stored KWIC contains the exact corpus query. The only non-exact printed headword is separately identified and resolved rather than represented as verbatim corpus text.",
+    "deployment": "PASS — each admitted headword has an observable job in an address, interview answer, raised case, warning, or critic's verdict; none is admitted from frequency alone.",
+    "units": "PASS — nine single components remain intact. 能爲萬象主、不逐四時凋 correctly remains the sole couplet because both propositions are raised together and organize the tests in both works.",
+    "workIndependence": "PASS — every row cites two different workIds and the paired witnesses provide materially usable deployments rather than split volumes of one work.",
+    "variantHandling": "PASS — the printed couplet's 爲→為 and 、→， resolution is explicit, and evidence consistently uses the resolved exact corpus query.",
+    "dispositions": "PASS — all ten KEEP decisions are supported by the cited full cases."
+  },
+  "reviews": [
+    {"canonicalIndex":106,"term":"頭正尾正","decision":"PASS","finding":"Baoyen makes the phrase his express verdict on the Buddha's beginning-to-end handling before stating its limitation; the independent address promises the same complete handling to responsive investigators. Component boundary and multi-work support pass."},
+    {"canonicalIndex":109,"term":"摸索不著","decision":"PASS","finding":"The Blue Cliff commentary excludes even iron eyes from getting hold of Xuedou's line, while Yuanwu independently gives the exact phrase as a direct answer and tests the monk's extension. This is a recurrent case verdict, not ordinary failed searching."},
+    {"canonicalIndex":112,"term":"七尺單前","decision":"PASS","finding":"The first address fixes the institutional scene in which dependent interpretation is prohibited; the independent interview incorporates that exact scene into the direct answer 七尺單前豎脊梁. The admission rests on this Chan institutional deployment, not on the measurement alone."},
+    {"canonicalIndex":115,"term":"坐斷千差","decision":"PASS","finding":"A monk raises the phrase as the premise of a demand for the master's answer; Yuanwu separately says that even this position still requires raising the eye higher. The exact component is tested rather than merely narrated."},
+    {"canonicalIndex":118,"term":"生死岸頭","decision":"PASS","finding":"One address judges reflected-moon and echoed-sound understanding still to be an affair at this shore; Tianyin independently makes the shore the stated situation in which karmic awareness does or does not drag a person. The recurring test-point exceeds literal geography."},
+    {"canonicalIndex":121,"term":"孟春猶寒","decision":"PASS","finding":"Fushan gives the weather phrase directly as the upward road. A separate record raises the same old answer to the year-end question and makes its repetition the object of a blow. Exact component, deployment, and work independence pass."},
+    {"canonicalIndex":124,"term":"據令而行","decision":"PASS","finding":"Case critics explicitly dispute whether Kasyapa acted according to the command; Lia'an independently applies the same criterion to the moon-viewing case and states the disciplinary consequence. It is a recurrent case standard, not generic obedience prose."},
+    {"canonicalIndex":130,"term":"能爲萬象主、不逐四時凋","decision":"PASS","finding":"The author correctly distinguishes the exact-absent printed 爲/、 form from the corpus-exact 為/， form. Both independent interviews raise the whole two-proposition verse and test the lord-of-myriad-forms clause in relation to the non-withering clause; KEEP (couplet) is the correct unit."},
+    {"canonicalIndex":136,"term":"徹骨徹髓","decision":"PASS","finding":"One lineage case records the phrase at the bodily-total breakthrough that drives the student to seize and question his teacher; the independent interview gives it as the direct answer concerning the Linji transmission. This recurring total-penetration formula is not anatomical narration."},
+    {"canonicalIndex":139,"term":"本分草料","decision":"PASS","finding":"A critic prescribes the proper fodder as the fitting response to the student; Yuanwu independently calls even that proper fodder an extra branch when asking for a phrase outside the teaching gate. The feeding image performs an evaluative and corrective Chan job."}
+  ],
+  "mechanicalReceipt": {
+    "rowsReviewed": 10,
+    "storedKwicsRead": 20,
+    "exactCorpusQuerySpansConfirmed": 20,
+    "rowsWithTwoDistinctDisplayedWorkIds": 10,
+    "pass": 10,
+    "revise": 0,
+    "repairsRequired": []
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

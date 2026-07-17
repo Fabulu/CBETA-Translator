@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-ledger-repair-receipt-v1",
+  "authority": "maintenance/iriya-readjudication-offset0-manual-batch4-010-cross-review-c19-e8.json",
+  "authoritySha256": "2229d5b1ab84999c58581f884fb0ad96a2ee440aa338eb1bb1344f240d834458",
+  "repairedLedger": "maintenance/iriya-readjudication-offset0-manual-batch4-010.json",
+  "beforeSha256": "0bf730b880e3ba922624b91ca515cad8b1ead1176b4c87cd5123eef7db209e8f",
+  "afterSha256": "c2ab8ec5671b4f84feadd355397bc5ebc2df89b17ac7e4a4de2b63a21eaf3895",
+  "repairs": [
+    {
+      "canonicalIndex": 162,
+      "term": "不許夜行、投明須到",
+      "change": "Replaced the invalid abbreviated X83 witness with the authority-supplied exact zc.verify window, restoring the intervening bread exchange and its surrounding case text.",
+      "semanticChange": false,
+      "dispositionChange": false,
+      "unitChange": false
+    },
+    {
+      "canonicalIndex": 189,
+      "term": "雲從龍、風從虎",
+      "change": "Corrected the printed-form claim to 15 exact hits in 15 works, retained the comma variant at 137 hits in 81 works, replaced the finding with the authority wording, and reconciled the batch-level exact-form summary.",
+      "semanticChange": false,
+      "dispositionChange": false,
+      "unitChange": false
+    }
+  ],
+  "otherEvidenceModified": false,
+  "otherRowsModified": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

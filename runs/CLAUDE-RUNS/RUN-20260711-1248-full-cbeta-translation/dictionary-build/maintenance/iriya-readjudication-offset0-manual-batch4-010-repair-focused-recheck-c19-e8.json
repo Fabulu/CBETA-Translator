@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-recheck-v1",
+  "reviewer": "c19-e8",
+  "repairedLedger": "maintenance/iriya-readjudication-offset0-manual-batch4-010.json",
+  "repairedLedgerSha256": "c2ab8ec5671b4f84feadd355397bc5ebc2df89b17ac7e4a4de2b63a21eaf3895",
+  "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch4-010-repair-receipt.json",
+  "repairReceiptSha256": "3375b23a72189e734ed32b1d22ff36bee0f6dee7c4e2501e7570ea38548f06b8",
+  "crossReviewAuthority": "maintenance/iriya-readjudication-offset0-manual-batch4-010-cross-review-c19-e8.json",
+  "crossReviewAuthoritySha256": "2229d5b1ab84999c58581f884fb0ad96a2ee440aa338eb1bb1344f240d834458",
+  "verdict": "PASS",
+  "focusedChecks": [
+    {
+      "canonicalIndex": 162,
+      "term": "不許夜行、投明須到",
+      "verdict": "PASS",
+      "finding": "The X83 witness is now an exact contiguous recut. It restores the omitted bread exchange after 油！油！ and before Zhaozhou's question, and zc.verify returns ok=true, fromLb=0566a18, toLb=0566b05, count=1. The title is 指月錄, workId is chan:zhiyue-lu, and it remains independent of work:wudeng-quanshu.",
+      "semanticCheck": "Unchanged and correct: KEEP (couplet), unit=couplet, multi-source. Touzi supplies both clauses together as his answer, while the other work raises the complete pair and asks its purport."
+    },
+    {
+      "canonicalIndex": 189,
+      "term": "雲從龍、風從虎",
+      "verdict": "PASS",
+      "finding": "The printed form is now correctly recorded as exact-attested at 15 hits in 15 works. The comma variant 雲從龍，風從虎 remains correctly recorded at 137 hits in 81 works. The finding no longer calls the printed form absent and accurately treats both punctuation forms as the same two-clause unit.",
+      "semanticCheck": "Unchanged and correct: KEEP (couplet), unit=couplet, multi-source. Both clauses remain jointly deployed as a capping pair and direct interview answer."
+    }
+  ],
+  "unchangedRowChecks": [
+    {"canonicalIndex":165,"term":"鶻臭布衫","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":168,"term":"他時後日","verdict":"PASS","disposition":"REJECT","unit":"—"},
+    {"canonicalIndex":171,"term":"北斗裏藏身","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":174,"term":"停囚長智","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":177,"term":"合取狗口","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":180,"term":"當仁不讓","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":183,"term":"嘉州大象","verdict":"PASS","disposition":"KEEP (component)","unit":"component"},
+    {"canonicalIndex":186,"term":"倒退三千","verdict":"PASS","disposition":"KEEP (component)","unit":"component"}
+  ],
+  "wholeLedgerChecks": {
+    "rows": 10,
+    "evidenceRows": 20,
+    "exactZcVerifyPass": 20,
+    "titleMatches": 20,
+    "workIdMatches": 20,
+    "twoDistinctWorksPerDecision": 10,
+    "semanticDispositionChangesFromCrossReview": 0,
+    "lexicalUnitChangesFromCrossReview": 0
+  },
+  "authorLedgerEdited": false,
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

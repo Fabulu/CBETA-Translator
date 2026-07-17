@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewer": "Codex independent full-case reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset2-manual-batch4-010.json",
+  "sourceLedgerSha256": "1fc993d7b68e8268c22081c34531ed8390877fb93a9113270804b9913b876d5b",
+  "decision": "REVISE",
+  "scope": "Independent review of all ten rows and twenty full KWICs for exact evidence, deployment, lexical-unit boundary, distinct-work support, punctuation and glyph variants, and disposition.",
+  "cohortFindings": {
+    "exactEvidence": "PASS — all twenty stored KWICs contain the stated exact corpus query at the cited case locus.",
+    "workIndependence": "PASS — every admitted row displays two distinct workIds; no validation promotion depends on split volumes of one work.",
+    "variantHandling": "PASS — 天上天下、唯我獨尊 is correctly treated as exact-absent in the printed 、 form and admitted from exact verified comma and joined corpus forms. 囘光返照 is correctly separated from exact 回光返照 evidence, with 迴 and 反 spellings recorded as related variants rather than silently rewriting source graphs.",
+    "semanticBoundary": "REVISE — nine decisions pass. 拂袖而出 fails the lexical-unit gate because both witnesses use the string only as compositional narrative stage direction, despite the action's importance to each encounter."
+  },
+  "reviews": [
+    {
+      "canonicalIndex": 92,
+      "term": "落在什麼處",
+      "decision": "PASS",
+      "confirmedDisposition": "REJECT",
+      "confirmedUnit": "—",
+      "finding": "Yuanwu supplies a changing subject and asks where that intent lands; Linji asks where the monk thinks Linji's probe lands. The headword contributes only productive interrogative grammar, while each case supplies a new disputed referent. It is never raised or adjudicated as a lexical object."
+    },
+    {
+      "canonicalIndex": 95,
+      "term": "拂袖而出",
+      "decision": "REVISE",
+      "requiredDisposition": "REJECT",
+      "requiredUnit": "—",
+      "finding": "Both cases narrate the same ordinary action: a participant flicks his sleeve and leaves. The exit closes or challenges each interview, but the full verb-object-conjunction string is not spoken as an answer, quoted, glossed, capped, or made the object of later appraisal. Dramatic relevance does not make compositional stage direction a reusable lexical unit; admitting it would reproduce the rejected 打一拂子 boundary error.",
+      "requiredRepair": "Change disposition from KEEP (component) to REJECT, unit from component to —, validation to a rejected/non-lexical state, and replace the reason with the compositional-stage-direction finding. Preserve both exact evidence objects."
+    },
+    {
+      "canonicalIndex": 98,
+      "term": "白日青天",
+      "decision": "PASS",
+      "finding": "Mingben makes the phrase part of a direct rebuke against dream-talk; Gulin independently asks what business remains in broad daylight before raising Damei's case. The daylight image performs a recurring challenge, not weather narration."
+    },
+    {
+      "canonicalIndex": 101,
+      "term": "威音王已前",
+      "decision": "PASS",
+      "finding": "Huangbo gives the phrase as his direct answer to Nanquan's dated question and is tested on it; Huguo independently contrasts before, after, and the presently assembled group and asks the audience to decide. Component deployment and multi-work support pass."
+    },
+    {
+      "canonicalIndex": 104,
+      "term": "三條椽下",
+      "decision": "PASS",
+      "finding": "Both addresses make the under-three-rafters place the institutional site of the listener's engagement and warning, paired with 七尺單前. The phrase is admitted for this recurrent Chan institutional deployment, not architectural description."
+    },
+    {
+      "canonicalIndex": 107,
+      "term": "話作兩橛",
+      "decision": "PASS",
+      "finding": "One critic explicitly diagnoses Shakyamuni's speech as split into two chunks; a separate address anticipates the same accusation against its own inconsistent ranking. The phrase is a recurring case verdict on dividing a statement against itself."
+    },
+    {
+      "canonicalIndex": 110,
+      "term": "天上天下、唯我獨尊",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (couplet)",
+      "confirmedUnit": "couplet",
+      "finding": "The printed separator form is not represented as corpus-exact. In both independent cases the full comma-form declaration is raised and tested as Shakyamuni's utterance; both propositions travel together. The couplet boundary and punctuation resolution are correct."
+    },
+    {
+      "canonicalIndex": 113,
+      "term": "事無一向",
+      "decision": "PASS",
+      "finding": "Each formal address first closes off speech, then uses the exact formula as the pivot that permits a line of public questioning. Its repeated procedural job is observable and is not reducible to ordinary prose saying that affairs vary."
+    },
+    {
+      "canonicalIndex": 116,
+      "term": "可知禮也",
+      "decision": "PASS",
+      "finding": "Dahui gives the exact primer phrase as a direct reply and immediately overturns the monk's inference from it. The independent address inserts the same learned formula into a classical chain and makes that chain part of the Confucius comparison and closing test. The component is deliberately reused as interview reply and learned-speech cap."
+    },
+    {
+      "canonicalIndex": 119,
+      "term": "囘光返照",
+      "decision": "PASS",
+      "confirmedDisposition": "KEEP (component)",
+      "confirmedUnit": "component",
+      "finding": "The author correctly states that printed 囘光返照 is exact-absent, uses exact 回光返照 evidence without rewriting it, and records the attested 迴 and 反 families separately. Mingben names and interrogates each half of the four-character unit; Guishan independently gives it as an instruction and tests Yangshan's account. Variant-resolved multi-source support passes."
+    }
+  ],
+  "mechanicalReceipt": {
+    "rowsReviewed": 10,
+    "storedKwicsRead": 20,
+    "exactCorpusQuerySpansConfirmed": 20,
+    "pass": 9,
+    "revise": 1,
+    "semanticDispositionChangesRequired": 1,
+    "unitChangesRequired": 1
+  },
+  "sourceModified": false,
+  "entriesBuilt": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

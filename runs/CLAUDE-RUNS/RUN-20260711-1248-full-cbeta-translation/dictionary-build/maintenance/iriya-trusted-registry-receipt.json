@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-17T20:44:55Z",
+  "generatedUtc": "2026-07-17T21:12:31Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
+  "registrySha256": "291df3b11953dbffbd21cb5926240337027db00fcd30fe881734baacb1f1bd8f",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -163,12 +163,62 @@
       "role": "post-repair-acceptance",
       "path": "maintenance/iriya-readjudication-offset2-manual-batch3-010-repair-cross-review-c19-e8.json",
       "sha256": "78b0317b7be028ef61307a67b447e8363fda16751c11dfcd854ca684e5612458"
+    },
+    {
+      "role": "manual-batch4-authority",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch4-010.json",
+      "sha256": "c2ab8ec5671b4f84feadd355397bc5ebc2df89b17ac7e4a4de2b63a21eaf3895"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch4-010-cross-review-c19-e8.json",
+      "sha256": "2229d5b1ab84999c58581f884fb0ad96a2ee440aa338eb1bb1344f240d834458"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch4-010-repair-receipt.json",
+      "sha256": "3375b23a72189e734ed32b1d22ff36bee0f6dee7c4e2501e7570ea38548f06b8"
+    },
+    {
+      "role": "focused-post-repair-acceptance",
+      "path": "maintenance/iriya-readjudication-offset0-manual-batch4-010-repair-focused-recheck-c19-e8.json",
+      "sha256": "44409263c89b8150ab68af3d2fcce38c20a70c19893f41b2ea344a1482763a30"
+    },
+    {
+      "role": "manual-batch4-authority",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch4-010.json",
+      "sha256": "d85194eacc843149954f1d537db6efd606ced7b6f79f288d78bf615cc6b943d4"
+    },
+    {
+      "role": "independent-acceptance",
+      "path": "maintenance/iriya-readjudication-offset1-manual-batch4-010-cross-review.json",
+      "sha256": "c6f716161a8a62ef62595753a516af0458312a09e4dcc392f7fd798d6526175a"
+    },
+    {
+      "role": "manual-batch4-authority",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch4-010.json",
+      "sha256": "954977a2b80af2e5883d01dc2b1850ab404ced8888c4abf093caa77cbfe2edc9"
+    },
+    {
+      "role": "independent-review",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch4-010-cross-review.json",
+      "sha256": "a2372e1695c38754722e2b239b687e7765172efc4fce703c968b54ec0287d801"
+    },
+    {
+      "role": "repair-receipt",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-receipt.json",
+      "sha256": "ec06a511314f41946dd6a48c11ef047ccd4fdef710dabc4babd90373d3e2e31f"
+    },
+    {
+      "role": "focused-post-repair-acceptance",
+      "path": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-focused-recheck.json",
+      "sha256": "8fd1edfa0183df3155c646864c4a5b0cef00b7df9a0348ede3aa3e96398ed9d2"
     }
   ],
   "verification": {
-    "rowCount": 244,
-    "uniqueCanonicalIndexCount": 244,
-    "uniqueIdCount": 244,
+    "rowCount": 274,
+    "uniqueCanonicalIndexCount": 274,
+    "uniqueIdCount": 274,
     "queueNumberEqualsCanonicalIndexPlusOne": true,
     "methodAuditRows": 154,
     "independentlyAcceptedCanaryRows": 30,
@@ -178,9 +228,10 @@
     "allRowsCarryExactAuthorityOrIndependentAcceptanceBinding": true,
     "independentlyAcceptedBatch2Rows": 30,
     "independentlyAcceptedBatch3Rows": 30,
-    "preservedExistingRows": 214,
-    "keepDecisionCount": 218,
-    "rejectDecisionCount": 26,
+    "independentlyAcceptedBatch4Rows": 30,
+    "preservedExistingRows": 244,
+    "keepDecisionCount": 245,
+    "rejectDecisionCount": 29,
     "provisionalDecisionCount": 0
   },
   "exclusionRule": "Rows ruled INVALID/QUARANTINE by a method audit were excluded unless the exact row appears in one of the three fresh manual canaries and that canary has an independent PASS receipt. No older bulk/default verdict was used to fill a registry row.",
@@ -190,7 +241,7 @@
     "lineageTouched": false,
     "entryConstructionPerformed": false
   },
-  "priorRegistrySha256": "29c56efc696f8beb88b6d6dfdb4c6a7abfdce821c684dec607ac1857db8799f3",
+  "priorRegistrySha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
   "batch2Seal": {
     "rowsAppended": 30,
     "offset0Rows": 10,
@@ -255,6 +306,40 @@
     ],
     "identityOverlapWithPrior214": 0,
     "prior214ObjectsPreservedExactly": true,
+    "quarantinedDefaultDecisionAdmitted": false,
+    "provisionalRowsAdmitted": 0
+  },
+  "batch4Seal": {
+    "rowsAppended": 30,
+    "offset0Rows": 10,
+    "offset1Rows": 10,
+    "offset2Rows": 10,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch4-010.json",
+        "rowsKey": "rows",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch4-010-cross-review-c19-e8.json",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch4-010-repair-receipt.json",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch4-010-repair-focused-recheck-c19-e8.json"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch4-010.json",
+        "rowsKey": "decisions",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch4-010-cross-review.json"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-readjudication-offset2-manual-batch4-010.json",
+        "rowsKey": "decisions",
+        "review": "maintenance/iriya-readjudication-offset2-manual-batch4-010-cross-review.json",
+        "repairReceipt": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-receipt.json",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset2-manual-batch4-010-repair-focused-recheck.json"
+      }
+    ],
+    "identityOverlapWithPrior244": 0,
+    "prior244ObjectsPreservedExactly": true,
     "quarantinedDefaultDecisionAdmitted": false,
     "provisionalRowsAdmitted": 0
   }

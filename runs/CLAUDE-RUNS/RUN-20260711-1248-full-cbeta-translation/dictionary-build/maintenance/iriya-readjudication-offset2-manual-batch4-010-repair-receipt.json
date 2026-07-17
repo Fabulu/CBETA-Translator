@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "iriya-manual-ledger-repair-receipt-v1",
+  "authority": "maintenance/iriya-readjudication-offset2-manual-batch4-010-cross-review.json",
+  "authoritySha256": "a2372e1695c38754722e2b239b687e7765172efc4fce703c968b54ec0287d801",
+  "repairedLedger": "maintenance/iriya-readjudication-offset2-manual-batch4-010.json",
+  "beforeSha256": "1fc993d7b68e8268c22081c34531ed8390877fb93a9113270804b9913b876d5b",
+  "afterSha256": "954977a2b80af2e5883d01dc2b1850ab404ced8888c4abf093caa77cbfe2edc9",
+  "repairs": [
+    {
+      "canonicalIndex": 95,
+      "term": "拂袖而出",
+      "before": {
+        "disposition": "KEEP (component)",
+        "unit": "component",
+        "validation": "multi-source"
+      },
+      "after": {
+        "disposition": "REJECT",
+        "unit": "—",
+        "validation": "rejected-nonlexical"
+      },
+      "reasonRepair": "Reclassified the phrase as compositional narrative stage direction under the same lexical boundary as 打一拂子; both exact evidence records were retained unchanged."
+    },
+    {
+      "coordinate": "summary",
+      "change": "KEEP (component) 8→7; REJECT 1→2; KEEP (couplet) 1 and PROVISIONAL 0 unchanged."
+    }
+  ],
+  "exactEvidenceRetained": 20,
+  "otherDecisionRowsModified": 0,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

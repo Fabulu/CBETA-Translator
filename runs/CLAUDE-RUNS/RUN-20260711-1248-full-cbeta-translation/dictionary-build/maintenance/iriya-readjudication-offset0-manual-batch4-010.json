@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v1",
+  "mode": "manual full-case reading; no semantic writer, regex decision, count threshold, or default disposition",
+  "registryAtSelection": "maintenance/iriya-trusted-registry.json",
+  "registryAtSelectionSha256": "203c69347d7055cdeee0c4fc6157aca0f3f48c730a452cec412809fc86360e00",
+  "registryRowsAtSelection": 244,
+  "lane": "offset0",
+  "rows": [
+    {
+      "ordinal":55,"canonicalIndex":162,"queueNumber":163,"id":"t_27acd0b37fcc","term":"不許夜行、投明須到","query":"不許夜行，投明須到","disposition":"KEEP (couplet)","unit":"couplet","validation":"multi-source",
+      "formResolution":{"printedHeadword":"不許夜行、投明須到","printedHeadwordExactHits":0,"corpusQuery":"不許夜行，投明須到","corpusQueryExactHits":159,"corpusQueryDistinctWorks":97,"finding":"The Iriya separator 、 resolves to the corpus comma ，; both clauses remain intact as one formula."},
+      "reason":"In Wudeng Quanshu the complete paired rule is raised verbatim and its purport requested; the answer and follow-up continue the test. In Zhiyue Lu, Touzi gives both clauses as his answer to Zhaozhou's question about a person who has died greatly and come back to life, and Zhaozhou immediately caps it. Because neither prohibition nor arrival clause performs this job alone, the two-clause formula is the unit.",
+      "evidence":[
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0023b10","kwic":"興化潘氏子。僧問：無遮聖會還有不到者麼？師曰：有。曰：誰是不到者？師曰：金剛脚下鐵崑崙。問：不許夜行，投明須到。意旨如何？師曰：羊頭車子推明月。曰：便恁麼去時如何？師曰：鐵門路嶮。問：一槌兩當時如何？師曰：踏藕得魚歸。問：教外別傳，未審傳個甚麼？師曰：鐵彈子。問：百城遊罷時如何？師曰：前頭更有趙州關。"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0566a23","kwic":"鹽錢布施我。州先歸菴中坐，師後携一瓶油歸。州曰：久嚮投子，及乎到來，祇見個賣油翁。師曰：汝祇識賣油翁，且不識投子。州曰：如何是投子？師提起油瓶曰：油！油！師自過胡餅與州，州不管。師令侍者過胡餅，州禮侍者三拜。州問：大死底人却活時如何？師曰：不許夜行，投明須到。州曰：我早侯白，伊更侯黑。雪竇頌云：活中有眼還同死，藥忌何須驗作家。古佛尚言曾未到，不知誰解撒泥沙。徑山杲頌：禾黍不陽艶，競栽桃李春。翻令力耕者，半作賣花人。雪峰到，師指菴前一片石謂雪峰曰：三世諸佛總在裏許。峰曰：須知有不在裏許者。師曰："}
+      ]
+    },
+    {
+      "ordinal":56,"canonicalIndex":165,"queueNumber":166,"id":"t_5e651e4c6c64","term":"鶻臭布衫","query":"鶻臭布衫","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Gaofeng says his blows would strip this 'hawk-stinking cloth shirt' from the respondent and thereby let monks undo bindings; the garment is the named encumbrance in his verdict. In Wudeng Quanshu, the layman announces that the same shirt has now been removed before the master tests whether he has caught and can ride the dragon. The phrase is a recurrent critical garment-image, not wardrobe description.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0053c03","kwic":"高峰妙云：南泉潦倒，手眼不親，縱饒出得，也是死貨。若是高峰，只向他道：大夫還曾示人麼？纔擬祇對，便與亂棒打出，非特為這漢脫却鶻臭布衫，要使天下衲僧個個解粘去縛，慶快平生。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0082a24","kwic":"到雲居，請佛印陞座。公拈香曰：覺地相逢一何早，鶻臭布衫今脫了。要識雲居一句元，珍重後園驢喫草。召大眾曰：此一瓣香薰天炙地去也。印曰：今日不著便，被這漢當面塗糊。便打。乃曰：謝公千里來相訪，共話東山竹徑深。借與一龍騎出洞，若逢天旱便為霖。擲拄杖下座。公拜起，印曰：收得龍麼？公曰：已在這裏。印曰：作麼生騎？公擺手作舞便行。"}
+      ]
+    },
+    {
+      "ordinal":57,"canonicalIndex":168,"queueNumber":169,"id":"t_1cdffdcd198b","term":"他時後日","query":"他時後日","disposition":"REJECT","unit":"—","validation":"rejected",
+      "reason":"In the address, 他時後日 only means 'at some later day' and locates when listeners might boast behind a door; the warning's content lies in the surrounding predicates. In the Deshan biography it again supplies ordinary future time for the prediction that he will bewitch householders. The phrase changes freely with what is predicted and is never itself raised, answered, glossed, or capped, so consequential surroundings do not make this productive time adverb a Chan lexical unit.",
+      "evidence":[
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0019b11","kwic":"上堂：幸逢嘉會，須采異聞。既遇寶山，莫令空手。不可他時後日，門扇後，壁角頭，自說大話也。窮天地，亘古今，即是當人一箇自性，於是中間更無他物。諸人每日行時行著，臥時臥著，坐時坐著，祇對語言時滿口道著，以至揚眉瞬目，嗔喜愛憎，寂默游戲，未始間斷。因甚麼不肯承當，自家歇去？"},
+        {"source":"X/X83/X83n1578.xml","title":"指月錄","workId":"chan:zhiyue-lu","line":"0589a01","kwic":"牀上坐，恰似七村裏土地。他時後日，魔魅人家男女去在。師自點胷曰：我這裏未穩在，不敢自謾。頭曰：我將謂你他日向孤峰頂上盤結草菴，播揚大教，猶作這個語話。師曰：我實未穩在。頭曰：你若實如此，據你見處，一一通來。是處與你證明，不是處與你剗却。師曰：我初到鹽官，見上堂舉色空義，得個入處。頭曰：此去三十年，切忌舉著。"}
+      ]
+    },
+    {
+      "ordinal":58,"canonicalIndex":171,"queueNumber":172,"id":"t_f9051eaab8b5","term":"北斗裏藏身","query":"北斗裏藏身","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Yunmen gives 北斗裏藏身 as the complete answer to 'what is a phrase that penetrates the Dharma body?' A separate Wudeng Quanshu master raises that answer, asks its purport, and answers 赤心片片 before testing a monk's alternative. The exact image is thus both an answer and a repeatedly examined case phrase.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0204c10","kwic":"雲門因僧問：如何是透法身句？門曰：北斗裏藏身。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0049a05","kwic":"僧問：達磨西來，傳個甚麼？師曰：周秦漢魏。問：昔日僧問雲門：如何是透法身句？門曰：北斗裏藏身。意旨如何？師曰：赤心片片。曰：若是學人即不然。師曰：汝又作麼生？曰：昨夜擡頭看北斗，依稀却似點糖糕。師曰：但念水草，餘無所知。"}
+      ]
+    },
+    {
+      "ordinal":59,"canonicalIndex":174,"queueNumber":175,"id":"t_fe7df1eed649","term":"停囚長智","query":"停囚長智","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Longhua assigns separate faults to Śāriputra, Subhūti, and Xuedou, judging Xuedou specifically for 停囚長智; it is the compact verdict, not prison narration. In Wudeng Quanshu the master caps his own delayed explanation with 洎合停囚長智 before raising another case. The proverb repeatedly judges wisdom supplied only after detention or delay.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0021a12","kwic":"龍華體云：弁山有九十棒，要打者三個漢。舍利弗不合向青天白日寐語，須菩提不合推過別人，雪竇不合停囚長智。或有個旁不甘底出來道：和尚棒教誰喫？也許伊具一隻眼。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0096a03","kwic":"便恁麼悟去，方知長者不是長，短者不是短，圓者不是圓，方者不是方。既總不是，却喚甚麼作法身？喝一喝，曰：洎合停囚長智。上堂，舉普化一日在臨濟僧堂前喫生菜，濟見曰：大似一頭驢。化便作驢鳴，濟曰：這賊！化曰：賊！賊！便出去。師曰：一個驢鳴兩個賊，堪與諸方為軌則。"}
+      ]
+    },
+    {
+      "ordinal":60,"canonicalIndex":177,"queueNumber":178,"id":"t_cfdc679d2f1f","term":"合取狗口","query":"合取狗口","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Baoning supplies 傳語法師，合取狗口 as his replacement reply, making the imperative the operative rebuke. In the separate Bao Ning interview, the student gives the same imperative when asked whether Yuanwu had withheld a phrase, and the interlocutor immediately disputes it. The exact command is a reusable encounter answer and rebuke, not incidental canine description.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0025c20","kwic":"保寧勇別思大語云：傳語法師，合取狗口。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0100a24","kwic":"後謁佛鑑於蔣山，鑑問：佛果有不曾亂為人說底句，曾與你說麼？師曰：合取狗口。鑑震聲曰：不是這個道理。師曰：無人奪你鹽茶袋，呌作甚麼？鑑曰：佛果若不為你說，我為你說。師曰：和尚疑時，退院別參去。鑑呵呵大笑。師未幾開法保寧，遷華藏，旋里領中峰。"}
+      ]
+    },
+    {
+      "ordinal":61,"canonicalIndex":180,"queueNumber":181,"id":"t_722ea3b1f491","term":"當仁不讓","query":"當仁不讓","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Baiyan uses 當仁不讓 as the criterion that Xiangyan and Yangshan still need beyond serving Weishan, then supplies the response he would have made; the maxim performs the appraisal. Wudeng Quanshu independently uses it to characterize a master's question-and-answer encounters as arrowpoints meeting. These are explicit assessments of encounter conduct rather than a bare Confucian quotation.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0083a06","kwic":"白巖符云：香嚴、仰山固不忝為溈山諍子，然職典巾瓶則有分，若是倒捋虎鬚，當仁不讓，則又須別有所長始得。我若作仰山，待道：我適來得一夢，汝試為我原看。便向道：者老漢幸纔醒來，猶作寐語，管取溈山者漢慙惶無地。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0484b14","kwic":"宜賓宋氏子，名肄樟。少習儒業，丁酉孝廉。三赴燕京未捷，乃自嘆曰：功名虗幻。即趨昭覺，投醉削染。冬夏一衲，兀然自適，深究元奧。凡與問答機緣，箭鋒相觸，當仁不讓。一日問：大地眾生悉皆正覺，因甚有迷有悟？醉曰：一等絕安排，覿面猶不薦。師曰：聖凡情盡事作麼生？醉袖手曰：汝實到恁麼田地也未？師于言下豁然，遂印可焉。"}
+      ]
+    },
+    {
+      "ordinal":62,"canonicalIndex":183,"queueNumber":184,"id":"t_46aeabad0025","term":"嘉州大象","query":"嘉州大象","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Zongjian Falin caps a comparison by diagnosing the Jiazhou elephant as deaf alongside the Shaanfu iron ox as leprous, then judges both faults together. Wudeng Quanshu independently makes the elephant ride the iron ox in the master's test of what follows when light and object are both forgotten. The named elephant is a recurrent case-image paired with the iron ox, not ordinary zoological reportage.",
+      "evidence":[
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0294b10","kwic":"陝府鐵牛白癩，嘉州大象耳聵，兩個病痛一般，咄哉漆桶不快。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0092c09","kwic":"上堂：光非照境，境亦非存。光境俱忘，復是何物？百草頭上罷卻干戈則且置，忽若嘉州大象倒騎陝府鐵牛，把須彌山一摑百雜碎，新羅國裏走馬，南贍部州說禪，又作麼生？五臺山上雲蒸飯，佛殿堦前狗尿天。上堂：日日日東出，日日日西沒。人命在呼吸，百年輕倐忽。"}
+      ]
+    },
+    {
+      "ordinal":63,"canonicalIndex":186,"queueNumber":187,"id":"t_dde83ff6f05d","term":"倒退三千","query":"倒退三千","disposition":"KEEP (component)","unit":"component","validation":"multi-source",
+      "reason":"Daochang judges that even Vimalakirti would have to retreat three thousand li before the proposed response. A Wudeng Quanshu master independently says that Zhigong's squeeze made Nanyue Huisi retreat three thousand and immediately labels it a doubled advance-and-retreat. The phrase is a stock critic's measure of forced withdrawal, not a journey report.",
+      "evidence":[
+        {"source":"X/X66/X66n1296.xml","title":"宗門拈古彙集","workId":"work:X66n1296","line":"0020a07","kwic":"道場辯云：當時若有個倒拈蝎尾，逆捋虎鬚，擺手出荊棘林底漢，纔見他恁麼道，但云：賢賢易色，事父母能竭其力，事君能致其身，與朋友交言而有信。直饒淨名老人，也須倒退三千里。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0204a20","kwic":"復舉誌公令人傳語思大曰：何不下山教化眾生去，一向目視雲漢作什麼？思大曰：三世諸佛被我一口吞盡，何處更有眾生可度？師曰：思大被誌公一拶，直得倒退三千，進退兩度。上堂：心空及第，選佛何必選官。荷負叢林，為眾一似為己。報國為法，擇人量材授職。"}
+      ]
+    },
+    {
+      "ordinal":64,"canonicalIndex":189,"queueNumber":190,"id":"t_d0b8619bf019","term":"雲從龍、風從虎","query":"雲從龍，風從虎","disposition":"KEEP (couplet)","unit":"couplet","validation":"multi-source",
+      "formResolution":{"printedHeadword":"雲從龍、風從虎","printedHeadwordExactHits":15,"printedHeadwordDistinctWorks":15,"corpusQuery":"雲從龍，風從虎","corpusQueryExactHits":137,"corpusQueryDistinctWorks":81,"finding":"The Iriya 、 form is exact-attested at 15 hits in 15 works; the corpus comma variant 雲從龍，風從虎 is more frequent at 137 hits in 81 works. Both preserve the same two-clause unit, so the corpus query may use the comma form without calling the printed form absent."},
+      "reason":"Zongjian Falin opens a capping sequence with both correspondence clauses before matching lion/elephant and Dipper/moon pairs. In Wudeng Quanshu the master gives the whole pair as his direct answer to the matter beyond ordinary question-and-answer, and the monk and master continue from its dragon and tiger terms. Both coordinated clauses are required by the deployment, so the unit is the couplet.",
+      "evidence":[
+        {"source":"X/X66/X66n1297.xml","title":"宗鑑法林","workId":"chan:zongjian-falin","line":"0373c08","kwic":"雲從龍，風從虎，獅子嚬呻，象王回顧。北斗藏身，月中趁兔，蹋破草鞋，不移寸步。樂行不如苦住，富客不如貧主，趨前退後說來端，舞袖高歌却回去。"},
+        {"source":"X/X82/X82n1571.xml","title":"五燈全書(第34卷-第120卷)","workId":"work:wudeng-quanshu","line":"0011b18","kwic":"僧問：一問一答，盡是建化門庭。未審向上更有事也無？師曰：有。曰：如何是向上事？師曰：雲從龍，風從虎。曰：恁麼則龍得水時添意氣，虎逢山勢長威獰。師曰：興雲致雨又作麼生？僧便喝。師曰：莫更有在？僧擬議，師咄曰：念話杜家。問：如何是本來心？師曰：拆東籬，補西壁。"}
+      ]
+    }
+  ],
+  "reviewedCount":10,
+  "summary":{"KEEP (component)":7,"KEEP (couplet)":2,"PROVISIONAL":0,"REJECT":1},
+  "exactFormResolution":"Nine printed headwords are exact-attested: 雲從龍、風從虎 occurs exactly 15 times in 15 works, while its comma variant occurs 137 times in 81 works. 不許夜行、投明須到 is exact-absent as printed and resolves to its exact-attested comma form. Both paired headwords were adjudicated as whole couplets.",
+  "entryConstructionPerformed":false,"queueAdvanced":false,"buildRun":false,"lineageTouched":false
+}
