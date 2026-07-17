@@ -1,0 +1,28 @@
+{
+  "schemaVersion":"iriya-manual-repair-cross-review-v1",
+  "reviewer":"Codex independent focused repair reviewer",
+  "decision":"PASS",
+  "repairedLedger":"maintenance/iriya-readjudication-offset0-manual-batch8-010.json",
+  "repairedLedgerSha256":"fa8a42d7362f614ca65d802bda2f00eeb5c4dbea62d9aea24521838da06c65f2",
+  "repairReceipt":"maintenance/iriya-readjudication-offset0-manual-batch8-010-repair-receipt.json",
+  "repairReceiptSha256":"c6cccaed7dea316062def7b5b51b2870228c8e2dd580355ac9a3bfa98ce620da",
+  "reviewAuthority":"maintenance/iriya-readjudication-offset0-manual-batch8-010-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"b5c7e800413cc41478252faf1d47a3af4cf0c4d00d5ecc4d25d1beeeba8f1c3c",
+  "focusedFinding":{
+    "canonicalIndex":306,
+    "term":"突出難辨",
+    "result":"PASS",
+    "finding":"The revised reason accurately names Feiyin as the speaker of the first direct answer: asked what follows when the cloud and mist of birth and death roll away, he answers 突出難辨 and caps the monk's non-understanding with 瞎. It then accurately names Yuanwu as the independent second speaker answering the pre-differentiation pillar-conception question and demanding heightened vision after differentiation. The false claim that Yuanwu supplied both witnesses or opened a formal address is gone."
+  },
+  "preservationChecks":{
+    "byteIdentity":"PASS — replacing the single revised reason string with its recorded original reconstructs exact pre-repair SHA 9ae3b2ae4c58391d0f059d219282432b92855a723156017d1cb388331d6c9f19, proving no other ledger byte changed.",
+    "evidence":"PASS — both 突出難辨 KWICs still pass exact zc.verify and remain bound to distinct canonical works.",
+    "decisionFields":"PASS — KEEP (component), component unit, and multi-source validation are unchanged.",
+    "otherRows":"PASS — the other nine rows and all identity, evidence, summary, and scope fields are unchanged."
+  },
+  "mechanicalReceipt":{"focusedRepairsChecked":1,"zcVerifyPass":2,"otherRowsPreserved":9,"pass":10,"revise":0},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

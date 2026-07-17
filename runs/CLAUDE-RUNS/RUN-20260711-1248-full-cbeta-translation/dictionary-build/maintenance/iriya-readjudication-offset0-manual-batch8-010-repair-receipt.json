@@ -1,0 +1,13 @@
+{
+  "schemaVersion":"iriya-manual-repair-receipt-v1",
+  "reviewAuthority":"maintenance/iriya-readjudication-offset0-manual-batch8-010-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"b5c7e800413cc41478252faf1d47a3af4cf0c4d00d5ecc4d25d1beeeba8f1c3c",
+  "repairedLedger":"maintenance/iriya-readjudication-offset0-manual-batch8-010.json",
+  "repairedLedgerBeforeSha256":"9ae3b2ae4c58391d0f059d219282432b92855a723156017d1cb388331d6c9f19",
+  "repairedLedgerAfterSha256":"fa8a42d7362f614ca65d802bda2f00eeb5c4dbea62d9aea24521838da06c65f2",
+  "scope":{"canonicalIndex":306,"queueNumber":307,"id":"t_c1139c6f142d","term":"突出難辨","field":"reason"},
+  "repair":"Rewrote only the deployment reason: the first witness is Feiyin's direct answer in 費隱禪師語錄, followed by 瞎; the second is Yuanwu's independent answer in 圓悟佛果禪師語錄. Removed the false attribution of both witnesses to Yuanwu and the unsupported opening-address description.",
+  "preserved":"Both exact evidence objects, KEEP (component) disposition, component unit, validation, identity fields, and the other nine rows are unchanged.",
+  "verification":"Both retained KWICs continue to pass exact zc.verify and retain distinct work IDs.",
+  "entryConstructionPerformed":false,"queueAdvanced":false,"buildRun":false,"lineageTouched":false
+}

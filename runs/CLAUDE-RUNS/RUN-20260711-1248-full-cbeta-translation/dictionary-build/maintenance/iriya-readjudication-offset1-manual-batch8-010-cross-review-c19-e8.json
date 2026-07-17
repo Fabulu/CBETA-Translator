@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review-v1",
+  "reviewer": "Codex independent full-case reader",
+  "sourceLedger": "maintenance/iriya-readjudication-offset1-manual-batch8-010.json",
+  "sourceLedgerSha256": "2d3e2d4346ee5d14207f16872b5141fe2b96aa8c51339d903bb4c1682ca3b5a0",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "method": "Independently reconstructed all queue identities before reading every stored full case; then reproduced exact counts and variants, verified KWICs, canonical work IDs, distinct-work spread, lexical boundaries, deployment, and dispositions.",
+  "identityReview": {
+    "verdict": "PASS",
+    "matches": 10,
+    "canonicalIndexes": [382, 385, 388, 391, 394, 397, 400, 403, 406, 409],
+    "finding": "Every canonicalIndex, queueNumber, id, term, and query exactly matches its authoritative queue row; all indexes satisfy canonicalIndex % 3 == 1 and are strictly ascending."
+  },
+  "rows": [
+    {
+      "canonicalIndex": 382,
+      "term": "路逢達道人、不將語默對",
+      "verdict": "PASS",
+      "finding": "Two distinct canonical works raise the whole maxim as a question and demand a mode of meeting beyond both speech and silence. The printed 、 form is absent, while the comma form reproduces at 86 hits in 48 works. Both clauses are indispensable, so KEEP (couplet) stands."
+    },
+    {
+      "canonicalIndex": 385,
+      "term": "相席打令",
+      "verdict": "PASS",
+      "finding": "Independent case critics explicitly use the expression to appraise responsive handling fitted to the occasion, then qualify its adequacy. This is a recurrent Chan-critical verdict rather than literal seating; KEEP (component) stands."
+    },
+    {
+      "canonicalIndex": 388,
+      "term": "傍若無人",
+      "verdict": "PASS",
+      "finding": "Both witnesses are direct master-level criticisms of overreaching or overconfident Dharma presentation, not crowd description. The graph form is controlled: 傍若無人 reproduces at 75 hits/53 works, while related 旁若無人 is separately attested at 45/23 and is not substituted into either witness. KEEP (component) stands."
+    },
+    {
+      "canonicalIndex": 391,
+      "term": "竿頭絲線從君弄、不犯清波意自殊",
+      "verdict": "PASS",
+      "finding": "The full fishing pair caps a release/hold challenge and independently the Luzhu–Nanquan case appraisal. Manipulating the line and leaving clear water undisturbed form one contrastive image. The printed 、 form is absent and the comma form reproduces at 74/53; KEEP (couplet) stands."
+    },
+    {
+      "canonicalIndex": 394,
+      "term": "倚勢欺人",
+      "verdict": "PASS",
+      "finding": "Two independent case collections make the phrase an explicit critic's verdict on a master's overbearing technique and immediately diagnose the encounter flaw. That recurring adjudicative deployment supports KEEP (component), rather than mere incidental description."
+    },
+    {
+      "canonicalIndex": 397,
+      "term": "日輪正當午",
+      "verdict": "PASS",
+      "finding": "The noon-sun line is a direct answer to the present-day sentence and independently a lay practitioner's formal cap that the master tests before the assembly. It is deliberately deployed rather than temporal narration; KEEP (component) stands."
+    },
+    {
+      "canonicalIndex": 400,
+      "term": "罪不重科",
+      "verdict": "PASS",
+      "finding": "The legal maxim directly answers an accusation of blind punishment and independently caps a monk's request for expedient treatment after being struck. The repeated fault/punishment verdict supports KEEP (component)."
+    },
+    {
+      "canonicalIndex": 403,
+      "term": "斬頭覓活",
+      "verdict": "PASS",
+      "finding": "Both addresses coordinate the impossible rescue image with 頭上安頭 to reject negative and affirmative reification. It functions as a stable diagnostic contrast; KEEP (component) stands."
+    },
+    {
+      "canonicalIndex": 406,
+      "term": "親言出親口",
+      "verdict": "PASS",
+      "finding": "A case critic uses the phrase to cap Devadatta's own stated position, while another master uses it to certify the layman's immediately preceding response. This repeated self-authentication verdict supports KEEP (component)."
+    },
+    {
+      "canonicalIndex": 409,
+      "term": "一馬生三寅",
+      "verdict": "PASS",
+      "finding": "Independent formal addresses deliberately wield the paradoxical animal/number image as a cap, once among impossible transformations and once with an iron snake across the ancient road followed by a command to investigate. It is not animal narrative; KEEP (component) stands."
+    }
+  ],
+  "summary": {
+    "PASS": 10,
+    "REVISE": 0,
+    "semanticDispositionChanges": 0,
+    "lexicalUnitChanges": 0,
+    "mechanicalEvidenceChanges": 0,
+    "variantResolutionChanges": 0
+  },
+  "verification": {
+    "identityMatches": 10,
+    "zcVerifyPass": 20,
+    "exactCountsMatched": 10,
+    "canonicalWorkIdMatches": 20,
+    "distinctWorkPairs": 10,
+    "separatorFormsChecked": 2,
+    "graphVariantPairsChecked": 1
+  },
+  "authorLedgerEdited": false,
+  "entryConstructionPerformed": false,
+  "queueAdvanced": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

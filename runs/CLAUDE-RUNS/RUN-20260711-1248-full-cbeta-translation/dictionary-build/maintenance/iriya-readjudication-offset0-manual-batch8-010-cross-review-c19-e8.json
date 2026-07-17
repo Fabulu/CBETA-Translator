@@ -1,0 +1,33 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "sourceLedger":"maintenance/iriya-readjudication-offset0-manual-batch8-010.json",
+  "sourceLedgerSha256":"9ae3b2ae4c58391d0f059d219282432b92855a723156017d1cb388331d6c9f19",
+  "decision":"REVISE",
+  "scope":"Authoritative queue identity verification followed by independent reading of all ten rows and twenty full cases for exact evidence, deployment, units, separator forms, canonical workIds, distinct works, and dispositions.",
+  "cohortFindings":{
+    "identity":"PASS — all ten canonicalIndex/queueNumber/id/term/query tuples match the authoritative queue.",
+    "exactEvidence":"PASS — all twenty KWICs pass exact zc.verify; all titles and canonical workIds match.",
+    "workIndependence":"PASS — all ten rows have two distinct canonical workIds.",
+    "separators":"PASS — 下坡不走、快便難逢 is 0 hits/0 works versus comma 97/60; 三界唯心、萬法唯識 is independently attested 8/8 versus comma 101/55. Both rows correctly retain the complete couplet, though adding these counts to formResolution would improve the receipt.",
+    "semanticBoundary":"PASS — all ten KEEP decisions and their component/couplet boundaries are supported by direct answers, public tests, critic verdicts, or repeatedly raised case language.",
+    "proseAccuracy":"REVISE — 突出難辨 attributes both witnesses to Yuanwu and misdescribes the first as an opening assertion. Its first cited witness is Feiyin's direct answer in 費隱禪師語錄; only the second witness is Yuanwu."
+  },
+  "reviews":[
+    {"canonicalIndex":282,"term":"蹉過了也","decision":"PASS","finding":"Two masters independently deliver the exact phrase as an immediate verdict that the questioner's intended move has already missed. Encounter cap, not schedule narration."},
+    {"canonicalIndex":285,"term":"禍出私門","decision":"PASS","finding":"A case critic applies the proverb to Vimalakirti's intervention, and a monk independently wields it before being tested with a blow. Stable critical verdict."},
+    {"canonicalIndex":288,"term":"盡法無民","decision":"PASS","finding":"Two independent case appraisals use the image to diagnose authority or legal force exhausted until no subjects remain. It is explicitly applied and explained, not administrative prose."},
+    {"canonicalIndex":291,"term":"一釣便上","decision":"PASS","finding":"One critic caps immediate capture by a question; another master gives the exact phrase after striking a questioner and drives him out. Recurrent hook/test verdict."},
+    {"canonicalIndex":294,"term":"遊山翫水","decision":"PASS","finding":"One public interview makes sightseeing versus seeking the Way the explicit test, while Yunmen independently gives the phrase as the complete answer to the student's own self and later verses demand its investigation. Those deployments support the component beyond generic travel."},
+    {"canonicalIndex":297,"term":"一任𨁝跳","decision":"PASS","finding":"Two masters independently cap a participant's performance with the exact permission-to-leap phrase. It is a dismissive or permissive encounter response, not animal narration."},
+    {"canonicalIndex":300,"term":"下坡不走、快便難逢","decision":"PASS","confirmedUnit":"couplet","finding":"The complete causal warning caps a formal question in one work and immediately precedes a blow in the Sansheng encounter. Failure to descend and missed opportunity form one unit."},
+    {"canonicalIndex":303,"term":"三界唯心、萬法唯識","decision":"PASS","confirmedUnit":"couplet","finding":"Dizang and another master each explicitly raise and test the whole paired doctrinal formula. Both clauses travel together as the questioned assertion."},
+    {"canonicalIndex":306,"term":"突出難辨","decision":"REVISE","confirmedDisposition":"KEEP (component)","confirmedUnit":"component","finding":"The deployment and admission pass, but the reason's attribution is false. Feiyin gives 突出難辨 as his direct answer to what remains after clouds and mist roll away; Yuanwu independently answers the pre-differentiation question with it and then demands heightened vision after differentiation.","requiredRepair":"Rewrite the reason to name Feiyin for the first evidence and Yuanwu for the second, describing the first as a direct answer rather than claiming Yuanwu opens a formal address. Preserve disposition, unit, validation, and both verified evidence objects."},
+    {"canonicalIndex":309,"term":"亡鋒結舌","decision":"PASS","finding":"Two formal addresses use the phrase to say that even accomplished or all people lose every verbal edge before the matter. Stable critical image for speech defeated."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"identityMatches":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"canonicalWorkIdMatches":20,"distinctWorkPairs":10,"pass":9,"revise":1,"semanticDispositionChangesRequired":0,"proseCorrectionsRequired":1},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}

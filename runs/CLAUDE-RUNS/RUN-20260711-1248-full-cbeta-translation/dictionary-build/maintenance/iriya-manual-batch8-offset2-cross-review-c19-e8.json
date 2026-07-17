@@ -1,0 +1,32 @@
+{
+  "schemaVersion":"iriya-manual-cross-review-v1",
+  "reviewer":"Codex independent full-case reader",
+  "sourceLedger":"maintenance/iriya-manual-batch8-offset2-ledger.json",
+  "sourceLedgerSha256":"27e1d2bb499b2c9fd8dcb8ebec933c0e5362a9d3bbc4fc88a1c47cc1a16f4f20",
+  "decision":"PASS",
+  "scope":"Authoritative queue identity verification followed by independent reading of all ten rows and twenty full cases for exact evidence, Chan deployment, units, variants, canonical workIds, distinct works, and dispositions.",
+  "cohortFindings":{
+    "identity":"PASS — all ten canonicalIndex/queueNumber/id/term/query tuples match the authoritative queue.",
+    "exactEvidence":"PASS — all twenty KWICs pass exact zc.verify and all titles match.",
+    "workMetadata":"PASS — all twenty stored workIds equal zc.work_id for their sources, and every row has two distinct canonical works.",
+    "variants":"PASS — 刹→剎 and both 、→comma resolutions are explicitly recorded and their exact hit/work counts reproduce: 0/0→82/48, 3/3→76/43, and 0/0→74/43.",
+    "semanticBoundary":"PASS — every admitted phrase is a direct answer, imperative, raised case line, formal-address cap, critic's technical image, or repeated interview warning; none is accepted from frequency or ordinary containment alone."
+  },
+  "reviews":[
+    {"canonicalIndex":383,"term":"倒却門前刹竿著","decision":"PASS","confirmedCorpusQuery":"倒却門前剎竿著","finding":"Kasyapa's imperative is explicitly raised and interrogated against establishing the teaching banner, and independently reused as the case-bearing line in a formal address. Case-fixed command with honest glyph resolution."},
+    {"canonicalIndex":386,"term":"以字不成、八字不是","decision":"PASS","confirmedUnit":"couplet","finding":"Both exclusions are required by the graph riddle; one exchange explicitly asks and re-asks it, while another formal address raises the complete pair as its cap."},
+    {"canonicalIndex":389,"term":"自作自受","decision":"PASS","finding":"The master gives the phrase as the direct verdict after returning the questioned mental disturbance to the questioner. Independent transmission collections preserve that complete interview answer."},
+    {"canonicalIndex":392,"term":"一氣不言含有象、萬靈何處謝無私","decision":"PASS","confirmedUnit":"couplet","finding":"The whole balanced verse directly answers a non-birth sentence in one formal address and the phrase about efficacy not being wasted in another. Silent generation and impartial benefit jointly make the cap."},
+    {"canonicalIndex":395,"term":"倚天長劍逼人寒","decision":"PASS","finding":"It is both a formal image of uncompromising authority and the direct answer for escaping the withered-tree/vine dilemma. Stable cutting-power image."},
+    {"canonicalIndex":398,"term":"清波無透路","decision":"PASS","finding":"Jingqing gives it as the direct water-moon answer; independent records preserve and criticize the same fixed exchange. The component has its own answer function before the later barrier line."},
+    {"canonicalIndex":401,"term":"賊不打貧兒家","decision":"PASS","finding":"Two separate encounter records wield the proverb as a direct put-down denying that the addressee has anything worth taking. It is not ordinary household narration."},
+    {"canonicalIndex":404,"term":"大有事在","decision":"PASS","finding":"Both masters place the warning directly after failure to understand a raised saying and contrast the adverse consequences with successful understanding. Stable interview admonition."},
+    {"canonicalIndex":407,"term":"重疊關山路","decision":"PASS","finding":"The line directly answers requests for a beneficial sentence in two independent encounters and also belongs to Jingqing's fixed water-moon exchange. Recurrent next-obstruction image."},
+    {"canonicalIndex":410,"term":"冬瓜印子","decision":"PASS","finding":"One critic applies the crude seal image directly to empty certification in the Yongjia case; another explicitly condemns winter-melon seals that mutually certify without realization. Stable technical insult."}
+  ],
+  "mechanicalReceipt":{"rowsReviewed":10,"identityMatches":10,"storedKwicsRead":20,"zcVerifyPass":20,"titleMatches":20,"canonicalWorkIdMatches":20,"distinctWorkPairs":10,"pass":10,"revise":0},
+  "sourceModified":false,
+  "entriesBuilt":false,
+  "queueAdvanced":false,
+  "lineageTouched":false
+}
