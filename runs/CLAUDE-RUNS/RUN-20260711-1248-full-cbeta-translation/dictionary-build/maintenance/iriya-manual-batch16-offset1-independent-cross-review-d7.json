@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review-v1",
+  "generatedUtc": "2026-07-18T00:54:05Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent full-case, identity, form-resolution, evidence, count, and unit review; no self-review or authority mutation.",
+  "reviewedLedger": "maintenance/iriya-manual-batch16-offset1-ledger.json",
+  "reviewedLedgerSha256": "ab69b821bbdc4708c80a574ce1acb99518602144eab4a5f2fa9421e0d7ebd585",
+  "selection": "maintenance/iriya-manual-batch16-offset1-selection.json",
+  "selectionSha256": "e333eeb158876bfd4bbc580d64ddf073e4c447224f7d7a6b6695e3b0322b556c",
+  "overallVerdict": "PASS",
+  "identityReview": {
+    "verdict": "PASS",
+    "authoritativeTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTen": true,
+    "absentCurrentLive604Registry": true,
+    "absentAllSevenPriorOffset1AuthorLedgersIncludingRepairedBatch15": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "components": [
+      "家破人亡",
+      "拏 雲 攫 霧",
+      "東山西嶺青",
+      "舌拄上齶",
+      "鋸解秤鎚",
+      "不犯之令",
+      "忉忉怛怛",
+      "不直半文錢",
+      "把定封疆"
+    ],
+    "couplets": ["還丹一粒、點鐵成金"],
+    "requiredRevisions": []
+  },
+  "formResolutionReview": {
+    "verdict": "PASS",
+    "spacedQueueQuery": "拏 雲 攫 霧",
+    "attestedContinuousForm": "拏雲攫霧",
+    "ledgerLevelResolutionExplicit": true,
+    "structuredResolutionPresentOnBothWitnesses": true,
+    "bothAttestedFormsContainedInTheirKwic": true,
+    "coupletPunctuationResolutionExplicit": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "reviewedSelection": "maintenance/iriya-manual-batch16-offset2-selection.json",
+  "reviewedSelectionSha256": "00367bfb7a23dae83bd82a60c29fb31ad10b73b9d48eb39ef91e70204bef3102",
+  "reviewedLedger": "maintenance/iriya-manual-batch16-offset2-ledger.json",
+  "reviewedLedgerSha256": "64ca36986f1731037a74f66a0773c9f1d40fa289b889da4a552038cefc5b0a1e",
+  "decision": "REVISE",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten selection and ledger tuples match the authoritative queue, canonicalIndex equals queueNumber minus one and is 2 modulo 3, and every id was absent from the frozen live574 registry and the ten declared prior offset2 author ledgers through repaired batch15."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten hit/file/distinct-work triples reproduce exactly",
+    "evidence": "PASS; 20/20 KWICs verify at their stored line bounds, source titles and manifest work IDs reproduce, and each row uses two canonical-distinct works",
+    "variants": "PASS; the two punctuation-normalized couplets and the 黃/黄 graph normalization are declared; unchanged forms are also stated",
+    "units": "PASS; eight components and two complete deployed couplets"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 2 reasons; PASS 8 rows",
+    "rows": [
+      {
+        "canonicalIndex": 629,
+        "term": "欺敵者亡",
+        "verdict": "REVISE reason only",
+        "finding": "The stored reason merges ‘underestimating’ with ‘deceiving.’ In both full cases the maxim judges Huangbo against Nanquan and is answered by the claim that Huangbo possessed a tiger-trapping mechanism: 欺敵 is the strategic error of taking the opponent too lightly. ‘Deceiving the opponent’ is a different action and makes the gloss less distinguishable.",
+        "requiredRepair": "Define the deployment as ‘one who underestimates the opponent is lost/defeated’ and retain the Huangbo–Nanquan case grounding. Preserve disposition, unit, count, and both witnesses."
+      },
+      {
+        "canonicalIndex": 644,
+        "term": "掬水月在手、弄花香滿衣",
+        "verdict": "REVISE reason only",
+        "finding": "The reason stops at the secular image (‘scoop water…handle flowers’) and merely says it is quoted as a response. The first full case supplies the Chan bend: the monk offers this polished ready-made couplet and Fushi rejects it as 湊泊來, then says the continuation still drags the master down. The second commentator likewise actively applies the verse to the raised case. That deployment, especially the rejection of borrowed polish, is the dictionary fact.",
+        "requiredRepair": "Keep the literal image but add that masters deploy it as a polished quoted response/comment and may expose it as borrowed fitting-together rather than a live answer. Preserve disposition, couplet unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [632, 635, 638, 641, 647, 650, 653, 656]
+  },
+  "summary": {
+    "PASS": 8,
+    "REVISE": 2,
+    "semanticRejections": 0,
+    "evidenceReplacementsRequired": 0,
+    "countRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false
+}

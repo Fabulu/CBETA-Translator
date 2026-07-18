@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "iriya-semantic-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "sourceReview": "maintenance/iriya-manual-batch16-offset2-independent-review-c19-e8.json",
+  "sourceReviewSha256": "88b9716a61388f692dcdd000b94f7a8042332c1ae39349cb5ee66dce504ef792",
+  "repairReceipt": "maintenance/iriya-manual-batch16-offset2-semantic-reason-repair-receipt.json",
+  "repairReceiptSha256": "4ef4f4c10e5ee3f15eb5aa657d9418d630124f3bb9dfc0ce0dd18df90e97bc98",
+  "recheckedLedger": "maintenance/iriya-manual-batch16-offset2-ledger.json",
+  "recheckedLedgerSha256": "e51aae68d88fed9f178faa199a78342b9156d84c24051a00a065662df9996bc2",
+  "repairs": [
+    {
+      "canonicalIndex": 629,
+      "term": "欺敵者亡",
+      "verdict": "PASS",
+      "finding": "The reason now limits 欺敵 to taking or underestimating the opponent and grounds the verdict in Guishan’s assessment of Huangbo against Nanquan; the rejected ‘deceiving’ alternative is gone."
+    },
+    {
+      "canonicalIndex": 644,
+      "term": "掬水月在手、弄花香滿衣",
+      "verdict": "PASS",
+      "finding": "The reason now names the polished ready-made couplet and the full case’s Chan bend: Fushi rejects it as 湊泊 and 帶累 rather than accepting the surface image."
+    }
+  ],
+  "preservation": {
+    "receiptDeclaresExactlyTwoReasonFieldsChanged": true,
+    "changedRowsMatchReviewExactly": true,
+    "currentLedgerStillContainsTenOriginalIdentityTuples": true,
+    "currentCountsUnitsDispositionsAndTwentyWitnessesReproduce": true,
+    "otherEightReasonsRemainSemanticallyAccepted": true
+  },
+  "mechanicalGates": {
+    "cheapAssociation": "PASS 10/10",
+    "fullZc": "PASS 10/10"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

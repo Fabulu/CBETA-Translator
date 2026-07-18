@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "iriya-semantic-reason-focused-repair.v1",
+  "generatedUtc": "2026-07-18T00:54:22Z",
+  "ledger": "maintenance/iriya-manual-batch16-offset2-ledger.json",
+  "ledgerBeforeSha256": "64ca36986f1731037a74f66a0773c9f1d40fa289b889da4a552038cefc5b0a1e",
+  "ledgerAfterSha256": "e51aae68d88fed9f178faa199a78342b9156d84c24051a00a065662df9996bc2",
+  "changedRows": [
+    {
+      "batchOrdinal": 1,
+      "term": "欺敵者亡",
+      "field": "reason"
+    },
+    {
+      "batchOrdinal": 6,
+      "term": "掬水月在手、弄花香滿衣",
+      "field": "reason"
+    }
+  ],
+  "preservationAssertions": {
+    "otherEightDecisionObjectsExact": true,
+    "targetRowsAllNonReasonFieldsExact": true,
+    "identityEvidenceCountUnitPreserved": true
+  },
+  "semanticCorrections": {
+    "欺敵者亡": "narrowed to taking/underestimating the opponent; removed deception reading",
+    "掬水月在手、弄花香滿衣": "surface records Fushi rejecting polished ready-made verse as 湊泊/帶累"
+  },
+  "focusedRecheckRequired": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

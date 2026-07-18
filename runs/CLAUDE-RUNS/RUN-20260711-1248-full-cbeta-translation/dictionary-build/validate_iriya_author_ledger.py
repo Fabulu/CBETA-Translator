@@ -126,7 +126,8 @@ def validate_ledger(ledger: dict, authority: dict[str, dict], full: bool = False
                     failures.append(f"{ep}: title drift")
 
         if full and row_query:
-            actual = reproduced_counts[row_query]
+            # zc.batch_count keys results by its whitespace-normalized query.
+            actual = reproduced_counts[re.sub(r"\s+", "", row_query)]
             stored = row.get("zcExact") or {}
             expected_count = {
                 "hits": actual["hits"],

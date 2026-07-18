@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "iriya-independent-cross-review.v1",
+  "generatedUtc": "2026-07-18T00:56:01Z",
+  "selection": "maintenance/iriya-manual-batch16-offset0-selection.json",
+  "selectionSha256": "f092542b99a5cc7cfd421f9c1dd1d7c918342555bcea0231a25a79fbc418b2e1",
+  "ledger": "maintenance/iriya-manual-batch16-offset0-ledger.json",
+  "ledgerSha256": "17ca15b8dcb0171366be9769d757288e6edc7db083cd1a79dd0ef1a10d4f2e6f",
+  "reviewerIndependentOfAuthor": true,
+  "verdict": "PASS",
+  "authoritativeIdentityAndExclusionReview": {
+    "status": "PASS",
+    "canonicalIndexes": [
+      522,
+      525,
+      528,
+      531,
+      534,
+      537,
+      540,
+      543,
+      546,
+      549
+    ],
+    "exactNextTenOffset0Reconstructed": true,
+    "queueTuplesMatch": true,
+    "registryAndPriorLedgerExclusionsMatch": true
+  },
+  "semanticReview": {
+    "status": "PASS",
+    "reviewedRows": 10,
+    "keeps": 9,
+    "rejects": 1,
+    "requiredReject": {
+      "term": "堪作何用",
+      "accepted": true
+    },
+    "rows": [
+      {
+        "batchOrdinal": 1,
+        "term": "劈腹剜心",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 2,
+        "term": "見兎放鷹",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 3,
+        "term": "前箭猶輕後箭深",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 4,
+        "term": "急水上打毬子",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 5,
+        "term": "歸依佛法僧",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 6,
+        "term": "與賊過梯",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 7,
+        "term": "堪作何用",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Correctly rejected: productive rhetorical question whose subject and force come from surrounding syntax.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 8,
+        "term": "掣風掣顛",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 9,
+        "term": "巣知風、穴知雨",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      },
+      {
+        "batchOrdinal": 10,
+        "term": "令不虚行",
+        "reviewDisposition": "PASS",
+        "reviewNote": "Full cases support the stated stable Chan deployment and assigned unit.",
+        "exactCountAccepted": true,
+        "twoWitnessesVerified": true,
+        "canonicalWorksIndependent": true,
+        "formResolutionAccepted": true
+      }
+    ]
+  },
+  "mechanicalReview": {
+    "exactCountsReproduced": true,
+    "witnessesVerified": 20,
+    "twoCanonicalDistinctWorksEachBuildable": true,
+    "formResolutionsExplicitAndAccepted": true,
+    "cheapValidator": "PASS",
+    "fullValidator": "PASS",
+    "failureCount": 0
+  },
+  "reviewerMutation": {
+    "authorityMutationPerformed": false,
+    "queueMutationPerformed": false,
+    "buildRun": false,
+    "registryMutationPerformed": false,
+    "lineageTouched": false
+  }
+}

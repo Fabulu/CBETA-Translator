@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T00:42:26Z",
+  "batch": 16,
+  "offset": 2,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 574,
+  "trustedRegistrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch10-offset2-ledger.json",
+      "sha256": "39bb2bd10f9da8d7ee07923c1d288e3131d3e94c42f57b627cff4001ab1f228d"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch11-offset2-ledger.json",
+      "sha256": "92ff22c9e3bee1bdcdb904f10072128950449ae148288496a1ea239ef8cb852f"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset2-ledger.json",
+      "sha256": "5cb52637203b18aa50504c65f65e16d76aaf01e3594c4b73351279ce62c70823"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset2-ledger.json",
+      "sha256": "f12508b25d09406313909d9802e0fa95a560b16349ce3717e5ba546277d3de80"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch14-offset2-ledger.json",
+      "sha256": "ab0f3bb625f4aa9e5d5fc4648f80b120b6cef9a8e476ebc09c8657f5f53622df"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+      "sha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+      "sha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch7-offset2-ledger.json",
+      "sha256": "72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch8-offset2-ledger.json",
+      "sha256": "27e1d2bb499b2c9fd8dcb8ebec933c0e5362a9d3bbc4fc88a1c47cc1a16f4f20"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+      "sha256": "c2b0b631d7e33cb4e4380020b59d0e402808aebe2a911245da56e6a319ebb49f"
+    }
+  ],
+  "rows": [
+    {
+      "queueNumber": 630,
+      "canonicalIndex": 629,
+      "id": "t_84053b6f58c5",
+      "term": "欺敵者亡",
+      "query": "欺敵者亡"
+    },
+    {
+      "queueNumber": 633,
+      "canonicalIndex": 632,
+      "id": "t_945727e1dcdc",
+      "term": "裁長補短",
+      "query": "裁長補短"
+    },
+    {
+      "queueNumber": 636,
+      "canonicalIndex": 635,
+      "id": "t_6b89d13707eb",
+      "term": "智不到處、切忌道著",
+      "query": "智不到處，切忌道著"
+    },
+    {
+      "queueNumber": 639,
+      "canonicalIndex": 638,
+      "id": "t_ff289e0e68b7",
+      "term": "今日捉敗",
+      "query": "今日捉敗"
+    },
+    {
+      "queueNumber": 642,
+      "canonicalIndex": 641,
+      "id": "t_51968a36c7a0",
+      "term": "脚跟不點地",
+      "query": "脚跟不點地"
+    },
+    {
+      "queueNumber": 645,
+      "canonicalIndex": 644,
+      "id": "t_ad8b25d2e552",
+      "term": "掬水月在手、弄花香滿衣",
+      "query": "掬水月在手，弄花香滿衣"
+    },
+    {
+      "queueNumber": 648,
+      "canonicalIndex": 647,
+      "id": "t_a254d3090db7",
+      "term": "將南作北",
+      "query": "將南作北"
+    },
+    {
+      "queueNumber": 651,
+      "canonicalIndex": 650,
+      "id": "t_33b7191e1e22",
+      "term": "看樓打樓",
+      "query": "看樓打樓"
+    },
+    {
+      "queueNumber": 654,
+      "canonicalIndex": 653,
+      "id": "t_79f40e96a540",
+      "term": "順水張帆",
+      "query": "順水張帆"
+    },
+    {
+      "queueNumber": 657,
+      "canonicalIndex": 656,
+      "id": "t_568bba7ea9f4",
+      "term": "黄卷赤軸",
+      "query": "黃卷赤軸"
+    }
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "absentLive574Registry": true,
+    "absentAllPriorOffset2AuthorLedgersIncludingRepairedBatch15": true
+  },
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

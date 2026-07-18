@@ -1188,6 +1188,15 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     still requiring revision, including eleven whose rejected prose survived
     substantially or verbatim. Never spend reviewer time rediscovering a defect
     that coordinate-level closure could have caught before dispatch.
+    **A repair coordinate is an identity, not a line position or aggregate.** For
+    queue/adjudication JSON, bind every changed field to the exact deterministic
+    ID or authoritative term plus batch ordinal, and mechanically diff the
+    resulting row objects against the rejecting bytes. A correct final KEEP/
+    REJECT total does not prove that the intended rows changed: one repair
+    accidentally rejected adjacent `十二時中` while leaving target `八萬四千`
+    accepted, producing the expected 19/6 arithmetic with the wrong identities.
+    The focused reviewer caught it. Textual patch context, array position, and
+    summary counts are never repair authority without row-identity proof.
 16. **⛔ ABSOLUTE LINEAGE-ROSTER WRITE PROHIBITION.** A dictionary worker may
     read the externally maintained lineage roster solely to resolve public link
     keys. It may **never** create, edit, normalize, regenerate, reorder, merge,

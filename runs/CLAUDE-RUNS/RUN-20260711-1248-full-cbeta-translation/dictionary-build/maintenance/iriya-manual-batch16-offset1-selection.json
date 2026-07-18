@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "iriya-manual-selection.v1",
+  "batch": 16,
+  "offset": 1,
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 574,
+  "trustedRegistrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+  "selectionRule": "Next ten authoritative rows whose canonicalIndex modulo 3 is 1 and whose id is absent from live574 plus every prior offset1 author ledger through repaired batch15.",
+  "assertions": {
+    "exactlyTen": true,
+    "allModuloOffset": true,
+    "absentTrustedRegistry": true,
+    "absentPriorOffset1AuthorLedgers": true,
+    "authoritativeTuplesExact": true
+  },
+  "rows": [
+    {"batchOrdinal":1,"queueNumber":623,"canonicalIndex":622,"id":"t_182d1fddf357","term":"家破人亡","query":"家破人亡"},
+    {"batchOrdinal":2,"queueNumber":626,"canonicalIndex":625,"id":"t_e8a42475fb7e","term":"拏 雲 攫 霧","query":"拏 雲 攫 霧"},
+    {"batchOrdinal":3,"queueNumber":629,"canonicalIndex":628,"id":"t_3af224fe86e1","term":"東山西嶺青","query":"東山西嶺青"},
+    {"batchOrdinal":4,"queueNumber":632,"canonicalIndex":631,"id":"t_01d73633a30e","term":"舌拄上齶","query":"舌拄上齶"},
+    {"batchOrdinal":5,"queueNumber":635,"canonicalIndex":634,"id":"t_ee0fef2c5830","term":"鋸解秤鎚","query":"鋸解秤鎚"},
+    {"batchOrdinal":6,"queueNumber":638,"canonicalIndex":637,"id":"t_9063a8921fbd","term":"不犯之令","query":"不犯之令"},
+    {"batchOrdinal":7,"queueNumber":641,"canonicalIndex":640,"id":"t_e13c8bd7ee9f","term":"忉忉怛怛","query":"忉忉怛怛"},
+    {"batchOrdinal":8,"queueNumber":644,"canonicalIndex":643,"id":"t_441485a2a7b9","term":"還丹一粒、點鐵成金","query":"還丹一粒，點鐵成金"},
+    {"batchOrdinal":9,"queueNumber":647,"canonicalIndex":646,"id":"t_022119e92edd","term":"不直半文錢","query":"不直半文錢"},
+    {"batchOrdinal":10,"queueNumber":650,"canonicalIndex":649,"id":"t_07c9e5578586","term":"把定封疆","query":"把定封疆"}
+  ]
+}

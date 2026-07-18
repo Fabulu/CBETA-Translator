@@ -1,0 +1,415 @@
+{
+  "schemaVersion": "iriya-manual-author-ledger.v1",
+  "mode": "manual-full-case-semantic-adjudication",
+  "selection": "maintenance/iriya-manual-batch16-offset1-selection.json",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256AtSelection": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsAtSelection": 574,
+  "trustedRegistrySha256AtSelection": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+  "offset": 1,
+  "batch": 16,
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "batchOrdinal": 1,
+      "queueNumber": 623,
+      "canonicalIndex": 622,
+      "id": "t_182d1fddf357",
+      "term": "家破人亡",
+      "query": "家破人亡",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘The household is broken and its people are gone’ is deployed as the destruction of the very home to which the questioner proposes returning: Luopu answers ‘where will you return?’ Other sermons place it beside the lost road and trackless gate, making the phrase a verdict that the old place of reliance is no longer available.",
+      "zcExact": {
+        "hits": 46,
+        "files": 36,
+        "distinctWorks": 36
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0674c10",
+          "hitToLb": "0674c16",
+          "kwic": "玉本來暉。畢鉢巖前曉帶春，香風時結鷲峰層，須知玉像缾中塔，別有輝天鑑地鐙。洛浦因僧問：學人擬歸鄉時如何？師曰：家破人亡，子歸何處？曰：恁麼則不歸去也。師曰：庭前殘雪日輪消，室內遊塵遣誰埽？乃示偈曰：決志歸鄉去，乘舟泛五湖。舉篙星",
+          "verified": true
+        },
+        {
+          "source": "X/X71/X71n1426.xml",
+          "title": "真歇清了禪師語錄",
+          "workId": "work:X71n1426",
+          "hitFromLb": "0773b24",
+          "hitToLb": "0773c05",
+          "kwic": "休爛炒浮漚，便請乘時撒手。且道落在什麼人分上？錦繡溪邊去，新豐路上分。上堂。云：風暖寒堤，春回草綠；雲迷古路，家破人亡。大陽門下覓無蹤，枯木岩前花自咲。直得髑髏吟處，韻韻難齊；雪月混時，功功不共。諸仁者！到者裏且作麼生措手？靈絲",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 2,
+      "queueNumber": 626,
+      "canonicalIndex": 625,
+      "id": "t_e8a42475fb7e",
+      "term": "拏 雲 攫 霧",
+      "query": "拏 雲 攫 霧",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "formResolution": {
+        "attestedForm": "拏雲攫霧",
+        "reason": "The queue spaces individual graphs; the corpus writes the four-graph unit continuously."
+      },
+      "reason": "‘Grasping clouds and seizing mist’ names dragonlike power and command. Yuanwu uses it for the claws and fangs missing from a merely clever response, while Nantang uses two dragons grasping cloud and mist for the unruffled force of Linji and Puhua’s encounter.",
+      "zcExact": {
+        "hits": 48,
+        "files": 32,
+        "distinctWorks": 32
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "workId": "work:T48n2003",
+          "hitFromLb": "0184b25",
+          "hitToLb": "0184c03",
+          "kwic": "上座雖應其機。語無善巧。所以雪竇道。來問。若成風。應機非善巧。堪悲獨眼龍曾未呈牙爪。明招道得也太奇特。爭奈未有拏雲攫霧底爪牙。雪竇傍不肯。忍俊不禁。代他出氣。雪竇暗去合他意。自頌他踏倒茶爐語。牙爪開生雲雷。逆水之波經幾回。雲門道",
+          "queryResolution": {
+            "attestedForm": "拏雲攫霧",
+            "reason": "Queue-internal graph spacing is absent from running corpus text."
+          },
+          "verified": true
+        },
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0409b23",
+          "hitToLb": "0409c05",
+          "kwic": "麼麤細？濟乃吐舌。翠峯顯云：兩箇老漢喫飯也不了，好與三十棒。棒雖行，且那箇是正賊？南堂靜云：二尊宿如二龍爭珠，拏雲攫霧，不動波瀾；如二虎爭餐，活捉生擒，不傷物命。者裏忽有問：毛吞巨海，芥納須彌，為復神通妙用，法爾如然？祇向道：一",
+          "queryResolution": {
+            "attestedForm": "拏雲攫霧",
+            "reason": "Queue-internal graph spacing is absent from running corpus text."
+          },
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 3,
+      "queueNumber": 629,
+      "canonicalIndex": 628,
+      "id": "t_3af224fe86e1",
+      "term": "東山西嶺青",
+      "query": "東山西嶺青",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘The eastern mountain and western ridge are green’ is itself raised as an old saying and returned verbatim as the master’s answer. Its Chan job is not scenic decoration: it is the concrete answer-form whose ‘meaning’ the monk asks the master to disclose, and the answer refuses to replace it with an abstract explanation.",
+      "zcExact": {
+        "hits": 43,
+        "files": 24,
+        "distinctWorks": 23
+      },
+      "evidence": [
+        {
+          "source": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "workId": "work:X80n1565",
+          "hitFromLb": "0219a03",
+          "hitToLb": "0219a09",
+          "kwic": "堂。生死涅槃。猶如昨夢。且道三世諸佛。釋迦老子有甚麼長處。雖然如是。莫錯會好。拍手一下。便下座。問。承古有言。東山西嶺青。未審意旨如何。師曰。東山西嶺青。雨下却天晴。更問箇中意。鵓鳩生鷂鷹。功臣軻禪師法嗣功臣軻禪師法嗣蘇州堯峰顥暹",
+          "verified": true
+        },
+        {
+          "source": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "workId": "work:T51n2077",
+          "hitFromLb": "0535a05",
+          "hitToLb": "0535a14",
+          "kwic": "須彌山。上堂。生死涅槃猶如昨夢。且道三世諸佛釋迦老子有甚麼長處。雖然如是莫錯會好。拍手一下便下座。問承古有言。東山西嶺青。未審意旨如何。師曰。東山西嶺青。雨下却天晴。更問箇中意。鵓鳩生鷂鷹。續傳燈錄卷第十一大鑑下第十三世卷第十二目",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 4,
+      "queueNumber": 632,
+      "canonicalIndex": 631,
+      "id": "t_01d73633a30e",
+      "term": "舌拄上齶",
+      "query": "舌拄上齶",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘The tongue braced against the upper palate’ is the posture of a mouth stopped from discursive speech. The corpus can deploy that stoppage as an answer (‘the truthful word’) while Linji explicitly attacks making the same fixed, silent posture into the ancestral teaching; the physical image remains one unit, and its evaluation is case-dependent.",
+      "zcExact": {
+        "hits": 44,
+        "files": 28,
+        "distinctWorks": 27
+      },
+      "evidence": [
+        {
+          "source": "X/X78/X78n1553.xml",
+          "title": "天聖廣燈錄",
+          "workId": "work:X78n1553",
+          "hitFromLb": "0472a22",
+          "hitToLb": "0472b03",
+          "kwic": "，秖管傍家負死屍行，擔却擔子天下走，索草鞋錢有日在。大德！山僧說向外無法，學人不會，便即向裏作解，便即倚壁座，舌拄上齶，湛然不動，取此為是祖門佛法也。大錯！是儞若取不動清淨境為是，儞即認他無明為即主。古人云：湛湛黑暗深坑，實可怖",
+          "verified": true
+        },
+        {
+          "source": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "workId": "work:X80n1565",
+          "hitFromLb": "0228c15",
+          "hitToLb": "0228c20",
+          "kwic": "今日向弟子手裏死。問。如何是和尚密作用。師拈棒。僧轉身受棒。師拋下棒曰。不打這死漢。問。如何是諦實之言。師曰。舌拄上齶。曰。為甚麼如此。師便打。問。如何是大悲境。師曰。千眼都來一隻收。曰。如何是境中人。師曰。手忙脚亂。問。不著聖",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 5,
+      "queueNumber": 635,
+      "canonicalIndex": 634,
+      "id": "t_ee0fef2c5830",
+      "term": "鋸解秤鎚",
+      "query": "鋸解秤鎚",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘Sawing open a steelyard weight’ is repeatedly grouped with terse case-phrases such as ‘three pounds of hemp’ and ‘dried shit-stick.’ Dahui says such words point out a road but cannot be reduced to transmitted explanation or made to ‘come down’ through reasoning; the image marks the hard, unyielding case-word rather than an actual metalworking instruction.",
+      "zcExact": {
+        "hits": 51,
+        "files": 27,
+        "distinctWorks": 26
+      },
+      "evidence": [
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "hitFromLb": "0887b05",
+          "hitToLb": "0887b10",
+          "kwic": "言句可以傳授只據現成公案與你結案而已若有傳授是世間法宗師為人是指路頭之說如何是佛殿裏底如何是佛乾屎橛以至麻三斤鋸解秤鎚盡是為你指路頭靈利漢便隨他指頭從路而去其或坐在指處認指為路非但不識路亦不識指頭首楞嚴所謂如人以手指月示人彼人因",
+          "verified": true
+        },
+        {
+          "source": "T/T47/T47n1998A.xml",
+          "title": "大慧普覺禪師語錄",
+          "workId": "work:T47n1998A",
+          "hitFromLb": "0869a07",
+          "hitToLb": "0869a12",
+          "kwic": "修學心。百不知百不會。不涉思惟不入理路。直是安樂。山僧又向渠道。這箇是出格底道理。若是乾屎橛話。如此說得落時如鋸解秤鎚。麻三斤。狗子無佛性。一口吸盡西江水。不是心不是佛不是物。有句無句如藤倚樹。即心即佛語。皆可如此說得也。既不可",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 6,
+      "queueNumber": 638,
+      "canonicalIndex": 637,
+      "id": "t_9063a8921fbd",
+      "term": "不犯之令",
+      "query": "不犯之令",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘A command that is not transgressed’ names an order whose authority admits no breach. Masters use it for command-level action—paired with military law, imperial writ, or an iron snake that cannot bore into it—then test what such inviolability looks like in the encounter.",
+      "zcExact": {
+        "hits": 45,
+        "files": 32,
+        "distinctWorks": 31
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0184b21",
+          "hitToLb": "0184c03",
+          "kwic": "委悉麼？車不橫推，理無曲斷。拈公帖法語拈公帖法語雪巖欽禪師護聖拈帖。握乾坤於掌內，運日月於胸中，雖用孫武、商君不犯之令，與結繩之化元同，如何見得半幅全封？楚石琦禪師住福臻行宣政院帖。孤峰頂上盤結草菴，有口只堪挂壁；十字街頭解開布",
+          "verified": true
+        },
+        {
+          "source": "X/X79/X79n1559.xml",
+          "title": "嘉泰普燈錄",
+          "workId": "work:X79n1559",
+          "hitFromLb": "0374c03",
+          "hitToLb": "0374c08",
+          "kwic": "宗顯禪師法嗣信相正覺宗顯禪師法嗣成都府金繩文禪師成都府金繩文禪師僧問：如何是大道之源？曰：黃河九曲。云：如何是不犯之令？曰：鐵虵鑽不入。僧擬議，師入打。泐潭典牛天游禪師法嗣泐潭典牛天游禪師法嗣臨安府徑山塗毒智䇿禪師臨安府徑山塗毒",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 7,
+      "queueNumber": 641,
+      "canonicalIndex": 640,
+      "id": "t_e13c8bd7ee9f",
+      "term": "忉忉怛怛",
+      "query": "忉忉怛怛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘Chattering on and on’ is a deliberately belittling label for abundant speech. Dahui applies it both to his own talking and to the saints’ expedient explanations: they speak at length precisely because listeners may stick to words, so the phrase marks verbose verbal fuss without making the speech worthless.",
+      "zcExact": {
+        "hits": 46,
+        "files": 30,
+        "distinctWorks": 30
+      },
+      "evidence": [
+        {
+          "source": "T/T47/T47n1998A.xml",
+          "title": "大慧普覺禪師語錄",
+          "workId": "work:T47n1998A",
+          "hitFromLb": "0880b09",
+          "hitToLb": "0880b15",
+          "kwic": "。良久高聲云。更是箇甚麼。妙喜盡力說。只說得到這裏此事決定不在言語上。所以從上諸聖。次第出世。各各以善巧方便。忉忉怛怛。唯恐人泥在言語上。若在言語上。一大藏教五千四十八卷。說權說實。說有說無。說頓說漸。豈是無言說。因甚麼達磨西來",
+          "verified": true
+        },
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "hitFromLb": "0888b06",
+          "hitToLb": "0888b11",
+          "kwic": "瞞人處善知識難遇所以得得而來既有決定性只此便是成佛基本今夜是德新請普說又為諸尼大師咨聞入室問佛有因所以兩彩一賽忉忉怛怛不過是麥裏有麵黑豆好合醬有箇話頭諸人但去看這箇話頭便是釋迦老子達磨大師德山臨濟來也只是這箇話僧問趙州狗子還有佛",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 8,
+      "queueNumber": 644,
+      "canonicalIndex": 643,
+      "id": "t_441485a2a7b9",
+      "term": "還丹一粒、點鐵成金",
+      "query": "還丹一粒，點鐵成金",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case multi-source",
+      "formResolution": {
+        "queueDisplay": "還丹一粒、點鐵成金",
+        "attestedQuery": "還丹一粒，點鐵成金",
+        "reason": "The queue display uses an enumeration comma; exact running-text witnesses use a full comma while preserving the complete paired formula."
+      },
+      "reason": "‘One pellet of the restored elixir turns iron into gold’ is a complete transformation formula. Masters explicitly align it with ‘one phrase that meets the occasion’ or ‘one word of ultimate principle’ turning an ordinary person into a sage; the elixir and gold image defines the force of the apt single saying.",
+      "zcExact": {
+        "hits": 42,
+        "files": 35,
+        "distinctWorks": 35
+      },
+      "evidence": [
+        {
+          "source": "J/J27/J27nB193.xml",
+          "title": "隱元禪師語錄",
+          "workId": "work:J27nB193",
+          "hitFromLb": "0245b17",
+          "hitToLb": "0245b22",
+          "kwic": "牙，通身慶快；摸著衲僧巴鼻，知恩有地。跛鱉盲龜得意，為電為雷；尿床鬼子翻身，如霖如雨。所謂投機一句，轉凡成聖；還丹一粒，點鐵成金。且道如何是投機一句？」僧云：「有意氣時添意氣，不風流處也風流。」師云：「未在。」僧擬議，師喝云：「無賓主句輕",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0110b11",
+          "hitToLb": "0110b17",
+          "kwic": "祖和尚云：趙州露刃劍，寒霜光𦦨𦦨。更擬問如何，分身作兩段？大慧和尚云：參學人向露刃劍上著得隻眼，便是百了千當。還丹一粒，點鐵成金。至理一言，轉凡成聖。更欲多言，恐無利益。珍重！月江印禪師夏前告香，普說：鐘樓上念讚，床脚下種菜，荊棘林中是什",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 9,
+      "queueNumber": 647,
+      "canonicalIndex": 646,
+      "id": "t_022119e92edd",
+      "term": "不直半文錢",
+      "query": "不直半文錢",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘Not worth half a cash’ is the corpus’s emphatic zero-price verdict. It can overturn conventional value—an imperial jewel is worthless beside Kāśyapa’s rag robe—or divide two people’s capacity to carry the matter, one worth a whole world and the other not half a coin.",
+      "zcExact": {
+        "hits": 47,
+        "files": 34,
+        "distinctWorks": 34
+      },
+      "evidence": [
+        {
+          "source": "X/X71/X71n1412.xml",
+          "title": "古林清茂禪師語錄",
+          "workId": "work:X71n1412",
+          "hitFromLb": "0209a06",
+          "hitToLb": "0209a11",
+          "kwic": "玉石俱焚，邪正不分，過由鞭影。是汝諸人還知白雲落處麼？拍禪床，下座。上堂。迦葉糞掃衣，價直百千萬；輪王髻中寶，不直半文錢。大眾！古人與麼道，可謂恩大難酬。下座。中秋，上堂。今朝八月十五，正是中秋時節，天上月圓，人間月缺。吞却三箇四",
+          "verified": true
+        },
+        {
+          "source": "X/X69/X69n1352.xml",
+          "title": "白雲守端禪師廣錄",
+          "workId": "work:X69n1352",
+          "hitFromLb": "0314b22",
+          "hitToLb": "0314c03",
+          "kwic": "，師云：猶在者裏。僧云：莫道不逢人。師云：更須子細。師乃云：此事有一人擔得起，價直三千大千世界；有一人擔不得，不直半文錢。且道三千大千世界即是？不直半文錢即是？乃云：不見道：知恩方解報恩上堂，云：揚眉瞬目，拈槌竪拂，彈指謦欬，盡是",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 10,
+      "queueNumber": 650,
+      "canonicalIndex": 649,
+      "id": "t_07c9e5578586",
+      "term": "把定封疆",
+      "query": "把定封疆",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source",
+      "reason": "‘Holding the frontier fixed’ is the encounter-image for maintaining one’s position and boundaries. Commentators may admire the sheer wall two masters establish, but also criticize a person who can only hold territory and cannot ‘live and die together’; the phrase names positional command, not automatic approval.",
+      "zcExact": {
+        "hits": 51,
+        "files": 34,
+        "distinctWorks": 33
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "hitFromLb": "0057a06",
+          "hitToLb": "0057a12",
+          "kwic": "小南泉、趙州，被這擔板漢勘破了。溈山󳭷云：菴主坐觀成敗大小，南泉、趙州向淨地上喫交。智海禾云：是即是，菴主只解把定封疆，不能同生同死。當時趙州禮拜，但云：這賊我識得你，待伊從東過西，從西過東。便拽拄杖趂出。且看趙州別有箇什麼伎倆",
+          "verified": true
+        },
+        {
+          "source": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "workId": "work:T48n2003",
+          "hitFromLb": "0184c24",
+          "hitToLb": "0185a01",
+          "kwic": "是超倫絕類得大受用。頂門有眼方謂之透網金鱗。爭奈雪峯是作家。不妨減人聲價。却云。待汝出網來。向汝道。看他兩家。把定封疆。壁立萬仞。若不是三聖。只此一句便去不得。爭奈三聖亦是作家。方解向他道。一千五百人善知識。話頭也不識。雪峯却道",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "KEEP (component)": 9,
+    "KEEP (couplet)": 1,
+    "PROVISIONAL": 0,
+    "REJECT": 0
+  },
+  "entryConstructionPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopAfterExactlyTen": true,
+  "crossReviewPerformedByAuthor": false
+}

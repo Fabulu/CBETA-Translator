@@ -104,6 +104,23 @@ class ValidatorTests(unittest.TestCase):
         ):
             self.assertEqual(validator.validate_ledger(ledger, AUTHORITY, full=True), [])
 
+    def test_full_spaced_query_uses_normalized_batch_count_key(self):
+        ledger = valid_ledger()
+        authority = copy.deepcopy(AUTHORITY)
+        authority["t_test"]["query"] = "甲 乙"
+        ledger["decisions"][0]["query"] = "甲 乙"
+        ledger["decisions"][0]["evidence"][0]["queryResolution"] = {
+            "attestedForm": "甲乙",
+            "reason": "queue graph spacing",
+        }
+        with (
+            patch.object(validator.zc, "batch_count", return_value={"甲乙": {"hits": 1, "files": 1, "works": 1}}),
+            patch.object(validator.zc, "verify", return_value={"ok": True, "fromLb": "0001a01", "toLb": "0001a01"}),
+            patch.object(validator.zc, "work_id", return_value="work:test"),
+            patch.object(validator.zc, "title", return_value="Test"),
+        ):
+            self.assertEqual(validator.validate_ledger(ledger, authority, full=True), [])
+
 
 if __name__ == "__main__":
     unittest.main()

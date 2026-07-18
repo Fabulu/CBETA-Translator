@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T00:49:10Z",
+  "batch": 16,
+  "offset": 0,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 604,
+  "trustedRegistrySha256": "43312c2f8ca9ddb8b65641e749547b5cf8e0fce19cfed53b022f8c2389e1ba43",
+  "excludedPriorAuthorLedgers": [
+    {"path":"maintenance/iriya-manual-batch9-offset0-ledger.json","sha256":"ab4ed206fb1b9e8f4f02364198f4e0979b98ddf5662650ecbd7f2e77836706d9"},
+    {"path":"maintenance/iriya-manual-batch10-offset0-ledger.json","sha256":"8d4878f9de050abf29d361d60e84edd30af1c85d15c3b5684bfac43db36d1ab4"},
+    {"path":"maintenance/iriya-manual-batch11-offset0-ledger.json","sha256":"c882d14df8ba37f0858d5f8c27308b054a228f07f48d71e8d4f0248d5467d388"},
+    {"path":"maintenance/iriya-manual-batch12-offset0-ledger.json","sha256":"a4600236734e255b55f7510ca49116eec19556558a3dc2f702cb9381741e977c"},
+    {"path":"maintenance/iriya-manual-batch13-offset0-ledger.json","sha256":"a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce"},
+    {"path":"maintenance/iriya-manual-batch14-offset0-ledger.json","sha256":"e221432f0d5035af6bfa3520d08b5f4ed3ba2228564b588b6c8412fd0c0beaea"},
+    {"path":"maintenance/iriya-manual-batch15-offset0-ledger.json","sha256":"3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2"}
+  ],
+  "rows": [
+    {"batchOrdinal":1,"queueNumber":523,"canonicalIndex":522,"id":"t_dd3901162466","term":"劈腹剜心","query":"劈腹剜心"},
+    {"batchOrdinal":2,"queueNumber":526,"canonicalIndex":525,"id":"t_afb700c95c27","term":"見兎放鷹","query":"見兔放鷹"},
+    {"batchOrdinal":3,"queueNumber":529,"canonicalIndex":528,"id":"t_39eaa7ebc699","term":"前箭猶輕後箭深","query":"前箭猶輕後箭深"},
+    {"batchOrdinal":4,"queueNumber":532,"canonicalIndex":531,"id":"t_c5f214e9d5e2","term":"急水上打毬子","query":"急水上打毬子"},
+    {"batchOrdinal":5,"queueNumber":535,"canonicalIndex":534,"id":"t_2e0a99354d9b","term":"歸依佛法僧","query":"歸依佛法僧"},
+    {"batchOrdinal":6,"queueNumber":538,"canonicalIndex":537,"id":"t_c9895a8b7343","term":"與賊過梯","query":"與賊過梯"},
+    {"batchOrdinal":7,"queueNumber":541,"canonicalIndex":540,"id":"t_8ec6144321cd","term":"堪作何用","query":"堪作何用"},
+    {"batchOrdinal":8,"queueNumber":544,"canonicalIndex":543,"id":"t_83d5188ab397","term":"掣風掣顛","query":"掣風掣顛"},
+    {"batchOrdinal":9,"queueNumber":547,"canonicalIndex":546,"id":"t_ce9bc5599aba","term":"巣知風、穴知雨","query":"巢知風，穴知雨"},
+    {"batchOrdinal":10,"queueNumber":550,"canonicalIndex":549,"id":"t_2aa1a3014832","term":"令不虚行","query":"令不虛行"}
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "absentLive604Registry": true,
+    "absentAllPriorOffset0AuthorLedgersIncludingRepairedBatch15": true,
+    "authoritativeTuplesExact": true
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}
