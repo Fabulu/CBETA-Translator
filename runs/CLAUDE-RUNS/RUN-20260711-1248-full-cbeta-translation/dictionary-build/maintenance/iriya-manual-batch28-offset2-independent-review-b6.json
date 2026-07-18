@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T03:25:08.703653+00:00",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch28-offset2-selection.json",
+  "reviewedSelectionSha256": "aa243e3b02817a39edf42374422e10f39a212a81ea70020a4bc87b6e88a23579",
+  "reviewedLedger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+  "reviewedLedgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "selectionHashBindingReproduced": true,
+    "selectionMatchesLedgerExactly": true,
+    "authoritativeQueueTuplesExact": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "boundLive934AndUnsealedBatch27ExclusionReproduced": true,
+    "currentRegistryRows": 964,
+    "currentRegistrySha256": "7298e65b17f3e6cc7d92dbd4d6deef0a194a0c7e7c8590ea5ba9984fdef9391b",
+    "collisionCountAgainstCurrentLive964": 0,
+    "allRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "借婆裙子拜婆年",
+      "壺中日月長",
+      "攙奪行市",
+      "有理不在高聲",
+      "當局者迷",
+      "索飯錢有日在",
+      "著靴水上立",
+      "開眼瞌睡"
+    ],
+    "couplets": [
+      "明頭合、暗頭合",
+      "一塵飛而翳天、一芥墮而覆地"
+    ],
+    "rowFindings": [
+      {
+        "canonicalIndex": 989,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 992,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 995,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 998,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1001,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1004,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1007,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1010,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1013,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      },
+      {
+        "canonicalIndex": 1016,
+        "verdict": "PASS",
+        "finding": "Both cases support the stated unit, boundary, and observable deployment."
+      }
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "mechanicalReview": {
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "prohibitedProseFindings": 0,
+    "summaryReproduced": {
+      "KEEP": 10,
+      "REVISE": 0,
+      "REJECT": 0,
+      "units": {
+        "component": 8,
+        "couplet": 2
+      }
+    }
+  },
+  "requiredRevisions": [],
+  "reviewedArtifactsMutated": false,
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

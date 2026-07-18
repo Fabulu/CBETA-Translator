@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "iriya-manual-independent-review-v1",
+  "reviewer": "c19-e8",
+  "batch": 28,
+  "offset": 1,
+  "verdict": "PASS",
+  "selection": "maintenance/iriya-manual-batch28-offset1-selection.json",
+  "selectionSha256": "59e3b08e6dfceb3d82952b7a7a8eeff87bed2cde1a10318dfaa285351b8fc1ab",
+  "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+  "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+  "reviewedCount": 10,
+  "semanticReview": {
+    "status": "PASS",
+    "summary": "All ten phrases have observable Chan jobs in the supplied full cases rather than contained-only literary occurrence.",
+    "findings": [
+      "入息不居陰界、出息不渉衆縁 is raised as the Prajnatara scripture-turning answer and actively tested with raising and lowering the whisk.",
+      "誰知席帽下、元是昔愁人 is a complete Dahui counter-saying that later masters quote and appraise against Daowu's formulation.",
+      "唱九作十 is used as a self-described act of false numbering and as an opening-seat characterization, not merely ordinary counting.",
+      "好晴好雨 is explicitly shown, questioned, and warned against being understood by verbal repetition alone.",
+      "捧上不成龍 is a complete inherited warning and is also delivered as an encounter verdict.",
+      "深沙努眼睛 is a bounded answer in a sustained teacher-student exchange; the English prudently describes the named figure's visible act without assigning a hidden meaning.",
+      "細嚼難飢 is both a direct house-style answer and a later capping maxim contrasted with coarse food being easy to fill up on.",
+      "﨟月三十日 is repeatedly deployed as the date of final personal reckoning, not merely a calendar mention.",
+      "驢事未了、馬事到來 is used both as a public-interview proverb and as the fixed Lingyun answer raised in later case commentary.",
+      "矮子看戲、隨人上下 is explicitly applied to copied judgment and repeated as a hall criticism."
+    ]
+  },
+  "mechanicalReview": {
+    "cheapAssociationValidator": "PASS 10/10",
+    "fullZcValidator": "PASS 10/10",
+    "selectionBinding": "PASS",
+    "exactCountTriples": "PASS 10/10",
+    "evidenceWindowsBoundsTitlesWorkIds": "PASS 20/20",
+    "canonicalDistinctWorkPairs": "PASS 10/10",
+    "prohibitedProse": "PASS 0 findings"
+  },
+  "promotionGate": "CLEAR",
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": null,
+  "lineageTouched": false
+}

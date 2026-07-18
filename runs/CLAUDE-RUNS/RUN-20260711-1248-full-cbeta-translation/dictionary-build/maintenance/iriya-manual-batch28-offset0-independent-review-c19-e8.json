@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "iriya-manual-independent-review-v1",
+  "reviewer": "c19-e8",
+  "batch": 28,
+  "offset": 0,
+  "verdict": "PASS",
+  "selection": "maintenance/iriya-manual-batch28-offset0-selection.json",
+  "selectionSha256": "df2662e8986ff63a17b063d7597f5690d19d0f683bc6fe823a02d119fd2357fd",
+  "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+  "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+  "reviewedCount": 10,
+  "semanticReview": {
+    "status": "PASS",
+    "summary": "All ten KEEP decisions are supported by observable interview, verdict, case-comment, institutional, or hall-capping jobs in the supplied full cases.",
+    "findings": [
+      "不入虎穴、爭得虎子 is a complete proverb deployed as the condition for obtaining the cub, not a contained literary quotation.",
+      "作模作樣 is used as a direct criticism of contrived conduct.",
+      "大死一番 is explicitly paired with coming back to life and is also issued as an instruction in the checked records.",
+      "渾身泥水 is applied by masters as an appraisal of Yunmen or Zhaozhou becoming wholly involved in an encounter.",
+      "面皮厚三寸 is a bounded rebuke whose exaggerated measure is itself the recurring verdict.",
+      "平蕪盡處是青山、行人更在青山外 is a whole capping couplet: masters quote it, alter it, and use it to close a hall challenge.",
+      "一箭中紅心 is repeatedly used as the exact-hit verdict in encounter commentary.",
+      "佛是西天老比丘 is a complete identification deployed as a hall declaration rather than an incidental biography.",
+      "得座披衣 is an established paired expression for assuming the teaching seat and robe, used both in instruction and verse addressed to a student.",
+      "無齒大蟲 is a fixed appraisal of Deshan in the three-days-deaf case, with later masters directly reusing and testing the epithet."
+    ]
+  },
+  "mechanicalReview": {
+    "cheapAssociationValidator": "PASS 10/10",
+    "fullZcValidator": "PASS 10/10",
+    "selectionBinding": "PASS",
+    "exactCountTriples": "PASS 10/10",
+    "evidenceWindowsBoundsTitlesWorkIds": "PASS 20/20",
+    "canonicalDistinctWorkPairs": "PASS 10/10",
+    "prohibitedProse": "PASS 0 findings"
+  },
+  "promotionGate": "CLEAR",
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": null,
+  "lineageTouched": false
+}

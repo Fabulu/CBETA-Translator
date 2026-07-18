@@ -1,6 +1,6 @@
 {
   "schemaVersion": "iriya-trusted-registry.v1",
-  "generatedUtc": "2026-07-18T03:22:17Z",
+  "generatedUtc": "2026-07-18T03:30:01Z",
   "mode": "AUTHORITATIVE_AUDIT_ONLY_TRUSTED_DECISION_REGISTRY",
   "trustMeaning": "A trusted semantic adjudication outcome; both admitted KEEP and trusted contained/non-unit REJECT outcomes are retained.",
   "counts": {
@@ -11,8 +11,8 @@
     "acceptedManualBatch4": 30,
     "acceptedManualBatch5": 30,
     "acceptedManualBatch6": 30,
-    "total": 964,
-    "KEEP": 923,
+    "total": 994,
+    "KEEP": 953,
     "REJECT": 41,
     "PROVISIONAL": 0,
     "acceptedManualBatch7": 30,
@@ -35,15 +35,16 @@
     "acceptedManualBatch24": 30,
     "acceptedManualBatch25": 30,
     "acceptedManualBatch26": 30,
-    "acceptedManualBatch27": 30
+    "acceptedManualBatch27": 30,
+    "acceptedManualBatch28": 30
   },
   "assertions": {
-    "uniqueCanonicalIndexes": 964,
-    "uniqueIds": 964,
+    "uniqueCanonicalIndexes": 994,
+    "uniqueIds": 994,
     "everyRowHasProvenanceReceipt": true,
     "quarantinedDefaultDecisionAdmitted": false,
     "publicationOrBuildAuthorization": false,
-    "preservedPriorRegistryRows": 934
+    "preservedPriorRegistryRows": 964
   },
   "rows": [
     {
@@ -20154,6 +20155,606 @@
         "ledgerSha256": "8d1b3723a01b20bfc51b118ee42d03a91f22c29721cfe27d45fab7261de53455",
         "review": "maintenance/iriya-manual-batch27-offset2-independent-review-b6.json",
         "reviewSha256": "c355d41cb2d7ed0a11073397341189ea83c558ca56e9d79cd9e3a6b0172bb67e"
+      }
+    },
+    {
+      "canonicalIndex": 882,
+      "queueNumber": 883,
+      "id": "t_3373e36be5dc",
+      "term": "不入虎穴、爭得虎子",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 885,
+      "queueNumber": 886,
+      "id": "t_a0b580e7ca4a",
+      "term": "作模作樣",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 888,
+      "queueNumber": 889,
+      "id": "t_0cecc750d1b9",
+      "term": "大死一番",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 891,
+      "queueNumber": 892,
+      "id": "t_bde27dc90851",
+      "term": "渾身泥水",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 894,
+      "queueNumber": 895,
+      "id": "t_ce52c85f3e5d",
+      "term": "面皮厚三寸",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 897,
+      "queueNumber": 898,
+      "id": "t_aacb030f6c5b",
+      "term": "平蕪盡處是青山、行人更在青山外",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 900,
+      "queueNumber": 901,
+      "id": "t_7c9bdcc27a50",
+      "term": "一箭中紅心",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 903,
+      "queueNumber": 904,
+      "id": "t_cb61d0016d6c",
+      "term": "佛是西天老比丘",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 906,
+      "queueNumber": 907,
+      "id": "t_aa30b10197b8",
+      "term": "得座披衣",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 909,
+      "queueNumber": 910,
+      "id": "t_735345aff1ca",
+      "term": "無齒大蟲",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 28,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset0-ledger.json",
+        "ledgerSha256": "93c66b65d4821c15c5c53f6e7451a30275220c51c4046271cb9b41a43c05ef36",
+        "review": "maintenance/iriya-manual-batch28-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "efa6d2a74c733b4e32d7c351a9481e85575e786bcd3c107e859a40b16ae3ccb3"
+      }
+    },
+    {
+      "canonicalIndex": 1012,
+      "queueNumber": 1013,
+      "id": "t_6871be816521",
+      "term": "入息不居陰界、出息不渉衆縁",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1015,
+      "queueNumber": 1016,
+      "id": "t_4967bcd49bf6",
+      "term": "誰知席帽下、元是昔愁人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1018,
+      "queueNumber": 1019,
+      "id": "t_c1a165d876d2",
+      "term": "唱九作十",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1021,
+      "queueNumber": 1022,
+      "id": "t_944e760baf68",
+      "term": "好晴好雨",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1024,
+      "queueNumber": 1025,
+      "id": "t_ae1869092bce",
+      "term": "捧上不成龍",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1027,
+      "queueNumber": 1028,
+      "id": "t_bf8f8b2c46a1",
+      "term": "深沙努眼睛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1030,
+      "queueNumber": 1031,
+      "id": "t_4f59ff91c45b",
+      "term": "細嚼難飢",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1033,
+      "queueNumber": 1034,
+      "id": "t_48b5c0964e9c",
+      "term": "﨟月三十日",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1036,
+      "queueNumber": 1037,
+      "id": "t_7efa8ff54d51",
+      "term": "驢事未了、馬事到來",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 1039,
+      "queueNumber": 1040,
+      "id": "t_41d917259326",
+      "term": "矮子看戲、隨人上下",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 28,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset1-ledger.json",
+        "ledgerSha256": "cb3f012499fb64462e4940a086d3575c02a3516c43b828f46d6f2c20b637ca34",
+        "review": "maintenance/iriya-manual-batch28-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "d447a7c1e0a260d74c4100275042a14082ff071a5b7a28daf9ff2964ad28c78f"
+      }
+    },
+    {
+      "canonicalIndex": 989,
+      "queueNumber": 990,
+      "id": "t_0725141fe12c",
+      "term": "借婆裙子拜婆年",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 992,
+      "queueNumber": 993,
+      "id": "t_d7933636dc46",
+      "term": "壺中日月長",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 995,
+      "queueNumber": 996,
+      "id": "t_e8b3787dcd12",
+      "term": "攙奪行市",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 998,
+      "queueNumber": 999,
+      "id": "t_b3307f4f5c10",
+      "term": "有理不在高聲",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1001,
+      "queueNumber": 1002,
+      "id": "t_dabbb9a24af6",
+      "term": "當局者迷",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1004,
+      "queueNumber": 1005,
+      "id": "t_d602c3c67667",
+      "term": "索飯錢有日在",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1007,
+      "queueNumber": 1008,
+      "id": "t_9e8b330d41f4",
+      "term": "著靴水上立",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1010,
+      "queueNumber": 1011,
+      "id": "t_d93a281b238d",
+      "term": "開眼瞌睡",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1013,
+      "queueNumber": 1014,
+      "id": "t_f035b9fc4e4c",
+      "term": "明頭合、暗頭合",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
+      }
+    },
+    {
+      "canonicalIndex": 1016,
+      "queueNumber": 1017,
+      "id": "t_8005f41d0a5a",
+      "term": "一塵飛而翳天、一芥墮而覆地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "trustClass": "independently accepted manual batch28 semantic decision",
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 28,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "canonicalWorkProvenanceValidated": true,
+        "ledger": "maintenance/iriya-manual-batch28-offset2-ledger.json",
+        "ledgerSha256": "7937f5dd7f1350fc002b830630f1e4e7b1144f4ba4aa804c9074b43fa9f992cb",
+        "review": "maintenance/iriya-manual-batch28-offset2-independent-review-b6.json",
+        "reviewSha256": "146105f294e4fbeeb8b7d296e7db02700e2cfee07dbcf9dab083d3500fa7182c"
       }
     }
   ]
