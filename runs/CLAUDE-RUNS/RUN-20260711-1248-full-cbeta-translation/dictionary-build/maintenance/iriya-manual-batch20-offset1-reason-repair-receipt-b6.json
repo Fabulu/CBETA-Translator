@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T01:53:28Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch20-offset1-independent-review-c19-e8.json",
+  "reviewSha256": "405419bfc59fa097c8b171c810f68ee76bf242527e9a86bbc56b907fe3bde176",
+  "ledger": "maintenance/iriya-manual-batch20-offset1-ledger.json",
+  "ledgerBeforeSha256": "e7c0d978274e27463d60222d72dc08cc1242e70c53ab9d369da1449ab1668af5",
+  "ledgerAfterSha256": "0483de26b9a8e545b4f79cc066d6c65828fa525ee8740490ca91db5643a4390b",
+  "repairs": [
+    {
+      "canonicalIndex": 745,
+      "id": "t_7ad52141ecc3",
+      "term": "春無三日晴",
+      "field": "reason",
+      "closure": "Retains the literal weather gloss and reports Zhizai's direct answer and Qianming's rainy-season opening separately; removes the unsupported generalized interpretation about unstable conditions."
+    },
+    {
+      "canonicalIndex": 769,
+      "id": "t_549124e8cdc4",
+      "term": "據虎頭、收虎尾",
+      "field": "reason",
+      "closure": "Defines the literal paired action and separately reports its use as an answer and as a conventional judgement explicitly challenged in the second witness."
+    }
+  ],
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesPreserved": true,
+  "allDispositionsAndUnitsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherEightReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

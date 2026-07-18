@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "iriya-manual-review-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "reviewArtifact": "maintenance/iriya-manual-batch20-offset1-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "405419bfc59fa097c8b171c810f68ee76bf242527e9a86bbc56b907fe3bde176",
+  "repairedLedger": "maintenance/iriya-manual-batch20-offset1-ledger.json",
+  "repairedLedgerSha256": "0483de26b9a8e545b4f79cc066d6c65828fa525ee8740490ca91db5643a4390b",
+  "decision": "PASS",
+  "focusedRows": [
+    {
+      "canonicalIndex": 745,
+      "term": "春無三日晴",
+      "verdict": "PASS",
+      "finding": "The reason now keeps the literal weather proverb and reports Zhizai's direct-answer deployment and Qianming's rainy-season encounter opening separately. The unsupported abstraction about generally unstable or continuously changing conditions is gone."
+    },
+    {
+      "canonicalIndex": 769,
+      "term": "據虎頭、收虎尾",
+      "verdict": "PASS",
+      "finding": "The reason now gives the literal paired action and preserves the evidence's disagreement: one master uses it as an answer about the ancestral command, while the other case presents a conventional judgement that the master challenges."
+    }
+  ],
+  "mechanicalRecheck": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "evidenceCountsUnitsUnchanged": true
+  },
+  "authorLedgerMutatedByReviewer": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

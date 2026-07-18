@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "non-iriya-frequency-yield-bottleneck-v3-audit.v1",
+  "generatedUtc": "2026-07-18T02:52:00Z",
+  "auditor": "d7",
+  "scope": "Frequency discovery batches 8-15 and frozen v2 3-8 graph reservoir; discovery/ranking only.",
+  "sourceV2": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "sourceV2Sha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "measuredYield": [
+    {"batch": 8, "KEEP": 15, "REJECT": 9, "PROVISIONAL": 1, "keepRate": 0.60, "reservoirRankMin": 498, "reservoirRankMax": 4358},
+    {"batch": 9, "KEEP": 17, "REJECT": 8, "PROVISIONAL": 0, "keepRate": 0.68, "reservoirRankMin": 806, "reservoirRankMax": 4905},
+    {"batch": 10, "KEEP": 19, "REJECT": 6, "PROVISIONAL": 0, "keepRate": 0.76, "reservoirRankMin": 89, "reservoirRankMax": 1913},
+    {"batch": 11, "KEEP": 12, "REJECT": 13, "PROVISIONAL": 0, "keepRate": 0.48, "reservoirRankMin": 406, "reservoirRankMax": 4818},
+    {"batch": 12, "KEEP": 14, "REJECT": 11, "PROVISIONAL": 0, "keepRate": 0.56, "reservoirRankMin": 2045, "reservoirRankMax": 4330},
+    {"batch": 13, "KEEP": 12, "REJECT": 13, "PROVISIONAL": 0, "keepRate": 0.48, "reservoirRankMin": 4013, "reservoirRankMax": 4863},
+    {"batch": 14, "KEEP": 11, "REJECT": 14, "PROVISIONAL": 0, "keepRate": 0.44, "reservoirRankMin": 4813, "reservoirRankMax": 4982},
+    {"batch": 15, "KEEP": 1, "REJECT": 24, "PROVISIONAL": 0, "keepRate": 0.04, "reservoirRankMin": 4971, "reservoirRankMax": 5000}
+  ],
+  "aggregate": {
+    "settledRowsBacktested": 200,
+    "KEEP": 101,
+    "REJECT": 98,
+    "PROVISIONAL": 1,
+    "boundaryOrGenericReasonMatches": 93,
+    "boundaryOrGenericRejects": 87,
+    "batch15BoundaryOrGenericRejects": 24
+  },
+  "diagnosis": {
+    "verdict": "BOTH DIMINISHING RETURNS AND SYSTEMATIC INTERNAL-NGRAM SURFACING",
+    "diminishingReturnsEvidence": "The manual selections move increasingly into v2 ranks 4000-5000 and KEEP rate declines from 48-76% in batches 8-13 to 44% in batch 14 and 4% at the terminal tail in batch 15.",
+    "rankerPathologyEvidence": "V2 retains every exact internal substring and sorts primarily by frequency. At the tail, common continuations, title/narrative seams, clipped covered parents, and incomplete question or reporting frames therefore outrank rarer complete lexical units.",
+    "batch15Finding": "All 24 rejections are boundary, clipped-parent, productive/generic, or narrative-seam failures; only 拂子打圓相 survives as a complete observable action.",
+    "notPureCorpusExhaustion": "Earlier diversified batches still found valid terms at high v2 ranks, and the v3 backtest improves KEEP concentration after boundary-aware reranking. The reservoir is not semantically empty, but sequential tail consumption is no longer efficient."
+  },
+  "unsafeStaticFilters": {
+    "substringOfCovered": {"flagged": 43, "KEEP": 18, "REJECT": 24, "PROVISIONAL": 1},
+    "containsCovered": {"flagged": 60, "KEEP": 34, "REJECT": 26, "PROVISIONAL": 0},
+    "genericCharacterPresent": {"flagged": 17, "KEEP": 6, "REJECT": 11, "PROVISIONAL": 0},
+    "conclusion": "None may be used as a hard deletion rule; each has unacceptable known-KEEP loss. They are ranking penalties only."
+  },
+  "v3Implementation": {
+    "ranker": "rank_non_iriya_frequency_reservoir_v3.py",
+    "rankerSha256": "1197d302bd2d953d289583c537b4dd3ecdfeea4fcb2e002575b6ee63e396a53b",
+    "overlay": "maintenance/non-iriya-frequency-reservoir-v3-overlay-20260718.json",
+    "overlaySha256": "605b9cdb86689c88254a31ea2d508ef78cfa88b0a1f3cf3e1387a2e6a9065e49",
+    "sourceRows": 5000,
+    "rankedManualReviewRows": 3528,
+    "deferredBoundaryExpandRows": 1472,
+    "boundaryRule": "Defer, never delete, when one immediate left or right graph occupies at least 95% of overlapping apparatus-clean CJK-run occurrences with support at least 12.",
+    "expansionSafety": "Only exact one-graph left/right forms are suggested. Suggestions remain discovery identities and require authority collision checks, exact zc recount, two work-distinct cases, and full semantic review before any selection or entry work.",
+    "rankingSafety": "Covered-family, generic-grammar, and reporting-frame signals are penalties, not exclusions. Frequency remains navigation only.",
+    "finalEntryStandardChanged": false
+  },
+  "measuredBacktest": {
+    "selectedThreshold": 0.95,
+    "supportFloor": 12,
+    "deferred": 29,
+    "deferredKnownRejects": 26,
+    "deferredKnownKeeps": 3,
+    "deferredKnownProvisional": 0,
+    "rejectPrecisionAmongDeferred": 0.896552,
+    "knownBoundaryOrGenericRejectsTotal": 87,
+    "knownBoundaryOrGenericRejectsDeferred": 26,
+    "batch15RowsDeferred": 13,
+    "knownKeepsDeferredButPreserved": ["諸佛出身", "法筵龍象", "拂子打圓相"],
+    "rankPrecision": [
+      {"k": 25, "v2KEEP": 16, "v3KEEP": 15},
+      {"k": 50, "v2KEEP": 30, "v3KEEP": 33},
+      {"k": 100, "v2KEEP": 62, "v3KEEP": 66},
+      {"k": 200, "v2KEEP": 101, "v3KEEP": 101}
+    ],
+    "interpretation": "Context deferral is high precision and collision-safe because it changes work order rather than semantic status. Reranking improves medium-depth yield but not top-25 yield, so it is a bottleneck aid rather than an admission classifier."
+  },
+  "operationalRecommendation": {
+    "stopSequentialV2TailBatches": true,
+    "useV3RankedLaneForNextNavigation": true,
+    "processDeferredLaneByExpansionFamily": true,
+    "requireZeroWithinPacketSubstringOverlap": true,
+    "capOneCandidatePerExpansionFamilyPerBatch": true,
+    "retainManualFullCaseAdjudication": true,
+    "retainExactCountsAndCanonicalDistinctEvidence": true,
+    "automaticAcceptancePermitted": false,
+    "automaticRejectionPermitted": false
+  },
+  "limitations": [
+    "The 200-row backtest reflects adaptively selected batches, not a random sample of all 5000 v2 rows.",
+    "Immediate graph dominance detects highly stable boundary extensions but not every generic or narrative fragment; batch 15 still leaves 11 rejects in the ranked lane.",
+    "Three known KEEP terms are deliberately deferred, demonstrating why deferral must never mean rejection."
+  ],
+  "provenanceRebind": {
+    "initialAuditedRankerSha256": "72c0ea05a36a4adc9f3e6ef06e61657e39951180b4b6d56246e07b86297cb26a",
+    "postAuditChangeScope": "Added compact and terms-only output serialization CLI modes; no context, threshold, scoring, backtest, or mutation logic changed.",
+    "currentRankerSha256": "1197d302bd2d953d289583c537b4dd3ecdfeea4fcb2e002575b6ee63e396a53b",
+    "overlayRegeneratedWithCurrentRanker": true,
+    "backtestReproduced": true
+  },
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "entriesBuilt": false,
+  "lineageTouched": false
+}

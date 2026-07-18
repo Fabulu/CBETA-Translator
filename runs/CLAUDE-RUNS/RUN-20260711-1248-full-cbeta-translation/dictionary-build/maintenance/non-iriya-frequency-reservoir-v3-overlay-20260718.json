@@ -1,0 +1,699 @@
+{
+  "schemaVersion": "non-iriya-frequency-reservoir-v3-overlay.v1",
+  "generatedUtc": "2026-07-18T01:55:45.781372+00:00",
+  "scope": "discovery/ranking only; no accepted entries",
+  "sourceV2": "maintenance/non-iriya-frequency-reservoir-v2-20260718.json",
+  "sourceV2Sha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "method": {
+    "context": "apparatus-clean allowlist CJK-run immediate left/right graph dominance",
+    "boundaryRule": "defer when one immediate graph occurs on either side in >=95% of overlapping run occurrences with support >=12",
+    "expansion": "suggest exact one-graph left/right forms only; suggestions remain unaccepted and require exact recount plus full-case review",
+    "ranking": "frequency/work spread/length score with covered-family, generic-grammar, and reporting-frame penalties; deferred rows are preserved, never silently deleted",
+    "finalStandard": "unchanged: manual full-case semantic decision, exact zc count, and canonical-distinct verified works"
+  },
+  "backtest": {
+    "batches": "8-15",
+    "settledRows": 200,
+    "matrix": {
+      "KEEP::DEFER_BOUNDARY_EXPAND": 3,
+      "KEEP::RANKED_MANUAL_REVIEW": 98,
+      "PROVISIONAL::RANKED_MANUAL_REVIEW": 1,
+      "REJECT::DEFER_BOUNDARY_EXPAND": 26,
+      "REJECT::RANKED_MANUAL_REVIEW": 72
+    },
+    "rankPrecision": [
+      {
+        "k": 25,
+        "v2KEEP": 16,
+        "v3KEEP": 15
+      },
+      {
+        "k": 50,
+        "v2KEEP": 30,
+        "v3KEEP": 33
+      },
+      {
+        "k": 100,
+        "v2KEEP": 62,
+        "v3KEEP": 66
+      },
+      {
+        "k": 200,
+        "v2KEEP": 101,
+        "v3KEEP": 101
+      }
+    ],
+    "thresholdTable": [
+      {
+        "dominance": 0.8,
+        "flagged": 46,
+        "KEEP": 8,
+        "REJECT": 37,
+        "PROVISIONAL": 1,
+        "knownBoundaryOrGenericRejects": 37
+      },
+      {
+        "dominance": 0.85,
+        "flagged": 40,
+        "KEEP": 5,
+        "REJECT": 34,
+        "PROVISIONAL": 1,
+        "knownBoundaryOrGenericRejects": 34
+      },
+      {
+        "dominance": 0.9,
+        "flagged": 35,
+        "KEEP": 4,
+        "REJECT": 30,
+        "PROVISIONAL": 1,
+        "knownBoundaryOrGenericRejects": 30
+      },
+      {
+        "dominance": 0.95,
+        "flagged": 29,
+        "KEEP": 3,
+        "REJECT": 26,
+        "PROVISIONAL": 0,
+        "knownBoundaryOrGenericRejects": 26
+      },
+      {
+        "dominance": 0.98,
+        "flagged": 17,
+        "KEEP": 1,
+        "REJECT": 16,
+        "PROVISIONAL": 0,
+        "knownBoundaryOrGenericRejects": 16
+      },
+      {
+        "dominance": 1.0,
+        "flagged": 3,
+        "KEEP": 0,
+        "REJECT": 3,
+        "PROVISIONAL": 0,
+        "knownBoundaryOrGenericRejects": 3
+      }
+    ],
+    "deferredKnownKeeps": [
+      {
+        "term": "諸佛出身",
+        "batch": 10,
+        "dominance": 0.981378
+      },
+      {
+        "term": "法筵龍象",
+        "batch": 10,
+        "dominance": 0.958333
+      },
+      {
+        "term": "拂子打圓相",
+        "batch": 15,
+        "dominance": 0.978448
+      }
+    ],
+    "knownBoundaryOrGenericRejects": 87,
+    "knownBoundaryOrGenericRejectsDeferred": 26,
+    "batch15Deferred": 13
+  },
+  "counts": {
+    "sourceRows": 5000,
+    "rankedRows": 3528,
+    "deferredRows": 1472,
+    "emittedTopRanked": 5
+  },
+  "topRanked": [
+    {
+      "v2Rank": 5,
+      "term": "甚麼處",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 7734,
+      "zcExactHits": 8408,
+      "zcExactFiles": 369,
+      "zcExactDistinctWorks": 364,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParents": [],
+      "coveredChildren": [],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "RANKED_MANUAL_REVIEW",
+        "score": 10.517037,
+        "contextOccurrences": 8408,
+        "leftTop": {
+          "graph": "在",
+          "support": 3937,
+          "dominance": 0.468245
+        },
+        "rightTop": {
+          "graph": "去",
+          "support": 1593,
+          "dominance": 0.189462
+        },
+        "boundaryDominance": 0.468245,
+        "boundarySupport": 3937,
+        "substringOfCovered": false,
+        "containsCovered": false,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "在甚麼處",
+            "side": "left",
+            "support": 3937,
+            "dominance": 0.468245,
+            "alreadyKnown": true
+          },
+          {
+            "term": "甚麼處去",
+            "side": "right",
+            "support": 1593,
+            "dominance": 0.189462,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 18,
+      "term": "在甚麼處",
+      "graphs": 4,
+      "band": "3-8",
+      "indexNavigationHits": 3349,
+      "zcExactHits": 3937,
+      "zcExactFiles": 323,
+      "zcExactDistinctWorks": 318,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParents": [],
+      "coveredChildren": [],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "RANKED_MANUAL_REVIEW",
+        "score": 9.831466,
+        "contextOccurrences": 3937,
+        "leftTop": {
+          "graph": "過",
+          "support": 548,
+          "dominance": 0.139192
+        },
+        "rightTop": {
+          "graph": "安",
+          "support": 123,
+          "dominance": 0.031242
+        },
+        "boundaryDominance": 0.139192,
+        "boundarySupport": 548,
+        "substringOfCovered": false,
+        "containsCovered": false,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "過在甚麼處",
+            "side": "left",
+            "support": 548,
+            "dominance": 0.139192,
+            "alreadyKnown": true
+          },
+          {
+            "term": "在甚麼處安",
+            "side": "right",
+            "support": 123,
+            "dominance": 0.031242,
+            "alreadyKnown": false
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 4,
+      "term": "禪師法嗣",
+      "graphs": 4,
+      "band": "3-8",
+      "indexNavigationHits": 10048,
+      "zcExactHits": 9982,
+      "zcExactFiles": 30,
+      "zcExactDistinctWorks": 27,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParents": [],
+      "coveredChildren": [
+        "法嗣",
+        "禪師"
+      ],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "RANKED_MANUAL_REVIEW",
+        "score": 9.62508,
+        "contextOccurrences": 9982,
+        "leftTop": {
+          "graph": "明",
+          "support": 142,
+          "dominance": 0.014226
+        },
+        "rightTop": {
+          "graph": "天",
+          "support": 402,
+          "dominance": 0.040272
+        },
+        "boundaryDominance": 0.040272,
+        "boundarySupport": 402,
+        "substringOfCovered": false,
+        "containsCovered": true,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "禪師法嗣天",
+            "side": "right",
+            "support": 402,
+            "dominance": 0.040272,
+            "alreadyKnown": false
+          },
+          {
+            "term": "明禪師法嗣",
+            "side": "left",
+            "support": 142,
+            "dominance": 0.014226,
+            "alreadyKnown": false
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 10,
+      "term": "請上堂",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 4990,
+      "zcExactHits": 5259,
+      "zcExactFiles": 268,
+      "zcExactDistinctWorks": 264,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:contains-covered-term"
+      ],
+      "substringParents": [],
+      "coveredChildren": [
+        "上堂"
+      ],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "RANKED_MANUAL_REVIEW",
+        "score": 9.333832,
+        "contextOccurrences": 5259,
+        "leftTop": {
+          "graph": "士",
+          "support": 469,
+          "dominance": 0.08918
+        },
+        "rightTop": {
+          "graph": "師",
+          "support": 97,
+          "dominance": 0.018445
+        },
+        "boundaryDominance": 0.08918,
+        "boundarySupport": 469,
+        "substringOfCovered": false,
+        "containsCovered": true,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "士請上堂",
+            "side": "left",
+            "support": 469,
+            "dominance": 0.08918,
+            "alreadyKnown": true
+          },
+          {
+            "term": "請上堂師",
+            "side": "right",
+            "support": 97,
+            "dominance": 0.018445,
+            "alreadyKnown": false
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 64,
+      "term": "麼處去",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 2247,
+      "zcExactHits": 2591,
+      "zcExactFiles": 307,
+      "zcExactDistinctWorks": 303,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+      ],
+      "substringParents": [],
+      "coveredChildren": [],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "RANKED_MANUAL_REVIEW",
+        "score": 9.303591,
+        "contextOccurrences": 2591,
+        "leftTop": {
+          "graph": "甚",
+          "support": 1593,
+          "dominance": 0.614821
+        },
+        "rightTop": {
+          "graph": "也",
+          "support": 404,
+          "dominance": 0.155924
+        },
+        "boundaryDominance": 0.614821,
+        "boundarySupport": 1593,
+        "substringOfCovered": false,
+        "containsCovered": false,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "甚麼處去",
+            "side": "left",
+            "support": 1593,
+            "dominance": 0.614821,
+            "alreadyKnown": true
+          },
+          {
+            "term": "麼處去也",
+            "side": "right",
+            "support": 404,
+            "dominance": 0.155924,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    }
+  ],
+  "deferredSample": [
+    {
+      "v2Rank": 68,
+      "term": "何是祖",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 2166,
+      "zcExactHits": 2504,
+      "zcExactFiles": 277,
+      "zcExactDistinctWorks": 272,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "triage:generic-character-present",
+        "family:substring-of-covered-term"
+      ],
+      "substringParents": [
+        "如何是祖師西來意"
+      ],
+      "coveredChildren": [],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "DEFER_BOUNDARY_EXPAND",
+        "score": 4.247938,
+        "contextOccurrences": 2504,
+        "leftTop": {
+          "graph": "如",
+          "support": 2504,
+          "dominance": 1.0
+        },
+        "rightTop": {
+          "graph": "師",
+          "support": 2415,
+          "dominance": 0.964457
+        },
+        "boundaryDominance": 1.0,
+        "boundarySupport": 2504,
+        "substringOfCovered": true,
+        "containsCovered": false,
+        "genericCharacterPresent": true,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "如何是祖",
+            "side": "left",
+            "support": 2504,
+            "dominance": 1.0,
+            "alreadyKnown": true
+          },
+          {
+            "term": "何是祖師",
+            "side": "right",
+            "support": 2415,
+            "dominance": 0.964457,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 70,
+      "term": "河大地",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 2135,
+      "zcExactHits": 2487,
+      "zcExactFiles": 333,
+      "zcExactDistinctWorks": 329,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:substring-of-covered-term",
+        "family:contains-covered-term"
+      ],
+      "substringParents": [
+        "山河大地"
+      ],
+      "coveredChildren": [
+        "大地"
+      ],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "DEFER_BOUNDARY_EXPAND",
+        "score": 4.479053,
+        "contextOccurrences": 2487,
+        "leftTop": {
+          "graph": "山",
+          "support": 2487,
+          "dominance": 1.0
+        },
+        "rightTop": {
+          "graph": "是",
+          "support": 92,
+          "dominance": 0.036992
+        },
+        "boundaryDominance": 1.0,
+        "boundarySupport": 2487,
+        "substringOfCovered": true,
+        "containsCovered": true,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "山河大地",
+            "side": "left",
+            "support": 2487,
+            "dominance": 1.0,
+            "alreadyKnown": false
+          },
+          {
+            "term": "河大地是",
+            "side": "right",
+            "support": 92,
+            "dominance": 0.036992,
+            "alreadyKnown": false
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 76,
+      "term": "何是祖師",
+      "graphs": 4,
+      "band": "3-8",
+      "indexNavigationHits": 1991,
+      "zcExactHits": 2415,
+      "zcExactFiles": 271,
+      "zcExactDistinctWorks": 266,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "triage:generic-character-present",
+        "family:substring-of-covered-term",
+        "family:contains-covered-term"
+      ],
+      "substringParents": [
+        "如何是祖師西來意"
+      ],
+      "coveredChildren": [
+        "祖師"
+      ],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "DEFER_BOUNDARY_EXPAND",
+        "score": 3.657318,
+        "contextOccurrences": 2415,
+        "leftTop": {
+          "graph": "如",
+          "support": 2415,
+          "dominance": 1.0
+        },
+        "rightTop": {
+          "graph": "西",
+          "support": 2183,
+          "dominance": 0.903934
+        },
+        "boundaryDominance": 1.0,
+        "boundarySupport": 2415,
+        "substringOfCovered": true,
+        "containsCovered": true,
+        "genericCharacterPresent": true,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "如何是祖師",
+            "side": "left",
+            "support": 2415,
+            "dominance": 1.0,
+            "alreadyKnown": true
+          },
+          {
+            "term": "何是祖師西",
+            "side": "right",
+            "support": 2183,
+            "dominance": 0.903934,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 90,
+      "term": "切眾生",
+      "graphs": 3,
+      "band": "3-8",
+      "indexNavigationHits": 1865,
+      "zcExactHits": 2214,
+      "zcExactFiles": 312,
+      "zcExactDistinctWorks": 308,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "family:substring-of-covered-term"
+      ],
+      "substringParents": [
+        "一切眾生皆有佛性",
+        "一切眾生皆無佛性",
+        "引導一切眾生"
+      ],
+      "coveredChildren": [],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "DEFER_BOUNDARY_EXPAND",
+        "score": 4.999676,
+        "contextOccurrences": 2214,
+        "leftTop": {
+          "graph": "一",
+          "support": 2214,
+          "dominance": 1.0
+        },
+        "rightTop": {
+          "graph": "皆",
+          "support": 267,
+          "dominance": 0.120596
+        },
+        "boundaryDominance": 1.0,
+        "boundarySupport": 2214,
+        "substringOfCovered": true,
+        "containsCovered": false,
+        "genericCharacterPresent": false,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "一切眾生",
+            "side": "left",
+            "support": 2214,
+            "dominance": 1.0,
+            "alreadyKnown": true
+          },
+          {
+            "term": "切眾生皆",
+            "side": "right",
+            "support": 267,
+            "dominance": 0.120596,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    },
+    {
+      "v2Rank": 96,
+      "term": "何是祖師西",
+      "graphs": 5,
+      "band": "3-8",
+      "indexNavigationHits": 1746,
+      "zcExactHits": 2183,
+      "zcExactFiles": 262,
+      "zcExactDistinctWorks": 257,
+      "flags": [
+        "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+        "triage:generic-character-present",
+        "family:substring-of-covered-term",
+        "family:contains-covered-term"
+      ],
+      "substringParents": [
+        "如何是祖師西來意"
+      ],
+      "coveredChildren": [
+        "祖師"
+      ],
+      "status": "DISCOVERY-ONLY; AWAITING-MANUAL-SEMANTIC-VETTING",
+      "v3": {
+        "lane": "DEFER_BOUNDARY_EXPAND",
+        "score": 3.649505,
+        "contextOccurrences": 2183,
+        "leftTop": {
+          "graph": "如",
+          "support": 2183,
+          "dominance": 1.0
+        },
+        "rightTop": {
+          "graph": "來",
+          "support": 2176,
+          "dominance": 0.996793
+        },
+        "boundaryDominance": 1.0,
+        "boundarySupport": 2183,
+        "substringOfCovered": true,
+        "containsCovered": true,
+        "genericCharacterPresent": true,
+        "structuralReportingFrame": false,
+        "expansionSuggestions": [
+          {
+            "term": "如何是祖師西",
+            "side": "left",
+            "support": 2183,
+            "dominance": 1.0,
+            "alreadyKnown": true
+          },
+          {
+            "term": "何是祖師西來",
+            "side": "right",
+            "support": 2176,
+            "dominance": 0.996793,
+            "alreadyKnown": true
+          }
+        ]
+      }
+    }
+  ],
+  "authorityMutation": false,
+  "dictionaryMutation": false,
+  "registryMutation": false,
+  "entriesBuilt": false,
+  "manualReviewStillRequired": true
+}
+

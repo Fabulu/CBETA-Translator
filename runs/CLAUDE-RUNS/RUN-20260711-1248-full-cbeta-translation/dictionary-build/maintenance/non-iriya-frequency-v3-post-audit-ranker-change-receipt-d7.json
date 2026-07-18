@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-frequency-v3-post-audit-change-receipt.v1",
+  "generatedUtc": "2026-07-18T03:58:00Z",
+  "author": "d7",
+  "ranker": "rank_non_iriya_frequency_reservoir_v3.py",
+  "rankerSha256BeforeOutputOnlyChanges": "72c0ea05a36a4adc9f3e6ef06e61657e39951180b4b6d56246e07b86297cb26a",
+  "rankerSha256After": "1197d302bd2d953d289583c537b4dd3ecdfeea4fcb2e002575b6ee63e396a53b",
+  "changes": [
+    "Added --compact output projection.",
+    "Added --terms-only output projection.",
+    "Added --deferred-sample output-size control."
+  ],
+  "algorithmicChanges": {
+    "contextCollection": false,
+    "boundaryThresholdOrSupport": false,
+    "rankingScoreOrPenalties": false,
+    "backtestPopulationOrMetrics": false,
+    "authorityOrDictionaryMutation": false
+  },
+  "regeneratedOverlay": "maintenance/non-iriya-frequency-reservoir-v3-overlay-20260718.json",
+  "regeneratedOverlaySha256": "605b9cdb86689c88254a31ea2d508ef78cfa88b0a1f3cf3e1387a2e6a9065e49",
+  "backtestReproduced": {
+    "settledRows": 200,
+    "deferredKnownRejects": 26,
+    "deferredKnownKeeps": 3,
+    "rankKEEPAt50": 33,
+    "rankKEEPAt100": 66
+  },
+  "status": "PROVENANCE_REBOUND_BEFORE_BATCH16_SELECTION",
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "registryMutationPerformed": false
+}

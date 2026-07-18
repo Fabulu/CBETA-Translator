@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch20-offset1-selection.json",
+  "reviewedSelectionSha256": "0594a744c57cf4352e6469b48641db85a4c7bc6ea15bfe60dc35d4c8d2af9b48",
+  "reviewedLedger": "maintenance/iriya-manual-batch20-offset1-ledger.json",
+  "reviewedLedgerSha256": "e7c0d978274e27463d60222d72dc08cc1242e70c53ab9d369da1449ab1668af5",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce exactly, all canonical indexes are 1 modulo 3, all eleven declared prior-ledger hashes reproduce, and every selected id is absent from both those prior ledgers and the frozen 724-row trusted registry."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at the stored line bounds, source titles and manifest work IDs reproduce, and every row's evidence pair uses canonical-distinct works",
+    "variants": "PASS; printed/query graph and punctuation differences are explicitly resolved",
+    "units": "PASS mechanically; two semantic reasons require narrower corpus-first wording"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 2 reasons; PASS 8 rows",
+    "rows": [
+      {
+        "canonicalIndex": 745,
+        "term": "春無三日晴",
+        "verdict": "REVISE reason only",
+        "finding": "The literal proverb and KEEP/component ruling are supported, but 'for unstable or continuously changing conditions' turns two different deployments into an abstract interpretation not stated in either witness. In the first case Zhizai answers why a supposedly secretly transmitted matter is known by everyone with 'spring has no three clear days'; in the second, Qianming places the proverb in a rainy-season opening before an encounter with a monk. Only the literal weather statement is common to both stored cases.",
+        "requiredRepair": "Keep the literal gloss, then report the two deployments separately: Zhizai's direct answer concerning why everyone knows, and Qianming's rainy-season opening that leads into a face-to-face test. Remove the generalized claim about unstable or continuously changing conditions unless separately anchored. Preserve disposition, component unit, count, and both witnesses."
+      },
+      {
+        "canonicalIndex": 769,
+        "term": "據虎頭、收虎尾",
+        "verdict": "REVISE reason only",
+        "finding": "The paired unit and KEEP ruling are supported, but 'expressing command of the beginning and end of a dangerous encounter' harmonizes evidence that explicitly disagrees. In one witness the master gives the pair as his answer about raising the ancestral command. In the other, a monk says that various quarters apply the pair to Deshan's encounter, and the master rejects that received application as blind men feeling an elephant. The corpus therefore deploys the phrase both as an answer and as a conventional judgement subjected to challenge.",
+        "requiredRepair": "Define the literal paired action ('grasp the tiger's head; gather its tail') and name the two observable deployments separately. Do not make mastery of a dangerous encounter the single settled meaning when one stored case challenges precisely such an inherited application. Preserve disposition, couplet unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [742, 748, 751, 754, 757, 760, 763, 766]
+  },
+  "summary": {
+    "PASS": 8,
+    "REVISE": 2,
+    "semanticRejectionsRequired": 0,
+    "reasonOnlyRepairsRequired": 2,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

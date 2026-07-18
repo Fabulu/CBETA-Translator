@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch20-offset0-selection.json",
+  "reviewedSelectionSha256": "a4d703a9f3fbdb457943369eec09421eea6503f525698072f7177291d571f27f",
+  "reviewedLedger": "maintenance/iriya-manual-batch20-offset0-ledger.json",
+  "reviewedLedgerSha256": "306f2011f2ed325b80062f2fa6c0c956e4f181aba29b8560d06a46ef7a3478f9",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce exactly, all canonical indexes are 0 modulo 3, all eleven declared prior-ledger hashes reproduce, and every selected id is absent from both those prior ledgers and the frozen trusted registry."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at stored line bounds, titles and canonical work IDs reproduce, and every evidence pair is work-distinct",
+    "variants": "PASS; printed/query graph and punctuation differences are explicitly resolved",
+    "units": "PASS mechanically; one semantic reason requires narrower corpus-first wording"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 654,
+        "term": "魚魯參差",
+        "verdict": "REVISE reason only",
+        "finding": "The literal graph-confusion image and KEEP/component ruling are supported, but the reason's list 'corrupt transmission, muddled wording, or divergent records' is not established by the stored cases. Tianqi applies the phrase to a master's analysis of the Shakyamuni-Devadatta exchange, saying 刁刀相似，魚魯參差; Wanfeng applies it to the inherited first/second/third-sentence ranking before supplying his own three verdicts. Both cases diagnose a mistaken or insufficiently differentiated judgement, not corrupt textual transmission or divergent records.",
+        "requiredRepair": "Define the literal image: 魚 and 魯 are similar graphs liable to be confused, hence a discrepancy produced by taking near-looking things as the same. Then report the two stored Chan deployments separately as criticism of a case analysis and criticism of the inherited three-sentence ranking. Remove corrupt transmission and divergent records unless separately anchored. Preserve disposition, component unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [642, 645, 648, 651, 657, 660, 663, 666, 669]
+  },
+  "summary": {
+    "PASS": 9,
+    "REVISE": 1,
+    "semanticRejectionsRequired": 0,
+    "reasonOnlyRepairsRequired": 1,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

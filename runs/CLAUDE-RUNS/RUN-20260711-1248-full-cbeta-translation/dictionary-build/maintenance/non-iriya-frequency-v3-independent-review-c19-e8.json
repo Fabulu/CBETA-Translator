@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "non-iriya-frequency-v3-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE_PROVENANCE",
+  "reviewedRanker": "rank_non_iriya_frequency_reservoir_v3.py",
+  "reviewedRankerCurrentSha256": "f441bc6c0f186f6aee17241e0b078e0fdb3ac1722195ede53bad229e266c30ce",
+  "reviewedOverlay": "maintenance/non-iriya-frequency-reservoir-v3-overlay-20260718.json",
+  "reviewedOverlaySha256": "5249916c918b6b5f0ffa0e04a4ab621b28a81aa3f4102486929771cf27301546",
+  "reviewedAudit": "maintenance/non-iriya-frequency-batches8-15-yield-bottleneck-v3-audit-d7.json",
+  "reviewedAuditSha256": "ba125bf341c5b38d13bd7587a72081ccacbe2f9bf4590d455f0c3ecc8b780577",
+  "sourceV2Sha256": "884857534fd0f861268229800d0d8e403d6fefc26ca66a0eb8693b4e913c55c6",
+  "substantiveReview": {
+    "noFalseExclusion": {
+      "verdict": "PASS WITH OPERATING GUARD",
+      "finding": "All 5,000 unique v2 rows partition exactly into 3,528 ranked-manual-review and 1,472 deferred-boundary-expand rows. Deferral is never encoded as rejection, and the backtest itself preserves three known KEEP rows in the deferred lane. The checked overlay is intentionally a navigation sample (5 ranked plus 5 deferred), not a replacement authority; selection must continue from the frozen v2 source through the ranker, never treat absence from the small serialized sample as exclusion."
+    },
+    "settledBacktestAssociation": {
+      "verdict": "PASS",
+      "finding": "The eight declared ledgers contain exactly 200 decisions and 200 unique term strings; all 200 occur uniquely in the 5,000-row v2 reservoir. Therefore the term-keyed settled map performs no silent cross-batch overwrite. Reproduced totals are KEEP 101, REJECT 98, PROVISIONAL 1, and the per-batch matrices match the audit."
+    },
+    "collisionSafety": {
+      "verdict": "PASS WITH OPERATING GUARD",
+      "finding": "The 5,000 reservoir identities are unique, the ranker creates no accepted IDs, and suggested one-graph expansions remain explicitly discovery-only. Its alreadyKnown flag is scoped only to the v2 reservoir, not the full authority, so it must never be interpreted as an authority-collision verdict. The stated downstream authority collision preflight, exact recount, and semantic review remain mandatory before registration."
+    },
+    "authorityMutation": {
+      "verdict": "PASS",
+      "finding": "The ranker reads the frozen v2 reservoir, settled ledgers, allowlist, and zc corpus and emits JSON to stdout. It contains no authority, registry, dictionary, entry, or lineage write path, and all three reviewed artifacts declare discovery-only/no mutation."
+    },
+    "backtestInterpretation": {
+      "verdict": "PASS",
+      "finding": "The audit does not promote the ranker to an admission classifier: top-25 yield becomes slightly worse, top-50 and top-100 improve modestly, and all acceptance/rejection remains manual. The conclusion that v3 is a navigation aid rather than a semantic gate matches the measurements."
+    }
+  },
+  "blockingProvenanceFinding": {
+    "verdict": "REVISE",
+    "finding": "The audit pins ranker SHA-256 72c0ea05a36a4adc9f3e6ef06e61657e39951180b4b6d56246e07b86297cb26a, but the current ranker hashes to f441bc6c0f186f6aee17241e0b078e0fdb3ac1722195ede53bad229e266c30ce and has a filesystem timestamp later than both the checked overlay and audit. The overlay hash itself matches the audit, but it cannot be reproduced from the presently pinned source without establishing what changed.",
+    "requiredRepair": "Either restore the exact 72c0ea... ranker used to generate the overlay, or regenerate the overlay and audit from current ranker f441bc... and update both pinned hashes and measurements. Then provide a focused provenance receipt. Do not promote the overlay to navigation authority until source/artifact hashes agree."
+  },
+  "summary": {
+    "algorithmAndSafety": "PASS under stated discovery-only guards",
+    "reproducibleProvenance": "REVISE",
+    "authorityMutationFound": false,
+    "automaticAcceptanceOrRejectionPermitted": false
+  },
+  "reviewedArtifactsMutated": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

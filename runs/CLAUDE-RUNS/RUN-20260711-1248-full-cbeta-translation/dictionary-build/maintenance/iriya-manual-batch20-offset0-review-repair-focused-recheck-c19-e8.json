@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "iriya-manual-review-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "reviewArtifact": "maintenance/iriya-manual-batch20-offset0-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "e1f51029c6c8fea8d9b3507f2bc09c6b479a7214bf9f271922612fd86e913870",
+  "repairedLedger": "maintenance/iriya-manual-batch20-offset0-ledger.json",
+  "repairedLedgerSha256": "f9789940dc0ff5f027fe2147d4a19d02443476b90015e6b9493a08e92a088bef",
+  "decision": "PASS",
+  "focusedRows": [
+    {
+      "canonicalIndex": 654,
+      "term": "魚魯參差",
+      "verdict": "PASS",
+      "finding": "The reason now defines the literal similar-graph confusion and separately reports Tianqi's criticism of a case analysis and Wanfeng's criticism of the inherited three-sentence ranking. Unsupported claims about corrupt transmission and divergent records are gone."
+    }
+  ],
+  "mechanicalRecheck": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "evidenceCountsUnitsUnchanged": true
+  },
+  "authorLedgerMutatedByReviewer": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

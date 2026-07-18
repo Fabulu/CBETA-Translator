@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "non-iriya-frequency-v3-provenance-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "priorIndependentReview": "maintenance/non-iriya-frequency-v3-independent-review-c19-e8.json",
+  "priorIndependentReviewSha256": "0c3a685915985bdf37d0e9bb95ff61216025db78b385c272306e43a8eedf235a",
+  "decision": "PASS",
+  "ranker": {
+    "path": "rank_non_iriya_frequency_reservoir_v3.py",
+    "sha256": "1197d302bd2d953d289583c537b4dd3ecdfeea4fcb2e002575b6ee63e396a53b"
+  },
+  "overlay": {
+    "path": "maintenance/non-iriya-frequency-reservoir-v3-overlay-20260718.json",
+    "sha256": "605b9cdb86689c88254a31ea2d508ef78cfa88b0a1f3cf3e1387a2e6a9065e49"
+  },
+  "reboundAudit": {
+    "path": "maintenance/non-iriya-frequency-batches8-15-yield-bottleneck-v3-audit-d7.json",
+    "sha256": "d01186b32e87df07622b3e7b101655025556b37676aa49e0536f6a30ec546896"
+  },
+  "changeReceipt": {
+    "path": "maintenance/non-iriya-frequency-v3-post-audit-ranker-change-receipt-d7.json",
+    "sha256": "ddb43b8189aeb3c46d05b01186f63b701259cd5d2931abaa18f59b6ec57b13f7"
+  },
+  "provenanceFinding": "PASS: the rebound audit and receipt now pin the current ranker and regenerated overlay hashes exactly. The receipt identifies the post-audit changes as output projections and sample-size controls and records no context, threshold, score, backtest-population, or mutation change.",
+  "backtestReproduction": {
+    "verdict": "PASS",
+    "settledRows": 200,
+    "matrix": {
+      "KEEP::DEFER_BOUNDARY_EXPAND": 3,
+      "KEEP::RANKED_MANUAL_REVIEW": 98,
+      "PROVISIONAL::RANKED_MANUAL_REVIEW": 1,
+      "REJECT::DEFER_BOUNDARY_EXPAND": 26,
+      "REJECT::RANKED_MANUAL_REVIEW": 72
+    },
+    "totals": {"KEEP": 101, "REJECT": 98, "PROVISIONAL": 1},
+    "threshold95": {"flagged": 29, "KEEP": 3, "REJECT": 26, "PROVISIONAL": 0},
+    "rankKEEPAt50": 33,
+    "rankKEEPAt100": 66,
+    "finding": "Overlay matrix, threshold table, rank precision, rebound audit, and receipt agree exactly on the checked measurements."
+  },
+  "operatingGuardsStillRequired": [
+    "The overlay remains navigation-only and may not accept or reject a term.",
+    "Deferred means preserved for later boundary expansion, never excluded.",
+    "alreadyKnown is reservoir-scoped; full-authority collision preflight remains mandatory before registration.",
+    "Every selected term still requires exact recount, canonical-distinct full cases, and manual semantic adjudication."
+  ],
+  "reviewedArtifactsMutated": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

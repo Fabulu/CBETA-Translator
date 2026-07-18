@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-18T01:43:06Z",
+  "generatedUtc": "2026-07-18T01:58:58Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "de9f13f5fa221e60fa4ebcfe3e08f0393a21389ede2af900232b671c148f4a5a",
+  "registrySha256": "c71a42d238970c7fe393fbb09834798bf9ea690f9cbd287d983047b92a3c0dce",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -968,6 +968,66 @@
       "offset": 2,
       "path": "maintenance/iriya-manual-batch19-offset2-independent-review-b6.json",
       "sha256": "4eb325441eb9d5847e24ed31c811be83c4a37b667c1038cc89ac0badcc3b5275"
+    },
+    {
+      "role": "batch20-ledger",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch20-offset0-ledger.json",
+      "sha256": "f9789940dc0ff5f027fe2147d4a19d02443476b90015e6b9493a08e92a088bef"
+    },
+    {
+      "role": "batch20-review",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch20-offset0-independent-review-c19-e8.json",
+      "sha256": "e1f51029c6c8fea8d9b3507f2bc09c6b479a7214bf9f271922612fd86e913870"
+    },
+    {
+      "role": "batch20-repair",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch20-offset0-reason-repair-receipt-b6.json",
+      "sha256": "66923b1dabf99da1c0563d18bd9cd74c02e8534bb2066afd7164b9ddfd77b69f"
+    },
+    {
+      "role": "batch20-focusedRecheck",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch20-offset0-review-repair-focused-recheck-c19-e8.json",
+      "sha256": "56f5ea3278a82a0dbadce565762e101d0f2764609c803db1fff7f0a12eab1bb2"
+    },
+    {
+      "role": "batch20-ledger",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch20-offset1-ledger.json",
+      "sha256": "0483de26b9a8e545b4f79cc066d6c65828fa525ee8740490ca91db5643a4390b"
+    },
+    {
+      "role": "batch20-review",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch20-offset1-independent-review-c19-e8.json",
+      "sha256": "405419bfc59fa097c8b171c810f68ee76bf242527e9a86bbc56b907fe3bde176"
+    },
+    {
+      "role": "batch20-repair",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch20-offset1-reason-repair-receipt-b6.json",
+      "sha256": "247345bc459689707120f5e3575a2868e9cc4a335144d9a967236e6f379a368f"
+    },
+    {
+      "role": "batch20-focusedRecheck",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch20-offset1-review-repair-focused-recheck-c19-e8.json",
+      "sha256": "a7e0c7eafed360938ac036140b347a68cc362daaa819f9e838564fd292a6b1d4"
+    },
+    {
+      "role": "batch20-ledger",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch20-offset2-ledger.json",
+      "sha256": "85aebc866c33121e12ca6a265bcd66b0e69a18e2ce93e7b732cf156f3b87281a"
+    },
+    {
+      "role": "batch20-review",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch20-offset2-independent-review-b6.json",
+      "sha256": "ce7e085ae3c109f7312d077add3916f437950c34efb094036b4e1d55ca872e3f"
     }
   ],
   "verification": {
@@ -1756,6 +1816,54 @@
         "ledgerSha256": "349d63d07e51eafa2d7287ebfdcc36a5493b6365be81de60a47ce048c6f7be25",
         "review": "maintenance/iriya-manual-batch19-offset2-independent-review-b6.json",
         "reviewSha256": "4eb325441eb9d5847e24ed31c811be83c4a37b667c1038cc89ac0badcc3b5275"
+      }
+    ]
+  },
+  "batch20Seal": {
+    "config": "maintenance/iriya-batch20-seal-config.json",
+    "configSha256": "aea92e7c428b4ec08b81543206a5ac6c3c3b1a10c8030b833ffe933bfd120a06",
+    "priorReceiptSha256": "c7e6cfe939c97230b9f59a324ca48d87d74a4b02c06ef3977673dc02fed072a6",
+    "priorRegistrySha256": "de9f13f5fa221e60fa4ebcfe3e08f0393a21389ede2af900232b671c148f4a5a",
+    "priorRegistryRows": 724,
+    "appendedRows": 30,
+    "finalRegistryRows": 754,
+    "priorObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "exactEvidenceValidated": true,
+    "canonicalWorkProvenanceValidated": true,
+    "singleBatchedCountTraversal": true,
+    "publicationOrBuildAuthorization": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-manual-batch20-offset0-ledger.json",
+        "ledgerSha256": "f9789940dc0ff5f027fe2147d4a19d02443476b90015e6b9493a08e92a088bef",
+        "review": "maintenance/iriya-manual-batch20-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "e1f51029c6c8fea8d9b3507f2bc09c6b479a7214bf9f271922612fd86e913870",
+        "repair": "maintenance/iriya-manual-batch20-offset0-reason-repair-receipt-b6.json",
+        "repairSha256": "66923b1dabf99da1c0563d18bd9cd74c02e8534bb2066afd7164b9ddfd77b69f",
+        "focusedRecheck": "maintenance/iriya-manual-batch20-offset0-review-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "56f5ea3278a82a0dbadce565762e101d0f2764609c803db1fff7f0a12eab1bb2"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-manual-batch20-offset1-ledger.json",
+        "ledgerSha256": "0483de26b9a8e545b4f79cc066d6c65828fa525ee8740490ca91db5643a4390b",
+        "review": "maintenance/iriya-manual-batch20-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "405419bfc59fa097c8b171c810f68ee76bf242527e9a86bbc56b907fe3bde176",
+        "repair": "maintenance/iriya-manual-batch20-offset1-reason-repair-receipt-b6.json",
+        "repairSha256": "247345bc459689707120f5e3575a2868e9cc4a335144d9a967236e6f379a368f",
+        "focusedRecheck": "maintenance/iriya-manual-batch20-offset1-review-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "a7e0c7eafed360938ac036140b347a68cc362daaa819f9e838564fd292a6b1d4"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch20-offset2-ledger.json",
+        "ledgerSha256": "85aebc866c33121e12ca6a265bcd66b0e69a18e2ce93e7b732cf156f3b87281a",
+        "review": "maintenance/iriya-manual-batch20-offset2-independent-review-b6.json",
+        "reviewSha256": "ce7e085ae3c109f7312d077add3916f437950c34efb094036b4e1d55ca872e3f"
       }
     ]
   }
