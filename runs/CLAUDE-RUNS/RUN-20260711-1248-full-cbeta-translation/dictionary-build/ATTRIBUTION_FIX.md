@@ -288,3 +288,6 @@ the three legal states, `Curated: true`). **Do not hand-edit those artifacts —
 5. `node eng/tools/merge-dict-entries.js` run; report the before/after counts.
 
 Report honestly: how many you named, how many you could not, and why.
+## Identified but unlinked masters
+
+If the source and full turn identify the uttering master but the canonical roster has no exact link label, do not invent a `MasterName` and do not mutate the lineage roster. Set `MasterName` to null and record `ActorAttribution.Status: identified-unlinked-master`, with the explicit identity, all six rungs, exact-turn proof, and a public attribution note naming the speaker. Unsupported identities fail closed; `reviewed-unnamed` remains governed by its stricter anonymous-actor rules.

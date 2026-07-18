@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "iriya-independent-semantic-review-v2",
+  "reviewer": "root",
+  "authorLedger": "maintenance/iriya-manual-batch30-offset1-ledger.json",
+  "authorLedgerSha256": "d6f60f653e851b9e52cc2cbfce35fb6a2963cba4d00166dc697c3f98e56bb5bb",
+  "selectionSha256": "cacef8e8ca2a21615774844537b58078dfbce5fa27560fae86a75051496e0ca9",
+  "method": "Independent reading of both complete stored case windows per candidate; exact deployment and lexical-unit decision separated from admission-reason prose hygiene.",
+  "summary": {"PASS": 5, "REVISE": 5, "dispositionChanges": 0},
+  "rows": [
+    {
+      "canonicalIndex": 1072,
+      "term": "千里持來呈舊面",
+      "verdict": "REVISE",
+      "disposition": "KEEP (component)",
+      "reason": "The line is independently deployed as Fenyang's answer to 'what is the phrase in which the true command operates?' The stored cases do not establish the author's stronger claim that it marks recognition disclosed across distance. Retain the lexical unit and describe the observable answer-slot only."
+    },
+    {
+      "canonicalIndex": 1075,
+      "term": "年老成精",
+      "verdict": "PASS",
+      "disposition": "KEEP (component)",
+      "reason": "One master answers a question about Xuefeng's last phrase with it; Wansong explicitly enumerates kinds of becoming a spirit and applies 'old' plus 'become a spirit' to Zhaozhou. The seasoned, teasing appraisal is text-grounded."
+    },
+    {
+      "canonicalIndex": 1078,
+      "term": "淈淈𣸩𣸩",
+      "verdict": "PASS",
+      "disposition": "KEEP (component)",
+      "reason": "One hall address contrasts the assembly's churning/muddled activity with the master's withdrawal; another verse pairs it directly against 精精靈靈. This is repeated appraisal, not incidental containment."
+    },
+    {
+      "canonicalIndex": 1081,
+      "term": "跳出金剛圈",
+      "verdict": "REVISE",
+      "disposition": "KEEP (component)",
+      "reason": "Both masters deploy 'leap out of the vajra circle' in direct address or answer, so the unit is buildable. 'Conceptual enclosure' is not stated by these cases; retain the attested hard-circle/confinement image and its interview deployment without naming an imported mental referent."
+    },
+    {
+      "canonicalIndex": 1084,
+      "term": "如蟲禦木、偶爾成文",
+      "verdict": "PASS",
+      "disposition": "KEEP (couplet)",
+      "reason": "A master applies the complete simile to his own two winter residences, and an independent case commentary uses the same complete comparison. The accidental-pattern predicate is in the words themselves."
+    },
+    {
+      "canonicalIndex": 1087,
+      "term": "紅霞穿碧落、白日繞須彌",
+      "verdict": "PASS",
+      "disposition": "KEEP (couplet)",
+      "reason": "The complete balanced line is independently preserved and is explicitly supplied under 擡薦商量 in a master's three-phrases sequence; it is Chan-deployed rather than merely contained verse."
+    },
+    {
+      "canonicalIndex": 1090,
+      "term": "一隊野狐精",
+      "verdict": "REVISE",
+      "disposition": "KEEP (component)",
+      "reason": "The phrase is a collective rebuke in repeated public handling of the Baizhang fox case. Narrow the author's generic 'deluded or merely imitative practitioners' to the attested case-bound targets; the witnesses do not establish that broader class definition."
+    },
+    {
+      "canonicalIndex": 1093,
+      "term": "拾得口喫飯",
+      "verdict": "REVISE",
+      "disposition": "KEEP (component)",
+      "reason": "Fenyang says 'I acquired a mouth to eat rice' when challenged about taking convenience, and a later master quotes that line after telling a monk he is fortunate not to understand. This supports the repeated Chan line, but not the author's generalized instruction to use ordinary functioning rather than manufacture explanation."
+    },
+    {
+      "canonicalIndex": 1096,
+      "term": "獅子身中蟲",
+      "verdict": "PASS",
+      "disposition": "KEEP (component)",
+      "reason": "One source immediately self-glosses the image: the worm inside the lion eats the lion's own flesh; another applies it as a verdict in an encounter. The damaging-insider referent is directly established."
+    },
+    {
+      "canonicalIndex": 1099,
+      "term": "被毛戴角",
+      "verdict": "REVISE",
+      "disposition": "KEEP (component)",
+      "reason": "The author's 'animal rebirth' and 'karmic warning' claim is contradicted by the selected evidence. The first source explicitly answers that 被毛戴角 is 沙門墮 and explains it as not clinging to the monk's side or sacred reward-stations; the second asks the station occupied by such a person. Keep the unit but replace the admission reason with this attested Chan deployment and retest distinct senses against other occurrences."
+    }
+  ],
+  "hardPass": false,
+  "requiredAction": "Repair only the five admission reasons; preserve all ten identities, evidence rows, and KEEP dispositions. Then run a focused independent recheck before registry sealing."
+}

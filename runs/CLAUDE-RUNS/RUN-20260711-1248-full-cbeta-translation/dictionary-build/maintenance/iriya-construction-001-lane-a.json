@@ -1,0 +1,3330 @@
+{
+  "schemaVersion": "iriya-construction-lane-v1",
+  "cohort": "iriya-construction-001",
+  "lane": "A",
+  "generatedUtc": "2026-07-18T03:50:56.747887Z",
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "registry": "maintenance/iriya-trusted-registry.json",
+  "registrySha256": "066e731712ac0b3e70128f140b6bf2a5d32f0f1ce9504399aed193f1d1668c9d",
+  "count": 167,
+  "checkpointEvery": 50,
+  "rows": [
+    {
+      "lane": "A",
+      "lanePosition": 1,
+      "cohortPosition": 1,
+      "id": "t_d256ba95f1c3",
+      "term": "十字街頭",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 2,
+      "queueNumber": 3,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 2,
+      "cohortPosition": 2,
+      "id": "t_855f8b4b2b2f",
+      "term": "安身立命",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 3,
+      "queueNumber": 4,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 2,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 3,
+      "cohortPosition": 3,
+      "id": "t_0e7f1765bcc5",
+      "term": "三十年後",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 4,
+      "queueNumber": 5,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 4,
+      "cohortPosition": 4,
+      "id": "t_9a612ad0649c",
+      "term": "天上天下",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 6,
+      "queueNumber": 7,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 3,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 5,
+      "cohortPosition": 5,
+      "id": "t_cdd1bd3196ff",
+      "term": "好與三十棒",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 8,
+      "queueNumber": 9,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 6,
+      "cohortPosition": 6,
+      "id": "t_b9e3003ce853",
+      "term": "放過一著",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 9,
+      "queueNumber": 10,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 4,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 7,
+      "cohortPosition": 7,
+      "id": "t_6d5176acfd0a",
+      "term": "天下太平",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 10,
+      "queueNumber": 11,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 2,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 8,
+      "cohortPosition": 8,
+      "id": "t_fd597c7fa91f",
+      "term": "超佛越祖",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 11,
+      "queueNumber": 12,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 9,
+      "cohortPosition": 9,
+      "id": "t_040d3cc8deda",
+      "term": "未夢見在",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 12,
+      "queueNumber": 13,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 5,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 10,
+      "cohortPosition": 10,
+      "id": "t_0c153f8f4824",
+      "term": "著衣喫飯",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 14,
+      "queueNumber": 15,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 11,
+      "cohortPosition": 11,
+      "id": "t_815b544b2081",
+      "term": "不識好惡",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 16,
+      "queueNumber": 17,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 12,
+      "cohortPosition": 12,
+      "id": "t_810ca6b36ae5",
+      "term": "不是心、不是佛、不是物",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 17,
+      "queueNumber": 18,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 13,
+      "cohortPosition": 13,
+      "id": "t_ee2645801267",
+      "term": "臘月三十日",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 18,
+      "queueNumber": 19,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 7,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 14,
+      "cohortPosition": 14,
+      "id": "t_ede52b261c8c",
+      "term": "揚眉瞬目",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 19,
+      "queueNumber": 20,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 15,
+      "cohortPosition": 15,
+      "id": "t_d934a14f69a6",
+      "term": "龍頭蛇尾",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 20,
+      "queueNumber": 21,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 16,
+      "cohortPosition": 16,
+      "id": "t_a49349b639c3",
+      "term": "猶較些子",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 21,
+      "queueNumber": 22,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 8,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 17,
+      "cohortPosition": 17,
+      "id": "t_79bfd4b7137e",
+      "term": "八字打開",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 22,
+      "queueNumber": 23,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 18,
+      "cohortPosition": 18,
+      "id": "t_bcbbaec3a214",
+      "term": "截斷衆流",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 23,
+      "queueNumber": 24,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 19,
+      "cohortPosition": 19,
+      "id": "t_4e7349a265d3",
+      "term": "直指人心、見性成佛",
+      "disposition": "KEEP",
+      "unit": null,
+      "canonicalIndex": 24,
+      "queueNumber": 25,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 9,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 20,
+      "cohortPosition": 20,
+      "id": "t_c6323c68f3d8",
+      "term": "七縱八横",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 25,
+      "queueNumber": 26,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 21,
+      "cohortPosition": 21,
+      "id": "t_9e8d1e11b364",
+      "term": "狸奴白牯",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 26,
+      "queueNumber": 27,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 22,
+      "cohortPosition": 22,
+      "id": "t_bc4081b67c3e",
+      "term": "入地獄如箭射",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 29,
+      "queueNumber": 30,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset2-checkpoint-010.json",
+        "manualLedgerSha256": "b0d24259581e9f582a734e4c3047177619ed4065668157c4ae10e3635efe0f2f",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset2-checkpoint-010-cross-review.json",
+        "independentAcceptanceSha256": "77ed801fe779a031e78e21e98aec89a17c053ddf240e01951fda33afac5b081d",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 23,
+      "cohortPosition": 23,
+      "id": "t_e193d21b8732",
+      "term": "學人自己",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 31,
+      "queueNumber": 32,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 24,
+      "cohortPosition": 24,
+      "id": "t_a65be7bb5cfd",
+      "term": "壓良爲賤",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 32,
+      "queueNumber": 33,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 25,
+      "cohortPosition": 25,
+      "id": "t_2a207e0e8c96",
+      "term": "不風流處也風流",
+      "disposition": "KEEP",
+      "unit": null,
+      "canonicalIndex": 33,
+      "queueNumber": 34,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 12,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 26,
+      "cohortPosition": 26,
+      "id": "t_8a08c0e4d272",
+      "term": "今日失利",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 34,
+      "queueNumber": 35,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 27,
+      "cohortPosition": 27,
+      "id": "t_063b11cf09aa",
+      "term": "業識茫茫",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 35,
+      "queueNumber": 36,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 28,
+      "cohortPosition": 28,
+      "id": "t_497d803e33ff",
+      "term": "自救不了",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 36,
+      "queueNumber": 37,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 13,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 29,
+      "cohortPosition": 29,
+      "id": "t_3dfb21bb4879",
+      "term": "不惜眉毛",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 37,
+      "queueNumber": 38,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 30,
+      "cohortPosition": 30,
+      "id": "t_07a5392dd6b1",
+      "term": "落在第二",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 38,
+      "queueNumber": 39,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 31,
+      "cohortPosition": 31,
+      "id": "t_20e096d853ee",
+      "term": "諦觀法王法、法王法如是",
+      "disposition": "KEEP",
+      "unit": null,
+      "canonicalIndex": 39,
+      "queueNumber": 40,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 14,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 32,
+      "cohortPosition": 32,
+      "id": "t_358628575afd",
+      "term": "佛法無多子",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 40,
+      "queueNumber": 41,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset1-manual-canary-010.json",
+        "manualLedgerSha256": "6dd4ceae9b9d4c8bbe1a81b5c31f50bb307b24fc3d33e795523c9d25e3c52e33",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset1-manual-canary-010-repair-cross-review-c19-e8.json",
+        "independentAcceptanceSha256": "642885a6a65fc6af545ca5347f24bac24b6b595ddd385a35b2be2d115ead8eab",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 33,
+      "cohortPosition": 33,
+      "id": "t_6e42cf0059cc",
+      "term": "照用同時",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 41,
+      "queueNumber": 42,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 34,
+      "cohortPosition": 34,
+      "id": "t_28f648ab208d",
+      "term": "掀倒禪床",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 42,
+      "queueNumber": 43,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 15,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 35,
+      "cohortPosition": 35,
+      "id": "t_9491cc378231",
+      "term": "且喜沒交渉",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 43,
+      "queueNumber": 44,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 36,
+      "cohortPosition": 36,
+      "id": "t_c34eef70d788",
+      "term": "鑊湯爐炭",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 44,
+      "queueNumber": 45,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 37,
+      "cohortPosition": 37,
+      "id": "t_23b0e63266c0",
+      "term": "世諦流布",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 45,
+      "queueNumber": 46,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 16,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 38,
+      "cohortPosition": 38,
+      "id": "t_cc97e22ff40c",
+      "term": "燈籠露柱",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 46,
+      "queueNumber": 47,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 39,
+      "cohortPosition": 39,
+      "id": "t_c5274bc0d1ca",
+      "term": "一箇半箇",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 47,
+      "queueNumber": 48,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 40,
+      "cohortPosition": 40,
+      "id": "t_e2ba845177a9",
+      "term": "向上一竅",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 48,
+      "queueNumber": 49,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 17,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 41,
+      "cohortPosition": 41,
+      "id": "t_5fd1f5818029",
+      "term": "單刀直入",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 49,
+      "queueNumber": 50,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 3,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 42,
+      "cohortPosition": 42,
+      "id": "t_8dfd909d60f8",
+      "term": "日午打三更",
+      "disposition": "KEEP",
+      "unit": null,
+      "canonicalIndex": 51,
+      "queueNumber": 52,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 18,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 43,
+      "cohortPosition": 43,
+      "id": "t_f3d9ddb08470",
+      "term": "斬釘截鐵",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 52,
+      "queueNumber": 53,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 44,
+      "cohortPosition": 44,
+      "id": "t_e7bec1c00b98",
+      "term": "一場懡㦬",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 53,
+      "queueNumber": 54,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 45,
+      "cohortPosition": 45,
+      "id": "t_df545b35b76b",
+      "term": "棒頭有眼",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 54,
+      "queueNumber": 55,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 19,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 46,
+      "cohortPosition": 46,
+      "id": "t_4f0ff92705d1",
+      "term": "風行草偃",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 55,
+      "queueNumber": 56,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 47,
+      "cohortPosition": 47,
+      "id": "t_04cb84217d07",
+      "term": "一手指天、一手指地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 56,
+      "queueNumber": 57,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 48,
+      "cohortPosition": 48,
+      "id": "t_99c9b008cc64",
+      "term": "八面玲瓏",
+      "disposition": "KEEP (component)",
+      "unit": null,
+      "canonicalIndex": 57,
+      "queueNumber": 58,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 20,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 49,
+      "cohortPosition": 49,
+      "id": "t_9326c67f5502",
+      "term": "築著磕著",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 59,
+      "queueNumber": 60,
+      "provenanceReceipt": {
+        "auditOffset": 2,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset2-checkpoint-020.json",
+        "ledgerSha256": "0775c13c9a0fb85cfad9e4fec45748b9a89a224fb0e7723f2f3b222a795e3cde",
+        "review": "maintenance/iriya-readjudication-offset2-checkpoint-020-cross-review.json",
+        "reviewSha256": "d02314565dfc35bdddf918ee8774e5576a30d88095541b573c3279ace4095d06"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 50,
+      "cohortPosition": 50,
+      "id": "t_135b07152ccc",
+      "term": "草賊大敗",
+      "disposition": "KEEP",
+      "unit": null,
+      "canonicalIndex": 60,
+      "queueNumber": 61,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset0.json",
+        "authoritySha256": "bd3d99bac66421b663dbf4af38f1c6d0bc17dd878a8c1f09b1b5c2fc4a302668",
+        "auditOffset": 0,
+        "auditOrdinal": 21,
+        "basis": "individually written headword-specific full-case ruling"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 51,
+      "cohortPosition": 51,
+      "id": "t_8e3f3533034b",
+      "term": "面南看北斗",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 61,
+      "queueNumber": 62,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 52,
+      "cohortPosition": 52,
+      "id": "t_2cc1d98e4304",
+      "term": "從上宗乘",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 63,
+      "queueNumber": 64,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 1,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 53,
+      "cohortPosition": 53,
+      "id": "t_da1951f555ad",
+      "term": "衲衣下事",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 64,
+      "queueNumber": 65,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 54,
+      "cohortPosition": 54,
+      "id": "t_4a32e8631c92",
+      "term": "千里同風",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 66,
+      "queueNumber": 67,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 2,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 55,
+      "cohortPosition": 55,
+      "id": "t_9d5e0553f705",
+      "term": "海晏河清",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 67,
+      "queueNumber": 68,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 56,
+      "cohortPosition": 56,
+      "id": "t_0f27ed340657",
+      "term": "撥草瞻風",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 69,
+      "queueNumber": 70,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 3,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 57,
+      "cohortPosition": 57,
+      "id": "t_dabc78882b2f",
+      "term": "勞而無功",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 70,
+      "queueNumber": 71,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 58,
+      "cohortPosition": 58,
+      "id": "t_dcf6b6fbd6f8",
+      "term": "露柱燈籠",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 72,
+      "queueNumber": 73,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 4,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 59,
+      "cohortPosition": 59,
+      "id": "t_2bc9fc6a27d4",
+      "term": "水到渠成",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 73,
+      "queueNumber": 74,
+      "provenanceReceipt": {
+        "auditOffset": 1,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset1-manual-batch2-010.json",
+        "ledgerSha256": "2138e3c0772cc797789500de68f6a4cd9e1bef7a3708af74a68d4c7da18c8a39",
+        "review": "maintenance/iriya-readjudication-offset1-manual-batch2-010-cross-review-c19-e8.json",
+        "reviewSha256": "8b924e7e5ced6f6c86f6d77386eaeaf4ef9166d87b606b2b0eb97488531652e9",
+        "repairReceipt": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "b908a8c768ea741d080817b59596ef558b49a74d835e8b195152f7729b4d3c7e",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset1-manual-batch2-010-repair-cross-review-c19-e8.json",
+        "focusedRecheckSha256": "fcf375190b1112060504bf50f1bac721e884f5d1839909dc6364078531a3a267"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 60,
+      "cohortPosition": 60,
+      "id": "t_6c0e044e6417",
+      "term": "正令全提",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 75,
+      "queueNumber": 76,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 5,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 61,
+      "cohortPosition": 61,
+      "id": "t_fdc233a31973",
+      "term": "西天四七",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 81,
+      "queueNumber": 82,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 6,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 62,
+      "cohortPosition": 62,
+      "id": "t_b7dc551f8c67",
+      "term": "錯認定盤星",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 84,
+      "queueNumber": 85,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 7,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 63,
+      "cohortPosition": 63,
+      "id": "t_6b54b1ae5199",
+      "term": "料掉沒交渉",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 87,
+      "queueNumber": 88,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 8,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 64,
+      "cohortPosition": 64,
+      "id": "t_94728747e832",
+      "term": "九九八十一",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 90,
+      "queueNumber": 91,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 9,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 65,
+      "cohortPosition": 65,
+      "id": "t_e3339a807c1e",
+      "term": "七顛八倒",
+      "disposition": "KEEP",
+      "unit": "component",
+      "canonicalIndex": 93,
+      "queueNumber": 94,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "canaryRow": 10,
+        "manualLedger": "maintenance/iriya-readjudication-offset0-canary-first10.json",
+        "manualLedgerSha256": "6e1d40dbc6688212be2ed69ef2cf159eb0d6182abdd5ceb69db8b5c616da308b",
+        "independentAcceptance": "maintenance/iriya-readjudication-offset0-canary-first10-independent-review.json",
+        "independentAcceptanceSha256": "1ae8cfc77045a04ce0857c154bfa940c20d75a387b24aa74437b494167b1eca3",
+        "acceptance": "PASS"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 66,
+      "cohortPosition": 66,
+      "id": "t_4b4e3643843e",
+      "term": "沒量大人",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 96,
+      "queueNumber": 97,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 1,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 67,
+      "cohortPosition": 67,
+      "id": "t_0ae28802d01f",
+      "term": "抽釘拔楔",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 102,
+      "queueNumber": 103,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 2,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 68,
+      "cohortPosition": 68,
+      "id": "t_993ac676044b",
+      "term": "滴水滴凍",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 108,
+      "queueNumber": 109,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 4,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 69,
+      "cohortPosition": 69,
+      "id": "t_6e573e3a68ff",
+      "term": "粉骨碎身",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 114,
+      "queueNumber": 115,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 5,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 70,
+      "cohortPosition": 70,
+      "id": "t_51b21979c0e6",
+      "term": "眉鬚墮落",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 117,
+      "queueNumber": 118,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 6,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 71,
+      "cohortPosition": 71,
+      "id": "t_7b34a0000443",
+      "term": "自領出去",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 120,
+      "queueNumber": 121,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 7,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 72,
+      "cohortPosition": 72,
+      "id": "t_68d175f5d5b9",
+      "term": "住持事繁",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 123,
+      "queueNumber": 124,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 8,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 73,
+      "cohortPosition": 73,
+      "id": "t_82105ff4c278",
+      "term": "新婦騎驢阿家牽",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 126,
+      "queueNumber": 127,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 9,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 74,
+      "cohortPosition": 74,
+      "id": "t_0a0966458896",
+      "term": "有頭無尾",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "canonicalIndex": 129,
+      "queueNumber": 130,
+      "provenanceReceipt": {
+        "auditOffset": 0,
+        "batch": 2,
+        "batchRow": 10,
+        "acceptance": "PASS",
+        "ledger": "maintenance/iriya-readjudication-offset0-manual-batch2-010.json",
+        "ledgerSha256": "4f4bd4832dd7e7824938001ee5e1e252c8af081f4ba5519a4cf1b5584799391d",
+        "review": "maintenance/iriya-readjudication-offset0-manual-batch2-010-cross-review.json",
+        "reviewSha256": "f655121a603640484d482999ac8b7e8c7e98fed50557ef155ff6460ab337e15e",
+        "repairReceipt": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-receipt.json",
+        "repairReceiptSha256": "e9c7d0a9d84cfaa03422ff01de496759d6940af2dced58557b88ef4cf81817e6",
+        "focusedRecheck": "maintenance/iriya-readjudication-offset0-manual-batch2-010-repair-focused-recheck.json",
+        "focusedRecheckSha256": "deb8130f9337b8485f6e90ae92ddc412508ff3edbbabe93425d7d714b943e2b7"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 75,
+      "cohortPosition": 75,
+      "id": "t_78e8ae120b7e",
+      "term": "萬古碧潭空界月、再三撈摝始應知",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 151,
+      "queueNumber": 152,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 51,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 76,
+      "cohortPosition": 76,
+      "id": "t_4e1657870dbb",
+      "term": "十方薄伽梵、一路涅槃門",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 152,
+      "queueNumber": 153,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 51,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 77,
+      "cohortPosition": 77,
+      "id": "t_0dd4496f65f3",
+      "term": "因風吹火",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 154,
+      "queueNumber": 155,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 52,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 78,
+      "cohortPosition": 78,
+      "id": "t_e6511b8f124c",
+      "term": "矢上加尖",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 155,
+      "queueNumber": 156,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 52,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 79,
+      "cohortPosition": 79,
+      "id": "t_9f8363f61c12",
+      "term": "此是選佛場、心空及第歸",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 157,
+      "queueNumber": 158,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 53,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 80,
+      "cohortPosition": 80,
+      "id": "t_7897f16f7a6f",
+      "term": "再犯不容",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 158,
+      "queueNumber": 159,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 53,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 81,
+      "cohortPosition": 81,
+      "id": "t_4990e3323ea8",
+      "term": "速禮三拜",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 160,
+      "queueNumber": 161,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 54,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 82,
+      "cohortPosition": 82,
+      "id": "t_aff94216f541",
+      "term": "途中受用",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 161,
+      "queueNumber": 162,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 54,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 83,
+      "cohortPosition": 83,
+      "id": "t_37988bb0060a",
+      "term": "放過一著、落在第二",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 163,
+      "queueNumber": 164,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 55,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 84,
+      "cohortPosition": 84,
+      "id": "t_1f2952865d30",
+      "term": "據款結案",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 164,
+      "queueNumber": 165,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 55,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 85,
+      "cohortPosition": 85,
+      "id": "t_07acab5c78e9",
+      "term": "目前無法、意在目前",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 166,
+      "queueNumber": 167,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 56,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 86,
+      "cohortPosition": 86,
+      "id": "t_9d1f4db03b3f",
+      "term": "一機一境",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 167,
+      "queueNumber": 168,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 56,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 87,
+      "cohortPosition": 87,
+      "id": "t_98a6f3b1f926",
+      "term": "文彩已彰",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 169,
+      "queueNumber": 170,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 57,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 88,
+      "cohortPosition": 88,
+      "id": "t_86cc63a38f2b",
+      "term": "隨家豐儉",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 170,
+      "queueNumber": 171,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 57,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 89,
+      "cohortPosition": 89,
+      "id": "t_d3bb6342fbd3",
+      "term": "觸途成滯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 172,
+      "queueNumber": 173,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 58,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 90,
+      "cohortPosition": 90,
+      "id": "t_292307d015f1",
+      "term": "七花八裂",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 173,
+      "queueNumber": 174,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 58,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 91,
+      "cohortPosition": 91,
+      "id": "t_c7c80ebd1e13",
+      "term": "傷鋒犯手",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 175,
+      "queueNumber": 176,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 59,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 92,
+      "cohortPosition": 92,
+      "id": "t_c72069ad2b45",
+      "term": "劍去久矣",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 176,
+      "queueNumber": 177,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 59,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 93,
+      "cohortPosition": 93,
+      "id": "t_ef075c6664ef",
+      "term": "指鹿爲馬",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 178,
+      "queueNumber": 179,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 60,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 94,
+      "cohortPosition": 94,
+      "id": "t_744799df0748",
+      "term": "照天照地",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 179,
+      "queueNumber": 180,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 60,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 95,
+      "cohortPosition": 95,
+      "id": "t_d42de1441e4e",
+      "term": "認賊爲子",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 181,
+      "queueNumber": 182,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 61,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 96,
+      "cohortPosition": 96,
+      "id": "t_6a36bf01ea70",
+      "term": "喝散大衆",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 182,
+      "queueNumber": 183,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 61,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 97,
+      "cohortPosition": 97,
+      "id": "t_ff3bc00436ea",
+      "term": "擧一明三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 184,
+      "queueNumber": 185,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 62,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 98,
+      "cohortPosition": 98,
+      "id": "t_7c404920d206",
+      "term": "滯句者迷",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 185,
+      "queueNumber": 186,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 62,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 99,
+      "cohortPosition": 99,
+      "id": "t_8b0f58efdaf5",
+      "term": "抖擻精神",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 187,
+      "queueNumber": 188,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 63,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 100,
+      "cohortPosition": 100,
+      "id": "t_dea7e97fa45e",
+      "term": "南山起雲、北山下雨",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 188,
+      "queueNumber": 189,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 63,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 101,
+      "cohortPosition": 101,
+      "id": "t_0a46e5168808",
+      "term": "正令當行",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 190,
+      "queueNumber": 191,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 64,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 102,
+      "cohortPosition": 102,
+      "id": "t_3a5385fcf1eb",
+      "term": "殘羹餿飯",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 191,
+      "queueNumber": 192,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 64,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 103,
+      "cohortPosition": 103,
+      "id": "t_61f3e9258d3e",
+      "term": "血濺梵天",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 193,
+      "queueNumber": 194,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 65,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 104,
+      "cohortPosition": 104,
+      "id": "t_66355fb62c29",
+      "term": "八角磨盤空裏走",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 194,
+      "queueNumber": 195,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 65,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 105,
+      "cohortPosition": 105,
+      "id": "t_5b0b816ee306",
+      "term": "不落階級",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 196,
+      "queueNumber": 197,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 66,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 106,
+      "cohortPosition": 106,
+      "id": "t_aad133038248",
+      "term": "落二落三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 199,
+      "queueNumber": 200,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 67,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 107,
+      "cohortPosition": 107,
+      "id": "t_5683300fdb8b",
+      "term": "一二三四五六七",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 200,
+      "queueNumber": 201,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 67,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 108,
+      "cohortPosition": 108,
+      "id": "t_4a94f93601be",
+      "term": "殺人不眨眼",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 202,
+      "queueNumber": 203,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 68,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 109,
+      "cohortPosition": 109,
+      "id": "t_0220a83c7f9c",
+      "term": "有佛處不得住、無佛處急走過",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 203,
+      "queueNumber": 204,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 68,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 110,
+      "cohortPosition": 110,
+      "id": "t_4236ac78ec14",
+      "term": "動容揚古路、不墮悄然機",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 205,
+      "queueNumber": 206,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 69,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 111,
+      "cohortPosition": 111,
+      "id": "t_15866bfa3d82",
+      "term": "傍觀者哂",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 206,
+      "queueNumber": 207,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 69,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 112,
+      "cohortPosition": 112,
+      "id": "t_205a1d1331ae",
+      "term": "東村王老夜燒錢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 208,
+      "queueNumber": 209,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 70,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 113,
+      "cohortPosition": 113,
+      "id": "t_a07cb5197549",
+      "term": "水不洗水",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 209,
+      "queueNumber": 210,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 70,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 114,
+      "cohortPosition": 114,
+      "id": "t_0ab9f8a0ffb2",
+      "term": "應病與藥",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 211,
+      "queueNumber": 212,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 71,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 115,
+      "cohortPosition": 115,
+      "id": "t_809ec2e31de2",
+      "term": "言中有響",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 212,
+      "queueNumber": 213,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 71,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 116,
+      "cohortPosition": 116,
+      "id": "t_3479a511a100",
+      "term": "疑殺天下人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 214,
+      "queueNumber": 215,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 72,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 117,
+      "cohortPosition": 117,
+      "id": "t_45f6855e7e48",
+      "term": "破家散宅",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 215,
+      "queueNumber": 216,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 72,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 118,
+      "cohortPosition": 118,
+      "id": "t_22241e355dc9",
+      "term": "見成公案",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 217,
+      "queueNumber": 218,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 73,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 119,
+      "cohortPosition": 119,
+      "id": "t_b9bbb81addc8",
+      "term": "隨語生解",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 218,
+      "queueNumber": 219,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 73,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 120,
+      "cohortPosition": 120,
+      "id": "t_20dfbe1264e7",
+      "term": "承虚接響",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 220,
+      "queueNumber": 221,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 74,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 121,
+      "cohortPosition": 121,
+      "id": "t_ba43cb4f37a1",
+      "term": "這野狐精",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 221,
+      "queueNumber": 222,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 74,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 122,
+      "cohortPosition": 122,
+      "id": "t_0c5d50c1892d",
+      "term": "坐脱立亡",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 223,
+      "queueNumber": 224,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 75,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 123,
+      "cohortPosition": 123,
+      "id": "t_e1569640966d",
+      "term": "分疎不下",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 226,
+      "queueNumber": 227,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 76,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 124,
+      "cohortPosition": 124,
+      "id": "t_d7e6cf1e217e",
+      "term": "口是禍門",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 227,
+      "queueNumber": 228,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 76,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 125,
+      "cohortPosition": 125,
+      "id": "t_4116d081b406",
+      "term": "棒頭有眼明如日",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 229,
+      "queueNumber": 230,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 77,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 126,
+      "cohortPosition": 126,
+      "id": "t_6025ede5c90b",
+      "term": "官不容針、私通車馬",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 230,
+      "queueNumber": 231,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 77,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 127,
+      "cohortPosition": 127,
+      "id": "t_aee63c4f06b3",
+      "term": "心不是佛、智不是道",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 232,
+      "queueNumber": 233,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 78,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 128,
+      "cohortPosition": 128,
+      "id": "t_ca1d0dfd87b4",
+      "term": "擧足下足",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 235,
+      "queueNumber": 236,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 79,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 129,
+      "cohortPosition": 129,
+      "id": "t_110873037740",
+      "term": "平地上死人無數",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 236,
+      "queueNumber": 237,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 79,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 130,
+      "cohortPosition": 130,
+      "id": "t_ee635860e9e8",
+      "term": "眼横鼻直",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 238,
+      "queueNumber": 239,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 80,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 131,
+      "cohortPosition": 131,
+      "id": "t_394c40afb263",
+      "term": "應機接物",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 239,
+      "queueNumber": 240,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 80,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 132,
+      "cohortPosition": 132,
+      "id": "t_1da40dd9e3ba",
+      "term": "向鬼窟裏作活計",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 241,
+      "queueNumber": 242,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 81,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 133,
+      "cohortPosition": 133,
+      "id": "t_af0d88a192a4",
+      "term": "金屑雖貴、落眼成翳",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 242,
+      "queueNumber": 243,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 81,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 134,
+      "cohortPosition": 134,
+      "id": "t_de5160d44487",
+      "term": "放你三十棒",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 244,
+      "queueNumber": 245,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 82,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 135,
+      "cohortPosition": 135,
+      "id": "t_e4dadbe3ef3e",
+      "term": "枯木裏龍吟",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 245,
+      "queueNumber": 246,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 82,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 136,
+      "cohortPosition": 136,
+      "id": "t_0b391ecb2d3b",
+      "term": "之乎者也",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 247,
+      "queueNumber": 248,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 83,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 137,
+      "cohortPosition": 137,
+      "id": "t_8a237bf26419",
+      "term": "四七二三",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 248,
+      "queueNumber": 249,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 83,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 138,
+      "cohortPosition": 138,
+      "id": "t_cdb97cd8e462",
+      "term": "鷂子過新羅",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 250,
+      "queueNumber": 251,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 84,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 139,
+      "cohortPosition": 139,
+      "id": "t_622e53ddc22c",
+      "term": "一盲引衆盲",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 251,
+      "queueNumber": 252,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 84,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 140,
+      "cohortPosition": 140,
+      "id": "t_c7bd17aa7f07",
+      "term": "打破漆桶",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 253,
+      "queueNumber": 254,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 85,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 141,
+      "cohortPosition": 141,
+      "id": "t_d1c41c5d2c81",
+      "term": "落七落八",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 254,
+      "queueNumber": 255,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 85,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 142,
+      "cohortPosition": 142,
+      "id": "t_52d97cd526b5",
+      "term": "道得八成",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 256,
+      "queueNumber": 257,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 86,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 143,
+      "cohortPosition": 143,
+      "id": "t_fe1d0bd491b4",
+      "term": "土上加泥",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 257,
+      "queueNumber": 258,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 86,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 144,
+      "cohortPosition": 144,
+      "id": "t_907a14e2ce02",
+      "term": "一切聲是佛聲",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 259,
+      "queueNumber": 260,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 87,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 145,
+      "cohortPosition": 145,
+      "id": "t_d50af7a6ee41",
+      "term": "宗乘中事",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 260,
+      "queueNumber": 261,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 87,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 146,
+      "cohortPosition": 146,
+      "id": "t_fff32dda4d4d",
+      "term": "胡喝亂喝",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 262,
+      "queueNumber": 263,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 88,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 147,
+      "cohortPosition": 147,
+      "id": "t_a11d92a1ca57",
+      "term": "當機覿面",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 263,
+      "queueNumber": 264,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 88,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 148,
+      "cohortPosition": 148,
+      "id": "t_3004770fcd63",
+      "term": "掉棒打月",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 265,
+      "queueNumber": 266,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 89,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 149,
+      "cohortPosition": 149,
+      "id": "t_2efb0890460b",
+      "term": "特地一場愁",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 266,
+      "queueNumber": 267,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 89,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 150,
+      "cohortPosition": 150,
+      "id": "t_762428e0fe71",
+      "term": "大死底人",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 268,
+      "queueNumber": 269,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 90,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 151,
+      "cohortPosition": 151,
+      "id": "t_b8898d16641e",
+      "term": "我王庫内無如是刀",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 269,
+      "queueNumber": 270,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 90,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 152,
+      "cohortPosition": 152,
+      "id": "t_19f7c88b911e",
+      "term": "天地與我同根、萬物與我一體",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 271,
+      "queueNumber": 272,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 91,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 153,
+      "cohortPosition": 153,
+      "id": "t_4a1158f5134a",
+      "term": "幻化空身即法身",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 272,
+      "queueNumber": 273,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 91,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 154,
+      "cohortPosition": 154,
+      "id": "t_ab9762a0c94a",
+      "term": "熟處難忘",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 274,
+      "queueNumber": 275,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 92,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 155,
+      "cohortPosition": 155,
+      "id": "t_57a0c6bab647",
+      "term": "我爲法王、於法自在",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 275,
+      "queueNumber": 276,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 92,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 156,
+      "cohortPosition": 156,
+      "id": "t_47bdde28483d",
+      "term": "落草之談",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 277,
+      "queueNumber": 278,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 93,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 157,
+      "cohortPosition": 157,
+      "id": "t_51e63d743604",
+      "term": "懷州牛喫禾、益州馬腹脹",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 278,
+      "queueNumber": 279,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 93,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 158,
+      "cohortPosition": 158,
+      "id": "t_ad8a02882a91",
+      "term": "慣得其便",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 280,
+      "queueNumber": 281,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 94,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 159,
+      "cohortPosition": 159,
+      "id": "t_265cd5bfa476",
+      "term": "瓦解氷消",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 281,
+      "queueNumber": 282,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 94,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 160,
+      "cohortPosition": 160,
+      "id": "t_e44ed8dfa032",
+      "term": "道遠乎哉",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 283,
+      "queueNumber": 284,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 95,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 161,
+      "cohortPosition": 161,
+      "id": "t_b58163ab5e3f",
+      "term": "不是苦心人不知",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 284,
+      "queueNumber": 285,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 95,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 162,
+      "cohortPosition": 162,
+      "id": "t_07d077538ef9",
+      "term": "大事了畢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 286,
+      "queueNumber": 287,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 96,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 163,
+      "cohortPosition": 163,
+      "id": "t_ea8ac6cb33ee",
+      "term": "弄泥團漢",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 287,
+      "queueNumber": 288,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 96,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 164,
+      "cohortPosition": 164,
+      "id": "t_2ee6771dbd7a",
+      "term": "量才補職",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 289,
+      "queueNumber": 290,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 97,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 165,
+      "cohortPosition": 165,
+      "id": "t_4070f81b4e43",
+      "term": "只具一隻眼",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 290,
+      "queueNumber": 291,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 97,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 166,
+      "cohortPosition": 166,
+      "id": "t_c16649666fbf",
+      "term": "多口阿師",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 292,
+      "queueNumber": 293,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset1.json",
+        "authoritySha256": "12c3671816ebf4562f2624c5fc29ba34fb617fee9cbe3753232dac3d6333f325",
+        "auditOffset": 1,
+        "decisionPosition": 98,
+        "identityEvidence": "maintenance/iriya-offset1-audit-checkpoint-310.json",
+        "identityEvidenceSha256": "70b02681a9e975b3e5cddc2e4a513de39a1cba502faa63d316ac642af7363162"
+      }
+    },
+    {
+      "lane": "A",
+      "lanePosition": 167,
+      "cohortPosition": 167,
+      "id": "t_44e5b621ba57",
+      "term": "攙行奪市",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "canonicalIndex": 293,
+      "queueNumber": 294,
+      "provenanceReceipt": {
+        "authority": "maintenance/iriya-method-audit-offset2.json",
+        "authoritySha256": "0e3109bc5cb80a23ff95163db97b57361bb08e3972d89c7f03bd024a33258ce1",
+        "auditOffset": 2,
+        "decisionOrdinal": 98,
+        "identityEvidence": "maintenance/iriya-offset2-audit-checkpoint-150.json",
+        "identityEvidenceSha256": "62b4346c97bb74adb31a80e9a50fa4e77de58be553231c92a2b46a7e9bbe90b3"
+      }
+    }
+  ]
+}

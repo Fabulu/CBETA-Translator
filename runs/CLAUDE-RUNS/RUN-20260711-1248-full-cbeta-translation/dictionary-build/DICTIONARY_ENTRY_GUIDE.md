@@ -497,6 +497,14 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        that jumps directly from `Source record (path).` to the master/actor, or
        says only `the source title`, hard-fails. The reader must know which
        human-readable work the source link opens.
+       **The English label is registry data, not fresh translation.** Resolve the
+       occurrence's exact `RelPath` against
+       `/mnt/c/programmieren/CbetaZenTranslations/titles.jsonl` and include that
+       row's `en` (or its registered `enShort`) verbatim in the note. Do not put
+       an actor/action sentence after a marker called `English Label`, and do not
+       improvise a new title. Every construction decile must pass
+       `maintenance/audit_authoritative_source_titles.py` over all changed
+       entries before independent review or installation.
        `Kwic` is the concise quotation shown to that reader, not the entire
        retrieval window. Preserve enough of the complete turn or case to make
        the actor and lexical job unambiguous, but re-cut any KWIC over 800
@@ -1319,3 +1327,6 @@ plan/usage limits WILL interrupt — the file ledger is what survives across ses
 SPEC_v1 (Zen-dictionary vision + corpus scope) · SPEC_v2 (subsystem plan + current-state map) ·
 SPEC_v3 (decisions: dual-file, multi-sense, buffalo pilot) · EWK_RECON_FINDINGS · BUFFALO_PILOT ·
 BUFFALO_ENTRY.v2.json · LEDGER_SYSTEM · SPA_DICTIONARY_PLAN · TASK_LOG (chronology).
+### Identified master without a canonical roster link
+
+When full-case reading names the uttering master but no exact canonical roster label exists, keep `MasterName` null and use `ActorAttribution.Status = identified-unlinked-master`. This is not an anonymous-master escape hatch. It requires the explicit Chinese/English identity in `ActorLabel`, all six attribution rungs in order, exact-turn grammatical proof repeating that identity, and an `AttributionNote` that names the speaker. Never edit the lineage roster to make a dictionary occurrence pass.

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "iriya-partial-construction-manifest-v1",
+  "cohort": "iriya-construction-001",
+  "generatedUtc": "2026-07-18T03:50:56.747887Z",
+  "authority": "IRIYA_PARTIAL_CONSTRUCTION_OVERRIDE.md",
+  "corpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "registry": "maintenance/iriya-trusted-registry.json",
+  "registrySha256": "066e731712ac0b3e70128f140b6bf2a5d32f0f1ce9504399aed193f1d1668c9d",
+  "installedDictionary": "/mnt/c/temp/NewTranslationrepos/CbetaZenTranslations/termbase.v2.json",
+  "installedDictionarySha256": "22398350d11ff68048bb02b83b3f2506306fcf3755031edd594f137c79c42398",
+  "lineageRosterReadOnlyPath": "Assets/Data/lineage-masters.json",
+  "lineageRosterPreWaveSha256": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded",
+  "requested": 500,
+  "selected": 500,
+  "uniqueTerms": 500,
+  "collisionsSkipped": 0,
+  "lanes": [
+    {
+      "lane": "A",
+      "path": "maintenance/iriya-construction-001-lane-a.json",
+      "sha256": "5ecaee4195530dd71d703b6a5125926da84a6c146193fafe91563be91e15f67c",
+      "count": 167
+    },
+    {
+      "lane": "B",
+      "path": "maintenance/iriya-construction-001-lane-b.json",
+      "sha256": "9c0788d5d9aa0c32f55900915699c475b0c9b6cdc0ad35c50cab72f1f63b721b",
+      "count": 167
+    },
+    {
+      "lane": "C",
+      "path": "maintenance/iriya-construction-001-lane-c.json",
+      "sha256": "cd527c0228d9113d6aac8df7ad545fef048a23ff8e1d52b7af404f9790355f8d",
+      "count": 166
+    }
+  ],
+  "assertions": {
+    "allDispositionsBuildable": true,
+    "allRowsCarryProvenanceReceipt": true,
+    "uniqueConstructionTerms": true,
+    "noInstalledCollisions": true,
+    "readZenProductionPublicationAuthorized": false
+  },
+  "skipped": []
+}

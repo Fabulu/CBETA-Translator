@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "iriya-semantic-repair-receipt-v1",
+  "authorLedger": "maintenance/iriya-manual-batch30-offset1-ledger.json",
+  "repairedLedgerSha256": "39535c4e9d72879c09eb7cc3ec9b89254247907d17008ee7bd03149ce6da8b99",
+  "triggerReview": "maintenance/iriya-manual-batch30-offset1-independent-review-root.json",
+  "triggerReviewSha256": "3a010ec33d867f96df97918e0b81593b588b04540eace961194221a73d9993dc",
+  "repairedCanonicalIndexes": [1072, 1081, 1090, 1093, 1099],
+  "preserved": ["candidate identity", "evidence", "disposition", "lexical unit", "exact counts"],
+  "changed": "Admission-reason prose only; unsupported recognition, conceptual-enclosure, generalized-practitioner, ordinary-functioning instruction, and animal-rebirth claims were replaced with observable full-case deployment.",
+  "hardPass": true
+}

@@ -1,0 +1,30 @@
+{
+  "batch": 29,
+  "priorRegistryRows": 994,
+  "expectedFinalCounts": {"KEEP": 983, "REJECT": 41, "PROVISIONAL": 0},
+  "lanes": [
+    {
+      "offset": 0,
+      "artifacts": {
+        "ledger": "maintenance/iriya-manual-batch29-offset0-ledger-c19-e8.json",
+        "review": "maintenance/iriya-manual-batch29-offset0-independent-review-d7.json",
+        "repair": "maintenance/iriya-manual-batch29-offset0-repair-receipt-c19-e8.json",
+        "focusedRecheck": "maintenance/iriya-manual-batch29-offset0-focused-recheck-d7.json"
+      }
+    },
+    {
+      "offset": 1,
+      "artifacts": {
+        "ledger": "maintenance/iriya-manual-batch29-offset1-ledger.json",
+        "review": "maintenance/iriya-manual-batch29-offset1-independent-review-d7.json"
+      }
+    },
+    {
+      "offset": 2,
+      "artifacts": {
+        "ledger": "maintenance/iriya-manual-batch29-offset2-ledger.json",
+        "review": "maintenance/iriya-manual-batch29-offset2-independent-review-d7.json"
+      }
+    }
+  ]
+}
