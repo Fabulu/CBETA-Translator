@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "non-iriya-v3-frequency-independent-review.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/non-iriya-v3-frequency-batch17-navigation-selection.json",
+  "reviewedSelectionSha256": "7184cbd756c2a7d16ba7587299bc3fbc935a68da84a035e087465275e348435b",
+  "reviewedLedger": "maintenance/non-iriya-v3-frequency-batch17-semantic-ledger-d7.json",
+  "reviewedLedgerSha256": "9fe48e4615dc49bbd033da8a8cbd7ed536992f57135dbeb4756a3f251d452270",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "selectionBinding": "PASS; all 25 frozen identities, ordinals, navigation records, and frozen count objects reproduce",
+    "counts": "PASS; 25/25 exact hit/file/distinct-work triples reproduce and match both zcExact and zcExactAtFreeze",
+    "evidence": "PASS; 50/50 windows verify at stored line bounds, titles and canonical work IDs reproduce, and every evidence pair is canonical-distinct",
+    "summary": "PASS; 21 KEEP, 4 REJECT, 0 PROVISIONAL matches the decision objects"
+  },
+  "semanticReview": {
+    "verdict": "PASS 25/25",
+    "fullCaseReading": true,
+    "falsePositiveAudit": {
+      "verdict": "PASS; all 21 KEEP decisions preserve an observable recurrent boundary and job rather than frequency alone",
+      "actionsAndEncounterForms": ["卓一卓", "擲下拄杖", "如何是佛法大意"],
+      "doctrinalOrInstitutionalTerms": ["波羅蜜", "盡十方", "一切法", "二六時", "十二分教", "三十三天", "大千世界", "百千萬億", "第一座", "山河大地", "和尚家風"],
+      "fixedImagesVerdictsAndFormulas": ["一圓相", "信手拈來", "十字街頭", "父母未生前", "喪身失命", "百尺竿頭", "天下太平"],
+      "borderlineFindings": {
+        "信手拈來": "Both cases use the complete fixed idiom for readily taking something up, then critically contrast such facility with genuine realization.",
+        "盡十方": "The boundary is a conventional totalizing Buddhist expression recurrently governing worlds, lands, or directions, not an accidental line seam.",
+        "百千萬億": "The cumulative magnitude formula is lexicalized in Buddhist quantitative rhetoric and functions intact across the stored cases.",
+        "天下太平": "The complete public formula recurs as a ceremonial blessing and a pointed answer that blocks further argument."
+      }
+    },
+    "falseNegativeAudit": {
+      "verdict": "PASS; none of the four rejected boundaries hides a deployable independent unit",
+      "rejectedTerms": ["千里外", "黃面老", "南嶽下", "何是第二句"],
+      "findings": {
+        "千里外": "Productive distance phrase whose number and surrounding proposition supply the case meaning.",
+        "黃面老": "Truncated epithet requiring the following noun, typically 子 or 漢.",
+        "南嶽下": "Genealogical heading fragment rather than an utterance or lexical deployment.",
+        "何是第二句": "Boundary-clipped form of 如何是第二句; both witnesses preserve the missing initial graph in the complete question."
+      }
+    }
+  },
+  "summary": {"PASS": 25, "REVISE": 0, "confirmedKeep": 21, "confirmedReject": 4, "falsePositiveRepairsRequired": 0, "falseNegativeRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
